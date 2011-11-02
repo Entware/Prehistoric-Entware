@@ -1,0 +1,57 @@
+*** ../backup/trunk/include/package-defaults.mk	2011-10-23 21:23:30.000000000 +0400
+--- ../trunk/include/package-defaults.mk	2011-10-24 22:13:54.020491529 +0400
+***************
+*** 55,61 ****
+    endef
+  endif
+  
+! CONFIGURE_PREFIX:=/usr
+  CONFIGURE_ARGS = \
+  		--target=$(GNU_TARGET_NAME) \
+  		--host=$(GNU_TARGET_NAME) \
+--- 55,61 ----
+    endef
+  endif
+  
+! CONFIGURE_PREFIX:=/opt
+  CONFIGURE_ARGS = \
+  		--target=$(GNU_TARGET_NAME) \
+  		--host=$(GNU_TARGET_NAME) \
+***************
+*** 67,75 ****
+  		--bindir=$(CONFIGURE_PREFIX)/bin \
+  		--sbindir=$(CONFIGURE_PREFIX)/sbin \
+  		--libexecdir=$(CONFIGURE_PREFIX)/lib \
+! 		--sysconfdir=/etc \
+  		--datadir=$(CONFIGURE_PREFIX)/share \
+! 		--localstatedir=/var \
+  		--mandir=$(CONFIGURE_PREFIX)/man \
+  		--infodir=$(CONFIGURE_PREFIX)/info \
+  		$(DISABLE_NLS) \
+--- 67,75 ----
+  		--bindir=$(CONFIGURE_PREFIX)/bin \
+  		--sbindir=$(CONFIGURE_PREFIX)/sbin \
+  		--libexecdir=$(CONFIGURE_PREFIX)/lib \
+! 		--sysconfdir=$(CONFIGURE_PREFIX)/etc \
+  		--datadir=$(CONFIGURE_PREFIX)/share \
+! 		--localstatedir=$(CONFIGURE_PREFIX)/var \
+  		--mandir=$(CONFIGURE_PREFIX)/man \
+  		--infodir=$(CONFIGURE_PREFIX)/info \
+  		$(DISABLE_NLS) \
+***************
+*** 81,87 ****
+  		CFLAGS="$(TARGET_CFLAGS) $(EXTRA_CFLAGS)" \
+  		CXXFLAGS="$(TARGET_CFLAGS) $(EXTRA_CFLAGS)" \
+  		CPPFLAGS="$(TARGET_CPPFLAGS) $(EXTRA_CPPFLAGS)" \
+! 		LDFLAGS="$(TARGET_LDFLAGS) $(EXTRA_LDFLAGS)" \
+  
+  CONFIGURE_PATH = .
+  CONFIGURE_CMD = ./configure
+--- 81,87 ----
+  		CFLAGS="$(TARGET_CFLAGS) $(EXTRA_CFLAGS)" \
+  		CXXFLAGS="$(TARGET_CFLAGS) $(EXTRA_CFLAGS)" \
+  		CPPFLAGS="$(TARGET_CPPFLAGS) $(EXTRA_CPPFLAGS)" \
+! 		LDFLAGS="$(TARGET_LDFLAGS) $(EXTRA_LDFLAGS) -Wl,-rpath,/opt/lib" \
+  
+  CONFIGURE_PATH = .
+  CONFIGURE_CMD = ./configure

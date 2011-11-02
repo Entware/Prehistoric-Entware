@@ -1,0 +1,12 @@
+This is a scripts for building your own OpenWRT repository for ASUS WL-5xx RT-N1x Oleg's based custom firmware from http://code.google.com/p/wl500g/
+
+The homepage of this package is http://code.google.com/p/wl500g-repo/
+
+Send comments and bug reports to ryzhovau@gmail.com
+
+Other files you might look into:
+
+INSTALL		- general compilation and installation rules
+./rtn		- directory with new OpenWRT Buildroot target
+cfg-*.patches	- tunes OpenWRT Buildroot compilation scripts
+package-*.patches	ipk packages source changes

@@ -1,0 +1,112 @@
+diff -c -r ../backup/trunk/package/opkg//Makefile ../trunk/package/opkg//Makefile
+*** ../backup/trunk/package/opkg//Makefile	2011-10-23 21:23:43.000000000 +0400
+--- ../trunk/package/opkg//Makefile	2011-10-27 21:59:27.328162740 +0400
+***************
+*** 42,48 ****
+  endef
+  
+  define Package/opkg/conffiles
+! /etc/opkg.conf
+  endef
+  
+  TARGET_CFLAGS += $(if $(CONFIG_GCC_VERSION_4_3)$(CONFIG_GCC_VERSION_4_4),-Wno-array-bounds)
+--- 42,48 ----
+  endef
+  
+  define Package/opkg/conffiles
+! /opt/etc/opkg.conf
+  endef
+  
+  TARGET_CFLAGS += $(if $(CONFIG_GCC_VERSION_4_3)$(CONFIG_GCC_VERSION_4_4),-Wno-array-bounds)
+***************
+*** 52,59 ****
+  CONFIGURE_ARGS += \
+  	--disable-curl \
+  	--disable-gpg \
+! 	--with-opkgetcdir=/etc \
+! 	--with-opkglockfile=/var/lock/opkg.lock
+  
+  define Build/Compile
+  	$(MAKE) -C $(PKG_BUILD_DIR) \
+--- 52,59 ----
+  CONFIGURE_ARGS += \
+  	--disable-curl \
+  	--disable-gpg \
+! 	--with-opkgetcdir=/opt/etc \
+! 	--with-opkglockfile=/opt/var/lock/opkg.lock
+  
+  define Build/Compile
+  	$(MAKE) -C $(PKG_BUILD_DIR) \
+***************
+*** 65,89 ****
+  endef
+  
+  define Package/opkg/install
+! 	$(INSTALL_DIR) $(1)/usr/lib/opkg
+! 	$(INSTALL_DIR) $(1)/bin
+! 	$(INSTALL_DIR) $(1)/etc
+! 	$(INSTALL_DATA) ./files/opkg.conf $(1)/etc/
+! 	$(SED) 's,$$$$S,$(PKGARCH),g' $(1)/etc/opkg.conf
+! 	$(INSTALL_BIN) $(PKG_INSTALL_DIR)/usr/bin/opkg-cl $(1)/bin/opkg
+  endef
+  
+  define Build/InstallDev
+! 	mkdir -p $(1)/usr/include
+! 	$(CP) $(PKG_INSTALL_DIR)/usr/include/libopkg $(1)/usr/include/
+  endef
+  
+  
+  HOST_CONFIGURE_ARGS+= \
+  	--disable-curl \
+  	--disable-gpg \
+! 	--with-opkgetcdir=/etc \
+! 	--with-opkglockfile=/tmp/opkg.lock
+  
+  define Host/Compile
+  	$(MAKE) -C $(HOST_BUILD_DIR) CC="$(HOSTCC)" all
+--- 65,89 ----
+  endef
+  
+  define Package/opkg/install
+! 	$(INSTALL_DIR) $(1)/opt/lib/opkg
+! 	$(INSTALL_DIR) $(1)/opt/bin
+! 	$(INSTALL_DIR) $(1)/opt/etc
+! 	$(INSTALL_DATA) ./files/opkg.conf $(1)/opt/etc/
+! 	$(SED) 's,$$$$S,$(PKGARCH),g' $(1)/opt/etc/opkg.conf
+! 	$(INSTALL_BIN) $(PKG_INSTALL_DIR)/opt/bin/opkg-cl $(1)/opt/bin/opkg
+  endef
+  
+  define Build/InstallDev
+! 	mkdir -p $(1)/opt/include
+! 	$(CP) $(PKG_INSTALL_DIR)/opt/include/libopkg $(1)/opt/include/
+  endef
+  
+  
+  HOST_CONFIGURE_ARGS+= \
+  	--disable-curl \
+  	--disable-gpg \
+! 	--with-opkgetcdir=/opt/etc \
+! 	--with-opkglockfile=/opt/tmp/opkg.lock
+  
+  define Host/Compile
+  	$(MAKE) -C $(HOST_BUILD_DIR) CC="$(HOSTCC)" all
+diff -c -r ../backup/trunk/package/opkg//patches/011-old-config-location.patch ../trunk/package/opkg//patches/011-old-config-location.patch
+*** ../backup/trunk/package/opkg//patches/011-old-config-location.patch	2011-10-23 21:23:43.000000000 +0400
+--- ../trunk/package/opkg//patches/011-old-config-location.patch	2011-10-27 21:57:02.550418678 +0400
+***************
+*** 5,11 ****
+   	}
+   
+  +	if(!conf->conf_file && !conf->offline_root)
+! +		conf->conf_file = xstrdup("/etc/opkg.conf");
+  +
+   	if (parse_err)
+   		return parse_err;
+--- 5,11 ----
+   	}
+   
+  +	if(!conf->conf_file && !conf->offline_root)
+! +		conf->conf_file = xstrdup("/opt/etc/opkg.conf");
+  +
+   	if (parse_err)
+   		return parse_err;
