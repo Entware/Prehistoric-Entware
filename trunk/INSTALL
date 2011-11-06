@@ -12,6 +12,8 @@ $ svn co svn://svn.openwrt.org/openwrt/trunk/
 $ cd trunk
 $ ./scripts/feeds update -a
 $ ./scripts/feeds install -a
+$ make prereq
+$ make tools/install
 
 2) Oleg's based firmware toolchain from http://code.google.com/p/wl500g/downloads/list
 
