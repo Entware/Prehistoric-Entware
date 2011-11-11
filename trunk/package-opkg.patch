@@ -1,7 +1,5 @@
-Общие подкаталоги: ../backup/trunk_initialized/trunk/package/opkg//files и ../trunk/package/opkg//files
-diff -c ../backup/trunk_initialized/trunk/package/opkg//Makefile ../trunk/package/opkg//Makefile
-*** ../backup/trunk_initialized/trunk/package/opkg//Makefile	2011-11-10 14:45:08.000000000 +0400
---- ../trunk/package/opkg//Makefile	2011-11-11 15:04:39.941304961 +0400
+*** ../backup/trunk_initialized/trunk/package/opkg/Makefile	2011-11-10 14:45:08.000000000 +0400
+--- ../trunk/package/opkg/Makefile	2011-11-11 15:31:38.286710319 +0400
 ***************
 *** 42,48 ****
   endef
@@ -29,14 +27,13 @@ diff -c ../backup/trunk_initialized/trunk/package/opkg//Makefile ../trunk/packag
   
   define Build/Compile
   	$(MAKE) -C $(PKG_BUILD_DIR) \
---- 52,59 ----
+--- 52,60 ----
   CONFIGURE_ARGS += \
   	--disable-curl \
   	--disable-gpg \
 ! 	--with-opkgetcdir=/opt/etc \
+! 	--with-opkglibdir=/opt/lib \
 ! 	--with-opkglockfile=/opt/var/lock/opkg.lock
   
   define Build/Compile
   	$(MAKE) -C $(PKG_BUILD_DIR) \
-Общие подкаталоги: ../backup/trunk_initialized/trunk/package/opkg//patches и ../trunk/package/opkg//patches
-Общие подкаталоги: ../backup/trunk_initialized/trunk/package/opkg//.svn и ../trunk/package/opkg//.svn
