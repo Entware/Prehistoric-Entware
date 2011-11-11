@@ -35,7 +35,15 @@ $(RTN_DIR)/.buildroot_configured:
 	cp -f $(RTN_DIR)/.config $(RTN_DIR)/../trunk/.config
 	touch $(RTN_DIR)/.buildroot_configured
 
+ipk_index: $(RTN_DIR)/.ipk_indexed
+$(RTN_DIR)/.ipk_indexed:
+	rm -f $(RTN_DIR)/../trunk/bin/rtn/packages/Packages*
+	cd $(RTN_DIR)/../trunk
+	$(RTN_DIR)/../trunk/scripts/ipkg-make-index.sh $(RTN_DIR)/../trunk/bin/rtn/packages > $(RTN_DIR)/../trunk/bin/rtn/packages/Packages
+	gzip -c $(RTN_DIR)/../trunk/bin/rtn/packages/Packages > $(RTN_DIR)/../trunk/bin/rtn/packages/Packages.gz
+	touch $(RTN_DIR)/.ipk_indexed
+
 clean:
-	rm -f $(RTN_DIR)/.buildroot_configured $(RTN_DIR)/.packages_patched $(RTN_DIR)/.target_built
+	rm -f $(RTN_DIR)/.buildroot_configured $(RTN_DIR)/.packages_patched $(RTN_DIR)/.target_built $(RTN_DIR)/.ipk_indexed
 
 .PHONY : clean

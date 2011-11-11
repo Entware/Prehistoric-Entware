@@ -11,7 +11,7 @@ $ cd openwrt
 $ svn co svn://svn.openwrt.org/openwrt/trunk/
 $ cd trunk
 $ ./scripts/feeds update packages
-$ ./scripts/feeds install -a
+$ ./scripts/feeds install -a -p packages
 $ make tools/compile
 $ make tools/install
 
