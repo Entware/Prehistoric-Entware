@@ -1,0 +1,42 @@
+Общие подкаталоги: ../backup/trunk_initialized/trunk/package/opkg//files и ../trunk/package/opkg//files
+diff -c ../backup/trunk_initialized/trunk/package/opkg//Makefile ../trunk/package/opkg//Makefile
+*** ../backup/trunk_initialized/trunk/package/opkg//Makefile	2011-11-10 14:45:08.000000000 +0400
+--- ../trunk/package/opkg//Makefile	2011-11-11 15:04:39.941304961 +0400
+***************
+*** 42,48 ****
+  endef
+  
+  define Package/opkg/conffiles
+! /etc/opkg.conf
+  endef
+  
+  TARGET_CFLAGS += $(if $(CONFIG_GCC_VERSION_4_3)$(CONFIG_GCC_VERSION_4_4),-Wno-array-bounds)
+--- 42,48 ----
+  endef
+  
+  define Package/opkg/conffiles
+! /opt/etc/opkg.conf
+  endef
+  
+  TARGET_CFLAGS += $(if $(CONFIG_GCC_VERSION_4_3)$(CONFIG_GCC_VERSION_4_4),-Wno-array-bounds)
+***************
+*** 52,59 ****
+  CONFIGURE_ARGS += \
+  	--disable-curl \
+  	--disable-gpg \
+! 	--with-opkgetcdir=/etc \
+! 	--with-opkglockfile=/var/lock/opkg.lock
+  
+  define Build/Compile
+  	$(MAKE) -C $(PKG_BUILD_DIR) \
+--- 52,59 ----
+  CONFIGURE_ARGS += \
+  	--disable-curl \
+  	--disable-gpg \
+! 	--with-opkgetcdir=/opt/etc \
+! 	--with-opkglockfile=/opt/var/lock/opkg.lock
+  
+  define Build/Compile
+  	$(MAKE) -C $(PKG_BUILD_DIR) \
+Общие подкаталоги: ../backup/trunk_initialized/trunk/package/opkg//patches и ../trunk/package/opkg//patches
+Общие подкаталоги: ../backup/trunk_initialized/trunk/package/opkg//.svn и ../trunk/package/opkg//.svn

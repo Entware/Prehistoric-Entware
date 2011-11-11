@@ -37,9 +37,9 @@ $(RTN_DIR)/.buildroot_configured:
 
 ipk_index: $(RTN_DIR)/.ipk_indexed
 $(RTN_DIR)/.ipk_indexed:
-	rm -f $(RTN_DIR)/../trunk/bin/rtn/packages/Packages*
-	cd $(RTN_DIR)/../trunk
-	$(RTN_DIR)/../trunk/scripts/ipkg-make-index.sh $(RTN_DIR)/../trunk/bin/rtn/packages > $(RTN_DIR)/../trunk/bin/rtn/packages/Packages
+	rm -f $(RTN_DIR)/../trunk/bin/rtn/packages/Packages $(RTN_DIR)/../trunk/bin/rtn/packages/Packages.gz
+	(cd $(RTN_DIR)/../trunk/bin/rtn/packages; \
+	../../../scripts/ipkg-make-index.sh . > $(RTN_DIR)/../trunk/bin/rtn/packages/Packages)
 	gzip -c $(RTN_DIR)/../trunk/bin/rtn/packages/Packages > $(RTN_DIR)/../trunk/bin/rtn/packages/Packages.gz
 	touch $(RTN_DIR)/.ipk_indexed
 
