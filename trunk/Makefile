@@ -17,7 +17,6 @@ $(RTN_DIR)/.target_built:
 
 patch_packages: $(RTN_DIR)/.packages_patched
 $(RTN_DIR)/.packages_patched:
-	cd $(RTN_DIR)
 	for i in $(RTN_DIR)/package-*.patch; do \
 	    echo patch -p0 -i $$i; \
 	done;
@@ -25,11 +24,9 @@ $(RTN_DIR)/.packages_patched:
 
 buildroot_config: $(RTN_DIR)/.buildroot_configured
 $(RTN_DIR)/.buildroot_configured:
-	cd $(RTN_DIR)
 	for i in $(RTN_DIR)/buildroot-*.patch; do \
 	    echo patch -p0 -i $$i; \
 	done;
-	cd $(RTN_DIR)/../trunk
 	echo CONFIG_TARGET_rtn=y > $(RTN_DIR)/../trunk/.config
 	make -C $(RTN_DIR)/../trunk defconfig
 	cp -f $(RTN_DIR)/.config $(RTN_DIR)/../trunk/.config
