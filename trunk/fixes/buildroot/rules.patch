@@ -1,5 +1,5 @@
---- ../backup/trunk_initialized/trunk/rules.mk	2011-11-10 14:45:16.000000000 +0400
-+++ ../trunk/rules.mk	2011-11-12 23:21:23.555518022 +0400
+--- ../../../backup/trunk_initialized/trunk/rules.mk	2011-11-10 14:45:16.000000000 +0400
++++ ../../../trunk/rules.mk	2011-11-12 23:21:23.555518022 +0400
 @@ -108,8 +108,8 @@
  
  TARGET_PATH:=$(STAGING_DIR_HOST)/bin:$(PATH)
