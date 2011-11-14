@@ -1,0 +1,60 @@
+diff -r -u -x .svn ../../../backup/trunk_initialized/trunk/package/zlib//Makefile ../../../trunk/package/zlib//Makefile
+--- ../../../backup/trunk_initialized/trunk/package/zlib//Makefile	2011-11-10 14:45:06.000000000 +0400
++++ ../../../trunk/package/zlib//Makefile	2011-11-14 17:00:43.055046826 +0400
+@@ -32,7 +32,7 @@
+ 		LDSHARED="$(TARGET_CC) -shared -Wl,-soname,libz.so.1" \
+ 		CFLAGS="$(TARGET_CFLAGS) $(FPIC)" \
+ 		./configure \
+-			--prefix=/usr \
++			--prefix=/opt \
+ 			--shared \
+ 			--uname=Linux \
+ 	);
+@@ -50,22 +50,22 @@
+ endef
+ 
+ define Build/InstallDev
+-	mkdir -p $(1)/usr/include
+-	$(CP)	$(PKG_INSTALL_DIR)/usr/include/z{conf,lib}.h \
+-		$(1)/usr/include/
+-	mkdir -p $(1)/usr/lib
+-	$(CP)	$(PKG_INSTALL_DIR)/usr/lib/libz.{a,so*} \
+-		$(1)/usr/lib/
+-	mkdir -p $(1)/usr/lib/pkgconfig
+-	$(CP)	$(PKG_INSTALL_DIR)/usr/lib/pkgconfig/zlib.pc \
+-		$(1)/usr/lib/pkgconfig/
++	mkdir -p $(1)/opt/include
++	$(CP)	$(PKG_INSTALL_DIR)/opt/include/z{conf,lib}.h \
++		$(1)/opt/include/
++	mkdir -p $(1)/opt/lib
++	$(CP)	$(PKG_INSTALL_DIR)/opt/lib/libz.{a,so*} \
++		$(1)/opt/lib/
++	mkdir -p $(1)/opt/lib/pkgconfig
++	$(CP)	$(PKG_INSTALL_DIR)/opt/lib/pkgconfig/zlib.pc \
++		$(1)/opt/lib/pkgconfig/
+ endef
+ 
+ # libz.so is needed for openssl (zlib-dynamic)
+ define Package/zlib/install
+-	$(INSTALL_DIR) $(1)/usr/lib
+-	$(CP) $(PKG_INSTALL_DIR)/usr/lib/libz.so $(1)/usr/lib/
+-	$(CP) $(PKG_INSTALL_DIR)/usr/lib/libz.so.* $(1)/usr/lib/
++	$(INSTALL_DIR) $(1)/opt/lib
++	$(CP) $(PKG_INSTALL_DIR)/opt/lib/libz.so $(1)/opt/lib/
++	$(CP) $(PKG_INSTALL_DIR)/opt/lib/libz.so.* $(1)/opt/lib/
+ endef
+ 
+ $(eval $(call BuildPackage,zlib))
+diff -r -u -x .svn ../../../backup/trunk_initialized/trunk/package/zlib//patches/100-cross_compile.patch ../../../trunk/package/zlib//patches/100-cross_compile.patch
+--- ../../../backup/trunk_initialized/trunk/package/zlib//patches/100-cross_compile.patch	2011-11-10 14:45:06.000000000 +0400
++++ ../../../trunk/package/zlib//patches/100-cross_compile.patch	2011-11-14 16:59:21.996075378 +0400
+@@ -15,7 +15,8 @@
+  
+ +DESTDIR = 
+ +
+- prefix = /usr/local
++-prefix = /usr/local
+++prefix = /opt/local
+  exec_prefix = ${prefix}
+  libdir = ${exec_prefix}/lib
+ @@ -108,7 +110,7 @@ test64: all64
