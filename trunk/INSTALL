@@ -3,7 +3,8 @@ These are generic installation instructions.
 Prerequisites
 =============
 
-    Before using this scripts you need to install two basic instruments:
+    Before using this scripts you need to install:
+
 1) OpenWRT Buildroot. Follow original instructions from http://wiki.openwrt.org/doc/howto/buildroot.exigence
 
 $ mkdir ~/openwrt
@@ -34,9 +35,8 @@ $ make
 
     Scripts uses Makefile to proceed several steps:
 1) Applying new target "rtn" to OpenWRT Buildroot.
-2) Patching paths in several OpenWRT packages. Only few packages will be built. The more packages will be tested the more will be included in future.
-3) Patching OpenWRT Buildroot to adapt OpenWRT path scheme (/usr/local/bin, /etc) to Optware scheme (/opt/bin, /opt/etc) and configuring Buildroot to use external toolchain and mark several ONLY few number of packages to compile. Its firmware specific.
-    This steps you can run manually by entering: make rtn_target && make patch_packages && make buildroot_config from ~/optware/rtn directory.
+2) Patching OpenWRT Buildroot to adapt OpenWRT path scheme (/usr/local/bin, /etc) to Optware scheme (/opt/bin, /opt/etc) and configuring Buildroot to use external toolchain and mark several ONLY few number of packages to compile. Its firmware specific.
+3) Patching paths in several OpenWRT packages. Only few packages will be built. The more packages will be tested the more will be included in future.
 
 Building
 ========
@@ -48,7 +48,7 @@ $ make prereq
 $ make package/compile
 
     ipk-packages can be found at ~/openwrt/bin directory.
-    Scripts was tested with folowing buildroot revisions
+    Scripts was tested with folowing buildroot revisions:
 
 - buildroot revision is 28776
 - openwrt packages revision is 28781

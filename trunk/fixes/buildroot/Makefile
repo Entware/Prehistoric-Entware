@@ -14,7 +14,7 @@ all: ./.done
 	patch -p0 -i ./rules.patch
 	echo CONFIG_TARGET_rtn=y > ../../../trunk/.config
 	make -C ../../../trunk defconfig
-	cp -f /.config ../../../trunk/.config
+	cp -f ./.config ../../../trunk/.config
 	touch $@
 
 clean:

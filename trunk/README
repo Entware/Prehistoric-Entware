@@ -4,9 +4,4 @@ The homepage of this package is http://code.google.com/p/wl500g-repo/
 
 Send comments and bug reports to ryzhovau@gmail.com
 
-Other files you might look into:
-
-INSTALL		- general compilation and installation rules
-./rtn		- directory with new OpenWRT Buildroot target
-cfg-*.patches	- tunes OpenWRT Buildroot compilation scripts
-package-*.patches	ipk packages source changes
+You might look into ./INSTALL for further instructions.
