@@ -9,7 +9,9 @@
 all: ./.done
 
 ./.done:
-	 patch -p0 -i ./fix-path.patch
+	patch -p0 -i ./fix-path.patch
+	cp ./999-change-default-config-path.patch ../../../trunk/package/opkg/patches
+	rm -f ../../../trunk/package/opkg/patches/009-remove-upgrade-all.patch
 	touch $@
 
 clean:
