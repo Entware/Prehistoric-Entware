@@ -1,0 +1,23 @@
+diff -r -u -x .svn ../../../backup/trunk_initialized/trunk/package/libtool//Makefile ../../../trunk/package/libtool//Makefile
+--- ../../../backup/trunk_initialized/trunk/package/libtool//Makefile	2011-11-10 14:45:08.000000000 +0400
++++ ../../../trunk/package/libtool//Makefile	2011-11-15 10:43:27.353954120 +0400
+@@ -36,14 +36,14 @@
+ 		prefix="$(2)" \
+ 		exec_prefix="$(2)" \
+ 		install
+-	$(INSTALL_DIR) $(1)/usr/lib $(1)/usr/include
+-	mv $(2)/lib/* $(1)/usr/lib/
+-	mv $(2)/include/* $(1)/usr/include/
++	$(INSTALL_DIR) $(1)/opt/lib $(1)/opt/include
++	mv $(2)/lib/* $(1)/opt/lib/
++	mv $(2)/include/* $(1)/opt/include/
+ endef
+ 
+ define Package/libltdl/install
+-	$(INSTALL_DIR) $(1)/usr/lib
+-	$(CP) $(PKG_BUILD_DIR)/libltdl/.libs/libltdl.so.* $(1)/usr/lib/
++	$(INSTALL_DIR) $(1)/opt/lib
++	$(CP) $(PKG_BUILD_DIR)/libltdl/.libs/libltdl.so.* $(1)/opt/lib/
+ endef
+ 
+ $(eval $(call BuildPackage,libltdl))
