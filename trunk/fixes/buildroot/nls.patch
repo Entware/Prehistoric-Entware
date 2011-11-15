@@ -1,0 +1,25 @@
+--- ../../../backup/trunk/include/nls.mk	2011-11-10 14:44:28.000000000 +0400
++++ ../../../trunk/include/nls.mk	2011-11-15 12:37:38.407691913 +0400
+@@ -7,18 +7,18 @@
+ 
+ # iconv full
+ ifeq ($(CONFIG_BUILD_NLS),y)
+-	ICONV_PREFIX:=$(STAGING_DIR)/usr/lib/libiconv-full
++	ICONV_PREFIX:=$(STAGING_DIR)/opt/lib/libiconv-full
+ 	ICONV_FULL:=1
+ 
+-	INTL_PREFIX:=$(STAGING_DIR)/usr/lib/libintl-full
++	INTL_PREFIX:=$(STAGING_DIR)/opt/lib/libintl-full
+ 	INTL_FULL:=1
+ 
+ # iconv stub
+ else
+-	ICONV_PREFIX:=$(STAGING_DIR)/usr/lib/libiconv-stub
++	ICONV_PREFIX:=$(STAGING_DIR)/opt/lib/libiconv-stub
+ 	ICONV_FULL:=
+ 
+-	INTL_PREFIX:=$(STAGING_DIR)/usr/lib/libintl-stub
++	INTL_PREFIX:=$(STAGING_DIR)/opt/lib/libintl-stub
+ 	INTL_FULL:=
+ endif
+ 

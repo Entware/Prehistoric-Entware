@@ -1,0 +1,12 @@
+--- ../../../backup/trunk_initialized/trunk/target/sdk/files/package/rules.mk	2011-11-10 14:45:05.000000000 +0400
++++ ../../../trunk/target/sdk/files/package/rules.mk	2011-11-15 13:11:30.456192600 +0400
+@@ -1,6 +1,6 @@
+-# invoke ipkg with configuration in $(STAGING_DIR)/etc/ipkg.conf 
+-IPKG := IPKG_INSTROOT=$(TARGET_DIR) IPKG_CONF_DIR=$(STAGING_DIR)/etc $(SCRIPT_DIR)/ipkg -force-defaults -force-depends
+-IPKG_STATE_DIR := $(TARGET_DIR)/usr/lib/ipkg
++# invoke ipkg with configuration in $(STAGING_DIR)/opt/etc/ipkg.conf 
++IPKG := IPKG_INSTROOT=$(TARGET_DIR) IPKG_CONF_DIR=$(STAGING_DIR)/opt/etc $(SCRIPT_DIR)/ipkg -force-defaults -force-depends
++IPKG_STATE_DIR := $(TARGET_DIR)/opt/lib/ipkg
+ 
+ # invoke ipkg-build with some default options
+ IPKG_BUILD := PATH="$(TARGET_PATH)" ipkg-build -c -o root -g root

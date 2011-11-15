@@ -1,0 +1,20 @@
+--- ../../../backup/trunk/include/package-ipkg.mk	2011-11-10 14:44:28.000000000 +0400
++++ ../../../trunk/include/package-ipkg.mk	2011-11-15 12:40:30.957523276 +0400
+@@ -9,7 +9,7 @@
+ OPKG:= \
+   IPKG_TMP=$(TMP_DIR)/ipkg \
+   IPKG_INSTROOT=$(TARGET_DIR) \
+-  IPKG_CONF_DIR=$(STAGING_DIR)/etc \
++  IPKG_CONF_DIR=$(STAGING_DIR)/opt/etc \
+   IPKG_OFFLINE_ROOT=$(TARGET_DIR) \
+   $(STAGING_DIR_HOST)/bin/opkg \
+ 	--offline-root $(TARGET_DIR) \
+@@ -25,7 +25,7 @@
+ IPKG_BUILD:= \
+   ipkg-build -c -o 0 -g 0
+ 
+-IPKG_STATE_DIR:=$(TARGET_DIR)/usr/lib/opkg
++IPKG_STATE_DIR:=$(TARGET_DIR)/opt/lib/opkg
+ 
+ define BuildIPKGVariable
+ ifdef Package/$(1)/$(2)

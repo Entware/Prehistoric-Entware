@@ -24,7 +24,7 @@ ipk_index: ./.ipk_indexed
 	rm -f ../trunk/bin/rtn/packages/Packages ../trunk/bin/rtn/packages/Packages.gz
 	(cd ../trunk/bin/rtn/packages; \
 	../../../scripts/ipkg-make-index.sh . > ./Packages; \
-	gzip -c ./Packages > ./Packages.gz)
+	gzip -9c ./Packages > ./Packages.gz)
 	touch $@
 
 buildroot_install: ./.buildroot_installed
@@ -34,8 +34,6 @@ buildroot_install: ./.buildroot_installed
 	cd ./trunk; \
 	./scripts/feeds update packages; \
 	./scripts/feeds install -a -p packages)
-	make -C ../trunk tools/compile
-	make -C ../trunk tools/install
 	touch $@
 
 toolchain_install: ./.toolchain_installed
