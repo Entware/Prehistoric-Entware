@@ -1,0 +1,30 @@
+diff -r -u -x .svn ../../../backup/trunk_initialized/trunk/feeds/packages/libs/gettext/Makefile ../../../trunk/feeds/packages/libs/gettext/Makefile
+--- ../../../backup/trunk_initialized/trunk/feeds/packages/libs/gettext/Makefile	2011-11-10 14:52:31.000000000 +0400
++++ ../../../trunk/feeds/packages/libs/gettext/Makefile	2011-11-15 10:15:04.764639773 +0400
+@@ -31,11 +31,11 @@
+ endef
+ 
+ define Build/InstallDev
+-	$(INSTALL_DIR) $(1)/usr/lib/libintl-stub/include
+-	$(INSTALL_DATA) $(PKG_BUILD_DIR)/include/libintl.h $(1)/usr/lib/libintl-stub/include/
++	$(INSTALL_DIR) $(1)/opt/lib/libintl-stub/include
++	$(INSTALL_DATA) $(PKG_BUILD_DIR)/include/libintl.h $(1)/opt/lib/libintl-stub/include/
+ 
+-	$(INSTALL_DIR) $(1)/usr/share/aclocal
+-	$(INSTALL_DATA) $(PKG_BUILD_DIR)/m4/* $(1)/usr/share/aclocal/
++	$(INSTALL_DIR) $(1)/opt/share/aclocal
++	$(INSTALL_DATA) $(PKG_BUILD_DIR)/m4/* $(1)/opt/share/aclocal/
+ endef
+ 
+ define Host/Prepare
+@@ -55,8 +55,8 @@
+ endef
+ 
+ define Package/libintl/install
+-	$(INSTALL_DIR) $(1)/tmp
+-	touch $(1)/tmp/.libintl-placeholder
++	$(INSTALL_DIR) $(1)/opt/tmp
++	touch $(1)/opt/tmp/.libintl-placeholder
+ endef
+ 
+ $(eval $(call HostBuild))
