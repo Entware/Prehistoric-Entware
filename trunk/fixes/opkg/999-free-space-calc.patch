@@ -1,0 +1,12 @@
+--- ./libopkg-orig/opkg_install.c	2011-11-17 09:48:30.000000000 +0400
++++ ./libopkg/opkg_install.c	2011-11-17 09:56:27.171609303 +0400
+@@ -208,8 +208,7 @@
+ 			root_dir = pkg->dest->root_dir;
+ 	}
+ 
+-	if (!root_dir)
+-		root_dir = conf->default_dest->root_dir;
++	root_dir = "/opt";
+ 
+ 	kbs_available = get_available_kbytes(root_dir);
+ 
