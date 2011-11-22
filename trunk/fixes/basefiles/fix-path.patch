@@ -1,5 +1,5 @@
 --- ../../../backup/trunk_clean/trunk/package/base-files/Makefile	2011-11-15 14:03:21.000000000 +0400
-+++ ../../../trunk/package/base-files/Makefile	2011-11-22 15:10:02.841176813 +0400
++++ ../../../trunk/package/base-files/Makefile	2011-11-22 16:19:36.500244852 +0400
 @@ -493,8 +493,8 @@
  ifeq ($(CONFIG_EXTERNAL_TOOLCHAIN),)
  
@@ -11,3 +11,14 @@
    endef
  
    define Package/libgfortran/install
+@@ -613,8 +613,8 @@
+   define Package/libgcc/install
+ 	for file in $(call qstrip,$(CONFIG_LIBGCC_FILE_SPEC)); do \
+ 		dir=`dirname $$$$file` ; \
+-		$(INSTALL_DIR) $(1)/$$$$dir ; \
+-		$(CP) $(call qstrip,$(CONFIG_LIBGCC_ROOT_DIR))/$$$$file $(1)/$$$$dir/ ; \
++		$(INSTALL_DIR) $(1)/opt/$$$$dir ; \
++		$(CP) $(call qstrip,$(CONFIG_LIBGCC_ROOT_DIR))/$$$$file $(1)/opt/$$$$dir/ ; \
+ 	done ; \
+ 	exit 0
+   endef
