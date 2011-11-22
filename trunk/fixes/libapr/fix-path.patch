@@ -1,0 +1,61 @@
+--- ../../../backup/trunk_clean/trunk/feeds/packages/libs/apr/Makefile	2011-11-15 14:03:59.000000000 +0400
++++ ../../../trunk/feeds/packages/libs/apr/Makefile	2011-11-22 17:12:17.292629807 +0400
+@@ -40,6 +40,8 @@
+ 
+ # XXX: ac_cv_sizeof_struct_iovec=1 is just to trick configure
+ CONFIGURE_VARS += \
++	ac_cv_file__dev_zero=yes \
++	ac_cv_func_setpgrp_void=yes \
+ 	ac_cv_sizeof_struct_iovec=1 \
+ 	ac_cv_struct_rlimit=yes \
+ 	apr_cv_process_shared_works=no \
+@@ -49,29 +51,29 @@
+ 	LDFLAGS="$$$$LDFLAGS -lpthread" \
+ 
+ define Build/InstallDev
+-	$(INSTALL_DIR) $(1)/usr/bin $(1)/usr/include/apr-1 $(1)/usr/lib $(1)/usr/lib/pkgconfig $(1)/usr/share/build-1
+-	$(CP)   $(PKG_INSTALL_DIR)/usr/bin/apr-1-config \
+-		$(1)/usr/bin/
+-	$(CP)   $(PKG_INSTALL_DIR)/usr/include/apr-1/* \
+-		$(1)/usr/include/apr-1/
+-	$(CP)   $(PKG_INSTALL_DIR)/usr/lib/libapr-1.{la,a,so*} \
+-		$(1)/usr/lib/
+-	$(CP)   $(PKG_INSTALL_DIR)/usr/lib/pkgconfig/apr-1.pc \
+-		$(1)/usr/lib/pkgconfig/
+-	$(CP)   $(PKG_INSTALL_DIR)/usr/share/build-1/* \
+-		$(1)/usr/share/build-1/
+-	$(SED) 's,^datadir=\"/usr/share\",datadir=\"$(STAGING_DIR)/usr/share\",g' $(1)/usr/bin/apr-1-config
+-	$(SED) 's,^installbuilddir=\"/usr/share/build-1\",installbuilddir=\"$(STAGING_DIR)/usr/share/build-1\",g' $(1)/usr/bin/apr-1-config
+-	$(SED) 's,^libdir=\"$$$${exec_prefix}/lib,libdir=\"$(STAGING_DIR)/usr/lib,g' $(1)/usr/bin/apr-1-config
+-	$(SED) 's,^includedir=\"$$$${prefix}/include/,includedir=\"$(STAGING_DIR)/usr/include/,g' $(1)/usr/bin/apr-1-config
+-	$(SED) 's,-L$$$$libdir,,g' $(1)/usr/bin/apr-1-config
+-	$(SED) 's,-R$$$$libdir,,g' $(1)/usr/bin/apr-1-config
+-	$(SED) 's,/usr/share/build-1,$(STAGING_DIR)/usr/share/build-1,g' $(1)/usr/share/build-1/apr_rules.mk
++	$(INSTALL_DIR) $(1)/opt/bin $(1)/opt/include/apr-1 $(1)/opt/lib $(1)/opt/lib/pkgconfig $(1)/opt/share/build-1
++	$(CP)   $(PKG_INSTALL_DIR)/opt/bin/apr-1-config \
++		$(1)/opt/bin/
++	$(CP)   $(PKG_INSTALL_DIR)/opt/include/apr-1/* \
++		$(1)/opt/include/apr-1/
++	$(CP)   $(PKG_INSTALL_DIR)/opt/lib/libapr-1.{la,a,so*} \
++		$(1)/opt/lib/
++	$(CP)   $(PKG_INSTALL_DIR)/opt/lib/pkgconfig/apr-1.pc \
++		$(1)/opt/lib/pkgconfig/
++	$(CP)   $(PKG_INSTALL_DIR)/opt/share/build-1/* \
++		$(1)/opt/share/build-1/
++	$(SED) 's,^datadir=\"/opt/share\",datadir=\"$(STAGING_DIR)/opt/share\",g' $(1)/opt/bin/apr-1-config
++	$(SED) 's,^installbuilddir=\"/opt/share/build-1\",installbuilddir=\"$(STAGING_DIR)/opt/share/build-1\",g' $(1)/opt/bin/apr-1-config
++	$(SED) 's,^libdir=\"$$$${exec_prefix}/lib,libdir=\"$(STAGING_DIR)/opt/lib,g' $(1)/opt/bin/apr-1-config
++	$(SED) 's,^includedir=\"$$$${prefix}/include/,includedir=\"$(STAGING_DIR)/opt/include/,g' $(1)/opt/bin/apr-1-config
++	$(SED) 's,-L$$$$libdir,,g' $(1)/opt/bin/apr-1-config
++	$(SED) 's,-R$$$$libdir,,g' $(1)/opt/bin/apr-1-config
++	$(SED) 's,/opt/share/build-1,$(STAGING_DIR)/opt/share/build-1,g' $(1)/opt/share/build-1/apr_rules.mk
+ endef
+ 
+ define Package/libapr/install
+-	$(INSTALL_DIR) $(1)/usr/lib
+-	$(CP) $(PKG_INSTALL_DIR)/usr/lib/libapr-1.so.* $(1)/usr/lib/
++	$(INSTALL_DIR) $(1)/opt/lib
++	$(CP) $(PKG_INSTALL_DIR)/opt/lib/libapr-1.so.* $(1)/opt/lib/
+ endef
+ 
+ $(eval $(call BuildPackage,libapr))
