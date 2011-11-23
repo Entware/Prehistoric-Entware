@@ -1,5 +1,5 @@
 --- ../../../backup/trunk_clean/trunk/package/base-files/Makefile	2011-11-15 14:03:21.000000000 +0400
-+++ ../../../trunk/package/base-files/Makefile	2011-11-23 11:14:14.724134767 +0400
++++ ../../../trunk/package/base-files/Makefile	2011-11-23 11:22:22.398002252 +0400
 @@ -493,8 +493,8 @@
  ifeq ($(CONFIG_EXTERNAL_TOOLCHAIN),)
  
@@ -119,6 +119,28 @@
 -		$(CP) $(call qstrip,$(CONFIG_LIBRT_ROOT_DIR))/$$$$file $(1)/$$$$dir/ ; \
 +		$(INSTALL_DIR) $(1)/opt/$$$$dir ; \
 +		$(CP) $(call qstrip,$(CONFIG_LIBRT_ROOT_DIR))/$$$$file $(1)/opt/$$$$dir/ ; \
+ 	done ; \
+ 	exit 0
+   endef
+@@ -675,8 +675,8 @@
+   define Package/ldd/install
+ 	for file in $(call qstrip,$(CONFIG_LDD_FILE_SPEC)); do \
+ 		dir=`dirname $$$$file` ; \
+-		$(INSTALL_DIR) $(1)/$$$$dir ; \
+-		$(CP) $(call qstrip,$(CONFIG_LDD_ROOT_DIR))/$$$$file $(1)/$$$$dir/ ; \
++		$(INSTALL_DIR) $(1)/opt/bin ; \
++		$(CP) $(call qstrip,$(CONFIG_LDD_ROOT_DIR))/$$$$file $(1)/opt/bin/ ; \
+ 	done ; \
+ 	exit 0
+   endef
+@@ -684,8 +684,8 @@
+   define Package/ldconfig/install
+ 	for file in $(call qstrip,$(CONFIG_LDCONFIG_FILE_SPEC)); do \
+ 		dir=`dirname $$$$file` ; \
+-		$(INSTALL_DIR) $(1)/$$$$dir ; \
+-		$(CP) $(call qstrip,$(CONFIG_LDCONFIG_ROOT_DIR))/$$$$file $(1)/$$$$dir/ ; \
++		$(INSTALL_DIR) $(1)/opt/bin ; \
++		$(CP) $(call qstrip,$(CONFIG_LDCONFIG_ROOT_DIR))/$$$$file $(1)/opt/bin/ ; \
  	done ; \
  	exit 0
    endef
