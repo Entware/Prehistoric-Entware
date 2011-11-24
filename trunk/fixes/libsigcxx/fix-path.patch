@@ -1,0 +1,30 @@
+--- ../../../backup/trunk_clean/trunk/feeds/packages/libs/libsigc++/Makefile	2011-11-15 14:03:59.000000000 +0400
++++ ../../../trunk/feeds/packages/libs/libsigc++/Makefile	2011-11-24 16:19:01.526715124 +0400
+@@ -44,18 +44,18 @@
+ 	--enable-static \
+ 
+ define Build/InstallDev
+-	$(INSTALL_DIR) $(1)/usr/include
+-	$(CP) $(PKG_INSTALL_DIR)/usr/include/sigc++-2.0 $(1)/usr/include/
+-	$(INSTALL_DIR) $(1)/usr/lib
+-	$(CP) $(PKG_INSTALL_DIR)/usr/lib/libsigc-2.0.{a,so*} $(1)/usr/lib/
+-	$(CP) $(PKG_INSTALL_DIR)/usr/lib/sigc++-2.0 $(1)/usr/lib/
+-	$(INSTALL_DIR) $(1)/usr/lib/pkgconfig
+-	$(CP) $(PKG_INSTALL_DIR)/usr/lib/pkgconfig/sigc++-2.0.pc $(1)/usr/lib/pkgconfig/
++	$(INSTALL_DIR) $(1)/opt/include
++	$(CP) $(PKG_INSTALL_DIR)/opt/include/sigc++-2.0 $(1)/opt/include/
++	$(INSTALL_DIR) $(1)/opt/lib
++	$(CP) $(PKG_INSTALL_DIR)/opt/lib/libsigc-2.0.{a,so*} $(1)/opt/lib/
++	$(CP) $(PKG_INSTALL_DIR)/opt/lib/sigc++-2.0 $(1)/opt/lib/
++	$(INSTALL_DIR) $(1)/opt/lib/pkgconfig
++	$(CP) $(PKG_INSTALL_DIR)/opt/lib/pkgconfig/sigc++-2.0.pc $(1)/opt/lib/pkgconfig/
+ endef
+ 
+ define Package/libsigcxx/install
+-	$(INSTALL_DIR) $(1)/usr/lib
+-	$(CP) $(PKG_INSTALL_DIR)/usr/lib/libsigc-2.0.so.* $(1)/usr/lib/
++	$(INSTALL_DIR) $(1)/opt/lib
++	$(CP) $(PKG_INSTALL_DIR)/opt/lib/libsigc-2.0.so.* $(1)/opt/lib/
+ endef
+ 
+ $(eval $(call BuildPackage,libsigcxx))
