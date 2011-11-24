@@ -1,0 +1,61 @@
+diff -r -u -x .svn ../../../backup/trunk_clean/trunk/feeds/packages/libs/pcre//Makefile ../../../trunk/feeds/packages/libs/pcre//Makefile
+--- ../../../backup/trunk_clean/trunk/feeds/packages/libs/pcre//Makefile	2011-11-15 14:03:59.000000000 +0400
++++ ../../../trunk/feeds/packages/libs/pcre//Makefile	2011-11-24 09:43:05.656667938 +0400
+@@ -55,31 +55,31 @@
+ 	CFLAGS="$(TARGET_CFLAGS)"
+ 
+ define Build/InstallDev
+-	$(INSTALL_DIR) $(1)/usr/bin
+-	$(INSTALL_BIN) $(PKG_INSTALL_DIR)/usr/bin/pcre-config $(1)/usr/bin/
++	$(INSTALL_DIR) $(1)/opt/bin
++	$(INSTALL_BIN) $(PKG_INSTALL_DIR)/opt/bin/pcre-config $(1)/opt/bin/
+ 
+-	$(INSTALL_DIR) $(2)/bin
+-	$(LN) $(STAGING_DIR)/usr/bin/pcre-config $(2)/bin
++	$(INSTALL_DIR) $(2)/opt/bin
++	$(LN) $(STAGING_DIR)/opt/bin/pcre-config $(2)/opt/bin
+ 
+-	$(INSTALL_DIR) $(1)/usr/include
+-	$(CP) $(PKG_INSTALL_DIR)/usr/include/pcre*.h $(1)/usr/include/
++	$(INSTALL_DIR) $(1)/opt/include
++	$(CP) $(PKG_INSTALL_DIR)/opt/include/pcre*.h $(1)/opt/include/
+ 
+-	$(INSTALL_DIR) $(1)/usr/lib
+-	$(CP) $(PKG_INSTALL_DIR)/usr/lib/libpcre*.{a,so*} $(1)/usr/lib//
++	$(INSTALL_DIR) $(1)/opt/lib
++	$(CP) $(PKG_INSTALL_DIR)/opt/lib/libpcre*.{a,so*} $(1)/opt/lib//
+ 
+-	$(INSTALL_DIR) $(1)/usr/lib/pkgconfig
+-	$(CP) $(PKG_INSTALL_DIR)/usr/lib/pkgconfig/libpcre*.pc $(1)/usr/lib/pkgconfig/
++	$(INSTALL_DIR) $(1)/opt/lib/pkgconfig
++	$(CP) $(PKG_INSTALL_DIR)/opt/lib/pkgconfig/libpcre*.pc $(1)/opt/lib/pkgconfig/
+ 
+ endef
+ 
+ define Package/libpcre/install
+-	$(INSTALL_DIR) $(1)/usr/lib
+-	$(CP) $(PKG_INSTALL_DIR)/usr/lib/libpcre{,posix}.so.* $(1)/usr/lib/
++	$(INSTALL_DIR) $(1)/opt/lib
++	$(CP) $(PKG_INSTALL_DIR)/opt/lib/libpcre{,posix}.so.* $(1)/opt/lib/
+ endef
+ 
+ define Package/libpcrecpp/install
+-	$(INSTALL_DIR) $(1)/usr/lib
+-	$(CP) $(PKG_INSTALL_DIR)/usr/lib/libpcrecpp.so.* $(1)/usr/lib/
++	$(INSTALL_DIR) $(1)/opt/lib
++	$(CP) $(PKG_INSTALL_DIR)/opt/lib/libpcrecpp.so.* $(1)/opt/lib/
+ endef
+ 
+ $(eval $(call BuildPackage,libpcre))
+diff -r -u -x .svn ../../../backup/trunk_clean/trunk/feeds/packages/libs/pcre//patches/750-pcre_config_cross.patch ../../../trunk/feeds/packages/libs/pcre//patches/750-pcre_config_cross.patch
+--- ../../../backup/trunk_clean/trunk/feeds/packages/libs/pcre//patches/750-pcre_config_cross.patch	2011-11-15 14:03:59.000000000 +0400
++++ ../../../trunk/feeds/packages/libs/pcre//patches/750-pcre_config_cross.patch	2011-11-24 09:41:25.993921791 +0400
+@@ -5,7 +5,7 @@
+    ;;
+  esac
+ +libS=
+-+if test @libdir@ != /usr/lib ; then
+++if test @libdir@ != /opt/lib ; then
+ +  libS=-L@libdir@
+ +fi
+  
