@@ -1,0 +1,139 @@
+--- ../../../backup/trunk_clean/trunk/feeds/packages/libs/xmlrpc-c/Makefile	2011-11-15 14:03:59.000000000 +0400
++++ ../../../trunk/feeds/packages/libs/xmlrpc-c/Makefile	2011-11-24 17:03:41.047390951 +0400
+@@ -132,101 +132,101 @@
+ 
+ define Build/InstallDev
+ 	$(INSTALL_DIR) \
+-		$(1)/usr/include \
+-		$(1)/usr/lib \
+-		$(1)/usr/bin \
++		$(1)/opt/include \
++		$(1)/opt/lib \
++		$(1)/opt/bin \
+ 		$(2)/bin
+ 
+ 	$(CP) \
+-		$(PKG_INSTALL_DIR)/usr/include/* \
+-		$(1)/usr/include/
++		$(PKG_INSTALL_DIR)/opt/include/* \
++		$(1)/opt/include/
+ 
+ 	$(CP) \
+-		$(PKG_INSTALL_DIR)/usr/lib/libxmlrpc*.{a,so*} \
+-		$(1)/usr/lib/
++		$(PKG_INSTALL_DIR)/opt/lib/libxmlrpc*.{a,so*} \
++		$(1)/opt/lib/
+ 
+ 	$(INSTALL_BIN) \
+-		$(PKG_INSTALL_DIR)/usr/bin/xmlrpc-c-config \
++		$(PKG_INSTALL_DIR)/opt/bin/xmlrpc-c-config \
+ 		$(2)/bin/
+ 
+ 	$(SED) \
+-		's,HEADERINST_DIR="/usr/include",HEADERINST_DIR="$(STAGING_DIR)/usr/include",g' \
++		's,HEADERINST_DIR="/opt/include",HEADERINST_DIR="$(STAGING_DIR)/opt/include",g' \
+ 		$(2)/bin/xmlrpc-c-config
+ 
+ 	$(SED) \
+-		's,LIBINST_DIR="/usr/lib",LIBINST_DIR="$(STAGING_DIR)/usr/lib",g' \
++		's,LIBINST_DIR="/opt/lib",LIBINST_DIR="$(STAGING_DIR)/opt/lib",g' \
+ 		$(2)/bin/xmlrpc-c-config
+ endef
+ 
+ define Package/xmlrpc-c-libxml2/install
+ 	$(INSTALL_DIR) \
+-		$(1)/usr/lib
++		$(1)/opt/lib
+ 
+ 	$(CP) \
+-		$(PKG_INSTALL_DIR)/usr/lib/libxmlrpc.so* \
+-		$(1)/usr/lib/
++		$(PKG_INSTALL_DIR)/opt/lib/libxmlrpc.so* \
++		$(1)/opt/lib/
+ endef
+ 
+ define Package/xmlrpc-c-internal/install
+ 	$(INSTALL_DIR) \
+-		$(1)/usr/lib
++		$(1)/opt/lib
+ 
+ 	$(CP) \
+-		$(PKG_INSTALL_DIR)/usr/lib/libxmlrpc.so* \
+-		$(1)/usr/lib/
++		$(PKG_INSTALL_DIR)/opt/lib/libxmlrpc.so* \
++		$(1)/opt/lib/
+ 
+ 	$(CP) \
+-		$(PKG_INSTALL_DIR)/usr/lib/libxmlrpc_xmltok.so* \
+-		$(1)/usr/lib/
++		$(PKG_INSTALL_DIR)/opt/lib/libxmlrpc_xmltok.so* \
++		$(1)/opt/lib/
+ 
+ 	$(CP) \
+-		$(PKG_INSTALL_DIR)/usr/lib/libxmlrpc_xmlparse.so* \
+-		$(1)/usr/lib/
++		$(PKG_INSTALL_DIR)/opt/lib/libxmlrpc_xmlparse.so* \
++		$(1)/opt/lib/
+ endef
+ 
+ define Package/xmlrpc-c-server/install
+ 	$(INSTALL_DIR) \
+-		$(1)/usr/lib
++		$(1)/opt/lib
+ 
+ 	$(CP) \
+-		$(PKG_INSTALL_DIR)/usr/lib/libxmlrpc_server.so* \
+-		$(1)/usr/lib/
++		$(PKG_INSTALL_DIR)/opt/lib/libxmlrpc_server.so* \
++		$(1)/opt/lib/
+ endef
+ 
+ define Package/xmlrpc-c-abyss/install
+ 	$(INSTALL_DIR) \
+-		$(1)/usr/lib
++		$(1)/opt/lib
+ 
+ 	$(CP) \
+-		$(PKG_INSTALL_DIR)/usr/lib/libxmlrpc_abyss.so* \
+-		$(1)/usr/lib/
++		$(PKG_INSTALL_DIR)/opt/lib/libxmlrpc_abyss.so* \
++		$(1)/opt/lib/
+ endef
+ 
+ define Package/xmlrpc-c-server-abyss/install
+ 	$(INSTALL_DIR) \
+-		$(1)/usr/lib
++		$(1)/opt/lib
+ 
+ 	$(CP) \
+-		$(PKG_INSTALL_DIR)/usr/lib/libxmlrpc_server_abyss.so* \
+-		$(1)/usr/lib/
++		$(PKG_INSTALL_DIR)/opt/lib/libxmlrpc_server_abyss.so* \
++		$(1)/opt/lib/
+ endef
+ 
+ define Package/xmlrpc-c-client/install
+ 	$(INSTALL_DIR) \
+-		$(1)/usr/lib
++		$(1)/opt/lib
+ 
+ 	$(CP) \
+-		$(PKG_INSTALL_DIR)/usr/lib/libxmlrpc_client* \
+-		$(1)/usr/lib/
++		$(PKG_INSTALL_DIR)/opt/lib/libxmlrpc_client* \
++		$(1)/opt/lib/
+ endef
+ 
+ define Package/xmlrpc-c-common/install
+ 	$(INSTALL_DIR) \
+-		$(1)/usr/lib
++		$(1)/opt/lib
+ 
+ 	$(CP) \
+-		$(PKG_INSTALL_DIR)/usr/lib/libxmlrpc_util.so* \
+-		$(1)/usr/lib/
++		$(PKG_INSTALL_DIR)/opt/lib/libxmlrpc_util.so* \
++		$(1)/opt/lib/
+ endef
+ 
+ define Package/xmlrpc-c/install
