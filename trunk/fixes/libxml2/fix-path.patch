@@ -1,0 +1,53 @@
+--- ../../../backup/trunk_clean/trunk/feeds/packages/libs/libxml2/Makefile	2011-11-15 14:03:58.000000000 +0400
++++ ../../../trunk/feeds/packages/libs/libxml2/Makefile	2011-11-24 12:43:10.725014709 +0400
+@@ -70,35 +70,35 @@
+ 
+ define Build/InstallDev
+ 	$(INSTALL_DIR) $(2)/bin
+-	$(INSTALL_BIN) $(PKG_INSTALL_DIR)/usr/bin/xml2-config $(2)/bin/
+-	$(SED) 's,^\(prefix\|exec_prefix\)=.*,\1=$(STAGING_DIR)/usr,g' $(2)/bin/xml2-config
++	$(INSTALL_BIN) $(PKG_INSTALL_DIR)/opt/bin/xml2-config $(2)/bin/
++	$(SED) 's,^\(prefix\|exec_prefix\)=.*,\1=$(STAGING_DIR)/opt,g' $(2)/bin/xml2-config
+ 
+-	$(INSTALL_DIR) $(1)/usr/include
++	$(INSTALL_DIR) $(1)/opt/include
+ 	$(CP) \
+-		$(PKG_INSTALL_DIR)/usr/include/libxml2 \
+-		$(1)/usr/include/
++		$(PKG_INSTALL_DIR)/opt/include/libxml2 \
++		$(1)/opt/include/
+ 
+-	$(INSTALL_DIR) $(1)/usr/lib
++	$(INSTALL_DIR) $(1)/opt/lib
+ 	$(CP) \
+-		$(PKG_INSTALL_DIR)/usr/lib/libxml2.{la,a,so*} \
+-		$(1)/usr/lib/
++		$(PKG_INSTALL_DIR)/opt/lib/libxml2.{la,a,so*} \
++		$(1)/opt/lib/
+ 
+-	$(INSTALL_DIR) $(1)/usr/lib/pkgconfig
++	$(INSTALL_DIR) $(1)/opt/lib/pkgconfig
+ 	$(INSTALL_DATA) \
+-		$(PKG_INSTALL_DIR)/usr/lib/pkgconfig/libxml-2.0.pc \
+-		$(1)/usr/lib/pkgconfig/
++		$(PKG_INSTALL_DIR)/opt/lib/pkgconfig/libxml-2.0.pc \
++		$(1)/opt/lib/pkgconfig/
+ 
+ 	$(INSTALL_DIR) $(2)/share/aclocal/
+ 	$(INSTALL_DATA) \
+-		$(PKG_INSTALL_DIR)/usr/share/aclocal/* \
++		$(PKG_INSTALL_DIR)/opt/share/aclocal/* \
+ 		$(2)/share/aclocal
+ endef
+ 
+ define Package/libxml2/install
+-	$(INSTALL_DIR) $(1)/usr/lib
++	$(INSTALL_DIR) $(1)/opt/lib
+ 	$(CP) \
+-		$(PKG_INSTALL_DIR)/usr/lib/libxml2.so.* \
+-		$(1)/usr/lib/
++		$(PKG_INSTALL_DIR)/opt/lib/libxml2.so.* \
++		$(1)/opt/lib/
+ endef
+ 
+ 
