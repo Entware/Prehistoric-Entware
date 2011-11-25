@@ -1,0 +1,50 @@
+diff -r -u -x .svn ../../../backup/trunk_clean/feeds/packages/libs/slang2//files/ncurses5-config ../../../trunk/feeds/packages/libs/slang2//files/ncurses5-config
+--- ../../../backup/trunk_clean/feeds/packages/libs/slang2//files/ncurses5-config	2011-11-25 09:50:11.124684325 +0400
++++ ../../../trunk/feeds/packages/libs/slang2//files/ncurses5-config	2011-11-25 22:42:32.131839971 +0400
+@@ -1,6 +1,6 @@
+ #!/bin/sh
+ 
+ if [ "$1" == "--terminfo" ]; then
+-	echo "/usr/share/terminfo"
++	echo "/opt/share/terminfo"
+ fi
+ 
+diff -r -u -x .svn ../../../backup/trunk_clean/feeds/packages/libs/slang2//Makefile ../../../trunk/feeds/packages/libs/slang2//Makefile
+--- ../../../backup/trunk_clean/feeds/packages/libs/slang2//Makefile	2011-11-25 09:50:11.128684274 +0400
++++ ../../../trunk/feeds/packages/libs/slang2//Makefile	2011-11-25 22:44:29.386382531 +0400
+@@ -73,24 +73,24 @@
+ endef
+ 
+ define Package/libslang2/install
+-	$(INSTALL_DIR) $(1)/usr/lib
+-	$(CP) $(PKG_INSTALL_DIR)/usr/lib/libslang.so* $(1)/usr/lib/
+-	$(CP) $(PKG_INSTALL_DIR)/usr/lib/slang/ $(1)/usr/lib/
++	$(INSTALL_DIR) $(1)/opt/lib
++	$(CP) $(PKG_INSTALL_DIR)/opt/lib/libslang.so* $(1)/opt/lib/
++	$(CP) $(PKG_INSTALL_DIR)/opt/lib/slang/ $(1)/opt/lib/
+ endef
+ 
+ define Build/InstallDev
+-	$(INSTALL_DIR) $(1)/usr/include
+-	$(CP) $(PKG_INSTALL_DIR)/usr/include/*.h $(1)/usr/include/
++	$(INSTALL_DIR) $(1)/opt/include
++	$(CP) $(PKG_INSTALL_DIR)/opt/include/*.h $(1)/opt/include/
+ 
+-	$(INSTALL_DIR) $(1)/usr/lib
+-	$(CP) $(PKG_INSTALL_DIR)/usr/lib/libslang.{a,so*} $(1)/usr/lib/
++	$(INSTALL_DIR) $(1)/opt/lib
++	$(CP) $(PKG_INSTALL_DIR)/opt/lib/libslang.{a,so*} $(1)/opt/lib/
+ endef
+ 
+ define Package/slsh/install
+- 	$(INSTALL_DIR) $(1)/usr/bin
+-	$(INSTALL_BIN) $(PKG_INSTALL_DIR)/usr/bin/slsh $(1)/usr/bin
+-	$(INSTALL_DIR) $(1)/usr/share
+-	$(CP) $(PKG_INSTALL_DIR)/usr/share/slsh/ $(1)/usr/share/
++ 	$(INSTALL_DIR) $(1)/opt/bin
++	$(INSTALL_BIN) $(PKG_INSTALL_DIR)/opt/bin/slsh $(1)/opt/bin
++	$(INSTALL_DIR) $(1)/opt/share
++	$(CP) $(PKG_INSTALL_DIR)/opt/share/slsh/ $(1)/opt/share/
+ endef
+ 
+ $(eval $(call BuildPackage,libslang2))
