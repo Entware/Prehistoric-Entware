@@ -1,0 +1,87 @@
+diff -r -u -x .svn ../../../backup/trunk_clean/package/lua//Makefile ../../../trunk/package/lua//Makefile
+--- ../../../backup/trunk_clean/package/lua//Makefile	2011-11-25 09:49:19.121338095 +0400
++++ ../../../trunk/package/lua//Makefile	2011-11-25 14:24:25.086111736 +0400
+@@ -99,7 +99,7 @@
+ 		CC="$(TARGET_CROSS)gcc" \
+ 		AR="$(TARGET_CROSS)ar rcu" \
+ 		RANLIB="$(TARGET_CROSS)ranlib" \
+-		INSTALL_ROOT=/usr \
++		INSTALL_ROOT=/opt \
+ 		CFLAGS="$(TARGET_CPPFLAGS) $(TARGET_CFLAGS)" \
+ 		MYLDFLAGS="$(TARGET_LDFLAGS)" \
+ 		PKG_VERSION=$(PKG_VERSION) \
+@@ -107,7 +107,7 @@
+ 	rm -rf $(PKG_INSTALL_DIR)
+ 	mkdir -p $(PKG_INSTALL_DIR)
+ 	$(MAKE) -C $(PKG_BUILD_DIR) \
+-		INSTALL_TOP="$(PKG_INSTALL_DIR)/usr" \
++		INSTALL_TOP="$(PKG_INSTALL_DIR)/opt" \
+ 		install
+ endef
+ 
+@@ -138,36 +138,36 @@
+ endef
+ 
+ define Build/InstallDev
+-	$(INSTALL_DIR) $(1)/usr/include
+-	$(CP) $(PKG_INSTALL_DIR)/usr/include/lua{,lib,conf}.h $(1)/usr/include/
+-	$(CP) $(PKG_INSTALL_DIR)/usr/include/lauxlib.h $(1)/usr/include/
+-	$(CP) $(PKG_INSTALL_DIR)/usr/include/lnum_config.h $(1)/usr/include/
+-	$(INSTALL_DIR) $(1)/usr/lib
+-	$(CP) $(PKG_INSTALL_DIR)/usr/lib/liblua.{a,so*} $(1)/usr/lib/
+-	ln -sf liblua.so.$(PKG_VERSION) $(1)/usr/lib/liblualib.so
+-	$(INSTALL_DIR) $(1)/usr/lib/pkgconfig
+-	$(CP) $(PKG_BUILD_DIR)/etc/lua.pc $(1)/usr/lib/pkgconfig/
++	$(INSTALL_DIR) $(1)/opt/include
++	$(CP) $(PKG_INSTALL_DIR)/opt/include/lua{,lib,conf}.h $(1)/opt/include/
++	$(CP) $(PKG_INSTALL_DIR)/opt/include/lauxlib.h $(1)/opt/include/
++	$(CP) $(PKG_INSTALL_DIR)/opt/include/lnum_config.h $(1)/opt/include/
++	$(INSTALL_DIR) $(1)/opt/lib
++	$(CP) $(PKG_INSTALL_DIR)/opt/lib/liblua.{a,so*} $(1)/opt/lib/
++	ln -sf liblua.so.$(PKG_VERSION) $(1)/opt/lib/liblualib.so
++	$(INSTALL_DIR) $(1)/opt/lib/pkgconfig
++	$(CP) $(PKG_BUILD_DIR)/etc/lua.pc $(1)/opt/lib/pkgconfig/
+ endef
+ 
+ define Package/liblua/install
+-	$(INSTALL_DIR) $(1)/usr/lib
+-	$(CP) $(PKG_INSTALL_DIR)/usr/lib/liblua.so.* $(1)/usr/lib/
++	$(INSTALL_DIR) $(1)/opt/lib
++	$(CP) $(PKG_INSTALL_DIR)/opt/lib/liblua.so.* $(1)/opt/lib/
+ endef
+ 
+ define Package/lua/install
+-	$(INSTALL_DIR) $(1)/usr/bin
+-	$(INSTALL_BIN) $(PKG_INSTALL_DIR)/usr/bin/lua $(1)/usr/bin/
++	$(INSTALL_DIR) $(1)/opt/bin
++	$(INSTALL_BIN) $(PKG_INSTALL_DIR)/opt/bin/lua $(1)/opt/bin/
+ endef
+ 
+ define Package/luac/install
+-	$(INSTALL_DIR) $(1)/usr/bin
+-	$(INSTALL_BIN) $(PKG_INSTALL_DIR)/usr/bin/luac $(1)/usr/bin/
++	$(INSTALL_DIR) $(1)/opt/bin
++	$(INSTALL_BIN) $(PKG_INSTALL_DIR)/opt/bin/luac $(1)/opt/bin/
+ endef
+ 
+ define Package/lua-examples/install
+-	$(INSTALL_DIR) $(1)/usr/share/lua/examples
++	$(INSTALL_DIR) $(1)/opt/share/lua/examples
+ 	$(INSTALL_DATA) $(PKG_BUILD_DIR)/test/*.lua \
+-		$(1)/usr/share/lua/examples/
++		$(1)/opt/share/lua/examples/
+ endef
+ 
+ $(eval $(call BuildPackage,liblua))
+diff -r -u -x .svn ../../../backup/trunk_clean/package/lua//patches/200-lua-path.patch ../../../trunk/package/lua//patches/200-lua-path.patch
+--- ../../../backup/trunk_clean/package/lua//patches/200-lua-path.patch	2011-11-25 09:49:19.117338144 +0400
++++ ../../../trunk/package/lua//patches/200-lua-path.patch	2011-11-25 14:20:15.665254235 +0400
+@@ -7,7 +7,7 @@
+ -#define LUA_ROOT	"/usr/local/"
+ -#define LUA_LDIR	LUA_ROOT "share/lua/5.1/"
+ -#define LUA_CDIR	LUA_ROOT "lib/lua/5.1/"
+-+#define LUA_ROOT	"/usr/"
+++#define LUA_ROOT	"/opt/"
+ +#define LUA_LDIR	LUA_ROOT "share/lua/"
+ +#define LUA_CDIR	LUA_ROOT "lib/lua/"
+  #define LUA_PATH_DEFAULT  \
