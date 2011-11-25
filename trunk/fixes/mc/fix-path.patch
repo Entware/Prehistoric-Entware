@@ -1,136 +1,141 @@
 --- ../../../backup/trunk_clean/feeds/packages/utils/mc/Makefile	2011-11-25 09:49:46.448994540 +0400
-+++ ../../../trunk/feeds/packages/utils/mc/Makefile	2011-11-25 13:39:58.811481592 +0400
-@@ -23,7 +23,7 @@
++++ ../../../trunk/feeds/packages/utils/mc/Makefile	2011-11-25 23:28:58.772816041 +0400
+@@ -1,5 +1,5 @@
+ # 
+-# Copyright (C) 2006-2011 OpenWrt.org
++# Copyright (C) 2006-2009 OpenWrt.org
+ #
+ # This is free software, licensed under the GNU General Public License v2.
+ # See /LICENSE for more information.
+@@ -8,14 +8,15 @@
+ include $(TOPDIR)/rules.mk
+ 
+ PKG_NAME:=mc
+-PKG_VERSION:=4.7.5.3
++PKG_VERSION:=4.8.0
+ PKG_RELEASE:=1
++PKG_INSTALL:=1
+ 
+ PKG_SOURCE:=$(PKG_NAME)-$(PKG_VERSION).tar.bz2
+ PKG_SOURCE_URL:=http://www.midnight-commander.org/downloads/
+-PKG_MD5SUM:=6a67e139e0032d8a871455a80d490941
++PKG_MD5SUM:=592478c3edfa2ad64c8cd165b9bec446
+ 
+-PKG_BUILD_PARALLEL:=1
++#PKG_FIXUP:=autoreconf
+ 
+ include $(INCLUDE_DIR)/package.mk
+ include $(INCLUDE_DIR)/nls.mk
+@@ -23,53 +24,35 @@
  define Package/mc
    SECTION:=utils
    CATEGORY:=Utilities
 -  DEPENDS:=+glib2 +libncurses +libiconv
-+  DEPENDS:=+glib2 +libncurses $(ICONV_DEPENDS) $(INTL_DEPENDS)
++  DEPENDS:=$(ICONV_DEPENDS) $(INTL_DEPENDS) +glib2 +libncurses +libslang2
    TITLE:=midnight commander - a powerful file manager
    URL:=http://www.midnight-commander.org/
    SUBMENU:=filemanager
-@@ -49,6 +49,8 @@
- 	--with-screen=ncurses \
+-  MAINTAINER:=Luka Perkov <openwrt@lukaperkov.net>
+-  MENU:=1
+-endef
+-
+-define Package/mc/config
+-	source "$(SOURCE)/Config.in"
+ endef
+ 
+ define Package/mc/description
+- GNU Midnight Commander is a visual file manager, licensed under GNU General
+- Public License and therefore qualifies as Free Software. It's a feature rich
+- full-screen text mode application that allows you to copy, move and delete
+- files and whole directory trees, search for files and run commands in the
+- subshell.
++	GNU Midnight Commander is a text-mode full-screen file manager. 
++	It uses a two panel interface and a subshell for command execution. 
++	It includes an internal editor with syntax highlighting and an 
++	internal viewer with support for binary files. Also included is 
++	Virtual Filesystem (VFS), that allows files on remote systems 
++	(e.g. FTP, SSH, SMB servers) and files inside archives to be 
++	manipulated like real files.
+ endef
+ 
+ CONFIGURE_ARGS += \
+-	--enable-utf8 \
+-	--disable-doxygen-doc \
+-	--with-screen=ncurses \
++	--sysconfdir="/opt/etc" \
  	--without-gpm-mouse \
  	--without-x \
+-	ac_cv_search_addwstr=no
+-
+-ifeq ($(CONFIG_MC_DIFF_VIEWER),n)
+-CONFIGURE_ARGS += \
+-	--without-diff-viewer
+-endif
+-
+-ifeq ($(CONFIG_MC_EDITOR),n)
+-CONFIGURE_ARGS += \
+-	--without-edit
+-endif
+-
+-ifeq ($(CONFIG_MC_SUBSHELL),n)
+-CONFIGURE_ARGS += \
+-	--without-subshell
+-endif
++	--disable-glibtest \
++	--disable-doxygen-doc \
++	--disable-nls \
++	--disable-tests \
 +	--with-libintl-prefix="$(INTL_PREFIX)" \
 +	--with-libiconv-prefix="$(ICONV_PREFIX)" \
- 	ac_cv_search_addwstr=no
++	--with-slang-includes="$(STAGING_DIR)/opt/include" \
++	--with-slang-libs="$(STAGING_DIR)/opt/lib" \
  
- ifeq ($(CONFIG_MC_DIFF_VIEWER),n)
-@@ -82,24 +84,104 @@
+-ifeq ($(CONFIG_MC_DISABLE_VFS),y)
+-CONFIGURE_ARGS += \
+-	--without-vfs
+-endif
+ 
+ AM_HOST=$(firstword $(wildcard $(STAGING_DIR_HOST)/share/automake-*))
+ 
+@@ -82,24 +65,23 @@
  endef
  
  define Package/mc/install
 -	$(INSTALL_DIR) $(1)/usr/bin
 -	$(INSTALL_BIN) $(PKG_BUILD_DIR)/src/mc $(1)/usr/bin
 -	$(INSTALL_DIR) $(1)/etc/mc
-+	$(INSTALL_DIR) $(1)/opt/bin
-+	$(INSTALL_BIN) $(PKG_BUILD_DIR)/src/mc $(1)/opt/bin
- ifeq ($(CONFIG_MC_DIFF_VIEWER),y)
+-ifeq ($(CONFIG_MC_DIFF_VIEWER),y)
 -	ln -sf mc $(1)/usr/bin/mcdiff
-+	ln -sf mc $(1)/opt/bin/mcdiff
- endif
- ifeq ($(CONFIG_MC_EDITOR),y)
+-endif
+-ifeq ($(CONFIG_MC_EDITOR),y)
 -	ln -sf mc $(1)/usr/bin/mcedit
-+	ln -sf mc $(1)/opt/bin/mcedit
- endif
+-endif
 -	$(INSTALL_DATA) $(PKG_BUILD_DIR)/misc/mc.menu $(1)/etc/mc
 -	$(INSTALL_DIR) $(1)/etc/mc/skins
 -	$(INSTALL_DATA) $(PKG_BUILD_DIR)/misc/skins/default.ini $(1)/etc/mc/skins
 -	$(INSTALL_DIR) $(1)/root/.mc
-+	$(INSTALL_DIR) $(1)/opt/etc
-+	$(INSTALL_DIR) $(1)/opt/etc/mc
-+	$(INSTALL_DATA) $(PKG_BUILD_DIR)/misc/cedit.menu \
-+	    $(PKG_BUILD_DIR)/misc/edit.indent.rc \
-+	    $(PKG_BUILD_DIR)/misc/edit.spell.rc \
-+	    $(PKG_BUILD_DIR)/misc/filehighlight.ini \
-+	    $(PKG_BUILD_DIR)/misc/mc.ext \
-+	    $(PKG_BUILD_DIR)/misc/mc.keymap \
-+	    $(PKG_BUILD_DIR)/misc/mc.keymap.default \
-+	    $(PKG_BUILD_DIR)/misc/mc.keymap.emacs \
-+	    $(PKG_BUILD_DIR)/misc/mc.menu \
-+	    $(PKG_BUILD_DIR)/misc/mc.menu.sr \
-+	    $(PKG_BUILD_DIR)/lib/vfs/mc-vfs/extfs/sfs.ini \
-+	    $(1)/opt/etc/mc
-+	$(INSTALL_DIR) $(1)/opt/share
-+	$(INSTALL_DIR) $(1)/opt/share/mc
-+	$(INSTALL_DATA) $(PKG_BUILD_DIR)/misc/mc.lib \
-+	    $(PKG_BUILD_DIR)/misc/mc.charsets \
-+	    $(1)/opt/share/mc
-+	$(INSTALL_DIR) $(1)/opt/share/mc/help
-+	$(INSTALL_DATA) $(PKG_BUILD_DIR)/doc/hlp/mc.hlp \
-+	    $(1)/opt/share/mc/help
-+	$(INSTALL_DIR) $(1)/opt/share/mc/hints
-+	$(INSTALL_DATA) $(PKG_BUILD_DIR)/doc/hints/mc.hint \
-+	    $(1)/opt/share/mc/hints
-+	$(INSTALL_DIR) $(1)/opt/share/mc/skins
-+	$(INSTALL_DATA) $(PKG_BUILD_DIR)/misc/skins/*.ini \
-+	    $(1)/opt/share/mc/skins
-+	$(INSTALL_DIR) $(1)/opt/share/mc/syntax
-+	$(INSTALL_DATA) $(PKG_BUILD_DIR)/misc/syntax/*.syntax \
-+	    $(1)/opt/share/mc/syntax
-+	$(INSTALL_DIR) $(1)/opt/libexec
-+	$(INSTALL_DIR) $(1)/opt/libexec/mc
-+	$(INSTALL_DATA) $(PKG_BUILD_DIR)/src/consaver/cons.saver \
-+	$(PKG_BUILD_DIR)/contrib/mc-wrapper.*sh \
-+	$(PKG_BUILD_DIR)/contrib/mc.*sh \
-+	    $(1)/opt/libexec/mc
-+	$(INSTALL_DIR) $(1)/opt/libexec/mc/extfs.d
-+	$(INSTALL_DATA) $(PKG_BUILD_DIR)/lib/vfs/mc-vfs/extfs/a+ \
-+	$(PKG_BUILD_DIR)/lib/vfs/mc-vfs/extfs/apt+ \
-+	$(PKG_BUILD_DIR)/lib/vfs/mc-vfs/extfs/audio \
-+	$(PKG_BUILD_DIR)/lib/vfs/mc-vfs/extfs/bpp \
-+	$(PKG_BUILD_DIR)/lib/vfs/mc-vfs/extfs/deb \
-+	$(PKG_BUILD_DIR)/lib/vfs/mc-vfs/extfs/deba \
-+	$(PKG_BUILD_DIR)/lib/vfs/mc-vfs/extfs/debd \
-+	$(PKG_BUILD_DIR)/lib/vfs/mc-vfs/extfs/dpkg+ \
-+	$(PKG_BUILD_DIR)/lib/vfs/mc-vfs/extfs/hp48+ \
-+	$(PKG_BUILD_DIR)/lib/vfs/mc-vfs/extfs/iso9660 \
-+	$(PKG_BUILD_DIR)/lib/vfs/mc-vfs/extfs/lslR \
-+	$(PKG_BUILD_DIR)/lib/vfs/mc-vfs/extfs/mailfs \
-+	$(PKG_BUILD_DIR)/lib/vfs/mc-vfs/extfs/patchfs \
-+	$(PKG_BUILD_DIR)/lib/vfs/mc-vfs/extfs/rpm \
-+	$(PKG_BUILD_DIR)/lib/vfs/mc-vfs/extfs/rpms+ \
-+	$(PKG_BUILD_DIR)/lib/vfs/mc-vfs/extfs/s3+ \
-+	$(PKG_BUILD_DIR)/lib/vfs/mc-vfs/extfs/trpm \
-+	$(PKG_BUILD_DIR)/lib/vfs/mc-vfs/extfs/u7z \
-+	$(PKG_BUILD_DIR)/lib/vfs/mc-vfs/extfs/uace \
-+	$(PKG_BUILD_DIR)/lib/vfs/mc-vfs/extfs/ualz \
-+	$(PKG_BUILD_DIR)/lib/vfs/mc-vfs/extfs/uar \
-+	$(PKG_BUILD_DIR)/lib/vfs/mc-vfs/extfs/uarc \
-+	$(PKG_BUILD_DIR)/lib/vfs/mc-vfs/extfs/uarj \
-+	$(PKG_BUILD_DIR)/lib/vfs/mc-vfs/extfs/uc1541 \
-+	$(PKG_BUILD_DIR)/lib/vfs/mc-vfs/extfs/ucab \
-+	$(PKG_BUILD_DIR)/lib/vfs/mc-vfs/extfs/uha \
-+	$(PKG_BUILD_DIR)/lib/vfs/mc-vfs/extfs/ulha \
-+	$(PKG_BUILD_DIR)/lib/vfs/mc-vfs/extfs/urar \
-+	$(PKG_BUILD_DIR)/lib/vfs/mc-vfs/extfs/uzip \
-+	$(PKG_BUILD_DIR)/lib/vfs/mc-vfs/extfs/uzoo \
-+	    $(1)/opt/libexec/mc/extfs.d
-+	$(INSTALL_DIR) $(1)/opt/libexec/mc/fish
-+	$(INSTALL_DATA) $(PKG_BUILD_DIR)/lib/vfs/mc-vfs/fish/append \
-+	$(PKG_BUILD_DIR)/lib/vfs/mc-vfs/fish/chmod \
-+	$(PKG_BUILD_DIR)/lib/vfs/mc-vfs/fish/chown \
-+	$(PKG_BUILD_DIR)/lib/vfs/mc-vfs/fish/fexists \
-+	$(PKG_BUILD_DIR)/lib/vfs/mc-vfs/fish/get \
-+	$(PKG_BUILD_DIR)/lib/vfs/mc-vfs/fish/hardlink \
-+	$(PKG_BUILD_DIR)/lib/vfs/mc-vfs/fish/info \
-+	$(PKG_BUILD_DIR)/lib/vfs/mc-vfs/fish/ln \
-+	$(PKG_BUILD_DIR)/lib/vfs/mc-vfs/fish/ls \
-+	$(PKG_BUILD_DIR)/lib/vfs/mc-vfs/fish/mkdir \
-+	$(PKG_BUILD_DIR)/lib/vfs/mc-vfs/fish/mv \
-+	$(PKG_BUILD_DIR)/lib/vfs/mc-vfs/fish/rmdir \
-+	$(PKG_BUILD_DIR)/lib/vfs/mc-vfs/fish/send \
-+	$(PKG_BUILD_DIR)/lib/vfs/mc-vfs/fish/unlink \
-+	    $(1)/opt/libexec/mc/fish
- endef
- 
- define Package/mc/conffiles
+-endef
+-
+-define Package/mc/conffiles
 -/etc/mc/mc.menu
 -/etc/mc/skins/default.ini
-+/opt/etc/mc/mc.menu
-+/opt/etc/mc/skins/default.ini
++	$(INSTALL_DIR) $(1)/opt/bin
++	$(INSTALL_BIN) $(PKG_INSTALL_DIR)/opt/bin/mc $(1)/opt/bin/
++	ln -nsf mc $(1)/opt/bin/mcedit
++	ln -nsf mc $(1)/opt/bin/mcdiff
++	ln -nsf mc $(1)/opt/bin/mcview
++	$(INSTALL_DIR) $(1)/opt/etc/mc
++	$(CP) $(PKG_INSTALL_DIR)/opt/etc/mc/* $(1)/opt/etc/mc/
++	$(INSTALL_DIR) $(1)/opt/lib/mc
++	$(INSTALL_DIR) $(1)/opt/lib/mc/extfs.d
++	$(INSTALL_DIR) $(1)/opt/lib/mc/fish
++	$(CP) $(PKG_INSTALL_DIR)/opt/lib/mc/* $(1)/opt/lib/mc/
++	$(INSTALL_DIR) $(1)/opt/share/mc
++	$(INSTALL_DIR) $(1)/opt/share/mc/help
++	$(INSTALL_DIR) $(1)/opt/share/mc/skins
++	$(INSTALL_DIR) $(1)/opt/share/mc/hints
++	$(INSTALL_DIR) $(1)/opt/share/mc/syntax
++	$(CP) $(PKG_INSTALL_DIR)/opt/share/mc/* $(1)/opt/share/mc/
  endef
  
  $(eval $(call BuildPackage,mc))

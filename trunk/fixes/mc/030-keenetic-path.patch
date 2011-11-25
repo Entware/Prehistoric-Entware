@@ -1,0 +1,31 @@
+--- a/lib/mcconfig/paths.c
++++ b/lib/mcconfig/paths.c
+@@ -198,22 +198,18 @@ mc_config_init_config_paths (GError ** e
+ {
+     const char *mc_datadir;
+ 
+-    char *u_config_dir = (char *) g_get_user_config_dir ();
+-    char *u_data_dir = (char *) g_get_user_data_dir ();
+-    char *u_cache_dir = (char *) g_get_user_cache_dir ();
++    char *u_config_dir;
++    char *u_data_dir;
++    char *u_cache_dir;
+ 
+     if (xdg_vars_initialized)
+         return;
+ 
+-    u_config_dir = (u_config_dir == NULL)
+-        ? g_build_filename (mc_config_get_home_dir (), ".config", NULL) : g_strdup (u_config_dir);
++    u_config_dir = g_build_filename (mc_config_get_home_dir (), ".config", NULL);
+ 
+-    u_cache_dir = (u_cache_dir == NULL)
+-        ? g_build_filename (mc_config_get_home_dir (), ".cache", NULL) : g_strdup (u_cache_dir);
++    u_cache_dir = g_build_filename (mc_config_get_home_dir (), ".cache", NULL);
+ 
+-    u_data_dir = (u_data_dir == NULL)
+-        ? g_build_filename (mc_config_get_home_dir (), ".local", "share", NULL)
+-        : g_strdup (u_data_dir);
++    u_data_dir = g_build_filename (mc_config_get_home_dir (), ".local", "share", NULL);
+ 
+     xdg_config = mc_config_init_one_config_path (u_config_dir, MC_USERCONF_DIR, error);
+     xdg_cache = mc_config_init_one_config_path (u_cache_dir, MC_USERCONF_DIR, error);
