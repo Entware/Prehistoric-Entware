@@ -1,0 +1,13 @@
+--- ../../../backup/trunk_clean/package/ocf-crypto-headers/Makefile	2011-11-25 09:49:16.061376562 +0400
++++ ../../../trunk/package/ocf-crypto-headers/Makefile	2011-11-25 10:21:59.359213035 +0400
+@@ -29,8 +29,8 @@
+ endef
+ 
+ define Build/InstallDev
+-	mkdir -p $(1)/usr/include/crypto
+-	$(CP) ./src/cryptodev.h $(1)/usr/include/crypto
++	mkdir -p $(1)/opt/include/crypto
++	$(CP) ./src/cryptodev.h $(1)/opt/include/crypto
+ endef
+ 
+ $(eval $(call BuildPackage,ocf-crypto-headers))
