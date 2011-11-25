@@ -1,6 +1,6 @@
-diff -r -u -x .svn ../../../backup/trunk_clean/trunk/feeds/packages/net/lighttpd//files/lighttpd.conf ../../../trunk/feeds/packages/net/lighttpd//files/lighttpd.conf
---- ../../../backup/trunk_clean/trunk/feeds/packages/net/lighttpd//files/lighttpd.conf	2011-11-15 14:03:55.000000000 +0400
-+++ ../../../trunk/feeds/packages/net/lighttpd//files/lighttpd.conf	2011-11-24 14:17:07.106789223 +0400
+diff -r -u -x .svn ../../../backup/trunk_clean/feeds/packages/net/lighttpd//files/lighttpd.conf ../../../trunk/feeds/packages/net/lighttpd//files/lighttpd.conf
+--- ../../../backup/trunk_clean/feeds/packages/net/lighttpd//files/lighttpd.conf	2011-11-25 09:49:55.708878128 +0400
++++ ../../../trunk/feeds/packages/net/lighttpd//files/lighttpd.conf	2011-11-25 09:49:34.017150829 +0400
 @@ -26,10 +26,10 @@
  
  ## a static document-root, for virtual-hosting take look at the 
@@ -59,9 +59,9 @@ diff -r -u -x .svn ../../../backup/trunk_clean/trunk/feeds/packages/net/lighttpd
 -# webdav.sqlite-db-name = "/var/run/lighttpd-webdav-lock.db"
 +# webdav.sqlite-db-name = "/opt/var/run/lighttpd-webdav-lock.db"
  #}
-diff -r -u -x .svn ../../../backup/trunk_clean/trunk/feeds/packages/net/lighttpd//Makefile ../../../trunk/feeds/packages/net/lighttpd//Makefile
---- ../../../backup/trunk_clean/trunk/feeds/packages/net/lighttpd//Makefile	2011-11-15 14:03:55.000000000 +0400
-+++ ../../../trunk/feeds/packages/net/lighttpd//Makefile	2011-11-24 14:44:17.634896055 +0400
+diff -r -u -x .svn ../../../backup/trunk_clean/feeds/packages/net/lighttpd//Makefile ../../../trunk/feeds/packages/net/lighttpd//Makefile
+--- ../../../backup/trunk_clean/feeds/packages/net/lighttpd//Makefile	2011-11-25 09:49:55.724877924 +0400
++++ ../../../trunk/feeds/packages/net/lighttpd//Makefile	2011-11-25 10:16:14.119538687 +0400
 @@ -209,8 +209,8 @@
  endef
  
@@ -82,28 +82,22 @@ diff -r -u -x .svn ../../../backup/trunk_clean/trunk/feeds/packages/net/lighttpd
  	--with-pcre \
  	--without-valgrind \
  	 $(call autoconf_bool,CONFIG_IPV6,ipv6)
-@@ -251,30 +251,30 @@
+@@ -251,27 +251,27 @@
  endef
  
  define Package/lighttpd/conffiles
 -/etc/lighttpd/lighttpd.conf
--/etc/default/lighttpd
 +/opt/etc/lighttpd/lighttpd.conf
-+#/etc/default/lighttpd
  endef
  
  define Package/lighttpd/install
 -	$(INSTALL_DIR) $(1)/etc/lighttpd
 -	$(INSTALL_DATA) ./files/lighttpd.conf $(1)/etc/lighttpd/
--	$(INSTALL_DIR) $(1)/etc/default
--	$(INSTALL_DATA) ./files/lighttpd.default $(1)/etc/default/lighttpd
 -	$(INSTALL_DIR) $(1)/etc/init.d
 -	$(INSTALL_BIN) ./files/lighttpd.init $(1)/etc/init.d/lighttpd
 -	$(INSTALL_DIR) $(1)/usr/lib/lighttpd
 +	$(INSTALL_DIR) $(1)/opt/etc/lighttpd
 +	$(INSTALL_DATA) ./files/lighttpd.conf $(1)/opt/etc/lighttpd/
-+#	$(INSTALL_DIR) $(1)/opt/etc/default
-+#	$(INSTALL_DATA) ./files/lighttpd.default $(1)/etc/default/lighttpd
 +#	$(INSTALL_DIR) $(1)/etc/init.d
 +#	$(INSTALL_BIN) ./files/lighttpd.init $(1)/etc/init.d/lighttpd
 +	$(INSTALL_DIR) $(1)/opt/lib/lighttpd
