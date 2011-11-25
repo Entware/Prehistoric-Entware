@@ -1,0 +1,22 @@
+--- ../../../backup/trunk_clean/feeds/packages/net/rtorrent/Makefile	2011-11-25 09:49:52.224921926 +0400
++++ ../../../trunk/feeds/packages/net/rtorrent/Makefile	2011-11-25 13:47:40.651742279 +0400
+@@ -39,7 +39,7 @@
+ endef
+ 
+ TARGET_CPPFLAGS += -fno-strict-aliasing -fno-inline
+-TARGET_LDFLAGS += -lpthread -Wl,-rpath-link=$(STAGING_DIR)/usr/lib
++TARGET_LDFLAGS += -lpthread -Wl,-rpath-link=$(STAGING_DIR)/opt/lib
+ 
+ CONFIGURE_ARGS+= \
+ 	--enable-shared \
+@@ -53,8 +53,8 @@
+ endef
+ 
+ define Package/rtorrent/install
+-	$(INSTALL_DIR) $(1)/usr/bin
+-	$(INSTALL_BIN) $(PKG_INSTALL_DIR)/usr/bin/rtorrent $(1)/usr/bin/
++	$(INSTALL_DIR) $(1)/opt/bin
++	$(INSTALL_BIN) $(PKG_INSTALL_DIR)/opt/bin/rtorrent $(1)/opt/bin/
+ endef
+ 
+ $(eval $(call BuildPackage,rtorrent))
