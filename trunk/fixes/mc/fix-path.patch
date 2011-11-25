@@ -1,6 +1,24 @@
---- ../../../backup/trunk_clean/trunk/feeds/packages/utils/mc/Makefile	2011-11-15 14:03:40.000000000 +0400
-+++ ../../../trunk/feeds/packages/utils/mc/Makefile	2011-11-16 14:26:39.545158772 +0400
-@@ -82,24 +82,24 @@
+--- ../../../backup/trunk_clean/feeds/packages/utils/mc/Makefile	2011-11-25 09:49:46.448994540 +0400
++++ ../../../trunk/feeds/packages/utils/mc/Makefile	2011-11-25 13:39:58.811481592 +0400
+@@ -23,7 +23,7 @@
+ define Package/mc
+   SECTION:=utils
+   CATEGORY:=Utilities
+-  DEPENDS:=+glib2 +libncurses +libiconv
++  DEPENDS:=+glib2 +libncurses $(ICONV_DEPENDS) $(INTL_DEPENDS)
+   TITLE:=midnight commander - a powerful file manager
+   URL:=http://www.midnight-commander.org/
+   SUBMENU:=filemanager
+@@ -49,6 +49,8 @@
+ 	--with-screen=ncurses \
+ 	--without-gpm-mouse \
+ 	--without-x \
++	--with-libintl-prefix="$(INTL_PREFIX)" \
++	--with-libiconv-prefix="$(ICONV_PREFIX)" \
+ 	ac_cv_search_addwstr=no
+ 
+ ifeq ($(CONFIG_MC_DIFF_VIEWER),n)
+@@ -82,24 +84,104 @@
  endef
  
  define Package/mc/install
@@ -9,7 +27,6 @@
 -	$(INSTALL_DIR) $(1)/etc/mc
 +	$(INSTALL_DIR) $(1)/opt/bin
 +	$(INSTALL_BIN) $(PKG_BUILD_DIR)/src/mc $(1)/opt/bin
-+	$(INSTALL_DIR) $(1)/opt/etc/mc
  ifeq ($(CONFIG_MC_DIFF_VIEWER),y)
 -	ln -sf mc $(1)/usr/bin/mcdiff
 +	ln -sf mc $(1)/opt/bin/mcdiff
@@ -22,10 +39,91 @@
 -	$(INSTALL_DIR) $(1)/etc/mc/skins
 -	$(INSTALL_DATA) $(PKG_BUILD_DIR)/misc/skins/default.ini $(1)/etc/mc/skins
 -	$(INSTALL_DIR) $(1)/root/.mc
-+	$(INSTALL_DATA) $(PKG_BUILD_DIR)/misc/mc.menu $(1)/opt/etc/mc
-+	$(INSTALL_DIR) $(1)/opt/etc/mc/skins
-+	$(INSTALL_DATA) $(PKG_BUILD_DIR)/misc/skins/default.ini $(1)/opt/etc/mc/skins
-+#	$(INSTALL_DIR) $(1)/root/.mc
++	$(INSTALL_DIR) $(1)/opt/etc
++	$(INSTALL_DIR) $(1)/opt/etc/mc
++	$(INSTALL_DATA) $(PKG_BUILD_DIR)/misc/cedit.menu \
++	    $(PKG_BUILD_DIR)/misc/edit.indent.rc \
++	    $(PKG_BUILD_DIR)/misc/edit.spell.rc \
++	    $(PKG_BUILD_DIR)/misc/filehighlight.ini \
++	    $(PKG_BUILD_DIR)/misc/mc.ext \
++	    $(PKG_BUILD_DIR)/misc/mc.keymap \
++	    $(PKG_BUILD_DIR)/misc/mc.keymap.default \
++	    $(PKG_BUILD_DIR)/misc/mc.keymap.emacs \
++	    $(PKG_BUILD_DIR)/misc/mc.menu \
++	    $(PKG_BUILD_DIR)/misc/mc.menu.sr \
++	    $(PKG_BUILD_DIR)/lib/vfs/mc-vfs/extfs/sfs.ini \
++	    $(1)/opt/etc/mc
++	$(INSTALL_DIR) $(1)/opt/share
++	$(INSTALL_DIR) $(1)/opt/share/mc
++	$(INSTALL_DATA) $(PKG_BUILD_DIR)/misc/mc.lib \
++	    $(PKG_BUILD_DIR)/misc/mc.charsets \
++	    $(1)/opt/share/mc
++	$(INSTALL_DIR) $(1)/opt/share/mc/help
++	$(INSTALL_DATA) $(PKG_BUILD_DIR)/doc/hlp/mc.hlp \
++	    $(1)/opt/share/mc/help
++	$(INSTALL_DIR) $(1)/opt/share/mc/hints
++	$(INSTALL_DATA) $(PKG_BUILD_DIR)/doc/hints/mc.hint \
++	    $(1)/opt/share/mc/hints
++	$(INSTALL_DIR) $(1)/opt/share/mc/skins
++	$(INSTALL_DATA) $(PKG_BUILD_DIR)/misc/skins/*.ini \
++	    $(1)/opt/share/mc/skins
++	$(INSTALL_DIR) $(1)/opt/share/mc/syntax
++	$(INSTALL_DATA) $(PKG_BUILD_DIR)/misc/syntax/*.syntax \
++	    $(1)/opt/share/mc/syntax
++	$(INSTALL_DIR) $(1)/opt/libexec
++	$(INSTALL_DIR) $(1)/opt/libexec/mc
++	$(INSTALL_DATA) $(PKG_BUILD_DIR)/src/consaver/cons.saver \
++	$(PKG_BUILD_DIR)/contrib/mc-wrapper.*sh \
++	$(PKG_BUILD_DIR)/contrib/mc.*sh \
++	    $(1)/opt/libexec/mc
++	$(INSTALL_DIR) $(1)/opt/libexec/mc/extfs.d
++	$(INSTALL_DATA) $(PKG_BUILD_DIR)/lib/vfs/mc-vfs/extfs/a+ \
++	$(PKG_BUILD_DIR)/lib/vfs/mc-vfs/extfs/apt+ \
++	$(PKG_BUILD_DIR)/lib/vfs/mc-vfs/extfs/audio \
++	$(PKG_BUILD_DIR)/lib/vfs/mc-vfs/extfs/bpp \
++	$(PKG_BUILD_DIR)/lib/vfs/mc-vfs/extfs/deb \
++	$(PKG_BUILD_DIR)/lib/vfs/mc-vfs/extfs/deba \
++	$(PKG_BUILD_DIR)/lib/vfs/mc-vfs/extfs/debd \
++	$(PKG_BUILD_DIR)/lib/vfs/mc-vfs/extfs/dpkg+ \
++	$(PKG_BUILD_DIR)/lib/vfs/mc-vfs/extfs/hp48+ \
++	$(PKG_BUILD_DIR)/lib/vfs/mc-vfs/extfs/iso9660 \
++	$(PKG_BUILD_DIR)/lib/vfs/mc-vfs/extfs/lslR \
++	$(PKG_BUILD_DIR)/lib/vfs/mc-vfs/extfs/mailfs \
++	$(PKG_BUILD_DIR)/lib/vfs/mc-vfs/extfs/patchfs \
++	$(PKG_BUILD_DIR)/lib/vfs/mc-vfs/extfs/rpm \
++	$(PKG_BUILD_DIR)/lib/vfs/mc-vfs/extfs/rpms+ \
++	$(PKG_BUILD_DIR)/lib/vfs/mc-vfs/extfs/s3+ \
++	$(PKG_BUILD_DIR)/lib/vfs/mc-vfs/extfs/trpm \
++	$(PKG_BUILD_DIR)/lib/vfs/mc-vfs/extfs/u7z \
++	$(PKG_BUILD_DIR)/lib/vfs/mc-vfs/extfs/uace \
++	$(PKG_BUILD_DIR)/lib/vfs/mc-vfs/extfs/ualz \
++	$(PKG_BUILD_DIR)/lib/vfs/mc-vfs/extfs/uar \
++	$(PKG_BUILD_DIR)/lib/vfs/mc-vfs/extfs/uarc \
++	$(PKG_BUILD_DIR)/lib/vfs/mc-vfs/extfs/uarj \
++	$(PKG_BUILD_DIR)/lib/vfs/mc-vfs/extfs/uc1541 \
++	$(PKG_BUILD_DIR)/lib/vfs/mc-vfs/extfs/ucab \
++	$(PKG_BUILD_DIR)/lib/vfs/mc-vfs/extfs/uha \
++	$(PKG_BUILD_DIR)/lib/vfs/mc-vfs/extfs/ulha \
++	$(PKG_BUILD_DIR)/lib/vfs/mc-vfs/extfs/urar \
++	$(PKG_BUILD_DIR)/lib/vfs/mc-vfs/extfs/uzip \
++	$(PKG_BUILD_DIR)/lib/vfs/mc-vfs/extfs/uzoo \
++	    $(1)/opt/libexec/mc/extfs.d
++	$(INSTALL_DIR) $(1)/opt/libexec/mc/fish
++	$(INSTALL_DATA) $(PKG_BUILD_DIR)/lib/vfs/mc-vfs/fish/append \
++	$(PKG_BUILD_DIR)/lib/vfs/mc-vfs/fish/chmod \
++	$(PKG_BUILD_DIR)/lib/vfs/mc-vfs/fish/chown \
++	$(PKG_BUILD_DIR)/lib/vfs/mc-vfs/fish/fexists \
++	$(PKG_BUILD_DIR)/lib/vfs/mc-vfs/fish/get \
++	$(PKG_BUILD_DIR)/lib/vfs/mc-vfs/fish/hardlink \
++	$(PKG_BUILD_DIR)/lib/vfs/mc-vfs/fish/info \
++	$(PKG_BUILD_DIR)/lib/vfs/mc-vfs/fish/ln \
++	$(PKG_BUILD_DIR)/lib/vfs/mc-vfs/fish/ls \
++	$(PKG_BUILD_DIR)/lib/vfs/mc-vfs/fish/mkdir \
++	$(PKG_BUILD_DIR)/lib/vfs/mc-vfs/fish/mv \
++	$(PKG_BUILD_DIR)/lib/vfs/mc-vfs/fish/rmdir \
++	$(PKG_BUILD_DIR)/lib/vfs/mc-vfs/fish/send \
++	$(PKG_BUILD_DIR)/lib/vfs/mc-vfs/fish/unlink \
++	    $(1)/opt/libexec/mc/fish
  endef
  
  define Package/mc/conffiles
