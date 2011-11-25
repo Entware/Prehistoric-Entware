@@ -10,8 +10,6 @@ all: ./.done
 
 ./.done:
 	patch -p0 -i ./fix-path.patch
-	rm -f ../../../../trunk/feeds/packages/net/transmission/files/transmission.*
-	cp ./settings.json ../../../trunk/feeds/packages/net/transmission/files/
 	touch $@
 
 clean:
