@@ -1,0 +1,49 @@
+--- ../../../backup/trunk_clean/feeds/packages/libs/protobuf/Makefile	2011-11-25 09:50:00.052823516 +0400
++++ ../../../trunk/feeds/packages/libs/protobuf/Makefile	2011-11-26 23:11:42.676608261 +0400
+@@ -41,33 +41,33 @@
+ 
+ define Build/InstallDev
+ 	$(INSTALL_DIR) \
+-		$(1)/usr/lib \
+-		$(1)/usr/include
++		$(1)/opt/lib \
++		$(1)/opt/include
+ 
+ 	$(CP) \
+-		$(PKG_INSTALL_DIR)/usr/include/* \
+-		$(1)/usr/include/
++		$(PKG_INSTALL_DIR)/opt/include/* \
++		$(1)/opt/include/
+ 
+ 	$(CP) \
+-		$(PKG_INSTALL_DIR)/usr/lib/* \
+-		$(1)/usr/lib/
++		$(PKG_INSTALL_DIR)/opt/lib/* \
++		$(1)/opt/lib/
+ endef
+ 
+ define Package/protobuf/install
+ 	$(INSTALL_DIR) \
+-		$(1)/usr/lib
++		$(1)/opt/lib
+ 
+ 	$(CP) \
+-		$(PKG_INSTALL_DIR)/usr/lib/libprotoc.so*  \
+-		$(1)/usr/lib/
++		$(PKG_INSTALL_DIR)/opt/lib/libprotoc.so*  \
++		$(1)/opt/lib/
+ 
+ 	$(CP) \
+-		$(PKG_INSTALL_DIR)/usr/lib/libprotobuf-lite.so* \
+-		$(1)/usr/lib/
++		$(PKG_INSTALL_DIR)/opt/lib/libprotobuf-lite.so* \
++		$(1)/opt/lib/
+ 	
+ 	$(CP) \
+-		$(PKG_INSTALL_DIR)/usr/lib/libprotobuf.so* \
+-		$(1)/usr/lib/
++		$(PKG_INSTALL_DIR)/opt/lib/libprotobuf.so* \
++		$(1)/opt/lib/
+ endef
+ 
+ $(eval $(call BuildPackage,protobuf))

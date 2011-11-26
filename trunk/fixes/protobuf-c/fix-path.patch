@@ -1,0 +1,31 @@
+--- ../../../backup/trunk_clean/feeds/packages/libs/protobuf-c/Makefile	2011-11-25 09:50:10.692689754 +0400
++++ ../../../trunk/feeds/packages/libs/protobuf-c/Makefile	2011-11-26 23:12:27.204044240 +0400
+@@ -39,19 +39,19 @@
+ 	--disable-protoc
+ 
+ define Build/InstallDev
+-	$(INSTALL_DIR) $(1)/usr/include/google/protobuf-c
++	$(INSTALL_DIR) $(1)/opt/include/google/protobuf-c
+ 	$(CP) \
+-		$(PKG_INSTALL_DIR)/usr/include/google/protobuf-c/* \
+-		$(1)/usr/include/google/protobuf-c/
+-	$(INSTALL_DIR) $(1)/usr/lib
+-	$(CP) $(PKG_INSTALL_DIR)/usr/lib/libprotobuf-c.{a,la,so*} $(1)/usr/lib/
+-	$(INSTALL_DIR) $(1)/usr/lib/pkgconfig
+-	$(CP) $(PKG_INSTALL_DIR)/usr/lib/pkgconfig/* $(1)/usr/lib/pkgconfig/
++		$(PKG_INSTALL_DIR)/opt/include/google/protobuf-c/* \
++		$(1)/opt/include/google/protobuf-c/
++	$(INSTALL_DIR) $(1)/opt/lib
++	$(CP) $(PKG_INSTALL_DIR)/opt/lib/libprotobuf-c.{a,la,so*} $(1)/opt/lib/
++	$(INSTALL_DIR) $(1)/opt/lib/pkgconfig
++	$(CP) $(PKG_INSTALL_DIR)/opt/lib/pkgconfig/* $(1)/opt/lib/pkgconfig/
+ endef
+ 
+ define Package/libprotobuf-c/install
+-	$(INSTALL_DIR) $(1)/usr/lib
+-	$(CP) $(PKG_INSTALL_DIR)/usr/lib/libprotobuf-c.so.* $(1)/usr/lib/
++	$(INSTALL_DIR) $(1)/opt/lib
++	$(CP) $(PKG_INSTALL_DIR)/opt/lib/libprotobuf-c.so.* $(1)/opt/lib/
+ endef
+ 
+ $(eval $(call BuildPackage,libprotobuf-c))
