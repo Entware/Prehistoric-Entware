@@ -1,0 +1,90 @@
+--- ../../../backup/trunk_clean/feeds/packages/libs/alsa-lib/Makefile	2011-11-25 09:50:00.972811950 +0400
++++ ../../../trunk/feeds/packages/libs/alsa-lib/Makefile	2011-11-26 21:29:50.233996693 +0400
+@@ -21,18 +21,18 @@
+ 
+ include $(INCLUDE_DIR)/package.mk
+ 
+-ifeq ($(KERNEL),2.4)
+-DEPENDS_KMOD:=+kmod-alsa
+-else
+-DEPENDS_KMOD:=+kmod-sound-core
+-endif
++# ifeq ($(KERNEL),2.4)
++# DEPENDS_KMOD:=+kmod-alsa
++# else
++# DEPENDS_KMOD:=+kmod-sound-core
++# endif
+ 
+ define Package/alsa-lib
+   SECTION:=libs
+   CATEGORY:=Libraries
+   TITLE:=ALSA (Advanced Linux Sound Architecture) library
+   URL:=http://www.alsa-project.org/
+-  DEPENDS:=@AUDIO_SUPPORT $(DEPENDS_KMOD)
++#  DEPENDS:=@AUDIO_SUPPORT $(DEPENDS_KMOD)
+ endef
+ 
+ define Package/alsa-lib/description
+@@ -54,41 +54,41 @@
+ endef
+ 
+ define Build/InstallDev
+-	$(INSTALL_DIR) $(1)/usr/include/
++	$(INSTALL_DIR) $(1)/opt/include/
+ 	$(CP) \
+-		$(PKG_INSTALL_DIR)/usr/include/alsa \
+-		$(1)/usr/include/
++		$(PKG_INSTALL_DIR)/opt/include/alsa \
++		$(1)/opt/include/
+ 
+-	$(INSTALL_DIR) $(1)/usr/lib/pkgconfig
++	$(INSTALL_DIR) $(1)/opt/lib/pkgconfig
+ 	$(CP) \
+-		$(PKG_INSTALL_DIR)/usr/lib/libasound.{la,a,so*} \
+-		$(1)/usr/lib/
++		$(PKG_INSTALL_DIR)/opt/lib/libasound.{la,a,so*} \
++		$(1)/opt/lib/
+ 	$(INSTALL_DATA) \
+-		$(PKG_INSTALL_DIR)/usr/lib/pkgconfig/alsa.pc \
+-		$(1)/usr/lib/pkgconfig/
++		$(PKG_INSTALL_DIR)/opt/lib/pkgconfig/alsa.pc \
++		$(1)/opt/lib/pkgconfig/
+ 
+-	$(INSTALL_DIR) $(1)/usr/share/aclocal
++	$(INSTALL_DIR) $(1)/opt/share/aclocal
+ 	$(INSTALL_DATA) \
+-		$(PKG_INSTALL_DIR)/usr/share/aclocal/alsa.m4 \
+-		$(1)/usr/share/aclocal/
++		$(PKG_INSTALL_DIR)/opt/share/aclocal/alsa.m4 \
++		$(1)/opt/share/aclocal/
+ endef
+ 
+ define Package/alsa-lib/install
+-	$(INSTALL_DIR) $(1)/usr/lib
++	$(INSTALL_DIR) $(1)/opt/lib
+ 	$(CP) \
+-		$(PKG_INSTALL_DIR)/usr/lib/libasound.so.* \
+-		$(1)/usr/lib/
++		$(PKG_INSTALL_DIR)/opt/lib/libasound.so.* \
++		$(1)/opt/lib/
+ 
+-	$(INSTALL_DIR) $(1)/usr/share/alsa/{cards,pcm}
++	$(INSTALL_DIR) $(1)/opt/share/alsa/{cards,pcm}
+ 	$(INSTALL_DATA) \
+-		$(PKG_INSTALL_DIR)/usr/share/alsa/alsa.conf \
+-		$(1)/usr/share/alsa/
++		$(PKG_INSTALL_DIR)/opt/share/alsa/alsa.conf \
++		$(1)/opt/share/alsa/
+ 	$(INSTALL_DATA) \
+-		$(PKG_INSTALL_DIR)/usr/share/alsa/pcm/* \
+-		$(1)/usr/share/alsa/pcm/
++		$(PKG_INSTALL_DIR)/opt/share/alsa/pcm/* \
++		$(1)/opt/share/alsa/pcm/
+ 	$(CP) \
+-		$(PKG_INSTALL_DIR)/usr/share/alsa/cards/* \
+-		$(1)/usr/share/alsa/cards/
++		$(PKG_INSTALL_DIR)/opt/share/alsa/cards/* \
++		$(1)/opt/share/alsa/cards/
+ endef
+ 
+ $(eval $(call BuildPackage,alsa-lib))
