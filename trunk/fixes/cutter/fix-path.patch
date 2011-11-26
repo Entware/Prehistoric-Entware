@@ -1,0 +1,13 @@
+--- ../../../backup/trunk_clean/feeds/packages/net/cutter/Makefile	2011-11-25 09:49:50.668941486 +0400
++++ ../../../trunk/feeds/packages/net/cutter/Makefile	2011-11-26 22:57:06.488664526 +0400
+@@ -35,8 +35,8 @@
+ endef
+ 	
+ define Package/cutter/install
+-	$(INSTALL_DIR) $(1)/usr/sbin
+-	$(INSTALL_BIN) $(PKG_BUILD_DIR)/cutter $(1)/usr/sbin/
++	$(INSTALL_DIR) $(1)/opt/bin
++	$(INSTALL_BIN) $(PKG_BUILD_DIR)/cutter $(1)/opt/bin/
+ endef
+ 
+ $(eval $(call BuildPackage,cutter))
