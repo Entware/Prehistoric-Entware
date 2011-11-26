@@ -1,0 +1,24 @@
+--- ../../../backup/trunk_clean/feeds/packages/libs/libconfig/Makefile	2011-11-25 09:50:01.016811398 +0400
++++ ../../../trunk/feeds/packages/libs/libconfig/Makefile	2011-11-26 23:04:55.329722012 +0400
+@@ -45,15 +45,15 @@
+ 	--disable-cxx
+ 
+ define Build/InstallDev
+-	$(INSTALL_DIR) $(1)/usr/include
+-	$(CP) $(PKG_INSTALL_DIR)/usr/include/libconfig.h $(1)/usr/include/
+-	$(INSTALL_DIR) $(1)/usr/lib
+-	$(CP) $(PKG_INSTALL_DIR)/usr/lib/libconfig.{a,so*} $(1)/usr/lib/
++	$(INSTALL_DIR) $(1)/opt/include
++	$(CP) $(PKG_INSTALL_DIR)/opt/include/libconfig.h $(1)/opt/include/
++	$(INSTALL_DIR) $(1)/opt/lib
++	$(CP) $(PKG_INSTALL_DIR)/opt/lib/libconfig.{a,so*} $(1)/opt/lib/
+ endef
+ 
+ define Package/libconfig/install
+-	$(INSTALL_DIR) $(1)/usr/lib
+-	$(CP) $(PKG_INSTALL_DIR)/usr/lib/libconfig.so.* $(1)/usr/lib/
++	$(INSTALL_DIR) $(1)/opt/lib
++	$(CP) $(PKG_INSTALL_DIR)/opt/lib/libconfig.so.* $(1)/opt/lib/
+ endef
+ 
+ $(eval $(call BuildPackage,libconfig))
