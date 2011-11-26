@@ -1,0 +1,43 @@
+--- ../../../backup/trunk_clean/feeds/packages/libs/libdlna/Makefile	2011-11-25 09:50:10.924686838 +0400
++++ ../../../trunk/feeds/packages/libs/libdlna/Makefile	2011-11-26 22:22:19.938718346 +0400
+@@ -40,12 +40,12 @@
+ 	# this is *NOT* GNU configure
+ 	( cd $(PKG_BUILD_DIR); \
+ 		CFLAGS="$(TARGET_CFLAGS) $(TARGET_CPPFLAGS)" \
+-		LDFLAGS="$(TARGET_LDFLAGS) -Wl,-rpath-link=$(STAGING_DIR)/usr/lib -lpthread" \
++		LDFLAGS="$(TARGET_LDFLAGS) -Wl,-rpath-link=$(STAGING_DIR)/opt/lib -lpthread" \
+ 		HOST_CC="$(HOSTCC)" \
+ 		./configure \
+ 		--cross-compile \
+ 		--cross-prefix=$(TARGET_CROSS) \
+-		--prefix=/usr \
++		--prefix=/opt \
+ 		--enable-shared \
+ 		--enable-static \
+ 		--disable-debug \
+@@ -62,17 +62,17 @@
+ TARGET_CFLAGS += $(FPIC)
+ 
+ define Build/InstallDev
+-	$(INSTALL_DIR) $(1)/usr/include
+-	$(CP) $(PKG_INSTALL_DIR)/usr/include/dlna.h $(1)/usr/include/
+-	$(INSTALL_DIR) $(1)/usr/lib
+-	$(CP) $(PKG_INSTALL_DIR)/usr/lib/libdlna.{a,so*} $(1)/usr/lib/
+-	$(INSTALL_DIR) $(1)/usr/lib/pkgconfig
+-	$(CP) $(PKG_INSTALL_DIR)/usr/lib/pkgconfig/libdlna.pc $(1)/usr/lib/pkgconfig/
++	$(INSTALL_DIR) $(1)/opt/include
++	$(CP) $(PKG_INSTALL_DIR)/opt/include/dlna.h $(1)/opt/include/
++	$(INSTALL_DIR) $(1)/opt/lib
++	$(CP) $(PKG_INSTALL_DIR)/opt/lib/libdlna.{a,so*} $(1)/opt/lib/
++	$(INSTALL_DIR) $(1)/opt/lib/pkgconfig
++	$(CP) $(PKG_INSTALL_DIR)/opt/lib/pkgconfig/libdlna.pc $(1)/opt/lib/pkgconfig/
+ endef
+ 
+ define Package/libdlna/install
+-	$(INSTALL_DIR) $(1)/usr/lib
+-	$(CP) $(PKG_INSTALL_DIR)/usr/lib/libdlna.so.* $(1)/usr/lib/
++	$(INSTALL_DIR) $(1)/opt/lib
++	$(CP) $(PKG_INSTALL_DIR)/opt/lib/libdlna.so.* $(1)/opt/lib/
+ endef
+ 
+ $(eval $(call BuildPackage,libdlna))
