@@ -1,0 +1,50 @@
+--- ../../../backup/trunk_clean/feeds/packages/libs/libupnp/Makefile	2011-11-25 09:50:00.712815218 +0400
++++ ../../../trunk/feeds/packages/libs/libupnp/Makefile	2011-11-26 22:32:38.589463548 +0400
+@@ -47,7 +47,7 @@
+ endef
+ 
+ define Package/libupnp-sample/description
+-TVcontrolpoint & tvdevice sample applications run inside /etc/upnp-tvdevice/
++TVcontrolpoint & tvdevice sample applications run inside /opt/etc/upnp-tvdevice/
+ endef
+ 
+ define Build/Configure
+@@ -69,25 +69,25 @@
+ endef
+ 
+ define Build/InstallDev
+-	$(INSTALL_DIR) $(1)/usr/include
+-	$(CP) $(PKG_INSTALL_DIR)/usr/include/upnp $(1)/usr/include/
+-	$(INSTALL_DIR) $(1)/usr/lib
+-	$(CP) $(PKG_INSTALL_DIR)/usr/lib/lib{ixml,threadutil,upnp}.{a,so*,la} $(1)/usr/lib/
+-	$(INSTALL_DIR) $(1)/usr/lib/pkgconfig
+-	$(CP) $(PKG_INSTALL_DIR)/usr/lib/pkgconfig/libupnp.pc $(1)/usr/lib/pkgconfig/
++	$(INSTALL_DIR) $(1)/opt/include
++	$(CP) $(PKG_INSTALL_DIR)/opt/include/upnp $(1)/opt/include/
++	$(INSTALL_DIR) $(1)/opt/lib
++	$(CP) $(PKG_INSTALL_DIR)/opt/lib/lib{ixml,threadutil,upnp}.{a,so*,la} $(1)/opt/lib/
++	$(INSTALL_DIR) $(1)/opt/lib/pkgconfig
++	$(CP) $(PKG_INSTALL_DIR)/opt/lib/pkgconfig/libupnp.pc $(1)/opt/lib/pkgconfig/
+ endef
+ 
+ define Package/libupnp/install
+-	$(INSTALL_DIR) $(1)/usr/lib
+-	$(CP) $(PKG_INSTALL_DIR)/usr/lib/lib{ixml,threadutil,upnp}.so.* $(1)/usr/lib/
++	$(INSTALL_DIR) $(1)/opt/lib
++	$(CP) $(PKG_INSTALL_DIR)/opt/lib/lib{ixml,threadutil,upnp}.so.* $(1)/opt/lib/
+ endef
+ 
+ define Package/libupnp-sample/install
+-	$(INSTALL_DIR) $(1)/usr/bin
+-	$(INSTALL_BIN) $(PKG_BUILD_DIR)/upnp/sample/tv_device $(1)/usr/bin
+-	$(INSTALL_BIN) $(PKG_BUILD_DIR)/upnp/sample/tv_ctrlpt $(1)/usr/bin
+-	$(INSTALL_DIR) $(1)/etc/upnp-tvdevice/web
+-	$(CP) $(PKG_BUILD_DIR)/upnp/sample/web/* $(1)/etc/upnp-tvdevice
++	$(INSTALL_DIR) $(1)/opt/bin
++	$(INSTALL_BIN) $(PKG_BUILD_DIR)/upnp/sample/tv_device $(1)/opt/bin
++	$(INSTALL_BIN) $(PKG_BUILD_DIR)/upnp/sample/tv_ctrlpt $(1)/opt/bin
++	$(INSTALL_DIR) $(1)/opt/etc/upnp-tvdevice/web
++	$(CP) $(PKG_BUILD_DIR)/upnp/sample/web/* $(1)/opt/etc/upnp-tvdevice
+ endef
+ 
+ $(eval $(call BuildPackage,libupnp))
