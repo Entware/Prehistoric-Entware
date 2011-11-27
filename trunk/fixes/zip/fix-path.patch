@@ -1,0 +1,22 @@
+--- ../../../backup/trunk_clean/feeds/packages/utils/zip/Makefile	2011-11-25 09:49:47.912976134 +0400
++++ ../../../trunk/feeds/packages/utils/zip/Makefile	2011-11-27 18:52:25.144315045 +0400
+@@ -41,7 +41,7 @@
+ define Build/Compile
+ 	$(MAKE) -C $(PKG_BUILD_DIR) -f unix/Makefile generic \
+ 		$(TARGET_CONFIGURE_OPTS) \
+-		prefix="$(PKG_INSTALL_DIR)/usr" \
++		prefix="$(PKG_INSTALL_DIR)/opt" \
+ 		CFLAGS="$(TARGET_CFLAGS)" \
+ 		CF="$(TARGET_CFLAGS) -O $(TARGET_CPPFLAGS) -I. -DUNIX" \
+ 		LD="$(TARGET_CC) $(TARGET_LDFLAGS)" \
+@@ -49,8 +49,8 @@
+ endef
+ 
+ define Package/zip/install	
+-	$(INSTALL_DIR) $(1)/usr/bin/
+-	$(INSTALL_BIN) $(PKG_INSTALL_DIR)/usr/bin/* $(1)/usr/bin/
++	$(INSTALL_DIR) $(1)/opt/bin/
++	$(INSTALL_BIN) $(PKG_INSTALL_DIR)/opt/bin/* $(1)/opt/bin/
+ endef
+ 
+ $(eval $(call BuildPackage,zip))
