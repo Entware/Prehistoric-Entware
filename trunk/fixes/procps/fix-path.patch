@@ -1,0 +1,43 @@
+--- ../../../backup/trunk_clean/feeds/packages/utils/procps/Makefile	2011-11-25 09:49:47.944975732 +0400
++++ ../../../trunk/feeds/packages/utils/procps/Makefile	2011-11-27 21:10:58.283791687 +0400
+@@ -39,23 +39,23 @@
+ 	LDFLAGS="$(TARGET_LDFLAGS)" \
+ 
+ define Package/procps/install
+-	$(INSTALL_DIR) $(1)/usr/bin
+-	$(INSTALL_BIN) $(PKG_BUILD_DIR)/free $(1)/usr/bin/
+-	$(INSTALL_BIN) $(PKG_BUILD_DIR)/ps/ps $(1)/usr/bin
+-	$(INSTALL_BIN) $(PKG_BUILD_DIR)/pgrep $(1)/usr/bin
+-	$(INSTALL_BIN) $(PKG_BUILD_DIR)/pkill $(1)/usr/bin
+-	$(INSTALL_BIN) $(PKG_BUILD_DIR)/pmap $(1)/usr/bin
+-	$(INSTALL_BIN) $(PKG_BUILD_DIR)/pwdx $(1)/usr/bin
+-	$(INSTALL_BIN) $(PKG_BUILD_DIR)/skill $(1)/usr/bin
+-	$(INSTALL_BIN) $(PKG_BUILD_DIR)/slabtop $(1)/usr/bin
+-	$(INSTALL_BIN) $(PKG_BUILD_DIR)/snice $(1)/usr/bin
+-	$(INSTALL_BIN) $(PKG_BUILD_DIR)/tload $(1)/usr/bin
+-	$(INSTALL_BIN) $(PKG_BUILD_DIR)/top $(1)/usr/bin/
+-	$(INSTALL_BIN) $(PKG_BUILD_DIR)/vmstat $(1)/usr/bin
+-	$(INSTALL_BIN) $(PKG_BUILD_DIR)/w $(1)/usr/bin
+-	$(INSTALL_BIN) $(PKG_BUILD_DIR)/watch $(1)/usr/bin
+-	$(INSTALL_DIR) $(1)/usr/lib
+-	$(INSTALL_BIN) $(PKG_BUILD_DIR)/proc/libproc-$(PKG_VERSION).so $(1)/usr/lib/
++	$(INSTALL_DIR) $(1)/opt/bin
++	$(INSTALL_BIN) $(PKG_BUILD_DIR)/free $(1)/opt/bin/
++	$(INSTALL_BIN) $(PKG_BUILD_DIR)/ps/ps $(1)/opt/bin
++	$(INSTALL_BIN) $(PKG_BUILD_DIR)/pgrep $(1)/opt/bin
++	$(INSTALL_BIN) $(PKG_BUILD_DIR)/pkill $(1)/opt/bin
++	$(INSTALL_BIN) $(PKG_BUILD_DIR)/pmap $(1)/opt/bin
++	$(INSTALL_BIN) $(PKG_BUILD_DIR)/pwdx $(1)/opt/bin
++	$(INSTALL_BIN) $(PKG_BUILD_DIR)/skill $(1)/opt/bin
++	$(INSTALL_BIN) $(PKG_BUILD_DIR)/slabtop $(1)/opt/bin
++	$(INSTALL_BIN) $(PKG_BUILD_DIR)/snice $(1)/opt/bin
++	$(INSTALL_BIN) $(PKG_BUILD_DIR)/tload $(1)/opt/bin
++	$(INSTALL_BIN) $(PKG_BUILD_DIR)/top $(1)/opt/bin/
++	$(INSTALL_BIN) $(PKG_BUILD_DIR)/vmstat $(1)/opt/bin
++	$(INSTALL_BIN) $(PKG_BUILD_DIR)/w $(1)/opt/bin
++	$(INSTALL_BIN) $(PKG_BUILD_DIR)/watch $(1)/opt/bin
++	$(INSTALL_DIR) $(1)/opt/lib
++	$(INSTALL_BIN) $(PKG_BUILD_DIR)/proc/libproc-$(PKG_VERSION).so $(1)/opt/lib/
+ endef
+ 
+ $(eval $(call BuildPackage,procps))
