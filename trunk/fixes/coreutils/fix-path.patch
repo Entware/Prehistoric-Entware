@@ -1,0 +1,13 @@
+--- ../../../backup/trunk_clean/feeds/packages/utils/coreutils/Makefile	2011-11-25 09:49:46.388995292 +0400
++++ ../../../trunk/feeds/packages/utils/coreutils/Makefile	2011-11-27 20:58:15.297386812 +0400
+@@ -90,8 +90,8 @@
+ 
+ define BuildPlugin
+   define Package/$(1)/install
+-	$(INSTALL_DIR) $$(1)/usr/bin
+-	$(INSTALL_BIN) $(PKG_INSTALL_DIR)/usr/bin/$(2) $$(1)/usr/bin/
++	$(INSTALL_DIR) $$(1)/opt/bin
++	$(INSTALL_BIN) $(PKG_INSTALL_DIR)/opt/bin/$(2) $$(1)/opt/bin/
+   endef
+ 
+   $$(eval $$(call BuildPackage,$(1)))
