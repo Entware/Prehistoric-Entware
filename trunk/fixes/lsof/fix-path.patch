@@ -1,0 +1,30 @@
+--- ../../../backup/trunk_clean/feeds/packages/utils/lsof/Makefile	2011-11-25 09:49:47.788977694 +0400
++++ ../../../trunk/feeds/packages/utils/lsof/Makefile	2011-11-27 20:19:07.966900223 +0400
+@@ -20,13 +20,13 @@
+ 
+ include $(INCLUDE_DIR)/package.mk
+ 
+-TARGET_CFLAGS += -I$(STAGING_DIR)/usr/include
+-TARGET_LDFLAGS += $(LIBRPC)
++TARGET_CFLAGS += -I$(STAGING_DIR)/opt/include
++#TARGET_LDFLAGS += $(LIBRPC)
+ 
+ define Package/lsof
+   SECTION:=utils
+   CATEGORY:=Utilities
+-  DEPENDS:=$(LIBRPC_DEPENDS)
++#  DEPENDS:=$(LIBRPC_DEPENDS)
+   TITLE:=LiSt Open Files - a diagnostic tool
+   URL:=http://people.freebsd.org/~abe/
+ endef
+@@ -49,8 +49,8 @@
+ endef
+ 
+ define Package/lsof/install	
+-	$(INSTALL_DIR) $(1)/usr/bin
+-	$(INSTALL_BIN) $(PKG_BUILD_DIR)/lsof $(1)/usr/bin
++	$(INSTALL_DIR) $(1)/opt/bin
++	$(INSTALL_BIN) $(PKG_BUILD_DIR)/lsof $(1)/opt/bin
+ endef
+ 
+ $(eval $(call BuildPackage,lsof))
