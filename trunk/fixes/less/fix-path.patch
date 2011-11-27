@@ -1,0 +1,13 @@
+--- ../../../backup/trunk_clean/feeds/packages/utils/less/Makefile	2011-11-25 09:49:47.800977542 +0400
++++ ../../../trunk/feeds/packages/utils/less/Makefile	2011-11-27 20:41:56.929695182 +0400
+@@ -30,8 +30,8 @@
+ endef
+ 
+ define Package/less/install
+-        $(INSTALL_DIR) $(1)/usr/bin
+-	$(CP) $(PKG_BUILD_DIR)/less $(1)/usr/bin/less
++        $(INSTALL_DIR) $(1)/opt/bin
++	$(CP) $(PKG_BUILD_DIR)/less $(1)/opt/bin/less
+ endef
+ 
+ $(eval $(call BuildPackage,less))
