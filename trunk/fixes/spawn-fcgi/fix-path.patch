@@ -1,0 +1,17 @@
+--- ../../../backup/trunk_clean/feeds/packages/net/spawn-fcgi/Makefile	2011-11-28 10:57:02.000000000 +0400
++++ ../../../trunk/feeds/packages/net/spawn-fcgi/Makefile	2011-11-28 16:06:49.034461432 +0400
+@@ -31,9 +31,12 @@
+ 	spawn-fcgi is used to spawn fastcgi applications
+ endef
+ 
++CONFIGURE_ARGS += \
++	ac_cv_func_malloc_0_nonnull=yes
++
+ define Package/spawn-fcgi/install
+-	$(INSTALL_DIR) $(1)/usr/bin
+-	$(INSTALL_BIN) $(PKG_INSTALL_DIR)/usr/bin/spawn-fcgi $(1)/usr/bin/
++	$(INSTALL_DIR) $(1)/opt/bin
++	$(INSTALL_BIN) $(PKG_INSTALL_DIR)/opt/bin/spawn-fcgi $(1)/opt/bin/
+ endef
+ 
+ $(eval $(call BuildPackage,spawn-fcgi))
