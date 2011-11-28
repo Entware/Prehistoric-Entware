@@ -1,5 +1,5 @@
---- ../../../backup/trunk_clean/feeds/packages/libs/polarssl/Makefile	2011-11-25 09:50:10.776688698 +0400
-+++ ../../../trunk/feeds/packages/libs/polarssl/Makefile	2011-11-27 11:19:28.170846800 +0400
+--- ../../../backup/trunk_clean/feeds/packages/libs/polarssl/Makefile	2011-11-28 10:57:21.000000000 +0400
++++ ../../../trunk/feeds/packages/libs/polarssl/Makefile	2011-11-28 11:17:27.814630682 +0400
 @@ -61,20 +61,20 @@
  	-DUSE_SHARED_POLARSSL_LIBRARY:Bool=ON \
  
@@ -16,9 +16,9 @@
  
  define Package/libpolarssl/install
 -	$(INSTALL_DIR) $(1)/usr/lib
--	$(INSTALL_BIN) $(PKG_INSTALL_DIR)/usr/lib/libpolarssl.so* $(1)/usr/lib/
+-	$(CP) $(PKG_INSTALL_DIR)/usr/lib/libpolarssl.so* $(1)/usr/lib/
 +	$(INSTALL_DIR) $(1)/opt/lib
-+	$(INSTALL_BIN) $(PKG_INSTALL_DIR)/opt/lib/libpolarssl.so* $(1)/opt/lib/
++	$(CP) $(PKG_INSTALL_DIR)/opt/lib/libpolarssl.so* $(1)/opt/lib/
  endef
  
  define Package/polarssl-progs/install

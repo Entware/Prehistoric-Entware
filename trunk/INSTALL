@@ -13,8 +13,6 @@ $ svn co svn://svn.openwrt.org/openwrt/trunk/
 $ cd trunk
 $ ./scripts/feeds update packages
 $ ./scripts/feeds install -a -p packages
-$ make tools/compile
-$ make tools/install
 
 2) Oleg's based firmware toolchain from http://code.google.com/p/wl500g/downloads/list
 
@@ -44,11 +42,13 @@ Building
     Use OpenWRT Buildroot to compile selected packages.
 
 $ cd ~/openwrt/trunk
+$ make tools/compile
+$ make tools/install
 $ make prereq
 $ make package/compile
 
     ipk-packages can be found at ~/openwrt/bin directory.
     Scripts was tested with folowing buildroot revisions:
 
-- buildroot revision is 29333
-- feed packages revision is 29333
+- buildroot revision is 29347
+- feed packages revision is 29347

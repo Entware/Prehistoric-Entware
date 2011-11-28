@@ -22,7 +22,7 @@ all: ./.done
 	echo CONFIG_TARGET_rtn=y > ../../../trunk/.config
 	make -C ../../../trunk defconfig
 	cp -f ./.config ../../../trunk/.config
-	cp -f ./feed.conf ../../../trunk/
+	cp -f ./feeds.conf ../../../trunk/
 #	make -C ../../../trunk tools/clean
 #	make -C ../../../trunk tools/compile
 #	make -C ../../../trunk tools/install
