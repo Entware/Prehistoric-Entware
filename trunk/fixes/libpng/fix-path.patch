@@ -1,0 +1,44 @@
+--- ../../../backup/trunk_clean/feeds/packages/libs/libpng/Makefile	2011-11-28 10:57:22.000000000 +0400
++++ ../../../trunk/feeds/packages/libs/libpng/Makefile	2011-11-28 16:35:21.928101218 +0400
+@@ -37,27 +37,27 @@
+ 	--enable-static \
+ 
+ define Build/InstallDev
+-	$(INSTALL_DIR) $(1)/usr/bin
+-	$(CP) $(PKG_INSTALL_DIR)/usr/bin/libpng{,12}-config $(1)/usr/bin/
++	$(INSTALL_DIR) $(1)/opt/bin
++	$(CP) $(PKG_INSTALL_DIR)/opt/bin/libpng{,12}-config $(1)/opt/bin/
+ 	$(SED) \
+-		's,^\(prefix\|exec_prefix\)=.*,\1=$(STAGING_DIR)/usr,g' \
+-		$(1)/usr/bin/libpng{,12}-config
+-	$(INSTALL_DIR) $(1)/usr/include
+-	$(CP) $(PKG_INSTALL_DIR)/usr/include/png{,conf}.h $(1)/usr/include/
+-	$(CP) $(PKG_INSTALL_DIR)/usr/include/libpng12 $(1)/usr/include/
+-	$(INSTALL_DIR) $(1)/usr/lib
+-	$(CP) $(PKG_INSTALL_DIR)/usr/lib/libpng{,12}.{a,la,so*} $(1)/usr/lib/
+-	$(INSTALL_DIR) $(1)/usr/lib/pkgconfig
+-	$(CP) $(PKG_INSTALL_DIR)/usr/lib/pkgconfig/libpng{,12}.pc $(1)/usr/lib/pkgconfig/
++		's,^\(prefix\|exec_prefix\)=.*,\1=$(STAGING_DIR)/opt,g' \
++		$(1)/opt/bin/libpng{,12}-config
++	$(INSTALL_DIR) $(1)/opt/include
++	$(CP) $(PKG_INSTALL_DIR)/opt/include/png{,conf}.h $(1)/opt/include/
++	$(CP) $(PKG_INSTALL_DIR)/opt/include/libpng12 $(1)/opt/include/
++	$(INSTALL_DIR) $(1)/opt/lib
++	$(CP) $(PKG_INSTALL_DIR)/opt/lib/libpng{,12}.{a,la,so*} $(1)/opt/lib/
++	$(INSTALL_DIR) $(1)/opt/lib/pkgconfig
++	$(CP) $(PKG_INSTALL_DIR)/opt/lib/pkgconfig/libpng{,12}.pc $(1)/opt/lib/pkgconfig/
+ 	$(INSTALL_DIR) $(2)/bin
+ 	for f in libpng{,12}-config; do \
+-		$(LN) ../../usr/bin/$$$$f $(2)/bin/ ; \
++		$(LN) ../../opt/bin/$$$$f $(2)/bin/ ; \
+ 	done
+ endef
+ 
+ define Package/libpng/install
+-	$(INSTALL_DIR) $(1)/usr/lib
+-	$(CP) $(PKG_INSTALL_DIR)/usr/lib/libpng{,12}.so.* $(1)/usr/lib/
++	$(INSTALL_DIR) $(1)/opt/lib
++	$(CP) $(PKG_INSTALL_DIR)/opt/lib/libpng{,12}.so.* $(1)/opt/lib/
+ endef
+ 
+ $(eval $(call HostBuild))
