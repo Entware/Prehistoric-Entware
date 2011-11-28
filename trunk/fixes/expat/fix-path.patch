@@ -1,0 +1,24 @@
+--- ../../../backup/trunk_clean/feeds/packages/libs/expat/Makefile	2011-11-28 10:57:22.000000000 +0400
++++ ../../../trunk/feeds/packages/libs/expat/Makefile	2011-11-28 16:53:20.916015792 +0400
+@@ -50,15 +50,15 @@
+ endef
+ 
+ define Build/InstallDev
+-	$(INSTALL_DIR) $(1)/usr/include
+-	$(CP) $(PKG_INSTALL_DIR)/usr/include/expat{,_external}.h $(1)/usr/include/
+-	$(INSTALL_DIR) $(1)/usr/lib
+-	$(CP) $(PKG_INSTALL_DIR)/usr/lib/libexpat.{a,so*} $(1)/usr/lib/
++	$(INSTALL_DIR) $(1)/opt/include
++	$(CP) $(PKG_INSTALL_DIR)/opt/include/expat{,_external}.h $(1)/opt/include/
++	$(INSTALL_DIR) $(1)/opt/lib
++	$(CP) $(PKG_INSTALL_DIR)/opt/lib/libexpat.{a,so*} $(1)/opt/lib/
+ endef
+ 
+ define Package/libexpat/install
+-	$(INSTALL_DIR) $(1)/usr/lib
+-	$(CP) $(PKG_INSTALL_DIR)/usr/lib/libexpat.so.* $(1)/usr/lib/
++	$(INSTALL_DIR) $(1)/opt/lib
++	$(CP) $(PKG_INSTALL_DIR)/opt/lib/libexpat.so.* $(1)/opt/lib/
+ endef
+ 
+ $(eval $(call HostBuild))
