@@ -1,0 +1,37 @@
+--- ../../../backup/trunk_clean/feeds/packages/utils/bash/Makefile	2011-11-25 09:49:48.120973520 +0400
++++ ../../../trunk/feeds/packages/utils/bash/Makefile	2011-11-28 10:35:42.376326068 +0400
+@@ -35,7 +35,7 @@
+ define Build/Configure
+ 	$(call Build/Configure/Default, \
+ 		--without-bash-malloc \
+-                --bindir=/bin \
++                --bindir=/opt/bin \
+ 	)
+ endef
+ 
+@@ -48,17 +48,17 @@
+ 		all install
+ endef
+ 
+-define Package/bash/postinst
++#define Package/bash/postinst
+ #!/bin/sh
+-grep bash $${IPKG_INSTROOT}/etc/shells || \
+-	echo "/bin/bash" >> $${IPKG_INSTROOT}/etc/shells
+-	echo "/bin/rbash" >> $${IPKG_INSTROOT}/etc/shells
+-endef
++#grep bash $${IPKG_INSTROOT}/etc/shells || \
++#	echo "/bin/bash" >> $${IPKG_INSTROOT}/etc/shells
++#	echo "/bin/rbash" >> $${IPKG_INSTROOT}/etc/shells
++#endef
+ 
+ define Package/bash/install
+-	$(INSTALL_DIR) $(1)/bin
+-	$(INSTALL_BIN) $(PKG_INSTALL_DIR)/bin/bash $(1)/bin/
+-	ln -sf bash $(1)/bin/rbash
++	$(INSTALL_DIR) $(1)/opt/bin
++	$(INSTALL_BIN) $(PKG_INSTALL_DIR)/opt/bin/bash $(1)/opt/bin/
++	ln -sf bash $(1)/opt/bin/rbash
+ endef
+ 
+ $(eval $(call BuildPackage,bash))
