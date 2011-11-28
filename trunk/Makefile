@@ -32,8 +32,8 @@ buildroot_install: ./.buildroot_installed
 	(cd ..; \
 	svn co svn://svn.openwrt.org/openwrt/trunk/ ./trunk; \
 	cd ./trunk; \
-	./scripts/feeds update packages; \
-	./scripts/feeds install -a -p packages)
+	./scripts/feeds update -a; \
+	./scripts/feeds install -a)
 	touch $@
 
 toolchain_install: ./.toolchain_installed
