@@ -1,0 +1,24 @@
+--- ../../../backup/trunk_clean/feeds/packages/libs/popt/Makefile	2011-11-28 10:57:21.000000000 +0400
++++ ../../../trunk/feeds/packages/libs/popt/Makefile	2011-11-28 14:15:53.632016053 +0400
+@@ -40,15 +40,15 @@
+ endef
+ 
+ define Build/InstallDev
+-	$(INSTALL_DIR) $(1)/usr/include
+-	$(CP) $(PKG_INSTALL_DIR)/usr/include/popt.h $(1)/usr/include/
+-	$(INSTALL_DIR) $(1)/usr/lib
+-	$(CP) $(PKG_INSTALL_DIR)/usr/lib/libpopt.{a,so*} $(1)/usr/lib/
++	$(INSTALL_DIR) $(1)/opt/include
++	$(CP) $(PKG_INSTALL_DIR)/opt/include/popt.h $(1)/opt/include/
++	$(INSTALL_DIR) $(1)/opt/lib
++	$(CP) $(PKG_INSTALL_DIR)/opt/lib/libpopt.{a,so*} $(1)/opt/lib/
+ endef
+ 
+ define Package/libpopt/install
+-	$(INSTALL_DIR) $(1)/usr/lib
+-	$(CP) $(PKG_INSTALL_DIR)/usr/lib/libpopt.so.* $(1)/usr/lib/
++	$(INSTALL_DIR) $(1)/opt/lib
++	$(CP) $(PKG_INSTALL_DIR)/opt/lib/libpopt.so.* $(1)/opt/lib/
+ endef
+ 
+ $(eval $(call RequireCommand,xgettext, \
