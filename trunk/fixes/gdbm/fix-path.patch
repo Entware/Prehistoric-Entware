@@ -1,0 +1,24 @@
+--- ../../../backup/trunk_clean/feeds/packages/libs/gdbm/Makefile	2011-11-28 10:57:21.000000000 +0400
++++ ../../../trunk/feeds/packages/libs/gdbm/Makefile	2011-11-29 11:15:05.547043494 +0400
+@@ -42,15 +42,15 @@
+ endef
+ 
+ define Build/InstallDev
+-	$(INSTALL_DIR) $(1)/usr/include
+-	$(CP) $(PKG_INSTALL_DIR)/usr/include/gdbm.h $(1)/usr/include/
+-	$(INSTALL_DIR) $(1)/usr/lib
+-	$(CP) $(PKG_INSTALL_DIR)/usr/lib/libgdbm.{a,so*} $(1)/usr/lib/
++	$(INSTALL_DIR) $(1)/opt/include
++	$(CP) $(PKG_INSTALL_DIR)/opt/include/gdbm.h $(1)/opt/include/
++	$(INSTALL_DIR) $(1)/opt/lib
++	$(CP) $(PKG_INSTALL_DIR)/opt/lib/libgdbm.{a,so*} $(1)/opt/lib/
+ endef
+ 
+ define Package/libgdbm/install
+-	$(INSTALL_DIR) $(1)/usr/lib
+-	$(CP) $(PKG_INSTALL_DIR)/usr/lib/libgdbm.so.* $(1)/usr/lib/
++	$(INSTALL_DIR) $(1)/opt/lib
++	$(CP) $(PKG_INSTALL_DIR)/opt/lib/libgdbm.so.* $(1)/opt/lib/
+ endef
+ 
+ $(eval $(call BuildPackage,libgdbm))
