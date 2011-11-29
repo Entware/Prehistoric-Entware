@@ -1,0 +1,39 @@
+--- ../../../backup/trunk_clean/feeds/packages/libs/libffi/Makefile	2011-11-28 10:57:21.000000000 +0400
++++ ../../../trunk/feeds/packages/libs/libffi/Makefile	2011-11-29 11:21:43.814036562 +0400
+@@ -41,25 +41,25 @@
+ endef
+ 
+ define Build/InstallDev
+-	$(INSTALL_DIR) $(1)/usr/lib/pkgconfig
++	$(INSTALL_DIR) $(1)/opt/lib/pkgconfig
+ 	$(CP) \
+-		$(PKG_INSTALL_DIR)/usr/lib/libffi.{so*,a,la} \
+-		$(1)/usr/lib/
++		$(PKG_INSTALL_DIR)/opt/lib/libffi.{so*,a,la} \
++		$(1)/opt/lib/
+ 	$(CP) \
+-		$(PKG_INSTALL_DIR)/usr/lib/pkgconfig/* \
+-		$(1)/usr/lib/pkgconfig/
++		$(PKG_INSTALL_DIR)/opt/lib/pkgconfig/* \
++		$(1)/opt/lib/pkgconfig/
+ 
+-	$(INSTALL_DIR) $(1)/usr/include
++	$(INSTALL_DIR) $(1)/opt/include
+ 	$(CP) \
+-		$(PKG_INSTALL_DIR)/usr/lib/libffi-$(PKG_VERSION)/include/*.h \
+-		$(1)/usr/include/
++		$(PKG_INSTALL_DIR)/opt/lib/libffi-$(PKG_VERSION)/include/*.h \
++		$(1)/opt/include/
+ endef
+ 
+ define Package/libffi/install
+-	$(INSTALL_DIR) $(1)/usr/lib
++	$(INSTALL_DIR) $(1)/opt/lib
+ 	$(CP) \
+-		$(PKG_INSTALL_DIR)/usr/lib/libffi.so.* \
+-		$(1)/usr/lib/
++		$(PKG_INSTALL_DIR)/opt/lib/libffi.so.* \
++		$(1)/opt/lib/
+ endef
+ 
+ $(eval $(call BuildPackage,libffi))
