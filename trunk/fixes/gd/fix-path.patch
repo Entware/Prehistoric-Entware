@@ -1,0 +1,51 @@
+--- ../../../backup/trunk_clean/feeds/packages/libs/gd/Makefile	2011-11-28 10:57:22.000000000 +0400
++++ ../../../trunk/feeds/packages/libs/gd/Makefile	2011-11-29 13:19:43.914181928 +0400
+@@ -43,8 +43,8 @@
+ 	--disable-rpath \
+ 	--without-x \
+ 	--without-freetype \
+-	--with-jpeg=$(STAGING_DIR)/usr \
+-	--with-png=$(STAGING_DIR)/usr \
++	--with-jpeg=$(STAGING_DIR)/opt \
++	--with-png=$(STAGING_DIR)/opt \
+ 	--without-xpm \
+ 	--without-iconv
+ 
+@@ -53,24 +53,24 @@
+ 	ac_cv_header_iconv_h=no
+ 
+ define Build/InstallDev
+-	$(INSTALL_DIR) $(1)/usr/bin
+-	$(CP) $(PKG_INSTALL_DIR)/usr/bin/gdlib-config $(1)/usr/bin/
++	$(INSTALL_DIR) $(1)/opt/bin
++	$(CP) $(PKG_INSTALL_DIR)/opt/bin/gdlib-config $(1)/opt/bin/
+ 	$(SED) \
+-		's,^\(prefix\|exec_prefix\)=.*,\1=$(STAGING_DIR)/usr,g' \
+-		$(1)/usr/bin/gdlib-config
+-	$(INSTALL_DIR) $(1)/usr/include
+-	$(CP) $(PKG_INSTALL_DIR)/usr/include/entities.h $(1)/usr/include/
+-	$(CP) $(PKG_INSTALL_DIR)/usr/include/gd{,_io,cache,fontg,fontl,fontmb,fonts,fontt,fx}.h \
+-		$(1)/usr/include/
+-	$(INSTALL_DIR) $(1)/usr/lib
+-	$(CP) $(PKG_INSTALL_DIR)/usr/lib/libgd.{a,la,so*} $(1)/usr/lib/
++		's,^\(prefix\|exec_prefix\)=.*,\1=$(STAGING_DIR)/opt,g' \
++		$(1)/opt/bin/gdlib-config
++	$(INSTALL_DIR) $(1)/opt/include
++	$(CP) $(PKG_INSTALL_DIR)/opt/include/entities.h $(1)/opt/include/
++	$(CP) $(PKG_INSTALL_DIR)/opt/include/gd{,_io,cache,fontg,fontl,fontmb,fonts,fontt,fx}.h \
++		$(1)/opt/include/
++	$(INSTALL_DIR) $(1)/opt/lib
++	$(CP) $(PKG_INSTALL_DIR)/opt/lib/libgd.{a,la,so*} $(1)/opt/lib/
+ 	$(INSTALL_DIR) $(2)/bin
+-	$(LN) ../../usr/bin/gdlib-config $(2)/bin/
++	$(LN) ../../opt/bin/gdlib-config $(2)/bin/
+ endef
+ 
+ define Package/libgd/install
+-	$(INSTALL_DIR) $(1)/usr/lib
+-	$(CP) $(PKG_INSTALL_DIR)/usr/lib/libgd.so.* $(1)/usr/lib/
++	$(INSTALL_DIR) $(1)/opt/lib
++	$(CP) $(PKG_INSTALL_DIR)/opt/lib/libgd.so.* $(1)/opt/lib/
+ endef
+ 
+ $(eval $(call BuildPackage,libgd))
