@@ -1,0 +1,239 @@
+diff -r -u -x .svn ../../../backup/trunk_clean/feeds/packages/lang/perl//files/config.sh-mipsel.in ../../../trunk/feeds/packages/lang/perl//files/config.sh-mipsel.in
+--- ../../../backup/trunk_clean/feeds/packages/lang/perl//files/config.sh-mipsel.in	2011-11-28 10:56:55.000000000 +0400
++++ ../../../trunk/feeds/packages/lang/perl//files/config.sh-mipsel.in	2011-11-30 12:29:57.071650721 +0400
+@@ -697,25 +697,25 @@
+ inc_version_list_init='0'
+ incpath=''
+ inews=''
+-installarchlib='/usr/lib/perl5/5.10'
+-installbin='/usr/bin'
+-initialinstalllocation='/usr/bin'
++installarchlib='/opt/lib/perl5/5.10'
++installbin='/opt/bin'
++initialinstalllocation='/opt/bin'
+ installhtml1dir=''
+ installhtml3dir=''
+ installman1dir=''
+ installman3dir=''
+-installprefix='/usr'
+-installprefixexp='/usr'
+-installprivlib='/usr/lib/perl5/5.10'
+-installscript='/usr/bin'
+-installsitearch='/usr/lib/perl5/5.10'
+-installsitebin='/usr/bin'
++installprefix='/opt'
++installprefixexp='/opt'
++installprivlib='/opt/lib/perl5/5.10'
++installscript='/opt/bin'
++installsitearch='/opt/lib/perl5/5.10'
++installsitebin='/opt/bin'
+ installsitehtml1dir=''
+ installsitehtml3dir=''
+-installsitelib='/usr/lib/perl5/5.10'
++installsitelib='/opt/lib/perl5/5.10'
+ installsiteman1dir=''
+ installsiteman3dir=''
+-installsitescript='/usr/bin'
++installsitescript='/opt/bin'
+ installstyle='lib/perl5'
+ installusrbinperl='define'
+ installvendorarch=''
+@@ -840,10 +840,10 @@
+ plibpth=''
+ pmake=''
+ pr=''
+-prefix='/usr'
+-prefixexp='/usr'
+-privlib='/usr/lib/perl5/5.10'
+-privlibexp='/usr/lib/perl5/5.10'
++prefix='/opt'
++prefixexp='/opt'
++privlib='/opt/lib/perl5/5.10'
++privlibexp='/opt/lib/perl5/5.10'
+ procselfexe='"/proc/self/exe"'
+ prototype='define'
+ ptrsize='4'
+@@ -877,8 +877,8 @@
+ sPRIx64='"Lx"'
+ sSCNfldbl='"f"'
+ sched_yield='sched_yield()'
+-scriptdir='/usr/bin'
+-scriptdirexp='/usr/bin'
++scriptdir='/opt/bin'
++scriptdirexp='/opt/bin'
+ sed='sed'
+ seedfunc='srand48'
+ selectminbits='32'
+@@ -907,23 +907,23 @@
+ signal_t='void'
+ sitearch=''
+ sitearchexp=''
+-sitebin='/usr/bin'
+-sitebinexp='/usr/bin'
++sitebin='/opt/bin'
++sitebinexp='/opt/bin'
+ sitehtml1dir=''
+ sitehtml1direxp=''
+ sitehtml3dir=''
+ sitehtml3direxp=''
+ sitelib=''
+-#sitelib_stem='/usr/lib/perl5/site_perl'
++#sitelib_stem='/opt/lib/perl5/site_perl'
+ sitelibexp=''
+ siteman1dir=''
+ siteman1direxp=''
+ siteman3dir=''
+ siteman3direxp=''
+-siteprefix='/usr'
+-siteprefixexp='/usr'
+-sitescript='/usr/bin'
+-sitescriptexp='/usr/bin'
++siteprefix='/opt'
++siteprefixexp='/opt'
++sitescript='/opt/bin'
++sitescriptexp='/opt/bin'
+ sizesize='4'
+ sizetype='size_t'
+ sleep=''
+@@ -939,7 +939,7 @@
+ srandom_r_proto='0'
+ src='.'
+ ssizetype='ssize_t'
+-startperl='#!/usr/bin/perl'
++startperl='#!/opt/bin/perl'
+ startsh='#!/bin/sh'
+ static_ext=' '
+ stdchar='char'
+@@ -950,17 +950,17 @@
+ stdio_ptr='((fp)->_ptr)'
+ stdio_stream_array=''
+ strerror_r_proto='0'
+-#strings='/usr/include/string.h'
++#strings='/opt/include/string.h'
+ submit=''
+ subversion='0'
+-sysman='/usr/share/man/man1'
++sysman='/opt/share/man/man1'
+ tail=''
+ tar=''
+ targetarch='mipsel-linux-uclibc'
+ tbl=''
+ tee=''
+ test='test'
+-#timeincl='/usr/include/sys/time.h /usr/include/time.h '
++#timeincl='/opt/include/sys/time.h /opt/include/time.h '
+ timetype='time_t'
+ tmpnam_r_proto='0'
+ to=':'
+diff -r -u -x .svn ../../../backup/trunk_clean/feeds/packages/lang/perl//files/Module/ScanDeps.pm ../../../trunk/feeds/packages/lang/perl//files/Module/ScanDeps.pm
+--- ../../../backup/trunk_clean/feeds/packages/lang/perl//files/Module/ScanDeps.pm	2011-11-28 10:56:54.000000000 +0400
++++ ../../../trunk/feeds/packages/lang/perl//files/Module/ScanDeps.pm	2011-11-30 12:26:08.926522391 +0400
+@@ -71,7 +71,7 @@
+ (e.g. C<Test/More.pm>); the values are hash references with this structure:
+ 
+     {
+-        file    => '/usr/local/lib/perl5/5.8.0/Test/More.pm',
++        file    => '/opt/local/lib/perl5/5.8.0/Test/More.pm',
+         key     => 'Test/More.pm',
+         type    => 'module',    # or 'autoload', 'data', 'shared'
+         used_by => [ 'Test/Simple.pm', ... ],
+diff -r -u -x .svn ../../../backup/trunk_clean/feeds/packages/lang/perl//files/perlmod-deps.sh ../../../trunk/feeds/packages/lang/perl//files/perlmod-deps.sh
+--- ../../../backup/trunk_clean/feeds/packages/lang/perl//files/perlmod-deps.sh	2011-11-28 10:56:55.000000000 +0400
++++ ../../../trunk/feeds/packages/lang/perl//files/perlmod-deps.sh	2011-11-30 12:24:50.159513759 +0400
+@@ -12,8 +12,8 @@
+ fi
+ 
+ STAGING_DIR="$1"
+-PERL_BIN="$STAGING_DIR/usr/bin/perl"
+-PERL_LIB="$STAGING_DIR/usr/lib/perl5/5.10"
++PERL_BIN="$STAGING_DIR/opt/bin/perl"
++PERL_LIB="$STAGING_DIR/opt/lib/perl5/5.10"
+ INC_DIR="$(dirname $0)"
+ shift
+ 
+@@ -25,7 +25,7 @@
+ use File::Find;
+ use Cwd;
+ 
+-our $sitelib = "/usr/lib/perl5/5.10";
++our $sitelib = "/opt/lib/perl5/5.10";
+ 
+ sub scandeps {
+     my $builddir = Cwd::abs_path(shift);
+diff -r -u -x .svn ../../../backup/trunk_clean/feeds/packages/lang/perl//files/scan-perlbase.sh ../../../trunk/feeds/packages/lang/perl//files/scan-perlbase.sh
+--- ../../../backup/trunk_clean/feeds/packages/lang/perl//files/scan-perlbase.sh	2011-11-28 10:56:55.000000000 +0400
++++ ../../../trunk/feeds/packages/lang/perl//files/scan-perlbase.sh	2011-11-30 12:24:31.255751306 +0400
+@@ -12,8 +12,8 @@
+ fi
+ 
+ STAGING_DIR="$1"
+-PERL_BIN="$STAGING_DIR/usr/bin/perl"
+-PERL_LIB="$STAGING_DIR/usr/lib/perl5/5.10"
++PERL_BIN="$STAGING_DIR/opt/bin/perl"
++PERL_LIB="$STAGING_DIR/opt/lib/perl5/5.10"
+ INC_DIR="$(dirname $0)"
+ shift
+ 
+diff -r -u -x .svn ../../../backup/trunk_clean/feeds/packages/lang/perl//Makefile ../../../trunk/feeds/packages/lang/perl//Makefile
+--- ../../../backup/trunk_clean/feeds/packages/lang/perl//Makefile	2011-11-28 10:56:55.000000000 +0400
++++ ../../../trunk/feeds/packages/lang/perl//Makefile	2011-11-30 12:21:24.582098439 +0400
+@@ -66,13 +66,13 @@
+ define Build/microperl/Compile
+ 	$(MAKE) -C $(PKG_BUILD_DIR) -f Makefile.micro \
+ 		CC="$(TARGET_CC)" OPTIMIZE="$(TARGET_CFLAGS)"
+-	$(INSTALL_DIR) $(PKG_INSTALL_DIR)/usr/bin/
+-	$(CP) $(PKG_BUILD_DIR)/microperl $(PKG_INSTALL_DIR)/usr/bin/
++	$(INSTALL_DIR) $(PKG_INSTALL_DIR)/opt/bin/
++	$(CP) $(PKG_BUILD_DIR)/microperl $(PKG_INSTALL_DIR)/opt/bin/
+ endef
+ 
+ define Package/microperl/install
+-	$(INSTALL_DIR) $(1)/usr/bin
+-	$(INSTALL_BIN) $(PKG_BUILD_DIR)/microperl $(1)/usr/bin/
++	$(INSTALL_DIR) $(1)/opt/bin
++	$(INSTALL_BIN) $(PKG_BUILD_DIR)/microperl $(1)/opt/bin/
+ endef
+ 
+ include perlmod.mk
+@@ -110,8 +110,8 @@
+ 		-e 's!%%AR%%!$(TARGET_CROSS)ar!g' \
+ 		-e 's!%%LD%%!$(TARGET_CROSS)gcc!g' \
+ 		-e 's!%%LDFLAGS%%!-rdynamic $(TARGET_LDFLAGS)!g' \
+-		-e 's!%%LIBDIRS%%!$(STAGING_DIR)/lib $(STAGING_DIR)/usr/lib!g' \
+-		-e 's!%%INCDIRS%%!$(STAGING_DIR)/include $(STAGING_DIR)/usr/include!g' \
++		-e 's!%%LIBDIRS%%!$(STAGING_DIR)/lib $(STAGING_DIR)/opt/lib!g' \
++		-e 's!%%INCDIRS%%!$(STAGING_DIR)/include $(STAGING_DIR)/opt/include!g' \
+ 		-e 's!%%EXTRA_PERLLIBS%%!$(EXTRA_LIBS:%=-l%)!g' \
+ 		-e 's!%%EXTRA_PERLLIBDIRS%%!$(EXTRA_LIBDIRS:%=-L%)!g' \
+ 		files/config.sh-$(patsubst i386,i486,$(ARCH)).in \
+@@ -165,9 +165,9 @@
+ endef
+ 
+ define Package/perl/install
+-	$(INSTALL_DIR) $(1)/usr/bin
+-	$(INSTALL_BIN) $(PKG_INSTALL_DIR)/usr/bin/perl$(PKG_VERSION) $(1)/usr/bin
+-	ln -nsf perl$(PKG_VERSION) $(1)/usr/bin/perl
++	$(INSTALL_DIR) $(1)/opt/bin
++	$(INSTALL_BIN) $(PKG_INSTALL_DIR)/opt/bin/perl$(PKG_VERSION) $(1)/opt/bin
++	ln -nsf perl$(PKG_VERSION) $(1)/opt/bin/perl
+ endef
+ 
+ ifneq ($(CONFIG_PACKAGE_microperl),)
+diff -r -u -x .svn ../../../backup/trunk_clean/feeds/packages/lang/perl//perlmod.mk ../../../trunk/feeds/packages/lang/perl//perlmod.mk
+--- ../../../backup/trunk_clean/feeds/packages/lang/perl//perlmod.mk	2011-11-28 10:56:55.000000000 +0400
++++ ../../../trunk/feeds/packages/lang/perl//perlmod.mk	2011-11-30 12:21:59.261668086 +0400
+@@ -2,11 +2,11 @@
+ #
+ 
+ # Build environment
+-PERL_CMD := $(STAGING_DIR)/usr/bin/perl
+-PERL_LIB := $(STAGING_DIR)/usr/lib/perl5/5.10
++PERL_CMD := $(STAGING_DIR)/opt/bin/perl
++PERL_LIB := $(STAGING_DIR)/opt/lib/perl5/5.10
+ 
+ # Module install prefix
+-PERL_SITELIB := /usr/lib/perl5/5.10
++PERL_SITELIB := /opt/lib/perl5/5.10
+ 
+ define perlmod/Configure
+ 	(cd $(PKG_BUILD_DIR); \
