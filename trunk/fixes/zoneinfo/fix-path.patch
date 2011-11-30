@@ -1,0 +1,151 @@
+--- ../../../backup/trunk_clean/feeds/packages/utils/zoneinfo/Makefile	2011-11-28 10:56:52.000000000 +0400
++++ ../../../trunk/feeds/packages/utils/zoneinfo/Makefile	2011-11-30 16:50:35.568910872 +0400
+@@ -118,7 +118,7 @@
+ 
+ 
+ define Package/zoneinfo-core/install
+-	$(INSTALL_DIR) $(1)/usr/share/zoneinfo
++	$(INSTALL_DIR) $(1)/opt/share/zoneinfo
+ 	for i in \
+ 		CET CST6CDT EET EST EST5EDT GB-Eire Eire \
+ 		GB    GMT   GMT+0 GMT-0 GMT0  Greenwich  \
+@@ -126,12 +126,12 @@
+ 		PRC   PST8PDT ROC ROK     UCT   UTC      \
+ 		Universal W-SU WET Zulu Etc/* zone.tab ; do \
+ 	  $(CP) $(PKG_INSTALL_DIR)/zoneinfo/$$$$i \
+-	      $(1)/usr/share/zoneinfo ; \
++	      $(1)/opt/share/zoneinfo ; \
+ 	done
+ endef
+ 
+ define Package/zoneinfo-simple/install
+-	$(INSTALL_DIR) $(1)/usr/share/zoneinfo
++	$(INSTALL_DIR) $(1)/opt/share/zoneinfo
+ 	for i in Pacific/Honolulu     \
+ 		America/Anchorage   America/Los_Angeles America/Denver   \
+ 		America/Chicago     America/New_York    America/Caracas  \
+@@ -142,98 +142,98 @@
+ 		Australia/Adelaide  Australia/Brisbane  Australia/Sydney \
+ 		Australia/Perth     Pacific/Noumea ; do \
+ 	  $(CP) $(PKG_INSTALL_DIR)/zoneinfo/$$$$i \
+-	      $(1)/usr/share/zoneinfo ; \
++	      $(1)/opt/share/zoneinfo ; \
+ 	done
+ endef
+ 
+ define Package/zoneinfo-africa/install
+-	$(INSTALL_DIR) $(1)/usr/share/zoneinfo/Africa
++	$(INSTALL_DIR) $(1)/opt/share/zoneinfo/Africa
+ 	$(CP) $(PKG_INSTALL_DIR)/zoneinfo/Africa/* \
+-	      $(1)/usr/share/zoneinfo/Africa
++	      $(1)/opt/share/zoneinfo/Africa
+ endef
+ 
+ define Package/zoneinfo-northamerica/install
+-	$(INSTALL_DIR) $(1)/usr/share/zoneinfo
++	$(INSTALL_DIR) $(1)/opt/share/zoneinfo
+ 	for i in US America Canada Mexico Cuba Jamaica Navajo ; do \
+ 	  $(CP) $(PKG_INSTALL_DIR)/zoneinfo/$$$$i \
+-	      $(1)/usr/share/zoneinfo ; \
++	      $(1)/opt/share/zoneinfo ; \
+ 	done
+-	rm  -rf $(1)/usr/share/zoneinfo/America/Argentina
++	rm  -rf $(1)/opt/share/zoneinfo/America/Argentina
+ endef
+ 
+ define Package/zoneinfo-southamerica/install
+-	$(INSTALL_DIR) $(1)/usr/share/zoneinfo
++	$(INSTALL_DIR) $(1)/opt/share/zoneinfo
+ 	for i in Brazil Chile ; do \
+ 	  $(CP) $(PKG_INSTALL_DIR)/zoneinfo/$$$$i \
+-	      $(1)/usr/share/zoneinfo ; \
++	      $(1)/opt/share/zoneinfo ; \
+ 	done
+-	$(INSTALL_DIR) $(1)/usr/share/zoneinfo/America/Argentina
++	$(INSTALL_DIR) $(1)/opt/share/zoneinfo/America/Argentina
+ 	$(CP) $(PKG_INSTALL_DIR)/zoneinfo/America/Argentina/* \
+-	      $(1)/usr/share/zoneinfo/America/Argentina
++	      $(1)/opt/share/zoneinfo/America/Argentina
+ endef
+ 
+ define Package/zoneinfo-poles/install
+-	$(INSTALL_DIR) $(1)/usr/share/zoneinfo
++	$(INSTALL_DIR) $(1)/opt/share/zoneinfo
+ 	for i in Antarctica Arctic ; do \
+ 	  $(CP) $(PKG_INSTALL_DIR)/zoneinfo/$$$$i \
+-	      $(1)/usr/share/zoneinfo ; \
++	      $(1)/opt/share/zoneinfo ; \
+ 	done
+ endef
+ 
+ define Package/zoneinfo-asia/install
+-	$(INSTALL_DIR) $(1)/usr/share/zoneinfo
++	$(INSTALL_DIR) $(1)/opt/share/zoneinfo
+ 	for i in Asia Japan Singapore Hongkong ; do \
+ 	  $(CP) $(PKG_INSTALL_DIR)/zoneinfo/$$$$i \
+-	      $(1)/usr/share/zoneinfo ; \
++	      $(1)/opt/share/zoneinfo ; \
+ 	done
+ endef
+ 
+ define Package/zoneinfo-atlantic/install
+-	$(INSTALL_DIR) $(1)/usr/share/zoneinfo
++	$(INSTALL_DIR) $(1)/opt/share/zoneinfo
+ 	for i in Atlantic Iceland ; do \
+ 	  $(CP) $(PKG_INSTALL_DIR)/zoneinfo/$$$$i \
+-	      $(1)/usr/share/zoneinfo ; \
++	      $(1)/opt/share/zoneinfo ; \
+ 	done
+ endef
+ 
+ define Package/zoneinfo-australia-nz/install
+-	$(INSTALL_DIR) $(1)/usr/share/zoneinfo
++	$(INSTALL_DIR) $(1)/opt/share/zoneinfo
+ 	for i in NZ NZ-CHAT Australia ; do \
+ 	  $(CP) $(PKG_INSTALL_DIR)/zoneinfo/$$$$i \
+-	      $(1)/usr/share/zoneinfo ; \
++	      $(1)/opt/share/zoneinfo ; \
+ 	done
+ endef
+ 
+ define Package/zoneinfo-pacific/install
+-	$(INSTALL_DIR) $(1)/usr/share/zoneinfo
++	$(INSTALL_DIR) $(1)/opt/share/zoneinfo
+ 	for i in Pacific Kwajalein ; do \
+ 	  $(CP) $(PKG_INSTALL_DIR)/zoneinfo/$$$$i \
+-	      $(1)/usr/share/zoneinfo ; \
++	      $(1)/opt/share/zoneinfo ; \
+ 	done
+ endef
+ 
+ define Package/zoneinfo-europe/install
+-	$(INSTALL_DIR) $(1)/usr/share/zoneinfo
++	$(INSTALL_DIR) $(1)/opt/share/zoneinfo
+ 	for i in Europe Portugal Poland ; do \
+ 	  $(CP) $(PKG_INSTALL_DIR)/zoneinfo/$$$$i \
+-	      $(1)/usr/share/zoneinfo ; \
++	      $(1)/opt/share/zoneinfo ; \
+ 	done
+ endef
+ 
+ 
+ define Package/zoneinfo-india/install
+-	$(INSTALL_DIR) $(1)/usr/share/zoneinfo
++	$(INSTALL_DIR) $(1)/opt/share/zoneinfo
+ 	for i in Indian ; do \
+ 	  $(CP) $(PKG_INSTALL_DIR)/zoneinfo/$$$$i \
+-	      $(1)/usr/share/zoneinfo ; \
++	      $(1)/opt/share/zoneinfo ; \
+ 	done
+ endef
+ 
+ define Package/zoneinfo-middleeast/install
+-	$(INSTALL_DIR) $(1)/usr/share/zoneinfo
++	$(INSTALL_DIR) $(1)/opt/share/zoneinfo
+ 	for i in Egypt Libya Iran Israel Turkey Mideast ; do \
+ 	  $(CP) $(PKG_INSTALL_DIR)/zoneinfo/$$$$i \
+-	      $(1)/usr/share/zoneinfo ; \
++	      $(1)/opt/share/zoneinfo ; \
+ 	done
+ endef
+ 

@@ -1,0 +1,18 @@
+--- ../../../backup/trunk_clean/feeds/packages/utils/tmux/Makefile	2011-11-28 10:56:52.000000000 +0400
++++ ../../../trunk/feeds/packages/utils/tmux/Makefile	2011-11-30 16:59:18.706335912 +0400
+@@ -33,12 +33,12 @@
+ endef
+ 
+ MAKE_FLAGS += \
+-	PREFIX="/usr" \
++	PREFIX="/opt" \
+ 	PLATFORM="linux"
+ 
+ define Package/tmux/install
+-	$(INSTALL_DIR) $(1)/usr/bin
+-	$(INSTALL_BIN) $(PKG_INSTALL_DIR)/usr/bin/tmux $(1)/usr/bin/
++	$(INSTALL_DIR) $(1)/opt/bin
++	$(INSTALL_BIN) $(PKG_INSTALL_DIR)/opt/bin/tmux $(1)/opt/bin/
+ endef
+ 
+ $(eval $(call BuildPackage,tmux))
