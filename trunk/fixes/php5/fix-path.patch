@@ -1,0 +1,1913 @@
+diff -r -u -x .svn ../../../backup/trunk_clean/feeds/packages/lang/php5//files/php.ini ../../../trunk/feeds/packages/lang/php5//files/php.ini
+--- ../../../backup/trunk_clean/feeds/packages/lang/php5//files/php.ini	2011-11-28 10:56:55.000000000 +0400
++++ ../../../trunk/feeds/packages/lang/php5//files/php.ini	2011-11-30 09:16:47.118870247 +0400
+@@ -103,7 +103,7 @@
+ ;error_prepend_string = "<font color=#ff0000>"
+ ;error_append_string = "</font>"
+ ; Log errors to specified file.
+-;error_log = /var/log/php_errors.log
++;error_log = /opt/var/log/php_errors.log
+ ; Log errors to syslog.
+ ;error_log = syslog
+ 
+@@ -131,9 +131,9 @@
+ 
+ ; UNIX: "/path1:/path2"
+ ;include_path = ".:/php/includes"
+-doc_root = "/www"
++doc_root = "/opt/share/www"
+ user_dir =
+-extension_dir = "/usr/lib/php"
++extension_dir = "/opt/lib/php"
+ enable_dl = On
+ ;cgi.force_redirect = 1
+ ;cgi.nph = 1
+@@ -146,7 +146,7 @@
+ ; File Uploads
+ 
+ file_uploads = On
+-upload_tmp_dir = "/tmp"
++upload_tmp_dir = "/opt/tmp"
+ upload_max_filesize = 2M
+ max_file_uploads = 20
+ 
+@@ -249,7 +249,7 @@
+ 
+ [Session]
+ session.save_handler = files
+-session.save_path = "/tmp"
++session.save_path = "/opt/tmp"
+ session.use_cookies = 1
+ ;session.cookie_secure =
+ session.use_only_cookies = 1
+@@ -303,7 +303,7 @@
+ 
+ [soap]
+ soap.wsdl_cache_enabled=1
+-soap.wsdl_cache_dir="/tmp"
++soap.wsdl_cache_dir="/opt/tmp"
+ soap.wsdl_cache_ttl=86400
+ soap.wsdl_cache_limit = 5
+ 
+diff -r -u -x .svn ../../../backup/trunk_clean/feeds/packages/lang/php5//Makefile ../../../trunk/feeds/packages/lang/php5//Makefile
+--- ../../../backup/trunk_clean/feeds/packages/lang/php5//Makefile	2011-11-28 10:56:57.000000000 +0400
++++ ../../../trunk/feeds/packages/lang/php5//Makefile	2011-11-30 10:40:17.465448308 +0400
+@@ -131,14 +131,14 @@
+ 	--disable-debug \
+ 	--without-pear \
+ 	\
+-	--with-config-file-path=/etc \
+-	--with-config-file-scan-dir=/etc/php5 \
++	--with-config-file-path=/opt/etc \
++	--with-config-file-scan-dir=/opt/etc/php5 \
+ 	--enable-magic-quotes \
+ 	--disable-short-tags \
+ 	\
+-	--with-zlib="$(STAGING_DIR)/usr" \
+-	  --with-zlib-dir="$(STAGING_DIR)/usr" \
+-	--with-pcre-regex="$(STAGING_DIR)/usr" \
++	--with-zlib="$(STAGING_DIR)/opt" \
++	  --with-zlib-dir="$(STAGING_DIR)/opt" \
++	--with-pcre-regex="$(STAGING_DIR)/opt" \
+ 	--disable-phar
+ 
+ ifneq ($(SDK)$(CONFIG_PACKAGE_php5-cli),)
+@@ -166,7 +166,7 @@
+ endif
+ 
+ ifneq ($(SDK)$(CONFIG_PACKAGE_php5-mod-curl),)
+-  CONFIGURE_ARGS+= --with-curl=shared,"$(STAGING_DIR)/usr"
++  CONFIGURE_ARGS+= --with-curl=shared,"$(STAGING_DIR)/opt"
+ else
+   CONFIGURE_ARGS+= --without-curl
+ endif
+@@ -178,7 +178,7 @@
+ endif
+ 
+ ifneq ($(SDK)$(CONFIG_PACKAGE_php5-mod-gettext),)
+-  CONFIGURE_ARGS+= --with-gettext=shared,"$(STAGING_DIR)/usr/lib/libintl-full"
++  CONFIGURE_ARGS+= --with-gettext=shared,"$(STAGING_DIR)/opt/lib/libintl-full"
+ else
+   CONFIGURE_ARGS+= --without-gettext
+ endif
+@@ -209,10 +209,10 @@
+ 
+ ifneq ($(SDK)$(CONFIG_PACKAGE_php5-mod-gd),)
+   CONFIGURE_ARGS+= \
+-	--with-gd=shared,"$(STAGING_DIR)/usr" \
++	--with-gd=shared,"$(STAGING_DIR)/opt" \
+ 	--without-freetype-dir \
+-	--with-jpeg-dir="$(STAGING_DIR)/usr" \
+-	--with-png-dir="$(STAGING_DIR)/usr" \
++	--with-jpeg-dir="$(STAGING_DIR)/opt" \
++	--with-png-dir="$(STAGING_DIR)/opt" \
+ 	--without-xpm-dir \
+ 	--without-t1lib \
+ 	--enable-gd-native-ttf \
+@@ -222,7 +222,7 @@
+ endif
+ 
+ ifneq ($(SDK)$(CONFIG_PACKAGE_php5-mod-gmp),)
+-  CONFIGURE_ARGS+= --with-gmp=shared,"$(STAGING_DIR)/usr"
++  CONFIGURE_ARGS+= --with-gmp=shared,"$(STAGING_DIR)/opt"
+ else
+   CONFIGURE_ARGS+= --without-gmp
+ endif
+@@ -237,7 +237,7 @@
+   CONFIGURE_ARGS+= \
+ 	--enable-http=shared \
+ 	--without-http-shared-deps \
+-	--with-http-curl-requests="$(STAGING_DIR)/usr"
++	--with-http-curl-requests="$(STAGING_DIR)/opt"
+ else
+   CONFIGURE_ARGS+= --disable-http
+ endif
+@@ -256,14 +256,14 @@
+ 
+ ifneq ($(SDK)$(CONFIG_PACKAGE_php5-mod-ldap),)
+   CONFIGURE_ARGS+= \
+-	--with-ldap=shared,"$(STAGING_DIR)/usr" \
+-	--with-ldap-sasl="$(STAGING_DIR)/usr"
++	--with-ldap=shared,"$(STAGING_DIR)/opt" \
++	--with-ldap-sasl="$(STAGING_DIR)/opt"
+ else
+   CONFIGURE_ARGS+= --without-ldap
+ endif
+ 
+ ifneq ($(SDK)$(CONFIG_PACKAGE_php5-mod-libevent),)
+-  CONFIGURE_ARGS+= --with-libevent=shared,"$(STAGING_DIR)/usr"
++  CONFIGURE_ARGS+= --with-libevent=shared,"$(STAGING_DIR)/opt"
+ else
+   CONFIGURE_ARGS+= --without-libevent
+ endif
+@@ -275,22 +275,22 @@
+ endif
+ 
+ ifneq ($(SDK)$(CONFIG_PACKAGE_php5-mod-mcrypt),)
+-  CONFIGURE_ARGS+=  --with-mcrypt=shared,"$(STAGING_DIR)/usr"
++  CONFIGURE_ARGS+=  --with-mcrypt=shared,"$(STAGING_DIR)/opt"
+ else
+   CONFIGURE_ARGS+= --without-mcrypt
+ endif
+ 
+ ifneq ($(SDK)$(CONFIG_PACKAGE_php5-mod-mysql),)
+-  CONFIGURE_ARGS+= --with-mysql=shared,"$(STAGING_DIR)/usr"
++  CONFIGURE_ARGS+= --with-mysql=shared,"$(STAGING_DIR)/opt"
+ else
+   CONFIGURE_ARGS+= --without-mysql
+ endif
+ 
+ ifneq ($(SDK)$(CONFIG_PACKAGE_php5-mod-openssl),)
+   CONFIGURE_ARGS+= \
+-	--with-openssl=shared,"$(STAGING_DIR)/usr" \
++	--with-openssl=shared,"$(STAGING_DIR)/opt" \
+ 	--with-kerberos=no \
+-	--with-openssl-dir="$(STAGING_DIR)/usr"
++	--with-openssl-dir="$(STAGING_DIR)/opt"
+ else
+   CONFIGURE_ARGS+= --without-openssl
+ endif
+@@ -304,17 +304,17 @@
+ ifneq ($(SDK)$(CONFIG_PACKAGE_php5-mod-pdo),)
+   CONFIGURE_ARGS+= --enable-pdo=shared
+   ifneq ($(SDK)$(CONFIG_PACKAGE_php5-mod-pdo-mysql),)
+-    CONFIGURE_ARGS+= --with-pdo-mysql=shared,"$(STAGING_DIR)/usr"
++    CONFIGURE_ARGS+= --with-pdo-mysql=shared,"$(STAGING_DIR)/opt"
+   else
+     CONFIGURE_ARGS+= --without-pdo-mysql
+   endif
+   ifneq ($(SDK)$(CONFIG_PACKAGE_php5-mod-pdo-pgsql),)
+-    CONFIGURE_ARGS+= --with-pdo-pgsql=shared,"$(STAGING_DIR)/usr"
++    CONFIGURE_ARGS+= --with-pdo-pgsql=shared,"$(STAGING_DIR)/opt"
+   else
+     CONFIGURE_ARGS+= --without-pdo-pgsql
+   endif
+   ifneq ($(SDK)$(CONFIG_PACKAGE_php5-mod-pdo-sqlite),)
+-    CONFIGURE_ARGS+= --with-pdo-sqlite=shared,"$(STAGING_DIR)/usr"
++    CONFIGURE_ARGS+= --with-pdo-sqlite=shared,"$(STAGING_DIR)/opt"
+   else
+     CONFIGURE_ARGS+= --without-pdo-sqlite
+   endif
+@@ -323,7 +323,7 @@
+ endif
+ 
+ ifneq ($(SDK)$(CONFIG_PACKAGE_php5-mod-pgsql),)
+-  CONFIGURE_ARGS+= --with-pgsql=shared,"$(STAGING_DIR)/usr"
++  CONFIGURE_ARGS+= --with-pgsql=shared,"$(STAGING_DIR)/opt"
+ else
+   CONFIGURE_ARGS+= --without-pgsql
+ endif
+@@ -353,13 +353,13 @@
+ endif
+ 
+ ifneq ($(SDK)$(CONFIG_PACKAGE_php5-mod-sqlite),)
+-  CONFIGURE_ARGS+= --with-sqlite=shared,"$(STAGING_DIR)/usr"
++  CONFIGURE_ARGS+= --with-sqlite=shared,"$(STAGING_DIR)/opt"
+ else
+   CONFIGURE_ARGS+= --without-sqlite
+ endif
+ 
+ ifneq ($(SDK)$(CONFIG_PACKAGE_php5-mod-sqlite3),)
+-  CONFIGURE_ARGS+= --with-sqlite3=shared,"$(STAGING_DIR)/usr"
++  CONFIGURE_ARGS+= --with-sqlite3=shared,"$(STAGING_DIR)/opt"
+ else
+   CONFIGURE_ARGS+= --without-sqlite3
+ endif
+@@ -389,24 +389,24 @@
+ endif
+ 
+ ifneq ($(SDK)$(CONFIG_PACKAGE_php5-mod-xml),)
+-  CONFIGURE_ARGS+= --enable-xml=shared,"$(STAGING_DIR)/usr"
++  CONFIGURE_ARGS+= --enable-xml=shared,"$(STAGING_DIR)/opt"
+   ifneq ($(CONFIG_PHP5_LIBXML),)
+-    CONFIGURE_ARGS+= --with-libxml-dir="$(STAGING_DIR)/usr/include/libxml2"
++    CONFIGURE_ARGS+= --with-libxml-dir="$(STAGING_DIR)/opt/include/libxml2"
+   else
+-    CONFIGURE_ARGS+= --with-libexpat-dir="$(STAGING_DIR)/usr"
++    CONFIGURE_ARGS+= --with-libexpat-dir="$(STAGING_DIR)/opt"
+   endif
+ else
+   CONFIGURE_ARGS+= --disable-xml
+ endif
+ 
+ ifneq ($(SDK)$(CONFIG_PACKAGE_php5-mod-xmlreader),)
+-  CONFIGURE_ARGS+= --enable-xmlreader=shared,"$(STAGING_DIR)/usr"
++  CONFIGURE_ARGS+= --enable-xmlreader=shared,"$(STAGING_DIR)/opt"
+ else
+   CONFIGURE_ARGS+= --disable-xmlreader
+ endif
+ 
+ ifneq ($(SDK)$(CONFIG_PACKAGE_php5-mod-xmlwriter),)
+-  CONFIGURE_ARGS+= --enable-xmlwriter=shared,"$(STAGING_DIR)/usr"
++  CONFIGURE_ARGS+= --enable-xmlwriter=shared,"$(STAGING_DIR)/opt"
+ else
+   CONFIGURE_ARGS+= --disable-xmlwriter
+ endif
+@@ -419,7 +419,7 @@
+ 
+ ifneq ($(SDK)$(CONFIG_PHP5_LIBXML),)
+   CONFIGURE_ARGS+= --enable-libxml
+-  CONFIGURE_ARGS+= --with-libxml-dir="$(STAGING_DIR)/usr/include/libxml2"
++  CONFIGURE_ARGS+= --with-libxml-dir="$(STAGING_DIR)/opt/include/libxml2"
+ else
+   CONFIGURE_ARGS+= --disable-libxml
+ endif
+@@ -442,27 +442,27 @@
+ endef
+ 
+ define Package/php5/install
+-	$(INSTALL_DIR) $(1)/etc
+-	$(INSTALL_DATA) ./files/php.ini $(1)/etc/
++	$(INSTALL_DIR) $(1)/opt/etc
++	$(INSTALL_DATA) ./files/php.ini $(1)/opt/etc/
+ endef
+ 
+ define Package/php5-cli/install
+-	$(INSTALL_DIR) $(1)/usr/bin
+-	$(CP) $(PKG_BUILD_DIR)/sapi/cli/php $(1)/usr/bin/php-cli
++	$(INSTALL_DIR) $(1)/opt/bin
++	$(CP) $(PKG_BUILD_DIR)/sapi/cli/php $(1)/opt/bin/php-cli
+ endef
+ 
+ define Package/php5-cgi/install
+-	$(INSTALL_DIR) $(1)/usr/bin
+-	$(CP) $(PKG_BUILD_DIR)/sapi/cgi/php-cgi $(1)/usr/bin/php-cgi
+-	ln -sf php-cgi $(1)/usr/bin/php-fcgi
++	$(INSTALL_DIR) $(1)/opt/bin
++	$(CP) $(PKG_BUILD_DIR)/sapi/cgi/php-cgi $(1)/opt/bin/php-cgi
++	ln -sf php-cgi $(1)/opt/bin/php-fcgi
+ endef
+ 
+ define Package/php5-fastcgi/install
+-	$(INSTALL_DIR) $(1)/etc/config
+-	$(INSTALL_DATA) ./files/php5-fastcgi.config $(1)/etc/config/php5-fastcgi
+-
+-	$(INSTALL_DIR) $(1)/etc/init.d
+-	$(INSTALL_BIN) ./files/php5-fastcgi.init $(1)/etc/init.d/php5-fastcgi
++#	$(INSTALL_DIR) $(1)/etc/config
++#	$(INSTALL_DATA) ./files/php5-fastcgi.config $(1)/etc/config/php5-fastcgi
++#
++#	$(INSTALL_DIR) $(1)/etc/init.d
++#	$(INSTALL_BIN) ./files/php5-fastcgi.init $(1)/etc/init.d/php5-fastcgi
+ endef
+ 
+ define BuildModule
+@@ -478,10 +478,10 @@
+   endef
+ 
+   define Package/php5-mod-$(1)/install
+-	$(INSTALL_DIR) $$(1)/usr/lib/php
+-	$(INSTALL_BIN) $(PKG_BUILD_DIR)/modules/$(subst -,_,$(1)).so $$(1)/usr/lib/php/
+-	$(INSTALL_DIR) $$(1)/etc/php5
+-	echo "extension=$(subst -,_,$(1)).so" > $$(1)/etc/php5/$(subst -,_,$(1)).ini
++	$(INSTALL_DIR) $$(1)/opt/lib/php
++	$(INSTALL_BIN) $(PKG_BUILD_DIR)/modules/$(subst -,_,$(1)).so $$(1)/opt/lib/php/
++	$(INSTALL_DIR) $$(1)/opt/etc/php5
++	echo "extension=$(subst -,_,$(1)).so" > $$(1)/opt/etc/php5/$(subst -,_,$(1)).ini
+   endef
+ 
+   $$(eval $$(call BuildPackage,php5-mod-$(1)))
+diff -r -u -x .svn ../../../backup/trunk_clean/feeds/packages/lang/php5//patches/005-APC.patch ../../../trunk/feeds/packages/lang/php5//patches/005-APC.patch
+--- ../../../backup/trunk_clean/feeds/packages/lang/php5//patches/005-APC.patch	2011-11-28 10:56:57.000000000 +0400
++++ ../../../trunk/feeds/packages/lang/php5//patches/005-APC.patch	2011-11-30 09:20:46.295863285 +0400
+@@ -5801,7 +5801,7 @@
+ +{
+ +    int fd;
+ +    if(pathname == NULL) {
+-+        char lock_path[] = "/tmp/.apc.XXXXXX";
+++        char lock_path[] = "/opt/tmp/.apc.XXXXXX";
+ +        mktemp(lock_path);
+ +        fd = open(lock_path, O_RDWR|O_CREAT, 0666);
+ +        if(fd > 0 ) {
+@@ -14293,7 +14293,7 @@
+ +  svn co http://svn.php.net/repository/pecl/apc/trunk apc
+ +  cd apc
+ +  phpize
+-+  ./configure --with-php-config=/usr/local/php/bin/php-config
+++  ./configure --with-php-config=/opt/local/php/bin/php-config
+ +  make
+ +  export TEST_PHP_ARGS='-n'
+ +  make test
+@@ -14314,13 +14314,13 @@
+ +| QUICK INSTALL (DSO) |
+ ++---------------------+
+ +
+-+These instructions assume your PHP installation is located in /usr/local/php and you
+++These instructions assume your PHP installation is located in /opt/local/php and you
+ +want Apache optimizations (--with-apxs).
+ +
+ +$ gunzip -c apc_x.y.tar.gz | tar xf -
+ +$ cd apc_x.y
+-+$ /usr/local/php/bin/phpize
+-+$ ./configure --with-php-config=/usr/local/php/bin/php-config
+++$ /opt/local/php/bin/phpize
+++$ ./configure --with-php-config=/opt/local/php/bin/php-config
+ +$ make
+ +$ make install
+ +
+@@ -14331,7 +14331,7 @@
+ +that path to the screen.
+ +
+ +Next you must edit your php.ini file, which is normally located in
+-+/usr/local/php/lib/php.ini, and add the following line:
+++/opt/local/php/lib/php.ini, and add the following line:
+ +
+ +    extension="apc.so"
+ +
+@@ -14368,7 +14368,7 @@
+ +| VERBOSE INSTALL |
+ ++-----------------+
+ +
+-+These instructions assume your PHP installation is located in /usr/local/php.
+++These instructions assume your PHP installation is located in /opt/local/php.
+ +
+ +1.  Unpack your distribution file.
+ +
+@@ -14388,13 +14388,13 @@
+ +2.  Run phpize.
+ +
+ +    phpize is a script that should have been installed with PHP, and is
+-+    normally located in /usr/local/php/bin assuming you installed PHP in
+-+    /usr/local/php. (If you do not have the phpize script, you must reinstall
+++    normally located in /opt/local/php/bin assuming you installed PHP in
+++    /opt/local/php. (If you do not have the phpize script, you must reinstall
+ +    PHP and be sure not to disable PEAR.)
+ +
+ +    Run the phpize command:
+ +    
+-+        /usr/local/php/bin/phpize
+++        /opt/local/php/bin/phpize
+ +
+ +    Its output should resemble this:
+ +
+@@ -14441,7 +14441,7 @@
+ +        Installing shared extensions: /path/to/extension/
+ +
+ +    Copy the path /path/to/extension/ and add the following line to your
+-+    php.ini file (normally located in /usr/local/php/lib/php.ini):
+++    php.ini file (normally located in /opt/local/php/lib/php.ini):
+ +
+ +        extension="apc.so"
+ +
+@@ -18850,13 +18850,13 @@
+ +   phpize
+ +   ./configure --enable-apc --enable-mmap
+ +   make
+-+   cp modules/apc.so /usr/local/lib/php
+++   cp modules/apc.so /opt/local/lib/php
+ +   apachectl restart
+ +
+ +4. Debugging Hints
+ +
+ +     apachectl stop
+-+     gdb /usr/bin/httpd
+++     gdb /opt/bin/httpd
+ +     break ??
+ +     run -X
+ +
+diff -r -u -x .svn ../../../backup/trunk_clean/feeds/packages/lang/php5//patches/020-PECL-add-libevent.patch ../../../trunk/feeds/packages/lang/php5//patches/020-PECL-add-libevent.patch
+--- ../../../backup/trunk_clean/feeds/packages/lang/php5//patches/020-PECL-add-libevent.patch	2011-11-28 10:56:57.000000000 +0400
++++ ../../../trunk/feeds/packages/lang/php5//patches/020-PECL-add-libevent.patch	2011-11-30 09:23:45.517614816 +0400
+@@ -11,7 +11,7 @@
+ +[  --with-libevent             Include libevent support])
+ +
+ +if test "$PHP_LIBEVENT" != "no"; then
+-+  SEARCH_PATH="/usr /usr/local"
+++  SEARCH_PATH="/opt /opt/local"
+ +  SEARCH_FOR="/include/event.h"
+ +
+ +  if test "$PHP_LIBEVENT" = "yes"; then
+diff -r -u -x .svn ../../../backup/trunk_clean/feeds/packages/lang/php5//patches/030-PECL-add-http.patch ../../../trunk/feeds/packages/lang/php5//patches/030-PECL-add-http.patch
+--- ../../../backup/trunk_clean/feeds/packages/lang/php5//patches/030-PECL-add-http.patch	2011-11-28 10:56:57.000000000 +0400
++++ ../../../trunk/feeds/packages/lang/php5//patches/030-PECL-add-http.patch	2011-11-30 09:31:42.511613707 +0400
+@@ -404,7 +404,7 @@
+ +	if test "$PHP_HTTP_ZLIB_COMPRESSION" != "no"; then
+ +		AC_MSG_CHECKING([for zlib.h])
+ +		ZLIB_DIR=
+-+		for i in "$PHP_HTTP_ZLIB_COMPRESSION" "$PHP_ZLIB_DIR" "$PHP_ZLIB" /usr/local /usr /opt; do
+++		for i in "$PHP_HTTP_ZLIB_COMPRESSION" "$PHP_ZLIB_DIR" "$PHP_ZLIB" /opt/local /opt; do
+ +			if test -f "$i/include/zlib.h"; then
+ +				ZLIB_DIR=$i
+ +				break;
+@@ -434,7 +434,7 @@
+ +	if test "$PHP_HTTP_CURL_REQUESTS" != "no"; then
+ +		AC_MSG_CHECKING([for curl/curl.h])
+ +		CURL_DIR=
+-+		for i in "$PHP_HTTP_CURL_REQUESTS" /usr/local /usr /opt; do
+++		for i in "$PHP_HTTP_CURL_REQUESTS" /opt/local /opt; do
+ +			if test -f "$i/include/curl/curl.h"; then
+ +				CURL_DIR=$i
+ +				break
+@@ -605,7 +605,7 @@
+ +			], [
+ +				AC_MSG_CHECKING([for event.h])
+ +				EVENT_DIR=
+-+				for i in "$PHP_HTTP_CURL_LIBEVENT" /usr/local /usr /opt; do
+++				for i in "$PHP_HTTP_CURL_LIBEVENT" /opt/local /opt; do
+ +					if test -f "$i/include/event.h"; then
+ +						EVENT_DIR=$i
+ +						break
+@@ -653,7 +653,7 @@
+ +	if test "$PHP_HTTP_MAGIC_MIME" != "no"; then
+ +		AC_MSG_CHECKING([for magic.h])
+ +		MAGIC_DIR=
+-+		for i in "$PHP_HTTP_MAGIC_MIME" /usr/local /usr /opt; do
+++		for i in "$PHP_HTTP_MAGIC_MIME" /opt/local /opt; do
+ +			if test -f "$i/include/magic.h"; then
+ +				MAGIC_DIR=$i
+ +				break
+@@ -19418,7 +19418,7 @@
+ +     * @return BigGet
+ +     * @throws Exception
+ +     */
+-+    public static function url($url, $tmp = '/tmp')
+++    public static function url($url, $tmp = '/opt/tmp')
+ +    {
+ +        $head = new HttpRequest($url, HttpRequest::METH_HEAD);
+ +        $headers = $head->send()->getHeaders();
+diff -r -u -x .svn ../../../backup/trunk_clean/feeds/packages/lang/php5//patches/102-debian_patches_use_embedded_timezonedb.patch ../../../trunk/feeds/packages/lang/php5//patches/102-debian_patches_use_embedded_timezonedb.patch
+--- ../../../backup/trunk_clean/feeds/packages/lang/php5//patches/102-debian_patches_use_embedded_timezonedb.patch	2011-11-28 10:56:57.000000000 +0400
++++ ../../../trunk/feeds/packages/lang/php5//patches/102-debian_patches_use_embedded_timezonedb.patch	2011-11-30 09:33:05.122572453 +0400
+@@ -71,7 +71,7 @@
+ +#ifdef HAVE_SYSTEM_TZDATA_PREFIX
+ +#define ZONEINFO_PREFIX HAVE_SYSTEM_TZDATA_PREFIX
+ +#else
+-+#define ZONEINFO_PREFIX "/usr/share/zoneinfo"
+++#define ZONEINFO_PREFIX "/opt/share/zoneinfo"
+ +#endif
+ +
+ +/* Hash table entry for the cache of the zone.tab mapping table. */
+diff -r -u -x .svn ../../../backup/trunk_clean/feeds/packages/lang/php5//patches/900-prevent_buildconf_force.patch ../../../trunk/feeds/packages/lang/php5//patches/900-prevent_buildconf_force.patch
+--- ../../../backup/trunk_clean/feeds/packages/lang/php5//patches/900-prevent_buildconf_force.patch	2011-11-28 10:56:57.000000000 +0400
++++ ../../../trunk/feeds/packages/lang/php5//patches/900-prevent_buildconf_force.patch	2011-11-30 10:03:15.401150908 +0400
+@@ -6712,7 +6712,7 @@
+ +  else
+ +    echo $ac_n "checking for BZip2 in default path""... $ac_c" 1>&6
+ +echo "configure:27540: checking for BZip2 in default path" >&5
+-+    for i in /usr/local /usr; do
+++    for i in /opt/local /opt; do
+ +      if test -r $i/include/bzlib.h; then
+ +        BZIP_DIR=$i
+ +        echo "$ac_t""found in $i" 1>&6
+@@ -6808,7 +6808,7 @@
+ +    -L*)
+ +      ac_ii=`echo $ac_i|cut -c 3-`
+ +      
+-+  if test "$ac_ii" != "/usr/$PHP_LIBDIR" && test "$ac_ii" != "/usr/lib"; then
+++  if test "$ac_ii" != "/opt/$PHP_LIBDIR" && test "$ac_ii" != "/opt/lib"; then
+ +    
+ +  if test -z "$ac_ii" || echo "$ac_ii" | grep '^/' >/dev/null ; then
+ +    ai_p=$ac_ii
+@@ -6889,7 +6889,7 @@
+ +    ext_shared=$save_ext_shared
+ +    
+ +    
+-+  if test "$BZIP_DIR/include" != "/usr/include"; then
+++  if test "$BZIP_DIR/include" != "/opt/include"; then
+ +    
+ +  if test -z "$BZIP_DIR/include" || echo "$BZIP_DIR/include" | grep '^/' >/dev/null ; then
+ +    ai_p=$BZIP_DIR/include
+@@ -6925,7 +6925,7 @@
+ +    BZ2_SHARED_LIBADD="-lbz2 $BZ2_SHARED_LIBADD"
+ +    if test -n "$BZIP_DIR/$PHP_LIBDIR"; then
+ +      
+-+  if test "$BZIP_DIR/$PHP_LIBDIR" != "/usr/$PHP_LIBDIR" && test "$BZIP_DIR/$PHP_LIBDIR" != "/usr/lib"; then
+++  if test "$BZIP_DIR/$PHP_LIBDIR" != "/opt/$PHP_LIBDIR" && test "$BZIP_DIR/$PHP_LIBDIR" != "/opt/lib"; then
+ +    
+ +  if test -z "$BZIP_DIR/$PHP_LIBDIR" || echo "$BZIP_DIR/$PHP_LIBDIR" | grep '^/' >/dev/null ; then
+ +    ai_p=$BZIP_DIR/$PHP_LIBDIR
+@@ -6968,7 +6968,7 @@
+ +
+ +  if test -n "$BZIP_DIR/$PHP_LIBDIR"; then
+ +    
+-+  if test "$BZIP_DIR/$PHP_LIBDIR" != "/usr/$PHP_LIBDIR" && test "$BZIP_DIR/$PHP_LIBDIR" != "/usr/lib"; then
+++  if test "$BZIP_DIR/$PHP_LIBDIR" != "/opt/$PHP_LIBDIR" && test "$BZIP_DIR/$PHP_LIBDIR" != "/opt/lib"; then
+ +    
+ +  if test -z "$BZIP_DIR/$PHP_LIBDIR" || echo "$BZIP_DIR/$PHP_LIBDIR" | grep '^/' >/dev/null ; then
+ +    ai_p=$BZIP_DIR/$PHP_LIBDIR
+@@ -8504,7 +8504,7 @@
+ -    echo "$ac_t""no" 1>&6
+ +    echo $ac_n "checking for cURL in default path""... $ac_c" 1>&6
+ +echo "configure:28896: checking for cURL in default path" >&5
+-+    for i in /usr/local /usr; do
+++    for i in /opt/local /opt; do
+ +      if test -r $i/include/curl/easy.h; then
+ +        CURL_DIR=$i
+ +        echo "$ac_t""found in $i" 1>&6
+@@ -8523,8 +8523,8 @@
+ +  echo $ac_n "checking for cURL 7.10.5 or greater""... $ac_c" 1>&6
+ +echo "configure:28914: checking for cURL 7.10.5 or greater" >&5
+ +
+-+  if ${CURL_DIR}/bin/curl-config --libs > /dev/null 2>&1; then
+-+    CURL_CONFIG=${CURL_DIR}/bin/curl-config
+++  if ${CURL_DIR}/opt/bin/curl-config --libs > /dev/null 2>&1; then
+++    CURL_CONFIG=${CURL_DIR}/opt/bin/curl-config
+ +  else
+ +    if ${CURL_DIR}/curl-config --libs > /dev/null 2>&1; then
+ +      CURL_CONFIG=${CURL_DIR}/curl-config
+@@ -8545,7 +8545,7 @@
+ -  ac_stuff="
+ -    $CURL_LIBS -L$CURL_DIR/$PHP_LIBDIR
+ -  "
+-+  if test "$CURL_DIR/include" != "/usr/include"; then
+++  if test "$CURL_DIR/include" != "/opt/include"; then
+ +    
+ +  if test -z "$CURL_DIR/include" || echo "$CURL_DIR/include" | grep '^/' >/dev/null ; then
+ +    ai_p=$CURL_DIR/include
+@@ -8655,7 +8655,7 @@
+ +    CURL_SHARED_LIBADD="-lcurl $CURL_SHARED_LIBADD"
+ +    if test -n "$CURL_DIR/$PHP_LIBDIR"; then
+ +      
+-+  if test "$CURL_DIR/$PHP_LIBDIR" != "/usr/$PHP_LIBDIR" && test "$CURL_DIR/$PHP_LIBDIR" != "/usr/lib"; then
+++  if test "$CURL_DIR/$PHP_LIBDIR" != "/opt/$PHP_LIBDIR" && test "$CURL_DIR/$PHP_LIBDIR" != "/opt/lib"; then
+ +    
+ +  if test -z "$CURL_DIR/$PHP_LIBDIR" || echo "$CURL_DIR/$PHP_LIBDIR" | grep '^/' >/dev/null ; then
+ +    ai_p=$CURL_DIR/$PHP_LIBDIR
+@@ -8698,7 +8698,7 @@
+ +
+ +  if test -n "$CURL_DIR/$PHP_LIBDIR"; then
+ +    
+-+  if test "$CURL_DIR/$PHP_LIBDIR" != "/usr/$PHP_LIBDIR" && test "$CURL_DIR/$PHP_LIBDIR" != "/usr/lib"; then
+++  if test "$CURL_DIR/$PHP_LIBDIR" != "/opt/$PHP_LIBDIR" && test "$CURL_DIR/$PHP_LIBDIR" != "/opt/lib"; then
+ +    
+ +  if test -z "$CURL_DIR/$PHP_LIBDIR" || echo "$CURL_DIR/$PHP_LIBDIR" | grep '^/' >/dev/null ; then
+ +    ai_p=$CURL_DIR/$PHP_LIBDIR
+@@ -9072,7 +9072,7 @@
+ +    -L*)
+ +      ac_ii=`echo $ac_i|cut -c 3-`
+ +      
+-+  if test "$ac_ii" != "/usr/$PHP_LIBDIR" && test "$ac_ii" != "/usr/lib"; then
+++  if test "$ac_ii" != "/opt/$PHP_LIBDIR" && test "$ac_ii" != "/opt/lib"; then
+ +    
+ +  if test -z "$ac_ii" || echo "$ac_ii" | grep '^/' >/dev/null ; then
+ +    ai_p=$ac_ii
+@@ -12928,7 +12928,7 @@
+  
+  
+ +if test "$PHP_LIBEVENT" != "no"; then
+-+  SEARCH_PATH="/usr /usr/local"
+++  SEARCH_PATH="/opt /opt/local"
+ +  SEARCH_FOR="/include/event.h"
+ +
+ +  if test "$PHP_LIBEVENT" = "yes"; then
+@@ -12977,7 +12977,7 @@
+ -
+ -
+ -php_enable_mbregex_backtrack=yes
+-+  if test "$LIBEVENT_DIR/include" != "/usr/include"; then
+++  if test "$LIBEVENT_DIR/include" != "/opt/include"; then
+ +    
+ +  if test -z "$LIBEVENT_DIR/include" || echo "$LIBEVENT_DIR/include" | grep '^/' >/dev/null ; then
+ +    ai_p=$LIBEVENT_DIR/include
+@@ -13102,7 +13102,7 @@
+ +    -L*)
+ +      ac_ii=`echo $ac_i|cut -c 3-`
+ +      
+-+  if test "$ac_ii" != "/usr/$PHP_LIBDIR" && test "$ac_ii" != "/usr/lib"; then
+++  if test "$ac_ii" != "/opt/$PHP_LIBDIR" && test "$ac_ii" != "/opt/lib"; then
+ +    
+ +  if test -z "$ac_ii" || echo "$ac_ii" | grep '^/' >/dev/null ; then
+ +    ai_p=$ac_ii
+@@ -13337,7 +13337,7 @@
+ +    LIBEVENT_SHARED_LIBADD="-l$LIBNAME $LIBEVENT_SHARED_LIBADD"
+ +    if test -n "$LIBEVENT_DIR/$PHP_LIBDIR"; then
+ +      
+-+  if test "$LIBEVENT_DIR/$PHP_LIBDIR" != "/usr/$PHP_LIBDIR" && test "$LIBEVENT_DIR/$PHP_LIBDIR" != "/usr/lib"; then
+++  if test "$LIBEVENT_DIR/$PHP_LIBDIR" != "/opt/$PHP_LIBDIR" && test "$LIBEVENT_DIR/$PHP_LIBDIR" != "/opt/lib"; then
+ +    
+ +  if test -z "$LIBEVENT_DIR/$PHP_LIBDIR" || echo "$LIBEVENT_DIR/$PHP_LIBDIR" | grep '^/' >/dev/null ; then
+ +    ai_p=$LIBEVENT_DIR/$PHP_LIBDIR
+@@ -13449,7 +13449,7 @@
+ -fi
+ +  if test -n "$LIBEVENT_DIR/$PHP_LIBDIR"; then
+ +    
+-+  if test "$LIBEVENT_DIR/$PHP_LIBDIR" != "/usr/$PHP_LIBDIR" && test "$LIBEVENT_DIR/$PHP_LIBDIR" != "/usr/lib"; then
+++  if test "$LIBEVENT_DIR/$PHP_LIBDIR" != "/opt/$PHP_LIBDIR" && test "$LIBEVENT_DIR/$PHP_LIBDIR" != "/opt/lib"; then
+ +    
+ +  if test -z "$LIBEVENT_DIR/$PHP_LIBDIR" || echo "$LIBEVENT_DIR/$PHP_LIBDIR" | grep '^/' >/dev/null ; then
+ +    ai_p=$LIBEVENT_DIR/$PHP_LIBDIR
+@@ -18018,7 +18018,7 @@
+ +    PGSQL_SHARED_LIBADD="-lpq $PGSQL_SHARED_LIBADD"
+ +    if test -n "$PGSQL_LIBDIR"; then
+ +      
+-+  if test "$PGSQL_LIBDIR" != "/usr/$PHP_LIBDIR" && test "$PGSQL_LIBDIR" != "/usr/lib"; then
+++  if test "$PGSQL_LIBDIR" != "/opt/$PHP_LIBDIR" && test "$PGSQL_LIBDIR" != "/opt/lib"; then
+ +    
+ +  if test -z "$PGSQL_LIBDIR" || echo "$PGSQL_LIBDIR" | grep '^/' >/dev/null ; then
+ +    ai_p=$PGSQL_LIBDIR
+@@ -18061,7 +18061,7 @@
+ +
+ +  if test -n "$PGSQL_LIBDIR"; then
+ +    
+-+  if test "$PGSQL_LIBDIR" != "/usr/$PHP_LIBDIR" && test "$PGSQL_LIBDIR" != "/usr/lib"; then
+++  if test "$PGSQL_LIBDIR" != "/opt/$PHP_LIBDIR" && test "$PGSQL_LIBDIR" != "/opt/lib"; then
+ +    
+ +  if test -z "$PGSQL_LIBDIR" || echo "$PGSQL_LIBDIR" | grep '^/' >/dev/null ; then
+ +    ai_p=$PGSQL_LIBDIR
+@@ -18114,7 +18114,7 @@
+ +
+ +
+ +  
+-+  if test "$PGSQL_INCLUDE" != "/usr/include"; then
+++  if test "$PGSQL_INCLUDE" != "/opt/include"; then
+ +    
+ +  if test -z "$PGSQL_INCLUDE" || echo "$PGSQL_INCLUDE" | grep '^/' >/dev/null ; then
+ +    ai_p=$PGSQL_INCLUDE
+@@ -20409,7 +20409,7 @@
+ +	if test "$PHP_PSPELL" != "yes"; then
+ +	    PSPELL_SEARCH_DIRS=$PHP_PSPELL
+ +	else
+-+	    PSPELL_SEARCH_DIRS="/usr/local /usr"
+++	    PSPELL_SEARCH_DIRS="/opt/local /opt"
+ +	fi
+ +	for i in $PSPELL_SEARCH_DIRS; do
+ +		if test -f $i/include/pspell/pspell.h; then
+@@ -20433,7 +20433,7 @@
+ +    PSPELL_SHARED_LIBADD="-lpspell $PSPELL_SHARED_LIBADD"
+ +    if test -n "$PSPELL_LIBDIR"; then
+ +      
+-+  if test "$PSPELL_LIBDIR" != "/usr/$PHP_LIBDIR" && test "$PSPELL_LIBDIR" != "/usr/lib"; then
+++  if test "$PSPELL_LIBDIR" != "/opt/$PHP_LIBDIR" && test "$PSPELL_LIBDIR" != "/opt/lib"; then
+ +    
+ +  if test -z "$PSPELL_LIBDIR" || echo "$PSPELL_LIBDIR" | grep '^/' >/dev/null ; then
+ +    ai_p=$PSPELL_LIBDIR
+@@ -20476,7 +20476,7 @@
+ +
+ +  if test -n "$PSPELL_LIBDIR"; then
+ +    
+-+  if test "$PSPELL_LIBDIR" != "/usr/$PHP_LIBDIR" && test "$PSPELL_LIBDIR" != "/usr/lib"; then
+++  if test "$PSPELL_LIBDIR" != "/opt/$PHP_LIBDIR" && test "$PSPELL_LIBDIR" != "/opt/lib"; then
+ +    
+ +  if test -z "$PSPELL_LIBDIR" || echo "$PSPELL_LIBDIR" | grep '^/' >/dev/null ; then
+ +    ai_p=$PSPELL_LIBDIR
+@@ -20581,7 +20581,7 @@
+ +    -L*)
+ +      ac_ii=`echo $ac_i|cut -c 3-`
+ +      
+-+  if test "$ac_ii" != "/usr/$PHP_LIBDIR" && test "$ac_ii" != "/usr/lib"; then
+++  if test "$ac_ii" != "/opt/$PHP_LIBDIR" && test "$ac_ii" != "/opt/lib"; then
+ +    
+ +  if test -z "$ac_ii" || echo "$ac_ii" | grep '^/' >/dev/null ; then
+ +    ai_p=$ac_ii
+@@ -20667,7 +20667,7 @@
+ +    PSPELL_SHARED_LIBADD="-laspell $PSPELL_SHARED_LIBADD"
+ +    if test -n "$PSPELL_LIBDIR"; then
+ +      
+-+  if test "$PSPELL_LIBDIR" != "/usr/$PHP_LIBDIR" && test "$PSPELL_LIBDIR" != "/usr/lib"; then
+++  if test "$PSPELL_LIBDIR" != "/opt/$PHP_LIBDIR" && test "$PSPELL_LIBDIR" != "/opt/lib"; then
+ +    
+ +  if test -z "$PSPELL_LIBDIR" || echo "$PSPELL_LIBDIR" | grep '^/' >/dev/null ; then
+ +    ai_p=$PSPELL_LIBDIR
+@@ -20710,7 +20710,7 @@
+ +
+ +  if test -n "$PSPELL_LIBDIR"; then
+ +    
+-+  if test "$PSPELL_LIBDIR" != "/usr/$PHP_LIBDIR" && test "$PSPELL_LIBDIR" != "/usr/lib"; then
+++  if test "$PSPELL_LIBDIR" != "/opt/$PHP_LIBDIR" && test "$PSPELL_LIBDIR" != "/opt/lib"; then
+ +    
+ +  if test -z "$PSPELL_LIBDIR" || echo "$PSPELL_LIBDIR" | grep '^/' >/dev/null ; then
+ +    ai_p=$PSPELL_LIBDIR
+@@ -20805,7 +20805,7 @@
+ -  if test "$ext_builddir" = "."; then
+ -    PHP_PECL_EXTENSION=pgsql
+ +	
+-+  if test "$PSPELL_INCDIR" != "/usr/include"; then
+++  if test "$PSPELL_INCDIR" != "/opt/include"; then
+      
+ -  PHP_VAR_SUBST="$PHP_VAR_SUBST PHP_PECL_EXTENSION"
+ +  if test -z "$PSPELL_INCDIR" || echo "$PSPELL_INCDIR" | grep '^/' >/dev/null ; then
+@@ -20941,7 +20941,7 @@
+ +fi
+ +
+ +if test "$PHP_READLINE" && test "$PHP_READLINE" != "no"; then
+-+  for i in $PHP_READLINE /usr/local /usr; do
+++  for i in $PHP_READLINE /opt/local /opt; do
+ +    test -f $i/include/readline/readline.h && READLINE_DIR=$i && break
+ +  done
+ +
+@@ -20953,7 +20953,7 @@
+    
+ -  ext_builddir=ext/phar
+ -  ext_srcdir=$abs_srcdir/ext/phar
+-+  if test "$READLINE_DIR/include" != "/usr/include"; then
+++  if test "$READLINE_DIR/include" != "/opt/include"; then
+ +    
+ +  if test -z "$READLINE_DIR/include" || echo "$READLINE_DIR/include" | grep '^/' >/dev/null ; then
+ +    ai_p=$READLINE_DIR/include
+@@ -21206,7 +21206,7 @@
+ +    -L*)
+ +      ac_ii=`echo $ac_i|cut -c 3-`
+ +      
+-+  if test "$ac_ii" != "/usr/$PHP_LIBDIR" && test "$ac_ii" != "/usr/lib"; then
+++  if test "$ac_ii" != "/opt/$PHP_LIBDIR" && test "$ac_ii" != "/opt/lib"; then
+ +    
+ +  if test -z "$ac_ii" || echo "$ac_ii" | grep '^/' >/dev/null ; then
+ +    ai_p=$ac_ii
+@@ -21292,7 +21292,7 @@
+ +    READLINE_SHARED_LIBADD="-lreadline $READLINE_SHARED_LIBADD"
+ +    if test -n "$READLINE_DIR/$PHP_LIBDIR"; then
+ +      
+-+  if test "$READLINE_DIR/$PHP_LIBDIR" != "/usr/$PHP_LIBDIR" && test "$READLINE_DIR/$PHP_LIBDIR" != "/usr/lib"; then
+++  if test "$READLINE_DIR/$PHP_LIBDIR" != "/opt/$PHP_LIBDIR" && test "$READLINE_DIR/$PHP_LIBDIR" != "/opt/lib"; then
+ +    
+ +  if test -z "$READLINE_DIR/$PHP_LIBDIR" || echo "$READLINE_DIR/$PHP_LIBDIR" | grep '^/' >/dev/null ; then
+ +    ai_p=$READLINE_DIR/$PHP_LIBDIR
+@@ -21340,7 +21340,7 @@
+ +
+ +  if test -n "$READLINE_DIR/$PHP_LIBDIR"; then
+ +    
+-+  if test "$READLINE_DIR/$PHP_LIBDIR" != "/usr/$PHP_LIBDIR" && test "$READLINE_DIR/$PHP_LIBDIR" != "/usr/lib"; then
+++  if test "$READLINE_DIR/$PHP_LIBDIR" != "/opt/$PHP_LIBDIR" && test "$READLINE_DIR/$PHP_LIBDIR" != "/opt/lib"; then
+ +    
+ +  if test -z "$READLINE_DIR/$PHP_LIBDIR" || echo "$READLINE_DIR/$PHP_LIBDIR" | grep '^/' >/dev/null ; then
+ +    ai_p=$READLINE_DIR/$PHP_LIBDIR
+@@ -21558,7 +21558,7 @@
+ +    -L*)
+ +      ac_ii=`echo $ac_i|cut -c 3-`
+ +      
+-+  if test "$ac_ii" != "/usr/$PHP_LIBDIR" && test "$ac_ii" != "/usr/lib"; then
+++  if test "$ac_ii" != "/opt/$PHP_LIBDIR" && test "$ac_ii" != "/opt/lib"; then
+ +    
+ +  if test -z "$ac_ii" || echo "$ac_ii" | grep '^/' >/dev/null ; then
+ +    ai_p=$ac_ii
+@@ -21802,7 +21802,7 @@
+ +    -L*)
+ +      ac_ii=`echo $ac_i|cut -c 3-`
+ +      
+-+  if test "$ac_ii" != "/usr/$PHP_LIBDIR" && test "$ac_ii" != "/usr/lib"; then
+++  if test "$ac_ii" != "/opt/$PHP_LIBDIR" && test "$ac_ii" != "/opt/lib"; then
+ +    
+ +  if test -z "$ac_ii" || echo "$ac_ii" | grep '^/' >/dev/null ; then
+ +    ai_p=$ac_ii
+@@ -21991,7 +21991,7 @@
+  
+ +elif test "$PHP_LIBEDIT" != "no"; then
+  
+-+  for i in $PHP_LIBEDIT /usr/local /usr; do
+++  for i in $PHP_LIBEDIT /opt/local /opt; do
+ +    test -f $i/include/editline/readline.h && LIBEDIT_DIR=$i && break
+ +  done
+  
+@@ -22008,7 +22008,7 @@
+ -  ext_srcdir=$abs_srcdir/ext/posix
+ -
+ -  ac_extra=
+-+  if test "$LIBEDIT_DIR/include" != "/usr/include"; then
+++  if test "$LIBEDIT_DIR/include" != "/opt/include"; then
+ +    
+ +  if test -z "$LIBEDIT_DIR/include" || echo "$LIBEDIT_DIR/include" | grep '^/' >/dev/null ; then
+ +    ai_p=$LIBEDIT_DIR/include
+@@ -22347,7 +22347,7 @@
+ +    -L*)
+ +      ac_ii=`echo $ac_i|cut -c 3-`
+ +      
+-+  if test "$ac_ii" != "/usr/$PHP_LIBDIR" && test "$ac_ii" != "/usr/lib"; then
+++  if test "$ac_ii" != "/opt/$PHP_LIBDIR" && test "$ac_ii" != "/opt/lib"; then
+ +    
+ +  if test -z "$ac_ii" || echo "$ac_ii" | grep '^/' >/dev/null ; then
+ +    ai_p=$ac_ii
+@@ -22446,7 +22446,7 @@
+ +    READLINE_SHARED_LIBADD="-ledit $READLINE_SHARED_LIBADD"
+ +    if test -n "$LIBEDIT_DIR/$PHP_LIBDIR"; then
+ +      
+-+  if test "$LIBEDIT_DIR/$PHP_LIBDIR" != "/usr/$PHP_LIBDIR" && test "$LIBEDIT_DIR/$PHP_LIBDIR" != "/usr/lib"; then
+++  if test "$LIBEDIT_DIR/$PHP_LIBDIR" != "/opt/$PHP_LIBDIR" && test "$LIBEDIT_DIR/$PHP_LIBDIR" != "/opt/lib"; then
+ +    
+ +  if test -z "$LIBEDIT_DIR/$PHP_LIBDIR" || echo "$LIBEDIT_DIR/$PHP_LIBDIR" | grep '^/' >/dev/null ; then
+ +    ai_p=$LIBEDIT_DIR/$PHP_LIBDIR
+@@ -22531,7 +22531,7 @@
+ -        
+ +  if test -n "$LIBEDIT_DIR/$PHP_LIBDIR"; then
+ +    
+-+  if test "$LIBEDIT_DIR/$PHP_LIBDIR" != "/usr/$PHP_LIBDIR" && test "$LIBEDIT_DIR/$PHP_LIBDIR" != "/usr/lib"; then
+++  if test "$LIBEDIT_DIR/$PHP_LIBDIR" != "/opt/$PHP_LIBDIR" && test "$LIBEDIT_DIR/$PHP_LIBDIR" != "/opt/lib"; then
+ +    
+ +  if test -z "$LIBEDIT_DIR/$PHP_LIBDIR" || echo "$LIBEDIT_DIR/$PHP_LIBDIR" | grep '^/' >/dev/null ; then
+ +    ai_p=$LIBEDIT_DIR/$PHP_LIBDIR
+@@ -23236,7 +23236,7 @@
+  
+ -  fi
+ +if test "$PHP_RECODE" != "no"; then
+-+  RECODE_LIST="$PHP_RECODE /usr/local /usr /opt"
+++  RECODE_LIST="$PHP_RECODE /opt/local /opt"
+  
+ +  for i in $RECODE_LIST; do
+ +    if test -f $i/include/recode.h; then
+@@ -23322,7 +23322,7 @@
+ +    if test -n "$RECODE_DIR/$RECODE_LIB"; then
+        
+ -  if test "$PSPELL_LIBDIR" != "/usr/$PHP_LIBDIR" && test "$PSPELL_LIBDIR" != "/usr/lib"; then
+-+  if test "$RECODE_DIR/$RECODE_LIB" != "/usr/$PHP_LIBDIR" && test "$RECODE_DIR/$RECODE_LIB" != "/usr/lib"; then
+++  if test "$RECODE_DIR/$RECODE_LIB" != "/opt/$PHP_LIBDIR" && test "$RECODE_DIR/$RECODE_LIB" != "/opt/lib"; then
+      
+ -  if test -z "$PSPELL_LIBDIR" || echo "$PSPELL_LIBDIR" | grep '^/' >/dev/null ; then
+ -    ai_p=$PSPELL_LIBDIR
+@@ -23780,7 +23780,7 @@
+ -      ac_ii=`echo $ac_i|cut -c 3-`
+ -      
+ -  if test "$ac_ii" != "/usr/$PHP_LIBDIR" && test "$ac_ii" != "/usr/lib"; then
+-+  if test "$RECODE_DIR/$RECODE_LIB" != "/usr/$PHP_LIBDIR" && test "$RECODE_DIR/$RECODE_LIB" != "/usr/lib"; then
+++  if test "$RECODE_DIR/$RECODE_LIB" != "/opt/$PHP_LIBDIR" && test "$RECODE_DIR/$RECODE_LIB" != "/opt/lib"; then
+      
+ -  if test -z "$ac_ii" || echo "$ac_ii" | grep '^/' >/dev/null ; then
+ -    ai_p=$ac_ii
+@@ -23903,7 +23903,7 @@
+ +    if test -n "$RECODE_DIR/$RECODE_LIB"; then
+        
+ -  if test "$READLINE_DIR/$PHP_LIBDIR" != "/usr/$PHP_LIBDIR" && test "$READLINE_DIR/$PHP_LIBDIR" != "/usr/lib"; then
+-+  if test "$RECODE_DIR/$RECODE_LIB" != "/usr/$PHP_LIBDIR" && test "$RECODE_DIR/$RECODE_LIB" != "/usr/lib"; then
+++  if test "$RECODE_DIR/$RECODE_LIB" != "/opt/$PHP_LIBDIR" && test "$RECODE_DIR/$RECODE_LIB" != "/opt/lib"; then
+      
+ -  if test -z "$READLINE_DIR/$PHP_LIBDIR" || echo "$READLINE_DIR/$PHP_LIBDIR" | grep '^/' >/dev/null ; then
+ -    ai_p=$READLINE_DIR/$PHP_LIBDIR
+@@ -23936,7 +23936,7 @@
+ +  if test -n "$RECODE_DIR/$RECODE_LIB"; then
+      
+ -  if test "$READLINE_DIR/$PHP_LIBDIR" != "/usr/$PHP_LIBDIR" && test "$READLINE_DIR/$PHP_LIBDIR" != "/usr/lib"; then
+-+  if test "$RECODE_DIR/$RECODE_LIB" != "/usr/$PHP_LIBDIR" && test "$RECODE_DIR/$RECODE_LIB" != "/usr/lib"; then
+++  if test "$RECODE_DIR/$RECODE_LIB" != "/opt/$PHP_LIBDIR" && test "$RECODE_DIR/$RECODE_LIB" != "/opt/lib"; then
+      
+ -  if test -z "$READLINE_DIR/$PHP_LIBDIR" || echo "$READLINE_DIR/$PHP_LIBDIR" | grep '^/' >/dev/null ; then
+ -    ai_p=$READLINE_DIR/$PHP_LIBDIR
+@@ -24008,7 +24008,7 @@
+ -  ac_stuff="
+ -    -L$READLINE_DIR/$PHP_LIBDIR $PHP_READLINE_LIBS
+ -  "
+-+  if test "$RECODE_DIR/$RECODE_INC" != "/usr/include"; then
+++  if test "$RECODE_DIR/$RECODE_INC" != "/opt/include"; then
+ +    
+ +  if test -z "$RECODE_DIR/$RECODE_INC" || echo "$RECODE_DIR/$RECODE_INC" | grep '^/' >/dev/null ; then
+ +    ai_p=$RECODE_DIR/$RECODE_INC
+@@ -26201,7 +26201,7 @@
+ +fi
+  
+ +if test "$PHP_MM" != "no"; then
+-+  for i in $PHP_MM /usr/local /usr; do
+++  for i in $PHP_MM /opt/local /opt; do
+ +    test -f "$i/include/mm.h" && MM_DIR=$i && break
+ +  done
+  
+@@ -26247,7 +26247,7 @@
+ +    if test -n "$MM_DIR/$PHP_LIBDIR"; then
+        
+ -  if test "$RECODE_DIR/$RECODE_LIB" != "/usr/$PHP_LIBDIR" && test "$RECODE_DIR/$RECODE_LIB" != "/usr/lib"; then
+-+  if test "$MM_DIR/$PHP_LIBDIR" != "/usr/$PHP_LIBDIR" && test "$MM_DIR/$PHP_LIBDIR" != "/usr/lib"; then
+++  if test "$MM_DIR/$PHP_LIBDIR" != "/opt/$PHP_LIBDIR" && test "$MM_DIR/$PHP_LIBDIR" != "/opt/lib"; then
+      
+ -  if test -z "$RECODE_DIR/$RECODE_LIB" || echo "$RECODE_DIR/$RECODE_LIB" | grep '^/' >/dev/null ; then
+ -    ai_p=$RECODE_DIR/$RECODE_LIB
+@@ -26280,7 +26280,7 @@
+ +  if test -n "$MM_DIR/$PHP_LIBDIR"; then
+      
+ -  if test "$RECODE_DIR/$RECODE_LIB" != "/usr/$PHP_LIBDIR" && test "$RECODE_DIR/$RECODE_LIB" != "/usr/lib"; then
+-+  if test "$MM_DIR/$PHP_LIBDIR" != "/usr/$PHP_LIBDIR" && test "$MM_DIR/$PHP_LIBDIR" != "/usr/lib"; then
+++  if test "$MM_DIR/$PHP_LIBDIR" != "/opt/$PHP_LIBDIR" && test "$MM_DIR/$PHP_LIBDIR" != "/opt/lib"; then
+      
+ -  if test -z "$RECODE_DIR/$RECODE_LIB" || echo "$RECODE_DIR/$RECODE_LIB" | grep '^/' >/dev/null ; then
+ -    ai_p=$RECODE_DIR/$RECODE_LIB
+@@ -26351,7 +26351,7 @@
+  
+    
+ -  if test "$RECODE_DIR/$RECODE_INC" != "/usr/include"; then
+-+  if test "$MM_DIR/include" != "/usr/include"; then
+++  if test "$MM_DIR/include" != "/opt/include"; then
+      
+ -  if test -z "$RECODE_DIR/$RECODE_INC" || echo "$RECODE_DIR/$RECODE_INC" | grep '^/' >/dev/null ; then
+ -    ai_p=$RECODE_DIR/$RECODE_INC
+@@ -26808,7 +26808,7 @@
+ +  echo $ac_n "(cached) $ac_c" 1>&6
+ +else
+ +  
+-+  for i in $PHP_LIBXML_DIR /usr/local /usr; do
+++  for i in $PHP_LIBXML_DIR /opt/local /opt; do
+ +    if test -x "$i/bin/xml2-config"; then
+ +      ac_cv_php_xml2_config_path="$i/bin/xml2-config"
+ +      break
+@@ -26878,7 +26878,7 @@
+ +    -L*)
+ +      ac_ii=`echo $ac_i|cut -c 3-`
+ +      
+-+  if test "$ac_ii" != "/usr/$PHP_LIBDIR" && test "$ac_ii" != "/usr/lib"; then
+++  if test "$ac_ii" != "/opt/$PHP_LIBDIR" && test "$ac_ii" != "/opt/lib"; then
+ +    
+ +  if test -z "$ac_ii" || echo "$ac_ii" | grep '^/' >/dev/null ; then
+ +    ai_p=$ac_ii
+@@ -26925,7 +26925,7 @@
+ +    -I*)
+ +      ac_ii=`echo $ac_i|cut -c 3-`
+ +      
+-+  if test "$ac_ii" != "/usr/include"; then
+++  if test "$ac_ii" != "/opt/include"; then
+ +    
+ +  if test -z "$ac_ii" || echo "$ac_ii" | grep '^/' >/dev/null ; then
+ +    ai_p=$ac_ii
+@@ -27458,7 +27458,7 @@
+ +  ;;
+ +  *)
+ +  IFS="${IFS= 	}"; ac_save_ifs="$IFS"; IFS=":"
+-+  ac_dummy="/usr/local/bin:$PATH"
+++  ac_dummy="/opt/local/bin:$PATH"
+ +  for ac_dir in $ac_dummy; do 
+ +    test -z "$ac_dir" && ac_dir=.
+ +    if test -f $ac_dir/$ac_word; then
+@@ -27478,7 +27478,7 @@
+ +fi
+ +
+ +  else
+-+    SNMP_CONFIG="$PHP_SNMP/bin/net-snmp-config"
+++    SNMP_CONFIG="$PHP_SNMP/opt/bin/net-snmp-config"
+ +  fi
+ +
+ +  if test -x "$SNMP_CONFIG"; then
+@@ -27488,7 +27488,7 @@
+ +
+ +    if test -n "$SNMP_LIBS" && test -n "$SNMP_PREFIX"; then
+ +      
+-+  if test "${SNMP_PREFIX}/include" != "/usr/include"; then
+++  if test "${SNMP_PREFIX}/include" != "/opt/include"; then
+ +    
+ +  if test -z "${SNMP_PREFIX}/include" || echo "${SNMP_PREFIX}/include" | grep '^/' >/dev/null ; then
+ +    ai_p=${SNMP_PREFIX}/include
+@@ -27566,7 +27566,7 @@
+ +    -L*)
+ +      ac_ii=`echo $ac_i|cut -c 3-`
+ +      
+-+  if test "$ac_ii" != "/usr/$PHP_LIBDIR" && test "$ac_ii" != "/usr/lib"; then
+++  if test "$ac_ii" != "/opt/$PHP_LIBDIR" && test "$ac_ii" != "/opt/lib"; then
+ +    
+ +  if test -z "$ac_ii" || echo "$ac_ii" | grep '^/' >/dev/null ; then
+ +    ai_p=$ac_ii
+@@ -27619,13 +27619,13 @@
+ +
+ +            
+ +    if test "$PHP_SNMP" = "yes"; then
+-+      for i in /usr/include /usr/local/include; do
+++      for i in /opt/include /opt/local/include; do
+ +        test -f $i/snmp.h                       && SNMP_INCDIR=$i
+ +        test -f $i/ucd-snmp/snmp.h              && SNMP_INCDIR=$i/ucd-snmp
+ +        test -f $i/snmp/snmp.h                  && SNMP_INCDIR=$i/snmp
+ +        test -f $i/snmp/include/ucd-snmp/snmp.h && SNMP_INCDIR=$i/snmp/include/ucd-snmp
+ +      done
+-+      for i in /usr/$PHP_LIBDIR /usr/snmp/lib /usr/local/$PHP_LIBDIR /usr/local/lib /usr/local/snmp/lib; do
+++      for i in /opt/$PHP_LIBDIR /opt/snmp/lib /opt/local/$PHP_LIBDIR /opt/local/lib /opt/local/snmp/lib; do
+ +        test -f $i/libsnmp.a || test -f $i/libsnmp.$SHLIB_SUFFIX_NAME && SNMP_LIBDIR=$i
+ +      done
+ +    else
+@@ -27894,7 +27894,7 @@
+ +    -L*)
+ +      ac_ii=`echo $ac_i|cut -c 3-`
+ +      
+-+  if test "$ac_ii" != "/usr/$PHP_LIBDIR" && test "$ac_ii" != "/usr/lib"; then
+++  if test "$ac_ii" != "/opt/$PHP_LIBDIR" && test "$ac_ii" != "/opt/lib"; then
+ +    
+ +  if test -z "$ac_ii" || echo "$ac_ii" | grep '^/' >/dev/null ; then
+ +    ai_p=$ac_ii
+@@ -27954,7 +27954,7 @@
+ +    -I*)
+ +      ac_ii=`echo $ac_i|cut -c 3-`
+ +      
+-+  if test "$ac_ii" != "/usr/include"; then
+++  if test "$ac_ii" != "/opt/include"; then
+ +    
+ +  if test -z "$ac_ii" || echo "$ac_ii" | grep '^/' >/dev/null ; then
+ +    ai_p=$ac_ii
+@@ -28021,7 +28021,7 @@
+ +    if test "$found_openssl" = "no"; then
+    
+ +    if test "$PHP_OPENSSL_DIR" = "yes"; then
+-+      PHP_OPENSSL_DIR="/usr/local/ssl /usr/local /usr /usr/local/openssl"
+++      PHP_OPENSSL_DIR="/opt/local/ssl /opt/local /opt /opt/local/openssl"
+ +    fi
+ +
+ +    for i in $PHP_OPENSSL_DIR; do
+@@ -28087,7 +28087,7 @@
+ -      
+ -  if test "$cross_compiling" = yes; then
+ +    
+-+  if test "$OPENSSL_INCDIR" != "/usr/include"; then
+++  if test "$OPENSSL_INCDIR" != "/opt/include"; then
+ +    
+ +  if test -z "$OPENSSL_INCDIR" || echo "$OPENSSL_INCDIR" | grep '^/' >/dev/null ; then
+ +    ai_p=$OPENSSL_INCDIR
+@@ -28259,7 +28259,7 @@
+ +    -L*)
+ +      ac_ii=`echo $ac_i|cut -c 3-`
+ +      
+-+  if test "$ac_ii" != "/usr/$PHP_LIBDIR" && test "$ac_ii" != "/usr/lib"; then
+++  if test "$ac_ii" != "/opt/$PHP_LIBDIR" && test "$ac_ii" != "/opt/lib"; then
+ +    
+ +  if test -z "$ac_ii" || echo "$ac_ii" | grep '^/' >/dev/null ; then
+ +    ai_p=$ac_ii
+@@ -28603,7 +28603,7 @@
+ -
+ -  if test "x" = "xyes"; then
+ -    PHP_ZEND_EX="$PHP_ZEND_EX \$(phplibdir)/phpsession.$suffix"
+-+  if test "$ac_ii" != "/usr/$PHP_LIBDIR" && test "$ac_ii" != "/usr/lib"; then
+++  if test "$ac_ii" != "/opt/$PHP_LIBDIR" && test "$ac_ii" != "/opt/lib"; then
+ +    
+ +  if test -z "$ac_ii" || echo "$ac_ii" | grep '^/' >/dev/null ; then
+ +    ai_p=$ac_ii
+@@ -28876,7 +28876,7 @@
+ -    EXT_CLI_STATIC="$EXT_CLI_STATIC session"
+ +
+ +    
+-+  if test "$OPENSSL_LIBDIR" != "/usr/$PHP_LIBDIR" && test "$OPENSSL_LIBDIR" != "/usr/lib"; then
+++  if test "$OPENSSL_LIBDIR" != "/opt/$PHP_LIBDIR" && test "$OPENSSL_LIBDIR" != "/opt/lib"; then
+ +    
+ +  if test -z "$OPENSSL_LIBDIR" || echo "$OPENSSL_LIBDIR" | grep '^/' >/dev/null ; then
+ +    ai_p=$OPENSSL_LIBDIR
+@@ -29058,7 +29058,7 @@
+ -  if test -z "$MM_DIR" ; then
+ -    { echo "configure: error: cannot find mm library" 1>&2; exit 1; }
+ +    
+-+  if test "$SNMP_INCDIR" != "/usr/include"; then
+++  if test "$SNMP_INCDIR" != "/opt/include"; then
+ +    
+ +  if test -z "$SNMP_INCDIR" || echo "$SNMP_INCDIR" | grep '^/' >/dev/null ; then
+ +    ai_p=$SNMP_INCDIR
+@@ -29097,7 +29097,7 @@
+ +    if test -n "$SNMP_LIBDIR"; then
+        
+ -  if test "$MM_DIR/$PHP_LIBDIR" != "/usr/$PHP_LIBDIR" && test "$MM_DIR/$PHP_LIBDIR" != "/usr/lib"; then
+-+  if test "$SNMP_LIBDIR" != "/usr/$PHP_LIBDIR" && test "$SNMP_LIBDIR" != "/usr/lib"; then
+++  if test "$SNMP_LIBDIR" != "/opt/$PHP_LIBDIR" && test "$SNMP_LIBDIR" != "/opt/lib"; then
+      
+ -  if test -z "$MM_DIR/$PHP_LIBDIR" || echo "$MM_DIR/$PHP_LIBDIR" | grep '^/' >/dev/null ; then
+ -    ai_p=$MM_DIR/$PHP_LIBDIR
+@@ -29130,7 +29130,7 @@
+ +  if test -n "$SNMP_LIBDIR"; then
+      
+ -  if test "$MM_DIR/$PHP_LIBDIR" != "/usr/$PHP_LIBDIR" && test "$MM_DIR/$PHP_LIBDIR" != "/usr/lib"; then
+-+  if test "$SNMP_LIBDIR" != "/usr/$PHP_LIBDIR" && test "$SNMP_LIBDIR" != "/usr/lib"; then
+++  if test "$SNMP_LIBDIR" != "/opt/$PHP_LIBDIR" && test "$SNMP_LIBDIR" != "/opt/lib"; then
+      
+ -  if test -z "$MM_DIR/$PHP_LIBDIR" || echo "$MM_DIR/$PHP_LIBDIR" | grep '^/' >/dev/null ; then
+ -    ai_p=$MM_DIR/$PHP_LIBDIR
+@@ -29224,7 +29224,7 @@
+ +    -L*)
+ +      ac_ii=`echo $ac_i|cut -c 3-`
+ +      
+-+  if test "$ac_ii" != "/usr/$PHP_LIBDIR" && test "$ac_ii" != "/usr/lib"; then
+++  if test "$ac_ii" != "/opt/$PHP_LIBDIR" && test "$ac_ii" != "/opt/lib"; then
+      
+ -  if test -z "$MM_DIR/include" || echo "$MM_DIR/include" | grep '^/' >/dev/null ; then
+ -    ai_p=$MM_DIR/include
+@@ -29388,7 +29388,7 @@
+ +    -L*)
+ +      ac_ii=`echo $ac_i|cut -c 3-`
+        
+-+  if test "$ac_ii" != "/usr/$PHP_LIBDIR" && test "$ac_ii" != "/usr/lib"; then
+++  if test "$ac_ii" != "/opt/$PHP_LIBDIR" && test "$ac_ii" != "/opt/lib"; then
+ +    
+ +  if test -z "$ac_ii" || echo "$ac_ii" | grep '^/' >/dev/null ; then
+ +    ai_p=$ac_ii
+@@ -32305,7 +32305,7 @@
+ +  fi  
+ +
+ +  if test "$PHP_SQLITE" != "yes"; then
+-+    SEARCH_PATH="/usr/local /usr"
+++    SEARCH_PATH="/opt/local /opt"
+ +    SEARCH_FOR="/include/sqlite.h"
+ +    if test -r $PHP_SQLITE/; then # path given as parameter
+ +      SQLITE_DIR=$PHP_SQLITE
+@@ -32392,7 +32392,7 @@
+ +    SQLITE_SHARED_LIBADD="-lsqlite $SQLITE_SHARED_LIBADD"
+ +    if test -n "$SQLITE_DIR/$PHP_LIBDIR"; then
+ +      
+-+  if test "$SQLITE_DIR/$PHP_LIBDIR" != "/usr/$PHP_LIBDIR" && test "$SQLITE_DIR/$PHP_LIBDIR" != "/usr/lib"; then
+++  if test "$SQLITE_DIR/$PHP_LIBDIR" != "/opt/$PHP_LIBDIR" && test "$SQLITE_DIR/$PHP_LIBDIR" != "/opt/lib"; then
+      
+ -  
+ -fi
+@@ -32484,7 +32484,7 @@
+      
+ -  if test -z "$ac_ii" || echo "$ac_ii" | grep '^/' >/dev/null ; then
+ -    ai_p=$ac_ii
+-+  if test "$SQLITE_DIR/$PHP_LIBDIR" != "/usr/$PHP_LIBDIR" && test "$SQLITE_DIR/$PHP_LIBDIR" != "/usr/lib"; then
+++  if test "$SQLITE_DIR/$PHP_LIBDIR" != "/opt/$PHP_LIBDIR" && test "$SQLITE_DIR/$PHP_LIBDIR" != "/opt/lib"; then
+ +    
+ +  if test -z "$SQLITE_DIR/$PHP_LIBDIR" || echo "$SQLITE_DIR/$PHP_LIBDIR" | grep '^/' >/dev/null ; then
+ +    ai_p=$SQLITE_DIR/$PHP_LIBDIR
+@@ -32572,7 +32572,7 @@
+ +
+ +
+ +      
+-+  if test "$SQLITE_DIR/include" != "/usr/include"; then
+++  if test "$SQLITE_DIR/include" != "/opt/include"; then
+      
+ -    cat >> confdefs.h <<\EOF
+ -#define HAVE_SNMP 1
+@@ -41152,7 +41152,7 @@
+ -      LIBS="-lbind $LIBS" 
+ -   ;;
+ -  esac
+-+  if test "$SYBASE_CT_INCDIR" != "/usr/include"; then
+++  if test "$SYBASE_CT_INCDIR" != "/opt/include"; then
+ +    
+ +  if test -z "$SYBASE_CT_INCDIR" || echo "$SYBASE_CT_INCDIR" | grep '^/' >/dev/null ; then
+ +    ai_p=$SYBASE_CT_INCDIR
+@@ -41201,7 +41201,7 @@
+  
+ -    ac_cv_func_dns_search=yes
+ +  
+-+  if test "$SYBASE_CT_LIBDIR" != "/usr/$PHP_LIBDIR" && test "$SYBASE_CT_LIBDIR" != "/usr/lib"; then
+++  if test "$SYBASE_CT_LIBDIR" != "/opt/$PHP_LIBDIR" && test "$SYBASE_CT_LIBDIR" != "/opt/lib"; then
+ +    
+ +  if test -z "$SYBASE_CT_LIBDIR" || echo "$SYBASE_CT_LIBDIR" | grep '^/' >/dev/null ; then
+ +    ai_p=$SYBASE_CT_LIBDIR
+@@ -41640,7 +41640,7 @@
+ +    -L*)
+ +      ac_ii=`echo $ac_i|cut -c 3-`
+ +      
+-+  if test "$ac_ii" != "/usr/$PHP_LIBDIR" && test "$ac_ii" != "/usr/lib"; then
+++  if test "$ac_ii" != "/opt/$PHP_LIBDIR" && test "$ac_ii" != "/opt/lib"; then
+ +    
+ +  if test -z "$ac_ii" || echo "$ac_ii" | grep '^/' >/dev/null ; then
+ +    ai_p=$ac_ii
+@@ -41914,7 +41914,7 @@
+ +    -L*)
+ +      ac_ii=`echo $ac_i|cut -c 3-`
+ +      
+-+  if test "$ac_ii" != "/usr/$PHP_LIBDIR" && test "$ac_ii" != "/usr/lib"; then
+++  if test "$ac_ii" != "/opt/$PHP_LIBDIR" && test "$ac_ii" != "/opt/lib"; then
+ +    
+ +  if test -z "$ac_ii" || echo "$ac_ii" | grep '^/' >/dev/null ; then
+ +    ai_p=$ac_ii
+@@ -42160,7 +42160,7 @@
+ +    -L*)
+ +      ac_ii=`echo $ac_i|cut -c 3-`
+ +      
+-+  if test "$ac_ii" != "/usr/$PHP_LIBDIR" && test "$ac_ii" != "/usr/lib"; then
+++  if test "$ac_ii" != "/opt/$PHP_LIBDIR" && test "$ac_ii" != "/opt/lib"; then
+ +    
+ +  if test -z "$ac_ii" || echo "$ac_ii" | grep '^/' >/dev/null ; then
+ +    ai_p=$ac_ii
+@@ -42610,7 +42610,7 @@
+ +    -L*)
+ +      ac_ii=`echo $ac_i|cut -c 3-`
+ +      
+-+  if test "$ac_ii" != "/usr/$PHP_LIBDIR" && test "$ac_ii" != "/usr/lib"; then
+++  if test "$ac_ii" != "/opt/$PHP_LIBDIR" && test "$ac_ii" != "/opt/lib"; then
+ +    
+ +  if test -z "$ac_ii" || echo "$ac_ii" | grep '^/' >/dev/null ; then
+ +    ai_p=$ac_ii
+@@ -42884,7 +42884,7 @@
+ +    -L*)
+ +      ac_ii=`echo $ac_i|cut -c 3-`
+ +      
+-+  if test "$ac_ii" != "/usr/$PHP_LIBDIR" && test "$ac_ii" != "/usr/lib"; then
+++  if test "$ac_ii" != "/opt/$PHP_LIBDIR" && test "$ac_ii" != "/opt/lib"; then
+ +    
+ +  if test -z "$ac_ii" || echo "$ac_ii" | grep '^/' >/dev/null ; then
+ +    ai_p=$ac_ii
+@@ -43130,7 +43130,7 @@
+ +    -L*)
+ +      ac_ii=`echo $ac_i|cut -c 3-`
+ +      
+-+  if test "$ac_ii" != "/usr/$PHP_LIBDIR" && test "$ac_ii" != "/usr/lib"; then
+++  if test "$ac_ii" != "/opt/$PHP_LIBDIR" && test "$ac_ii" != "/opt/lib"; then
+ +    
+ +  if test -z "$ac_ii" || echo "$ac_ii" | grep '^/' >/dev/null ; then
+ +    ai_p=$ac_ii
+@@ -43581,7 +43581,7 @@
+ +    -L*)
+ +      ac_ii=`echo $ac_i|cut -c 3-`
+ +      
+-+  if test "$ac_ii" != "/usr/$PHP_LIBDIR" && test "$ac_ii" != "/usr/lib"; then
+++  if test "$ac_ii" != "/opt/$PHP_LIBDIR" && test "$ac_ii" != "/opt/lib"; then
+ +    
+ +  if test -z "$ac_ii" || echo "$ac_ii" | grep '^/' >/dev/null ; then
+ +    ai_p=$ac_ii
+@@ -43855,7 +43855,7 @@
+ +    -L*)
+ +      ac_ii=`echo $ac_i|cut -c 3-`
+ +      
+-+  if test "$ac_ii" != "/usr/$PHP_LIBDIR" && test "$ac_ii" != "/usr/lib"; then
+++  if test "$ac_ii" != "/opt/$PHP_LIBDIR" && test "$ac_ii" != "/opt/lib"; then
+ +    
+ +  if test -z "$ac_ii" || echo "$ac_ii" | grep '^/' >/dev/null ; then
+ +    ai_p=$ac_ii
+@@ -44101,7 +44101,7 @@
+ +    -L*)
+ +      ac_ii=`echo $ac_i|cut -c 3-`
+ +      
+-+  if test "$ac_ii" != "/usr/$PHP_LIBDIR" && test "$ac_ii" != "/usr/lib"; then
+++  if test "$ac_ii" != "/opt/$PHP_LIBDIR" && test "$ac_ii" != "/opt/lib"; then
+ +    
+ +  if test -z "$ac_ii" || echo "$ac_ii" | grep '^/' >/dev/null ; then
+ +    ai_p=$ac_ii
+@@ -46364,7 +46364,7 @@
+ +  if test "$PHP_TIDY" != "yes"; then
+ +    TIDY_SEARCH_DIRS=$PHP_TIDY
+ +  else
+-+    TIDY_SEARCH_DIRS="/usr/local /usr"
+++    TIDY_SEARCH_DIRS="/opt/local /opt"
+    fi
+  
+ -      fi
+@@ -46416,7 +46416,7 @@
+ +    if test -n "$TIDY_LIBDIR"; then
+        
+ -  if test "$ac_ii" != "/usr/$PHP_LIBDIR" && test "$ac_ii" != "/usr/lib"; then
+-+  if test "$TIDY_LIBDIR" != "/usr/$PHP_LIBDIR" && test "$TIDY_LIBDIR" != "/usr/lib"; then
+++  if test "$TIDY_LIBDIR" != "/opt/$PHP_LIBDIR" && test "$TIDY_LIBDIR" != "/opt/lib"; then
+      
+ -  if test -z "$ac_ii" || echo "$ac_ii" | grep '^/' >/dev/null ; then
+ -    ai_p=$ac_ii
+@@ -46578,7 +46578,7 @@
+ -      ac_ii=`echo $ac_i|cut -c 3-`
+ -      
+ -  if test "$ac_ii" != "/usr/$PHP_LIBDIR" && test "$ac_ii" != "/usr/lib"; then
+-+  if test "$TIDY_LIBDIR" != "/usr/$PHP_LIBDIR" && test "$TIDY_LIBDIR" != "/usr/lib"; then
+++  if test "$TIDY_LIBDIR" != "/opt/$PHP_LIBDIR" && test "$TIDY_LIBDIR" != "/opt/lib"; then
+      
+ -  if test -z "$ac_ii" || echo "$ac_ii" | grep '^/' >/dev/null ; then
+ -    ai_p=$ac_ii
+@@ -46791,7 +46791,7 @@
+    
+ -    SYBASE_CT_LIBS="-L$SYBASE_CT_LIBDIR -lsybcs -lsybct -lsybcomn -lsybintl"
+ -    echo "$ac_t""Sybase32 syb-prefix: $SYBASE_CT_LIBS" 1>&6
+-+  if test "$TIDY_INCDIR" != "/usr/include"; then
+++  if test "$TIDY_INCDIR" != "/opt/include"; then
+ +    
+ +  if test -z "$TIDY_INCDIR" || echo "$TIDY_INCDIR" | grep '^/' >/dev/null ; then
+ +    ai_p=$TIDY_INCDIR
+@@ -48187,7 +48187,7 @@
+ +  echo $ac_n "(cached) $ac_c" 1>&6
+ +else
+    
+-+  for i in $PHP_LIBXML_DIR /usr/local /usr; do
+++  for i in $PHP_LIBXML_DIR /opt/local /opt; do
+ +    if test -x "$i/bin/xml2-config"; then
+ +      ac_cv_php_xml2_config_path="$i/bin/xml2-config"
+ +      break
+@@ -48381,7 +48381,7 @@
+        ac_ii=`echo $ac_i|cut -c 3-`
+        
+ -  if test "$ac_ii" != "/usr/$PHP_LIBDIR" && test "$ac_ii" != "/usr/lib"; then
+-+  if test "$ac_ii" != "/usr/include"; then
+++  if test "$ac_ii" != "/opt/include"; then
+      
+    if test -z "$ac_ii" || echo "$ac_ii" | grep '^/' >/dev/null ; then
+      ai_p=$ac_ii
+@@ -48819,7 +48819,7 @@
+ -#define COMPILE_DL_SYSVMSG 1
+ -EOF
+ +        if test "$PHP_LIBEXPAT_DIR" != "no"; then
+-+    for i in $PHP_XML $PHP_LIBEXPAT_DIR /usr /usr/local; do
+++    for i in $PHP_XML $PHP_LIBEXPAT_DIR /opt /opt/local; do
+ +      if test -f "$i/$PHP_LIBDIR/libexpat.a" || test -f "$i/$PHP_LIBDIR/libexpat.$SHLIB_SUFFIX_NAME"; then
+ +        EXPAT_DIR=$i
+ +        break
+@@ -48831,7 +48831,7 @@
+      fi
+ +
+ +    
+-+  if test "$EXPAT_DIR/include" != "/usr/include"; then
+++  if test "$EXPAT_DIR/include" != "/opt/include"; then
+ +    
+ +  if test -z "$EXPAT_DIR/include" || echo "$EXPAT_DIR/include" | grep '^/' >/dev/null ; then
+ +    ai_p=$EXPAT_DIR/include
+@@ -48907,7 +48907,7 @@
+ -EOF
+ -  done
+ -
+-+  if test "$EXPAT_DIR/$PHP_LIBDIR" != "/usr/$PHP_LIBDIR" && test "$EXPAT_DIR/$PHP_LIBDIR" != "/usr/lib"; then
+++  if test "$EXPAT_DIR/$PHP_LIBDIR" != "/opt/$PHP_LIBDIR" && test "$EXPAT_DIR/$PHP_LIBDIR" != "/opt/lib"; then
+ +    
+ +  if test -z "$EXPAT_DIR/$PHP_LIBDIR" || echo "$EXPAT_DIR/$PHP_LIBDIR" | grep '^/' >/dev/null ; then
+ +    ai_p=$EXPAT_DIR/$PHP_LIBDIR
+@@ -48990,7 +48990,7 @@
+ -    EXT_CLI_STATIC="$EXT_CLI_STATIC sysvmsg"
+ +  if test -n "$EXPAT_DIR/$PHP_LIBDIR"; then
+ +    
+-+  if test "$EXPAT_DIR/$PHP_LIBDIR" != "/usr/$PHP_LIBDIR" && test "$EXPAT_DIR/$PHP_LIBDIR" != "/usr/lib"; then
+++  if test "$EXPAT_DIR/$PHP_LIBDIR" != "/opt/$PHP_LIBDIR" && test "$EXPAT_DIR/$PHP_LIBDIR" != "/opt/lib"; then
+ +    
+ +  if test -z "$EXPAT_DIR/$PHP_LIBDIR" || echo "$EXPAT_DIR/$PHP_LIBDIR" | grep '^/' >/dev/null ; then
+ +    ai_p=$EXPAT_DIR/$PHP_LIBDIR
+@@ -49472,7 +49472,7 @@
+ +  echo $ac_n "(cached) $ac_c" 1>&6
+ +else
+ +  
+-+  for i in $PHP_LIBXML_DIR /usr/local /usr; do
+++  for i in $PHP_LIBXML_DIR /opt/local /opt; do
+ +    if test -x "$i/bin/xml2-config"; then
+ +      ac_cv_php_xml2_config_path="$i/bin/xml2-config"
+ +      break
+@@ -49542,7 +49542,7 @@
+ +    -L*)
+ +      ac_ii=`echo $ac_i|cut -c 3-`
+ +      
+-+  if test "$ac_ii" != "/usr/$PHP_LIBDIR" && test "$ac_ii" != "/usr/lib"; then
+++  if test "$ac_ii" != "/opt/$PHP_LIBDIR" && test "$ac_ii" != "/opt/lib"; then
+ +    
+ +  if test -z "$ac_ii" || echo "$ac_ii" | grep '^/' >/dev/null ; then
+ +    ai_p=$ac_ii
+@@ -49589,7 +49589,7 @@
+ +    -I*)
+ +      ac_ii=`echo $ac_i|cut -c 3-`
+ +      
+-+  if test "$ac_ii" != "/usr/include"; then
+++  if test "$ac_ii" != "/opt/include"; then
+ +    
+ +  if test -z "$ac_ii" || echo "$ac_ii" | grep '^/' >/dev/null ; then
+ +    ai_p=$ac_ii
+@@ -49746,7 +49746,7 @@
+ +  fi
+ +  
+ +        if test "$PHP_LIBEXPAT_DIR" != "no"; then
+-+    for i in $PHP_XML $PHP_LIBEXPAT_DIR /usr /usr/local; do
+++    for i in $PHP_XML $PHP_LIBEXPAT_DIR /opt /opt/local; do
+ +      if test -f "$i/$PHP_LIBDIR/libexpat.a" || test -f "$i/$PHP_LIBDIR/libexpat.$SHLIB_SUFFIX_NAME"; then
+ +        EXPAT_DIR=$i
+ +        break
+@@ -49759,7 +49759,7 @@
+  
+ -php_enable_sysvshm=no
+ +    
+-+  if test "$EXPAT_DIR/include" != "/usr/include"; then
+++  if test "$EXPAT_DIR/include" != "/opt/include"; then
+ +    
+ +  if test -z "$EXPAT_DIR/include" || echo "$EXPAT_DIR/include" | grep '^/' >/dev/null ; then
+ +    ai_p=$EXPAT_DIR/include
+@@ -49802,7 +49802,7 @@
+ +    XML_SHARED_LIBADD="-lexpat $XML_SHARED_LIBADD"
+ +    if test -n "$EXPAT_DIR/$PHP_LIBDIR"; then
+ +      
+-+  if test "$EXPAT_DIR/$PHP_LIBDIR" != "/usr/$PHP_LIBDIR" && test "$EXPAT_DIR/$PHP_LIBDIR" != "/usr/lib"; then
+++  if test "$EXPAT_DIR/$PHP_LIBDIR" != "/opt/$PHP_LIBDIR" && test "$EXPAT_DIR/$PHP_LIBDIR" != "/opt/lib"; then
+ +    
+ +  if test -z "$EXPAT_DIR/$PHP_LIBDIR" || echo "$EXPAT_DIR/$PHP_LIBDIR" | grep '^/' >/dev/null ; then
+ +    ai_p=$EXPAT_DIR/$PHP_LIBDIR
+@@ -49845,7 +49845,7 @@
+ +
+ +  if test -n "$EXPAT_DIR/$PHP_LIBDIR"; then
+ +    
+-+  if test "$EXPAT_DIR/$PHP_LIBDIR" != "/usr/$PHP_LIBDIR" && test "$EXPAT_DIR/$PHP_LIBDIR" != "/usr/lib"; then
+++  if test "$EXPAT_DIR/$PHP_LIBDIR" != "/opt/$PHP_LIBDIR" && test "$EXPAT_DIR/$PHP_LIBDIR" != "/opt/lib"; then
+ +    
+ +  if test -z "$EXPAT_DIR/$PHP_LIBDIR" || echo "$EXPAT_DIR/$PHP_LIBDIR" | grep '^/' >/dev/null ; then
+ +    ai_p=$EXPAT_DIR/$PHP_LIBDIR
+@@ -50412,7 +50412,7 @@
+ -      fi
+ -    
+ -  fi
+-+  for i in $PHP_LIBXML_DIR /usr/local /usr; do
+++  for i in $PHP_LIBXML_DIR /opt/local /opt; do
+ +    if test -x "$i/bin/xml2-config"; then
+ +      ac_cv_php_xml2_config_path="$i/bin/xml2-config"
+ +      break
+@@ -50487,7 +50487,7 @@
+ +    -I*)
+ +      ac_ii=`echo $ac_i|cut -c 3-`
+ +      
+-+  if test "$ac_ii" != "/usr/include"; then
+++  if test "$ac_ii" != "/opt/include"; then
+ +    
+ +  if test -z "$ac_ii" || echo "$ac_ii" | grep '^/' >/dev/null ; then
+ +    ai_p=$ac_ii
+@@ -51157,7 +51157,7 @@
+ +  echo $ac_n "(cached) $ac_c" 1>&6
+ +else
+ +  
+-+  for i in $PHP_LIBXML_DIR /usr/local /usr; do
+++  for i in $PHP_LIBXML_DIR /opt/local /opt; do
+ +    if test -x "$i/bin/xml2-config"; then
+ +      ac_cv_php_xml2_config_path="$i/bin/xml2-config"
+ +      break
+@@ -51246,7 +51246,7 @@
+ +    -L*)
+ +      ac_ii=`echo $ac_i|cut -c 3-`
+ +      
+-+  if test "$ac_ii" != "/usr/$PHP_LIBDIR" && test "$ac_ii" != "/usr/lib"; then
+++  if test "$ac_ii" != "/opt/$PHP_LIBDIR" && test "$ac_ii" != "/opt/lib"; then
+ +    
+ +  if test -z "$ac_ii" || echo "$ac_ii" | grep '^/' >/dev/null ; then
+ +    ai_p=$ac_ii
+@@ -51305,7 +51305,7 @@
+ +    -I*)
+ +      ac_ii=`echo $ac_i|cut -c 3-`
+ +      
+-+  if test "$ac_ii" != "/usr/include"; then
+++  if test "$ac_ii" != "/opt/include"; then
+ +    
+ +  if test -z "$ac_ii" || echo "$ac_ii" | grep '^/' >/dev/null ; then
+ +    ai_p=$ac_ii
+@@ -51513,7 +51513,7 @@
+  
+ +  else
+ +    testval=no
+-+    for i in $PHP_LIBEXPAT_DIR $XMLRPC_DIR /usr/local /usr; do
+++    for i in $PHP_LIBEXPAT_DIR $XMLRPC_DIR /opt/local /opt; do
+ +      if test -f $i/$PHP_LIBDIR/libexpat.a || test -f $i/$PHP_LIBDIR/libexpat.$SHLIB_SUFFIX_NAME; then
+ +        cat >> confdefs.h <<\EOF
+ +#define HAVE_LIBEXPAT 1
+@@ -51533,7 +51533,7 @@
+ +    if test -n "$i/$PHP_LIBDIR"; then
+        
+ -      PHP_CLI_OBJS="$PHP_CLI_OBJS $ac_bdir$ac_obj.lo"
+-+  if test "$i/$PHP_LIBDIR" != "/usr/$PHP_LIBDIR" && test "$i/$PHP_LIBDIR" != "/usr/lib"; then
+++  if test "$i/$PHP_LIBDIR" != "/opt/$PHP_LIBDIR" && test "$i/$PHP_LIBDIR" != "/opt/lib"; then
+ +    
+ +  if test -z "$i/$PHP_LIBDIR" || echo "$i/$PHP_LIBDIR" | grep '^/' >/dev/null ; then
+ +    ai_p=$i/$PHP_LIBDIR
+@@ -51590,7 +51590,7 @@
+ -    EXT_CLI_STATIC="$EXT_CLI_STATIC tokenizer"
+ +  if test -n "$i/$PHP_LIBDIR"; then
+ +    
+-+  if test "$i/$PHP_LIBDIR" != "/usr/$PHP_LIBDIR" && test "$i/$PHP_LIBDIR" != "/usr/lib"; then
+++  if test "$i/$PHP_LIBDIR" != "/opt/$PHP_LIBDIR" && test "$i/$PHP_LIBDIR" != "/opt/lib"; then
+ +    
+ +  if test -z "$i/$PHP_LIBDIR" || echo "$i/$PHP_LIBDIR" | grep '^/' >/dev/null ; then
+ +    ai_p=$i/$PHP_LIBDIR
+@@ -51643,7 +51643,7 @@
+ +
+ +
+ +        
+-+  if test "$i/include" != "/usr/include"; then
+++  if test "$i/include" != "/opt/include"; then
+ +    
+ +  if test -z "$i/include" || echo "$i/include" | grep '^/' >/dev/null ; then
+ +    ai_p=$i/include
+@@ -51855,7 +51855,7 @@
+ -esac
+ +        if test "$found_iconv" = "no"; then
+  
+-+    for i in $PHP_ICONV /usr/local /usr; do
+++    for i in $PHP_ICONV /opt/local /opt; do
+ +      if test -r $i/include/giconv.h; then
+ +        cat >> confdefs.h <<\EOF
+ +#define HAVE_GICONV_H 1
+@@ -51936,7 +51936,7 @@
+ +    -L*)
+ +      ac_ii=`echo $ac_i|cut -c 3-`
+ +      
+-+  if test "$ac_ii" != "/usr/$PHP_LIBDIR" && test "$ac_ii" != "/usr/lib"; then
+++  if test "$ac_ii" != "/opt/$PHP_LIBDIR" && test "$ac_ii" != "/opt/lib"; then
+ +    
+ +  if test -z "$ac_ii" || echo "$ac_ii" | grep '^/' >/dev/null ; then
+ +    ai_p=$ac_ii
+@@ -52241,7 +52241,7 @@
+ +    XMLRPC_SHARED_LIBADD="-l$iconv_lib_name $XMLRPC_SHARED_LIBADD"
+ +    if test -n "$ICONV_DIR/$PHP_LIBDIR"; then
+ +      
+-+  if test "$ICONV_DIR/$PHP_LIBDIR" != "/usr/$PHP_LIBDIR" && test "$ICONV_DIR/$PHP_LIBDIR" != "/usr/lib"; then
+++  if test "$ICONV_DIR/$PHP_LIBDIR" != "/opt/$PHP_LIBDIR" && test "$ICONV_DIR/$PHP_LIBDIR" != "/opt/lib"; then
+ +    
+ +  if test -z "$ICONV_DIR/$PHP_LIBDIR" || echo "$ICONV_DIR/$PHP_LIBDIR" | grep '^/' >/dev/null ; then
+ +    ai_p=$ICONV_DIR/$PHP_LIBDIR
+@@ -52277,7 +52277,7 @@
+ +
+ +  if test -n "$ICONV_DIR/$PHP_LIBDIR"; then
+ +    
+-+  if test "$ICONV_DIR/$PHP_LIBDIR" != "/usr/$PHP_LIBDIR" && test "$ICONV_DIR/$PHP_LIBDIR" != "/usr/lib"; then
+++  if test "$ICONV_DIR/$PHP_LIBDIR" != "/opt/$PHP_LIBDIR" && test "$ICONV_DIR/$PHP_LIBDIR" != "/opt/lib"; then
+ +    
+ +  if test -z "$ICONV_DIR/$PHP_LIBDIR" || echo "$ICONV_DIR/$PHP_LIBDIR" | grep '^/' >/dev/null ; then
+ +    ai_p=$ICONV_DIR/$PHP_LIBDIR
+@@ -52326,7 +52326,7 @@
+ +
+ +
+ +      
+-+  if test "$ICONV_DIR/include" != "/usr/include"; then
+++  if test "$ICONV_DIR/include" != "/opt/include"; then
+ +    
+ +  if test -z "$ICONV_DIR/include" || echo "$ICONV_DIR/include" | grep '^/' >/dev/null ; then
+ +    ai_p=$ICONV_DIR/include
+@@ -53985,7 +53985,7 @@
+ +  else
+ +    echo $ac_n "checking for XMLRPC-EPI in default path""... $ac_c" 1>&6
+ +echo "configure:103388: checking for XMLRPC-EPI in default path" >&5
+-+    for i in /usr/local /usr; do
+++    for i in /opt/local /opt; do
+ +      if test -r $i/include/xmlrpc.h; then
+ +        XMLRPC_DIR=$i/include
+ +        echo "$ac_t""found in $i" 1>&6
+@@ -54003,7 +54003,7 @@
+ +  fi
+  
+ +  
+-+  if test "$XMLRPC_DIR" != "/usr/include"; then
+++  if test "$XMLRPC_DIR" != "/opt/include"; then
+      
+ -  if test "$EXPAT_DIR/include" != "/usr/include"; then
+ -    
+@@ -54036,7 +54036,7 @@
+ +    if test -n "$XMLRPC_DIR/$PHP_LIBDIR"; then
+        
+ -  if test "$EXPAT_DIR/$PHP_LIBDIR" != "/usr/$PHP_LIBDIR" && test "$EXPAT_DIR/$PHP_LIBDIR" != "/usr/lib"; then
+-+  if test "$XMLRPC_DIR/$PHP_LIBDIR" != "/usr/$PHP_LIBDIR" && test "$XMLRPC_DIR/$PHP_LIBDIR" != "/usr/lib"; then
+++  if test "$XMLRPC_DIR/$PHP_LIBDIR" != "/opt/$PHP_LIBDIR" && test "$XMLRPC_DIR/$PHP_LIBDIR" != "/opt/lib"; then
+      
+ -  if test -z "$EXPAT_DIR/$PHP_LIBDIR" || echo "$EXPAT_DIR/$PHP_LIBDIR" | grep '^/' >/dev/null ; then
+ -    ai_p=$EXPAT_DIR/$PHP_LIBDIR
+@@ -54069,7 +54069,7 @@
+ +  if test -n "$XMLRPC_DIR/$PHP_LIBDIR"; then
+      
+ -  if test "$EXPAT_DIR/$PHP_LIBDIR" != "/usr/$PHP_LIBDIR" && test "$EXPAT_DIR/$PHP_LIBDIR" != "/usr/lib"; then
+-+  if test "$XMLRPC_DIR/$PHP_LIBDIR" != "/usr/$PHP_LIBDIR" && test "$XMLRPC_DIR/$PHP_LIBDIR" != "/usr/lib"; then
+++  if test "$XMLRPC_DIR/$PHP_LIBDIR" != "/opt/$PHP_LIBDIR" && test "$XMLRPC_DIR/$PHP_LIBDIR" != "/opt/lib"; then
+      
+ -  if test -z "$EXPAT_DIR/$PHP_LIBDIR" || echo "$EXPAT_DIR/$PHP_LIBDIR" | grep '^/' >/dev/null ; then
+ -    ai_p=$EXPAT_DIR/$PHP_LIBDIR
+@@ -54973,7 +54973,7 @@
+ -  for i in $PHP_LIBXML_DIR /usr/local /usr; do
+ -    if test -x "$i/bin/xml2-config"; then
+ -      ac_cv_php_xml2_config_path="$i/bin/xml2-config"
+-+  for i in $PHP_XSL /usr/local /usr; do
+++  for i in $PHP_XSL /opt/local /opt; do
+ +    if test -x "$i/bin/xslt-config"; then
+ +      XSLT_CONFIG=$i/bin/xslt-config
+        break
+@@ -55059,7 +55059,7 @@
+ +      
+ +      echo $ac_n "checking for EXSLT support""... $ac_c" 1>&6
+ +echo "configure:104639: checking for EXSLT support" >&5
+-+      for i in $PHP_XSL /usr/local /usr; do
+++      for i in $PHP_XSL /opt/local /opt; do
+ +        if test -r "$i/include/libexslt/exslt.h"; then
+ +          PHP_XSL_EXSL_DIR=$i
+ +          break
+@@ -55075,7 +55075,7 @@
+ +    XSL_SHARED_LIBADD="-lexslt $XSL_SHARED_LIBADD"
+ +    if test -n "$PHP_XSL_EXSL_DIR/$PHP_LIBDIR"; then
+ +      
+-+  if test "$PHP_XSL_EXSL_DIR/$PHP_LIBDIR" != "/usr/$PHP_LIBDIR" && test "$PHP_XSL_EXSL_DIR/$PHP_LIBDIR" != "/usr/lib"; then
+++  if test "$PHP_XSL_EXSL_DIR/$PHP_LIBDIR" != "/opt/$PHP_LIBDIR" && test "$PHP_XSL_EXSL_DIR/$PHP_LIBDIR" != "/opt/lib"; then
+ +    
+ +  if test -z "$PHP_XSL_EXSL_DIR/$PHP_LIBDIR" || echo "$PHP_XSL_EXSL_DIR/$PHP_LIBDIR" | grep '^/' >/dev/null ; then
+ +    ai_p=$PHP_XSL_EXSL_DIR/$PHP_LIBDIR
+@@ -55118,7 +55118,7 @@
+ +
+ +  if test -n "$PHP_XSL_EXSL_DIR/$PHP_LIBDIR"; then
+ +    
+-+  if test "$PHP_XSL_EXSL_DIR/$PHP_LIBDIR" != "/usr/$PHP_LIBDIR" && test "$PHP_XSL_EXSL_DIR/$PHP_LIBDIR" != "/usr/lib"; then
+++  if test "$PHP_XSL_EXSL_DIR/$PHP_LIBDIR" != "/opt/$PHP_LIBDIR" && test "$PHP_XSL_EXSL_DIR/$PHP_LIBDIR" != "/opt/lib"; then
+ +    
+ +  if test -z "$PHP_XSL_EXSL_DIR/$PHP_LIBDIR" || echo "$PHP_XSL_EXSL_DIR/$PHP_LIBDIR" | grep '^/' >/dev/null ; then
+ +    ai_p=$PHP_XSL_EXSL_DIR/$PHP_LIBDIR
+@@ -55167,7 +55167,7 @@
+ +
+ +
+ +        
+-+  if test "$PHP_XSL_EXSL_DIR/include" != "/usr/include"; then
+++  if test "$PHP_XSL_EXSL_DIR/include" != "/opt/include"; then
+ +    
+ +  if test -z "$PHP_XSL_EXSL_DIR/include" || echo "$PHP_XSL_EXSL_DIR/include" | grep '^/' >/dev/null ; then
+ +    ai_p=$PHP_XSL_EXSL_DIR/include
+@@ -55927,7 +55927,7 @@
+ +      { echo "configure: error: Can not find zlib headers under "$PHP_ZLIB_DIR"" 1>&2; exit 1; }
+ +    fi
+ +  else
+-+    for i in /usr/local /usr; do
+++    for i in /opt/local /opt; do
+ +      if test -f "$i/include/zlib/zlib.h"; then
+ +        PHP_ZLIB_DIR="$i"
+ +        PHP_ZLIB_INCDIR="$i/include/zlib"
+@@ -55951,7 +55951,7 @@
+ +    ZIP_SHARED_LIBADD="-lz $ZIP_SHARED_LIBADD"
+ +    if test -n "$PHP_ZLIB_DIR/$PHP_LIBDIR"; then
+ +      
+-+  if test "$PHP_ZLIB_DIR/$PHP_LIBDIR" != "/usr/$PHP_LIBDIR" && test "$PHP_ZLIB_DIR/$PHP_LIBDIR" != "/usr/lib"; then
+++  if test "$PHP_ZLIB_DIR/$PHP_LIBDIR" != "/opt/$PHP_LIBDIR" && test "$PHP_ZLIB_DIR/$PHP_LIBDIR" != "/opt/lib"; then
+ +    
+ +  if test -z "$PHP_ZLIB_DIR/$PHP_LIBDIR" || echo "$PHP_ZLIB_DIR/$PHP_LIBDIR" | grep '^/' >/dev/null ; then
+ +    ai_p=$PHP_ZLIB_DIR/$PHP_LIBDIR
+@@ -56014,7 +56014,7 @@
+ +
+ +  if test -n "$PHP_ZLIB_DIR/$PHP_LIBDIR"; then
+ +    
+-+  if test "$PHP_ZLIB_DIR/$PHP_LIBDIR" != "/usr/$PHP_LIBDIR" && test "$PHP_ZLIB_DIR/$PHP_LIBDIR" != "/usr/lib"; then
+++  if test "$PHP_ZLIB_DIR/$PHP_LIBDIR" != "/opt/$PHP_LIBDIR" && test "$PHP_ZLIB_DIR/$PHP_LIBDIR" != "/opt/lib"; then
+ +    
+ +  if test -z "$PHP_ZLIB_DIR/$PHP_LIBDIR" || echo "$PHP_ZLIB_DIR/$PHP_LIBDIR" | grep '^/' >/dev/null ; then
+ +    ai_p=$PHP_ZLIB_DIR/$PHP_LIBDIR
+@@ -56105,7 +56105,7 @@
+      
+ -  if test -z "$ac_ii" || echo "$ac_ii" | grep '^/' >/dev/null ; then
+ -    ai_p=$ac_ii
+-+  if test "$PHP_ZLIB_INCDIR" != "/usr/include"; then
+++  if test "$PHP_ZLIB_INCDIR" != "/opt/include"; then
+ +    
+ +  if test -z "$PHP_ZLIB_INCDIR" || echo "$PHP_ZLIB_INCDIR" | grep '^/' >/dev/null ; then
+ +    ai_p=$PHP_ZLIB_INCDIR
+@@ -57013,7 +57013,7 @@
+ +done
+ +lt_ac_max=0
+ +lt_ac_count=0
+-+# Add /usr/xpg4/bin/sed as it is typically found on Solaris
+++# Add /opt/xpg4/bin/sed as it is typically found on Solaris
+ +# along with /bin/sed that truncates output.
+ +for lt_ac_sed in $lt_ac_sed_list /usr/xpg4/bin/sed; do
+ +  test ! -f $lt_ac_sed && continue
+@@ -58697,7 +58697,7 @@
+ +		echo $ac_n "checking for zlib.h""... $ac_c" 1>&6
+ +echo "configure:107154: checking for zlib.h" >&5
+ +		ZLIB_DIR=
+-+		for i in "$PHP_HTTP_ZLIB_COMPRESSION" "$PHP_ZLIB_DIR" "$PHP_ZLIB" /usr/local /usr /opt; do
+++		for i in "$PHP_HTTP_ZLIB_COMPRESSION" "$PHP_ZLIB_DIR" "$PHP_ZLIB" /opt/local /opt; do
+ +			if test -f "$i/include/zlib.h"; then
+ +				ZLIB_DIR=$i
+ +				break;
+@@ -58716,7 +58716,7 @@
+ +				{ echo "configure: error: libz version greater or equal to 1.2.0.4 required" 1>&2; exit 1; }
+ +			else
+ +				
+-+  if test "$ZLIB_DIR/include" != "/usr/include"; then
+++  if test "$ZLIB_DIR/include" != "/opt/include"; then
+ +    
+ +  if test -z "$ZLIB_DIR/include" || echo "$ZLIB_DIR/include" | grep '^/' >/dev/null ; then
+ +    ai_p=$ZLIB_DIR/include
+@@ -58760,7 +58760,7 @@
+ +    HTTP_SHARED_LIBADD="-lz $HTTP_SHARED_LIBADD"
+ +    if test -n "$ZLIB_DIR/$PHP_LIBDIR"; then
+ +      
+-+  if test "$ZLIB_DIR/$PHP_LIBDIR" != "/usr/$PHP_LIBDIR" && test "$ZLIB_DIR/$PHP_LIBDIR" != "/usr/lib"; then
+++  if test "$ZLIB_DIR/$PHP_LIBDIR" != "/opt/$PHP_LIBDIR" && test "$ZLIB_DIR/$PHP_LIBDIR" != "/opt/lib"; then
+ +    
+ +  if test -z "$ZLIB_DIR/$PHP_LIBDIR" || echo "$ZLIB_DIR/$PHP_LIBDIR" | grep '^/' >/dev/null ; then
+ +    ai_p=$ZLIB_DIR/$PHP_LIBDIR
+@@ -58808,7 +58808,7 @@
+ +
+ +  if test -n "$ZLIB_DIR/$PHP_LIBDIR"; then
+ +    
+-+  if test "$ZLIB_DIR/$PHP_LIBDIR" != "/usr/$PHP_LIBDIR" && test "$ZLIB_DIR/$PHP_LIBDIR" != "/usr/lib"; then
+++  if test "$ZLIB_DIR/$PHP_LIBDIR" != "/opt/$PHP_LIBDIR" && test "$ZLIB_DIR/$PHP_LIBDIR" != "/opt/lib"; then
+ +    
+ +  if test -z "$ZLIB_DIR/$PHP_LIBDIR" || echo "$ZLIB_DIR/$PHP_LIBDIR" | grep '^/' >/dev/null ; then
+ +    ai_p=$ZLIB_DIR/$PHP_LIBDIR
+@@ -58919,7 +58919,7 @@
+ +		echo $ac_n "checking for curl/curl.h""... $ac_c" 1>&6
+ +echo "configure:107312: checking for curl/curl.h" >&5
+ +		CURL_DIR=
+-+		for i in "$PHP_HTTP_CURL_REQUESTS" /usr/local /usr /opt; do
+++		for i in "$PHP_HTTP_CURL_REQUESTS" /opt/local /opt; do
+ +			if test -f "$i/include/curl/curl.h"; then
+ +				CURL_DIR=$i
+ +				break
+@@ -59196,7 +59196,7 @@
+ +		fi
+ +		
+ +		
+-+  if test "$CURL_DIR/include" != "/usr/include"; then
+++  if test "$CURL_DIR/include" != "/opt/include"; then
+ +    
+ +  if test -z "$CURL_DIR/include" || echo "$CURL_DIR/include" | grep '^/' >/dev/null ; then
+ +    ai_p=$CURL_DIR/include
+@@ -59238,7 +59238,7 @@
+ +    HTTP_SHARED_LIBADD="-lcurl $HTTP_SHARED_LIBADD"
+ +    if test -n "$CURL_DIR/$PHP_LIBDIR"; then
+ +      
+-+  if test "$CURL_DIR/$PHP_LIBDIR" != "/usr/$PHP_LIBDIR" && test "$CURL_DIR/$PHP_LIBDIR" != "/usr/lib"; then
+++  if test "$CURL_DIR/$PHP_LIBDIR" != "/opt/$PHP_LIBDIR" && test "$CURL_DIR/$PHP_LIBDIR" != "/opt/lib"; then
+ +    
+ +  if test -z "$CURL_DIR/$PHP_LIBDIR" || echo "$CURL_DIR/$PHP_LIBDIR" | grep '^/' >/dev/null ; then
+ +    ai_p=$CURL_DIR/$PHP_LIBDIR
+@@ -59306,7 +59306,7 @@
+      
+ -  if test -z "$XMLRPC_DIR" || echo "$XMLRPC_DIR" | grep '^/' >/dev/null ; then
+ -    ai_p=$XMLRPC_DIR
+-+  if test "$CURL_DIR/$PHP_LIBDIR" != "/usr/$PHP_LIBDIR" && test "$CURL_DIR/$PHP_LIBDIR" != "/usr/lib"; then
+++  if test "$CURL_DIR/$PHP_LIBDIR" != "/opt/$PHP_LIBDIR" && test "$CURL_DIR/$PHP_LIBDIR" != "/opt/lib"; then
+ +    
+ +  if test -z "$CURL_DIR/$PHP_LIBDIR" || echo "$CURL_DIR/$PHP_LIBDIR" | grep '^/' >/dev/null ; then
+ +    ai_p=$CURL_DIR/$PHP_LIBDIR
+@@ -59415,7 +59415,7 @@
+ +    -L*)
+ +      ac_ii=`echo $ac_i|cut -c 3-`
+ +      
+-+  if test "$ac_ii" != "/usr/$PHP_LIBDIR" && test "$ac_ii" != "/usr/lib"; then
+++  if test "$ac_ii" != "/opt/$PHP_LIBDIR" && test "$ac_ii" != "/opt/lib"; then
+      
+ -  if test -z "$XMLRPC_DIR/$PHP_LIBDIR" || echo "$XMLRPC_DIR/$PHP_LIBDIR" | grep '^/' >/dev/null ; then
+ -    ai_p=$XMLRPC_DIR/$PHP_LIBDIR
+@@ -59513,7 +59513,7 @@
+ +    -L*)
+ +      ac_ii=`echo $ac_i|cut -c 3-`
+ +      
+-+  if test "$ac_ii" != "/usr/$PHP_LIBDIR" && test "$ac_ii" != "/usr/lib"; then
+++  if test "$ac_ii" != "/opt/$PHP_LIBDIR" && test "$ac_ii" != "/opt/lib"; then
+      
+ -  if test -z "$XMLRPC_DIR/$PHP_LIBDIR" || echo "$XMLRPC_DIR/$PHP_LIBDIR" | grep '^/' >/dev/null ; then
+ -    ai_p=$XMLRPC_DIR/$PHP_LIBDIR
+@@ -59731,7 +59731,7 @@
+ +    -L*)
+ +      ac_ii=`echo $ac_i|cut -c 3-`
+ +      
+-+  if test "$ac_ii" != "/usr/$PHP_LIBDIR" && test "$ac_ii" != "/usr/lib"; then
+++  if test "$ac_ii" != "/opt/$PHP_LIBDIR" && test "$ac_ii" != "/opt/lib"; then
+ +    
+ +  if test -z "$ac_ii" || echo "$ac_ii" | grep '^/' >/dev/null ; then
+ +    ai_p=$ac_ii
+@@ -59966,7 +59966,7 @@
+ +    -L*)
+ +      ac_ii=`echo $ac_i|cut -c 3-`
+ +      
+-+  if test "$ac_ii" != "/usr/$PHP_LIBDIR" && test "$ac_ii" != "/usr/lib"; then
+++  if test "$ac_ii" != "/opt/$PHP_LIBDIR" && test "$ac_ii" != "/opt/lib"; then
+ +    
+ +  if test -z "$ac_ii" || echo "$ac_ii" | grep '^/' >/dev/null ; then
+ +    ai_p=$ac_ii
+@@ -60190,7 +60190,7 @@
+ +    -L*)
+ +      ac_ii=`echo $ac_i|cut -c 3-`
+ +      
+-+  if test "$ac_ii" != "/usr/$PHP_LIBDIR" && test "$ac_ii" != "/usr/lib"; then
+++  if test "$ac_ii" != "/opt/$PHP_LIBDIR" && test "$ac_ii" != "/opt/lib"; then
+ +    
+ +  if test -z "$ac_ii" || echo "$ac_ii" | grep '^/' >/dev/null ; then
+ +    ai_p=$ac_ii
+@@ -60378,7 +60378,7 @@
+ +    -L*)
+ +      ac_ii=`echo $ac_i|cut -c 3-`
+ +      
+-+  if test "$ac_ii" != "/usr/$PHP_LIBDIR" && test "$ac_ii" != "/usr/lib"; then
+++  if test "$ac_ii" != "/opt/$PHP_LIBDIR" && test "$ac_ii" != "/opt/lib"; then
+ +    
+ +  if test -z "$ac_ii" || echo "$ac_ii" | grep '^/' >/dev/null ; then
+ +    ai_p=$ac_ii
+@@ -60671,7 +60671,7 @@
+        ac_ii=`echo $ac_i|cut -c 3-`
+        
+ -  if test "$ac_ii" != "/usr/include"; then
+-+  if test "$ac_ii" != "/usr/$PHP_LIBDIR" && test "$ac_ii" != "/usr/lib"; then
+++  if test "$ac_ii" != "/opt/$PHP_LIBDIR" && test "$ac_ii" != "/opt/lib"; then
+      
+    if test -z "$ac_ii" || echo "$ac_ii" | grep '^/' >/dev/null ; then
+      ai_p=$ac_ii
+@@ -60897,7 +60897,7 @@
+ +				echo $ac_n "checking for event.h""... $ac_c" 1>&6
+ +echo "configure:108843: checking for event.h" >&5
+ +				EVENT_DIR=
+-+				for i in "$PHP_HTTP_CURL_LIBEVENT" /usr/local /usr /opt; do
+++				for i in "$PHP_HTTP_CURL_LIBEVENT" /opt/local /opt; do
+ +					if test -f "$i/include/event.h"; then
+ +						EVENT_DIR=$i
+ +						break
+@@ -60932,7 +60932,7 @@
+ +						echo "configure: warning: libcurl version greater or equal to 7.16.0 required; continuing without libevent support" 1>&2
+ +					else
+ +						
+-+  if test "$EVENT_DIR/include" != "/usr/include"; then
+++  if test "$EVENT_DIR/include" != "/opt/include"; then
+ +    
+ +  if test -z "$EVENT_DIR/include" || echo "$EVENT_DIR/include" | grep '^/' >/dev/null ; then
+ +    ai_p=$EVENT_DIR/include
+@@ -61131,7 +61131,7 @@
+ -EOF
+ -  done
+ -
+-+  if test "$EVENT_DIR/$PHP_LIBDIR" != "/usr/$PHP_LIBDIR" && test "$EVENT_DIR/$PHP_LIBDIR" != "/usr/lib"; then
+++  if test "$EVENT_DIR/$PHP_LIBDIR" != "/opt/$PHP_LIBDIR" && test "$EVENT_DIR/$PHP_LIBDIR" != "/opt/lib"; then
+ +    
+ +  if test -z "$EVENT_DIR/$PHP_LIBDIR" || echo "$EVENT_DIR/$PHP_LIBDIR" | grep '^/' >/dev/null ; then
+ +    ai_p=$EVENT_DIR/$PHP_LIBDIR
+@@ -61224,7 +61224,7 @@
+  
+ +  if test -n "$EVENT_DIR/$PHP_LIBDIR"; then
+ +    
+-+  if test "$EVENT_DIR/$PHP_LIBDIR" != "/usr/$PHP_LIBDIR" && test "$EVENT_DIR/$PHP_LIBDIR" != "/usr/lib"; then
+++  if test "$EVENT_DIR/$PHP_LIBDIR" != "/opt/$PHP_LIBDIR" && test "$EVENT_DIR/$PHP_LIBDIR" != "/opt/lib"; then
+ +    
+ +  if test -z "$EVENT_DIR/$PHP_LIBDIR" || echo "$EVENT_DIR/$PHP_LIBDIR" | grep '^/' >/dev/null ; then
+ +    ai_p=$EVENT_DIR/$PHP_LIBDIR
+@@ -61475,7 +61475,7 @@
+ +				echo $ac_n "checking for event.h""... $ac_c" 1>&6
+ +echo "configure:109175: checking for event.h" >&5
+ +				EVENT_DIR=
+-+				for i in "$PHP_HTTP_CURL_LIBEVENT" /usr/local /usr /opt; do
+++				for i in "$PHP_HTTP_CURL_LIBEVENT" /opt/local /opt; do
+ +					if test -f "$i/include/event.h"; then
+ +						EVENT_DIR=$i
+ +						break
+@@ -61510,7 +61510,7 @@
+ +						echo "configure: warning: libcurl version greater or equal to 7.16.0 required; continuing without libevent support" 1>&2
+ +					else
+ +						
+-+  if test "$EVENT_DIR/include" != "/usr/include"; then
+++  if test "$EVENT_DIR/include" != "/opt/include"; then
+      
+ -  if test -z "$ac_ii" || echo "$ac_ii" | grep '^/' >/dev/null ; then
+ -    ai_p=$ac_ii
+@@ -61558,7 +61558,7 @@
+ +    if test -n "$EVENT_DIR/$PHP_LIBDIR"; then
+        
+ -  if test "$PHP_XSL_EXSL_DIR/$PHP_LIBDIR" != "/usr/$PHP_LIBDIR" && test "$PHP_XSL_EXSL_DIR/$PHP_LIBDIR" != "/usr/lib"; then
+-+  if test "$EVENT_DIR/$PHP_LIBDIR" != "/usr/$PHP_LIBDIR" && test "$EVENT_DIR/$PHP_LIBDIR" != "/usr/lib"; then
+++  if test "$EVENT_DIR/$PHP_LIBDIR" != "/opt/$PHP_LIBDIR" && test "$EVENT_DIR/$PHP_LIBDIR" != "/opt/lib"; then
+      
+ -  if test -z "$PHP_XSL_EXSL_DIR/$PHP_LIBDIR" || echo "$PHP_XSL_EXSL_DIR/$PHP_LIBDIR" | grep '^/' >/dev/null ; then
+ -    ai_p=$PHP_XSL_EXSL_DIR/$PHP_LIBDIR
+@@ -61591,7 +61591,7 @@
+ +  if test -n "$EVENT_DIR/$PHP_LIBDIR"; then
+      
+ -  if test "$PHP_XSL_EXSL_DIR/$PHP_LIBDIR" != "/usr/$PHP_LIBDIR" && test "$PHP_XSL_EXSL_DIR/$PHP_LIBDIR" != "/usr/lib"; then
+-+  if test "$EVENT_DIR/$PHP_LIBDIR" != "/usr/$PHP_LIBDIR" && test "$EVENT_DIR/$PHP_LIBDIR" != "/usr/lib"; then
+++  if test "$EVENT_DIR/$PHP_LIBDIR" != "/opt/$PHP_LIBDIR" && test "$EVENT_DIR/$PHP_LIBDIR" != "/opt/lib"; then
+      
+ -  if test -z "$PHP_XSL_EXSL_DIR/$PHP_LIBDIR" || echo "$PHP_XSL_EXSL_DIR/$PHP_LIBDIR" | grep '^/' >/dev/null ; then
+ -    ai_p=$PHP_XSL_EXSL_DIR/$PHP_LIBDIR
+@@ -62135,7 +62135,7 @@
+ +    -L*)
+ +      ac_ii=`echo $ac_i|cut -c 3-`
+ +      
+-+  if test "$ac_ii" != "/usr/$PHP_LIBDIR" && test "$ac_ii" != "/usr/lib"; then
+++  if test "$ac_ii" != "/opt/$PHP_LIBDIR" && test "$ac_ii" != "/opt/lib"; then
+ +    
+ +  if test -z "$ac_ii" || echo "$ac_ii" | grep '^/' >/dev/null ; then
+ +    ai_p=$ac_ii
+@@ -62267,7 +62267,7 @@
+ +		echo $ac_n "checking for magic.h""... $ac_c" 1>&6
+ +echo "configure:109502: checking for magic.h" >&5
+ +		MAGIC_DIR=
+-+		for i in "$PHP_HTTP_MAGIC_MIME" /usr/local /usr /opt; do
+++		for i in "$PHP_HTTP_MAGIC_MIME" /opt/local /opt; do
+ +			if test -f "$i/include/magic.h"; then
+ +				MAGIC_DIR=$i
+ +				break
+@@ -62281,7 +62281,7 @@
+ +		fi
+ +		
+ +		
+-+  if test "$MAGIC_DIR/include" != "/usr/include"; then
+++  if test "$MAGIC_DIR/include" != "/opt/include"; then
+ +    
+ +  if test -z "$MAGIC_DIR/include" || echo "$MAGIC_DIR/include" | grep '^/' >/dev/null ; then
+ +    ai_p=$MAGIC_DIR/include
+@@ -62335,7 +62335,7 @@
+ +    if test -n "$MAGIC_DIR/$PHP_LIBDIR"; then
+        
+ -  if test "$PHP_ZLIB_DIR/$PHP_LIBDIR" != "/usr/$PHP_LIBDIR" && test "$PHP_ZLIB_DIR/$PHP_LIBDIR" != "/usr/lib"; then
+-+  if test "$MAGIC_DIR/$PHP_LIBDIR" != "/usr/$PHP_LIBDIR" && test "$MAGIC_DIR/$PHP_LIBDIR" != "/usr/lib"; then
+++  if test "$MAGIC_DIR/$PHP_LIBDIR" != "/opt/$PHP_LIBDIR" && test "$MAGIC_DIR/$PHP_LIBDIR" != "/opt/lib"; then
+      
+ -  if test -z "$PHP_ZLIB_DIR/$PHP_LIBDIR" || echo "$PHP_ZLIB_DIR/$PHP_LIBDIR" | grep '^/' >/dev/null ; then
+ -    ai_p=$PHP_ZLIB_DIR/$PHP_LIBDIR
+@@ -62368,7 +62368,7 @@
+ +  if test -n "$MAGIC_DIR/$PHP_LIBDIR"; then
+      
+ -  if test "$PHP_ZLIB_DIR/$PHP_LIBDIR" != "/usr/$PHP_LIBDIR" && test "$PHP_ZLIB_DIR/$PHP_LIBDIR" != "/usr/lib"; then
+-+  if test "$MAGIC_DIR/$PHP_LIBDIR" != "/usr/$PHP_LIBDIR" && test "$MAGIC_DIR/$PHP_LIBDIR" != "/usr/lib"; then
+++  if test "$MAGIC_DIR/$PHP_LIBDIR" != "/opt/$PHP_LIBDIR" && test "$MAGIC_DIR/$PHP_LIBDIR" != "/opt/lib"; then
+      
+ -  if test -z "$PHP_ZLIB_DIR/$PHP_LIBDIR" || echo "$PHP_ZLIB_DIR/$PHP_LIBDIR" | grep '^/' >/dev/null ; then
+ -    ai_p=$PHP_ZLIB_DIR/$PHP_LIBDIR
+@@ -62443,7 +62443,7 @@
+ +EOF
+ +
+ +			
+-+  if test "$HTTP_EXT_HASH_INCDIR" != "/usr/include"; then
+++  if test "$HTTP_EXT_HASH_INCDIR" != "/opt/include"; then
+      
+ -  if test "$PHP_ZLIB_INCDIR" != "/usr/include"; then
+ -    
+@@ -62529,7 +62529,7 @@
+ -yes
+ -#endif
+ +			
+-+  if test "$HTTP_EXT_HASH_INCDIR" != "/usr/include"; then
+++  if test "$HTTP_EXT_HASH_INCDIR" != "/opt/include"; then
+      
+ -EOF
+ -if (eval "$ac_cpp conftest.$ac_ext") 2>&5 |
