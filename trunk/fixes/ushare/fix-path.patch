@@ -1,5 +1,14 @@
---- ../../../backup/trunk_clean/feeds/packages/multimedia/ushare/Makefile	2011-11-25 09:50:11.476679899 +0400
-+++ ../../../trunk/feeds/packages/multimedia/ushare/Makefile	2011-11-26 22:51:50.770584430 +0400
+--- ../../../backup/trunk_clean/feeds/packages/multimedia/ushare/Makefile	2011-11-28 10:57:22.000000000 +0400
++++ ../../../trunk/feeds/packages/multimedia/ushare/Makefile	2011-12-01 11:14:05.970193619 +0400
+@@ -24,7 +24,7 @@
+  CATEGORY:=Multimedia
+  TITLE:= UPnP A/V & DLNA Media Server
+  URL:=http://ushare.geexbox.org/
+- DEPENDS:=+libdlna +libupnp
++ DEPENDS:=+libdlna +libupnp +libbz2
+ endef
+ 
+ define Package/ushare/description
 @@ -40,14 +40,14 @@
  	# this is *NOT* GNU configure
  	( cd $(PKG_BUILD_DIR); \

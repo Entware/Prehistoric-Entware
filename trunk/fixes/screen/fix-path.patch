@@ -1,11 +1,19 @@
---- ../../../backup/trunk_clean/feeds/packages/utils/screen/Makefile	2011-11-25 09:49:47.224984785 +0400
-+++ ../../../trunk/feeds/packages/utils/screen/Makefile	2011-11-25 10:06:31.639943307 +0400
-@@ -33,16 +33,16 @@
+diff -r -u -x .svn ../../../backup/trunk_clean/feeds/packages/utils/screen//files/etc/screenrc ../../../trunk/feeds/packages/utils/screen//files/etc/screenrc
+--- ../../../backup/trunk_clean/feeds/packages/utils/screen//files/etc/screenrc	2011-11-28 10:56:52.000000000 +0400
++++ ../../../trunk/feeds/packages/utils/screen//files/etc/screenrc	2011-12-01 10:32:14.036981536 +0400
+@@ -1 +1,2 @@
+ startup_message off
++deflogin off
+diff -r -u -x .svn ../../../backup/trunk_clean/feeds/packages/utils/screen//Makefile ../../../trunk/feeds/packages/utils/screen//Makefile
+--- ../../../backup/trunk_clean/feeds/packages/utils/screen//Makefile	2011-11-28 10:56:52.000000000 +0400
++++ ../../../trunk/feeds/packages/utils/screen//Makefile	2011-12-01 10:29:12.244426374 +0400
+@@ -33,16 +33,17 @@
  
  define Build/Configure
  	$(call Build/Configure/Default,\
 -		--with-sys-screenrc=/etc/screenrc,\
-+		--with-sys-screenrc=/opt/etc/screenrc,\
++		--with-sys-screenrc=/opt/etc/screenrc\
++		--with-socket-dir=/opt/tmp/srceens \
  		LIBS="-lcrypt" \
  	)
  endef
