@@ -1,0 +1,39 @@
+--- ../../../backup/trunk_clean/feeds/packages/net/darkstat/Makefile	2011-12-05 10:46:14.000000000 +0400
++++ ../../../trunk/feeds/packages/net/darkstat/Makefile	2011-12-05 12:39:07.450896244 +0400
+@@ -33,13 +33,13 @@
+ over HTTP.
+ endef
+ 
+-define Package/darkstat/conffiles
+-/etc/config/darkstat
+-endef
++#define Package/darkstat/conffiles
++#/opt/etc/config/darkstat
++#endef
+ 
+ CONFIGURE_ARGS += \
+ 	--disable-debug \
+-	--with-chroot-dir=/var/empty
++	--with-chroot-dir=/opt/var/empty
+ 
+ TARGET_CFLAGS += -std=gnu99
+ 
+@@ -50,12 +50,12 @@
+ endef
+ 
+ define Package/darkstat/install
+-	$(INSTALL_DIR) $(1)/usr/sbin
+-	$(INSTALL_BIN) $(PKG_INSTALL_DIR)/usr/sbin/darkstat $(1)/usr/sbin/
+-	$(INSTALL_DIR) $(1)/etc/init.d
+-	$(INSTALL_BIN) ./files/darkstat.init $(1)/etc/init.d/darkstat
+-	$(INSTALL_DIR) $(1)/etc/config
+-	$(INSTALL_CONF) ./files/darkstat.config $(1)/etc/config/darkstat
++	$(INSTALL_DIR) $(1)/opt/bin
++	$(INSTALL_BIN) $(PKG_INSTALL_DIR)/opt/sbin/darkstat $(1)/opt/bin/
++#	$(INSTALL_DIR) $(1)/etc/init.d
++#	$(INSTALL_BIN) ./files/darkstat.init $(1)/etc/init.d/darkstat
++#	$(INSTALL_DIR) $(1)/etc/config
++#	$(INSTALL_CONF) ./files/darkstat.config $(1)/etc/config/darkstat
+ endef
+ 
+ $(eval $(call BuildPackage,darkstat))
