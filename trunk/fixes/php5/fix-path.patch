@@ -1,6 +1,6 @@
 diff -r -u -x .svn ../../../backup/trunk_clean/feeds/packages/lang/php5//files/php.ini ../../../trunk/feeds/packages/lang/php5//files/php.ini
---- ../../../backup/trunk_clean/feeds/packages/lang/php5//files/php.ini	2011-11-28 10:56:55.000000000 +0400
-+++ ../../../trunk/feeds/packages/lang/php5//files/php.ini	2011-11-30 09:16:47.118870247 +0400
+--- ../../../backup/trunk_clean/feeds/packages/lang/php5//files/php.ini	2011-12-05 10:46:04.000000000 +0400
++++ ../../../trunk/feeds/packages/lang/php5//files/php.ini	2011-12-05 10:51:11.384007187 +0400
 @@ -103,7 +103,7 @@
  ;error_prepend_string = "<font color=#ff0000>"
  ;error_append_string = "</font>"
@@ -50,8 +50,8 @@ diff -r -u -x .svn ../../../backup/trunk_clean/feeds/packages/lang/php5//files/p
  soap.wsdl_cache_limit = 5
  
 diff -r -u -x .svn ../../../backup/trunk_clean/feeds/packages/lang/php5//Makefile ../../../trunk/feeds/packages/lang/php5//Makefile
---- ../../../backup/trunk_clean/feeds/packages/lang/php5//Makefile	2011-11-28 10:56:57.000000000 +0400
-+++ ../../../trunk/feeds/packages/lang/php5//Makefile	2011-11-30 10:40:17.465448308 +0400
+--- ../../../backup/trunk_clean/feeds/packages/lang/php5//Makefile	2011-12-05 10:46:05.000000000 +0400
++++ ../../../trunk/feeds/packages/lang/php5//Makefile	2011-12-05 10:51:11.388009137 +0400
 @@ -131,14 +131,14 @@
  	--disable-debug \
  	--without-pear \
@@ -243,7 +243,7 @@ diff -r -u -x .svn ../../../backup/trunk_clean/feeds/packages/lang/php5//Makefil
  else
    CONFIGURE_ARGS+= --disable-xmlwriter
  endif
-@@ -419,7 +419,7 @@
+@@ -425,7 +425,7 @@
  
  ifneq ($(SDK)$(CONFIG_PHP5_LIBXML),)
    CONFIGURE_ARGS+= --enable-libxml
@@ -252,7 +252,7 @@ diff -r -u -x .svn ../../../backup/trunk_clean/feeds/packages/lang/php5//Makefil
  else
    CONFIGURE_ARGS+= --disable-libxml
  endif
-@@ -442,27 +442,27 @@
+@@ -448,27 +448,27 @@
  endef
  
  define Package/php5/install
@@ -292,7 +292,7 @@ diff -r -u -x .svn ../../../backup/trunk_clean/feeds/packages/lang/php5//Makefil
  endef
  
  define BuildModule
-@@ -478,10 +478,10 @@
+@@ -484,10 +484,10 @@
    endef
  
    define Package/php5-mod-$(1)/install
@@ -307,9 +307,10 @@ diff -r -u -x .svn ../../../backup/trunk_clean/feeds/packages/lang/php5//Makefil
    endef
  
    $$(eval $$(call BuildPackage,php5-mod-$(1)))
+Только в ../../../trunk/feeds/packages/lang/php5/: Makefile.orig
 diff -r -u -x .svn ../../../backup/trunk_clean/feeds/packages/lang/php5//patches/005-APC.patch ../../../trunk/feeds/packages/lang/php5//patches/005-APC.patch
---- ../../../backup/trunk_clean/feeds/packages/lang/php5//patches/005-APC.patch	2011-11-28 10:56:57.000000000 +0400
-+++ ../../../trunk/feeds/packages/lang/php5//patches/005-APC.patch	2011-11-30 09:20:46.295863285 +0400
+--- ../../../backup/trunk_clean/feeds/packages/lang/php5//patches/005-APC.patch	2011-12-05 10:46:05.000000000 +0400
++++ ../../../trunk/feeds/packages/lang/php5//patches/005-APC.patch	2011-12-05 10:51:11.392011087 +0400
 @@ -5801,7 +5801,7 @@
  +{
  +    int fd;
@@ -406,8 +407,8 @@ diff -r -u -x .svn ../../../backup/trunk_clean/feeds/packages/lang/php5//patches
  +     run -X
  +
 diff -r -u -x .svn ../../../backup/trunk_clean/feeds/packages/lang/php5//patches/020-PECL-add-libevent.patch ../../../trunk/feeds/packages/lang/php5//patches/020-PECL-add-libevent.patch
---- ../../../backup/trunk_clean/feeds/packages/lang/php5//patches/020-PECL-add-libevent.patch	2011-11-28 10:56:57.000000000 +0400
-+++ ../../../trunk/feeds/packages/lang/php5//patches/020-PECL-add-libevent.patch	2011-11-30 09:23:45.517614816 +0400
+--- ../../../backup/trunk_clean/feeds/packages/lang/php5//patches/020-PECL-add-libevent.patch	2011-12-05 10:46:05.000000000 +0400
++++ ../../../trunk/feeds/packages/lang/php5//patches/020-PECL-add-libevent.patch	2011-12-05 10:51:11.392011087 +0400
 @@ -11,7 +11,7 @@
  +[  --with-libevent             Include libevent support])
  +
@@ -418,8 +419,8 @@ diff -r -u -x .svn ../../../backup/trunk_clean/feeds/packages/lang/php5//patches
  +
  +  if test "$PHP_LIBEVENT" = "yes"; then
 diff -r -u -x .svn ../../../backup/trunk_clean/feeds/packages/lang/php5//patches/030-PECL-add-http.patch ../../../trunk/feeds/packages/lang/php5//patches/030-PECL-add-http.patch
---- ../../../backup/trunk_clean/feeds/packages/lang/php5//patches/030-PECL-add-http.patch	2011-11-28 10:56:57.000000000 +0400
-+++ ../../../trunk/feeds/packages/lang/php5//patches/030-PECL-add-http.patch	2011-11-30 09:31:42.511613707 +0400
+--- ../../../backup/trunk_clean/feeds/packages/lang/php5//patches/030-PECL-add-http.patch	2011-12-05 10:46:05.000000000 +0400
++++ ../../../trunk/feeds/packages/lang/php5//patches/030-PECL-add-http.patch	2011-12-05 10:51:11.396013037 +0400
 @@ -404,7 +404,7 @@
  +	if test "$PHP_HTTP_ZLIB_COMPRESSION" != "no"; then
  +		AC_MSG_CHECKING([for zlib.h])
@@ -466,8 +467,8 @@ diff -r -u -x .svn ../../../backup/trunk_clean/feeds/packages/lang/php5//patches
  +        $head = new HttpRequest($url, HttpRequest::METH_HEAD);
  +        $headers = $head->send()->getHeaders();
 diff -r -u -x .svn ../../../backup/trunk_clean/feeds/packages/lang/php5//patches/102-debian_patches_use_embedded_timezonedb.patch ../../../trunk/feeds/packages/lang/php5//patches/102-debian_patches_use_embedded_timezonedb.patch
---- ../../../backup/trunk_clean/feeds/packages/lang/php5//patches/102-debian_patches_use_embedded_timezonedb.patch	2011-11-28 10:56:57.000000000 +0400
-+++ ../../../trunk/feeds/packages/lang/php5//patches/102-debian_patches_use_embedded_timezonedb.patch	2011-11-30 09:33:05.122572453 +0400
+--- ../../../backup/trunk_clean/feeds/packages/lang/php5//patches/102-debian_patches_use_embedded_timezonedb.patch	2011-12-05 10:46:05.000000000 +0400
++++ ../../../trunk/feeds/packages/lang/php5//patches/102-debian_patches_use_embedded_timezonedb.patch	2011-12-05 10:51:11.396013037 +0400
 @@ -71,7 +71,7 @@
  +#ifdef HAVE_SYSTEM_TZDATA_PREFIX
  +#define ZONEINFO_PREFIX HAVE_SYSTEM_TZDATA_PREFIX
@@ -478,8 +479,8 @@ diff -r -u -x .svn ../../../backup/trunk_clean/feeds/packages/lang/php5//patches
  +
  +/* Hash table entry for the cache of the zone.tab mapping table. */
 diff -r -u -x .svn ../../../backup/trunk_clean/feeds/packages/lang/php5//patches/900-prevent_buildconf_force.patch ../../../trunk/feeds/packages/lang/php5//patches/900-prevent_buildconf_force.patch
---- ../../../backup/trunk_clean/feeds/packages/lang/php5//patches/900-prevent_buildconf_force.patch	2011-11-28 10:56:57.000000000 +0400
-+++ ../../../trunk/feeds/packages/lang/php5//patches/900-prevent_buildconf_force.patch	2011-11-30 10:03:15.401150908 +0400
+--- ../../../backup/trunk_clean/feeds/packages/lang/php5//patches/900-prevent_buildconf_force.patch	2011-12-05 10:46:05.000000000 +0400
++++ ../../../trunk/feeds/packages/lang/php5//patches/900-prevent_buildconf_force.patch	2011-12-05 10:51:11.412020835 +0400
 @@ -6712,7 +6712,7 @@
  +  else
  +    echo $ac_n "checking for BZip2 in default path""... $ac_c" 1>&6

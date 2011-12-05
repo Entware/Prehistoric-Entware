@@ -13,18 +13,9 @@ all: ./.done
 ./.done:
 	@echo Processing OpenWRT Buildroot...
 	@for dir in `ls ./fixes`; do ( \
-	    echo Processing "$$dir"; \
 	    make -C "./fixes/$$dir"; \
 	); done
 	@echo Done!
-	touch $@
-
-ipk_index: ./.ipk_indexed
-./.ipk_indexed:
-	rm -f ../trunk/bin/rtn/packages/Packages ../trunk/bin/rtn/packages/Packages.gz
-	(cd ../trunk/bin/rtn/packages; \
-	../../../scripts/ipkg-make-index.sh . > ./Packages; \
-	gzip -9c ./Packages > ./Packages.gz)
 	touch $@
 
 buildroot_install: ./.buildroot_installed
@@ -32,8 +23,8 @@ buildroot_install: ./.buildroot_installed
 	(cd ..; \
 	svn co svn://svn.openwrt.org/openwrt/trunk/ ./trunk; \
 	cd ./trunk; \
-	./scripts/feeds update -a; \
-	./scripts/feeds install -a)
+	./scripts/feeds update packages; \
+	./scripts/feeds install -a -p packages)
 	touch $@
 
 toolchain_install: ./.toolchain_installed
@@ -49,7 +40,6 @@ clean:
 	@for dir in `ls ./fixes`; do ( \
 	    rm -f -v ./fixes/$$dir/.done \
 	); done
-	rm -f ./.ipk_indexed
 	rm -f ./.done
 	rm -f ./.buildroot_installed
 	rm -f ./.toolchain_installed

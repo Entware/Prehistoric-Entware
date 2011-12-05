@@ -10,7 +10,7 @@ all: ./.done
 
 ./.done:
 	patch -p0 -i ./fix-path.patch
-	rm -f ../../../trunk/feeds/packages/multimedia/ushare/files/ushare.*
+	rm ../../../trunk/feeds/packages/multimedia/ushare/files/ushare.*
 	touch $@
 
 clean:

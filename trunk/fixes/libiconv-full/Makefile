@@ -10,7 +10,7 @@ all: ./.done
 
 ./.done:
 	patch -p0 -i ./fix-path.patch
-	rm -f ../../../trunk/feeds/packages/libs/libiconv-full/patches/100-strip_charsets.patch
+	rm ../../../trunk/feeds/packages/libs/libiconv-full/patches/100-strip_charsets.patch
 	touch $@
 
 clean:
