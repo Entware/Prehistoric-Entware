@@ -1,0 +1,26 @@
+--- ../../../backup/trunk_clean/feeds/packages/multimedia/palantir/Makefile	2011-12-05 10:46:48.000000000 +0400
++++ ../../../trunk/feeds/packages/multimedia/palantir/Makefile	2011-12-05 12:40:50.182212093 +0400
+@@ -32,7 +32,7 @@
+ endef
+ 
+ define Package/palantir/conffiles
+-/etc/palantir.conf
++/opt/etc/palantir.conf
+ endef
+ 
+ include $(INCLUDE_DIR)/package.mk
+@@ -53,10 +53,10 @@
+ endef
+ 
+ define Package/palantir/install	
+-	$(INSTALL_DIR) $(1)/etc
+-	$(INSTALL_DATA) $(PKG_BUILD_DIR)/server/palantir-mips.conf.sample $(1)/etc/palantir.conf
+-	$(INSTALL_DIR) $(1)/usr/sbin
+-	$(INSTALL_BIN) $(PKG_BUILD_DIR)/server/palantir $(1)/usr/sbin/
++	$(INSTALL_DIR) $(1)/opt/etc
++	$(INSTALL_DATA) $(PKG_BUILD_DIR)/server/palantir-mips.conf.sample $(1)/opt/etc/palantir.conf
++	$(INSTALL_DIR) $(1)/opt/bin
++	$(INSTALL_BIN) $(PKG_BUILD_DIR)/server/palantir $(1)/opt/bin/
+ endef
+ 
+ $(eval $(call BuildPackage,palantir))
