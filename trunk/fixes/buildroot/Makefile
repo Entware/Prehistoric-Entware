@@ -13,6 +13,7 @@ all: ./.done
 	patch -p0 -i ./package-ipkg.patch
 	patch -p0 -i ./nls.patch
 	patch -p0 -i ./cmake.patch
+	echo "Warning: See ./include/package-defaults.mk for absolute path to linux kernel"
 	patch -p0 -i ./package-defaults.patch
 	patch -p0 -i ./rules.patch
 	patch -p0 -i ./autotools.patch
