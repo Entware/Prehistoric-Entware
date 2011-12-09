@@ -1,0 +1,135 @@
+diff -r -u -x .svn ../../../backup/trunk_clean/feeds/packages/multimedia/minidlna//Makefile ../../../trunk/feeds/packages/multimedia/minidlna//Makefile
+--- ../../../backup/trunk_clean/feeds/packages/multimedia/minidlna//Makefile	2011-12-05 10:46:48.000000000 +0400
++++ ../../../trunk/feeds/packages/multimedia/minidlna//Makefile	2011-12-09 13:15:01.612053547 +0400
+@@ -17,7 +17,7 @@
+ 
+ PKG_BUILD_PARALLEL:=0
+ 
+-include $(INCLUDE_DIR)/kernel.mk
++#include $(INCLUDE_DIR)/kernel.mk
+ include $(INCLUDE_DIR)/package.mk
+ include $(INCLUDE_DIR)/nls.mk
+ 
+@@ -37,18 +37,18 @@
+ endef
+ 
+ define Package/minidlna/conffiles
+-/etc/minidlna.conf
++/opt/etc/minidlna.conf
+ endef
+ 
+ TARGET_CPPFLAGS += \
+-	-I$(STAGING_DIR)/usr/include \
+-	-I$(STAGING_DIR)/usr/include/FLAC \
+-	-I$(STAGING_DIR)/usr/include/libavcodec \
+-	-I$(STAGING_DIR)/usr/include/libavformat \
+-	-I$(STAGING_DIR)/usr/include/libavutil \
+-	-I$(STAGING_DIR)/usr/include/libexif \
+-	-I$(STAGING_DIR)/usr/include/uuid \
+-	-I$(STAGING_DIR)/usr/include/vorbis \
++	-I$(STAGING_DIR)/opt/include \
++	-I$(STAGING_DIR)/opt/include/FLAC \
++	-I$(STAGING_DIR)/opt/include/libavcodec \
++	-I$(STAGING_DIR)/opt/include/libavformat \
++	-I$(STAGING_DIR)/opt/include/libavutil \
++	-I$(STAGING_DIR)/opt/include/libexif \
++	-I$(STAGING_DIR)/opt/include/uuid \
++	-I$(STAGING_DIR)/opt/include/vorbis \
+ 	-I$(ICONV_PREFIX)/include \
+ 	-I$(INTL_PREFIX)/include \
+ 	-D_GNU_SOURCE -D_FILE_OFFSET_BITS=64 \
+@@ -56,31 +56,31 @@
+ TARGET_LDFLAGS += \
+ 	-L$(ICONV_PREFIX)/lib \
+ 	-L$(INTL_PREFIX)/lib \
+-	-Wl,-rpath-link=$(STAGING_DIR)/usr/lib \
++	-Wl,-rpath-link=$(STAGING_DIR)/opt/lib \
+ 
+ MAKE_FLAGS +=\
+ 	CFLAGS="$(TARGET_CFLAGS) $(TARGET_CPPFLAGS)" \
+ 	LDFLAGS="$(TARGET_LDFLAGS)" \
+-	ICONV_LIBS="-liconv" \
++	ICONV_LIBS="-liconv -lintl" \
+ 
+ MAKE_VARS +=\
+-	PREFIX="$(STAGING_DIR)/usr" \
++	PREFIX="$(STAGING_DIR)/opt" \
+ 	ICONV_PREFIX="$(ICONV_PREFIX)" \
+ 	INTL_PREFIX="$(INTL_PREFIX)" \
+ 	OS_NAME="OpenWrt Linux" \
+ 	OS_VERSION="$(LINUX_VERSION)" \
+ 	OS_URL="http://openwrt.org/" \
+-	DB_PATH="/var/run/minidlna" \
+-	LOG_PATH="/var/log" \
++	DB_PATH="/opt/var/run/minidlna" \
++	LOG_PATH="/opt/var/log" \
+ 
+ 
+ define Package/minidlna/install
+-	$(INSTALL_DIR) $(1)/etc
+-	$(INSTALL_DATA) $(PKG_BUILD_DIR)/minidlna.conf $(1)/etc/
+-	$(INSTALL_DIR) $(1)/usr/bin
+-	$(INSTALL_BIN) $(PKG_BUILD_DIR)/minidlna $(1)/usr/bin/
+-	$(INSTALL_DIR) $(1)/etc/init.d
+-	$(INSTALL_BIN) ./files/minidlna.init $(1)/etc/init.d/minidlna
++	$(INSTALL_DIR) $(1)/opt/etc
++	$(INSTALL_DATA) $(PKG_BUILD_DIR)/minidlna.conf $(1)/opt/etc/
++	$(INSTALL_DIR) $(1)/opt/bin
++	$(INSTALL_BIN) $(PKG_BUILD_DIR)/minidlna $(1)/opt/bin/
++#	$(INSTALL_DIR) $(1)/etc/init.d
++#	$(INSTALL_BIN) ./files/minidlna.init $(1)/etc/init.d/minidlna
+ endef
+ 
+ $(eval $(call BuildPackage,minidlna))
+diff -r -u -x .svn ../../../backup/trunk_clean/feeds/packages/multimedia/minidlna//patches/010-genconfig-checks.patch ../../../trunk/feeds/packages/multimedia/minidlna//patches/010-genconfig-checks.patch
+--- ../../../backup/trunk_clean/feeds/packages/multimedia/minidlna//patches/010-genconfig-checks.patch	2011-12-05 10:46:48.000000000 +0400
++++ ../../../trunk/feeds/packages/multimedia/minidlna//patches/010-genconfig-checks.patch	2011-12-09 12:14:44.659142634 +0400
+@@ -4,13 +4,13 @@
+  CONFIGFILE="config.h"
+  CONFIGMACRO="__CONFIG_H__"
+  
+-+PREFIX="${PREFIX:-/usr}"
+++PREFIX="${PREFIX:-/opt}"
+ +ICONV_PREFIX="${ICONV_PREFIX:-$PREFIX}"
+ +INTL_PREFIX="${INTL_PREFIX:-$PREFIX}"
+ +
+  # Database path
+ -DB_PATH="/tmp/minidlna"
+-+DB_PATH="${DB_PATH:-/tmp/minidlna}"
+++DB_PATH="${DB_PATH:-/opt/tmp/minidlna}"
+  # Log path
+ -LOG_PATH="${DB_PATH}"
+ +LOG_PATH="${LOG_PATH:-$DB_PATH}"
+diff -r -u -x .svn ../../../backup/trunk_clean/feeds/packages/multimedia/minidlna//patches/020-makefile-tweaks.patch ../../../trunk/feeds/packages/multimedia/minidlna//patches/020-makefile-tweaks.patch
+--- ../../../backup/trunk_clean/feeds/packages/multimedia/minidlna//patches/020-makefile-tweaks.patch	2011-12-05 10:46:48.000000000 +0400
++++ ../../../trunk/feeds/packages/multimedia/minidlna//patches/020-makefile-tweaks.patch	2011-12-09 12:15:05.854885261 +0400
+@@ -4,7 +4,7 @@
+  # or :
+  # $ make install
+  #
+-+PREFIX ?= /usr
+++PREFIX ?= /opt
+ +ICONV_PREFIX ?= $(PREFIX)
+ +INTL_PREFIX ?= $(PREFIX)
+  #CFLAGS = -Wall -O -D_GNU_SOURCE -g -DDEBUG
+diff -r -u -x .svn ../../../backup/trunk_clean/feeds/packages/multimedia/minidlna//patches/040-configuration-tweak.patch ../../../trunk/feeds/packages/multimedia/minidlna//patches/040-configuration-tweak.patch
+--- ../../../backup/trunk_clean/feeds/packages/multimedia/minidlna//patches/040-configuration-tweak.patch	2011-12-05 10:46:48.000000000 +0400
++++ ../../../trunk/feeds/packages/multimedia/minidlna//patches/040-configuration-tweak.patch	2011-12-09 12:15:29.254585546 +0400
+@@ -5,7 +5,7 @@
+  
+  # network interfaces to serve, comma delimited
+ -#network_interface=eth0
+-+network_interface=br-lan
+++network_interface=br0
+  
+  # set this to the directory you want scanned.
+  # * if have multiple directories, you can have multiple media_dir= lines
+@@ -14,7 +14,7 @@
+  #   + "V" for video  (eg. media_dir=V,/home/jmaggard/Videos)
+  #   + "P" for images (eg. media_dir=P,/home/jmaggard/Pictures)
+ -media_dir=/opt
+-+media_dir=/mnt
+++media_dir=/tmp/harddisk
+  
+  # set this if you want to customize the name that shows up on your clients
+ -#friendly_name=My DLNA Server
