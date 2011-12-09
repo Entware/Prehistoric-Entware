@@ -1,0 +1,40 @@
+--- ../../../backup/trunk_clean/feeds/packages/mail/xmail/Makefile	2011-12-05 10:46:05.000000000 +0400
++++ ../../../trunk/feeds/packages/mail/xmail/Makefile	2011-12-09 11:37:26.900722468 +0400
+@@ -36,25 +36,25 @@
+ 	$(MAKE) -C $(PKG_BUILD_DIR) -f Makefile.lnx \
+ 		$(TARGET_CONFIGURE_OPTS) \
+ 		LD="\$$$$(CC)" \
+-		CPPFLAGS="$(TARGET_CPPFLAGS) -I$(STAGING_DIR)/usr/include/uClibc++ -fno-builtin -fno-rtti -nostdinc++" \
++		CPPFLAGS="$(TARGET_CPPFLAGS) -I$(STAGING_DIR)/opt/include/uClibc++ -fno-builtin -fno-rtti -nostdinc++" \
+ 		LDFLAGS="$(TARGET_LDFLAGS) -nodefaultlibs -lcrypto -lssl -luClibc++ -ldl -lm -lpthread $(LIBGCC_S)" \
+ 		all
+ 	tar -cjf $(PKG_BUILD_DIR)/MailRoot.tar.bz2 -C $(PKG_BUILD_DIR)/MailRoot --exclude bin .
+ endef
+ 
+ define Package/xmail/install
+-	$(INSTALL_DIR) $(1)/usr/bin/
+-	$(INSTALL_BIN) $(PKG_BUILD_DIR)/bin/* $(1)/usr/bin/
+-	$(INSTALL_DIR) $(1)/etc
+-	$(INSTALL_DATA) $(PKG_BUILD_DIR)/MailRoot.tar.bz2 $(1)/etc/
+-	$(INSTALL_DIR) $(1)/etc/config
+-	$(INSTALL_DATA) ./files/xmail.config $(1)/etc/config/xmail
+-	$(INSTALL_DIR) $(1)/etc/init.d/
+-	$(INSTALL_BIN) ./files/xmail.init $(1)/etc/init.d/xmail
++	$(INSTALL_DIR) $(1)/opt/bin/
++	$(INSTALL_BIN) $(PKG_BUILD_DIR)/bin/* $(1)/opt/bin/
++	$(INSTALL_DIR) $(1)/opt/etc
++	$(INSTALL_DATA) $(PKG_BUILD_DIR)/MailRoot.tar.bz2 $(1)/opt/etc/
++#	$(INSTALL_DIR) $(1)/etc/config
++#	$(INSTALL_DATA) ./files/xmail.config $(1)/etc/config/xmail
++#	$(INSTALL_DIR) $(1)/etc/init.d/
++#	$(INSTALL_BIN) ./files/xmail.init $(1)/etc/init.d/xmail
+ endef
+ 
+-define Package/xmail/conffiles
+-/etc/config/xmail
+-endef
++#define Package/xmail/conffiles
++#/opt/etc/config/xmail
++#endef
+ 
+ $(eval $(call BuildPackage,xmail))
