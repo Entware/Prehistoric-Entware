@@ -1,0 +1,50 @@
+--- ../../../backup/trunk_clean/feeds/packages/libs/libaudiofile/Makefile	2011-12-05 10:46:44.000000000 +0400
++++ ../../../trunk/feeds/packages/libs/libaudiofile/Makefile	2011-12-09 13:44:45.556801094 +0400
+@@ -45,33 +45,33 @@
+ define Build/InstallDev
+ 	$(INSTALL_DIR) $(2)/bin
+ 	$(CP) \
+-		$(PKG_INSTALL_DIR)/usr/bin/audiofile-config \
++		$(PKG_INSTALL_DIR)/opt/bin/audiofile-config \
+ 		$(2)/bin/
+ 	$(SED) \
+-		's,^\(prefix\|exec_prefix\)=.*,\1=$(STAGING_DIR)/usr,g' \
++		's,^\(prefix\|exec_prefix\)=.*,\1=$(STAGING_DIR)/opt,g' \
+ 		$(2)/bin/audiofile-config
+ 
+-	$(INSTALL_DIR) $(1)/usr/include
++	$(INSTALL_DIR) $(1)/opt/include
+ 	$(CP) \
+-		$(PKG_INSTALL_DIR)/usr/include/{af_vfs,audiofile,aupvlist}.h \
+-		$(1)/usr/include/
++		$(PKG_INSTALL_DIR)/opt/include/{af_vfs,audiofile,aupvlist}.h \
++		$(1)/opt/include/
+ 
+-	$(INSTALL_DIR) $(1)/usr/lib
++	$(INSTALL_DIR) $(1)/opt/lib
+ 	$(CP) \
+-		$(PKG_INSTALL_DIR)/usr/lib/libaudiofile.{la,a,so*} \
+-		$(1)/usr/lib/
++		$(PKG_INSTALL_DIR)/opt/lib/libaudiofile.{la,a,so*} \
++		$(1)/opt/lib/
+ 
+-	$(INSTALL_DIR) $(1)/usr/lib/pkgconfig
++	$(INSTALL_DIR) $(1)/opt/lib/pkgconfig
+ 	$(CP) \
+-		$(PKG_INSTALL_DIR)/usr/lib/pkgconfig/audiofile.pc \
+-		$(1)/usr/lib/pkgconfig/
++		$(PKG_INSTALL_DIR)/opt/lib/pkgconfig/audiofile.pc \
++		$(1)/opt/lib/pkgconfig/
+ endef
+ 
+ define Package/libaudiofile/install
+-	$(INSTALL_DIR) $(1)/usr/lib
++	$(INSTALL_DIR) $(1)/opt/lib
+ 	$(CP) \
+-		$(PKG_INSTALL_DIR)/usr/lib/libaudiofile.so.* \
+-		$(1)/usr/lib/
++		$(PKG_INSTALL_DIR)/opt/lib/libaudiofile.so.* \
++		$(1)/opt/lib/
+ endef
+ 
+ $(eval $(call BuildPackage,libaudiofile))
