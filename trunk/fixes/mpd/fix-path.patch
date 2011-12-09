@@ -1,0 +1,54 @@
+--- ../../../backup/trunk_clean/feeds/packages/sound/mpd/Makefile	2011-12-05 10:46:40.000000000 +0400
++++ ../../../trunk/feeds/packages/sound/mpd/Makefile	2011-12-09 14:26:35.456415154 +0400
+@@ -131,13 +131,13 @@
+ 	--enable-un \
+ 
+ CONFIGURE_VARS += \
+-	FLAC_CFLAGS="$(TARGET_CFLAGS) -I$(STAGING_DIR)/usr/include/FLAC" \
++	FLAC_CFLAGS="$(TARGET_CFLAGS) -I$(STAGING_DIR)/opt/include/FLAC" \
+ 	FLAC_LIBS="$(TARGET_LDFLAGS) -lFLAC" \
+ 	$(if $(CONFIG_BUILD_PATENTED),MAD_CFLAGS="$(TARGET_CFLAGS)") \
+ 	$(if $(CONFIG_BUILD_PATENTED),MAD_LIBS="$(TARGET_LDFLAGS) -lmad") \
+ 
+ TARGET_CFLAGS += -std=gnu99
+-TARGET_LDFLAGS += -Wl,-rpath-link=$(STAGING_DIR)/usr/lib
++TARGET_LDFLAGS += -Wl,-rpath-link=$(STAGING_DIR)/opt/lib
+ 
+ # use gcc instead of g++ to avoid unnecessary linking against libstdc++
+ TARGET_CXX:=$(TARGET_CC)
+@@ -160,7 +160,7 @@
+ 	--enable-sndfile \
+ 	--enable-vorbis \
+ 	--enable-vorbis-encoder \
+-	--with-faad="$(STAGING_DIR)/usr" \
++	--with-faad="$(STAGING_DIR)/opt" \
+ 	--with-tremor=no \
+ 
+ endif
+@@ -189,18 +189,18 @@
+ endif
+ 
+ define Package/mpd/install
+-	$(INSTALL_DIR) $(1)/usr/bin
+-	$(CP) $(PKG_INSTALL_DIR)/usr/bin/mpd $(1)/usr/bin/
+-	$(INSTALL_DIR) $(1)/etc
+-	$(CP) $(PKG_BUILD_DIR)/doc/mpdconf.example $(1)/etc/mpd.conf
+-	$(INSTALL_DIR) $(1)/etc/init.d
+-	$(INSTALL_BIN) ./files/mpd.init $(1)/etc/init.d/mpd
++	$(INSTALL_DIR) $(1)/opt/bin
++	$(CP) $(PKG_INSTALL_DIR)/opt/bin/mpd $(1)/opt/bin/
++	$(INSTALL_DIR) $(1)/opt/etc
++	$(CP) $(PKG_BUILD_DIR)/doc/mpdconf.example $(1)/opt/etc/mpd.conf
++#	$(INSTALL_DIR) $(1)/etc/init.d
++#	$(INSTALL_BIN) ./files/mpd.init $(1)/etc/init.d/mpd
+ endef
+ 
+ define Package/mpd-full/install
+ $(call Package/mpd/install,$1)
+-	$(INSTALL_DIR) $(1)/etc/avahi/services
+-	$(INSTALL_DATA) ./files/mpd.service $(1)/etc/avahi/services/
++	$(INSTALL_DIR) $(1)/opt/etc/avahi/services
++	$(INSTALL_DATA) ./files/mpd.service $(1)/opt/etc/avahi/services/
+ endef
+ 
+ define Package/mpd-mini/install
