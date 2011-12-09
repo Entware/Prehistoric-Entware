@@ -1,0 +1,31 @@
+--- ../../../backup/trunk_clean/feeds/packages/libs/libmms/Makefile	2011-12-05 10:46:43.000000000 +0400
++++ ../../../trunk/feeds/packages/libs/libmms/Makefile	2011-12-09 13:54:27.925475234 +0400
+@@ -44,19 +44,19 @@
+ endef
+ 
+ define Build/InstallDev
+-	$(INSTALL_DIR) $(1)/usr/include
+-	$(CP) $(PKG_INSTALL_DIR)/usr/include/libmms $(1)/usr/include/
+-	$(INSTALL_DIR) $(1)/usr/lib
+-	$(CP) $(PKG_INSTALL_DIR)/usr/lib/libmms.{a,so*} $(1)/usr/lib/
+-	$(INSTALL_DIR) $(1)/usr/lib/pkgconfig
++	$(INSTALL_DIR) $(1)/opt/include
++	$(CP) $(PKG_INSTALL_DIR)/opt/include/libmms $(1)/opt/include/
++	$(INSTALL_DIR) $(1)/opt/lib
++	$(CP) $(PKG_INSTALL_DIR)/opt/lib/libmms.{a,so*} $(1)/opt/lib/
++	$(INSTALL_DIR) $(1)/opt/lib/pkgconfig
+ 	$(INSTALL_DATA) \
+-		$(PKG_INSTALL_DIR)/usr/lib/pkgconfig/*.pc \
+-		$(1)/usr/lib/pkgconfig
++		$(PKG_INSTALL_DIR)/opt/lib/pkgconfig/*.pc \
++		$(1)/opt/lib/pkgconfig
+ endef
+ 
+ define Package/libmms/install
+-	$(INSTALL_DIR) $(1)/usr/lib
+-	$(CP) $(PKG_INSTALL_DIR)/usr/lib/libmms.so.* $(1)/usr/lib/
++	$(INSTALL_DIR) $(1)/opt/lib
++	$(CP) $(PKG_INSTALL_DIR)/opt/lib/libmms.so.* $(1)/opt/lib/
+ endef
+ 
+ $(eval $(call BuildPackage,libmms))
