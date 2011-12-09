@@ -1,0 +1,24 @@
+--- ../../../backup/trunk_clean/feeds/packages/libs/libmad/Makefile	2011-12-05 10:46:45.000000000 +0400
++++ ../../../trunk/feeds/packages/libs/libmad/Makefile	2011-12-09 13:22:03.440016164 +0400
+@@ -68,15 +68,15 @@
+ 	CFLAGS="$(TARGET_CFLAGS)" \
+ 
+ define Build/InstallDev
+-	$(INSTALL_DIR) $(1)/usr/include
+-	$(CP) $(PKG_INSTALL_DIR)/usr/include/mad.h $(1)/usr/include/
+-	$(INSTALL_DIR) $(1)/usr/lib
+-	$(CP) $(PKG_INSTALL_DIR)/usr/lib/libmad.{a,so*} $(1)/usr/lib/
++	$(INSTALL_DIR) $(1)/opt/include
++	$(CP) $(PKG_INSTALL_DIR)/opt/include/mad.h $(1)/opt/include/
++	$(INSTALL_DIR) $(1)/opt/lib
++	$(CP) $(PKG_INSTALL_DIR)/opt/lib/libmad.{a,so*} $(1)/opt/lib/
+ endef
+ 
+ define Package/libmad/install
+-	$(INSTALL_DIR) $(1)/usr/lib
+-	$(CP) $(PKG_INSTALL_DIR)/usr/lib/libmad.so.* $(1)/usr/lib/
++	$(INSTALL_DIR) $(1)/opt/lib
++	$(CP) $(PKG_INSTALL_DIR)/opt/lib/libmad.so.* $(1)/opt/lib/
+ endef
+ 
+ $(eval $(call BuildPackage,libmad))
