@@ -1,0 +1,28 @@
+--- ../../../backup/trunk_clean/feeds/packages/libs/libtheora/Makefile	2011-12-05 10:46:44.000000000 +0400
++++ ../../../trunk/feeds/packages/libs/libtheora/Makefile	2011-12-09 14:18:11.401005102 +0400
+@@ -48,17 +48,17 @@
+ endef
+ 
+ define Build/InstallDev
+-	$(INSTALL_DIR) $(1)/usr/include/theora/
+-	$(INSTALL_DATA) $(PKG_INSTALL_DIR)/usr/include/theora/* $(1)/usr/include/theora/
+-	$(INSTALL_DIR) $(1)/usr/lib/
+-	$(CP) $(PKG_INSTALL_DIR)/usr/lib/*.{so*,a,la} $(1)/usr/lib/
+-	$(INSTALL_DIR) $(1)/usr/lib/pkgconfig/
+-	$(INSTALL_DATA) $(PKG_INSTALL_DIR)/usr/lib/pkgconfig/* $(1)/usr/lib/pkgconfig/
++	$(INSTALL_DIR) $(1)/opt/include/theora/
++	$(INSTALL_DATA) $(PKG_INSTALL_DIR)/opt/include/theora/* $(1)/opt/include/theora/
++	$(INSTALL_DIR) $(1)/opt/lib/
++	$(CP) $(PKG_INSTALL_DIR)/opt/lib/*.{so*,a,la} $(1)/opt/lib/
++	$(INSTALL_DIR) $(1)/opt/lib/pkgconfig/
++	$(INSTALL_DATA) $(PKG_INSTALL_DIR)/opt/lib/pkgconfig/* $(1)/opt/lib/pkgconfig/
+ endef
+ 
+ define Package/libtheora/install
+-	$(INSTALL_DIR) $(1)/usr/lib/
+-	$(CP) $(PKG_INSTALL_DIR)/usr/lib/*.so* $(1)/usr/lib/
++	$(INSTALL_DIR) $(1)/opt/lib/
++	$(CP) $(PKG_INSTALL_DIR)/opt/lib/*.so* $(1)/opt/lib/
+ endef
+ 
+ $(eval $(call BuildPackage,libtheora))
