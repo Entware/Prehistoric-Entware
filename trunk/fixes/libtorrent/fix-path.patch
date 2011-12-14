@@ -1,6 +1,37 @@
---- ../../../backup/trunk_clean/trunk/feeds/packages/libs/libtorrent/Makefile	2011-11-15 14:03:59.000000000 +0400
-+++ ../../../trunk/feeds/packages/libs/libtorrent/Makefile	2011-11-24 16:28:07.510704166 +0400
-@@ -54,17 +54,17 @@
+--- ../../../backup/trunk_clean/feeds/packages/libs/libtorrent/Makefile	2011-12-05 10:46:45.000000000 +0400
++++ ../../../trunk/feeds/packages/libs/libtorrent/Makefile	2011-12-14 14:14:42.538123256 +0400
+@@ -8,12 +8,12 @@
+ include $(TOPDIR)/rules.mk
+ 
+ PKG_NAME:=libtorrent
+-PKG_VERSION:=0.12.6
++PKG_VERSION:=0.12.9
+ PKG_RELEASE:=1
+ 
+ PKG_SOURCE:=$(PKG_NAME)-$(PKG_VERSION).tar.gz
+ PKG_SOURCE_URL:=http://libtorrent.rakshasa.no/downloads
+-PKG_MD5SUM:=037499ed708aaf72988cee60e5a8d96b
++PKG_MD5SUM:=b128bbd324f03eb42ef5060080f87548
+ 
+ PKG_FIXUP:=libtool
+ PKG_BUILD_PARALLEL:=1
+@@ -40,6 +40,7 @@
+ 
+ TARGET_CPPFLAGS += -fno-strict-aliasing -fno-inline
+ TARGET_LDFLAGS += $(LIBGCC_S)
++TARGET_CFLAGS= -pipe -mips32 -mtune=mips32
+ 
+ CONFIGURE_ARGS+= \
+ 	--enable-shared \
+@@ -47,6 +48,7 @@
+ 	--enable-aligned \
+ 	--disable-debug \
+ 	--enable-openssl \
++	--with-posix-fallocate \
+ 
+ define Build/Configure
+ 	( cd $(PKG_BUILD_DIR); ./autogen.sh );
+@@ -54,17 +56,17 @@
  endef
  
  define Build/InstallDev

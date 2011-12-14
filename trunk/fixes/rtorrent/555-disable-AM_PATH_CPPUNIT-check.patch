@@ -1,0 +1,10 @@
+--- ../../../feeds/packages/net/rtorrent/configure.ac	2011-06-21 11:05:45.000000000 +0400
++++ ./configure.ac	2011-12-12 11:51:35.290778962 +0400
+@@ -2,7 +2,6 @@
+ 
+ AM_INIT_AUTOMAKE
+ AM_CONFIG_HEADER(config.h)
+-AM_PATH_CPPUNIT(1.9.6)
+ 
+ AC_PROG_CXX
+ AC_PROG_LIBTOOL

@@ -10,6 +10,7 @@ all: ./.done
 
 ./.done:
 	patch -p0 -i ./fix-path.patch
+	cp ./555-remove-AM-PATH_CPPUNIT-test.patch ../../../trunk/feeds/packages/libs/libtorrent/patches/
 	touch $@
 
 clean:
