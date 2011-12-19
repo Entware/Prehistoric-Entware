@@ -1,0 +1,50 @@
+--- ../../../backup/trunk_clean/feeds/packages/libs/libusb/Makefile	2011-12-05 10:46:46.000000000 +0400
++++ ../../../trunk/feeds/packages/libs/libusb/Makefile	2011-12-19 13:07:29.230494232 +0400
+@@ -39,33 +39,33 @@
+ define Build/InstallDev
+ 	$(INSTALL_DIR) $(2)/bin
+ 	$(INSTALL_BIN) \
+-		$(PKG_INSTALL_DIR)/usr/bin/libusb-config \
++		$(PKG_INSTALL_DIR)/opt/bin/libusb-config \
+ 		$(2)/bin/
+ 	$(SED) \
+-		's,^\(prefix\|exec_prefix\)=.*,\1=$(STAGING_DIR)/usr,g' \
++		's,^\(prefix\|exec_prefix\)=.*,\1=$(STAGING_DIR)/opt,g' \
+ 		$(2)/bin/libusb-config
+ 
+-	$(INSTALL_DIR) $(1)/usr/include
++	$(INSTALL_DIR) $(1)/opt/include
+ 	$(INSTALL_DATA) \
+-		$(PKG_INSTALL_DIR)/usr/include/usb.h \
+-		$(1)/usr/include/
++		$(PKG_INSTALL_DIR)/opt/include/usb.h \
++		$(1)/opt/include/
+ 
+-	$(INSTALL_DIR) $(1)/usr/lib
++	$(INSTALL_DIR) $(1)/opt/lib
+ 	$(CP) \
+-		$(PKG_INSTALL_DIR)/usr/lib/libusb*.{la,so*,a} \
+-		$(1)/usr/lib/
++		$(PKG_INSTALL_DIR)/opt/lib/libusb*.{la,so*,a} \
++		$(1)/opt/lib/
+ 
+-	$(INSTALL_DIR) $(1)/usr/lib/pkgconfig
++	$(INSTALL_DIR) $(1)/opt/lib/pkgconfig
+ 	$(INSTALL_DATA) \
+-		$(PKG_INSTALL_DIR)/usr/lib/pkgconfig/libusb.pc \
+-		$(1)/usr/lib/pkgconfig/
++		$(PKG_INSTALL_DIR)/opt/lib/pkgconfig/libusb.pc \
++		$(1)/opt/lib/pkgconfig/
+ endef
+ 
+ define Package/libusb/install
+-	$(INSTALL_DIR) $(1)/usr/lib
++	$(INSTALL_DIR) $(1)/opt/lib
+ 	$(CP) \
+-		$(PKG_INSTALL_DIR)/usr/lib/libusb*.so* \
+-		$(1)/usr/lib/
++		$(PKG_INSTALL_DIR)/opt/lib/libusb*.so* \
++		$(1)/opt/lib/
+ endef
+ 
+ $(eval $(call BuildPackage,libusb))

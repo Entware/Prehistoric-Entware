@@ -1,40 +1,6 @@
 --- ../../../backup/trunk_clean/package/fuse/Makefile	2011-12-05 10:45:28.000000000 +0400
-+++ ../../../trunk/package/fuse/Makefile	2011-12-16 11:58:02.794379045 +0400
-@@ -45,27 +45,27 @@
-  - ulockmgr_server
- endef
- 
--define KernelPackage/fuse
--  $(call Package/fuse/Default)
--  SUBMENU:=Filesystems
--  TITLE+= (kernel module)
--  KCONFIG:= CONFIG_FUSE_FS
--  FILES:=$(LINUX_DIR)/fs/fuse/fuse.ko
--  VERSION:=$(LINUX_VERSION)-$(LINUX_RELEASE)
--  AUTOLOAD:=$(call AutoLoad,80,fuse)
--endef
--
--define KernelPackage/fuse/description
--$(call Package/fuse/Default/description)
-- This package contains the FUSE kernel module.
--endef
-+#define KernelPackage/fuse
-+#  $(call Package/fuse/Default)
-+#  SUBMENU:=Filesystems
-+#  TITLE+= (kernel module)
-+#  KCONFIG:= CONFIG_FUSE_FS
-+#  FILES:=$(LINUX_DIR)/fs/fuse/fuse.ko
-+#  VERSION:=$(LINUX_VERSION)-$(LINUX_RELEASE)
-+#  AUTOLOAD:=$(call AutoLoad,80,fuse)
-+#endef
-+
-+#define KernelPackage/fuse/description
-+#$(call Package/fuse/Default/description)
-+# This package contains the FUSE kernel module.
-+#endef
- 
- define Package/libfuse
- $(call Package/fuse/Default)
++++ ../../../trunk/package/fuse/Makefile	2011-12-19 12:51:16.562722242 +0400
+@@ -65,7 +65,7 @@
    SECTION:=libs
    CATEGORY:=Libraries
    TITLE+= (library)
@@ -43,7 +9,7 @@
    SUBMENU:=Filesystem
  endef
  
-@@ -89,36 +89,36 @@
+@@ -89,29 +89,29 @@
  
  define Build/InstallDev
  	@echo "--> Build/InstallDev enter"
@@ -85,14 +51,3 @@
  	@echo "--> Package/libfuse/install leave"
  endef
  
--define Package/kmod-fuse/install
--	@echo "--> Package/kmod-fuse/install enter/leave"
--endef
-+#define Package/kmod-fuse/install
-+#	@echo "--> Package/kmod-fuse/install enter/leave"
-+#endef
- 
- $(eval $(call BuildPackage,fuse-utils))
- $(eval $(call BuildPackage,libfuse))
--$(eval $(call KernelPackage,fuse))
-+#$(eval $(call KernelPackage,fuse))
