@@ -1,0 +1,65 @@
+--- ../../../backup/trunk_clean/feeds/packages/admin/zabbix/Makefile	2011-12-05 10:46:40.000000000 +0400
++++ ../../../trunk/feeds/packages/admin/zabbix/Makefile	2011-12-19 15:57:18.993552617 +0400
+@@ -51,45 +51,45 @@
+ endif
+ 
+ CONFIGURE_ARGS+= \
+-	--bindir="/usr/sbin" \
++	--bindir="/opt/sbin" \
+ 	--enable-agent
+ 
+ ifneq ($(CONFIG_PACKAGE_zabbix-server),)
+   CONFIGURE_ARGS+= \
+ 	--enable-server \
+-	--with-sqlite3="$(STAGING_DIR)/usr"
++	--with-sqlite3="$(STAGING_DIR)/opt"
+ endif
+ 
+ MAKE_FLAGS += ARCH="linux"
+ 
+ define Package/zabbix-agent/conffiles
+-/etc/zabbix/zabbix_agentd.conf
++/opt/etc/zabbix/zabbix_agentd.conf
+ endef
+ 
+ define Package/zabbix-agent/install
+-	$(INSTALL_DIR) $(1)/usr/sbin
+-	$(INSTALL_BIN) $(PKG_INSTALL_DIR)/usr/sbin/zabbix_agentd $(1)/usr/sbin/
+-	$(INSTALL_DIR) $(1)/etc/zabbix
+-	$(INSTALL_CONF) ./files/zabbix_agentd.conf $(1)/etc/zabbix/
+-	$(INSTALL_DIR) $(1)/etc/init.d
+-	$(INSTALL_BIN) ./files/zabbix_agentd.init $(1)/etc/init.d/zabbix_agentd
++	$(INSTALL_DIR) $(1)/opt/sbin
++	$(INSTALL_BIN) $(PKG_INSTALL_DIR)/opt/sbin/zabbix_agentd $(1)/opt/sbin/
++	$(INSTALL_DIR) $(1)/opt/etc/zabbix
++	$(INSTALL_CONF) ./files/zabbix_agentd.conf $(1)/opt/etc/zabbix/
++#	$(INSTALL_DIR) $(1)/etc/init.d
++#	$(INSTALL_BIN) ./files/zabbix_agentd.init $(1)/etc/init.d/zabbix_agentd
+ endef
+ 
+ define Package/zabbix-sender/install
+-	$(INSTALL_DIR) $(1)/usr/sbin
+-	$(INSTALL_BIN) $(PKG_INSTALL_DIR)/usr/sbin/zabbix_sender $(1)/usr/sbin/
+-	$(INSTALL_DIR) $(1)/etc/zabbix
++	$(INSTALL_DIR) $(1)/opt/sbin
++	$(INSTALL_BIN) $(PKG_INSTALL_DIR)/opt/sbin/zabbix_sender $(1)/opt/sbin/
++	$(INSTALL_DIR) $(1)/opt/etc/zabbix
+ endef
+ 
+ define Package/zabbix-server/conffiles
+-/etc/zabbix/zabbix_server.conf
++/opt/etc/zabbix/zabbix_server.conf
+ endef
+ 
+ define Package/zabbix-server/install
+-	$(INSTALL_DIR) $(1)/usr/sbin
+-	$(INSTALL_BIN) $(PKG_INSTALL_DIR)/usr/sbin/zabbix_server $(1)/usr/sbin/
+-	$(INSTALL_DIR) $(1)/etc/zabbix
+-	$(INSTALL_CONF) $(PKG_BUILD_DIR)/misc/conf/zabbix_server.conf $(1)/etc/zabbix/
++	$(INSTALL_DIR) $(1)/opt/sbin
++	$(INSTALL_BIN) $(PKG_INSTALL_DIR)/opt/sbin/zabbix_server $(1)/opt/sbin/
++	$(INSTALL_DIR) $(1)/opt/etc/zabbix
++	$(INSTALL_CONF) $(PKG_BUILD_DIR)/misc/conf/zabbix_server.conf $(1)/opt/etc/zabbix/
+ endef
+ 
+ $(eval $(call BuildPackage,zabbix-agent))
