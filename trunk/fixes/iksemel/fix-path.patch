@@ -1,0 +1,44 @@
+--- ../../../backup/trunk_clean/feeds/packages/libs/iksemel/Makefile	2011-12-05 10:46:45.000000000 +0400
++++ ../../../trunk/feeds/packages/libs/iksemel/Makefile	2011-12-20 15:38:35.646631916 +0400
+@@ -38,31 +38,31 @@
+ 
+ TARGET_CFLAGS += $(FPIC)
+ TARGET_LDFLAGS += \
+-	-Wl,-rpath-link,$(STAGING_DIR)/usr/lib \
++	-Wl,-rpath-link,$(STAGING_DIR)/opt/lib \
+ 	-lgnutls -lgcrypt -lgpg-error
+ 
+ define Build/Configure
+ 	$(call Build/Configure/Default, \
+ 		--enable-shared \
+ 		--enable-static \
+-		--with-libgnutls-prefix="$(STAGING_DIR)/usr" \
++		--with-libgnutls-prefix="$(STAGING_DIR)/opt" \
+ 		, \
+ 		LIBS="$(TARGET_LDFLAGS)" \
+ 	)
+ endef
+ 
+ define Build/InstallDev
+-	$(INSTALL_DIR) $(1)/usr/include/
+-	$(CP) $(PKG_INSTALL_DIR)/usr/include/iksemel.h $(1)/usr/include/
+-	$(INSTALL_DIR) $(1)/usr/lib
+-	$(CP) $(PKG_INSTALL_DIR)/usr/lib/libiksemel.{a,so*} $(1)/usr/lib/
+-	$(INSTALL_DIR) $(1)/usr/lib/pkgconfig
+-	$(CP) $(PKG_INSTALL_DIR)/usr/lib/pkgconfig/iksemel.pc $(1)/usr/lib/pkgconfig/
++	$(INSTALL_DIR) $(1)/opt/include/
++	$(CP) $(PKG_INSTALL_DIR)/opt/include/iksemel.h $(1)/opt/include/
++	$(INSTALL_DIR) $(1)/opt/lib
++	$(CP) $(PKG_INSTALL_DIR)/opt/lib/libiksemel.{a,so*} $(1)/opt/lib/
++	$(INSTALL_DIR) $(1)/opt/lib/pkgconfig
++	$(CP) $(PKG_INSTALL_DIR)/opt/lib/pkgconfig/iksemel.pc $(1)/opt/lib/pkgconfig/
+ endef
+ 
+ define Package/libiksemel/install
+-	$(INSTALL_DIR) $(1)/usr/lib
+-	$(CP) $(PKG_INSTALL_DIR)/usr/lib/libiksemel.so.* $(1)/usr/lib/
++	$(INSTALL_DIR) $(1)/opt/lib
++	$(CP) $(PKG_INSTALL_DIR)/opt/lib/libiksemel.so.* $(1)/opt/lib/
+ endef
+ 
+ $(eval $(call BuildPackage,libiksemel))
