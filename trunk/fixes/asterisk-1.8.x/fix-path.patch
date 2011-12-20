@@ -1,0 +1,401 @@
+--- ../../../backup/trunk_clean/feeds/packages/net/asterisk-1.8.x/Makefile	2011-12-05 10:46:12.000000000 +0400
++++ ../../../trunk/feeds/packages/net/asterisk-1.8.x/Makefile	2011-12-20 15:46:24.523073442 +0400
+@@ -188,7 +188,7 @@
+ 
+ ifneq ($(SDK)$(CONFIG_PACKAGE_asterisk18-app-meetme),)
+   CONFIGURE_ARGS+= \
+-	--with-dahdi="$(STAGING_DIR)/usr"
++	--with-dahdi="$(STAGING_DIR)/opt"
+ else
+   CONFIGURE_ARGS+= \
+ 	--without-dahdi
+@@ -196,8 +196,8 @@
+ 
+ ifneq ($(SDK)$(CONFIG_PACKAGE_asterisk18-chan-gtalk),)
+   CONFIGURE_ARGS+= \
+-	--with-gnutls="$(STAGING_DIR)/usr" \
+-	--with-iksemel="$(STAGING_DIR)/usr"
++	--with-gnutls="$(STAGING_DIR)/opt" \
++	--with-iksemel="$(STAGING_DIR)/opt"
+   SITE_VARS+= \
+ 	ac_cv_lib_iksemel_iks_start_sasl=yes \
+ 	ac_cv_lib_gnutls_gnutls_bye=yes
+@@ -209,7 +209,7 @@
+ 
+ ifneq ($(SDK)$(CONFIG_PACKAGE_asterisk18-curl),)
+   CONFIGURE_ARGS+= \
+-	--with-curl="$(STAGING_DIR)/usr"
++	--with-curl="$(STAGING_DIR)/opt"
+ else
+   CONFIGURE_ARGS+= \
+ 	--without-curl
+@@ -217,7 +217,7 @@
+ 
+ ifneq ($(SDK)$(CONFIG_PACKAGE_asterisk18-mysql),)
+   CONFIGURE_ARGS+= \
+-	--with-mysqlclient="$(STAGING_DIR)/usr/bin"
++	--with-mysqlclient="$(STAGING_DIR)/opt/bin"
+ else
+   CONFIGURE_ARGS+= \
+ 	--without-mysqlclient
+@@ -225,7 +225,7 @@
+ 
+ ifneq ($(SDK)$(CONFIG_PACKAGE_asterisk18-chan-mobile),)
+   CONFIGURE_ARGS+= \
+-	--with-bluetooth="$(STAGING_DIR)/usr"
++	--with-bluetooth="$(STAGING_DIR)/opt"
+ else
+   CONFIGURE_ARGS+= \
+ 	--without-bluetooth
+@@ -240,13 +240,13 @@
+ 	--without-kde \
+ 	--without-misdn \
+ 	--without-nbs \
+-	--with-ncurses="$(STAGING_DIR)/usr" \
++	--with-ncurses="$(STAGING_DIR)/opt" \
+ 	--without-netsnmp \
+ 	--without-newt \
+ 	--without-odbc \
+ 	--without-ogg \
+ 	--without-osptk \
+-	--with-popt="$(STAGING_DIR)/usr" \
++	--with-popt="$(STAGING_DIR)/opt" \
+ 	--without-pri \
+ 	--without-qt \
+ 	--without-radius \
+@@ -258,7 +258,7 @@
+ 	--without-tinfo \
+ 	--without-vorbis \
+ 	--without-vpb \
+-	--with-z="$(STAGING_DIR)/usr" \
++	--with-z="$(STAGING_DIR)/opt" \
+ 	--with-sounds-cache="$(DL_DIR)" \
+ 	--disable-xmldoc
+ 
+@@ -277,10 +277,10 @@
+ 	ASTCFLAGS="$(EXTRA_CFLAGS) -DLOW_MEMORY" \
+ 	ASTLDFLAGS="$(EXTRA_LDFLAGS)" \
+ 	$(MAKE) -C "$(PKG_BUILD_DIR)" \
+-		ASTVARLIBDIR="/usr/lib/asterisk" \
+-		ASTDATADIR="/usr/lib/asterisk" \
+-		ASTKEYDIR="/usr/lib/asterisk" \
+-		ASTDBDIR="/usr/lib/asterisk" \
++		ASTVARLIBDIR="/opt/lib/asterisk" \
++		ASTDATADIR="/opt/lib/asterisk" \
++		ASTKEYDIR="/opt/lib/asterisk" \
++		ASTDBDIR="/opt/lib/asterisk" \
+ 		NOISY_BUILD="1" \
+ 		DEBUG="" \
+ 		OPTIMIZE="" \
+@@ -289,195 +289,195 @@
+ endef
+ 
+ define Build/InstallDev
+-	$(INSTALL_DIR) $(1)/usr/include/asterisk-1.8/include/asterisk/
+-	$(CP) $(PKG_INSTALL_DIR)/usr/include/asterisk/*.h $(1)/usr/include/asterisk-1.8/include/asterisk/
+-	$(CP) $(PKG_INSTALL_DIR)/usr/include/asterisk.h $(1)/usr/include/asterisk-1.8/include/
++	$(INSTALL_DIR) $(1)/opt/include/asterisk-1.8/include/asterisk/
++	$(CP) $(PKG_INSTALL_DIR)/opt/include/asterisk/*.h $(1)/opt/include/asterisk-1.8/include/asterisk/
++	$(CP) $(PKG_INSTALL_DIR)/opt/include/asterisk.h $(1)/opt/include/asterisk-1.8/include/
+ endef
+ 
+ define Package/asterisk18/conffiles
+-/etc/asterisk/asterisk.conf
+-/etc/asterisk/modules.conf
+-/etc/asterisk/extensions.conf
+-/etc/asterisk/sip.conf
+-/etc/asterisk/sip_notify.conf
+-/etc/asterisk/features.conf
+-/etc/asterisk/indications.conf
+-/etc/asterisk/logger.conf
+-/etc/asterisk/manager.conf
+-/etc/asterisk/rtp.conf
+-/etc/default/asterisk
+-/etc/init.d/asterisk
++/opt/etc/asterisk/asterisk.conf
++/opt/etc/asterisk/modules.conf
++/opt/etc/asterisk/extensions.conf
++/opt/etc/asterisk/sip.conf
++/opt/etc/asterisk/sip_notify.conf
++/opt/etc/asterisk/features.conf
++/opt/etc/asterisk/indications.conf
++/opt/etc/asterisk/logger.conf
++/opt/etc/asterisk/manager.conf
++/opt/etc/asterisk/rtp.conf
++/opt/etc/default/asterisk
++/opt/etc/init.d/asterisk
+ endef
+ 
+ define Package/asterisk18/install
+-	$(INSTALL_DIR) $(1)/etc/asterisk
++	$(INSTALL_DIR) $(1)/opt/etc/asterisk
+ 	for f in asterisk extensions features \
+ 		indications logger manager modules \
+ 		sip sip_notify rtp; do \
+-		$(CP) $(PKG_INSTALL_DIR)/etc/asterisk/$$$$f.conf $(1)/etc/asterisk/ ; \
++		$(CP) $(PKG_INSTALL_DIR)/opt/etc/asterisk/$$$$f.conf $(1)/opt/etc/asterisk/ ; \
+ 	done
+-	$(INSTALL_DIR) $(1)/usr/lib/asterisk/modules
++	$(INSTALL_DIR) $(1)/opt/lib/asterisk/modules
+ 	for f in app_dial app_echo app_playback app_macro \
+ 		chan_sip res_rtp_asterisk res_rtp_multicast \
+ 		codec_ulaw codec_gsm \
+ 		format_gsm format_pcm format_wav format_wav_gsm \
+ 		pbx_config \
+ 		func_strings func_timeout func_callerid func_logic; do \
+-		$(CP) $(PKG_INSTALL_DIR)/usr/lib/asterisk/modules/$$$$f.so $(1)/usr/lib/asterisk/modules/ ; \
++		$(CP) $(PKG_INSTALL_DIR)/opt/lib/asterisk/modules/$$$$f.so $(1)/opt/lib/asterisk/modules/ ; \
+ 	done
+-	$(INSTALL_DIR) $(1)/usr/sbin
+-	$(INSTALL_BIN) $(PKG_INSTALL_DIR)/usr/sbin/asterisk $(1)/usr/sbin/
+-	$(INSTALL_DIR) $(1)/etc/default
+-	$(INSTALL_DATA)  ./files/asterisk.default $(1)/etc/default/asterisk
+-	$(INSTALL_DIR) $(1)/etc/init.d
+-	$(INSTALL_BIN)  ./files/asterisk.init $(1)/etc/init.d/asterisk
++	$(INSTALL_DIR) $(1)/opt/sbin
++	$(INSTALL_BIN) $(PKG_INSTALL_DIR)/opt/sbin/asterisk $(1)/opt/sbin/
++	$(INSTALL_DIR) $(1)/opt/etc/default
++	$(INSTALL_DATA)  ./files/asterisk.default $(1)/opt/etc/default/asterisk
++	$(INSTALL_DIR) $(1)/opt/etc/init.d
++	$(INSTALL_BIN)  ./files/asterisk.init $(1)/opt/etc/init.d/asterisk
+ endef
+ 
+ define Package/asterisk18-sounds/install
+-	$(INSTALL_DIR) $(1)/usr/lib/asterisk/sounds/
+-	$(CP) $(PKG_INSTALL_DIR)/usr/lib/asterisk/sounds/en/* $(1)/usr/lib/asterisk/sounds/
+-	rm -f $(1)/usr/lib/asterisk/sounds/vm-*
+-	rm -f $(1)/usr/lib/asterisk/sounds/conf-*
++	$(INSTALL_DIR) $(1)/opt/lib/asterisk/sounds/
++	$(CP) $(PKG_INSTALL_DIR)/opt/lib/asterisk/sounds/en/* $(1)/opt/lib/asterisk/sounds/
++	rm -f $(1)/opt/lib/asterisk/sounds/vm-*
++	rm -f $(1)/opt/lib/asterisk/sounds/conf-*
+ endef
+ 
+ 
+ define Package/asterisk18-voicemail/conffiles
+-/etc/asterisk/voicemail.conf
++/opt/etc/asterisk/voicemail.conf
+ endef
+ 
+ define Package/asterisk18-voicemail/install
+-	$(INSTALL_DIR) $(1)/etc/asterisk
+-	$(INSTALL_DATA) $(PKG_INSTALL_DIR)/etc/asterisk/voicemail.conf $(1)/etc/asterisk/
+-	$(INSTALL_DIR) $(1)/usr/lib/asterisk/modules
+-	$(INSTALL_BIN) $(PKG_INSTALL_DIR)/usr/lib/asterisk/modules/*voicemail.so $(1)/usr/lib/asterisk/modules/
+-	$(INSTALL_BIN) $(PKG_INSTALL_DIR)/usr/lib/asterisk/modules/res_adsi.so $(1)/usr/lib/asterisk/modules/
+-	$(INSTALL_BIN) $(PKG_INSTALL_DIR)/usr/lib/asterisk/modules/res_smdi.so $(1)/usr/lib/asterisk/modules/
+-	$(INSTALL_DIR) $(1)/usr/lib/asterisk/sounds/
+-	$(CP) $(PKG_INSTALL_DIR)/usr/lib/asterisk/sounds/en/vm-*.gsm $(1)/usr/lib/asterisk/sounds/
++	$(INSTALL_DIR) $(1)/opt/etc/asterisk
++	$(INSTALL_DATA) $(PKG_INSTALL_DIR)/opt/etc/asterisk/voicemail.conf $(1)/opt/etc/asterisk/
++	$(INSTALL_DIR) $(1)/opt/lib/asterisk/modules
++	$(INSTALL_BIN) $(PKG_INSTALL_DIR)/opt/lib/asterisk/modules/*voicemail.so $(1)/opt/lib/asterisk/modules/
++	$(INSTALL_BIN) $(PKG_INSTALL_DIR)/opt/lib/asterisk/modules/res_adsi.so $(1)/opt/lib/asterisk/modules/
++	$(INSTALL_BIN) $(PKG_INSTALL_DIR)/opt/lib/asterisk/modules/res_smdi.so $(1)/opt/lib/asterisk/modules/
++	$(INSTALL_DIR) $(1)/opt/lib/asterisk/sounds/
++	$(CP) $(PKG_INSTALL_DIR)/opt/lib/asterisk/sounds/en/vm-*.gsm $(1)/opt/lib/asterisk/sounds/
+ endef
+ 
+ define Package/asterisk18-app-meetme/conffiles
+-/etc/asterisk/meetme.conf
++/opt/etc/asterisk/meetme.conf
+ endef
+ 
+ define Package/asterisk18-app-meetme/install
+-	$(INSTALL_DIR) $(1)/etc/asterisk
+-	$(INSTALL_DATA) $(PKG_INSTALL_DIR)/etc/asterisk/meetme.conf $(1)/etc/asterisk/
+-	$(INSTALL_DIR) $(1)/usr/lib/asterisk/modules
+-	$(INSTALL_BIN) $(PKG_INSTALL_DIR)/usr/lib/asterisk/modules/app_meetme.so $(1)/usr/lib/asterisk/modules/
+-	$(INSTALL_BIN) $(PKG_INSTALL_DIR)/usr/lib/asterisk/modules/chan_dahdi.so $(1)/usr/lib/asterisk/modules/
+-	$(INSTALL_DIR) $(1)/usr/lib/asterisk/sounds/
+-	$(CP) $(PKG_INSTALL_DIR)/usr/lib/asterisk/sounds/en/conf-*.gsm $(1)/usr/lib/asterisk/sounds/
++	$(INSTALL_DIR) $(1)/opt/etc/asterisk
++	$(INSTALL_DATA) $(PKG_INSTALL_DIR)/opt/etc/asterisk/meetme.conf $(1)/opt/etc/asterisk/
++	$(INSTALL_DIR) $(1)/opt/lib/asterisk/modules
++	$(INSTALL_BIN) $(PKG_INSTALL_DIR)/opt/lib/asterisk/modules/app_meetme.so $(1)/opt/lib/asterisk/modules/
++	$(INSTALL_BIN) $(PKG_INSTALL_DIR)/opt/lib/asterisk/modules/chan_dahdi.so $(1)/opt/lib/asterisk/modules/
++	$(INSTALL_DIR) $(1)/opt/lib/asterisk/sounds/
++	$(CP) $(PKG_INSTALL_DIR)/opt/lib/asterisk/sounds/en/conf-*.gsm $(1)/opt/lib/asterisk/sounds/
+ endef
+ 
+ define Package/asterisk18-chan-iax2/conffiles
+-/etc/asterisk/iax.conf
+-/etc/asterisk/iaxprov.conf
++/opt/etc/asterisk/iax.conf
++/opt/etc/asterisk/iaxprov.conf
+ endef
+ 
+ define Package/asterisk18-cdr/conffiles
+-/etc/asterisk/cdr.conf
+-/etc/asterisk/cdr_custom.conf
+-/etc/asterisk/cdr_manager.conf
+-/etc/asterisk/cdr_odbc.conf
+-/etc/asterisk/cdr_pgsql.conf
+-/etc/asterisk/cdr_tds.conf
++/opt/etc/asterisk/cdr.conf
++/opt/etc/asterisk/cdr_custom.conf
++/opt/etc/asterisk/cdr_manager.conf
++/opt/etc/asterisk/cdr_odbc.conf
++/opt/etc/asterisk/cdr_pgsql.conf
++/opt/etc/asterisk/cdr_tds.conf
+ endef
+ 
+ define Package/asterisk18-res-musiconhold/conffiles
+-/etc/asterisk/musiconhold.conf
++/opt/etc/asterisk/musiconhold.conf
+ endef
+ 
+ define Package/asterisk18-chan-iax2/install
+-	$(INSTALL_DIR) $(1)/etc/asterisk
+-	$(INSTALL_DATA) $(PKG_INSTALL_DIR)/etc/asterisk/iax.conf $(1)/etc/asterisk/
+-	$(INSTALL_DATA) $(PKG_INSTALL_DIR)/etc/asterisk/iaxprov.conf $(1)/etc/asterisk/
+-	$(INSTALL_DIR) $(1)/usr/lib/asterisk/modules
+-	$(INSTALL_BIN) $(PKG_INSTALL_DIR)/usr/lib/asterisk/modules/chan_iax2.so $(1)/usr/lib/asterisk/modules/
++	$(INSTALL_DIR) $(1)/opt/etc/asterisk
++	$(INSTALL_DATA) $(PKG_INSTALL_DIR)/opt/etc/asterisk/iax.conf $(1)/opt/etc/asterisk/
++	$(INSTALL_DATA) $(PKG_INSTALL_DIR)/opt/etc/asterisk/iaxprov.conf $(1)/opt/etc/asterisk/
++	$(INSTALL_DIR) $(1)/opt/lib/asterisk/modules
++	$(INSTALL_BIN) $(PKG_INSTALL_DIR)/opt/lib/asterisk/modules/chan_iax2.so $(1)/opt/lib/asterisk/modules/
+ endef
+ 
+ define Package/asterisk18-cdr/install
+-	$(INSTALL_DIR) $(1)/etc/asterisk
+-	$(INSTALL_DATA) $(PKG_INSTALL_DIR)/etc/asterisk/cdr*.conf $(1)/etc/asterisk/
+-	$(INSTALL_DIR) $(1)/usr/lib/asterisk/modules
+-	$(INSTALL_BIN) $(PKG_INSTALL_DIR)/usr/lib/asterisk/modules/*cdr*.so $(1)/usr/lib/asterisk/modules/
++	$(INSTALL_DIR) $(1)/opt/etc/asterisk
++	$(INSTALL_DATA) $(PKG_INSTALL_DIR)/opt/etc/asterisk/cdr*.conf $(1)/opt/etc/asterisk/
++	$(INSTALL_DIR) $(1)/opt/lib/asterisk/modules
++	$(INSTALL_BIN) $(PKG_INSTALL_DIR)/opt/lib/asterisk/modules/*cdr*.so $(1)/opt/lib/asterisk/modules/
+ endef
+ 
+ define Package/asterisk18-res-musiconhold/install
+-	$(INSTALL_DIR) $(1)/etc/asterisk
+-	$(INSTALL_DATA) $(PKG_INSTALL_DIR)/etc/asterisk/musiconhold.conf $(1)/etc/asterisk/
+-	$(INSTALL_DIR) $(1)/usr/lib/asterisk/modules
+-	$(INSTALL_BIN) $(PKG_INSTALL_DIR)/usr/lib/asterisk/modules/res_musiconhold.so $(1)/usr/lib/asterisk/modules/
++	$(INSTALL_DIR) $(1)/opt/etc/asterisk
++	$(INSTALL_DATA) $(PKG_INSTALL_DIR)/opt/etc/asterisk/musiconhold.conf $(1)/opt/etc/asterisk/
++	$(INSTALL_DIR) $(1)/opt/lib/asterisk/modules
++	$(INSTALL_BIN) $(PKG_INSTALL_DIR)/opt/lib/asterisk/modules/res_musiconhold.so $(1)/opt/lib/asterisk/modules/
+ endef
+ 
+ define Package/asterisk18-chan-gtalk/conffiles
+-/etc/asterisk/gtalk.conf
+-/etc/asterisk/jabber.conf
++/opt/etc/asterisk/gtalk.conf
++/opt/etc/asterisk/jabber.conf
+ endef
+ 
+ define Package/asterisk18-chan-gtalk/install
+-	$(INSTALL_DIR) $(1)/etc/asterisk
+-	$(INSTALL_DATA) $(PKG_INSTALL_DIR)/etc/asterisk/gtalk.conf $(1)/etc/asterisk/
+-	$(INSTALL_DATA) $(PKG_INSTALL_DIR)/etc/asterisk/jabber.conf $(1)/etc/asterisk/
+-	$(INSTALL_DIR) $(1)/usr/lib/asterisk/modules
+-	$(INSTALL_BIN) $(PKG_INSTALL_DIR)/usr/lib/asterisk/modules/chan_gtalk.so $(1)/usr/lib/asterisk/modules/
+-	$(INSTALL_BIN) $(PKG_INSTALL_DIR)/usr/lib/asterisk/modules/res_jabber.so $(1)/usr/lib/asterisk/modules/
++	$(INSTALL_DIR) $(1)/opt/etc/asterisk
++	$(INSTALL_DATA) $(PKG_INSTALL_DIR)/opt/etc/asterisk/gtalk.conf $(1)/opt/etc/asterisk/
++	$(INSTALL_DATA) $(PKG_INSTALL_DIR)/opt/etc/asterisk/jabber.conf $(1)/opt/etc/asterisk/
++	$(INSTALL_DIR) $(1)/opt/lib/asterisk/modules
++	$(INSTALL_BIN) $(PKG_INSTALL_DIR)/opt/lib/asterisk/modules/chan_gtalk.so $(1)/opt/lib/asterisk/modules/
++	$(INSTALL_BIN) $(PKG_INSTALL_DIR)/opt/lib/asterisk/modules/res_jabber.so $(1)/opt/lib/asterisk/modules/
+ endef
+ 
+ define Package/asterisk18-chan-mobile/conffiles
+-/etc/asterisk/chan_mobile.conf
++/opt/etc/asterisk/chan_mobile.conf
+ endef
+ 
+ define Package/asterisk18-chan-mobile/install
+-	$(INSTALL_DIR) $(1)/etc/asterisk
+-	$(INSTALL_DATA) $(PKG_INSTALL_DIR)/etc/asterisk/chan_mobile.conf $(1)/etc/asterisk/
+-	$(INSTALL_DIR) $(1)/usr/lib/asterisk/modules
+-	$(INSTALL_BIN) $(PKG_INSTALL_DIR)/usr/lib/asterisk/modules/chan_mobile.so $(1)/usr/lib/asterisk/modules/
++	$(INSTALL_DIR) $(1)/opt/etc/asterisk
++	$(INSTALL_DATA) $(PKG_INSTALL_DIR)/opt/etc/asterisk/chan_mobile.conf $(1)/opt/etc/asterisk/
++	$(INSTALL_DIR) $(1)/opt/lib/asterisk/modules
++	$(INSTALL_BIN) $(PKG_INSTALL_DIR)/opt/lib/asterisk/modules/chan_mobile.so $(1)/opt/lib/asterisk/modules/
+ endef
+ 
+ define Package/asterisk18-chan-mgcp/conffiles
+-/etc/asterisk/mgcp.conf
++/opt/etc/asterisk/mgcp.conf
+ endef
+ 
+ define Package/asterisk18-chan-mgcp/install
+-	$(INSTALL_DIR) $(1)/etc/asterisk
+-	$(INSTALL_DATA) $(PKG_INSTALL_DIR)/etc/asterisk/mgcp.conf $(1)/etc/asterisk/
+-	$(INSTALL_DIR) $(1)/usr/lib/asterisk/modules
+-	$(INSTALL_BIN) $(PKG_INSTALL_DIR)/usr/lib/asterisk/modules/chan_mgcp.so $(1)/usr/lib/asterisk/modules/
++	$(INSTALL_DIR) $(1)/opt/etc/asterisk
++	$(INSTALL_DATA) $(PKG_INSTALL_DIR)/opt/etc/asterisk/mgcp.conf $(1)/opt/etc/asterisk/
++	$(INSTALL_DIR) $(1)/opt/lib/asterisk/modules
++	$(INSTALL_BIN) $(PKG_INSTALL_DIR)/opt/lib/asterisk/modules/chan_mgcp.so $(1)/opt/lib/asterisk/modules/
+ endef
+ 
+ define Package/asterisk18-chan-skinny/conffiles
+-/etc/asterisk/skinny.conf
++/opt/etc/asterisk/skinny.conf
+ endef
+ 
+ define Package/asterisk18-chan-skinny/install
+-	$(INSTALL_DIR) $(1)/etc/asterisk
+-	$(INSTALL_DATA) $(PKG_INSTALL_DIR)/etc/asterisk/skinny.conf $(1)/etc/asterisk/
+-	$(INSTALL_DIR) $(1)/usr/lib/asterisk/modules
+-	$(INSTALL_BIN) $(PKG_INSTALL_DIR)/usr/lib/asterisk/modules/chan_skinny.so $(1)/usr/lib/asterisk/modules/
++	$(INSTALL_DIR) $(1)/opt/etc/asterisk
++	$(INSTALL_DATA) $(PKG_INSTALL_DIR)/opt/etc/asterisk/skinny.conf $(1)/opt/etc/asterisk/
++	$(INSTALL_DIR) $(1)/opt/lib/asterisk/modules
++	$(INSTALL_BIN) $(PKG_INSTALL_DIR)/opt/lib/asterisk/modules/chan_skinny.so $(1)/opt/lib/asterisk/modules/
+ endef
+ 
+ define Package/asterisk18-curl/install
+-	$(INSTALL_DIR) $(1)/usr/lib/asterisk/modules
+-	$(INSTALL_BIN) $(PKG_INSTALL_DIR)/usr/lib/asterisk/modules/func_curl.so $(1)/usr/lib/asterisk/modules/
+-	$(INSTALL_BIN) $(PKG_INSTALL_DIR)/usr/lib/asterisk/modules/res_curl.so $(1)/usr/lib/asterisk/modules/
++	$(INSTALL_DIR) $(1)/opt/lib/asterisk/modules
++	$(INSTALL_BIN) $(PKG_INSTALL_DIR)/opt/lib/asterisk/modules/func_curl.so $(1)/opt/lib/asterisk/modules/
++	$(INSTALL_BIN) $(PKG_INSTALL_DIR)/opt/lib/asterisk/modules/res_curl.so $(1)/opt/lib/asterisk/modules/
+ endef
+ 
+ define Package/asterisk18-mysql/conffiles
+-/etc/asterisk/app_mysql.conf
+-/etc/asterisk/res_config_mysql.conf
+-/etc/asterisk/cdr_mysql.conf
++/opt/etc/asterisk/app_mysql.conf
++/opt/etc/asterisk/res_config_mysql.conf
++/opt/etc/asterisk/cdr_mysql.conf
+ endef
+ 
+ define Package/asterisk18-mysql/install
+-	$(INSTALL_DIR) $(1)/etc/asterisk
+-	$(INSTALL_DATA) $(PKG_INSTALL_DIR)/etc/asterisk/app_mysql.conf $(1)/etc/asterisk/
+-	$(INSTALL_DATA) $(PKG_INSTALL_DIR)/etc/asterisk/res_config_mysql.conf $(1)/etc/asterisk/
+-	$(INSTALL_DATA) $(PKG_INSTALL_DIR)/etc/asterisk/cdr_mysql.conf $(1)/etc/asterisk/
+-	$(INSTALL_DIR) $(1)/usr/lib/asterisk/modules
+-	$(INSTALL_BIN) $(PKG_INSTALL_DIR)/usr/lib/asterisk/modules/app_mysql.so $(1)/usr/lib/asterisk/modules/
+-	$(INSTALL_BIN) $(PKG_INSTALL_DIR)/usr/lib/asterisk/modules/cdr_mysql.so $(1)/usr/lib/asterisk/modules/
+-	$(INSTALL_BIN) $(PKG_INSTALL_DIR)/usr/lib/asterisk/modules/res_config_mysql.so $(1)/usr/lib/asterisk/modules/
++	$(INSTALL_DIR) $(1)/opt/etc/asterisk
++	$(INSTALL_DATA) $(PKG_INSTALL_DIR)/opt/etc/asterisk/app_mysql.conf $(1)/opt/etc/asterisk/
++	$(INSTALL_DATA) $(PKG_INSTALL_DIR)/opt/etc/asterisk/res_config_mysql.conf $(1)/opt/etc/asterisk/
++	$(INSTALL_DATA) $(PKG_INSTALL_DIR)/opt/etc/asterisk/cdr_mysql.conf $(1)/opt/etc/asterisk/
++	$(INSTALL_DIR) $(1)/opt/lib/asterisk/modules
++	$(INSTALL_BIN) $(PKG_INSTALL_DIR)/opt/lib/asterisk/modules/app_mysql.so $(1)/opt/lib/asterisk/modules/
++	$(INSTALL_BIN) $(PKG_INSTALL_DIR)/opt/lib/asterisk/modules/cdr_mysql.so $(1)/opt/lib/asterisk/modules/
++	$(INSTALL_BIN) $(PKG_INSTALL_DIR)/opt/lib/asterisk/modules/res_config_mysql.so $(1)/opt/lib/asterisk/modules/
+ endef
+ 
+ define Buildasterisk18ModuleTemplate
+@@ -494,8 +494,8 @@
+   endef
+ 
+   define Package/asterisk18-$(subst _,-,$(1))/install
+-	$(INSTALL_DIR) $$(1)/usr/lib/asterisk/modules
+-	$(INSTALL_BIN) $(PKG_INSTALL_DIR)/usr/lib/asterisk/modules/$(1).so $$(1)/usr/lib/asterisk/modules/
++	$(INSTALL_DIR) $$(1)/opt/lib/asterisk/modules
++	$(INSTALL_BIN) $(PKG_INSTALL_DIR)/opt/lib/asterisk/modules/$(1).so $$(1)/opt/lib/asterisk/modules/
+   endef
+ 
+   $$(eval $$(call BuildPackage,asterisk18-$(subst _,-,$(1))))
