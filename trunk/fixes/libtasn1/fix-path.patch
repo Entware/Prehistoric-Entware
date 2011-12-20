@@ -1,0 +1,36 @@
+--- ../../../backup/trunk_clean/feeds/packages/libs/libtasn1/Makefile	2011-12-05 10:46:44.000000000 +0400
++++ ../../../trunk/feeds/packages/libs/libtasn1/Makefile	2011-12-20 15:08:30.363111254 +0400
+@@ -43,21 +43,21 @@
+ 		--enable-static
+ 
+ define Build/InstallDev
+-	$(INSTALL_DIR) $(1)/usr/bin
+-	$(INSTALL_BIN) $(PKG_INSTALL_DIR)/usr/bin/libtasn1-config $(1)/usr/bin/
+-	$(INSTALL_DIR) $(1)/usr/include
+-	$(CP) $(PKG_INSTALL_DIR)/usr/include/libtasn1.h $(1)/usr/include/
+-	$(INSTALL_DIR) $(1)/usr/lib
+-	$(CP) $(PKG_INSTALL_DIR)/usr/lib/libtasn1.{a,so*} $(1)/usr/lib/
+-	$(INSTALL_DIR) $(1)/usr/lib/pkgconfig
+-	$(CP) $(PKG_INSTALL_DIR)/usr/lib/pkgconfig/libtasn1*.pc $(1)/usr/lib/pkgconfig/
+-	$(SED) 's,-I$$$${prefix}/include,,g' $(1)/usr/bin/libtasn1-config
+-	$(SED) 's,-L$$$${exec_prefix}/lib,,g' $(1)/usr/bin/libtasn1-config
++	$(INSTALL_DIR) $(1)/opt/bin
++	$(INSTALL_BIN) $(PKG_INSTALL_DIR)/opt/bin/libtasn1-config $(1)/opt/bin/
++	$(INSTALL_DIR) $(1)/opt/include
++	$(CP) $(PKG_INSTALL_DIR)/opt/include/libtasn1.h $(1)/opt/include/
++	$(INSTALL_DIR) $(1)/opt/lib
++	$(CP) $(PKG_INSTALL_DIR)/opt/lib/libtasn1.{a,so*} $(1)/opt/lib/
++	$(INSTALL_DIR) $(1)/opt/lib/pkgconfig
++	$(CP) $(PKG_INSTALL_DIR)/opt/lib/pkgconfig/libtasn1*.pc $(1)/opt/lib/pkgconfig/
++	$(SED) 's,-I$$$${prefix}/include,,g' $(1)/opt/bin/libtasn1-config
++	$(SED) 's,-L$$$${exec_prefix}/lib,,g' $(1)/opt/bin/libtasn1-config
+ endef
+ 
+ define Package/libtasn1/install
+-	$(INSTALL_DIR) $(1)/usr/lib
+-	$(CP) $(PKG_INSTALL_DIR)/usr/lib/libtasn1.so.* $(1)/usr/lib/
++	$(INSTALL_DIR) $(1)/opt/lib
++	$(CP) $(PKG_INSTALL_DIR)/opt/lib/libtasn1.so.* $(1)/opt/lib/
+ endef
+ 
+ $(eval $(call BuildPackage,libtasn1))
