@@ -1,0 +1,33 @@
+--- ../../../backup/trunk_clean/feeds/packages/libs/tcp_wrappers/Makefile	2011-12-05 10:46:43.000000000 +0400
++++ ../../../trunk/feeds/packages/libs/tcp_wrappers/Makefile	2011-12-21 11:12:50.075899035 +0400
+@@ -40,22 +40,22 @@
+ 			-Dss_family=__ss_family -Dss_len=__ss_len" \
+ 		FACILITY=LOG_DAEMON \
+ 		SEVERITY=LOG_INFO \
+-		REAL_DAEMON_DIR=/usr/sbin \
++		REAL_DAEMON_DIR=/opt/sbin \
+ 		STYLE="-DPROCESS_OPTIONS" \
+ 		tidy all
+ endef
+ 
+ define Build/InstallDev	
+-	$(INSTALL_DIR) $(1)/usr/include
+-	$(CP) $(PKG_BUILD_DIR)/tcpd.h $(1)/usr/include/
+-	$(INSTALL_DIR) $(1)/usr/lib
+-	$(CP) $(PKG_BUILD_DIR)/libwrap.a $(1)/usr/lib/
+-	$(CP) $(PKG_BUILD_DIR)/shared/libwrap.so* $(1)/usr/lib/
++	$(INSTALL_DIR) $(1)/opt/include
++	$(CP) $(PKG_BUILD_DIR)/tcpd.h $(1)/opt/include/
++	$(INSTALL_DIR) $(1)/opt/lib
++	$(CP) $(PKG_BUILD_DIR)/libwrap.a $(1)/opt/lib/
++	$(CP) $(PKG_BUILD_DIR)/shared/libwrap.so* $(1)/opt/lib/
+ endef
+ 
+ define Package/libwrap/install	
+-	$(INSTALL_DIR) $(1)/usr/lib
+-	$(CP) $(PKG_BUILD_DIR)/shared/libwrap.so.* $(1)/usr/lib/
++	$(INSTALL_DIR) $(1)/opt/lib
++	$(CP) $(PKG_BUILD_DIR)/shared/libwrap.so.* $(1)/opt/lib/
+ endef
+ 	
+ $(eval $(call BuildPackage,libwrap))
