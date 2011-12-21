@@ -1,0 +1,76 @@
+--- ../../../backup/trunk_clean/feeds/packages/net/netatalk/Makefile	2011-12-05 10:46:37.000000000 +0400
++++ ../../../trunk/feeds/packages/net/netatalk/Makefile	2011-12-21 12:08:51.960823198 +0400
+@@ -25,7 +25,7 @@
+   SECTION:=net
+   CATEGORY:=Network
+   SUBMENU:=Filesystem
+-  DEPENDS:=+libdb47 +libgcrypt +libopenssl $(LIBRPC_DEPENDS)
++  DEPENDS:=+libdb47 +libgcrypt +libopenssl 
+   TITLE:=netatalk
+   URL:=http://netatalk.sourceforge.net
+   MAINTAINER:=W. Michael Petullo <mike@flyn.org>
+@@ -38,11 +38,11 @@
+ endef
+ 
+ define Package/netatalk/conffiles
+-/etc/netatalk/afpd.conf
++/opt/etc/netatalk/afpd.conf
+ endef
+ 
+-TARGET_CFLAGS += -std=gnu99 -Wl,-rpath-link=$(STAGING_DIR)/usr/lib
+-TARGET_LDFLAGS += $(LIBRPC)
++TARGET_CFLAGS += -std=gnu99 -Wl,-rpath-link=$(STAGING_DIR)/opt/lib
++#TARGET_LDFLAGS += $(LIBRPC)
+ 
+ CONFIGURE_ARGS += \
+ 	--disable-afs \
+@@ -54,10 +54,10 @@
+ 	--disable-cups \
+ 	--disable-tcp-wrappers \
+ 	--with-cnid-default-backend=dbd \
+-	--with-bdb="$(STAGING_DIR)/usr/" \
+-	--with-libgcrypt-dir="$(STAGING_DIR)/usr" \
+-	--with-ssl-dir="$(STAGING_DIR)/usr" \
+-	--with-uams-path="/usr/lib/uams" \
++	--with-bdb="$(STAGING_DIR)/opt/" \
++	--with-libgcrypt-dir="$(STAGING_DIR)/opt" \
++	--with-ssl-dir="$(STAGING_DIR)/opt" \
++	--with-uams-path="/opt/lib/uams" \
+ 	--disable-admin-group \
+ 	--disable-srvloc \
+ 	--disable-zeroconf \
+@@ -65,20 +65,20 @@
+ 	--without-ldap
+ 
+ define Package/netatalk/install
+-	$(INSTALL_DIR) $(1)/usr/bin
+-	$(INSTALL_DIR) $(1)/usr/sbin
+-	$(INSTALL_DIR) $(1)/usr/lib/uams
+-	$(INSTALL_DIR) $(1)/etc/netatalk
+-	$(INSTALL_DIR) $(1)/etc/init.d
+-	$(CP) $(PKG_INSTALL_DIR)/usr/bin/afppasswd $(1)/usr/bin/
+-	$(CP) $(PKG_INSTALL_DIR)/usr/sbin/afpd $(1)/usr/sbin/
+-	$(CP) $(PKG_INSTALL_DIR)/usr/sbin/cnid_dbd $(1)/usr/sbin/
+-	$(CP) $(PKG_INSTALL_DIR)/usr/sbin/cnid_metad $(1)/usr/sbin/
+-	$(CP) $(PKG_INSTALL_DIR)/usr/lib/uams/*.so $(1)/usr/lib/uams/
+-	$(CP) ./files/AppleVolumes.default $(1)/etc/netatalk/
+-	$(CP) $(PKG_INSTALL_DIR)/etc/netatalk/AppleVolumes.system $(1)/etc/netatalk/
+-	$(INSTALL_CONF) ./files/afpd.conf $(1)/etc/netatalk/
+-	$(INSTALL_BIN) ./files/afpd.init $(1)/etc/init.d/afpd
++	$(INSTALL_DIR) $(1)/opt/bin
++	$(INSTALL_DIR) $(1)/opt/sbin
++	$(INSTALL_DIR) $(1)/opt/lib/uams
++	$(INSTALL_DIR) $(1)/opt/etc/netatalk
++#	$(INSTALL_DIR) $(1)/etc/init.d
++	$(CP) $(PKG_INSTALL_DIR)/opt/bin/afppasswd $(1)/opt/bin/
++	$(CP) $(PKG_INSTALL_DIR)/opt/sbin/afpd $(1)/opt/sbin/
++	$(CP) $(PKG_INSTALL_DIR)/opt/sbin/cnid_dbd $(1)/opt/sbin/
++	$(CP) $(PKG_INSTALL_DIR)/opt/sbin/cnid_metad $(1)/opt/sbin/
++	$(CP) $(PKG_INSTALL_DIR)/opt/lib/uams/*.so $(1)/opt/lib/uams/
++	$(CP) ./files/AppleVolumes.default $(1)/opt/etc/netatalk/
++	$(CP) $(PKG_INSTALL_DIR)/opt/etc/netatalk/AppleVolumes.system $(1)/opt/etc/netatalk/
++	$(INSTALL_CONF) ./files/afpd.conf $(1)/opt/etc/netatalk/
++#	$(INSTALL_BIN) ./files/afpd.init $(1)/etc/init.d/afpd
+ endef
+ 
+ $(eval $(call BuildPackage,netatalk))
