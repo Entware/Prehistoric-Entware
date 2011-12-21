@@ -1,0 +1,117 @@
+--- ../../../backup/trunk_clean/feeds/packages/net/usbip/Makefile	2011-12-05 10:46:34.000000000 +0400
++++ ../../../trunk/feeds/packages/net/usbip/Makefile	2011-12-21 11:30:16.882738780 +0400
+@@ -39,19 +39,19 @@
+ define Package/usbip
+ $(call Package/usbip/Default)
+   TITLE+= (common)
+-  DEPENDS+= +libsysfs +libwrap +kmod-usbip
++  DEPENDS+= +libsysfs +libwrap
+ endef
+ 
+ define Package/usbip-client
+ $(call Package/usbip/Default)
+   TITLE+= (client)
+-  DEPENDS+= usbip +glib2 +kmod-usbip-client
++  DEPENDS+= usbip +glib2
+ endef
+ 
+ define Package/usbip-server
+ $(call Package/usbip/Default)
+   TITLE+= (server)
+-  DEPENDS+= usbip +glib2 +kmod-usbip-server
++  DEPENDS+= usbip +glib2
+ endef
+ 
+ define KernelPackage/usbip/Default
+@@ -62,7 +62,6 @@
+ define KernelPackage/usbip
+ $(call KernelPackage/usbip/Default)
+   TITLE+= (kernel support)
+-  DEPENDS+= +kmod-usb-core
+   KCONFIG:= \
+ 	CONFIG_USB_IP_COMMON CONFIG_USB_IP_DEBUG_ENABLE=n \
+ 	CONFIG_USBIP_CORE CONFIG_USBIP_DEBUG=n
+@@ -78,7 +77,6 @@
+ define KernelPackage/usbip-client
+ $(call KernelPackage/usbip/Default)
+   TITLE+= (kernel client driver)
+-  DEPENDS+= kmod-usbip
+   KCONFIG:= CONFIG_USB_IP_VHCI_HCD CONFIG_USBIP_VHCI_HCD
+   FILES:=$(LINUX_DIR)/drivers/staging/usbip/vhci-hcd.$(LINUX_KMOD_SUFFIX)
+   AUTOLOAD:=$(call AutoLoad,99,vhci-hcd)
+@@ -87,7 +85,6 @@
+ define KernelPackage/usbip-server
+ $(call KernelPackage/usbip/Default)
+   TITLE+= (kernel host driver)
+-  DEPENDS+= kmod-usbip
+   KCONFIG:= CONFIG_USB_IP_HOST CONFIG_USBIP_HOST
+  ifeq ($(strip $(call CompareKernelPatchVer,$(KERNEL_PATCHVER),le,2.6.39)),1)
+   FILES:=$(LINUX_DIR)/drivers/staging/usbip/usbip.$(LINUX_KMOD_SUFFIX)
+@@ -104,11 +101,14 @@
+ MAKE_PATH:=./src
+ LIBTOOL_PATHS:=./src
+ 
+-CFLAGS+="$(TARGET_CFLAGS) -I$(STAGING_DIR)/usr/include"
++CFLAGS+="$(TARGET_CFLAGS) -I$(STAGING_DIR)/opt/include"
++CONFIGURE_VARS += \
++	ac_cv_func_malloc_0_nonnull=yes \
++	ac_cv_func_realloc_0_nonnull=yes
+ 
+ define Build/Compile/kmod
+ 	$(MAKE) $(KERNEL_MAKEOPTS) \
+-		SUBDIRS="$(LINUX_DIR)/drivers/staging/usbip" \
++		SUBDIRS="$(LINUX_DIR)/drivers/usb/usbip" \
+ 		CONFIG_USB_IP_COMMON=m \
+ 		CONFIG_USB_IP_VHCI_HCD=m \
+ 		CONFIG_USB_IP_HOST=m \
+@@ -120,35 +120,35 @@
+ 
+ define Build/Compile
+ $(call Build/Compile/Default)
+-$(call Build/Compile/kmod)
++#$(call Build/Compile/kmod)
+ endef
+ 
+ define Package/usbip/install
+-	$(INSTALL_DIR) $(1)/usr/lib
++	$(INSTALL_DIR) $(1)/opt/lib
+ 	$(CP) \
+-		$(PKG_INSTALL_DIR)/usr/lib/libusbip.so.* \
+-		$(1)/usr/lib/
+-	$(INSTALL_DIR) $(1)/usr/share/usbip
++		$(PKG_INSTALL_DIR)/opt/lib/libusbip.so.* \
++		$(1)/opt/lib/
++	$(INSTALL_DIR) $(1)/opt/share/usbip
+ 	$(CP) \
+-		$(PKG_INSTALL_DIR)/usr/share/usbip/usb.ids \
+-		$(1)/usr/share/usbip/
++		$(PKG_INSTALL_DIR)/opt/share/usbip/usb.ids \
++		$(1)/opt/share/usbip/
+ endef
+ 
+ define Package/usbip-client/install
+-	$(INSTALL_DIR) $(1)/usr/bin
++	$(INSTALL_DIR) $(1)/opt/bin
+ 	$(CP) \
+-		$(PKG_INSTALL_DIR)/usr/bin/usbip \
+-		$(1)/usr/bin/
++		$(PKG_INSTALL_DIR)/opt/bin/usbip \
++		$(1)/opt/bin/
+ endef
+ 
+ define Package/usbip-server/install
+-	$(INSTALL_DIR) $(1)/usr/bin
++	$(INSTALL_DIR) $(1)/opt/bin
+ 	$(CP) \
+-		$(PKG_INSTALL_DIR)/usr/bin/usbipd \
+-		$(1)/usr/bin/
++		$(PKG_INSTALL_DIR)/opt/bin/usbipd \
++		$(1)/opt/bin/
+ 	$(CP) \
+-		$(PKG_INSTALL_DIR)/usr/bin/bind_driver \
+-		$(1)/usr/bin/usbip_bind_driver
++		$(PKG_INSTALL_DIR)/opt/bin/bind_driver \
++		$(1)/opt/bin/usbip_bind_driver
+ endef
+ 
+ $(eval $(call BuildPackage,usbip))
