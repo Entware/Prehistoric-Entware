@@ -1,0 +1,69 @@
+--- ../../../backup/trunk_clean/feeds/packages/utils/lcd4linux/Makefile	2011-12-05 10:45:51.000000000 +0400
++++ ../../../trunk/feeds/packages/utils/lcd4linux/Makefile	2011-12-21 10:55:57.924627319 +0400
+@@ -121,9 +121,10 @@
+ 	libnmeap \
+ 	libsqlite3 \
+ 	libvncserver \
+-	ppp \
+ 	serdisplib \
+ 	st2205tool \
++
++#	ppp \
+ #	libftdi \
+ #	libX11 \
+ #	python \
+@@ -214,7 +215,7 @@
+ CONFIGURE_ARGS+= \
+ 	--disable-rpath \
+ 
+-EXTRA_LDFLAGS+= -Wl,-rpath-link,$(STAGING_DIR)/usr/lib
++EXTRA_LDFLAGS+= -Wl,-rpath-link,$(STAGING_DIR)/opt/lib
+ 
+ ifeq ($(BUILD_VARIANT),custom)
+ 
+@@ -243,7 +244,7 @@
+   endif
+ 
+   ifneq ($(CONFIG_LCD4LINUX_CUSTOM_NEEDS_libmysqlclient),)
+-    EXTRA_LDFLAGS+= -L$(STAGING_DIR)/usr/lib/mysql
++    EXTRA_LDFLAGS+= -L$(STAGING_DIR)/opt/lib/mysql
+   endif
+ 
+ #  ifneq ($(CONFIG_LCD4LINUX_CUSTOM_NEEDS_python),)
+@@ -277,27 +278,27 @@
+ 	--without-python \
+ 	--without-x \
+ 
+-  EXTRA_LDFLAGS+= -L$(STAGING_DIR)/usr/lib/mysql
++  EXTRA_LDFLAGS+= -L$(STAGING_DIR)/opt/lib/mysql
+ 
+ endif
+ 
+ 
+ define Package/lcd4linux/conffiles
+-/etc/lcd4linux.conf
++/opt/etc/lcd4linux.conf
+ endef
+ 
+ define Package/lcd4linux/install
+-	$(INSTALL_DIR) $(1)/usr/bin
+-	$(CP) $(PKG_INSTALL_DIR)/usr/bin/lcd4linux $(1)/usr/bin/
+-	$(INSTALL_DIR) $(1)/etc
+-	$(INSTALL_CONF) $(PKG_BUILD_DIR)/lcd4linux.conf.sample $(1)/etc/lcd4linux.conf
+-	$(INSTALL_DIR) $(1)/etc/init.d
+-	$(INSTALL_BIN) ./files/lcd4linux.init $(1)/etc/init.d/lcd4linux
++	$(INSTALL_DIR) $(1)/opt/bin
++	$(CP) $(PKG_INSTALL_DIR)/opt/bin/lcd4linux $(1)/opt/bin/
++	$(INSTALL_DIR) $(1)/opt/etc
++	$(INSTALL_CONF) $(PKG_BUILD_DIR)/lcd4linux.conf.sample $(1)/opt/etc/lcd4linux.conf
++#	$(INSTALL_DIR) $(1)/etc/init.d
++#	$(INSTALL_BIN) ./files/lcd4linux.init $(1)/etc/init.d/lcd4linux
+ 	$(SED) "s|^\(Display 'GLCD2USB'\)|#\1|g" \
+ 	    -e "s|^\(Layout 'TestLayer'\)|#\1|g" \
+ 	    -e "s|^#\(Display 'Image'\)|\1|g" \
+ 	    -e "s|^#\(Layout 'Default'\)|\1|g" \
+-	     $(1)/etc/lcd4linux.conf
++	     $(1)/opt/etc/lcd4linux.conf
+ endef
+ 
+ Package/lcd4linux-custom/conffiles = $(Package/lcd4linux/conffiles)
