@@ -1,0 +1,24 @@
+--- ../../../backup/trunk_clean/feeds/packages/libs/libvncserver/Makefile	2011-12-05 10:46:45.000000000 +0400
++++ ../../../trunk/feeds/packages/libs/libvncserver/Makefile	2011-12-21 10:37:18.602694468 +0400
+@@ -45,15 +45,15 @@
+ 	--without-avahi
+ 
+ define Build/InstallDev
+-	$(INSTALL_DIR) $(1)/usr/{lib,include,bin}
+-	$(CP) $(PKG_INSTALL_DIR)/usr/bin/* $(1)/usr/bin
+-	$(CP) $(PKG_INSTALL_DIR)/usr/lib/lib* $(1)/usr/lib
+-	$(CP) $(PKG_INSTALL_DIR)/usr/include/* $(1)/usr/include/
++	$(INSTALL_DIR) $(1)/opt/{lib,include,bin}
++	$(CP) $(PKG_INSTALL_DIR)/opt/bin/* $(1)/opt/bin
++	$(CP) $(PKG_INSTALL_DIR)/opt/lib/lib* $(1)/opt/lib
++	$(CP) $(PKG_INSTALL_DIR)/opt/include/* $(1)/opt/include/
+ endef
+ 
+ define Package/libvncserver/install
+-	$(INSTALL_DIR) $(1)/usr/lib
+-	$(CP) $(PKG_INSTALL_DIR)/usr/lib/lib*so* $(1)/usr/lib/
++	$(INSTALL_DIR) $(1)/opt/lib
++	$(CP) $(PKG_INSTALL_DIR)/opt/lib/lib*so* $(1)/opt/lib/
+ endef
+ 
+ $(eval $(call BuildPackage,libvncserver))
