@@ -1,5 +1,5 @@
---- ../../../backup/trunk_clean/trunk/feeds/packages/libs/curl/Makefile	2011-11-15 14:03:59.000000000 +0400
-+++ ../../../trunk/feeds/packages/libs/curl/Makefile	2011-11-24 11:34:20.528629120 +0400
+--- ../../../backup/trunk_clean/feeds/packages/libs/curl/Makefile	2011-12-22 10:24:42.000000000 +0400
++++ ../../../trunk/feeds/packages/libs/curl/Makefile	2011-12-22 10:30:22.635387047 +0400
 @@ -70,14 +70,14 @@
  	--enable-tftp \
  	--disable-verbose \
@@ -17,7 +17,7 @@
  	$(call autoconf_bool,CONFIG_IPV6,ipv6) \
  
  CONFIGURE_VARS += \
-@@ -99,24 +99,24 @@
+@@ -92,24 +92,24 @@
  endef
  
  define Build/InstallDev

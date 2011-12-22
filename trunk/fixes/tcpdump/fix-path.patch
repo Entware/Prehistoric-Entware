@@ -1,6 +1,6 @@
---- ../../../backup/trunk_clean/feeds/packages/net/tcpdump/Makefile	2011-12-05 10:46:09.000000000 +0400
-+++ ../../../trunk/feeds/packages/net/tcpdump/Makefile	2011-12-21 11:58:24.764708494 +0400
-@@ -68,8 +68,8 @@
+--- ../../../backup/trunk_clean/feeds/packages/net/tcpdump/Makefile	2011-12-22 10:24:16.000000000 +0400
++++ ../../../trunk/feeds/packages/net/tcpdump/Makefile	2011-12-22 10:30:23.271379053 +0400
+@@ -69,8 +69,8 @@
  
  
  define Package/tcpdump/install

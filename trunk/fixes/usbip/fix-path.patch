@@ -1,5 +1,14 @@
---- ../../../backup/trunk_clean/feeds/packages/net/usbip/Makefile	2011-12-05 10:46:34.000000000 +0400
-+++ ../../../trunk/feeds/packages/net/usbip/Makefile	2011-12-21 11:30:16.882738780 +0400
+--- ../../../backup/trunk_clean/feeds/packages/net/usbip/Makefile	2011-12-22 10:24:21.000000000 +0400
++++ ../../../trunk/feeds/packages/net/usbip/Makefile	2011-12-22 14:40:06.204105184 +0400
+@@ -26,7 +26,7 @@
+ define Package/usbip/Common
+   TITLE:=USB-over-IP
+   URL:=http://usbip.sourceforge.net/
+-  DEPENDS:=@USB_SUPPORT
++#  DEPENDS:=@USB_SUPPORT
+   MAINTAINER:=Nuno Goncalves <nunojpg@gmail.com>
+ endef
+ 
 @@ -39,19 +39,19 @@
  define Package/usbip
  $(call Package/usbip/Default)
