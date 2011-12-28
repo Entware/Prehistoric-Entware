@@ -1,5 +1,5 @@
---- ../../../backup/trunk_clean/feeds/packages/net/wget/Makefile	2011-11-25 09:49:53.076911215 +0400
-+++ ../../../trunk/feeds/packages/net/wget/Makefile	2011-11-27 20:27:38.692478739 +0400
+--- ../../../backup/trunk_clean/feeds/packages/net/wget/Makefile	2011-12-28 08:43:59.000000000 +0400
++++ ../../../trunk/feeds/packages/net/wget/Makefile	2011-12-28 10:59:49.829155156 +0400
 @@ -66,7 +66,7 @@
  ifeq ($(BUILD_VARIANT),ssl)
  	CONFIGURE_ARGS+= \
@@ -9,7 +9,7 @@
  endif
  
  ifeq ($(BUILD_VARIANT),nossl)
-@@ -75,50 +75,50 @@
+@@ -75,50 +75,51 @@
  endif
  
  define Package/wget/install
@@ -17,6 +17,7 @@
 -	$(INSTALL_BIN) $(PKG_BUILD_DIR)/src/wget $(1)/usr/bin/wget-ssl
 +	$(INSTALL_DIR) $(1)/opt/bin
 +	$(INSTALL_BIN) $(PKG_BUILD_DIR)/src/wget $(1)/opt/bin/wget-ssl
++	$(LN) wget-ssl $(1)/opt/bin/wget
  endef
  
  define Package/wget-nossl/install

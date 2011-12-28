@@ -1,6 +1,6 @@
-diff -r -u -x .svn ../../../backup/trunk_clean/feeds/packages/net/rtorrent//Makefile ../../../trunk/feeds/packages/net/rtorrent//Makefile
---- ../../../backup/trunk_clean/feeds/packages/net/rtorrent//Makefile	2011-12-05 10:46:11.000000000 +0400
-+++ ../../../trunk/feeds/packages/net/rtorrent//Makefile	2011-12-14 14:02:48.338110702 +0400
+diff -r -u -x ./svn ../../../backup/trunk_clean/feeds/packages/net/rtorrent/Makefile ../../../trunk/feeds/packages/net/rtorrent/Makefile
+--- ../../../backup/trunk_clean/feeds/packages/net/rtorrent/Makefile	2011-12-28 08:43:58.000000000 +0400
++++ ../../../trunk/feeds/packages/net/rtorrent/Makefile	2011-12-28 11:05:58.972516914 +0400
 @@ -8,12 +8,12 @@
  include $(TOPDIR)/rules.mk
  
@@ -16,6 +16,15 @@ diff -r -u -x .svn ../../../backup/trunk_clean/feeds/packages/net/rtorrent//Make
  
  PKG_FIXUP:=libtool
  PKG_BUILD_PARALLEL:=1
+@@ -27,7 +27,7 @@
+   CATEGORY:=Network
+   TITLE:=BitTorrent client for ncurses
+   URL:=http://libtorrent.rakshasa.no/
+-  DEPENDS:=+libcurl +libtorrent +libncurses +libsigcxx +xmlrpc-c-server +libpthread
++  DEPENDS:=+libcurl +libtorrent +libncurses +libsigcxx +xmlrpc-c-server +libpthread +libncursesw
+   MAINTAINER:=Luka Perkov <openwrt@lukaperkov.net>
+ endef
+ 
 @@ -39,7 +39,7 @@
  endef
  
@@ -36,9 +45,9 @@ diff -r -u -x .svn ../../../backup/trunk_clean/feeds/packages/net/rtorrent//Make
  endef
  
  $(eval $(call BuildPackage,rtorrent))
-diff -r -u -x .svn ../../../backup/trunk_clean/feeds/packages/net/rtorrent//patches/120-fix-ncurses.patch ../../../trunk/feeds/packages/net/rtorrent//patches/120-fix-ncurses.patch
---- ../../../backup/trunk_clean/feeds/packages/net/rtorrent//patches/120-fix-ncurses.patch	2011-12-05 10:46:11.000000000 +0400
-+++ ../../../trunk/feeds/packages/net/rtorrent//patches/120-fix-ncurses.patch	2011-12-14 14:04:42.957659660 +0400
+diff -r -u -x ./svn ../../../backup/trunk_clean/feeds/packages/net/rtorrent/patches/120-fix-ncurses.patch ../../../trunk/feeds/packages/net/rtorrent/patches/120-fix-ncurses.patch
+--- ../../../backup/trunk_clean/feeds/packages/net/rtorrent/patches/120-fix-ncurses.patch	2011-12-28 08:43:58.000000000 +0400
++++ ../../../trunk/feeds/packages/net/rtorrent/patches/120-fix-ncurses.patch	2011-12-28 08:47:29.368615406 +0400
 @@ -1,13 +1,11 @@
 -Index: rtorrent-0.8.6/src/display/canvas.h
 -===================================================================
@@ -59,3 +68,4 @@ diff -r -u -x .svn ../../../backup/trunk_clean/feeds/packages/net/rtorrent//patc
     ~Canvas() { delwin(m_window); }
   
 +   void                refresh()                                               { wnoutrefresh(m_window); }
+Только в ../../../trunk/feeds/packages/net/rtorrent/patches: 555-disable-AM_PATH_CPPUNIT-check.patch
