@@ -1,0 +1,56 @@
+--- ../../../backup/trunk_clean/package/xfsprogs/Makefile	2011-12-28 08:42:39.000000000 +0400
++++ ../../../trunk/package/xfsprogs/Makefile	2012-01-02 20:04:58.384753733 +0400
+@@ -47,7 +47,7 @@
+ 	--enable-lib64=no
+ 
+ TARGET_CFLAGS += \
+-	-I$(STAGING_DIR)/usr/include \
++	-I$(STAGING_DIR)/opt/include \
+ 	-D_LARGEFILE64_SOURCE \
+ 	-D_FILE_OFFSET_BITS=64 \
+ 	-D_GNU_SOURCE
+@@ -57,29 +57,29 @@
+ 	PCFLAGS="-Wall" \
+ 	PKG_PLATFORM=linux \
+ 	ENABLE_GETTEXT=no \
+-	prefix=$(PKG_INSTALL_DIR)/usr \
+-	exec_prefix=$(PKG_INSTALL_DIR)/usr \
+-	PKG_SBIN_DIR=$(PKG_INSTALL_DIR)/usr/sbin \
+-	PKG_ROOT_SBIN_DIR=$(PKG_INSTALL_DIR)/sbin \
+-	PKG_MAN_DIR=$(PKG_INSTALL_DIR)/usr/man \
+-	PKG_LOCALE_DIR=$(PKG_INSTALL_DIR)/usr/share/locale \
+-	PKG_ROOT_LIB_DIR=$(PKG_INSTALL_DIR)/lib \
+-	PKG_DOC_DIR=$(PKG_INSTALL_DIR)/usr/share/doc/xfsprogs
++	prefix=$(PKG_INSTALL_DIR)/opt \
++	exec_prefix=$(PKG_INSTALL_DIR)/opt \
++	PKG_SBIN_DIR=$(PKG_INSTALL_DIR)/opt/sbin \
++	PKG_ROOT_SBIN_DIR=$(PKG_INSTALL_DIR)/opt/sbin \
++	PKG_MAN_DIR=$(PKG_INSTALL_DIR)/opt/man \
++	PKG_LOCALE_DIR=$(PKG_INSTALL_DIR)/opt/share/locale \
++	PKG_ROOT_LIB_DIR=$(PKG_INSTALL_DIR)/opt/lib \
++	PKG_DOC_DIR=$(PKG_INSTALL_DIR)/opt/share/doc/xfsprogs
+ 
+ define Package/xfs-mkfs/install
+-	mkdir -p $(1)/sbin
+-	$(INSTALL_BIN) $(PKG_INSTALL_DIR)/sbin/mkfs.xfs $(1)/sbin
++	mkdir -p $(1)/opt/sbin
++	$(INSTALL_BIN) $(PKG_INSTALL_DIR)/opt/sbin/mkfs.xfs $(1)/opt/sbin
+ endef
+ 
+ define Package/xfs-fsck/install
+-	mkdir -p $(1)/sbin
+-	$(INSTALL_BIN) $(PKG_INSTALL_DIR)/sbin/xfs_repair $(1)/sbin
+-	$(INSTALL_BIN) $(PKG_INSTALL_DIR)/usr/sbin/xfs_db $(1)/sbin
++	mkdir -p $(1)/opt/sbin
++	$(INSTALL_BIN) $(PKG_INSTALL_DIR)/opt/sbin/xfs_repair $(1)/opt/sbin
++	$(INSTALL_BIN) $(PKG_INSTALL_DIR)/opt/sbin/xfs_db $(1)/opt/sbin
+ endef
+ 
+ define Package/xfs-growfs/install
+-	mkdir -p $(1)/sbin
+-	$(INSTALL_BIN) $(PKG_INSTALL_DIR)/usr/sbin/xfs_growfs $(1)/sbin
++	mkdir -p $(1)/opt/sbin
++	$(INSTALL_BIN) $(PKG_INSTALL_DIR)/opt/sbin/xfs_growfs $(1)/opt/sbin
+ endef
+ 
+ $(eval $(call BuildPackage,xfs-mkfs))
