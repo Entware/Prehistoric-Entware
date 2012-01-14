@@ -1,15 +1,20 @@
---- ../../../backup/trunk_clean/feeds/packages/utils/bzip2/Makefile	2011-11-25 09:49:47.844976990 +0400
-+++ ../../../trunk/feeds/packages/utils/bzip2/Makefile	2011-11-27 18:42:42.755625633 +0400
-@@ -44,7 +44,7 @@
+--- ../../../backup/trunk_clean/feeds/packages/utils/bzip2/Makefile	2012-01-13 12:14:27.000000000 +0400
++++ ../../../trunk/feeds/packages/utils/bzip2/Makefile	2012-01-14 22:13:03.568632802 +0400
+@@ -43,8 +43,11 @@
+ 	data compressor. This package provides the binary.
  endef
  
- TARGET_CFLAGS += $(FPIC)
+-TARGET_CFLAGS += $(FPIC)
 -CONFIGURE_ARGS += --prefix=/usr
++TARGET_CFLAGS += \
++	$(FPIC) \
++	-Wl,-rpath,/opt/lib
++
 +CONFIGURE_ARGS += --prefix=/opt
  
  MAKE_FLAGS += \
  	-f Makefile-libbz2_so \
-@@ -53,23 +53,23 @@
+@@ -53,23 +56,23 @@
  	all
  
  define Build/InstallDev
