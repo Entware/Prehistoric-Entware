@@ -1,0 +1,21 @@
+--- ../../../backup/trunk_clean/feeds/packages/net/pyload/Makefile	2012-01-13 12:14:58.000000000 +0400
++++ ../../../trunk/feeds/packages/net/pyload/Makefile	2012-01-14 18:03:21.552709053 +0400
+@@ -38,12 +38,12 @@
+ endef
+ 
+ define Package/pyload/install
+-	$(INSTALL_DIR) $(1)/usr/share/python
+-	$(CP) $(PKG_BUILD_DIR)/pyload $(1)/usr/share/python/
+-	$(INSTALL_DIR) $(1)/etc/init.d
+-	$(INSTALL_BIN) ./files/pyload.init $(1)/etc/init.d/pyload
+-	$(INSTALL_DIR) $(1)/usr/bin
+-	$(LN) ../share/python/pyload/pyLoadCore.py $(1)/usr/bin/pyload
++	$(INSTALL_DIR) $(1)/opt/share/python
++	$(CP) $(PKG_BUILD_DIR)/pyload $(1)/opt/share/python/
++#	$(INSTALL_DIR) $(1)/etc/init.d
++#	$(INSTALL_BIN) ./files/pyload.init $(1)/etc/init.d/pyload
++	$(INSTALL_DIR) $(1)/opt/bin
++	$(LN) ../share/python/pyload/pyLoadCore.py $(1)/opt/bin/pyload
+ endef
+ 
+ $(eval $(call BuildPackage,pyload))
