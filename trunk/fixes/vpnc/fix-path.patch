@@ -1,0 +1,83 @@
+diff -urx .svn ../../../backup/trunk_clean/feeds/packages/net/vpnc/Makefile ../../../trunk/feeds/packages/net/vpnc/Makefile
+--- ../../../backup/trunk_clean/feeds/packages/net/vpnc/Makefile	2012-01-13 12:14:59.000000000 +0400
++++ ../../../trunk/feeds/packages/net/vpnc/Makefile	2012-01-14 16:00:02.919680705 +0400
+@@ -20,7 +20,7 @@
+ define Package/vpnc
+   SECTION:=net
+   CATEGORY:=Network
+-  DEPENDS:=+libgpg-error +libgcrypt +kmod-tun +ip
++  DEPENDS:=+libgpg-error +libgcrypt
+   TITLE:=VPN client for Cisco EasyVPN
+   URL:=http://www.unix-ag.uni-kl.de/~massar/vpnc/
+   SUBMENU:=VPN
+@@ -35,8 +35,8 @@
+ endef
+ 
+ define Package/vpnc/conffiles
+-/etc/vpnc/default.conf
+-/etc/vpnc/vpnc-script
++/opt/etc/vpnc/default.conf
++/opt/etc/vpnc/vpnc-script
+ endef
+ 
+ define Build/Compile
+@@ -45,19 +45,19 @@
+ 		OS="Linux" \
+ 		STAGING_DIR="$(STAGING_DIR)" \
+ 		DESTDIR="$(PKG_INSTALL_DIR)" \
+-		PREFIX=/usr \
++		PREFIX=/opt \
+ 		all install \
+ 	)
+ endef
+ 
+ define Package/vpnc/install
+-	$(INSTALL_DIR) $(1)/usr/sbin
+-	$(CP)	$(PKG_INSTALL_DIR)/usr/sbin/vpnc \
+-		$(PKG_INSTALL_DIR)/usr/sbin/vpnc-disconnect \
+-		$(1)/usr/sbin/
+-	install -d -m0700 $(1)/etc/vpnc
+-	$(INSTALL_CONF) $(PKG_INSTALL_DIR)/etc/vpnc/default.conf $(1)/etc/vpnc/
+-	$(INSTALL_BIN) $(PKG_INSTALL_DIR)/etc/vpnc/vpnc-script $(1)/etc/vpnc/
++	$(INSTALL_DIR) $(1)/opt/sbin
++	$(CP)	$(PKG_INSTALL_DIR)/opt/sbin/vpnc \
++		$(PKG_INSTALL_DIR)/opt/sbin/vpnc-disconnect \
++		$(1)/opt/sbin/
++	install -d -m0700 $(1)/opt/etc/vpnc
++	$(INSTALL_CONF) $(PKG_INSTALL_DIR)/opt/etc/vpnc/default.conf $(1)/opt/etc/vpnc/
++	$(INSTALL_BIN) $(PKG_INSTALL_DIR)/opt/etc/vpnc/vpnc-script $(1)/opt/etc/vpnc/
+ endef
+ 
+ $(eval $(call BuildPackage,vpnc))
+diff -urx .svn ../../../backup/trunk_clean/feeds/packages/net/vpnc/patches/001-cross.patch ../../../trunk/feeds/packages/net/vpnc/patches/001-cross.patch
+--- ../../../backup/trunk_clean/feeds/packages/net/vpnc/patches/001-cross.patch	2012-01-13 12:14:59.000000000 +0400
++++ ../../../trunk/feeds/packages/net/vpnc/patches/001-cross.patch	2012-01-14 15:55:55.614506709 +0400
+@@ -5,10 +5,12 @@
+  
+  DESTDIR=
+ -PREFIX=/usr/local
+-+PREFIX=/usr
+- ETCDIR=/etc/vpnc
++-ETCDIR=/etc/vpnc
+++PREFIX=/opt
+++ETCDIR=/opt/etc/vpnc
+  BINDIR=$(PREFIX)/bin
+  SBINDIR=$(PREFIX)/sbin
++ MANDIR=$(PREFIX)/share/man
+ @@ -51,14 +51,11 @@ RELEASE_VERSION := $(shell cat VERSION)
+  #OPENSSLLIBS = -lcrypto
+  
+@@ -16,11 +18,11 @@
+ -CFLAGS ?= -O3 -g
+ -CFLAGS += -W -Wall -Wmissing-declarations -Wwrite-strings
+ -CFLAGS +=  $(shell libgcrypt-config --cflags)
+-+CFLAGS += -W -Wall -Wmissing-declarations -Wwrite-strings -I$(STAGING_DIR)/usr/include -I$(STAGING_DIR)/include $(OFLAGS) '-DVERSION="$(shell cat VERSION)"'
+++CFLAGS += -W -Wall -Wmissing-declarations -Wwrite-strings -I$(STAGING_DIR)/opt/include -I$(STAGING_DIR)/include $(OFLAGS) '-DVERSION="$(shell cat VERSION)"'
+  CPPFLAGS += -DVERSION=\"$(VERSION)\" $(OPENSSL_GPL_VIOLATION)
+ -LDFLAGS ?= -g
+ -LDFLAGS += $(shell libgcrypt-config --libs) $(OPENSSLLIBS)
+-+LDFLAGS = -L$(STAGING_DIR)/usr/lib -L$(STAGING_DIR)/lib -lgcrypt -lgpg-error
+++LDFLAGS = -L$(STAGING_DIR)/opt/lib -L$(STAGING_DIR)/lib -lgcrypt -lgpg-error
+  
+ -ifeq ($(shell uname -s), SunOS)
+ +ifeq ($(OS), SunOS)
