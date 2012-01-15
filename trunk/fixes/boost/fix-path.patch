@@ -1,0 +1,74 @@
+--- ../../../backup/trunk_clean/feeds/packages/libs/boost/Makefile	2012-01-13 12:15:02.000000000 +0400
++++ ../../../trunk/feeds/packages/libs/boost/Makefile	2012-01-15 14:00:38.452798298 +0400
+@@ -149,9 +149,9 @@
+ 
+ define Build/Compile
+ 	( cd $(PKG_BUILD_DIR) ; \
+-		echo "using gcc : : $(GNU_TARGET_NAME)-gcc : <cflags>$(TARGET_CFLAGS) <cxxflags>$(TARGET_CXXFLAGS) <linkflags>$(TARGET_LDFLAGS) ;" > tools/build/v2/site-config.jam ; \
++		echo "using gcc : : mipsel-uclibc-gcc : <cflags>$(TARGET_CFLAGS) <cxxflags>$(TARGET_CXXFLAGS) <linkflags>$(TARGET_LDFLAGS) ;" > tools/build/v2/site-config.jam ; \
+ 		$(if $(CONFIG_PACKAGE_boost-python), \
+-			echo "using python : : $(STAGING_DIR_ROOT)/usr/bin/python :	$(STAGING_DIR)/usr/include/python2.6/ ;" >> \
++			echo "using python : : $(STAGING_DIR_ROOT)/opt/bin/python :	$(STAGING_DIR)/opt/include/python2.6/ ;" >> \
+ 				tools/build/v2/site-config.jam; \
+ 		) \
+ 		bjam \
+@@ -159,6 +159,7 @@
+ 			$(filter -j%,$(PKG_JOBS)) \
+ 			--toolset=gcc --build-type=minimal --layout=system \
+ 			--disable-long-double \
++			cflags='-Os -pipe -mips32r2 -funit-at-a-time -fhonour-copts' \
+ 			$(CONFIGURE_ARGS) \
+ 			$(if $(CONFIG_PACKAGE_boost-date_time),--with-date_time) \
+ 			$(if $(CONFIG_PACKAGE_boost-filesystem),--with-filesystem) \
+@@ -176,20 +177,20 @@
+ 			$(if $(CONFIG_PACKAGE_boost-thread),--with-thread) \
+ 			$(if $(CONFIG_PACKAGE_boost-wave),--with-wave) \
+ 			\
+-			$(if $(CONFIG_PACKAGE_boost-iostreams),-sNO_BZIP2=1 -sZLIB_INCLUDE=$(STAGING_DIR)/usr/include \
+-				-sZLIB_LIBPATH=$(STAGING_DIR)/usr/lib) \
++			$(if $(CONFIG_PACKAGE_boost-iostreams),-sNO_BZIP2=1 -sZLIB_INCLUDE=$(STAGING_DIR)/opt/include \
++				-sZLIB_LIBPATH=$(STAGING_DIR)/opt/lib) \
+ 			install \
+ 	)
+ endef
+ 
+ define Build/InstallDev
+-	$(INSTALL_DIR) $(1)/usr/include/boost/
+-	$(CP) $(PKG_INSTALL_DIR)/include/boost/* $(1)/usr/include/boost/ # copies _all_ header files - independent of <--with-library>-argument above
++	$(INSTALL_DIR) $(1)/opt/include/boost/
++	$(CP) $(PKG_INSTALL_DIR)/include/boost/* $(1)/opt/include/boost/ # copies _all_ header files - independent of <--with-library>-argument above
+ 
+ 	if [ -d $(PKG_INSTALL_DIR)/lib ]; then \
+-		$(INSTALL_DIR) $(1)/usr/lib; \
+-		$(CP) $(PKG_INSTALL_DIR)/lib/*.a $(1)/usr/lib/; \
+-		$(CP) $(PKG_INSTALL_DIR)/lib/*.so* $(1)/usr/lib/; \
++		$(INSTALL_DIR) $(1)/opt/lib; \
++		$(CP) $(PKG_INSTALL_DIR)/lib/*.a $(1)/opt/lib/; \
++		$(CP) $(PKG_INSTALL_DIR)/lib/*.so* $(1)/opt/lib/; \
+ 	fi
+ endef
+ 
+@@ -199,8 +200,8 @@
+ endef
+ 
+ define Package/boost/Default/install
+-	$(INSTALL_DIR) $(1)/usr/lib
+-	$(CP) $(PKG_INSTALL_DIR)/lib/libboost_$(2)*.so* $(1)/usr/lib/
++	$(INSTALL_DIR) $(1)/opt/lib
++	$(CP) $(PKG_INSTALL_DIR)/lib/libboost_$(2)*.so* $(1)/opt/lib/
+ endef
+ 
+ define Package/boost-date_time/install
+@@ -252,9 +253,9 @@
+ endef
+ 
+ define Package/boost-test/install
+-	$(INSTALL_DIR) $(1)/usr/lib
+-	$(CP) $(PKG_INSTALL_DIR)/lib/libboost_unit_test_framework*.so* $(1)/usr/lib/
+-	$(CP) $(PKG_INSTALL_DIR)/lib/libboost_prg_exec_monitor*.so* $(1)/usr/lib/
++	$(INSTALL_DIR) $(1)/opt/lib
++	$(CP) $(PKG_INSTALL_DIR)/lib/libboost_unit_test_framework*.so* $(1)/opt/lib/
++	$(CP) $(PKG_INSTALL_DIR)/lib/libboost_prg_exec_monitor*.so* $(1)/opt/lib/
+ endef
+ 
+ define Package/boost-thread/install
