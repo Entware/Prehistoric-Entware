@@ -1,0 +1,111 @@
+--- ../../../backup/trunk_clean/feeds/packages/net/openssh/Makefile	2012-01-13 12:14:42.000000000 +0400
++++ ../../../trunk/feeds/packages/net/openssh/Makefile	2012-01-15 10:04:35.078133275 +0400
+@@ -53,7 +53,7 @@
+ endef
+ 
+ define Package/openssh-client/conffiles
+-/etc/ssh/ssh_config
++/opt/etc/ssh/ssh_config
+ endef
+ 
+ define Package/openssh-client-utils
+@@ -86,7 +86,7 @@
+ endef
+ 
+ define Package/openssh-server/conffiles
+-/etc/ssh/sshd_config
++/opt/etc/ssh/sshd_config
+ endef
+ 
+ define Package/openssh-sftp-client
+@@ -109,9 +109,9 @@
+ 
+ CONFIGURE_ARGS+= \
+ 	$(DISABLE_NLS) \
+-	--sysconfdir=/etc/ssh \
++	--sysconfdir=/opt/etc/ssh \
+ 	--with-privsep-user=sshd \
+-	--with-privsep-path=/var/empty \
++	--with-privsep-path=/opt/var/empty \
+ 	--enable-shared \
+ 	--disable-static \
+ 	--disable-debug \
+@@ -151,50 +151,53 @@
+ endef
+ 
+ define Package/openssh-moduli/install
+-	$(INSTALL_DIR) $(1)/etc/ssh
+-	$(CP) $(PKG_INSTALL_DIR)/etc/ssh/moduli $(1)/etc/ssh/
++	$(INSTALL_DIR) $(1)/opt/etc
++	$(INSTALL_DIR) $(1)/opt/etc/ssh
++	$(CP) $(PKG_INSTALL_DIR)/opt/etc/ssh/moduli $(1)/opt/etc/ssh/
+ endef
+ 
+ define Package/openssh-client/install
+-	$(INSTALL_DIR) $(1)/etc/ssh
+-	chmod 0700 $(1)/etc/ssh
+-	$(CP) $(PKG_INSTALL_DIR)/etc/ssh/ssh_config $(1)/etc/ssh/
+-	$(INSTALL_DIR) $(1)/usr/bin
+-	$(INSTALL_BIN) $(PKG_INSTALL_DIR)/usr/bin/ssh $(1)/usr/bin/
+-	$(INSTALL_BIN) $(PKG_INSTALL_DIR)/usr/bin/scp $(1)/usr/bin/
++	$(INSTALL_DIR) $(1)/opt/etc
++	$(INSTALL_DIR) $(1)/opt/etc/ssh
++	chmod 0700 $(1)/opt/etc/ssh
++	$(CP) $(PKG_INSTALL_DIR)/opt/etc/ssh/ssh_config $(1)/opt/etc/ssh/
++	$(INSTALL_DIR) $(1)/opt/bin
++	$(INSTALL_BIN) $(PKG_INSTALL_DIR)/opt/bin/ssh $(1)/opt/bin/
++	$(INSTALL_BIN) $(PKG_INSTALL_DIR)/opt/bin/scp $(1)/opt/bin/
+ endef
+ 
+ define Package/openssh-client-utils/install
+-	$(INSTALL_DIR) $(1)/usr/bin
+-	$(INSTALL_BIN) $(foreach bin,add agent keyscan keysign,$(PKG_BUILD_DIR)/ssh-$(bin)) $(1)/usr/bin/
++	$(INSTALL_DIR) $(1)/opt/bin
++	$(INSTALL_BIN) $(foreach bin,add agent keyscan keysign,$(PKG_BUILD_DIR)/ssh-$(bin)) $(1)/opt/bin/
+ endef
+ 
+ define Package/openssh-keygen/install
+-	$(INSTALL_DIR) $(1)/usr/bin
+-	$(INSTALL_BIN) $(PKG_INSTALL_DIR)/usr/bin/ssh-keygen $(1)/usr/bin/
++	$(INSTALL_DIR) $(1)/opt/bin
++	$(INSTALL_BIN) $(PKG_INSTALL_DIR)/opt/bin/ssh-keygen $(1)/opt/bin/
+ endef
+ 
+ 
+ define Package/openssh-server/install
+-	$(INSTALL_DIR) $(1)/etc/ssh
+-	chmod 0700 $(1)/etc/ssh
+-	$(CP) $(PKG_INSTALL_DIR)/etc/ssh/sshd_config $(1)/etc/ssh/
+-	$(INSTALL_DIR) $(1)/etc/init.d
+-	$(INSTALL_BIN) ./files/sshd.init $(1)/etc/init.d/sshd
+-	$(INSTALL_DIR) $(1)/usr/sbin
+-	$(INSTALL_BIN) $(PKG_INSTALL_DIR)/usr/sbin/sshd $(1)/usr/sbin/
++	$(INSTALL_DIR) $(1)/opt/etc
++	$(INSTALL_DIR) $(1)/opt/etc/ssh
++	chmod 0700 $(1)/opt/etc/ssh
++	$(CP) $(PKG_INSTALL_DIR)/opt/etc/ssh/sshd_config $(1)/opt/etc/ssh/
++#	$(INSTALL_DIR) $(1)/etc/init.d
++#	$(INSTALL_BIN) ./files/sshd.init $(1)/etc/init.d/sshd
++	$(INSTALL_DIR) $(1)/opt/sbin
++	$(INSTALL_BIN) $(PKG_INSTALL_DIR)/opt/sbin/sshd $(1)/opt/sbin/
+ endef
+ 
+ define Package/openssh-sftp-client/install
+-	$(INSTALL_DIR) $(1)/usr/bin
+-	$(INSTALL_BIN) $(PKG_INSTALL_DIR)/usr/bin/sftp $(1)/usr/bin/
++	$(INSTALL_DIR) $(1)/opt/bin
++	$(INSTALL_BIN) $(PKG_INSTALL_DIR)/opt/bin/sftp $(1)/opt/bin/
+ endef
+ 
+ define Package/openssh-sftp-server/install
+-	$(INSTALL_DIR) $(1)/usr/lib
+-	$(CP) $(PKG_INSTALL_DIR)/usr/lib/sftp-server $(1)/usr/lib/
+-	$(INSTALL_DIR) $(1)/usr/libexec
+-	ln -sf ../lib/sftp-server $(1)/usr/libexec/sftp-server
++	$(INSTALL_DIR) $(1)/opt/lib
++	$(CP) $(PKG_INSTALL_DIR)/opt/lib/sftp-server $(1)/opt/lib/
++	$(INSTALL_DIR) $(1)/opt/libexec
++	ln -sf ../lib/sftp-server $(1)/opt/libexec/sftp-server
+ endef
+ 
+ $(eval $(call BuildPackage,openssh-client))
