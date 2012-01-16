@@ -1,26 +1,46 @@
 --- ../../../backup/trunk_clean/feeds/packages/libs/boost/Makefile	2012-01-13 12:15:02.000000000 +0400
-+++ ../../../trunk/feeds/packages/libs/boost/Makefile	2012-01-15 14:00:38.452798298 +0400
-@@ -149,9 +149,9 @@
++++ ../../../trunk/feeds/packages/libs/boost/Makefile	2012-01-16 14:57:25.218672619 +0400
+@@ -10,14 +10,14 @@
+ include $(TOPDIR)/rules.mk
+ 
+ PKG_NAME:=boost
+-PKG_VERSION:=1_46_0
++PKG_VERSION:=1_48_0
+ PKG_RELEASE:=1
+ 
+ PKG_SOURCE:=$(PKG_NAME)_$(PKG_VERSION).tar.gz
+ PKG_SOURCE_URL:=@SF/boost
+ PKG_BUILD_DIR:=$(BUILD_DIR)/$(PKG_NAME)_$(PKG_VERSION)
+ HOST_BUILD_DIR:=$(BUILD_DIR_HOST)/$(PKG_NAME)_$(PKG_VERSION)
+-PKG_MD5SUM:=820393d5746553c192db7b81ba0e53fe
++PKG_MD5SUM:=313a11e97eb56eb7efd18325354631be
+ 
+ PKG_BUILD_DEPENDS:=boost/host
+ PKG_BUILD_PARALLEL:=1
+@@ -141,17 +141,18 @@
+ 
+ define Host/Compile
+ 	# bjam does not provide a configure-script nor a Makefile
+-	( cd $(HOST_BUILD_DIR)/tools/build/v2/engine/src ; ./build.sh gcc )
++	( cd $(HOST_BUILD_DIR)/tools/build/v2/engine ; ./build.sh gcc )
+ endef
+ 
+ CONFIGURE_PREFIX:=$(PKG_INSTALL_DIR)
+-TARGET_LDFLAGS += -pthreads -lrt
++TARGET_LDFLAGS += -lpthread -lrt
++TARGET_CFLAGS= -pipe -mips32 -mtune=mips32
  
  define Build/Compile
  	( cd $(PKG_BUILD_DIR) ; \
 -		echo "using gcc : : $(GNU_TARGET_NAME)-gcc : <cflags>$(TARGET_CFLAGS) <cxxflags>$(TARGET_CXXFLAGS) <linkflags>$(TARGET_LDFLAGS) ;" > tools/build/v2/site-config.jam ; \
-+		echo "using gcc : : mipsel-uclibc-gcc : <cflags>$(TARGET_CFLAGS) <cxxflags>$(TARGET_CXXFLAGS) <linkflags>$(TARGET_LDFLAGS) ;" > tools/build/v2/site-config.jam ; \
++		echo "using gcc : : mipsel-uclibc-gcc : <compileflags>\"$(TARGET_CFLAGS)\" <cxxflags>\"$(TARGET_CXXFLAGS)\" <linkflags>\"$(TARGET_LDFLAGS)\" ;" > tools/build/v2/site-config.jam ; \
  		$(if $(CONFIG_PACKAGE_boost-python), \
 -			echo "using python : : $(STAGING_DIR_ROOT)/usr/bin/python :	$(STAGING_DIR)/usr/include/python2.6/ ;" >> \
-+			echo "using python : : $(STAGING_DIR_ROOT)/opt/bin/python :	$(STAGING_DIR)/opt/include/python2.6/ ;" >> \
++			echo "using python : : $(STAGING_DIR_ROOT)/opt/bin/python :	$(STAGING_DIR)/opt/include/python2.6/  ;" >> \
  				tools/build/v2/site-config.jam; \
  		) \
  		bjam \
-@@ -159,6 +159,7 @@
- 			$(filter -j%,$(PKG_JOBS)) \
- 			--toolset=gcc --build-type=minimal --layout=system \
- 			--disable-long-double \
-+			cflags='-Os -pipe -mips32r2 -funit-at-a-time -fhonour-copts' \
- 			$(CONFIGURE_ARGS) \
- 			$(if $(CONFIG_PACKAGE_boost-date_time),--with-date_time) \
- 			$(if $(CONFIG_PACKAGE_boost-filesystem),--with-filesystem) \
-@@ -176,20 +177,20 @@
+@@ -176,31 +177,31 @@
  			$(if $(CONFIG_PACKAGE_boost-thread),--with-thread) \
  			$(if $(CONFIG_PACKAGE_boost-wave),--with-wave) \
  			\
@@ -48,7 +68,10 @@
  	fi
  endef
  
-@@ -199,8 +200,8 @@
+ define Host/Install
+ 	$(INSTALL_DIR) $(STAGING_DIR_HOST)/bin
+-	$(CP) $(HOST_BUILD_DIR)/tools/build/v2/engine/src/bin.*/bjam $(STAGING_DIR_HOST)/bin/
++	$(CP) $(HOST_BUILD_DIR)/tools/build/v2/engine/bin.*/bjam $(STAGING_DIR_HOST)/bin/
  endef
  
  define Package/boost/Default/install

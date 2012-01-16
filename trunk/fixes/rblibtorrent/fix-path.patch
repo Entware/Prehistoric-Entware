@@ -1,0 +1,104 @@
+--- ../../../backup/trunk_clean/feeds/packages/libs/rblibtorrent/Makefile	2012-01-13 12:15:02.000000000 +0400
++++ ../../../trunk/feeds/packages/libs/rblibtorrent/Makefile	2012-01-16 15:38:12.927421245 +0400
+@@ -9,15 +9,14 @@
+ include $(TOPDIR)/rules.mk
+ 
+ PKG_NAME:=rblibtorrent
+-PKG_VERSION:=0.14.7
++PKG_VERSION:=0.15.9
+ PKG_RELEASE:=1
+ 
+ PKG_SOURCE:=libtorrent-rasterbar-$(PKG_VERSION).tar.gz
+-PKG_SOURCE_URL:=@SF/libtorrent
+-PKG_MD5SUM:=6959f719245d82758235fd73d93373b2
++PKG_MD5SUM:=87eea591f6eb5da4f3af84aa6d753bc7
++PKG_SOURCE_URL:=http://libtorrent.googlecode.com/files
+ PKG_BUILD_DIR:=$(BUILD_DIR)/libtorrent-rasterbar-$(PKG_VERSION)
+ PKG_BUILD_DEPENDS:=libtool
+-BOOSTPOSTFIX=mt
+ 
+ include $(INCLUDE_DIR)/package.mk
+ 
+@@ -26,7 +25,7 @@
+   CATEGORY:=Libraries
+   TITLE:=Rasterbar BitTorrent library
+   URL:=http://www.rasterbar.com/products/libtorrent/
+-  DEPENDS:=+boost +boost-python +boost-filesystem +boost-regex +boost-thread +boost-program_options +boost-system +libopenssl @BROKEN
++  DEPENDS:=+boost +boost-python +boost-filesystem +boost-regex +boost-thread +boost-program_options +boost-system +libopenssl
+ endef
+ 
+ define Package/rblibtorrent/description
+@@ -35,24 +34,30 @@
+ full featured client, although it comes with a working example client.
+ endef
+ 
+-CONFIGURE_ARGS+= \
++TARGET_LDFLAGS += \
++	-Wl,-rpath-link=$(STAGING_DIR)/opt/lib \
++	-lz \
++	-lpthread \
++
++TARGET_CFLAGS= -pipe -mips32 -mtune=mips32
++
++CONFIGURE_VARS += \
++	CC="$(TARGET_CXX)" \
++	GCC="$(TARGET_CXX)" \
++	BOOST_PYTHON_LIB=boost_python \
++
++CONFIGURE_ARGS += \
+ 	--enable-shared \
++	--disable-static \
+ 	--disable-debug \
++	--enable-encryption \
++	--enable-dht \
++	--with-openssl=$(STAGING_DIR)/opt \
++	--disable-examples \
++	--disable-tests \
++	--with-zlib=yes \
++	--with-boost=$(STAGING_DIR)/opt \
+ 	--enable-python-binding \
+-	--with-ssl=$(STAGING_DIR)/usr \
+-	--with-boost=$(STAGING_DIR)/usr/include \
+-	--with-boost-libdir=$(STAGING_DIR)/usr/lib \
+-	--with-zlib=detect \
+-	--with-boost-system=boost_system-$(BOOSTPOSTFIX) \
+-	--with-boost-filesystem=boost_filesystem-$(BOOSTPOSTFIX) \
+-	--with-boost-thread=boost_thread-$(BOOSTPOSTFIX) \
+-	--with-boost-regex=boost_regex-$(BOOSTPOSTFIX) \
+-	--with-boost-python=boost_python-$(BOOSTPOSTFIX) \
+-	--with-boost-program_options=boost_program_options-$(BOOSTPOSTFIX)
+-
+-CONFIGURE_VARS+=CC="$(TARGET_CXX)"
+-
+-EXTRA_LDFLAGS+=-lz -lpthread
+ 
+ define Build/Compile
+ 	$(call Build/Compile/Default)
+@@ -60,18 +65,18 @@
+ endef
+ 
+ define Build/InstallDev
+-	mkdir -p $(1)/usr/include
+-	$(CP) $(PKG_INSTALL_DIR)/usr/include/libtorrent $(1)/usr/include/
+-	mkdir -p $(1)/usr/lib
+-	$(CP) $(PKG_INSTALL_DIR)/usr/lib/*.so* $(1)/usr/lib/
+-	mkdir -p $(1)/usr/lib/pkgconfig
+-	$(CP) $(PKG_INSTALL_DIR)/usr/lib/pkgconfig/libtorrent-rasterbar.pc $(1)/usr/lib/pkgconfig/
++	mkdir -p $(1)/opt/include
++	$(CP) $(PKG_INSTALL_DIR)/opt/include/libtorrent $(1)/opt/include/
++	mkdir -p $(1)/opt/lib
++	$(CP) $(PKG_INSTALL_DIR)/opt/lib/*.so* $(1)/opt/lib/
++	mkdir -p $(1)/opt/lib/pkgconfig
++	$(CP) $(PKG_INSTALL_DIR)/opt/lib/pkgconfig/libtorrent-rasterbar.pc $(1)/opt/lib/pkgconfig/
+ endef
+ 
+ define Package/rblibtorrent/install
+-	$(INSTALL_DIR) $(1)/usr/lib $(1)/usr/lib/python2.6/site-packages/
+-	$(CP) $(PKG_INSTALL_DIR)/usr/lib/*.so* $(1)/usr/lib/
+-	$(CP) $(PKG_INSTALL_DIR)/usr/lib/python2.6/site-packages/*.so* $(1)/usr/lib/python2.6/site-packages/
++	$(INSTALL_DIR) $(1)/opt/lib $(1)/opt/lib/python2.6/site-packages/
++	$(CP) $(PKG_INSTALL_DIR)/opt/lib/*.so* $(1)/opt/lib/
++	$(CP) $(PKG_INSTALL_DIR)/opt/lib/python2.6/site-packages/*.so* $(1)/opt/lib/python2.6/site-packages/
+ endef
+ 
+ $(eval $(call BuildPackage,rblibtorrent))
