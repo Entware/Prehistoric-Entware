@@ -1,0 +1,11 @@
+--- ../../../backup/trunk_clean/feeds/packages/lang/python2-chardet/Makefile	2012-01-13 12:14:28.000000000 +0400
++++ ../../../trunk/feeds/packages/lang/python2-chardet/Makefile	2012-01-16 15:47:56.669509025 +0400
+@@ -34,7 +34,7 @@
+ endef
+ 
+ define Build/Compile
+-	$(call Build/Compile/PyMod,,install --prefix="$(PKG_INSTALL_DIR)/usr")
++	$(call Build/Compile/PyMod,,install --prefix="$(PKG_INSTALL_DIR)/opt")
+ endef
+ 
+ define Package/python2-chardet/install

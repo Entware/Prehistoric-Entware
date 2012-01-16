@@ -1,0 +1,31 @@
+--- ../../../backup/trunk_clean/feeds/packages/lang/twisted/Makefile	2012-01-13 12:14:28.000000000 +0400
++++ ../../../trunk/feeds/packages/lang/twisted/Makefile	2012-01-16 17:16:16.378737536 +0400
+@@ -128,8 +128,8 @@
+ endef
+ 
+ define PyPackage/twisted/filespec
+-+|/usr/bin/mktap
+-+|/usr/bin/twistd
+++|/opt/bin/mktap
+++|/opt/bin/twistd
+ +|$(PYTHON_PKG_DIR)/twisted/application
+ +|$(PYTHON_PKG_DIR)/twisted/copyright.py
+ +|$(PYTHON_PKG_DIR)/twisted/cred
+@@ -216,13 +216,14 @@
+ define Build/Compile
+ 	$(if $(Build/Compile/PyMod),,@echo Python packaging code not found.; false)
+ 	$(call Build/Compile/PyMod,., \
+-		install --prefix="/usr" --root="$(PKG_INSTALL_DIR)" --no-compile, \
++		install --prefix="/opt" --root="$(PKG_INSTALL_DIR)" --no-compile, \
+ 		TWISTED_SUBPROJECTS="$(TWISTED_SUBPROJECTS)" \
+ 	)
+ 	$(call Build/Compile/PyMod,zope.interface-$(ZOPE_IF_VER), \
+-		install --prefix="/usr" --root="$(PKG_INSTALL_DIR)" --no-compile, \
++		install --prefix="/opt" --root="$(PKG_INSTALL_DIR)" --no-compile, \
+ 	)
+-	$(SED) 's,#!$(PYTHON),#!/usr/bin/python,' $(PKG_INSTALL_DIR)/usr/bin/*
++	$(SED) 's,#!$(PYTHON),#!/opt/bin/python,' $(PKG_INSTALL_DIR)/opt/bin/*
++	$(SED) 's,#!/usr/bin/env python,#!/opt/bin/python,' $(PKG_INSTALL_DIR)/opt/bin/*
+ endef
+ 
+ $(eval $(call PyPackage,twisted))
