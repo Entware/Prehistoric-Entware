@@ -10,6 +10,8 @@ all: ./.done
 
 ./.done:
 	patch -p0 -i ./fix-path.patch
+	mkdir -p ../../../trunk/feeds/packages/net/deluge/patches
+	cp ./010-delete-desktop-files.patch ../../../trunk/feeds/packages/net/deluge/patches/
 	touch $@
 
 clean:
