@@ -1,6 +1,35 @@
---- ../../../backup/trunk_clean/package/base-files/Makefile	2011-12-28 08:42:38.000000000 +0400
-+++ ../../../trunk/package/base-files/Makefile	2011-12-28 12:29:26.934754925 +0400
-@@ -493,8 +493,8 @@
+--- ../../../backup/trunk_clean/package/base-files/Makefile	2012-01-13 12:13:57.000000000 +0400
++++ ../../../trunk/package/base-files/Makefile	2012-01-17 09:42:21.789416949 +0400
+@@ -46,19 +46,6 @@
+ endef
+ 
+ define Package/base-files/conffiles
+-/etc/hosts
+-/etc/inittab
+-/etc/group
+-/etc/passwd
+-/etc/shadow
+-/etc/profile
+-/etc/shells
+-/etc/sysctl.conf
+-/etc/rc.local
+-/etc/sysupgrade.conf
+-/etc/config/
+-/etc/dropbear/
+-/etc/crontabs/
+ $(call $(TARGET)/conffiles)
+ endef
+ 
+@@ -170,7 +157,7 @@
+   DEPENDS:=+libgcc
+ endif
+   URL:=$(LIBC_URL)
+-  PKG_FLAGS:=hold essential
++#  PKG_FLAGS:=hold essential
+ endef
+ 
+ 
+@@ -493,8 +480,8 @@
  ifeq ($(CONFIG_EXTERNAL_TOOLCHAIN),)
  
    define Package/libgcc/install
@@ -11,7 +40,7 @@
    endef
  
    define Package/libgfortran/install
-@@ -508,8 +508,8 @@
+@@ -508,8 +495,8 @@
    endef
  
    define Package/libstdcpp/install
@@ -22,7 +51,7 @@
    endef
  
    use_libutil=$(if $(CONFIG_USE_GLIBC)$(CONFIG_EGLIBC_OPTION_EGLIBC_UTMP),libutil)
-@@ -567,35 +567,35 @@
+@@ -567,35 +554,35 @@
    endef
  
    define Package/libc/install_lib
@@ -67,7 +96,7 @@
    endef
  
    define Package/ldd/install
-@@ -611,12 +611,14 @@
+@@ -611,12 +598,14 @@
  else
  
    define Package/libgcc/install
@@ -88,7 +117,7 @@
    endef
  
    define Package/libgfortran/install
-@@ -639,44 +641,50 @@
+@@ -639,44 +628,50 @@
    define Package/libstdcpp/install
  	for file in $(call qstrip,$(CONFIG_LIBSTDCPP_FILE_SPEC)); do \
  		dir=`dirname $$$$file` ; \
@@ -161,7 +190,7 @@
  	done ; \
  	exit 0
    endef
-@@ -684,8 +692,8 @@
+@@ -684,8 +679,8 @@
    define Package/ldconfig/install
  	for file in $(call qstrip,$(CONFIG_LDCONFIG_FILE_SPEC)); do \
  		dir=`dirname $$$$file` ; \
