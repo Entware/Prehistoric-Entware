@@ -1,5 +1,5 @@
 --- ../../../backup/trunk_clean/feeds/packages/libs/rblibtorrent/Makefile	2012-01-13 12:15:02.000000000 +0400
-+++ ../../../trunk/feeds/packages/libs/rblibtorrent/Makefile	2012-01-17 10:01:25.819034872 +0400
++++ ../../../trunk/feeds/packages/libs/rblibtorrent/Makefile	2012-01-18 10:35:27.160479919 +0400
 @@ -9,15 +9,14 @@
  include $(TOPDIR)/rules.mk
  
@@ -24,26 +24,27 @@
    TITLE:=Rasterbar BitTorrent library
    URL:=http://www.rasterbar.com/products/libtorrent/
 -  DEPENDS:=+boost +boost-python +boost-filesystem +boost-regex +boost-thread +boost-program_options +boost-system +libopenssl @BROKEN
-+  DEPENDS:=+boost-python +boost-filesystem +boost-regex +boost-thread +boost-program_options +boost-system +libopenssl
++  DEPENDS:=+boost-python +boost-filesystem +boost-thread +boost-program_options +boost-system +libopenssl
  endef
  
  define Package/rblibtorrent/description
-@@ -35,24 +34,30 @@
+@@ -35,24 +34,31 @@
  full featured client, although it comes with a working example client.
  endef
  
 -CONFIGURE_ARGS+= \
 +TARGET_LDFLAGS += \
-+	-Wl,-rpath-link=$(STAGING_DIR)/opt/lib \
 +	-lz \
 +	-lpthread \
++
++#	-Wl,-rpath-link=$(STAGING_DIR)/opt/lib \
 +
 +TARGET_CFLAGS= -pipe -mips32 -mtune=mips32
 +
 +CONFIGURE_VARS += \
 +	CC="$(TARGET_CXX)" \
 +	GCC="$(TARGET_CXX)" \
-+	BOOST_PYTHON_LIB=boost_python \
++	BOOST_PYTHON_LIB=-lboost_python \
 +
 +CONFIGURE_ARGS += \
  	--enable-shared \
@@ -74,7 +75,7 @@
  
  define Build/Compile
  	$(call Build/Compile/Default)
-@@ -60,18 +65,18 @@
+@@ -60,18 +66,18 @@
  endef
  
  define Build/InstallDev
