@@ -1,0 +1,61 @@
+--- ../../../backup/trunk_clean/feeds/packages/utils/sane-backends/Makefile	2012-01-18 17:41:21.000000000 +0400
++++ ../../../trunk/feeds/packages/utils/sane-backends/Makefile	2012-01-19 15:50:28.575618363 +0400
+@@ -70,7 +70,7 @@
+ endef
+ 
+ TARGET_LDFLAGS += \
+-	-Wl,-rpath-link $(STAGING_DIR)/usr/lib \
++	-Wl,-rpath-link $(STAGING_DIR)/opt/lib \
+ 	-Wl,-rpath-link $(PKG_BUILD_DIR)/backend/.libs
+ 
+ CONFIGURE_ARGS+= \
+@@ -88,33 +88,34 @@
+ endef
+ 
+ define Package/sane-backends/conffiles
+-/etc/sane.d/saned.conf
++/opt/etc/sane.d/saned.conf
+ endef
+ 
+ define Package/sane-backends/install
+-	$(INSTALL_DIR) $(1)/etc/sane.d
+-	$(INSTALL_CONF) $(PKG_INSTALL_DIR)/etc/sane.d/*.conf $(1)/etc/sane.d/
+-	$(INSTALL_DIR) $(1)/usr/sbin
+-	$(INSTALL_BIN) $(PKG_INSTALL_DIR)/usr/sbin/* $(1)/usr/sbin/
++	$(INSTALL_DIR) $(1)/opt/etc/
++	$(INSTALL_DIR) $(1)/opt/etc/sane.d
++	$(INSTALL_CONF) $(PKG_INSTALL_DIR)/opt/etc/sane.d/*.conf $(1)/opt/etc/sane.d/
++	$(INSTALL_DIR) $(1)/opt/sbin
++	$(INSTALL_BIN) $(PKG_INSTALL_DIR)/opt/sbin/* $(1)/opt/sbin/
+ endef
+ 
+ define Package/sane-libs/install
+-	$(INSTALL_DIR) $(1)/usr/lib
+-	$(CP) $(PKG_INSTALL_DIR)/usr/lib/libsane.so.* $(1)/usr/lib/
+-	$(INSTALL_DIR) $(1)/usr/lib/sane
+-	$(CP) $(PKG_INSTALL_DIR)/usr/lib/sane/libsane-*.so.* $(1)/usr/lib/sane/
++	$(INSTALL_DIR) $(1)/opt/lib
++	$(CP) $(PKG_INSTALL_DIR)/opt/lib/libsane.so.* $(1)/opt/lib/
++	$(INSTALL_DIR) $(1)/opt/lib/sane
++	$(CP) $(PKG_INSTALL_DIR)/opt/lib/sane/libsane-*.so.* $(1)/opt/lib/sane/
+ endef
+ 
+ define Package/sane-frontends/install
+-	$(INSTALL_DIR) $(1)/usr/bin
+-	$(INSTALL_BIN) $(PKG_INSTALL_DIR)/usr/bin/* $(1)/usr/bin/
++	$(INSTALL_DIR) $(1)/opt/bin
++	$(INSTALL_BIN) $(PKG_INSTALL_DIR)/opt/bin/* $(1)/opt/bin/
+ endef
+ 
+ define Build/InstallDev
+-	$(INSTALL_DIR) $(1)/usr/include
+-	$(CP) $(PKG_INSTALL_DIR)/usr/include/sane $(1)/usr/include/
+-	$(INSTALL_DIR) $(1)/usr/lib
+-	$(CP) $(PKG_INSTALL_DIR)/usr/lib/libsane.{a,so*} $(1)/usr/lib/
++	$(INSTALL_DIR) $(1)/opt/include
++	$(CP) $(PKG_INSTALL_DIR)/opt/include/sane $(1)/opt/include/
++	$(INSTALL_DIR) $(1)/opt/lib
++	$(CP) $(PKG_INSTALL_DIR)/opt/lib/libsane.{a,so*} $(1)/opt/lib/
+ endef
+ 
+ $(eval $(call BuildPackage,sane-backends))
