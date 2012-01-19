@@ -1,6 +1,6 @@
-diff -r -u -x ./svn ../../../backup/trunk_clean/feeds/packages/lang/php5/files/php.ini ../../../trunk/feeds/packages/lang/php5/files/php.ini
---- ../../../backup/trunk_clean/feeds/packages/lang/php5/files/php.ini	2011-12-22 10:24:14.000000000 +0400
-+++ ../../../trunk/feeds/packages/lang/php5/files/php.ini	2011-12-22 10:30:23.103381164 +0400
+diff -rux .svn ../../../backup/trunk_clean/feeds/packages/lang/php5/files/php.ini ../../../trunk/feeds/packages/lang/php5/files/php.ini
+--- ../../../backup/trunk_clean/feeds/packages/lang/php5/files/php.ini	2012-01-18 17:41:24.000000000 +0400
++++ ../../../trunk/feeds/packages/lang/php5/files/php.ini	2012-01-19 09:45:06.665988343 +0400
 @@ -103,7 +103,7 @@
  ;error_prepend_string = "<font color=#ff0000>"
  ;error_append_string = "</font>"
@@ -49,9 +49,9 @@ diff -r -u -x ./svn ../../../backup/trunk_clean/feeds/packages/lang/php5/files/p
  soap.wsdl_cache_ttl=86400
  soap.wsdl_cache_limit = 5
  
-diff -r -u -x ./svn ../../../backup/trunk_clean/feeds/packages/lang/php5/Makefile ../../../trunk/feeds/packages/lang/php5/Makefile
---- ../../../backup/trunk_clean/feeds/packages/lang/php5/Makefile	2011-12-22 10:24:15.000000000 +0400
-+++ ../../../trunk/feeds/packages/lang/php5/Makefile	2011-12-22 13:22:07.681357211 +0400
+diff -rux .svn ../../../backup/trunk_clean/feeds/packages/lang/php5/Makefile ../../../trunk/feeds/packages/lang/php5/Makefile
+--- ../../../backup/trunk_clean/feeds/packages/lang/php5/Makefile	2012-01-18 17:41:24.000000000 +0400
++++ ../../../trunk/feeds/packages/lang/php5/Makefile	2012-01-19 09:45:06.669988545 +0400
 @@ -131,14 +131,14 @@
  	--disable-debug \
  	--without-pear \
@@ -325,9 +325,9 @@ diff -r -u -x ./svn ../../../backup/trunk_clean/feeds/packages/lang/php5/Makefil
    endef
  
    $$(eval $$(call BuildPackage,php5-mod-$(1)))
-diff -r -u -x ./svn ../../../backup/trunk_clean/feeds/packages/lang/php5/patches/005-APC.patch ../../../trunk/feeds/packages/lang/php5/patches/005-APC.patch
---- ../../../backup/trunk_clean/feeds/packages/lang/php5/patches/005-APC.patch	2011-12-22 10:24:15.000000000 +0400
-+++ ../../../trunk/feeds/packages/lang/php5/patches/005-APC.patch	2011-12-22 10:30:23.111381064 +0400
+diff -rux .svn ../../../backup/trunk_clean/feeds/packages/lang/php5/patches/005-APC.patch ../../../trunk/feeds/packages/lang/php5/patches/005-APC.patch
+--- ../../../backup/trunk_clean/feeds/packages/lang/php5/patches/005-APC.patch	2012-01-18 17:41:24.000000000 +0400
++++ ../../../trunk/feeds/packages/lang/php5/patches/005-APC.patch	2012-01-19 09:45:06.681988933 +0400
 @@ -5801,7 +5801,7 @@
  +{
  +    int fd;
@@ -423,9 +423,9 @@ diff -r -u -x ./svn ../../../backup/trunk_clean/feeds/packages/lang/php5/patches
  +     break ??
  +     run -X
  +
-diff -r -u -x ./svn ../../../backup/trunk_clean/feeds/packages/lang/php5/patches/020-PECL-add-libevent.patch ../../../trunk/feeds/packages/lang/php5/patches/020-PECL-add-libevent.patch
---- ../../../backup/trunk_clean/feeds/packages/lang/php5/patches/020-PECL-add-libevent.patch	2011-12-22 10:24:15.000000000 +0400
-+++ ../../../trunk/feeds/packages/lang/php5/patches/020-PECL-add-libevent.patch	2011-12-22 10:30:23.111381064 +0400
+diff -rux .svn ../../../backup/trunk_clean/feeds/packages/lang/php5/patches/020-PECL-add-libevent.patch ../../../trunk/feeds/packages/lang/php5/patches/020-PECL-add-libevent.patch
+--- ../../../backup/trunk_clean/feeds/packages/lang/php5/patches/020-PECL-add-libevent.patch	2012-01-18 17:41:24.000000000 +0400
++++ ../../../trunk/feeds/packages/lang/php5/patches/020-PECL-add-libevent.patch	2012-01-19 09:45:06.681988933 +0400
 @@ -11,7 +11,7 @@
  +[  --with-libevent             Include libevent support])
  +
@@ -435,9 +435,9 @@ diff -r -u -x ./svn ../../../backup/trunk_clean/feeds/packages/lang/php5/patches
  +  SEARCH_FOR="/include/event.h"
  +
  +  if test "$PHP_LIBEVENT" = "yes"; then
-diff -r -u -x ./svn ../../../backup/trunk_clean/feeds/packages/lang/php5/patches/030-PECL-add-http.patch ../../../trunk/feeds/packages/lang/php5/patches/030-PECL-add-http.patch
---- ../../../backup/trunk_clean/feeds/packages/lang/php5/patches/030-PECL-add-http.patch	2011-12-22 10:24:15.000000000 +0400
-+++ ../../../trunk/feeds/packages/lang/php5/patches/030-PECL-add-http.patch	2011-12-22 10:30:23.119380964 +0400
+diff -rux .svn ../../../backup/trunk_clean/feeds/packages/lang/php5/patches/030-PECL-add-http.patch ../../../trunk/feeds/packages/lang/php5/patches/030-PECL-add-http.patch
+--- ../../../backup/trunk_clean/feeds/packages/lang/php5/patches/030-PECL-add-http.patch	2012-01-18 17:41:24.000000000 +0400
++++ ../../../trunk/feeds/packages/lang/php5/patches/030-PECL-add-http.patch	2012-01-19 09:45:06.693988895 +0400
 @@ -404,7 +404,7 @@
  +	if test "$PHP_HTTP_ZLIB_COMPRESSION" != "no"; then
  +		AC_MSG_CHECKING([for zlib.h])
@@ -483,9 +483,9 @@ diff -r -u -x ./svn ../../../backup/trunk_clean/feeds/packages/lang/php5/patches
  +    {
  +        $head = new HttpRequest($url, HttpRequest::METH_HEAD);
  +        $headers = $head->send()->getHeaders();
-diff -r -u -x ./svn ../../../backup/trunk_clean/feeds/packages/lang/php5/patches/102-debian_patches_use_embedded_timezonedb.patch ../../../trunk/feeds/packages/lang/php5/patches/102-debian_patches_use_embedded_timezonedb.patch
---- ../../../backup/trunk_clean/feeds/packages/lang/php5/patches/102-debian_patches_use_embedded_timezonedb.patch	2011-12-22 10:24:15.000000000 +0400
-+++ ../../../trunk/feeds/packages/lang/php5/patches/102-debian_patches_use_embedded_timezonedb.patch	2011-12-22 10:30:23.119380964 +0400
+diff -rux .svn ../../../backup/trunk_clean/feeds/packages/lang/php5/patches/102-debian_patches_use_embedded_timezonedb.patch ../../../trunk/feeds/packages/lang/php5/patches/102-debian_patches_use_embedded_timezonedb.patch
+--- ../../../backup/trunk_clean/feeds/packages/lang/php5/patches/102-debian_patches_use_embedded_timezonedb.patch	2012-01-18 17:41:24.000000000 +0400
++++ ../../../trunk/feeds/packages/lang/php5/patches/102-debian_patches_use_embedded_timezonedb.patch	2012-01-19 09:45:06.693988895 +0400
 @@ -71,7 +71,7 @@
  +#ifdef HAVE_SYSTEM_TZDATA_PREFIX
  +#define ZONEINFO_PREFIX HAVE_SYSTEM_TZDATA_PREFIX
@@ -495,19 +495,19 @@ diff -r -u -x ./svn ../../../backup/trunk_clean/feeds/packages/lang/php5/patches
  +#endif
  +
  +/* Hash table entry for the cache of the zone.tab mapping table. */
-diff -r -u -x ./svn ../../../backup/trunk_clean/feeds/packages/lang/php5/patches/900-prevent_buildconf_force.patch ../../../trunk/feeds/packages/lang/php5/patches/900-prevent_buildconf_force.patch
---- ../../../backup/trunk_clean/feeds/packages/lang/php5/patches/900-prevent_buildconf_force.patch	2011-12-22 10:24:15.000000000 +0400
-+++ ../../../trunk/feeds/packages/lang/php5/patches/900-prevent_buildconf_force.patch	2011-12-22 10:30:23.143380661 +0400
-@@ -6712,7 +6712,7 @@
+diff -rux .svn ../../../backup/trunk_clean/feeds/packages/lang/php5/patches/900-prevent_buildconf_force.patch ../../../trunk/feeds/packages/lang/php5/patches/900-prevent_buildconf_force.patch
+--- ../../../backup/trunk_clean/feeds/packages/lang/php5/patches/900-prevent_buildconf_force.patch	2012-01-18 17:41:24.000000000 +0400
++++ ../../../trunk/feeds/packages/lang/php5/patches/900-prevent_buildconf_force.patch	2012-01-19 13:16:32.765500221 +0400
+@@ -6888,7 +6888,7 @@
  +  else
  +    echo $ac_n "checking for BZip2 in default path""... $ac_c" 1>&6
- +echo "configure:27540: checking for BZip2 in default path" >&5
+ +echo "configure:27862: checking for BZip2 in default path" >&5
 -+    for i in /usr/local /usr; do
 ++    for i in /opt/local /opt; do
  +      if test -r $i/include/bzlib.h; then
  +        BZIP_DIR=$i
  +        echo "$ac_t""found in $i" 1>&6
-@@ -6808,7 +6808,7 @@
+@@ -6991,7 +6991,7 @@
  +    -L*)
  +      ac_ii=`echo $ac_i|cut -c 3-`
  +      
@@ -516,7 +516,7 @@ diff -r -u -x ./svn ../../../backup/trunk_clean/feeds/packages/lang/php5/patches
  +    
  +  if test -z "$ac_ii" || echo "$ac_ii" | grep '^/' >/dev/null ; then
  +    ai_p=$ac_ii
-@@ -6889,7 +6889,7 @@
+@@ -7072,7 +7072,7 @@
  +    ext_shared=$save_ext_shared
  +    
  +    
@@ -525,7 +525,7 @@ diff -r -u -x ./svn ../../../backup/trunk_clean/feeds/packages/lang/php5/patches
  +    
  +  if test -z "$BZIP_DIR/include" || echo "$BZIP_DIR/include" | grep '^/' >/dev/null ; then
  +    ai_p=$BZIP_DIR/include
-@@ -6925,7 +6925,7 @@
+@@ -7108,7 +7108,7 @@
  +    BZ2_SHARED_LIBADD="-lbz2 $BZ2_SHARED_LIBADD"
  +    if test -n "$BZIP_DIR/$PHP_LIBDIR"; then
  +      
@@ -534,7 +534,7 @@ diff -r -u -x ./svn ../../../backup/trunk_clean/feeds/packages/lang/php5/patches
  +    
  +  if test -z "$BZIP_DIR/$PHP_LIBDIR" || echo "$BZIP_DIR/$PHP_LIBDIR" | grep '^/' >/dev/null ; then
  +    ai_p=$BZIP_DIR/$PHP_LIBDIR
-@@ -6968,7 +6968,7 @@
+@@ -7151,7 +7151,7 @@
  +
  +  if test -n "$BZIP_DIR/$PHP_LIBDIR"; then
  +    
@@ -543,18 +543,18 @@ diff -r -u -x ./svn ../../../backup/trunk_clean/feeds/packages/lang/php5/patches
  +    
  +  if test -z "$BZIP_DIR/$PHP_LIBDIR" || echo "$BZIP_DIR/$PHP_LIBDIR" | grep '^/' >/dev/null ; then
  +    ai_p=$BZIP_DIR/$PHP_LIBDIR
-@@ -8504,7 +8504,7 @@
+@@ -8692,7 +8692,7 @@
  -    echo "$ac_t""no" 1>&6
  +    echo $ac_n "checking for cURL in default path""... $ac_c" 1>&6
- +echo "configure:28896: checking for cURL in default path" >&5
+ +echo "configure:29218: checking for cURL in default path" >&5
 -+    for i in /usr/local /usr; do
 ++    for i in /opt/local /opt; do
  +      if test -r $i/include/curl/easy.h; then
  +        CURL_DIR=$i
  +        echo "$ac_t""found in $i" 1>&6
-@@ -8523,8 +8523,8 @@
+@@ -8711,8 +8711,8 @@
  +  echo $ac_n "checking for cURL 7.10.5 or greater""... $ac_c" 1>&6
- +echo "configure:28914: checking for cURL 7.10.5 or greater" >&5
+ +echo "configure:29236: checking for cURL 7.10.5 or greater" >&5
  +
 -+  if ${CURL_DIR}/bin/curl-config --libs > /dev/null 2>&1; then
 -+    CURL_CONFIG=${CURL_DIR}/bin/curl-config
@@ -563,7 +563,7 @@ diff -r -u -x ./svn ../../../backup/trunk_clean/feeds/packages/lang/php5/patches
  +  else
  +    if ${CURL_DIR}/curl-config --libs > /dev/null 2>&1; then
  +      CURL_CONFIG=${CURL_DIR}/curl-config
-@@ -8545,7 +8545,7 @@
+@@ -8733,7 +8733,7 @@
  -  ac_stuff="
  -    $CURL_LIBS -L$CURL_DIR/$PHP_LIBDIR
  -  "
@@ -572,7 +572,7 @@ diff -r -u -x ./svn ../../../backup/trunk_clean/feeds/packages/lang/php5/patches
  +    
  +  if test -z "$CURL_DIR/include" || echo "$CURL_DIR/include" | grep '^/' >/dev/null ; then
  +    ai_p=$CURL_DIR/include
-@@ -8655,7 +8655,7 @@
+@@ -8824,7 +8824,7 @@
  +    CURL_SHARED_LIBADD="-lcurl $CURL_SHARED_LIBADD"
  +    if test -n "$CURL_DIR/$PHP_LIBDIR"; then
  +      
@@ -581,7 +581,7 @@ diff -r -u -x ./svn ../../../backup/trunk_clean/feeds/packages/lang/php5/patches
  +    
  +  if test -z "$CURL_DIR/$PHP_LIBDIR" || echo "$CURL_DIR/$PHP_LIBDIR" | grep '^/' >/dev/null ; then
  +    ai_p=$CURL_DIR/$PHP_LIBDIR
-@@ -8698,7 +8698,7 @@
+@@ -8867,7 +8867,7 @@
  +
  +  if test -n "$CURL_DIR/$PHP_LIBDIR"; then
  +    
@@ -590,7 +590,7 @@ diff -r -u -x ./svn ../../../backup/trunk_clean/feeds/packages/lang/php5/patches
  +    
  +  if test -z "$CURL_DIR/$PHP_LIBDIR" || echo "$CURL_DIR/$PHP_LIBDIR" | grep '^/' >/dev/null ; then
  +    ai_p=$CURL_DIR/$PHP_LIBDIR
-@@ -9072,7 +9072,7 @@
+@@ -9241,7 +9241,7 @@
  +    -L*)
  +      ac_ii=`echo $ac_i|cut -c 3-`
  +      
@@ -599,7 +599,7 @@ diff -r -u -x ./svn ../../../backup/trunk_clean/feeds/packages/lang/php5/patches
  +    
  +  if test -z "$ac_ii" || echo "$ac_ii" | grep '^/' >/dev/null ; then
  +    ai_p=$ac_ii
-@@ -12928,7 +12928,7 @@
+@@ -13093,7 +13093,7 @@
   
   
  +if test "$PHP_LIBEVENT" != "no"; then
@@ -608,16 +608,16 @@ diff -r -u -x ./svn ../../../backup/trunk_clean/feeds/packages/lang/php5/patches
  +  SEARCH_FOR="/include/event.h"
  +
  +  if test "$PHP_LIBEVENT" = "yes"; then
-@@ -12977,7 +12977,7 @@
- -
- -
- -php_enable_mbregex_backtrack=yes
+@@ -13130,7 +13130,7 @@
+ -  
+ -  PHP_MBREGEX=yes
+    
 -+  if test "$LIBEVENT_DIR/include" != "/usr/include"; then
 ++  if test "$LIBEVENT_DIR/include" != "/opt/include"; then
  +    
  +  if test -z "$LIBEVENT_DIR/include" || echo "$LIBEVENT_DIR/include" | grep '^/' >/dev/null ; then
  +    ai_p=$LIBEVENT_DIR/include
-@@ -13102,7 +13102,7 @@
+@@ -13291,7 +13291,7 @@
  +    -L*)
  +      ac_ii=`echo $ac_i|cut -c 3-`
  +      
@@ -626,7 +626,7 @@ diff -r -u -x ./svn ../../../backup/trunk_clean/feeds/packages/lang/php5/patches
  +    
  +  if test -z "$ac_ii" || echo "$ac_ii" | grep '^/' >/dev/null ; then
  +    ai_p=$ac_ii
-@@ -13337,7 +13337,7 @@
+@@ -13499,7 +13499,7 @@
  +    LIBEVENT_SHARED_LIBADD="-l$LIBNAME $LIBEVENT_SHARED_LIBADD"
  +    if test -n "$LIBEVENT_DIR/$PHP_LIBDIR"; then
  +      
@@ -635,7 +635,7 @@ diff -r -u -x ./svn ../../../backup/trunk_clean/feeds/packages/lang/php5/patches
  +    
  +  if test -z "$LIBEVENT_DIR/$PHP_LIBDIR" || echo "$LIBEVENT_DIR/$PHP_LIBDIR" | grep '^/' >/dev/null ; then
  +    ai_p=$LIBEVENT_DIR/$PHP_LIBDIR
-@@ -13449,7 +13449,7 @@
+@@ -13609,7 +13609,7 @@
  -fi
  +  if test -n "$LIBEVENT_DIR/$PHP_LIBDIR"; then
  +    
@@ -644,7 +644,43 @@ diff -r -u -x ./svn ../../../backup/trunk_clean/feeds/packages/lang/php5/patches
  +    
  +  if test -z "$LIBEVENT_DIR/$PHP_LIBDIR" || echo "$LIBEVENT_DIR/$PHP_LIBDIR" | grep '^/' >/dev/null ; then
  +    ai_p=$LIBEVENT_DIR/$PHP_LIBDIR
-@@ -18018,7 +18018,7 @@
+@@ -15459,7 +15459,7 @@
+ +        { echo "configure: error: oniguruma.h not found in $PHP_ONIG/include" 1>&2; exit 1; }
+ +      fi
+ +      
+-+  if test "$PHP_ONIG/include" != "/usr/include"; then
+++  if test "$PHP_ONIG/include" != "/opt/include"; then
+ +    
+ +  if test -z "$PHP_ONIG/include" || echo "$PHP_ONIG/include" | grep '^/' >/dev/null ; then
+ +    ai_p=$PHP_ONIG/include
+@@ -15546,7 +15546,7 @@
+ +    -L*)
+ +      ac_ii=`echo $ac_i|cut -c 3-`
+ +      
+-+  if test "$ac_ii" != "/usr/$PHP_LIBDIR" && test "$ac_ii" != "/usr/lib"; then
+++  if test "$ac_ii" != "/opt/$PHP_LIBDIR" && test "$ac_ii" != "/opt/lib"; then
+ +    
+ +  if test -z "$ac_ii" || echo "$ac_ii" | grep '^/' >/dev/null ; then
+ +    ai_p=$ac_ii
+@@ -15632,7 +15632,7 @@
+ +    MBSTRING_SHARED_LIBADD="-lonig $MBSTRING_SHARED_LIBADD"
+ +    if test -n "$PHP_ONIG/$PHP_LIBDIR"; then
+ +      
+-+  if test "$PHP_ONIG/$PHP_LIBDIR" != "/usr/$PHP_LIBDIR" && test "$PHP_ONIG/$PHP_LIBDIR" != "/usr/lib"; then
+++  if test "$PHP_ONIG/$PHP_LIBDIR" != "/opt/$PHP_LIBDIR" && test "$PHP_ONIG/$PHP_LIBDIR" != "/opt/lib"; then
+ +    
+ +  if test -z "$PHP_ONIG/$PHP_LIBDIR" || echo "$PHP_ONIG/$PHP_LIBDIR" | grep '^/' >/dev/null ; then
+ +    ai_p=$PHP_ONIG/$PHP_LIBDIR
+@@ -15675,7 +15675,7 @@
+ +
+ +  if test -n "$PHP_ONIG/$PHP_LIBDIR"; then
+ +    
+-+  if test "$PHP_ONIG/$PHP_LIBDIR" != "/usr/$PHP_LIBDIR" && test "$PHP_ONIG/$PHP_LIBDIR" != "/usr/lib"; then
+++  if test "$PHP_ONIG/$PHP_LIBDIR" != "/opt/$PHP_LIBDIR" && test "$PHP_ONIG/$PHP_LIBDIR" != "/opt/lib"; then
+ +    
+ +  if test -z "$PHP_ONIG/$PHP_LIBDIR" || echo "$PHP_ONIG/$PHP_LIBDIR" | grep '^/' >/dev/null ; then
+ +    ai_p=$PHP_ONIG/$PHP_LIBDIR
+@@ -18740,7 +18740,7 @@
  +    PGSQL_SHARED_LIBADD="-lpq $PGSQL_SHARED_LIBADD"
  +    if test -n "$PGSQL_LIBDIR"; then
  +      
@@ -653,7 +689,7 @@ diff -r -u -x ./svn ../../../backup/trunk_clean/feeds/packages/lang/php5/patches
  +    
  +  if test -z "$PGSQL_LIBDIR" || echo "$PGSQL_LIBDIR" | grep '^/' >/dev/null ; then
  +    ai_p=$PGSQL_LIBDIR
-@@ -18061,7 +18061,7 @@
+@@ -18783,7 +18783,7 @@
  +
  +  if test -n "$PGSQL_LIBDIR"; then
  +    
@@ -662,7 +698,7 @@ diff -r -u -x ./svn ../../../backup/trunk_clean/feeds/packages/lang/php5/patches
  +    
  +  if test -z "$PGSQL_LIBDIR" || echo "$PGSQL_LIBDIR" | grep '^/' >/dev/null ; then
  +    ai_p=$PGSQL_LIBDIR
-@@ -18114,7 +18114,7 @@
+@@ -18836,7 +18836,7 @@
  +
  +
  +  
@@ -671,7 +707,7 @@ diff -r -u -x ./svn ../../../backup/trunk_clean/feeds/packages/lang/php5/patches
  +    
  +  if test -z "$PGSQL_INCLUDE" || echo "$PGSQL_INCLUDE" | grep '^/' >/dev/null ; then
  +    ai_p=$PGSQL_INCLUDE
-@@ -20409,7 +20409,7 @@
+@@ -21131,7 +21131,7 @@
  +	if test "$PHP_PSPELL" != "yes"; then
  +	    PSPELL_SEARCH_DIRS=$PHP_PSPELL
  +	else
@@ -680,7 +716,7 @@ diff -r -u -x ./svn ../../../backup/trunk_clean/feeds/packages/lang/php5/patches
  +	fi
  +	for i in $PSPELL_SEARCH_DIRS; do
  +		if test -f $i/include/pspell/pspell.h; then
-@@ -20433,7 +20433,7 @@
+@@ -21155,7 +21155,7 @@
  +    PSPELL_SHARED_LIBADD="-lpspell $PSPELL_SHARED_LIBADD"
  +    if test -n "$PSPELL_LIBDIR"; then
  +      
@@ -689,7 +725,7 @@ diff -r -u -x ./svn ../../../backup/trunk_clean/feeds/packages/lang/php5/patches
  +    
  +  if test -z "$PSPELL_LIBDIR" || echo "$PSPELL_LIBDIR" | grep '^/' >/dev/null ; then
  +    ai_p=$PSPELL_LIBDIR
-@@ -20476,7 +20476,7 @@
+@@ -21198,7 +21198,7 @@
  +
  +  if test -n "$PSPELL_LIBDIR"; then
  +    
@@ -698,7 +734,7 @@ diff -r -u -x ./svn ../../../backup/trunk_clean/feeds/packages/lang/php5/patches
  +    
  +  if test -z "$PSPELL_LIBDIR" || echo "$PSPELL_LIBDIR" | grep '^/' >/dev/null ; then
  +    ai_p=$PSPELL_LIBDIR
-@@ -20581,7 +20581,7 @@
+@@ -21303,7 +21303,7 @@
  +    -L*)
  +      ac_ii=`echo $ac_i|cut -c 3-`
  +      
@@ -707,7 +743,7 @@ diff -r -u -x ./svn ../../../backup/trunk_clean/feeds/packages/lang/php5/patches
  +    
  +  if test -z "$ac_ii" || echo "$ac_ii" | grep '^/' >/dev/null ; then
  +    ai_p=$ac_ii
-@@ -20667,7 +20667,7 @@
+@@ -21389,7 +21389,7 @@
  +    PSPELL_SHARED_LIBADD="-laspell $PSPELL_SHARED_LIBADD"
  +    if test -n "$PSPELL_LIBDIR"; then
  +      
@@ -716,7 +752,7 @@ diff -r -u -x ./svn ../../../backup/trunk_clean/feeds/packages/lang/php5/patches
  +    
  +  if test -z "$PSPELL_LIBDIR" || echo "$PSPELL_LIBDIR" | grep '^/' >/dev/null ; then
  +    ai_p=$PSPELL_LIBDIR
-@@ -20710,7 +20710,7 @@
+@@ -21432,7 +21432,7 @@
  +
  +  if test -n "$PSPELL_LIBDIR"; then
  +    
@@ -725,7 +761,7 @@ diff -r -u -x ./svn ../../../backup/trunk_clean/feeds/packages/lang/php5/patches
  +    
  +  if test -z "$PSPELL_LIBDIR" || echo "$PSPELL_LIBDIR" | grep '^/' >/dev/null ; then
  +    ai_p=$PSPELL_LIBDIR
-@@ -20805,7 +20805,7 @@
+@@ -21527,7 +21527,7 @@
  -  if test "$ext_builddir" = "."; then
  -    PHP_PECL_EXTENSION=pgsql
  +	
@@ -734,7 +770,7 @@ diff -r -u -x ./svn ../../../backup/trunk_clean/feeds/packages/lang/php5/patches
       
  -  PHP_VAR_SUBST="$PHP_VAR_SUBST PHP_PECL_EXTENSION"
  +  if test -z "$PSPELL_INCDIR" || echo "$PSPELL_INCDIR" | grep '^/' >/dev/null ; then
-@@ -20941,7 +20941,7 @@
+@@ -21663,7 +21663,7 @@
  +fi
  +
  +if test "$PHP_READLINE" && test "$PHP_READLINE" != "no"; then
@@ -743,7 +779,7 @@ diff -r -u -x ./svn ../../../backup/trunk_clean/feeds/packages/lang/php5/patches
  +    test -f $i/include/readline/readline.h && READLINE_DIR=$i && break
  +  done
  +
-@@ -20953,7 +20953,7 @@
+@@ -21675,7 +21675,7 @@
     
  -  ext_builddir=ext/phar
  -  ext_srcdir=$abs_srcdir/ext/phar
@@ -752,7 +788,7 @@ diff -r -u -x ./svn ../../../backup/trunk_clean/feeds/packages/lang/php5/patches
  +    
  +  if test -z "$READLINE_DIR/include" || echo "$READLINE_DIR/include" | grep '^/' >/dev/null ; then
  +    ai_p=$READLINE_DIR/include
-@@ -21206,7 +21206,7 @@
+@@ -21928,7 +21928,7 @@
  +    -L*)
  +      ac_ii=`echo $ac_i|cut -c 3-`
  +      
@@ -761,7 +797,7 @@ diff -r -u -x ./svn ../../../backup/trunk_clean/feeds/packages/lang/php5/patches
  +    
  +  if test -z "$ac_ii" || echo "$ac_ii" | grep '^/' >/dev/null ; then
  +    ai_p=$ac_ii
-@@ -21292,7 +21292,7 @@
+@@ -22014,7 +22014,7 @@
  +    READLINE_SHARED_LIBADD="-lreadline $READLINE_SHARED_LIBADD"
  +    if test -n "$READLINE_DIR/$PHP_LIBDIR"; then
  +      
@@ -770,7 +806,7 @@ diff -r -u -x ./svn ../../../backup/trunk_clean/feeds/packages/lang/php5/patches
  +    
  +  if test -z "$READLINE_DIR/$PHP_LIBDIR" || echo "$READLINE_DIR/$PHP_LIBDIR" | grep '^/' >/dev/null ; then
  +    ai_p=$READLINE_DIR/$PHP_LIBDIR
-@@ -21340,7 +21340,7 @@
+@@ -22062,7 +22062,7 @@
  +
  +  if test -n "$READLINE_DIR/$PHP_LIBDIR"; then
  +    
@@ -779,7 +815,7 @@ diff -r -u -x ./svn ../../../backup/trunk_clean/feeds/packages/lang/php5/patches
  +    
  +  if test -z "$READLINE_DIR/$PHP_LIBDIR" || echo "$READLINE_DIR/$PHP_LIBDIR" | grep '^/' >/dev/null ; then
  +    ai_p=$READLINE_DIR/$PHP_LIBDIR
-@@ -21558,7 +21558,7 @@
+@@ -22280,7 +22280,7 @@
  +    -L*)
  +      ac_ii=`echo $ac_i|cut -c 3-`
  +      
@@ -788,7 +824,7 @@ diff -r -u -x ./svn ../../../backup/trunk_clean/feeds/packages/lang/php5/patches
  +    
  +  if test -z "$ac_ii" || echo "$ac_ii" | grep '^/' >/dev/null ; then
  +    ai_p=$ac_ii
-@@ -21802,7 +21802,7 @@
+@@ -22524,7 +22524,7 @@
  +    -L*)
  +      ac_ii=`echo $ac_i|cut -c 3-`
  +      
@@ -797,7 +833,7 @@ diff -r -u -x ./svn ../../../backup/trunk_clean/feeds/packages/lang/php5/patches
  +    
  +  if test -z "$ac_ii" || echo "$ac_ii" | grep '^/' >/dev/null ; then
  +    ai_p=$ac_ii
-@@ -21991,7 +21991,7 @@
+@@ -22712,7 +22712,7 @@
   
  +elif test "$PHP_LIBEDIT" != "no"; then
   
@@ -806,7 +842,7 @@ diff -r -u -x ./svn ../../../backup/trunk_clean/feeds/packages/lang/php5/patches
  +    test -f $i/include/editline/readline.h && LIBEDIT_DIR=$i && break
  +  done
   
-@@ -22008,7 +22008,7 @@
+@@ -22729,7 +22729,7 @@
  -  ext_srcdir=$abs_srcdir/ext/posix
  -
  -  ac_extra=
@@ -815,7 +851,7 @@ diff -r -u -x ./svn ../../../backup/trunk_clean/feeds/packages/lang/php5/patches
  +    
  +  if test -z "$LIBEDIT_DIR/include" || echo "$LIBEDIT_DIR/include" | grep '^/' >/dev/null ; then
  +    ai_p=$LIBEDIT_DIR/include
-@@ -22347,7 +22347,7 @@
+@@ -23068,7 +23068,7 @@
  +    -L*)
  +      ac_ii=`echo $ac_i|cut -c 3-`
  +      
@@ -824,7 +860,7 @@ diff -r -u -x ./svn ../../../backup/trunk_clean/feeds/packages/lang/php5/patches
  +    
  +  if test -z "$ac_ii" || echo "$ac_ii" | grep '^/' >/dev/null ; then
  +    ai_p=$ac_ii
-@@ -22446,7 +22446,7 @@
+@@ -23167,7 +23167,7 @@
  +    READLINE_SHARED_LIBADD="-ledit $READLINE_SHARED_LIBADD"
  +    if test -n "$LIBEDIT_DIR/$PHP_LIBDIR"; then
  +      
@@ -833,7 +869,7 @@ diff -r -u -x ./svn ../../../backup/trunk_clean/feeds/packages/lang/php5/patches
  +    
  +  if test -z "$LIBEDIT_DIR/$PHP_LIBDIR" || echo "$LIBEDIT_DIR/$PHP_LIBDIR" | grep '^/' >/dev/null ; then
  +    ai_p=$LIBEDIT_DIR/$PHP_LIBDIR
-@@ -22531,7 +22531,7 @@
+@@ -23254,7 +23254,7 @@
  -        
  +  if test -n "$LIBEDIT_DIR/$PHP_LIBDIR"; then
  +    
@@ -842,7 +878,7 @@ diff -r -u -x ./svn ../../../backup/trunk_clean/feeds/packages/lang/php5/patches
  +    
  +  if test -z "$LIBEDIT_DIR/$PHP_LIBDIR" || echo "$LIBEDIT_DIR/$PHP_LIBDIR" | grep '^/' >/dev/null ; then
  +    ai_p=$LIBEDIT_DIR/$PHP_LIBDIR
-@@ -23236,7 +23236,7 @@
+@@ -23959,7 +23959,7 @@
   
  -  fi
  +if test "$PHP_RECODE" != "no"; then
@@ -851,7 +887,7 @@ diff -r -u -x ./svn ../../../backup/trunk_clean/feeds/packages/lang/php5/patches
   
  +  for i in $RECODE_LIST; do
  +    if test -f $i/include/recode.h; then
-@@ -23322,7 +23322,7 @@
+@@ -24045,7 +24045,7 @@
  +    if test -n "$RECODE_DIR/$RECODE_LIB"; then
         
  -  if test "$PSPELL_LIBDIR" != "/usr/$PHP_LIBDIR" && test "$PSPELL_LIBDIR" != "/usr/lib"; then
@@ -860,16 +896,16 @@ diff -r -u -x ./svn ../../../backup/trunk_clean/feeds/packages/lang/php5/patches
       
  -  if test -z "$PSPELL_LIBDIR" || echo "$PSPELL_LIBDIR" | grep '^/' >/dev/null ; then
  -    ai_p=$PSPELL_LIBDIR
-@@ -23780,7 +23780,7 @@
- -      ac_ii=`echo $ac_i|cut -c 3-`
- -      
- -  if test "$ac_ii" != "/usr/$PHP_LIBDIR" && test "$ac_ii" != "/usr/lib"; then
+@@ -24282,7 +24282,7 @@
+ -
+ -  
+ -  if test "$READLINE_DIR/include" != "/usr/include"; then
 -+  if test "$RECODE_DIR/$RECODE_LIB" != "/usr/$PHP_LIBDIR" && test "$RECODE_DIR/$RECODE_LIB" != "/usr/lib"; then
 ++  if test "$RECODE_DIR/$RECODE_LIB" != "/opt/$PHP_LIBDIR" && test "$RECODE_DIR/$RECODE_LIB" != "/opt/lib"; then
       
- -  if test -z "$ac_ii" || echo "$ac_ii" | grep '^/' >/dev/null ; then
- -    ai_p=$ac_ii
-@@ -23903,7 +23903,7 @@
+ -  if test -z "$READLINE_DIR/include" || echo "$READLINE_DIR/include" | grep '^/' >/dev/null ; then
+ -    ai_p=$READLINE_DIR/include
+@@ -24624,7 +24624,7 @@
  +    if test -n "$RECODE_DIR/$RECODE_LIB"; then
         
  -  if test "$READLINE_DIR/$PHP_LIBDIR" != "/usr/$PHP_LIBDIR" && test "$READLINE_DIR/$PHP_LIBDIR" != "/usr/lib"; then
@@ -878,7 +914,7 @@ diff -r -u -x ./svn ../../../backup/trunk_clean/feeds/packages/lang/php5/patches
       
  -  if test -z "$READLINE_DIR/$PHP_LIBDIR" || echo "$READLINE_DIR/$PHP_LIBDIR" | grep '^/' >/dev/null ; then
  -    ai_p=$READLINE_DIR/$PHP_LIBDIR
-@@ -23936,7 +23936,7 @@
+@@ -24657,7 +24657,7 @@
  +  if test -n "$RECODE_DIR/$RECODE_LIB"; then
       
  -  if test "$READLINE_DIR/$PHP_LIBDIR" != "/usr/$PHP_LIBDIR" && test "$READLINE_DIR/$PHP_LIBDIR" != "/usr/lib"; then
@@ -887,7 +923,7 @@ diff -r -u -x ./svn ../../../backup/trunk_clean/feeds/packages/lang/php5/patches
       
  -  if test -z "$READLINE_DIR/$PHP_LIBDIR" || echo "$READLINE_DIR/$PHP_LIBDIR" | grep '^/' >/dev/null ; then
  -    ai_p=$READLINE_DIR/$PHP_LIBDIR
-@@ -24008,7 +24008,7 @@
+@@ -24729,7 +24729,7 @@
  -  ac_stuff="
  -    -L$READLINE_DIR/$PHP_LIBDIR $PHP_READLINE_LIBS
  -  "
@@ -896,7 +932,7 @@ diff -r -u -x ./svn ../../../backup/trunk_clean/feeds/packages/lang/php5/patches
  +    
  +  if test -z "$RECODE_DIR/$RECODE_INC" || echo "$RECODE_DIR/$RECODE_INC" | grep '^/' >/dev/null ; then
  +    ai_p=$RECODE_DIR/$RECODE_INC
-@@ -26201,7 +26201,7 @@
+@@ -26922,7 +26922,7 @@
  +fi
   
  +if test "$PHP_MM" != "no"; then
@@ -905,7 +941,7 @@ diff -r -u -x ./svn ../../../backup/trunk_clean/feeds/packages/lang/php5/patches
  +    test -f "$i/include/mm.h" && MM_DIR=$i && break
  +  done
   
-@@ -26247,7 +26247,7 @@
+@@ -26968,7 +26968,7 @@
  +    if test -n "$MM_DIR/$PHP_LIBDIR"; then
         
  -  if test "$RECODE_DIR/$RECODE_LIB" != "/usr/$PHP_LIBDIR" && test "$RECODE_DIR/$RECODE_LIB" != "/usr/lib"; then
@@ -914,7 +950,7 @@ diff -r -u -x ./svn ../../../backup/trunk_clean/feeds/packages/lang/php5/patches
       
  -  if test -z "$RECODE_DIR/$RECODE_LIB" || echo "$RECODE_DIR/$RECODE_LIB" | grep '^/' >/dev/null ; then
  -    ai_p=$RECODE_DIR/$RECODE_LIB
-@@ -26280,7 +26280,7 @@
+@@ -27001,7 +27001,7 @@
  +  if test -n "$MM_DIR/$PHP_LIBDIR"; then
       
  -  if test "$RECODE_DIR/$RECODE_LIB" != "/usr/$PHP_LIBDIR" && test "$RECODE_DIR/$RECODE_LIB" != "/usr/lib"; then
@@ -923,7 +959,7 @@ diff -r -u -x ./svn ../../../backup/trunk_clean/feeds/packages/lang/php5/patches
       
  -  if test -z "$RECODE_DIR/$RECODE_LIB" || echo "$RECODE_DIR/$RECODE_LIB" | grep '^/' >/dev/null ; then
  -    ai_p=$RECODE_DIR/$RECODE_LIB
-@@ -26351,7 +26351,7 @@
+@@ -27078,7 +27078,7 @@
   
     
  -  if test "$RECODE_DIR/$RECODE_INC" != "/usr/include"; then
@@ -932,7 +968,7 @@ diff -r -u -x ./svn ../../../backup/trunk_clean/feeds/packages/lang/php5/patches
       
  -  if test -z "$RECODE_DIR/$RECODE_INC" || echo "$RECODE_DIR/$RECODE_INC" | grep '^/' >/dev/null ; then
  -    ai_p=$RECODE_DIR/$RECODE_INC
-@@ -26808,7 +26808,7 @@
+@@ -27535,7 +27535,7 @@
  +  echo $ac_n "(cached) $ac_c" 1>&6
  +else
  +  
@@ -941,7 +977,7 @@ diff -r -u -x ./svn ../../../backup/trunk_clean/feeds/packages/lang/php5/patches
  +    if test -x "$i/bin/xml2-config"; then
  +      ac_cv_php_xml2_config_path="$i/bin/xml2-config"
  +      break
-@@ -26878,7 +26878,7 @@
+@@ -27605,7 +27605,7 @@
  +    -L*)
  +      ac_ii=`echo $ac_i|cut -c 3-`
  +      
@@ -950,7 +986,7 @@ diff -r -u -x ./svn ../../../backup/trunk_clean/feeds/packages/lang/php5/patches
  +    
  +  if test -z "$ac_ii" || echo "$ac_ii" | grep '^/' >/dev/null ; then
  +    ai_p=$ac_ii
-@@ -26925,7 +26925,7 @@
+@@ -27652,7 +27652,7 @@
  +    -I*)
  +      ac_ii=`echo $ac_i|cut -c 3-`
  +      
@@ -959,7 +995,7 @@ diff -r -u -x ./svn ../../../backup/trunk_clean/feeds/packages/lang/php5/patches
  +    
  +  if test -z "$ac_ii" || echo "$ac_ii" | grep '^/' >/dev/null ; then
  +    ai_p=$ac_ii
-@@ -27458,7 +27458,7 @@
+@@ -28185,7 +28185,7 @@
  +  ;;
  +  *)
  +  IFS="${IFS= 	}"; ac_save_ifs="$IFS"; IFS=":"
@@ -968,7 +1004,7 @@ diff -r -u -x ./svn ../../../backup/trunk_clean/feeds/packages/lang/php5/patches
  +  for ac_dir in $ac_dummy; do 
  +    test -z "$ac_dir" && ac_dir=.
  +    if test -f $ac_dir/$ac_word; then
-@@ -27478,7 +27478,7 @@
+@@ -28205,7 +28205,7 @@
  +fi
  +
  +  else
@@ -977,7 +1013,7 @@ diff -r -u -x ./svn ../../../backup/trunk_clean/feeds/packages/lang/php5/patches
  +  fi
  +
  +  if test -x "$SNMP_CONFIG"; then
-@@ -27488,7 +27488,7 @@
+@@ -28215,7 +28215,7 @@
  +
  +    if test -n "$SNMP_LIBS" && test -n "$SNMP_PREFIX"; then
  +      
@@ -986,7 +1022,7 @@ diff -r -u -x ./svn ../../../backup/trunk_clean/feeds/packages/lang/php5/patches
  +    
  +  if test -z "${SNMP_PREFIX}/include" || echo "${SNMP_PREFIX}/include" | grep '^/' >/dev/null ; then
  +    ai_p=${SNMP_PREFIX}/include
-@@ -27566,7 +27566,7 @@
+@@ -28293,7 +28293,7 @@
  +    -L*)
  +      ac_ii=`echo $ac_i|cut -c 3-`
  +      
@@ -995,7 +1031,7 @@ diff -r -u -x ./svn ../../../backup/trunk_clean/feeds/packages/lang/php5/patches
  +    
  +  if test -z "$ac_ii" || echo "$ac_ii" | grep '^/' >/dev/null ; then
  +    ai_p=$ac_ii
-@@ -27619,13 +27619,13 @@
+@@ -28346,13 +28346,13 @@
  +
  +            
  +    if test "$PHP_SNMP" = "yes"; then
@@ -1011,7 +1047,7 @@ diff -r -u -x ./svn ../../../backup/trunk_clean/feeds/packages/lang/php5/patches
  +        test -f $i/libsnmp.a || test -f $i/libsnmp.$SHLIB_SUFFIX_NAME && SNMP_LIBDIR=$i
  +      done
  +    else
-@@ -27894,7 +27894,7 @@
+@@ -28621,7 +28621,7 @@
  +    -L*)
  +      ac_ii=`echo $ac_i|cut -c 3-`
  +      
@@ -1020,7 +1056,7 @@ diff -r -u -x ./svn ../../../backup/trunk_clean/feeds/packages/lang/php5/patches
  +    
  +  if test -z "$ac_ii" || echo "$ac_ii" | grep '^/' >/dev/null ; then
  +    ai_p=$ac_ii
-@@ -27954,7 +27954,7 @@
+@@ -28681,7 +28681,7 @@
  +    -I*)
  +      ac_ii=`echo $ac_i|cut -c 3-`
  +      
@@ -1029,7 +1065,7 @@ diff -r -u -x ./svn ../../../backup/trunk_clean/feeds/packages/lang/php5/patches
  +    
  +  if test -z "$ac_ii" || echo "$ac_ii" | grep '^/' >/dev/null ; then
  +    ai_p=$ac_ii
-@@ -28021,7 +28021,7 @@
+@@ -28748,7 +28748,7 @@
  +    if test "$found_openssl" = "no"; then
     
  +    if test "$PHP_OPENSSL_DIR" = "yes"; then
@@ -1038,7 +1074,7 @@ diff -r -u -x ./svn ../../../backup/trunk_clean/feeds/packages/lang/php5/patches
  +    fi
  +
  +    for i in $PHP_OPENSSL_DIR; do
-@@ -28087,7 +28087,7 @@
+@@ -28814,7 +28814,7 @@
  -      
  -  if test "$cross_compiling" = yes; then
  +    
@@ -1047,7 +1083,7 @@ diff -r -u -x ./svn ../../../backup/trunk_clean/feeds/packages/lang/php5/patches
  +    
  +  if test -z "$OPENSSL_INCDIR" || echo "$OPENSSL_INCDIR" | grep '^/' >/dev/null ; then
  +    ai_p=$OPENSSL_INCDIR
-@@ -28259,7 +28259,7 @@
+@@ -28986,7 +28986,7 @@
  +    -L*)
  +      ac_ii=`echo $ac_i|cut -c 3-`
  +      
@@ -1056,7 +1092,7 @@ diff -r -u -x ./svn ../../../backup/trunk_clean/feeds/packages/lang/php5/patches
  +    
  +  if test -z "$ac_ii" || echo "$ac_ii" | grep '^/' >/dev/null ; then
  +    ai_p=$ac_ii
-@@ -28603,7 +28603,7 @@
+@@ -29330,7 +29330,7 @@
  -
  -  if test "x" = "xyes"; then
  -    PHP_ZEND_EX="$PHP_ZEND_EX \$(phplibdir)/phpsession.$suffix"
@@ -1065,7 +1101,7 @@ diff -r -u -x ./svn ../../../backup/trunk_clean/feeds/packages/lang/php5/patches
  +    
  +  if test -z "$ac_ii" || echo "$ac_ii" | grep '^/' >/dev/null ; then
  +    ai_p=$ac_ii
-@@ -28876,7 +28876,7 @@
+@@ -29603,7 +29603,7 @@
  -    EXT_CLI_STATIC="$EXT_CLI_STATIC session"
  +
  +    
@@ -1074,7 +1110,7 @@ diff -r -u -x ./svn ../../../backup/trunk_clean/feeds/packages/lang/php5/patches
  +    
  +  if test -z "$OPENSSL_LIBDIR" || echo "$OPENSSL_LIBDIR" | grep '^/' >/dev/null ; then
  +    ai_p=$OPENSSL_LIBDIR
-@@ -29058,7 +29058,7 @@
+@@ -29785,7 +29785,7 @@
  -  if test -z "$MM_DIR" ; then
  -    { echo "configure: error: cannot find mm library" 1>&2; exit 1; }
  +    
@@ -1083,7 +1119,7 @@ diff -r -u -x ./svn ../../../backup/trunk_clean/feeds/packages/lang/php5/patches
  +    
  +  if test -z "$SNMP_INCDIR" || echo "$SNMP_INCDIR" | grep '^/' >/dev/null ; then
  +    ai_p=$SNMP_INCDIR
-@@ -29097,7 +29097,7 @@
+@@ -29824,7 +29824,7 @@
  +    if test -n "$SNMP_LIBDIR"; then
         
  -  if test "$MM_DIR/$PHP_LIBDIR" != "/usr/$PHP_LIBDIR" && test "$MM_DIR/$PHP_LIBDIR" != "/usr/lib"; then
@@ -1092,7 +1128,7 @@ diff -r -u -x ./svn ../../../backup/trunk_clean/feeds/packages/lang/php5/patches
       
  -  if test -z "$MM_DIR/$PHP_LIBDIR" || echo "$MM_DIR/$PHP_LIBDIR" | grep '^/' >/dev/null ; then
  -    ai_p=$MM_DIR/$PHP_LIBDIR
-@@ -29130,7 +29130,7 @@
+@@ -29857,7 +29857,7 @@
  +  if test -n "$SNMP_LIBDIR"; then
       
  -  if test "$MM_DIR/$PHP_LIBDIR" != "/usr/$PHP_LIBDIR" && test "$MM_DIR/$PHP_LIBDIR" != "/usr/lib"; then
@@ -1101,7 +1137,7 @@ diff -r -u -x ./svn ../../../backup/trunk_clean/feeds/packages/lang/php5/patches
       
  -  if test -z "$MM_DIR/$PHP_LIBDIR" || echo "$MM_DIR/$PHP_LIBDIR" | grep '^/' >/dev/null ; then
  -    ai_p=$MM_DIR/$PHP_LIBDIR
-@@ -29224,7 +29224,7 @@
+@@ -29951,7 +29951,7 @@
  +    -L*)
  +      ac_ii=`echo $ac_i|cut -c 3-`
  +      
@@ -1110,7 +1146,7 @@ diff -r -u -x ./svn ../../../backup/trunk_clean/feeds/packages/lang/php5/patches
       
  -  if test -z "$MM_DIR/include" || echo "$MM_DIR/include" | grep '^/' >/dev/null ; then
  -    ai_p=$MM_DIR/include
-@@ -29388,7 +29388,7 @@
+@@ -30115,7 +30115,7 @@
  +    -L*)
  +      ac_ii=`echo $ac_i|cut -c 3-`
         
@@ -1119,7 +1155,7 @@ diff -r -u -x ./svn ../../../backup/trunk_clean/feeds/packages/lang/php5/patches
  +    
  +  if test -z "$ac_ii" || echo "$ac_ii" | grep '^/' >/dev/null ; then
  +    ai_p=$ac_ii
-@@ -32305,7 +32305,7 @@
+@@ -33020,7 +33020,7 @@
  +  fi  
  +
  +  if test "$PHP_SQLITE" != "yes"; then
@@ -1128,7 +1164,7 @@ diff -r -u -x ./svn ../../../backup/trunk_clean/feeds/packages/lang/php5/patches
  +    SEARCH_FOR="/include/sqlite.h"
  +    if test -r $PHP_SQLITE/; then # path given as parameter
  +      SQLITE_DIR=$PHP_SQLITE
-@@ -32392,7 +32392,7 @@
+@@ -33107,7 +33107,7 @@
  +    SQLITE_SHARED_LIBADD="-lsqlite $SQLITE_SHARED_LIBADD"
  +    if test -n "$SQLITE_DIR/$PHP_LIBDIR"; then
  +      
@@ -1137,7 +1173,7 @@ diff -r -u -x ./svn ../../../backup/trunk_clean/feeds/packages/lang/php5/patches
       
  -  
  -fi
-@@ -32484,7 +32484,7 @@
+@@ -33199,7 +33199,7 @@
       
  -  if test -z "$ac_ii" || echo "$ac_ii" | grep '^/' >/dev/null ; then
  -    ai_p=$ac_ii
@@ -1146,7 +1182,7 @@ diff -r -u -x ./svn ../../../backup/trunk_clean/feeds/packages/lang/php5/patches
  +    
  +  if test -z "$SQLITE_DIR/$PHP_LIBDIR" || echo "$SQLITE_DIR/$PHP_LIBDIR" | grep '^/' >/dev/null ; then
  +    ai_p=$SQLITE_DIR/$PHP_LIBDIR
-@@ -32572,7 +32572,7 @@
+@@ -33287,7 +33287,7 @@
  +
  +
  +      
@@ -1155,25 +1191,25 @@ diff -r -u -x ./svn ../../../backup/trunk_clean/feeds/packages/lang/php5/patches
       
  -    cat >> confdefs.h <<\EOF
  -#define HAVE_SNMP 1
-@@ -41152,7 +41152,7 @@
- -      LIBS="-lbind $LIBS" 
- -   ;;
- -  esac
+@@ -41794,7 +41794,7 @@
+ +  if test -f $SYBASE_CT_INCDIR/ctpublic.h; then
+ +    echo "$ac_t""found in $SYBASE_CT_INCDIR" 1>&6
+ +    
 -+  if test "$SYBASE_CT_INCDIR" != "/usr/include"; then
 ++  if test "$SYBASE_CT_INCDIR" != "/opt/include"; then
  +    
  +  if test -z "$SYBASE_CT_INCDIR" || echo "$SYBASE_CT_INCDIR" | grep '^/' >/dev/null ; then
  +    ai_p=$SYBASE_CT_INCDIR
-@@ -41201,7 +41201,7 @@
+@@ -41875,7 +41875,7 @@
   
- -    ac_cv_func_dns_search=yes
- +  
+    
+ -fi
 -+  if test "$SYBASE_CT_LIBDIR" != "/usr/$PHP_LIBDIR" && test "$SYBASE_CT_LIBDIR" != "/usr/lib"; then
 ++  if test "$SYBASE_CT_LIBDIR" != "/opt/$PHP_LIBDIR" && test "$SYBASE_CT_LIBDIR" != "/opt/lib"; then
  +    
  +  if test -z "$SYBASE_CT_LIBDIR" || echo "$SYBASE_CT_LIBDIR" | grep '^/' >/dev/null ; then
  +    ai_p=$SYBASE_CT_LIBDIR
-@@ -41640,7 +41640,7 @@
+@@ -42324,7 +42324,7 @@
  +    -L*)
  +      ac_ii=`echo $ac_i|cut -c 3-`
  +      
@@ -1182,7 +1218,7 @@ diff -r -u -x ./svn ../../../backup/trunk_clean/feeds/packages/lang/php5/patches
  +    
  +  if test -z "$ac_ii" || echo "$ac_ii" | grep '^/' >/dev/null ; then
  +    ai_p=$ac_ii
-@@ -41914,7 +41914,7 @@
+@@ -42627,7 +42627,7 @@
  +    -L*)
  +      ac_ii=`echo $ac_i|cut -c 3-`
  +      
@@ -1191,7 +1227,7 @@ diff -r -u -x ./svn ../../../backup/trunk_clean/feeds/packages/lang/php5/patches
  +    
  +  if test -z "$ac_ii" || echo "$ac_ii" | grep '^/' >/dev/null ; then
  +    ai_p=$ac_ii
-@@ -42160,7 +42160,7 @@
+@@ -42860,7 +42860,7 @@
  +    -L*)
  +      ac_ii=`echo $ac_i|cut -c 3-`
  +      
@@ -1200,7 +1236,7 @@ diff -r -u -x ./svn ../../../backup/trunk_clean/feeds/packages/lang/php5/patches
  +    
  +  if test -z "$ac_ii" || echo "$ac_ii" | grep '^/' >/dev/null ; then
  +    ai_p=$ac_ii
-@@ -42610,7 +42610,7 @@
+@@ -43229,7 +43229,7 @@
  +    -L*)
  +      ac_ii=`echo $ac_i|cut -c 3-`
  +      
@@ -1209,7 +1245,7 @@ diff -r -u -x ./svn ../../../backup/trunk_clean/feeds/packages/lang/php5/patches
  +    
  +  if test -z "$ac_ii" || echo "$ac_ii" | grep '^/' >/dev/null ; then
  +    ai_p=$ac_ii
-@@ -42884,7 +42884,7 @@
+@@ -43493,7 +43493,7 @@
  +    -L*)
  +      ac_ii=`echo $ac_i|cut -c 3-`
  +      
@@ -1218,7 +1254,7 @@ diff -r -u -x ./svn ../../../backup/trunk_clean/feeds/packages/lang/php5/patches
  +    
  +  if test -z "$ac_ii" || echo "$ac_ii" | grep '^/' >/dev/null ; then
  +    ai_p=$ac_ii
-@@ -43130,7 +43130,7 @@
+@@ -43749,7 +43749,7 @@
  +    -L*)
  +      ac_ii=`echo $ac_i|cut -c 3-`
  +      
@@ -1227,7 +1263,7 @@ diff -r -u -x ./svn ../../../backup/trunk_clean/feeds/packages/lang/php5/patches
  +    
  +  if test -z "$ac_ii" || echo "$ac_ii" | grep '^/' >/dev/null ; then
  +    ai_p=$ac_ii
-@@ -43581,7 +43581,7 @@
+@@ -44111,7 +44111,7 @@
  +    -L*)
  +      ac_ii=`echo $ac_i|cut -c 3-`
  +      
@@ -1236,7 +1272,7 @@ diff -r -u -x ./svn ../../../backup/trunk_clean/feeds/packages/lang/php5/patches
  +    
  +  if test -z "$ac_ii" || echo "$ac_ii" | grep '^/' >/dev/null ; then
  +    ai_p=$ac_ii
-@@ -43855,7 +43855,7 @@
+@@ -44450,7 +44450,7 @@
  +    -L*)
  +      ac_ii=`echo $ac_i|cut -c 3-`
  +      
@@ -1245,7 +1281,7 @@ diff -r -u -x ./svn ../../../backup/trunk_clean/feeds/packages/lang/php5/patches
  +    
  +  if test -z "$ac_ii" || echo "$ac_ii" | grep '^/' >/dev/null ; then
  +    ai_p=$ac_ii
-@@ -44101,7 +44101,7 @@
+@@ -44724,7 +44724,7 @@
  +    -L*)
  +      ac_ii=`echo $ac_i|cut -c 3-`
  +      
@@ -1254,52 +1290,115 @@ diff -r -u -x ./svn ../../../backup/trunk_clean/feeds/packages/lang/php5/patches
  +    
  +  if test -z "$ac_ii" || echo "$ac_ii" | grep '^/' >/dev/null ; then
  +    ai_p=$ac_ii
-@@ -46364,7 +46364,7 @@
+@@ -46611,7 +46611,7 @@
  +  if test "$PHP_TIDY" != "yes"; then
  +    TIDY_SEARCH_DIRS=$PHP_TIDY
  +  else
 -+    TIDY_SEARCH_DIRS="/usr/local /usr"
 ++    TIDY_SEARCH_DIRS="/opt/local /opt"
-    fi
-  
- -      fi
-@@ -46416,7 +46416,7 @@
+ +  fi
+ +
+ +  for i in $TIDY_SEARCH_DIRS; do
+@@ -46636,7 +46636,7 @@
+ +    TIDY_SHARED_LIBADD="-ltidy $TIDY_SHARED_LIBADD"
  +    if test -n "$TIDY_LIBDIR"; then
-        
- -  if test "$ac_ii" != "/usr/$PHP_LIBDIR" && test "$ac_ii" != "/usr/lib"; then
+ +      
 -+  if test "$TIDY_LIBDIR" != "/usr/$PHP_LIBDIR" && test "$TIDY_LIBDIR" != "/usr/lib"; then
 ++  if test "$TIDY_LIBDIR" != "/opt/$PHP_LIBDIR" && test "$TIDY_LIBDIR" != "/opt/lib"; then
-      
- -  if test -z "$ac_ii" || echo "$ac_ii" | grep '^/' >/dev/null ; then
- -    ai_p=$ac_ii
-@@ -46578,7 +46578,7 @@
- -      ac_ii=`echo $ac_i|cut -c 3-`
- -      
- -  if test "$ac_ii" != "/usr/$PHP_LIBDIR" && test "$ac_ii" != "/usr/lib"; then
+ +    
+ +  if test -z "$TIDY_LIBDIR" || echo "$TIDY_LIBDIR" | grep '^/' >/dev/null ; then
+ +    ai_p=$TIDY_LIBDIR
+@@ -46679,7 +46679,7 @@
+ +
+ +  if test -n "$TIDY_LIBDIR"; then
+ +    
 -+  if test "$TIDY_LIBDIR" != "/usr/$PHP_LIBDIR" && test "$TIDY_LIBDIR" != "/usr/lib"; then
 ++  if test "$TIDY_LIBDIR" != "/opt/$PHP_LIBDIR" && test "$TIDY_LIBDIR" != "/opt/lib"; then
-      
- -  if test -z "$ac_ii" || echo "$ac_ii" | grep '^/' >/dev/null ; then
- -    ai_p=$ac_ii
-@@ -46791,7 +46791,7 @@
+ +    
+ +  if test -z "$TIDY_LIBDIR" || echo "$TIDY_LIBDIR" | grep '^/' >/dev/null ; then
+ +    ai_p=$TIDY_LIBDIR
+@@ -46738,7 +46738,7 @@
     
- -    SYBASE_CT_LIBS="-L$SYBASE_CT_LIBDIR -lsybcs -lsybct -lsybcomn -lsybintl"
- -    echo "$ac_t""Sybase32 syb-prefix: $SYBASE_CT_LIBS" 1>&6
+ -    for header_file in ext/standard/; do
+ -      
 -+  if test "$TIDY_INCDIR" != "/usr/include"; then
 ++  if test "$TIDY_INCDIR" != "/opt/include"; then
  +    
  +  if test -z "$TIDY_INCDIR" || echo "$TIDY_INCDIR" | grep '^/' >/dev/null ; then
  +    ai_p=$TIDY_INCDIR
-@@ -48187,7 +48187,7 @@
- +  echo $ac_n "(cached) $ac_c" 1>&6
+@@ -46842,7 +46842,7 @@
+ +    -L*)
+ +      ac_ii=`echo $ac_i|cut -c 3-`
+ +      
+-+  if test "$ac_ii" != "/usr/$PHP_LIBDIR" && test "$ac_ii" != "/usr/lib"; then
+++  if test "$ac_ii" != "/opt/$PHP_LIBDIR" && test "$ac_ii" != "/opt/lib"; then
+ +    
+ +  if test -z "$ac_ii" || echo "$ac_ii" | grep '^/' >/dev/null ; then
+ +    ai_p=$ac_ii
+@@ -48521,7 +48521,7 @@
  +else
     
+ -  for ac_i in $ac_stuff; do
 -+  for i in $PHP_LIBXML_DIR /usr/local /usr; do
 ++  for i in $PHP_LIBXML_DIR /opt/local /opt; do
  +    if test -x "$i/bin/xml2-config"; then
  +      ac_cv_php_xml2_config_path="$i/bin/xml2-config"
  +      break
-@@ -48381,7 +48381,7 @@
+@@ -48587,7 +48587,7 @@
+ +    -I*)
+ +      ac_ii=`echo $ac_i|cut -c 3-`
+ +      
+-+  if test "$ac_ii" != "/usr/include"; then
+++  if test "$ac_ii" != "/opt/include"; then
+ +    
+ +  if test -z "$ac_ii" || echo "$ac_ii" | grep '^/' >/dev/null ; then
+ +    ai_p=$ac_ii
+@@ -48783,7 +48783,7 @@
+ +  fi
+  
+ +        if test "$PHP_LIBEXPAT_DIR" != "no"; then
+-+    for i in $PHP_XML $PHP_LIBEXPAT_DIR /usr /usr/local; do
+++    for i in $PHP_XML $PHP_LIBEXPAT_DIR /opt /opt/local; do
+ +      if test -f "$i/$PHP_LIBDIR/libexpat.a" || test -f "$i/$PHP_LIBDIR/libexpat.$SHLIB_SUFFIX_NAME"; then
+ +        EXPAT_DIR=$i
+ +        break
+@@ -48797,7 +48797,7 @@
+ -  esac
+  
+ +    
+-+  if test "$EXPAT_DIR/include" != "/usr/include"; then
+++  if test "$EXPAT_DIR/include" != "/opt/include"; then
+ +    
+ +  if test -z "$EXPAT_DIR/include" || echo "$EXPAT_DIR/include" | grep '^/' >/dev/null ; then
+ +    ai_p=$EXPAT_DIR/include
+@@ -48839,7 +48839,7 @@
+ +    WDDX_SHARED_LIBADD="-lexpat $WDDX_SHARED_LIBADD"
+ +    if test -n "$EXPAT_DIR/$PHP_LIBDIR"; then
+        
+-+  if test "$EXPAT_DIR/$PHP_LIBDIR" != "/usr/$PHP_LIBDIR" && test "$EXPAT_DIR/$PHP_LIBDIR" != "/usr/lib"; then
+++  if test "$EXPAT_DIR/$PHP_LIBDIR" != "/opt/$PHP_LIBDIR" && test "$EXPAT_DIR/$PHP_LIBDIR" != "/opt/lib"; then
+ +    
+ +  if test -z "$EXPAT_DIR/$PHP_LIBDIR" || echo "$EXPAT_DIR/$PHP_LIBDIR" | grep '^/' >/dev/null ; then
+ +    ai_p=$EXPAT_DIR/$PHP_LIBDIR
+@@ -48888,7 +48888,7 @@
+ +
+ +  if test -n "$EXPAT_DIR/$PHP_LIBDIR"; then
+ +    
+-+  if test "$EXPAT_DIR/$PHP_LIBDIR" != "/usr/$PHP_LIBDIR" && test "$EXPAT_DIR/$PHP_LIBDIR" != "/usr/lib"; then
+++  if test "$EXPAT_DIR/$PHP_LIBDIR" != "/opt/$PHP_LIBDIR" && test "$EXPAT_DIR/$PHP_LIBDIR" != "/opt/lib"; then
+ +    
+ +  if test -z "$EXPAT_DIR/$PHP_LIBDIR" || echo "$EXPAT_DIR/$PHP_LIBDIR" | grep '^/' >/dev/null ; then
+ +    ai_p=$EXPAT_DIR/$PHP_LIBDIR
+@@ -49719,7 +49719,7 @@
+ +  echo $ac_n "(cached) $ac_c" 1>&6
+ +else
+ +  
+-+  for i in $PHP_LIBXML_DIR /usr/local /usr; do
+++  for i in $PHP_LIBXML_DIR /opt/local /opt; do
+ +    if test -x "$i/bin/xml2-config"; then
+ +      ac_cv_php_xml2_config_path="$i/bin/xml2-config"
+ +      break
+@@ -49947,7 +49947,7 @@
         ac_ii=`echo $ac_i|cut -c 3-`
         
  -  if test "$ac_ii" != "/usr/$PHP_LIBDIR" && test "$ac_ii" != "/usr/lib"; then
@@ -1308,98 +1407,35 @@ diff -r -u -x ./svn ../../../backup/trunk_clean/feeds/packages/lang/php5/patches
       
     if test -z "$ac_ii" || echo "$ac_ii" | grep '^/' >/dev/null ; then
       ai_p=$ac_ii
-@@ -48819,7 +48819,7 @@
- -#define COMPILE_DL_SYSVMSG 1
- -EOF
+@@ -50134,7 +50134,7 @@
+ -else
+ -  echo "$ac_t""no" 1>&6
  +        if test "$PHP_LIBEXPAT_DIR" != "no"; then
 -+    for i in $PHP_XML $PHP_LIBEXPAT_DIR /usr /usr/local; do
 ++    for i in $PHP_XML $PHP_LIBEXPAT_DIR /opt /opt/local; do
  +      if test -f "$i/$PHP_LIBDIR/libexpat.a" || test -f "$i/$PHP_LIBDIR/libexpat.$SHLIB_SUFFIX_NAME"; then
  +        EXPAT_DIR=$i
  +        break
-@@ -48831,7 +48831,7 @@
-      fi
- +
- +    
+@@ -50151,7 +50151,7 @@
+      
+ -  
+ -fi
 -+  if test "$EXPAT_DIR/include" != "/usr/include"; then
 ++  if test "$EXPAT_DIR/include" != "/opt/include"; then
  +    
  +  if test -z "$EXPAT_DIR/include" || echo "$EXPAT_DIR/include" | grep '^/' >/dev/null ; then
  +    ai_p=$EXPAT_DIR/include
-@@ -48907,7 +48907,7 @@
- -EOF
- -  done
- -
--+  if test "$EXPAT_DIR/$PHP_LIBDIR" != "/usr/$PHP_LIBDIR" && test "$EXPAT_DIR/$PHP_LIBDIR" != "/usr/lib"; then
-++  if test "$EXPAT_DIR/$PHP_LIBDIR" != "/opt/$PHP_LIBDIR" && test "$EXPAT_DIR/$PHP_LIBDIR" != "/opt/lib"; then
- +    
- +  if test -z "$EXPAT_DIR/$PHP_LIBDIR" || echo "$EXPAT_DIR/$PHP_LIBDIR" | grep '^/' >/dev/null ; then
- +    ai_p=$EXPAT_DIR/$PHP_LIBDIR
-@@ -48990,7 +48990,7 @@
- -    EXT_CLI_STATIC="$EXT_CLI_STATIC sysvmsg"
- +  if test -n "$EXPAT_DIR/$PHP_LIBDIR"; then
- +    
--+  if test "$EXPAT_DIR/$PHP_LIBDIR" != "/usr/$PHP_LIBDIR" && test "$EXPAT_DIR/$PHP_LIBDIR" != "/usr/lib"; then
-++  if test "$EXPAT_DIR/$PHP_LIBDIR" != "/opt/$PHP_LIBDIR" && test "$EXPAT_DIR/$PHP_LIBDIR" != "/opt/lib"; then
- +    
- +  if test -z "$EXPAT_DIR/$PHP_LIBDIR" || echo "$EXPAT_DIR/$PHP_LIBDIR" | grep '^/' >/dev/null ; then
- +    ai_p=$EXPAT_DIR/$PHP_LIBDIR
-@@ -49472,7 +49472,7 @@
- +  echo $ac_n "(cached) $ac_c" 1>&6
- +else
- +  
--+  for i in $PHP_LIBXML_DIR /usr/local /usr; do
-++  for i in $PHP_LIBXML_DIR /opt/local /opt; do
- +    if test -x "$i/bin/xml2-config"; then
- +      ac_cv_php_xml2_config_path="$i/bin/xml2-config"
- +      break
-@@ -49542,7 +49542,7 @@
- +    -L*)
- +      ac_ii=`echo $ac_i|cut -c 3-`
- +      
--+  if test "$ac_ii" != "/usr/$PHP_LIBDIR" && test "$ac_ii" != "/usr/lib"; then
-++  if test "$ac_ii" != "/opt/$PHP_LIBDIR" && test "$ac_ii" != "/opt/lib"; then
- +    
- +  if test -z "$ac_ii" || echo "$ac_ii" | grep '^/' >/dev/null ; then
- +    ai_p=$ac_ii
-@@ -49589,7 +49589,7 @@
- +    -I*)
- +      ac_ii=`echo $ac_i|cut -c 3-`
- +      
--+  if test "$ac_ii" != "/usr/include"; then
-++  if test "$ac_ii" != "/opt/include"; then
- +    
- +  if test -z "$ac_ii" || echo "$ac_ii" | grep '^/' >/dev/null ; then
- +    ai_p=$ac_ii
-@@ -49746,7 +49746,7 @@
- +  fi
- +  
- +        if test "$PHP_LIBEXPAT_DIR" != "no"; then
--+    for i in $PHP_XML $PHP_LIBEXPAT_DIR /usr /usr/local; do
-++    for i in $PHP_XML $PHP_LIBEXPAT_DIR /opt /opt/local; do
- +      if test -f "$i/$PHP_LIBDIR/libexpat.a" || test -f "$i/$PHP_LIBDIR/libexpat.$SHLIB_SUFFIX_NAME"; then
- +        EXPAT_DIR=$i
- +        break
-@@ -49759,7 +49759,7 @@
-  
- -php_enable_sysvshm=no
- +    
--+  if test "$EXPAT_DIR/include" != "/usr/include"; then
-++  if test "$EXPAT_DIR/include" != "/opt/include"; then
- +    
- +  if test -z "$EXPAT_DIR/include" || echo "$EXPAT_DIR/include" | grep '^/' >/dev/null ; then
- +    ai_p=$EXPAT_DIR/include
-@@ -49802,7 +49802,7 @@
- +    XML_SHARED_LIBADD="-lexpat $XML_SHARED_LIBADD"
+@@ -50233,7 +50233,7 @@
  +    if test -n "$EXPAT_DIR/$PHP_LIBDIR"; then
- +      
+        
+ -  if test "$ac_ii" != "/usr/$PHP_LIBDIR" && test "$ac_ii" != "/usr/lib"; then
 -+  if test "$EXPAT_DIR/$PHP_LIBDIR" != "/usr/$PHP_LIBDIR" && test "$EXPAT_DIR/$PHP_LIBDIR" != "/usr/lib"; then
 ++  if test "$EXPAT_DIR/$PHP_LIBDIR" != "/opt/$PHP_LIBDIR" && test "$EXPAT_DIR/$PHP_LIBDIR" != "/opt/lib"; then
- +    
- +  if test -z "$EXPAT_DIR/$PHP_LIBDIR" || echo "$EXPAT_DIR/$PHP_LIBDIR" | grep '^/' >/dev/null ; then
- +    ai_p=$EXPAT_DIR/$PHP_LIBDIR
-@@ -49845,7 +49845,7 @@
- +
+      
+ -  if test -z "$ac_ii" || echo "$ac_ii" | grep '^/' >/dev/null ; then
+ -    ai_p=$ac_ii
+@@ -50369,7 +50369,7 @@
+ -fi
  +  if test -n "$EXPAT_DIR/$PHP_LIBDIR"; then
  +    
 -+  if test "$EXPAT_DIR/$PHP_LIBDIR" != "/usr/$PHP_LIBDIR" && test "$EXPAT_DIR/$PHP_LIBDIR" != "/usr/lib"; then
@@ -1407,25 +1443,7 @@ diff -r -u -x ./svn ../../../backup/trunk_clean/feeds/packages/lang/php5/patches
  +    
  +  if test -z "$EXPAT_DIR/$PHP_LIBDIR" || echo "$EXPAT_DIR/$PHP_LIBDIR" | grep '^/' >/dev/null ; then
  +    ai_p=$EXPAT_DIR/$PHP_LIBDIR
-@@ -50412,7 +50412,7 @@
- -      fi
- -    
- -  fi
--+  for i in $PHP_LIBXML_DIR /usr/local /usr; do
-++  for i in $PHP_LIBXML_DIR /opt/local /opt; do
- +    if test -x "$i/bin/xml2-config"; then
- +      ac_cv_php_xml2_config_path="$i/bin/xml2-config"
- +      break
-@@ -50487,7 +50487,7 @@
- +    -I*)
- +      ac_ii=`echo $ac_i|cut -c 3-`
- +      
--+  if test "$ac_ii" != "/usr/include"; then
-++  if test "$ac_ii" != "/opt/include"; then
- +    
- +  if test -z "$ac_ii" || echo "$ac_ii" | grep '^/' >/dev/null ; then
- +    ai_p=$ac_ii
-@@ -51157,7 +51157,7 @@
+@@ -50837,7 +50837,7 @@
  +  echo $ac_n "(cached) $ac_c" 1>&6
  +else
  +  
@@ -1434,7 +1452,7 @@ diff -r -u -x ./svn ../../../backup/trunk_clean/feeds/packages/lang/php5/patches
  +    if test -x "$i/bin/xml2-config"; then
  +      ac_cv_php_xml2_config_path="$i/bin/xml2-config"
  +      break
-@@ -51246,7 +51246,7 @@
+@@ -50907,7 +50907,7 @@
  +    -L*)
  +      ac_ii=`echo $ac_i|cut -c 3-`
  +      
@@ -1443,7 +1461,7 @@ diff -r -u -x ./svn ../../../backup/trunk_clean/feeds/packages/lang/php5/patches
  +    
  +  if test -z "$ac_ii" || echo "$ac_ii" | grep '^/' >/dev/null ; then
  +    ai_p=$ac_ii
-@@ -51305,7 +51305,7 @@
+@@ -50954,7 +50954,7 @@
  +    -I*)
  +      ac_ii=`echo $ac_i|cut -c 3-`
  +      
@@ -1452,8 +1470,35 @@ diff -r -u -x ./svn ../../../backup/trunk_clean/feeds/packages/lang/php5/patches
  +    
  +  if test -z "$ac_ii" || echo "$ac_ii" | grep '^/' >/dev/null ; then
  +    ai_p=$ac_ii
-@@ -51513,7 +51513,7 @@
-  
+@@ -51592,7 +51592,7 @@
+ +  echo $ac_n "(cached) $ac_c" 1>&6
+ +else
+ +  
+-+  for i in $PHP_LIBXML_DIR /usr/local /usr; do
+++  for i in $PHP_LIBXML_DIR /opt/local /opt; do
+ +    if test -x "$i/bin/xml2-config"; then
+ +      ac_cv_php_xml2_config_path="$i/bin/xml2-config"
+ +      break
+@@ -51682,7 +51682,7 @@
+ +      ac_ii=`echo $ac_i|cut -c 3-`
+        
+ -      shared_objects_sysvshm="$shared_objects_sysvshm $ac_bdir$ac_obj.lo"
+-+  if test "$ac_ii" != "/usr/$PHP_LIBDIR" && test "$ac_ii" != "/usr/lib"; then
+++  if test "$ac_ii" != "/opt/$PHP_LIBDIR" && test "$ac_ii" != "/opt/lib"; then
+ +    
+ +  if test -z "$ac_ii" || echo "$ac_ii" | grep '^/' >/dev/null ; then
+ +    ai_p=$ac_ii
+@@ -51760,7 +51760,7 @@
+ +    -I*)
+ +      ac_ii=`echo $ac_i|cut -c 3-`
+ +      
+-+  if test "$ac_ii" != "/usr/include"; then
+++  if test "$ac_ii" != "/opt/include"; then
+ +    
+ +  if test -z "$ac_ii" || echo "$ac_ii" | grep '^/' >/dev/null ; then
+ +    ai_p=$ac_ii
+@@ -51984,7 +51984,7 @@
+ +
  +  else
  +    testval=no
 -+    for i in $PHP_LIBEXPAT_DIR $XMLRPC_DIR /usr/local /usr; do
@@ -1461,7 +1506,7 @@ diff -r -u -x ./svn ../../../backup/trunk_clean/feeds/packages/lang/php5/patches
  +      if test -f $i/$PHP_LIBDIR/libexpat.a || test -f $i/$PHP_LIBDIR/libexpat.$SHLIB_SUFFIX_NAME; then
  +        cat >> confdefs.h <<\EOF
  +#define HAVE_LIBEXPAT 1
-@@ -51533,7 +51533,7 @@
+@@ -52004,7 +52004,7 @@
  +    if test -n "$i/$PHP_LIBDIR"; then
         
  -      PHP_CLI_OBJS="$PHP_CLI_OBJS $ac_bdir$ac_obj.lo"
@@ -1470,8 +1515,8 @@ diff -r -u -x ./svn ../../../backup/trunk_clean/feeds/packages/lang/php5/patches
  +    
  +  if test -z "$i/$PHP_LIBDIR" || echo "$i/$PHP_LIBDIR" | grep '^/' >/dev/null ; then
  +    ai_p=$i/$PHP_LIBDIR
-@@ -51590,7 +51590,7 @@
- -    EXT_CLI_STATIC="$EXT_CLI_STATIC tokenizer"
+@@ -52061,7 +52061,7 @@
+ +
  +  if test -n "$i/$PHP_LIBDIR"; then
  +    
 -+  if test "$i/$PHP_LIBDIR" != "/usr/$PHP_LIBDIR" && test "$i/$PHP_LIBDIR" != "/usr/lib"; then
@@ -1479,8 +1524,8 @@ diff -r -u -x ./svn ../../../backup/trunk_clean/feeds/packages/lang/php5/patches
  +    
  +  if test -z "$i/$PHP_LIBDIR" || echo "$i/$PHP_LIBDIR" | grep '^/' >/dev/null ; then
  +    ai_p=$i/$PHP_LIBDIR
-@@ -51643,7 +51643,7 @@
- +
+@@ -52123,7 +52123,7 @@
+ -else
  +
  +        
 -+  if test "$i/include" != "/usr/include"; then
@@ -1488,25 +1533,25 @@ diff -r -u -x ./svn ../../../backup/trunk_clean/feeds/packages/lang/php5/patches
  +    
  +  if test -z "$i/include" || echo "$i/include" | grep '^/' >/dev/null ; then
  +    ai_p=$i/include
-@@ -51855,7 +51855,7 @@
- -esac
+@@ -52358,7 +52358,7 @@
+ -    
  +        if test "$found_iconv" = "no"; then
-  
+ +
 -+    for i in $PHP_ICONV /usr/local /usr; do
 ++    for i in $PHP_ICONV /opt/local /opt; do
  +      if test -r $i/include/giconv.h; then
  +        cat >> confdefs.h <<\EOF
  +#define HAVE_GICONV_H 1
-@@ -51936,7 +51936,7 @@
+@@ -52456,7 +52456,7 @@
  +    -L*)
  +      ac_ii=`echo $ac_i|cut -c 3-`
  +      
 -+  if test "$ac_ii" != "/usr/$PHP_LIBDIR" && test "$ac_ii" != "/usr/lib"; then
 ++  if test "$ac_ii" != "/opt/$PHP_LIBDIR" && test "$ac_ii" != "/opt/lib"; then
- +    
- +  if test -z "$ac_ii" || echo "$ac_ii" | grep '^/' >/dev/null ; then
- +    ai_p=$ac_ii
-@@ -52241,7 +52241,7 @@
+      
+ -  if test -z "$TIDY_LIBDIR" || echo "$TIDY_LIBDIR" | grep '^/' >/dev/null ; then
+ -    ai_p=$TIDY_LIBDIR
+@@ -52686,7 +52686,7 @@
  +    XMLRPC_SHARED_LIBADD="-l$iconv_lib_name $XMLRPC_SHARED_LIBADD"
  +    if test -n "$ICONV_DIR/$PHP_LIBDIR"; then
  +      
@@ -1515,7 +1560,7 @@ diff -r -u -x ./svn ../../../backup/trunk_clean/feeds/packages/lang/php5/patches
  +    
  +  if test -z "$ICONV_DIR/$PHP_LIBDIR" || echo "$ICONV_DIR/$PHP_LIBDIR" | grep '^/' >/dev/null ; then
  +    ai_p=$ICONV_DIR/$PHP_LIBDIR
-@@ -52277,7 +52277,7 @@
+@@ -52734,7 +52734,7 @@
  +
  +  if test -n "$ICONV_DIR/$PHP_LIBDIR"; then
  +    
@@ -1524,25 +1569,25 @@ diff -r -u -x ./svn ../../../backup/trunk_clean/feeds/packages/lang/php5/patches
  +    
  +  if test -z "$ICONV_DIR/$PHP_LIBDIR" || echo "$ICONV_DIR/$PHP_LIBDIR" | grep '^/' >/dev/null ; then
  +    ai_p=$ICONV_DIR/$PHP_LIBDIR
-@@ -52326,7 +52326,7 @@
- +
- +
- +      
+@@ -52826,7 +52826,7 @@
+ -  /*) ac_srcdir=`echo "ext/tidy"|cut -c 2-`"/"; ac_bdir=$ac_srcdir; ac_inc="-I$ac_bdir -I$abs_srcdir/$ac_bdir" ;;
+ -  *) ac_srcdir="$abs_srcdir/ext/tidy/"; ac_bdir="ext/tidy/"; ac_inc="-I$ac_bdir -I$ac_srcdir" ;;
+ -  esac
 -+  if test "$ICONV_DIR/include" != "/usr/include"; then
 ++  if test "$ICONV_DIR/include" != "/opt/include"; then
  +    
  +  if test -z "$ICONV_DIR/include" || echo "$ICONV_DIR/include" | grep '^/' >/dev/null ; then
  +    ai_p=$ICONV_DIR/include
-@@ -53985,7 +53985,7 @@
+@@ -54365,7 +54365,7 @@
  +  else
  +    echo $ac_n "checking for XMLRPC-EPI in default path""... $ac_c" 1>&6
- +echo "configure:103388: checking for XMLRPC-EPI in default path" >&5
+ +echo "configure:103710: checking for XMLRPC-EPI in default path" >&5
 -+    for i in /usr/local /usr; do
 ++    for i in /opt/local /opt; do
  +      if test -r $i/include/xmlrpc.h; then
  +        XMLRPC_DIR=$i/include
  +        echo "$ac_t""found in $i" 1>&6
-@@ -54003,7 +54003,7 @@
+@@ -54383,7 +54383,7 @@
  +  fi
   
  +  
@@ -1551,7 +1596,7 @@ diff -r -u -x ./svn ../../../backup/trunk_clean/feeds/packages/lang/php5/patches
       
  -  if test "$EXPAT_DIR/include" != "/usr/include"; then
  -    
-@@ -54036,7 +54036,7 @@
+@@ -54416,7 +54416,7 @@
  +    if test -n "$XMLRPC_DIR/$PHP_LIBDIR"; then
         
  -  if test "$EXPAT_DIR/$PHP_LIBDIR" != "/usr/$PHP_LIBDIR" && test "$EXPAT_DIR/$PHP_LIBDIR" != "/usr/lib"; then
@@ -1560,34 +1605,34 @@ diff -r -u -x ./svn ../../../backup/trunk_clean/feeds/packages/lang/php5/patches
       
  -  if test -z "$EXPAT_DIR/$PHP_LIBDIR" || echo "$EXPAT_DIR/$PHP_LIBDIR" | grep '^/' >/dev/null ; then
  -    ai_p=$EXPAT_DIR/$PHP_LIBDIR
-@@ -54069,7 +54069,7 @@
+@@ -54449,7 +54449,7 @@
  +  if test -n "$XMLRPC_DIR/$PHP_LIBDIR"; then
       
  -  if test "$EXPAT_DIR/$PHP_LIBDIR" != "/usr/$PHP_LIBDIR" && test "$EXPAT_DIR/$PHP_LIBDIR" != "/usr/lib"; then
 -+  if test "$XMLRPC_DIR/$PHP_LIBDIR" != "/usr/$PHP_LIBDIR" && test "$XMLRPC_DIR/$PHP_LIBDIR" != "/usr/lib"; then
-++  if test "$XMLRPC_DIR/$PHP_LIBDIR" != "/opt/$PHP_LIBDIR" && test "$XMLRPC_DIR/$PHP_LIBDIR" != "/opt/lib"; then
+++  if test "$XMLRPC_DIR/$PHP_LIBDIR" != "/optr/$PHP_LIBDIR" && test "$XMLRPC_DIR/$PHP_LIBDIR" != "/opt/lib"; then
       
  -  if test -z "$EXPAT_DIR/$PHP_LIBDIR" || echo "$EXPAT_DIR/$PHP_LIBDIR" | grep '^/' >/dev/null ; then
  -    ai_p=$EXPAT_DIR/$PHP_LIBDIR
-@@ -54973,7 +54973,7 @@
- -  for i in $PHP_LIBXML_DIR /usr/local /usr; do
- -    if test -x "$i/bin/xml2-config"; then
- -      ac_cv_php_xml2_config_path="$i/bin/xml2-config"
+@@ -55474,7 +55474,7 @@
+ +    { echo "configure: error: XSL extension requires DOM extension, add --enable-dom" 1>&2; exit 1; }
+ +  fi
+ +
 -+  for i in $PHP_XSL /usr/local /usr; do
 ++  for i in $PHP_XSL /opt/local /opt; do
  +    if test -x "$i/bin/xslt-config"; then
  +      XSLT_CONFIG=$i/bin/xslt-config
         break
-@@ -55059,7 +55059,7 @@
+@@ -55552,7 +55552,7 @@
  +      
  +      echo $ac_n "checking for EXSLT support""... $ac_c" 1>&6
- +echo "configure:104639: checking for EXSLT support" >&5
+ +echo "configure:104961: checking for EXSLT support" >&5
 -+      for i in $PHP_XSL /usr/local /usr; do
 ++      for i in $PHP_XSL /opt/local /opt; do
  +        if test -r "$i/include/libexslt/exslt.h"; then
  +          PHP_XSL_EXSL_DIR=$i
  +          break
-@@ -55075,7 +55075,7 @@
+@@ -55574,7 +55574,7 @@
  +    XSL_SHARED_LIBADD="-lexslt $XSL_SHARED_LIBADD"
  +    if test -n "$PHP_XSL_EXSL_DIR/$PHP_LIBDIR"; then
  +      
@@ -1596,7 +1641,7 @@ diff -r -u -x ./svn ../../../backup/trunk_clean/feeds/packages/lang/php5/patches
  +    
  +  if test -z "$PHP_XSL_EXSL_DIR/$PHP_LIBDIR" || echo "$PHP_XSL_EXSL_DIR/$PHP_LIBDIR" | grep '^/' >/dev/null ; then
  +    ai_p=$PHP_XSL_EXSL_DIR/$PHP_LIBDIR
-@@ -55118,7 +55118,7 @@
+@@ -55632,7 +55632,7 @@
  +
  +  if test -n "$PHP_XSL_EXSL_DIR/$PHP_LIBDIR"; then
  +    
@@ -1605,7 +1650,7 @@ diff -r -u -x ./svn ../../../backup/trunk_clean/feeds/packages/lang/php5/patches
  +    
  +  if test -z "$PHP_XSL_EXSL_DIR/$PHP_LIBDIR" || echo "$PHP_XSL_EXSL_DIR/$PHP_LIBDIR" | grep '^/' >/dev/null ; then
  +    ai_p=$PHP_XSL_EXSL_DIR/$PHP_LIBDIR
-@@ -55167,7 +55167,7 @@
+@@ -55703,7 +55703,7 @@
  +
  +
  +        
@@ -1614,7 +1659,7 @@ diff -r -u -x ./svn ../../../backup/trunk_clean/feeds/packages/lang/php5/patches
  +    
  +  if test -z "$PHP_XSL_EXSL_DIR/include" || echo "$PHP_XSL_EXSL_DIR/include" | grep '^/' >/dev/null ; then
  +    ai_p=$PHP_XSL_EXSL_DIR/include
-@@ -55927,7 +55927,7 @@
+@@ -56203,7 +56203,7 @@
  +      { echo "configure: error: Can not find zlib headers under "$PHP_ZLIB_DIR"" 1>&2; exit 1; }
  +    fi
  +  else
@@ -1623,7 +1668,7 @@ diff -r -u -x ./svn ../../../backup/trunk_clean/feeds/packages/lang/php5/patches
  +      if test -f "$i/include/zlib/zlib.h"; then
  +        PHP_ZLIB_DIR="$i"
  +        PHP_ZLIB_INCDIR="$i/include/zlib"
-@@ -55951,7 +55951,7 @@
+@@ -56227,7 +56227,7 @@
  +    ZIP_SHARED_LIBADD="-lz $ZIP_SHARED_LIBADD"
  +    if test -n "$PHP_ZLIB_DIR/$PHP_LIBDIR"; then
  +      
@@ -1632,8 +1677,8 @@ diff -r -u -x ./svn ../../../backup/trunk_clean/feeds/packages/lang/php5/patches
  +    
  +  if test -z "$PHP_ZLIB_DIR/$PHP_LIBDIR" || echo "$PHP_ZLIB_DIR/$PHP_LIBDIR" | grep '^/' >/dev/null ; then
  +    ai_p=$PHP_ZLIB_DIR/$PHP_LIBDIR
-@@ -56014,7 +56014,7 @@
- +
+@@ -56311,7 +56311,7 @@
+ -echo "$ac_t""$ac_cv_php_xml2_config_path" 1>&6
  +  if test -n "$PHP_ZLIB_DIR/$PHP_LIBDIR"; then
  +    
 -+  if test "$PHP_ZLIB_DIR/$PHP_LIBDIR" != "/usr/$PHP_LIBDIR" && test "$PHP_ZLIB_DIR/$PHP_LIBDIR" != "/usr/lib"; then
@@ -1641,7 +1686,7 @@ diff -r -u -x ./svn ../../../backup/trunk_clean/feeds/packages/lang/php5/patches
  +    
  +  if test -z "$PHP_ZLIB_DIR/$PHP_LIBDIR" || echo "$PHP_ZLIB_DIR/$PHP_LIBDIR" | grep '^/' >/dev/null ; then
  +    ai_p=$PHP_ZLIB_DIR/$PHP_LIBDIR
-@@ -56105,7 +56105,7 @@
+@@ -56406,7 +56406,7 @@
       
  -  if test -z "$ac_ii" || echo "$ac_ii" | grep '^/' >/dev/null ; then
  -    ai_p=$ac_ii
@@ -1650,25 +1695,16 @@ diff -r -u -x ./svn ../../../backup/trunk_clean/feeds/packages/lang/php5/patches
  +    
  +  if test -z "$PHP_ZLIB_INCDIR" || echo "$PHP_ZLIB_INCDIR" | grep '^/' >/dev/null ; then
  +    ai_p=$PHP_ZLIB_INCDIR
-@@ -57013,7 +57013,7 @@
- +done
- +lt_ac_max=0
- +lt_ac_count=0
--+# Add /usr/xpg4/bin/sed as it is typically found on Solaris
-++# Add /opt/xpg4/bin/sed as it is typically found on Solaris
- +# along with /bin/sed that truncates output.
- +for lt_ac_sed in $lt_ac_sed_list /usr/xpg4/bin/sed; do
- +  test ! -f $lt_ac_sed && continue
-@@ -58697,7 +58697,7 @@
+@@ -59221,7 +59221,7 @@
  +		echo $ac_n "checking for zlib.h""... $ac_c" 1>&6
- +echo "configure:107154: checking for zlib.h" >&5
+ +echo "configure:107476: checking for zlib.h" >&5
  +		ZLIB_DIR=
 -+		for i in "$PHP_HTTP_ZLIB_COMPRESSION" "$PHP_ZLIB_DIR" "$PHP_ZLIB" /usr/local /usr /opt; do
 ++		for i in "$PHP_HTTP_ZLIB_COMPRESSION" "$PHP_ZLIB_DIR" "$PHP_ZLIB" /opt/local /opt; do
  +			if test -f "$i/include/zlib.h"; then
  +				ZLIB_DIR=$i
  +				break;
-@@ -58716,7 +58716,7 @@
+@@ -59240,7 +59240,7 @@
  +				{ echo "configure: error: libz version greater or equal to 1.2.0.4 required" 1>&2; exit 1; }
  +			else
  +				
@@ -1677,7 +1713,7 @@ diff -r -u -x ./svn ../../../backup/trunk_clean/feeds/packages/lang/php5/patches
  +    
  +  if test -z "$ZLIB_DIR/include" || echo "$ZLIB_DIR/include" | grep '^/' >/dev/null ; then
  +    ai_p=$ZLIB_DIR/include
-@@ -58760,7 +58760,7 @@
+@@ -59276,7 +59276,7 @@
  +    HTTP_SHARED_LIBADD="-lz $HTTP_SHARED_LIBADD"
  +    if test -n "$ZLIB_DIR/$PHP_LIBDIR"; then
  +      
@@ -1686,7 +1722,7 @@ diff -r -u -x ./svn ../../../backup/trunk_clean/feeds/packages/lang/php5/patches
  +    
  +  if test -z "$ZLIB_DIR/$PHP_LIBDIR" || echo "$ZLIB_DIR/$PHP_LIBDIR" | grep '^/' >/dev/null ; then
  +    ai_p=$ZLIB_DIR/$PHP_LIBDIR
-@@ -58808,7 +58808,7 @@
+@@ -59328,7 +59328,7 @@
  +
  +  if test -n "$ZLIB_DIR/$PHP_LIBDIR"; then
  +    
@@ -1695,16 +1731,25 @@ diff -r -u -x ./svn ../../../backup/trunk_clean/feeds/packages/lang/php5/patches
  +    
  +  if test -z "$ZLIB_DIR/$PHP_LIBDIR" || echo "$ZLIB_DIR/$PHP_LIBDIR" | grep '^/' >/dev/null ; then
  +    ai_p=$ZLIB_DIR/$PHP_LIBDIR
-@@ -58919,7 +58919,7 @@
+@@ -59388,7 +59388,7 @@
  +		echo $ac_n "checking for curl/curl.h""... $ac_c" 1>&6
- +echo "configure:107312: checking for curl/curl.h" >&5
+ +echo "configure:107634: checking for curl/curl.h" >&5
  +		CURL_DIR=
 -+		for i in "$PHP_HTTP_CURL_REQUESTS" /usr/local /usr /opt; do
 ++		for i in "$PHP_HTTP_CURL_REQUESTS" /opt/local /opt; do
  +			if test -f "$i/include/curl/curl.h"; then
  +				CURL_DIR=$i
  +				break
-@@ -59196,7 +59196,7 @@
+@@ -59648,7 +59648,7 @@
+ +		echo $ac_n "checking for bundled SSL CA info""... $ac_c" 1>&6
+ +echo "configure:107860: checking for bundled SSL CA info" >&5
+ +		CURL_CAINFO=
+-+		for i in `$CURL_CONFIG --ca` "/etc/ssl/certs/ca-certificates.crt"; do
+++		for i in `$CURL_CONFIG --ca` "/opt/etc/ssl/certs/ca-certificates.crt"; do
+ +			if test -f "$i"; then
+ +				CURL_CAINFO="$i"
+ +				break
+@@ -59665,7 +59665,7 @@
  +		fi
  +		
  +		
@@ -1713,133 +1758,97 @@ diff -r -u -x ./svn ../../../backup/trunk_clean/feeds/packages/lang/php5/patches
  +    
  +  if test -z "$CURL_DIR/include" || echo "$CURL_DIR/include" | grep '^/' >/dev/null ; then
  +    ai_p=$CURL_DIR/include
-@@ -59238,7 +59238,7 @@
- +    HTTP_SHARED_LIBADD="-lcurl $HTTP_SHARED_LIBADD"
- +    if test -n "$CURL_DIR/$PHP_LIBDIR"; then
- +      
+@@ -59748,7 +59748,7 @@
+ -    if test "$ext_shared" != "nocli"; then
+ -      EXT_CLI_STATIC="$EXT_CLI_STATIC xmlrpc"
+ -    fi
 -+  if test "$CURL_DIR/$PHP_LIBDIR" != "/usr/$PHP_LIBDIR" && test "$CURL_DIR/$PHP_LIBDIR" != "/usr/lib"; then
 ++  if test "$CURL_DIR/$PHP_LIBDIR" != "/opt/$PHP_LIBDIR" && test "$CURL_DIR/$PHP_LIBDIR" != "/opt/lib"; then
  +    
  +  if test -z "$CURL_DIR/$PHP_LIBDIR" || echo "$CURL_DIR/$PHP_LIBDIR" | grep '^/' >/dev/null ; then
  +    ai_p=$CURL_DIR/$PHP_LIBDIR
-@@ -59306,7 +59306,7 @@
-      
- -  if test -z "$XMLRPC_DIR" || echo "$XMLRPC_DIR" | grep '^/' >/dev/null ; then
- -    ai_p=$XMLRPC_DIR
+@@ -59890,7 +59890,7 @@
+ -    PHP_ZEND_EX="$PHP_ZEND_EX \$(phplibdir)/xmlrpc.$suffix"
+ +  if test -n "$CURL_DIR/$PHP_LIBDIR"; then
+ +    
 -+  if test "$CURL_DIR/$PHP_LIBDIR" != "/usr/$PHP_LIBDIR" && test "$CURL_DIR/$PHP_LIBDIR" != "/usr/lib"; then
 ++  if test "$CURL_DIR/$PHP_LIBDIR" != "/opt/$PHP_LIBDIR" && test "$CURL_DIR/$PHP_LIBDIR" != "/opt/lib"; then
  +    
  +  if test -z "$CURL_DIR/$PHP_LIBDIR" || echo "$CURL_DIR/$PHP_LIBDIR" | grep '^/' >/dev/null ; then
  +    ai_p=$CURL_DIR/$PHP_LIBDIR
-@@ -59415,7 +59415,7 @@
+@@ -60100,7 +60100,7 @@
  +    -L*)
  +      ac_ii=`echo $ac_i|cut -c 3-`
  +      
 -+  if test "$ac_ii" != "/usr/$PHP_LIBDIR" && test "$ac_ii" != "/usr/lib"; then
 ++  if test "$ac_ii" != "/opt/$PHP_LIBDIR" && test "$ac_ii" != "/opt/lib"; then
       
- -  if test -z "$XMLRPC_DIR/$PHP_LIBDIR" || echo "$XMLRPC_DIR/$PHP_LIBDIR" | grep '^/' >/dev/null ; then
- -    ai_p=$XMLRPC_DIR/$PHP_LIBDIR
-@@ -59513,7 +59513,7 @@
- +    -L*)
- +      ac_ii=`echo $ac_i|cut -c 3-`
- +      
--+  if test "$ac_ii" != "/usr/$PHP_LIBDIR" && test "$ac_ii" != "/usr/lib"; then
-++  if test "$ac_ii" != "/opt/$PHP_LIBDIR" && test "$ac_ii" != "/opt/lib"; then
-      
- -  if test -z "$XMLRPC_DIR/$PHP_LIBDIR" || echo "$XMLRPC_DIR/$PHP_LIBDIR" | grep '^/' >/dev/null ; then
- -    ai_p=$XMLRPC_DIR/$PHP_LIBDIR
-@@ -59731,7 +59731,7 @@
- +    -L*)
- +      ac_ii=`echo $ac_i|cut -c 3-`
- +      
--+  if test "$ac_ii" != "/usr/$PHP_LIBDIR" && test "$ac_ii" != "/usr/lib"; then
-++  if test "$ac_ii" != "/opt/$PHP_LIBDIR" && test "$ac_ii" != "/opt/lib"; then
- +    
- +  if test -z "$ac_ii" || echo "$ac_ii" | grep '^/' >/dev/null ; then
- +    ai_p=$ac_ii
-@@ -59966,7 +59966,7 @@
- +    -L*)
- +      ac_ii=`echo $ac_i|cut -c 3-`
- +      
--+  if test "$ac_ii" != "/usr/$PHP_LIBDIR" && test "$ac_ii" != "/usr/lib"; then
-++  if test "$ac_ii" != "/opt/$PHP_LIBDIR" && test "$ac_ii" != "/opt/lib"; then
- +    
- +  if test -z "$ac_ii" || echo "$ac_ii" | grep '^/' >/dev/null ; then
- +    ai_p=$ac_ii
-@@ -60190,7 +60190,7 @@
- +    -L*)
- +      ac_ii=`echo $ac_i|cut -c 3-`
- +      
--+  if test "$ac_ii" != "/usr/$PHP_LIBDIR" && test "$ac_ii" != "/usr/lib"; then
-++  if test "$ac_ii" != "/opt/$PHP_LIBDIR" && test "$ac_ii" != "/opt/lib"; then
- +    
- +  if test -z "$ac_ii" || echo "$ac_ii" | grep '^/' >/dev/null ; then
- +    ai_p=$ac_ii
-@@ -60378,7 +60378,7 @@
- +    -L*)
- +      ac_ii=`echo $ac_i|cut -c 3-`
- +      
--+  if test "$ac_ii" != "/usr/$PHP_LIBDIR" && test "$ac_ii" != "/usr/lib"; then
-++  if test "$ac_ii" != "/opt/$PHP_LIBDIR" && test "$ac_ii" != "/opt/lib"; then
- +    
- +  if test -z "$ac_ii" || echo "$ac_ii" | grep '^/' >/dev/null ; then
- +    ai_p=$ac_ii
-@@ -60671,7 +60671,7 @@
-        ac_ii=`echo $ac_i|cut -c 3-`
-        
- -  if test "$ac_ii" != "/usr/include"; then
--+  if test "$ac_ii" != "/usr/$PHP_LIBDIR" && test "$ac_ii" != "/usr/lib"; then
-++  if test "$ac_ii" != "/opt/$PHP_LIBDIR" && test "$ac_ii" != "/opt/lib"; then
-      
-    if test -z "$ac_ii" || echo "$ac_ii" | grep '^/' >/dev/null ; then
-      ai_p=$ac_ii
-@@ -60897,7 +60897,7 @@
- +				echo $ac_n "checking for event.h""... $ac_c" 1>&6
- +echo "configure:108843: checking for event.h" >&5
- +				EVENT_DIR=
--+				for i in "$PHP_HTTP_CURL_LIBEVENT" /usr/local /usr /opt; do
-++				for i in "$PHP_HTTP_CURL_LIBEVENT" /opt/local /opt; do
- +					if test -f "$i/include/event.h"; then
- +						EVENT_DIR=$i
- +						break
-@@ -60932,7 +60932,7 @@
- +						echo "configure: warning: libcurl version greater or equal to 7.16.0 required; continuing without libevent support" 1>&2
- +					else
- +						
--+  if test "$EVENT_DIR/include" != "/usr/include"; then
-++  if test "$EVENT_DIR/include" != "/opt/include"; then
- +    
- +  if test -z "$EVENT_DIR/include" || echo "$EVENT_DIR/include" | grep '^/' >/dev/null ; then
- +    ai_p=$EVENT_DIR/include
-@@ -61131,7 +61131,7 @@
- -EOF
- -  done
+ -  PHP_VAR_SUBST="$PHP_VAR_SUBST PHP_PECL_EXTENSION"
  -
--+  if test "$EVENT_DIR/$PHP_LIBDIR" != "/usr/$PHP_LIBDIR" && test "$EVENT_DIR/$PHP_LIBDIR" != "/usr/lib"; then
-++  if test "$EVENT_DIR/$PHP_LIBDIR" != "/opt/$PHP_LIBDIR" && test "$EVENT_DIR/$PHP_LIBDIR" != "/opt/lib"; then
+@@ -60253,7 +60253,7 @@
+ +      ac_ii=`echo $ac_i|cut -c 3-`
+        
+ -  if test "$XMLRPC_DIR/$PHP_LIBDIR" != "/usr/$PHP_LIBDIR" && test "$XMLRPC_DIR/$PHP_LIBDIR" != "/usr/lib"; then
+-+  if test "$ac_ii" != "/usr/$PHP_LIBDIR" && test "$ac_ii" != "/usr/lib"; then
+++  if test "$ac_ii" != "/opt/$PHP_LIBDIR" && test "$ac_ii" != "/opt/lib"; then
+      
+ -  if test -z "$XMLRPC_DIR/$PHP_LIBDIR" || echo "$XMLRPC_DIR/$PHP_LIBDIR" | grep '^/' >/dev/null ; then
+ -    ai_p=$XMLRPC_DIR/$PHP_LIBDIR
+@@ -60399,7 +60399,7 @@
+ +    -L*)
+ +      ac_ii=`echo $ac_i|cut -c 3-`
+ +      
+-+  if test "$ac_ii" != "/usr/$PHP_LIBDIR" && test "$ac_ii" != "/usr/lib"; then
+++  if test "$ac_ii" != "/opt/$PHP_LIBDIR" && test "$ac_ii" != "/opt/lib"; then
+      
+ -  if test -z "$XMLRPC_DIR/$PHP_LIBDIR" || echo "$XMLRPC_DIR/$PHP_LIBDIR" | grep '^/' >/dev/null ; then
+ -    ai_p=$XMLRPC_DIR/$PHP_LIBDIR
+@@ -60617,7 +60617,7 @@
+ +    -L*)
+ +      ac_ii=`echo $ac_i|cut -c 3-`
+ +      
+-+  if test "$ac_ii" != "/usr/$PHP_LIBDIR" && test "$ac_ii" != "/usr/lib"; then
+++  if test "$ac_ii" != "/opt/$PHP_LIBDIR" && test "$ac_ii" != "/opt/lib"; then
  +    
- +  if test -z "$EVENT_DIR/$PHP_LIBDIR" || echo "$EVENT_DIR/$PHP_LIBDIR" | grep '^/' >/dev/null ; then
- +    ai_p=$EVENT_DIR/$PHP_LIBDIR
-@@ -61224,7 +61224,7 @@
-  
- +  if test -n "$EVENT_DIR/$PHP_LIBDIR"; then
+ +  if test -z "$ac_ii" || echo "$ac_ii" | grep '^/' >/dev/null ; then
+ +    ai_p=$ac_ii
+@@ -60852,7 +60852,7 @@
+ +    -L*)
+ +      ac_ii=`echo $ac_i|cut -c 3-`
+ +      
+-+  if test "$ac_ii" != "/usr/$PHP_LIBDIR" && test "$ac_ii" != "/usr/lib"; then
+++  if test "$ac_ii" != "/opt/$PHP_LIBDIR" && test "$ac_ii" != "/opt/lib"; then
  +    
--+  if test "$EVENT_DIR/$PHP_LIBDIR" != "/usr/$PHP_LIBDIR" && test "$EVENT_DIR/$PHP_LIBDIR" != "/usr/lib"; then
-++  if test "$EVENT_DIR/$PHP_LIBDIR" != "/opt/$PHP_LIBDIR" && test "$EVENT_DIR/$PHP_LIBDIR" != "/opt/lib"; then
+ +  if test -z "$ac_ii" || echo "$ac_ii" | grep '^/' >/dev/null ; then
+ +    ai_p=$ac_ii
+@@ -61075,7 +61075,7 @@
+ +    -L*)
+ +      ac_ii=`echo $ac_i|cut -c 3-`
+ +      
+-+  if test "$ac_ii" != "/usr/$PHP_LIBDIR" && test "$ac_ii" != "/usr/lib"; then
+++  if test "$ac_ii" != "/opt/$PHP_LIBDIR" && test "$ac_ii" != "/opt/lib"; then
  +    
- +  if test -z "$EVENT_DIR/$PHP_LIBDIR" || echo "$EVENT_DIR/$PHP_LIBDIR" | grep '^/' >/dev/null ; then
- +    ai_p=$EVENT_DIR/$PHP_LIBDIR
-@@ -61475,7 +61475,7 @@
+ +  if test -z "$ac_ii" || echo "$ac_ii" | grep '^/' >/dev/null ; then
+ +    ai_p=$ac_ii
+@@ -61263,7 +61263,7 @@
+ +    -L*)
+ +      ac_ii=`echo $ac_i|cut -c 3-`
+ +      
+-+  if test "$ac_ii" != "/usr/$PHP_LIBDIR" && test "$ac_ii" != "/usr/lib"; then
+++  if test "$ac_ii" != "/opt/$PHP_LIBDIR" && test "$ac_ii" != "/opt/lib"; then
+ +    
+ +  if test -z "$ac_ii" || echo "$ac_ii" | grep '^/' >/dev/null ; then
+ +    ai_p=$ac_ii
+@@ -61528,7 +61528,7 @@
  +				echo $ac_n "checking for event.h""... $ac_c" 1>&6
- +echo "configure:109175: checking for event.h" >&5
+ +echo "configure:109165: checking for event.h" >&5
  +				EVENT_DIR=
 -+				for i in "$PHP_HTTP_CURL_LIBEVENT" /usr/local /usr /opt; do
 ++				for i in "$PHP_HTTP_CURL_LIBEVENT" /opt/local /opt; do
  +					if test -f "$i/include/event.h"; then
  +						EVENT_DIR=$i
  +						break
-@@ -61510,7 +61510,7 @@
+@@ -61563,7 +61563,7 @@
  +						echo "configure: warning: libcurl version greater or equal to 7.16.0 required; continuing without libevent support" 1>&2
  +					else
  +						
@@ -1848,7 +1857,43 @@ diff -r -u -x ./svn ../../../backup/trunk_clean/feeds/packages/lang/php5/patches
       
  -  if test -z "$ac_ii" || echo "$ac_ii" | grep '^/' >/dev/null ; then
  -    ai_p=$ac_ii
-@@ -61558,7 +61558,7 @@
+@@ -61614,7 +61614,7 @@
+ +    HTTP_SHARED_LIBADD="-levent $HTTP_SHARED_LIBADD"
+ +    if test -n "$EVENT_DIR/$PHP_LIBDIR"; then
+ +      
+-+  if test "$EVENT_DIR/$PHP_LIBDIR" != "/usr/$PHP_LIBDIR" && test "$EVENT_DIR/$PHP_LIBDIR" != "/usr/lib"; then
+++  if test "$EVENT_DIR/$PHP_LIBDIR" != "/opt/$PHP_LIBDIR" && test "$EVENT_DIR/$PHP_LIBDIR" != "/opt/lib"; then
+      
+ -    char xmlInitParser();
+ -    int main() {
+@@ -61847,7 +61847,7 @@
+ -    PHP_ZEND_EX="$PHP_ZEND_EX \$(phplibdir)/xmlwriter.$suffix"
+ +  if test -n "$EVENT_DIR/$PHP_LIBDIR"; then
+ +    
+-+  if test "$EVENT_DIR/$PHP_LIBDIR" != "/usr/$PHP_LIBDIR" && test "$EVENT_DIR/$PHP_LIBDIR" != "/usr/lib"; then
+++  if test "$EVENT_DIR/$PHP_LIBDIR" != "/opt/$PHP_LIBDIR" && test "$EVENT_DIR/$PHP_LIBDIR" != "/opt/lib"; then
+ +    
+ +  if test -z "$EVENT_DIR/$PHP_LIBDIR" || echo "$EVENT_DIR/$PHP_LIBDIR" | grep '^/' >/dev/null ; then
+ +    ai_p=$EVENT_DIR/$PHP_LIBDIR
+@@ -62223,7 +62223,7 @@
+ +				echo $ac_n "checking for event.h""... $ac_c" 1>&6
+ +echo "configure:109497: checking for event.h" >&5
+ +				EVENT_DIR=
+-+				for i in "$PHP_HTTP_CURL_LIBEVENT" /usr/local /usr /opt; do
+++				for i in "$PHP_HTTP_CURL_LIBEVENT" /opt/local /opt; do
+ +					if test -f "$i/include/event.h"; then
+ +						EVENT_DIR=$i
+ +						break
+@@ -62258,7 +62258,7 @@
+ +						echo "configure: warning: libcurl version greater or equal to 7.16.0 required; continuing without libevent support" 1>&2
+ +					else
+ +						
+-+  if test "$EVENT_DIR/include" != "/usr/include"; then
+++  if test "$EVENT_DIR/include" != "/opt/include"; then
+      
+ -  if test -z "$ac_ii" || echo "$ac_ii" | grep '^/' >/dev/null ; then
+ -    ai_p=$ac_ii
+@@ -62306,7 +62306,7 @@
  +    if test -n "$EVENT_DIR/$PHP_LIBDIR"; then
         
  -  if test "$PHP_XSL_EXSL_DIR/$PHP_LIBDIR" != "/usr/$PHP_LIBDIR" && test "$PHP_XSL_EXSL_DIR/$PHP_LIBDIR" != "/usr/lib"; then
@@ -1857,7 +1902,7 @@ diff -r -u -x ./svn ../../../backup/trunk_clean/feeds/packages/lang/php5/patches
       
  -  if test -z "$PHP_XSL_EXSL_DIR/$PHP_LIBDIR" || echo "$PHP_XSL_EXSL_DIR/$PHP_LIBDIR" | grep '^/' >/dev/null ; then
  -    ai_p=$PHP_XSL_EXSL_DIR/$PHP_LIBDIR
-@@ -61591,7 +61591,7 @@
+@@ -62339,7 +62339,7 @@
  +  if test -n "$EVENT_DIR/$PHP_LIBDIR"; then
       
  -  if test "$PHP_XSL_EXSL_DIR/$PHP_LIBDIR" != "/usr/$PHP_LIBDIR" && test "$PHP_XSL_EXSL_DIR/$PHP_LIBDIR" != "/usr/lib"; then
@@ -1866,7 +1911,7 @@ diff -r -u -x ./svn ../../../backup/trunk_clean/feeds/packages/lang/php5/patches
       
  -  if test -z "$PHP_XSL_EXSL_DIR/$PHP_LIBDIR" || echo "$PHP_XSL_EXSL_DIR/$PHP_LIBDIR" | grep '^/' >/dev/null ; then
  -    ai_p=$PHP_XSL_EXSL_DIR/$PHP_LIBDIR
-@@ -62135,7 +62135,7 @@
+@@ -62885,7 +62885,7 @@
  +    -L*)
  +      ac_ii=`echo $ac_i|cut -c 3-`
  +      
@@ -1875,16 +1920,16 @@ diff -r -u -x ./svn ../../../backup/trunk_clean/feeds/packages/lang/php5/patches
  +    
  +  if test -z "$ac_ii" || echo "$ac_ii" | grep '^/' >/dev/null ; then
  +    ai_p=$ac_ii
-@@ -62267,7 +62267,7 @@
+@@ -63017,7 +63017,7 @@
  +		echo $ac_n "checking for magic.h""... $ac_c" 1>&6
- +echo "configure:109502: checking for magic.h" >&5
+ +echo "configure:109824: checking for magic.h" >&5
  +		MAGIC_DIR=
 -+		for i in "$PHP_HTTP_MAGIC_MIME" /usr/local /usr /opt; do
 ++		for i in "$PHP_HTTP_MAGIC_MIME" /opt/local /opt; do
  +			if test -f "$i/include/magic.h"; then
  +				MAGIC_DIR=$i
  +				break
-@@ -62281,7 +62281,7 @@
+@@ -63031,7 +63031,7 @@
  +		fi
  +		
  +		
@@ -1893,7 +1938,7 @@ diff -r -u -x ./svn ../../../backup/trunk_clean/feeds/packages/lang/php5/patches
  +    
  +  if test -z "$MAGIC_DIR/include" || echo "$MAGIC_DIR/include" | grep '^/' >/dev/null ; then
  +    ai_p=$MAGIC_DIR/include
-@@ -62335,7 +62335,7 @@
+@@ -63085,7 +63085,7 @@
  +    if test -n "$MAGIC_DIR/$PHP_LIBDIR"; then
         
  -  if test "$PHP_ZLIB_DIR/$PHP_LIBDIR" != "/usr/$PHP_LIBDIR" && test "$PHP_ZLIB_DIR/$PHP_LIBDIR" != "/usr/lib"; then
@@ -1902,7 +1947,7 @@ diff -r -u -x ./svn ../../../backup/trunk_clean/feeds/packages/lang/php5/patches
       
  -  if test -z "$PHP_ZLIB_DIR/$PHP_LIBDIR" || echo "$PHP_ZLIB_DIR/$PHP_LIBDIR" | grep '^/' >/dev/null ; then
  -    ai_p=$PHP_ZLIB_DIR/$PHP_LIBDIR
-@@ -62368,7 +62368,7 @@
+@@ -63118,7 +63118,7 @@
  +  if test -n "$MAGIC_DIR/$PHP_LIBDIR"; then
       
  -  if test "$PHP_ZLIB_DIR/$PHP_LIBDIR" != "/usr/$PHP_LIBDIR" && test "$PHP_ZLIB_DIR/$PHP_LIBDIR" != "/usr/lib"; then
@@ -1911,7 +1956,7 @@ diff -r -u -x ./svn ../../../backup/trunk_clean/feeds/packages/lang/php5/patches
       
  -  if test -z "$PHP_ZLIB_DIR/$PHP_LIBDIR" || echo "$PHP_ZLIB_DIR/$PHP_LIBDIR" | grep '^/' >/dev/null ; then
  -    ai_p=$PHP_ZLIB_DIR/$PHP_LIBDIR
-@@ -62443,7 +62443,7 @@
+@@ -63193,7 +63193,7 @@
  +EOF
  +
  +			
@@ -1920,7 +1965,7 @@ diff -r -u -x ./svn ../../../backup/trunk_clean/feeds/packages/lang/php5/patches
       
  -  if test "$PHP_ZLIB_INCDIR" != "/usr/include"; then
  -    
-@@ -62529,7 +62529,7 @@
+@@ -63279,7 +63279,7 @@
  -yes
  -#endif
  +			

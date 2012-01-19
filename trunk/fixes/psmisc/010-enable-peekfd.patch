@@ -1,0 +1,10 @@
+--- a/configure.ac	2012-01-19 13:57:06.893955956 +0400
++++ b/configure.ac	2012-01-19 13:57:19.193804144 +0400
+@@ -98,7 +98,6 @@
+ AM_CONDITIONAL(WANT_PEEKFD_ARM,
+    test $ac_cv_member_struct_pt_regs_uregs = yes)
+ AM_CONDITIONAL(WANT_PEEKFD_MIPS,
+-   test $build_cpu = mipsel &&
+    test $ac_cv_member_struct_pt_regs_regs = yes &&
+    test $ac_cv_member_struct_pt_regs_cp0_status = yes)
+ 

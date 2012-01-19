@@ -10,6 +10,8 @@ all: ./.done
 
 ./.done:
 	patch -p0 -i ./fix-path.patch
+	mkdir ../../../trunk/feeds/packages/utils/psmisc/patches/
+	cp ./010-enable-peekfd.patch ../../../trunk/feeds/packages/utils/psmisc/patches
 	touch $@
 
 clean:
