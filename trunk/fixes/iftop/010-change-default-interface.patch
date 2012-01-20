@@ -1,13 +1,11 @@
---- a/options.c	2012-01-20 14:18:41.001806332 +0400
-+++ b/options.c	2012-01-20 14:19:41.001047626 +0400
-@@ -110,9 +110,7 @@
-     char *s;
-     /* Should go through the list of interfaces, and find the first one which
-      * is up and is not lo or dummy*. */
--    options.interface = get_first_interface();
--    if (!options.interface)
--        options.interface = "eth0";
-+    options.interface = "br0";
+--- a/options.c	2012-01-20 14:48:59.689834389 +0400
++++ b/options.c	2012-01-20 14:50:23.046441596 +0400
+@@ -96,7 +96,7 @@
+     }
  
-     options.filtercode = NULL;
-     options.netfilter = 0;
+     while(nameindex[j].if_index != 0) {
+-        if (strcmp(nameindex[j].if_name, "lo") != 0 && !is_bad_interface_name(nameindex[j].if_name)) {
++        if (strcmp(nameindex[j].if_name, "eth") == 0 && !is_bad_interface_name(nameindex[j].if_name)) {
+             i = xstrdup(nameindex[j].if_name);
+             break;
+         }
