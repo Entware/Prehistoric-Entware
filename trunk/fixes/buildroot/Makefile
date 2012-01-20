@@ -22,6 +22,7 @@ all: ./.done
 	patch -p0 -i ./include-package.patch
 	echo CONFIG_TARGET_rtn=y > ../../../trunk/.config
 	make -C ../../../trunk defconfig
+	cp -f ./mipsel-rtn-linux-gnu ../../../trunk/include/site
 	cp -f ./.config ../../../trunk/.config
 	cp -f ./feeds.conf ../../../trunk/
 	touch $@

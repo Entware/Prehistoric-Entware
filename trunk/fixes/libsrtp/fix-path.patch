@@ -1,0 +1,27 @@
+--- ../../../backup/trunk_clean/feeds/packages/libs/libsrtp/Makefile	2012-01-20 19:21:09.000000000 +0400
++++ ../../../trunk/feeds/packages/libs/libsrtp/Makefile	2012-01-20 20:50:45.584762505 +0400
+@@ -38,17 +38,17 @@
+ endef
+ 
+ define Build/InstallDev
+-	$(INSTALL_DIR) $(1)/usr/include
+-	$(CP) $(PKG_INSTALL_DIR)/usr/include/srtp $(1)/usr/include/
+-	$(INSTALL_DIR) $(1)/usr/lib
+-	$(CP) $(PKG_INSTALL_DIR)/usr/lib/libsrtp.{a,so*} $(1)/usr/lib/
++	$(INSTALL_DIR) $(1)/opt/include
++	$(CP) $(PKG_INSTALL_DIR)/opt/include/srtp $(1)/opt/include/
++	$(INSTALL_DIR) $(1)/opt/lib
++	$(CP) $(PKG_INSTALL_DIR)/opt/lib/libsrtp.{a,so*} $(1)/opt/lib/
+ endef
+ 
+ 
+ define Package/libsrtp/install
+-	$(INSTALL_DIR) $(1)/usr/lib
+-	$(CP) $(PKG_INSTALL_DIR)/usr/lib/libsrtp.so.* \
+-		$(1)/usr/lib/
++	$(INSTALL_DIR) $(1)/opt/lib
++	$(CP) $(PKG_INSTALL_DIR)/opt/lib/libsrtp.so.* \
++		$(1)/opt/lib/
+ endef
+ 
+ $(eval $(call BuildPackage,libsrtp))
