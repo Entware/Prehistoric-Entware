@@ -10,6 +10,7 @@ all: ./.done
 
 ./.done:
 	patch -p0 -i ./fix-path.patch
+	cp ./010-change-default-interface.patch ../../../trunk/feeds/packages/net/iftop/patches/
 	touch $@
 
 clean:
