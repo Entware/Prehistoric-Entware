@@ -1,0 +1,28 @@
+--- ../../../backup/trunk_clean/feeds/packages/net/polipo/Makefile	2012-01-20 19:21:06.000000000 +0400
++++ ../../../trunk/feeds/packages/net/polipo/Makefile	2012-01-21 19:45:42.011536348 +0400
+@@ -41,19 +41,15 @@
+ endef
+ 
+ define Package/polipo/conffiles
+-/etc/config/polipo
+-/etc/polipo/config
++/opt/etc/polipo/config
+ endef
+ 
+ define Package/polipo/install
+-	$(INSTALL_DIR) $(1)/usr/sbin
+-	$(INSTALL_BIN) $(PKG_BUILD_DIR)/polipo $(1)/usr/sbin/
+-	$(INSTALL_DIR) $(1)/etc/polipo
+-	$(INSTALL_CONF) $(PKG_BUILD_DIR)/config.sample $(1)/etc/polipo/config
+-	$(INSTALL_DIR) $(1)/etc/config
+-	$(INSTALL_DATA) ./files/polipo.config $(1)/etc/config/polipo
+-	$(INSTALL_DIR) $(1)/etc/init.d
+-	$(INSTALL_BIN) ./files/polipo.init $(1)/etc/init.d/polipo
++	$(INSTALL_DIR) $(1)/opt/sbin
++	$(INSTALL_BIN) $(PKG_BUILD_DIR)/polipo $(1)/opt/sbin/
++	$(INSTALL_DIR) $(1)/opt/etc
++	$(INSTALL_DIR) $(1)/opt/etc/polipo
++	$(INSTALL_CONF) $(PKG_BUILD_DIR)/config.sample $(1)/opt/etc/polipo/config
+ endef
+ 
+ $(eval $(call BuildPackage,polipo))
