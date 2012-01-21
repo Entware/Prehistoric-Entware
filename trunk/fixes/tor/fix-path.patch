@@ -1,0 +1,43 @@
+--- ../../../backup/trunk_clean/feeds/packages/net/tor/Makefile	2012-01-20 19:21:04.000000000 +0400
++++ ../../../trunk/feeds/packages/net/tor/Makefile	2012-01-21 19:38:44.817498522 +0400
+@@ -47,12 +47,12 @@
+ endef
+ 
+ define Package/tor/conffiles
+-/etc/tor/torrc
++/opt/etc/tor/torrc
+ endef
+ 
+ CONFIGURE_ARGS += \
+-	--with-libevent-dir="$(STAGING_DIR)/usr" \
+-	--with-ssl-dir="$(STAGING_DIR)/usr" \
++	--with-libevent-dir="$(STAGING_DIR)/opt" \
++	--with-ssl-dir="$(STAGING_DIR)/opt" \
+ 	--disable-asciidoc
+ 
+ CONFIGURE_VARS += \
+@@ -63,17 +63,16 @@
+ 	CFLAGS="$(TARGET_CFLAGS)"
+ 
+ define Package/tor/install
+-	$(INSTALL_DIR) $(1)/usr/sbin
+-	$(INSTALL_BIN) $(PKG_INSTALL_DIR)/usr/bin/tor $(1)/usr/sbin/
+-	$(INSTALL_DIR) $(1)/etc/init.d
+-	$(INSTALL_BIN) ./files/tor.init $(1)/etc/init.d/tor
+-	$(INSTALL_DIR) $(1)/etc/tor
+-	$(INSTALL_CONF) $(PKG_INSTALL_DIR)/etc/tor/torrc.sample $(1)/etc/tor/torrc
++	$(INSTALL_DIR) $(1)/opt/sbin
++	$(INSTALL_BIN) $(PKG_INSTALL_DIR)/opt/bin/tor $(1)/opt/sbin/
++	$(INSTALL_DIR) $(1)/opt/etc
++	$(INSTALL_DIR) $(1)/opt/etc/tor
++	$(INSTALL_CONF) $(PKG_INSTALL_DIR)/opt/etc/tor/torrc.sample $(1)/opt/etc/tor/torrc
+ endef
+ 
+ define Package/tor-geoip/install
+-	$(INSTALL_DIR) $(1)/usr/share/tor
+-	$(CP) $(PKG_INSTALL_DIR)/usr/share/tor/geoip $(1)/usr/share/tor/
++	$(INSTALL_DIR) $(1)/opt/share/tor
++	$(CP) $(PKG_INSTALL_DIR)/opt/share/tor/geoip $(1)/opt/share/tor/
+ endef
+ 
+ $(eval $(call BuildPackage,tor))
