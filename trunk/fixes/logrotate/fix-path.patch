@@ -1,6 +1,6 @@
 diff -urx .svn ../../../backup/trunk_clean/feeds/packages/utils/logrotate/files/logrotate.conf ../../../trunk/feeds/packages/utils/logrotate/files/logrotate.conf
---- ../../../backup/trunk_clean/feeds/packages/utils/logrotate/files/logrotate.conf	2012-01-18 17:41:20.000000000 +0400
-+++ ../../../trunk/feeds/packages/utils/logrotate/files/logrotate.conf	2012-01-20 09:46:47.193164265 +0400
+--- ../../../backup/trunk_clean/feeds/packages/utils/logrotate/files/logrotate.conf	2012-01-20 19:21:02.000000000 +0400
++++ ../../../trunk/feeds/packages/utils/logrotate/files/logrotate.conf	2012-01-20 19:45:23.183130786 +0400
 @@ -10,7 +10,7 @@
  
  notifempty
@@ -20,8 +20,8 @@ diff -urx .svn ../../../backup/trunk_clean/feeds/packages/utils/logrotate/files/
  # no packages own lastlog or wtmp -- we'll rotate them here
  #/var/log/wtmp {
 diff -urx .svn ../../../backup/trunk_clean/feeds/packages/utils/logrotate/Makefile ../../../trunk/feeds/packages/utils/logrotate/Makefile
---- ../../../backup/trunk_clean/feeds/packages/utils/logrotate/Makefile	2012-01-18 17:41:20.000000000 +0400
-+++ ../../../trunk/feeds/packages/utils/logrotate/Makefile	2012-01-20 09:50:43.642190166 +0400
+--- ../../../backup/trunk_clean/feeds/packages/utils/logrotate/Makefile	2012-01-20 19:21:02.000000000 +0400
++++ ../../../trunk/feeds/packages/utils/logrotate/Makefile	2012-01-21 13:15:38.404420293 +0400
 @@ -37,7 +37,7 @@
  endef
  
@@ -31,7 +31,14 @@ diff -urx .svn ../../../backup/trunk_clean/feeds/packages/utils/logrotate/Makefi
  endef
  
  EXTRA_CFLAGS += $(TARGET_CPPFLAGS)
-@@ -52,11 +52,12 @@
+@@ -47,16 +47,21 @@
+ 	$(call Build/Compile/Default, \
+ 		RPM_OPT_FLAGS:="$(TARGET_CFLAGS) $(EXTRA_CFLAGS)" \
+ 		LDFLAGS="$(EXTRA_LDFLAGS)" \
++		DEFAULT_MAKE_COMMAND="/usr/sbin/sendmail" \
++		STATEFILE="/opt/var/lib/logrotate.status" \
+ 		logrotate \
+ 	)
  endef
  
  define Package/logrotate/install	
@@ -46,6 +53,8 @@ diff -urx .svn ../../../backup/trunk_clean/feeds/packages/utils/logrotate/Makefi
 +	$(INSTALL_DIR) $(1)/opt/etc/logrotate.d
 +	$(INSTALL_DATA) ./files/logrotate.conf $(1)/opt/etc/
 +	$(INSTALL_DIR) $(1)/opt/etc/logrotate.d
++	$(INSTALL_DIR) $(1)/opt/var
++	$(INSTALL_DIR) $(1)/opt/var/lib
  endef
  
  $(eval $(call BuildPackage,logrotate))
