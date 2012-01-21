@@ -1,0 +1,51 @@
+--- ../../../backup/trunk_clean/feeds/packages/admin/sudo/Makefile	2012-01-20 19:21:08.000000000 +0400
++++ ../../../trunk/feeds/packages/admin/sudo/Makefile	2012-01-21 19:24:32.638528016 +0400
+@@ -34,7 +34,7 @@
+ endef
+ 
+ define Package/sudo/conffiles
+-/etc/sudoers
++/opt/etc/sudoers
+ endef
+ 
+ CONFIGURE_ARGS+= \
+@@ -49,28 +49,17 @@
+ 	sudo_cv_func_unsetenv_void=no
+ 
+ define Package/sudo/install
+-	$(INSTALL_DIR) $(1)/usr/bin
+-	$(CP) $(PKG_INSTALL_DIR)/usr/bin/sudo $(1)/usr/bin/
+-	chmod 4755 $(1)/usr/bin/sudo
+-	$(INSTALL_DIR) $(1)/usr/sbin
+-	$(CP) $(PKG_INSTALL_DIR)/usr/sbin/visudo $(1)/usr/sbin/
+-	$(INSTALL_DIR) $(1)/etc
+-	$(CP) $(PKG_INSTALL_DIR)/etc/sudoers $(1)/etc/
+-	chmod 0440 $(1)/etc/sudoers
+-	$(INSTALL_DIR) $(1)/etc/sudoers.d
+-	$(INSTALL_DIR) $(1)/usr/lib
+-	$(CP) $(PKG_INSTALL_DIR)/usr/lib/sudo_noexec.so $(1)/usr/lib/
+-	$(INSTALL_DIR) $(1)/etc/init.d
+-	$(INSTALL_BIN) ./files/sudo.init $(1)/etc/init.d/sudo
+-endef
+-
+-define Package/sudo/postinst
+-#!/bin/sh
+-
+-[ -n "$$IPKG_INSTROOT" ] || {
+-	/etc/init.d/sudo enable
+-	/etc/init.d/sudo start
+-}
++	$(INSTALL_DIR) $(1)/opt/bin
++	$(CP) $(PKG_INSTALL_DIR)/opt/bin/sudo $(1)/opt/bin/
++	chmod 4755 $(1)/opt/bin/sudo
++	$(INSTALL_DIR) $(1)/opt/sbin
++	$(CP) $(PKG_INSTALL_DIR)/opt/sbin/visudo $(1)/opt/sbin/
++	$(INSTALL_DIR) $(1)/opt/etc
++	$(CP) $(PKG_INSTALL_DIR)/opt/etc/sudoers $(1)/opt/etc/
++	chmod 0440 $(1)/opt/etc/sudoers
++	$(INSTALL_DIR) $(1)/opt/etc/sudoers.d
++	$(INSTALL_DIR) $(1)/opt/lib
++	$(CP) $(PKG_INSTALL_DIR)/opt/lib/sudo_noexec.so $(1)/opt/lib/
+ endef
+ 
+ $(eval $(call BuildPackage,sudo))
