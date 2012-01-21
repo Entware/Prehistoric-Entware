@@ -1,0 +1,47 @@
+--- ../../../backup/trunk_clean/feeds/packages/lang/php5/patches/030-PECL-add-http.patch	2012-01-20 19:21:04.000000000 +0400
++++ ../../../trunk/feeds/packages/lang/php5/patches/030-PECL-add-http.patch	2012-01-20 19:45:23.000000000 +0400
+@@ -404,7 +404,7 @@
+ +	if test "$PHP_HTTP_ZLIB_COMPRESSION" != "no"; then
+ +		AC_MSG_CHECKING([for zlib.h])
+ +		ZLIB_DIR=
+-+		for i in "$PHP_HTTP_ZLIB_COMPRESSION" "$PHP_ZLIB_DIR" "$PHP_ZLIB" /usr/local /usr /opt; do
+++		for i in "$PHP_HTTP_ZLIB_COMPRESSION" "$PHP_ZLIB_DIR" "$PHP_ZLIB" /opt/local /opt; do
+ +			if test -f "$i/include/zlib.h"; then
+ +				ZLIB_DIR=$i
+ +				break;
+@@ -434,7 +434,7 @@
+ +	if test "$PHP_HTTP_CURL_REQUESTS" != "no"; then
+ +		AC_MSG_CHECKING([for curl/curl.h])
+ +		CURL_DIR=
+-+		for i in "$PHP_HTTP_CURL_REQUESTS" /usr/local /usr /opt; do
+++		for i in "$PHP_HTTP_CURL_REQUESTS" /opt/local /opt; do
+ +			if test -f "$i/include/curl/curl.h"; then
+ +				CURL_DIR=$i
+ +				break
+@@ -605,7 +605,7 @@
+ +			], [
+ +				AC_MSG_CHECKING([for event.h])
+ +				EVENT_DIR=
+-+				for i in "$PHP_HTTP_CURL_LIBEVENT" /usr/local /usr /opt; do
+++				for i in "$PHP_HTTP_CURL_LIBEVENT" /opt/local /opt; do
+ +					if test -f "$i/include/event.h"; then
+ +						EVENT_DIR=$i
+ +						break
+@@ -653,7 +653,7 @@
+ +	if test "$PHP_HTTP_MAGIC_MIME" != "no"; then
+ +		AC_MSG_CHECKING([for magic.h])
+ +		MAGIC_DIR=
+-+		for i in "$PHP_HTTP_MAGIC_MIME" /usr/local /usr /opt; do
+++		for i in "$PHP_HTTP_MAGIC_MIME" /opt/local /opt; do
+ +			if test -f "$i/include/magic.h"; then
+ +				MAGIC_DIR=$i
+ +				break
+@@ -19418,7 +19418,7 @@
+ +     * @return BigGet
+ +     * @throws Exception
+ +     */
+-+    public static function url($url, $tmp = '/tmp')
+++    public static function url($url, $tmp = '/opt/tmp')
+ +    {
+ +        $head = new HttpRequest($url, HttpRequest::METH_HEAD);
+ +        $headers = $head->send()->getHeaders();

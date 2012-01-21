@@ -1,0 +1,50 @@
+--- ../../../backup/trunk_clean/feeds/packages/lang/php5/files/php.ini	2012-01-20 19:21:03.000000000 +0400
++++ ../../../trunk/feeds/packages/lang/php5/files/php.ini	2012-01-20 19:45:23.000000000 +0400
+@@ -103,7 +103,7 @@
+ ;error_prepend_string = "<font color=#ff0000>"
+ ;error_append_string = "</font>"
+ ; Log errors to specified file.
+-;error_log = /var/log/php_errors.log
++;error_log = /opt/var/log/php_errors.log
+ ; Log errors to syslog.
+ ;error_log = syslog
+ 
+@@ -131,9 +131,9 @@
+ 
+ ; UNIX: "/path1:/path2"
+ ;include_path = ".:/php/includes"
+-doc_root = "/www"
++doc_root = "/opt/share/www"
+ user_dir =
+-extension_dir = "/usr/lib/php"
++extension_dir = "/opt/lib/php"
+ enable_dl = On
+ ;cgi.force_redirect = 1
+ ;cgi.nph = 1
+@@ -146,7 +146,7 @@
+ ; File Uploads
+ 
+ file_uploads = On
+-upload_tmp_dir = "/tmp"
++upload_tmp_dir = "/opt/tmp"
+ upload_max_filesize = 2M
+ max_file_uploads = 20
+ 
+@@ -249,7 +249,7 @@
+ 
+ [Session]
+ session.save_handler = files
+-session.save_path = "/tmp"
++session.save_path = "/opt/tmp"
+ session.use_cookies = 1
+ ;session.cookie_secure =
+ session.use_only_cookies = 1
+@@ -303,7 +303,7 @@
+ 
+ [soap]
+ soap.wsdl_cache_enabled=1
+-soap.wsdl_cache_dir="/tmp"
++soap.wsdl_cache_dir="/opt/tmp"
+ soap.wsdl_cache_ttl=86400
+ soap.wsdl_cache_limit = 5
+ 

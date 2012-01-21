@@ -1,0 +1,11 @@
+--- ../../../backup/trunk_clean/feeds/packages/lang/php5/patches/102-debian_patches_use_embedded_timezonedb.patch	2012-01-20 19:21:04.000000000 +0400
++++ ../../../trunk/feeds/packages/lang/php5/patches/102-debian_patches_use_embedded_timezonedb.patch	2012-01-20 19:45:23.000000000 +0400
+@@ -71,7 +71,7 @@
+ +#ifdef HAVE_SYSTEM_TZDATA_PREFIX
+ +#define ZONEINFO_PREFIX HAVE_SYSTEM_TZDATA_PREFIX
+ +#else
+-+#define ZONEINFO_PREFIX "/usr/share/zoneinfo"
+++#define ZONEINFO_PREFIX "/opt/share/zoneinfo"
+ +#endif
+ +
+ +/* Hash table entry for the cache of the zone.tab mapping table. */

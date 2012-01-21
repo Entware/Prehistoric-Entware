@@ -9,7 +9,9 @@
 all: ./.done
 
 ./.done:
-	patch -p0 -i ./fix-path.patch
+	@for php_patch in `ls -1 ./fix-path-*.patch`; do ( \
+		patch -p0 -i $$php_patch; \
+	); done
 	touch $@
 
 clean:
