@@ -1,21 +1,6 @@
 --- ../../../backup/trunk_clean/feeds/packages/utils/bash/Makefile	2012-01-20 19:21:03.000000000 +0400
-+++ ../../../trunk/feeds/packages/utils/bash/Makefile	2012-01-22 22:09:38.254324366 +0400
-@@ -16,12 +16,13 @@
- PKG_MD5SUM:=3fb927c7c33022f1c327f14a81c0d4b0
- 
- include $(INCLUDE_DIR)/package.mk
-+include $(INCLUDE_DIR)/nls.mk
- 
- define Package/bash
-   SECTION:=utils
-   CATEGORY:=Utilities
-   TITLE:=The GNU Bourne Again SHell
--  DEPENDS:=+libncurses
-+  DEPENDS:=+libncurses $(INTL_DEPENDS) $(ICONV_DEPENDS)
-   URL:=http://www.gnu.org/software/bash/
- endef
- 
-@@ -35,7 +36,7 @@
++++ ../../../trunk/feeds/packages/utils/bash/Makefile	2012-01-23 14:40:29.983085821 +0400
+@@ -35,7 +35,7 @@
  define Build/Configure
  	$(call Build/Configure/Default, \
  		--without-bash-malloc \
@@ -24,21 +9,16 @@
  	)
  endef
  
-@@ -48,17 +49,17 @@
+@@ -48,17 +48,11 @@
  		all install
  endef
  
 -define Package/bash/postinst
-+#define Package/bash/postinst
- #!/bin/sh
+-#!/bin/sh
 -grep bash $${IPKG_INSTROOT}/etc/shells || \
 -	echo "/bin/bash" >> $${IPKG_INSTROOT}/etc/shells
 -	echo "/bin/rbash" >> $${IPKG_INSTROOT}/etc/shells
 -endef
-+#grep bash $${IPKG_INSTROOT}/etc/shells || \
-+#	echo "/bin/bash" >> $${IPKG_INSTROOT}/etc/shells
-+#	echo "/bin/rbash" >> $${IPKG_INSTROOT}/etc/shells
-+#endef
  
  define Package/bash/install
 -	$(INSTALL_DIR) $(1)/bin

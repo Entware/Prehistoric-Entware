@@ -1,0 +1,11 @@
+--- a/pathnames.h.in
++++ b/pathnames.h.in
+@@ -25,7 +25,7 @@
+ #define DEFAULT_HOSTS_FILE "/etc/hosts"
+ 
+ /* The default login shell startup file. */
+-#define SYS_PROFILE "/etc/profile"
++#define SYS_PROFILE "/opt/etc/profile"
+ 
+ /* The default location of the bash debugger initialization/startup file. */
+ #define DEBUGGER_START_FILE	"@DEBUGGER_START_FILE@"

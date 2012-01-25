@@ -10,6 +10,7 @@ all: ./.done
 
 ./.done:
 	patch -p0 -i ./fix-path.patch
+	cp ./010-system-profile.patch ../../../trunk/feeds/packages/utils/bash/patches/
 	touch $@
 
 clean:
