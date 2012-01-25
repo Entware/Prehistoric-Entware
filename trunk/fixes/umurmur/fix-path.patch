@@ -1,6 +1,6 @@
---- ../../../backup/trunk_clean/feeds/packages/net/umurmur/Makefile	2011-11-25 09:49:50.732940683 +0400
-+++ ../../../trunk/feeds/packages/net/umurmur/Makefile	2011-11-27 11:29:18.295428844 +0400
-@@ -64,30 +64,30 @@
+--- ../../../backup/trunk_clean/feeds/packages/net/umurmur/Makefile	2012-01-25 13:17:25.000000000 +0400
++++ ../../../trunk/feeds/packages/net/umurmur/Makefile	2012-01-25 13:51:16.762710383 +0400
+@@ -64,19 +64,17 @@
  endef
  
  define Package/umurmur-openssl/conffiles
@@ -21,23 +21,8 @@
 +	$(INSTALL_DIR) $(1)/opt/bin
 +	$(INSTALL_BIN) $(PKG_BUILD_DIR)/src/umurmurd $(1)/opt/bin/
 +	$(INSTALL_DIR) $(1)/opt/etc
-+	$(INSTALL_CONF) $(PKG_BUILD_DIR)/openwrt/files/umurmur.conf $(1)/opt/etc/
-+#	$(INSTALL_DIR) $(1)/opt/etc/init.d
-+#	$(INSTALL_BIN) $(PKG_BUILD_DIR)/openwrt/files/umurmur.init $(1)/opt/etc/init.d/umurmur
 +	$(INSTALL_DIR) $(1)/opt/etc/umurmur
++	$(INSTALL_CONF) $(PKG_BUILD_DIR)/openwrt/files/umurmur.conf $(1)/opt/etc/
  endef
  
  Package/umurmur-polarssl/install = $(Package/umurmur-openssl/install)
- 
- ifeq ($(BUILD_VARIANT),openssl)
--  TARGET_CFLAGS += -I$(STAGING_DIR)/usr/include
-+  TARGET_CFLAGS += -I$(STAGING_DIR)/opt/include
-   TARGET_LDFLAGS += -lcrypto -lssl
- endif
- 
- ifeq ($(BUILD_VARIANT),polarssl)
--  TARGET_CFLAGS += -DUSE_POLARSSL -I$(STAGING_DIR)/usr/include
-+  TARGET_CFLAGS += -DUSE_POLARSSL -I$(STAGING_DIR)/opt/include
-   TARGET_LDFLAGS += -lpolarssl
- endif
- 
