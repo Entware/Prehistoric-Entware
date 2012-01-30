@@ -1,0 +1,40 @@
+diff -urx .svn ../../../backup/trunk_clean/feeds/packages/net/xinetd/files/xinetd.conf ../../../trunk/feeds/packages/net/xinetd/files/xinetd.conf
+--- ../../../backup/trunk_clean/feeds/packages/net/xinetd/files/xinetd.conf	2012-01-25 13:17:29.000000000 +0400
++++ ../../../trunk/feeds/packages/net/xinetd/files/xinetd.conf	2012-01-30 11:54:59.536567877 +0400
+@@ -3,4 +3,4 @@
+ 
+ }
+ 
+-includedir /etc/xinetd.d
++includedir /opt/etc/xinetd.d
+diff -urx .svn ../../../backup/trunk_clean/feeds/packages/net/xinetd/Makefile ../../../trunk/feeds/packages/net/xinetd/Makefile
+--- ../../../backup/trunk_clean/feeds/packages/net/xinetd/Makefile	2012-01-25 13:17:29.000000000 +0400
++++ ../../../trunk/feeds/packages/net/xinetd/Makefile	2012-01-30 11:57:16.958849790 +0400
+@@ -33,7 +33,7 @@
+ endef
+ 
+ define Package/xinetd/conffiles
+-/etc/xinetd.conf
++/opt/etc/xinetd.conf
+ endef
+ 
+ TARGET_CFLAGS += -DNO_RPC
+@@ -56,13 +56,11 @@
+ endef
+ 
+ define Package/xinetd/install
+-	$(INSTALL_DIR) $(1)/usr/sbin
+-	$(INSTALL_BIN) $(PKG_INSTALL_DIR)/usr/sbin/xinetd $(1)/usr/sbin/
+-	$(INSTALL_DIR) $(1)/etc
+-	$(INSTALL_DATA) ./files/xinetd.conf $(1)/etc/xinetd.conf
+-	$(INSTALL_DIR) $(1)/etc/xinetd.d
+-	$(INSTALL_DIR) $(1)/etc/init.d
+-	$(INSTALL_BIN) ./files/xinetd.init $(1)/etc/init.d/xinetd
++	$(INSTALL_DIR) $(1)/opt/sbin
++	$(INSTALL_BIN) $(PKG_INSTALL_DIR)/opt/sbin/xinetd $(1)/opt/sbin/
++	$(INSTALL_DIR) $(1)/opt/etc
++	$(INSTALL_DATA) ./files/xinetd.conf $(1)/opt/etc/xinetd.conf
++	$(INSTALL_DIR) $(1)/opt/etc/xinetd.d
+ endef
+ 
+ $(eval $(call BuildPackage,xinetd))
