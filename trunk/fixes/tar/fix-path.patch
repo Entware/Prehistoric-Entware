@@ -1,5 +1,5 @@
---- ../../../backup/trunk_clean/feeds/packages/utils/tar/Makefile	2012-01-20 19:21:02.000000000 +0400
-+++ ../../../trunk/feeds/packages/utils/tar/Makefile	2012-01-22 21:48:27.578301171 +0400
+--- ../../../backup/trunk_clean/feeds/packages/utils/tar/Makefile	2012-01-25 13:17:20.000000000 +0400
++++ ../../../trunk/feeds/packages/utils/tar/Makefile	2012-01-30 14:01:14.790874361 +0400
 @@ -32,29 +32,13 @@
  	single archive in tar format.
  endef
@@ -22,7 +22,8 @@
 -
  MAKE_FLAGS += \
  	CFLAGS="$(TARGET_CFLAGS)" \
- 	LDFLAGS="$(TARGET_LDLAGS)"
+-	LDFLAGS="$(TARGET_LDLAGS)"
++	LDFLAGS="$(TARGET_LDLAGS) -Wl,-rpath=/opt/lib"
  
  define Package/tar/install
 -	$(INSTALL_DIR) $(1)/usr/bin/
