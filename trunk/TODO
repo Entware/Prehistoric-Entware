@@ -1,0 +1,15 @@
+===Known Bugs and Odds, to do list===
+
+The main problem is a cyrillic UTF-8 support in ncurses-based console application. Its due to UCLIBC_HAS_LOCALE=n in toolchain. Is there any workaround?
+bash: ncurses vs libiconv linking
+minidlna: update
+sshd: syslogin_perform_logout: logout() returned an error, /var/... or /etc/... somewhere in sources
+bash_completion: /etc/bashcompletion in optware is newer
+alsa-lib: edit config files
+mysql-server: /opt/lib/upgrade is unneeded
+asterisk: /opt/etc/default /opt/etc/init.d is unneeded
+netatalk: config files fix
+grep from busybox is not full
+bash: warning: setlocale: LC_ALL: cannot change locale (ru_RU.UTF-8)
+microdc2: cyrillic support
+usbip: untested

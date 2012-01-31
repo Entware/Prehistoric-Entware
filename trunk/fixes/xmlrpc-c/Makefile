@@ -10,7 +10,6 @@ all: ./.done
 
 ./.done:
 	patch -p0 -i ./fix-path.patch
-	cp -f ./555-remove-curl-types-header.patch ../../../trunk/feeds/packages/libs/xmlrpc-c/patches/
 	touch $@
 
 clean:

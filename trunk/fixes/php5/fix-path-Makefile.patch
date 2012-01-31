@@ -1,5 +1,5 @@
---- ../../../backup/trunk_clean/feeds/packages/lang/php5/Makefile	2012-01-20 19:21:04.000000000 +0400
-+++ ../../../trunk/feeds/packages/lang/php5/Makefile	2012-01-20 19:45:23.000000000 +0400
+--- ../../../backup/trunk_clean/feeds/packages/lang/php5/Makefile	2012-01-30 14:19:57.000000000 +0400
++++ ../../../trunk/feeds/packages/lang/php5/Makefile	2012-01-30 14:46:13.362276176 +0400
 @@ -131,14 +131,14 @@
  	--disable-debug \
  	--without-pear \
@@ -207,7 +207,7 @@
  else
    CONFIGURE_ARGS+= --disable-libxml
  endif
-@@ -450,39 +450,34 @@
+@@ -450,39 +450,39 @@
  	ac_cv_php_xml2_config_path="$(STAGING_DIR)/host/bin/xml2-config" \
  
  define Package/php5/conffiles
@@ -244,12 +244,17 @@
 -
 -	$(INSTALL_DIR) $(1)/etc/init.d
 -	$(INSTALL_BIN) ./files/php5-fastcgi.init $(1)/etc/init.d/php5-fastcgi
++#	$(INSTALL_DIR) $(1)/etc/config
++#	$(INSTALL_DATA) ./files/php5-fastcgi.config $(1)/etc/config/php5-fastcgi
++#
++#	$(INSTALL_DIR) $(1)/etc/init.d
++#	$(INSTALL_BIN) ./files/php5-fastcgi.init $(1)/etc/init.d/php5-fastcgi
  endef
  
  define Build/InstallDev
  	make -C $(PKG_BUILD_DIR) install INSTALL_ROOT=$(PKG_BUILD_DIR)/staging
--	rm $(PKG_BUILD_DIR)/staging/usr/bin/php
-+	rm $(PKG_BUILD_DIR)/staging/opt/bin/php
+-	rm -f $(PKG_BUILD_DIR)/staging/usr/bin/php
++	rm -f $(PKG_BUILD_DIR)/staging/opt/bin/php
  	$(CP) $(PKG_BUILD_DIR)/staging/* $(STAGING_DIR_HOST)
 -	sed -i -e "s#prefix='/usr'#prefix='$(STAGING_DIR_HOST)/usr'#" $(STAGING_DIR_HOST)/usr/bin/phpize
 -	sed -i -e "s#exec_prefix=\"\`eval echo /usr\`\"#exec_prefix='$(STAGING_DIR_HOST)/usr'#" $(STAGING_DIR_HOST)/usr/bin/phpize
@@ -258,7 +263,7 @@
  endef
  
  define BuildModule
-@@ -498,10 +493,10 @@
+@@ -498,10 +498,10 @@
    endef
  
    define Package/php5-mod-$(1)/install

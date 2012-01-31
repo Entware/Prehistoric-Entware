@@ -50,5 +50,5 @@ $ make package/compile
     ipk-packages can be found at ~/openwrt/bin directory.
     Scripts was tested with folowing buildroot revisions:
 
-- buildroot revision is 29906
-- feed packages revision is 29906
+- buildroot revision is 29955
+- feed packages revision is 29955

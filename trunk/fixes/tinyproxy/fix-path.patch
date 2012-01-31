@@ -1,5 +1,291 @@
---- ../../../backup/trunk_clean/feeds/packages/net/tinyproxy/Makefile	2011-12-05 10:46:36.000000000 +0400
-+++ ../../../trunk/feeds/packages/net/tinyproxy/Makefile	2011-12-20 11:20:14.671289318 +0400
+diff -urx .svn ../../../backup/trunk_clean/feeds/packages/net/tinyproxy/files/tinyproxy.config ../../../trunk/feeds/packages/net/tinyproxy/files/tinyproxy.config
+--- ../../../backup/trunk_clean/feeds/packages/net/tinyproxy/files/tinyproxy.config	2012-01-30 15:02:24.000000000 +0400
++++ ../../../trunk/feeds/packages/net/tinyproxy/files/tinyproxy.config	2012-01-30 15:34:45.150684589 +0400
+@@ -1,39 +1,39 @@
+-config tinyproxy
++#config tinyproxy
+ 
+ #
+ # Enable the proxy
+ #
+-option enabled 0
++#enabled 0
+ 
+ #
+ # Name of the user the tinyproxy daemon should switch to after the port
+ # has been bound.
+ #
+-option User nobody
+-option Group nogroup
++User nobody
++Group nogroup
+ 
+ #
+ # Port to listen on.
+ #
+-option Port 8888
++Port 8888
+ 
+ #
+ # If you have multiple interfaces this allows you to bind to only one. If
+ # this is commented out, tinyproxy will bind to all interfaces present.
+ #
+-#option Listen 192.168.0.1
++#Listen 192.168.0.1
+ 
+ #
+ # The Bind directive allows you to bind the outgoing connections to a
+ # particular IP address.
+ #
+-#option Bind 192.168.0.1
++#Bind 192.168.0.1
+ 
+ #
+ # Timeout: The number of seconds of inactivity a connection is allowed to
+ # have before it closed by tinyproxy.
+ #
+-option Timeout 600
++Timeout 600
+ 
+ #
+ # ErrorFile: Defines the HTML file to send when a given HTTP error
+@@ -43,32 +43,32 @@
+ #   /usr/share/tinyproxy
+ #   /etc/tinyproxy
+ #
+-#option ErrorFile_404 "/usr/share/tinyproxy/404.html"
+-#option ErrorFile_400 "/usr/share/tinyproxy/400.html"
+-#option ErrorFile_503 "/usr/share/tinyproxy/503.html"
+-#option ErrorFile_403 "/usr/share/tinyproxy/403.html"
+-#option ErrorFile_408 "/usr/share/tinyproxy/408.html"
++#ErrorFile_404 "/usr/share/tinyproxy/404.html"
++#ErrorFile_400 "/usr/share/tinyproxy/400.html"
++#ErrorFile_503 "/usr/share/tinyproxy/503.html"
++#ErrorFile_403 "/usr/share/tinyproxy/403.html"
++#ErrorFile_408 "/usr/share/tinyproxy/408.html"
+ 
+ # 
+ # DefaultErrorFile: The HTML file that gets sent if there is no
+ # HTML file defined with an ErrorFile keyword for the HTTP error
+ # that has occured.
+ #
+-option DefaultErrorFile "/usr/share/tinyproxy/default.html"
++DefaultErrorFile "/opt/share/tinyproxy/default.html"
+ 
+ #
+ # StatFile: The HTML file that gets sent when a request is made
+ # for the stathost.  If this file doesn't exist a basic page is
+ # hardcoded in tinyproxy.
+ #
+-option StatFile "/usr/share/tinyproxy/stats.html"
++StatFile "/opt/share/tinyproxy/stats.html"
+ 
+ #
+ # Where to log the information. Either LogFile or Syslog should be set,
+ # but not both.
+ #
+-option LogFile "/var/log/tinyproxy.log"
+-#option Syslog On
++LogFile "/opt/var/log/tinyproxy.log"
++#Syslog On
+ 
+ #
+ # Set the logging level. Allowed settings are:
+@@ -82,7 +82,7 @@
+ # was set to Warning, than all log messages from Warning to Critical would be
+ # output, but Notice and below would be suppressed.
+ #
+-option LogLevel Info
++LogLevel Info
+ 
+ #
+ # Include the X-Tinyproxy header, which has the client's IP address when
+@@ -95,7 +95,7 @@
+ # other words, only MaxClients number of clients can be connected at the
+ # same time.
+ #
+-option MaxClients 100
++MaxClients 100
+ 
+ #
+ # These settings set the upper and lower limit for the number of
+@@ -103,13 +103,13 @@
+ # falls below MinSpareServers then new ones will be created. If the number
+ # of servers exceeds MaxSpareServers then the extras will be killed off.
+ #
+-option MinSpareServers 5
+-option MaxSpareServers 20
++MinSpareServers 5
++MaxSpareServers 20
+ 
+ #
+ # Number of servers to start initially.
+ #
+-option StartServers 10
++StartServers 10
+ 
+ #
+ # MaxRequestsPerChild is the number of connections a thread will handle
+@@ -117,7 +117,7 @@
+ # thread reaping. If you do notice problems with memory leakage, then set
+ # this to something like 10000
+ #
+-option MaxRequestsPerChild 0
++MaxRequestsPerChild 0
+ 
+ #
+ # The following is the authorization controls. If there are any access
+@@ -127,10 +127,10 @@
+ # Also the order of the controls are important. The incoming connections
+ # are tested against the controls based on order.
+ #
+-list Allow 127.0.0.1
+-#list Allow 192.168.0.0/16
+-#list Allow 172.16.0.0/12
+-#list Allow 10.0.0.0/8
++Allow 127.0.0.1
++#Allow 192.168.0.0/16
++#Allow 172.16.0.0/12
++#Allow 10.0.0.0/8
+ 
+ #
+ # The "Via" header is required by the HTTP RFC, but using the real host name
+@@ -138,27 +138,27 @@
+ # supplied will be used as the host name in the Via header; otherwise, the
+ # server's host name will be used.
+ #
+-option ViaProxyName "tinyproxy"
++ViaProxyName "tinyproxy"
+ 
+ #
+ # The location of the filter file.
+ #
+-#option Filter "/etc/tinyproxy/filter"
++#Filter "/etc/tinyproxy/filter"
+ 
+ #
+ # Filter based on URLs rather than domains.
+ #
+-#option FilterURLs On
++#FilterURLs On
+ 
+ #
+ # Use POSIX Extended regular expressions rather than basic.
+ #
+-#option FilterExtended On
++#FilterExtended On
+ 
+ #
+ # Use case sensitive regular expressions.
+ #                                                                         
+-#option FilterCaseSensitive On     
++#FilterCaseSensitive On     
+ 
+ #
+ # Change the default policy of the filtering system.  If this directive is
+@@ -168,7 +168,7 @@
+ # However, by setting this directive to "Yes" the default policy becomes to
+ # deny everything which is _not_ specifically allowed by the filter file.
+ #
+-#option FilterDefaultDeny Yes
++#FilterDefaultDeny Yes
+ 
+ #
+ # If an Anonymous keyword is present, then anonymous proxying is enabled.
+@@ -176,8 +176,8 @@
+ # no Anonymous keyword is present, then all header are allowed through.
+ # You must include quotes around the headers.
+ #
+-#list Anonymous "Host"
+-#list Anonymous "Authorization"
++#Anonymous "Host"
++#Anonymous "Authorization"
+ 
+ #
+ # This is a list of ports allowed by tinyproxy when the CONNECT method
+@@ -187,8 +187,8 @@
+ #
+ # The following two ports are used by SSL.
+ #
+-list ConnectPort 443
+-list ConnectPort 563
++ConnectPort 443
++ConnectPort 563
+ 
+ #
+ # Turns on upstream proxy support.
+@@ -200,47 +200,47 @@
+ #  # connection to test domain goes through testproxy
+ #
+ #config upstream
+-#	option type proxy
+-#	option via testproxy:8008
+-#	option target ".test.domain.invalid"
++#	type proxy
++#	via testproxy:8008
++#	target ".test.domain.invalid"
+ #
+ #config upstream
+-#	option type proxy
+-#	option via testproxy:8008
+-#	option target ".our_testbed.example.com"
++#	type proxy
++#	via testproxy:8008
++#	target ".our_testbed.example.com"
+ #
+ #config upstream
+-#	option type proxy
+-#	option via testproxy:8008
+-#	option target "192.168.128.0/255.255.254.0"
++#	type proxy
++#	via testproxy:8008
++#	target "192.168.128.0/255.255.254.0"
+ #
+ #  # no upstream proxy for internal websites and unqualified hosts
+ #
+ #config upstream
+-#	option type reject
+-#	option target ".internal.example.com"
++#	type reject
++#	target ".internal.example.com"
+ #
+ #config upstream
+-#	option type reject
+-#	option target "www.example.com"
++#	type reject
++#	target "www.example.com"
+ #
+ #config upstream
+-#	option type reject
+-#	option target "10.0.0.0/8"
++#	type reject
++#	target "10.0.0.0/8"
+ #
+ #config upstream
+-#	option type reject
+-#	option target "192.168.0.0/255.255.254.0"
++#	type reject
++#	target "192.168.0.0/255.255.254.0"
+ #
+ #config upstream
+-#	option type reject
+-#	option target "."
++#	type reject
++#	target "."
+ #
+ #  # default upstream is internet firewall
+ #
+ #config upstream
+-#	option type proxy
+-#	option via firewall.internal.example.com:80
++#	type proxy
++#	via firewall.internal.example.com:80
+ #
+ # The LAST matching rule wins the route decision.  As you can see, you
+ # can use a host, or a domain:
+diff -urx .svn ../../../backup/trunk_clean/feeds/packages/net/tinyproxy/Makefile ../../../trunk/feeds/packages/net/tinyproxy/Makefile
+--- ../../../backup/trunk_clean/feeds/packages/net/tinyproxy/Makefile	2012-01-30 15:02:25.000000000 +0400
++++ ../../../trunk/feeds/packages/net/tinyproxy/Makefile	2012-01-30 15:36:00.156219169 +0400
 @@ -28,7 +28,7 @@
  endef
  
@@ -9,14 +295,9 @@
  endef
  
  CONFIGURE_ARGS+= \
-@@ -36,15 +36,19 @@
- 	--enable-transparent \
+@@ -37,14 +37,15 @@
  	--disable-regexcheck \
  
-+CONFIGURE_VARS += \
-+	ac_cv_func_malloc_0_nonnull=yes \
-+	ac_cv_func_realloc_0_nonnull=yes
-+
  define Package/tinyproxy/install
 -	$(INSTALL_DIR) $(1)/usr/sbin
 -	$(CP) $(PKG_INSTALL_DIR)/usr/sbin/tinyproxy $(1)/usr/sbin/
@@ -34,6 +315,7 @@
 +	$(INSTALL_CONF) ./files/tinyproxy.config $(1)/opt/etc/tinyproxy
 +#	$(INSTALL_DIR) $(1)/etc/init.d
 +#	$(INSTALL_BIN) ./files/tinyproxy.init $(1)/etc/init.d/tinyproxy
++	$(INSTALL_DIR) $(1)/opt/var/log
  endef
  
  $(eval $(call BuildPackage,tinyproxy))
