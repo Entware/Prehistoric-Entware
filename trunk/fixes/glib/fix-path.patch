@@ -1,0 +1,28 @@
+--- ../../../backup/trunk_clean/feeds/packages/libs/glib/Makefile	2012-01-30 15:02:27.000000000 +0400
++++ ../../../trunk/feeds/packages/libs/glib/Makefile	2012-02-01 14:42:44.134839452 +0400
+@@ -69,17 +69,17 @@
+ define Build/InstallDev
+ 	$(INSTALL_DIR) $(1) $(2)/bin
+ 	$(CP) $(PKG_INSTALL_DIR)/* $(1)/
+-	$(CP) $(PKG_BUILD_DIR)/.libs/*.a $(PKG_BUILD_DIR)/*/.libs/*.a $(1)/usr/lib
+-	$(CP) $(PKG_BUILD_DIR)/glibconfig-sysdefs.h $(1)/usr/include/glib-1.2/
+-	ln -sf $(STAGING_DIR)/usr/bin/glib-config $(2)/bin/
+-	$(SED) 's,-I$$$${prefix}/include/glib,-I$(STAGING_DIR)/usr/include/glib,g' $(1)/usr/bin/glib-config
+-	$(SED) 's,-I$$$${exec_prefix}/lib/glib,-I$(STAGING_DIR)/usr/lib/glib,g' $(1)/usr/bin/glib-config
+-	$(SED) 's,-L$$$${exec_prefix}/lib,,g' $(1)/usr/bin/glib-config
++	$(CP) $(PKG_BUILD_DIR)/.libs/*.a $(PKG_BUILD_DIR)/*/.libs/*.a $(1)/opt/lib
++	$(CP) $(PKG_BUILD_DIR)/glibconfig-sysdefs.h $(1)/opt/include/glib-1.2/
++	ln -sf $(STAGING_DIR)/opt/bin/glib-config $(2)/bin/
++	$(SED) 's,-I$$$${prefix}/include/glib,-I$(STAGING_DIR)/opt/include/glib,g' $(1)/opt/bin/glib-config
++	$(SED) 's,-I$$$${exec_prefix}/lib/glib,-I$(STAGING_DIR)/opt/lib/glib,g' $(1)/opt/bin/glib-config
++	$(SED) 's,-L$$$${exec_prefix}/lib,,g' $(1)/opt/bin/glib-config
+ endef
+ 
+ define Package/glib1/install
+-	$(INSTALL_DIR) $(1)/usr/lib
+-	$(CP) $(PKG_INSTALL_DIR)/usr/lib/libg{lib,module,thread}-1.2.so.* $(1)/usr/lib/
++	$(INSTALL_DIR) $(1)/opt/lib
++	$(CP) $(PKG_INSTALL_DIR)/opt/lib/libg{lib,module,thread}-1.2.so.* $(1)/opt/lib/
+ endef
+ 
+ $(eval $(call BuildPackage,glib1))
