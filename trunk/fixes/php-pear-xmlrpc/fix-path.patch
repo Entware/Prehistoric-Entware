@@ -1,0 +1,16 @@
+--- ../../../backup/trunk_clean/feeds/packages/lang/php-pear-xmlrpc/Makefile	2012-01-30 15:02:12.000000000 +0400
++++ ../../../trunk/feeds/packages/lang/php-pear-xmlrpc/Makefile	2012-02-02 12:51:32.343249774 +0400
+@@ -36,11 +36,11 @@
+ endef
+ 
+ define Package/php-pear-xmlrpc/install
+-	$(INSTALL_DIR) $(1)/usr/lib/php/XML
++	$(INSTALL_DIR) $(1)/opt/lib/php/XML
+ 	$(CP)	$(PKG_BUILD_DIR)/Dump.php \
+ 		$(PKG_BUILD_DIR)/RPC.php \
+ 		$(PKG_BUILD_DIR)/Server.php \
+-		$(1)/usr/lib/php/XML/
++		$(1)/opt/lib/php/XML/
+ endef
+ 
+ $(eval $(call BuildPackage,php-pear-xmlrpc))

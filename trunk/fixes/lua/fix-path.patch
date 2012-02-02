@@ -1,6 +1,6 @@
-diff -r -u -x .svn ../../../backup/trunk_clean/package/lua//Makefile ../../../trunk/package/lua//Makefile
---- ../../../backup/trunk_clean/package/lua//Makefile	2011-11-25 09:49:19.121338095 +0400
-+++ ../../../trunk/package/lua//Makefile	2011-11-25 14:24:25.086111736 +0400
+diff -urx .svn ../../../backup/trunk_clean/package/lua/Makefile ../../../trunk/package/lua/Makefile
+--- ../../../backup/trunk_clean/package/lua/Makefile	2012-01-30 15:01:46.000000000 +0400
++++ ../../../trunk/package/lua/Makefile	2012-02-01 15:49:23.541569948 +0400
 @@ -99,7 +99,7 @@
  		CC="$(TARGET_CROSS)gcc" \
  		AR="$(TARGET_CROSS)ar rcu" \
@@ -19,7 +19,7 @@ diff -r -u -x .svn ../../../backup/trunk_clean/package/lua//Makefile ../../../tr
  		install
  endef
  
-@@ -138,36 +138,36 @@
+@@ -138,36 +138,37 @@
  endef
  
  define Build/InstallDev
@@ -40,6 +40,7 @@ diff -r -u -x .svn ../../../backup/trunk_clean/package/lua//Makefile ../../../tr
 +	$(CP) $(PKG_INSTALL_DIR)/opt/lib/liblua.{a,so*} $(1)/opt/lib/
 +	ln -sf liblua.so.$(PKG_VERSION) $(1)/opt/lib/liblualib.so
 +	$(INSTALL_DIR) $(1)/opt/lib/pkgconfig
++	$(SED) 's,/usr/local,/opt,g' $(PKG_BUILD_DIR)/etc/lua.pc
 +	$(CP) $(PKG_BUILD_DIR)/etc/lua.pc $(1)/opt/lib/pkgconfig/
  endef
  
@@ -73,9 +74,9 @@ diff -r -u -x .svn ../../../backup/trunk_clean/package/lua//Makefile ../../../tr
  endef
  
  $(eval $(call BuildPackage,liblua))
-diff -r -u -x .svn ../../../backup/trunk_clean/package/lua//patches/200-lua-path.patch ../../../trunk/package/lua//patches/200-lua-path.patch
---- ../../../backup/trunk_clean/package/lua//patches/200-lua-path.patch	2011-11-25 09:49:19.117338144 +0400
-+++ ../../../trunk/package/lua//patches/200-lua-path.patch	2011-11-25 14:20:15.665254235 +0400
+diff -urx .svn ../../../backup/trunk_clean/package/lua/patches/200-lua-path.patch ../../../trunk/package/lua/patches/200-lua-path.patch
+--- ../../../backup/trunk_clean/package/lua/patches/200-lua-path.patch	2012-01-30 15:01:46.000000000 +0400
++++ ../../../trunk/package/lua/patches/200-lua-path.patch	2012-01-30 15:04:27.649800652 +0400
 @@ -7,7 +7,7 @@
  -#define LUA_ROOT	"/usr/local/"
  -#define LUA_LDIR	LUA_ROOT "share/lua/5.1/"

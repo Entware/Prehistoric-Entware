@@ -1,0 +1,14 @@
+--- ../../../backup/trunk_clean/feeds/packages/lang/php-pear/Makefile	2012-01-30 15:02:17.000000000 +0400
++++ ../../../trunk/feeds/packages/lang/php-pear/Makefile	2012-02-02 12:49:34.448730662 +0400
+@@ -35,9 +35,9 @@
+ endef
+ 
+ define Package/php-pear/install
+-	$(INSTALL_DIR) $(1)/usr/lib/php
++	$(INSTALL_DIR) $(1)/opt/lib/php
+ 	$(CP)	$(PKG_BUILD_DIR)/PEAR.php $(PKG_BUILD_DIR)/PEAR \
+-		$(1)/usr/lib/php/
++		$(1)/opt/lib/php/
+ endef
+ 
+ $(eval $(call BuildPackage,php-pear))
