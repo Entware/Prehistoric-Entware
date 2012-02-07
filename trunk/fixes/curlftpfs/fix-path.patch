@@ -1,0 +1,22 @@
+--- ../../../backup/trunk_clean/feeds/packages/net/curlftpfs/Makefile	2012-01-30 15:02:24.000000000 +0400
++++ ../../../trunk/feeds/packages/net/curlftpfs/Makefile	2012-02-07 11:44:09.599916574 +0400
+@@ -33,7 +33,7 @@
+ 
+ EXTRA_CFLAGS += \
+ 	-I$(ICONV_PREFIX)/include \
+-	-I$(STAGING_DIR)/usr/include/fuse \
++	-I$(STAGING_DIR)/opt/include/fuse \
+ 	-DICONV_CONST=const
+ 
+ EXTRA_LDFLAGS += \
+@@ -41,8 +41,8 @@
+ 	-L$(ICONV_PREFIX)/lib
+ 
+ define Package/curlftpfs/install
+-	$(INSTALL_DIR) $(1)/usr/bin
+-	$(INSTALL_BIN) $(PKG_BUILD_DIR)/curlftpfs $(1)/usr/bin/
++	$(INSTALL_DIR) $(1)/opt/bin
++	$(INSTALL_BIN) $(PKG_BUILD_DIR)/curlftpfs $(1)/opt/bin/
+ endef
+ 
+ $(eval $(call BuildPackage,curlftpfs))
