@@ -1,6 +1,6 @@
---- ../../../backup/trunk_clean/feeds/packages/utils/lcd4linux/Makefile	2011-12-05 10:45:51.000000000 +0400
-+++ ../../../trunk/feeds/packages/utils/lcd4linux/Makefile	2011-12-21 10:55:57.924627319 +0400
-@@ -121,9 +121,10 @@
+--- ../../../backup/trunk_clean/feeds/packages/utils/lcd4linux/Makefile	2012-02-09 12:02:01.000000000 +0400
++++ ../../../trunk/feeds/packages/utils/lcd4linux/Makefile	2012-02-09 12:06:13.864803557 +0400
+@@ -122,9 +122,10 @@
  	libnmeap \
  	libsqlite3 \
  	libvncserver \
@@ -12,7 +12,7 @@
  #	libftdi \
  #	libX11 \
  #	python \
-@@ -214,7 +215,7 @@
+@@ -215,7 +216,7 @@
  CONFIGURE_ARGS+= \
  	--disable-rpath \
  
@@ -21,7 +21,7 @@
  
  ifeq ($(BUILD_VARIANT),custom)
  
-@@ -243,7 +244,7 @@
+@@ -244,7 +245,7 @@
    endif
  
    ifneq ($(CONFIG_LCD4LINUX_CUSTOM_NEEDS_libmysqlclient),)
@@ -30,7 +30,7 @@
    endif
  
  #  ifneq ($(CONFIG_LCD4LINUX_CUSTOM_NEEDS_python),)
-@@ -277,27 +278,27 @@
+@@ -278,27 +279,27 @@
  	--without-python \
  	--without-x \
  

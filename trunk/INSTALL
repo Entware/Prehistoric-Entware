@@ -44,11 +44,10 @@ Building
 $ cd ~/openwrt/trunk
 $ make tools/compile
 $ make tools/install
-$ make prereq
 $ make package/compile
 
     ipk-packages can be found at ~/openwrt/bin directory.
     Scripts was tested with folowing buildroot revisions:
 
-- buildroot revision is 29955
-- feed packages revision is 29955
+- buildroot revision is 30391
+- feed packages revision is 30391
