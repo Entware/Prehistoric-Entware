@@ -1,0 +1,70 @@
+--- ../../../backup/trunk_clean/feeds/packages/net/nginx/Makefile	2012-02-09 12:02:27.000000000 +0400
++++ ../../../trunk/feeds/packages/net/nginx/Makefile	2012-02-10 11:53:38.127587818 +0400
+@@ -49,12 +49,12 @@
+ config_files=nginx.conf mime.types fastcgi_params koi-utf koi-win win-utf
+ 
+ define Package/nginx/conffiles
+-/etc/nginx/nginx.conf
+-/etc/nginx/mime.types
+-/etc/nginx/fastcgi_params
+-/etc/nginx/koi-utf
+-/etc/nginx/koi-win
+-/etc/nginx/win-utf
++/opt/etc/nginx/nginx.conf
++/opt/etc/nginx/mime.types
++/opt/etc/nginx/fastcgi_params
++/opt/etc/nginx/koi-utf
++/opt/etc/nginx/koi-win
++/opt/etc/nginx/win-utf
+ endef
+ 
+ ADDITIONAL_MODULES:=
+@@ -82,15 +82,15 @@
+ 	(cd $(PKG_BUILD_DIR) ;\
+ 		./configure \
+ 			--crossbuild=Linux::$(ARCH) \
+-			--prefix=/usr \
+-			--conf-path=/etc/nginx/nginx.conf \
+-			--error-log-path=/var/log/nginx/error.log \
+-			--pid-path=/var/run/nginx.pid \
+-			--lock-path=/var/lock/nginx.lock \
+-			--http-log-path=/var/log/nginx/access.log \
+-			--http-client-body-temp-path=/var/lib/nginx/body \
+-			--http-proxy-temp-path=/var/lib/nginx/proxy \
+-			--http-fastcgi-temp-path=/var/lib/nginx/fastcgi \
++			--prefix=/opt \
++			--conf-path=/opt/etc/nginx/nginx.conf \
++			--error-log-path=/opt/var/log/nginx/error.log \
++			--pid-path=/opt/var/run/nginx.pid \
++			--lock-path=/opt/var/lock/nginx.lock \
++			--http-log-path=/opt/var/log/nginx/access.log \
++			--http-client-body-temp-path=/opt/var/lib/nginx/body \
++			--http-proxy-temp-path=/opt/var/lib/nginx/proxy \
++			--http-fastcgi-temp-path=/opt/var/lib/nginx/fastcgi \
+ 			--with-cc="$(TARGET_CC)" \
+ 			--with-cc-opt="$(TARGET_CPPFLAGS) $(TARGET_CFLAGS)" \
+ 			--with-ld-opt="$(TARGET_LDFLAGS)" \
+@@ -98,16 +98,16 @@
+ endef
+ 
+ define Package/nginx/install
+-	$(INSTALL_DIR) $(1)/usr/sbin
+-	$(INSTALL_BIN) $(PKG_INSTALL_DIR)/usr/sbin/nginx $(1)/usr/sbin/
+-	$(INSTALL_DIR) $(1)/etc/nginx
+-	$(INSTALL_DATA) $(addprefix $(PKG_INSTALL_DIR)/etc/nginx/,$(config_files)) $(1)/etc/nginx/
++	$(INSTALL_DIR) $(1)/opt/sbin
++	$(INSTALL_BIN) $(PKG_INSTALL_DIR)/opt/sbin/nginx $(1)/opt/sbin/
++	$(INSTALL_DIR)  $(1)/opt/etc $(1)/opt/etc/nginx
++	$(INSTALL_DATA) $(addprefix $(PKG_INSTALL_DIR)/opt/etc/nginx/,$(config_files)) $(1)/opt/etc/nginx/
+ 	# make nginx bind on both IPv4 and IPv6 by default, when available
+   ifeq ($(CONFIG_IPV6),y)
+-	$(SED) 's/listen\( \+\)80;/listen\1[::]:80;/' $(1)/etc/nginx/nginx.conf
++	$(SED) 's/listen\( \+\)80;/listen\1[::]:80;/' $(1)/opt/etc/nginx/nginx.conf
+   endif
+-	$(INSTALL_DIR) $(1)/etc/init.d
+-	$(INSTALL_BIN) ./files/nginx.init $(1)/etc/init.d/nginx
++#	$(INSTALL_DIR) $(1)/etc/init.d
++#	$(INSTALL_BIN) ./files/nginx.init $(1)/etc/init.d/nginx
+ endef
+ 
+ $(eval $(call BuildPackage,nginx))
