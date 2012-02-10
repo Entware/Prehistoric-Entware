@@ -1,0 +1,25 @@
+--- a/auto/unix	2012-02-10 17:18:25.987672539 +0400
++++ b/auto/unix	2012-02-10 17:18:47.563394369 +0400
+@@ -328,14 +328,14 @@
+ . auto/feature
+ 
+ 
+-ngx_feature="accept4()"
+-ngx_feature_name="NGX_HAVE_ACCEPT4"
+-ngx_feature_run=no
+-ngx_feature_incs="#include <sys/socket.h>"
+-ngx_feature_path=
+-ngx_feature_libs=
+-ngx_feature_test="accept4(0, NULL, NULL, SOCK_NONBLOCK)"
+-. auto/feature
++#ngx_feature="accept4()"
++#ngx_feature_name="NGX_HAVE_ACCEPT4"
++#ngx_feature_run=no
++#ngx_feature_incs="#include <sys/socket.h>"
++#ngx_feature_path=
++#ngx_feature_libs=
++#ngx_feature_test="accept4(0, NULL, NULL, SOCK_NONBLOCK)"
++#. auto/feature
+ 
+ if [ $NGX_FILE_AIO = YES ]; then
+ 
