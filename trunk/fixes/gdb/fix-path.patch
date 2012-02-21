@@ -1,6 +1,6 @@
---- ../../../backup/trunk_clean/trunk/package/gdb/Makefile	2011-11-15 14:03:28.000000000 +0400
-+++ ../../../trunk/package/gdb/Makefile	2011-11-22 14:40:14.501050085 +0400
-@@ -69,13 +69,13 @@
+--- ../../../backup/trunk_clean/package/gdb/Makefile	2012-02-21 11:19:19.000000000 +0400
++++ ../../../trunk/package/gdb/Makefile	2012-02-21 11:23:44.050966597 +0400
+@@ -70,13 +70,13 @@
  endef
  
  define Package/gdb/install

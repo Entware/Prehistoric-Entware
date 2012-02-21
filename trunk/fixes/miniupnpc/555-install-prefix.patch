@@ -1,0 +1,11 @@
+--- a/Makefile	2012-02-21 13:54:18.606205397 +0400
++++ b/Makefile	2012-02-21 13:54:04.082380697 +0400
+@@ -81,7 +81,7 @@
+ endif
+ 
+ # install directories
+-INSTALLPREFIX ?= $(PREFIX)/usr
++INSTALLPREFIX ?= $(PREFIX)/opt
+ INSTALLDIRINC = $(INSTALLPREFIX)/include/miniupnpc
+ INSTALLDIRLIB = $(INSTALLPREFIX)/lib
+ INSTALLDIRBIN = $(INSTALLPREFIX)/bin

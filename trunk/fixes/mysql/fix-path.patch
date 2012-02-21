@@ -1,6 +1,6 @@
-diff -r -u -x .svn ../../../backup/trunk_clean/feeds/packages/libs/mysql//conf/my.cnf ../../../trunk/feeds/packages/libs/mysql//conf/my.cnf
---- ../../../backup/trunk_clean/feeds/packages/libs/mysql//conf/my.cnf	2011-11-25 09:50:11.284682312 +0400
-+++ ../../../trunk/feeds/packages/libs/mysql//conf/my.cnf	2011-11-25 09:49:34.077150075 +0400
+diff -urx .svn ../../../backup/trunk_clean/feeds/packages/libs/mysql/conf/my.cnf ../../../trunk/feeds/packages/libs/mysql/conf/my.cnf
+--- ../../../backup/trunk_clean/feeds/packages/libs/mysql/conf/my.cnf	2012-02-21 11:20:11.000000000 +0400
++++ ../../../trunk/feeds/packages/libs/mysql/conf/my.cnf	2012-02-21 11:23:44.387130372 +0400
 @@ -1,20 +1,20 @@
  [client]
  port		= 3306
@@ -43,9 +43,9 @@ diff -r -u -x .svn ../../../backup/trunk_clean/feeds/packages/libs/mysql//conf/m
  #expire_logs_days	= 10
  #max_binlog_size         = 100M
  #binlog_do_db		= include_database_name
-diff -r -u -x .svn ../../../backup/trunk_clean/feeds/packages/libs/mysql//Makefile ../../../trunk/feeds/packages/libs/mysql//Makefile
---- ../../../backup/trunk_clean/feeds/packages/libs/mysql//Makefile	2011-11-25 09:50:11.288682262 +0400
-+++ ../../../trunk/feeds/packages/libs/mysql//Makefile	2011-11-25 09:49:34.077150075 +0400
+diff -urx .svn ../../../backup/trunk_clean/feeds/packages/libs/mysql/Makefile ../../../trunk/feeds/packages/libs/mysql/Makefile
+--- ../../../backup/trunk_clean/feeds/packages/libs/mysql/Makefile	2012-02-21 11:20:11.000000000 +0400
++++ ../../../trunk/feeds/packages/libs/mysql/Makefile	2012-02-21 11:51:46.106631698 +0400
 @@ -60,7 +60,7 @@
  
  CONFIGURE_VARS += \
@@ -53,8 +53,8 @@ diff -r -u -x .svn ../../../backup/trunk_clean/feeds/packages/libs/mysql//Makefi
 -        CPPFLAGS="$$$$CPPFLAGS -I$(STAGING_DIR)/usr/include/uClibc++" \
 +        CPPFLAGS="$$$$CPPFLAGS -I$(STAGING_DIR)/opt/include/uClibc++" \
          LDFLAGS="$$$$LDFLAGS" \
-         LIBS="-nodefaultlibs -luClibc++ -lm $(LIBGCC_S)" \
-         CLIENTCLIBS="-nodefaultlibs -luClibc++ -lm $(LIBGCC_S)" \
+         LIBS="-nodefaultlibs -luClibc++ -lm -lc $(LIBGCC_S)" \
+         CLIENTCLIBS="-nodefaultlibs -luClibc++ -lm -lc $(LIBGCC_S)" \
 @@ -98,7 +98,7 @@
  		--without-docs \
  		--without-man \
@@ -64,7 +64,7 @@ diff -r -u -x .svn ../../../backup/trunk_clean/feeds/packages/libs/mysql//Makefi
  		--without-debug \
  		--with-named-thread-libs=-lpthread \
  		, \
-@@ -156,43 +156,42 @@
+@@ -156,47 +156,46 @@
  
  
  define Build/InstallDev
@@ -135,4 +135,8 @@ diff -r -u -x .svn ../../../backup/trunk_clean/feeds/packages/libs/mysql//Makefi
  endef
  
  define Package/mysql-server/conffiles
-Только в ../../../trunk/feeds/packages/libs/mysql/: Makefile.orig
+-/etc/my.cnf
++/opt/etc/my.cnf
+ endef
+ 
+ $(eval $(call BuildPackage,mysql-server))

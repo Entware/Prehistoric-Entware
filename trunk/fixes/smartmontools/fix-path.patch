@@ -1,5 +1,5 @@
---- ../../../backup/trunk_clean/feeds/packages/utils/smartmontools/Makefile	2011-12-05 10:45:54.000000000 +0400
-+++ ../../../trunk/feeds/packages/utils/smartmontools/Makefile	2011-12-05 14:47:58.852403102 +0400
+--- ../../../backup/trunk_clean/feeds/packages/utils/smartmontools/Makefile	2012-02-21 11:19:46.000000000 +0400
++++ ../../../trunk/feeds/packages/utils/smartmontools/Makefile	2012-02-21 11:23:44.687276601 +0400
 @@ -54,7 +54,7 @@
  
  CONFIGURE_VARS += \
@@ -7,7 +7,7 @@
 -	CPPFLAGS="$$$$CPPFLAGS -I$(STAGING_DIR)/usr/include/uClibc++ -I$(LINUX_DIR)/include" \
 +	CPPFLAGS="$$$$CPPFLAGS -I$(STAGING_DIR)/opt/include/uClibc++ -I$(LINUX_DIR)/include" \
  	LDFLAGS="$$$$LDFLAGS" \
- 	LIBS="-nodefaultlibs -luClibc++ -lm $(LIBGCC_S) -lc" \
+ 	LIBS="-nodefaultlibs -lc -luClibc++ -lm $(LIBGCC_S) -lc" \
  
 @@ -71,22 +71,22 @@
  endef

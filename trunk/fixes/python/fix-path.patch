@@ -1,6 +1,6 @@
-diff -r -u -x .svn ../../../backup/trunk_clean/feeds/packages/lang/python//files/python-package.mk ../../../trunk/feeds/packages/lang/python//files/python-package.mk
---- ../../../backup/trunk_clean/feeds/packages/lang/python//files/python-package.mk	2011-11-28 10:56:54.000000000 +0400
-+++ ../../../trunk/feeds/packages/lang/python//files/python-package.mk	2011-11-30 15:27:00.113978330 +0400
+diff -urx .svn ../../../backup/trunk_clean/feeds/packages/lang/python/files/python-package.mk ../../../trunk/feeds/packages/lang/python/files/python-package.mk
+--- ../../../backup/trunk_clean/feeds/packages/lang/python/files/python-package.mk	2012-02-21 11:19:49.000000000 +0400
++++ ../../../trunk/feeds/packages/lang/python/files/python-package.mk	2012-02-21 11:23:44.603235657 +0400
 @@ -7,16 +7,16 @@
  
  PYTHON_VERSION=2.6
@@ -21,9 +21,9 @@ diff -r -u -x .svn ../../../backup/trunk_clean/feeds/packages/lang/python//files
  
  define HostPython
  	(	export PYTHONPATH="$(PYTHON_LIB_DIR):$(STAGING_DIR)/$(PYTHON_PKG_DIR)"; \
-diff -r -u -x .svn ../../../backup/trunk_clean/feeds/packages/lang/python//Makefile ../../../trunk/feeds/packages/lang/python//Makefile
---- ../../../backup/trunk_clean/feeds/packages/lang/python//Makefile	2011-11-28 10:56:54.000000000 +0400
-+++ ../../../trunk/feeds/packages/lang/python//Makefile	2011-11-30 15:39:04.792891010 +0400
+diff -urx .svn ../../../backup/trunk_clean/feeds/packages/lang/python/Makefile ../../../trunk/feeds/packages/lang/python/Makefile
+--- ../../../backup/trunk_clean/feeds/packages/lang/python/Makefile	2012-02-21 11:19:49.000000000 +0400
++++ ../../../trunk/feeds/packages/lang/python/Makefile	2012-02-21 12:18:12.050693330 +0400
 @@ -123,8 +123,8 @@
  MAKE_FLAGS:=\
  	$(TARGET_CONFIGURE_OPTS) \
@@ -44,7 +44,7 @@ diff -r -u -x .svn ../../../backup/trunk_clean/feeds/packages/lang/python//Makef
  		--disable-shared \
  		--without-cxx-main \
  		--with-threads \
-@@ -155,252 +155,252 @@
+@@ -155,253 +155,253 @@
  endef
  
  define Build/InstallDev
@@ -138,6 +138,7 @@ diff -r -u -x .svn ../../../backup/trunk_clean/feeds/packages/lang/python//Makef
 --|/usr/lib/python$(PYTHON_VERSION)/lib-dynload/_md5.so
 --|/usr/lib/python$(PYTHON_VERSION)/lib-dynload/operator.so
 --|/usr/lib/python$(PYTHON_VERSION)/lib-dynload/_random.so
+--|/usr/lib/python$(PYTHON_VERSION)/lib-dynload/readline.so
 --|/usr/lib/python$(PYTHON_VERSION)/lib-dynload/select.so
 --|/usr/lib/python$(PYTHON_VERSION)/lib-dynload/_sha.so
 --|/usr/lib/python$(PYTHON_VERSION)/lib-dynload/_sha256.so
@@ -236,6 +237,7 @@ diff -r -u -x .svn ../../../backup/trunk_clean/feeds/packages/lang/python//Makef
 +-|/opt/lib/python$(PYTHON_VERSION)/lib-dynload/_md5.so
 +-|/opt/lib/python$(PYTHON_VERSION)/lib-dynload/operator.so
 +-|/opt/lib/python$(PYTHON_VERSION)/lib-dynload/_random.so
++-|/opt/lib/python$(PYTHON_VERSION)/lib-dynload/readline.so
 +-|/opt/lib/python$(PYTHON_VERSION)/lib-dynload/select.so
 +-|/opt/lib/python$(PYTHON_VERSION)/lib-dynload/_sha.so
 +-|/opt/lib/python$(PYTHON_VERSION)/lib-dynload/_sha256.so
