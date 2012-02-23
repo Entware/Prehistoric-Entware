@@ -9,6 +9,7 @@
 all: ./.done
 
 ./.done:
+	cp ./555-config-paths.patch ../../../trunk/feeds/packages/net/vpnc/patches/
 	patch -p0 -i ./fix-path.patch
 	touch $@
 

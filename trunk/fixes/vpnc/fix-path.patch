@@ -1,6 +1,6 @@
 diff -urx .svn ../../../backup/trunk_clean/feeds/packages/net/vpnc/Makefile ../../../trunk/feeds/packages/net/vpnc/Makefile
---- ../../../backup/trunk_clean/feeds/packages/net/vpnc/Makefile	2012-01-13 12:14:59.000000000 +0400
-+++ ../../../trunk/feeds/packages/net/vpnc/Makefile	2012-01-14 16:00:02.919680705 +0400
+--- ../../../backup/trunk_clean/feeds/packages/net/vpnc/Makefile	2012-02-21 11:20:06.000000000 +0400
++++ ../../../trunk/feeds/packages/net/vpnc/Makefile	2012-02-21 11:23:44.831346790 +0400
 @@ -20,7 +20,7 @@
  define Package/vpnc
    SECTION:=net
@@ -50,8 +50,8 @@ diff -urx .svn ../../../backup/trunk_clean/feeds/packages/net/vpnc/Makefile ../.
  
  $(eval $(call BuildPackage,vpnc))
 diff -urx .svn ../../../backup/trunk_clean/feeds/packages/net/vpnc/patches/001-cross.patch ../../../trunk/feeds/packages/net/vpnc/patches/001-cross.patch
---- ../../../backup/trunk_clean/feeds/packages/net/vpnc/patches/001-cross.patch	2012-01-13 12:14:59.000000000 +0400
-+++ ../../../trunk/feeds/packages/net/vpnc/patches/001-cross.patch	2012-01-14 15:55:55.614506709 +0400
+--- ../../../backup/trunk_clean/feeds/packages/net/vpnc/patches/001-cross.patch	2012-02-21 11:20:06.000000000 +0400
++++ ../../../trunk/feeds/packages/net/vpnc/patches/001-cross.patch	2012-02-21 11:23:44.831346790 +0400
 @@ -5,10 +5,12 @@
   
   DESTDIR=
@@ -81,3 +81,28 @@ diff -urx .svn ../../../backup/trunk_clean/feeds/packages/net/vpnc/patches/001-c
   
  -ifeq ($(shell uname -s), SunOS)
  +ifeq ($(OS), SunOS)
+diff -urx .svn ../../../backup/trunk_clean/feeds/packages/net/vpnc/patches/002-vpn_script.patch ../../../trunk/feeds/packages/net/vpnc/patches/002-vpn_script.patch
+--- ../../../backup/trunk_clean/feeds/packages/net/vpnc/patches/002-vpn_script.patch	2012-02-21 11:20:06.000000000 +0400
++++ ../../../trunk/feeds/packages/net/vpnc/patches/002-vpn_script.patch	2012-02-23 10:25:46.635602342 +0400
+@@ -14,15 +14,15 @@
+  }
+  
+ +start_vpn_nat() {
+-+	iptables -A forwarding_rule -o $TUNDEV -j ACCEPT
+-+	iptables -A forwarding_rule -i $TUNDEV -j ACCEPT
+-+	iptables -t nat -A postrouting_rule -o $TUNDEV -j MASQUERADE
+++	iptables -A FORWARD -o $TUNDEV -j ACCEPT
+++	iptables -A FORWARD -i $TUNDEV -j ACCEPT
+++	iptables -t nat -A POSTROUTING -o $TUNDEV -j MASQUERADE
+ +}
+ +
+ +stop_vpn_nat() {
+-+	iptables -t nat -D postrouting_rule -o $TUNDEV -j MASQUERADE
+-+	iptables -D forwarding_rule -i $TUNDEV -j ACCEPT
+-+	iptables -D forwarding_rule -o $TUNDEV -j ACCEPT
+++	iptables -t nat -D POSTROUTING -o $TUNDEV -j MASQUERADE
+++	iptables -D FORWARD -i $TUNDEV -j ACCEPT
+++	iptables -D FORWARD -o $TUNDEV -j ACCEPT
+ +}
+ +
+  #### Main
