@@ -5,43 +5,42 @@
 # This is free software, licensed under the GNU General Public License v2.
 #
 
-RTN_TOOLCHAIN_FILENAME:=hndtools-mipsel-uclibc-4.4.6-K26-x86_64-r3458.tar.bz2
-# You need it only for toolchain installation
-
-
-all: ./.done
-./.done:
-	@echo Processing OpenWRT Buildroot...
-	@for dir in `ls ./fixes`; do ( \
-	    make -C "./fixes/$$dir"; \
+packages: .packages_prepared
+.packages_prepared:
+	@echo Processing OpenWRT packages...
+	@for dir in `ls ./packages`; do ( \
+	    make -C "./packages/$$dir"; \
 	); done
 	@echo Done!
 	touch $@
 
-buildroot_install: ./.buildroot_installed
-./.buildroot_installed:
+buildroot: .buildroot_installed
+.buildroot_installed:
+	@echo Deploying OpenWRT Buildroot...
 	(cd ..; \
 	svn co svn://svn.openwrt.org/openwrt/trunk/ ./trunk; \
 	cd ./trunk; \
 	./scripts/feeds update packages; \
-	./scripts/feeds install -a -p packages)
+	./scripts/feeds install -a -p packages; \
+	cp -f ../rtn/buildroot/feeds.conf ./; \
+	./scripts/feeds update rtndev; \
+	./scripts/feeds install -a -p rtndev)
+	make -C "./buildroot"
 	touch $@
 
-toolchain_install: ./.toolchain_installed
-./.toolchain_installed:
-	mkdir -p /opt/brcm
-	wget http://wl500g.googlecode.com/files/$(RTN_TOOLCHAIN_FILENAME)
-	tar -C /opt/brcm -jxvf ./$(RTN_TOOLCHAIN_FILENAME)
-	ln -sf /opt/brcm/hndtools-mipsel-uclibc-4.4.6-K26 /opt/brcm/hndtools-mipsel-uclibc
-	rm -f ./$(RTN_TOOLCHAIN_FILENAME)
+toolchain: .toolchain_installed
+.toolchain_installed:
+	make -C "./toolchain"
 	touch $@
 
 clean:
-	@for dir in `ls ./fixes`; do ( \
-	    rm -f -v ./fixes/$$dir/.done \
+	@for dir in `ls ./packages`; do ( \
+	    make -C "./packages/$$dir" clean; \
 	); done
-	rm -f ./.done
-	rm -f ./.buildroot_installed
-	rm -f ./.toolchain_installed
+	rm -f .packages_prepared
+	make -C "./buildroot" clean
+	rm -f .buildroot_installed
+	make -C "./toolchain" clean
+	rm -f .toolchain_installed
 
 .PHONY : clean

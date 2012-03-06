@@ -1,4 +1,4 @@
-===Known Bugs and Odds, to do list===
+===Known Bugs and odds, to do list===
 
 The main problem is a cyrillic UTF-8 support in ncurses-based console application. Its due to UCLIBC_HAS_LOCALE=n in toolchain. Is there any workaround?
 bash: ncurses vs libiconv linking

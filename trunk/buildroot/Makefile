@@ -4,7 +4,7 @@
 # 
 # This is free software, licensed under the GNU General Public License v2.
 #
-
+include ../config.mk
 
 all: ./.done
 
@@ -20,11 +20,10 @@ all: ./.done
 	patch -p0 -i ./sdk-rules.patch
 	patch -p0 -i ./package.patch
 	patch -p0 -i ./include-package.patch
+	cp -f ./mipsel-rtn-linux-gnu ../../../trunk/include/site
 	echo CONFIG_TARGET_rtn=y > ../../../trunk/.config
 	make -C ../../../trunk defconfig
-	cp -f ./mipsel-rtn-linux-gnu ../../../trunk/include/site
 	cp -f ./.config ../../../trunk/.config
-	cp -f ./feeds.conf ../../../trunk/
 	touch $@
 
 clean:
