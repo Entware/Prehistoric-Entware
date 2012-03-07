@@ -4,6 +4,9 @@
 # 
 # This is free software, licensed under the GNU General Public License v2.
 #
+include ./config.mk
+
+all: .toolchain_installed .buildroot_installed .packages_prepared
 
 packages: .packages_prepared
 .packages_prepared:
@@ -25,6 +28,10 @@ buildroot: .buildroot_installed
 	cp -f ../rtn/buildroot/feeds.conf ./; \
 	./scripts/feeds update rtndev; \
 	./scripts/feeds install -a -p rtndev)
+ifeq ($(BUILDROOT_BACKUP),yes)
+	mkdir -p ../trunk_clean
+	cp --recursive --update --force ../trunk/* ../trunk_clean
+endif
 	make -C "./buildroot"
 	touch $@
 

@@ -6,24 +6,25 @@
 #
 include ../config.mk
 
-all: ./.done
+all: .done
 
-./.done:
-	tar -C ../../../trunk -xvf ./rtn-target.tgz
+.done:
+	tar -C ../../trunk -xvf ./rtn-target.tgz
 	patch -p0 -i ./package-ipkg.patch
 	patch -p0 -i ./nls.patch
 	patch -p0 -i ./cmake.patch
-	echo "Warning: See ./include/package-defaults.mk for absolute path to linux kernel"
+	@echo Warning: See ./include/package-defaults.mk for absolute path to linux kernel
 	patch -p0 -i ./package-defaults.patch
+	sed -i 's,/media/BuildRepo/firmware-1.9.2.7-rtn-r3702/src/linux/linux-2.6,${CURDIR}/../../firmware-1.9.2.7-rtn-$(FIRMWARE_REVISION)/src/linux/linux-2.6,g' ../../trunk/include/package-defaults.mk
 	patch -p0 -i ./rules.patch
 	patch -p0 -i ./autotools.patch
 	patch -p0 -i ./sdk-rules.patch
 	patch -p0 -i ./package.patch
 	patch -p0 -i ./include-package.patch
-	cp -f ./mipsel-rtn-linux-gnu ../../../trunk/include/site
-	echo CONFIG_TARGET_rtn=y > ../../../trunk/.config
-	make -C ../../../trunk defconfig
-	cp -f ./.config ../../../trunk/.config
+	cp -f ./mipsel-rtn-linux-gnu ../../trunk/include/site
+	echo CONFIG_TARGET_rtn=y > ../../trunk/.config
+	make -C ../../trunk defconfig
+	cp -f .config ../../trunk/.config
 	touch $@
 
 clean:

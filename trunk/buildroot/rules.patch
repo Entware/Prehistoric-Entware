@@ -1,13 +1,13 @@
---- ../../../backup/trunk_clean/rules.mk	2012-01-30 14:19:15.000000000 +0400
-+++ ../../../trunk/rules.mk	2012-01-30 14:23:21.458191333 +0400
-@@ -108,8 +108,8 @@
- 
+--- ../../trunk_clean/rules.mk	2012-03-07 12:37:57.801124135 +0400
++++ ../../trunk/rules.mk	2012-03-07 12:43:38.607175008 +0400
+@@ -109,8 +109,8 @@
  TARGET_PATH:=$(STAGING_DIR_HOST)/bin:$(subst $(space),:,$(filter-out .,$(filter-out ./,$(subst :,$(space),$(PATH)))))
  TARGET_CFLAGS:=$(TARGET_OPTIMIZATION)$(if $(CONFIG_DEBUG), -g3)
+ TARGET_CXXFLAGS = $(TARGET_CFLAGS)
 -TARGET_CPPFLAGS:=-I$(STAGING_DIR)/usr/include -I$(STAGING_DIR)/include
 -TARGET_LDFLAGS:=-L$(STAGING_DIR)/usr/lib -L$(STAGING_DIR)/lib
 +TARGET_CPPFLAGS:=-I$(STAGING_DIR)/opt/include -I$(STAGING_DIR)/include
-+TARGET_LDFLAGS:=-L$(STAGING_DIR)/opt/lib -L$(STAGING_DIR)/lib -Wl,-rpath,/opt/lib
++TARGET_LDFLAGS:=-L$(STAGING_DIR)/opt/lib -L$(STAGING_DIR)/lib
  ifneq ($(CONFIG_EXTERNAL_TOOLCHAIN),)
  LIBGCC_S_PATH=$(realpath $(wildcard $(call qstrip,$(CONFIG_LIBGCC_ROOT_DIR))/$(call qstrip,$(CONFIG_LIBGCC_FILE_SPEC))))
  LIBGCC_S=$(if $(LIBGCC_S_PATH),-L$(dir $(LIBGCC_S_PATH)) -lgcc_s)

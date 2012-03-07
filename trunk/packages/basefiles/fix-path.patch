@@ -1,5 +1,5 @@
---- ../../../backup/trunk_clean/package/base-files/Makefile	2012-01-13 12:13:57.000000000 +0400
-+++ ../../../trunk/package/base-files/Makefile	2012-01-17 09:42:21.789416949 +0400
+--- ../../../trunk_clean/package/base-files/Makefile	2012-03-07 12:37:57.621126399 +0400
++++ ../../../trunk/package/base-files/Makefile	2012-03-07 13:41:32.690423438 +0400
 @@ -46,19 +46,6 @@
  endef
  
@@ -20,104 +20,47 @@
  $(call $(TARGET)/conffiles)
  endef
  
-@@ -170,7 +157,7 @@
+@@ -170,7 +157,6 @@
    DEPENDS:=+libgcc
  endif
    URL:=$(LIBC_URL)
 -  PKG_FLAGS:=hold essential
-+#  PKG_FLAGS:=hold essential
  endef
  
  
-@@ -493,8 +480,8 @@
- ifeq ($(CONFIG_EXTERNAL_TOOLCHAIN),)
- 
+@@ -613,8 +599,8 @@
    define Package/libgcc/install
--	$(INSTALL_DIR) $(1)/lib
--	$(CP) $(TOOLCHAIN_DIR)/lib/libgcc_s.so.* $(1)/lib/
-+	$(INSTALL_DIR) $(1)/opt/lib
-+	$(CP) $(TOOLCHAIN_DIR)/lib/libgcc_s.so.* $(1)/opt/lib/
-   endef
- 
-   define Package/libgfortran/install
-@@ -508,8 +495,8 @@
-   endef
- 
-   define Package/libstdcpp/install
--	$(INSTALL_DIR) $(1)/usr/lib
--	$(CP) $(TOOLCHAIN_DIR)/lib/libstdc++.so.* $(1)/usr/lib/
-+	$(INSTALL_DIR) $(1)/opt/lib
-+	$(CP) $(TOOLCHAIN_DIR)/lib/libstdc++.so.* $(1)/opt/lib/
-   endef
- 
-   use_libutil=$(if $(CONFIG_USE_GLIBC)$(CONFIG_EGLIBC_OPTION_EGLIBC_UTMP),libutil)
-@@ -567,35 +554,35 @@
-   endef
- 
-   define Package/libc/install_lib
--	$(CP) $(filter-out %/libdl_pic.a %/libpthread_pic.a %/libresolv_pic.a,$(wildcard $(TOOLCHAIN_DIR)/lib/lib*.a)) $(1)/lib/
--	$(if $(wildcard $(TOOLCHAIN_DIR)/lib/libc_so.a),$(CP) $(TOOLCHAIN_DIR)/lib/libc_so.a $(1)/lib/libc_pic.a)
-+	$(CP) $(filter-out %/libdl_pic.a %/libpthread_pic.a %/libresolv_pic.a,$(wildcard $(TOOLCHAIN_DIR)/lib/lib*.a)) $(1)/opt/lib/
-+	$(if $(wildcard $(TOOLCHAIN_DIR)/lib/libc_so.a),$(CP) $(TOOLCHAIN_DIR)/lib/libc_so.a $(1)/opt/lib/libc_pic.a)
- 	$(if $(LIBGCC_MAP), \
--		$(CP) $(LIBGCC_A) $(1)/lib/libgcc_s_pic.a; \
--		$(CP) $(LIBGCC_MAP) $(1)/lib/libgcc_s_pic.map \
-+		$(CP) $(LIBGCC_A) $(1)/opt/lib/libgcc_s_pic.a; \
-+		$(CP) $(LIBGCC_MAP) $(1)/opt/lib/libgcc_s_pic.map \
- 	)
-   endef
- 
-   define Package/libpthread/install
--	$(INSTALL_DIR) $(1)/lib
-+	$(INSTALL_DIR) $(1)/opt/lib
- 	$(CP) \
- 		$(TOOLCHAIN_DIR)/lib/libpthread.so.* \
- 		$(if $(BUILD_LIBGCC),\
- 			$(PKG_BUILD_DIR)/libpthread-$(LIBC_SO_VERSION).so, \
- 			$(TOOLCHAIN_DIR)/lib/libpthread-$(LIBC_SO_VERSION).so \
- 		) \
--		$(1)/lib/
-+		$(1)/opt/lib/
-   endef
- 
-   define Package/libpthread/install_lib
--	$(if $(wildcard $(TOOLCHAIN_DIR)/lib/libpthread_so.a),$(CP) $(TOOLCHAIN_DIR)/lib/libpthread_so.a $(1)/lib/libpthread_pic.a)
-+	$(if $(wildcard $(TOOLCHAIN_DIR)/lib/libpthread_so.a),$(CP) $(TOOLCHAIN_DIR)/lib/libpthread_so.a $(1)/opt/lib/libpthread_pic.a)
-   endef
- 
-   define Package/librt/install
--	$(INSTALL_DIR) $(1)/lib
-+	$(INSTALL_DIR) $(1)/opt/lib
- 	$(CP) \
- 		$(TOOLCHAIN_DIR)/lib/librt.so.* \
- 		$(TOOLCHAIN_DIR)/lib/librt-$(LIBC_SO_VERSION).so \
--		$(1)/lib/
-+		$(1)/opt/lib/
-   endef
- 
-   define Package/ldd/install
-@@ -611,12 +598,14 @@
- else
- 
-   define Package/libgcc/install
--	for file in $(call qstrip,$(CONFIG_LIBGCC_FILE_SPEC)); do \
--		dir=`dirname $$$$file` ; \
+ 	for file in $(call qstrip,$(CONFIG_LIBGCC_FILE_SPEC)); do \
+ 		dir=`dirname $$$$file` ; \
 -		$(INSTALL_DIR) $(1)/$$$$dir ; \
 -		$(CP) $(call qstrip,$(CONFIG_LIBGCC_ROOT_DIR))/$$$$file $(1)/$$$$dir/ ; \
--	done ; \
--	exit 0
-+#	for file in $(call qstrip,$(CONFIG_LIBGCC_FILE_SPEC)); do \
-+#		dir=`dirname $$$$file` ; \
-+#		$(INSTALL_DIR) $(1)/opt/$$$$dir ; \
-+#		$(CP) $(call qstrip,$(CONFIG_LIBGCC_ROOT_DIR))/$$$$file $(1)/opt/$$$$dir/ ; \
-+#	done ; \
-+#	exit 0
-+	$(INSTALL_DIR) $(1)/opt/tmp
-+	touch $(1)/opt/tmp/.libgcc-placeholder
++		$(INSTALL_DIR) $(1)/opt/$$$$dir ; \
++		$(CP) $(call qstrip,$(CONFIG_LIBGCC_ROOT_DIR))/$$$$file $(1)/opt/$$$$dir/ ; \
+ 	done ; \
+ 	exit 0
+   endef
+@@ -622,16 +608,16 @@
+   define Package/libgfortran/install
+ 	for file in $(call qstrip,$(CONFIG_LIBGFORTRAN_FILE_SPEC)); do \
+ 		dir=`dirname $$$$file` ; \
+-		$(INSTALL_DIR) $(1)/$$$$dir ; \
+-		$(CP) $(call qstrip,$(CONFIG_LIBGFORTRAN_ROOT_DIR))/$$$$file $(1)/$$$$dir/ ; \
++		$(INSTALL_DIR) $(1)/opt/$$$$dir ; \
++		$(CP) $(call qstrip,$(CONFIG_LIBGFORTRAN_ROOT_DIR))/$$$$file $(1)/opt/$$$$dir/ ; \
+ 	done
    endef
  
-   define Package/libgfortran/install
-@@ -639,44 +628,50 @@
+   define Package/libssp/install
+ 	for file in $(call qstrip,$(CONFIG_LIBSSP_FILE_SPEC)); do \
+ 		dir=`dirname $$$$file` ; \
+-		$(INSTALL_DIR) $(1)/$$$$dir ; \
+-		$(CP) $(call qstrip,$(CONFIG_LIBSSP_ROOT_DIR))/$$$$file $(1)/$$$$dir/ ; \
++		$(INSTALL_DIR) $(1)/opt/$$$$dir ; \
++		$(CP) $(call qstrip,$(CONFIG_LIBSSP_ROOT_DIR))/$$$$file $(1)/opt/$$$$dir/ ; \
+ 	done ; \
+ 	exit 0
+   endef
+@@ -639,8 +625,8 @@
    define Package/libstdcpp/install
  	for file in $(call qstrip,$(CONFIG_LIBSTDCPP_FILE_SPEC)); do \
  		dir=`dirname $$$$file` ; \
@@ -128,58 +71,40 @@
  	done ; \
  	exit 0
    endef
- 
+@@ -648,8 +634,8 @@
    define Package/libc/install
--	for file in $(call qstrip,$(CONFIG_LIBC_FILE_SPEC)); do \
--		dir=`dirname $$$$file` ; \
+ 	for file in $(call qstrip,$(CONFIG_LIBC_FILE_SPEC)); do \
+ 		dir=`dirname $$$$file` ; \
 -		$(INSTALL_DIR) $(1)/$$$$dir ; \
 -		$(CP) $(call qstrip,$(CONFIG_LIBC_ROOT_DIR))/$$$$file $(1)/$$$$dir/ ; \
--	done ; \
--	exit 0
-+#	for file in $(call qstrip,$(CONFIG_LIBC_FILE_SPEC)); do \
-+#		dir=`dirname $$$$file` ; \
-+#		$(INSTALL_DIR) $(1)/opt/$$$$dir ; \
-+#		$(CP) $(call qstrip,$(CONFIG_LIBC_ROOT_DIR))/$$$$file $(1)/opt/$$$$dir/ ; \
-+#	done ; \
-+#	exit 0
-+	$(INSTALL_DIR) $(1)/opt/tmp
-+	touch $(1)/opt/tmp/.libc-placeholder
++		$(INSTALL_DIR) $(1)/opt/$$$$dir ; \
++		$(CP) $(call qstrip,$(CONFIG_LIBC_ROOT_DIR))/$$$$file $(1)/opt/$$$$dir/ ; \
+ 	done ; \
+ 	exit 0
    endef
- 
+@@ -657,8 +643,8 @@
    define Package/libpthread/install
--	for file in $(call qstrip,$(CONFIG_LIBPTHREAD_FILE_SPEC)); do \
--		dir=`dirname $$$$file` ; \
+ 	for file in $(call qstrip,$(CONFIG_LIBPTHREAD_FILE_SPEC)); do \
+ 		dir=`dirname $$$$file` ; \
 -		$(INSTALL_DIR) $(1)/$$$$dir ; \
 -		$(CP) $(call qstrip,$(CONFIG_LIBPTHREAD_ROOT_DIR))/$$$$file $(1)/$$$$dir/ ; \
--	done ; \
--	exit 0
-+#	for file in $(call qstrip,$(CONFIG_LIBPTHREAD_FILE_SPEC)); do \
-+#		dir=`dirname $$$$file` ; \
-+#		$(INSTALL_DIR) $(1)/opt/$$$$dir ; \
-+#		$(CP) $(call qstrip,$(CONFIG_LIBPTHREAD_ROOT_DIR))/$$$$file $(1)/opt/$$$$dir/ ; \
-+#	done ; \
-+#	exit 0
-+	$(INSTALL_DIR) $(1)/opt/tmp
-+	touch $(1)/opt/tmp/.libpthread-placeholder
++		$(INSTALL_DIR) $(1)/opt/$$$$dir ; \
++		$(CP) $(call qstrip,$(CONFIG_LIBPTHREAD_ROOT_DIR))/$$$$file $(1)/opt/$$$$dir/ ; \
+ 	done ; \
+ 	exit 0
    endef
- 
+@@ -666,8 +652,8 @@
    define Package/librt/install
--	for file in $(call qstrip,$(CONFIG_LIBRT_FILE_SPEC)); do \
--		dir=`dirname $$$$file` ; \
+ 	for file in $(call qstrip,$(CONFIG_LIBRT_FILE_SPEC)); do \
+ 		dir=`dirname $$$$file` ; \
 -		$(INSTALL_DIR) $(1)/$$$$dir ; \
 -		$(CP) $(call qstrip,$(CONFIG_LIBRT_ROOT_DIR))/$$$$file $(1)/$$$$dir/ ; \
--	done ; \
--	exit 0
-+#	for file in $(call qstrip,$(CONFIG_LIBRT_FILE_SPEC)); do \
-+#		dir=`dirname $$$$file` ; \
-+#		$(INSTALL_DIR) $(1)/opt/$$$$dir ; \
-+#		$(CP) $(call qstrip,$(CONFIG_LIBRT_ROOT_DIR))/$$$$file $(1)/opt/$$$$dir/ ; \
-+#	done ; \
-+#	exit 0
-+	$(INSTALL_DIR) $(1)/opt/tmp
-+	touch $(1)/opt/tmp/.librt-placeholder
++		$(INSTALL_DIR) $(1)/opt/$$$$dir ; \
++		$(CP) $(call qstrip,$(CONFIG_LIBRT_ROOT_DIR))/$$$$file $(1)/opt/$$$$dir/ ; \
+ 	done ; \
+ 	exit 0
    endef
- 
+@@ -675,8 +661,8 @@
    define Package/ldd/install
  	for file in $(call qstrip,$(CONFIG_LDD_FILE_SPEC)); do \
  		dir=`dirname $$$$file` ; \
@@ -190,7 +115,7 @@
  	done ; \
  	exit 0
    endef
-@@ -684,8 +679,8 @@
+@@ -684,8 +670,8 @@
    define Package/ldconfig/install
  	for file in $(call qstrip,$(CONFIG_LDCONFIG_FILE_SPEC)); do \
  		dir=`dirname $$$$file` ; \

@@ -38,5 +38,5 @@ $ make package/compile
     ipk-packages can be found at ~/openwrt/bin/rtn/packages directory.
     Scripts was tested with following OpenWRT revisions:
 
-- OpenWRT buildroot revision 30668,
-- OpenWRT packages feed revision 30668.
+- OpenWRT buildroot revision 30831,
+- OpenWRT packages feed revision 30831.

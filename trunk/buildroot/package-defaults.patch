@@ -1,8 +1,8 @@
---- ../../../backup/trunk_clean/include/package-defaults.mk	2012-01-20 19:19:21.000000000 +0400
-+++ ../../../trunk/include/package-defaults.mk	2012-01-20 19:51:14.011208960 +0400
-@@ -55,7 +55,8 @@
-   endef
- endif
+--- ../../trunk_clean/include/package-defaults.mk	2012-03-07 12:37:37.149383763 +0400
++++ ../../trunk/include/package-defaults.mk	2012-03-07 12:38:14.280916956 +0400
+@@ -57,7 +57,8 @@
+ 
+ EXTRA_CXXFLAGS = $(EXTRA_CFLAGS)
  
 -CONFIGURE_PREFIX:=/usr
 +LINUX_DIR:=/media/BuildRepo/firmware-1.9.2.7-rtn-r3702/src/linux/linux-2.6
@@ -10,7 +10,7 @@
  CONFIGURE_ARGS = \
  		--target=$(GNU_TARGET_NAME) \
  		--host=$(GNU_TARGET_NAME) \
-@@ -67,9 +68,9 @@
+@@ -69,9 +70,9 @@
  		--bindir=$(CONFIGURE_PREFIX)/bin \
  		--sbindir=$(CONFIGURE_PREFIX)/sbin \
  		--libexecdir=$(CONFIGURE_PREFIX)/lib \
