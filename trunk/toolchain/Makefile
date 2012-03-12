@@ -8,6 +8,7 @@ include ../config.mk
 
 all: .firmware_prepared .toolchain_compiled
 
+firmware_prepare: .firmware_prepared
 .firmware_prepared:
 	@echo Installing firmware, revision $(FIRMWARE_REVISION)...
 	svn checkout --revision $(FIRMWARE_REVISION) http://wl500g.googlecode.com/svn/trunk/ ../../firmware-1.9.2.7-rtn-$(FIRMWARE_REVISION)/src/1.9.2.7-rtn
@@ -19,6 +20,7 @@ all: .firmware_prepared .toolchain_compiled
 	make -C "../../firmware-1.9.2.7-rtn-$(FIRMWARE_REVISION)/src/1.9.2.7-rtn"
 	touch $@
 
+toolchain_compile: .toolchain_compiled
 .toolchain_compiled:
 	@echo Making /opt/brcm directory, root password needed...
 	sudo mkdir -p /opt/brcm
@@ -29,6 +31,8 @@ all: .firmware_prepared .toolchain_compiled
 	cp -f ../../toolchain-1.9.2.7-rtn-$(TOOLCHAIN_REVISION)/src/defconfig ../../toolchain-1.9.2.7-rtn-$(TOOLCHAIN_REVISION)/src/.config
 	sed -i 's,/home/lly/Wl500/rt-n/linux/linux-2.6/,${CURDIR}/../../firmware-1.9.2.7-rtn-$(FIRMWARE_REVISION)/src/linux/linux-2.6,g' ../../toolchain-1.9.2.7-rtn-$(TOOLCHAIN_REVISION)/src/.config
 	@echo Fixme: apply uClibc patches for ld.so*
+	cp -f ./999-ld-native-search-path.patch  ../../toolchain-1.9.2.7-rtn-$(TOOLCHAIN_REVISION)/src/toolchain/binutils/patches/2.21.1/
+	cp -f ./*-uclibc-*.patch  ../../toolchain-1.9.2.7-rtn-$(TOOLCHAIN_REVISION)/src/toolchain/uClibc/patches/0.9.32/
 	sed -i 's,# UCLIBC_HAS_LOCALE is not set,UCLIBC_HAS_LOCALE=y,g' ../../toolchain-1.9.2.7-rtn-$(TOOLCHAIN_REVISION)/src/toolchain/uClibc/config/0.9.32/common
 	@echo Compiling toolchain, revision $(TOOLCHAIN_REVISION)...
 	make -C "../../toolchain-1.9.2.7-rtn-$(TOOLCHAIN_REVISION)/src" V=99

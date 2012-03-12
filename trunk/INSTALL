@@ -12,17 +12,18 @@ $ cd ~/openwrt
 $ svn co http://wl500g-repo.googlecode.com/svn/trunk/ ./rtn
 $ cd ./rtn
 
-2) Install and patch OpenWRT Buildroot environment
+2) Compile patched toolchain from http://code.google.com/p/wl500g/downloads/list
+
+$ make toolchain
+
+3) Install and patch OpenWRT Buildroot environment
 
 $ make buildroot
 
-3) Install and patch OpenWRT packages
+4) Install and patch OpenWRT packages
 
 $ make packages
 
-4) Compile Oleg's based firmware toolchain from http://code.google.com/p/wl500g/downloads/list
-
-$ make toolchain
 
 
 Building
@@ -34,9 +35,10 @@ $ cd ~/openwrt/trunk
 $ make tools/compile
 $ make tools/install
 $ make package/compile
+$ make package/index
 
     ipk-packages can be found at ~/openwrt/bin/rtn/packages directory.
     Scripts was tested with following OpenWRT revisions:
 
-- OpenWRT buildroot revision 30831,
-- OpenWRT packages feed revision 30831.
+- OpenWRT buildroot revision 30872,
+- OpenWRT packages feed revision 30872.

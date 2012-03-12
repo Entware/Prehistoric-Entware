@@ -6,7 +6,19 @@
 #
 include ./config.mk
 
-all: .toolchain_installed .buildroot_installed .packages_prepared
+#RTN_TOOLCHAIN_FILENAME is a temporary solution. Will be deprecated after toolchain compilation.
+RTN_TOOLCHAIN_FILENAME:=hndtools-mipsel-uclibc-4.4.6-K26-x86_64-r3458.tar.bz2
+
+#all: .toolchain_installed .buildroot_installed .packages_prepared .packages_compiled
+all: .toolchain_downloaded .buildroot_installed .packages_prepared .packages_compiled
+
+packages_compile: .packages_compiled
+.packages_compiled:
+	make -C "../trunk" tools/compile
+	make -C "../trunk" tools/install
+	make -C "../trunk" packages/compile
+	make -C "../trunk" packages/index
+	touch $@
 
 packages: .packages_prepared
 .packages_prepared:
@@ -40,6 +52,18 @@ toolchain: .toolchain_installed
 	make -C "./toolchain"
 	touch $@
 
+toolchain_download: .toolchain_downloaded
+.toolchain_downloaded:
+	@echo Making /opt/brcm directory, root password needed...
+	sudo mkdir -p /opt/brcm
+	@echo chmod /opt/brcm directory for all users access, root password needed...
+	sudo chmod 777 /opt/brcm
+	wget http://wl500g.googlecode.com/files/$(RTN_TOOLCHAIN_FILENAME)
+	tar -C /opt/brcm -jxvf ./$(RTN_TOOLCHAIN_FILENAME)
+	ln -sf /opt/brcm/hndtools-mipsel-uclibc-4.4.6-K26 /opt/brcm/hndtools-mipsel-uclibc
+	rm -f ./$(RTN_TOOLCHAIN_FILENAME)
+	touch $@
+
 clean:
 	@for dir in `ls ./packages`; do ( \
 	    make -C "./packages/$$dir" clean; \
@@ -49,5 +73,7 @@ clean:
 	rm -f .buildroot_installed
 	make -C "./toolchain" clean
 	rm -f .toolchain_installed
+	rm -f .toolchain_downloaded
+	rm -f .packages_compiled
 
 .PHONY : clean
