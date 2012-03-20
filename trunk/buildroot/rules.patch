@@ -7,7 +7,7 @@
 -TARGET_CPPFLAGS:=-I$(STAGING_DIR)/usr/include -I$(STAGING_DIR)/include
 -TARGET_LDFLAGS:=-L$(STAGING_DIR)/usr/lib -L$(STAGING_DIR)/lib
 +TARGET_CPPFLAGS:=-I$(STAGING_DIR)/opt/include -I$(STAGING_DIR)/include
-+TARGET_LDFLAGS:=-L$(STAGING_DIR)/opt/lib -L$(STAGING_DIR)/lib -Wl,-rpath,/opt/lib
++TARGET_LDFLAGS:=-L$(STAGING_DIR)/opt/lib -L$(STAGING_DIR)/lib -Wl,--dynamic-linker=/opt/lib/ld-uClibc.so.0 -Wl,-rpath,/opt/lib
  ifneq ($(CONFIG_EXTERNAL_TOOLCHAIN),)
  LIBGCC_S_PATH=$(realpath $(wildcard $(call qstrip,$(CONFIG_LIBGCC_ROOT_DIR))/$(call qstrip,$(CONFIG_LIBGCC_FILE_SPEC))))
  LIBGCC_S=$(if $(LIBGCC_S_PATH),-L$(dir $(LIBGCC_S_PATH)) -lgcc_s)
