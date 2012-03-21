@@ -1,16 +1,24 @@
-diff -r -u -x .svn ../../../backup/trunk_clean/feeds/packages/multimedia/minidlna//Makefile ../../../trunk/feeds/packages/multimedia/minidlna//Makefile
---- ../../../backup/trunk_clean/feeds/packages/multimedia/minidlna//Makefile	2011-12-05 10:46:48.000000000 +0400
-+++ ../../../trunk/feeds/packages/multimedia/minidlna//Makefile	2011-12-09 13:15:01.612053547 +0400
-@@ -17,7 +17,7 @@
+diff -urx .svn ../../../trunk_clean/feeds/packages/multimedia/minidlna/Makefile ../../../trunk/feeds/packages/multimedia/minidlna/Makefile
+--- ../../../trunk_clean/feeds/packages/multimedia/minidlna/Makefile	2012-03-11 12:21:38.000000000 +0400
++++ ../../../trunk/feeds/packages/multimedia/minidlna/Makefile	2012-03-21 15:04:25.073022302 +0400
+@@ -17,7 +17,6 @@
  
  PKG_BUILD_PARALLEL:=0
  
 -include $(INCLUDE_DIR)/kernel.mk
-+#include $(INCLUDE_DIR)/kernel.mk
  include $(INCLUDE_DIR)/package.mk
  include $(INCLUDE_DIR)/nls.mk
  
-@@ -37,18 +37,18 @@
+@@ -27,7 +26,7 @@
+   TITLE:=UPnP A/V & DLNA Media Server
+   URL:=http://minidlna.sourceforge.net/
+   DEPENDS:= +libpthread +libexif +libjpeg +libsqlite3 +libffmpeg \
+-  	+libid3tag +libflac +libvorbis +libuuid \
++  	+libid3tag +libflac +libvorbis +libuuid +libbz2 \
+   	$(ICONV_DEPENDS) $(INTL_DEPENDS)
+ endef
+ 
+@@ -37,18 +36,18 @@
  endef
  
  define Package/minidlna/conffiles
@@ -38,7 +46,7 @@ diff -r -u -x .svn ../../../backup/trunk_clean/feeds/packages/multimedia/minidln
  	-I$(ICONV_PREFIX)/include \
  	-I$(INTL_PREFIX)/include \
  	-D_GNU_SOURCE -D_FILE_OFFSET_BITS=64 \
-@@ -56,31 +56,31 @@
+@@ -56,31 +55,31 @@
  TARGET_LDFLAGS += \
  	-L$(ICONV_PREFIX)/lib \
  	-L$(INTL_PREFIX)/lib \
@@ -81,9 +89,9 @@ diff -r -u -x .svn ../../../backup/trunk_clean/feeds/packages/multimedia/minidln
  endef
  
  $(eval $(call BuildPackage,minidlna))
-diff -r -u -x .svn ../../../backup/trunk_clean/feeds/packages/multimedia/minidlna//patches/010-genconfig-checks.patch ../../../trunk/feeds/packages/multimedia/minidlna//patches/010-genconfig-checks.patch
---- ../../../backup/trunk_clean/feeds/packages/multimedia/minidlna//patches/010-genconfig-checks.patch	2011-12-05 10:46:48.000000000 +0400
-+++ ../../../trunk/feeds/packages/multimedia/minidlna//patches/010-genconfig-checks.patch	2011-12-09 12:14:44.659142634 +0400
+diff -urx .svn ../../../trunk_clean/feeds/packages/multimedia/minidlna/patches/010-genconfig-checks.patch ../../../trunk/feeds/packages/multimedia/minidlna/patches/010-genconfig-checks.patch
+--- ../../../trunk_clean/feeds/packages/multimedia/minidlna/patches/010-genconfig-checks.patch	2012-03-11 12:21:36.000000000 +0400
++++ ../../../trunk/feeds/packages/multimedia/minidlna/patches/010-genconfig-checks.patch	2012-03-11 13:43:44.525701443 +0400
 @@ -4,13 +4,13 @@
   CONFIGFILE="config.h"
   CONFIGMACRO="__CONFIG_H__"
@@ -100,9 +108,9 @@ diff -r -u -x .svn ../../../backup/trunk_clean/feeds/packages/multimedia/minidln
   # Log path
  -LOG_PATH="${DB_PATH}"
  +LOG_PATH="${LOG_PATH:-$DB_PATH}"
-diff -r -u -x .svn ../../../backup/trunk_clean/feeds/packages/multimedia/minidlna//patches/020-makefile-tweaks.patch ../../../trunk/feeds/packages/multimedia/minidlna//patches/020-makefile-tweaks.patch
---- ../../../backup/trunk_clean/feeds/packages/multimedia/minidlna//patches/020-makefile-tweaks.patch	2011-12-05 10:46:48.000000000 +0400
-+++ ../../../trunk/feeds/packages/multimedia/minidlna//patches/020-makefile-tweaks.patch	2011-12-09 12:15:05.854885261 +0400
+diff -urx .svn ../../../trunk_clean/feeds/packages/multimedia/minidlna/patches/020-makefile-tweaks.patch ../../../trunk/feeds/packages/multimedia/minidlna/patches/020-makefile-tweaks.patch
+--- ../../../trunk_clean/feeds/packages/multimedia/minidlna/patches/020-makefile-tweaks.patch	2012-03-11 12:21:36.000000000 +0400
++++ ../../../trunk/feeds/packages/multimedia/minidlna/patches/020-makefile-tweaks.patch	2012-03-11 13:43:44.529701393 +0400
 @@ -4,7 +4,7 @@
   # or :
   # $ make install
@@ -112,9 +120,9 @@ diff -r -u -x .svn ../../../backup/trunk_clean/feeds/packages/multimedia/minidln
  +ICONV_PREFIX ?= $(PREFIX)
  +INTL_PREFIX ?= $(PREFIX)
   #CFLAGS = -Wall -O -D_GNU_SOURCE -g -DDEBUG
-diff -r -u -x .svn ../../../backup/trunk_clean/feeds/packages/multimedia/minidlna//patches/040-configuration-tweak.patch ../../../trunk/feeds/packages/multimedia/minidlna//patches/040-configuration-tweak.patch
---- ../../../backup/trunk_clean/feeds/packages/multimedia/minidlna//patches/040-configuration-tweak.patch	2011-12-05 10:46:48.000000000 +0400
-+++ ../../../trunk/feeds/packages/multimedia/minidlna//patches/040-configuration-tweak.patch	2011-12-09 12:15:29.254585546 +0400
+diff -urx .svn ../../../trunk_clean/feeds/packages/multimedia/minidlna/patches/040-configuration-tweak.patch ../../../trunk/feeds/packages/multimedia/minidlna/patches/040-configuration-tweak.patch
+--- ../../../trunk_clean/feeds/packages/multimedia/minidlna/patches/040-configuration-tweak.patch	2012-03-11 12:21:36.000000000 +0400
++++ ../../../trunk/feeds/packages/multimedia/minidlna/patches/040-configuration-tweak.patch	2012-03-11 13:43:44.529701393 +0400
 @@ -5,7 +5,7 @@
   
   # network interfaces to serve, comma delimited
