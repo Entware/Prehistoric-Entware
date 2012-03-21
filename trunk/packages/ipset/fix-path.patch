@@ -1,49 +1,26 @@
---- ../../../backup/trunk_clean/feeds/packages/net/ipset/Makefile	2011-12-28 08:43:32.000000000 +0400
-+++ ../../../trunk/feeds/packages/net/ipset/Makefile	2012-01-05 19:43:22.311691990 +0400
-@@ -26,7 +26,7 @@
+--- ../../../trunk_clean/feeds/packages/net/ipset/Makefile	2012-03-21 16:34:33.987663120 +0400
++++ ../../../trunk/feeds/packages/net/ipset/Makefile	2012-03-21 16:57:58.335869514 +0400
+@@ -29,7 +29,7 @@
  $(call Package/ipset/Default)
    SECTION:=net
    CATEGORY:=Network
--  DEPENDS+= +iptables-mod-ipset +kmod-ipt-ipset
-+#  DEPENDS+= +iptables-mod-ipset +kmod-ipt-ipset
+-  DEPENDS+= +iptables-mod-ipset +kmod-ipt-ipset +libmnl
++  DEPENDS+=+libmnl
    TITLE:=IPset administration utility
    URL:=http://ipset.netfilter.org/
  endef
-@@ -39,7 +39,7 @@
- 	LDFLAGS="-rdynamic" \
- 	NO_EXTRA_WARN_FLAGS=yes \
- 	KERNEL_DIR="$(LINUX_DIR)" \
--	PREFIX=/usr \
-+	PREFIX=/opt \
- 
- IPSET_MODULES:= \
- 	ip_set \
-@@ -65,20 +65,20 @@
+@@ -60,10 +60,10 @@
  endef
  
  define Package/ipset/install
 -	$(INSTALL_DIR) $(1)/usr/sbin
 -	$(CP) $(PKG_INSTALL_DIR)/usr/sbin/ipset $(1)/usr/sbin/
--	$(INSTALL_DIR) $(1)/usr/lib/ipset
--	$(CP) $(PKG_INSTALL_DIR)/usr/lib/ipset/libipset*.so $(1)/usr/lib/ipset/
+-	$(INSTALL_DIR) $(1)/usr/lib
+-	$(CP) $(PKG_INSTALL_DIR)/usr/lib/libipset*.so* $(1)/usr/lib/
 +	$(INSTALL_DIR) $(1)/opt/sbin
 +	$(CP) $(PKG_INSTALL_DIR)/opt/sbin/ipset $(1)/opt/sbin/
-+	$(INSTALL_DIR) $(1)/opt/lib/ipset
-+	$(CP) $(PKG_INSTALL_DIR)/opt/lib/ipset/libipset*.so $(1)/opt/lib/ipset/
++	$(INSTALL_DIR) $(1)/opt/lib
++	$(CP) $(PKG_INSTALL_DIR)/opt/lib/libipset*.so* $(1)/opt/lib/
  endef
  
  define KernelPackage/ipt-ipset
- $(call Package/ipset/Default)
-   SUBMENU:=Netfilter Extensions
-   TITLE:=IPset netfilter modules
--  DEPENDS+= kmod-ipt-core
--  FILES:=$(foreach mod,$(IPSET_MODULES),$(PKG_BUILD_DIR)/kernel/$(mod).ko)
--  AUTOLOAD:=$(call AutoLoad,46,$(IPSET_MODULES))
-+#  DEPENDS+= kmod-ipt-core
-+#  FILES:=$(foreach mod,$(IPSET_MODULES),$(PKG_BUILD_DIR)/kernel/$(mod).ko)
-+#  AUTOLOAD:=$(call AutoLoad,46,$(IPSET_MODULES))
- endef
- 
- $(eval $(call BuildPackage,ipset))
--$(eval $(call KernelPackage,ipt-ipset))
-+#$(eval $(call KernelPackage,ipt-ipset))

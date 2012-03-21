@@ -1,0 +1,25 @@
+--- ../../../trunk_clean/feeds/packages/libs/spandsp/Makefile	2012-03-21 16:34:50.339629841 +0400
++++ ../../../trunk/feeds/packages/libs/spandsp/Makefile	2012-03-21 18:50:47.981043815 +0400
+@@ -31,16 +31,17 @@
+ endef
+ 
+ TARGET_CFLAGS += $(FPIC)
++TARGET_LDFLAGS += -Wl,-rpath-link=$(STAGING_DIR)/opt/lib
+ 
+ define Build/InstallDev
+-	$(INSTALL_DIR) $(1)/usr/{lib,include}
+-	$(CP) $(PKG_INSTALL_DIR)/usr/lib/libspandsp* $(1)/usr/lib
+-	$(CP) $(PKG_INSTALL_DIR)/usr/include/* $(1)/usr/include/
++	$(INSTALL_DIR) $(1)/opt/{lib,include}
++	$(CP) $(PKG_INSTALL_DIR)/opt/lib/libspandsp* $(1)/opt/lib
++	$(CP) $(PKG_INSTALL_DIR)/opt/include/* $(1)/opt/include/
+ endef
+ 
+ define Package/libspandsp/install
+-	$(INSTALL_DIR) $(1)/usr/lib
+-	$(CP) $(PKG_INSTALL_DIR)/usr/lib/libspandsp*so* $(1)/usr/lib/
++	$(INSTALL_DIR) $(1)/opt/lib
++	$(CP) $(PKG_INSTALL_DIR)/opt/lib/libspandsp*so* $(1)/opt/lib/
+ endef
+ 
+ $(eval $(call BuildPackage,libspandsp))

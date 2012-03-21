@@ -1,22 +1,15 @@
---- ../../../trunk_clean/feeds/packages/utils/less/Makefile	2012-03-07 12:37:33.737426657 +0400
-+++ ../../../trunk/feeds/packages/utils/less/Makefile	2012-03-07 13:01:43.685383198 +0400
-@@ -21,7 +21,7 @@
-   SECTION:=utils
-   CATEGORY:=Utilities
-   TITLE:=Pager program similar to more
--  DEPENDS:= +libncurses
-+  DEPENDS:= +libncurses +libncursesw
-   URL:=http://www.greenwoodsoftware.com/less/
- endef
- 
-@@ -30,20 +30,8 @@
- endef
+--- ../../../trunk_clean/feeds/packages/utils/less/Makefile	2012-03-21 16:34:35.216261687 +0400
++++ ../../../trunk/feeds/packages/utils/less/Makefile	2012-03-21 17:03:06.833892491 +0400
+@@ -64,25 +64,12 @@
+ endif
  
  define Package/less/install
 -	$(INSTALL_DIR) $(1)/bin
--	$(CP) $(PKG_BUILD_DIR)/less $(1)/bin/less
--endef
--
+-	$(CP) $(PKG_INSTALL_DIR)/usr/bin/less $(1)/bin/less
++	$(INSTALL_DIR) $(1)/opt/bin
++	$(CP) $(PKG_INSTALL_DIR)/opt/bin/less $(1)/opt/bin/less
+ endef
+ 
 -define Package/less/postinst
 -#!/bin/sh
 -[ -L "$${IPKG_INSTROOT}/usr/bin/less" ] && rm -f "$${IPKG_INSTROOT}/usr/bin/less"
@@ -27,8 +20,11 @@
 -#!/bin/sh
 -/bin/busybox less -h 2>&1 | grep -q BusyBox && ln -sf ../../bin/busybox /usr/bin/less
 -exit 0
-+	$(INSTALL_DIR) $(1)/opt/bin
-+	$(CP) $(PKG_BUILD_DIR)/less $(1)/opt/bin/less
- endef
+-endef
+ 
+ Package/less-wide/install = $(Package/less/install)
+-Package/less-wide/postinst = $(Package/less/postinst)
+-Package/less-wide/postrm = $(Package/less/postrm)
  
  $(eval $(call BuildPackage,less))
+ $(eval $(call BuildPackage,less-wide))

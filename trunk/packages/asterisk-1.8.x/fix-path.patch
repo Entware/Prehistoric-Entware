@@ -1,6 +1,6 @@
---- ../../../backup/trunk_clean/feeds/packages/net/asterisk-1.8.x/Makefile	2012-01-13 12:14:34.000000000 +0400
-+++ ../../../trunk/feeds/packages/net/asterisk-1.8.x/Makefile	2012-01-13 13:13:54.293320273 +0400
-@@ -200,7 +200,7 @@
+--- ../../../trunk_clean/feeds/packages/net/asterisk-1.8.x/Makefile	2012-03-21 16:34:33.899620233 +0400
++++ ../../../trunk/feeds/packages/net/asterisk-1.8.x/Makefile	2012-03-21 16:50:46.658166332 +0400
+@@ -224,7 +224,7 @@
  
  ifneq ($(SDK)$(CONFIG_PACKAGE_asterisk18-app-meetme),)
    CONFIGURE_ARGS+= \
@@ -9,7 +9,7 @@
  else
    CONFIGURE_ARGS+= \
  	--without-dahdi
-@@ -208,8 +208,8 @@
+@@ -232,8 +232,8 @@
  
  ifneq ($(SDK)$(CONFIG_PACKAGE_asterisk18-chan-gtalk),)
    CONFIGURE_ARGS+= \
@@ -20,7 +20,7 @@
    SITE_VARS+= \
  	ac_cv_lib_iksemel_iks_start_sasl=yes \
  	ac_cv_lib_gnutls_gnutls_bye=yes
-@@ -221,7 +221,7 @@
+@@ -245,7 +245,7 @@
  
  ifneq ($(SDK)$(CONFIG_PACKAGE_asterisk18-curl),)
    CONFIGURE_ARGS+= \
@@ -29,7 +29,7 @@
  else
    CONFIGURE_ARGS+= \
  	--without-curl
-@@ -229,7 +229,7 @@
+@@ -253,7 +253,7 @@
  
  ifneq ($(SDK)$(CONFIG_PACKAGE_asterisk18-mysql),)
    CONFIGURE_ARGS+= \
@@ -38,7 +38,7 @@
  else
    CONFIGURE_ARGS+= \
  	--without-mysqlclient
-@@ -237,7 +237,7 @@
+@@ -269,7 +269,7 @@
  
  ifneq ($(SDK)$(CONFIG_PACKAGE_asterisk18-chan-mobile),)
    CONFIGURE_ARGS+= \
@@ -47,7 +47,7 @@
  else
    CONFIGURE_ARGS+= \
  	--without-bluetooth
-@@ -245,7 +245,7 @@
+@@ -277,7 +277,7 @@
  
  ifneq ($(SDK)$(CONFIG_PACKAGE_asterisk18-res-srtp),)
    CONFIGURE_ARGS+= \
@@ -56,7 +56,7 @@
  else
    CONFIGURE_ARGS+= \
  	--without-srtp
-@@ -260,13 +260,13 @@
+@@ -292,13 +292,13 @@
  	--without-kde \
  	--without-misdn \
  	--without-nbs \
@@ -72,7 +72,7 @@
  	--without-pri \
  	--without-qt \
  	--without-radius \
-@@ -278,7 +278,7 @@
+@@ -309,7 +309,7 @@
  	--without-tinfo \
  	--without-vorbis \
  	--without-vpb \
@@ -81,7 +81,7 @@
  	--with-sounds-cache="$(DL_DIR)" \
  	--disable-xmldoc
  
-@@ -297,10 +297,10 @@
+@@ -328,10 +328,10 @@
  	ASTCFLAGS="$(EXTRA_CFLAGS) -DLOW_MEMORY" \
  	ASTLDFLAGS="$(EXTRA_LDFLAGS)" \
  	$(MAKE) -C "$(PKG_BUILD_DIR)" \
@@ -96,7 +96,7 @@
  		NOISY_BUILD="1" \
  		DEBUG="" \
  		OPTIMIZE="" \
-@@ -309,200 +309,200 @@
+@@ -340,227 +340,227 @@
  endef
  
  define Build/InstallDev
@@ -327,6 +327,45 @@
 +	$(INSTALL_BIN) $(PKG_INSTALL_DIR)/opt/lib/asterisk/modules/chan_mobile.so $(1)/opt/lib/asterisk/modules/
  endef
  
+ define Package/asterisk18-res-timing-timerfd/install
+-	$(INSTALL_DIR) $(1)/usr/lib/asterisk/modules
+-	$(INSTALL_BIN) $(PKG_INSTALL_DIR)/usr/lib/asterisk/modules/res_timing_timerfd.so $(1)/usr/lib/asterisk/modules/
++	$(INSTALL_DIR) $(1)/opt/lib/asterisk/modules
++	$(INSTALL_BIN) $(PKG_INSTALL_DIR)/opt/lib/asterisk/modules/res_timing_timerfd.so $(1)/opt/lib/asterisk/modules/
+ endef
+ 
+ define Package/asterisk18-res-timing-pthread/install
+-	$(INSTALL_DIR) $(1)/usr/lib/asterisk/modules
+-	$(INSTALL_BIN) $(PKG_INSTALL_DIR)/usr/lib/asterisk/modules/res_timing_pthread.so $(1)/usr/lib/asterisk/modules/
++	$(INSTALL_DIR) $(1)/opt/lib/asterisk/modules
++	$(INSTALL_BIN) $(PKG_INSTALL_DIR)/opt/lib/asterisk/modules/res_timing_pthread.so $(1)/opt/lib/asterisk/modules/
+ endef
+ 
+ define Package/asterisk18-res-fax/conffiles
+-/etc/asterisk/res_fax.conf
++/opt/etc/asterisk/res_fax.conf
+ endef
+ 
+ define Package/asterisk18-res-fax/install
+-	$(INSTALL_DIR) $(1)/etc/asterisk
+-	$(INSTALL_DATA) $(PKG_INSTALL_DIR)/etc/asterisk/res_fax.conf $(1)/etc/asterisk/
+-	$(INSTALL_DIR) $(1)/usr/lib/asterisk/modules
+-	$(INSTALL_BIN) $(PKG_INSTALL_DIR)/usr/lib/asterisk/modules/res_fax.so $(1)/usr/lib/asterisk/modules/
++	$(INSTALL_DIR) $(1)/opt/etc/asterisk
++	$(INSTALL_DATA) $(PKG_INSTALL_DIR)/opt/etc/asterisk/res_fax.conf $(1)/opt/etc/asterisk/
++	$(INSTALL_DIR) $(1)/opt/lib/asterisk/modules
++	$(INSTALL_BIN) $(PKG_INSTALL_DIR)/opt/lib/asterisk/modules/res_fax.so $(1)/opt/lib/asterisk/modules/
+ endef
+ 
+ define Package/asterisk18-res-fax-spandsp/install
+-	$(INSTALL_DIR) $(1)/etc/asterisk
+-	$(INSTALL_DIR) $(1)/usr/lib/asterisk/modules
+-	$(INSTALL_BIN) $(PKG_INSTALL_DIR)/usr/lib/asterisk/modules/res_fax_spandsp.so $(1)/usr/lib/asterisk/modules/
++	$(INSTALL_DIR) $(1)/opt/etc/asterisk
++	$(INSTALL_DIR) $(1)/opt/lib/asterisk/modules
++	$(INSTALL_BIN) $(PKG_INSTALL_DIR)/opt/lib/asterisk/modules/res_fax_spandsp.so $(1)/opt/lib/asterisk/modules/
+ endef
+ 
  define Package/asterisk18-chan-mgcp/conffiles
 -/etc/asterisk/mgcp.conf
 +/opt/etc/asterisk/mgcp.conf
@@ -404,7 +443,7 @@
  endef
  
  define Buildasterisk18ModuleTemplate
-@@ -519,8 +519,8 @@
+@@ -577,8 +577,8 @@
    endef
  
    define Package/asterisk18-$(subst _,-,$(1))/install

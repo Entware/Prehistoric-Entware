@@ -40,5 +40,5 @@ $ make package/index
     ipk-packages can be found at ~/openwrt/bin/rtn/packages directory.
     Scripts was tested with following OpenWRT revisions:
 
-- OpenWRT buildroot revision 30872,
-- OpenWRT packages feed revision 30872.
+- OpenWRT buildroot revision 31050,
+- OpenWRT packages feed revision 31050.

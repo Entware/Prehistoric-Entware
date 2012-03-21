@@ -30,7 +30,6 @@ toolchain_compile: .toolchain_compiled
 	svn checkout --revision $(TOOLCHAIN_REVISION) http://wl500g.googlecode.com/svn/toolchain ../../toolchain-1.9.2.7-rtn-$(TOOLCHAIN_REVISION)/src
 	cp -f ../../toolchain-1.9.2.7-rtn-$(TOOLCHAIN_REVISION)/src/defconfig ../../toolchain-1.9.2.7-rtn-$(TOOLCHAIN_REVISION)/src/.config
 	sed -i 's,/home/lly/Wl500/rt-n/linux/linux-2.6/,${CURDIR}/../../firmware-1.9.2.7-rtn-$(FIRMWARE_REVISION)/src/linux/linux-2.6,g' ../../toolchain-1.9.2.7-rtn-$(TOOLCHAIN_REVISION)/src/.config
-	@echo Fixme: apply uClibc patches for ld.so*
 	cp -f ./*-uclibc-*.patch  ../../toolchain-1.9.2.7-rtn-$(TOOLCHAIN_REVISION)/src/toolchain/uClibc/patches/0.9.32/
 	sed -i 's,# UCLIBC_HAS_LOCALE is not set,UCLIBC_HAS_LOCALE=y,g' ../../toolchain-1.9.2.7-rtn-$(TOOLCHAIN_REVISION)/src/toolchain/uClibc/config/0.9.32/common
 	sed -i '/UCLIBC_HAS_LOCALE=y/ a UCLIBC_BUILD_ALL_LOCALE=y' ../../toolchain-1.9.2.7-rtn-$(TOOLCHAIN_REVISION)/src/toolchain/uClibc/config/0.9.32/common

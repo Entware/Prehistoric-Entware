@@ -21,7 +21,6 @@ all: .done
 	patch -p0 -i ./sdk-rules.patch
 	patch -p0 -i ./package.patch
 	patch -p0 -i ./include-package.patch
-	cp -f ./mipsel-rtn-linux-gnu ../../trunk/include/site
 	echo CONFIG_TARGET_rtn=y > ../../trunk/.config
 	make -C ../../trunk defconfig
 	cp -f .config ../../trunk/.config

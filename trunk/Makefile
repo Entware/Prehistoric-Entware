@@ -9,8 +9,8 @@ include ./config.mk
 #RTN_TOOLCHAIN_FILENAME is a temporary solution. Will be deprecated after toolchain compilation.
 RTN_TOOLCHAIN_FILENAME:=hndtools-mipsel-uclibc-4.4.6-K26-x86_64-r3458.tar.bz2
 
-#all: .toolchain_installed .buildroot_installed .packages_prepared .packages_compiled
-all: .toolchain_downloaded .buildroot_installed .packages_prepared .packages_compiled
+all: .toolchain_installed .buildroot_installed .packages_prepared .packages_compiled
+#all: .toolchain_downloaded .buildroot_installed .packages_prepared .packages_compiled
 
 packages_compile: .packages_compiled
 .packages_compiled:
