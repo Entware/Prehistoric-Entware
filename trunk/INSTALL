@@ -1,43 +1,32 @@
 These are generic installation instructions.
 
-Configurations
-==============
+Requirements
+============
 
-    You'll need to:
-
-1) Install this scripts
-
-$ mkdir ~/openwrt
-$ cd ~/openwrt
-$ svn co http://wl500g-repo.googlecode.com/svn/trunk/ ./rtn
-$ cd ./rtn
-
-2) Compile patched toolchain from http://code.google.com/p/wl500g/downloads/list
-
-$ make toolchain
-
-3) Install and patch OpenWRT Buildroot environment
-
-$ make buildroot
-
-4) Install and patch OpenWRT packages
-
-$ make packages
-
+- Linux compilation environment, mine is Ubuntu 11.10,
+- At least 12Gb of disk space,
+- Approx. 5 hours of free time to compile all stuff.
 
 
 Building
 ========
 
-    Use OpenWRT Buildroot to compile selected packages.
+$ mkdir ~/openwrt
+$ cd ~/openwrt
+$ svn co http://wl500g-repo.googlecode.com/svn/trunk/ ./rtn
+$ cd ./rtn
+$ make
 
-$ cd ~/openwrt/trunk
-$ make tools/compile
-$ make tools/install
-$ make package/compile
-$ make package/index
+    Building repo goes through a several stages:
+- downloading firmware sources from http://code.google.com/p/wl500g/
+- configuring firmware according to http://code.google.com/p/wl500g/wiki/CompilingCustomFirmware?wl=en
+- downloading, patching and compiling toolchain from http://code.google.com/p/wl500g/source/browse/#svn%2Ftoolchain
+- deploying and patching OpenWRT Buildroot, refer to http://wiki.openwrt.org/about/toolchain
+- compiling software packages
 
-    ipk-packages can be found at ~/openwrt/bin/rtn/packages directory.
+    If building fails, see whats wrong in a current target from Makefile.
+
+    ipk-packages can be found at ~/openwrt/bin/entware/packages directory.
     Scripts was tested with following OpenWRT revisions:
 
 - OpenWRT buildroot revision 31050,
