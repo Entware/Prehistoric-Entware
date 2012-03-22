@@ -1,6 +1,21 @@
---- ../../../backup/trunk_clean/feeds/packages/net/pyload/Makefile	2012-01-13 12:14:58.000000000 +0400
-+++ ../../../trunk/feeds/packages/net/pyload/Makefile	2012-01-14 18:03:21.552709053 +0400
-@@ -38,12 +38,12 @@
+--- ../../../trunk_clean/feeds/packages/net/pyload/Makefile	2012-03-21 16:34:34.543934138 +0400
++++ ../../../trunk/feeds/packages/net/pyload/Makefile	2012-03-22 15:10:52.085963098 +0400
+@@ -8,12 +8,12 @@
+ include $(TOPDIR)/rules.mk
+ 
+ PKG_NAME:=pyload
+-PKG_VERSION:=0.4.8
++PKG_VERSION:=0.4.9
+ PKG_RELEASE:=1
+ 
+ PKG_SOURCE:=$(PKG_NAME)-src-v$(PKG_VERSION).zip
+ PKG_SOURCE_URL:=http://download.pyload.org/
+-PKG_MD5SUM:=5bcf8411ef9e48ef6e9ade55bc697900
++PKG_MD5SUM:=9b2e5a7c884871a5489cb5141d5c704b
+ 
+ PKG_BUILD_DIR:=$(BUILD_DIR)/$(PKG_NAME)-$(PKG_VERSION)/
+ 
+@@ -38,12 +38,10 @@
  endef
  
  define Package/pyload/install
@@ -12,8 +27,6 @@
 -	$(LN) ../share/python/pyload/pyLoadCore.py $(1)/usr/bin/pyload
 +	$(INSTALL_DIR) $(1)/opt/share/python
 +	$(CP) $(PKG_BUILD_DIR)/pyload $(1)/opt/share/python/
-+#	$(INSTALL_DIR) $(1)/etc/init.d
-+#	$(INSTALL_BIN) ./files/pyload.init $(1)/etc/init.d/pyload
 +	$(INSTALL_DIR) $(1)/opt/bin
 +	$(LN) ../share/python/pyload/pyLoadCore.py $(1)/opt/bin/pyload
  endef
