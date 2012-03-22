@@ -1,0 +1,12 @@
+--- a/src/main.c	2012-03-22 15:15:08.270742640 +0400
++++ b/src/main.c	2012-03-22 15:15:54.898157676 +0400
+@@ -136,7 +136,8 @@
+ {
+ 	CAST(report_stats, self, c);
+ 	
+-	notice("STATS: dropped %i\n", pktbuf_dropped_pkts);
++	if (pktbuf_dropped_pkts)
++	  notice("STATS: dropped %i\n", pktbuf_dropped_pkts);
+ 	pktbuf_dropped_pkts = 0;
+ 	io_callout(&self->backend->super, self->timeout, &self->super);
+ }
