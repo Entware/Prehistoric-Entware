@@ -1,0 +1,36 @@
+--- ../../../trunk_clean/feeds/packages/libs/neon/Makefile	2012-03-21 16:34:48.490727528 +0400
++++ ../../../trunk/feeds/packages/libs/neon/Makefile	2012-03-23 10:45:20.068804234 +0400
+@@ -43,21 +43,21 @@
+ 	LDFLAGS="$$$$LDFLAGS -lcrypto -lssl"
+ 
+ define Build/InstallDev
+-	$(INSTALL_DIR) $(1)/usr/bin
+-	$(INSTALL_BIN) $(PKG_INSTALL_DIR)/usr/bin/neon-config $(1)/usr/bin/
+-	$(INSTALL_DIR) $(1)/usr/include
+-	$(CP) $(PKG_INSTALL_DIR)/usr/include/neon $(1)/usr/include/
+-	$(INSTALL_DIR) $(1)/usr/lib
+-	$(CP) $(PKG_INSTALL_DIR)/usr/lib/libneon.{a,so*} $(1)/usr/lib/
+-	$(INSTALL_DIR) $(1)/usr/lib/pkgconfig
+-	$(CP) $(PKG_INSTALL_DIR)/usr/lib/pkgconfig/neon.pc $(1)/usr/lib/pkgconfig/
+-	$(SED) 's,-I$$$${includedir}/,-I$(STAGING_DIR)/usr/include/,g' $(1)/usr/bin/neon-config
+-	$(SED) 's,-L$$$${libdir},,g' $(1)/usr/bin/neon-config
++	$(INSTALL_DIR) $(1)/opt/bin
++	$(INSTALL_BIN) $(PKG_INSTALL_DIR)/opt/bin/neon-config $(1)/opt/bin/
++	$(INSTALL_DIR) $(1)/opt/include
++	$(CP) $(PKG_INSTALL_DIR)/opt/include/neon $(1)/opt/include/
++	$(INSTALL_DIR) $(1)/opt/lib
++	$(CP) $(PKG_INSTALL_DIR)/opt/lib/libneon.{a,so*} $(1)/opt/lib/
++	$(INSTALL_DIR) $(1)/opt/lib/pkgconfig
++	$(CP) $(PKG_INSTALL_DIR)/opt/lib/pkgconfig/neon.pc $(1)/opt/lib/pkgconfig/
++	$(SED) 's,-I$$$${includedir}/,-I$(STAGING_DIR)/opt/include/,g' $(1)/opt/bin/neon-config
++	$(SED) 's,-L$$$${libdir},,g' $(1)/opt/bin/neon-config
+ endef
+ 
+ define Package/libneon/install
+-	$(INSTALL_DIR) $(1)/usr/lib
+-	$(CP) $(PKG_INSTALL_DIR)/usr/lib/libneon.so.* $(1)/usr/lib/
++	$(INSTALL_DIR) $(1)/opt/lib
++	$(CP) $(PKG_INSTALL_DIR)/opt/lib/libneon.so.* $(1)/opt/lib/
+ endef
+ 
+ $(eval $(call BuildPackage,libneon))
