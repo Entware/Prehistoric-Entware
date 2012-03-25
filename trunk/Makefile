@@ -16,8 +16,8 @@ packages_compile: .packages_compiled
 .packages_compiled:
 	make -C "../trunk" tools/compile
 	make -C "../trunk" tools/install
-	make -C "../trunk" packages/compile
-	make -C "../trunk" packages/index
+	make -C "../trunk" package/compile
+	make -C "../trunk" package/index
 	touch $@
 
 packages: .packages_prepared
