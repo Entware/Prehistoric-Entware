@@ -31,6 +31,7 @@ toolchain_compile: .toolchain_compiled
 	cp -f ../../toolchain-1.9.2.7-rtn-$(TOOLCHAIN_REVISION)/src/defconfig ../../toolchain-1.9.2.7-rtn-$(TOOLCHAIN_REVISION)/src/.config
 	sed -i 's,/home/lly/Wl500/rt-n/linux/linux-2.6/,${CURDIR}/../../firmware-1.9.2.7-rtn-$(FIRMWARE_REVISION)/src/linux/linux-2.6,g' ../../toolchain-1.9.2.7-rtn-$(TOOLCHAIN_REVISION)/src/.config
 	cp -f ./*-uclibc-*.patch  ../../toolchain-1.9.2.7-rtn-$(TOOLCHAIN_REVISION)/src/toolchain/uClibc/patches/0.9.32/
+	sed -i 's,# UCLIBC_STATIC_LDCONFIG is not set,UCLIBC_STATIC_LDCONFIG=y,g' ../../toolchain-1.9.2.7-rtn-$(TOOLCHAIN_REVISION)/src/toolchain/uClibc/config/0.9.32/common
 	sed -i 's,# UCLIBC_HAS_LOCALE is not set,UCLIBC_HAS_LOCALE=y,g' ../../toolchain-1.9.2.7-rtn-$(TOOLCHAIN_REVISION)/src/toolchain/uClibc/config/0.9.32/common
 	sed -i '/UCLIBC_HAS_LOCALE=y/ a UCLIBC_BUILD_ALL_LOCALE=y' ../../toolchain-1.9.2.7-rtn-$(TOOLCHAIN_REVISION)/src/toolchain/uClibc/config/0.9.32/common
 	sed -i '/UCLIBC_BUILD_ALL_LOCALE=y/ a # UCLIBC_BUILD_MINIMAL_LOCALE is not set' ../../toolchain-1.9.2.7-rtn-$(TOOLCHAIN_REVISION)/src/toolchain/uClibc/config/0.9.32/common
