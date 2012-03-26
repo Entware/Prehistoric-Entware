@@ -1,6 +1,8 @@
-This is a scripts for building your own OpenWRT repository for ASUS WL-5xx RT-N1x Oleg's based custom firmware from http://code.google.com/p/wl500g/
+This is a scripts for building your own OpenWRT repository for MIPSEL routers, like ASUS WL-5xx RT-N1x and other.
 
 The homepage of this package is http://code.google.com/p/wl500g-repo/
+
+Please note, You can't use this Entware repo with Optware repo. Choose one of them.
 
 Send comments and bug reports to ryzhovau@gmail.com
 
