@@ -1,0 +1,283 @@
+diff -urx .svn ../../../trunk_clean/feeds/packages/net/net-snmp/files/snmpd.default ../../../trunk/feeds/packages/net/net-snmp/files/snmpd.default
+--- ../../../trunk_clean/feeds/packages/net/net-snmp/files/snmpd.default	2012-03-21 16:34:32.959162051 +0400
++++ ../../../trunk/feeds/packages/net/net-snmp/files/snmpd.default	2012-03-28 13:57:24.418994600 +0400
+@@ -1 +1 @@
+-OPTIONS="-Lf /dev/null -p /var/run/snmpd.pid"
++OPTIONS="-Lf /dev/null -p /opt/var/run/snmpd.pid"
+diff -urx .svn ../../../trunk_clean/feeds/packages/net/net-snmp/files/snmpd.init ../../../trunk/feeds/packages/net/net-snmp/files/snmpd.init
+--- ../../../trunk_clean/feeds/packages/net/net-snmp/files/snmpd.init	2012-03-21 16:34:32.959162051 +0400
++++ ../../../trunk/feeds/packages/net/net-snmp/files/snmpd.init	2012-03-28 13:58:06.770457207 +0400
+@@ -2,10 +2,10 @@
+ # Copyright (C) 2008 OpenWrt.org
+ START=50
+ 
+-DEFAULT=/etc/default/snmpd
+-LIB_D=/var/lib/snmp
+-LOG_D=/var/log
+-RUN_D=/var/run
++DEFAULT=/opt/etc/default/snmpd
++LIB_D=/opt/var/lib/snmp
++LOG_D=/opt/var/log
++RUN_D=/opt/var/run
+ PID_F=$RUN_D/snmpd.pid
+ RUN_C=$RUN_D/snmpd.conf
+ 
+@@ -127,7 +127,7 @@
+ 	config_foreach snmpd_exec_add exec
+ 
+ 	[ -f $DEFAULT ] && . $DEFAULT
+-	$DEBUG /usr/sbin/snmpd $OPTIONS
++	$DEBUG /opt/sbin/snmpd $OPTIONS
+ }
+ stop() {
+ 	[ -f $PID_F ] && kill $(cat $PID_F)
+diff -urx .svn ../../../trunk_clean/feeds/packages/net/net-snmp/Makefile ../../../trunk/feeds/packages/net/net-snmp/Makefile
+--- ../../../trunk_clean/feeds/packages/net/net-snmp/Makefile	2012-03-21 16:34:32.959162051 +0400
++++ ../../../trunk/feeds/packages/net/net-snmp/Makefile	2012-03-28 14:00:00.729023843 +0400
+@@ -156,8 +156,8 @@
+ 	--enable-shared \
+ 	--enable-static \
+ 	--with-endianness=little \
+-	--with-logfile=/var/log/snmpd.log \
+-	--with-persistent-directory=/usr/lib/snmp/ \
++	--with-logfile=/opt/var/log/snmpd.log \
++	--with-persistent-directory=/opt/lib/snmp/ \
+ 	--with-default-snmp-version=1 \
+ 	--with-sys-contact=root@localhost \
+ 	--with-sys-location=Unknown \
+@@ -180,7 +180,7 @@
+ SNMP_TRANSPORTS_INCLUDED+= UDPIPv6
+ endif
+ 
+-TARGET_LDFLAGS += -L$(TOOLCHAIN_DIR)/usr/lib
++TARGET_LDFLAGS += -L$(TOOLCHAIN_DIR)/opt/lib
+ 
+ ifdef CONFIG_PACKAGE_snmpd-static
+   define Build/Compile/static
+@@ -201,59 +201,47 @@
+ 
+ define Build/InstallDev
+ 	$(INSTALL_DIR) $(2)/bin
+-	$(INSTALL_BIN) $(PKG_INSTALL_DIR)/usr/bin/net-snmp-config $(2)/bin/
+-	$(SED) 's,=/usr,=$(STAGING_DIR)/usr,g' $(2)/bin/net-snmp-config
++	$(INSTALL_BIN) $(PKG_INSTALL_DIR)/opt/bin/net-snmp-config $(2)/bin/
++	$(SED) 's,=/opt,=$(STAGING_DIR)/opt,g' $(2)/bin/net-snmp-config
+ 
+-	$(INSTALL_DIR) $(1)/usr/include
+-	$(CP) $(PKG_INSTALL_DIR)/usr/include/net-snmp $(1)/usr/include/
+-	$(INSTALL_DIR) $(1)/usr/lib
+-	$(CP) $(PKG_INSTALL_DIR)/usr/lib/libnetsnmp{,agent,helpers,mibs}.{a,so*} $(1)/usr/lib/
++	$(INSTALL_DIR) $(1)/opt/include
++	$(CP) $(PKG_INSTALL_DIR)/opt/include/net-snmp $(1)/opt/include/
++	$(INSTALL_DIR) $(1)/opt/lib
++	$(CP) $(PKG_INSTALL_DIR)/opt/lib/libnetsnmp{,agent,helpers,mibs}.{a,so*} $(1)/opt/lib/
+ endef
+ 
+ define Package/libnetsnmp/install
+-	$(INSTALL_DIR) $(1)/usr/lib
+-	$(CP) $(PKG_INSTALL_DIR)/usr/lib/libnetsnmp{,agent,helpers,mibs}.so.* $(1)/usr/lib/
++	$(INSTALL_DIR) $(1)/opt/lib
++	$(CP) $(PKG_INSTALL_DIR)/opt/lib/libnetsnmp{,agent,helpers,mibs}.so.* $(1)/opt/lib/
+ endef
+ 
+ define Package/snmpd/conffiles
+-/etc/default/snmpd
+-/etc/config/snmpd
++/opt/etc/default/snmpd
++/opt/etc/config/snmpd
+ endef
+ 
+ define Package/snmpd/install
+-	$(INSTALL_DIR) $(1)/etc/config
+-	$(INSTALL_DATA) ./files/snmpd.conf $(1)/etc/config/snmpd
+-	$(INSTALL_DIR) $(1)/etc/snmp
+-	ln -sf /var/run/snmpd.conf $(1)/etc/snmp/
+-	$(INSTALL_DIR) $(1)/etc/default
+-	$(INSTALL_DATA) ./files/snmpd.default $(1)/etc/default/snmpd
+-	$(INSTALL_DIR) $(1)/etc/init.d
+-	$(INSTALL_BIN) ./files/snmpd.init $(1)/etc/init.d/snmpd
+-	$(INSTALL_DIR) $(1)/usr/sbin
+-	$(INSTALL_BIN) $(PKG_INSTALL_DIR)/usr/sbin/snmpd $(1)/usr/sbin/snmpd
++	$(INSTALL_DIR) $(1)/opt/etc/snmp
++	ln -sf /opt/var/run/snmpd.conf $(1)/opt/etc/snmp/
++	$(INSTALL_DIR) $(1)/opt/sbin
++	$(INSTALL_BIN) $(PKG_INSTALL_DIR)/opt/sbin/snmpd $(1)/opt/sbin/snmpd
+ endef
+ 
+ define Package/snmpd-static/conffiles
+-/etc/default/snmpd
+-/etc/config/snmpd
++/opt/etc/default/snmpd
++/opt/etc/config/snmpd
+ endef
+ 
+ define Package/snmpd-static/install
+-	$(INSTALL_DIR) $(1)/etc/config
+-	$(INSTALL_DATA) ./files/snmpd.conf $(1)/etc/config/snmpd
+-	$(INSTALL_DIR) $(1)/etc/snmp
+-	ln -sf /var/run/snmpd.conf $(1)/etc/snmp/
+-	$(INSTALL_DIR) $(1)/etc/default
+-	$(INSTALL_DATA) ./files/snmpd.default $(1)/etc/default/snmpd
+-	$(INSTALL_DIR) $(1)/etc/init.d
+-	$(INSTALL_BIN) ./files/snmpd.init $(1)/etc/init.d/snmpd
+-	$(INSTALL_DIR) $(1)/usr/sbin
+-	$(INSTALL_BIN) $(PKG_BUILD_DIR)/agent/snmpd-static $(1)/usr/sbin/snmpd
++	$(INSTALL_DIR) $(1)/opt/etc/snmp
++	ln -sf /opt/var/run/snmpd.conf $(1)/opt/etc/snmp/
++	$(INSTALL_DIR) $(1)/opt/sbin
++	$(INSTALL_BIN) $(PKG_BUILD_DIR)/agent/snmpd-static $(1)/opt/sbin/snmpd
+ endef
+ 
+ define Package/snmp-utils/install
+-	$(INSTALL_DIR) $(1)/usr/bin
+-	$(INSTALL_BIN) $(PKG_INSTALL_DIR)/usr/bin/snmp{get,set,status,test,trap,walk} $(1)/usr/bin/
++	$(INSTALL_DIR) $(1)/opt/bin
++	$(INSTALL_BIN) $(PKG_INSTALL_DIR)/opt/bin/snmp{get,set,status,test,trap,walk} $(1)/opt/bin/
+ endef
+ 
+ $(eval $(call BuildPackage,libnetsnmp))
+diff -urx .svn ../../../trunk_clean/feeds/packages/net/net-snmp/patches/120-debian-searchdirs.patch ../../../trunk/feeds/packages/net/net-snmp/patches/120-debian-searchdirs.patch
+--- ../../../trunk_clean/feeds/packages/net/net-snmp/patches/120-debian-searchdirs.patch	2012-03-21 16:34:32.959162051 +0400
++++ ../../../trunk/feeds/packages/net/net-snmp/patches/120-debian-searchdirs.patch	2012-03-28 13:51:33.103408978 +0400
+@@ -6,9 +6,9 @@
+  }
+ -push @def_search_dirs, "/usr/local/share/snmp/";
+ -push @def_search_dirs, "/usr/local/share/snmp/mib2c-data";
+-+push @def_search_dirs, "/etc/snmp/";
+-+push @def_search_dirs, "/usr/share/snmp/";
+-+push @def_search_dirs, "/usr/share/snmp/mib2c-data";
+++push @def_search_dirs, "/opt/etc/snmp/";
+++push @def_search_dirs, "/opt/share/snmp/";
+++push @def_search_dirs, "/opt/share/snmp/mib2c-data";
+  push @def_search_dirs, "./mib2c-conf.d";
+  
+  sub usage {
+diff -urx .svn ../../../trunk_clean/feeds/packages/net/net-snmp/patches/140-debian-docfiles.patch ../../../trunk/feeds/packages/net/net-snmp/patches/140-debian-docfiles.patch
+--- ../../../trunk_clean/feeds/packages/net/net-snmp/patches/140-debian-docfiles.patch	2012-03-21 16:34:32.959162051 +0400
++++ ../../../trunk/feeds/packages/net/net-snmp/patches/140-debian-docfiles.patch	2012-03-28 13:53:30.441936112 +0400
+@@ -5,7 +5,7 @@
+     How do I configure SNMPv3 users?
+     The 'createUser' line disappears when I start the agent.  Why?
+ -   What's the difference between /var/net-snmp and /usr/local/share/snmp?
+-+   What's the difference between /var/lib/snmp and /usr/share/snmp?
+++   What's the difference between /opt/var/lib/snmp and /opt/share/snmp?
+     My new agent is ignoring the old snmpd.conf file. Why?
+     Why am I getting "Connection refused"?
+     Why can't I see values in the UCDavis 'extensible' or 'disk' trees?
+@@ -14,7 +14,7 @@
+    Firstly, copy the MIB file into the appropiate location:
+  
+ -	cp MY-MIB.txt /usr/local/share/snmp/mibs
+-+	cp MY-MIB.txt /usr/share/snmp/mibs
+++	cp MY-MIB.txt /opt/share/snmp/mibs
+              (which makes it available to everyone on the system)
+  
+            or
+@@ -23,7 +23,7 @@
+    explicitly as part of the trap handle directive:
+  
+ -	traphandle default /usr/bin/perl /usr/local/bin/log_it
+-+	traphandle default /usr/bin/perl /usr/bin/log_it
+++	traphandle default /opt/bin/perl /opt/bin/log_it
+  
+      In this case, it's almost certain that you'll also
+    need to give the full path to the traphandle script (as shown)
+@@ -32,7 +32,7 @@
+  
+      Some of these (such as the MIB file location), might be best put in
+ -  a shared snmp.conf file (typically /usr/local/share/snmp/snmp.conf or
+-+  a shared snmp.conf file (typically /usr/share/snmp/snmp.conf or
+++  a shared snmp.conf file (typically /opt/share/snmp/snmp.conf or
+    /etc/snmp/snmp.conf) to apply to all users of the system.  Others
+    (particularly the SNMPv3 security settings), are more likely to refer
+    to a particular user, and should go in a personal snmp.conf file
+@@ -41,7 +41,7 @@
+  
+      Alternatively, the tools may be looking in the wrong place.
+ -  The default location for the mib files is /usr/local/share/snmp/mibs.
+-+  The default location for the mib files is /usr/share/snmp/mibs.
+++  The default location for the mib files is /opt/share/snmp/mibs.
+    Again, this is set when the suite is first configured and compiled.
+    This can be changed using the environmental variable 'MIBDIRS'
+    or the snmp.conf directive 'mibdirs'.
+@@ -50,7 +50,7 @@
+    There are three ways to configure SNMPv3 users:
+  
+ -  1) Stop the agent, and create a file /var/net-snmp/snmpd.conf,
+-+  1) Stop the agent, and create a file /var/lib/snmp/snmpd.conf,
+++  1) Stop the agent, and create a file /opt/lib/snmp/snmpd.conf,
+       containing the line
+  
+  	createUser {myUser} MD5 {myPassword} DES
+@@ -59,7 +59,7 @@
+  
+       and follow the instructions.  This will create an entry
+ -     in the /var/net-snmp/snmpd.conf file similar to the above.
+-+     in the /var/lib/snmp/snmpd.conf file similar to the above.
+++     in the /opt/var/lib/snmp/snmpd.conf file similar to the above.
+       Then re-start the snmpd agent.
+  
+    3) Make sure the agent is running, and will respond to a suitable
+@@ -69,18 +69,18 @@
+  
+ -What's the difference between /var/net-snmp and /usr/local/share/snmp?
+ ----------------------------------------------------------------------
+-+What's the difference between /var/lib/snmp and /usr/share/snmp?
+++What's the difference between /opt/var/lib/snmp and /opt/share/snmp?
+ +----------------------------------------------------------------
+  
+ -    The /var/net-snmp location is primarily used for information set
+-+    The /var/lib/snmp location is primarily used for information set
+++    The /opt/var/lib/snmp location is primarily used for information set
+    during the running of the agent, which needs to be persistent between
+    one run of the agent and the next.   Apart from "createUser" (see
+    the previous entry), you shouldn't need to touch this file.
+  
+    All other user-provided configuration should go in the traditional
+ -  location (typically /usr/local/share/snmp/snmpd.conf or /etc/snmp).
+-+  location (typically /usr/share/snmp or /etc/snmp).
+++  location (typically /opt/share/snmp or /opt/etc/snmp).
+  
+  
+  
+@@ -89,7 +89,7 @@
+  
+      The default location for this file with the basic distribution is
+ -  /usr/local/share/snmp/snmpd.conf (or PREFIX/share/snmp/snmpd.conf).
+-+  /usr/share/snmp/snmpd.conf (or PREFIX/share/snmp/snmpd.conf).
+++  /opt/share/snmp/snmpd.conf (or PREFIX/share/snmp/snmpd.conf).
+    Ready-installed versions often look for the file as /etc/snmpd.conf,
+    or /etc/snmp/snmpd.conf.  Try moving the old config file to the new
+    location, and restart the agent.
+diff -urx .svn ../../../trunk_clean/feeds/packages/net/net-snmp/patches/150-debian-defaultconfig.patch ../../../trunk/feeds/packages/net/net-snmp/patches/150-debian-defaultconfig.patch
+--- ../../../trunk_clean/feeds/packages/net/net-snmp/patches/150-debian-defaultconfig.patch	2012-03-21 16:34:32.959162051 +0400
++++ ../../../trunk/feeds/packages/net/net-snmp/patches/150-debian-defaultconfig.patch	2012-03-28 13:54:23.729259630 +0400
+@@ -5,7 +5,7 @@
+  #
+  # This file is intended to only be an example.  If, however, you want
+ -# to use it, it should be placed in SYSCONFDIR/snmp/snmpd.conf.
+-+# to use it, it should be placed in /etc/snmp/snmpd.conf.
+++# to use it, it should be placed in /opt/etc/snmp/snmpd.conf.
+  # When the snmpd agent starts up, this is where it will look for it.
+  #
+  # You might be interested in generating your own snmpd.conf file using
+@@ -61,8 +61,8 @@
+  
+ -syslocation Right here, right now.
+ -syscontact Me <me@somewhere.org>
+-+syslocation Unknown (configure /etc/snmp/snmpd.local.conf)
+-+syscontact Root <root@localhost> (configure /etc/snmp/snmpd.local.conf)
+++syslocation Unknown (configure /opt/etc/snmp/snmpd.local.conf)
+++syscontact Root <root@localhost> (configure /opt/etc/snmp/snmpd.local.conf)
+  
+  # Example output of snmpwalk:
+  #   % snmpwalk -v 1 -c public localhost system
+@@ -115,7 +115,7 @@
+  #           script in the right location. (its not installed by default))
+  
+ -# pass .EXTENSIBLEDOTMIB.255 /bin/sh PREFIX/local/passtest
+-+# pass .EXTENSIBLEDOTMIB.255 /bin/sh /usr/local/passtest
+++# pass .EXTENSIBLEDOTMIB.255 /bin/sh /opt/local/passtest
+  
+  # % snmpwalk -v 1 -c public localhost .EXTENSIBLEDOTMIB.255
+  # enterprises.ucdavis.255.1 = "life the universe and everything"

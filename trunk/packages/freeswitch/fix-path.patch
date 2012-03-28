@@ -1,0 +1,317 @@
+diff -urx .svn ../../../trunk_clean/feeds/packages/net/freeswitch/files/etc.minimal/autoload_configs/lua.conf.xml ../../../trunk/feeds/packages/net/freeswitch/files/etc.minimal/autoload_configs/lua.conf.xml
+--- ../../../trunk_clean/feeds/packages/net/freeswitch/files/etc.minimal/autoload_configs/lua.conf.xml	2012-03-21 16:34:32.602988526 +0400
++++ ../../../trunk/feeds/packages/net/freeswitch/files/etc.minimal/autoload_configs/lua.conf.xml	2012-03-28 13:05:11.760982563 +0400
+@@ -5,14 +5,14 @@
+     Specify local directories that will be searched for LUA modules
+     These entries will be pre-pended to the LUA_CPATH environment variable
+     -->
+-    <!-- <param name="module-directory" value="/usr/lib/lua/5.1/?.so"/> -->
+-    <!-- <param name="module-directory" value="/usr/local/lib/lua/5.1/?.so"/> -->
++    <!-- <param name="module-directory" value="/opt/lib/lua/5.1/?.so"/> -->
++    <!-- <param name="module-directory" value="/opt/local/lib/lua/5.1/?.so"/> -->
+ 
+     <!-- 
+     Specify local directories that will be searched for LUA scripts
+     These entries will be pre-pended to the LUA_PATH environment variable
+     -->
+-    <!-- <param name="script-directory" value="/usr/local/lua/?.lua"/> -->
++    <!-- <param name="script-directory" value="/opt/local/lua/?.lua"/> -->
+     <!-- <param name="script-directory" value="$${base_dir}/scripts/?.lua"/> -->
+ 
+     <!--<param name="xml-handler-script" value="/dp.lua"/>-->
+diff -urx .svn ../../../trunk_clean/feeds/packages/net/freeswitch/files/etc.minimal/freeswitch.xml ../../../trunk/feeds/packages/net/freeswitch/files/etc.minimal/freeswitch.xml
+--- ../../../trunk_clean/feeds/packages/net/freeswitch/files/etc.minimal/freeswitch.xml	2012-03-21 16:34:32.635004123 +0400
++++ ../../../trunk/feeds/packages/net/freeswitch/files/etc.minimal/freeswitch.xml	2012-03-28 13:07:11.891476044 +0400
+@@ -6,7 +6,7 @@
+     FreeSWITCH default config to use only the modules in the freeswitch-minimal
+     package, and is less exhaustive.  If you wish to view the default FreeSWITCH 
+     config install package freeswitch-config-example and look under 
+-    /usr/share/freeswitch/examples/conf. Everything you see before you now traverses 
++    /opt/share/freeswitch/examples/conf. Everything you see before you now traverses 
+     down into all the directories including files which include more files.  The default
+     config comes out of the box already working in most situations as a PBX.  This will
+     allow you to get started testing and playing with various things in FreeSWITCH.
+diff -urx .svn ../../../trunk_clean/feeds/packages/net/freeswitch/files/etc.packages/blacklist/autoload_configs/blacklist.conf.xml ../../../trunk/feeds/packages/net/freeswitch/files/etc.packages/blacklist/autoload_configs/blacklist.conf.xml
+--- ../../../trunk_clean/feeds/packages/net/freeswitch/files/etc.packages/blacklist/autoload_configs/blacklist.conf.xml	2012-03-21 16:34:32.586980727 +0400
++++ ../../../trunk/feeds/packages/net/freeswitch/files/etc.packages/blacklist/autoload_configs/blacklist.conf.xml	2012-03-28 13:08:19.218626671 +0400
+@@ -6,6 +6,6 @@
+ 		NOTE: make sure the file exists and is readable by FreeSWITCH.
+ 	-->
+ 
+-	<list name="blocked" filename="/etc/freeswitch/blacklists/blocked.list"/>
++	<list name="blocked" filename="/opt/etc/freeswitch/blacklists/blocked.list"/>
+ </lists>
+ </configuration>
+diff -urx .svn ../../../trunk_clean/feeds/packages/net/freeswitch/files/freeswitch.default ../../../trunk/feeds/packages/net/freeswitch/files/freeswitch.default
+--- ../../../trunk_clean/feeds/packages/net/freeswitch/files/freeswitch.default	2012-03-21 16:34:32.558967079 +0400
++++ ../../../trunk/feeds/packages/net/freeswitch/files/freeswitch.default	2012-03-28 13:02:49.810761744 +0400
+@@ -1,11 +1,11 @@
+-#FS_DIR="/opt"
++FS_DIR="/opt"
+ FS_DIR_ETC="$FS_DIR/etc/freeswitch"
+-FS_DIR_MOD="$FS_DIR/usr/lib/freeswitch"
++FS_DIR_MOD="$FS_DIR/lib/freeswitch"
+ FS_DIR_DB="$FS_DIR/tmp/freeswitch/db"
+ FS_DIR_LOG="$FS_DIR/tmp/freeswitch/log"
+-FS_DIR_SCRIPTS="$FS_DIR/usr/share/freeswitch/scripts"
+-FS_DIR_HTDOCS="$FS_DIR/usr/share/freeswitch/htdocs"
+-FS_DIR_RECORDINGS="/var/lib/freeswitch/recordings" # NOTE: must be changed in config as well
+-FS_DIR_VM_STORAGE="/var/lib/freeswitch/storage" # NOTE: must be changed in config as well
++FS_DIR_SCRIPTS="$FS_DIR/share/freeswitch/scripts"
++FS_DIR_HTDOCS="$FS_DIR/share/freeswitch/htdocs"
++FS_DIR_RECORDINGS="$FS_DIR/var/lib/freeswitch/recordings" # NOTE: must be changed in config as well
++FS_DIR_VM_STORAGE="$FS_DIR/var/lib/freeswitch/storage" # NOTE: must be changed in config as well
+ 
+ OPTIONS="-conf $FS_DIR_ETC -log $FS_DIR_LOG -db $FS_DIR_DB -mod $FS_DIR_MOD -htdocs $FS_DIR_HTDOCS -scripts $FS_DIR_SCRIPTS"
+diff -urx .svn ../../../trunk_clean/feeds/packages/net/freeswitch/files/freeswitch.init ../../../trunk/feeds/packages/net/freeswitch/files/freeswitch.init
+--- ../../../trunk_clean/feeds/packages/net/freeswitch/files/freeswitch.init	2012-03-21 16:34:32.558967079 +0400
++++ ../../../trunk/feeds/packages/net/freeswitch/files/freeswitch.init	2012-03-28 13:11:39.124113491 +0400
+@@ -2,7 +2,7 @@
+ # Copyright (C) 2006 OpenWrt.org
+ START=90 
+ 
+-DEFAULT=/etc/default/freeswitch
++DEFAULT=/opt/etc/default/freeswitch
+ OPTIONS=""
+ 
+ boot() {
+@@ -17,12 +17,12 @@
+ 	mkdir -p $FS_DIR_RECORDINGS
+ 	mkdir -p $FS_DIR_VM_STORAGE
+ 	ulimit -s 240
+-	$FS_DIR/usr/bin/freeswitch $OPTIONS -nc
++	$FS_DIR/opt/bin/freeswitch $OPTIONS -nc
+ }
+ 
+ stop() {
+ 	[ -f $DEFAULT ] && . $DEFAULT
+-	$FS_DIR/usr/bin/freeswitch $OPTIONS -stop
++	$FS_DIR/opt/bin/freeswitch $OPTIONS -stop
+ }
+ 
+ restart() {
+diff -urx .svn ../../../trunk_clean/feeds/packages/net/freeswitch/Makefile ../../../trunk/feeds/packages/net/freeswitch/Makefile
+--- ../../../trunk_clean/feeds/packages/net/freeswitch/Makefile	2012-03-21 16:34:32.635004123 +0400
++++ ../../../trunk/feeds/packages/net/freeswitch/Makefile	2012-03-28 14:29:47.106567505 +0400
+@@ -248,7 +248,7 @@
+ 
+ define Package/$(PKG_NAME)-example-config/description
+   The default configuration included with FreeSWITCH. It is not intended to be
+-  a final product, and is thus moved to /usr/share/$(PKG_NAME)/examples/conf to
++  a final product, and is thus moved to /opt/share/$(PKG_NAME)/examples/conf to
+   be an example of how FreeSWITCH can be configured.
+ endef
+ 
+@@ -433,24 +433,24 @@
+ CONFIGURE_ARGS+= \
+ 	--host=$(GNU_TARGET_NAME) \
+ 	--build=$(GNU_HOST_NAME) \
+-	--prefix="/usr/share/$(PKG_NAME)" \
+-	--bindir="/usr/bin" \
+-	--libdir="/usr/lib" \
++	--prefix="/opt/share/$(PKG_NAME)" \
++	--bindir="/opt/bin" \
++	--libdir="/opt/lib" \
+ 	--srcdir="$(PKG_BUILD_DIR)" \
+-	--sysconfdir="/etc/$(PKG_NAME)" \
+-	--with-modinstdir="/usr/lib/$(PKG_NAME)" \
++	--sysconfdir="/opt/etc/$(PKG_NAME)" \
++	--with-modinstdir="/opt/lib/$(PKG_NAME)" \
+ 	--with-random="/dev/urandom" \
+ 	$(if $(CONFIG_FS_SOFIA_WITH_MYSQL),--with-mysql,--without-mysql) \
+ 	$(call autoconf_bool,CONFIG_FS_SOFIA_WITH_IPV6,ipv6) \
+ 	$(call autoconf_bool,CONFIG_FS_SOFIA_WITH_OPT,optimization) \
+-	$(if $(CONFIG_PACKAGE_$(PKG_NAME)-mod-celt),--with-ogg="$(STAGING_DIR)/usr",--without-iogg) \
+-	$(if ($(CONFIG_PACKAGE_$(PKG_NAME)-mod-curl)|$(CONFIG_PACKAGE_$(PKG_NAME)-mod-xml-cdr)|$(CONFIG_PACKAGE_$(PKG_NAME)-mod-xml-curl)),--with-libcurl="$(STAGING_DIR)/usr",--without-libcurl) \
+-	$(if $(CONFIG_PACKAGE_$(PKG_NAME)-mod-java),--with-java="$(STAGING_DIR)/usr",--without-java) \
++	$(if $(CONFIG_PACKAGE_$(PKG_NAME)-mod-celt),--with-ogg="$(STAGING_DIR)/opt",--without-iogg) \
++	$(if ($(CONFIG_PACKAGE_$(PKG_NAME)-mod-curl)|$(CONFIG_PACKAGE_$(PKG_NAME)-mod-xml-cdr)|$(CONFIG_PACKAGE_$(PKG_NAME)-mod-xml-curl)),--with-libcurl="$(STAGING_DIR)/opt",--without-libcurl) \
++	$(if $(CONFIG_PACKAGE_$(PKG_NAME)-mod-java),--with-java="$(STAGING_DIR)/opt",--without-java) \
+ 	$(call autoconf_bool,CONFIG_PACKAGE_$(PKG_NAME)-mod-spandsp,builtin-tiff) \
+ 	$(call autoconf_bool,CONFIG_FS_SOFIA_WITH_ZRTP_GIT,zrtp) \
+ 	$(call autoconf_bool,CONFIG_FS_SOFIA_WITH_ODBC,core-odbc-support) \
+-	$(if $(CONFIG_FS_SOFIA_WITH_ODBC),--with-odbc="$(STAGING_DIR)/usr") \
+-	$(if $(CONFIG_FS_SOFIA_WITH_ODBC),--with-odbc-lib="$(STAGING_DIR)/usr/lib") \
++	$(if $(CONFIG_FS_SOFIA_WITH_ODBC),--with-odbc="$(STAGING_DIR)/opt") \
++	$(if $(CONFIG_FS_SOFIA_WITH_ODBC),--with-odbc-lib="$(STAGING_DIR)/opt/lib") \
+ 
+ 
+ CONFIGURE_VARS+= \
+@@ -472,7 +472,7 @@
+ 	CFLAGS="${FS_TARGET_CPPFLAGS} ${FS_TARGET_CFLAGS}" \
+ 	CXXFLAGS="${FS_TARGET_CPPFLAGS} ${FS_TARGET_CXXFLAGS}" \
+ 	CPPFLAGS="${FS_TARGET_CPPFLAGS}" \
+-	LDFLAGS="${TARGET_LDFLAGS} -Wl,-rpath-link=\"${STAGING_DIR}/usr/lib\"" \
++	LDFLAGS="${TARGET_LDFLAGS} -Wl,-rpath-link=\"${STAGING_DIR}/opt/lib\"" \
+ 	PATH="${PATH}:${STAGING_DIR}" \
+ 	HOST_CC="/usr/bin/cc" \
+ 	HOST_CXX="/usr/bin/g++" \
+@@ -528,89 +528,81 @@
+ 		DESTDIR="$(PKG_INSTALL_DIR)" \
+ 		LDFLAGS_FOR_BUILD="$(HOST_LDFLAGS)" \
+ 		all $(MAKE_INSTALL_TARGETS)
+-	$(SED) 's|^\([ \t]*\)\(.*\)"mod_console"\(.*\)$$$$|\1<!-- \2"mod_console"\3 -->|' $(PKG_INSTALL_DIR)/etc/$(PKG_NAME)/autoload_configs/modules.conf.xml
+-	$(SED) 's|^\([ \t]*\)<!-- *\(.*\)"mod_syslog"\(.*\) *-->\(.*\)$$$$|\1\2"mod_syslog"\3\4|' $(PKG_INSTALL_DIR)/etc/$(PKG_NAME)/autoload_configs/modules.conf.xml
++	$(SED) 's|^\([ \t]*\)\(.*\)"mod_console"\(.*\)$$$$|\1<!-- \2"mod_console"\3 -->|' $(PKG_INSTALL_DIR)/opt/etc/$(PKG_NAME)/autoload_configs/modules.conf.xml
++	$(SED) 's|^\([ \t]*\)<!-- *\(.*\)"mod_syslog"\(.*\) *-->\(.*\)$$$$|\1\2"mod_syslog"\3\4|' $(PKG_INSTALL_DIR)/opt/etc/$(PKG_NAME)/autoload_configs/modules.conf.xml
+ endef
+ 
+ 
+ define Build/InstallDev
+-	$(INSTALL_DIR) $(1)/usr/include/$(PKG_NAME)
+-	$(CP) $(PKG_INSTALL_DIR)/usr/share/$(PKG_NAME)/include/* $(1)/usr/include/$(PKG_NAME)/
+-	$(INSTALL_DIR) $(1)/usr/lib
+-	$(CP) $(PKG_INSTALL_DIR)/usr/lib/lib$(PKG_NAME).{a,so*} $(1)/usr/lib/
++	$(INSTALL_DIR) $(1)/opt/include/$(PKG_NAME)
++	$(CP) $(PKG_INSTALL_DIR)/opt/share/$(PKG_NAME)/include/* $(1)/opt/include/$(PKG_NAME)/
++	$(INSTALL_DIR) $(1)/opt/lib
++	$(CP) $(PKG_INSTALL_DIR)/opt/lib/lib$(PKG_NAME).{a,so*} $(1)/opt/lib/
+ endef
+ 
+ 
+ define Package/$(PKG_NAME)/install
+-	$(INSTALL_DIR) $(1)/usr/bin
+-	$(CP) $(PKG_INSTALL_DIR)/usr/bin/$(PKG_NAME) $(1)/usr/bin/
+-	$(INSTALL_DIR) $(1)/usr/lib
+-	$(CP) $(PKG_INSTALL_DIR)/usr/lib/lib$(PKG_NAME).so.* $(1)/usr/lib/
+-	$(INSTALL_DIR) $(1)/usr/lib/$(PKG_NAME)
+-	$(INSTALL_DIR) $(1)/etc/default
+-	$(INSTALL_DATA) ./files/$(PKG_NAME).default $(1)/etc/default/$(PKG_NAME)
+-	$(INSTALL_DIR) $(1)/etc/init.d
+-	$(INSTALL_BIN) ./files/$(PKG_NAME).init $(1)/etc/init.d/$(PKG_NAME)
+-	$(INSTALL_DIR) $(1)/etc/hotplug.d/iface
+-	$(INSTALL_DATA) ./files/$(PKG_NAME).hotplug $(1)/etc/hotplug.d/iface/90-$(PKG_NAME)
+-	$(INSTALL_DIR) $(1)/etc/config
+-	$(INSTALL_DATA) ./files/$(PKG_NAME).config $(1)/etc/config/$(PKG_NAME)
++	$(INSTALL_DIR) $(1)/opt/bin
++	$(CP) $(PKG_INSTALL_DIR)/opt/bin/$(PKG_NAME) $(1)/opt/bin/
++	$(INSTALL_DIR) $(1)/opt/lib
++	$(CP) $(PKG_INSTALL_DIR)/opt/lib/lib$(PKG_NAME).so.* $(1)/opt/lib/
++	$(INSTALL_DIR) $(1)/opt/lib/$(PKG_NAME)
+ endef
+ 
+ 
+ define Package/$(PKG_NAME)-collection-upstream-defaults/install
+-	$(INSTALL_DIR) $(1)/etc/$(PKG_NAME)
++	$(INSTALL_DIR) $(1)/opt/etc/$(PKG_NAME)
+ endef
+ 
+ 
+ define Package/$(PKG_NAME)-example-config/install
+-	$(INSTALL_DIR) $(1)/usr/share/$(PKG_NAME)/examples/conf
+-	$(CP) $(PKG_INSTALL_DIR)/etc/$(PKG_NAME)/* $(1)/usr/share/$(PKG_NAME)/examples/conf/
++	$(INSTALL_DIR) $(1)/opt/share/$(PKG_NAME)/examples/conf
++	$(CP) $(PKG_INSTALL_DIR)/opt/etc/$(PKG_NAME)/* $(1)/opt/share/$(PKG_NAME)/examples/conf/
+ endef
+ 
+ 
+ define Package/$(PKG_NAME)-config-upstream-defaults/install
+-	$(INSTALL_DIR) $(1)/etc/$(PKG_NAME)
+-	$(CP) $(PKG_INSTALL_DIR)/etc/$(PKG_NAME)/* $(1)/etc/$(PKG_NAME)/
++	$(INSTALL_DIR) $(1)/opt/etc/$(PKG_NAME)
++	$(CP) $(PKG_INSTALL_DIR)/opt/etc/$(PKG_NAME)/* $(1)/opt/etc/$(PKG_NAME)/
+ endef
+ 
+ 
+ define Package/$(PKG_NAME)-collection-minimal/install
+-	$(INSTALL_DIR) $(1)/etc/$(PKG_NAME)
++	$(INSTALL_DIR) $(1)/opt/etc/$(PKG_NAME)
+ endef
+ 
+ 
+ define Package/$(PKG_NAME)-collection-uci-minimal/install
+-	$(INSTALL_DIR) $(1)/etc/$(PKG_NAME)
++	$(INSTALL_DIR) $(1)/opt/etc/$(PKG_NAME)
+ endef
+ 
+ 
+ define Package/$(PKG_NAME)-config-minimal/install
+-	$(INSTALL_DIR) $(1)/etc/$(PKG_NAME)
+-	$(CP) ./files/etc.minimal/* $(1)/etc/$(PKG_NAME)/
++	$(INSTALL_DIR) $(1)/opt/etc/$(PKG_NAME)
++	$(CP) ./files/etc.minimal/* $(1)/opt/etc/$(PKG_NAME)/
+ endef
+ 
+ 
+ define Package/$(PKG_NAME)-sounds-en/install
+-	$(INSTALL_DIR) $(1)/usr/share/$(PKG_NAME)/sounds
+-	$(CP) $(PKG_INSTALL_DIR)/usr/share/$(PKG_NAME)/sounds/en $(1)/usr/share/$(PKG_NAME)/sounds/
++	$(INSTALL_DIR) $(1)/opt/share/$(PKG_NAME)/sounds
++	$(CP) $(PKG_INSTALL_DIR)/opt/share/$(PKG_NAME)/sounds/en $(1)/opt/share/$(PKG_NAME)/sounds/
+ endef
+ 
+ 
+ define Package/$(PKG_NAME)-sounds-moh/install
+-	$(INSTALL_DIR) $(1)/usr/share/$(PKG_NAME)/sounds
+-	$(CP) $(PKG_INSTALL_DIR)/usr/share/$(PKG_NAME)/sounds/music $(1)/usr/share/$(PKG_NAME)/sounds/
++	$(INSTALL_DIR) $(1)/opt/share/$(PKG_NAME)/sounds
++	$(CP) $(PKG_INSTALL_DIR)/opt/share/$(PKG_NAME)/sounds/music $(1)/opt/share/$(PKG_NAME)/sounds/
+ endef
+ 
+ 
+ define Package/$(PKG_NAME)-tools/install
+-	$(INSTALL_DIR) $(1)/usr/bin
+-	$(CP) $(PKG_INSTALL_DIR)/usr/bin/fs_cli $(1)/usr/bin/
+-	$(CP) $(PKG_INSTALL_DIR)/usr/bin/fs_encode $(1)/usr/bin/
+-	$(CP) $(PKG_INSTALL_DIR)/usr/bin/fs_ivrd $(1)/usr/bin/
+-	$(CP) $(PKG_INSTALL_DIR)/usr/bin/fsxs $(1)/usr/bin/
+-	$(CP) $(PKG_INSTALL_DIR)/usr/bin/gentls_cert $(1)/usr/bin/
+-	$(CP) $(PKG_INSTALL_DIR)/usr/bin/tone2wav $(1)/usr/bin/
++	$(INSTALL_DIR) $(1)/opt/bin
++	$(CP) $(PKG_INSTALL_DIR)/opt/bin/fs_cli $(1)/opt/bin/
++	$(CP) $(PKG_INSTALL_DIR)/opt/bin/fs_encode $(1)/opt/bin/
++	$(CP) $(PKG_INSTALL_DIR)/opt/bin/fs_ivrd $(1)/opt/bin/
++	$(CP) $(PKG_INSTALL_DIR)/opt/bin/fsxs $(1)/opt/bin/
++	$(CP) $(PKG_INSTALL_DIR)/opt/bin/gentls_cert $(1)/opt/bin/
++	$(CP) $(PKG_INSTALL_DIR)/opt/bin/tone2wav $(1)/opt/bin/
+ endef
+ 
+ 
+@@ -629,28 +621,28 @@
+   endef
+ 
+   define Package/$(PKG_NAME)-mod-$(1)/install
+-	[ -z "$(3)" ] || $(INSTALL_DIR) $$(1)/usr/lib/$(PKG_NAME)
++	[ -z "$(3)" ] || $(INSTALL_DIR) $$(1)/opt/lib/$(PKG_NAME)
+ 	for f in $(3); do \
+ 		$(CP) \
+-			$(PKG_INSTALL_DIR)/usr/lib/$(PKG_NAME)/$$$$$$$${f}.so \
+-			$$(1)/usr/lib/$(PKG_NAME)/ ; \
++			$(PKG_INSTALL_DIR)/opt/lib/$(PKG_NAME)/$$$$$$$${f}.so \
++			$$(1)/opt/lib/$(PKG_NAME)/ ; \
+ 	done
+ 	if [ -d "./files/etc.packages/$(1)" ]; then \
+-		$(INSTALL_DIR) $$(1)/etc/$(PKG_NAME) ; \
++		$(INSTALL_DIR) $$(1)/opt/etc/$(PKG_NAME) ; \
+ 		$(CP) \
+ 			./files/etc.packages/$(1)/* \
+-			$$(1)/etc/$(PKG_NAME)/ ; \
++			$$(1)/opt/etc/$(PKG_NAME)/ ; \
+ 	fi
+   endef
+ 
+   define Package/$(PKG_NAME)-mod-$(1)/postinst
+ #!/bin/sh
+-sed -i -e 's|^\([ \t]*\)<!-- *\(.*\)"mod_$(subst -,_,$(1))"\(.*\) *-->\(.*\)$$$$|\1\2"mod_$(subst -,_,$(1))"\3\4|' $$$${IPKG_INSTROOT}/etc/$(PKG_NAME)/autoload_configs/modules.conf.xml
++sed -i -e 's|^\([ \t]*\)<!-- *\(.*\)"mod_$(subst -,_,$(1))"\(.*\) *-->\(.*\)$$$$|\1\2"mod_$(subst -,_,$(1))"\3\4|' $$$${IPKG_INSTROOT}/opt/etc/$(PKG_NAME)/autoload_configs/modules.conf.xml
+   endef
+ 
+   define Package/$(PKG_NAME)-mod-$(1)/postrm
+ #!/bin/sh
+-sed -i -e 's|^\([ \t]*\)\(.*\)"mod_$(subst -,_,$(1))"\(.*\)$$$$|\1<!-- \2"mod_$(subst -,_,$(1))"\3 -->|' $$$${IPKG_INSTROOT}/etc/$(PKG_NAME)/autoload_configs/modules.conf.xml
++sed -i -e 's|^\([ \t]*\)\(.*\)"mod_$(subst -,_,$(1))"\(.*\)$$$$|\1<!-- \2"mod_$(subst -,_,$(1))"\3 -->|' $$$${IPKG_INSTROOT}/opt/etc/$(PKG_NAME)/autoload_configs/modules.conf.xml
+   endef
+ 
+   $$(eval $$(call BuildPackage,$(PKG_NAME)-mod-$(1)))
+diff -urx .svn ../../../trunk_clean/feeds/packages/net/freeswitch/patches/003-libs-esl-Makefile.patch ../../../trunk/feeds/packages/net/freeswitch/patches/003-libs-esl-Makefile.patch
+--- ../../../trunk_clean/feeds/packages/net/freeswitch/patches/003-libs-esl-Makefile.patch	2012-03-21 16:34:32.651011923 +0400
++++ ../../../trunk/feeds/packages/net/freeswitch/patches/003-libs-esl-Makefile.patch	2012-03-28 13:00:55.736200181 +0400
+@@ -5,7 +5,7 @@
+  CXXFLAGS=$(BASE_FLAGS)
+  MYLIB=libesl.a
+ -LIBS=-lncurses -lesl -lpthread -lm
+-+LIBS=-L$(STAGING_DIR)/usr/lib -lncurses -lesl -lpthread -lm
+++LIBS=-L$(STAGING_DIR)/opt/lib -lncurses -lesl -lpthread -lm
+  LDFLAGS=-L.
+  OBJS=src/esl.o src/esl_event.o src/esl_threadmutex.o src/esl_config.o src/esl_json.o src/esl_buffer.o
+  SRC=src/esl.c src/esl_json.c src/esl_event.c src/esl_threadmutex.c src/esl_config.c src/esl_oop.cpp src/esl_json.c src/esl_buffer.c
