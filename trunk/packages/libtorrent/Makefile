@@ -11,6 +11,8 @@ all: ./.done
 ./.done:
 	patch -p0 -i ./fix-path.patch
 	cp ./555-remove-AM-PATH_CPPUNIT-test.patch ../../../trunk/feeds/packages/libs/libtorrent/patches/
+	cp -f ./100-fix_cross_compile.patch ../../../trunk/feeds/packages/libs/libtorrent/patches/
+	rm ../../../trunk/feeds/packages/libs/libtorrent/patches/000-upstream-gcc46-fixes.patch
 	touch $@
 
 clean:

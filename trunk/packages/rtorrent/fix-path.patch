@@ -1,22 +1,24 @@
-diff -r -u -x ./svn ../../../backup/trunk_clean/feeds/packages/net/rtorrent/Makefile ../../../trunk/feeds/packages/net/rtorrent/Makefile
---- ../../../backup/trunk_clean/feeds/packages/net/rtorrent/Makefile	2011-12-28 08:43:58.000000000 +0400
-+++ ../../../trunk/feeds/packages/net/rtorrent/Makefile	2011-12-28 11:05:58.972516914 +0400
-@@ -8,12 +8,12 @@
+diff -urx .svn ../../../trunk_clean/feeds/packages/net/rtorrent/Makefile ../../../trunk/feeds/packages/net/rtorrent/Makefile
+--- ../../../trunk_clean/feeds/packages/net/rtorrent/Makefile	2012-03-21 16:34:34.055696270 +0400
++++ ../../../trunk/feeds/packages/net/rtorrent/Makefile	2012-03-31 15:12:06.219321043 +0400
+@@ -8,12 +8,13 @@
  include $(TOPDIR)/rules.mk
  
  PKG_NAME:=rtorrent
 -PKG_VERSION:=0.8.6
-+PKG_VERSION:=0.8.9
++PKG_VERSION:=0.9.1
  PKG_RELEASE:=1
  
  PKG_SOURCE:=$(PKG_NAME)-$(PKG_VERSION).tar.gz
- PKG_SOURCE_URL:=http://libtorrent.rakshasa.no/downloads
+-PKG_SOURCE_URL:=http://libtorrent.rakshasa.no/downloads
 -PKG_MD5SUM:=b804c45c01c40312926bcea6b55bb084
-+PKG_MD5SUM:=629247636cb1210663b52dadbd040a6c
++PKG_SOURCE_SUBDIR:=$(PKG_NAME)-$(PKG_VERSION)
++PKG_SOURCE_URL:=git://github.com/rakshasa/rtorrent.git
++PKG_SOURCE_VERSION:=64c66c81aed5749631382ae41c3503bd1d25c90d
  
  PKG_FIXUP:=libtool
  PKG_BUILD_PARALLEL:=1
-@@ -27,7 +27,7 @@
+@@ -27,7 +28,7 @@
    CATEGORY:=Network
    TITLE:=BitTorrent client for ncurses
    URL:=http://libtorrent.rakshasa.no/
@@ -25,7 +27,7 @@ diff -r -u -x ./svn ../../../backup/trunk_clean/feeds/packages/net/rtorrent/Make
    MAINTAINER:=Luka Perkov <openwrt@lukaperkov.net>
  endef
  
-@@ -39,7 +39,7 @@
+@@ -39,7 +40,7 @@
  endef
  
  TARGET_CPPFLAGS += -fno-strict-aliasing -fno-inline
@@ -34,7 +36,7 @@ diff -r -u -x ./svn ../../../backup/trunk_clean/feeds/packages/net/rtorrent/Make
  
  CONFIGURE_ARGS+= \
  	--enable-shared \
-@@ -53,8 +53,8 @@
+@@ -53,8 +54,8 @@
  endef
  
  define Package/rtorrent/install
@@ -45,9 +47,46 @@ diff -r -u -x ./svn ../../../backup/trunk_clean/feeds/packages/net/rtorrent/Make
  endef
  
  $(eval $(call BuildPackage,rtorrent))
-diff -r -u -x ./svn ../../../backup/trunk_clean/feeds/packages/net/rtorrent/patches/120-fix-ncurses.patch ../../../trunk/feeds/packages/net/rtorrent/patches/120-fix-ncurses.patch
---- ../../../backup/trunk_clean/feeds/packages/net/rtorrent/patches/120-fix-ncurses.patch	2011-12-28 08:43:58.000000000 +0400
-+++ ../../../trunk/feeds/packages/net/rtorrent/patches/120-fix-ncurses.patch	2011-12-28 08:47:29.368615406 +0400
+diff -urx .svn ../../../trunk_clean/feeds/packages/net/rtorrent/patches/100-fix-cross_compile.patch ../../../trunk/feeds/packages/net/rtorrent/patches/100-fix-cross_compile.patch
+--- ../../../trunk_clean/feeds/packages/net/rtorrent/patches/100-fix-cross_compile.patch	2012-03-21 16:34:34.055696270 +0400
++++ ../../../trunk/feeds/packages/net/rtorrent/patches/100-fix-cross_compile.patch	2012-03-31 15:30:18.914954309 +0400
+@@ -1,22 +1,20 @@
+-Index: rtorrent-0.8.6/scripts/common.m4
+-===================================================================
+---- rtorrent-0.8.6.orig/scripts/common.m4
+-+++ rtorrent-0.8.6/scripts/common.m4
+-@@ -184,7 +184,7 @@ AC_DEFUN([TORRENT_CHECK_MADVISE], [
++--- ./scripts/common.m4.orig	2012-03-31 15:28:43.803717412 +0400
+++++ ./scripts/common.m4	2012-03-31 15:29:39.199312658 +0400
++@@ -223,7 +223,7 @@
+  AC_DEFUN([TORRENT_CHECK_EXECINFO], [
+    AC_MSG_CHECKING(for execinfo.h)
+  
+--  AC_RUN_IFELSE(
+-+  AC_LINK_IFELSE(
+-     [[#include <execinfo.h>
++-  AC_RUN_IFELSE([AC_LANG_SOURCE([
+++  AC_LINK_IFELSE([AC_LANG_SOURCE([
++       #include <execinfo.h>
+        int main() { backtrace((void**)0, 0); backtrace_symbols((char**)0, 0); return 0;}
+-     ]],
+-@@ -199,7 +199,7 @@ AC_DEFUN([TORRENT_CHECK_EXECINFO], [
++       ])],
++@@ -238,7 +238,7 @@
+  AC_DEFUN([TORRENT_CHECK_ALIGNED], [
+    AC_MSG_CHECKING(the byte alignment)
+  
+--  AC_RUN_IFELSE(
+-+  AC_LINK_IFELSE(
+-     [[#include <inttypes.h>
++-  AC_RUN_IFELSE([AC_LANG_SOURCE([
+++  AC_LINK_IFELSE([AC_LANG_SOURCE([
++       #include <inttypes.h>
+        int main() {
+          char buf[8] = { 0, 0, 0, 0, 1, 0, 0, 0 };
+diff -urx .svn ../../../trunk_clean/feeds/packages/net/rtorrent/patches/120-fix-ncurses.patch ../../../trunk/feeds/packages/net/rtorrent/patches/120-fix-ncurses.patch
+--- ../../../trunk_clean/feeds/packages/net/rtorrent/patches/120-fix-ncurses.patch	2012-03-21 16:34:34.055696270 +0400
++++ ../../../trunk/feeds/packages/net/rtorrent/patches/120-fix-ncurses.patch	2012-03-21 16:36:10.000000000 +0400
 @@ -1,13 +1,11 @@
 -Index: rtorrent-0.8.6/src/display/canvas.h
 -===================================================================
@@ -68,4 +107,3 @@ diff -r -u -x ./svn ../../../backup/trunk_clean/feeds/packages/net/rtorrent/patc
     ~Canvas() { delwin(m_window); }
   
 +   void                refresh()                                               { wnoutrefresh(m_window); }
-Только в ../../../trunk/feeds/packages/net/rtorrent/patches: 555-disable-AM_PATH_CPPUNIT-check.patch
