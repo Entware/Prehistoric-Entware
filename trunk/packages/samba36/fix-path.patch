@@ -1,7 +1,7 @@
-diff -Naur ../../../trunk_clean/feeds/packages/net/samba36/Makefile ../../../trunk/feeds/packages/net/samba36/Makefile
---- ../../../trunk_clean/feeds/packages/net/samba36/Makefile	2012-03-26 10:57:40.178339750 +0400
-+++ ../../../trunk/feeds/packages/net/samba36/Makefile	2012-03-27 14:11:38.368274990 +0400
-@@ -68,7 +68,7 @@
+diff -urx .svn ../../../trunk_clean/feeds/packages/net/samba36/Makefile ../../../trunk/feeds/packages/net/samba36/Makefile
+--- ../../../trunk_clean/feeds/packages/net/samba36/Makefile	2012-04-02 11:00:39.276152409 +0400
++++ ../../../trunk/feeds/packages/net/samba36/Makefile	2012-04-02 11:04:47.537031347 +0400
+@@ -67,7 +67,7 @@
  	samba_cv_zlib_1_2_3=no
  
  CONFIGURE_ARGS += \
@@ -10,7 +10,7 @@ diff -Naur ../../../trunk_clean/feeds/packages/net/samba36/Makefile ../../../tru
  	--prefix=/ \
  	--disable-avahi \
  	--disable-cups \
-@@ -77,15 +77,15 @@
+@@ -76,15 +76,15 @@
  	--disable-static \
  	--disable-swat \
  	--disable-shared-libs \
@@ -33,7 +33,7 @@ diff -Naur ../../../trunk_clean/feeds/packages/net/samba36/Makefile ../../../tru
  	--with-sendfile-support \
  	--without-cluster-support \
  	--without-ads \
-@@ -104,20 +104,23 @@
+@@ -103,20 +103,23 @@
  MAKE_FLAGS += DYNEXP= PICFLAG= MODULES=
  
  define Package/samba36-server/install
@@ -71,9 +71,9 @@ diff -Naur ../../../trunk_clean/feeds/packages/net/samba36/Makefile ../../../tru
  endef
  
  $(eval $(call BuildPackage,samba36-server))
-diff -Naur ../../../trunk_clean/feeds/packages/net/samba36/patches/111-owrt_smbpasswd.patch ../../../trunk/feeds/packages/net/samba36/patches/111-owrt_smbpasswd.patch
---- ../../../trunk_clean/feeds/packages/net/samba36/patches/111-owrt_smbpasswd.patch	2012-03-26 10:57:40.178339750 +0400
-+++ ../../../trunk/feeds/packages/net/samba36/patches/111-owrt_smbpasswd.patch	2012-03-26 13:32:02.751880369 +0400
+diff -urx .svn ../../../trunk_clean/feeds/packages/net/samba36/patches/111-owrt_smbpasswd.patch ../../../trunk/feeds/packages/net/samba36/patches/111-owrt_smbpasswd.patch
+--- ../../../trunk_clean/feeds/packages/net/samba36/patches/111-owrt_smbpasswd.patch	2012-04-02 11:00:39.280152358 +0400
++++ ../../../trunk/feeds/packages/net/samba36/patches/111-owrt_smbpasswd.patch	2012-04-02 11:04:47.537031347 +0400
 @@ -232,15 +232,15 @@
  +		}
  +	}

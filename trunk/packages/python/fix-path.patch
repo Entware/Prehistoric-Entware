@@ -1,9 +1,9 @@
-diff -urx .svn ../../../backup/trunk_clean/feeds/packages/lang/python/files/python-package.mk ../../../trunk/feeds/packages/lang/python/files/python-package.mk
---- ../../../backup/trunk_clean/feeds/packages/lang/python/files/python-package.mk	2012-02-21 11:19:49.000000000 +0400
-+++ ../../../trunk/feeds/packages/lang/python/files/python-package.mk	2012-02-21 11:23:44.603235657 +0400
+diff -urx .svn ../../../trunk_clean/feeds/packages/lang/python/files/python-package.mk ../../../trunk/feeds/packages/lang/python/files/python-package.mk
+--- ../../../trunk_clean/feeds/packages/lang/python/files/python-package.mk	2012-04-02 11:00:50.388012714 +0400
++++ ../../../trunk/feeds/packages/lang/python/files/python-package.mk	2012-04-02 11:04:47.297034364 +0400
 @@ -7,16 +7,16 @@
  
- PYTHON_VERSION=2.6
+ PYTHON_VERSION=2.7
  
 -PYTHON_DIR:=$(STAGING_DIR)/usr
 +PYTHON_DIR:=$(STAGING_DIR)/opt
@@ -21,30 +21,24 @@ diff -urx .svn ../../../backup/trunk_clean/feeds/packages/lang/python/files/pyth
  
  define HostPython
  	(	export PYTHONPATH="$(PYTHON_LIB_DIR):$(STAGING_DIR)/$(PYTHON_PKG_DIR)"; \
-diff -urx .svn ../../../backup/trunk_clean/feeds/packages/lang/python/Makefile ../../../trunk/feeds/packages/lang/python/Makefile
---- ../../../backup/trunk_clean/feeds/packages/lang/python/Makefile	2012-02-21 11:19:49.000000000 +0400
-+++ ../../../trunk/feeds/packages/lang/python/Makefile	2012-02-21 12:18:12.050693330 +0400
-@@ -123,8 +123,8 @@
- MAKE_FLAGS:=\
- 	$(TARGET_CONFIGURE_OPTS) \
- 	PYTHON_DISABLE_MODULES="$(PY_DISABLED_MODULES)" \
--	PYTHON_MODULES_INCLUDE="$(STAGING_DIR)/usr/include" \
--	PYTHON_MODULES_LIB="$(STAGING_DIR)/usr/lib" \
-+	PYTHON_MODULES_INCLUDE="$(STAGING_DIR)/opt/include" \
-+	PYTHON_MODULES_LIB="$(STAGING_DIR)/opt/lib" \
- 	DESTDIR="$(PKG_INSTALL_DIR)" \
- 	CROSS_COMPILE=yes \
- 	CFLAGS="$(TARGET_CFLAGS) -fno-inline" \
-@@ -141,7 +141,7 @@
+diff -urx .svn ../../../trunk_clean/feeds/packages/lang/python/Makefile ../../../trunk/feeds/packages/lang/python/Makefile
+--- ../../../trunk_clean/feeds/packages/lang/python/Makefile	2012-04-02 11:00:50.388012714 +0400
++++ ../../../trunk/feeds/packages/lang/python/Makefile	2012-04-02 11:44:23.299167501 +0400
+@@ -150,11 +150,11 @@
  	$(CP) $(STAGING_DIR_HOST)/bin/pgen $(PKG_BUILD_DIR)/hostpgen
- 	$(CP) $(STAGING_DIR_HOST)/bin/python $(PKG_BUILD_DIR)/hostpython
+ 	$(CP) $(STAGING_DIR_HOST)/bin/python$(PYTHON_VERSION) $(PKG_BUILD_DIR)/hostpython
  	$(call Build/Configure/Default, \
 -		--sysconfdir=/etc \
 +		--sysconfdir=/opt/etc \
  		--disable-shared \
  		--without-cxx-main \
  		--with-threads \
-@@ -155,253 +155,253 @@
+-		--with-system-ffi="$(STAGING_DIR)/usr" \
++		--with-system-ffi="$(STAGING_DIR)/opt" \
+ 		$(ENABLE_IPV6) \
+ 		ac_cv_have_chflags=no \
+ 		ac_cv_have_lchflags=no \
+@@ -166,277 +166,277 @@
  endef
  
  define Build/InstallDev
@@ -69,7 +63,7 @@ diff -urx .svn ../../../backup/trunk_clean/feeds/packages/lang/python/Makefile .
 +		$(1)/opt/lib/python$(PYTHON_VERSION)/
  
  	$(CP) \
- 		$(STAGING_DIR_HOST)/bin/python \
+ 		$(STAGING_DIR_HOST)/bin/python$(PYTHON_VERSION) \
 -		$(1)/usr/bin/hostpython
 +		$(1)/opt/bin/hostpython
  	(cd $(2)/bin; \
@@ -91,7 +85,6 @@ diff -urx .svn ../../../backup/trunk_clean/feeds/packages/lang/python/Makefile .
 -+|/usr/lib/python$(PYTHON_VERSION)
 --|/usr/lib/python$(PYTHON_VERSION)/bsddb/test
 --|/usr/lib/python$(PYTHON_VERSION)/config
--+|/usr/lib/python$(PYTHON_VERSION)/config/Makefile
 --|/usr/lib/python$(PYTHON_VERSION)/ctypes/test
 --|/usr/lib/python$(PYTHON_VERSION)/distutils/command/wininst-*.exe
 --|/usr/lib/python$(PYTHON_VERSION)/distutils/tests
@@ -108,7 +101,7 @@ diff -urx .svn ../../../backup/trunk_clean/feeds/packages/lang/python/Makefile .
 --|/usr/lib/python$(PYTHON_VERSION)/lib-dynload/_sqlite3.so
 --|/usr/lib/python$(PYTHON_VERSION)/lib-dynload/_ssl.so
 --|/usr/lib/python$(PYTHON_VERSION)/lib-dynload/pyexpat.so
---|/usr/lib/python$(PYTHON_VERSION)/pydoc_topics.py
+--|/usr/lib/python$(PYTHON_VERSION)/pydoc_data
 --|/usr/lib/python$(PYTHON_VERSION)/pydoc.py
 --|/usr/lib/python$(PYTHON_VERSION)/lib-dynload/_ctypes_test.so
 --|/usr/lib/python$(PYTHON_VERSION)/lib-dynload/_testcapi.so
@@ -149,7 +142,6 @@ diff -urx .svn ../../../backup/trunk_clean/feeds/packages/lang/python/Makefile .
 --|/usr/lib/python$(PYTHON_VERSION)/lib-dynload/syslog.so
 --|/usr/lib/python$(PYTHON_VERSION)/lib-dynload/time.so
 --|/usr/lib/python$(PYTHON_VERSION)/lib-dynload/unicodedata.so
---|/usr/lib/python$(PYTHON_VERSION)/lib-dynload/_weakref.so
 --|/usr/lib/python$(PYTHON_VERSION)/linecache.py
 --|/usr/lib/python$(PYTHON_VERSION)/md5.py
 --|/usr/lib/python$(PYTHON_VERSION)/new.py
@@ -187,10 +179,20 @@ diff -urx .svn ../../../backup/trunk_clean/feeds/packages/lang/python/Makefile .
 --|/usr/lib/python$(PYTHON_VERSION)/UserDict.py
 --|/usr/lib/python$(PYTHON_VERSION)/warnings.py
 --|/usr/lib/python$(PYTHON_VERSION)/weakref.py
+--|/usr/lib/python$(PYTHON_VERSION)/_weakrefset.py
+--|/usr/lib/python$(PYTHON_VERSION)/sysconfig.py
+--|/usr/lib/python$(PYTHON_VERSION)/functools.py
+--|/usr/lib/python$(PYTHON_VERSION)/lib-dynload/_functools.so
+--|/usr/lib/python$(PYTHON_VERSION)/collections.py
+--|/usr/lib/python$(PYTHON_VERSION)/lib-dynload/_collections.so
+--|/usr/lib/python$(PYTHON_VERSION)/keyword.py
+--|/usr/lib/python$(PYTHON_VERSION)/heapq.py
+--|/usr/lib/python$(PYTHON_VERSION)/lib-dynload/_heapq.so
+--|/usr/lib/python$(PYTHON_VERSION)/bisect.py
+--|/usr/lib/python$(PYTHON_VERSION)/lib-dynload/_bisect.so
 ++|/opt/lib/python$(PYTHON_VERSION)
 +-|/opt/lib/python$(PYTHON_VERSION)/bsddb/test
 +-|/opt/lib/python$(PYTHON_VERSION)/config
-++|/opt/lib/python$(PYTHON_VERSION)/config/Makefile
 +-|/opt/lib/python$(PYTHON_VERSION)/ctypes/test
 +-|/opt/lib/python$(PYTHON_VERSION)/distutils/command/wininst-*.exe
 +-|/opt/lib/python$(PYTHON_VERSION)/distutils/tests
@@ -207,7 +209,7 @@ diff -urx .svn ../../../backup/trunk_clean/feeds/packages/lang/python/Makefile .
 +-|/opt/lib/python$(PYTHON_VERSION)/lib-dynload/_sqlite3.so
 +-|/opt/lib/python$(PYTHON_VERSION)/lib-dynload/_ssl.so
 +-|/opt/lib/python$(PYTHON_VERSION)/lib-dynload/pyexpat.so
-+-|/opt/lib/python$(PYTHON_VERSION)/pydoc_topics.py
++-|/opt/lib/python$(PYTHON_VERSION)/pydoc_data
 +-|/opt/lib/python$(PYTHON_VERSION)/pydoc.py
 +-|/opt/lib/python$(PYTHON_VERSION)/lib-dynload/_ctypes_test.so
 +-|/opt/lib/python$(PYTHON_VERSION)/lib-dynload/_testcapi.so
@@ -248,7 +250,6 @@ diff -urx .svn ../../../backup/trunk_clean/feeds/packages/lang/python/Makefile .
 +-|/opt/lib/python$(PYTHON_VERSION)/lib-dynload/syslog.so
 +-|/opt/lib/python$(PYTHON_VERSION)/lib-dynload/time.so
 +-|/opt/lib/python$(PYTHON_VERSION)/lib-dynload/unicodedata.so
-+-|/opt/lib/python$(PYTHON_VERSION)/lib-dynload/_weakref.so
 +-|/opt/lib/python$(PYTHON_VERSION)/linecache.py
 +-|/opt/lib/python$(PYTHON_VERSION)/md5.py
 +-|/opt/lib/python$(PYTHON_VERSION)/new.py
@@ -286,6 +287,17 @@ diff -urx .svn ../../../backup/trunk_clean/feeds/packages/lang/python/Makefile .
 +-|/opt/lib/python$(PYTHON_VERSION)/UserDict.py
 +-|/opt/lib/python$(PYTHON_VERSION)/warnings.py
 +-|/opt/lib/python$(PYTHON_VERSION)/weakref.py
++-|/opt/lib/python$(PYTHON_VERSION)/_weakrefset.py
++-|/opt/lib/python$(PYTHON_VERSION)/sysconfig.py
++-|/opt/lib/python$(PYTHON_VERSION)/functools.py
++-|/opt/lib/python$(PYTHON_VERSION)/lib-dynload/_functools.so
++-|/opt/lib/python$(PYTHON_VERSION)/collections.py
++-|/opt/lib/python$(PYTHON_VERSION)/lib-dynload/_collections.so
++-|/opt/lib/python$(PYTHON_VERSION)/keyword.py
++-|/opt/lib/python$(PYTHON_VERSION)/heapq.py
++-|/opt/lib/python$(PYTHON_VERSION)/lib-dynload/_heapq.so
++-|/opt/lib/python$(PYTHON_VERSION)/bisect.py
++-|/opt/lib/python$(PYTHON_VERSION)/lib-dynload/_bisect.so
  endef
  
  define PyPackage/python-mini/filespec
@@ -326,7 +338,6 @@ diff -urx .svn ../../../backup/trunk_clean/feeds/packages/lang/python/Makefile .
 -+|/usr/lib/python$(PYTHON_VERSION)/lib-dynload/syslog.so
 -+|/usr/lib/python$(PYTHON_VERSION)/lib-dynload/time.so
 -+|/usr/lib/python$(PYTHON_VERSION)/lib-dynload/unicodedata.so
--+|/usr/lib/python$(PYTHON_VERSION)/lib-dynload/_weakref.so
 -+|/usr/lib/python$(PYTHON_VERSION)/linecache.py
 -+|/usr/lib/python$(PYTHON_VERSION)/md5.py
 -+|/usr/lib/python$(PYTHON_VERSION)/new.py
@@ -364,6 +375,18 @@ diff -urx .svn ../../../backup/trunk_clean/feeds/packages/lang/python/Makefile .
 -+|/usr/lib/python$(PYTHON_VERSION)/UserDict.py
 -+|/usr/lib/python$(PYTHON_VERSION)/warnings.py
 -+|/usr/lib/python$(PYTHON_VERSION)/weakref.py
+-+|/usr/lib/python$(PYTHON_VERSION)/_weakrefset.py
+-+|/usr/lib/python$(PYTHON_VERSION)/config/Makefile
+-+|/usr/lib/python$(PYTHON_VERSION)/sysconfig.py
+-+|/usr/lib/python$(PYTHON_VERSION)/functools.py
+-+|/usr/lib/python$(PYTHON_VERSION)/lib-dynload/_functools.so
+-+|/usr/lib/python$(PYTHON_VERSION)/collections.py
+-+|/usr/lib/python$(PYTHON_VERSION)/lib-dynload/_collections.so
+-+|/usr/lib/python$(PYTHON_VERSION)/keyword.py
+-+|/usr/lib/python$(PYTHON_VERSION)/heapq.py
+-+|/usr/lib/python$(PYTHON_VERSION)/lib-dynload/_heapq.so
+-+|/usr/lib/python$(PYTHON_VERSION)/bisect.py
+-+|/usr/lib/python$(PYTHON_VERSION)/lib-dynload/_bisect.so
 -+|/usr/include/python$(PYTHON_VERSION)/pyconfig.h
 ++|/opt/bin/python$(PYTHON_VERSION)
 ++|/opt/lib/python$(PYTHON_VERSION)/__future__.py
@@ -402,7 +425,6 @@ diff -urx .svn ../../../backup/trunk_clean/feeds/packages/lang/python/Makefile .
 ++|/opt/lib/python$(PYTHON_VERSION)/lib-dynload/syslog.so
 ++|/opt/lib/python$(PYTHON_VERSION)/lib-dynload/time.so
 ++|/opt/lib/python$(PYTHON_VERSION)/lib-dynload/unicodedata.so
-++|/opt/lib/python$(PYTHON_VERSION)/lib-dynload/_weakref.so
 ++|/opt/lib/python$(PYTHON_VERSION)/linecache.py
 ++|/opt/lib/python$(PYTHON_VERSION)/md5.py
 ++|/opt/lib/python$(PYTHON_VERSION)/new.py
@@ -440,6 +462,18 @@ diff -urx .svn ../../../backup/trunk_clean/feeds/packages/lang/python/Makefile .
 ++|/opt/lib/python$(PYTHON_VERSION)/UserDict.py
 ++|/opt/lib/python$(PYTHON_VERSION)/warnings.py
 ++|/opt/lib/python$(PYTHON_VERSION)/weakref.py
+++|/opt/lib/python$(PYTHON_VERSION)/_weakrefset.py
+++|/opt/lib/python$(PYTHON_VERSION)/config/Makefile
+++|/opt/lib/python$(PYTHON_VERSION)/sysconfig.py
+++|/opt/lib/python$(PYTHON_VERSION)/functools.py
+++|/opt/lib/python$(PYTHON_VERSION)/lib-dynload/_functools.so
+++|/opt/lib/python$(PYTHON_VERSION)/collections.py
+++|/opt/lib/python$(PYTHON_VERSION)/lib-dynload/_collections.so
+++|/opt/lib/python$(PYTHON_VERSION)/keyword.py
+++|/opt/lib/python$(PYTHON_VERSION)/heapq.py
+++|/opt/lib/python$(PYTHON_VERSION)/lib-dynload/_heapq.so
+++|/opt/lib/python$(PYTHON_VERSION)/bisect.py
+++|/opt/lib/python$(PYTHON_VERSION)/lib-dynload/_bisect.so
 ++|/opt/include/python$(PYTHON_VERSION)/pyconfig.h
  endef
  
@@ -449,9 +483,9 @@ diff -urx .svn ../../../backup/trunk_clean/feeds/packages/lang/python/Makefile .
  endef
  
  define PyPackage/python-doc/filespec
--+|/usr/lib/python$(PYTHON_VERSION)/pydoc_topics.py
+-+|/usr/lib/python$(PYTHON_VERSION)/pydoc_data
 -+|/usr/lib/python$(PYTHON_VERSION)/pydoc.py
-++|/opt/lib/python$(PYTHON_VERSION)/pydoc_topics.py
+++|/opt/lib/python$(PYTHON_VERSION)/pydoc_data
 ++|/opt/lib/python$(PYTHON_VERSION)/pydoc.py
  endef
  
@@ -490,6 +524,11 @@ diff -urx .svn ../../../backup/trunk_clean/feeds/packages/lang/python/Makefile .
  define PyPackage/python-gdbm/filespec
 -+|/usr/lib/python$(PYTHON_VERSION)/lib-dynload/gdbm.so
 ++|/opt/lib/python$(PYTHON_VERSION)/lib-dynload/gdbm.so
+ endef
+ 
+ define PyPackage/python-readline/filespec
+-+|/usr/lib/python$(PYTHON_VERSION)/lib-dynload/readline.so
+++|/opt/lib/python$(PYTHON_VERSION)/lib-dynload/readline.so
  endef
  
  define Host/Configure

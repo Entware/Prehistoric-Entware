@@ -1,21 +1,6 @@
---- a/lib/global.h
-+++ b/lib/global.h
-@@ -78,12 +78,12 @@
- #define N_(String) (String)
- #endif
- #else /* Stubs that do something close enough.  */
--#define textdomain(String)
-+#define textdomain(String) 1
- #define gettext(String) (String)
- #define ngettext(String1,String2,Num) (((Num) == 1) ? (String1) : (String2))
- #define dgettext(Domain,Message) (Message)
- #define dcgettext(Domain,Message,Type) (Message)
--#define bindtextdomain(Domain,Directory)
-+#define bindtextdomain(Domain,Directory) 1
- #define _(String) (String)
- #define N_(String) (String)
- #endif /* !ENABLE_NLS */
-@@ -124,7 +124,7 @@
+--- ./lib/global.h.orig	2012-03-19 19:47:17.000000000 +0400
++++ ./lib/global.h	2012-04-02 14:38:49.458269824 +0400
+@@ -122,7 +122,7 @@
  #define PATH_SEP '/'
  #define PATH_SEP_STR "/"
  #define PATH_ENV_SEP ':'

@@ -10,6 +10,7 @@ all: ./.done
 
 ./.done:
 	patch -p0 -i ./fix-path.patch
+	cp -f ./050-inotify_fix.patch ../../../trunk/feeds/packages/multimedia/minidlna/patches/
 	touch $@
 
 clean:

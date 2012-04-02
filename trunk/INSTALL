@@ -29,5 +29,5 @@ $ make
     ipk-packages can be found at ~/openwrt/bin/entware/packages directory.
     Scripts was tested with following OpenWRT revisions:
 
-- OpenWRT buildroot revision 31050,
-- OpenWRT packages feed revision 31050.
+- OpenWRT buildroot revision 31158,
+- OpenWRT packages feed revision 31158.
