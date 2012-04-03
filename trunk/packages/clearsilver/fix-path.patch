@@ -1,0 +1,29 @@
+--- ../../../trunk_clean/feeds/packages/libs/clearsilver/Makefile	2012-04-02 11:00:50.616009846 +0400
++++ ../../../trunk/feeds/packages/libs/clearsilver/Makefile	2012-04-03 09:56:42.429811410 +0400
+@@ -32,7 +32,7 @@
+   TITLE:=ClearSilver template system
+   URL:=http://www.clearsilver.net/
+   MAINTAINER:=Raphaël HUCK <rhk@cksum.org>
+-  DEPENDS:=+CLEARSILVER_ENABLE_COMPRESSION:zlib +CLEARSILVER_ENABLE_GETTEXT:libintl
++  DEPENDS:=+CLEARSILVER_ENABLE_COMPRESSION:zlib +CLEARSILVER_ENABLE_GETTEXT:$(INTL_DEPENDS)
+ endef
+ 
+ define Package/clearsilver/config
+@@ -57,7 +57,7 @@
+ 	--disable-ruby \
+ 	--disable-java \
+ 	--disable-csharp \
+-	--prefix=/usr
++	--prefix=/opt
+ 
+ ifeq ($(SDK)$(CONFIG_CLEARSILVER_ENABLE_COMPRESSION),y)
+ 	CONFIGURE_ARGS+= \
+@@ -95,7 +95,7 @@
+ endef
+ 
+ define Package/clearsilver/install
+-	$(INSTALL_DIR) $(1)/usr/lib
++	$(INSTALL_DIR) $(1)/opt/lib
+ endef
+ 
+ $(eval $(call BuildPackage,clearsilver))

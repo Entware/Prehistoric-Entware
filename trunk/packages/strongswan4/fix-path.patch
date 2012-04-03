@@ -1,0 +1,127 @@
+--- ../../../trunk_clean/feeds/packages/net/strongswan4/Makefile	2012-04-02 11:00:40.080142306 +0400
++++ ../../../trunk/feeds/packages/net/strongswan4/Makefile	2012-04-03 09:22:33.343572455 +0400
+@@ -108,10 +108,7 @@
+ 
+ define Package/strongswan4
+ $(call Package/strongswan4/Default)
+-  DEPENDS:= +libpthread +ip \
+-	+kmod-crypto-authenc \
+-	+kmod-ipsec +kmod-ipsec4 \
+-	+kmod-ipt-ipsec +iptables-mod-ipsec
++  DEPENDS:= +libpthread
+ endef
+ 
+ define Package/strongswan4/config
+@@ -328,10 +325,10 @@
+   endef
+ 
+   define Package/strongswan4-mod-$(1)/install
+-	$(INSTALL_DIR) $$(1)/usr/lib/ipsec/plugins
++	$(INSTALL_DIR) $$(1)/opt/lib/ipsec/plugins
+ 	$(CP) \
+-		$(PKG_INSTALL_DIR)/usr/lib/ipsec/plugins/libstrongswan-$(1).so \
+-		$$(1)/usr/lib/ipsec/plugins/ ;
++		$(PKG_INSTALL_DIR)/opt/lib/ipsec/plugins/libstrongswan-$(1).so \
++		$$(1)/opt/lib/ipsec/plugins/ ;
+ 	$(call Plugin/$(1)/install,$$(1))
+   endef
+ 
+@@ -357,29 +354,29 @@
+ 	) \
+ 
+ ifneq ($(CONFIG_PACKAGE_strongswan4-libfast),)
+-  EXTRA_CPPFLAGS+= -I$(STAGING_DIR)/usr/include/ClearSilver
++  EXTRA_CPPFLAGS+= -I$(STAGING_DIR)/opt/include/ClearSilver
+ endif
+ 
+-EXTRA_LDFLAGS+= -Wl,-rpath-link,$(STAGING_DIR)/usr/lib
++EXTRA_LDFLAGS+= -Wl,-rpath-link,$(STAGING_DIR)/opt/lib
+ 
+ 
+ define Package/strongswan4/conffiles
+-/etc/ipsec.conf
+-/etc/ipsec.secrets
+-/etc/strongswan.conf
++/opt/etc/ipsec.conf
++/opt/etc/ipsec.secrets
++/opt/etc/strongswan.conf
+ endef
+ 
+ define Package/strongswan4/install
+-	$(INSTALL_DIR) $(1)/etc
+-	$(CP) -R $(PKG_INSTALL_DIR)/etc/ipsec.d $(1)/etc/
+-	$(CP) $(PKG_INSTALL_DIR)/etc/{ipsec.conf,strongswan.conf} $(1)/etc/
+-	$(INSTALL_DIR) $(1)/usr/lib/ipsec
+-	$(CP) $(PKG_INSTALL_DIR)/usr/lib/ipsec/{libstrongswan.so.*,libhydra.so.*} $(1)/usr/lib/ipsec/
+-	$(INSTALL_DIR) $(1)/usr/sbin
+-	$(INSTALL_BIN) $(PKG_INSTALL_DIR)/usr/sbin/ipsec $(1)/usr/sbin/
+-	$(INSTALL_DIR) $(1)/usr/lib/ipsec
+-	$(CP) $(PKG_INSTALL_DIR)/usr/lib/ipsec/{_copyright,starter} $(1)/usr/lib/ipsec/
+-	$(INSTALL_CONF) ./files/ipsec.secrets $(1)/etc/
++	$(INSTALL_DIR) $(1)/opt/etc
++	$(CP) -R $(PKG_INSTALL_DIR)/opt/etc/ipsec.d $(1)/opt/etc/
++	$(CP) $(PKG_INSTALL_DIR)/opt/etc/{ipsec.conf,strongswan.conf} $(1)/opt/etc/
++	$(INSTALL_DIR) $(1)/opt/lib/ipsec
++	$(CP) $(PKG_INSTALL_DIR)/opt/lib/ipsec/{libstrongswan.so.*,libhydra.so.*} $(1)/opt/lib/ipsec/
++	$(INSTALL_DIR) $(1)/opt/sbin
++	$(INSTALL_BIN) $(PKG_INSTALL_DIR)/opt/sbin/ipsec $(1)/opt/sbin/
++	$(INSTALL_DIR) $(1)/opt/lib/ipsec
++	$(CP) $(PKG_INSTALL_DIR)/opt/lib/ipsec/{_copyright,starter} $(1)/opt/lib/ipsec/
++	$(INSTALL_CONF) ./files/ipsec.secrets $(1)/opt/etc/
+ endef
+ 
+ 
+@@ -399,39 +396,39 @@
+ 
+ 
+ define Package/strongswan4-app-charon/install
+-	$(INSTALL_DIR) $(1)/usr/lib/ipsec
+-	$(CP) $(PKG_INSTALL_DIR)/usr/lib/ipsec/libcharon.so.* $(1)/usr/lib/ipsec/
+-	$(INSTALL_DIR) $(1)/usr/lib/ipsec
+-	$(CP) $(PKG_INSTALL_DIR)/usr/lib/ipsec/{charon,stroke} $(1)/usr/lib/ipsec/
++	$(INSTALL_DIR) $(1)/opt/lib/ipsec
++	$(CP) $(PKG_INSTALL_DIR)/opt/lib/ipsec/libcharon.so.* $(1)/opt/lib/ipsec/
++	$(INSTALL_DIR) $(1)/opt/lib/ipsec
++	$(CP) $(PKG_INSTALL_DIR)/opt/lib/ipsec/{charon,stroke} $(1)/opt/lib/ipsec/
+ endef
+ 
+ 
+ define Package/strongswan4-app-pluto/install
+-	$(INSTALL_DIR) $(1)/usr/lib/ipsec
+-	$(CP) $(PKG_INSTALL_DIR)/usr/lib/ipsec/{pluto,_pluto_adns,whack} $(1)/usr/lib/ipsec/
++	$(INSTALL_DIR) $(1)/opt/lib/ipsec
++	$(CP) $(PKG_INSTALL_DIR)/opt/lib/ipsec/{pluto,_pluto_adns,whack} $(1)/opt/lib/ipsec/
+ endef
+ 
+ 
+ define Package/strongswan4-libfast/install
+-	$(INSTALL_DIR) $(1)/usr/lib/ipsec
+-	$(CP) $(PKG_INSTALL_DIR)/usr/lib/ipsec/libfast.so.* $(1)/usr/lib/ipsec/
++	$(INSTALL_DIR) $(1)/opt/lib/ipsec
++	$(CP) $(PKG_INSTALL_DIR)/opt/lib/ipsec/libfast.so.* $(1)/opt/lib/ipsec/
+ endef
+ 
+ 
+ define Package/strongswan4-utils/install
+-	$(INSTALL_DIR) $(1)/usr/lib/ipsec
+-	$(CP) $(PKG_INSTALL_DIR)/usr/lib/ipsec/{openac,pki,scepclient} $(1)/usr/lib/ipsec/
++	$(INSTALL_DIR) $(1)/opt/lib/ipsec
++	$(CP) $(PKG_INSTALL_DIR)/opt/lib/ipsec/{openac,pki,scepclient} $(1)/opt/lib/ipsec/
+ endef
+ 
+ 
+ define Plugin/attr-sql/install
+-	$(INSTALL_DIR) $(1)/usr/lib/ipsec
+-	$(CP) $(PKG_INSTALL_DIR)/usr/lib/ipsec/pool $(1)/usr/lib/ipsec/
++	$(INSTALL_DIR) $(1)/opt/lib/ipsec
++	$(CP) $(PKG_INSTALL_DIR)/opt/lib/ipsec/pool $(1)/opt/lib/ipsec/
+ endef
+ 
+ define Plugin/updown/install
+-	$(INSTALL_DIR) $(1)/usr/lib/ipsec
+-	$(CP) $(PKG_INSTALL_DIR)/usr/lib/ipsec/{_updown,_updown_espmark} $(1)/usr/lib/ipsec/
++	$(INSTALL_DIR) $(1)/opt/lib/ipsec
++	$(CP) $(PKG_INSTALL_DIR)/opt/lib/ipsec/{_updown,_updown_espmark} $(1)/opt/lib/ipsec/
+ endef
+ 
+ 
