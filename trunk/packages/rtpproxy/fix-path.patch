@@ -1,0 +1,13 @@
+--- ../../../trunk_clean/feeds/packages/net/rtpproxy/Makefile	2012-04-02 11:00:38.068167594 +0400
++++ ../../../trunk/feeds/packages/net/rtpproxy/Makefile	2012-04-03 10:50:33.029876619 +0400
+@@ -31,8 +31,8 @@
+ # uses GNU configure
+ 
+ define Package/rtpproxy/install
+-	$(INSTALL_DIR) $(1)/usr/bin
+-	$(INSTALL_BIN) $(PKG_INSTALL_DIR)/usr/bin/rtpproxy $(1)/usr/bin/
++	$(INSTALL_DIR) $(1)/opt/bin
++	$(INSTALL_BIN) $(PKG_INSTALL_DIR)/opt/bin/rtpproxy $(1)/opt/bin/
+ endef
+ 
+ $(eval $(call BuildPackage,rtpproxy))
