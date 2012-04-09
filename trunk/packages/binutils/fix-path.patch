@@ -1,0 +1,61 @@
+--- ../../../trunk_clean/feeds/packages/devel/binutils/Makefile	2012-04-02 11:00:37.932169305 +0400
++++ ../../../trunk/feeds/packages/devel/binutils/Makefile	2012-04-09 15:21:45.168772577 +0400
+@@ -47,7 +47,7 @@
+ 		--target=$(REAL_GNU_TARGET_NAME) \
+ 		--host=$(REAL_GNU_TARGET_NAME) \
+ 		--build=$(GNU_HOST_NAME) \
+-		--prefix=/usr \
++		--prefix=/opt \
+ 		--disable-multilib \
+ 		--disable-werror \
+ 		--disable-nls \
+@@ -75,17 +75,17 @@
+ endef
+ 
+ define Build/InstallDev
+-	$(INSTALL_DIR) $(1)/usr/{lib,include}
++	$(INSTALL_DIR) $(1)/opt/{lib,include}
+ 	$(CP) \
+-		$(PKG_INSTALL_DIR)/usr/lib/* \
+-		$(1)/usr/lib/
++		$(PKG_INSTALL_DIR)/opt/lib/* \
++		$(1)/opt/lib/
+ 	$(CP) \
+ 		$(PKG_BUILD_DIR)/include/*.h \
+-		$(1)/usr/include/
++		$(1)/opt/include/
+ 	$(CP) \
+-		$(PKG_INSTALL_DIR)/usr/include/* \
+-		$(1)/usr/include/
+-	rm -f $(1)/usr/include/gdbm.h
++		$(PKG_INSTALL_DIR)/opt/include/* \
++		$(1)/opt/include/
++	rm -f $(1)/opt/include/gdbm.h
+ endef
+ 
+ define Build/Compile
+@@ -94,17 +94,16 @@
+ endef
+ 
+ define Package/objdump/install
+-	$(INSTALL_DIR) $(1)/usr/bin $(1)/usr/lib
+-	$(CP) $(PKG_INSTALL_DIR)/usr/bin/objdump $(1)/usr/bin/
+-	$(CP) $(PKG_INSTALL_DIR)/usr/lib/libopcodes*.so $(1)/usr/lib/
+-	$(CP) $(PKG_INSTALL_DIR)/usr/lib/libbfd*.so $(1)/usr/lib/
++	$(INSTALL_DIR) $(1)/opt/bin $(1)/opt/lib
++	$(CP) $(PKG_INSTALL_DIR)/opt/bin/objdump $(1)/opt/bin/
++	$(CP) $(PKG_INSTALL_DIR)/opt/lib/libopcodes*.so $(1)/opt/lib/
++	$(CP) $(PKG_INSTALL_DIR)/opt/lib/libbfd*.so $(1)/opt/lib/
+ endef
+ 
+ define Package/binutils/install
+-	$(INSTALL_DIR) $(1)/usr $(1)/bin
+-	$(CP) $(PKG_INSTALL_DIR)/usr/bin/ $(1)/usr/
+-	mv $(1)/usr/bin/strings $(1)/bin/strings
+-	rm -f $(1)/usr/bin/objdump
++	$(INSTALL_DIR) $(1)/opt/bin
++	$(CP) $(PKG_INSTALL_DIR)/opt/bin/ $(1)/opt
++	rm -f $(1)/opt/bin/objdump
+ endef
+ 
+ $(eval $(call BuildPackage,binutils))
