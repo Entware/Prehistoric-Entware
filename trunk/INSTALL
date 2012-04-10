@@ -3,10 +3,14 @@ These are generic installation instructions.
 Requirements
 ============
 
-- Linux compilation environment, mine is Ubuntu 11.10,
-- At least 12Gb of disk space,
-- Approx. 5 hours of free time to compile all stuff.
+- A generic Linux compilation environment, mine is Ubuntu 11.10:
+   $ sudo apt-get install autoconf automake bash bison bzip2 \
+   diffutils file flex g++ gawk groff libncurses-dev libtool \
+   libslang2 make patch perl sed shtool subversion tar texinfo \
+   zlib1g zlib1g-dev git-core gettext libexpat1-dev
 
+- At least 15Gb of disk space,
+- Approx. 5 hours of free time to compile all stuff.
 
 Building
 ========
