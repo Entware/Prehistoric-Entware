@@ -1,0 +1,156 @@
+--- ../../../trunk_clean/feeds/packages/net/apache/Makefile	2012-04-02 11:00:37.952169052 +0400
++++ ../../../trunk/feeds/packages/net/apache/Makefile	2012-04-10 14:10:47.397205132 +0400
+@@ -46,33 +46,23 @@
+ $(call Package/apache/Default/description)
+  .
+  This package contains the Apache web server and utility programs.
+- .
+- Take care that you don't include apache at the moment into your image
+- please select it only as module because busybox will override
+- /usr/sbin/httpd. It'll be solved soon. If you need to include this
+- package in the image anyway, remove httpd from busybox
+- (Base system --> Configuration --> Networking Utilities --> httpd).
+- Also you should take care for the initscripts, apache's httpd isn't
+- compatible with the one from busybox, so if you want to use apache
+- for running your webif, you'll need to change the parameters in the
+- scripts and configure the rest in /etc/httpd.conf.
+ endef
+ 
+ define Package/apache/conffiles
+-/etc/apache/httpd.conf
+-/etc/apache/extra/httpd-autoindex.conf
+-/etc/apache/extra/httpd-dav.conf
+-/etc/apache/extra/httpd-default.conf
+-/etc/apache/extra/httpd-info.conf
+-/etc/apache/extra/httpd-languages.conf
+-/etc/apache/extra/httpd-manual.conf
+-/etc/apache/extra/httpd-mpm.conf
+-/etc/apache/extra/httpd-multilang-errordoc.conf
+-/etc/apache/extra/httpd-ssl.conf
+-/etc/apache/extra/httpd-userdir.conf
+-/etc/apache/extra/httpd-vhosts.conf
+-/etc/apache/magic
+-/etc/apache/mime.types
++/opt/etc/apache/httpd.conf
++/opt/etc/apache/extra/httpd-autoindex.conf
++/opt/etc/apache/extra/httpd-dav.conf
++/opt/etc/apache/extra/httpd-default.conf
++/opt/etc/apache/extra/httpd-info.conf
++/opt/etc/apache/extra/httpd-languages.conf
++/opt/etc/apache/extra/httpd-manual.conf
++/opt/etc/apache/extra/httpd-mpm.conf
++/opt/etc/apache/extra/httpd-multilang-errordoc.conf
++/opt/etc/apache/extra/httpd-ssl.conf
++/opt/etc/apache/extra/httpd-userdir.conf
++/opt/etc/apache/extra/httpd-vhosts.conf
++/opt/etc/apache/magic
++/opt/etc/apache/mime.types
+ endef
+ 
+ define Package/apache-icons
+@@ -92,9 +82,9 @@
+ 
+ define Build/Configure
+ 	$(call Build/Configure/Default, \
+-		--with-apr="$(STAGING_DIR)/usr/bin/apr-1-config" \
+-		--with-apr-util="$(STAGING_DIR)/usr/bin/apu-1-config" \
+-		--with-pcre="$(STAGING_DIR)/usr/bin/pcre-config" \
++		--with-apr="$(STAGING_DIR)/opt/bin/apr-1-config" \
++		--with-apr-util="$(STAGING_DIR)/opt/bin/apu-1-config" \
++		--with-pcre="$(STAGING_DIR)/opt/bin/pcre-config" \
+ 		--enable-http \
+ 		--enable-ssl \
+ 		--enable-proxy \
+@@ -102,62 +92,49 @@
+ 		--enable-maintainer-mode \
+ 		--enable-mime-magic \
+ 		--without-suexec-bin \
+-		--sysconfdir=/etc/apache \
++		--sysconfdir=/opt/etc/apache \
+ 		ap_cv_void_ptr_lt_long=no \
+-		logfiledir="/var/log" \
+-		runtimedir="/var/run" \
++		logfiledir="/opt/var/log" \
++		runtimedir="/opt/var/run" \
+ 	)
+ endef
+ 
+ define Build/InstallDev
+-	rm -rf	$(PKG_INSTALL_DIR)/usr/man/ \
+-		$(PKG_INSTALL_DIR)/usr/share/manual/
++	rm -rf	$(PKG_INSTALL_DIR)/opt/man/ \
++		$(PKG_INSTALL_DIR)/opt/share/manual/
+ 	# if you need docs take a look into the build-dir :)
+-	$(INSTALL_DIR) $(1)/etc
+-	$(CP)   $(PKG_INSTALL_DIR)/etc/* \
+-		$(1)/etc
+-	$(INSTALL_DIR) $(1)/usr/include/apache
+-	$(CP)	$(PKG_INSTALL_DIR)/usr/include/* \
+-		$(1)/usr/include/apache
+-	$(INSTALL_DIR) $(1)/usr/lib
+-	$(CP)   $(PKG_INSTALL_DIR)/usr/lib/httpd.exp \
+-		$(1)/usr/lib
+-	$(INSTALL_DIR) $(1)/usr/sbin
+-	$(CP)   $(PKG_INSTALL_DIR)/usr/sbin/* \
+-		$(1)/usr/sbin
+-	$(INSTALL_DIR) $(1)/usr/share
+-	$(CP)   $(PKG_INSTALL_DIR)/usr/share/* \
+-		$(1)/usr/share
+-endef
+-
+-define Package/apache/preinst
+-	rm /usr/sbin/httpd
+-	echo -e "You should take a look in the initscripts, busybox's httpd \n\
+-	uses some parameters which are maybe unsupported by apache."
++	$(INSTALL_DIR) $(1)/opt/etc
++	$(CP)   $(PKG_INSTALL_DIR)/opt/etc/* \
++		$(1)/opt/etc
++	$(INSTALL_DIR) $(1)/opt/include/apache
++	$(CP)	$(PKG_INSTALL_DIR)/opt/include/* \
++		$(1)/opt/include/apache
++	$(INSTALL_DIR) $(1)/opt/lib
++	$(CP)   $(PKG_INSTALL_DIR)/opt/lib/httpd.exp \
++		$(1)/opt/lib
++	$(INSTALL_DIR) $(1)/opt/sbin
++	$(CP)   $(PKG_INSTALL_DIR)/opt/sbin/* \
++		$(1)/opt/sbin
++	$(INSTALL_DIR) $(1)/opt/share
++	$(CP)   $(PKG_INSTALL_DIR)/opt/share/* \
++		$(1)/opt/share
+ endef
+ 
+ define Package/apache/install
+-	$(INSTALL_DIR) $(1)/usr/sbin
++	$(INSTALL_DIR) $(1)/opt/sbin
+ 	# we don't need apxs on the router, it's just for building apache modules.
+-	$(INSTALL_BIN) $(PKG_INSTALL_DIR)/usr/sbin/{ab,apachectl,checkgid,dbmmanage,envvars,envvars-std,htcacheclean,htdbm,htdigest,htpasswd,httpd,httxt2dbm,logresolve,rotatelogs} $(1)/usr/sbin/
+-	$(INSTALL_DIR) $(1)/usr/lib
+-	$(CP) $(PKG_INSTALL_DIR)/usr/lib/httpd.exp $(1)/usr/lib/
+-	$(INSTALL_DIR) $(1)/usr/share
+-	$(CP) $(PKG_INSTALL_DIR)/usr/share/{error,htdocs,cgi-bin,build} $(1)/usr/share/
+-	$(INSTALL_DIR) $(1)/etc/apache
+-	$(CP) $(PKG_INSTALL_DIR)/etc/apache/{httpd.conf,magic,mime.types,extra} $(1)/etc/apache/
+-endef
+-
+-define Package/apache/postrm
+-	rm -rf /usr/sbin/httpd
+-	ln -s /bin/busybox /usr/sbin/httpd
+-	echo -e "You may need to change your initscripts back for the use \n\
+-		with busybox's httpd."
++	$(INSTALL_BIN) $(PKG_INSTALL_DIR)/opt/sbin/{ab,apachectl,checkgid,dbmmanage,envvars,envvars-std,htcacheclean,htdbm,htdigest,htpasswd,httpd,httxt2dbm,logresolve,rotatelogs} $(1)/opt/sbin/
++	$(INSTALL_DIR) $(1)/opt/lib
++	$(CP) $(PKG_INSTALL_DIR)/opt/lib/httpd.exp $(1)/opt/lib/
++	$(INSTALL_DIR) $(1)/opt/share
++	$(CP) $(PKG_INSTALL_DIR)/opt/share/{error,htdocs,cgi-bin,build} $(1)/opt/share/
++	$(INSTALL_DIR) $(1)/opt/etc/apache
++	$(CP) $(PKG_INSTALL_DIR)/opt/etc/apache/{httpd.conf,magic,mime.types,extra} $(1)/opt/etc/apache/
+ endef
+ 
+ define Package/apache-icons/install
+-	$(INSTALL_DIR) $(1)/usr/share
+-	$(CP) $(PKG_INSTALL_DIR)/usr/share/icons $(1)/usr/share/
++	$(INSTALL_DIR) $(1)/opt/share
++	$(CP) $(PKG_INSTALL_DIR)/opt/share/icons $(1)/opt/share/
+ endef
+ 
+ $(eval $(call BuildPackage,apache))
