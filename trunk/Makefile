@@ -33,9 +33,9 @@ buildroot: .buildroot_installed
 .buildroot_installed:
 	@echo Deploying OpenWRT Buildroot...
 	(cd ..; \
-#	svn co --revision=31050 svn://svn.openwrt.org/openwrt/trunk/ ./trunk; \
-	svn co svn://svn.openwrt.org/openwrt/trunk/ ./trunk; \
+	svn co --revision=31158 svn://svn.openwrt.org/openwrt/trunk/ ./trunk; \
 	cd ./trunk; \
+	cp -f ../rtn/buildroot/feeds.conf ./; \
 	./scripts/feeds update packages; \
 	./scripts/feeds install -a -p packages; \
 	cp -f ../rtn/buildroot/feeds.conf ./; \
