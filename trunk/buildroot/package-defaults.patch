@@ -5,7 +5,7 @@
  EXTRA_CXXFLAGS = $(EXTRA_CFLAGS)
  
 -CONFIGURE_PREFIX:=/usr
-+LINUX_DIR:=/media/BuildRepo/firmware-1.9.2.7-rtn-r3702/src/linux/linux-2.6
++LINUX_DIR:=/media/BuildRepo/kernel-1.9.2.7-rtn/src/linux/linux-2.6
 +CONFIGURE_PREFIX:=/opt
  CONFIGURE_ARGS = \
  		--target=$(GNU_TARGET_NAME) \

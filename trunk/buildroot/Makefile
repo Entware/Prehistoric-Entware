@@ -9,13 +9,13 @@ include ../config.mk
 all: .done
 
 .done:
-	tar -C ../../trunk -xvf ./rtn-target.tgz
+	tar -C ../../trunk -xvf ./entware-target.tgz
 	patch -p0 -i ./package-ipkg.patch
 	patch -p0 -i ./nls.patch
 	patch -p0 -i ./cmake.patch
 	@echo Warning: See ./include/package-defaults.mk for absolute path to linux kernel
 	patch -p0 -i ./package-defaults.patch
-	sed -i 's,/media/BuildRepo/firmware-1.9.2.7-rtn-r3702/src/linux/linux-2.6,${CURDIR}/../../firmware-1.9.2.7-rtn-$(FIRMWARE_REVISION)/src/linux/linux-2.6,g' ../../trunk/include/package-defaults.mk
+	sed -i 's,/media/BuildRepo/kernel-1.9.2.7-rtn/src/linux/linux-2.6,${CURDIR}/../../kernel-1.9.2.7-rtn/src/linux/linux-2.6,g' ../../trunk/include/package-defaults.mk
 	patch -p0 -i ./rules.patch
 	patch -p0 -i ./autotools.patch
 	patch -p0 -i ./sdk-rules.patch

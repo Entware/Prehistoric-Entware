@@ -6,18 +6,19 @@
 #
 include ../config.mk
 
-all: .firmware_prepared .toolchain_compiled
+all: .kernel_prepared .toolchain_compiled
 
-firmware_prepare: .firmware_prepared
-.firmware_prepared:
-	@echo Installing firmware, revision $(FIRMWARE_REVISION)...
-	svn checkout --revision $(FIRMWARE_REVISION) http://wl500g.googlecode.com/svn/trunk/ ../../firmware-1.9.2.7-rtn-$(FIRMWARE_REVISION)/src/1.9.2.7-rtn
-	mkdir ../../firmware-1.9.2.7-rtn-$(FIRMWARE_REVISION)/src/linux
-	wget http://wl500g.googlecode.com/files/linux-2.6.22.19.tar.bz2 -O ../../firmware-1.9.2.7-rtn-$(FIRMWARE_REVISION)/src/linux/linux-2.6.22.19.tar.bz2
-	tar -C ../../firmware-1.9.2.7-rtn-$(FIRMWARE_REVISION)/src/linux -jxvf ../../firmware-1.9.2.7-rtn-$(FIRMWARE_REVISION)/src/linux/linux-2.6.22.19.tar.bz2
-	ln -sf linux-2.6.22.19 ../../firmware-1.9.2.7-rtn-$(FIRMWARE_REVISION)/src/linux/linux-2.6
-	make -C "../../firmware-1.9.2.7-rtn-$(FIRMWARE_REVISION)/src/1.9.2.7-rtn" kernel
-	make -C "../../firmware-1.9.2.7-rtn-$(FIRMWARE_REVISION)/src/1.9.2.7-rtn"
+kernel_prepare: .kernel_prepared
+.kernel_prepared:
+	@echo Deploying kernel sources, $(TOOLCHAIN_REVISION)...
+	svn checkout --revision $(TOOLCHAIN_REVISION) http://wl500g.googlecode.com/svn/trunk/ ../../kernel-1.9.2.7-rtn/src/1.9.2.7-rtn
+	mkdir ../../kernel-1.9.2.7-rtn/src/linux
+	wget http://wl500g.googlecode.com/files/linux-2.6.22.19.tar.bz2 -O ../../kernel-1.9.2.7-rtn/src/linux/linux-2.6.22.19.tar.bz2
+	tar -C ../../kernel-1.9.2.7-rtn/src/linux -jxvf ../../kernel-1.9.2.7-rtn/src/linux/linux-2.6.22.19.tar.bz2
+	ln -sf linux-2.6.22.19 ../../kernel-1.9.2.7-rtn/src/linux/linux-2.6
+	(cd ../../kernel-1.9.2.7-rtn/src/1.9.2.7-rtn; \
+	make kernel; \
+	make)
 	touch $@
 
 toolchain_compile: .toolchain_compiled
@@ -26,26 +27,21 @@ toolchain_compile: .toolchain_compiled
 	sudo mkdir -p /opt/brcm
 	@echo chmod /opt/brcm directory for all users access, root password needed...
 	sudo chmod 777 /opt/brcm
-	@echo Downloading toolchain sources, revision $(TOOLCHAIN_REVISION)...
-	svn checkout --revision $(TOOLCHAIN_REVISION) http://wl500g.googlecode.com/svn/toolchain ../../toolchain-1.9.2.7-rtn-$(TOOLCHAIN_REVISION)/src
-	cp -f ../../toolchain-1.9.2.7-rtn-$(TOOLCHAIN_REVISION)/src/defconfig ../../toolchain-1.9.2.7-rtn-$(TOOLCHAIN_REVISION)/src/.config
-	sed -i 's,/home/lly/Wl500/rt-n/linux/linux-2.6/,${CURDIR}/../../firmware-1.9.2.7-rtn-$(FIRMWARE_REVISION)/src/linux/linux-2.6,g' ../../toolchain-1.9.2.7-rtn-$(TOOLCHAIN_REVISION)/src/.config
-	cp -f ./*-uclibc-*.patch  ../../toolchain-1.9.2.7-rtn-$(TOOLCHAIN_REVISION)/src/toolchain/uClibc/patches/0.9.32/
-	sed -i 's,# UCLIBC_STATIC_LDCONFIG is not set,UCLIBC_STATIC_LDCONFIG=y,g' ../../toolchain-1.9.2.7-rtn-$(TOOLCHAIN_REVISION)/src/toolchain/uClibc/config/0.9.32/common
-	sed -i 's,# UCLIBC_HAS_LOCALE is not set,UCLIBC_HAS_LOCALE=y,g' ../../toolchain-1.9.2.7-rtn-$(TOOLCHAIN_REVISION)/src/toolchain/uClibc/config/0.9.32/common
-	sed -i '/UCLIBC_HAS_LOCALE=y/ a UCLIBC_BUILD_ALL_LOCALE=y' ../../toolchain-1.9.2.7-rtn-$(TOOLCHAIN_REVISION)/src/toolchain/uClibc/config/0.9.32/common
-	sed -i '/UCLIBC_BUILD_ALL_LOCALE=y/ a # UCLIBC_BUILD_MINIMAL_LOCALE is not set' ../../toolchain-1.9.2.7-rtn-$(TOOLCHAIN_REVISION)/src/toolchain/uClibc/config/0.9.32/common
-	sed -i '/# UCLIBC_BUILD_MINIMAL_LOCALE is not set/ a # UCLIBC_PREGENERATED_LOCALE_DATA is not set' ../../toolchain-1.9.2.7-rtn-$(TOOLCHAIN_REVISION)/src/toolchain/uClibc/config/0.9.32/common
-	sed -i '/# UCLIBC_PREGENERATED_LOCALE_DATA is not set/ a # UCLIBC_HAS_XLOCALE is not set' ../../toolchain-1.9.2.7-rtn-$(TOOLCHAIN_REVISION)/src/toolchain/uClibc/config/0.9.32/common
-	sed -i '/# UCLIBC_HAS_XLOCALE is not set/ a UCLIBC_HAS_HEXADECIMAL_FLOATS=y' ../../toolchain-1.9.2.7-rtn-$(TOOLCHAIN_REVISION)/src/toolchain/uClibc/config/0.9.32/common
-	sed -i '/UCLIBC_HAS_HEXADECIMAL_FLOATS=y/ a # UCLIBC_HAS_GLIBC_DIGIT_GROUPING is not set' ../../toolchain-1.9.2.7-rtn-$(TOOLCHAIN_REVISION)/src/toolchain/uClibc/config/0.9.32/common
-	@echo Compiling toolchain, revision $(TOOLCHAIN_REVISION)...
-	make -C "../../toolchain-1.9.2.7-rtn-$(TOOLCHAIN_REVISION)/src" V=99
+	@echo Downloading toolchain sources, $(TOOLCHAIN_REVISION)...
+	svn checkout --revision $(TOOLCHAIN_REVISION) http://wl500g.googlecode.com/svn/toolchain ../../toolchain-1.9.2.7-rtn/src
+	cp -f ../../toolchain-1.9.2.7-rtn/src/defconfig ../../toolchain-1.9.2.7-rtn/src/.config
+	sed -i 's,/home/lly/Wl500/rt-n/linux/linux-2.6/,${CURDIR}/../../kernel-1.9.2.7-rtn/src/linux/linux-2.6,g' ../../toolchain-1.9.2.7-rtn/src/.config
+	cp -f ./*-uclibc-*.patch  ../../toolchain-1.9.2.7-rtn/src/toolchain/uClibc/patches/0.9.32/
+	patch -p0 -i ./0.9.32-config.patch
+	@echo Compiling toolchain...
+	(cd ../../toolchain-1.9.2.7-rtn/src; \
+	make V=99)
 	ln -sf /opt/brcm/hndtools-mipsel-uclibc-4.5.3-K26 /opt/brcm/hndtools-mipsel-uclibc
+	@echo Toolchain compilation finished.
 	touch $@
 
 clean:
-	rm -f ./.firmware_prepared
+	rm -f ./.kernel_prepared
 	rm -f ./.toolchain_compiled
 
 .PHONY : clean

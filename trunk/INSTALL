@@ -9,7 +9,7 @@ Requirements
    libslang2 make patch perl sed shtool subversion tar texinfo \
    zlib1g zlib1g-dev git-core gettext libexpat1-dev
 
-- At least 15Gb of disk space,
+- At least 20Gb of disk space,
 - Approx. 5 hours of free time to compile all stuff.
 
 Building
@@ -22,8 +22,8 @@ $ cd ./rtn
 $ make
 
     Building repo goes through a several stages:
-- downloading firmware sources from http://code.google.com/p/wl500g/
-- configuring firmware according to http://code.google.com/p/wl500g/wiki/CompilingCustomFirmware?wl=en
+- downloading firmwares sources from http://code.google.com/p/wl500g/ for a patched 2.6.22.19 kernel
+- configuring kernel sources according to http://code.google.com/p/wl500g/wiki/CompilingCustomFirmware?wl=en
 - downloading, patching and compiling toolchain from http://code.google.com/p/wl500g/source/browse/#svn%2Ftoolchain
 - deploying and patching OpenWRT Buildroot, refer to http://wiki.openwrt.org/about/toolchain
 - compiling software packages
@@ -31,7 +31,3 @@ $ make
     If building fails, see whats wrong in a current target from Makefile.
 
     ipk-packages can be found at ~/openwrt/bin/entware/packages directory.
-    Scripts was tested with following OpenWRT revisions:
-
-- OpenWRT buildroot revision 31158,
-- OpenWRT packages feed revision 31158.

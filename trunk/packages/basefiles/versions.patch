@@ -1,0 +1,32 @@
+--- ../../../trunk/package/base-files/Makefile.orig	2012-04-11 10:25:41.627502416 +0400
++++ ../../../trunk/package/base-files/Makefile	2012-04-11 10:33:56.792071127 +0400
+@@ -10,26 +10,15 @@
+ include $(INCLUDE_DIR)/kernel.mk
+ 
+ PKG_NAME:=base-files
+-PKG_RELEASE:=104
++PKG_RELEASE:=1
+ 
+ PKG_FILE_DEPENDS:=$(PLATFORM_DIR)/ $(GENERIC_PLATFORM_DIR)/base-files/
+ PKG_BUILD_DEPENDS:=opkg/host
+ 
+ include $(INCLUDE_DIR)/package.mk
+ 
+-ifneq ($(DUMP),1)
+-  TARGET:=-$(BOARD)
+-  ifneq ($(wildcard $(PLATFORM_DIR)/base-files-$(PROFILE) $(PLATFORM_SUBDIR)/base-files-$(PROFILE)),)
+-    TARGET:=$(TARGET)-$(PROFILE)
+-  endif
+-  LIBGCC_VERSION:=$(GCC_VERSION)
+-  ifneq ($(findstring $(ARCH) , mips64 x86_64 ),)
+-    LIB_SUFFIX:=64
+-  endif
+-else
+-  LIBC_VERSION:=<LIBC_VERSION>
+-  LIBGCC_VERSION:=<LIBGCC_VERSION>
+-endif
++LIBC_VERSION:=0.9.32
++LIBGCC_VERSION:=4.5.3
+ 
+ define Package/base-files
+   SECTION:=base

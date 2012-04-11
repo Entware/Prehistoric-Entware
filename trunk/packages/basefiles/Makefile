@@ -10,6 +10,8 @@ all: ./.done
 
 ./.done:
 	patch -p0 -i ./fix-path.patch
+	patch -p0 -i ./versions.patch
+	@echo Check uClibc/GCC versions in a package names.
 	touch $@
 
 clean:

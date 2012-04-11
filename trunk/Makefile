@@ -1,16 +1,13 @@
-# Makefile for OpenWrt Buildroot. It fixes buildroot and its packages for using on Asus RT-Nxx with wl500g.googlecode.com firmware
+# Makefile for a Entware repository building.
+# It creates an OpenWRT packages for using /opt folder on various firmwares.
 #
-# Copyright (C) 2011 Ryzhov Alexander
-# 
+# Copyright (C) 2011, 2012 Ryzhov Alexander
+#
 # This is free software, licensed under the GNU General Public License v2.
 #
 include ./config.mk
 
-#RTN_TOOLCHAIN_FILENAME is a temporary solution. Will be deprecated after toolchain compilation.
-RTN_TOOLCHAIN_FILENAME:=hndtools-mipsel-uclibc-4.4.6-K26-x86_64-r3458.tar.bz2
-
 all: .toolchain_installed .buildroot_installed .packages_prepared .packages_compiled
-#all: .toolchain_downloaded .buildroot_installed .packages_prepared .packages_compiled
 
 packages_compile: .packages_compiled
 .packages_compiled:
@@ -32,13 +29,12 @@ packages: .packages_prepared
 buildroot: .buildroot_installed
 .buildroot_installed:
 	@echo Deploying OpenWRT Buildroot...
-	(cd ..; \
-	svn co --revision=31158 svn://svn.openwrt.org/openwrt/trunk/ ./trunk; \
-	cd ./trunk; \
-	cp -f ../rtn/buildroot/feeds.conf ./; \
+	svn co --revision=$(OPENWRT_REVISION) svn://svn.openwrt.org/openwrt/trunk/ ../trunk
+	cp -f ./buildroot/feeds.conf ../trunk
+	sed -i 's,packages@XXXXX,packages@${OPENWRT_REVISION},g' ../trunk/feeds.conf
+	(cd ../trunk; \
 	./scripts/feeds update packages; \
 	./scripts/feeds install -a -p packages; \
-	cp -f ../rtn/buildroot/feeds.conf ./; \
 	./scripts/feeds update rtndev; \
 	./scripts/feeds install -a -p rtndev)
 ifeq ($(BUILDROOT_BACKUP),yes)
@@ -51,18 +47,6 @@ endif
 toolchain: .toolchain_installed
 .toolchain_installed:
 	make -C "./toolchain"
-	touch $@
-
-toolchain_download: .toolchain_downloaded
-.toolchain_downloaded:
-	@echo Making /opt/brcm directory, root password needed...
-	sudo mkdir -p /opt/brcm
-	@echo chmod /opt/brcm directory for all users access, root password needed...
-	sudo chmod 777 /opt/brcm
-	wget http://wl500g.googlecode.com/files/$(RTN_TOOLCHAIN_FILENAME)
-	tar -C /opt/brcm -jxvf ./$(RTN_TOOLCHAIN_FILENAME)
-	ln -sf /opt/brcm/hndtools-mipsel-uclibc-4.4.6-K26 /opt/brcm/hndtools-mipsel-uclibc
-	rm -f ./$(RTN_TOOLCHAIN_FILENAME)
 	touch $@
 
 clean:
