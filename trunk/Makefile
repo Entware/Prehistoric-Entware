@@ -49,6 +49,11 @@ toolchain: .toolchain_installed
 	make -C "./toolchain"
 	touch $@
 
+toolchain_pack: .toolchain_installed .toolchain_packed
+.toolchain_packed:
+	tar -cvzf ../entware-hndtools-mipsel-uclibc-$(TOOLCHAIN_REVISION).tar.bz2 /opt/brcm/
+	touch $@
+
 clean:
 	@for dir in `ls ./packages`; do ( \
 	    make -C "./packages/$$dir" clean; \
@@ -59,6 +64,7 @@ clean:
 	make -C "./toolchain" clean
 	rm -f .toolchain_installed
 	rm -f .toolchain_downloaded
+	rm -f .toolchain_packed
 	rm -f .packages_compiled
 
 .PHONY : clean
