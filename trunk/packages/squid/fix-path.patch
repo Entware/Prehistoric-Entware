@@ -1,0 +1,87 @@
+--- ../../../trunk_clean/feeds/packages/net/squid/Makefile	2012-04-11 12:16:06.364112400 +0400
++++ ../../../trunk/feeds/packages/net/squid/Makefile	2012-04-14 19:53:48.125730144 +0400
+@@ -39,8 +39,8 @@
+ endef
+ 
+ define Package/squid/conffiles
+-/etc/squid/mime.conf
+-/etc/squid/squid.conf
++/opt/etc/squid/mime.conf
++/opt/etc/squid/squid.conf
+ endef
+ 
+ define Package/squid-mod-cachemgr
+@@ -98,9 +98,9 @@
+ endef
+ 
+ CONFIGURE_ARGS += \
+-	--datadir=/usr/share/squid \
+-	--libexecdir=/usr/lib/squid \
+-	--sysconfdir=/etc/squid \
++	--datadir=/opt/share/squid \
++	--libexecdir=/opt/lib/squid \
++	--sysconfdir=/opt/etc/squid \
+ 	--enable-shared \
+ 	--enable-static \
+ 	--enable-x-accelerator-vary \
+@@ -121,7 +121,7 @@
+ 	--enable-referer-log \
+ 	--enable-delay-pools \
+ 	--enable-useragent-log \
+-	--with-openssl=$(STAGING_DIR)/usr \
++	--with-openssl=$(STAGING_DIR)/opt \
+ 	--enable-auth="basic digest ntlm" \
+ 	--enable-basic-auth-helpers="getpwnam NCSA SMB" \
+ 	--enable-ntlm-auth-helpers="fakeauth SMB" \
+@@ -139,36 +139,38 @@
+ define Build/Compile
+ 	# pass INCLUDES to compile host sources against our OpenSSL, not the host one
+ 	$(MAKE) -C $(PKG_BUILD_DIR)/lib \
++		$(MAKE_VARS) \
+ 		all
+ 	$(MAKE) -C $(PKG_BUILD_DIR) \
++		$(MAKE_VARS) \
+ 		DESTDIR="$(PKG_INSTALL_DIR)" \
+ 		install
+ endef
+ 
+ define BuildPlugin
+   define Package/$(1)/install
+-	$(INSTALL_DIR) $$(1)/usr/lib/squid
+-	$(CP) $(PKG_INSTALL_DIR)/usr/lib/squid/$(2) $$(1)/usr/lib/squid/
++	$(INSTALL_DIR) $$(1)/opt/lib/squid
++	$(CP) $(PKG_INSTALL_DIR)/opt/lib/squid/$(2) $$(1)/opt/lib/squid/
+   endef
+ 
+   $$(eval $$(call BuildPackage,$(1)))
+ endef
+ 
+ define Package/squid/install
+-	$(INSTALL_DIR) $(1)/etc/squid
+-	$(CP) $(PKG_INSTALL_DIR)/etc/squid/mime.conf $(1)/etc/squid/
+-	$(CP) $(PKG_INSTALL_DIR)/etc/squid/squid.conf $(1)/etc/squid/
+-	$(INSTALL_DIR) $(1)/usr/share/squid
+-	$(CP) $(PKG_INSTALL_DIR)/usr/share/squid/* $(1)/usr/share/squid/
+-	$(INSTALL_DIR) $(1)/usr/sbin
+-	$(INSTALL_BIN) $(PKG_INSTALL_DIR)/usr/sbin/squid $(1)/usr/sbin/
+-	$(INSTALL_DIR) $(1)/usr/lib/squid
+-	$(CP) $(PKG_INSTALL_DIR)/usr/lib/squid/{unlinkd,pinger,logfile-daemon} $(1)/usr/lib/squid/
++	$(INSTALL_DIR) $(1)/opt/etc/squid
++	$(CP) $(PKG_INSTALL_DIR)/opt/etc/squid/mime.conf $(1)/opt/etc/squid/
++	$(CP) $(PKG_INSTALL_DIR)/opt/etc/squid/squid.conf $(1)/opt/etc/squid/
++	$(INSTALL_DIR) $(1)/opt/share/squid
++	$(CP) $(PKG_INSTALL_DIR)/opt/share/squid/* $(1)/opt/share/squid/
++	$(INSTALL_DIR) $(1)/opt/sbin
++	$(INSTALL_BIN) $(PKG_INSTALL_DIR)/opt/sbin/squid $(1)/opt/sbin/
++	$(INSTALL_DIR) $(1)/opt/lib/squid
++	$(CP) $(PKG_INSTALL_DIR)/opt/lib/squid/{unlinkd,pinger,logfile-daemon} $(1)/opt/lib/squid/
+ endef
+ 
+ define Package/squid-mod-cachemgr/install
+-	$(INSTALL_DIR) $(1)/www/cgi-bin/
+-	$(CP) $(PKG_INSTALL_DIR)/usr/lib/squid/cachemgr.cgi $(1)/www/cgi-bin/
++	$(INSTALL_DIR) $(1)/opt/share/www/cgi-bin/
++	$(CP) $(PKG_INSTALL_DIR)/opt/lib/squid/cachemgr.cgi $(1)/opt/share/www/cgi-bin/
+ endef
+ 
+ $(eval $(call RequireHeader,/usr/include/openssl/ssl.h, \
