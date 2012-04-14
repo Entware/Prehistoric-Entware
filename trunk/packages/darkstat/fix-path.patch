@@ -1,5 +1,22 @@
---- ../../../backup/trunk_clean/feeds/packages/net/darkstat/Makefile	2011-12-05 10:46:14.000000000 +0400
-+++ ../../../trunk/feeds/packages/net/darkstat/Makefile	2011-12-05 12:39:07.450896244 +0400
+diff -urx .svn ../../../trunk_clean/feeds/packages/net/darkstat//Makefile ../../../trunk/feeds/packages/net/darkstat//Makefile
+--- ../../../trunk_clean/feeds/packages/net/darkstat//Makefile	2012-04-13 03:04:40.871095420 +0400
++++ ../../../trunk/feeds/packages/net/darkstat//Makefile	2012-04-14 08:29:33.520590153 +0400
+@@ -8,12 +8,12 @@
+ include $(TOPDIR)/rules.mk
+ 
+ PKG_NAME:=darkstat
+-PKG_VERSION:=3.0.714
+-PKG_RELEASE:=2
++PKG_VERSION:=3.0.715
++PKG_RELEASE:=1
+ 
+ PKG_SOURCE:=$(PKG_NAME)-$(PKG_VERSION).tar.bz2
+ PKG_SOURCE_URL:=http://dmr.ath.cx/net/darkstat
+-PKG_MD5SUM:=eef385fadc8dbb611d3d4c4d8fa94817
++PKG_MD5SUM:=5b7abc7538dcd8e30667dac150e81d77
+ 
+ PKG_INSTALL:=1
+ 
 @@ -33,13 +33,13 @@
  over HTTP.
  endef
@@ -18,7 +35,7 @@
  
  TARGET_CFLAGS += -std=gnu99
  
-@@ -50,12 +50,12 @@
+@@ -50,12 +50,13 @@
  endef
  
  define Package/darkstat/install
@@ -28,6 +45,7 @@
 -	$(INSTALL_BIN) ./files/darkstat.init $(1)/etc/init.d/darkstat
 -	$(INSTALL_DIR) $(1)/etc/config
 -	$(INSTALL_CONF) ./files/darkstat.config $(1)/etc/config/darkstat
++	$(INSTALL_DIR) $(1)/opt/var/empty
 +	$(INSTALL_DIR) $(1)/opt/bin
 +	$(INSTALL_BIN) $(PKG_INSTALL_DIR)/opt/sbin/darkstat $(1)/opt/bin/
 +#	$(INSTALL_DIR) $(1)/etc/init.d
