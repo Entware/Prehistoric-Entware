@@ -1,6 +1,6 @@
---- ../../../trunk_clean/feeds/packages/libs/libtorrent/Makefile	2012-03-21 16:34:44.508788917 +0400
-+++ ../../../trunk/feeds/packages/libs/libtorrent/Makefile	2012-03-31 14:38:49.667230213 +0400
-@@ -8,12 +8,14 @@
+--- ../../../trunk_clean/feeds/packages/libs/libtorrent/Makefile	2012-04-11 12:16:18.855955383 +0400
++++ ../../../trunk/feeds/packages/libs/libtorrent/Makefile	2012-04-18 13:23:28.768475146 +0400
+@@ -8,12 +8,12 @@
  include $(TOPDIR)/rules.mk
  
  PKG_NAME:=libtorrent
@@ -9,32 +9,29 @@
  PKG_RELEASE:=1
  
  PKG_SOURCE:=$(PKG_NAME)-$(PKG_VERSION).tar.gz
--PKG_SOURCE_URL:=http://libtorrent.rakshasa.no/downloads
+ PKG_SOURCE_URL:=http://libtorrent.rakshasa.no/downloads
 -PKG_MD5SUM:=037499ed708aaf72988cee60e5a8d96b
-+PKG_SOURCE_SUBDIR:=$(PKG_NAME)-$(PKG_VERSION)
-+PKG_SOURCE_URL:=git://github.com/rakshasa/libtorrent.git
-+PKG_SOURCE_VERSION:=4c9de3c2fba4f1e2a1497716571dbec7f00cddbb
-+
++PKG_MD5SUM:=6b21a0c7ab02677421ce4cfffaa4c4ec
  
  PKG_FIXUP:=libtool
  PKG_BUILD_PARALLEL:=1
-@@ -40,6 +42,7 @@
+@@ -40,13 +40,13 @@
  
  TARGET_CPPFLAGS += -fno-strict-aliasing -fno-inline
  TARGET_LDFLAGS += $(LIBGCC_S)
 +TARGET_CFLAGS= -pipe -mips32 -mtune=mips32
  
  CONFIGURE_ARGS+= \
- 	--enable-shared \
-@@ -47,6 +50,7 @@
+-	--enable-shared \
+-	--enable-static \
  	--enable-aligned \
  	--disable-debug \
  	--enable-openssl \
-+	--with-posix-fallocate \
++	--with-posix-fallocate
  
  define Build/Configure
  	( cd $(PKG_BUILD_DIR); ./autogen.sh );
-@@ -54,17 +58,17 @@
+@@ -54,17 +54,17 @@
  endef
  
  define Build/InstallDev
@@ -47,7 +44,7 @@
 +	$(INSTALL_DIR) $(1)/opt/include
 +	$(CP) $(PKG_INSTALL_DIR)/opt/include/torrent $(1)/opt/include/
 +	$(INSTALL_DIR) $(1)/opt/lib
-+	$(CP) $(PKG_INSTALL_DIR)/opt/lib/libtorrent.{a,so*} $(1)/opt/lib/
++	$(CP) $(PKG_INSTALL_DIR)/opt/lib/libtorrent.so* $(1)/opt/lib/
 +	$(INSTALL_DIR) $(1)/opt/lib/pkgconfig
 +	$(CP) $(PKG_INSTALL_DIR)/opt/lib/pkgconfig/libtorrent.pc $(1)/opt/lib/pkgconfig/
  endef
