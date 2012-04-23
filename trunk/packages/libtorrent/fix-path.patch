@@ -1,17 +1,17 @@
 --- ../../../trunk_clean/feeds/packages/libs/libtorrent/Makefile	2012-04-11 12:16:18.855955383 +0400
-+++ ../../../trunk/feeds/packages/libs/libtorrent/Makefile	2012-04-18 13:23:28.768475146 +0400
++++ ../../../trunk/feeds/packages/libs/libtorrent/Makefile	2012-04-23 16:25:22.419596146 +0400
 @@ -8,12 +8,12 @@
  include $(TOPDIR)/rules.mk
  
  PKG_NAME:=libtorrent
 -PKG_VERSION:=0.12.6
-+PKG_VERSION:=0.13.1
++PKG_VERSION:=0.13.2
  PKG_RELEASE:=1
  
  PKG_SOURCE:=$(PKG_NAME)-$(PKG_VERSION).tar.gz
  PKG_SOURCE_URL:=http://libtorrent.rakshasa.no/downloads
 -PKG_MD5SUM:=037499ed708aaf72988cee60e5a8d96b
-+PKG_MD5SUM:=6b21a0c7ab02677421ce4cfffaa4c4ec
++PKG_MD5SUM:=96c0b81501357df402ab592f59ecaeab
  
  PKG_FIXUP:=libtool
  PKG_BUILD_PARALLEL:=1
