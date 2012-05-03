@@ -1,5 +1,5 @@
---- ../../../backup/trunk_clean/feeds/packages/utils/rrdtool/Makefile	2011-11-28 10:56:53.000000000 +0400
-+++ ../../../trunk/feeds/packages/utils/rrdtool/Makefile	2011-11-28 16:41:47.806216678 +0400
+--- ../../../trunk_clean/feeds/packages/utils/rrdtool/Makefile	2012-05-02 16:17:35.154278152 +0400
++++ ../../../trunk/feeds/packages/utils/rrdtool/Makefile	2012-05-03 08:32:13.277473092 +0400
 @@ -74,7 +74,7 @@
  	--disable-tcl \
  	--disable-ruby \
@@ -9,7 +9,16 @@
  
  CONFIGURE_VARS += \
  	rd_cv_ieee_works=yes \
-@@ -102,30 +102,30 @@
+@@ -96,36 +96,39 @@
+   CONFIGURE_ARGS += --disable-python
+ endif
+ 
++TARGET_LDFLAGS += \
++	-Wl,-rpath-link=$(STAGING_DIR)/opt/lib
++
+ define Build/Compile
+ 	$(if $(Build/Compile/PyMod),,@echo Python packaging code not found.; false)
+ 	$(call Build/Compile/Default)
  endef
  
  define Build/InstallDev

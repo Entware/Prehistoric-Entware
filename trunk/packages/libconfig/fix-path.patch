@@ -1,6 +1,6 @@
---- ../../../backup/trunk_clean/feeds/packages/libs/libconfig/Makefile	2011-11-25 09:50:01.016811398 +0400
-+++ ../../../trunk/feeds/packages/libs/libconfig/Makefile	2011-11-26 23:04:55.329722012 +0400
-@@ -45,15 +45,15 @@
+--- ../../../trunk_clean/feeds/packages/libs/libconfig/Makefile	2012-05-02 16:17:23.838420410 +0400
++++ ../../../trunk/feeds/packages/libs/libconfig/Makefile	2012-05-02 17:42:42.241230254 +0400
+@@ -45,17 +45,17 @@
  	--disable-cxx
  
  define Build/InstallDev
@@ -8,17 +8,21 @@
 -	$(CP) $(PKG_INSTALL_DIR)/usr/include/libconfig.h $(1)/usr/include/
 -	$(INSTALL_DIR) $(1)/usr/lib
 -	$(CP) $(PKG_INSTALL_DIR)/usr/lib/libconfig.{a,so*} $(1)/usr/lib/
+-	$(INSTALL_DIR) $(1)/usr/lib/pkgconfig
+-	$(CP) $(PKG_INSTALL_DIR)/usr/lib/pkgconfig/libconfig.pc $(1)/usr/lib/pkgconfig/
 +	$(INSTALL_DIR) $(1)/opt/include
 +	$(CP) $(PKG_INSTALL_DIR)/opt/include/libconfig.h $(1)/opt/include/
 +	$(INSTALL_DIR) $(1)/opt/lib
 +	$(CP) $(PKG_INSTALL_DIR)/opt/lib/libconfig.{a,so*} $(1)/opt/lib/
++	$(INSTALL_DIR) $(1)/opt/lib/pkgconfig
++	$(CP) $(PKG_INSTALL_DIR)/opt/lib/pkgconfig/libconfig.pc $(1)/opt/lib/pkgconfig/
  endef
  
  define Package/libconfig/install
 -	$(INSTALL_DIR) $(1)/usr/lib
--	$(CP) $(PKG_INSTALL_DIR)/usr/lib/libconfig.so.* $(1)/usr/lib/
+-	$(CP) $(PKG_INSTALL_DIR)/usr/lib/libconfig.so* $(1)/usr/lib/
 +	$(INSTALL_DIR) $(1)/opt/lib
-+	$(CP) $(PKG_INSTALL_DIR)/opt/lib/libconfig.so.* $(1)/opt/lib/
++	$(CP) $(PKG_INSTALL_DIR)/opt/lib/libconfig.so* $(1)/opt/lib/
  endef
  
  $(eval $(call BuildPackage,libconfig))

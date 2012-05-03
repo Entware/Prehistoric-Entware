@@ -1,6 +1,6 @@
---- ../../../trunk_clean/package/opkg/Makefile	2012-03-21 16:34:54.945873777 +0400
-+++ ../../../trunk/package/opkg/Makefile	2012-03-26 12:51:16.900315706 +0400
-@@ -26,6 +26,7 @@
+--- ../../../trunk_clean/package/opkg/Makefile	2012-05-02 16:17:35.442274532 +0400
++++ ../../../trunk/package/opkg/Makefile	2012-05-02 17:54:36.788247338 +0400
+@@ -27,6 +27,7 @@
  define Package/opkg
    SECTION:=base
    CATEGORY:=Base system
@@ -8,7 +8,7 @@
    TITLE:=opkg package management system
    MAINTAINER:=Jo-Philipp Wich <xm@subsignal.org>
    URL:=http://wiki.openmoko.org/wiki/Opkg
-@@ -42,40 +43,41 @@
+@@ -43,40 +44,39 @@
  endef
  
  define Package/opkg/conffiles
@@ -43,16 +43,14 @@
 -	$(INSTALL_DIR) $(1)/bin
 -	$(INSTALL_DIR) $(1)/etc
 -	$(INSTALL_DATA) ./files/opkg.conf $(1)/etc/
--	$(SED) 's,$$$$S,$(PKGARCH),g' $(1)/etc/opkg.conf
+-	$(VERSION_SED) $(1)/etc/opkg.conf
 -	$(INSTALL_BIN) $(PKG_INSTALL_DIR)/usr/bin/opkg-cl $(1)/bin/opkg
 +	$(INSTALL_DIR) $(1)/opt/lib/opkg
 +	$(INSTALL_DIR) $(1)/opt/bin
 +	$(INSTALL_DIR) $(1)/opt/etc
 +	$(INSTALL_DIR) $(1)/opt/tmp
-+	$(INSTALL_DIR) $(1)/opt/var
 +	$(INSTALL_DIR) $(1)/opt/var/lock
 +	$(INSTALL_DATA) ./files/opkg.conf $(1)/opt/etc/
-+	$(SED) 's,$$$$S,$(PKGARCH),g' $(1)/opt/etc/opkg.conf
 +	$(INSTALL_BIN) $(PKG_INSTALL_DIR)/opt/bin/opkg-cl $(1)/opt/bin/opkg
  endef
  
@@ -64,7 +62,7 @@
  endef
  
  
-@@ -83,7 +85,7 @@
+@@ -84,7 +84,7 @@
  	--disable-curl \
  	--disable-gpg \
  	--with-opkgetcdir=/etc \

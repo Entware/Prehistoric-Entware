@@ -1,6 +1,6 @@
---- ../../../trunk_clean/package/base-files/Makefile	2012-03-07 12:37:57.621126399 +0400
-+++ ../../../trunk/package/base-files/Makefile	2012-03-07 13:41:32.690423438 +0400
-@@ -46,19 +46,6 @@
+--- ../../../trunk_clean/package/base-files/Makefile	2012-05-02 16:17:35.694271361 +0400
++++ ../../../trunk/package/base-files/Makefile	2012-05-02 16:49:32.725328067 +0400
+@@ -42,19 +42,6 @@
  endef
  
  define Package/base-files/conffiles
@@ -20,7 +20,7 @@
  $(call $(TARGET)/conffiles)
  endef
  
-@@ -170,7 +157,6 @@
+@@ -166,7 +153,6 @@
    DEPENDS:=+libgcc
  endif
    URL:=$(LIBC_URL)
@@ -28,7 +28,7 @@
  endef
  
  
-@@ -613,8 +599,8 @@
+@@ -609,8 +595,8 @@
    define Package/libgcc/install
  	for file in $(call qstrip,$(CONFIG_LIBGCC_FILE_SPEC)); do \
  		dir=`dirname $$$$file` ; \
@@ -39,7 +39,7 @@
  	done ; \
  	exit 0
    endef
-@@ -622,16 +608,16 @@
+@@ -618,16 +604,16 @@
    define Package/libgfortran/install
  	for file in $(call qstrip,$(CONFIG_LIBGFORTRAN_FILE_SPEC)); do \
  		dir=`dirname $$$$file` ; \
@@ -60,7 +60,7 @@
  	done ; \
  	exit 0
    endef
-@@ -639,8 +625,8 @@
+@@ -635,8 +621,8 @@
    define Package/libstdcpp/install
  	for file in $(call qstrip,$(CONFIG_LIBSTDCPP_FILE_SPEC)); do \
  		dir=`dirname $$$$file` ; \
@@ -71,7 +71,7 @@
  	done ; \
  	exit 0
    endef
-@@ -648,8 +634,8 @@
+@@ -644,8 +630,8 @@
    define Package/libc/install
  	for file in $(call qstrip,$(CONFIG_LIBC_FILE_SPEC)); do \
  		dir=`dirname $$$$file` ; \
@@ -82,7 +82,7 @@
  	done ; \
  	exit 0
    endef
-@@ -657,8 +643,8 @@
+@@ -653,8 +639,8 @@
    define Package/libpthread/install
  	for file in $(call qstrip,$(CONFIG_LIBPTHREAD_FILE_SPEC)); do \
  		dir=`dirname $$$$file` ; \
@@ -93,7 +93,7 @@
  	done ; \
  	exit 0
    endef
-@@ -666,8 +652,8 @@
+@@ -662,8 +648,8 @@
    define Package/librt/install
  	for file in $(call qstrip,$(CONFIG_LIBRT_FILE_SPEC)); do \
  		dir=`dirname $$$$file` ; \
@@ -104,7 +104,7 @@
  	done ; \
  	exit 0
    endef
-@@ -675,8 +661,8 @@
+@@ -671,8 +657,8 @@
    define Package/ldd/install
  	for file in $(call qstrip,$(CONFIG_LDD_FILE_SPEC)); do \
  		dir=`dirname $$$$file` ; \
@@ -115,7 +115,7 @@
  	done ; \
  	exit 0
    endef
-@@ -684,8 +670,8 @@
+@@ -680,8 +666,8 @@
    define Package/ldconfig/install
  	for file in $(call qstrip,$(CONFIG_LDCONFIG_FILE_SPEC)); do \
  		dir=`dirname $$$$file` ; \

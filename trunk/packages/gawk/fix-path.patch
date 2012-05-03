@@ -1,6 +1,6 @@
---- ../../../trunk_clean/feeds/packages/utils/gawk/Makefile	2012-03-21 16:34:35.208257788 +0400
-+++ ../../../trunk/feeds/packages/utils/gawk/Makefile	2012-03-25 12:25:22.971874497 +0400
-@@ -31,23 +31,23 @@
+--- ../../../trunk_clean/feeds/packages/utils/gawk/Makefile	2012-05-02 16:17:34.834282172 +0400
++++ ../../../trunk/feeds/packages/utils/gawk/Makefile	2012-05-02 17:40:47.758669660 +0400
+@@ -31,22 +31,22 @@
  
  define Build/Configure
  	$(call Build/Configure/Default, \
@@ -12,7 +12,6 @@
  define Package/gawk/install
 -	$(INSTALL_DIR) $(1)/usr/bin/
 -	$(INSTALL_BIN) $(PKG_BUILD_DIR)/gawk $(1)/usr/bin/
--	$(INSTALL_BIN) $(PKG_BUILD_DIR)/gawk $(1)/usr/bin/gawk-3.1.8
 -	$(INSTALL_BIN) $(PKG_BUILD_DIR)/awklib/igawk $(1)/usr/bin/
 -	$(INSTALL_BIN) $(PKG_BUILD_DIR)/pgawk $(1)/usr/bin/
 -	$(INSTALL_DIR) $(1)/usr/libexec/
@@ -24,7 +23,6 @@
 -	$(INSTALL_BIN) $(PKG_BUILD_DIR)/awklib/eg/lib/* $(1)/usr/share/awk
 +	$(INSTALL_DIR) $(1)/opt/bin/
 +	$(INSTALL_BIN) $(PKG_BUILD_DIR)/gawk $(1)/opt/bin/
-+	$(INSTALL_BIN) $(PKG_BUILD_DIR)/gawk $(1)/opt/bin/gawk-3.1.8
 +	$(INSTALL_BIN) $(PKG_BUILD_DIR)/awklib/igawk $(1)/opt/bin/
 +	$(INSTALL_BIN) $(PKG_BUILD_DIR)/pgawk $(1)/opt/bin/
 +	$(INSTALL_DIR) $(1)/opt/libexec/

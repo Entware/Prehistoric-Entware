@@ -1,6 +1,6 @@
---- ../../../backup/trunk_clean/package/e2fsprogs/Makefile	2012-02-21 11:19:04.000000000 +0400
-+++ ../../../trunk/package/e2fsprogs/Makefile	2012-02-21 11:23:44.014949049 +0400
-@@ -158,63 +158,63 @@
+--- ../../../trunk_clean/package/e2fsprogs/Makefile	2012-05-02 16:17:37.350250543 +0400
++++ ../../../trunk/package/e2fsprogs/Makefile	2012-05-02 19:17:02.206075019 +0400
+@@ -117,43 +117,43 @@
  endef
  
  define Package/e2fsprogs/install
@@ -16,18 +16,18 @@
 -	$(INSTALL_DIR) $(1)/lib/functions/fsck
 -	$(INSTALL_DATA) ./files/e2fsck.sh $(1)/lib/functions/fsck/
 -	$(INSTALL_DATA) ./files/e2fsck.conf $(1)/etc/e2fsck.conf
-+	$(INSTALL_DIR) $(1)/opt/bin
-+	$(INSTALL_BIN) $(PKG_INSTALL_DIR)/opt/sbin/e2fsck $(1)/opt/bin/
-+	$(INSTALL_BIN) $(PKG_INSTALL_DIR)/opt/sbin/mke2fs $(1)/opt/bin/
-+	ln -sf mke2fs $(1)/opt/bin/mkfs.ext2
-+	ln -sf mke2fs $(1)/opt/bin/mkfs.ext3
-+	ln -sf mke2fs $(1)/opt/bin/mkfs.ext4
++	$(INSTALL_DIR) $(1)/opt/sbin
++	$(INSTALL_BIN) $(PKG_INSTALL_DIR)/opt/sbin/e2fsck $(1)/opt/sbin/
++	$(INSTALL_BIN) $(PKG_INSTALL_DIR)/opt/sbin/mke2fs $(1)/opt/sbin/
++	ln -sf mke2fs $(1)/opt/sbin/mkfs.ext2
++	ln -sf mke2fs $(1)/opt/sbin/mkfs.ext3
++	ln -sf mke2fs $(1)/opt/sbin/mkfs.ext4
 +	$(INSTALL_DIR) $(1)/opt/lib
 +	$(CP) $(PKG_INSTALL_DIR)/opt/lib/libe2p.so.* $(1)/opt/lib/
 +	$(INSTALL_DIR) $(1)/opt/etc
 +	$(INSTALL_DIR) $(1)/opt/lib/functions/fsck
 +	$(INSTALL_DATA) ./files/e2fsck.sh $(1)/opt/lib/functions/fsck/
-+	$(INSTALL_DATA) ./files/e2fsck.conf $(1)/opt/etc/e2fsck.conf
++	$(INSTALL_DATA) ./files/e2fsck.conf $(1)/opt/etc/
  endef
  
  define Package/libcom_err/install
@@ -35,27 +35,6 @@
 -	$(CP) $(PKG_INSTALL_DIR)/usr/lib/libcom_err.so.* $(1)/usr/lib/
 +	$(INSTALL_DIR) $(1)/opt/lib
 +	$(CP) $(PKG_INSTALL_DIR)/opt/lib/libcom_err.so.* $(1)/opt/lib/
- endef
- 
- define Package/libuuid/install
--	$(INSTALL_DIR) $(1)/usr/lib
--	$(CP) $(PKG_INSTALL_DIR)/usr/lib/libuuid.so.* $(1)/usr/lib/
-+	$(INSTALL_DIR) $(1)/opt/lib
-+	$(CP) $(PKG_INSTALL_DIR)/opt/lib/libuuid.so.* $(1)/opt/lib/
- endef
- 
- define Package/uuidgen/install
--	$(INSTALL_DIR) $(1)/usr/bin
--	$(INSTALL_BIN) $(PKG_INSTALL_DIR)/usr/bin/uuidgen $(1)/usr/bin/
-+	$(INSTALL_DIR) $(1)/opt/bin
-+	$(INSTALL_BIN) $(PKG_INSTALL_DIR)/opt/bin/uuidgen $(1)/opt/bin/
- endef
- 
- define Package/libblkid/install
--	$(INSTALL_DIR) $(1)/usr/lib
--	$(CP) $(PKG_INSTALL_DIR)/usr/lib/libblkid.so.* $(1)/usr/lib/
-+	$(INSTALL_DIR) $(1)/opt/lib
-+	$(CP) $(PKG_INSTALL_DIR)/opt/lib/libblkid.so.* $(1)/opt/lib/
  endef
  
  define Package/libext2fs/install
@@ -68,29 +47,22 @@
  define Package/tune2fs/install
 -	$(INSTALL_DIR) $(1)/usr/sbin
 -	$(INSTALL_BIN) $(PKG_INSTALL_DIR)/usr/sbin/tune2fs $(1)/usr/sbin/
-+	$(INSTALL_DIR) $(1)/opt/bin
-+	$(INSTALL_BIN) $(PKG_INSTALL_DIR)/opt/sbin/tune2fs $(1)/opt/bin/
++	$(INSTALL_DIR) $(1)/opt/sbin
++	$(INSTALL_BIN) $(PKG_INSTALL_DIR)/opt/sbin/tune2fs $(1)/opt/sbin/
  endef
  
  define Package/resize2fs/install
 -	$(INSTALL_DIR) $(1)/usr/sbin
 -	$(INSTALL_BIN) $(PKG_INSTALL_DIR)/usr/sbin/resize2fs $(1)/usr/sbin/
-+	$(INSTALL_DIR) $(1)/opt/bin
-+	$(INSTALL_BIN) $(PKG_INSTALL_DIR)/opt/sbin/resize2fs $(1)/opt/bin/
++	$(INSTALL_DIR) $(1)/opt/sbin
++	$(INSTALL_BIN) $(PKG_INSTALL_DIR)/opt/sbin/resize2fs $(1)/opt/sbin/
  endef
  
  define Package/badblocks/install
 -	$(INSTALL_DIR) $(1)/usr/sbin
 -	$(INSTALL_BIN) $(PKG_INSTALL_DIR)/usr/sbin/badblocks $(1)/usr/sbin/
-+	$(INSTALL_DIR) $(1)/opt/bin
-+	$(INSTALL_BIN) $(PKG_INSTALL_DIR)/opt/sbin/badblocks $(1)/opt/bin/
- endef
- 
- define Package/blkid/install
--	$(INSTALL_DIR) $(1)/usr/sbin
--	$(INSTALL_BIN) $(PKG_INSTALL_DIR)/usr/sbin/blkid $(1)/usr/sbin/
-+	$(INSTALL_DIR) $(1)/opt/bin
-+	$(INSTALL_BIN) $(PKG_INSTALL_DIR)/opt/sbin/blkid $(1)/opt/bin/
++	$(INSTALL_DIR) $(1)/opt/sbin
++	$(INSTALL_BIN) $(PKG_INSTALL_DIR)/opt/sbin/badblocks $(1)/opt/sbin/
  endef
  
  $(eval $(call BuildPackage,e2fsprogs))

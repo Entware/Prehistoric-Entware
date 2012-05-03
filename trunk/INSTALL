@@ -7,7 +7,7 @@ Requirements
    $ sudo apt-get install autoconf automake bash bison bzip2 \
    diffutils file flex g++ gawk groff libncurses-dev libtool \
    libslang2 make patch perl sed shtool subversion tar texinfo \
-   zlib1g zlib1g-dev git-core gettext libexpat1-dev
+   zlib1g zlib1g-dev git-core gettext libexpat1-dev libssl-dev cvs gperf
 
 - At least 20Gb of disk space,
 - Approx. 5 hours of free time to compile all stuff.
