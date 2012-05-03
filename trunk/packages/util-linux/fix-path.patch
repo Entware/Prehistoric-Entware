@@ -1,0 +1,232 @@
+--- ../../../trunk_clean/package/util-linux/Makefile	2012-05-02 16:17:35.614272369 +0400
++++ ../../../trunk/package/util-linux/Makefile	2012-05-03 12:02:59.695555167 +0400
+@@ -373,161 +373,161 @@
+ endef
+ 
+ define Package/libblkid/install
+-        $(INSTALL_DIR) $(1)/usr/lib
+-	$(CP) $(PKG_BUILD_DIR)/libblkid/src/.libs/libblkid.so.* $(1)/usr/lib/
++        $(INSTALL_DIR) $(1)/opt/lib
++	$(CP) $(PKG_BUILD_DIR)/libblkid/src/.libs/libblkid.so.* $(1)/opt/lib/
+ endef
+ 
+ define Package/libmount/install
+-        $(INSTALL_DIR) $(1)/usr/lib
+-	$(CP) $(PKG_BUILD_DIR)/libmount/src/.libs/libmount.so.* $(1)/usr/lib/
++        $(INSTALL_DIR) $(1)/opt/lib
++	$(CP) $(PKG_BUILD_DIR)/libmount/src/.libs/libmount.so.* $(1)/opt/lib/
+ endef
+ 
+ define Package/libuuid/install
+-        $(INSTALL_DIR) $(1)/usr/lib
+-	$(CP) $(PKG_BUILD_DIR)/libuuid/src/.libs/libuuid.so.* $(1)/usr/lib/
++        $(INSTALL_DIR) $(1)/opt/lib
++	$(CP) $(PKG_BUILD_DIR)/libuuid/src/.libs/libuuid.so.* $(1)/opt/lib/
+ endef
+ 
+ define Package/agetty/install
+-	$(INSTALL_DIR) $(1)/sbin
+-	$(INSTALL_BIN) $(PKG_BUILD_DIR)/term-utils/agetty $(1)/sbin/
++	$(INSTALL_DIR) $(1)/opt/sbin
++	$(INSTALL_BIN) $(PKG_BUILD_DIR)/term-utils/agetty $(1)/opt/sbin/
+ endef
+ 
+ define Package/blkid/install
+-	$(INSTALL_DIR) $(1)/sbin
+-	$(INSTALL_BIN) $(PKG_BUILD_DIR)/misc-utils/.libs/blkid $(1)/sbin/
++	$(INSTALL_DIR) $(1)/opt/sbin
++	$(INSTALL_BIN) $(PKG_BUILD_DIR)/misc-utils/.libs/blkid $(1)/opt/sbin/
+ endef
+ 
+ define Package/cal/install
+-	$(INSTALL_DIR) $(1)/usr/bin
+-	$(INSTALL_BIN) $(PKG_BUILD_DIR)/misc-utils/cal $(1)/usr/bin/
++	$(INSTALL_DIR) $(1)/opt/bin
++	$(INSTALL_BIN) $(PKG_BUILD_DIR)/misc-utils/cal $(1)/opt/bin/
+ endef
+ 
+ define Package/cfdisk/install
+-	$(INSTALL_DIR) $(1)/sbin
+-	$(INSTALL_BIN) $(PKG_BUILD_DIR)/fdisk/.libs/cfdisk $(1)/sbin/
++	$(INSTALL_DIR) $(1)/opt/sbin
++	$(INSTALL_BIN) $(PKG_BUILD_DIR)/fdisk/.libs/cfdisk $(1)/opt/sbin/
+ endef
+ 
+ define Package/fdisk/install
+-	$(INSTALL_DIR) $(1)/sbin
+-	$(INSTALL_BIN) $(PKG_BUILD_DIR)/fdisk/.libs/fdisk $(1)/sbin/
++	$(INSTALL_DIR) $(1)/opt/sbin
++	$(INSTALL_BIN) $(PKG_BUILD_DIR)/fdisk/.libs/fdisk $(1)/opt/sbin/
+ endef
+ 
+ define Package/findfs/install
+-	$(INSTALL_DIR) $(1)/sbin
+-	$(INSTALL_BIN) $(PKG_BUILD_DIR)/misc-utils/.libs/findfs $(1)/sbin/
++	$(INSTALL_DIR) $(1)/opt/sbin
++	$(INSTALL_BIN) $(PKG_BUILD_DIR)/misc-utils/.libs/findfs $(1)/opt/sbin/
+ endef
+ 
+ define Package/flock/install
+-	$(INSTALL_DIR) $(1)/usr/bin
+-	$(INSTALL_BIN) $(PKG_BUILD_DIR)/sys-utils/flock $(1)/usr/bin/
++	$(INSTALL_DIR) $(1)/opt/bin
++	$(INSTALL_BIN) $(PKG_BUILD_DIR)/sys-utils/flock $(1)/opt/bin/
+ endef
+ 
+ define Package/getopt/install
+-	$(INSTALL_DIR) $(1)/usr/bin
+-	$(INSTALL_BIN) $(PKG_BUILD_DIR)/getopt/getopt $(1)/usr/bin/
++	$(INSTALL_DIR) $(1)/opt/bin
++	$(INSTALL_BIN) $(PKG_BUILD_DIR)/getopt/getopt $(1)/opt/bin/
+ endef
+ 
+ define Package/hwclock/install
+-	$(INSTALL_DIR) $(1)/sbin
+-	$(INSTALL_BIN) $(PKG_BUILD_DIR)/hwclock/hwclock $(1)/sbin/
++	$(INSTALL_DIR) $(1)/opt/sbin
++	$(INSTALL_BIN) $(PKG_BUILD_DIR)/hwclock/hwclock $(1)/opt/sbin/
+ endef
+ 
+ define Package/logger/install
+-	$(INSTALL_DIR) $(1)/usr/bin
+-	$(INSTALL_BIN) $(PKG_BUILD_DIR)/misc-utils/logger $(1)/usr/bin/
++	$(INSTALL_DIR) $(1)/opt/bin
++	$(INSTALL_BIN) $(PKG_BUILD_DIR)/misc-utils/logger $(1)/opt/bin/
+ endef
+ 
+ define Package/look/install
+-	$(INSTALL_DIR) $(1)/usr/bin
+-	$(INSTALL_BIN) $(PKG_BUILD_DIR)/misc-utils/look $(1)/usr/bin/
++	$(INSTALL_DIR) $(1)/opt/bin
++	$(INSTALL_BIN) $(PKG_BUILD_DIR)/misc-utils/look $(1)/opt/bin/
+ endef
+ 
+ define Package/losetup/install
+-	$(INSTALL_DIR) $(1)/sbin
+-	$(INSTALL_BIN) $(PKG_BUILD_DIR)/sys-utils/losetup $(1)/sbin/
++	$(INSTALL_DIR) $(1)/opt/sbin
++	$(INSTALL_BIN) $(PKG_BUILD_DIR)/sys-utils/losetup $(1)/opt/sbin/
+ endef
+ 
+ define Package/lsblk/install
+-	$(INSTALL_DIR) $(1)/bin
+-	$(INSTALL_BIN) $(PKG_BUILD_DIR)/misc-utils/.libs/lsblk $(1)/bin/
++	$(INSTALL_DIR) $(1)/opt/bin
++	$(INSTALL_BIN) $(PKG_BUILD_DIR)/misc-utils/.libs/lsblk $(1)/opt/bin/
+ endef
+ 
+ define Package/mcookie/install
+-	$(INSTALL_DIR) $(1)/usr/bin
+-	$(INSTALL_BIN) $(PKG_BUILD_DIR)/misc-utils/mcookie $(1)/usr/bin/
++	$(INSTALL_DIR) $(1)/opt/bin
++	$(INSTALL_BIN) $(PKG_BUILD_DIR)/misc-utils/mcookie $(1)/opt/bin/
+ endef
+ 
+ define Package/mount-utils/install
+-	$(INSTALL_DIR) $(1)/bin
+-	$(INSTALL_BIN) $(PKG_BUILD_DIR)/sys-utils/.libs/{u,}mount $(1)/bin/
+-	$(INSTALL_BIN) $(PKG_BUILD_DIR)/sys-utils/.libs/mountpoint $(1)/bin/
+-	$(INSTALL_BIN) $(PKG_BUILD_DIR)/misc-utils/.libs/findmnt $(1)/bin/
++	$(INSTALL_DIR) $(1)/opt/bin
++	$(INSTALL_BIN) $(PKG_BUILD_DIR)/sys-utils/.libs/{u,}mount $(1)/opt/bin/
++	$(INSTALL_BIN) $(PKG_BUILD_DIR)/sys-utils/.libs/mountpoint $(1)/opt/bin/
++	$(INSTALL_BIN) $(PKG_BUILD_DIR)/misc-utils/.libs/findmnt $(1)/opt/bin/
+ endef
+ 
+ define Package/namei/install
+-	$(INSTALL_DIR) $(1)/usr/bin/
+-	$(INSTALL_BIN) $(PKG_BUILD_DIR)/misc-utils/namei $(1)/usr/bin/
++	$(INSTALL_DIR) $(1)/opt/bin/
++	$(INSTALL_BIN) $(PKG_BUILD_DIR)/misc-utils/namei $(1)/opt/bin/
+ endef
+ 
+ define Package/rename/install
+-	$(INSTALL_DIR) $(1)/usr/bin/
+-	$(INSTALL_BIN) $(PKG_BUILD_DIR)/misc-utils/rename $(1)/usr/bin/
++	$(INSTALL_DIR) $(1)/opt/bin/
++	$(INSTALL_BIN) $(PKG_BUILD_DIR)/misc-utils/rename $(1)/opt/bin/
+ endef
+ 
+ define Package/partx-utils/install
+-	$(INSTALL_DIR) $(1)/usr/sbin
+-	$(INSTALL_BIN) $(PKG_BUILD_DIR)/partx/.libs/partx $(1)/usr/sbin/
+-	$(INSTALL_BIN) $(PKG_BUILD_DIR)/partx/addpart $(1)/usr/sbin/
+-	$(INSTALL_BIN) $(PKG_BUILD_DIR)/partx/delpart $(1)/usr/sbin/
++	$(INSTALL_DIR) $(1)/opt/sbin
++	$(INSTALL_BIN) $(PKG_BUILD_DIR)/partx/.libs/partx $(1)/opt/sbin/
++	$(INSTALL_BIN) $(PKG_BUILD_DIR)/partx/addpart $(1)/opt/sbin/
++	$(INSTALL_BIN) $(PKG_BUILD_DIR)/partx/delpart $(1)/opt/sbin/
+ endef
+ 
+ define Package/script-utils/install
+-	$(INSTALL_DIR) $(1)/usr/bin
+-	$(INSTALL_BIN) $(PKG_BUILD_DIR)/term-utils/script $(1)/usr/bin/
+-	$(INSTALL_BIN) $(PKG_BUILD_DIR)/term-utils/scriptreplay $(1)/usr/bin/
++	$(INSTALL_DIR) $(1)/opt/bin
++	$(INSTALL_BIN) $(PKG_BUILD_DIR)/term-utils/script $(1)/opt/bin/
++	$(INSTALL_BIN) $(PKG_BUILD_DIR)/term-utils/scriptreplay $(1)/opt/bin/
+ endef
+ 
+ define Package/setterm/install
+-	$(INSTALL_DIR) $(1)/usr/bin
+-	$(INSTALL_BIN) $(PKG_BUILD_DIR)/term-utils/setterm $(1)/usr/bin/
++	$(INSTALL_DIR) $(1)/opt/bin
++	$(INSTALL_BIN) $(PKG_BUILD_DIR)/term-utils/setterm $(1)/opt/bin/
+ endef
+ 
+ define Package/sfdisk/install
+-	$(INSTALL_DIR) $(1)/sbin
+-	$(INSTALL_BIN) $(PKG_BUILD_DIR)/fdisk/sfdisk $(1)/sbin/
++	$(INSTALL_DIR) $(1)/opt/sbin
++	$(INSTALL_BIN) $(PKG_BUILD_DIR)/fdisk/sfdisk $(1)/opt/sbin/
+ endef
+ 
+ define Package/swap-utils/install
+-	$(INSTALL_DIR) $(1)/sbin
+-	$(INSTALL_BIN) $(PKG_BUILD_DIR)/disk-utils/.libs/mkswap $(1)/sbin/
+-	$(INSTALL_BIN) $(PKG_BUILD_DIR)/disk-utils/.libs/swaplabel $(1)/sbin/
+-	$(INSTALL_BIN) $(PKG_BUILD_DIR)/sys-utils/.libs/swapon $(1)/sbin/
+-	ln -sf swapon $(1)/sbin/swapoff
++	$(INSTALL_DIR) $(1)/opt/sbin
++	$(INSTALL_BIN) $(PKG_BUILD_DIR)/disk-utils/.libs/mkswap $(1)/opt/sbin/
++	$(INSTALL_BIN) $(PKG_BUILD_DIR)/disk-utils/.libs/swaplabel $(1)/opt/sbin/
++	$(INSTALL_BIN) $(PKG_BUILD_DIR)/sys-utils/.libs/swapon $(1)/opt/sbin/
++	ln -sf swapon $(1)/opt/sbin/swapoff
+ endef
+ 
+ define Package/uuidd/install
+-	$(INSTALL_DIR) $(1)/usr/sbin
+-	$(INSTALL_BIN) $(PKG_BUILD_DIR)/misc-utils/.libs/uuidd $(1)/usr/sbin/
++	$(INSTALL_DIR) $(1)/opt/sbin
++	$(INSTALL_BIN) $(PKG_BUILD_DIR)/misc-utils/.libs/uuidd $(1)/opt/sbin/
+ endef
+ 
+ define Package/uuidgen/install
+-	$(INSTALL_DIR) $(1)/usr/bin
+-	$(INSTALL_BIN) $(PKG_BUILD_DIR)/misc-utils/.libs/uuidgen $(1)/usr/bin/
++	$(INSTALL_DIR) $(1)/opt/bin
++	$(INSTALL_BIN) $(PKG_BUILD_DIR)/misc-utils/.libs/uuidgen $(1)/opt/bin/
+ endef
+ 
+ define Package/wall/install
+-	$(INSTALL_DIR) $(1)/usr/bin
+-	$(INSTALL_BIN) $(PKG_BUILD_DIR)/term-utils/wall $(1)/usr/bin/
++	$(INSTALL_DIR) $(1)/opt/bin
++	$(INSTALL_BIN) $(PKG_BUILD_DIR)/term-utils/wall $(1)/opt/bin/
+ endef
+ 
+ define Package/whereis/install
+-	$(INSTALL_DIR) $(1)/usr/bin
+-	$(INSTALL_BIN) $(PKG_BUILD_DIR)/misc-utils/whereis $(1)/usr/bin/
++	$(INSTALL_DIR) $(1)/opt/bin
++	$(INSTALL_BIN) $(PKG_BUILD_DIR)/misc-utils/whereis $(1)/opt/bin/
+ endef
+ 
+ define Package/wipefs/install
+-	$(INSTALL_DIR) $(1)/sbin
+-	$(INSTALL_BIN) $(PKG_BUILD_DIR)/misc-utils/.libs/wipefs $(1)/sbin/
++	$(INSTALL_DIR) $(1)/opt/sbin
++	$(INSTALL_BIN) $(PKG_BUILD_DIR)/misc-utils/.libs/wipefs $(1)/opt/sbin/
+ endef
+ 
+ $(eval $(call BuildPackage,libblkid))
