@@ -1,0 +1,13 @@
+--- trunk_clean/feeds/packages/net/iperf/Makefile	2012-05-06 07:21:44.240991843 +0400
++++ trunk/feeds/packages/net/iperf/Makefile	2012-05-10 17:21:04.520218861 +0400
+@@ -76,8 +76,8 @@
+ endif
+ 
+ define Package/iperf/install
+-	$(INSTALL_DIR) $(1)/usr/bin
+-	$(INSTALL_BIN) $(PKG_BUILD_DIR)/src/iperf $(1)/usr/bin/iperf
++	$(INSTALL_DIR) $(1)/opt/bin
++	$(INSTALL_BIN) $(PKG_BUILD_DIR)/src/iperf $(1)/opt/bin/iperf
+ endef
+ Package/iperf-mt/install = $(Package/iperf/install)
+ 
