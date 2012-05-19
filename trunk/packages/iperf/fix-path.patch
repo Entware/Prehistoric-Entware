@@ -1,5 +1,5 @@
---- trunk_clean/feeds/packages/net/iperf/Makefile	2012-05-06 07:21:44.240991843 +0400
-+++ trunk/feeds/packages/net/iperf/Makefile	2012-05-10 17:21:04.520218861 +0400
+--- ../../../trunk_clean/feeds/packages/net/iperf/Makefile	2012-05-06 07:21:44.240991843 +0400
++++ ../../../trunk/feeds/packages/net/iperf/Makefile	2012-05-10 17:21:04.520218861 +0400
 @@ -76,8 +76,8 @@
  endif
  
