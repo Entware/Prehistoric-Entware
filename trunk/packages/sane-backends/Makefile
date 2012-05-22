@@ -10,6 +10,7 @@ all: ./.done
 
 ./.done:
 	patch -p0 -i ./fix-path.patch
+	cp ./040-xerox-sams.patch ../../../trunk/feeds/packages/utils/sane-backends/patches/
 	touch $@
 
 clean:
