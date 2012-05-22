@@ -1,0 +1,347 @@
+--- ../../../trunk_clean/feeds/packages/lang/ruby/Makefile	2012-05-02 16:17:28.614360360 +0400
++++ ../../../trunk/feeds/packages/lang/ruby/Makefile	2012-05-22 13:59:51.541760288 +0400
+@@ -225,231 +225,231 @@
+ endef
+ 
+ define Package/ruby/install
+-	$(INSTALL_DIR) $(1)/usr/bin
+-	$(INSTALL_BIN) $(PKG_INSTALL_DIR)/usr/bin/ruby $(1)/usr/bin/
++	$(INSTALL_DIR) $(1)/opt/bin
++	$(INSTALL_BIN) $(PKG_INSTALL_DIR)/opt/bin/ruby $(1)/opt/bin/
+ endef
+ 
+ define Package/libruby/install
+-	$(INSTALL_DIR) $(1)/usr/lib
+-	$(CP) $(PKG_INSTALL_DIR)/usr/lib/libruby.so.* $(1)/usr/lib/
++	$(INSTALL_DIR) $(1)/opt/lib
++	$(CP) $(PKG_INSTALL_DIR)/opt/lib/libruby.so.* $(1)/opt/lib/
+ endef
+ 
+ define Package/ruby-core/install
+-	$(INSTALL_DIR) $(1)/usr/lib
+-	$(CP) $(PKG_INSTALL_DIR)/usr/lib/ruby $(1)/usr/lib/
++	$(INSTALL_DIR) $(1)/opt/lib
++	$(CP) $(PKG_INSTALL_DIR)/opt/lib/ruby $(1)/opt/lib/
+ 	rm -rf	\
+-		$(1)/usr/lib/ruby/$(PKG_LIBVER)/*/curses.so \
++		$(1)/opt/lib/ruby/$(PKG_LIBVER)/*/curses.so \
+ 		\
+-		$(1)/usr/lib/ruby/$(PKG_LIBVER)/*/gdbm.so \
++		$(1)/opt/lib/ruby/$(PKG_LIBVER)/*/gdbm.so \
+ 		\
+-		$(1)/usr/lib/ruby/$(PKG_LIBVER)/kconv.rb \
+-		$(1)/usr/lib/ruby/$(PKG_LIBVER)/*/nkf.so \
++		$(1)/opt/lib/ruby/$(PKG_LIBVER)/kconv.rb \
++		$(1)/opt/lib/ruby/$(PKG_LIBVER)/*/nkf.so \
+ 		\
+-		$(1)/usr/lib/ruby/$(PKG_LIBVER)/digest \
+-		$(1)/usr/lib/ruby/$(PKG_LIBVER)/digest.rb \
+-		$(1)/usr/lib/ruby/$(PKG_LIBVER)/*/digest \
+-		$(1)/usr/lib/ruby/$(PKG_LIBVER)/*/digest.so \
+-		$(1)/usr/lib/ruby/$(PKG_LIBVER)/openssl \
+-		$(1)/usr/lib/ruby/$(PKG_LIBVER)/openssl.rb \
+-		$(1)/usr/lib/ruby/$(PKG_LIBVER)/*/openssl.so \
+-		$(1)/usr/lib/ruby/$(PKG_LIBVER)/drb/ssl.rb \
+-		$(1)/usr/lib/ruby/$(PKG_LIBVER)/net/https.rb \
+-		$(1)/usr/lib/ruby/$(PKG_LIBVER)/webrick/ssl.rb \
++		$(1)/opt/lib/ruby/$(PKG_LIBVER)/digest \
++		$(1)/opt/lib/ruby/$(PKG_LIBVER)/digest.rb \
++		$(1)/opt/lib/ruby/$(PKG_LIBVER)/*/digest \
++		$(1)/opt/lib/ruby/$(PKG_LIBVER)/*/digest.so \
++		$(1)/opt/lib/ruby/$(PKG_LIBVER)/openssl \
++		$(1)/opt/lib/ruby/$(PKG_LIBVER)/openssl.rb \
++		$(1)/opt/lib/ruby/$(PKG_LIBVER)/*/openssl.so \
++		$(1)/opt/lib/ruby/$(PKG_LIBVER)/drb/ssl.rb \
++		$(1)/opt/lib/ruby/$(PKG_LIBVER)/net/https.rb \
++		$(1)/opt/lib/ruby/$(PKG_LIBVER)/webrick/ssl.rb \
+ 		\
+-		$(1)/usr/lib/ruby/$(PKG_LIBVER)/*/dl.so \
++		$(1)/opt/lib/ruby/$(PKG_LIBVER)/*/dl.so \
+ 		\
+-		$(1)/usr/lib/ruby/$(PKG_LIBVER)/*/enc \
++		$(1)/opt/lib/ruby/$(PKG_LIBVER)/*/enc \
+ 		\
+-		$(1)/usr/lib/ruby/$(PKG_LIBVER)/*/readline.so \
+-		$(1)/usr/lib/ruby/$(PKG_LIBVER)/irb/completion.rb \
+-		$(1)/usr/lib/ruby/$(PKG_LIBVER)/irb/ext/save-history.rb \
++		$(1)/opt/lib/ruby/$(PKG_LIBVER)/*/readline.so \
++		$(1)/opt/lib/ruby/$(PKG_LIBVER)/irb/completion.rb \
++		$(1)/opt/lib/ruby/$(PKG_LIBVER)/irb/ext/save-history.rb \
+ 		\
+-		$(1)/usr/lib/ruby/$(PKG_LIBVER)/*/zlib.so \
++		$(1)/opt/lib/ruby/$(PKG_LIBVER)/*/zlib.so \
+ 		\
+-		$(1)/usr/lib/ruby/$(PKG_LIBVER)/erb.rb \
++		$(1)/opt/lib/ruby/$(PKG_LIBVER)/erb.rb \
+ 		\
+-		$(1)/usr/lib/ruby/$(PKG_LIBVER)/json.rb \
+-		$(1)/usr/lib/ruby/$(PKG_LIBVER)/json \
+-		$(1)/usr/lib/ruby/$(PKG_LIBVER)/*/json \
++		$(1)/opt/lib/ruby/$(PKG_LIBVER)/json.rb \
++		$(1)/opt/lib/ruby/$(PKG_LIBVER)/json \
++		$(1)/opt/lib/ruby/$(PKG_LIBVER)/*/json \
+ 		\
+-		$(1)/usr/lib/ruby/$(PKG_LIBVER)/irb.rb \
+-		$(1)/usr/lib/ruby/$(PKG_LIBVER)/irb \
++		$(1)/opt/lib/ruby/$(PKG_LIBVER)/irb.rb \
++		$(1)/opt/lib/ruby/$(PKG_LIBVER)/irb \
+ 		\
+-		$(1)/usr/lib/ruby/$(PKG_LIBVER)/rdoc \
++		$(1)/opt/lib/ruby/$(PKG_LIBVER)/rdoc \
+ 		\
+-		$(1)/usr/lib/ruby/$(PKG_LIBVER)/rake.rb \
+-		$(1)/usr/lib/ruby/$(PKG_LIBVER)/rake \
++		$(1)/opt/lib/ruby/$(PKG_LIBVER)/rake.rb \
++		$(1)/opt/lib/ruby/$(PKG_LIBVER)/rake \
+ 		\
+-		$(1)/usr/lib/ruby/$(PKG_LIBVER)/rubygems.rb \
+-		$(1)/usr/lib/ruby/$(PKG_LIBVER)/rubygems \
++		$(1)/opt/lib/ruby/$(PKG_LIBVER)/rubygems.rb \
++		$(1)/opt/lib/ruby/$(PKG_LIBVER)/rubygems \
+ 		\
+-		$(1)/usr/lib/ruby/$(PKG_LIBVER)/cgi.rb \
+-		$(1)/usr/lib/ruby/$(PKG_LIBVER)/cgi \
++		$(1)/opt/lib/ruby/$(PKG_LIBVER)/cgi.rb \
++		$(1)/opt/lib/ruby/$(PKG_LIBVER)/cgi \
+ 		\
+-		$(1)/usr/lib/ruby/$(PKG_LIBVER)/rexml \
++		$(1)/opt/lib/ruby/$(PKG_LIBVER)/rexml \
+ 		\
+-		$(1)/usr/lib/ruby/$(PKG_LIBVER)/rss \
+-		$(1)/usr/lib/ruby/$(PKG_LIBVER)/rss.rb \
++		$(1)/opt/lib/ruby/$(PKG_LIBVER)/rss \
++		$(1)/opt/lib/ruby/$(PKG_LIBVER)/rss.rb \
+ 		\
+-		$(1)/usr/lib/ruby/$(PKG_LIBVER)/test \
++		$(1)/opt/lib/ruby/$(PKG_LIBVER)/test \
+ 		\
+-		$(1)/usr/lib/ruby/$(PKG_LIBVER)/webrick \
+-		$(1)/usr/lib/ruby/$(PKG_LIBVER)/webrick.rb \
++		$(1)/opt/lib/ruby/$(PKG_LIBVER)/webrick \
++		$(1)/opt/lib/ruby/$(PKG_LIBVER)/webrick.rb \
+ 		\
+-		$(1)/usr/lib/ruby/$(PKG_LIBVER)/xmlrpc \
++		$(1)/opt/lib/ruby/$(PKG_LIBVER)/xmlrpc \
+ 		\
+-		$(1)/usr/lib/ruby/$(PKG_LIBVER)/yaml \
+-		$(1)/usr/lib/ruby/$(PKG_LIBVER)/yaml.rb \
+-		$(1)/usr/lib/ruby/$(PKG_LIBVER)/*/syck.so \
++		$(1)/opt/lib/ruby/$(PKG_LIBVER)/yaml \
++		$(1)/opt/lib/ruby/$(PKG_LIBVER)/yaml.rb \
++		$(1)/opt/lib/ruby/$(PKG_LIBVER)/*/syck.so \
+ 	
+ 	find $(1) -name '*.h' | xargs rm -f
+ endef
+ 
+ define Package/ruby-cgi/install
+-	$(INSTALL_DIR) $(1)/usr/lib/ruby/$(PKG_LIBVER)
+-	$(CP) $(PKG_INSTALL_DIR)/usr/lib/ruby/$(PKG_LIBVER)/cgi $(1)/usr/lib/ruby/$(PKG_LIBVER)/
+-	$(CP) $(PKG_INSTALL_DIR)/usr/lib/ruby/$(PKG_LIBVER)/cgi.rb $(1)/usr/lib/ruby/$(PKG_LIBVER)/
++	$(INSTALL_DIR) $(1)/opt/lib/ruby/$(PKG_LIBVER)
++	$(CP) $(PKG_INSTALL_DIR)/opt/lib/ruby/$(PKG_LIBVER)/cgi $(1)/opt/lib/ruby/$(PKG_LIBVER)/
++	$(CP) $(PKG_INSTALL_DIR)/opt/lib/ruby/$(PKG_LIBVER)/cgi.rb $(1)/opt/lib/ruby/$(PKG_LIBVER)/
+ endef
+ 
+ define Package/ruby-dl/install
+ 	( cd $(PKG_INSTALL_DIR); $(TAR) -cf - \
+-		usr/lib/ruby/$(PKG_LIBVER)/*/dl.so \
++		opt/lib/ruby/$(PKG_LIBVER)/*/dl.so \
+ 	) | ( cd $(1); $(TAR) -xf - )
+ endef
+ 
+ define Package/ruby-enc/install
+ 	( cd $(PKG_INSTALL_DIR); $(TAR) -cf - \
+-		usr/lib/ruby/$(PKG_LIBVER)/*/enc \
++		opt/lib/ruby/$(PKG_LIBVER)/*/enc \
+ 	) | ( cd $(1); $(TAR) -xf - )
+ endef
+ 
+ define Package/ruby-erb/install
+-	$(INSTALL_DIR) $(1)/usr/bin
+-	$(INSTALL_BIN) $(PKG_INSTALL_DIR)/usr/bin/erb $(1)/usr/bin/
+-	$(INSTALL_DIR) $(1)/usr/lib/ruby/$(PKG_LIBVER)/
+-	$(CP) $(PKG_INSTALL_DIR)/usr/lib/ruby/$(PKG_LIBVER)/erb.rb $(1)/usr/lib/ruby/$(PKG_LIBVER)/
++	$(INSTALL_DIR) $(1)/opt/bin
++	$(INSTALL_BIN) $(PKG_INSTALL_DIR)/opt/bin/erb $(1)/opt/bin/
++	$(INSTALL_DIR) $(1)/opt/lib/ruby/$(PKG_LIBVER)/
++	$(CP) $(PKG_INSTALL_DIR)/opt/lib/ruby/$(PKG_LIBVER)/erb.rb $(1)/opt/lib/ruby/$(PKG_LIBVER)/
+ endef
+ 
+ define Package/ruby-gdbm/install
+ 	( cd $(PKG_INSTALL_DIR); $(TAR) -cf - \
+-		usr/lib/ruby/$(PKG_LIBVER)/*/gdbm.so \
++		opt/lib/ruby/$(PKG_LIBVER)/*/gdbm.so \
+ 	) | ( cd $(1); $(TAR) -xf - )
+ endef
+ 
+ define Package/ruby-gems/install
+-	$(INSTALL_DIR) $(1)/usr/bin
+-	$(CP) $(PKG_INSTALL_DIR)/usr/bin/gem $(1)/usr/bin/
+-	$(INSTALL_DIR) $(1)/usr/lib/ruby/$(PKG_LIBVER)
+-	$(CP) $(PKG_INSTALL_DIR)/usr/lib/ruby/$(PKG_LIBVER)/rubygems.rb $(1)/usr/lib/ruby/$(PKG_LIBVER)/
+-	$(CP) $(PKG_INSTALL_DIR)/usr/lib/ruby/$(PKG_LIBVER)/rubygems $(1)/usr/lib/ruby/$(PKG_LIBVER)/
++	$(INSTALL_DIR) $(1)/opt/bin
++	$(CP) $(PKG_INSTALL_DIR)/opt/bin/gem $(1)/opt/bin/
++	$(INSTALL_DIR) $(1)/opt/lib/ruby/$(PKG_LIBVER)
++	$(CP) $(PKG_INSTALL_DIR)/opt/lib/ruby/$(PKG_LIBVER)/rubygems.rb $(1)/opt/lib/ruby/$(PKG_LIBVER)/
++	$(CP) $(PKG_INSTALL_DIR)/opt/lib/ruby/$(PKG_LIBVER)/rubygems $(1)/opt/lib/ruby/$(PKG_LIBVER)/
+ endef
+ 
+ define Package/ruby-irb/install
+-	$(INSTALL_DIR) $(1)/usr/bin
+-	$(INSTALL_BIN) $(PKG_INSTALL_DIR)/usr/bin/irb $(1)/usr/bin/
+-	$(INSTALL_DIR) $(1)/usr/lib/ruby/$(PKG_LIBVER)
+-	$(CP) $(PKG_INSTALL_DIR)/usr/lib/ruby/$(PKG_LIBVER)/irb $(1)/usr/lib/ruby/$(PKG_LIBVER)/
+-	$(CP) $(PKG_INSTALL_DIR)/usr/lib/ruby/$(PKG_LIBVER)/irb.rb $(1)/usr/lib/ruby/$(PKG_LIBVER)/
++	$(INSTALL_DIR) $(1)/opt/bin
++	$(INSTALL_BIN) $(PKG_INSTALL_DIR)/opt/bin/irb $(1)/opt/bin/
++	$(INSTALL_DIR) $(1)/opt/lib/ruby/$(PKG_LIBVER)
++	$(CP) $(PKG_INSTALL_DIR)/opt/lib/ruby/$(PKG_LIBVER)/irb $(1)/opt/lib/ruby/$(PKG_LIBVER)/
++	$(CP) $(PKG_INSTALL_DIR)/opt/lib/ruby/$(PKG_LIBVER)/irb.rb $(1)/opt/lib/ruby/$(PKG_LIBVER)/
+ endef
+ 
+ define Package/ruby-json/install
+ 	( cd $(PKG_INSTALL_DIR); $(TAR) -cf - \
+-		usr/lib/ruby/$(PKG_LIBVER)/json.rb \
+-		usr/lib/ruby/$(PKG_LIBVER)/json \
+-		usr/lib/ruby/$(PKG_LIBVER)/*/json \
++		opt/lib/ruby/$(PKG_LIBVER)/json.rb \
++		opt/lib/ruby/$(PKG_LIBVER)/json \
++		opt/lib/ruby/$(PKG_LIBVER)/*/json \
+ 	) | ( cd $(1); $(TAR) -xf - )
+ endef
+ 
+ define Package/ruby-ncurses/install
+ 	( cd $(PKG_INSTALL_DIR); $(TAR) -cf - \
+-		usr/lib/ruby/$(PKG_LIBVER)/*/curses.so \
++		opt/lib/ruby/$(PKG_LIBVER)/*/curses.so \
+ 	) | ( cd $(1); $(TAR) -xf - )
+ endef
+ 
+ define Package/ruby-nkf/install
+ 	( cd $(PKG_INSTALL_DIR); $(TAR) -cf - \
+-		usr/lib/ruby/$(PKG_LIBVER)/kconv.rb \
+-		usr/lib/ruby/$(PKG_LIBVER)/*/nkf.so \
++		opt/lib/ruby/$(PKG_LIBVER)/kconv.rb \
++		opt/lib/ruby/$(PKG_LIBVER)/*/nkf.so \
+ 	) | ( cd $(1); $(TAR) -xf - )
+ endef
+ 
+ define Package/ruby-openssl/install
+ 	( cd $(PKG_INSTALL_DIR); $(TAR) -cf - \
+-		usr/lib/ruby/$(PKG_LIBVER)/digest \
+-		usr/lib/ruby/$(PKG_LIBVER)/digest.rb \
+-		usr/lib/ruby/$(PKG_LIBVER)/*/digest.so \
+-		usr/lib/ruby/$(PKG_LIBVER)/*/digest/*.so \
+-		usr/lib/ruby/$(PKG_LIBVER)/openssl \
+-		usr/lib/ruby/$(PKG_LIBVER)/openssl.rb \
+-		usr/lib/ruby/$(PKG_LIBVER)/*/openssl.so \
+-		usr/lib/ruby/$(PKG_LIBVER)/drb/ssl.rb \
+-		usr/lib/ruby/$(PKG_LIBVER)/net/https.rb \
++		opt/lib/ruby/$(PKG_LIBVER)/digest \
++		opt/lib/ruby/$(PKG_LIBVER)/digest.rb \
++		opt/lib/ruby/$(PKG_LIBVER)/*/digest.so \
++		opt/lib/ruby/$(PKG_LIBVER)/*/digest/*.so \
++		opt/lib/ruby/$(PKG_LIBVER)/openssl \
++		opt/lib/ruby/$(PKG_LIBVER)/openssl.rb \
++		opt/lib/ruby/$(PKG_LIBVER)/*/openssl.so \
++		opt/lib/ruby/$(PKG_LIBVER)/drb/ssl.rb \
++		opt/lib/ruby/$(PKG_LIBVER)/net/https.rb \
+ 	) | ( cd $(1); $(TAR) -xf - )
+ endef
+ 
+ define Package/ruby-rdoc/install
+-	$(INSTALL_DIR) $(1)/usr/bin
+-	$(INSTALL_BIN) $(PKG_INSTALL_DIR)/usr/bin/rdoc $(1)/usr/bin/
+-	$(INSTALL_BIN) $(PKG_INSTALL_DIR)/usr/bin/ri $(1)/usr/bin/
+-	$(INSTALL_DIR) $(1)/usr/lib/ruby/$(PKG_LIBVER)
+-	$(CP) $(PKG_INSTALL_DIR)/usr/lib/ruby/$(PKG_LIBVER)/rdoc $(1)/usr/lib/ruby/$(PKG_LIBVER)/
++	$(INSTALL_DIR) $(1)/opt/bin
++	$(INSTALL_BIN) $(PKG_INSTALL_DIR)/opt/bin/rdoc $(1)/opt/bin/
++	$(INSTALL_BIN) $(PKG_INSTALL_DIR)/opt/bin/ri $(1)/opt/bin/
++	$(INSTALL_DIR) $(1)/opt/lib/ruby/$(PKG_LIBVER)
++	$(CP) $(PKG_INSTALL_DIR)/opt/lib/ruby/$(PKG_LIBVER)/rdoc $(1)/opt/lib/ruby/$(PKG_LIBVER)/
+ endef
+ 
+ define Package/ruby-rake/install
+-	$(INSTALL_DIR) $(1)/usr/bin
+-	$(INSTALL_BIN) $(PKG_INSTALL_DIR)/usr/bin/rake $(1)/usr/bin/
+-	$(INSTALL_DIR) $(1)/usr/lib/ruby/$(PKG_LIBVER)
+-	$(CP) $(PKG_INSTALL_DIR)/usr/lib/ruby/$(PKG_LIBVER)/rake.rb $(1)/usr/lib/ruby/$(PKG_LIBVER)/
+-	$(CP) $(PKG_INSTALL_DIR)/usr/lib/ruby/$(PKG_LIBVER)/rake $(1)/usr/lib/ruby/$(PKG_LIBVER)/
++	$(INSTALL_DIR) $(1)/opt/bin
++	$(INSTALL_BIN) $(PKG_INSTALL_DIR)/opt/bin/rake $(1)/opt/bin/
++	$(INSTALL_DIR) $(1)/opt/lib/ruby/$(PKG_LIBVER)
++	$(CP) $(PKG_INSTALL_DIR)/opt/lib/ruby/$(PKG_LIBVER)/rake.rb $(1)/opt/lib/ruby/$(PKG_LIBVER)/
++	$(CP) $(PKG_INSTALL_DIR)/opt/lib/ruby/$(PKG_LIBVER)/rake $(1)/opt/lib/ruby/$(PKG_LIBVER)/
+ endef
+ 
+ define Package/ruby-readline/install
+ 	( cd $(PKG_INSTALL_DIR); $(TAR) -cf - \
+-		usr/lib/ruby/$(PKG_LIBVER)/*/readline.so \
++		opt/lib/ruby/$(PKG_LIBVER)/*/readline.so \
+ 	) | ( cd $(1); $(TAR) -xf - )
+ endef
+ 
+ define Package/ruby-rexml/install
+-	$(INSTALL_DIR) $(1)/usr/lib/ruby/$(PKG_LIBVER)
+-	$(CP) $(PKG_INSTALL_DIR)/usr/lib/ruby/$(PKG_LIBVER)/rexml $(1)/usr/lib/ruby/$(PKG_LIBVER)/
++	$(INSTALL_DIR) $(1)/opt/lib/ruby/$(PKG_LIBVER)
++	$(CP) $(PKG_INSTALL_DIR)/opt/lib/ruby/$(PKG_LIBVER)/rexml $(1)/opt/lib/ruby/$(PKG_LIBVER)/
+ endef
+ 
+ 
+ define Package/ruby-rss/install
+-	$(INSTALL_DIR) $(1)/usr/lib/ruby/$(PKG_LIBVER)
+-	$(CP) $(PKG_INSTALL_DIR)/usr/lib/ruby/$(PKG_LIBVER)/rss $(1)/usr/lib/ruby/$(PKG_LIBVER)/
+-	$(CP) $(PKG_INSTALL_DIR)/usr/lib/ruby/$(PKG_LIBVER)/rss.rb $(1)/usr/lib/ruby/$(PKG_LIBVER)/
++	$(INSTALL_DIR) $(1)/opt/lib/ruby/$(PKG_LIBVER)
++	$(CP) $(PKG_INSTALL_DIR)/opt/lib/ruby/$(PKG_LIBVER)/rss $(1)/opt/lib/ruby/$(PKG_LIBVER)/
++	$(CP) $(PKG_INSTALL_DIR)/opt/lib/ruby/$(PKG_LIBVER)/rss.rb $(1)/opt/lib/ruby/$(PKG_LIBVER)/
+ endef
+ 
+ define Package/ruby-unit/install
+-	$(INSTALL_DIR) $(1)/usr/bin
+-	$(INSTALL_BIN) $(PKG_INSTALL_DIR)/usr/bin/testrb $(1)/usr/bin/
+-	$(INSTALL_DIR) $(1)/usr/lib/ruby/$(PKG_LIBVER)
+-	$(CP) $(PKG_INSTALL_DIR)/usr/lib/ruby/$(PKG_LIBVER)/test $(1)/usr/lib/ruby/$(PKG_LIBVER)/
++	$(INSTALL_DIR) $(1)/opt/bin
++	$(INSTALL_BIN) $(PKG_INSTALL_DIR)/opt/bin/testrb $(1)/opt/bin/
++	$(INSTALL_DIR) $(1)/opt/lib/ruby/$(PKG_LIBVER)
++	$(CP) $(PKG_INSTALL_DIR)/opt/lib/ruby/$(PKG_LIBVER)/test $(1)/opt/lib/ruby/$(PKG_LIBVER)/
+ endef
+ 
+ define Package/ruby-webrick/install
+-	$(INSTALL_DIR) $(1)/usr/lib/ruby/$(PKG_LIBVER)
+-	$(CP) $(PKG_INSTALL_DIR)/usr/lib/ruby/$(PKG_LIBVER)/webrick $(1)/usr/lib/ruby/$(PKG_LIBVER)/
+-	$(CP) $(PKG_INSTALL_DIR)/usr/lib/ruby/$(PKG_LIBVER)/webrick.rb $(1)/usr/lib/ruby/$(PKG_LIBVER)/
++	$(INSTALL_DIR) $(1)/opt/lib/ruby/$(PKG_LIBVER)
++	$(CP) $(PKG_INSTALL_DIR)/opt/lib/ruby/$(PKG_LIBVER)/webrick $(1)/opt/lib/ruby/$(PKG_LIBVER)/
++	$(CP) $(PKG_INSTALL_DIR)/opt/lib/ruby/$(PKG_LIBVER)/webrick.rb $(1)/opt/lib/ruby/$(PKG_LIBVER)/
+ endef
+ 
+ define Package/ruby-xmlrpc/install
+-	$(INSTALL_DIR) $(1)/usr/lib/ruby/$(PKG_LIBVER)
+-	$(CP) $(PKG_INSTALL_DIR)/usr/lib/ruby/$(PKG_LIBVER)/xmlrpc $(1)/usr/lib/ruby/$(PKG_LIBVER)/
++	$(INSTALL_DIR) $(1)/opt/lib/ruby/$(PKG_LIBVER)
++	$(CP) $(PKG_INSTALL_DIR)/opt/lib/ruby/$(PKG_LIBVER)/xmlrpc $(1)/opt/lib/ruby/$(PKG_LIBVER)/
+ endef
+ 
+ define Package/ruby-yaml/install
+ 	( cd $(PKG_INSTALL_DIR); $(TAR) -cf - \
+-		usr/lib/ruby/$(PKG_LIBVER)/yaml \
+-		usr/lib/ruby/$(PKG_LIBVER)/yaml.rb \
+-		usr/lib/ruby/$(PKG_LIBVER)/*/syck.so \
++		opt/lib/ruby/$(PKG_LIBVER)/yaml \
++		opt/lib/ruby/$(PKG_LIBVER)/yaml.rb \
++		opt/lib/ruby/$(PKG_LIBVER)/*/syck.so \
+ 	) | ( cd $(1); $(TAR) -xf - )
+ endef
+ 
+ define Package/ruby-zlib/install
+ 	( cd $(PKG_INSTALL_DIR); $(TAR) -cf - \
+-		usr/lib/ruby/$(PKG_LIBVER)/*/zlib.so \
++		opt/lib/ruby/$(PKG_LIBVER)/*/zlib.so \
+ 	) | ( cd $(1); $(TAR) -xf - )
+ endef
+ 
