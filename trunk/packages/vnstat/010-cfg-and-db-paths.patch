@@ -1,0 +1,48 @@
+--- a/src/cfg.c	2011-05-30 00:41:34.000000000 +0400
++++ b/src/cfg.c	2012-05-25 17:25:18.112323900 +0400
+@@ -212,7 +212,7 @@
+ 	/* load default config */
+ 	defaultcfg();
+ 
+-	/* possible config files: 1) --config   2) $HOME/.vnstatrc   3) /etc/vnstat.conf   4) none */
++	/* possible config files: 1) --config   2) $HOME/.vnstatrc   3) /opt/etc/vnstat.conf   4) none */
+ 
+ 	if (cfgfile[0]!='\0') {
+ 
+@@ -240,9 +240,9 @@
+ 		if (tryhome && (fd=fopen(buffer, "r"))!=NULL) {
+ 			if (debug)
+ 				printf("Config file: $HOME/.vnstatrc\n");
+-		} else if ((fd=fopen("/etc/vnstat.conf", "r"))!=NULL) {
++		} else if ((fd=fopen("/opt/etc/vnstat.conf", "r"))!=NULL) {
+ 			if (debug)
+-				printf("Config file: /etc/vnstat.conf\n");
++				printf("Config file: /opt/etc/vnstat.conf\n");
+ 		} else {
+ 			if (debug)
+ 				printf("Config file: none\n");
+--- a/src/common.h	2011-06-01 23:50:32.000000000 +0400
++++ b/src/common.h	2012-05-25 17:23:34.405627438 +0400
+@@ -39,9 +39,9 @@
+ 
+ /* location of the database directory */
+ #if defined(__FreeBSD__) || defined(__NetBSD__) || defined(__OpenBSD__) || defined(__APPLE__)
+-#define DATABASEDIR "/var/db/vnstat"
++#define DATABASEDIR "/opt/var/db/vnstat"
+ #else
+-#define DATABASEDIR "/var/lib/vnstat"
++#define DATABASEDIR "/opt/var/lib/vnstat"
+ #endif
+ 
+ /* on which day should months change */
+@@ -156,8 +156,8 @@
+ #define OFFSAVEINTERVAL 30
+ #define SAVESTATUS 1
+ #define USELOGGING 2
+-#define LOGFILE "/var/log/vnstat.log"
+-#define PIDFILE "/var/run/vnstat.pid"
++#define LOGFILE "/opt/var/log/vnstat.log"
++#define PIDFILE "/opt/var/run/vnstat.pid"
+ 
+ /* no transparency by default */
+ #define TRANSBG 0

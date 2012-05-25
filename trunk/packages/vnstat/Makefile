@@ -10,6 +10,7 @@ all: ./.done
 
 ./.done:
 	patch -p0 -i ./fix-path.patch
+	cp -f ./010-cfg-and-db-paths.patch ../../../trunk/feeds/packages/net/vnstat/patches/
 	touch $@
 
 clean:
