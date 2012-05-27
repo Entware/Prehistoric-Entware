@@ -1,4 +1,4 @@
-===Known Bugs and odds, to do list===
+===Known bugs and odds, to do list===
 
 ipset: broken since r398
 sshd: syslogin_perform_logout: logout() returned an error, /var/... or /etc/... somewhere in sources
