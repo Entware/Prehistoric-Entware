@@ -1,8 +1,12 @@
---- ../../../backup/trunk_clean/feeds/packages/net/wput/Makefile	2012-01-18 17:41:36.000000000 +0400
-+++ ../../../trunk/feeds/packages/net/wput/Makefile	2012-01-19 16:28:13.716155663 +0400
-@@ -37,8 +37,8 @@
+--- ../../../trunk_clean/feeds/packages/net/wput/Makefile	2012-05-02 16:17:26.542386418 +0400
++++ ../../../trunk/feeds/packages/net/wput/Makefile	2012-05-27 21:56:01.791324606 +0400
+@@ -36,9 +36,12 @@
+ 	--disable-g-switch \
  	--without-ssl \
  
++MAKE_FLAGS += \
++	LIBS="$(TARGET_LDFLAGS)" \
++
  define Package/wput/install
 -	$(INSTALL_DIR) $(1)/usr/bin
 -	$(INSTALL_BIN) $(PKG_BUILD_DIR)/wput $(1)/usr/bin/

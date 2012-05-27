@@ -1,6 +1,6 @@
 diff -urx .svn ../../../trunk_clean/feeds/packages/net/mini_httpd/files/mini_httpd.conf ../../../trunk/feeds/packages/net/mini_httpd/files/mini_httpd.conf
---- ../../../trunk_clean/feeds/packages/net/mini_httpd/files/mini_httpd.conf	2012-04-02 11:00:37.944169154 +0400
-+++ ../../../trunk/feeds/packages/net/mini_httpd/files/mini_httpd.conf	2012-04-03 10:19:21.637774771 +0400
+--- ../../../trunk_clean/feeds/packages/net/mini_httpd/files/mini_httpd.conf	2012-05-02 16:17:23.890419757 +0400
++++ ../../../trunk/feeds/packages/net/mini_httpd/files/mini_httpd.conf	2012-05-02 16:22:04.553626438 +0400
 @@ -1,5 +1,5 @@
  cgipat=cgi-bin/**|**.sh
 -dir=/www
@@ -10,8 +10,8 @@ diff -urx .svn ../../../trunk_clean/feeds/packages/net/mini_httpd/files/mini_htt
 +pidfile=/opt/var/run/mini_httpd.pid
  user=root
 diff -urx .svn ../../../trunk_clean/feeds/packages/net/mini_httpd/files/mini_httpd-ssl.conf ../../../trunk/feeds/packages/net/mini_httpd/files/mini_httpd-ssl.conf
---- ../../../trunk_clean/feeds/packages/net/mini_httpd/files/mini_httpd-ssl.conf	2012-04-02 11:00:37.944169154 +0400
-+++ ../../../trunk/feeds/packages/net/mini_httpd/files/mini_httpd-ssl.conf	2012-04-03 10:19:05.573971466 +0400
+--- ../../../trunk_clean/feeds/packages/net/mini_httpd/files/mini_httpd-ssl.conf	2012-05-02 16:17:23.890419757 +0400
++++ ../../../trunk/feeds/packages/net/mini_httpd/files/mini_httpd-ssl.conf	2012-05-02 16:22:04.553626438 +0400
 @@ -1,7 +1,7 @@
  cgipat=cgi-bin/**|**.sh
 -dir=/www
@@ -24,8 +24,8 @@ diff -urx .svn ../../../trunk_clean/feeds/packages/net/mini_httpd/files/mini_htt
 -certfile=/etc/mini_httpd.pem
 +certfile=/opt/etc/mini_httpd.pem
 diff -urx .svn ../../../trunk_clean/feeds/packages/net/mini_httpd/Makefile ../../../trunk/feeds/packages/net/mini_httpd/Makefile
---- ../../../trunk_clean/feeds/packages/net/mini_httpd/Makefile	2012-04-02 11:00:37.944169154 +0400
-+++ ../../../trunk/feeds/packages/net/mini_httpd/Makefile	2012-04-03 10:21:35.020103369 +0400
+--- ../../../trunk_clean/feeds/packages/net/mini_httpd/Makefile	2012-05-02 16:17:23.886419808 +0400
++++ ../../../trunk/feeds/packages/net/mini_httpd/Makefile	2012-05-27 21:37:22.140106074 +0400
 @@ -28,8 +28,8 @@
  endef
  
@@ -55,7 +55,15 @@ diff -urx .svn ../../../trunk_clean/feeds/packages/net/mini_httpd/Makefile ../..
  endef
  
  define Package/mini-httpd-openssl/description
-@@ -120,19 +120,19 @@
+@@ -112,6 +112,7 @@
+ 	$(MAKE) -C $(PKG_BUILD_DIR) \
+ 		$(TARGET_CONFIGURE_OPTS) \
+ 		OFLAGS="$(TARGET_CFLAGS)" \
++		LDFLAGS="$(TARGET_LDFLAGS)" \
+ 		$(3) \
+ 		all
+ 	( cd $(PKG_BUILD_DIR); mv -f mini_httpd mini_httpd-$(2) )
+@@ -120,19 +121,19 @@
  $(STAMP_BUILT): $(STAMP_BUILT)-$(2)
  
  define Package/$(1)/install
@@ -85,7 +93,7 @@ diff -urx .svn ../../../trunk_clean/feeds/packages/net/mini_httpd/Makefile ../..
  endef
  
  endef
-@@ -179,8 +179,8 @@
+@@ -179,8 +180,8 @@
  $(eval $(Build/with-openssl))
  
  define Package/mini-httpd-htpasswd/install
@@ -97,8 +105,8 @@ diff -urx .svn ../../../trunk_clean/feeds/packages/net/mini_httpd/Makefile ../..
  
  $(eval $(call BuildPackage,mini-httpd))
 diff -urx .svn ../../../trunk_clean/feeds/packages/net/mini_httpd/patches/001-cgi_path.patch ../../../trunk/feeds/packages/net/mini_httpd/patches/001-cgi_path.patch
---- ../../../trunk_clean/feeds/packages/net/mini_httpd/patches/001-cgi_path.patch	2012-04-02 11:00:37.948169103 +0400
-+++ ../../../trunk/feeds/packages/net/mini_httpd/patches/001-cgi_path.patch	2012-04-03 10:17:50.710920467 +0400
+--- ../../../trunk_clean/feeds/packages/net/mini_httpd/patches/001-cgi_path.patch	2012-05-02 16:17:23.886419808 +0400
++++ ../../../trunk/feeds/packages/net/mini_httpd/patches/001-cgi_path.patch	2012-05-02 16:22:04.557628498 +0400
 @@ -6,11 +6,11 @@
   #endif /* CGI_NICE */
   #ifndef CGI_PATH
@@ -114,8 +122,8 @@ diff -urx .svn ../../../trunk_clean/feeds/packages/net/mini_httpd/patches/001-cg
   #ifndef AUTH_FILE
   #define AUTH_FILE ".htpasswd"
 diff -urx .svn ../../../trunk_clean/feeds/packages/net/mini_httpd/patches/500-matrixssl.patch ../../../trunk/feeds/packages/net/mini_httpd/patches/500-matrixssl.patch
---- ../../../trunk_clean/feeds/packages/net/mini_httpd/patches/500-matrixssl.patch	2012-04-02 11:00:37.948169103 +0400
-+++ ../../../trunk/feeds/packages/net/mini_httpd/patches/500-matrixssl.patch	2012-04-03 10:18:30.406423845 +0400
+--- ../../../trunk_clean/feeds/packages/net/mini_httpd/patches/500-matrixssl.patch	2012-05-02 16:17:23.886419808 +0400
++++ ../../../trunk/feeds/packages/net/mini_httpd/patches/500-matrixssl.patch	2012-05-02 16:22:04.561630501 +0400
 @@ -25,8 +25,8 @@
  -MANDIR =	/usr/local/man
  +DESTDIR =
