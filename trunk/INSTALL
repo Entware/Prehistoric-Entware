@@ -30,4 +30,4 @@ $ make
 
     If building fails, see whats wrong in a current target from Makefile.
 
-    ipk-packages can be found at ~/openwrt/bin/entware/packages directory.
+    ipk-packages can be found at ~/openwrt/trunk/bin/entware/packages directory.
