@@ -1,6 +1,6 @@
---- ../../../backup/trunk_clean/feeds/packages/utils/bzip2/Makefile	2012-01-13 12:14:27.000000000 +0400
-+++ ../../../trunk/feeds/packages/utils/bzip2/Makefile	2012-01-14 22:13:03.568632802 +0400
-@@ -43,8 +43,11 @@
+--- ../../../trunk_clean/feeds/packages/utils/bzip2/Makefile	2012-05-02 16:17:35.298276342 +0400
++++ ../../../trunk/feeds/packages/utils/bzip2/Makefile	2012-05-28 10:08:52.278974941 +0400
+@@ -43,33 +43,36 @@
  	data compressor. This package provides the binary.
  endef
  
@@ -14,7 +14,9 @@
  
  MAKE_FLAGS += \
  	-f Makefile-libbz2_so \
-@@ -53,23 +56,23 @@
+ 	CFLAGS="$(TARGET_CFLAGS)" \
+-	LDFLAGS="$(TARGET_LDLAGS)" \
++	LDFLAGS="$(TARGET_LDFLAGS)" \
  	all
  
  define Build/InstallDev

@@ -1,6 +1,11 @@
---- ../../../backup/trunk_clean/feeds/packages/net/cutter/Makefile	2011-11-25 09:49:50.668941486 +0400
-+++ ../../../trunk/feeds/packages/net/cutter/Makefile	2011-11-26 22:57:06.488664526 +0400
-@@ -35,8 +35,8 @@
+--- ../../../trunk_clean/feeds/packages/net/cutter/Makefile	2012-05-02 16:17:28.226365246 +0400
++++ ../../../trunk/feeds/packages/net/cutter/Makefile	2012-05-28 09:38:06.430174790 +0400
+@@ -31,12 +31,12 @@
+ endef
+ 	
+ define Build/Compile
+-	$(TARGET_CC) $(PKG_BUILD_DIR)/cutter.c -o $(PKG_BUILD_DIR)/cutter
++	$(TARGET_CC) $(TARGET_CFLAGS) $(TARGET_LDFLAGS) $(PKG_BUILD_DIR)/cutter.c -o $(PKG_BUILD_DIR)/cutter
  endef
  	
  define Package/cutter/install

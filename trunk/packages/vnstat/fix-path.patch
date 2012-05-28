@@ -1,6 +1,6 @@
---- ../../../backup/trunk_clean/feeds/packages/net/vnstat/Makefile	2011-12-05 10:46:37.000000000 +0400
-+++ ../../../trunk/feeds/packages/net/vnstat/Makefile	2011-12-05 17:12:50.762901435 +0400
-@@ -54,10 +54,10 @@
+--- ../../../trunk_clean/feeds/packages/net/vnstat/Makefile	2012-05-02 16:17:23.946419053 +0400
++++ ../../../trunk/feeds/packages/net/vnstat/Makefile	2012-05-28 09:31:13.483369479 +0400
+@@ -54,22 +54,23 @@
  	output.
  endef
  
@@ -15,7 +15,12 @@
  
  define Build/Compile/vnstat
  	$(MAKE) $(PKG_JOBS) -C $(PKG_BUILD_DIR) \
-@@ -68,8 +68,8 @@
+ 		$(TARGET_CONFIGURE_OPTS) \
+-		CFLAGS="$(TARGET_CFLAGS)"
++		CFLAGS="$(TARGET_CFLAGS)" \
++		LDFLAGS="$(TARGET_LDFLAGS)"
+ endef
+ 
  define Build/Compile/vnstati
  	$(MAKE) $(PKG_JOBS) -C $(PKG_BUILD_DIR) \
  		$(TARGET_CONFIGURE_OPTS) \
@@ -26,7 +31,7 @@
  		all
  endef
  
-@@ -79,30 +79,30 @@
+@@ -79,30 +80,30 @@
  endef
  
  define Package/vnstat/install

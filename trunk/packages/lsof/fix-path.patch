@@ -1,5 +1,5 @@
---- ../../../backup/trunk_clean/feeds/packages/utils/lsof/Makefile	2011-11-25 09:49:47.788977694 +0400
-+++ ../../../trunk/feeds/packages/utils/lsof/Makefile	2011-11-27 20:19:07.966900223 +0400
+--- ../../../trunk_clean/feeds/packages/utils/lsof/Makefile	2012-05-02 16:17:34.986280264 +0400
++++ ../../../trunk/feeds/packages/utils/lsof/Makefile	2012-05-28 09:44:37.525258936 +0400
 @@ -20,13 +20,13 @@
  
  include $(INCLUDE_DIR)/package.mk
@@ -17,7 +17,12 @@
    TITLE:=LiSt Open Files - a diagnostic tool
    URL:=http://people.freebsd.org/~abe/
  endef
-@@ -49,8 +49,8 @@
+@@ -45,12 +45,12 @@
+ 		AR="$(TARGET_CROSS)ar cr" \
+ 		RANLIB="$(TARGET_CROSS)ranlib" \
+ 		DEBUG="$(TARGET_CFLAGS)" \
+-		LDFLAGS="$(TARGET_LDFLAGS)" 
++		CFGL="-L./lib -llsof $(TARGET_LDFLAGS)" 
  endef
  
  define Package/lsof/install	

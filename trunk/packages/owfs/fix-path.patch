@@ -1,5 +1,5 @@
---- ../../../backup/trunk_clean/feeds/packages/utils/owfs/Makefile	2012-01-18 17:41:21.000000000 +0400
-+++ ../../../trunk/feeds/packages/utils/owfs/Makefile	2012-01-20 11:59:35.254522432 +0400
+--- ../../../trunk_clean/feeds/packages/utils/owfs/Makefile	2012-05-02 16:17:34.750283221 +0400
++++ ../../../trunk/feeds/packages/utils/owfs/Makefile	2012-05-28 09:14:56.546543599 +0400
 @@ -19,6 +19,7 @@
  PKG_INSTALL:=1
  
@@ -35,12 +35,12 @@
 +	--enable-usb \
 +	--with-libusb-config="$(STAGING_DIR)/host/bin/libusb-config"
 +
-+TARGET_LDFLAGS := \
++TARGET_LDFLAGS += \
 +	-Wl,-rpath-link=$(STAGING_DIR)/opt/lib \
 +	-L$(ICONV_PREFIX)/lib \
 +	-liconv \
 +
-+TARGET_CFLAGS := \
++TARGET_CFLAGS += \
 +	-I$(ICONV_PREFIX)/include \
  
  CONFIGURE_VARS += \

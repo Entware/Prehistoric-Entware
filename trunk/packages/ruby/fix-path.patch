@@ -1,6 +1,16 @@
 --- ../../../trunk_clean/feeds/packages/lang/ruby/Makefile	2012-05-02 16:17:28.614360360 +0400
-+++ ../../../trunk/feeds/packages/lang/ruby/Makefile	2012-05-22 13:59:51.541760288 +0400
-@@ -225,231 +225,231 @@
++++ ../../../trunk/feeds/packages/lang/ruby/Makefile	2012-05-28 09:54:57.417468846 +0400
+@@ -215,7 +215,8 @@
+ 
+ MAKE_FLAGS += \
+ 	DESTDIR="$(PKG_INSTALL_DIR)" \
+-	SHELL="/bin/bash"
++	SHELL="/bin/bash" \
++	EXTLDFLAGS="$(TARGET_LDFLAGS)"
+ 
+ define Build/Prepare
+ $(call Build/Prepare/Default)
+@@ -225,231 +226,231 @@
  endef
  
  define Package/ruby/install

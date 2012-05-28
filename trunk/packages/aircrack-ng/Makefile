@@ -10,6 +10,7 @@ all: ./.done
 
 ./.done:
 	patch -p0 -i ./fix-path.patch
+	cp -f ./050-add-link-flags.patch ../../../trunk/feeds/packages/net/aircrack-ng/patches/
 	touch $@
 
 clean:

@@ -1,6 +1,11 @@
---- ../../../trunk_clean/feeds/packages/net/etherwake/Makefile	2012-04-02 11:00:39.256152660 +0400
-+++ ../../../trunk/feeds/packages/net/etherwake/Makefile	2012-04-10 14:31:21.097698699 +0400
-@@ -39,16 +39,8 @@
+--- ../../../trunk_clean/feeds/packages/net/etherwake/Makefile	2012-05-02 16:17:27.890369470 +0400
++++ ../../../trunk/feeds/packages/net/etherwake/Makefile	2012-05-28 09:07:44.947969493 +0400
+@@ -35,20 +35,12 @@
+ endef
+ 
+ define Build/Compile
+-	$(TARGET_CC) $(TARGET_CFLAGS) -D__UCLIBC__ $(PKG_BUILD_DIR)/ether-wake.c -o $(PKG_BUILD_DIR)/etherwake
++	$(TARGET_CC) $(TARGET_LDFLAGS) $(TARGET_CFLAGS) -D__UCLIBC__ $(PKG_BUILD_DIR)/ether-wake.c -o $(PKG_BUILD_DIR)/etherwake
  endef
  
  define Package/etherwake/install
