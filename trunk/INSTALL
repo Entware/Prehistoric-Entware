@@ -3,11 +3,12 @@ These are generic installation instructions.
 Requirements
 ============
 
-- A generic Linux compilation environment, mine is Ubuntu 11.10:
+- A generic Linux compilation environment, tested on Debian 6 and Ubuntu 11.х:
    $ sudo apt-get install autoconf automake bash bison bzip2 \
-   diffutils file flex g++ gawk groff libncurses-dev libtool \
+   diffutils file flex g++ gawk groff-base libncurses-dev libtool \
    libslang2 make patch perl sed shtool subversion tar texinfo \
-   zlib1g zlib1g-dev git-core gettext libexpat1-dev libssl-dev cvs gperf
+   zlib1g zlib1g-dev git-core gettext libexpat1-dev libssl-dev \
+   cvs gperf unzip python libxml-parser-perl gcc-multilib
 
 - At least 20Gb of disk space,
 - Approx. 5 hours of free time to compile all stuff.
