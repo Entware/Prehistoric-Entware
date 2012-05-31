@@ -10,6 +10,8 @@ all: ./.done
 
 ./.done:
 	patch -p0 -i ./fix-path.patch
+	mkdir ../../../trunk/feeds/packages/net/opendchub/files
+	cp ./S61opendchub ../../../trunk/feeds/packages/net/opendchub/files/
 	touch $@
 
 clean:

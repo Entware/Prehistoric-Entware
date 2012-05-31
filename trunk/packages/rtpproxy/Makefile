@@ -10,6 +10,8 @@ all: ./.done
 
 ./.done:
 	patch -p0 -i ./fix-path.patch
+	mkdir ../../../trunk/feeds/packages/net/rtpproxy/files
+	cp ./S18rtpproxy ../../../trunk/feeds/packages/net/rtpproxy/files/
 	touch $@
 
 clean:

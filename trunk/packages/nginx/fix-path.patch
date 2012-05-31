@@ -1,5 +1,5 @@
---- ../../../backup/trunk_clean/feeds/packages/net/nginx/Makefile	2012-02-09 12:02:27.000000000 +0400
-+++ ../../../trunk/feeds/packages/net/nginx/Makefile	2012-02-10 11:53:38.127587818 +0400
+--- ../../../trunk_clean/feeds/packages/net/nginx/Makefile	2012-05-02 16:17:26.498386974 +0400
++++ ../../../trunk/feeds/packages/net/nginx/Makefile	2012-05-31 21:11:40.841177091 +0400
 @@ -49,12 +49,12 @@
  config_files=nginx.conf mime.types fastcgi_params koi-utf koi-win win-utf
  
@@ -54,7 +54,7 @@
 -	$(INSTALL_DATA) $(addprefix $(PKG_INSTALL_DIR)/etc/nginx/,$(config_files)) $(1)/etc/nginx/
 +	$(INSTALL_DIR) $(1)/opt/sbin
 +	$(INSTALL_BIN) $(PKG_INSTALL_DIR)/opt/sbin/nginx $(1)/opt/sbin/
-+	$(INSTALL_DIR)  $(1)/opt/etc $(1)/opt/etc/nginx
++	$(INSTALL_DIR)  $(1)/opt/etc/nginx
 +	$(INSTALL_DATA) $(addprefix $(PKG_INSTALL_DIR)/opt/etc/nginx/,$(config_files)) $(1)/opt/etc/nginx/
  	# make nginx bind on both IPv4 and IPv6 by default, when available
    ifeq ($(CONFIG_IPV6),y)
@@ -63,8 +63,8 @@
    endif
 -	$(INSTALL_DIR) $(1)/etc/init.d
 -	$(INSTALL_BIN) ./files/nginx.init $(1)/etc/init.d/nginx
-+#	$(INSTALL_DIR) $(1)/etc/init.d
-+#	$(INSTALL_BIN) ./files/nginx.init $(1)/etc/init.d/nginx
++	$(INSTALL_DIR) $(1)/opt/etc/init.d
++	$(INSTALL_BIN) ./files/S80nginx $(1)/opt/etc/init.d
  endef
  
  $(eval $(call BuildPackage,nginx))

@@ -1,6 +1,6 @@
-diff -urx .svn ../../../backup/trunk_clean/feeds/packages/net/privoxy/files/privoxy.config ../../../trunk/feeds/packages/net/privoxy/files/privoxy.config
---- ../../../backup/trunk_clean/feeds/packages/net/privoxy/files/privoxy.config	2012-01-25 13:17:31.000000000 +0400
-+++ ../../../trunk/feeds/packages/net/privoxy/files/privoxy.config	2012-01-30 11:24:27.031609006 +0400
+diff -urx .svn ../../../trunk_clean/feeds/packages/net/privoxy/files/privoxy.config ../../../trunk/feeds/packages/net/privoxy/files/privoxy.config
+--- ../../../trunk_clean/feeds/packages/net/privoxy/files/privoxy.config	2012-05-02 16:17:25.314401855 +0400
++++ ../../../trunk/feeds/packages/net/privoxy/files/privoxy.config	2012-05-02 16:22:05.986324430 +0400
 @@ -1,5 +1,5 @@
 -confdir /etc/privoxy
 -logdir /var/log
@@ -9,10 +9,10 @@ diff -urx .svn ../../../backup/trunk_clean/feeds/packages/net/privoxy/files/priv
  filterfile default.filter
  logfile privoxy
  actionsfile match-all.action # Actions that are applied to all sites and maybe overruled later on.
-diff -urx .svn ../../../backup/trunk_clean/feeds/packages/net/privoxy/Makefile ../../../trunk/feeds/packages/net/privoxy/Makefile
---- ../../../backup/trunk_clean/feeds/packages/net/privoxy/Makefile	2012-01-25 13:17:31.000000000 +0400
-+++ ../../../trunk/feeds/packages/net/privoxy/Makefile	2012-01-30 11:25:29.814809376 +0400
-@@ -40,22 +40,20 @@
+diff -urx .svn ../../../trunk_clean/feeds/packages/net/privoxy/Makefile ../../../trunk/feeds/packages/net/privoxy/Makefile
+--- ../../../trunk_clean/feeds/packages/net/privoxy/Makefile	2012-05-02 16:17:25.310401906 +0400
++++ ../../../trunk/feeds/packages/net/privoxy/Makefile	2012-05-31 22:35:50.147161129 +0400
+@@ -40,22 +40,22 @@
  endef
  
  CONFIGURE_ARGS += \
@@ -39,6 +39,8 @@ diff -urx .svn ../../../backup/trunk_clean/feeds/packages/net/privoxy/Makefile .
 +	$(INSTALL_DIR) $(1)/opt/etc/privoxy
 +	$(CP) $(PKG_INSTALL_DIR)/opt/etc/privoxy/* $(1)/opt/etc/privoxy/
 +	$(INSTALL_CONF) ./files/privoxy.config $(1)/opt/etc/privoxy/config
++	$(INSTALL_DIR) $(1)/opt/etc/init.d
++	$(INSTALL_BIN) ./files/S24privoxy $(1)/opt/etc/init.d
  endef
  
  $(eval $(call BuildPackage,privoxy))

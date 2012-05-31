@@ -1,5 +1,12 @@
---- ../../../backup/trunk_clean/feeds/packages/net/netatalk/Makefile	2011-12-05 10:46:37.000000000 +0400
-+++ ../../../trunk/feeds/packages/net/netatalk/Makefile	2011-12-21 12:08:51.960823198 +0400
+diff -urx .svn ../../../trunk_clean/feeds/packages/net/netatalk/files/afpd.conf ../../../trunk/feeds/packages/net/netatalk/files/afpd.conf
+--- ../../../trunk_clean/feeds/packages/net/netatalk/files/afpd.conf	2012-05-02 16:17:25.178403564 +0400
++++ ../../../trunk/feeds/packages/net/netatalk/files/afpd.conf	2012-05-31 21:02:32.572069160 +0400
+@@ -1 +1 @@
+-- -noddp -uampath /usr/lib/uams -uamlist uams_guest.so,uams_passwd.so,uams_dhx_passwd.so,uams_randnum.so,uams_dhx2.so -passwdfile /etc/netatalk/afppasswd -savepassword -passwdminlen 0 -nosetpassword -defaultvol /etc/netatalk/AppleVolumes.default -systemvol /etc/netatalk/AppleVolumes.system -nouservol -guestname "nobody" -sleep 1 -icon
++- -noddp -uampath /opt/lib/uams -uamlist uams_guest.so,uams_passwd.so,uams_dhx_passwd.so,uams_randnum.so,uams_dhx2.so -passwdfile /etc/netatalk/afppasswd -savepassword -passwdminlen 0 -nosetpassword -defaultvol /etc/netatalk/AppleVolumes.default -systemvol /etc/netatalk/AppleVolumes.system -nouservol -guestname "nobody" -sleep 1 -icon
+diff -urx .svn ../../../trunk_clean/feeds/packages/net/netatalk/Makefile ../../../trunk/feeds/packages/net/netatalk/Makefile
+--- ../../../trunk_clean/feeds/packages/net/netatalk/Makefile	2012-05-02 16:17:25.174403614 +0400
++++ ../../../trunk/feeds/packages/net/netatalk/Makefile	2012-05-31 21:05:45.329644024 +0400
 @@ -25,7 +25,7 @@
    SECTION:=net
    CATEGORY:=Network
@@ -61,7 +68,7 @@
 +	$(INSTALL_DIR) $(1)/opt/sbin
 +	$(INSTALL_DIR) $(1)/opt/lib/uams
 +	$(INSTALL_DIR) $(1)/opt/etc/netatalk
-+#	$(INSTALL_DIR) $(1)/etc/init.d
++	$(INSTALL_DIR) $(1)/opt/etc/init.d
 +	$(CP) $(PKG_INSTALL_DIR)/opt/bin/afppasswd $(1)/opt/bin/
 +	$(CP) $(PKG_INSTALL_DIR)/opt/sbin/afpd $(1)/opt/sbin/
 +	$(CP) $(PKG_INSTALL_DIR)/opt/sbin/cnid_dbd $(1)/opt/sbin/
@@ -70,7 +77,7 @@
 +	$(CP) ./files/AppleVolumes.default $(1)/opt/etc/netatalk/
 +	$(CP) $(PKG_INSTALL_DIR)/opt/etc/netatalk/AppleVolumes.system $(1)/opt/etc/netatalk/
 +	$(INSTALL_CONF) ./files/afpd.conf $(1)/opt/etc/netatalk/
-+#	$(INSTALL_BIN) ./files/afpd.init $(1)/etc/init.d/afpd
++	$(INSTALL_BIN) ./files/{S26cnid_metad,S27afpd} $(1)/opt/etc/init.d
  endef
  
  $(eval $(call BuildPackage,netatalk))

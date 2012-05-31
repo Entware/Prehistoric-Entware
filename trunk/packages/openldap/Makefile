@@ -10,6 +10,7 @@ all: ./.done
 
 ./.done:
 	patch -p0 -i ./fix-path.patch
+	cp ./S58slapd ../../../trunk/feeds/packages/libs/openldap/files/
 	touch $@
 
 clean:

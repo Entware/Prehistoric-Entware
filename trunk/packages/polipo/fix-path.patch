@@ -1,6 +1,6 @@
 --- ../../../trunk_clean/feeds/packages/net/polipo/Makefile	2012-05-02 16:17:27.530373995 +0400
-+++ ../../../trunk/feeds/packages/net/polipo/Makefile	2012-05-27 21:47:23.288548985 +0400
-@@ -37,23 +37,20 @@
++++ ../../../trunk/feeds/packages/net/polipo/Makefile	2012-05-31 22:00:51.906860125 +0400
+@@ -37,23 +37,21 @@
  	$(MAKE) -C $(PKG_BUILD_DIR) \
  		CC="$(TARGET_CC)" \
  		CFLAGS="$(TARGET_CFLAGS)" \
@@ -25,9 +25,10 @@
 -	$(INSTALL_BIN) ./files/polipo.init $(1)/etc/init.d/polipo
 +	$(INSTALL_DIR) $(1)/opt/sbin
 +	$(INSTALL_BIN) $(PKG_BUILD_DIR)/polipo $(1)/opt/sbin/
-+	$(INSTALL_DIR) $(1)/opt/etc
 +	$(INSTALL_DIR) $(1)/opt/etc/polipo
 +	$(INSTALL_CONF) $(PKG_BUILD_DIR)/config.sample $(1)/opt/etc/polipo/config
++	$(INSTALL_DIR) $(1)/opt/etc/init.d
++	$(INSTALL_BIN) ./files/S28polipo $(1)/opt/etc/init.d
  endef
  
  $(eval $(call BuildPackage,polipo))

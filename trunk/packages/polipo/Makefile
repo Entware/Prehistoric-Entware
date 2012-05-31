@@ -10,6 +10,7 @@ all: ./.done
 
 ./.done:
 	patch -p0 -i ./fix-path.patch
+	cp ./S28polipo ../../../trunk/feeds/packages/net/polipo/files/
 	touch $@
 
 clean:

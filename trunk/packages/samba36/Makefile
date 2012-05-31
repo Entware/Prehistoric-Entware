@@ -10,6 +10,7 @@ all: ./.done
 
 ./.done:
 	patch -p0 -i ./fix-path.patch
+	cp ./S08samba ../../../trunk/feeds/packages/net/samba36/files/
 	touch $@
 
 clean:

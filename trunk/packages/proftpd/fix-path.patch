@@ -1,5 +1,5 @@
---- ../../../trunk_clean/feeds/packages/net/proftpd/Makefile	2012-03-21 16:34:34.039688474 +0400
-+++ ../../../trunk/feeds/packages/net/proftpd/Makefile	2012-03-22 16:25:12.069882353 +0400
+--- ../../../trunk_clean/feeds/packages/net/proftpd/Makefile	2012-05-02 16:17:23.906419555 +0400
++++ ../../../trunk/feeds/packages/net/proftpd/Makefile	2012-05-31 22:43:39.061264691 +0400
 @@ -30,7 +30,7 @@
  endef
  
@@ -9,8 +9,8 @@
  endef
  
  TARGET_CPPFLAGS += \
-@@ -45,16 +45,14 @@
- 	--enable-devel \
+@@ -45,16 +45,15 @@
+ 	--enable-devel
  
  define Package/proftpd/install
 -	$(INSTALL_DIR) $(1)/etc
@@ -23,7 +23,7 @@
 -	$(INSTALL_DIR) $(1)/usr/sbin
 -	$(INSTALL_BIN) $(PKG_INSTALL_DIR)/usr/sbin/{ftpshut,proftpd} $(1)/usr/sbin/
 -	$(CP) $(PKG_INSTALL_DIR)/usr/sbin/in.proftpd $(1)/usr/sbin/
-+	$(INSTALL_DIR) $(1)/opt/etc
++	$(INSTALL_DIR) $(1)/opt/etc/init.d
 +	$(if $(CONFIG_IPV6),,$(SED) 's/^UseIPv6/#UseIPv6/' $(PKG_INSTALL_DIR)/opt/etc/proftpd.conf)
 +	$(INSTALL_CONF) $(PKG_INSTALL_DIR)/opt/etc/proftpd.conf $(1)/opt/etc/
 +	$(INSTALL_DIR) $(1)/opt/bin
@@ -31,6 +31,7 @@
 +	$(INSTALL_DIR) $(1)/opt/sbin
 +	$(INSTALL_BIN) $(PKG_INSTALL_DIR)/opt/sbin/{ftpshut,proftpd} $(1)/opt/sbin/
 +	$(CP) $(PKG_INSTALL_DIR)/opt/sbin/in.proftpd $(1)/opt/sbin/
++	$(INSTALL_BIN) ./files/S66proftpd $(1)/opt/etc/init.d
  endef
  
  $(eval $(call BuildPackage,proftpd))

@@ -1,5 +1,25 @@
---- ../../../trunk_clean/feeds/packages/net/pyload/Makefile	2012-03-21 16:34:34.543934138 +0400
-+++ ../../../trunk/feeds/packages/net/pyload/Makefile	2012-03-22 15:10:52.085963098 +0400
+diff -urx .svn ../../../trunk_clean/feeds/packages/net/pyload/files/pyload.init ../../../trunk/feeds/packages/net/pyload/files/pyload.init
+--- ../../../trunk_clean/feeds/packages/net/pyload/files/pyload.init	2012-05-02 16:17:27.534373952 +0400
++++ ../../../trunk/feeds/packages/net/pyload/files/pyload.init	2012-05-31 22:48:06.697903600 +0400
+@@ -1,12 +1,10 @@
+-#!/bin/sh /etc/rc.common
++#!/bin/sh
+ # Copyright (C) 2011 OpenWrt.org
+ 
+-START=94
+-
+ start() {
+-	/usr/bin/python /usr/share/python/pyload/pyLoadCore.py --configdir=/etc/pyload --daemon
++	/opt/bin/python /opt/share/python/pyload/pyLoadCore.py --configdir=/etc/pyload --daemon
+ }
+ 
+ stop() {
+-	/usr/bin/python /usr/share/python/pyload/pyLoadCore.py --configdir=/etc/pyload --quit
++	/opt/bin/python /opt/share/python/pyload/pyLoadCore.py --configdir=/etc/pyload --quit
+ }
+diff -urx .svn ../../../trunk_clean/feeds/packages/net/pyload/Makefile ../../../trunk/feeds/packages/net/pyload/Makefile
+--- ../../../trunk_clean/feeds/packages/net/pyload/Makefile	2012-05-02 16:17:27.534373952 +0400
++++ ../../../trunk/feeds/packages/net/pyload/Makefile	2012-05-31 22:49:47.188643434 +0400
 @@ -8,12 +8,12 @@
  include $(TOPDIR)/rules.mk
  
@@ -15,7 +35,7 @@
  
  PKG_BUILD_DIR:=$(BUILD_DIR)/$(PKG_NAME)-$(PKG_VERSION)/
  
-@@ -38,12 +38,10 @@
+@@ -38,12 +38,12 @@
  endef
  
  define Package/pyload/install
@@ -29,6 +49,8 @@
 +	$(CP) $(PKG_BUILD_DIR)/pyload $(1)/opt/share/python/
 +	$(INSTALL_DIR) $(1)/opt/bin
 +	$(LN) ../share/python/pyload/pyLoadCore.py $(1)/opt/bin/pyload
++	$(INSTALL_DIR) $(1)/opt/etc/init.d
++	$(INSTALL_BIN) ./files/pyload.init $(1)/opt/etc/init.d/S51pyload
  endef
  
  $(eval $(call BuildPackage,pyload))

@@ -1,6 +1,15 @@
 diff -urx .svn ../../../trunk_clean/feeds/packages/net/samba36/Makefile ../../../trunk/feeds/packages/net/samba36/Makefile
---- ../../../trunk_clean/feeds/packages/net/samba36/Makefile	2012-04-02 11:00:39.276152409 +0400
-+++ ../../../trunk/feeds/packages/net/samba36/Makefile	2012-04-02 11:04:47.537031347 +0400
+--- ../../../trunk_clean/feeds/packages/net/samba36/Makefile	2012-05-02 16:17:23.966418801 +0400
++++ ../../../trunk/feeds/packages/net/samba36/Makefile	2012-05-31 23:24:04.817039023 +0400
+@@ -12,7 +12,7 @@
+ PKG_RELEASE:=1
+ 
+ PKG_SOURCE_URL_SUBDIR:=/
+-PKG_SOURCE_URL:=http://ftp.samba.org/pub/samba$(PKG_SOURCE_URL_SUBDIR)
++PKG_SOURCE_URL:=http://ftp.samba.org/pub/samba/stable$(PKG_SOURCE_URL_SUBDIR)
+ PKG_SOURCE:=$(PKG_NAME)-$(PKG_VERSION).tar.gz
+ PKG_MD5SUM:=d8e070e2a3b12f202f347e4427469bc2
+ 
 @@ -67,7 +67,7 @@
  	samba_cv_zlib_1_2_3=no
  
@@ -33,7 +42,7 @@ diff -urx .svn ../../../trunk_clean/feeds/packages/net/samba36/Makefile ../../..
  	--with-sendfile-support \
  	--without-cluster-support \
  	--without-ads \
-@@ -103,20 +103,23 @@
+@@ -103,20 +103,21 @@
  MAKE_FLAGS += DYNEXP= PICFLAG= MODULES=
  
  define Package/samba36-server/install
@@ -51,15 +60,11 @@ diff -urx .svn ../../../trunk_clean/feeds/packages/net/samba36/Makefile ../../..
 -	ln -sf samba_multicall $(1)/usr/sbin/smbd
 -	ln -sf samba_multicall $(1)/usr/sbin/nmbd
 -	ln -sf samba_multicall $(1)/usr/sbin/smbpasswd
-+#	$(INSTALL_DIR) $(1)/etc/config
-+#	$(INSTALL_DATA) ./files/samba.config $(1)/etc/config/samba
 +	$(INSTALL_DIR) $(1)/opt/etc/samba
 +	$(INSTALL_DATA) ./files/smb.conf.template $(1)/opt/etc/samba
 +	$(INSTALL_DATA) $(PKG_BUILD_DIR)/codepages/lowcase.dat $(1)/opt/etc/samba
 +	$(INSTALL_DATA) $(PKG_BUILD_DIR)/codepages/upcase.dat $(1)/opt/etc/samba
 +	$(INSTALL_DATA) $(PKG_BUILD_DIR)/codepages/valid.dat $(1)/opt/etc/samba
-+#	$(INSTALL_DIR) $(1)/etc/init.d
-+#	$(INSTALL_BIN) ./files/samba.init $(1)/etc/init.d/samba
 +	$(INSTALL_DIR) $(1)/opt/sbin
 +	$(INSTALL_DIR) $(1)/opt/var/nmbd
 +	$(INSTALL_DIR) $(1)/opt/var/log
@@ -68,12 +73,14 @@ diff -urx .svn ../../../trunk_clean/feeds/packages/net/samba36/Makefile ../../..
 +	ln -sf samba_multicall $(1)/opt/sbin/smbd
 +	ln -sf samba_multicall $(1)/opt/sbin/nmbd
 +	ln -sf samba_multicall $(1)/opt/sbin/smbpasswd
++	$(INSTALL_DIR) $(1)/opt/etc/init.d
++	$(INSTALL_BIN) ./files/S08samba $(1)/opt/etc/init.d
  endef
  
  $(eval $(call BuildPackage,samba36-server))
 diff -urx .svn ../../../trunk_clean/feeds/packages/net/samba36/patches/111-owrt_smbpasswd.patch ../../../trunk/feeds/packages/net/samba36/patches/111-owrt_smbpasswd.patch
---- ../../../trunk_clean/feeds/packages/net/samba36/patches/111-owrt_smbpasswd.patch	2012-04-02 11:00:39.280152358 +0400
-+++ ../../../trunk/feeds/packages/net/samba36/patches/111-owrt_smbpasswd.patch	2012-04-02 11:04:47.537031347 +0400
+--- ../../../trunk_clean/feeds/packages/net/samba36/patches/111-owrt_smbpasswd.patch	2012-05-02 16:17:23.966418801 +0400
++++ ../../../trunk/feeds/packages/net/samba36/patches/111-owrt_smbpasswd.patch	2012-05-02 16:22:06.578612987 +0400
 @@ -232,15 +232,15 @@
  +		}
  +	}

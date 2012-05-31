@@ -1,6 +1,6 @@
-diff -urx .svn ../../../backup/trunk_clean/feeds/packages/net/pptpd/files/options.pptpd ../../../trunk/feeds/packages/net/pptpd/files/options.pptpd
---- ../../../backup/trunk_clean/feeds/packages/net/pptpd/files/options.pptpd	2012-02-09 12:02:23.000000000 +0400
-+++ ../../../trunk/feeds/packages/net/pptpd/files/options.pptpd	2012-02-13 10:15:28.520174215 +0400
+diff -urx .svn ../../../trunk_clean/feeds/packages/net/pptpd/files/options.pptpd ../../../trunk/feeds/packages/net/pptpd/files/options.pptpd
+--- ../../../trunk_clean/feeds/packages/net/pptpd/files/options.pptpd	2012-05-02 16:17:23.886419808 +0400
++++ ../../../trunk/feeds/packages/net/pptpd/files/options.pptpd	2012-05-02 16:22:05.962312733 +0400
 @@ -1,5 +1,5 @@
  #debug
 -#logfile /tmp/pptp-server.log
@@ -14,9 +14,9 @@ diff -urx .svn ../../../backup/trunk_clean/feeds/packages/net/pptpd/files/option
  #plugin radius.so
 -#radius-config-file /etc/radius.conf
 +#radius-config-file /opt/etc/radius.conf
-diff -urx .svn ../../../backup/trunk_clean/feeds/packages/net/pptpd/files/pptpd.conf ../../../trunk/feeds/packages/net/pptpd/files/pptpd.conf
---- ../../../backup/trunk_clean/feeds/packages/net/pptpd/files/pptpd.conf	2012-02-09 12:02:23.000000000 +0400
-+++ ../../../trunk/feeds/packages/net/pptpd/files/pptpd.conf	2012-02-13 10:15:13.444366272 +0400
+diff -urx .svn ../../../trunk_clean/feeds/packages/net/pptpd/files/pptpd.conf ../../../trunk/feeds/packages/net/pptpd/files/pptpd.conf
+--- ../../../trunk_clean/feeds/packages/net/pptpd/files/pptpd.conf	2012-05-02 16:17:23.886419808 +0400
++++ ../../../trunk/feeds/packages/net/pptpd/files/pptpd.conf	2012-05-02 16:22:05.962312733 +0400
 @@ -1,5 +1,5 @@
  #debug
 -option /etc/ppp/options.pptpd
@@ -24,9 +24,9 @@ diff -urx .svn ../../../backup/trunk_clean/feeds/packages/net/pptpd/files/pptpd.
  speed 115200
  stimeout 10
  #localip & remoteip are not needed, ip management is done by pppd
-diff -urx .svn ../../../backup/trunk_clean/feeds/packages/net/pptpd/Makefile ../../../trunk/feeds/packages/net/pptpd/Makefile
---- ../../../backup/trunk_clean/feeds/packages/net/pptpd/Makefile	2012-02-09 12:02:23.000000000 +0400
-+++ ../../../trunk/feeds/packages/net/pptpd/Makefile	2012-02-13 10:18:19.430030225 +0400
+diff -urx .svn ../../../trunk_clean/feeds/packages/net/pptpd/Makefile ../../../trunk/feeds/packages/net/pptpd/Makefile
+--- ../../../trunk_clean/feeds/packages/net/pptpd/Makefile	2012-05-02 16:17:23.886419808 +0400
++++ ../../../trunk/feeds/packages/net/pptpd/Makefile	2012-05-31 22:31:41.522096137 +0400
 @@ -22,7 +22,7 @@
  define Package/pptpd
    SECTION:=net
@@ -70,10 +70,10 @@ diff -urx .svn ../../../backup/trunk_clean/feeds/packages/net/pptpd/Makefile ../
 +	$(CP) $(PKG_INSTALL_DIR)/opt/lib/pptpd/* $(1)/opt/lib/pptpd/
 +	$(INSTALL_DIR) $(1)/opt/etc
 +	$(INSTALL_DATA) ./files/pptpd.conf $(1)/opt/etc/
-+#	$(INSTALL_DIR) $(1)/etc/init.d
-+#	$(INSTALL_BIN) ./files/pptpd.init $(1)/etc/init.d/pptpd
 +	$(INSTALL_DIR) $(1)/opt/etc/ppp
 +	$(INSTALL_DATA) ./files/options.pptpd $(1)/opt/etc/ppp/
++	$(INSTALL_DIR) $(1)/opt/etc/init.d
++	$(INSTALL_BIN) ./files/S20poptop $(1)/opt/etc/init.d
  endef
  
  $(eval $(call BuildPackage,pptpd))

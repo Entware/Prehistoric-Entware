@@ -9,8 +9,9 @@
 all: ./.done
 
 ./.done:
-	cp ./110-remove-accep4-support.patch ../../../trunk/feeds/packages/net/nginx/patches/
 	patch -p0 -i ./fix-path.patch
+	cp ./110-remove-accep4-support.patch ../../../trunk/feeds/packages/net/nginx/patches/
+	cp ./S80nginx ../../../trunk/feeds/packages/net/nginx/files/
 	touch $@
 
 clean:

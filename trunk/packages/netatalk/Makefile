@@ -10,6 +10,7 @@ all: ./.done
 
 ./.done:
 	patch -p0 -i ./fix-path.patch
+	cp ./S2* ../../../trunk/feeds/packages/net/netatalk/files/
 	touch $@
 
 clean:
