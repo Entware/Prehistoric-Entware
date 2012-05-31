@@ -1,6 +1,5 @@
-diff -urx .svn ../../../trunk_clean/feeds/packages/net/darkstat//Makefile ../../../trunk/feeds/packages/net/darkstat//Makefile
---- ../../../trunk_clean/feeds/packages/net/darkstat//Makefile	2012-04-13 03:04:40.871095420 +0400
-+++ ../../../trunk/feeds/packages/net/darkstat//Makefile	2012-04-14 08:29:33.520590153 +0400
+--- ../../../trunk_clean/feeds/packages/net/darkstat/Makefile	2012-05-02 16:17:27.858369858 +0400
++++ ../../../trunk/feeds/packages/net/darkstat/Makefile	2012-05-31 16:49:38.494515894 +0400
 @@ -8,12 +8,12 @@
  include $(TOPDIR)/rules.mk
  
@@ -35,7 +34,7 @@ diff -urx .svn ../../../trunk_clean/feeds/packages/net/darkstat//Makefile ../../
  
  TARGET_CFLAGS += -std=gnu99
  
-@@ -50,12 +50,13 @@
+@@ -50,12 +50,11 @@
  endef
  
  define Package/darkstat/install
@@ -48,10 +47,8 @@ diff -urx .svn ../../../trunk_clean/feeds/packages/net/darkstat//Makefile ../../
 +	$(INSTALL_DIR) $(1)/opt/var/empty
 +	$(INSTALL_DIR) $(1)/opt/bin
 +	$(INSTALL_BIN) $(PKG_INSTALL_DIR)/opt/sbin/darkstat $(1)/opt/bin/
-+#	$(INSTALL_DIR) $(1)/etc/init.d
-+#	$(INSTALL_BIN) ./files/darkstat.init $(1)/etc/init.d/darkstat
-+#	$(INSTALL_DIR) $(1)/etc/config
-+#	$(INSTALL_CONF) ./files/darkstat.config $(1)/etc/config/darkstat
++	$(INSTALL_DIR) $(1)/opt/etc/init.d
++	$(INSTALL_BIN) ./files/S54darkstat $(1)/opt/etc/init.d/
  endef
  
  $(eval $(call BuildPackage,darkstat))

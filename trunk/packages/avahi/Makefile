@@ -10,6 +10,7 @@ all: ./.done
 
 ./.done:
 	patch -p0 -i ./fix-path.patch
+	cp ./S42avahi-daemon ../../../trunk/feeds/packages/libs/avahi/files/
 	touch $@
 
 clean:

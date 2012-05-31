@@ -1,5 +1,5 @@
---- ../../../trunk_clean/feeds/packages/net/bind/Makefile	2012-03-21 16:34:32.671021671 +0400
-+++ ../../../trunk/feeds/packages/net/bind/Makefile	2012-03-22 15:41:49.546611856 +0400
+--- ../../../trunk_clean/feeds/packages/net/bind/Makefile	2012-05-02 16:17:26.558386215 +0400
++++ ../../../trunk/feeds/packages/net/bind/Makefile	2012-05-31 15:54:41.140587174 +0400
 @@ -84,7 +84,7 @@
  	--enable-static \
  	--with-randomdev="/dev/urandom" \
@@ -9,7 +9,7 @@
  	--with-libtool \
  	--with-libxml2=no \
  	--enable-epoll=yes \
-@@ -108,80 +108,78 @@
+@@ -108,80 +108,80 @@
  endef
  
  define Package/bind-libs/install
@@ -40,6 +40,8 @@
 +		$(1)/opt/etc/bind/
 +	$(CP) ./files/bind/named.conf.example $(1)/opt/etc/bind/named.conf
 +	find $(1)/opt/etc/bind/ -name ".svn" | xargs rm -rf
++	$(INSTALL_DIR) $(1)/opt/etc/init.d
++	$(INSTALL_BIN) ./files/S09named $(1)/opt/etc/init.d
  endef
  
  define Package/bind-server/conffiles

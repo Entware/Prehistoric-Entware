@@ -1,20 +1,6 @@
-diff -urx .svn ../../../trunk_clean/feeds/packages/net/autossh/files/autossh.config ../../../trunk/feeds/packages/net/autossh/files/autossh.config
---- ../../../trunk_clean/feeds/packages/net/autossh/files/autossh.config	2012-05-02 16:17:27.882369571 +0400
-+++ ../../../trunk/feeds/packages/net/autossh/files/autossh.config	2012-05-02 16:18:17.945740189 +0400
-@@ -1,5 +1,4 @@
--config autossh
--	option ssh	'-i /etc/dropbear/id_rsa -N -T -R 2222:localhost:22 user@host'
--	option gatetime	'0'
--	option monitorport	'20000'
--	option poll	'600'
-+ssh	'-i /etc/dropbear/id_rsa -N -T -R 2222:localhost:22 user@host'
-+gatetime	'0'
-+monitorport	'20000'
-+poll	'600'
-diff -urx .svn ../../../trunk_clean/feeds/packages/net/autossh/Makefile ../../../trunk/feeds/packages/net/autossh/Makefile
 --- ../../../trunk_clean/feeds/packages/net/autossh/Makefile	2012-05-02 16:17:27.882369571 +0400
-+++ ../../../trunk/feeds/packages/net/autossh/Makefile	2012-05-27 20:55:06.401367268 +0400
-@@ -27,24 +27,21 @@
++++ ../../../trunk/feeds/packages/net/autossh/Makefile	2012-05-31 15:36:10.409152961 +0400
+@@ -27,24 +27,17 @@
  
  define Build/Compile
  	$(call Build/Compile/Default, -f Makefile \
@@ -34,15 +20,14 @@ diff -urx .svn ../../../trunk_clean/feeds/packages/net/autossh/Makefile ../../..
 -	$(INSTALL_DATA) ./files/autossh.config $(1)/etc/config/autossh
 -	$(INSTALL_DIR) $(1)/etc/hotplug.d/iface
 -	$(INSTALL_DATA) ./files/autossh.hotplug $(1)/etc/hotplug.d/iface/20-autossh
+-endef
+-
+-define Package/autossh/conffiles
+-/etc/config/autossh
 +	$(INSTALL_DIR) $(1)/opt/sbin
 +	$(INSTALL_BIN) $(PKG_BUILD_DIR)/autossh $(1)/opt/sbin/
-+	$(INSTALL_DIR) $(1)/opt/etc $(1)/opt/etc
-+	$(INSTALL_DATA) ./files/autossh.config $(1)/opt/etc
- endef
- 
- define Package/autossh/conffiles
--/etc/config/autossh
-+/opt/etc/autossh.config
++	$(INSTALL_DIR) $(1)/opt/etc/init.d
++	$(INSTALL_BIN) ./files/S41autossh $(1)/opt/etc/init.d
  endef
  
  $(eval $(call BuildPackage,autossh))

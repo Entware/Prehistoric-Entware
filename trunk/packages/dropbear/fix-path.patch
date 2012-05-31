@@ -1,6 +1,6 @@
 diff -urx .svn ../../../trunk_clean/package/dropbear/Makefile ../../../trunk/package/dropbear/Makefile
 --- ../../../trunk_clean/package/dropbear/Makefile	2012-05-02 16:17:35.674271615 +0400
-+++ ../../../trunk/package/dropbear/Makefile	2012-05-23 12:23:08.252101713 +0400
++++ ../../../trunk/package/dropbear/Makefile	2012-05-31 17:09:16.336395133 +0400
 @@ -37,9 +37,9 @@
  endef
  
@@ -29,7 +29,7 @@ diff -urx .svn ../../../trunk_clean/package/dropbear/Makefile ../../../trunk/pac
  	$(call Build/Configure/Default)
  endef
  
-@@ -88,26 +87,31 @@
+@@ -88,26 +87,32 @@
  endef
  
  define Package/dropbear/install
@@ -55,7 +55,8 @@ diff -urx .svn ../../../trunk_clean/package/dropbear/Makefile ../../../trunk/pac
 +	ln -sf ../sbin/dropbear $(1)/opt/bin/ssh
 +	ln -sf ../sbin/dropbear $(1)/opt/bin/dbclient
 +	ln -sf ../sbin/dropbear $(1)/opt/bin/dropbearkey
-+	$(INSTALL_DIR) $(1)/opt/etc/dropbear
++	$(INSTALL_DIR) $(1)/opt/etc/dropbear $(1)/opt/etc/init.d
++	$(INSTALL_BIN) ./files/S51dropbear $(1)/opt/etc/init.d
 +endef
 +
 +define Package/dropbear/postinst

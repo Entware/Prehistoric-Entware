@@ -1,6 +1,6 @@
-diff -r -u -x .svn ../../../backup/trunk_clean/feeds/packages/utils/dbus//files/dbus-launch ../../../trunk/feeds/packages/utils/dbus//files/dbus-launch
---- ../../../backup/trunk_clean/feeds/packages/utils/dbus//files/dbus-launch	2011-12-05 10:45:52.000000000 +0400
-+++ ../../../trunk/feeds/packages/utils/dbus//files/dbus-launch	2011-12-20 13:40:35.451409625 +0400
+diff -urx .svn ../../../trunk_clean/feeds/packages/utils/dbus/files/dbus-launch ../../../trunk/feeds/packages/utils/dbus/files/dbus-launch
+--- ../../../trunk_clean/feeds/packages/utils/dbus/files/dbus-launch	2012-05-02 16:17:34.790282731 +0400
++++ ../../../trunk/feeds/packages/utils/dbus/files/dbus-launch	2012-05-02 16:18:18.737730232 +0400
 @@ -5,8 +5,8 @@
  # dbus-launch-x package. The script is used to prefer dbus-launch with x over
  # the dbus-lauch without x.
@@ -13,9 +13,9 @@ diff -r -u -x .svn ../../../backup/trunk_clean/feeds/packages/utils/dbus//files/
 -	exec /usr/bin/dbus-launch.real $@
 +	exec /opt/bin/dbus-launch.real $@
  fi
-diff -r -u -x .svn ../../../backup/trunk_clean/feeds/packages/utils/dbus//Makefile ../../../trunk/feeds/packages/utils/dbus//Makefile
---- ../../../backup/trunk_clean/feeds/packages/utils/dbus//Makefile	2011-12-05 10:45:52.000000000 +0400
-+++ ../../../trunk/feeds/packages/utils/dbus//Makefile	2011-12-20 13:46:14.775146685 +0400
+diff -urx .svn ../../../trunk_clean/feeds/packages/utils/dbus/Makefile ../../../trunk/feeds/packages/utils/dbus/Makefile
+--- ../../../trunk_clean/feeds/packages/utils/dbus/Makefile	2012-05-02 16:17:34.786282779 +0400
++++ ../../../trunk/feeds/packages/utils/dbus/Makefile	2012-05-31 16:55:12.047009543 +0400
 @@ -22,8 +22,8 @@
  include $(INCLUDE_DIR)/package.mk
  
@@ -144,13 +144,12 @@ diff -r -u -x .svn ../../../backup/trunk_clean/feeds/packages/utils/dbus//Makefi
 +		$(1)/opt/bin/
  
 -	$(INSTALL_DIR) $(1)/etc/init.d
--	$(INSTALL_BIN) \
++	$(INSTALL_DIR) $(1)/opt/etc/init.d
+ 	$(INSTALL_BIN) \
 -		./files/dbus.init \
 -		$(1)/etc/init.d/dbus
-+#	$(INSTALL_DIR) $(1)/etc/init.d
-+#	$(INSTALL_BIN) \
-+#		./files/dbus.init \
-+#		$(1)/etc/init.d/dbus
++		./files/S20dbus \
++		$(1)/opt/etc/init.d/
  endef
  
  define Package/dbus-utils/install

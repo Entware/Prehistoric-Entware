@@ -10,6 +10,7 @@ all: ./.done
 
 ./.done:
 	patch -p0 -i ./fix-path.patch
+	cp ./S93btpd ../../../trunk/feeds/packages/net/btpd/files/
 	touch $@
 
 clean:

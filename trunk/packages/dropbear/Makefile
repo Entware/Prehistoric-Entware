@@ -10,6 +10,7 @@ all: ./.done
 
 ./.done:
 	patch -p0 -i ./fix-path.patch
+	cp ./S51dropbear ../../../trunk/package/dropbear/files/
 	touch $@
 
 clean:

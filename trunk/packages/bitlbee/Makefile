@@ -11,6 +11,7 @@ all: ./.done
 ./.done:
 	patch -p0 -i ./fix-path.patch
 	cp ./555-rpath-ld-option.patch ../../../trunk/feeds/packages/net/bitlbee/patches
+	cp ./S72bitlbee ../../../trunk/feeds/packages/net/bitlbee/files/
 	touch $@
 
 clean:

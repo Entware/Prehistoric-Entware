@@ -1,6 +1,6 @@
 diff -urx .svn ../../../trunk_clean/feeds/packages/net/apcupsd/files/apccontrol ../../../trunk/feeds/packages/net/apcupsd/files/apccontrol
---- ../../../trunk_clean/feeds/packages/net/apcupsd/files/apccontrol	2012-03-21 16:34:34.055696270 +0400
-+++ ../../../trunk/feeds/packages/net/apcupsd/files/apccontrol	2012-03-28 12:14:30.499215564 +0400
+--- ../../../trunk_clean/feeds/packages/net/apcupsd/files/apccontrol	2012-05-02 16:17:28.210365448 +0400
++++ ../../../trunk/feeds/packages/net/apcupsd/files/apccontrol	2012-05-02 16:18:17.813741849 +0400
 @@ -15,14 +15,14 @@
  #
  # These variables are needed for set up the autoconf other variables.
@@ -43,8 +43,8 @@ diff -urx .svn ../../../trunk_clean/feeds/packages/net/apcupsd/files/apccontrol 
  	`${APCUPSD}`
  	echo "apcupsd"
 diff -urx .svn ../../../trunk_clean/feeds/packages/net/apcupsd/files/apcupsd.conf ../../../trunk/feeds/packages/net/apcupsd/files/apcupsd.conf
---- ../../../trunk_clean/feeds/packages/net/apcupsd/files/apcupsd.conf	2012-03-21 16:34:34.055696270 +0400
-+++ ../../../trunk/feeds/packages/net/apcupsd/files/apcupsd.conf	2012-03-28 12:15:30.934452543 +0400
+--- ../../../trunk_clean/feeds/packages/net/apcupsd/files/apcupsd.conf	2012-05-02 16:17:28.210365448 +0400
++++ ../../../trunk/feeds/packages/net/apcupsd/files/apcupsd.conf	2012-05-02 16:18:17.813741849 +0400
 @@ -78,23 +78,23 @@
  
  # LOCKFILE <path to lockfile>
@@ -92,8 +92,8 @@ diff -urx .svn ../../../trunk_clean/feeds/packages/net/apcupsd/files/apcupsd.con
  # LOGSTATS [ on | off ] on enables, off disables
  # Note! This generates a lot of output, so if         
 diff -urx .svn ../../../trunk_clean/feeds/packages/net/apcupsd/files/apcupsd_mail.conf ../../../trunk/feeds/packages/net/apcupsd/files/apcupsd_mail.conf
---- ../../../trunk_clean/feeds/packages/net/apcupsd/files/apcupsd_mail.conf	2012-03-21 16:34:34.055696270 +0400
-+++ ../../../trunk/feeds/packages/net/apcupsd/files/apcupsd_mail.conf	2012-03-28 12:17:22.473053134 +0400
+--- ../../../trunk_clean/feeds/packages/net/apcupsd/files/apcupsd_mail.conf	2012-05-02 16:17:28.210365448 +0400
++++ ../../../trunk/feeds/packages/net/apcupsd/files/apcupsd_mail.conf	2012-05-02 16:18:17.817741799 +0400
 @@ -1,6 +1,6 @@
  #!/bin/sh
  
@@ -103,8 +103,8 @@ diff -urx .svn ../../../trunk_clean/feeds/packages/net/apcupsd/files/apcupsd_mai
  FROM="OpenWrt"
  TO="apcups@example.com"
 diff -urx .svn ../../../trunk_clean/feeds/packages/net/apcupsd/files/changeme ../../../trunk/feeds/packages/net/apcupsd/files/changeme
---- ../../../trunk_clean/feeds/packages/net/apcupsd/files/changeme	2012-03-21 16:34:34.055696270 +0400
-+++ ../../../trunk/feeds/packages/net/apcupsd/files/changeme	2012-03-28 12:17:40.980820734 +0400
+--- ../../../trunk_clean/feeds/packages/net/apcupsd/files/changeme	2012-05-02 16:17:28.210365448 +0400
++++ ../../../trunk/feeds/packages/net/apcupsd/files/changeme	2012-05-02 16:18:17.817741799 +0400
 @@ -5,13 +5,13 @@
  # detects that the battery should be replaced.
  # We send an email message to root to notify him.
@@ -122,8 +122,8 @@ diff -urx .svn ../../../trunk_clean/feeds/packages/net/apcupsd/files/changeme ..
  ) | $MAILPROG -h $MAILHOST -f $FROM -s "$MSG" $TO
  exit 0
 diff -urx .svn ../../../trunk_clean/feeds/packages/net/apcupsd/files/commfailure ../../../trunk/feeds/packages/net/apcupsd/files/commfailure
---- ../../../trunk_clean/feeds/packages/net/apcupsd/files/commfailure	2012-03-21 16:34:34.055696270 +0400
-+++ ../../../trunk/feeds/packages/net/apcupsd/files/commfailure	2012-03-28 12:17:54.180659063 +0400
+--- ../../../trunk_clean/feeds/packages/net/apcupsd/files/commfailure	2012-05-02 16:17:28.214365397 +0400
++++ ../../../trunk/feeds/packages/net/apcupsd/files/commfailure	2012-05-02 16:18:17.817741799 +0400
 @@ -5,13 +5,13 @@
  # loses contact with the UPS (i.e. the serial connection is not responding).
  # We send an email message to root to notify him.
@@ -141,8 +141,8 @@ diff -urx .svn ../../../trunk_clean/feeds/packages/net/apcupsd/files/commfailure
  ) | $MAILPROG -h $MAILHOST -f $FROM -s "$MSG" $TO
  exit 0
 diff -urx .svn ../../../trunk_clean/feeds/packages/net/apcupsd/files/commok ../../../trunk/feeds/packages/net/apcupsd/files/commok
---- ../../../trunk_clean/feeds/packages/net/apcupsd/files/commok	2012-03-21 16:34:34.055696270 +0400
-+++ ../../../trunk/feeds/packages/net/apcupsd/files/commok	2012-03-28 12:18:06.844496177 +0400
+--- ../../../trunk_clean/feeds/packages/net/apcupsd/files/commok	2012-05-02 16:17:28.210365448 +0400
++++ ../../../trunk/feeds/packages/net/apcupsd/files/commok	2012-05-02 16:18:17.817741799 +0400
 @@ -5,13 +5,13 @@
  # restores contact with the UPS (i.e. the serial connection is restored).
  # We send an email message to root to notify him.
@@ -160,8 +160,8 @@ diff -urx .svn ../../../trunk_clean/feeds/packages/net/apcupsd/files/commok ../.
  ) | $MAILPROG -h $MAILHOST -f $FROM -s "$MSG" $TO
  exit 0
 diff -urx .svn ../../../trunk_clean/feeds/packages/net/apcupsd/files/offbattery ../../../trunk/feeds/packages/net/apcupsd/files/offbattery
---- ../../../trunk_clean/feeds/packages/net/apcupsd/files/offbattery	2012-03-21 16:34:34.055696270 +0400
-+++ ../../../trunk/feeds/packages/net/apcupsd/files/offbattery	2012-03-28 12:18:17.380365386 +0400
+--- ../../../trunk_clean/feeds/packages/net/apcupsd/files/offbattery	2012-05-02 16:17:28.210365448 +0400
++++ ../../../trunk/feeds/packages/net/apcupsd/files/offbattery	2012-05-02 16:18:17.817741799 +0400
 @@ -5,13 +5,13 @@
  # UPS goes back on to the mains after a power failure.
  # We send an email message to root to notify him.
@@ -179,8 +179,8 @@ diff -urx .svn ../../../trunk_clean/feeds/packages/net/apcupsd/files/offbattery 
  ) | $MAILPROG -h $MAILHOST -f $FROM -s "$MSG" $TO
  exit 0
 diff -urx .svn ../../../trunk_clean/feeds/packages/net/apcupsd/files/onbattery ../../../trunk/feeds/packages/net/apcupsd/files/onbattery
---- ../../../trunk_clean/feeds/packages/net/apcupsd/files/onbattery	2012-03-21 16:34:34.055696270 +0400
-+++ ../../../trunk/feeds/packages/net/apcupsd/files/onbattery	2012-03-28 12:18:28.828219893 +0400
+--- ../../../trunk_clean/feeds/packages/net/apcupsd/files/onbattery	2012-05-02 16:17:28.210365448 +0400
++++ ../../../trunk/feeds/packages/net/apcupsd/files/onbattery	2012-05-02 16:18:17.817741799 +0400
 @@ -5,13 +5,13 @@
  # goes on batteries.
  # We send an email message to root to notify him.
@@ -198,8 +198,8 @@ diff -urx .svn ../../../trunk_clean/feeds/packages/net/apcupsd/files/onbattery .
  ) | $MAILPROG -h $MAILHOST -f $FROM -s "$MSG" $TO
  exit 0
 diff -urx .svn ../../../trunk_clean/feeds/packages/net/apcupsd/Makefile ../../../trunk/feeds/packages/net/apcupsd/Makefile
---- ../../../trunk_clean/feeds/packages/net/apcupsd/Makefile	2012-03-21 16:34:34.055696270 +0400
-+++ ../../../trunk/feeds/packages/net/apcupsd/Makefile	2012-03-28 12:16:49.221471294 +0400
+--- ../../../trunk_clean/feeds/packages/net/apcupsd/Makefile	2012-05-02 16:17:28.210365448 +0400
++++ ../../../trunk/feeds/packages/net/apcupsd/Makefile	2012-05-31 14:15:46.759572579 +0400
 @@ -29,7 +29,7 @@
  	$(CP) $(SCRIPT_DIR)/config.* $(PKG_BUILD_DIR)/autoconf/
  	$(call Build/Configure/Default, \
@@ -209,7 +209,7 @@ diff -urx .svn ../../../trunk_clean/feeds/packages/net/apcupsd/Makefile ../../..
  		--enable-usb \
  		--without-x \
  	)
-@@ -43,32 +43,31 @@
+@@ -43,32 +43,33 @@
  endef
  
  define Package/apcupsd/install
@@ -244,6 +244,8 @@ diff -urx .svn ../../../trunk_clean/feeds/packages/net/apcupsd/Makefile ../../..
 +	$(INSTALL_BIN) ./files/onbattery $(1)/opt/etc/apcupsd/
 +	$(INSTALL_BIN) ./files/apccontrol $(1)/opt/etc/apcupsd/
 +	$(INSTALL_DIR) $(1)/opt/var/lock $(1)/opt/var/log
++	$(INSTALL_DIR) $(1)/opt/etc/init.d
++	$(INSTALL_BIN) ./files/S17apcupsd $(1)/opt/etc/init.d
  endef
  
  define Package/apcupsd/conffiles

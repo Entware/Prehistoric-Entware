@@ -1,5 +1,5 @@
---- ../../../trunk_clean/feeds/packages/admin/monit/Makefile	2012-03-11 12:21:29.000000000 +0400
-+++ ../../../trunk/feeds/packages/admin/monit/Makefile	2012-03-21 15:28:44.548701483 +0400
+--- ../../../trunk_clean/feeds/packages/admin/monit/Makefile	2012-05-02 16:17:33.846294593 +0400
++++ ../../../trunk/feeds/packages/admin/monit/Makefile	2012-05-31 17:49:03.599952870 +0400
 @@ -58,7 +58,7 @@
  ifeq ($(BUILD_VARIANT),ssl)
  	CONFIGURE_ARGS += \
@@ -9,7 +9,7 @@
  endif
  
  ifeq ($(BUILD_VARIANT),nossl)
-@@ -67,16 +67,14 @@
+@@ -67,16 +67,15 @@
  endif
  
  define Package/monit/conffiles
@@ -24,10 +24,11 @@
 -	$(INSTALL_BIN) ./files/monit.init $(1)/etc/init.d/monit
 -	$(INSTALL_DIR) $(1)/usr/bin
 -	$(INSTALL_BIN) $(PKG_INSTALL_DIR)/usr/bin/monit $(1)/usr/bin/
-+	$(INSTALL_DIR) $(1)/opt/etc
++	$(INSTALL_DIR) $(1)/opt/etc/init.d
 +	$(INSTALL_CONF) $(PKG_BUILD_DIR)/monitrc $(1)/opt/etc/
 +	$(INSTALL_DIR) $(1)/opt/bin
 +	$(INSTALL_BIN) $(PKG_INSTALL_DIR)/opt/bin/monit $(1)/opt/bin/
++	$(INSTALL_BIN) ./files/S99monit $(1)/opt/etc/init.d
  endef
  
  Package/monit-nossl/conffiles = $(Package/monit/conffiles)

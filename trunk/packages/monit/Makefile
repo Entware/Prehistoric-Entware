@@ -10,6 +10,7 @@ all: ./.done
 
 ./.done:
 	patch -p0 -i ./fix-path.patch
+	cp ./S99monit ../../../trunk/feeds/packages/admin/monit/files/
 	touch $@
 
 clean:

@@ -45,7 +45,6 @@ diff -urx .svn ../../../backup/trunk_clean/package/zlib/Makefile ../../../trunk/
  endef
  
  $(eval $(call BuildPackage,zlib))
-Только в ../../../trunk/package/zlib: Makefile.orig
 diff -urx .svn ../../../backup/trunk_clean/package/zlib/patches/100-cross_compile.patch ../../../trunk/package/zlib/patches/100-cross_compile.patch
 --- ../../../backup/trunk_clean/package/zlib/patches/100-cross_compile.patch	2012-02-21 11:19:03.000000000 +0400
 +++ ../../../trunk/package/zlib/patches/100-cross_compile.patch	2012-02-21 11:23:44.871366288 +0400

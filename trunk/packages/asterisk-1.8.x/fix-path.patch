@@ -1,5 +1,5 @@
---- ../../../trunk_clean/feeds/packages/net/asterisk-1.8.x/Makefile	2012-03-21 16:34:33.899620233 +0400
-+++ ../../../trunk/feeds/packages/net/asterisk-1.8.x/Makefile	2012-03-21 16:50:46.658166332 +0400
+--- ../../../trunk_clean/feeds/packages/net/asterisk-1.8.x/Makefile	2012-05-02 16:17:23.886419808 +0400
++++ ../../../trunk/feeds/packages/net/asterisk-1.8.x/Makefile	2012-05-31 15:08:41.823812799 +0400
 @@ -224,7 +224,7 @@
  
  ifneq ($(SDK)$(CONFIG_PACKAGE_asterisk18-app-meetme),)
@@ -166,7 +166,7 @@
 +	$(INSTALL_DIR) $(1)/opt/etc/default
 +	$(INSTALL_DATA)  ./files/asterisk.default $(1)/opt/etc/default/asterisk
 +	$(INSTALL_DIR) $(1)/opt/etc/init.d
-+	$(INSTALL_BIN)  ./files/asterisk.init $(1)/opt/etc/init.d/asterisk
++	$(INSTALL_BIN) ./files/S31asterisk $(1)/opt/etc/init.d
  endef
  
  define Package/asterisk18-sounds/install

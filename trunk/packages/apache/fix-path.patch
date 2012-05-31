@@ -1,5 +1,5 @@
---- ../../../trunk_clean/feeds/packages/net/apache/Makefile	2012-04-02 11:00:37.952169052 +0400
-+++ ../../../trunk/feeds/packages/net/apache/Makefile	2012-04-10 14:10:47.397205132 +0400
+--- ../../../trunk_clean/feeds/packages/net/apache/Makefile	2012-05-02 16:17:28.242365046 +0400
++++ ../../../trunk/feeds/packages/net/apache/Makefile	2012-05-31 14:06:20.694682385 +0400
 @@ -46,33 +46,23 @@
  $(call Package/apache/Default/description)
   .
@@ -61,7 +61,7 @@
  		--enable-http \
  		--enable-ssl \
  		--enable-proxy \
-@@ -102,62 +92,49 @@
+@@ -102,62 +92,51 @@
  		--enable-maintainer-mode \
  		--enable-mime-magic \
  		--without-suexec-bin \
@@ -144,6 +144,8 @@
 +	$(CP) $(PKG_INSTALL_DIR)/opt/share/{error,htdocs,cgi-bin,build} $(1)/opt/share/
 +	$(INSTALL_DIR) $(1)/opt/etc/apache
 +	$(CP) $(PKG_INSTALL_DIR)/opt/etc/apache/{httpd.conf,magic,mime.types,extra} $(1)/opt/etc/apache/
++	$(INSTALL_DIR) $(1)/opt/etc/init.d
++	$(LN) -s /opt/sbin/apachectl $(1)/opt/etc/init.d/S80apache
  endef
  
  define Package/apache-icons/install

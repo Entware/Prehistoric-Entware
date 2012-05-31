@@ -1,5 +1,5 @@
---- ../../../trunk_clean/feeds/packages/libs/avahi/Makefile	2012-03-21 16:34:47.658323327 +0400
-+++ ../../../trunk/feeds/packages/libs/avahi/Makefile	2012-03-28 11:09:32.202814680 +0400
+--- ../../../trunk_clean/feeds/packages/libs/avahi/Makefile	2012-05-02 16:17:23.550424031 +0400
++++ ../../../trunk/feeds/packages/libs/avahi/Makefile	2012-05-31 15:45:08.450388519 +0400
 @@ -105,9 +105,9 @@
  endef
  
@@ -13,7 +13,7 @@
  endef
  
  define Package/avahi-dnsconfd
-@@ -235,61 +235,59 @@
+@@ -235,61 +235,61 @@
  	CFLAGS="$$$$CFLAGS -DNDEBUG -DDISABLE_SYSTEMD" \
  
  define Build/InstallDev
@@ -91,6 +91,8 @@
 +	$(INSTALL_DIR) $(1)/opt/etc/avahi/services
 +	$(INSTALL_DATA) ./files/service-http $(1)/opt/etc/avahi/services/http.service
 +	$(INSTALL_DATA) ./files/service-ssh $(1)/opt/etc/avahi/services/ssh.service
++	$(INSTALL_DIR) $(1)/opt/etc/init.d
++	$(INSTALL_BIN) ./files/S42avahi-daemon $(1)/opt/etc/init.d 
  endef
  
  define Package/avahi-dnsconfd/install

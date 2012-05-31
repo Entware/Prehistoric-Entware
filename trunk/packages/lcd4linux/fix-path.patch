@@ -1,5 +1,5 @@
---- ../../../backup/trunk_clean/feeds/packages/utils/lcd4linux/Makefile	2012-02-09 12:02:01.000000000 +0400
-+++ ../../../trunk/feeds/packages/utils/lcd4linux/Makefile	2012-02-09 12:06:13.864803557 +0400
+--- ../../../trunk_clean/feeds/packages/utils/lcd4linux/Makefile	2012-05-02 16:17:34.862281822 +0400
++++ ../../../trunk/feeds/packages/utils/lcd4linux/Makefile	2012-05-31 17:18:18.433582240 +0400
 @@ -122,9 +122,10 @@
  	libnmeap \
  	libsqlite3 \
@@ -56,8 +56,8 @@
 +	$(CP) $(PKG_INSTALL_DIR)/opt/bin/lcd4linux $(1)/opt/bin/
 +	$(INSTALL_DIR) $(1)/opt/etc
 +	$(INSTALL_CONF) $(PKG_BUILD_DIR)/lcd4linux.conf.sample $(1)/opt/etc/lcd4linux.conf
-+#	$(INSTALL_DIR) $(1)/etc/init.d
-+#	$(INSTALL_BIN) ./files/lcd4linux.init $(1)/etc/init.d/lcd4linux
++	$(INSTALL_DIR) $(1)/opt/etc/init.d
++	$(INSTALL_BIN) ./files/S91lcd4linux $(1)/opt/etc/init.d/
  	$(SED) "s|^\(Display 'GLCD2USB'\)|#\1|g" \
  	    -e "s|^\(Layout 'TestLayer'\)|#\1|g" \
  	    -e "s|^#\(Display 'Image'\)|\1|g" \

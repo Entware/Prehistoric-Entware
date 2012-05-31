@@ -25,7 +25,7 @@ diff -urx .svn ../../../trunk_clean/feeds/packages/net/mini_httpd/files/mini_htt
 +certfile=/opt/etc/mini_httpd.pem
 diff -urx .svn ../../../trunk_clean/feeds/packages/net/mini_httpd/Makefile ../../../trunk/feeds/packages/net/mini_httpd/Makefile
 --- ../../../trunk_clean/feeds/packages/net/mini_httpd/Makefile	2012-05-02 16:17:23.886419808 +0400
-+++ ../../../trunk/feeds/packages/net/mini_httpd/Makefile	2012-05-27 21:37:22.140106074 +0400
++++ ../../../trunk/feeds/packages/net/mini_httpd/Makefile	2012-05-31 17:25:01.582780509 +0400
 @@ -28,8 +28,8 @@
  endef
  
@@ -63,7 +63,7 @@ diff -urx .svn ../../../trunk_clean/feeds/packages/net/mini_httpd/Makefile ../..
  		$(3) \
  		all
  	( cd $(PKG_BUILD_DIR); mv -f mini_httpd mini_httpd-$(2) )
-@@ -120,19 +121,19 @@
+@@ -120,19 +121,17 @@
  $(STAMP_BUILT): $(STAMP_BUILT)-$(2)
  
  define Package/$(1)/install
@@ -84,16 +84,14 @@ diff -urx .svn ../../../trunk_clean/feeds/packages/net/mini_httpd/Makefile ../..
 -	$(INSTALL_BIN) ./files/mini_httpd.init $$(1)/etc/init.d/mini_httpd
 -	$(INSTALL_DIR) $$(1)/usr/sbin
 -	$(INSTALL_BIN) $(PKG_BUILD_DIR)/mini_httpd-$(2) $$(1)/usr/sbin/mini_httpd
-+#	$(INSTALL_DIR) $$(1)/opt/etc/default
-+#	$(INSTALL_DATA) ./files/mini_httpd.default $$(1)/opt/etc/default/mini_httpd
-+#	$(INSTALL_DIR) $$(1)/opt/etc/init.d
-+#	$(INSTALL_BIN) ./files/mini_httpd.init $$(1)/opt/etc/init.d/mini_httpd
++	$(INSTALL_DIR) $$(1)/opt/etc/init.d
++	$(INSTALL_BIN) ./files/S80mini_httpd $$(1)/opt/etc/init.d/
 +	$(INSTALL_DIR) $$(1)/opt/sbin
 +	$(INSTALL_BIN) $(PKG_BUILD_DIR)/mini_httpd-$(2) $$(1)/opt/sbin/mini_httpd
  endef
  
  endef
-@@ -179,8 +180,8 @@
+@@ -179,8 +178,8 @@
  $(eval $(Build/with-openssl))
  
  define Package/mini-httpd-htpasswd/install
