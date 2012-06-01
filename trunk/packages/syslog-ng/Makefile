@@ -11,6 +11,7 @@ all: ./.done
 ./.done:
 	patch -p0 -i ./fix-path.patch
 	cp ./005-dont-flood-with-dropped-o-messages.patch ../../../trunk/feeds/packages/admin/syslog-ng/patches/
+	cp ./S01syslog-ng ../../../trunk/feeds/packages/admin/syslog-ng/files/
 	touch $@
 
 clean:

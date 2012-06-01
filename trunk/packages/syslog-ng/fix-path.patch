@@ -1,19 +1,15 @@
---- ../../../backup/trunk_clean/feeds/packages/admin/syslog-ng/Makefile	2011-11-28 10:57:19.000000000 +0400
-+++ ../../../trunk/feeds/packages/admin/syslog-ng/Makefile	2011-11-28 15:24:53.239427379 +0400
-@@ -35,9 +35,9 @@
- 	configuration file.
+--- ../../../trunk_clean/feeds/packages/admin/syslog-ng/Makefile	2012-05-02 16:17:33.830294775 +0400
++++ ../../../trunk/feeds/packages/admin/syslog-ng/Makefile	2012-06-01 09:03:12.111190229 +0400
+@@ -36,7 +36,7 @@
  endef
  
--define Package/syslog-ng/conffiles
+ define Package/syslog-ng/conffiles
 -/etc/syslog-ng/syslog-ng.conf
--endef
-+#define Package/syslog-ng/conffiles
-+#/etc/syslog-ng/syslog-ng.conf
-+#endef
++/opt/etc/syslog-ng/syslog-ng.conf
+ endef
  
  define Build/Configure
- 	$(call Build/Configure/Default, \
-@@ -46,18 +46,18 @@
+@@ -46,18 +46,16 @@
          --enable-tcp-wrapper \
          --with-libol="$(STAGING_DIR)/host/bin" \
  		, \
@@ -33,10 +29,8 @@
 -	$(INSTALL_DATA) ./files/syslog-ng.conf $(1)/etc/syslog-ng/
 +	$(INSTALL_DIR) $(1)/opt/bin
 +	$(INSTALL_BIN) $(PKG_INSTALL_DIR)/opt/sbin/syslog-ng $(1)/opt/bin/
-+#	$(INSTALL_DIR) $(1)/etc/init.d
-+#	$(INSTALL_BIN) ./files/syslog-ng.init $(1)/etc/init.d/syslog-ng
-+#	$(INSTALL_DIR) $(1)/etc/syslog-ng
-+#	$(INSTALL_DATA) ./files/syslog-ng.conf $(1)/etc/syslog-ng/
++	$(INSTALL_DIR) $(1)/opt/etc/init.d
++	$(INSTALL_BIN) ./files/S01syslog-ng $(1)/opt/etc/init.d
  endef
  
  $(eval $(call BuildPackage,syslog-ng))

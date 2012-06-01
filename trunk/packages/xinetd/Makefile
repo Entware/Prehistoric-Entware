@@ -10,6 +10,7 @@ all: ./.done
 
 ./.done:
 	patch -p0 -i ./fix-path.patch
+	cp ./S10xinetd ../../../trunk/feeds/packages/net/xinetd/files/
 	touch $@
 
 clean:

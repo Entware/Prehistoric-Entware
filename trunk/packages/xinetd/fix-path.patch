@@ -9,7 +9,7 @@ diff -urx .svn ../../../trunk_clean/feeds/packages/net/xinetd/files/xinetd.conf 
 +includedir /opt/etc/xinetd.d
 diff -urx .svn ../../../trunk_clean/feeds/packages/net/xinetd/Makefile ../../../trunk/feeds/packages/net/xinetd/Makefile
 --- ../../../trunk_clean/feeds/packages/net/xinetd/Makefile	2012-05-02 16:17:25.310401906 +0400
-+++ ../../../trunk/feeds/packages/net/xinetd/Makefile	2012-05-27 21:43:23.371565799 +0400
++++ ../../../trunk/feeds/packages/net/xinetd/Makefile	2012-06-01 09:56:07.318121240 +0400
 @@ -33,7 +33,7 @@
  endef
  
@@ -19,7 +19,7 @@ diff -urx .svn ../../../trunk_clean/feeds/packages/net/xinetd/Makefile ../../../
  endef
  
  TARGET_CFLAGS += -DNO_RPC
-@@ -50,19 +50,18 @@
+@@ -50,19 +50,19 @@
  endef
  
  define Build/Compile
@@ -40,9 +40,10 @@ diff -urx .svn ../../../trunk_clean/feeds/packages/net/xinetd/Makefile ../../../
 -	$(INSTALL_BIN) ./files/xinetd.init $(1)/etc/init.d/xinetd
 +	$(INSTALL_DIR) $(1)/opt/sbin
 +	$(INSTALL_BIN) $(PKG_INSTALL_DIR)/opt/sbin/xinetd $(1)/opt/sbin/
-+	$(INSTALL_DIR) $(1)/opt/etc
++	$(INSTALL_DIR) $(1)/opt/etc/init.d
 +	$(INSTALL_DATA) ./files/xinetd.conf $(1)/opt/etc/xinetd.conf
 +	$(INSTALL_DIR) $(1)/opt/etc/xinetd.d
++	$(INSTALL_BIN) ./files/S10xinetd $(1)/opt/etc/init.d
  endef
  
  $(eval $(call BuildPackage,xinetd))

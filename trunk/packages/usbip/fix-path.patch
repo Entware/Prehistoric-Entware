@@ -1,15 +1,14 @@
---- ../../../backup/trunk_clean/feeds/packages/net/usbip/Makefile	2012-01-30 14:20:03.000000000 +0400
-+++ ../../../trunk/feeds/packages/net/usbip/Makefile	2012-01-30 14:49:34.615748223 +0400
-@@ -26,7 +26,7 @@
+--- ../../../trunk_clean/feeds/packages/net/usbip/Makefile	2012-05-02 16:17:26.546386367 +0400
++++ ../../../trunk/feeds/packages/net/usbip/Makefile	2012-06-01 09:30:05.737333258 +0400
+@@ -26,7 +26,6 @@
  define Package/usbip/Common
    TITLE:=USB-over-IP
    URL:=http://usbip.sourceforge.net/
 -  DEPENDS:=@USB_SUPPORT
-+#  DEPENDS:=@USB_SUPPORT
    MAINTAINER:=Nuno Goncalves <nunojpg@gmail.com>
  endef
  
-@@ -39,19 +39,19 @@
+@@ -39,19 +38,19 @@
  define Package/usbip
  $(call Package/usbip/Default)
    TITLE+= (common)
@@ -32,7 +31,7 @@
  endef
  
  define KernelPackage/usbip/Default
-@@ -62,7 +62,6 @@
+@@ -62,7 +61,6 @@
  define KernelPackage/usbip
  $(call KernelPackage/usbip/Default)
    TITLE+= (kernel support)
@@ -40,7 +39,7 @@
    KCONFIG:= \
  	CONFIG_USB_IP_COMMON CONFIG_USB_IP_DEBUG_ENABLE=n \
  	CONFIG_USBIP_CORE CONFIG_USBIP_DEBUG=n
-@@ -78,7 +77,6 @@
+@@ -78,7 +76,6 @@
  define KernelPackage/usbip-client
  $(call KernelPackage/usbip/Default)
    TITLE+= (kernel client driver)
@@ -48,7 +47,7 @@
    KCONFIG:= CONFIG_USB_IP_VHCI_HCD CONFIG_USBIP_VHCI_HCD
    FILES:=$(LINUX_DIR)/drivers/staging/usbip/vhci-hcd.$(LINUX_KMOD_SUFFIX)
    AUTOLOAD:=$(call AutoLoad,99,vhci-hcd)
-@@ -87,7 +85,6 @@
+@@ -87,7 +84,6 @@
  define KernelPackage/usbip-server
  $(call KernelPackage/usbip/Default)
    TITLE+= (kernel host driver)
@@ -56,7 +55,7 @@
    KCONFIG:= CONFIG_USB_IP_HOST CONFIG_USBIP_HOST
   ifeq ($(strip $(call CompareKernelPatchVer,$(KERNEL_PATCHVER),le,2.6.39)),1)
    FILES:=$(LINUX_DIR)/drivers/staging/usbip/usbip.$(LINUX_KMOD_SUFFIX)
-@@ -104,11 +101,11 @@
+@@ -104,11 +100,11 @@
  MAKE_PATH:=./src
  LIBTOOL_PATHS:=./src
  
@@ -70,12 +69,11 @@
  		CONFIG_USB_IP_COMMON=m \
  		CONFIG_USB_IP_VHCI_HCD=m \
  		CONFIG_USB_IP_HOST=m \
-@@ -120,35 +117,35 @@
+@@ -120,35 +116,36 @@
  
  define Build/Compile
  $(call Build/Compile/Default)
 -$(call Build/Compile/kmod)
-+#$(call Build/Compile/kmod)
  endef
  
  define Package/usbip/install
@@ -118,6 +116,8 @@
 -		$(1)/usr/bin/usbip_bind_driver
 +		$(PKG_INSTALL_DIR)/opt/bin/bind_driver \
 +		$(1)/opt/bin/usbip_bind_driver
++	$(INSTALL_DIR) $(1)/opt/etc/init.d
++	$(INSTALL_BIN) ./files/S74usbipd $(1)/opt/etc/init.d
  endef
  
  $(eval $(call BuildPackage,usbip))

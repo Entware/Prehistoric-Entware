@@ -12,6 +12,7 @@ all: ./.done
 	patch -p0 -i ./fix-path.patch
 	rm ../../../trunk/feeds/packages/net/transmission/files/transmission.*
 	cp ./settings.json ../../../trunk/feeds/packages/net/transmission/files/
+	cp ./S88transmission ../../../trunk/feeds/packages/net/transmission/files/
 	touch $@
 
 clean:

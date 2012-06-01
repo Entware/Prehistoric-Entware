@@ -1,17 +1,13 @@
 --- ../../../trunk_clean/feeds/packages/net/vnstat/Makefile	2012-05-02 16:17:23.946419053 +0400
-+++ ../../../trunk/feeds/packages/net/vnstat/Makefile	2012-05-28 09:31:13.483369479 +0400
-@@ -54,22 +54,23 @@
- 	output.
++++ ../../../trunk/feeds/packages/net/vnstat/Makefile	2012-06-01 09:51:02.725722035 +0400
+@@ -55,21 +55,21 @@
  endef
  
--define Package/vnstat/conffiles
+ define Package/vnstat/conffiles
 -/etc/vnstat.conf
 -/etc/config/vnstat
--endef
-+#define Package/vnstat/conffiles
-+#/etc/vnstat.conf
-+#/etc/config/vnstat
-+#endef
++/opt/etc/vnstat.conf
+ endef
  
  define Build/Compile/vnstat
  	$(MAKE) $(PKG_JOBS) -C $(PKG_BUILD_DIR) \
@@ -31,7 +27,7 @@
  		all
  endef
  
-@@ -79,30 +80,30 @@
+@@ -79,29 +79,17 @@
  endef
  
  define Package/vnstat/install
@@ -51,32 +47,21 @@
 +	$(CP) $(PKG_INSTALL_DIR)/usr/bin/vnstat $(1)/opt/bin/
 +	$(INSTALL_DIR) $(1)/opt/bin
 +	$(CP) $(PKG_INSTALL_DIR)/usr/sbin/vnstatd $(1)/opt/bin/
-+#	$(INSTALL_DIR) $(1)/opt/etc
-+#	$(INSTALL_CONF) $(PKG_INSTALL_DIR)/etc/vnstat.conf $(1)/opt/etc/
-+#	$(INSTALL_DIR) $(1)/etc/config
-+#	$(INSTALL_CONF) ./files/vnstat.config $(1)/etc/config/vnstat
-+#	$(INSTALL_DIR) $(1)/etc/init.d
-+#	$(INSTALL_BIN) ./files/vnstat.init $(1)/etc/init.d/vnstat
-+#	$(INSTALL_DIR) $(1)/etc/uci-defaults
-+#	$(INSTALL_BIN) ./files/vnstat.defaults $(1)/etc/uci-defaults/vnstat
++	$(INSTALL_DIR) $(1)/opt/etc/init.d
++	$(INSTALL_BIN) ./files/S32vnstat $(1)/opt/etc/init.d
  endef
  
  define Package/vnstati/install
 -	$(INSTALL_DIR) $(1)/usr/bin
 -	$(CP) $(PKG_INSTALL_DIR)/usr/bin/vnstati $(1)/usr/bin/
+-endef
+-
+-define Package/vnstat/postinst
+-#!/bin/sh
+-[ -n "$${IPKG_INSTROOT}" ] || (. /etc/uci-defaults/vnstat) && rm -f /etc/uci-defaults/vnstat
+-exit 0
 +	$(INSTALL_DIR) $(1)/opt/bin
 +	$(CP) $(PKG_INSTALL_DIR)/usr/bin/vnstati $(1)/opt/bin/
  endef
  
--define Package/vnstat/postinst
-+#define Package/vnstat/postinst
- #!/bin/sh
--[ -n "$${IPKG_INSTROOT}" ] || (. /etc/uci-defaults/vnstat) && rm -f /etc/uci-defaults/vnstat
--exit 0
--endef
-+#[ -n "$${IPKG_INSTROOT}" ] || (. /etc/uci-defaults/vnstat) && rm -f /etc/uci-defaults/vnstat
-+#exit 0
-+#endef
- 
  $(eval $(call BuildPackage,vnstat))
- $(eval $(call BuildPackage,vnstati))

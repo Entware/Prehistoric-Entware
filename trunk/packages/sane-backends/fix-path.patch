@@ -1,5 +1,5 @@
---- ../../../backup/trunk_clean/feeds/packages/utils/sane-backends/Makefile	2012-01-18 17:41:21.000000000 +0400
-+++ ../../../trunk/feeds/packages/utils/sane-backends/Makefile	2012-01-19 15:50:28.575618363 +0400
+--- ../../../trunk_clean/feeds/packages/utils/sane-backends/Makefile	2012-05-02 16:17:35.254276895 +0400
++++ ../../../trunk/feeds/packages/utils/sane-backends/Makefile	2012-06-01 08:35:09.302003378 +0400
 @@ -70,7 +70,7 @@
  endef
  
@@ -9,7 +9,7 @@
  	-Wl,-rpath-link $(PKG_BUILD_DIR)/backend/.libs
  
  CONFIGURE_ARGS+= \
-@@ -88,33 +88,34 @@
+@@ -88,33 +88,36 @@
  endef
  
  define Package/sane-backends/conffiles
@@ -27,6 +27,8 @@
 +	$(INSTALL_CONF) $(PKG_INSTALL_DIR)/opt/etc/sane.d/*.conf $(1)/opt/etc/sane.d/
 +	$(INSTALL_DIR) $(1)/opt/sbin
 +	$(INSTALL_BIN) $(PKG_INSTALL_DIR)/opt/sbin/* $(1)/opt/sbin/
++	$(INSTALL_DIR) $(1)/opt/etc/init.d
++	$(INSTALL_BIN) ./files/S01sane-backends $(1)/opt/etc/init.d
  endef
  
  define Package/sane-libs/install

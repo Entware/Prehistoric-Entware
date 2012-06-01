@@ -12,6 +12,7 @@ all: ./.done
 	patch -p0 -i ./fix-path.patch
 	rm ../../../trunk/feeds/packages/multimedia/ushare/files/ushare.*
 	cp -f ./555-flv-support.patch ../../../trunk/feeds/packages/multimedia/ushare/patches/
+	cp ./S99ushare ../../../trunk/feeds/packages/multimedia/ushare/files/
 	touch $@
 
 clean:

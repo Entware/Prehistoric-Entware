@@ -1,5 +1,5 @@
---- ../../../backup/trunk_clean/feeds/packages/utils/smartmontools/Makefile	2012-02-21 11:19:46.000000000 +0400
-+++ ../../../trunk/feeds/packages/utils/smartmontools/Makefile	2012-02-21 11:23:44.687276601 +0400
+--- ../../../trunk_clean/feeds/packages/utils/smartmontools/Makefile	2012-05-02 16:17:34.874281671 +0400
++++ ../../../trunk/feeds/packages/utils/smartmontools/Makefile	2012-06-01 08:49:19.325463359 +0400
 @@ -54,7 +54,7 @@
  
  CONFIGURE_VARS += \
@@ -9,7 +9,7 @@
  	LDFLAGS="$$$$LDFLAGS" \
  	LIBS="-nodefaultlibs -lc -luClibc++ -lm $(LIBGCC_S) -lc" \
  
-@@ -71,22 +71,22 @@
+@@ -71,21 +71,19 @@
  endef
  
  define Package/smartmontools/install
@@ -28,18 +28,13 @@
 -	$(INSTALL_BIN) ./files/smartd.init $(1)/etc/init.d/smartd
 +	$(INSTALL_DIR) $(1)/opt/bin
 +	$(INSTALL_BIN) $(PKG_BUILD_DIR)/smartd $(1)/opt/bin/
-+#	$(INSTALL_DIR) $(1)/etc
-+#	$(INSTALL_DATA) ./files/smartd.conf $(1)/etc/
-+#	$(INSTALL_DIR) $(1)/etc/init.d
-+#	$(INSTALL_BIN) ./files/smartd.init $(1)/etc/init.d/smartd
++	$(INSTALL_DIR) $(1)/opt/etc/init.d
++	$(INSTALL_BIN) ./files/S20smartmontools $(1)/opt/etc/init.d
  endef
  
--define Package/smartd/conffiles
+ define Package/smartd/conffiles
 -/etc/smartd.conf
--endef
-+#define Package/smartd/conffiles
-+#/etc/smartd.conf
-+#endef
++/opt/etc/smartd.conf
+ endef
  
  $(eval $(call BuildPackage,smartmontools))
- $(eval $(call BuildPackage,smartd))

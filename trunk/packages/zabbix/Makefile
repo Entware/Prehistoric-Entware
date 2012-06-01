@@ -10,6 +10,7 @@ all: ./.done
 
 ./.done:
 	patch -p0 -i ./fix-path.patch
+	cp ./S07zabbix_agentd ../../../trunk/feeds/packages/admin/zabbix/files/
 	touch $@
 
 clean:

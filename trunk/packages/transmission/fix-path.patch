@@ -1,5 +1,5 @@
---- ../../../backup/trunk_clean/feeds/packages/net/transmission/Makefile	2012-01-13 12:14:40.000000000 +0400
-+++ ../../../trunk/feeds/packages/net/transmission/Makefile	2012-01-17 09:48:49.688540128 +0400
+--- ../../../trunk_clean/feeds/packages/net/transmission/Makefile	2012-05-02 16:17:26.546386367 +0400
++++ ../../../trunk/feeds/packages/net/transmission/Makefile	2012-06-01 09:13:52.411137762 +0400
 @@ -71,11 +71,11 @@
  endef
  
@@ -14,7 +14,7 @@
  
  CONFIGURE_ARGS += \
  	--enable-daemon \
-@@ -88,31 +88,29 @@
+@@ -88,31 +88,31 @@
  	CFLAGS="$(TARGET_CFLAGS) -D_GNU_SOURCE"
  
  define Package/transmission-daemon/install
@@ -28,6 +28,8 @@
 +	$(INSTALL_BIN) $(PKG_INSTALL_DIR)/opt/bin/transmission-daemon $(1)/opt/bin/
 +	$(INSTALL_DIR) $(1)/opt/etc/transmission $(1)/opt/etc/transmission/blocklists $(1)/opt/etc/transmission/resume $(1)/opt/etc/transmission/torrents $(1)/opt/etc/transmission/watchdir
 +	$(INSTALL_CONF) files/settings.json $(1)/opt/etc/transmission
++	$(INSTALL_DIR) $(1)/opt/etc/init.d
++	$(INSTALL_BIN) ./files/S88transmission $(1)/opt/etc/init.d
  endef
  
  define Package/transmission-cli/install

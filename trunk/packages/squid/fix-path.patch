@@ -1,5 +1,5 @@
---- ../../../trunk_clean/feeds/packages/net/squid/Makefile	2012-04-11 12:16:06.364112400 +0400
-+++ ../../../trunk/feeds/packages/net/squid/Makefile	2012-04-14 19:53:48.125730144 +0400
+--- ../../../trunk_clean/feeds/packages/net/squid/Makefile	2012-05-02 16:17:23.974418701 +0400
++++ ../../../trunk/feeds/packages/net/squid/Makefile	2012-06-01 08:56:47.379749433 +0400
 @@ -39,8 +39,8 @@
  endef
  
@@ -33,7 +33,7 @@
  	--enable-auth="basic digest ntlm" \
  	--enable-basic-auth-helpers="getpwnam NCSA SMB" \
  	--enable-ntlm-auth-helpers="fakeauth SMB" \
-@@ -139,36 +139,38 @@
+@@ -139,36 +139,40 @@
  define Build/Compile
  	# pass INCLUDES to compile host sources against our OpenSSL, not the host one
  	$(MAKE) -C $(PKG_BUILD_DIR)/lib \
@@ -75,6 +75,8 @@
 +	$(INSTALL_BIN) $(PKG_INSTALL_DIR)/opt/sbin/squid $(1)/opt/sbin/
 +	$(INSTALL_DIR) $(1)/opt/lib/squid
 +	$(CP) $(PKG_INSTALL_DIR)/opt/lib/squid/{unlinkd,pinger,logfile-daemon} $(1)/opt/lib/squid/
++	$(INSTALL_DIR) $(1)/opt/etc/init.d
++	$(INSTALL_BIN) ./files/S22squid $(1)/opt/etc/init.d
  endef
  
  define Package/squid-mod-cachemgr/install

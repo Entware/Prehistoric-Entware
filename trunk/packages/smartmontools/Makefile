@@ -10,6 +10,7 @@ all: ./.done
 
 ./.done:
 	patch -p0 -i ./fix-path.patch
+	cp ./S20smartmontools ../../../trunk/feeds/packages/utils/smartmontools/files/
 	touch $@
 
 clean:
