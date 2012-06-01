@@ -1,6 +1,6 @@
 diff -urx .svn ../../../trunk_clean/feeds/packages/net/xinetd/files/xinetd.conf ../../../trunk/feeds/packages/net/xinetd/files/xinetd.conf
---- ../../../trunk_clean/feeds/packages/net/xinetd/files/xinetd.conf	2012-05-02 16:17:25.310401906 +0400
-+++ ../../../trunk/feeds/packages/net/xinetd/files/xinetd.conf	2012-05-02 16:22:08.059334383 +0400
+--- ../../../trunk_clean/feeds/packages/net/xinetd/files/xinetd.conf	2012-06-01 10:50:38.828227277 +0400
++++ ../../../trunk/feeds/packages/net/xinetd/files/xinetd.conf	2012-06-01 12:04:20.713442017 +0400
 @@ -3,4 +3,4 @@
  
  }
@@ -8,9 +8,9 @@ diff -urx .svn ../../../trunk_clean/feeds/packages/net/xinetd/files/xinetd.conf 
 -includedir /etc/xinetd.d
 +includedir /opt/etc/xinetd.d
 diff -urx .svn ../../../trunk_clean/feeds/packages/net/xinetd/Makefile ../../../trunk/feeds/packages/net/xinetd/Makefile
---- ../../../trunk_clean/feeds/packages/net/xinetd/Makefile	2012-05-02 16:17:25.310401906 +0400
-+++ ../../../trunk/feeds/packages/net/xinetd/Makefile	2012-06-01 09:56:07.318121240 +0400
-@@ -33,7 +33,7 @@
+--- ../../../trunk_clean/feeds/packages/net/xinetd/Makefile	2012-06-01 10:50:38.824227321 +0400
++++ ../../../trunk/feeds/packages/net/xinetd/Makefile	2012-06-01 19:04:33.710007827 +0400
+@@ -35,7 +35,7 @@
  endef
  
  define Package/xinetd/conffiles
@@ -19,16 +19,8 @@ diff -urx .svn ../../../trunk_clean/feeds/packages/net/xinetd/Makefile ../../../
  endef
  
  TARGET_CFLAGS += -DNO_RPC
-@@ -50,19 +50,19 @@
- endef
- 
- define Build/Compile
--	$(MAKE) -C $(PKG_BUILD_DIR) \
-+	$(MAKE_VARS) $(MAKE) -C $(PKG_BUILD_DIR) \
- 		DESTDIR="$(PKG_INSTALL_DIR)" \
-+		$(MAKE_FLAGS) \
- 		build install
- endef
+@@ -50,13 +50,12 @@
+ 	ac_cv_header_rpc_rpcent_h=no
  
  define Package/xinetd/install
 -	$(INSTALL_DIR) $(1)/usr/sbin

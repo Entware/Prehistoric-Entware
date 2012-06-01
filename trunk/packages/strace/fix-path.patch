@@ -1,6 +1,6 @@
---- ../../../backup/trunk_clean/feeds/packages/utils/strace/Makefile	2012-01-20 19:21:03.000000000 +0400
-+++ ../../../trunk/feeds/packages/utils/strace/Makefile	2012-01-21 20:11:53.878336647 +0400
-@@ -53,8 +53,8 @@
+--- ../../../trunk_clean/feeds/packages/utils/strace/Makefile	2012-06-01 10:50:48.816101785 +0400
++++ ../../../trunk/feeds/packages/utils/strace/Makefile	2012-06-01 10:51:35.663512832 +0400
+@@ -46,8 +46,8 @@
  	CCOPT="$(TARGET_CFLAGS)"
  
  define Package/strace/install

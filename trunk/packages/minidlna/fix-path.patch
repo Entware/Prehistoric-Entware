@@ -1,15 +1,15 @@
 diff -urx .svn ../../../trunk_clean/feeds/packages/multimedia/minidlna/Makefile ../../../trunk/feeds/packages/multimedia/minidlna/Makefile
---- ../../../trunk_clean/feeds/packages/multimedia/minidlna/Makefile	2012-05-02 16:17:35.354275636 +0400
-+++ ../../../trunk/feeds/packages/multimedia/minidlna/Makefile	2012-05-31 17:34:13.434868987 +0400
-@@ -17,7 +17,6 @@
- 
+--- ../../../trunk_clean/feeds/packages/multimedia/minidlna/Makefile	2012-06-01 10:50:51.740065144 +0400
++++ ../../../trunk/feeds/packages/multimedia/minidlna/Makefile	2012-06-01 10:51:34.291530080 +0400
+@@ -18,7 +18,6 @@
  PKG_BUILD_PARALLEL:=0
+ PKG_BUILD_DEPENDS:=util-linux
  
 -include $(INCLUDE_DIR)/kernel.mk
  include $(INCLUDE_DIR)/package.mk
  include $(INCLUDE_DIR)/nls.mk
  
-@@ -27,7 +26,7 @@
+@@ -28,7 +27,7 @@
    TITLE:=UPnP A/V & DLNA Media Server
    URL:=http://minidlna.sourceforge.net/
    DEPENDS:= +libpthread +libexif +libjpeg +libsqlite3 +libffmpeg \
@@ -18,7 +18,7 @@ diff -urx .svn ../../../trunk_clean/feeds/packages/multimedia/minidlna/Makefile 
    	$(ICONV_DEPENDS) $(INTL_DEPENDS)
  endef
  
-@@ -37,18 +36,18 @@
+@@ -38,18 +37,18 @@
  endef
  
  define Package/minidlna/conffiles
@@ -46,7 +46,7 @@ diff -urx .svn ../../../trunk_clean/feeds/packages/multimedia/minidlna/Makefile 
  	-I$(ICONV_PREFIX)/include \
  	-I$(INTL_PREFIX)/include \
  	-D_GNU_SOURCE -D_FILE_OFFSET_BITS=64 \
-@@ -56,31 +55,31 @@
+@@ -57,31 +56,31 @@
  TARGET_LDFLAGS += \
  	-L$(ICONV_PREFIX)/lib \
  	-L$(INTL_PREFIX)/lib \
@@ -90,8 +90,8 @@ diff -urx .svn ../../../trunk_clean/feeds/packages/multimedia/minidlna/Makefile 
  
  define Package/minidlna/conffiles
 diff -urx .svn ../../../trunk_clean/feeds/packages/multimedia/minidlna/patches/010-genconfig-checks.patch ../../../trunk/feeds/packages/multimedia/minidlna/patches/010-genconfig-checks.patch
---- ../../../trunk_clean/feeds/packages/multimedia/minidlna/patches/010-genconfig-checks.patch	2012-05-02 16:17:35.354275636 +0400
-+++ ../../../trunk/feeds/packages/multimedia/minidlna/patches/010-genconfig-checks.patch	2012-05-02 18:03:35.537474339 +0400
+--- ../../../trunk_clean/feeds/packages/multimedia/minidlna/patches/010-genconfig-checks.patch	2012-06-01 10:50:51.740065144 +0400
++++ ../../../trunk/feeds/packages/multimedia/minidlna/patches/010-genconfig-checks.patch	2012-06-01 10:51:34.291530080 +0400
 @@ -4,13 +4,13 @@
   CONFIGFILE="config.h"
   CONFIGMACRO="__CONFIG_H__"
@@ -109,8 +109,8 @@ diff -urx .svn ../../../trunk_clean/feeds/packages/multimedia/minidlna/patches/0
  -LOG_PATH="${DB_PATH}"
  +LOG_PATH="${LOG_PATH:-$DB_PATH}"
 diff -urx .svn ../../../trunk_clean/feeds/packages/multimedia/minidlna/patches/020-makefile-tweaks.patch ../../../trunk/feeds/packages/multimedia/minidlna/patches/020-makefile-tweaks.patch
---- ../../../trunk_clean/feeds/packages/multimedia/minidlna/patches/020-makefile-tweaks.patch	2012-05-02 16:17:35.354275636 +0400
-+++ ../../../trunk/feeds/packages/multimedia/minidlna/patches/020-makefile-tweaks.patch	2012-05-02 18:03:35.537474339 +0400
+--- ../../../trunk_clean/feeds/packages/multimedia/minidlna/patches/020-makefile-tweaks.patch	2012-06-01 10:50:51.740065144 +0400
++++ ../../../trunk/feeds/packages/multimedia/minidlna/patches/020-makefile-tweaks.patch	2012-06-01 10:51:34.291530080 +0400
 @@ -4,7 +4,7 @@
   # or :
   # $ make install

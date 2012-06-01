@@ -1,27 +1,25 @@
-diff -urx .svn ../../../backup/trunk_clean/feeds/packages/net/vpnc/Makefile ../../../trunk/feeds/packages/net/vpnc/Makefile
---- ../../../backup/trunk_clean/feeds/packages/net/vpnc/Makefile	2012-02-21 11:20:06.000000000 +0400
-+++ ../../../trunk/feeds/packages/net/vpnc/Makefile	2012-02-21 11:23:44.831346790 +0400
+diff -urx .svn ../../../trunk_clean/feeds/packages/net/vpnc/Makefile ../../../trunk/feeds/packages/net/vpnc/Makefile
+--- ../../../trunk_clean/feeds/packages/net/vpnc/Makefile	2012-06-01 10:50:40.712203663 +0400
++++ ../../../trunk/feeds/packages/net/vpnc/Makefile	2012-06-01 11:59:41.788941469 +0400
 @@ -20,7 +20,7 @@
  define Package/vpnc
    SECTION:=net
    CATEGORY:=Network
--  DEPENDS:=+libgpg-error +libgcrypt +kmod-tun +ip
+-  DEPENDS:=+libgpg-error +libgcrypt +kmod-tun +vpnc-scripts
 +  DEPENDS:=+libgpg-error +libgcrypt
    TITLE:=VPN client for Cisco EasyVPN
    URL:=http://www.unix-ag.uni-kl.de/~massar/vpnc/
    SUBMENU:=VPN
-@@ -35,8 +35,8 @@
+@@ -35,7 +35,7 @@
  endef
  
  define Package/vpnc/conffiles
 -/etc/vpnc/default.conf
--/etc/vpnc/vpnc-script
 +/opt/etc/vpnc/default.conf
-+/opt/etc/vpnc/vpnc-script
  endef
  
  define Build/Compile
-@@ -45,19 +45,19 @@
+@@ -44,18 +44,18 @@
  		OS="Linux" \
  		STAGING_DIR="$(STAGING_DIR)" \
  		DESTDIR="$(PKG_INSTALL_DIR)" \
@@ -38,20 +36,18 @@ diff -urx .svn ../../../backup/trunk_clean/feeds/packages/net/vpnc/Makefile ../.
 -		$(1)/usr/sbin/
 -	install -d -m0700 $(1)/etc/vpnc
 -	$(INSTALL_CONF) $(PKG_INSTALL_DIR)/etc/vpnc/default.conf $(1)/etc/vpnc/
--	$(INSTALL_BIN) $(PKG_INSTALL_DIR)/etc/vpnc/vpnc-script $(1)/etc/vpnc/
 +	$(INSTALL_DIR) $(1)/opt/sbin
 +	$(CP)	$(PKG_INSTALL_DIR)/opt/sbin/vpnc \
 +		$(PKG_INSTALL_DIR)/opt/sbin/vpnc-disconnect \
 +		$(1)/opt/sbin/
 +	install -d -m0700 $(1)/opt/etc/vpnc
 +	$(INSTALL_CONF) $(PKG_INSTALL_DIR)/opt/etc/vpnc/default.conf $(1)/opt/etc/vpnc/
-+	$(INSTALL_BIN) $(PKG_INSTALL_DIR)/opt/etc/vpnc/vpnc-script $(1)/opt/etc/vpnc/
  endef
  
  $(eval $(call BuildPackage,vpnc))
-diff -urx .svn ../../../backup/trunk_clean/feeds/packages/net/vpnc/patches/001-cross.patch ../../../trunk/feeds/packages/net/vpnc/patches/001-cross.patch
---- ../../../backup/trunk_clean/feeds/packages/net/vpnc/patches/001-cross.patch	2012-02-21 11:20:06.000000000 +0400
-+++ ../../../trunk/feeds/packages/net/vpnc/patches/001-cross.patch	2012-02-21 11:23:44.831346790 +0400
+diff -urx .svn ../../../trunk_clean/feeds/packages/net/vpnc/patches/001-cross.patch ../../../trunk/feeds/packages/net/vpnc/patches/001-cross.patch
+--- ../../../trunk_clean/feeds/packages/net/vpnc/patches/001-cross.patch	2012-06-01 10:50:40.712203663 +0400
++++ ../../../trunk/feeds/packages/net/vpnc/patches/001-cross.patch	2012-06-01 10:51:36.139506847 +0400
 @@ -5,10 +5,12 @@
   
   DESTDIR=
@@ -81,9 +77,9 @@ diff -urx .svn ../../../backup/trunk_clean/feeds/packages/net/vpnc/patches/001-c
   
  -ifeq ($(shell uname -s), SunOS)
  +ifeq ($(OS), SunOS)
-diff -urx .svn ../../../backup/trunk_clean/feeds/packages/net/vpnc/patches/002-vpn_script.patch ../../../trunk/feeds/packages/net/vpnc/patches/002-vpn_script.patch
---- ../../../backup/trunk_clean/feeds/packages/net/vpnc/patches/002-vpn_script.patch	2012-02-21 11:20:06.000000000 +0400
-+++ ../../../trunk/feeds/packages/net/vpnc/patches/002-vpn_script.patch	2012-02-23 10:25:46.635602342 +0400
+diff -urx .svn ../../../trunk_clean/feeds/packages/net/vpnc/patches/002-vpn_script.patch ../../../trunk/feeds/packages/net/vpnc/patches/002-vpn_script.patch
+--- ../../../trunk_clean/feeds/packages/net/vpnc/patches/002-vpn_script.patch	2012-06-01 10:50:40.712203663 +0400
++++ ../../../trunk/feeds/packages/net/vpnc/patches/002-vpn_script.patch	2012-06-01 10:51:36.139506847 +0400
 @@ -14,15 +14,15 @@
   }
   

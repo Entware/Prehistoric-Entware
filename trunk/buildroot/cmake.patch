@@ -1,6 +1,6 @@
---- ../../backup/trunk_clean/include/cmake.mk	2012-01-13 12:13:18.000000000 +0400
-+++ ../../trunk/include/cmake.mk	2012-01-13 12:20:14.267250225 +0400
-@@ -49,7 +49,7 @@
+--- ../../trunk_clean/include/cmake.mk	2012-06-01 10:50:51.776064601 +0400
++++ ../../trunk/include/cmake.mk	2012-06-01 10:51:21.195694716 +0400
+@@ -51,7 +51,7 @@
  			-DCMAKE_FIND_ROOT_PATH_MODE_LIBRARY=ONLY \
  			-DCMAKE_FIND_ROOT_PATH_MODE_INCLUDE=ONLY \
  			-DCMAKE_STRIP=: \

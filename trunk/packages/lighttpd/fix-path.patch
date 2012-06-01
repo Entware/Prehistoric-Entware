@@ -1,6 +1,6 @@
 diff -urx .svn ../../../trunk_clean/feeds/packages/net/lighttpd/files/lighttpd.conf ../../../trunk/feeds/packages/net/lighttpd/files/lighttpd.conf
---- ../../../trunk_clean/feeds/packages/net/lighttpd/files/lighttpd.conf	2012-04-02 11:00:44.884081907 +0400
-+++ ../../../trunk/feeds/packages/net/lighttpd/files/lighttpd.conf	2012-04-02 11:04:46.061049902 +0400
+--- ../../../trunk_clean/feeds/packages/net/lighttpd/files/lighttpd.conf	2012-06-01 10:50:36.492245404 +0400
++++ ../../../trunk/feeds/packages/net/lighttpd/files/lighttpd.conf	2012-06-01 10:51:34.183531437 +0400
 @@ -26,10 +26,10 @@
  
  ## a static document-root, for virtual-hosting take look at the 
@@ -60,8 +60,8 @@ diff -urx .svn ../../../trunk_clean/feeds/packages/net/lighttpd/files/lighttpd.c
 +# webdav.sqlite-db-name = "/opt/var/run/lighttpd-webdav-lock.db"
  #}
 diff -urx .svn ../../../trunk_clean/feeds/packages/net/lighttpd/Makefile ../../../trunk/feeds/packages/net/lighttpd/Makefile
---- ../../../trunk_clean/feeds/packages/net/lighttpd/Makefile	2012-04-02 11:00:44.884081907 +0400
-+++ ../../../trunk/feeds/packages/net/lighttpd/Makefile	2012-04-02 11:27:22.243999763 +0400
+--- ../../../trunk_clean/feeds/packages/net/lighttpd/Makefile	2012-06-01 10:50:36.492245404 +0400
++++ ../../../trunk/feeds/packages/net/lighttpd/Makefile	2012-06-01 20:22:46.442705660 +0400
 @@ -220,8 +220,8 @@
  endef
  
@@ -98,8 +98,6 @@ diff -urx .svn ../../../trunk_clean/feeds/packages/net/lighttpd/Makefile ../../.
 -	$(INSTALL_DIR) $(1)/usr/lib/lighttpd
 +	$(INSTALL_DIR) $(1)/opt/etc/lighttpd
 +	$(INSTALL_DATA) ./files/lighttpd.conf $(1)/opt/etc/lighttpd/
-+#	$(INSTALL_DIR) $(1)/etc/init.d
-+#	$(INSTALL_BIN) ./files/lighttpd.init $(1)/etc/init.d/lighttpd
 +	$(INSTALL_DIR) $(1)/opt/lib/lighttpd
  	for m in dirlisting indexfile staticfile; do \
 -		$(CP) $(PKG_INSTALL_DIR)/usr/lib/lighttpd/mod_$$$${m}.so $(1)/usr/lib/lighttpd/ ; \
@@ -109,6 +107,8 @@ diff -urx .svn ../../../trunk_clean/feeds/packages/net/lighttpd/Makefile ../../.
 -	$(INSTALL_BIN) $(PKG_INSTALL_DIR)/usr/sbin/lighttpd $(1)/usr/sbin/
 +	$(INSTALL_DIR) $(1)/opt/bin
 +	$(INSTALL_BIN) $(PKG_INSTALL_DIR)/opt/sbin/lighttpd $(1)/opt/bin/
++	$(INSTALL_DIR) $(1)/opt/etc/init.d
++	$(INSTALL_BIN) ./files/S80lighttpd $(1)/opt/etc/init.d
  endef
  
  define BuildPlugin

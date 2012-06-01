@@ -1,5 +1,5 @@
---- ../../../backup/trunk_clean/feeds/packages/lang/php5/Makefile	2012-01-30 14:19:57.000000000 +0400
-+++ ../../../trunk/feeds/packages/lang/php5/Makefile	2012-01-30 14:46:13.362276176 +0400
+--- ../../../trunk_clean/feeds/packages/lang/php5/Makefile	2012-06-01 10:50:41.072199137 +0400
++++ ../../../trunk/feeds/packages/lang/php5/Makefile	2012-06-01 10:51:35.023520877 +0400
 @@ -131,14 +131,14 @@
  	--disable-debug \
  	--without-pear \
@@ -20,7 +20,7 @@
  	--disable-phar
  
  ifneq ($(SDK)$(CONFIG_PACKAGE_php5-cli),)
-@@ -166,7 +166,7 @@
+@@ -172,7 +172,7 @@
  endif
  
  ifneq ($(SDK)$(CONFIG_PACKAGE_php5-mod-curl),)
@@ -29,7 +29,7 @@
  else
    CONFIGURE_ARGS+= --without-curl
  endif
-@@ -178,7 +178,7 @@
+@@ -184,7 +184,7 @@
  endif
  
  ifneq ($(SDK)$(CONFIG_PACKAGE_php5-mod-gettext),)
@@ -38,7 +38,7 @@
  else
    CONFIGURE_ARGS+= --without-gettext
  endif
-@@ -209,10 +209,10 @@
+@@ -215,10 +215,10 @@
  
  ifneq ($(SDK)$(CONFIG_PACKAGE_php5-mod-gd),)
    CONFIGURE_ARGS+= \
@@ -52,7 +52,7 @@
  	--without-xpm-dir \
  	--without-t1lib \
  	--enable-gd-native-ttf \
-@@ -222,7 +222,7 @@
+@@ -228,7 +228,7 @@
  endif
  
  ifneq ($(SDK)$(CONFIG_PACKAGE_php5-mod-gmp),)
@@ -61,7 +61,7 @@
  else
    CONFIGURE_ARGS+= --without-gmp
  endif
-@@ -237,7 +237,7 @@
+@@ -243,7 +243,7 @@
    CONFIGURE_ARGS+= \
  	--enable-http=shared \
  	--without-http-shared-deps \
@@ -70,7 +70,7 @@
  else
    CONFIGURE_ARGS+= --disable-http
  endif
-@@ -256,14 +256,14 @@
+@@ -262,14 +262,14 @@
  
  ifneq ($(SDK)$(CONFIG_PACKAGE_php5-mod-ldap),)
    CONFIGURE_ARGS+= \
@@ -88,7 +88,7 @@
  else
    CONFIGURE_ARGS+= --without-libevent
  endif
-@@ -275,28 +275,28 @@
+@@ -281,28 +281,28 @@
  endif
  
  ifneq ($(SDK)$(CONFIG_PACKAGE_php5-mod-mcrypt),)
@@ -122,7 +122,7 @@
  else
    CONFIGURE_ARGS+= --without-openssl
  endif
-@@ -310,17 +310,17 @@
+@@ -316,17 +316,17 @@
  ifneq ($(SDK)$(CONFIG_PACKAGE_php5-mod-pdo),)
    CONFIGURE_ARGS+= --enable-pdo=shared
    ifneq ($(SDK)$(CONFIG_PACKAGE_php5-mod-pdo-mysql),)
@@ -143,7 +143,7 @@
    else
      CONFIGURE_ARGS+= --without-pdo-sqlite
    endif
-@@ -329,7 +329,7 @@
+@@ -335,7 +335,7 @@
  endif
  
  ifneq ($(SDK)$(CONFIG_PACKAGE_php5-mod-pgsql),)
@@ -152,7 +152,7 @@
  else
    CONFIGURE_ARGS+= --without-pgsql
  endif
-@@ -359,13 +359,13 @@
+@@ -371,13 +371,13 @@
  endif
  
  ifneq ($(SDK)$(CONFIG_PACKAGE_php5-mod-sqlite),)
@@ -168,7 +168,7 @@
  else
    CONFIGURE_ARGS+= --without-sqlite3
  endif
-@@ -395,24 +395,24 @@
+@@ -407,24 +407,24 @@
  endif
  
  ifneq ($(SDK)$(CONFIG_PACKAGE_php5-mod-xml),)
@@ -198,7 +198,7 @@
  else
    CONFIGURE_ARGS+= --disable-xmlwriter
  endif
-@@ -431,7 +431,7 @@
+@@ -443,7 +443,7 @@
  
  ifneq ($(SDK)$(CONFIG_PHP5_LIBXML),)
    CONFIGURE_ARGS+= --enable-libxml
@@ -207,7 +207,7 @@
  else
    CONFIGURE_ARGS+= --disable-libxml
  endif
-@@ -450,39 +450,39 @@
+@@ -462,39 +462,39 @@
  	ac_cv_php_xml2_config_path="$(STAGING_DIR)/host/bin/xml2-config" \
  
  define Package/php5/conffiles
@@ -263,7 +263,7 @@
  endef
  
  define BuildModule
-@@ -498,10 +498,10 @@
+@@ -510,10 +510,10 @@
    endef
  
    define Package/php5-mod-$(1)/install

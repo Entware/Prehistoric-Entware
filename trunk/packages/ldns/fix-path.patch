@@ -1,7 +1,7 @@
---- ../../../backup/trunk_clean/feeds/packages/libs/ldns/Makefile	2012-01-25 13:17:44.000000000 +0400
-+++ ../../../trunk/feeds/packages/libs/ldns/Makefile	2012-01-27 14:13:30.195241431 +0400
-@@ -56,23 +56,23 @@
- CONFIGURE_ARGS += \
+--- ../../../trunk_clean/feeds/packages/libs/ldns/Makefile	2012-06-01 10:50:33.820290304 +0400
++++ ../../../trunk/feeds/packages/libs/ldns/Makefile	2012-06-01 10:51:33.291542651 +0400
+@@ -57,23 +57,23 @@
+ 	--disable-ecdsa \
  	--disable-gost \
  	--with-drill \
 -	--with-ssl="$(STAGING_DIR)/usr"

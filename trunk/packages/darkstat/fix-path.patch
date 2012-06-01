@@ -1,21 +1,5 @@
---- ../../../trunk_clean/feeds/packages/net/darkstat/Makefile	2012-05-02 16:17:27.858369858 +0400
-+++ ../../../trunk/feeds/packages/net/darkstat/Makefile	2012-05-31 16:49:38.494515894 +0400
-@@ -8,12 +8,12 @@
- include $(TOPDIR)/rules.mk
- 
- PKG_NAME:=darkstat
--PKG_VERSION:=3.0.714
--PKG_RELEASE:=2
-+PKG_VERSION:=3.0.715
-+PKG_RELEASE:=1
- 
- PKG_SOURCE:=$(PKG_NAME)-$(PKG_VERSION).tar.bz2
- PKG_SOURCE_URL:=http://dmr.ath.cx/net/darkstat
--PKG_MD5SUM:=eef385fadc8dbb611d3d4c4d8fa94817
-+PKG_MD5SUM:=5b7abc7538dcd8e30667dac150e81d77
- 
- PKG_INSTALL:=1
- 
+--- ../../../trunk_clean/feeds/packages/net/darkstat/Makefile	2012-06-01 10:50:40.620204819 +0400
++++ ../../../trunk/feeds/packages/net/darkstat/Makefile	2012-06-01 10:51:32.659550597 +0400
 @@ -33,13 +33,13 @@
  over HTTP.
  endef

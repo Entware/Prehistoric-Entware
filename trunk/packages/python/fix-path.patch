@@ -1,6 +1,6 @@
 diff -urx .svn ../../../trunk_clean/feeds/packages/lang/python/files/python-package.mk ../../../trunk/feeds/packages/lang/python/files/python-package.mk
---- ../../../trunk_clean/feeds/packages/lang/python/files/python-package.mk	2012-04-02 11:00:50.388012714 +0400
-+++ ../../../trunk/feeds/packages/lang/python/files/python-package.mk	2012-04-02 11:04:47.297034364 +0400
+--- ../../../trunk_clean/feeds/packages/lang/python/files/python-package.mk	2012-06-01 10:50:41.036199589 +0400
++++ ../../../trunk/feeds/packages/lang/python/files/python-package.mk	2012-06-01 10:51:35.283517608 +0400
 @@ -7,16 +7,16 @@
  
  PYTHON_VERSION=2.7
@@ -22,9 +22,9 @@ diff -urx .svn ../../../trunk_clean/feeds/packages/lang/python/files/python-pack
  define HostPython
  	(	export PYTHONPATH="$(PYTHON_LIB_DIR):$(STAGING_DIR)/$(PYTHON_PKG_DIR)"; \
 diff -urx .svn ../../../trunk_clean/feeds/packages/lang/python/Makefile ../../../trunk/feeds/packages/lang/python/Makefile
---- ../../../trunk_clean/feeds/packages/lang/python/Makefile	2012-04-02 11:00:50.388012714 +0400
-+++ ../../../trunk/feeds/packages/lang/python/Makefile	2012-04-02 11:44:23.299167501 +0400
-@@ -150,11 +150,11 @@
+--- ../../../trunk_clean/feeds/packages/lang/python/Makefile	2012-06-01 10:50:41.036199589 +0400
++++ ../../../trunk/feeds/packages/lang/python/Makefile	2012-06-01 10:51:35.283517608 +0400
+@@ -147,11 +147,11 @@
  	$(CP) $(STAGING_DIR_HOST)/bin/pgen $(PKG_BUILD_DIR)/hostpgen
  	$(CP) $(STAGING_DIR_HOST)/bin/python$(PYTHON_VERSION) $(PKG_BUILD_DIR)/hostpython
  	$(call Build/Configure/Default, \
@@ -38,7 +38,7 @@ diff -urx .svn ../../../trunk_clean/feeds/packages/lang/python/Makefile ../../..
  		$(ENABLE_IPV6) \
  		ac_cv_have_chflags=no \
  		ac_cv_have_lchflags=no \
-@@ -166,277 +166,277 @@
+@@ -163,277 +163,277 @@
  endef
  
  define Build/InstallDev

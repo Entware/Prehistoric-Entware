@@ -1,7 +1,6 @@
-diff -r -u -x .svn ../../../backup/trunk_clean/trunk/package/ncurses//Makefile ../../../trunk/package/ncurses//Makefile
---- ../../../backup/trunk_clean/trunk/package/ncurses//Makefile	2011-11-15 14:03:20.000000000 +0400
-+++ ../../../trunk/package/ncurses//Makefile	2011-11-16 11:01:18.974596561 +0400
-@@ -62,12 +62,12 @@
+--- ../../../trunk_clean/package/ncurses/Makefile	2012-06-01 10:50:57.147997037 +0400
++++ ../../../trunk/package/ncurses/Makefile	2012-06-01 10:51:34.491527565 +0400
+@@ -61,12 +61,12 @@
  	--disable-home-terminfo \
  	--with-normal \
  	--with-shared \
@@ -17,7 +16,7 @@ diff -r -u -x .svn ../../../backup/trunk_clean/trunk/package/ncurses//Makefile .
  endif
  
  ifeq ($(BUILD_VARIANT),libncursesw)
-@@ -92,58 +92,58 @@
+@@ -91,58 +91,58 @@
  define Package/terminfo/install
  	echo ""
  ifneq ($(HOST_OS),FreeBSD)

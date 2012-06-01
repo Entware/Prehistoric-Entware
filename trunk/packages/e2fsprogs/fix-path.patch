@@ -1,6 +1,6 @@
---- ../../../trunk_clean/package/e2fsprogs/Makefile	2012-05-02 16:17:37.350250543 +0400
-+++ ../../../trunk/package/e2fsprogs/Makefile	2012-05-02 19:17:02.206075019 +0400
-@@ -117,43 +117,43 @@
+--- ../../../trunk_clean/package/e2fsprogs/Makefile	2012-06-01 10:50:56.943999602 +0400
++++ ../../../trunk/package/e2fsprogs/Makefile	2012-06-01 10:51:32.755549389 +0400
+@@ -120,43 +120,43 @@
  endef
  
  define Package/e2fsprogs/install
