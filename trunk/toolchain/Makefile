@@ -33,6 +33,7 @@ toolchain_compile: .toolchain_compiled
 	sed -i 's,/home/lly/Wl500/rt-n/linux/linux-2.6/,${CURDIR}/../../kernel-1.9.2.7-rtn/src/linux/linux-2.6,g' ../../toolchain-1.9.2.7-rtn/src/.config
 	cp -f ./*-uclibc-*.patch  ../../toolchain-1.9.2.7-rtn/src/toolchain/uClibc/patches/0.9.32/
 	patch -p0 -i ./0.9.32-config.patch
+	patch -p0 -i ./add-mirror.patch
 	@echo Compiling toolchain...
 	(cd ../../toolchain-1.9.2.7-rtn/src; \
 	make V=99)
