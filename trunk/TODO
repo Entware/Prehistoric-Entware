@@ -1,9 +1,7 @@
 ===Known bugs and odds, to do list===
-lcd4linux: source host down
 ipset: broken since r398
 sshd: syslogin_perform_logout: logout() returned an error, /var/... or /etc/... somewhere in sources
 bash_completion: /etc/bashcompletion in optware is newer
 alsa-lib: edit config files
-mysql-server: /opt/lib/upgrade is unneeded
 netatalk: config files fix
 grep from busybox is not full
