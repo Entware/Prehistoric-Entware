@@ -1,0 +1,51 @@
+--- ../../../trunk_clean/feeds/packages/net/vtun/Makefile	2012-06-01 10:50:41.028199689 +0400
++++ ../../../trunk/feeds/packages/net/vtun/Makefile	2012-06-09 21:24:53.569859658 +0400
+@@ -20,36 +20,36 @@
+ define Package/vtun
+   SECTION:=net
+   CATEGORY:=Network
+-  DEPENDS:=+kmod-tun +liblzo +libopenssl
++  DEPENDS:=+liblzo +libopenssl
+   TITLE:=VPN tunneling daemon
+   URL:=http://vtun.sourceforge.net
+   SUBMENU:=VPN
+ endef
+ 
+ define Package/vtun/conffiles
+-/etc/vtund.conf
++/opt/etc/vtund.conf
+ endef
+ 
+ CONFIGURE_ARGS += \
+-	--with-lzo-headers="$(STAGING_DIR)/usr/include/lzo" \
+-	--with-lzo-lib="$(STAGING_DIR)/usr/lib/" \
+-	--with-ssl-headers="$(STAGING_DIR)/usr/include/openssl" \
++	--with-lzo-headers="$(STAGING_DIR)/opt/include/lzo" \
++	--with-lzo-lib="$(STAGING_DIR)/opt/lib/" \
++	--with-ssl-headers="$(STAGING_DIR)/opt/include/openssl" \
+ 
+ CONFIGURE_VARS += \
+ 	LIBS="$(TARGET_LDFLAGS)" \
+-	BLOWFISH_HDR_DIR="$(STAGING_DIR)/usr/include/openssl" \
+-	LZO_HDR_DIR="$(STAGING_DIR)/usr/include/lzo" \
+-	SSL_HDR_DIR="$(STAGING_DIR)/usr/include/openssl" \
++	BLOWFISH_HDR_DIR="$(STAGING_DIR)/opt/include/openssl" \
++	LZO_HDR_DIR="$(STAGING_DIR)/opt/include/lzo" \
++	SSL_HDR_DIR="$(STAGING_DIR)/opt/include/openssl" \
+ 
+ define Build/Compile
+ 	$(call Build/Compile/Default,vtund)
+ endef
+ 
+ define Package/vtun/install
+-	$(INSTALL_DIR) $(1)/etc
+-	$(INSTALL_CONF) $(PKG_BUILD_DIR)/vtund.conf $(1)/etc/
+-	$(INSTALL_DIR) $(1)/usr/sbin
+-	$(INSTALL_BIN) $(PKG_BUILD_DIR)/vtund $(1)/usr/sbin/
++	$(INSTALL_DIR) $(1)/opt/etc
++	$(INSTALL_CONF) $(PKG_BUILD_DIR)/vtund.conf $(1)/opt/etc/
++	$(INSTALL_DIR) $(1)/opt/sbin
++	$(INSTALL_BIN) $(PKG_BUILD_DIR)/vtund $(1)/opt/sbin/
+ endef
+ 
+ $(eval $(call BuildPackage,vtun))
