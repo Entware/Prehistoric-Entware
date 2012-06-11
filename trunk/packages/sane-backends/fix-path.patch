@@ -1,15 +1,19 @@
---- ../../../trunk_clean/feeds/packages/utils/sane-backends/Makefile	2012-05-02 16:17:35.254276895 +0400
-+++ ../../../trunk/feeds/packages/utils/sane-backends/Makefile	2012-06-01 08:35:09.302003378 +0400
-@@ -70,7 +70,7 @@
+--- ../../../trunk_clean/feeds/packages/utils/sane-backends/Makefile	2012-06-11 17:16:08.016542033 +0400
++++ ../../../trunk/feeds/packages/utils/sane-backends/Makefile	2012-06-11 23:14:57.627600853 +0400
+@@ -69,8 +69,11 @@
+  This package contains the SANE frontends.
  endef
  
++TARGET_CFLAGS += \
++	-Os
++
  TARGET_LDFLAGS += \
 -	-Wl,-rpath-link $(STAGING_DIR)/usr/lib \
 +	-Wl,-rpath-link $(STAGING_DIR)/opt/lib \
  	-Wl,-rpath-link $(PKG_BUILD_DIR)/backend/.libs
  
  CONFIGURE_ARGS+= \
-@@ -88,33 +88,36 @@
+@@ -88,33 +91,36 @@
  endef
  
  define Package/sane-backends/conffiles

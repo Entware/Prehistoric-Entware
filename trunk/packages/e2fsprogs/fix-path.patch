@@ -1,5 +1,14 @@
---- ../../../trunk_clean/package/e2fsprogs/Makefile	2012-06-01 10:50:56.943999602 +0400
-+++ ../../../trunk/package/e2fsprogs/Makefile	2012-06-01 10:51:32.755549389 +0400
+--- ../../../trunk_clean/package/e2fsprogs/Makefile	2012-06-11 17:16:09.696520912 +0400
++++ ../../../trunk/package/e2fsprogs/Makefile	2012-06-11 18:15:40.186926777 +0400
+@@ -79,7 +79,7 @@
+   DEPENDS:= +e2fsprogs
+ endef
+ 
+-TARGET_CFLAGS += $(FPIC)
++TARGET_CFLAGS += $(FPIC) -Os
+ 
+ CONFIGURE_ARGS += \
+ 	--enable-elf-shlibs	\
 @@ -120,43 +120,43 @@
  endef
  

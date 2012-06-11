@@ -1,5 +1,5 @@
---- ../../../trunk_clean/feeds/packages/net/bitlbee/Makefile	2012-05-02 16:17:27.830370396 +0400
-+++ ../../../trunk/feeds/packages/net/bitlbee/Makefile	2012-05-31 16:04:50.472933909 +0400
+--- ../../../trunk_clean/feeds/packages/net/bitlbee/Makefile	2012-06-11 17:15:52.640735332 +0400
++++ ../../../trunk/feeds/packages/net/bitlbee/Makefile	2012-06-11 22:30:22.546171098 +0400
 @@ -33,8 +33,8 @@
  endef
  
@@ -11,7 +11,7 @@
  endef
  
  define Build/Configure
-@@ -47,11 +47,11 @@
+@@ -47,29 +47,34 @@
  		STAGING_DIR="$(STAGING_DIR)" \
  		STRIP="$(STRIP)" \
  		./configure \
@@ -28,7 +28,8 @@
  			--arch=OpenWrt \
  			--cpu="$(ARCH)" \
  			--debug=0 \
-@@ -60,16 +60,22 @@
+ 			--strip=1 \
+-			--sizeopt=1 \
  			--ipv6=1 \
  			--ssl=openssl \
  			--glib1=1 \
@@ -52,7 +53,7 @@
  endef
  
  define Build/Compile
-@@ -81,8 +87,8 @@
+@@ -81,8 +86,8 @@
  		DESTDIR="$(1)" install-etc install-bin 
  	$(MAKE) -C $(PKG_BUILD_DIR)/doc/user-guide \
  		DESTDIR="$(1)" install 
