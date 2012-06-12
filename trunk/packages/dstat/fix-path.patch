@@ -1,0 +1,15 @@
+--- ../../../trunk_clean/feeds/packages/utils/dstat/Makefile	2012-06-12 05:06:14.000000000 +0400
++++ ../../../trunk/feeds/packages/utils/dstat/Makefile	2012-06-13 02:26:20.000000000 +0400
+@@ -39,7 +39,7 @@
+ define Package/dstat/install
+-	$(INSTALL_DIR) $(1)/usr/share/dstat
+-	$(INSTALL_BIN) $(PKG_BUILD_DIR)/dstat $(1)/usr/share/dstat/dstat.py
+-	$(INSTALL_DATA) $(PKG_BUILD_DIR)/plugins/dstat_*.py $(1)/usr/share/dstat/
+-	$(INSTALL_DIR) $(1)/usr/bin
+-	$(LN) -sf ../share/dstat/dstat.py $(1)/usr/bin/dstat
++	$(INSTALL_DIR) $(1)/opt/share/dstat
++	$(INSTALL_BIN) $(PKG_BUILD_DIR)/dstat $(1)/opt/share/dstat/dstat.py
++	$(INSTALL_DATA) $(PKG_BUILD_DIR)/plugins/dstat_*.py $(1)/opt/share/dstat/
++	$(INSTALL_DIR) $(1)/opt/bin
++	$(LN) -sf ../share/dstat/dstat.py $(1)/opt/bin/dstat
+ endef
