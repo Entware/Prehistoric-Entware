@@ -110,8 +110,13 @@ diff -urx .svn ../../../trunk_clean/feeds/packages/multimedia/minidlna/patches/0
  +LOG_PATH="${LOG_PATH:-$DB_PATH}"
 diff -urx .svn ../../../trunk_clean/feeds/packages/multimedia/minidlna/patches/020-makefile-tweaks.patch ../../../trunk/feeds/packages/multimedia/minidlna/patches/020-makefile-tweaks.patch
 --- ../../../trunk_clean/feeds/packages/multimedia/minidlna/patches/020-makefile-tweaks.patch	2012-06-11 17:16:08.052541580 +0400
-+++ ../../../trunk/feeds/packages/multimedia/minidlna/patches/020-makefile-tweaks.patch	2012-06-11 17:16:54.991951471 +0400
-@@ -4,7 +4,7 @@
++++ ../../../trunk/feeds/packages/multimedia/minidlna/patches/020-makefile-tweaks.patch	2012-06-12 11:11:55.460370608 +0400
+@@ -1,18 +1,19 @@
+---- a/Makefile
+-+++ b/Makefile
++--- ./Makefile.orig	2012-01-18 02:49:01.000000000 +0400
+++++ ./Makefile	2012-06-12 11:11:06.680616425 +0400
+ @@ -10,19 +10,23 @@
   # or :
   # $ make install
   #
@@ -120,3 +125,31 @@ diff -urx .svn ../../../trunk_clean/feeds/packages/multimedia/minidlna/patches/0
  +ICONV_PREFIX ?= $(PREFIX)
  +INTL_PREFIX ?= $(PREFIX)
   #CFLAGS = -Wall -O -D_GNU_SOURCE -g -DDEBUG
+  #CFLAGS = -Wall -g -Os -D_GNU_SOURCE
+- CFLAGS = -Wall -g -O3 -D_GNU_SOURCE -D_FILE_OFFSET_BITS=64 \
++-CFLAGS = -Wall -g -O3 -D_GNU_SOURCE -D_FILE_OFFSET_BITS=64 \
+ -	 -I/usr/include/ffmpeg \
+ -	 -I/usr/include/libavutil -I/usr/include/libavcodec -I/usr/include/libavformat \
+ -	 -I/usr/include/ffmpeg/libavutil -I/usr/include/ffmpeg/libavcodec -I/usr/include/ffmpeg/libavformat
+++CFLAGS = -Wall -g -O2 -D_GNU_SOURCE -D_FILE_OFFSET_BITS=64 \
+ +	 -I$(PREFIX)/include/ffmpeg \
+ +	 -I$(PREFIX)/include/libavutil -I$(PREFIX)/include/libavcodec -I$(PREFIX)/include/libavformat \
+ +	 -I$(PREFIX)/include/ffmpeg/libavutil -I$(PREFIX)/include/ffmpeg/libavcodec -I$(PREFIX)/include/ffmpeg/libavformat
+@@ -28,7 +29,7 @@
+  SBININSTALLDIR = $(INSTALLPREFIX)/sbin
+  ETCINSTALLDIR = $(DESTDIR)/etc
+  
+-@@ -37,7 +41,7 @@ BASEOBJS = minidlna.o upnphttp.o upnpdes
++@@ -37,7 +41,7 @@
+  
+  ALLOBJS = $(BASEOBJS) $(LNXOBJS)
+  
+@@ -37,7 +38,7 @@
+  #STATIC_LINKING: LIBS = -lvorbis -logg -lm -lsqlite3 -lpthread -lexif -ljpeg -lFLAC -lm -lid3tag -lz -lavformat -lavutil -lavcodec -lm
+  
+  TESTUPNPDESCGENOBJS = testupnpdescgen.o upnpdescgen.o
+-@@ -64,7 +68,7 @@ install-conf:
++@@ -64,7 +68,7 @@
+  	$(INSTALL) -d $(ETCINSTALLDIR)
+  	$(INSTALL) --mode=0644 minidlna.conf $(ETCINSTALLDIR)
+  
