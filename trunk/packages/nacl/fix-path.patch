@@ -1,0 +1,17 @@
+--- ../../../trunk_clean/feeds/packages/libs/nacl/Makefile	2012-06-11 17:15:51.404750872 +0400
++++ ../../../trunk/feeds/packages/libs/nacl/Makefile	2012-06-14 09:42:52.717712380 +0400
+@@ -38,10 +38,10 @@
+ endef
+ 
+ define Build/InstallDev
+-	$(INSTALL_DIR) $(1)/usr/include/nacl
+-	$(CP) $(PKG_BUILD_DIR)/build/include/*.h $(1)/usr/include/nacl/
+-	$(INSTALL_DIR) $(1)/usr/lib
+-	$(CP) $(PKG_BUILD_DIR)/build/lib/libnacl.a $(1)/usr/lib/
++	$(INSTALL_DIR) $(1)/opt/include/nacl
++	$(CP) $(PKG_BUILD_DIR)/build/include/*.h $(1)/opt/include/nacl/
++	$(INSTALL_DIR) $(1)/opt/lib
++	$(CP) $(PKG_BUILD_DIR)/build/lib/libnacl.a $(1)/opt/lib/
+ endef
+ 
+ $(eval $(call BuildPackage,nacl))
