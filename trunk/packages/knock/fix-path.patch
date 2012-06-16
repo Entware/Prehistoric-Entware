@@ -1,0 +1,33 @@
+--- ../../../trunk_clean/feeds/packages/net/knock/Makefile	2012-06-11 17:15:52.424738048 +0400
++++ ../../../trunk/feeds/packages/net/knock/Makefile	2012-06-16 20:23:11.276912130 +0400
+@@ -59,7 +59,7 @@
+ endef
+ 
+ define Package/knockd/conffiles
+-/etc/knockd.conf
++/opt/etc/knockd.conf
+ endef
+ 
+ define Build/Configure
+@@ -77,15 +77,15 @@
+ endef
+ 	
+ define Package/knock/install	
+-	$(INSTALL_DIR) $(1)/usr/bin
+-	$(INSTALL_BIN) $(PKG_INSTALL_DIR)/usr/bin/knock $(1)/usr/bin/
++	$(INSTALL_DIR) $(1)/opt/bin
++	$(INSTALL_BIN) $(PKG_INSTALL_DIR)/opt/bin/knock $(1)/opt/bin/
+ endef
+ 
+ define Package/knockd/install
+-	$(INSTALL_DIR) $(1)/etc
+-	$(INSTALL_CONF) $(PKG_INSTALL_DIR)/etc/knockd.conf $(1)/etc/
+-	$(INSTALL_DIR) $(1)/usr/sbin
+-	$(INSTALL_BIN) $(PKG_INSTALL_DIR)/usr/sbin/knockd $(1)/usr/sbin/
++	$(INSTALL_DIR) $(1)/opt/etc/init.d
++	$(INSTALL_BIN) ./files/S05knockd $(1)/opt/etc/init.d
++	$(INSTALL_CONF) $(PKG_INSTALL_DIR)/opt/etc/knockd.conf $(1)/opt/etc/
++	$(INSTALL_DIR) $(1)/opt/sbin
+ endef
+ 
+ $(eval $(call BuildPackage,knock))
