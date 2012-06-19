@@ -1,5 +1,5 @@
 --- ../../../trunk_clean/feeds/packages/net/knock/Makefile	2012-06-11 17:15:52.424738048 +0400
-+++ ../../../trunk/feeds/packages/net/knock/Makefile	2012-06-16 20:23:11.276912130 +0400
++++ ../../../trunk/feeds/packages/net/knock/Makefile	2012-06-19 13:56:46.279927471 +0400
 @@ -59,7 +59,7 @@
  endef
  
@@ -26,7 +26,7 @@
 -	$(INSTALL_BIN) $(PKG_INSTALL_DIR)/usr/sbin/knockd $(1)/usr/sbin/
 +	$(INSTALL_DIR) $(1)/opt/etc/init.d
 +	$(INSTALL_BIN) ./files/S05knockd $(1)/opt/etc/init.d
-+	$(INSTALL_CONF) $(PKG_INSTALL_DIR)/opt/etc/knockd.conf $(1)/opt/etc/
++	$(INSTALL_CONF) $(PKG_INSTALL_DIR)/etc/knockd.conf $(1)/opt/etc/
 +	$(INSTALL_DIR) $(1)/opt/sbin
  endef
  
