@@ -1,15 +1,17 @@
 --- ../../../trunk_clean/package/e2fsprogs/Makefile	2012-06-11 17:16:09.696520912 +0400
-+++ ../../../trunk/package/e2fsprogs/Makefile	2012-06-11 18:15:40.186926777 +0400
-@@ -79,7 +79,7 @@
++++ ../../../trunk/package/e2fsprogs/Makefile	2012-06-19 12:14:30.562900083 +0400
+@@ -79,7 +79,9 @@
    DEPENDS:= +e2fsprogs
  endef
  
 -TARGET_CFLAGS += $(FPIC)
-+TARGET_CFLAGS += $(FPIC) -Os
++TARGET_CFLAGS += $(FPIC) \
++	-fno-gcse \
++	-fno-gcse-lm \
  
  CONFIGURE_ARGS += \
  	--enable-elf-shlibs	\
-@@ -120,43 +120,43 @@
+@@ -120,43 +122,43 @@
  endef
  
  define Package/e2fsprogs/install
