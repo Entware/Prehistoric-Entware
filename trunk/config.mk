@@ -1,4 +1,13 @@
-# Please do not change revision until you know exactly what are you doing^)
+#
+# Copyright (C) 2011-2012 Entware
+#
+# This is free software, licensed under the GNU General Public License v2.
+# See /LICENSE for more information.
+#
+
+# Nothing should ever be touched by mere mortals. Unless you hang out
+# with the gods, you should probably leave all this stuff alone.
+
 
 TOOLCHAIN_REVISION:=r4086
 OPENWRT_REVISION:=32017

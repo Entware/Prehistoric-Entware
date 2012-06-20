@@ -1,10 +1,13 @@
+#
+# Copyright (C) 2011-2012 Entware
+#
+# This is free software, licensed under the GNU General Public License v2.
+# See /LICENSE for more information.
+#
 # Makefile for a Entware repository building.
 # It creates an OpenWRT packages for using /opt folder on various firmwares.
 #
-# Copyright (C) 2011, 2012 Ryzhov Alexander
-#
-# This is free software, licensed under the GNU General Public License v2.
-#
+
 include ./config.mk
 
 all: .toolchain_installed .buildroot_installed .packages_prepared .packages_compiled

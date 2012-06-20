@@ -1,9 +1,10 @@
-# Makefile for OpenWrt Buildroot 
 #
-# Copyright (C) 2011 Ryzhov Alexander
-# 
+# Copyright (C) 2011-2012 Entware
+#
 # This is free software, licensed under the GNU General Public License v2.
+# See /LICENSE for more information.
 #
+
 include ../config.mk
 
 all: .kernel_prepared .toolchain_compiled
