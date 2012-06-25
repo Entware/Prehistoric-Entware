@@ -1,0 +1,62 @@
+--- ../../../trunk_clean/feeds/packages/utils/vim/Makefile	2012-06-21 10:11:57.000000000 +0400
++++ ../../../trunk/feeds/packages/utils/vim/Makefile	2012-06-25 12:14:30.000000000 +0400
+@@ -51,11 +51,11 @@
+ endef
+ 
+ define Package/vim-full/conffiles
+-/usr/share/vim/vimrc
++/opt/share/vim/vimrc
+ endef
+ 
+ define Package/vim/conffiles
+-/usr/share/vim/vimrc
++/opt/share/vim/vimrc
+ endef
+ 
+ define Package/vim/description
+@@ -129,9 +129,9 @@
+ 
+ define Build/Compile/vim-runtime
+ 	$(MAKE) -C $(PKG_BUILD_DIR)/src DESTDIR="$(PKG_INSTALL_DIR)" installrtbase
+-	(cd $(PKG_INSTALL_DIR) && tar -cf $(PKG_BUILD_DIR)/docs.tar ./usr/share/vim/vim$(VIMVER)/doc)
+-	rm -rf $(PKG_INSTALL_DIR)/usr/share/vim/vim$(VIMVER)/doc
+-	rm -rf $(PKG_INSTALL_DIR)/usr/man
++	(cd $(PKG_INSTALL_DIR) && tar -cf $(PKG_BUILD_DIR)/docs.tar ./opt/share/vim/vim$(VIMVER)/doc)
++	rm -rf $(PKG_INSTALL_DIR)/opt/share/vim/vim$(VIMVER)/doc
++	rm -rf $(PKG_INSTALL_DIR)/opt/man
+ endef
+ 
+ define Build/Configure
+@@ -144,23 +144,23 @@
+ endef
+ 
+ define Package/vim/install
+-	$(INSTALL_DIR) $(1)/usr/bin
+-	$(INSTALL_BIN) $(PKG_BUILD_DIR)/vim_tiny $(1)/usr/bin/vim
+-	$(INSTALL_DIR) $(1)/usr/share/vim
+-	$(INSTALL_CONF) ./files/vimrc $(1)/usr/share/vim/
++	$(INSTALL_DIR) $(1)/opt/bin
++	$(INSTALL_BIN) $(PKG_BUILD_DIR)/vim_tiny $(1)/opt/bin/vim
++	$(INSTALL_DIR) $(1)/opt/share/vim
++	$(INSTALL_CONF) ./files/vimrc $(1)/opt/share/vim/
+ endef
+ 
+ 
+ define Package/vim-full/install
+-	$(INSTALL_DIR) $(1)/usr/bin
+-	$(INSTALL_BIN) $(PKG_BUILD_DIR)/vim_normal $(1)/usr/bin/vim
+-	$(INSTALL_DIR) $(1)/usr/share/vim
+-	$(INSTALL_CONF) ./files/vimrc.full $(1)/usr/share/vim/vimrc
++	$(INSTALL_DIR) $(1)/opt/bin
++	$(INSTALL_BIN) $(PKG_BUILD_DIR)/vim_normal $(1)/opt/bin/vim
++	$(INSTALL_DIR) $(1)/opt/share/vim
++	$(INSTALL_CONF) ./files/vimrc.full $(1)/opt/share/vim/vimrc
+ endef
+ 
+ define Package/vim-runtime/install
+ 	$(CP) $(PKG_INSTALL_DIR)/* $(1)
+-	rm -rf $(1)/usr/share/vim/vim$(VIMVER)/doc
++	rm -rf $(1)/opt/share/vim/vim$(VIMVER)/doc
+ endef
+ 
+ define Package/vim-help/install
