@@ -1,0 +1,22 @@
+--- ../../../trunk_clean/feeds/packages/net/sshfs/Makefile	2012-06-21 10:11:58.000000000 +0400
++++ ../../../trunk/feeds/packages/net/sshfs/Makefile	2012-06-13 15:44:21.000000000 +0400
+@@ -38,8 +38,8 @@
+ 		-D_FILE_OFFSET_BITS=64 \
+-		-I$(STAGING_DIR)/usr/include/glib-2.0 \
+-		-I$(STAGING_DIR)/usr/lib/glib-2.0/include \
+-		-I$(STAGING_DIR)/usr/include/fuse" \
++		-I$(STAGING_DIR)/opt/include/glib-2.0 \
++		-I$(STAGING_DIR)/opt/lib/glib-2.0/include \
++		-I$(STAGING_DIR)/opt/include/fuse" \
+ 	SSHFS_LIBS=" \
+ 		-lglib-2.0 -liconv $(if $(INTL_FULL),-lintl) -lfuse -pthread -lgthread-2.0 \
+-		-L$(STAGING_DIR)/usr/lib"
++		-L$(STAGING_DIR)/opt/lib"
+ 
+@@ -54,4 +54,4 @@
+ define Package/sshfs/install
+-	$(INSTALL_DIR) $(1)/usr/bin
+-	$(INSTALL_BIN) $(PKG_INSTALL_DIR)/usr/bin/sshfs $(1)/usr/bin/
++	$(INSTALL_DIR) $(1)/opt/bin
++	$(INSTALL_BIN) $(PKG_INSTALL_DIR)/opt/bin/sshfs $(1)/opt/bin/
+ endef
