@@ -1,0 +1,10 @@
+service rsync
+{
+     disable = yes
+     socket_type     = stream
+     wait            = no
+     user            = root
+     server          = /opt/bin/rsync
+     server_args     = --daemon --config=/opt/etc/rsyncd.conf
+     log_on_failure  += USERID
+}

@@ -9,6 +9,8 @@ all: ./.done
 
 ./.done:
 	patch -p0 -i ./fix-path.patch
+	cp ./S50rsyncd ../../../trunk/feeds/packages/net/rsync/files/
+	cp ./rsyncd ../../../trunk/feeds/packages/net/rsync/files/
 	touch $@
 
 clean:
