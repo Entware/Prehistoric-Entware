@@ -1,0 +1,11 @@
+--- ../../../trunk/package/e2fsprogs/Makefile.prev	2012-06-21 10:12:19.000000000 +0400
++++ ../../../trunk/package/e2fsprogs/Makefile	2012-07-01 16:59:46.000000000 +0400
+@@ -12,3 +12,3 @@
+ PKG_MD5SUM:=04f4561a54ad0419248316a00c016baa
+-PKG_RELEASE:=1
++PKG_RELEASE:=2
+ 
+@@ -127,2 +127,3 @@
+ 	$(INSTALL_BIN) $(PKG_INSTALL_DIR)/opt/sbin/mke2fs $(1)/opt/sbin/
++	$(INSTALL_BIN) $(PKG_INSTALL_DIR)/opt/sbin/filefrag $(1)/opt/sbin/
+ 	ln -sf mke2fs $(1)/opt/sbin/mkfs.ext2
