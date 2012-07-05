@@ -9,6 +9,7 @@ all: ./.done
 
 ./.done:
 	patch -p0 -i ./fix-path.patch
+	patch -p0 -i ./ncurses-bin.patch
 	touch $@
 
 clean:
