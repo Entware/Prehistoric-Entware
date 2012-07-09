@@ -1,5 +1,5 @@
---- ../../../backup/trunk_clean/feeds/packages/utils/bash/Makefile	2012-01-20 19:21:03.000000000 +0400
-+++ ../../../trunk/feeds/packages/utils/bash/Makefile	2012-01-23 14:40:29.983085821 +0400
+--- ../../../openwrt_trunk.orig/feeds/packages/utils/bash/Makefile	2012-01-20 19:21:03.000000000 +0400
++++ ../../../openwrt_trunk/feeds/packages/utils/bash/Makefile	2012-01-23 14:40:29.983085821 +0400
 @@ -35,7 +35,7 @@
  define Build/Configure
  	$(call Build/Configure/Default, \

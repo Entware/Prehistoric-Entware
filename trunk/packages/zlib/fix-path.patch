@@ -1,6 +1,6 @@
-diff -urx .svn ../../../backup/trunk_clean/package/zlib/Makefile ../../../trunk/package/zlib/Makefile
---- ../../../backup/trunk_clean/package/zlib/Makefile	2012-02-21 11:19:03.000000000 +0400
-+++ ../../../trunk/package/zlib/Makefile	2012-02-21 11:23:44.871366288 +0400
+diff -urx .svn ../../../openwrt_trunk.orig/package/zlib/Makefile ../../../openwrt_trunk/package/zlib/Makefile
+--- ../../../openwrt_trunk.orig/package/zlib/Makefile	2012-02-21 11:19:03.000000000 +0400
++++ ../../../openwrt_trunk/package/zlib/Makefile	2012-02-21 11:23:44.871366288 +0400
 @@ -30,7 +30,7 @@
  		LDSHARED="$(TARGET_CC) -shared -Wl,-soname,libz.so.1" \
  		CFLAGS="$(TARGET_CFLAGS) $(FPIC)" \
@@ -45,9 +45,9 @@ diff -urx .svn ../../../backup/trunk_clean/package/zlib/Makefile ../../../trunk/
  endef
  
  $(eval $(call BuildPackage,zlib))
-diff -urx .svn ../../../backup/trunk_clean/package/zlib/patches/100-cross_compile.patch ../../../trunk/package/zlib/patches/100-cross_compile.patch
---- ../../../backup/trunk_clean/package/zlib/patches/100-cross_compile.patch	2012-02-21 11:19:03.000000000 +0400
-+++ ../../../trunk/package/zlib/patches/100-cross_compile.patch	2012-02-21 11:23:44.871366288 +0400
+diff -urx .svn ../../../openwrt_trunk.orig/package/zlib/patches/100-cross_compile.patch ../../../openwrt_trunk/package/zlib/patches/100-cross_compile.patch
+--- ../../../openwrt_trunk.orig/package/zlib/patches/100-cross_compile.patch	2012-02-21 11:19:03.000000000 +0400
++++ ../../../openwrt_trunk/package/zlib/patches/100-cross_compile.patch	2012-02-21 11:23:44.871366288 +0400
 @@ -15,7 +15,8 @@
   
  +DESTDIR = 

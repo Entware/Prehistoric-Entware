@@ -8,7 +8,7 @@
 all: ./.done
 
 ./.done:
-	cp ./555-install-prefix.patch ../../../trunk/feeds/packages/net/miniupnpc/patches/
+	cp ./555-install-prefix.patch ../../../openwrt_trunk/feeds/packages/net/miniupnpc/patches/
 	patch -p0 -i ./fix-path.patch
 	touch $@
 

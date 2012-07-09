@@ -1,5 +1,5 @@
---- ../../../trunk_clean/feeds/packages/utils/vim/Makefile	2012-06-21 10:11:57.000000000 +0400
-+++ ../../../trunk/feeds/packages/utils/vim/Makefile	2012-06-25 12:14:30.000000000 +0400
+--- ../../../openwrt_trunk.orig/feeds/packages/utils/vim/Makefile	2012-06-21 10:11:57.000000000 +0400
++++ ../../../openwrt_trunk/feeds/packages/utils/vim/Makefile	2012-06-25 12:14:30.000000000 +0400
 @@ -51,11 +51,11 @@
  endef
  

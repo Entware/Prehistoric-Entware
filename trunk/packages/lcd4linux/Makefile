@@ -10,7 +10,7 @@ all: ./.done
 
 ./.done:
 	patch -p0 -i ./fix-path.patch
-	cp ./S91lcd4linux ../../../trunk/feeds/packages/utils/lcd4linux/files/
+	cp ./S91lcd4linux ../../../openwrt_trunk/feeds/packages/utils/lcd4linux/files/
 	touch $@
 
 clean:

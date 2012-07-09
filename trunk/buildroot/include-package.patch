@@ -1,5 +1,5 @@
---- ../../backup/trunk_clean/trunk/include/package.mk	2011-11-15 14:02:49.000000000 +0400
-+++ ../../trunk/include/package.mk	2011-11-16 14:17:27.928219215 +0400
+--- ../../openwrt_trunk.orig/include/package.mk	2011-11-15 14:02:49.000000000 +0400
++++ ../../openwrt_trunk/include/package.mk	2011-11-16 14:17:27.928219215 +0400
 @@ -55,7 +55,7 @@
  CONFIG_SITE:=$(INCLUDE_DIR)/site/$(REAL_GNU_TARGET_NAME)
  CUR_MAKEFILE:=$(filter-out Makefile,$(firstword $(MAKEFILE_LIST)))

@@ -9,7 +9,7 @@ all: ./.done
 
 ./.done:
 	patch -p0 -i ./fix-path.patch
-	cp ./S54darkstat ../../../trunk/feeds/packages/net/darkstat/files/
+	cp ./S54darkstat ../../../openwrt_trunk/feeds/packages/net/darkstat/files/
 	touch $@
 
 clean:

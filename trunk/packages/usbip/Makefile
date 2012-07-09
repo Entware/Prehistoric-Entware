@@ -9,8 +9,8 @@ all: ./.done
 
 ./.done:
 	patch -p0 -i ./fix-path.patch
-	mkdir ../../../trunk/feeds/packages/net/usbip/files
-	cp ./S74usbipd ../../../trunk/feeds/packages/net/usbip/files/
+	mkdir ../../../openwrt_trunk/feeds/packages/net/usbip/files
+	cp ./S74usbipd ../../../openwrt_trunk/feeds/packages/net/usbip/files/
 	touch $@
 
 clean:

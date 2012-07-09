@@ -1,6 +1,6 @@
-diff -urx .svn ../../../trunk_clean/feeds/packages/net/rtorrent/Makefile ../../../trunk/feeds/packages/net/rtorrent/Makefile
---- ../../../trunk_clean/feeds/packages/net/rtorrent/Makefile	2012-04-11 12:16:07.648096259 +0400
-+++ ../../../trunk/feeds/packages/net/rtorrent/Makefile	2012-04-23 16:27:02.810334448 +0400
+diff -urx .svn ../../../openwrt_trunk.orig/feeds/packages/net/rtorrent/Makefile ../../../openwrt_trunk/feeds/packages/net/rtorrent/Makefile
+--- ../../../openwrt_trunk.orig/feeds/packages/net/rtorrent/Makefile	2012-04-11 12:16:07.648096259 +0400
++++ ../../../openwrt_trunk/feeds/packages/net/rtorrent/Makefile	2012-04-23 16:27:02.810334448 +0400
 @@ -8,12 +8,12 @@
  include $(TOPDIR)/rules.mk
  
@@ -49,9 +49,9 @@ diff -urx .svn ../../../trunk_clean/feeds/packages/net/rtorrent/Makefile ../../.
  endef
  
  $(eval $(call BuildPackage,rtorrent))
-diff -urx .svn ../../../trunk_clean/feeds/packages/net/rtorrent/patches/100-fix-cross_compile.patch ../../../trunk/feeds/packages/net/rtorrent/patches/100-fix-cross_compile.patch
---- ../../../trunk_clean/feeds/packages/net/rtorrent/patches/100-fix-cross_compile.patch	2012-04-11 12:16:07.664096058 +0400
-+++ ../../../trunk/feeds/packages/net/rtorrent/patches/100-fix-cross_compile.patch	2012-04-11 12:17:43.562890446 +0400
+diff -urx .svn ../../../openwrt_trunk.orig/feeds/packages/net/rtorrent/patches/100-fix-cross_compile.patch ../../../openwrt_trunk/feeds/packages/net/rtorrent/patches/100-fix-cross_compile.patch
+--- ../../../openwrt_trunk.orig/feeds/packages/net/rtorrent/patches/100-fix-cross_compile.patch	2012-04-11 12:16:07.664096058 +0400
++++ ../../../openwrt_trunk/feeds/packages/net/rtorrent/patches/100-fix-cross_compile.patch	2012-04-11 12:17:43.562890446 +0400
 @@ -1,22 +1,20 @@
 -Index: rtorrent-0.8.6/scripts/common.m4
 -===================================================================
@@ -86,9 +86,9 @@ diff -urx .svn ../../../trunk_clean/feeds/packages/net/rtorrent/patches/100-fix-
 +       #include <inttypes.h>
         int main() {
           char buf[8] = { 0, 0, 0, 0, 1, 0, 0, 0 };
-diff -urx .svn ../../../trunk_clean/feeds/packages/net/rtorrent/patches/120-fix-ncurses.patch ../../../trunk/feeds/packages/net/rtorrent/patches/120-fix-ncurses.patch
---- ../../../trunk_clean/feeds/packages/net/rtorrent/patches/120-fix-ncurses.patch	2012-04-11 12:16:07.664096058 +0400
-+++ ../../../trunk/feeds/packages/net/rtorrent/patches/120-fix-ncurses.patch	2012-04-11 12:17:43.562890446 +0400
+diff -urx .svn ../../../openwrt_trunk.orig/feeds/packages/net/rtorrent/patches/120-fix-ncurses.patch ../../../openwrt_trunk/feeds/packages/net/rtorrent/patches/120-fix-ncurses.patch
+--- ../../../openwrt_trunk.orig/feeds/packages/net/rtorrent/patches/120-fix-ncurses.patch	2012-04-11 12:16:07.664096058 +0400
++++ ../../../openwrt_trunk/feeds/packages/net/rtorrent/patches/120-fix-ncurses.patch	2012-04-11 12:17:43.562890446 +0400
 @@ -1,13 +1,11 @@
 -Index: rtorrent-0.8.6/src/display/canvas.h
 -===================================================================

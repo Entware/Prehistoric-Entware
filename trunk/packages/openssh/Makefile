@@ -9,7 +9,7 @@ all: ./.done
 
 ./.done:
 	patch -p0 -i ./fix-path.patch
-	cp ./S40sshd ../../../trunk/feeds/packages/net/openssh/files/
+	cp ./S40sshd ../../../openwrt_trunk/feeds/packages/net/openssh/files/
 	touch $@
 
 clean:

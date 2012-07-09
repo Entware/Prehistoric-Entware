@@ -1,5 +1,5 @@
---- ../../../backup/trunk_clean/trunk/package/libreadline/Makefile	2011-11-15 14:03:23.000000000 +0400
-+++ ../../../trunk/package/libreadline/Makefile	2011-11-22 14:32:59.562517532 +0400
+--- ../../../openwrt_trunk.orig/package/libreadline/Makefile	2011-11-15 14:03:23.000000000 +0400
++++ ../../../openwrt_trunk/package/libreadline/Makefile	2011-11-22 14:32:59.562517532 +0400
 @@ -52,15 +52,15 @@
  endef
  

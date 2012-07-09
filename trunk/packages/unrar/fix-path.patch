@@ -1,5 +1,5 @@
---- ../../../backup/trunk_clean/feeds/packages/utils/unrar/Makefile	2011-11-25 09:49:47.228984734 +0400
-+++ ../../../trunk/feeds/packages/utils/unrar/Makefile	2011-11-27 19:06:01.574043079 +0400
+--- ../../../openwrt_trunk.orig/feeds/packages/utils/unrar/Makefile	2011-11-25 09:49:47.228984734 +0400
++++ ../../../openwrt_trunk/feeds/packages/utils/unrar/Makefile	2011-11-27 19:06:01.574043079 +0400
 @@ -43,8 +43,8 @@
  	CXX="$(STAGING_DIR)/host/bin/g++-uc"
  

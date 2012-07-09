@@ -1,5 +1,5 @@
---- ../../../trunk_clean/feeds/packages/utils/shadow/Makefile	2012-03-21 16:34:34.579951683 +0400
-+++ ../../../trunk/feeds/packages/utils/shadow/Makefile	2012-03-29 12:45:13.564590279 +0400
+--- ../../../openwrt_trunk.orig/feeds/packages/utils/shadow/Makefile	2012-03-21 16:34:34.579951683 +0400
++++ ../../../openwrt_trunk/feeds/packages/utils/shadow/Makefile	2012-03-29 12:45:13.564590279 +0400
 @@ -57,12 +57,12 @@
    endef
  

@@ -1,5 +1,5 @@
---- ../../../trunk_clean/feeds/packages/net/transmission/Makefile	2012-05-02 16:17:26.546386367 +0400
-+++ ../../../trunk/feeds/packages/net/transmission/Makefile	2012-06-01 09:13:52.411137762 +0400
+--- ../../../openwrt_trunk.orig/feeds/packages/net/transmission/Makefile	2012-05-02 16:17:26.546386367 +0400
++++ ../../../openwrt_trunk/feeds/packages/net/transmission/Makefile	2012-06-01 09:13:52.411137762 +0400
 @@ -71,11 +71,11 @@
  endef
  

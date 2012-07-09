@@ -1,5 +1,5 @@
---- ../../../backup/trunk_clean/feeds/packages/libs/freetype/Makefile	2011-11-28 10:57:21.000000000 +0400
-+++ ../../../trunk/feeds/packages/libs/freetype/Makefile	2011-11-28 16:30:11.731174811 +0400
+--- ../../../openwrt_trunk.orig/feeds/packages/libs/freetype/Makefile	2011-11-28 10:57:21.000000000 +0400
++++ ../../../openwrt_trunk/feeds/packages/libs/freetype/Makefile	2011-11-28 16:30:11.731174811 +0400
 @@ -48,24 +48,24 @@
  
  define Build/InstallDev

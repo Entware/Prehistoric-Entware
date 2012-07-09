@@ -1,5 +1,5 @@
---- ../../../backup/trunk_clean/feeds/packages/libs/sqlite2/Makefile	2011-11-28 10:57:21.000000000 +0400
-+++ ../../../trunk/feeds/packages/libs/sqlite2/Makefile	2011-11-29 14:42:37.380562327 +0400
+--- ../../../openwrt_trunk.orig/feeds/packages/libs/sqlite2/Makefile	2011-11-28 10:57:21.000000000 +0400
++++ ../../../openwrt_trunk/feeds/packages/libs/sqlite2/Makefile	2011-11-29 14:42:37.380562327 +0400
 @@ -79,22 +79,22 @@
  endef
  

@@ -1,5 +1,5 @@
---- ../../../backup/trunk_clean/feeds/packages/libs/libvncserver/Makefile	2011-12-05 10:46:45.000000000 +0400
-+++ ../../../trunk/feeds/packages/libs/libvncserver/Makefile	2011-12-21 10:37:18.602694468 +0400
+--- ../../../openwrt_trunk.orig/feeds/packages/libs/libvncserver/Makefile	2011-12-05 10:46:45.000000000 +0400
++++ ../../../openwrt_trunk/feeds/packages/libs/libvncserver/Makefile	2011-12-21 10:37:18.602694468 +0400
 @@ -45,15 +45,15 @@
  	--without-avahi
  

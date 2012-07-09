@@ -1,5 +1,5 @@
---- ../../../trunk_clean/package/base-files/Makefile	2012-06-01 10:50:56.460005602 +0400
-+++ ../../../trunk/package/base-files/Makefile	2012-06-01 12:45:40.412730511 +0400
+--- ../../../openwrt_trunk.orig/package/base-files/Makefile	2012-06-01 10:50:56.460005602 +0400
++++ ../../../openwrt_trunk/package/base-files/Makefile	2012-06-01 12:45:40.412730511 +0400
 @@ -35,26 +35,12 @@
  define Package/base-files
    SECTION:=base

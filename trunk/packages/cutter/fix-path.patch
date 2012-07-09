@@ -1,5 +1,5 @@
---- ../../../trunk_clean/feeds/packages/net/cutter/Makefile	2012-05-02 16:17:28.226365246 +0400
-+++ ../../../trunk/feeds/packages/net/cutter/Makefile	2012-05-28 09:38:06.430174790 +0400
+--- ../../../openwrt_trunk.orig/feeds/packages/net/cutter/Makefile	2012-05-02 16:17:28.226365246 +0400
++++ ../../../openwrt_trunk/feeds/packages/net/cutter/Makefile	2012-05-28 09:38:06.430174790 +0400
 @@ -31,12 +31,12 @@
  endef
  	

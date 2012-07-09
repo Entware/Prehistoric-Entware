@@ -1,5 +1,5 @@
---- ../../../backup/trunk_clean/feeds/packages/libs/flac/Makefile	2011-12-05 10:46:46.000000000 +0400
-+++ ../../../trunk/feeds/packages/libs/flac/Makefile	2011-12-09 12:01:28.987574042 +0400
+--- ../../../openwrt_trunk.orig/feeds/packages/libs/flac/Makefile	2011-12-05 10:46:46.000000000 +0400
++++ ../../../openwrt_trunk/feeds/packages/libs/flac/Makefile	2011-12-09 12:01:28.987574042 +0400
 @@ -46,27 +46,27 @@
  TARGET_CFLAGS += $(FPIC)
  

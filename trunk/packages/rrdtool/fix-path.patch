@@ -1,5 +1,5 @@
---- ../../../trunk_clean/feeds/packages/utils/rrdtool/Makefile	2012-05-02 16:17:35.154278152 +0400
-+++ ../../../trunk/feeds/packages/utils/rrdtool/Makefile	2012-05-03 08:32:13.277473092 +0400
+--- ../../../openwrt_trunk.orig/feeds/packages/utils/rrdtool/Makefile	2012-05-02 16:17:35.154278152 +0400
++++ ../../../openwrt_trunk/feeds/packages/utils/rrdtool/Makefile	2012-05-03 08:32:13.277473092 +0400
 @@ -74,7 +74,7 @@
  	--disable-tcl \
  	--disable-ruby \

@@ -9,7 +9,7 @@ all: ./.done
 
 ./.done:
 	patch -p0 -i ./fix-path.patch
-	cp ./S21tinyproxy ../../../trunk/feeds/packages/net/tinyproxy/files/
+	cp ./S21tinyproxy ../../../openwrt_trunk/feeds/packages/net/tinyproxy/files/
 	touch $@
 
 clean:

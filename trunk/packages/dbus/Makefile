@@ -9,7 +9,7 @@ all: ./.done
 
 ./.done:
 	patch -p0 -i ./fix-path.patch
-	cp ./S20dbus ../../../trunk/feeds/packages/utils/dbus/files/
+	cp ./S20dbus ../../../openwrt_trunk/feeds/packages/utils/dbus/files/
 	touch $@
 
 clean:

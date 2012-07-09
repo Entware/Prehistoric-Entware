@@ -1,5 +1,5 @@
---- ../../../trunk_clean/feeds/packages/net/vnstat/Makefile	2012-05-02 16:17:23.946419053 +0400
-+++ ../../../trunk/feeds/packages/net/vnstat/Makefile	2012-06-01 09:51:02.725722035 +0400
+--- ../../../openwrt_trunk.orig/feeds/packages/net/vnstat/Makefile	2012-05-02 16:17:23.946419053 +0400
++++ ../../../openwrt_trunk/feeds/packages/net/vnstat/Makefile	2012-06-01 09:51:02.725722035 +0400
 @@ -55,21 +55,21 @@
  endef
  

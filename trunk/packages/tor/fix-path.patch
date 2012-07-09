@@ -1,5 +1,5 @@
---- ../../../backup/trunk_clean/feeds/packages/net/tor/Makefile	2012-01-20 19:21:04.000000000 +0400
-+++ ../../../trunk/feeds/packages/net/tor/Makefile	2012-01-21 19:38:44.817498522 +0400
+--- ../../../openwrt_trunk.orig/feeds/packages/net/tor/Makefile	2012-01-20 19:21:04.000000000 +0400
++++ ../../../openwrt_trunk/feeds/packages/net/tor/Makefile	2012-01-21 19:38:44.817498522 +0400
 @@ -47,12 +47,12 @@
  endef
  

@@ -1,5 +1,5 @@
---- ../../../trunk_clean/feeds/packages/net/etherwake/Makefile	2012-05-02 16:17:27.890369470 +0400
-+++ ../../../trunk/feeds/packages/net/etherwake/Makefile	2012-05-28 09:07:44.947969493 +0400
+--- ../../../openwrt_trunk.orig/feeds/packages/net/etherwake/Makefile	2012-05-02 16:17:27.890369470 +0400
++++ ../../../openwrt_trunk/feeds/packages/net/etherwake/Makefile	2012-05-28 09:07:44.947969493 +0400
 @@ -35,20 +35,12 @@
  endef
  

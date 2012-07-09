@@ -9,10 +9,10 @@ all: ./.done
 
 ./.done:
 	patch -p0 -i ./fix-path.patch
-	mkdir ../../../trunk/feeds/packages/net/knock/patches
-	 cp ./010-cross-compile.patch ../../../trunk/feeds/packages/net/knock/patches/
-	mkdir ../../../trunk/feeds/packages/net/knock/files
-	cp ./S05knockd ../../../trunk/feeds/packages/net/knock/files/
+	mkdir ../../../openwrt_trunk/feeds/packages/net/knock/patches
+	 cp ./010-cross-compile.patch ../../../openwrt_trunk/feeds/packages/net/knock/patches/
+	mkdir ../../../openwrt_trunk/feeds/packages/net/knock/files
+	cp ./S05knockd ../../../openwrt_trunk/feeds/packages/net/knock/files/
 	touch $@
 
 clean:

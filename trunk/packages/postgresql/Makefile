@@ -9,7 +9,7 @@ all: ./.done
 
 ./.done:
 	patch -p0 -i ./fix-path.patch
-	cp ./S98postgresql ../../../trunk/feeds/packages/libs/postgresql/files/
+	cp ./S98postgresql ../../../openwrt_trunk/feeds/packages/libs/postgresql/files/
 	touch $@
 
 clean:

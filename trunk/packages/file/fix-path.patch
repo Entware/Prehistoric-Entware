@@ -1,5 +1,5 @@
---- ../../../backup/trunk_clean/feeds/packages/libs/file/Makefile	2011-11-28 10:57:21.000000000 +0400
-+++ ../../../trunk/feeds/packages/libs/file/Makefile	2011-11-28 13:07:07.859668598 +0400
+--- ../../../openwrt_trunk.orig/feeds/packages/libs/file/Makefile	2011-11-28 10:57:21.000000000 +0400
++++ ../../../openwrt_trunk/feeds/packages/libs/file/Makefile	2011-11-28 13:07:07.859668598 +0400
 @@ -61,30 +61,30 @@
  Hooks/Compile/Post += Build/Compile/magic
  

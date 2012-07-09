@@ -1,5 +1,5 @@
---- ../../../backup/trunk_clean/trunk/feeds/packages/libs/apr/Makefile	2011-11-15 14:03:59.000000000 +0400
-+++ ../../../trunk/feeds/packages/libs/apr/Makefile	2011-11-22 17:12:17.292629807 +0400
+--- ../../../openwrt_trunk.orig/feeds/packages/libs/apr/Makefile	2011-11-15 14:03:59.000000000 +0400
++++ ../../../openwrt_trunk/feeds/packages/libs/apr/Makefile	2011-11-22 17:12:17.292629807 +0400
 @@ -40,6 +40,8 @@
  
  # XXX: ac_cv_sizeof_struct_iovec=1 is just to trick configure

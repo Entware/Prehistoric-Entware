@@ -1,5 +1,5 @@
---- ../../../backup/trunk_clean/feeds/packages/libs/gnutls/Makefile	2011-12-05 10:46:44.000000000 +0400
-+++ ../../../trunk/feeds/packages/libs/gnutls/Makefile	2011-12-20 15:27:47.106666205 +0400
+--- ../../../openwrt_trunk.orig/feeds/packages/libs/gnutls/Makefile	2011-12-05 10:46:44.000000000 +0400
++++ ../../../openwrt_trunk/feeds/packages/libs/gnutls/Makefile	2011-12-20 15:27:47.106666205 +0400
 @@ -108,9 +108,9 @@
  	--disable-guile \
  	--with-included-libcfg \

@@ -1,5 +1,5 @@
---- ../../../backup/trunk_clean/feeds/packages/libs/xmlrpc-c/Makefile	2012-01-25 13:17:44.000000000 +0400
-+++ ../../../trunk/feeds/packages/libs/xmlrpc-c/Makefile	2012-01-25 13:54:53.527756166 +0400
+--- ../../../openwrt_trunk.orig/feeds/packages/libs/xmlrpc-c/Makefile	2012-01-25 13:17:44.000000000 +0400
++++ ../../../openwrt_trunk/feeds/packages/libs/xmlrpc-c/Makefile	2012-01-25 13:54:53.527756166 +0400
 @@ -121,87 +121,87 @@
  
  define Build/InstallDev

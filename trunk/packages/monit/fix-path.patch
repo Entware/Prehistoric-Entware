@@ -1,5 +1,5 @@
---- ../../../trunk_clean/feeds/packages/admin/monit/Makefile	2012-05-02 16:17:33.846294593 +0400
-+++ ../../../trunk/feeds/packages/admin/monit/Makefile	2012-05-31 17:49:03.599952870 +0400
+--- ../../../openwrt_trunk.orig/feeds/packages/admin/monit/Makefile	2012-05-02 16:17:33.846294593 +0400
++++ ../../../openwrt_trunk/feeds/packages/admin/monit/Makefile	2012-05-31 17:49:03.599952870 +0400
 @@ -58,7 +58,7 @@
  ifeq ($(BUILD_VARIANT),ssl)
  	CONFIGURE_ARGS += \

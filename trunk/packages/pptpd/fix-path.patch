@@ -1,6 +1,6 @@
-diff -urx .svn ../../../trunk_clean/feeds/packages/net/pptpd/files/options.pptpd ../../../trunk/feeds/packages/net/pptpd/files/options.pptpd
---- ../../../trunk_clean/feeds/packages/net/pptpd/files/options.pptpd	2012-05-02 16:17:23.886419808 +0400
-+++ ../../../trunk/feeds/packages/net/pptpd/files/options.pptpd	2012-05-02 16:22:05.962312733 +0400
+diff -urx .svn ../../../openwrt_trunk.orig/feeds/packages/net/pptpd/files/options.pptpd ../../../openwrt_trunk/feeds/packages/net/pptpd/files/options.pptpd
+--- ../../../openwrt_trunk.orig/feeds/packages/net/pptpd/files/options.pptpd	2012-05-02 16:17:23.886419808 +0400
++++ ../../../openwrt_trunk/feeds/packages/net/pptpd/files/options.pptpd	2012-05-02 16:22:05.962312733 +0400
 @@ -1,5 +1,5 @@
  #debug
 -#logfile /tmp/pptp-server.log
@@ -14,9 +14,9 @@ diff -urx .svn ../../../trunk_clean/feeds/packages/net/pptpd/files/options.pptpd
  #plugin radius.so
 -#radius-config-file /etc/radius.conf
 +#radius-config-file /opt/etc/radius.conf
-diff -urx .svn ../../../trunk_clean/feeds/packages/net/pptpd/files/pptpd.conf ../../../trunk/feeds/packages/net/pptpd/files/pptpd.conf
---- ../../../trunk_clean/feeds/packages/net/pptpd/files/pptpd.conf	2012-05-02 16:17:23.886419808 +0400
-+++ ../../../trunk/feeds/packages/net/pptpd/files/pptpd.conf	2012-05-02 16:22:05.962312733 +0400
+diff -urx .svn ../../../openwrt_trunk.orig/feeds/packages/net/pptpd/files/pptpd.conf ../../../openwrt_trunk/feeds/packages/net/pptpd/files/pptpd.conf
+--- ../../../openwrt_trunk.orig/feeds/packages/net/pptpd/files/pptpd.conf	2012-05-02 16:17:23.886419808 +0400
++++ ../../../openwrt_trunk/feeds/packages/net/pptpd/files/pptpd.conf	2012-05-02 16:22:05.962312733 +0400
 @@ -1,5 +1,5 @@
  #debug
 -option /etc/ppp/options.pptpd
@@ -24,9 +24,9 @@ diff -urx .svn ../../../trunk_clean/feeds/packages/net/pptpd/files/pptpd.conf ..
  speed 115200
  stimeout 10
  #localip & remoteip are not needed, ip management is done by pppd
-diff -urx .svn ../../../trunk_clean/feeds/packages/net/pptpd/Makefile ../../../trunk/feeds/packages/net/pptpd/Makefile
---- ../../../trunk_clean/feeds/packages/net/pptpd/Makefile	2012-05-02 16:17:23.886419808 +0400
-+++ ../../../trunk/feeds/packages/net/pptpd/Makefile	2012-05-31 22:31:41.522096137 +0400
+diff -urx .svn ../../../openwrt_trunk.orig/feeds/packages/net/pptpd/Makefile ../../../openwrt_trunk/feeds/packages/net/pptpd/Makefile
+--- ../../../openwrt_trunk.orig/feeds/packages/net/pptpd/Makefile	2012-05-02 16:17:23.886419808 +0400
++++ ../../../openwrt_trunk/feeds/packages/net/pptpd/Makefile	2012-05-31 22:31:41.522096137 +0400
 @@ -22,7 +22,7 @@
  define Package/pptpd
    SECTION:=net

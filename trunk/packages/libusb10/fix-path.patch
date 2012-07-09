@@ -1,5 +1,5 @@
---- ../../../backup/trunk_clean/feeds/packages/libs/libusb-1.0/Makefile	2011-11-28 10:57:22.000000000 +0400
-+++ ../../../trunk/feeds/packages/libs/libusb-1.0/Makefile	2011-11-28 14:46:19.054031697 +0400
+--- ../../../openwrt_trunk.orig/feeds/packages/libs/libusb-1.0/Makefile	2011-11-28 10:57:22.000000000 +0400
++++ ../../../openwrt_trunk/feeds/packages/libs/libusb-1.0/Makefile	2011-11-28 14:46:19.054031697 +0400
 @@ -33,19 +33,19 @@
  
  define Build/InstallDev

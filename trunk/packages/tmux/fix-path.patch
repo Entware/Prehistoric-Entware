@@ -1,5 +1,5 @@
---- ../../../backup/trunk_clean/feeds/packages/utils/tmux/Makefile	2012-02-09 12:02:01.000000000 +0400
-+++ ../../../trunk/feeds/packages/utils/tmux/Makefile	2012-02-09 12:06:19.212736323 +0400
+--- ../../../openwrt_trunk.orig/feeds/packages/utils/tmux/Makefile	2012-02-09 12:02:01.000000000 +0400
++++ ../../../openwrt_trunk/feeds/packages/utils/tmux/Makefile	2012-02-09 12:06:19.212736323 +0400
 @@ -32,12 +32,12 @@
  endef
  

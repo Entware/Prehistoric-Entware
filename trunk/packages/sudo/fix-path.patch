@@ -1,5 +1,5 @@
---- ../../../backup/trunk_clean/feeds/packages/admin/sudo/Makefile	2012-01-20 19:21:08.000000000 +0400
-+++ ../../../trunk/feeds/packages/admin/sudo/Makefile	2012-01-21 19:24:32.638528016 +0400
+--- ../../../openwrt_trunk.orig/feeds/packages/admin/sudo/Makefile	2012-01-20 19:21:08.000000000 +0400
++++ ../../../openwrt_trunk/feeds/packages/admin/sudo/Makefile	2012-01-21 19:24:32.638528016 +0400
 @@ -34,7 +34,7 @@
  endef
  

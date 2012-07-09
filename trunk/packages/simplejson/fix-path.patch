@@ -1,5 +1,5 @@
---- ../../../backup/trunk_clean/feeds/packages/lang/simplejson/Makefile	2012-01-30 15:02:12.000000000 +0400
-+++ ../../../trunk/feeds/packages/lang/simplejson/Makefile	2012-02-09 10:30:52.476729650 +0400
+--- ../../../openwrt_trunk.orig/feeds/packages/lang/simplejson/Makefile	2012-01-30 15:02:12.000000000 +0400
++++ ../../../openwrt_trunk/feeds/packages/lang/simplejson/Makefile	2012-02-09 10:30:52.476729650 +0400
 @@ -33,7 +33,7 @@
  endef
  

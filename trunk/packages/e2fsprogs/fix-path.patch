@@ -1,5 +1,5 @@
---- ../../../trunk_clean/package/e2fsprogs/Makefile	2012-06-11 17:16:09.696520912 +0400
-+++ ../../../trunk/package/e2fsprogs/Makefile	2012-06-19 12:14:30.562900083 +0400
+--- ../../../openwrt_trunk.orig/package/e2fsprogs/Makefile	2012-06-11 17:16:09.696520912 +0400
++++ ../../../openwrt_trunk/package/e2fsprogs/Makefile	2012-06-19 12:14:30.562900083 +0400
 @@ -79,7 +79,9 @@
    DEPENDS:= +e2fsprogs
  endef

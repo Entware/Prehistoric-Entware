@@ -14,10 +14,10 @@ all: .toolchain_installed .buildroot_installed .packages_prepared .packages_comp
 
 packages_compile: .packages_compiled
 .packages_compiled:
-	make -C "../trunk" tools/compile
-	make -C "../trunk" tools/install
-	make -C "../trunk" package/compile
-	make -C "../trunk" package/index
+	make -C "../openwrt_trunk" tools/compile
+	make -C "../openwrt_trunk" tools/install
+	make -C "../openwrt_trunk" package/compile
+	make -C "../openwrt_trunk" package/index
 	touch $@
 
 packages: .packages_prepared
@@ -32,17 +32,17 @@ packages: .packages_prepared
 buildroot: .buildroot_installed
 .buildroot_installed:
 	@echo Deploying OpenWRT Buildroot...
-	svn co --revision=$(OPENWRT_REVISION) svn://svn.openwrt.org/openwrt/trunk/ ../trunk
-	cp -f ./buildroot/feeds.conf ../trunk
-	sed -i 's,packages@XXXXX,packages@${OPENWRT_REVISION},g' ../trunk/feeds.conf
-	(cd ../trunk; \
+	svn co --revision=$(OPENWRT_REVISION) svn://svn.openwrt.org/openwrt/trunk/ ../openwrt_trunk
+	cp -f ./buildroot/feeds.conf ../openwrt_trunk
+	sed -i 's,packages@XXXXX,packages@${OPENWRT_REVISION},g' ../openwrt_trunk/feeds.conf
+	(cd ../openwrt_trunk; \
 	./scripts/feeds update packages; \
 	./scripts/feeds install -a -p packages; \
 	./scripts/feeds update rtndev; \
 	./scripts/feeds install -a -p rtndev)
 ifeq ($(BUILDROOT_BACKUP),yes)
-	mkdir -p ../trunk_clean
-	cp --recursive --update --force ../trunk/* ../trunk_clean
+	mkdir -p ../openwrt_trunk.orig
+	cp --recursive --update --force ../openwrt_trunk/* ../openwrt_trunk.orig
 endif
 	make -C "./buildroot"
 	touch $@

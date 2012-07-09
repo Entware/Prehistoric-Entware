@@ -1,5 +1,5 @@
---- ../../../trunk_clean/feeds/packages/net/bind/Makefile	2012-06-01 10:50:38.992225286 +0400
-+++ ../../../trunk/feeds/packages/net/bind/Makefile	2012-06-01 10:51:32.447553261 +0400
+--- ../../../openwrt_trunk.orig/feeds/packages/net/bind/Makefile	2012-06-01 10:50:38.992225286 +0400
++++ ../../../openwrt_trunk/feeds/packages/net/bind/Makefile	2012-06-01 10:51:32.447553261 +0400
 @@ -85,7 +85,7 @@
  	--enable-static \
  	--with-randomdev="/dev/urandom" \

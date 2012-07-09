@@ -1,5 +1,5 @@
---- ../../trunk_clean/rules.mk	2012-03-11 12:20:13.000000000 +0400
-+++ ../../trunk/rules.mk	2012-03-11 14:56:03.640844897 +0400
+--- ../../openwrt_trunk.orig/rules.mk	2012-03-11 12:20:13.000000000 +0400
++++ ../../openwrt_trunk/rules.mk	2012-03-11 14:56:03.640844897 +0400
 @@ -109,8 +109,8 @@
  TARGET_PATH:=$(STAGING_DIR_HOST)/bin:$(subst $(space),:,$(filter-out .,$(filter-out ./,$(subst :,$(space),$(PATH)))))
  TARGET_CFLAGS:=$(TARGET_OPTIMIZATION)$(if $(CONFIG_DEBUG), -g3)

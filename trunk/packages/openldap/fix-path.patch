@@ -1,5 +1,5 @@
---- ../../../trunk_clean/feeds/packages/libs/openldap/Makefile	2012-05-02 16:17:23.546424081 +0400
-+++ ../../../trunk/feeds/packages/libs/openldap/Makefile	2012-05-31 21:31:50.467676201 +0400
+--- ../../../openwrt_trunk.orig/feeds/packages/libs/openldap/Makefile	2012-05-02 16:17:23.546424081 +0400
++++ ../../../openwrt_trunk/feeds/packages/libs/openldap/Makefile	2012-05-31 21:31:50.467676201 +0400
 @@ -47,7 +47,7 @@
  endef
  

@@ -9,8 +9,8 @@ all: ./.done
 
 ./.done:
 	patch -p0 -i ./fix-path.patch
-	mkdir ../../../trunk/feeds/packages/net/dansguardian/files
-	cp ./S24dansguardian ../../../trunk/feeds/packages/net/dansguardian/files/
+	mkdir ../../../openwrt_trunk/feeds/packages/net/dansguardian/files
+	cp ./S24dansguardian ../../../openwrt_trunk/feeds/packages/net/dansguardian/files/
 	touch $@
 
 clean:

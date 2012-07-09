@@ -1,5 +1,5 @@
---- ../../../trunk_clean/feeds/packages/utils/lsof/Makefile	2012-05-02 16:17:34.986280264 +0400
-+++ ../../../trunk/feeds/packages/utils/lsof/Makefile	2012-05-28 09:44:37.525258936 +0400
+--- ../../../openwrt_trunk.orig/feeds/packages/utils/lsof/Makefile	2012-05-02 16:17:34.986280264 +0400
++++ ../../../openwrt_trunk/feeds/packages/utils/lsof/Makefile	2012-05-28 09:44:37.525258936 +0400
 @@ -20,13 +20,13 @@
  
  include $(INCLUDE_DIR)/package.mk

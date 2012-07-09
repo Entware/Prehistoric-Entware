@@ -1,5 +1,5 @@
---- ../../../backup/trunk_clean/feeds/packages/utils/usbutils/Makefile	2011-11-28 10:56:51.000000000 +0400
-+++ ../../../trunk/feeds/packages/utils/usbutils/Makefile	2011-11-28 14:54:46.275777909 +0400
+--- ../../../openwrt_trunk.orig/feeds/packages/utils/usbutils/Makefile	2011-11-28 10:56:51.000000000 +0400
++++ ../../../openwrt_trunk/feeds/packages/utils/usbutils/Makefile	2011-11-28 14:54:46.275777909 +0400
 @@ -27,20 +27,20 @@
    URL:=http://www.linux-usb.org/
  endef

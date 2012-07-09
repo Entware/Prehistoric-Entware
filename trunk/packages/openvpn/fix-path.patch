@@ -1,6 +1,6 @@
-diff -urx .svn ../../../trunk_clean/feeds/packages/net/openvpn/Makefile ../../../trunk/feeds/packages/net/openvpn/Makefile
---- ../../../trunk_clean/feeds/packages/net/openvpn/Makefile	2012-06-01 10:50:34.464282210 +0400
-+++ ../../../trunk/feeds/packages/net/openvpn/Makefile	2012-06-01 10:51:34.775523995 +0400
+diff -urx .svn ../../../openwrt_trunk.orig/feeds/packages/net/openvpn/Makefile ../../../openwrt_trunk/feeds/packages/net/openvpn/Makefile
+--- ../../../openwrt_trunk.orig/feeds/packages/net/openvpn/Makefile	2012-06-01 10:50:34.464282210 +0400
++++ ../../../openwrt_trunk/feeds/packages/net/openvpn/Makefile	2012-06-01 10:51:34.775523995 +0400
 @@ -24,7 +24,7 @@
    SECTION:=net
    CATEGORY:=Network
@@ -68,9 +68,9 @@ diff -urx .svn ../../../trunk_clean/feeds/packages/net/openvpn/Makefile ../../..
  endef
  
  $(eval $(call BuildPackage,openvpn))
-diff -urx .svn ../../../trunk_clean/feeds/packages/net/openvpn/patches/001-easy_rsa.patch ../../../trunk/feeds/packages/net/openvpn/patches/001-easy_rsa.patch
---- ../../../trunk_clean/feeds/packages/net/openvpn/patches/001-easy_rsa.patch	2012-06-01 10:50:34.464282210 +0400
-+++ ../../../trunk/feeds/packages/net/openvpn/patches/001-easy_rsa.patch	2012-06-01 10:51:34.775523995 +0400
+diff -urx .svn ../../../openwrt_trunk.orig/feeds/packages/net/openvpn/patches/001-easy_rsa.patch ../../../openwrt_trunk/feeds/packages/net/openvpn/patches/001-easy_rsa.patch
+--- ../../../openwrt_trunk.orig/feeds/packages/net/openvpn/patches/001-easy_rsa.patch	2012-06-01 10:50:34.464282210 +0400
++++ ../../../openwrt_trunk/feeds/packages/net/openvpn/patches/001-easy_rsa.patch	2012-06-01 10:51:34.775523995 +0400
 @@ -5,13 +5,13 @@
   
   export EASY_RSA="${EASY_RSA:-.}"

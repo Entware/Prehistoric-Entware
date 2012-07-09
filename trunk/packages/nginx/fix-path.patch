@@ -1,5 +1,5 @@
---- ../../../trunk_clean/feeds/packages/net/nginx/Makefile	2012-05-02 16:17:26.498386974 +0400
-+++ ../../../trunk/feeds/packages/net/nginx/Makefile	2012-05-31 21:11:40.841177091 +0400
+--- ../../../openwrt_trunk.orig/feeds/packages/net/nginx/Makefile	2012-05-02 16:17:26.498386974 +0400
++++ ../../../openwrt_trunk/feeds/packages/net/nginx/Makefile	2012-05-31 21:11:40.841177091 +0400
 @@ -49,12 +49,12 @@
  config_files=nginx.conf mime.types fastcgi_params koi-utf koi-win win-utf
  

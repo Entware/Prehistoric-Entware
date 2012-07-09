@@ -1,5 +1,5 @@
---- ../../../trunk_clean/feeds/packages/libs/libmnl/Makefile	2012-03-21 16:34:45.137095156 +0400
-+++ ../../../trunk/feeds/packages/libs/libmnl/Makefile	2012-03-21 17:12:56.738475303 +0400
+--- ../../../openwrt_trunk.orig/feeds/packages/libs/libmnl/Makefile	2012-03-21 16:34:45.137095156 +0400
++++ ../../../openwrt_trunk/feeds/packages/libs/libmnl/Makefile	2012-03-21 17:12:56.738475303 +0400
 @@ -58,17 +58,17 @@
  	--enable-static \
  

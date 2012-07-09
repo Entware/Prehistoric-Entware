@@ -1,5 +1,5 @@
---- ../../../trunk_clean/feeds/packages/net/kamailio/Makefile	2012-04-02 11:00:40.148141446 +0400
-+++ ../../../trunk/feeds/packages/net/kamailio/Makefile	2012-04-03 12:18:13.367660790 +0400
+--- ../../../openwrt_trunk.orig/feeds/packages/net/kamailio/Makefile	2012-04-02 11:00:40.148141446 +0400
++++ ../../../openwrt_trunk/feeds/packages/net/kamailio/Makefile	2012-04-03 12:18:13.367660790 +0400
 @@ -58,8 +58,8 @@
  endef
  

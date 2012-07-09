@@ -1,5 +1,5 @@
---- ../../../trunk_clean/feeds/packages/net/darkstat/Makefile	2012-06-01 10:50:40.620204819 +0400
-+++ ../../../trunk/feeds/packages/net/darkstat/Makefile	2012-06-01 10:51:32.659550597 +0400
+--- ../../../openwrt_trunk.orig/feeds/packages/net/darkstat/Makefile	2012-06-01 10:50:40.620204819 +0400
++++ ../../../openwrt_trunk/feeds/packages/net/darkstat/Makefile	2012-06-01 10:51:32.659550597 +0400
 @@ -33,13 +33,13 @@
  over HTTP.
  endef

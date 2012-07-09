@@ -1,5 +1,5 @@
---- ../../../trunk_clean/feeds/packages/utils/zip/Makefile	2012-05-02 16:17:35.298276342 +0400
-+++ ../../../trunk/feeds/packages/utils/zip/Makefile	2012-05-28 08:41:18.250104334 +0400
+--- ../../../openwrt_trunk.orig/feeds/packages/utils/zip/Makefile	2012-05-02 16:17:35.298276342 +0400
++++ ../../../openwrt_trunk/feeds/packages/utils/zip/Makefile	2012-05-28 08:41:18.250104334 +0400
 @@ -41,16 +41,17 @@
  define Build/Compile
  	$(MAKE) -C $(PKG_BUILD_DIR) -f unix/Makefile generic \

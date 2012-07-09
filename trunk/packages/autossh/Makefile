@@ -9,7 +9,7 @@ all: ./.done
 
 ./.done:
 	patch -p0 -i ./fix-path.patch
-	cp ./S41autossh ../../../trunk/feeds/packages/net/autossh/files/
+	cp ./S41autossh ../../../openwrt_trunk/feeds/packages/net/autossh/files/
 	touch $@
 
 clean:

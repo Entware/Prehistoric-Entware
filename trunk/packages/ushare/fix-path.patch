@@ -1,5 +1,5 @@
---- ../../../trunk_clean/feeds/packages/multimedia/ushare/Makefile	2012-05-02 16:17:35.314276139 +0400
-+++ ../../../trunk/feeds/packages/multimedia/ushare/Makefile	2012-06-01 09:42:10.966655611 +0400
+--- ../../../openwrt_trunk.orig/feeds/packages/multimedia/ushare/Makefile	2012-05-02 16:17:35.314276139 +0400
++++ ../../../openwrt_trunk/feeds/packages/multimedia/ushare/Makefile	2012-06-01 09:42:10.966655611 +0400
 @@ -24,7 +24,7 @@
   CATEGORY:=Multimedia
   TITLE:= UPnP A/V & DLNA Media Server

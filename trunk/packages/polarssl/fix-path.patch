@@ -1,5 +1,5 @@
---- ../../../trunk_clean/feeds/packages/libs/polarssl/Makefile	2012-06-01 10:50:33.816290354 +0400
-+++ ../../../trunk/feeds/packages/libs/polarssl/Makefile	2012-06-01 10:51:35.067520324 +0400
+--- ../../../openwrt_trunk.orig/feeds/packages/libs/polarssl/Makefile	2012-06-01 10:50:33.816290354 +0400
++++ ../../../openwrt_trunk/feeds/packages/libs/polarssl/Makefile	2012-06-01 10:51:35.067520324 +0400
 @@ -61,20 +61,20 @@
  	-DUSE_SHARED_POLARSSL_LIBRARY:Bool=ON \
  

@@ -1,6 +1,6 @@
-diff -urx .svn ../../../trunk_clean/package/dropbear/Makefile ../../../trunk/package/dropbear/Makefile
---- ../../../trunk_clean/package/dropbear/Makefile	2012-05-02 16:17:35.674271615 +0400
-+++ ../../../trunk/package/dropbear/Makefile	2012-05-31 17:09:16.336395133 +0400
+diff -urx .svn ../../../openwrt_trunk.orig/package/dropbear/Makefile ../../../openwrt_trunk/package/dropbear/Makefile
+--- ../../../openwrt_trunk.orig/package/dropbear/Makefile	2012-05-02 16:17:35.674271615 +0400
++++ ../../../openwrt_trunk/package/dropbear/Makefile	2012-05-31 17:09:16.336395133 +0400
 @@ -37,9 +37,9 @@
  endef
  
@@ -79,9 +79,9 @@ diff -urx .svn ../../../trunk_clean/package/dropbear/Makefile ../../../trunk/pac
  endef
  
  $(eval $(call BuildPackage,dropbear))
-diff -urx .svn ../../../trunk_clean/package/dropbear/patches/100-pubkey_path.patch ../../../trunk/package/dropbear/patches/100-pubkey_path.patch
---- ../../../trunk_clean/package/dropbear/patches/100-pubkey_path.patch	2012-05-02 16:17:35.674271615 +0400
-+++ ../../../trunk/package/dropbear/patches/100-pubkey_path.patch	2012-05-23 09:53:03.000878094 +0400
+diff -urx .svn ../../../openwrt_trunk.orig/package/dropbear/patches/100-pubkey_path.patch ../../../openwrt_trunk/package/dropbear/patches/100-pubkey_path.patch
+--- ../../../openwrt_trunk.orig/package/dropbear/patches/100-pubkey_path.patch	2012-05-02 16:17:35.674271615 +0400
++++ ../../../openwrt_trunk/package/dropbear/patches/100-pubkey_path.patch	2012-05-23 09:53:03.000878094 +0400
 @@ -28,7 +28,7 @@
  +		/* open the file */
  +		authfile = fopen(filename, "r");

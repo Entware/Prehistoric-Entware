@@ -1,5 +1,5 @@
---- ../../../backup/trunk_clean/feeds/packages/utils/procps/Makefile	2011-11-25 09:49:47.944975732 +0400
-+++ ../../../trunk/feeds/packages/utils/procps/Makefile	2011-11-27 21:10:58.283791687 +0400
+--- ../../../openwrt_trunk.orig/feeds/packages/utils/procps/Makefile	2011-11-25 09:49:47.944975732 +0400
++++ ../../../openwrt_trunk/feeds/packages/utils/procps/Makefile	2011-11-27 21:10:58.283791687 +0400
 @@ -39,23 +39,23 @@
  	LDFLAGS="$(TARGET_LDFLAGS)" \
  

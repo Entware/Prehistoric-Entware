@@ -1,6 +1,6 @@
-diff -urx .svn ../../../trunk_clean/feeds/packages/net/vpnc/Makefile ../../../trunk/feeds/packages/net/vpnc/Makefile
---- ../../../trunk_clean/feeds/packages/net/vpnc/Makefile	2012-06-01 10:50:40.712203663 +0400
-+++ ../../../trunk/feeds/packages/net/vpnc/Makefile	2012-06-01 11:59:41.788941469 +0400
+diff -urx .svn ../../../openwrt_trunk.orig/feeds/packages/net/vpnc/Makefile ../../../openwrt_trunk/feeds/packages/net/vpnc/Makefile
+--- ../../../openwrt_trunk.orig/feeds/packages/net/vpnc/Makefile	2012-06-01 10:50:40.712203663 +0400
++++ ../../../openwrt_trunk/feeds/packages/net/vpnc/Makefile	2012-06-01 11:59:41.788941469 +0400
 @@ -20,7 +20,7 @@
  define Package/vpnc
    SECTION:=net
@@ -45,9 +45,9 @@ diff -urx .svn ../../../trunk_clean/feeds/packages/net/vpnc/Makefile ../../../tr
  endef
  
  $(eval $(call BuildPackage,vpnc))
-diff -urx .svn ../../../trunk_clean/feeds/packages/net/vpnc/patches/001-cross.patch ../../../trunk/feeds/packages/net/vpnc/patches/001-cross.patch
---- ../../../trunk_clean/feeds/packages/net/vpnc/patches/001-cross.patch	2012-06-01 10:50:40.712203663 +0400
-+++ ../../../trunk/feeds/packages/net/vpnc/patches/001-cross.patch	2012-06-01 10:51:36.139506847 +0400
+diff -urx .svn ../../../openwrt_trunk.orig/feeds/packages/net/vpnc/patches/001-cross.patch ../../../openwrt_trunk/feeds/packages/net/vpnc/patches/001-cross.patch
+--- ../../../openwrt_trunk.orig/feeds/packages/net/vpnc/patches/001-cross.patch	2012-06-01 10:50:40.712203663 +0400
++++ ../../../openwrt_trunk/feeds/packages/net/vpnc/patches/001-cross.patch	2012-06-01 10:51:36.139506847 +0400
 @@ -5,10 +5,12 @@
   
   DESTDIR=
@@ -77,9 +77,9 @@ diff -urx .svn ../../../trunk_clean/feeds/packages/net/vpnc/patches/001-cross.pa
   
  -ifeq ($(shell uname -s), SunOS)
  +ifeq ($(OS), SunOS)
-diff -urx .svn ../../../trunk_clean/feeds/packages/net/vpnc/patches/002-vpn_script.patch ../../../trunk/feeds/packages/net/vpnc/patches/002-vpn_script.patch
---- ../../../trunk_clean/feeds/packages/net/vpnc/patches/002-vpn_script.patch	2012-06-01 10:50:40.712203663 +0400
-+++ ../../../trunk/feeds/packages/net/vpnc/patches/002-vpn_script.patch	2012-06-01 10:51:36.139506847 +0400
+diff -urx .svn ../../../openwrt_trunk.orig/feeds/packages/net/vpnc/patches/002-vpn_script.patch ../../../openwrt_trunk/feeds/packages/net/vpnc/patches/002-vpn_script.patch
+--- ../../../openwrt_trunk.orig/feeds/packages/net/vpnc/patches/002-vpn_script.patch	2012-06-01 10:50:40.712203663 +0400
++++ ../../../openwrt_trunk/feeds/packages/net/vpnc/patches/002-vpn_script.patch	2012-06-01 10:51:36.139506847 +0400
 @@ -14,15 +14,15 @@
   }
   

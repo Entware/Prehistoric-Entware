@@ -1,5 +1,5 @@
---- ../../../backup/trunk_clean/feeds/packages/net/wget/Makefile	2011-12-28 08:43:59.000000000 +0400
-+++ ../../../trunk/feeds/packages/net/wget/Makefile	2011-12-28 10:59:49.829155156 +0400
+--- ../../../openwrt_trunk.orig/feeds/packages/net/wget/Makefile	2011-12-28 08:43:59.000000000 +0400
++++ ../../../openwrt_trunk/feeds/packages/net/wget/Makefile	2011-12-28 10:59:49.829155156 +0400
 @@ -66,7 +66,7 @@
  ifeq ($(BUILD_VARIANT),ssl)
  	CONFIGURE_ARGS+= \

@@ -1,5 +1,5 @@
---- ../../../trunk_clean/feeds/packages/multimedia/motion/Makefile	2012-05-02 16:17:35.358275586 +0400
-+++ ../../../trunk/feeds/packages/multimedia/motion/Makefile	2012-05-31 17:53:15.513592623 +0400
+--- ../../../openwrt_trunk.orig/feeds/packages/multimedia/motion/Makefile	2012-05-02 16:17:35.358275586 +0400
++++ ../../../openwrt_trunk/feeds/packages/multimedia/motion/Makefile	2012-05-31 17:53:15.513592623 +0400
 @@ -29,7 +29,7 @@
  endef
  

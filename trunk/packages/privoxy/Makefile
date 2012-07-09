@@ -9,7 +9,7 @@ all: ./.done
 
 ./.done:
 	patch -p0 -i ./fix-path.patch
-	cp ./S24privoxy ../../../trunk/feeds/packages/net/privoxy/files/
+	cp ./S24privoxy ../../../openwrt_trunk/feeds/packages/net/privoxy/files/
 	touch $@
 
 clean:

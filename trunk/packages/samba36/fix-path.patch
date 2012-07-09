@@ -1,6 +1,6 @@
-diff -urx .svn ../../../trunk_clean/feeds/packages/net/samba36/Makefile ../../../trunk/feeds/packages/net/samba36/Makefile
---- ../../../trunk_clean/feeds/packages/net/samba36/Makefile	2012-06-01 10:50:34.468282159 +0400
-+++ ../../../trunk/feeds/packages/net/samba36/Makefile	2012-06-01 11:46:43.016537588 +0400
+diff -urx .svn ../../../openwrt_trunk.orig/feeds/packages/net/samba36/Makefile ../../../openwrt_trunk/feeds/packages/net/samba36/Makefile
+--- ../../../openwrt_trunk.orig/feeds/packages/net/samba36/Makefile	2012-06-01 10:50:34.468282159 +0400
++++ ../../../openwrt_trunk/feeds/packages/net/samba36/Makefile	2012-06-01 11:46:43.016537588 +0400
 @@ -75,7 +75,7 @@
  	samba_cv_zlib_1_2_3=no
  
@@ -78,9 +78,9 @@ diff -urx .svn ../../../trunk_clean/feeds/packages/net/samba36/Makefile ../../..
  endef
  
  $(eval $(call BuildPackage,samba36-client))
-diff -urx .svn ../../../trunk_clean/feeds/packages/net/samba36/patches/111-owrt_smbpasswd.patch ../../../trunk/feeds/packages/net/samba36/patches/111-owrt_smbpasswd.patch
---- ../../../trunk_clean/feeds/packages/net/samba36/patches/111-owrt_smbpasswd.patch	2012-06-01 10:50:34.504281706 +0400
-+++ ../../../trunk/feeds/packages/net/samba36/patches/111-owrt_smbpasswd.patch	2012-06-01 10:51:35.483515094 +0400
+diff -urx .svn ../../../openwrt_trunk.orig/feeds/packages/net/samba36/patches/111-owrt_smbpasswd.patch ../../../openwrt_trunk/feeds/packages/net/samba36/patches/111-owrt_smbpasswd.patch
+--- ../../../openwrt_trunk.orig/feeds/packages/net/samba36/patches/111-owrt_smbpasswd.patch	2012-06-01 10:50:34.504281706 +0400
++++ ../../../openwrt_trunk/feeds/packages/net/samba36/patches/111-owrt_smbpasswd.patch	2012-06-01 10:51:35.483515094 +0400
 @@ -232,15 +232,15 @@
  +		}
  +	}

@@ -1,5 +1,5 @@
---- ../../../trunk_clean/feeds/packages/utils/owfs/Makefile	2012-05-02 16:17:34.750283221 +0400
-+++ ../../../trunk/feeds/packages/utils/owfs/Makefile	2012-05-28 09:14:56.546543599 +0400
+--- ../../../openwrt_trunk.orig/feeds/packages/utils/owfs/Makefile	2012-05-02 16:17:34.750283221 +0400
++++ ../../../openwrt_trunk/feeds/packages/utils/owfs/Makefile	2012-05-28 09:14:56.546543599 +0400
 @@ -19,6 +19,7 @@
  PKG_INSTALL:=1
  

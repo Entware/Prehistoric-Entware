@@ -1,5 +1,5 @@
---- ../../../backup/trunk_clean/feeds/packages/libs/alsa-lib/Makefile	2011-11-25 09:50:00.972811950 +0400
-+++ ../../../trunk/feeds/packages/libs/alsa-lib/Makefile	2011-11-26 21:29:50.233996693 +0400
+--- ../../../openwrt_trunk.orig/feeds/packages/libs/alsa-lib/Makefile	2011-11-25 09:50:00.972811950 +0400
++++ ../../../openwrt_trunk/feeds/packages/libs/alsa-lib/Makefile	2011-11-26 21:29:50.233996693 +0400
 @@ -21,18 +21,18 @@
  
  include $(INCLUDE_DIR)/package.mk

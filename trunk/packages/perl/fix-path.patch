@@ -1,6 +1,6 @@
-diff -urx .svn ../../../trunk_clean/feeds/packages/lang/perl/files/config.sh-mipsel.in ../../../trunk/feeds/packages/lang/perl/files/config.sh-mipsel.in
---- ../../../trunk_clean/feeds/packages/lang/perl/files/config.sh-mipsel.in	2012-05-02 16:17:28.618360323 +0400
-+++ ../../../trunk/feeds/packages/lang/perl/files/config.sh-mipsel.in	2012-05-02 16:22:05.566119710 +0400
+diff -urx .svn ../../../openwrt_trunk.orig/feeds/packages/lang/perl/files/config.sh-mipsel.in ../../../openwrt_trunk/feeds/packages/lang/perl/files/config.sh-mipsel.in
+--- ../../../openwrt_trunk.orig/feeds/packages/lang/perl/files/config.sh-mipsel.in	2012-05-02 16:17:28.618360323 +0400
++++ ../../../openwrt_trunk/feeds/packages/lang/perl/files/config.sh-mipsel.in	2012-05-02 16:22:05.566119710 +0400
 @@ -697,25 +697,25 @@
  inc_version_list_init='0'
  incpath=''
@@ -125,9 +125,9 @@ diff -urx .svn ../../../trunk_clean/feeds/packages/lang/perl/files/config.sh-mip
  timetype='time_t'
  tmpnam_r_proto='0'
  to=':'
-diff -urx .svn ../../../trunk_clean/feeds/packages/lang/perl/files/Module/ScanDeps.pm ../../../trunk/feeds/packages/lang/perl/files/Module/ScanDeps.pm
---- ../../../trunk_clean/feeds/packages/lang/perl/files/Module/ScanDeps.pm	2012-05-02 16:17:28.618360323 +0400
-+++ ../../../trunk/feeds/packages/lang/perl/files/Module/ScanDeps.pm	2012-05-02 16:22:05.566119710 +0400
+diff -urx .svn ../../../openwrt_trunk.orig/feeds/packages/lang/perl/files/Module/ScanDeps.pm ../../../openwrt_trunk/feeds/packages/lang/perl/files/Module/ScanDeps.pm
+--- ../../../openwrt_trunk.orig/feeds/packages/lang/perl/files/Module/ScanDeps.pm	2012-05-02 16:17:28.618360323 +0400
++++ ../../../openwrt_trunk/feeds/packages/lang/perl/files/Module/ScanDeps.pm	2012-05-02 16:22:05.566119710 +0400
 @@ -71,7 +71,7 @@
  (e.g. C<Test/More.pm>); the values are hash references with this structure:
  
@@ -137,9 +137,9 @@ diff -urx .svn ../../../trunk_clean/feeds/packages/lang/perl/files/Module/ScanDe
          key     => 'Test/More.pm',
          type    => 'module',    # or 'autoload', 'data', 'shared'
          used_by => [ 'Test/Simple.pm', ... ],
-diff -urx .svn ../../../trunk_clean/feeds/packages/lang/perl/files/perlmod-deps.sh ../../../trunk/feeds/packages/lang/perl/files/perlmod-deps.sh
---- ../../../trunk_clean/feeds/packages/lang/perl/files/perlmod-deps.sh	2012-05-02 16:17:28.618360323 +0400
-+++ ../../../trunk/feeds/packages/lang/perl/files/perlmod-deps.sh	2012-05-02 16:22:05.570121659 +0400
+diff -urx .svn ../../../openwrt_trunk.orig/feeds/packages/lang/perl/files/perlmod-deps.sh ../../../openwrt_trunk/feeds/packages/lang/perl/files/perlmod-deps.sh
+--- ../../../openwrt_trunk.orig/feeds/packages/lang/perl/files/perlmod-deps.sh	2012-05-02 16:17:28.618360323 +0400
++++ ../../../openwrt_trunk/feeds/packages/lang/perl/files/perlmod-deps.sh	2012-05-02 16:22:05.570121659 +0400
 @@ -12,8 +12,8 @@
  fi
  
@@ -160,9 +160,9 @@ diff -urx .svn ../../../trunk_clean/feeds/packages/lang/perl/files/perlmod-deps.
  
  sub scandeps {
      my $builddir = Cwd::abs_path(shift);
-diff -urx .svn ../../../trunk_clean/feeds/packages/lang/perl/files/scan-perlbase.sh ../../../trunk/feeds/packages/lang/perl/files/scan-perlbase.sh
---- ../../../trunk_clean/feeds/packages/lang/perl/files/scan-perlbase.sh	2012-05-02 16:17:28.618360323 +0400
-+++ ../../../trunk/feeds/packages/lang/perl/files/scan-perlbase.sh	2012-05-02 16:22:05.570121659 +0400
+diff -urx .svn ../../../openwrt_trunk.orig/feeds/packages/lang/perl/files/scan-perlbase.sh ../../../openwrt_trunk/feeds/packages/lang/perl/files/scan-perlbase.sh
+--- ../../../openwrt_trunk.orig/feeds/packages/lang/perl/files/scan-perlbase.sh	2012-05-02 16:17:28.618360323 +0400
++++ ../../../openwrt_trunk/feeds/packages/lang/perl/files/scan-perlbase.sh	2012-05-02 16:22:05.570121659 +0400
 @@ -12,8 +12,8 @@
  fi
  
@@ -174,9 +174,9 @@ diff -urx .svn ../../../trunk_clean/feeds/packages/lang/perl/files/scan-perlbase
  INC_DIR="$(dirname $0)"
  shift
  
-diff -urx .svn ../../../trunk_clean/feeds/packages/lang/perl/Makefile ../../../trunk/feeds/packages/lang/perl/Makefile
---- ../../../trunk_clean/feeds/packages/lang/perl/Makefile	2012-05-02 16:17:28.614360360 +0400
-+++ ../../../trunk/feeds/packages/lang/perl/Makefile	2012-05-26 22:26:16.337079295 +0400
+diff -urx .svn ../../../openwrt_trunk.orig/feeds/packages/lang/perl/Makefile ../../../openwrt_trunk/feeds/packages/lang/perl/Makefile
+--- ../../../openwrt_trunk.orig/feeds/packages/lang/perl/Makefile	2012-05-02 16:17:28.614360360 +0400
++++ ../../../openwrt_trunk/feeds/packages/lang/perl/Makefile	2012-05-26 22:26:16.337079295 +0400
 @@ -65,14 +65,15 @@
  
  define Build/microperl/Compile
@@ -224,9 +224,9 @@ diff -urx .svn ../../../trunk_clean/feeds/packages/lang/perl/Makefile ../../../t
  endef
  
  ifneq ($(CONFIG_PACKAGE_microperl),)
-diff -urx .svn ../../../trunk_clean/feeds/packages/lang/perl/perlmod.mk ../../../trunk/feeds/packages/lang/perl/perlmod.mk
---- ../../../trunk_clean/feeds/packages/lang/perl/perlmod.mk	2012-05-02 16:17:28.614360360 +0400
-+++ ../../../trunk/feeds/packages/lang/perl/perlmod.mk	2012-05-02 16:22:05.570121659 +0400
+diff -urx .svn ../../../openwrt_trunk.orig/feeds/packages/lang/perl/perlmod.mk ../../../openwrt_trunk/feeds/packages/lang/perl/perlmod.mk
+--- ../../../openwrt_trunk.orig/feeds/packages/lang/perl/perlmod.mk	2012-05-02 16:17:28.614360360 +0400
++++ ../../../openwrt_trunk/feeds/packages/lang/perl/perlmod.mk	2012-05-02 16:22:05.570121659 +0400
 @@ -2,11 +2,11 @@
  #
  

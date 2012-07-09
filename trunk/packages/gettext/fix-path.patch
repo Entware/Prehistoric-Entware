@@ -1,6 +1,6 @@
-diff -r -u -x .svn ../../../backup/trunk_initialized/trunk/feeds/packages/libs/gettext/Makefile ../../../trunk/feeds/packages/libs/gettext/Makefile
+diff -r -u -x .svn ../../../backup/trunk_initialized/trunk/feeds/packages/libs/gettext/Makefile ../../../openwrt_trunk/feeds/packages/libs/gettext/Makefile
 --- ../../../backup/trunk_initialized/trunk/feeds/packages/libs/gettext/Makefile	2011-11-10 14:52:31.000000000 +0400
-+++ ../../../trunk/feeds/packages/libs/gettext/Makefile	2011-11-15 10:15:04.764639773 +0400
++++ ../../../openwrt_trunk/feeds/packages/libs/gettext/Makefile	2011-11-15 10:15:04.764639773 +0400
 @@ -31,11 +31,11 @@
  endef
  

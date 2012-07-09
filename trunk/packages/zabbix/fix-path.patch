@@ -1,5 +1,5 @@
---- ../../../trunk_clean/feeds/packages/admin/zabbix/Makefile	2012-05-02 16:17:33.854294504 +0400
-+++ ../../../trunk/feeds/packages/admin/zabbix/Makefile	2012-06-01 09:59:55.077082694 +0400
+--- ../../../openwrt_trunk.orig/feeds/packages/admin/zabbix/Makefile	2012-05-02 16:17:33.854294504 +0400
++++ ../../../openwrt_trunk/feeds/packages/admin/zabbix/Makefile	2012-06-01 09:59:55.077082694 +0400
 @@ -51,45 +51,45 @@
  endif
  

@@ -1,5 +1,5 @@
---- ../../../trunk_clean/feeds/packages/utils/strace/Makefile	2012-06-01 10:50:48.816101785 +0400
-+++ ../../../trunk/feeds/packages/utils/strace/Makefile	2012-06-01 10:51:35.663512832 +0400
+--- ../../../openwrt_trunk.orig/feeds/packages/utils/strace/Makefile	2012-06-01 10:50:48.816101785 +0400
++++ ../../../openwrt_trunk/feeds/packages/utils/strace/Makefile	2012-06-01 10:51:35.663512832 +0400
 @@ -46,8 +46,8 @@
  	CCOPT="$(TARGET_CFLAGS)"
  

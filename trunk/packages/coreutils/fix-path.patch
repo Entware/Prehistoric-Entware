@@ -1,5 +1,5 @@
---- ../../../backup/trunk_clean/feeds/packages/utils/coreutils/Makefile	2011-11-28 10:56:52.000000000 +0400
-+++ ../../../trunk/feeds/packages/utils/coreutils/Makefile	2011-12-01 14:03:51.006150232 +0400
+--- ../../../openwrt_trunk.orig/feeds/packages/utils/coreutils/Makefile	2011-11-28 10:56:52.000000000 +0400
++++ ../../../openwrt_trunk/feeds/packages/utils/coreutils/Makefile	2011-12-01 14:03:51.006150232 +0400
 @@ -20,7 +20,7 @@
  
  COREUTILS_APPLETS:=\

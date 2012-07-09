@@ -1,6 +1,6 @@
-diff -urx .svn ../../../trunk_clean/feeds/packages/libs/mysql/conf/my.cnf ../../../trunk/feeds/packages/libs/mysql/conf/my.cnf
---- ../../../trunk_clean/feeds/packages/libs/mysql/conf/my.cnf	2012-05-02 16:17:23.794420963 +0400
-+++ ../../../trunk/feeds/packages/libs/mysql/conf/my.cnf	2012-05-02 16:22:04.813753166 +0400
+diff -urx .svn ../../../openwrt_trunk.orig/feeds/packages/libs/mysql/conf/my.cnf ../../../openwrt_trunk/feeds/packages/libs/mysql/conf/my.cnf
+--- ../../../openwrt_trunk.orig/feeds/packages/libs/mysql/conf/my.cnf	2012-05-02 16:17:23.794420963 +0400
++++ ../../../openwrt_trunk/feeds/packages/libs/mysql/conf/my.cnf	2012-05-02 16:22:04.813753166 +0400
 @@ -1,20 +1,20 @@
  [client]
  port		= 3306
@@ -43,9 +43,9 @@ diff -urx .svn ../../../trunk_clean/feeds/packages/libs/mysql/conf/my.cnf ../../
  #expire_logs_days	= 10
  #max_binlog_size         = 100M
  #binlog_do_db		= include_database_name
-diff -urx .svn ../../../trunk_clean/feeds/packages/libs/mysql/Makefile ../../../trunk/feeds/packages/libs/mysql/Makefile
---- ../../../trunk_clean/feeds/packages/libs/mysql/Makefile	2012-05-02 16:17:23.794420963 +0400
-+++ ../../../trunk/feeds/packages/libs/mysql/Makefile	2012-05-31 18:04:33.385072582 +0400
+diff -urx .svn ../../../openwrt_trunk.orig/feeds/packages/libs/mysql/Makefile ../../../openwrt_trunk/feeds/packages/libs/mysql/Makefile
+--- ../../../openwrt_trunk.orig/feeds/packages/libs/mysql/Makefile	2012-05-02 16:17:23.794420963 +0400
++++ ../../../openwrt_trunk/feeds/packages/libs/mysql/Makefile	2012-05-31 18:04:33.385072582 +0400
 @@ -60,7 +60,7 @@
  
  CONFIGURE_VARS += \

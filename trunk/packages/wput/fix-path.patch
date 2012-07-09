@@ -1,5 +1,5 @@
---- ../../../trunk_clean/feeds/packages/net/wput/Makefile	2012-05-02 16:17:26.542386418 +0400
-+++ ../../../trunk/feeds/packages/net/wput/Makefile	2012-05-27 21:56:01.791324606 +0400
+--- ../../../openwrt_trunk.orig/feeds/packages/net/wput/Makefile	2012-05-02 16:17:26.542386418 +0400
++++ ../../../openwrt_trunk/feeds/packages/net/wput/Makefile	2012-05-27 21:56:01.791324606 +0400
 @@ -36,9 +36,12 @@
  	--disable-g-switch \
  	--without-ssl \

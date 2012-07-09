@@ -1,5 +1,5 @@
---- ../../../trunk/package/ncurses/Makefile.release5	2012-07-03 18:36:34.000000000 +0400
-+++ ../../../trunk/package/ncurses/Makefile	2012-07-03 23:26:04.000000000 +0400
+--- ../../../openwrt_trunk/package/ncurses/Makefile.release5	2012-07-03 18:36:34.000000000 +0400
++++ ../../../openwrt_trunk/package/ncurses/Makefile	2012-07-03 23:26:04.000000000 +0400
 @@ -9,7 +9,7 @@
  
  PKG_NAME:=ncurses

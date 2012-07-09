@@ -1,5 +1,5 @@
---- ../../../backup/trunk_clean/feeds/packages/libs/libupnp/Makefile	2011-12-05 10:46:43.000000000 +0400
-+++ ../../../trunk/feeds/packages/libs/libupnp/Makefile	2011-12-05 11:13:47.755587853 +0400
+--- ../../../openwrt_trunk.orig/feeds/packages/libs/libupnp/Makefile	2011-12-05 10:46:43.000000000 +0400
++++ ../../../openwrt_trunk/feeds/packages/libs/libupnp/Makefile	2011-12-05 11:13:47.755587853 +0400
 @@ -47,28 +47,28 @@
  endef
  

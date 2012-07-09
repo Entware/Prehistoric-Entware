@@ -1,5 +1,5 @@
---- ../../../trunk_clean/feeds/packages/utils/bzip2/Makefile	2012-05-02 16:17:35.298276342 +0400
-+++ ../../../trunk/feeds/packages/utils/bzip2/Makefile	2012-05-28 10:08:52.278974941 +0400
+--- ../../../openwrt_trunk.orig/feeds/packages/utils/bzip2/Makefile	2012-05-02 16:17:35.298276342 +0400
++++ ../../../openwrt_trunk/feeds/packages/utils/bzip2/Makefile	2012-05-28 10:08:52.278974941 +0400
 @@ -43,33 +43,36 @@
  	data compressor. This package provides the binary.
  endef

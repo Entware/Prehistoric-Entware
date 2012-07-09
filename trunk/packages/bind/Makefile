@@ -9,7 +9,7 @@ all: ./.done
 
 ./.done:
 	patch -p0 -i ./fix-path.patch
-	cp ./S09named ../../../trunk/feeds/packages/net/bind/files/
+	cp ./S09named ../../../openwrt_trunk/feeds/packages/net/bind/files/
 	touch $@
 
 clean:

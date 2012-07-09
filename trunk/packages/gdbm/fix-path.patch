@@ -1,5 +1,5 @@
---- ../../../backup/trunk_clean/feeds/packages/libs/gdbm/Makefile	2011-11-28 10:57:21.000000000 +0400
-+++ ../../../trunk/feeds/packages/libs/gdbm/Makefile	2011-11-29 11:15:05.547043494 +0400
+--- ../../../openwrt_trunk.orig/feeds/packages/libs/gdbm/Makefile	2011-11-28 10:57:21.000000000 +0400
++++ ../../../openwrt_trunk/feeds/packages/libs/gdbm/Makefile	2011-11-29 11:15:05.547043494 +0400
 @@ -42,15 +42,15 @@
  endef
  

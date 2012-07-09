@@ -9,7 +9,7 @@ all: ./.done
 
 ./.done:
 	patch -p0 -i ./fix-path.patch
-	cp ./555-config-paths.patch ../../../trunk/feeds/packages/net/vpnc/patches/
+	cp ./555-config-paths.patch ../../../openwrt_trunk/feeds/packages/net/vpnc/patches/
 	touch $@
 
 clean:

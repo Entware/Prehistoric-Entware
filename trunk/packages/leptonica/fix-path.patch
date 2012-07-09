@@ -1,5 +1,5 @@
---- ../../../backup/trunk_clean/feeds/packages/libs/leptonica/Makefile	2012-01-13 12:15:02.000000000 +0400
-+++ ../../../trunk/feeds/packages/libs/leptonica/Makefile	2012-01-14 17:47:25.904729672 +0400
+--- ../../../openwrt_trunk.orig/feeds/packages/libs/leptonica/Makefile	2012-01-13 12:15:02.000000000 +0400
++++ ../../../openwrt_trunk/feeds/packages/libs/leptonica/Makefile	2012-01-14 17:47:25.904729672 +0400
 @@ -29,18 +29,18 @@
  endef
  

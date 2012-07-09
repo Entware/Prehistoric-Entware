@@ -9,8 +9,8 @@ all: ./.done
 
 ./.done:
 	patch -p0 -i ./fix-path.patch
-	mkdir ../../../trunk/feeds/packages/multimedia/motion/files
-	cp ./S99motion ../../../trunk/feeds/packages/multimedia/motion/files/
+	mkdir ../../../openwrt_trunk/feeds/packages/multimedia/motion/files
+	cp ./S99motion ../../../openwrt_trunk/feeds/packages/multimedia/motion/files/
 	touch $@
 
 clean:

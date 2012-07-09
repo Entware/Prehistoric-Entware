@@ -1,5 +1,5 @@
---- ../../../trunk_clean/feeds/packages/net/asterisk-1.8.x/Makefile	2012-05-02 16:17:23.886419808 +0400
-+++ ../../../trunk/feeds/packages/net/asterisk-1.8.x/Makefile	2012-05-31 15:08:41.823812799 +0400
+--- ../../../openwrt_trunk.orig/feeds/packages/net/asterisk-1.8.x/Makefile	2012-05-02 16:17:23.886419808 +0400
++++ ../../../openwrt_trunk/feeds/packages/net/asterisk-1.8.x/Makefile	2012-05-31 15:08:41.823812799 +0400
 @@ -224,7 +224,7 @@
  
  ifneq ($(SDK)$(CONFIG_PACKAGE_asterisk18-app-meetme),)

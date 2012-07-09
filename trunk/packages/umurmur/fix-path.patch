@@ -1,5 +1,5 @@
---- ../../../trunk_clean/feeds/packages/net/umurmur/Makefile	2012-06-01 10:50:34.428282662 +0400
-+++ ../../../trunk/feeds/packages/net/umurmur/Makefile	2012-06-01 10:51:36.027508255 +0400
+--- ../../../openwrt_trunk.orig/feeds/packages/net/umurmur/Makefile	2012-06-01 10:50:34.428282662 +0400
++++ ../../../openwrt_trunk/feeds/packages/net/umurmur/Makefile	2012-06-01 10:51:36.027508255 +0400
 @@ -64,19 +64,18 @@
  endef
  

@@ -9,9 +9,9 @@ all: ./.done
 
 ./.done:
 	patch -p0 -i ./fix-path.patch
-	mkdir ../../../trunk/feeds/packages/net/aria2/files
-	cp ./aria2.conf ../../../trunk/feeds/packages/net/aria2/files/
-	cp ./S81aria2 ../../../trunk/feeds/packages/net/aria2/files/
+	mkdir ../../../openwrt_trunk/feeds/packages/net/aria2/files
+	cp ./aria2.conf ../../../openwrt_trunk/feeds/packages/net/aria2/files/
+	cp ./S81aria2 ../../../openwrt_trunk/feeds/packages/net/aria2/files/
 	touch $@
 
 clean:

@@ -1,5 +1,5 @@
---- ../../../trunk_clean/feeds/packages/net/irssi/Makefile	2012-05-02 16:17:27.174378406 +0400
-+++ ../../../trunk/feeds/packages/net/irssi/Makefile	2012-05-28 22:59:09.985258404 +0400
+--- ../../../openwrt_trunk.orig/feeds/packages/net/irssi/Makefile	2012-05-02 16:17:27.174378406 +0400
++++ ../../../openwrt_trunk/feeds/packages/net/irssi/Makefile	2012-05-28 22:59:09.985258404 +0400
 @@ -62,10 +62,10 @@
  
  CONFIGURE_ARGS += \

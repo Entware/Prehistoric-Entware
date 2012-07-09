@@ -1,5 +1,5 @@
---- ../../../trunk_clean/feeds/packages/lang/php5/Makefile	2012-06-01 10:50:41.072199137 +0400
-+++ ../../../trunk/feeds/packages/lang/php5/Makefile	2012-06-01 10:51:35.023520877 +0400
+--- ../../../openwrt_trunk.orig/feeds/packages/lang/php5/Makefile	2012-06-01 10:50:41.072199137 +0400
++++ ../../../openwrt_trunk/feeds/packages/lang/php5/Makefile	2012-06-01 10:51:35.023520877 +0400
 @@ -131,14 +131,14 @@
  	--disable-debug \
  	--without-pear \

@@ -1,5 +1,5 @@
---- ../../../backup/trunk_clean/feeds/packages/utils/gzip/Makefile	2011-11-25 09:49:47.968975431 +0400
-+++ ../../../trunk/feeds/packages/utils/gzip/Makefile	2011-11-27 19:01:17.641616923 +0400
+--- ../../../openwrt_trunk.orig/feeds/packages/utils/gzip/Makefile	2011-11-25 09:49:47.968975431 +0400
++++ ../../../openwrt_trunk/feeds/packages/utils/gzip/Makefile	2011-11-27 19:01:17.641616923 +0400
 @@ -35,26 +35,26 @@
  	gl_cv_func_getopt_gnu=yes \
  

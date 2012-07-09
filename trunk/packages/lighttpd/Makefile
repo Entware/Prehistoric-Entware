@@ -9,7 +9,7 @@ all: ./.done
 
 ./.done:
 	patch -p0 -i ./fix-path.patch
-	cp ./S80lighttpd ../../../trunk/feeds/packages/net/lighttpd/files/
+	cp ./S80lighttpd ../../../openwrt_trunk/feeds/packages/net/lighttpd/files/
 	touch $@
 
 clean:

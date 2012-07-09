@@ -1,5 +1,5 @@
---- ../../trunk_clean/include/package-defaults.mk	2012-03-07 12:37:37.149383763 +0400
-+++ ../../trunk/include/package-defaults.mk	2012-03-07 12:38:14.280916956 +0400
+--- ../../openwrt_trunk.orig/include/package-defaults.mk	2012-03-07 12:37:37.149383763 +0400
++++ ../../openwrt_trunk/include/package-defaults.mk	2012-03-07 12:38:14.280916956 +0400
 @@ -57,7 +57,8 @@
  
  EXTRA_CXXFLAGS = $(EXTRA_CFLAGS)

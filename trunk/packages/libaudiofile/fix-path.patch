@@ -1,5 +1,5 @@
---- ../../../backup/trunk_clean/feeds/packages/libs/libaudiofile/Makefile	2011-12-05 10:46:44.000000000 +0400
-+++ ../../../trunk/feeds/packages/libs/libaudiofile/Makefile	2011-12-09 13:44:45.556801094 +0400
+--- ../../../openwrt_trunk.orig/feeds/packages/libs/libaudiofile/Makefile	2011-12-05 10:46:44.000000000 +0400
++++ ../../../openwrt_trunk/feeds/packages/libs/libaudiofile/Makefile	2011-12-09 13:44:45.556801094 +0400
 @@ -45,33 +45,33 @@
  define Build/InstallDev
  	$(INSTALL_DIR) $(2)/bin

@@ -1,5 +1,5 @@
---- ../../../trunk_clean/feeds/packages/libs/avahi/Makefile	2012-05-02 16:17:23.550424031 +0400
-+++ ../../../trunk/feeds/packages/libs/avahi/Makefile	2012-05-31 15:45:08.450388519 +0400
+--- ../../../openwrt_trunk.orig/feeds/packages/libs/avahi/Makefile	2012-05-02 16:17:23.550424031 +0400
++++ ../../../openwrt_trunk/feeds/packages/libs/avahi/Makefile	2012-05-31 15:45:08.450388519 +0400
 @@ -105,9 +105,9 @@
  endef
  

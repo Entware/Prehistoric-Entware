@@ -1,6 +1,6 @@
-diff -urx .svn ../../../trunk_clean/feeds/packages/net/rsync/files/rsyncd.conf ../../../trunk/feeds/packages/net/rsync/files/rsyncd.conf
---- ../../../trunk_clean/feeds/packages/net/rsync/files/rsyncd.conf	2012-06-21 10:11:57.000000000 +0400
-+++ ../../../trunk/feeds/packages/net/rsync/files/rsyncd.conf	2012-07-02 23:43:19.000000000 +0400
+diff -urx .svn ../../../openwrt_trunk.orig/feeds/packages/net/rsync/files/rsyncd.conf ../../../openwrt_trunk/feeds/packages/net/rsync/files/rsyncd.conf
+--- ../../../openwrt_trunk.orig/feeds/packages/net/rsync/files/rsyncd.conf	2012-06-21 10:11:57.000000000 +0400
++++ ../../../openwrt_trunk/feeds/packages/net/rsync/files/rsyncd.conf	2012-07-02 23:43:19.000000000 +0400
 @@ -1,15 +1,16 @@
 -# /etc/rsyncd.conf
 +# /opt/etc/rsyncd.conf
@@ -25,9 +25,9 @@ diff -urx .svn ../../../trunk_clean/feeds/packages/net/rsync/files/rsyncd.conf .
 +path = /opt/etc
 +comment = Test backup (/opt/etc)
 +#exclude = /opt/etc/init.d
-diff -urx .svn ../../../trunk_clean/feeds/packages/net/rsync/Makefile ../../../trunk/feeds/packages/net/rsync/Makefile
---- ../../../trunk_clean/feeds/packages/net/rsync/Makefile	2012-06-21 10:11:57.000000000 +0400
-+++ ../../../trunk/feeds/packages/net/rsync/Makefile	2012-07-02 19:46:43.000000000 +0400
+diff -urx .svn ../../../openwrt_trunk.orig/feeds/packages/net/rsync/Makefile ../../../openwrt_trunk/feeds/packages/net/rsync/Makefile
+--- ../../../openwrt_trunk.orig/feeds/packages/net/rsync/Makefile	2012-06-21 10:11:57.000000000 +0400
++++ ../../../openwrt_trunk/feeds/packages/net/rsync/Makefile	2012-07-02 19:46:43.000000000 +0400
 @@ -9,7 +9,7 @@
  
  PKG_NAME:=rsync

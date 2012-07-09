@@ -1,5 +1,5 @@
---- ../../../trunk_clean/feeds/packages/lang/erlang/Makefile	2012-03-21 16:34:38.866039807 +0400
-+++ ../../../trunk/feeds/packages/lang/erlang/Makefile	2012-03-28 13:30:34.501833342 +0400
+--- ../../../openwrt_trunk.orig/feeds/packages/lang/erlang/Makefile	2012-03-21 16:34:38.866039807 +0400
++++ ../../../openwrt_trunk/feeds/packages/lang/erlang/Makefile	2012-03-28 13:30:34.501833342 +0400
 @@ -250,7 +250,7 @@
  	--disable-smp-support \
  	--disable-threads \

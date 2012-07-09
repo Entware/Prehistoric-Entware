@@ -1,5 +1,5 @@
---- ../../../trunk_clean/feeds/packages/net/matrixtunnel/Makefile	2012-04-11 12:16:07.856093645 +0400
-+++ ../../../trunk/feeds/packages/net/matrixtunnel/Makefile	2012-04-12 09:15:16.627477630 +0400
+--- ../../../openwrt_trunk.orig/feeds/packages/net/matrixtunnel/Makefile	2012-04-11 12:16:07.856093645 +0400
++++ ../../../openwrt_trunk/feeds/packages/net/matrixtunnel/Makefile	2012-04-12 09:15:16.627477630 +0400
 @@ -46,8 +46,8 @@
  endef
  

@@ -1,5 +1,5 @@
---- ../../../trunk_clean/feeds/packages/net/vtun/Makefile	2012-06-01 10:50:41.028199689 +0400
-+++ ../../../trunk/feeds/packages/net/vtun/Makefile	2012-06-09 21:24:53.569859658 +0400
+--- ../../../openwrt_trunk.orig/feeds/packages/net/vtun/Makefile	2012-06-01 10:50:41.028199689 +0400
++++ ../../../openwrt_trunk/feeds/packages/net/vtun/Makefile	2012-06-09 21:24:53.569859658 +0400
 @@ -20,36 +20,36 @@
  define Package/vtun
    SECTION:=net

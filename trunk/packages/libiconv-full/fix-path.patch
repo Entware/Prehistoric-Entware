@@ -1,5 +1,5 @@
---- ../../../trunk_clean/feeds/packages/libs/libiconv-full/Makefile	2012-04-02 11:00:51.443999437 +0400
-+++ ../../../trunk/feeds/packages/libs/libiconv-full/Makefile	2012-04-04 16:07:59.617355180 +0400
+--- ../../../openwrt_trunk.orig/feeds/packages/libs/libiconv-full/Makefile	2012-04-02 11:00:51.443999437 +0400
++++ ../../../openwrt_trunk/feeds/packages/libs/libiconv-full/Makefile	2012-04-04 16:07:59.617355180 +0400
 @@ -63,24 +63,30 @@
  endef
  

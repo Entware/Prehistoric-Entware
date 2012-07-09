@@ -1,5 +1,5 @@
---- ../../../trunk_clean/feeds/packages/net/apache/Makefile	2012-05-02 16:17:28.242365046 +0400
-+++ ../../../trunk/feeds/packages/net/apache/Makefile	2012-05-31 14:06:20.694682385 +0400
+--- ../../../openwrt_trunk.orig/feeds/packages/net/apache/Makefile	2012-05-02 16:17:28.242365046 +0400
++++ ../../../openwrt_trunk/feeds/packages/net/apache/Makefile	2012-05-31 14:06:20.694682385 +0400
 @@ -46,33 +46,23 @@
  $(call Package/apache/Default/description)
   .

@@ -1,5 +1,5 @@
---- ../../../trunk_clean/feeds/packages/libs/libconfig/Makefile	2012-05-02 16:17:23.838420410 +0400
-+++ ../../../trunk/feeds/packages/libs/libconfig/Makefile	2012-05-02 17:42:42.241230254 +0400
+--- ../../../openwrt_trunk.orig/feeds/packages/libs/libconfig/Makefile	2012-05-02 16:17:23.838420410 +0400
++++ ../../../openwrt_trunk/feeds/packages/libs/libconfig/Makefile	2012-05-02 17:42:42.241230254 +0400
 @@ -45,17 +45,17 @@
  	--disable-cxx
  

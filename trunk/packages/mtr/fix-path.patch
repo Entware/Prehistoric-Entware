@@ -1,5 +1,5 @@
---- ../../../trunk_clean/feeds/packages/net/mtr/Makefile	2012-06-02 17:11:01.000000000 +0400
-+++ ../../../trunk/feeds/packages/net/mtr/Makefile	2012-06-03 03:17:57.000000000 +0400
+--- ../../../openwrt_trunk.orig/feeds/packages/net/mtr/Makefile	2012-06-02 17:11:01.000000000 +0400
++++ ../../../openwrt_trunk/feeds/packages/net/mtr/Makefile	2012-06-03 03:17:57.000000000 +0400
 @@ -60,8 +60,8 @@
  endef
  

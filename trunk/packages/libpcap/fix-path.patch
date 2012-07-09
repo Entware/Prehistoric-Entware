@@ -1,5 +1,5 @@
---- ../../../trunk_clean/package/libpcap/Makefile	2012-06-01 10:50:53.344047131 +0400
-+++ ../../../trunk/package/libpcap/Makefile	2012-06-01 10:51:33.799536265 +0400
+--- ../../../openwrt_trunk.orig/package/libpcap/Makefile	2012-06-01 10:50:53.344047131 +0400
++++ ../../../openwrt_trunk/package/libpcap/Makefile	2012-06-01 10:51:33.799536265 +0400
 @@ -67,16 +67,16 @@
  endef
  

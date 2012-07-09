@@ -1,5 +1,5 @@
---- ../../../trunk_clean/package/util-linux/Makefile	2012-06-01 10:50:53.848038525 +0400
-+++ ../../../trunk/package/util-linux/Makefile	2012-06-01 11:52:46.587963686 +0400
+--- ../../../openwrt_trunk.orig/package/util-linux/Makefile	2012-06-01 10:50:53.848038525 +0400
++++ ../../../openwrt_trunk/package/util-linux/Makefile	2012-06-01 11:52:46.587963686 +0400
 @@ -44,22 +44,22 @@
  		DESTDIR="$(1)" \
  		installdirs install-data

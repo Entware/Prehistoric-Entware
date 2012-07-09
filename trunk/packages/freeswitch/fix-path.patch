@@ -1,6 +1,6 @@
-diff -urx .svn ../../../trunk_clean/feeds/packages/net/freeswitch/files/etc.minimal/autoload_configs/lua.conf.xml ../../../trunk/feeds/packages/net/freeswitch/files/etc.minimal/autoload_configs/lua.conf.xml
---- ../../../trunk_clean/feeds/packages/net/freeswitch/files/etc.minimal/autoload_configs/lua.conf.xml	2012-03-21 16:34:32.602988526 +0400
-+++ ../../../trunk/feeds/packages/net/freeswitch/files/etc.minimal/autoload_configs/lua.conf.xml	2012-03-28 13:05:11.760982563 +0400
+diff -urx .svn ../../../openwrt_trunk.orig/feeds/packages/net/freeswitch/files/etc.minimal/autoload_configs/lua.conf.xml ../../../openwrt_trunk/feeds/packages/net/freeswitch/files/etc.minimal/autoload_configs/lua.conf.xml
+--- ../../../openwrt_trunk.orig/feeds/packages/net/freeswitch/files/etc.minimal/autoload_configs/lua.conf.xml	2012-03-21 16:34:32.602988526 +0400
++++ ../../../openwrt_trunk/feeds/packages/net/freeswitch/files/etc.minimal/autoload_configs/lua.conf.xml	2012-03-28 13:05:11.760982563 +0400
 @@ -5,14 +5,14 @@
      Specify local directories that will be searched for LUA modules
      These entries will be pre-pended to the LUA_CPATH environment variable
@@ -19,9 +19,9 @@ diff -urx .svn ../../../trunk_clean/feeds/packages/net/freeswitch/files/etc.mini
      <!-- <param name="script-directory" value="$${base_dir}/scripts/?.lua"/> -->
  
      <!--<param name="xml-handler-script" value="/dp.lua"/>-->
-diff -urx .svn ../../../trunk_clean/feeds/packages/net/freeswitch/files/etc.minimal/freeswitch.xml ../../../trunk/feeds/packages/net/freeswitch/files/etc.minimal/freeswitch.xml
---- ../../../trunk_clean/feeds/packages/net/freeswitch/files/etc.minimal/freeswitch.xml	2012-03-21 16:34:32.635004123 +0400
-+++ ../../../trunk/feeds/packages/net/freeswitch/files/etc.minimal/freeswitch.xml	2012-03-28 13:07:11.891476044 +0400
+diff -urx .svn ../../../openwrt_trunk.orig/feeds/packages/net/freeswitch/files/etc.minimal/freeswitch.xml ../../../openwrt_trunk/feeds/packages/net/freeswitch/files/etc.minimal/freeswitch.xml
+--- ../../../openwrt_trunk.orig/feeds/packages/net/freeswitch/files/etc.minimal/freeswitch.xml	2012-03-21 16:34:32.635004123 +0400
++++ ../../../openwrt_trunk/feeds/packages/net/freeswitch/files/etc.minimal/freeswitch.xml	2012-03-28 13:07:11.891476044 +0400
 @@ -6,7 +6,7 @@
      FreeSWITCH default config to use only the modules in the freeswitch-minimal
      package, and is less exhaustive.  If you wish to view the default FreeSWITCH 
@@ -31,9 +31,9 @@ diff -urx .svn ../../../trunk_clean/feeds/packages/net/freeswitch/files/etc.mini
      down into all the directories including files which include more files.  The default
      config comes out of the box already working in most situations as a PBX.  This will
      allow you to get started testing and playing with various things in FreeSWITCH.
-diff -urx .svn ../../../trunk_clean/feeds/packages/net/freeswitch/files/etc.packages/blacklist/autoload_configs/blacklist.conf.xml ../../../trunk/feeds/packages/net/freeswitch/files/etc.packages/blacklist/autoload_configs/blacklist.conf.xml
---- ../../../trunk_clean/feeds/packages/net/freeswitch/files/etc.packages/blacklist/autoload_configs/blacklist.conf.xml	2012-03-21 16:34:32.586980727 +0400
-+++ ../../../trunk/feeds/packages/net/freeswitch/files/etc.packages/blacklist/autoload_configs/blacklist.conf.xml	2012-03-28 13:08:19.218626671 +0400
+diff -urx .svn ../../../openwrt_trunk.orig/feeds/packages/net/freeswitch/files/etc.packages/blacklist/autoload_configs/blacklist.conf.xml ../../../openwrt_trunk/feeds/packages/net/freeswitch/files/etc.packages/blacklist/autoload_configs/blacklist.conf.xml
+--- ../../../openwrt_trunk.orig/feeds/packages/net/freeswitch/files/etc.packages/blacklist/autoload_configs/blacklist.conf.xml	2012-03-21 16:34:32.586980727 +0400
++++ ../../../openwrt_trunk/feeds/packages/net/freeswitch/files/etc.packages/blacklist/autoload_configs/blacklist.conf.xml	2012-03-28 13:08:19.218626671 +0400
 @@ -6,6 +6,6 @@
  		NOTE: make sure the file exists and is readable by FreeSWITCH.
  	-->
@@ -42,9 +42,9 @@ diff -urx .svn ../../../trunk_clean/feeds/packages/net/freeswitch/files/etc.pack
 +	<list name="blocked" filename="/opt/etc/freeswitch/blacklists/blocked.list"/>
  </lists>
  </configuration>
-diff -urx .svn ../../../trunk_clean/feeds/packages/net/freeswitch/files/freeswitch.default ../../../trunk/feeds/packages/net/freeswitch/files/freeswitch.default
---- ../../../trunk_clean/feeds/packages/net/freeswitch/files/freeswitch.default	2012-03-21 16:34:32.558967079 +0400
-+++ ../../../trunk/feeds/packages/net/freeswitch/files/freeswitch.default	2012-03-28 13:02:49.810761744 +0400
+diff -urx .svn ../../../openwrt_trunk.orig/feeds/packages/net/freeswitch/files/freeswitch.default ../../../openwrt_trunk/feeds/packages/net/freeswitch/files/freeswitch.default
+--- ../../../openwrt_trunk.orig/feeds/packages/net/freeswitch/files/freeswitch.default	2012-03-21 16:34:32.558967079 +0400
++++ ../../../openwrt_trunk/feeds/packages/net/freeswitch/files/freeswitch.default	2012-03-28 13:02:49.810761744 +0400
 @@ -1,11 +1,11 @@
 -#FS_DIR="/opt"
 +FS_DIR="/opt"
@@ -63,9 +63,9 @@ diff -urx .svn ../../../trunk_clean/feeds/packages/net/freeswitch/files/freeswit
 +FS_DIR_VM_STORAGE="$FS_DIR/var/lib/freeswitch/storage" # NOTE: must be changed in config as well
  
  OPTIONS="-conf $FS_DIR_ETC -log $FS_DIR_LOG -db $FS_DIR_DB -mod $FS_DIR_MOD -htdocs $FS_DIR_HTDOCS -scripts $FS_DIR_SCRIPTS"
-diff -urx .svn ../../../trunk_clean/feeds/packages/net/freeswitch/files/freeswitch.init ../../../trunk/feeds/packages/net/freeswitch/files/freeswitch.init
---- ../../../trunk_clean/feeds/packages/net/freeswitch/files/freeswitch.init	2012-03-21 16:34:32.558967079 +0400
-+++ ../../../trunk/feeds/packages/net/freeswitch/files/freeswitch.init	2012-03-28 13:11:39.124113491 +0400
+diff -urx .svn ../../../openwrt_trunk.orig/feeds/packages/net/freeswitch/files/freeswitch.init ../../../openwrt_trunk/feeds/packages/net/freeswitch/files/freeswitch.init
+--- ../../../openwrt_trunk.orig/feeds/packages/net/freeswitch/files/freeswitch.init	2012-03-21 16:34:32.558967079 +0400
++++ ../../../openwrt_trunk/feeds/packages/net/freeswitch/files/freeswitch.init	2012-03-28 13:11:39.124113491 +0400
 @@ -2,7 +2,7 @@
  # Copyright (C) 2006 OpenWrt.org
  START=90 
@@ -90,9 +90,9 @@ diff -urx .svn ../../../trunk_clean/feeds/packages/net/freeswitch/files/freeswit
  }
  
  restart() {
-diff -urx .svn ../../../trunk_clean/feeds/packages/net/freeswitch/Makefile ../../../trunk/feeds/packages/net/freeswitch/Makefile
---- ../../../trunk_clean/feeds/packages/net/freeswitch/Makefile	2012-03-21 16:34:32.635004123 +0400
-+++ ../../../trunk/feeds/packages/net/freeswitch/Makefile	2012-03-28 14:29:47.106567505 +0400
+diff -urx .svn ../../../openwrt_trunk.orig/feeds/packages/net/freeswitch/Makefile ../../../openwrt_trunk/feeds/packages/net/freeswitch/Makefile
+--- ../../../openwrt_trunk.orig/feeds/packages/net/freeswitch/Makefile	2012-03-21 16:34:32.635004123 +0400
++++ ../../../openwrt_trunk/feeds/packages/net/freeswitch/Makefile	2012-03-28 14:29:47.106567505 +0400
 @@ -248,7 +248,7 @@
  
  define Package/$(PKG_NAME)-example-config/description
@@ -303,9 +303,9 @@ diff -urx .svn ../../../trunk_clean/feeds/packages/net/freeswitch/Makefile ../..
    endef
  
    $$(eval $$(call BuildPackage,$(PKG_NAME)-mod-$(1)))
-diff -urx .svn ../../../trunk_clean/feeds/packages/net/freeswitch/patches/003-libs-esl-Makefile.patch ../../../trunk/feeds/packages/net/freeswitch/patches/003-libs-esl-Makefile.patch
---- ../../../trunk_clean/feeds/packages/net/freeswitch/patches/003-libs-esl-Makefile.patch	2012-03-21 16:34:32.651011923 +0400
-+++ ../../../trunk/feeds/packages/net/freeswitch/patches/003-libs-esl-Makefile.patch	2012-03-28 13:00:55.736200181 +0400
+diff -urx .svn ../../../openwrt_trunk.orig/feeds/packages/net/freeswitch/patches/003-libs-esl-Makefile.patch ../../../openwrt_trunk/feeds/packages/net/freeswitch/patches/003-libs-esl-Makefile.patch
+--- ../../../openwrt_trunk.orig/feeds/packages/net/freeswitch/patches/003-libs-esl-Makefile.patch	2012-03-21 16:34:32.651011923 +0400
++++ ../../../openwrt_trunk/feeds/packages/net/freeswitch/patches/003-libs-esl-Makefile.patch	2012-03-28 13:00:55.736200181 +0400
 @@ -5,7 +5,7 @@
   CXXFLAGS=$(BASE_FLAGS)
   MYLIB=libesl.a

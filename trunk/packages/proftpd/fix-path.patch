@@ -1,5 +1,5 @@
---- ../../../trunk_clean/feeds/packages/net/proftpd/Makefile	2012-05-02 16:17:23.906419555 +0400
-+++ ../../../trunk/feeds/packages/net/proftpd/Makefile	2012-05-31 22:43:39.061264691 +0400
+--- ../../../openwrt_trunk.orig/feeds/packages/net/proftpd/Makefile	2012-05-02 16:17:23.906419555 +0400
++++ ../../../openwrt_trunk/feeds/packages/net/proftpd/Makefile	2012-05-31 22:43:39.061264691 +0400
 @@ -30,7 +30,7 @@
  endef
  

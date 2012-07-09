@@ -1,5 +1,5 @@
---- ../../../trunk_clean/feeds/packages/utils/sane-backends/Makefile	2012-06-11 17:16:08.016542033 +0400
-+++ ../../../trunk/feeds/packages/utils/sane-backends/Makefile	2012-06-19 11:51:36.224187581 +0400
+--- ../../../openwrt_trunk.orig/feeds/packages/utils/sane-backends/Makefile	2012-06-11 17:16:08.016542033 +0400
++++ ../../../openwrt_trunk/feeds/packages/utils/sane-backends/Makefile	2012-06-19 11:51:36.224187581 +0400
 @@ -69,8 +69,12 @@
   This package contains the SANE frontends.
  endef

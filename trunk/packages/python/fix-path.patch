@@ -1,6 +1,6 @@
-diff -urx .svn ../../../trunk_clean/feeds/packages/lang/python/files/python-package.mk ../../../trunk/feeds/packages/lang/python/files/python-package.mk
---- ../../../trunk_clean/feeds/packages/lang/python/files/python-package.mk	2012-06-01 10:50:41.036199589 +0400
-+++ ../../../trunk/feeds/packages/lang/python/files/python-package.mk	2012-06-01 10:51:35.283517608 +0400
+diff -urx .svn ../../../openwrt_trunk.orig/feeds/packages/lang/python/files/python-package.mk ../../../openwrt_trunk/feeds/packages/lang/python/files/python-package.mk
+--- ../../../openwrt_trunk.orig/feeds/packages/lang/python/files/python-package.mk	2012-06-01 10:50:41.036199589 +0400
++++ ../../../openwrt_trunk/feeds/packages/lang/python/files/python-package.mk	2012-06-01 10:51:35.283517608 +0400
 @@ -7,16 +7,16 @@
  
  PYTHON_VERSION=2.7
@@ -21,9 +21,9 @@ diff -urx .svn ../../../trunk_clean/feeds/packages/lang/python/files/python-pack
  
  define HostPython
  	(	export PYTHONPATH="$(PYTHON_LIB_DIR):$(STAGING_DIR)/$(PYTHON_PKG_DIR)"; \
-diff -urx .svn ../../../trunk_clean/feeds/packages/lang/python/Makefile ../../../trunk/feeds/packages/lang/python/Makefile
---- ../../../trunk_clean/feeds/packages/lang/python/Makefile	2012-06-01 10:50:41.036199589 +0400
-+++ ../../../trunk/feeds/packages/lang/python/Makefile	2012-06-01 10:51:35.283517608 +0400
+diff -urx .svn ../../../openwrt_trunk.orig/feeds/packages/lang/python/Makefile ../../../openwrt_trunk/feeds/packages/lang/python/Makefile
+--- ../../../openwrt_trunk.orig/feeds/packages/lang/python/Makefile	2012-06-01 10:50:41.036199589 +0400
++++ ../../../openwrt_trunk/feeds/packages/lang/python/Makefile	2012-06-01 10:51:35.283517608 +0400
 @@ -147,11 +147,11 @@
  	$(CP) $(STAGING_DIR_HOST)/bin/pgen $(PKG_BUILD_DIR)/hostpgen
  	$(CP) $(STAGING_DIR_HOST)/bin/python$(PYTHON_VERSION) $(PKG_BUILD_DIR)/hostpython

@@ -1,5 +1,5 @@
---- ../../../trunk_clean/feeds/packages/net/subversion/Makefile	2012-04-02 11:00:38.320164428 +0400
-+++ ../../../trunk/feeds/packages/net/subversion/Makefile	2012-04-10 14:53:25.310220927 +0400
+--- ../../../openwrt_trunk.orig/feeds/packages/net/subversion/Makefile	2012-04-02 11:00:38.320164428 +0400
++++ ../../../openwrt_trunk/feeds/packages/net/subversion/Makefile	2012-04-10 14:53:25.310220927 +0400
 @@ -70,16 +70,16 @@
  endef
  

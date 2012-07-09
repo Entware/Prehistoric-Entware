@@ -9,8 +9,8 @@ all: ./.done
 
 ./.done:
 	patch -p0 -i ./fix-path.patch
-	cp ./005-disable-ssp-suport.patch ../../../trunk/feeds/packages/net/proftpd/patches/
-	cp ./S66proftpd ../../../trunk/feeds/packages/net/proftpd/files/
+	cp ./005-disable-ssp-suport.patch ../../../openwrt_trunk/feeds/packages/net/proftpd/patches/
+	cp ./S66proftpd ../../../openwrt_trunk/feeds/packages/net/proftpd/files/
 	touch $@
 
 clean:

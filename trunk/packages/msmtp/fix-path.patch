@@ -1,6 +1,6 @@
-diff -Naur ../../../trunk_clean/feeds/packages/mail/msmtp/Makefile ../../../trunk/feeds/packages/mail/msmtp/Makefile
---- ../../../trunk_clean/feeds/packages/mail/msmtp/Makefile	2012-03-26 10:57:38.608337446 +0400
-+++ ../../../trunk/feeds/packages/mail/msmtp/Makefile	2012-03-26 21:27:29.401871065 +0400
+diff -Naur ../../../openwrt_trunk.orig/feeds/packages/mail/msmtp/Makefile ../../../openwrt_trunk/feeds/packages/mail/msmtp/Makefile
+--- ../../../openwrt_trunk.orig/feeds/packages/mail/msmtp/Makefile	2012-03-26 10:57:38.608337446 +0400
++++ ../../../openwrt_trunk/feeds/packages/mail/msmtp/Makefile	2012-03-26 21:27:29.401871065 +0400
 @@ -95,16 +95,16 @@
  endif
  

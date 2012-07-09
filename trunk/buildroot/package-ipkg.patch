@@ -1,5 +1,5 @@
---- ../../backup/trunk_clean/trunk/include/package-ipkg.mk	2011-11-15 14:02:49.000000000 +0400
-+++ ../../trunk/include/package-ipkg.mk	2011-11-23 14:11:28.788660146 +0400
+--- ../../openwrt_trunk.orig/include/package-ipkg.mk	2011-11-15 14:02:49.000000000 +0400
++++ ../../openwrt_trunk/include/package-ipkg.mk	2011-11-23 14:11:28.788660146 +0400
 @@ -9,7 +9,7 @@
  OPKG:= \
    IPKG_TMP=$(TMP_DIR)/ipkg \

@@ -1,6 +1,6 @@
-diff -r -u -x .svn ../../../backup/trunk_clean/trunk/feeds/packages/libs/gettext-full//Makefile ../../../trunk/feeds/packages/libs/gettext-full//Makefile
---- ../../../backup/trunk_clean/trunk/feeds/packages/libs/gettext-full//Makefile	2011-11-15 14:03:59.000000000 +0400
-+++ ../../../trunk/feeds/packages/libs/gettext-full//Makefile	2011-11-15 17:10:27.204793723 +0400
+diff -r -u -x .svn ../../../openwrt_trunk.orig/feeds/packages/libs/gettext-full//Makefile ../../../openwrt_trunk/feeds/packages/libs/gettext-full//Makefile
+--- ../../../openwrt_trunk.orig/feeds/packages/libs/gettext-full//Makefile	2011-11-15 14:03:59.000000000 +0400
++++ ../../../openwrt_trunk/feeds/packages/libs/gettext-full//Makefile	2011-11-15 17:10:27.204793723 +0400
 @@ -41,23 +41,24 @@
  	--disable-openmp \
  	--with-included-gettext \

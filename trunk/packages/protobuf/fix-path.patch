@@ -1,5 +1,5 @@
---- ../../../backup/trunk_clean/feeds/packages/libs/protobuf/Makefile	2011-11-25 09:50:00.052823516 +0400
-+++ ../../../trunk/feeds/packages/libs/protobuf/Makefile	2011-11-26 23:11:42.676608261 +0400
+--- ../../../openwrt_trunk.orig/feeds/packages/libs/protobuf/Makefile	2011-11-25 09:50:00.052823516 +0400
++++ ../../../openwrt_trunk/feeds/packages/libs/protobuf/Makefile	2011-11-26 23:11:42.676608261 +0400
 @@ -41,33 +41,33 @@
  
  define Build/InstallDev

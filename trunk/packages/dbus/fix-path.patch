@@ -1,6 +1,6 @@
-diff -urx .svn ../../../trunk_clean/feeds/packages/utils/dbus/files/dbus-launch ../../../trunk/feeds/packages/utils/dbus/files/dbus-launch
---- ../../../trunk_clean/feeds/packages/utils/dbus/files/dbus-launch	2012-05-02 16:17:34.790282731 +0400
-+++ ../../../trunk/feeds/packages/utils/dbus/files/dbus-launch	2012-05-02 16:18:18.737730232 +0400
+diff -urx .svn ../../../openwrt_trunk.orig/feeds/packages/utils/dbus/files/dbus-launch ../../../openwrt_trunk/feeds/packages/utils/dbus/files/dbus-launch
+--- ../../../openwrt_trunk.orig/feeds/packages/utils/dbus/files/dbus-launch	2012-05-02 16:17:34.790282731 +0400
++++ ../../../openwrt_trunk/feeds/packages/utils/dbus/files/dbus-launch	2012-05-02 16:18:18.737730232 +0400
 @@ -5,8 +5,8 @@
  # dbus-launch-x package. The script is used to prefer dbus-launch with x over
  # the dbus-lauch without x.
@@ -13,9 +13,9 @@ diff -urx .svn ../../../trunk_clean/feeds/packages/utils/dbus/files/dbus-launch 
 -	exec /usr/bin/dbus-launch.real $@
 +	exec /opt/bin/dbus-launch.real $@
  fi
-diff -urx .svn ../../../trunk_clean/feeds/packages/utils/dbus/Makefile ../../../trunk/feeds/packages/utils/dbus/Makefile
---- ../../../trunk_clean/feeds/packages/utils/dbus/Makefile	2012-05-02 16:17:34.786282779 +0400
-+++ ../../../trunk/feeds/packages/utils/dbus/Makefile	2012-05-31 16:55:12.047009543 +0400
+diff -urx .svn ../../../openwrt_trunk.orig/feeds/packages/utils/dbus/Makefile ../../../openwrt_trunk/feeds/packages/utils/dbus/Makefile
+--- ../../../openwrt_trunk.orig/feeds/packages/utils/dbus/Makefile	2012-05-02 16:17:34.786282779 +0400
++++ ../../../openwrt_trunk/feeds/packages/utils/dbus/Makefile	2012-05-31 16:55:12.047009543 +0400
 @@ -22,8 +22,8 @@
  include $(INCLUDE_DIR)/package.mk
  

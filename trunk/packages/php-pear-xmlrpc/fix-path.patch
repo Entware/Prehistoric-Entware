@@ -1,5 +1,5 @@
---- ../../../backup/trunk_clean/feeds/packages/lang/php-pear-xmlrpc/Makefile	2012-01-30 15:02:12.000000000 +0400
-+++ ../../../trunk/feeds/packages/lang/php-pear-xmlrpc/Makefile	2012-02-02 12:51:32.343249774 +0400
+--- ../../../openwrt_trunk.orig/feeds/packages/lang/php-pear-xmlrpc/Makefile	2012-01-30 15:02:12.000000000 +0400
++++ ../../../openwrt_trunk/feeds/packages/lang/php-pear-xmlrpc/Makefile	2012-02-02 12:51:32.343249774 +0400
 @@ -36,11 +36,11 @@
  endef
  

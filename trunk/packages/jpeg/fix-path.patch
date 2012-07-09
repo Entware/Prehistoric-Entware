@@ -1,5 +1,5 @@
---- ../../../backup/trunk_clean/feeds/packages/libs/jpeg/Makefile	2011-11-28 10:57:19.000000000 +0400
-+++ ../../../trunk/feeds/packages/libs/jpeg/Makefile	2011-11-29 13:13:08.655154401 +0400
+--- ../../../openwrt_trunk.orig/feeds/packages/libs/jpeg/Makefile	2011-11-28 10:57:19.000000000 +0400
++++ ../../../openwrt_trunk/feeds/packages/libs/jpeg/Makefile	2011-11-29 13:13:08.655154401 +0400
 @@ -62,35 +62,35 @@
  endef
  

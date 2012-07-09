@@ -1,5 +1,5 @@
---- ../../../backup/trunk_clean/package/fuse/Makefile	2011-12-05 10:45:28.000000000 +0400
-+++ ../../../trunk/package/fuse/Makefile	2011-12-19 12:51:16.562722242 +0400
+--- ../../../openwrt_trunk.orig/package/fuse/Makefile	2011-12-05 10:45:28.000000000 +0400
++++ ../../../openwrt_trunk/package/fuse/Makefile	2011-12-19 12:51:16.562722242 +0400
 @@ -65,7 +65,7 @@
    SECTION:=libs
    CATEGORY:=Libraries

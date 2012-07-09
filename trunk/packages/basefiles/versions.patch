@@ -1,5 +1,5 @@
---- ../../../trunk/package/base-files/Makefile.orig	2012-05-02 16:52:43.926924284 +0400
-+++ ../../../trunk/package/base-files/Makefile	2012-05-02 16:54:06.573885312 +0400
+--- ../../../openwrt_trunk/package/base-files/Makefile.orig	2012-05-02 16:52:43.926924284 +0400
++++ ../../../openwrt_trunk/package/base-files/Makefile	2012-05-02 16:54:06.573885312 +0400
 @@ -11,26 +11,15 @@
  include $(INCLUDE_DIR)/version.mk
  

@@ -10,9 +10,9 @@ all: ./.done
 ./.done:
 	patch -p0 -i ./fix-path.patch
 	patch -p0 -i ./opkg-conf.patch
-	cp ./999-change-default-config-path.patch ../../../trunk/package/opkg/patches
-	cp ./999-free-space-calc.patch ../../../trunk/package/opkg/patches
-	rm ../../../trunk/package/opkg/patches/009-remove-upgrade-all.patch
+	cp ./999-change-default-config-path.patch ../../../openwrt_trunk/package/opkg/patches
+	cp ./999-free-space-calc.patch ../../../openwrt_trunk/package/opkg/patches
+	rm ../../../openwrt_trunk/package/opkg/patches/009-remove-upgrade-all.patch
 	touch $@
 
 clean:

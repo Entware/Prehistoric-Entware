@@ -1,5 +1,5 @@
---- ../../../trunk_clean/feeds/packages/net/pyload/Makefile	2012-06-01 10:50:40.612204919 +0400
-+++ ../../../trunk/feeds/packages/net/pyload/Makefile	2012-06-06 11:36:29.991681591 +0400
+--- ../../../openwrt_trunk.orig/feeds/packages/net/pyload/Makefile	2012-06-01 10:50:40.612204919 +0400
++++ ../../../openwrt_trunk/feeds/packages/net/pyload/Makefile	2012-06-06 11:36:29.991681591 +0400
 @@ -8,12 +8,12 @@
  include $(TOPDIR)/rules.mk
  

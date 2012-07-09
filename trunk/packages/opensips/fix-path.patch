@@ -1,5 +1,5 @@
---- ../../../trunk_clean/feeds/packages/net/opensips/Makefile	2012-04-02 11:00:38.284164879 +0400
-+++ ../../../trunk/feeds/packages/net/opensips/Makefile	2012-04-03 11:37:19.285151331 +0400
+--- ../../../openwrt_trunk.orig/feeds/packages/net/opensips/Makefile	2012-04-02 11:00:38.284164879 +0400
++++ ../../../openwrt_trunk/feeds/packages/net/opensips/Makefile	2012-04-03 11:37:19.285151331 +0400
 @@ -58,8 +58,8 @@
  endef
  

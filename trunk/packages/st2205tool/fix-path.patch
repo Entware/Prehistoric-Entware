@@ -1,5 +1,5 @@
---- ../../../backup/trunk_clean/feeds/packages/libs/st2205tool/Makefile	2011-12-05 10:46:45.000000000 +0400
-+++ ../../../trunk/feeds/packages/libs/st2205tool/Makefile	2011-12-21 10:45:38.064415923 +0400
+--- ../../../openwrt_trunk.orig/feeds/packages/libs/st2205tool/Makefile	2011-12-05 10:46:45.000000000 +0400
++++ ../../../openwrt_trunk/feeds/packages/libs/st2205tool/Makefile	2011-12-21 10:45:38.064415923 +0400
 @@ -42,18 +42,18 @@
  
  

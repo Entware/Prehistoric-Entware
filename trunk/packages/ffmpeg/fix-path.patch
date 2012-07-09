@@ -1,5 +1,5 @@
---- ../../../backup/trunk_clean/feeds/packages/multimedia/ffmpeg/Makefile	2011-11-25 09:50:11.520679345 +0400
-+++ ../../../trunk/feeds/packages/multimedia/ffmpeg/Makefile	2011-11-26 22:07:54.722436211 +0400
+--- ../../../openwrt_trunk.orig/feeds/packages/multimedia/ffmpeg/Makefile	2011-11-25 09:50:11.520679345 +0400
++++ ../../../openwrt_trunk/feeds/packages/multimedia/ffmpeg/Makefile	2011-11-26 22:07:54.722436211 +0400
 @@ -275,7 +275,7 @@
  	--cross-prefix="$(TARGET_CROSS)" \
  	--arch="$(ARCH)" \

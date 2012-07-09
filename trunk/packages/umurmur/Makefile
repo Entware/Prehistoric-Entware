@@ -9,8 +9,8 @@ all: ./.done
 
 ./.done:
 	patch -p0 -i ./fix-path.patch
-	mkdir ../../../trunk/feeds/packages/net/umurmur/files
-	cp ./S73umurmurd ../../../trunk/feeds/packages/net/umurmur/files/
+	mkdir ../../../openwrt_trunk/feeds/packages/net/umurmur/files
+	cp ./S73umurmurd ../../../openwrt_trunk/feeds/packages/net/umurmur/files/
 	touch $@
 
 clean:

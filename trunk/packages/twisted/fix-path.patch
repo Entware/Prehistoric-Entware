@@ -1,5 +1,5 @@
---- ../../../trunk_clean/feeds/packages/lang/twisted/Makefile	2012-04-02 11:00:50.428012210 +0400
-+++ ../../../trunk/feeds/packages/lang/twisted/Makefile	2012-04-02 16:34:57.517889749 +0400
+--- ../../../openwrt_trunk.orig/feeds/packages/lang/twisted/Makefile	2012-04-02 11:00:50.428012210 +0400
++++ ../../../openwrt_trunk/feeds/packages/lang/twisted/Makefile	2012-04-02 16:34:57.517889749 +0400
 @@ -128,8 +128,8 @@
  endef
  

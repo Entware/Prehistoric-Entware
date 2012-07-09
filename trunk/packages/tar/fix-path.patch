@@ -1,5 +1,5 @@
---- ../../../trunk_clean/feeds/packages/utils/tar/Makefile	2012-05-02 16:17:34.954280665 +0400
-+++ ../../../trunk/feeds/packages/utils/tar/Makefile	2012-05-28 09:34:15.681079386 +0400
+--- ../../../openwrt_trunk.orig/feeds/packages/utils/tar/Makefile	2012-05-02 16:17:34.954280665 +0400
++++ ../../../openwrt_trunk/feeds/packages/utils/tar/Makefile	2012-05-28 09:34:15.681079386 +0400
 @@ -32,29 +32,13 @@
  	single archive in tar format.
  endef

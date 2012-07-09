@@ -1,5 +1,5 @@
---- ../../../trunk_clean/feeds/packages/utils/mc/Makefile	2012-04-02 11:00:50.300013820 +0400
-+++ ../../../trunk/feeds/packages/utils/mc/Makefile	2012-04-02 16:25:54.044718997 +0400
+--- ../../../openwrt_trunk.orig/feeds/packages/utils/mc/Makefile	2012-04-02 11:00:50.300013820 +0400
++++ ../../../openwrt_trunk/feeds/packages/utils/mc/Makefile	2012-04-02 16:25:54.044718997 +0400
 @@ -8,15 +8,14 @@
  include $(TOPDIR)/rules.mk
  

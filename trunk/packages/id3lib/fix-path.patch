@@ -1,5 +1,5 @@
---- ../../../backup/trunk_clean/feeds/packages/libs/id3lib/Makefile	2012-02-21 11:20:07.000000000 +0400
-+++ ../../../trunk/feeds/packages/libs/id3lib/Makefile	2012-02-21 11:23:44.102991943 +0400
+--- ../../../openwrt_trunk.orig/feeds/packages/libs/id3lib/Makefile	2012-02-21 11:20:07.000000000 +0400
++++ ../../../openwrt_trunk/feeds/packages/libs/id3lib/Makefile	2012-02-21 11:23:44.102991943 +0400
 @@ -39,17 +39,17 @@
  	LIBS="-nodefaultlibs -lc -lz -luClibc++ -Wl,-Bstatic,-lstdc++,-Bdynamic -lm" \
  

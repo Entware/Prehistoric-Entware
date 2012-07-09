@@ -1,5 +1,5 @@
 --- a/packages/utils/bluez-utils/Makefile
-+++ ../../../trunk/feeds/packages/utils/bluez-utils/Makefile
++++ ../../../openwrt_trunk/feeds/packages/utils/bluez-utils/Makefile
 @@ -10,5 +10,5 @@
  PKG_NAME:=bluez-utils
  PKG_VERSION:=3.36
@@ -9,7 +9,7 @@
  PKG_SOURCE:=$(PKG_NAME)-$(PKG_VERSION).tar.gz
 
 --- a/packages/utils/bluez-utils/files/bluez-utils.init
-+++ ../../../trunk/feeds/packages/utils/bluez-utils/files/bluez-utils.init
++++ ../../../openwrt_trunk/feeds/packages/utils/bluez-utils/files/bluez-utils.init
 @@ -115,4 +115,5 @@
  
  start() {

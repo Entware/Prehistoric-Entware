@@ -1,5 +1,5 @@
---- ../../../trunk_clean/feeds/packages/net/aria2/Makefile	2012-05-02 16:17:23.878419909 +0400
-+++ ../../../trunk/feeds/packages/net/aria2/Makefile	2012-05-31 14:31:01.776223826 +0400
+--- ../../../openwrt_trunk.orig/feeds/packages/net/aria2/Makefile	2012-05-02 16:17:23.878419909 +0400
++++ ../../../openwrt_trunk/feeds/packages/net/aria2/Makefile	2012-05-31 14:31:01.776223826 +0400
 @@ -46,12 +46,15 @@
  	--with-libz
  

@@ -1,5 +1,5 @@
---- ../../../backup/trunk_clean/feeds/packages/multimedia/palantir/Makefile	2011-12-05 10:46:48.000000000 +0400
-+++ ../../../trunk/feeds/packages/multimedia/palantir/Makefile	2011-12-05 12:40:50.182212093 +0400
+--- ../../../openwrt_trunk.orig/feeds/packages/multimedia/palantir/Makefile	2011-12-05 10:46:48.000000000 +0400
++++ ../../../openwrt_trunk/feeds/packages/multimedia/palantir/Makefile	2011-12-05 12:40:50.182212093 +0400
 @@ -32,7 +32,7 @@
  endef
  

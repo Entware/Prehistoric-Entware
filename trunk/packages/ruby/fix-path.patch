@@ -1,5 +1,5 @@
---- ../../../trunk_clean/feeds/packages/lang/ruby/Makefile	2012-05-02 16:17:28.614360360 +0400
-+++ ../../../trunk/feeds/packages/lang/ruby/Makefile	2012-05-28 09:54:57.417468846 +0400
+--- ../../../openwrt_trunk.orig/feeds/packages/lang/ruby/Makefile	2012-05-02 16:17:28.614360360 +0400
++++ ../../../openwrt_trunk/feeds/packages/lang/ruby/Makefile	2012-05-28 09:54:57.417468846 +0400
 @@ -215,7 +215,8 @@
  
  MAKE_FLAGS += \

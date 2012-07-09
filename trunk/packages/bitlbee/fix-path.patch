@@ -1,5 +1,5 @@
---- ../../../trunk_clean/feeds/packages/net/bitlbee/Makefile	2012-06-11 17:15:52.640735332 +0400
-+++ ../../../trunk/feeds/packages/net/bitlbee/Makefile	2012-06-11 22:30:22.546171098 +0400
+--- ../../../openwrt_trunk.orig/feeds/packages/net/bitlbee/Makefile	2012-06-11 17:15:52.640735332 +0400
++++ ../../../openwrt_trunk/feeds/packages/net/bitlbee/Makefile	2012-06-11 22:30:22.546171098 +0400
 @@ -33,8 +33,8 @@
  endef
  

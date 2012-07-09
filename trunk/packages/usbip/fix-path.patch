@@ -1,5 +1,5 @@
---- ../../../trunk_clean/feeds/packages/net/usbip/Makefile	2012-05-02 16:17:26.546386367 +0400
-+++ ../../../trunk/feeds/packages/net/usbip/Makefile	2012-06-01 09:30:05.737333258 +0400
+--- ../../../openwrt_trunk.orig/feeds/packages/net/usbip/Makefile	2012-05-02 16:17:26.546386367 +0400
++++ ../../../openwrt_trunk/feeds/packages/net/usbip/Makefile	2012-06-01 09:30:05.737333258 +0400
 @@ -26,7 +26,6 @@
  define Package/usbip/Common
    TITLE:=USB-over-IP

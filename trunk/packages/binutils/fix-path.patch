@@ -1,5 +1,5 @@
---- ../../../trunk_clean/feeds/packages/devel/binutils/Makefile	2012-04-02 11:00:37.932169305 +0400
-+++ ../../../trunk/feeds/packages/devel/binutils/Makefile	2012-04-09 15:21:45.168772577 +0400
+--- ../../../openwrt_trunk.orig/feeds/packages/devel/binutils/Makefile	2012-04-02 11:00:37.932169305 +0400
++++ ../../../openwrt_trunk/feeds/packages/devel/binutils/Makefile	2012-04-09 15:21:45.168772577 +0400
 @@ -47,7 +47,7 @@
  		--target=$(REAL_GNU_TARGET_NAME) \
  		--host=$(REAL_GNU_TARGET_NAME) \

@@ -1,5 +1,5 @@
---- ../../../backup/trunk_clean/trunk/feeds/packages/libs/libevent2/Makefile	2011-11-15 14:04:00.000000000 +0400
-+++ ../../../trunk/feeds/packages/libs/libevent2/Makefile	2011-11-23 11:55:35.261785327 +0400
+--- ../../../openwrt_trunk.orig/feeds/packages/libs/libevent2/Makefile	2011-11-15 14:04:00.000000000 +0400
++++ ../../../openwrt_trunk/feeds/packages/libs/libevent2/Makefile	2011-11-23 11:55:35.261785327 +0400
 @@ -114,38 +114,38 @@
  	CFLAGS="$(TARGET_CFLAGS)"
  

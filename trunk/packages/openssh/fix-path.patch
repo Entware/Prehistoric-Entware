@@ -1,5 +1,5 @@
---- ../../../trunk_clean/feeds/packages/net/openssh/Makefile	2012-05-02 16:17:27.530373995 +0400
-+++ ../../../trunk/feeds/packages/net/openssh/Makefile	2012-05-31 21:39:10.586146130 +0400
+--- ../../../openwrt_trunk.orig/feeds/packages/net/openssh/Makefile	2012-05-02 16:17:27.530373995 +0400
++++ ../../../openwrt_trunk/feeds/packages/net/openssh/Makefile	2012-05-31 21:39:10.586146130 +0400
 @@ -53,7 +53,7 @@
  endef
  

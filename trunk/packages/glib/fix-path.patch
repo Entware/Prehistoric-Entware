@@ -1,5 +1,5 @@
---- ../../../backup/trunk_clean/feeds/packages/libs/glib/Makefile	2012-01-30 15:02:27.000000000 +0400
-+++ ../../../trunk/feeds/packages/libs/glib/Makefile	2012-02-01 14:42:44.134839452 +0400
+--- ../../../openwrt_trunk.orig/feeds/packages/libs/glib/Makefile	2012-01-30 15:02:27.000000000 +0400
++++ ../../../openwrt_trunk/feeds/packages/libs/glib/Makefile	2012-02-01 14:42:44.134839452 +0400
 @@ -69,17 +69,17 @@
  define Build/InstallDev
  	$(INSTALL_DIR) $(1) $(2)/bin

@@ -1,5 +1,5 @@
---- ../../../trunk_clean/feeds/packages/libs/libelf/Makefile	2012-03-21 16:34:44.504787057 +0400
-+++ ../../../trunk/feeds/packages/libs/libelf/Makefile	2012-03-28 13:26:08.169185129 +0400
+--- ../../../openwrt_trunk.orig/feeds/packages/libs/libelf/Makefile	2012-03-21 16:34:44.504787057 +0400
++++ ../../../openwrt_trunk/feeds/packages/libs/libelf/Makefile	2012-03-28 13:26:08.169185129 +0400
 @@ -45,17 +45,17 @@
  endef
  

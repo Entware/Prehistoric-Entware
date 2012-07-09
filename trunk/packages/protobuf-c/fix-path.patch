@@ -1,5 +1,5 @@
---- ../../../backup/trunk_clean/feeds/packages/libs/protobuf-c/Makefile	2011-11-25 09:50:10.692689754 +0400
-+++ ../../../trunk/feeds/packages/libs/protobuf-c/Makefile	2011-11-26 23:12:27.204044240 +0400
+--- ../../../openwrt_trunk.orig/feeds/packages/libs/protobuf-c/Makefile	2011-11-25 09:50:10.692689754 +0400
++++ ../../../openwrt_trunk/feeds/packages/libs/protobuf-c/Makefile	2011-11-26 23:12:27.204044240 +0400
 @@ -39,19 +39,19 @@
  	--disable-protoc
  

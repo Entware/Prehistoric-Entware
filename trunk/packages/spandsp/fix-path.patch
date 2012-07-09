@@ -1,5 +1,5 @@
---- ../../../trunk_clean/feeds/packages/libs/spandsp/Makefile	2012-03-21 16:34:50.339629841 +0400
-+++ ../../../trunk/feeds/packages/libs/spandsp/Makefile	2012-03-21 18:50:47.981043815 +0400
+--- ../../../openwrt_trunk.orig/feeds/packages/libs/spandsp/Makefile	2012-03-21 16:34:50.339629841 +0400
++++ ../../../openwrt_trunk/feeds/packages/libs/spandsp/Makefile	2012-03-21 18:50:47.981043815 +0400
 @@ -31,16 +31,17 @@
  endef
  

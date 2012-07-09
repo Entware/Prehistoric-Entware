@@ -1,5 +1,5 @@
---- ../../../trunk_clean/feeds/packages/utils/lcd4linux/Makefile	2012-06-01 10:50:45.972137537 +0400
-+++ ../../../trunk/feeds/packages/utils/lcd4linux/Makefile	2012-06-01 10:51:33.263543003 +0400
+--- ../../../openwrt_trunk.orig/feeds/packages/utils/lcd4linux/Makefile	2012-06-01 10:50:45.972137537 +0400
++++ ../../../openwrt_trunk/feeds/packages/utils/lcd4linux/Makefile	2012-06-01 10:51:33.263543003 +0400
 @@ -129,9 +129,10 @@
  	libnmeap \
  	libsqlite3 \

@@ -1,5 +1,5 @@
---- ../../../trunk_clean/package/openssl/Makefile	2012-04-02 11:00:54.067966451 +0400
-+++ ../../../trunk/package/openssl/Makefile	2012-04-02 11:04:46.645042561 +0400
+--- ../../../openwrt_trunk.orig/package/openssl/Makefile	2012-04-02 11:00:54.067966451 +0400
++++ ../../../openwrt_trunk/package/openssl/Makefile	2012-04-02 11:04:46.645042561 +0400
 @@ -63,7 +63,7 @@
  endef
  

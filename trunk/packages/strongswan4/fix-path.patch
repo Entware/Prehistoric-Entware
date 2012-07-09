@@ -1,5 +1,5 @@
---- ../../../trunk_clean/feeds/packages/net/strongswan4/Makefile	2012-04-02 11:00:40.080142306 +0400
-+++ ../../../trunk/feeds/packages/net/strongswan4/Makefile	2012-04-03 09:22:33.343572455 +0400
+--- ../../../openwrt_trunk.orig/feeds/packages/net/strongswan4/Makefile	2012-04-02 11:00:40.080142306 +0400
++++ ../../../openwrt_trunk/feeds/packages/net/strongswan4/Makefile	2012-04-03 09:22:33.343572455 +0400
 @@ -108,10 +108,7 @@
  
  define Package/strongswan4

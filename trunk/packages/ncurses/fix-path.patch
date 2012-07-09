@@ -1,5 +1,5 @@
---- ../../../trunk_clean/package/ncurses/Makefile	2012-06-01 10:50:57.147997037 +0400
-+++ ../../../trunk/package/ncurses/Makefile	2012-06-01 10:51:34.491527565 +0400
+--- ../../../openwrt_trunk.orig/package/ncurses/Makefile	2012-06-01 10:50:57.147997037 +0400
++++ ../../../openwrt_trunk/package/ncurses/Makefile	2012-06-01 10:51:34.491527565 +0400
 @@ -61,12 +61,12 @@
  	--disable-home-terminfo \
  	--with-normal \

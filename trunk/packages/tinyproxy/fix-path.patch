@@ -1,6 +1,6 @@
-diff -urx .svn ../../../trunk_clean/feeds/packages/net/tinyproxy/files/tinyproxy.config ../../../trunk/feeds/packages/net/tinyproxy/files/tinyproxy.config
---- ../../../trunk_clean/feeds/packages/net/tinyproxy/files/tinyproxy.config	2012-05-02 16:17:27.514374175 +0400
-+++ ../../../trunk/feeds/packages/net/tinyproxy/files/tinyproxy.config	2012-05-02 16:22:07.567094566 +0400
+diff -urx .svn ../../../openwrt_trunk.orig/feeds/packages/net/tinyproxy/files/tinyproxy.config ../../../openwrt_trunk/feeds/packages/net/tinyproxy/files/tinyproxy.config
+--- ../../../openwrt_trunk.orig/feeds/packages/net/tinyproxy/files/tinyproxy.config	2012-05-02 16:17:27.514374175 +0400
++++ ../../../openwrt_trunk/feeds/packages/net/tinyproxy/files/tinyproxy.config	2012-05-02 16:22:07.567094566 +0400
 @@ -1,39 +1,39 @@
 -config tinyproxy
 +#config tinyproxy
@@ -283,9 +283,9 @@ diff -urx .svn ../../../trunk_clean/feeds/packages/net/tinyproxy/files/tinyproxy
  #
  # The LAST matching rule wins the route decision.  As you can see, you
  # can use a host, or a domain:
-diff -urx .svn ../../../trunk_clean/feeds/packages/net/tinyproxy/Makefile ../../../trunk/feeds/packages/net/tinyproxy/Makefile
---- ../../../trunk_clean/feeds/packages/net/tinyproxy/Makefile	2012-05-02 16:17:27.514374175 +0400
-+++ ../../../trunk/feeds/packages/net/tinyproxy/Makefile	2012-06-01 09:09:02.501894880 +0400
+diff -urx .svn ../../../openwrt_trunk.orig/feeds/packages/net/tinyproxy/Makefile ../../../openwrt_trunk/feeds/packages/net/tinyproxy/Makefile
+--- ../../../openwrt_trunk.orig/feeds/packages/net/tinyproxy/Makefile	2012-05-02 16:17:27.514374175 +0400
++++ ../../../openwrt_trunk/feeds/packages/net/tinyproxy/Makefile	2012-06-01 09:09:02.501894880 +0400
 @@ -28,7 +28,7 @@
  endef
  

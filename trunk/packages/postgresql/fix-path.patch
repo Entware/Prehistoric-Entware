@@ -1,5 +1,5 @@
---- ../../../trunk_clean/feeds/packages/libs/postgresql/Makefile	2012-05-02 16:17:23.706422071 +0400
-+++ ../../../trunk/feeds/packages/libs/postgresql/Makefile	2012-05-31 22:26:55.664446304 +0400
+--- ../../../openwrt_trunk.orig/feeds/packages/libs/postgresql/Makefile	2012-05-02 16:17:23.706422071 +0400
++++ ../../../openwrt_trunk/feeds/packages/libs/postgresql/Makefile	2012-05-31 22:26:55.664446304 +0400
 @@ -64,18 +64,18 @@
  define Build/Configure
  	(cd $(PKG_BUILD_DIR); rm -f config.cache; \

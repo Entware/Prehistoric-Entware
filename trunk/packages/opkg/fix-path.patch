@@ -1,5 +1,5 @@
---- ../../../trunk_clean/package/opkg/Makefile	2012-05-02 16:17:35.442274532 +0400
-+++ ../../../trunk/package/opkg/Makefile	2012-05-02 17:54:36.788247338 +0400
+--- ../../../openwrt_trunk.orig/package/opkg/Makefile	2012-05-02 16:17:35.442274532 +0400
++++ ../../../openwrt_trunk/package/opkg/Makefile	2012-05-02 17:54:36.788247338 +0400
 @@ -27,6 +27,7 @@
  define Package/opkg
    SECTION:=base

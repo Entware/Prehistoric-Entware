@@ -1,5 +1,5 @@
---- ../../../backup/trunk_clean/feeds/packages/net/aircrack-ng/Makefile	2012-01-25 13:17:28.000000000 +0400
-+++ ../../../trunk/feeds/packages/net/aircrack-ng/Makefile	2012-01-30 11:50:17.340120914 +0400
+--- ../../../openwrt_trunk.orig/feeds/packages/net/aircrack-ng/Makefile	2012-01-25 13:17:28.000000000 +0400
++++ ../../../openwrt_trunk/feeds/packages/net/aircrack-ng/Makefile	2012-01-30 11:50:17.340120914 +0400
 @@ -38,15 +38,15 @@
  	CFLAGS="$(TARGET_CFLAGS) -Wall -Iinclude/ $(TARGET_CPPFLAGS) -D_REVISION=0" \
  	LDFLAGS="$(TARGET_LDFLAGS)" \

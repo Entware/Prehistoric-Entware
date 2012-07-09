@@ -1,5 +1,5 @@
---- ../../../backup/trunk_clean/feeds/packages/libs/libsndfile/Makefile	2011-12-05 10:46:44.000000000 +0400
-+++ ../../../trunk/feeds/packages/libs/libsndfile/Makefile	2011-12-09 14:05:00.449738263 +0400
+--- ../../../openwrt_trunk.orig/feeds/packages/libs/libsndfile/Makefile	2011-12-05 10:46:44.000000000 +0400
++++ ../../../openwrt_trunk/feeds/packages/libs/libsndfile/Makefile	2011-12-09 14:05:00.449738263 +0400
 @@ -54,8 +54,8 @@
  endef
  

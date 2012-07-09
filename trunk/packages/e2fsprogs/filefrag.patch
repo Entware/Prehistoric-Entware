@@ -1,5 +1,5 @@
---- ../../../trunk/package/e2fsprogs/Makefile.prev	2012-06-21 10:12:19.000000000 +0400
-+++ ../../../trunk/package/e2fsprogs/Makefile	2012-07-01 16:59:46.000000000 +0400
+--- ../../../openwrt_trunk/package/e2fsprogs/Makefile.prev	2012-06-21 10:12:19.000000000 +0400
++++ ../../../openwrt_trunk/package/e2fsprogs/Makefile	2012-07-01 16:59:46.000000000 +0400
 @@ -12,3 +12,3 @@
  PKG_MD5SUM:=04f4561a54ad0419248316a00c016baa
 -PKG_RELEASE:=1

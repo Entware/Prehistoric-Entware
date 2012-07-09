@@ -1,5 +1,5 @@
---- ../../../trunk_clean/feeds/packages/net/dansguardian/Makefile	2012-05-02 16:17:27.210378013 +0400
-+++ ../../../trunk/feeds/packages/net/dansguardian/Makefile	2012-05-31 16:31:09.562260073 +0400
+--- ../../../openwrt_trunk.orig/feeds/packages/net/dansguardian/Makefile	2012-05-02 16:17:27.210378013 +0400
++++ ../../../openwrt_trunk/feeds/packages/net/dansguardian/Makefile	2012-05-31 16:31:09.562260073 +0400
 @@ -29,13 +29,13 @@
  endef
  
