@@ -20,6 +20,8 @@ kernel_prepare: .kernel_prepared
 	(cd ../../kernel-1.9.2.7-rtn/src/1.9.2.7-rtn; \
 	make kernel; \
 	make)
+	mv ../../kernel-1.9.2.7-rtn/src/linux/linux-2.6.22.19 ../../
+	rm -fr ../../kernel-1.9.2.7-rtn
 	touch $@
 
 toolchain_compile: .toolchain_compiled
@@ -31,7 +33,7 @@ toolchain_compile: .toolchain_compiled
 	@echo Downloading toolchain sources, $(TOOLCHAIN_REVISION)...
 	svn checkout --revision $(TOOLCHAIN_REVISION) http://wl500g.googlecode.com/svn/toolchain ../../toolchain-1.9.2.7-rtn/src
 	cp -f ../../toolchain-1.9.2.7-rtn/src/defconfig ../../toolchain-1.9.2.7-rtn/src/.config
-	sed -i 's,/home/lly/Wl500/rt-n/linux/linux-2.6/,${CURDIR}/../../kernel-1.9.2.7-rtn/src/linux/linux-2.6,g' ../../toolchain-1.9.2.7-rtn/src/.config
+	sed -i 's,/home/lly/Wl500/rt-n/linux/linux-2.6/,${CURDIR}/../../linux-2.6.22.19,g' ../../toolchain-1.9.2.7-rtn/src/.config
 	cp -f ./*-uclibc-*.patch  ../../toolchain-1.9.2.7-rtn/src/toolchain/uClibc/patches/0.9.32/
 	patch -p0 -i ./0.9.32-config.patch
 	patch -p0 -i ./add-mirror.patch
@@ -40,6 +42,7 @@ toolchain_compile: .toolchain_compiled
 	make V=99)
 	ln -sf /opt/brcm/hndtools-mipsel-uclibc-4.5.3-K26 /opt/brcm/hndtools-mipsel-uclibc
 	@echo Toolchain compilation finished.
+	rm -fr ../../toolchain-1.9.2.7-rtn
 	touch $@
 
 clean:
