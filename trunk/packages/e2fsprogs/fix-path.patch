@@ -1,17 +1,15 @@
---- ../../../openwrt_trunk.orig/package/e2fsprogs/Makefile	2012-06-11 17:16:09.696520912 +0400
-+++ ../../../openwrt_trunk/package/e2fsprogs/Makefile	2012-06-19 12:14:30.562900083 +0400
-@@ -79,7 +79,9 @@
-   DEPENDS:= +e2fsprogs
- endef
+--- ../../../openwrt_trunk.orig/package/e2fsprogs/Makefile	2012-07-10 16:32:09.380275881 +0400
++++ ../../../openwrt_trunk/package/e2fsprogs/Makefile	2012-07-10 16:38:29.911491955 +0400
+@@ -10,7 +10,7 @@
+ PKG_NAME:=e2fsprogs
+ PKG_VERSION:=1.42.2
+ PKG_MD5SUM:=04f4561a54ad0419248316a00c016baa
+-PKG_RELEASE:=1
++PKG_RELEASE:=2
  
--TARGET_CFLAGS += $(FPIC)
-+TARGET_CFLAGS += $(FPIC) \
-+	-fno-gcse \
-+	-fno-gcse-lm \
- 
- CONFIGURE_ARGS += \
- 	--enable-elf-shlibs	\
-@@ -120,43 +122,43 @@
+ PKG_SOURCE:=$(PKG_NAME)-$(PKG_VERSION).tar.gz
+ PKG_SOURCE_URL:=@SF/e2fsprogs
+@@ -120,43 +120,44 @@
  endef
  
  define Package/e2fsprogs/install
@@ -30,6 +28,7 @@
 +	$(INSTALL_DIR) $(1)/opt/sbin
 +	$(INSTALL_BIN) $(PKG_INSTALL_DIR)/opt/sbin/e2fsck $(1)/opt/sbin/
 +	$(INSTALL_BIN) $(PKG_INSTALL_DIR)/opt/sbin/mke2fs $(1)/opt/sbin/
++	$(INSTALL_BIN) $(PKG_INSTALL_DIR)/opt/sbin/filefrag $(1)/opt/sbin/
 +	ln -sf mke2fs $(1)/opt/sbin/mkfs.ext2
 +	ln -sf mke2fs $(1)/opt/sbin/mkfs.ext3
 +	ln -sf mke2fs $(1)/opt/sbin/mkfs.ext4
