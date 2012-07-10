@@ -1,0 +1,11 @@
+--- ../../toolchain-1.9.2.7-rtn/src/rules.mk.orig	2012-07-10 13:02:47.000000000 +0400
++++ ../../toolchain-1.9.2.7-rtn/src/rules.mk	2012-07-10 13:07:56.686313105 +0400
+@@ -50,7 +50,7 @@
+ BUILD_DIR_TOOLCHAIN:=$(BUILD_DIR_BASE)/toolchain-$(ARCH)_gcc$(GCCV)
+ STAGING_DIR:=$(TOPDIR)/staging_dir/$(ARCH)
+ STAGING_DIR_HOST:=$(TOPDIR)/staging_dir/host
+-TOOLCHAIN_DIR:=/opt/brcm/hndtools-$(ARCH)-uclibc-$(GCCV)$(TGT_SUFFIX)
++TOOLCHAIN_DIR:=/opt/entware-toolchain
+ #TOOLCHAIN_DIR:=$(TOPDIR)/staging_dir/toolchain-$(ARCH)_gcc$(GCCV)
+ PACKAGE_DIR:=$(BIN_DIR)/packages/$(ARCH)
+ STAMP_DIR:=$(BUILD_DIR)/stamp
