@@ -1,6 +1,6 @@
---- ../../../openwrt_trunk.orig/feeds/packages/net/subversion/Makefile	2012-04-02 11:00:38.320164428 +0400
-+++ ../../../openwrt_trunk/feeds/packages/net/subversion/Makefile	2012-04-10 14:53:25.310220927 +0400
-@@ -70,16 +70,16 @@
+--- ../../../openwrt_trunk.orig/feeds/packages/net/subversion/Makefile	2012-07-10 18:59:22.969222628 +0400
++++ ../../../openwrt_trunk/feeds/packages/net/subversion/Makefile	2012-07-10 19:00:16.944544067 +0400
+@@ -71,16 +71,16 @@
  endef
  
  define Package/subversion-server/conffiles
@@ -21,7 +21,7 @@
  	--disable-mod-activation \
  	--without-ruby-sitedir \
  	--without-swig \
-@@ -94,7 +94,7 @@
+@@ -95,7 +95,7 @@
  CONFIGURE_VARS += \
  	svn_lib_neon=yes \
  	LDFLAGS="$(TARGET_LDFLAGS) -lcrypt -lm \
@@ -30,7 +30,7 @@
  		-L$(TOOLCHAIN_DIR)/lib" \
  	CPPFLAGS="$(TARGET_CPPFLAGS)" \
  
-@@ -105,22 +105,18 @@
+@@ -106,22 +106,18 @@
  endef
  
  define Package/subversion-libs/install

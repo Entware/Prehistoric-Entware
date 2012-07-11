@@ -1,6 +1,6 @@
-diff -urx .svn ../../../openwrt_trunk.orig/feeds/packages/lang/python/files/python-package.mk ../../../openwrt_trunk/feeds/packages/lang/python/files/python-package.mk
---- ../../../openwrt_trunk.orig/feeds/packages/lang/python/files/python-package.mk	2012-06-01 10:50:41.036199589 +0400
-+++ ../../../openwrt_trunk/feeds/packages/lang/python/files/python-package.mk	2012-06-01 10:51:35.283517608 +0400
+diff -urx .svn ../../../openwrt_trunk.orig/feeds/packages/lang/python/files/python-package.mk ../../../openwrt_trunk/feeds/packages/lang//python/files/python-package.mk
+--- ../../../openwrt_trunk.orig/feeds/packages/lang/python/files/python-package.mk	2012-07-10 18:59:23.113220818 +0400
++++ ../../../openwrt_trunk/feeds/packages/lang//python/files/python-package.mk	2012-07-10 19:00:16.448550302 +0400
 @@ -7,16 +7,16 @@
  
  PYTHON_VERSION=2.7
@@ -21,10 +21,10 @@ diff -urx .svn ../../../openwrt_trunk.orig/feeds/packages/lang/python/files/pyth
  
  define HostPython
  	(	export PYTHONPATH="$(PYTHON_LIB_DIR):$(STAGING_DIR)/$(PYTHON_PKG_DIR)"; \
-diff -urx .svn ../../../openwrt_trunk.orig/feeds/packages/lang/python/Makefile ../../../openwrt_trunk/feeds/packages/lang/python/Makefile
---- ../../../openwrt_trunk.orig/feeds/packages/lang/python/Makefile	2012-06-01 10:50:41.036199589 +0400
-+++ ../../../openwrt_trunk/feeds/packages/lang/python/Makefile	2012-06-01 10:51:35.283517608 +0400
-@@ -147,11 +147,11 @@
+diff -urx .svn ../../../openwrt_trunk.orig/feeds/packages/lang/python/Makefile ../../../openwrt_trunk/feeds/packages/lang//python/Makefile
+--- ../../../openwrt_trunk.orig/feeds/packages/lang/python/Makefile	2012-07-10 18:59:23.109220868 +0400
++++ ../../../openwrt_trunk/feeds/packages/lang//python/Makefile	2012-07-11 12:44:24.596500063 +0400
+@@ -153,11 +153,11 @@
  	$(CP) $(STAGING_DIR_HOST)/bin/pgen $(PKG_BUILD_DIR)/hostpgen
  	$(CP) $(STAGING_DIR_HOST)/bin/python$(PYTHON_VERSION) $(PKG_BUILD_DIR)/hostpython
  	$(call Build/Configure/Default, \
@@ -38,7 +38,7 @@ diff -urx .svn ../../../openwrt_trunk.orig/feeds/packages/lang/python/Makefile .
  		$(ENABLE_IPV6) \
  		ac_cv_have_chflags=no \
  		ac_cv_have_lchflags=no \
-@@ -163,277 +163,277 @@
+@@ -169,286 +169,286 @@
  endef
  
  define Build/InstallDev
@@ -124,6 +124,10 @@ diff -urx .svn ../../../openwrt_trunk.orig/feeds/packages/lang/python/Makefile .
 --|/usr/lib/python$(PYTHON_VERSION)/lib-dynload/array.so
 --|/usr/lib/python$(PYTHON_VERSION)/lib-dynload/binascii.so
 --|/usr/lib/python$(PYTHON_VERSION)/lib-dynload/cStringIO.so
+--|/usr/lib/python$(PYTHON_VERSION)/lib-dynload/_curses.so
+--|/usr/lib/python$(PYTHON_VERSION)/lib-dynload/_curses_panel.so
+--|/usr/lib/python$(PYTHON_VERSION)/lib-dynload/dbm.so
+--|/usr/lib/python$(PYTHON_VERSION)/lib-dynload/_bsddb.so
 --|/usr/lib/python$(PYTHON_VERSION)/lib-dynload/fcntl.so
 --|/usr/lib/python$(PYTHON_VERSION)/lib-dynload/grp.so
 --|/usr/lib/python$(PYTHON_VERSION)/lib-dynload/itertools.so
@@ -232,6 +236,10 @@ diff -urx .svn ../../../openwrt_trunk.orig/feeds/packages/lang/python/Makefile .
 +-|/opt/lib/python$(PYTHON_VERSION)/lib-dynload/array.so
 +-|/opt/lib/python$(PYTHON_VERSION)/lib-dynload/binascii.so
 +-|/opt/lib/python$(PYTHON_VERSION)/lib-dynload/cStringIO.so
++-|/opt/lib/python$(PYTHON_VERSION)/lib-dynload/_curses.so
++-|/opt/lib/python$(PYTHON_VERSION)/lib-dynload/_curses_panel.so
++-|/opt/lib/python$(PYTHON_VERSION)/lib-dynload/dbm.so
++-|/opt/lib/python$(PYTHON_VERSION)/lib-dynload/_bsddb.so
 +-|/opt/lib/python$(PYTHON_VERSION)/lib-dynload/fcntl.so
 +-|/opt/lib/python$(PYTHON_VERSION)/lib-dynload/grp.so
 +-|/opt/lib/python$(PYTHON_VERSION)/lib-dynload/itertools.so
@@ -529,6 +537,13 @@ diff -urx .svn ../../../openwrt_trunk.orig/feeds/packages/lang/python/Makefile .
  define PyPackage/python-readline/filespec
 -+|/usr/lib/python$(PYTHON_VERSION)/lib-dynload/readline.so
 ++|/opt/lib/python$(PYTHON_VERSION)/lib-dynload/readline.so
+ endef
+ 
+ define PyPackage/python-ncurses/filespec
+-+|/usr/lib/python$(PYTHON_VERSION)/lib-dynload/_curses.so
+-+|/usr/lib/python$(PYTHON_VERSION)/lib-dynload/_curses_panel.so
+++|/opt/lib/python$(PYTHON_VERSION)/lib-dynload/_curses.so
+++|/opt/lib/python$(PYTHON_VERSION)/lib-dynload/_curses_panel.so
  endef
  
  define Host/Configure

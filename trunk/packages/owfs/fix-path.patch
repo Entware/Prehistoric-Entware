@@ -1,5 +1,5 @@
---- ../../../openwrt_trunk.orig/feeds/packages/utils/owfs/Makefile	2012-05-02 16:17:34.750283221 +0400
-+++ ../../../openwrt_trunk/feeds/packages/utils/owfs/Makefile	2012-05-28 09:14:56.546543599 +0400
+--- ../../../openwrt_trunk.orig/feeds/packages/utils/owfs/Makefile	2012-07-11 14:54:02.062735267 +0400
++++ ../../../openwrt_trunk/feeds/packages/utils/owfs/Makefile	2012-07-11 21:04:04.563606832 +0400
 @@ -19,6 +19,7 @@
  PKG_INSTALL:=1
  
@@ -26,7 +26,7 @@
  	--enable-shared \
  	--enable-zero \
  	--disable-parport \
-@@ -175,11 +174,22 @@
+@@ -175,11 +174,21 @@
  	--disable-owphp \
  	--disable-owtcl \
  	--disable-swig \
@@ -36,7 +36,6 @@
 +	--with-libusb-config="$(STAGING_DIR)/host/bin/libusb-config"
 +
 +TARGET_LDFLAGS += \
-+	-Wl,-rpath-link=$(STAGING_DIR)/opt/lib \
 +	-L$(ICONV_PREFIX)/lib \
 +	-liconv \
 +
@@ -52,7 +51,7 @@
  	shrext_cmds=".so" \
  
  MAKE_FLAGS += \
-@@ -187,51 +197,51 @@
+@@ -187,51 +196,51 @@
  	HOST_CPU="$(PKGARCH)"
  
  define Build/InstallDev

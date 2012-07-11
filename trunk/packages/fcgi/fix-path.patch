@@ -1,13 +1,7 @@
---- ../../../openwrt_trunk.orig/feeds/packages/libs/fcgi/Makefile	2012-02-21 11:20:09.000000000 +0400
-+++ ../../../openwrt_trunk/feeds/packages/libs/fcgi/Makefile	2012-02-21 12:00:22.544141470 +0400
-@@ -53,28 +53,28 @@
- 	--enable-static \
- 
- CONFIGURE_VARS += \
--	CPPFLAGS="$$$$CPPFLAGS -I$(STAGING_DIR)/usr/include/uClibc++" \
-+	CPPFLAGS="$$$$CPPFLAGS -I$(STAGING_DIR)/opt/include/uClibc++" \
- 	CXXFLAGS="$$$$CXXFLAGS -fno-builtin -fno-rtti -nostdinc++"  \
- 	LIBS="-nodefaultlibs -lc -luClibc++ -lm" \
+--- ../../../openwrt_trunk.orig/feeds/packages/libs/fcgi/Makefile	2012-07-10 18:59:22.269231428 +0400
++++ ../../../openwrt_trunk/feeds/packages/libs/fcgi/Makefile	2012-07-11 11:52:30.815656903 +0400
+@@ -57,23 +57,23 @@
+ 	LIBS="-lm" \
  
  define Build/InstallDev
 -	$(INSTALL_DIR) $(1)/usr/include

@@ -1,5 +1,5 @@
---- ../../../openwrt_trunk.orig/feeds/packages/utils/rrdtool/Makefile	2012-05-02 16:17:35.154278152 +0400
-+++ ../../../openwrt_trunk/feeds/packages/utils/rrdtool/Makefile	2012-05-03 08:32:13.277473092 +0400
+--- ../../../openwrt_trunk.orig/feeds/packages/utils/rrdtool/Makefile	2012-07-11 14:54:02.142734262 +0400
++++ ../../../openwrt_trunk/feeds/packages/utils/rrdtool/Makefile	2012-07-11 22:43:28.244651650 +0400
 @@ -74,7 +74,7 @@
  	--disable-tcl \
  	--disable-ruby \
@@ -9,16 +9,7 @@
  
  CONFIGURE_VARS += \
  	rd_cv_ieee_works=yes \
-@@ -96,36 +96,39 @@
-   CONFIGURE_ARGS += --disable-python
- endif
- 
-+TARGET_LDFLAGS += \
-+	-Wl,-rpath-link=$(STAGING_DIR)/opt/lib
-+
- define Build/Compile
- 	$(if $(Build/Compile/PyMod),,@echo Python packaging code not found.; false)
- 	$(call Build/Compile/Default)
+@@ -102,30 +102,30 @@
  endef
  
  define Build/InstallDev

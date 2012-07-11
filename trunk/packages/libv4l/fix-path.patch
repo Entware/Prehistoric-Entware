@@ -1,0 +1,66 @@
+--- ../../../openwrt_trunk.orig/feeds/packages/libs/libv4l/Makefile	2012-07-11 13:33:34.679423693 +0400
++++ ../../../openwrt_trunk/feeds/packages/libs/libv4l/Makefile	2012-07-11 14:15:27.283849337 +0400
+@@ -70,12 +70,12 @@
+ 
+ define Build/Compile
+ 	$(MAKE) -C $(PKG_BUILD_DIR) \
+-		DESTDIR="$(PKG_INSTALL_DIR)" PREFIX="/usr" \
++		DESTDIR="$(PKG_INSTALL_DIR)" PREFIX="/opt" \
+ 		DISABLE_LIBJPEG="1" \
+ 		$(CONFIGURE_VARS) \
+ 		all install
+ 	$(MAKE) -C $(PKG_BUILD_DIR) \
+-		DESTDIR="$(PKG_INSTALL_DIR)" PREFIX="/usr" \
++		DESTDIR="$(PKG_INSTALL_DIR)" PREFIX="/opt" \
+ 		DISABLE_LIBJPEG="1" \
+ 		$(CONFIGURE_VARS) \
+ 		LINKTYPE="static" \
+@@ -83,30 +83,30 @@
+ endef
+ 
+ define Build/InstallDev
+-	$(INSTALL_DIR) $(1)/usr/include
+-	$(CP) $(PKG_INSTALL_DIR)/usr/include/*.h $(1)/usr/include/
+-	$(INSTALL_DIR) $(1)/usr/lib
+-	$(CP) $(PKG_INSTALL_DIR)/usr/lib/libv4l{1,2,convert}.{a,so*} $(1)/usr/lib/
+-	$(INSTALL_DIR) $(1)/usr/lib/pkgconfig
+-	$(CP) $(PKG_INSTALL_DIR)/usr/lib/pkgconfig/libv4l{1,2,convert}.pc $(1)/usr/lib/pkgconfig/
++	$(INSTALL_DIR) $(1)/opt/include
++	$(CP) $(PKG_INSTALL_DIR)/opt/include/*.h $(1)/opt/include/
++	$(INSTALL_DIR) $(1)/opt/lib
++	$(CP) $(PKG_INSTALL_DIR)/opt/lib/libv4l{1,2,convert}.{a,so*} $(1)/opt/lib/
++	$(INSTALL_DIR) $(1)/opt/lib/pkgconfig
++	$(CP) $(PKG_INSTALL_DIR)/opt/lib/pkgconfig/libv4l{1,2,convert}.pc $(1)/opt/lib/pkgconfig/
+ endef
+ 
+ define Package/libv4l/install
+-	$(INSTALL_DIR) $(1)/usr/lib
+-	$(CP) $(PKG_INSTALL_DIR)/usr/lib/libv4l{1,2,convert}.so.* $(1)/usr/lib/
+-	$(INSTALL_DIR) $(1)/usr/lib/libv4l
+-	$(CP) $(PKG_INSTALL_DIR)/usr/lib/libv4l/v4l{1compat,2convert}.so $(1)/usr/lib/libv4l/
++	$(INSTALL_DIR) $(1)/opt/lib
++	$(CP) $(PKG_INSTALL_DIR)/opt/lib/libv4l{1,2,convert}.so.* $(1)/opt/lib/
++	$(INSTALL_DIR) $(1)/opt/lib/libv4l
++	$(CP) $(PKG_INSTALL_DIR)/opt/lib/libv4l/v4l{1compat,2convert}.so $(1)/opt/lib/libv4l/
+ endef
+ 
+ define Package/v4l-utils/install
+-	$(INSTALL_DIR) $(1)/etc
+-	$(CP) $(PKG_INSTALL_DIR)/etc/rc_maps.cfg $(1)/etc/
+-	$(CP) $(PKG_INSTALL_DIR)/etc/rc_keymaps $(1)/etc/
+-	$(INSTALL_DIR) $(1)/usr/bin
+-	$(CP) $(PKG_INSTALL_DIR)/usr/bin/{cx18,ivtv}-ctl $(1)/usr/bin/
+-	$(CP) $(PKG_INSTALL_DIR)/usr/bin/decode_tm6000 $(1)/usr/bin/
+-	$(CP) $(PKG_INSTALL_DIR)/usr/bin/ir-keytable $(1)/usr/bin/
+-	$(CP) $(PKG_INSTALL_DIR)/usr/bin/v4l2-{compliance,ctl,sysfs-path} $(1)/usr/bin/
++	$(INSTALL_DIR) $(1)/opt/etc
++	$(CP) $(PKG_INSTALL_DIR)/opt/etc/rc_maps.cfg $(1)/opt/etc/
++	$(CP) $(PKG_INSTALL_DIR)/opt/etc/rc_keymaps $(1)/opt/etc/
++	$(INSTALL_DIR) $(1)/opt/bin
++	$(CP) $(PKG_INSTALL_DIR)/opt/bin/{cx18,ivtv}-ctl $(1)/opt/bin/
++	$(CP) $(PKG_INSTALL_DIR)/opt/bin/decode_tm6000 $(1)/opt/bin/
++	$(CP) $(PKG_INSTALL_DIR)/opt/bin/ir-keytable $(1)/opt/bin/
++	$(CP) $(PKG_INSTALL_DIR)/opt/bin/v4l2-{compliance,ctl,sysfs-path} $(1)/opt/bin/
+ endef
+ 
+ $(eval $(call BuildPackage,libv4l))

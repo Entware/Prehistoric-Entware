@@ -1,14 +1,5 @@
---- ../../../openwrt_trunk.orig/feeds/packages/multimedia/ushare/Makefile	2012-05-02 16:17:35.314276139 +0400
-+++ ../../../openwrt_trunk/feeds/packages/multimedia/ushare/Makefile	2012-06-01 09:42:10.966655611 +0400
-@@ -24,7 +24,7 @@
-  CATEGORY:=Multimedia
-  TITLE:= UPnP A/V & DLNA Media Server
-  URL:=http://ushare.geexbox.org/
-- DEPENDS:=+libdlna +libupnp
-+ DEPENDS:=+libdlna +libupnp +libbz2
- endef
- 
- define Package/ushare/description
+--- ../../../openwrt_trunk.orig/feeds/packages/multimedia/ushare/Makefile	2012-07-11 14:54:02.170733910 +0400
++++ ../../../openwrt_trunk/feeds/packages/multimedia/ushare/Makefile	2012-07-11 21:09:48.567287431 +0400
 @@ -40,14 +40,14 @@
  	# this is *NOT* GNU configure
  	( cd $(PKG_BUILD_DIR); \
@@ -16,7 +7,7 @@
 -		LDFLAGS="$(TARGET_LDFLAGS) -Wl,-rpath-link=$(STAGING_DIR)/usr/lib" \
 -		PKG_CONFIG_PATH="$(STAGING_DIR)/usr/lib/pkgconfig" \
 -		PKG_CONFIG_LIBDIR="$(STAGING_DIR)/usr/lib/pkgconfig" \
-+		LDFLAGS="$(TARGET_LDFLAGS) -Wl,-rpath-link=$(STAGING_DIR)/opt/lib" \
++		LDFLAGS="$(TARGET_LDFLAGS)" \
 +		PKG_CONFIG_PATH="$(STAGING_DIR)/opt/lib/pkgconfig" \
 +		PKG_CONFIG_LIBDIR="$(STAGING_DIR)/opt/lib/pkgconfig" \
  		./configure \

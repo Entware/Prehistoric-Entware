@@ -1,6 +1,6 @@
---- ../../../openwrt_trunk.orig/feeds/packages/net/git/Makefile	2012-01-20 19:21:04.000000000 +0400
-+++ ../../../openwrt_trunk/feeds/packages/net/git/Makefile	2012-01-21 19:50:22.351770679 +0400
-@@ -57,14 +57,14 @@
+--- ../../../openwrt_trunk.orig/feeds/packages/net/git/Makefile	2012-07-10 18:59:23.073221321 +0400
++++ ../../../openwrt_trunk/feeds/packages/net/git/Makefile	2012-07-11 12:02:07.068478600 +0400
+@@ -57,13 +57,13 @@
  		configure
  
  	( cd $(PKG_BUILD_DIR); \
@@ -11,9 +11,8 @@
  
  define Package/git/install
  	$(INSTALL_DIR) $(1)
+-	$(RM) $(PKG_INSTALL_DIR)/usr/bin/git-cvsserver
++	$(RM) $(PKG_INSTALL_DIR)/opt/bin/git-cvsserver
  	$(CP) $(PKG_INSTALL_DIR)/* $(1)/
--	ln -s /usr/bin/git $(1)/usr/libexec/git-core/git
-+	ln -s /opt/bin/git $(1)/opt/libexec/git-core/git
  endef
  
- $(eval $(call BuildPackage,git))

@@ -1,28 +1,15 @@
---- ../../../openwrt_trunk.orig/feeds/packages/utils/lsof/Makefile	2012-05-02 16:17:34.986280264 +0400
-+++ ../../../openwrt_trunk/feeds/packages/utils/lsof/Makefile	2012-05-28 09:44:37.525258936 +0400
-@@ -20,13 +20,13 @@
- 
- include $(INCLUDE_DIR)/package.mk
- 
--TARGET_CFLAGS += -I$(STAGING_DIR)/usr/include
--TARGET_LDFLAGS += $(LIBRPC)
-+TARGET_CFLAGS += -I$(STAGING_DIR)/opt/include
-+#TARGET_LDFLAGS += $(LIBRPC)
- 
- define Package/lsof
-   SECTION:=utils
-   CATEGORY:=Utilities
--  DEPENDS:=$(LIBRPC_DEPENDS)
-+#  DEPENDS:=$(LIBRPC_DEPENDS)
-   TITLE:=LiSt Open Files - a diagnostic tool
-   URL:=http://people.freebsd.org/~abe/
- endef
-@@ -45,12 +45,12 @@
- 		AR="$(TARGET_CROSS)ar cr" \
- 		RANLIB="$(TARGET_CROSS)ranlib" \
- 		DEBUG="$(TARGET_CFLAGS)" \
--		LDFLAGS="$(TARGET_LDFLAGS)" 
-+		CFGL="-L./lib -llsof $(TARGET_LDFLAGS)" 
+--- ../../../openwrt_trunk.orig/feeds/packages/utils/lsof/Makefile	2012-07-10 18:59:23.673213779 +0400
++++ ../../../openwrt_trunk/feeds/packages/utils/lsof/Makefile	2012-07-11 12:15:58.801967011 +0400
+@@ -34,7 +34,7 @@
+ 	cd $(PKG_BUILD_DIR); \
+ 		LINUX_CLIB="-DGLIBCV=2" \
+ 		LSOF_CC="$(TARGET_CC)" \
+-		LSOF_INCLUDE="-I$(STAGING_DIR)/usr/include" \
++		LSOF_INCLUDE="-I$(STAGING_DIR)/opt/include" \
+ 		LSOF_VSTR="$(LINUX_VERSION)" \
+ 		LSOF_CFGC="$(TARGET_CFLAGS)" \
+ 		LSOF_CFGL="$(TARGET_LDFLAGS)" \
+@@ -48,8 +48,8 @@
  endef
  
  define Package/lsof/install	

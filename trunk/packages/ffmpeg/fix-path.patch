@@ -1,5 +1,5 @@
---- ../../../openwrt_trunk.orig/feeds/packages/multimedia/ffmpeg/Makefile	2011-11-25 09:50:11.520679345 +0400
-+++ ../../../openwrt_trunk/feeds/packages/multimedia/ffmpeg/Makefile	2011-11-26 22:07:54.722436211 +0400
+--- ../../../openwrt_trunk.orig/feeds/packages/multimedia/ffmpeg/Makefile	2012-07-10 18:59:23.737212973 +0400
++++ ../../../openwrt_trunk/feeds/packages/multimedia/ffmpeg/Makefile	2012-07-10 19:00:03.164717301 +0400
 @@ -275,7 +275,7 @@
  	--cross-prefix="$(TARGET_CROSS)" \
  	--arch="$(ARCH)" \
@@ -9,7 +9,7 @@
  	--enable-shared \
  	--enable-static \
  	--disable-debug \
-@@ -358,21 +358,21 @@
+@@ -359,21 +359,21 @@
  endef
  
  define Build/InstallDev/custom
@@ -43,7 +43,7 @@
  endef
  
  Build/InstallDev/mini = $(Build/InstallDev/custom)
-@@ -396,28 +396,28 @@
+@@ -397,28 +397,28 @@
  endif
  
  define Package/ffmpeg/install

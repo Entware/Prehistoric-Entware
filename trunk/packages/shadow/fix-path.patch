@@ -1,6 +1,31 @@
---- ../../../openwrt_trunk.orig/feeds/packages/utils/shadow/Makefile	2012-03-21 16:34:34.579951683 +0400
-+++ ../../../openwrt_trunk/feeds/packages/utils/shadow/Makefile	2012-03-29 12:45:13.564590279 +0400
-@@ -57,12 +57,12 @@
+--- ../../../openwrt_trunk.orig/feeds/packages/utils/shadow/Makefile	2012-07-11 14:54:02.146734211 +0400
++++ ../../../openwrt_trunk/feeds/packages/utils/shadow/Makefile	2012-07-11 18:00:01.318445687 +0400
+@@ -15,7 +15,7 @@
+ PKG_SOURCE_URL:=http://pkg-shadow.alioth.debian.org/releases
+ PKG_MD5SUM:=a00449aa439c69287b6d472191dc2247
+ 
+-PKG_FIXUP:=autoreconf
++#PKG_FIXUP:=autoreconf
+ 
+ PKG_INSTALL:=1
+ 
+@@ -61,12 +61,12 @@
+ endef
+ 
+ define Package/shadow-common/conffiles
+-/etc/login.defs
++/opt/etc/login.defs
+ endef
+ 
+ define Package/shadow-common/install
+-	$(INSTALL_DIR) $(1)/etc
+-	$(INSTALL_CONF) $(PKG_INSTALL_DIR)/etc/login.defs $(1)/etc/
++	$(INSTALL_DIR) $(1)/opt/etc
++	$(INSTALL_CONF) $(PKG_INSTALL_DIR)/opt/etc/login.defs $(1)/opt/etc/
+ endef
+ 
+ 
+@@ -85,12 +85,12 @@
    endef
  
    define Package/shadow-$(1)/install

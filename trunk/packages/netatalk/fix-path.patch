@@ -1,12 +1,12 @@
 diff -urx .svn ../../../openwrt_trunk.orig/feeds/packages/net/netatalk/files/afpd.conf ../../../openwrt_trunk/feeds/packages/net/netatalk/files/afpd.conf
---- ../../../openwrt_trunk.orig/feeds/packages/net/netatalk/files/afpd.conf	2012-05-02 16:17:25.178403564 +0400
-+++ ../../../openwrt_trunk/feeds/packages/net/netatalk/files/afpd.conf	2012-05-31 21:02:32.572069160 +0400
+--- ../../../openwrt_trunk.orig/feeds/packages/net/netatalk/files/afpd.conf	2012-07-11 14:54:01.310744722 +0400
++++ ../../../openwrt_trunk/feeds/packages/net/netatalk/files/afpd.conf	2012-07-11 14:54:25.514440440 +0400
 @@ -1 +1 @@
 -- -noddp -uampath /usr/lib/uams -uamlist uams_guest.so,uams_passwd.so,uams_dhx_passwd.so,uams_randnum.so,uams_dhx2.so -passwdfile /etc/netatalk/afppasswd -savepassword -passwdminlen 0 -nosetpassword -defaultvol /etc/netatalk/AppleVolumes.default -systemvol /etc/netatalk/AppleVolumes.system -nouservol -guestname "nobody" -sleep 1 -icon
 +- -noddp -uampath /opt/lib/uams -uamlist uams_guest.so,uams_passwd.so,uams_dhx_passwd.so,uams_randnum.so,uams_dhx2.so -passwdfile /etc/netatalk/afppasswd -savepassword -passwdminlen 0 -nosetpassword -defaultvol /etc/netatalk/AppleVolumes.default -systemvol /etc/netatalk/AppleVolumes.system -nouservol -guestname "nobody" -sleep 1 -icon
 diff -urx .svn ../../../openwrt_trunk.orig/feeds/packages/net/netatalk/Makefile ../../../openwrt_trunk/feeds/packages/net/netatalk/Makefile
---- ../../../openwrt_trunk.orig/feeds/packages/net/netatalk/Makefile	2012-05-02 16:17:25.174403614 +0400
-+++ ../../../openwrt_trunk/feeds/packages/net/netatalk/Makefile	2012-05-31 21:05:45.329644024 +0400
+--- ../../../openwrt_trunk.orig/feeds/packages/net/netatalk/Makefile	2012-07-11 14:54:01.306744772 +0400
++++ ../../../openwrt_trunk/feeds/packages/net/netatalk/Makefile	2012-07-11 21:25:26.059501558 +0400
 @@ -25,7 +25,7 @@
    SECTION:=net
    CATEGORY:=Network
@@ -26,7 +26,7 @@ diff -urx .svn ../../../openwrt_trunk.orig/feeds/packages/net/netatalk/Makefile 
  
 -TARGET_CFLAGS += -std=gnu99 -Wl,-rpath-link=$(STAGING_DIR)/usr/lib
 -TARGET_LDFLAGS += $(LIBRPC)
-+TARGET_CFLAGS += -std=gnu99 -Wl,-rpath-link=$(STAGING_DIR)/opt/lib
++TARGET_CFLAGS += -std=gnu99
 +#TARGET_LDFLAGS += $(LIBRPC)
  
  CONFIGURE_ARGS += \

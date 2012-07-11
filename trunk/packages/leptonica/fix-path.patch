@@ -1,11 +1,10 @@
---- ../../../openwrt_trunk.orig/feeds/packages/libs/leptonica/Makefile	2012-01-13 12:15:02.000000000 +0400
-+++ ../../../openwrt_trunk/feeds/packages/libs/leptonica/Makefile	2012-01-14 17:47:25.904729672 +0400
-@@ -29,18 +29,18 @@
+--- ../../../openwrt_trunk.orig/feeds/packages/libs/leptonica/Makefile	2012-07-11 14:54:00.746751812 +0400
++++ ../../../openwrt_trunk/feeds/packages/libs/leptonica/Makefile	2012-07-11 22:49:11.208327830 +0400
+@@ -29,18 +29,17 @@
  endef
  
  TARGET_CFLAGS += $(FPIC)
 -TARGET_LDFLAGS += -Wl,-rpath-link=$(STAGING_DIR)/usr/lib
-+TARGET_LDFLAGS += -Wl,-rpath-link=$(STAGING_DIR)/opt/lib
  
  define Build/InstallDev
 -	$(INSTALL_DIR) $(1)/usr/include

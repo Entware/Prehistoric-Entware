@@ -1,37 +1,29 @@
---- ../../../openwrt_trunk.orig/feeds/packages/devel/diffutils/Makefile	2011-11-28 10:56:51.000000000 +0400
-+++ ../../../openwrt_trunk/feeds/packages/devel/diffutils/Makefile	2011-11-28 13:13:50.902598959 +0400
-@@ -35,22 +35,22 @@
+--- ../../../openwrt_trunk.orig/feeds/packages/devel/diffutils/Makefile	2012-07-10 18:59:23.621214432 +0400
++++ ../../../openwrt_trunk/feeds/packages/devel/diffutils/Makefile	2012-07-10 22:13:04.851116657 +0400
+@@ -35,24 +35,8 @@
  	ac_cv_func_mempcpy=n \
  
  define Package/diffutils/install
 -	$(INSTALL_DIR) $(1)/usr/bin
 -	$(INSTALL_BIN) $(PKG_INSTALL_DIR)/usr/bin/{sdiff,diff3,diff,cmp} $(1)/usr/bin/
+-endef
+-
+-define Package/diffutils/preinst
+-#!/bin/sh
+-for x in sdiff diff3 diff cmp; do
+-  [ -L "$${IPKG_INSTROOT}/usr/bin/$$x" ] && rm -f "$${IPKG_INSTROOT}/usr/bin/$$x"
+-done
+-exit 0
+-endef
+-
+-define Package/diffutils/postrm
+-#!/bin/sh
+-for x in sdiff diff3 diff cmp; do
+-  /bin/busybox $$x -h 2>&1 | grep -q BusyBox && ln -sf ../../bin/busybox /usr/bin/$$x
+-done
+-exit 0
 +	$(INSTALL_DIR) $(1)/opt/bin
 +	$(INSTALL_BIN) $(PKG_INSTALL_DIR)/opt/bin/{sdiff,diff3,diff,cmp} $(1)/opt/bin/
  endef
- 
--define Package/diffutils/preinst
-+#define Package/diffutils/preinst
- #!/bin/sh
--if [ -e $${IPKG_INSTROOT}/usr/bin/diff ]; then
--  rm $${IPKG_INSTROOT}/usr/bin/diff;
--fi
--endef
-+#if [ -e $${IPKG_INSTROOT}/opt/bin/diff ]; then
-+#  rm $${IPKG_INSTROOT}/opt/bin/diff;
-+#fi
-+#endef
- 
--define Package/diffutils/postrm
-+#define Package/diffutils/postrm
- #!/bin/sh
--ln -sf ../../bin/busybox $${IPKG_INSTROOT}/usr/bin/diff
--$${IPKG_INSTROOT}/usr/bin/diff 2>&1 | grep 'applet not found' > /dev/null 2>&1 && rm $${IPKG_INSTROOT}/usr/bin/diff
--exit 0
--endef
-+#ln -sf ../../bin/busybox $${IPKG_INSTROOT}/opt/bin/diff
-+#$${IPKG_INSTROOT}/opt/bin/diff 2>&1 | grep 'applet not found' > /dev/null 2>&1 && rm $${IPKG_INSTROOT}/opt/bin/diff
-+#exit 0
-+#endef
  
  $(eval $(call BuildPackage,diffutils))

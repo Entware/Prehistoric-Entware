@@ -1,6 +1,6 @@
---- ../../../openwrt_trunk.orig/feeds/packages/net/usbip/Makefile	2012-05-02 16:17:26.546386367 +0400
-+++ ../../../openwrt_trunk/feeds/packages/net/usbip/Makefile	2012-06-01 09:30:05.737333258 +0400
-@@ -26,7 +26,6 @@
+--- ../../../openwrt_trunk.orig/feeds/packages/net/usbip/Makefile	2012-07-10 18:59:23.017222024 +0400
++++ ../../../openwrt_trunk/feeds/packages/net/usbip/Makefile	2012-07-11 13:10:33.260792321 +0400
+@@ -25,7 +25,6 @@
  define Package/usbip/Common
    TITLE:=USB-over-IP
    URL:=http://usbip.sourceforge.net/
@@ -8,7 +8,7 @@
    MAINTAINER:=Nuno Goncalves <nunojpg@gmail.com>
  endef
  
-@@ -39,19 +38,19 @@
+@@ -38,53 +37,53 @@
  define Package/usbip
  $(call Package/usbip/Default)
    TITLE+= (common)
@@ -30,51 +30,12 @@
 +  DEPENDS+= usbip +glib2
  endef
  
- define KernelPackage/usbip/Default
-@@ -62,7 +61,6 @@
- define KernelPackage/usbip
- $(call KernelPackage/usbip/Default)
-   TITLE+= (kernel support)
--  DEPENDS+= +kmod-usb-core
-   KCONFIG:= \
- 	CONFIG_USB_IP_COMMON CONFIG_USB_IP_DEBUG_ENABLE=n \
- 	CONFIG_USBIP_CORE CONFIG_USBIP_DEBUG=n
-@@ -78,7 +76,6 @@
- define KernelPackage/usbip-client
- $(call KernelPackage/usbip/Default)
-   TITLE+= (kernel client driver)
--  DEPENDS+= kmod-usbip
-   KCONFIG:= CONFIG_USB_IP_VHCI_HCD CONFIG_USBIP_VHCI_HCD
-   FILES:=$(LINUX_DIR)/drivers/staging/usbip/vhci-hcd.$(LINUX_KMOD_SUFFIX)
-   AUTOLOAD:=$(call AutoLoad,99,vhci-hcd)
-@@ -87,7 +84,6 @@
- define KernelPackage/usbip-server
- $(call KernelPackage/usbip/Default)
-   TITLE+= (kernel host driver)
--  DEPENDS+= kmod-usbip
-   KCONFIG:= CONFIG_USB_IP_HOST CONFIG_USBIP_HOST
-  ifeq ($(strip $(call CompareKernelPatchVer,$(KERNEL_PATCHVER),le,2.6.39)),1)
-   FILES:=$(LINUX_DIR)/drivers/staging/usbip/usbip.$(LINUX_KMOD_SUFFIX)
-@@ -104,11 +100,11 @@
+ CONFIGURE_PATH:=./src
  MAKE_PATH:=./src
  LIBTOOL_PATHS:=./src
  
 -CFLAGS+="$(TARGET_CFLAGS) -I$(STAGING_DIR)/usr/include"
 +CFLAGS+="$(TARGET_CFLAGS) -I$(STAGING_DIR)/opt/include"
- 
- define Build/Compile/kmod
- 	$(MAKE) $(KERNEL_MAKEOPTS) \
--		SUBDIRS="$(LINUX_DIR)/drivers/staging/usbip" \
-+		SUBDIRS="$(LINUX_DIR)/drivers/usb/usbip" \
- 		CONFIG_USB_IP_COMMON=m \
- 		CONFIG_USB_IP_VHCI_HCD=m \
- 		CONFIG_USB_IP_HOST=m \
-@@ -120,35 +116,36 @@
- 
- define Build/Compile
- $(call Build/Compile/Default)
--$(call Build/Compile/kmod)
- endef
  
  define Package/usbip/install
 -	$(INSTALL_DIR) $(1)/usr/lib
@@ -116,8 +77,6 @@
 -		$(1)/usr/bin/usbip_bind_driver
 +		$(PKG_INSTALL_DIR)/opt/bin/bind_driver \
 +		$(1)/opt/bin/usbip_bind_driver
-+	$(INSTALL_DIR) $(1)/opt/etc/init.d
-+	$(INSTALL_BIN) ./files/S74usbipd $(1)/opt/etc/init.d
  endef
  
  $(eval $(call BuildPackage,usbip))

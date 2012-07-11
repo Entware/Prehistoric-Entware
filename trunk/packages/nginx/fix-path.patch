@@ -1,6 +1,6 @@
---- ../../../openwrt_trunk.orig/feeds/packages/net/nginx/Makefile	2012-05-02 16:17:26.498386974 +0400
-+++ ../../../openwrt_trunk/feeds/packages/net/nginx/Makefile	2012-05-31 21:11:40.841177091 +0400
-@@ -49,12 +49,12 @@
+--- ../../../openwrt_trunk.orig/feeds/packages/net/nginx/Makefile	2012-07-10 18:59:23.001222227 +0400
++++ ../../../openwrt_trunk/feeds/packages/net/nginx/Makefile	2012-07-11 12:26:13.742222634 +0400
+@@ -48,12 +48,12 @@
  config_files=nginx.conf mime.types fastcgi_params koi-utf koi-win win-utf
  
  define Package/nginx/conffiles
@@ -19,7 +19,7 @@
  endef
  
  ADDITIONAL_MODULES:=
-@@ -82,15 +82,15 @@
+@@ -81,15 +81,15 @@
  	(cd $(PKG_BUILD_DIR) ;\
  		./configure \
  			--crossbuild=Linux::$(ARCH) \
@@ -44,7 +44,7 @@
  			--with-cc="$(TARGET_CC)" \
  			--with-cc-opt="$(TARGET_CPPFLAGS) $(TARGET_CFLAGS)" \
  			--with-ld-opt="$(TARGET_LDFLAGS)" \
-@@ -98,16 +98,16 @@
+@@ -97,12 +97,12 @@
  endef
  
  define Package/nginx/install
@@ -52,17 +52,12 @@
 -	$(INSTALL_BIN) $(PKG_INSTALL_DIR)/usr/sbin/nginx $(1)/usr/sbin/
 -	$(INSTALL_DIR) $(1)/etc/nginx
 -	$(INSTALL_DATA) $(addprefix $(PKG_INSTALL_DIR)/etc/nginx/,$(config_files)) $(1)/etc/nginx/
-+	$(INSTALL_DIR) $(1)/opt/sbin
-+	$(INSTALL_BIN) $(PKG_INSTALL_DIR)/opt/sbin/nginx $(1)/opt/sbin/
-+	$(INSTALL_DIR)  $(1)/opt/etc/nginx
-+	$(INSTALL_DATA) $(addprefix $(PKG_INSTALL_DIR)/opt/etc/nginx/,$(config_files)) $(1)/opt/etc/nginx/
- 	# make nginx bind on both IPv4 and IPv6 by default, when available
-   ifeq ($(CONFIG_IPV6),y)
--	$(SED) 's/listen\( \+\)80;/listen\1[::]:80;/' $(1)/etc/nginx/nginx.conf
-+	$(SED) 's/listen\( \+\)80;/listen\1[::]:80;/' $(1)/opt/etc/nginx/nginx.conf
-   endif
 -	$(INSTALL_DIR) $(1)/etc/init.d
 -	$(INSTALL_BIN) ./files/nginx.init $(1)/etc/init.d/nginx
++	$(INSTALL_DIR) $(1)/opt/sbin
++	$(INSTALL_BIN) $(PKG_INSTALL_DIR)/opt/sbin/nginx $(1)/opt/sbin/
++	$(INSTALL_DIR) $(1)/opt/etc/nginx
++	$(INSTALL_DATA) $(addprefix $(PKG_INSTALL_DIR)/opt/etc/nginx/,$(config_files)) $(1)/opt/etc/nginx/
 +	$(INSTALL_DIR) $(1)/opt/etc/init.d
 +	$(INSTALL_BIN) ./files/S80nginx $(1)/opt/etc/init.d
  endef

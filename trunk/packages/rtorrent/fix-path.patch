@@ -1,6 +1,6 @@
 diff -urx .svn ../../../openwrt_trunk.orig/feeds/packages/net/rtorrent/Makefile ../../../openwrt_trunk/feeds/packages/net/rtorrent/Makefile
---- ../../../openwrt_trunk.orig/feeds/packages/net/rtorrent/Makefile	2012-04-11 12:16:07.648096259 +0400
-+++ ../../../openwrt_trunk/feeds/packages/net/rtorrent/Makefile	2012-04-23 16:27:02.810334448 +0400
+--- ../../../openwrt_trunk.orig/feeds/packages/net/rtorrent/Makefile	2012-07-11 14:54:01.326744519 +0400
++++ ../../../openwrt_trunk/feeds/packages/net/rtorrent/Makefile	2012-07-11 21:26:32.554665601 +0400
 @@ -8,12 +8,12 @@
  include $(TOPDIR)/rules.mk
  
@@ -14,23 +14,14 @@ diff -urx .svn ../../../openwrt_trunk.orig/feeds/packages/net/rtorrent/Makefile 
 -PKG_MD5SUM:=b804c45c01c40312926bcea6b55bb084
 +PKG_MD5SUM:=72c3e9ab859bda7cc8aa96c0b508b09f
  
- PKG_FIXUP:=libtool
+ PKG_FIXUP:=autoreconf
  PKG_BUILD_PARALLEL:=1
-@@ -27,7 +27,7 @@
-   CATEGORY:=Network
-   TITLE:=BitTorrent client for ncurses
-   URL:=http://libtorrent.rakshasa.no/
--  DEPENDS:=+libcurl +libtorrent +libncurses +libsigcxx +xmlrpc-c-server +libpthread
-+  DEPENDS:=+libcurl +libtorrent +libncurses +libsigcxx +xmlrpc-c-server +libpthread +libncursesw
-   MAINTAINER:=Luka Perkov <openwrt@lukaperkov.net>
- endef
- 
 @@ -39,11 +39,9 @@
  endef
  
  TARGET_CPPFLAGS += -fno-strict-aliasing -fno-inline
 -TARGET_LDFLAGS += -lpthread -Wl,-rpath-link=$(STAGING_DIR)/usr/lib
-+TARGET_LDFLAGS += -lpthread -Wl,-rpath-link=$(STAGING_DIR)/opt/lib
++TARGET_LDFLAGS += -lpthread
  
  CONFIGURE_ARGS+= \
 -	--enable-shared \
@@ -50,8 +41,8 @@ diff -urx .svn ../../../openwrt_trunk.orig/feeds/packages/net/rtorrent/Makefile 
  
  $(eval $(call BuildPackage,rtorrent))
 diff -urx .svn ../../../openwrt_trunk.orig/feeds/packages/net/rtorrent/patches/100-fix-cross_compile.patch ../../../openwrt_trunk/feeds/packages/net/rtorrent/patches/100-fix-cross_compile.patch
---- ../../../openwrt_trunk.orig/feeds/packages/net/rtorrent/patches/100-fix-cross_compile.patch	2012-04-11 12:16:07.664096058 +0400
-+++ ../../../openwrt_trunk/feeds/packages/net/rtorrent/patches/100-fix-cross_compile.patch	2012-04-11 12:17:43.562890446 +0400
+--- ../../../openwrt_trunk.orig/feeds/packages/net/rtorrent/patches/100-fix-cross_compile.patch	2012-07-11 14:54:01.326744519 +0400
++++ ../../../openwrt_trunk/feeds/packages/net/rtorrent/patches/100-fix-cross_compile.patch	2012-07-11 14:54:25.782437071 +0400
 @@ -1,22 +1,20 @@
 -Index: rtorrent-0.8.6/scripts/common.m4
 -===================================================================
@@ -87,8 +78,8 @@ diff -urx .svn ../../../openwrt_trunk.orig/feeds/packages/net/rtorrent/patches/1
         int main() {
           char buf[8] = { 0, 0, 0, 0, 1, 0, 0, 0 };
 diff -urx .svn ../../../openwrt_trunk.orig/feeds/packages/net/rtorrent/patches/120-fix-ncurses.patch ../../../openwrt_trunk/feeds/packages/net/rtorrent/patches/120-fix-ncurses.patch
---- ../../../openwrt_trunk.orig/feeds/packages/net/rtorrent/patches/120-fix-ncurses.patch	2012-04-11 12:16:07.664096058 +0400
-+++ ../../../openwrt_trunk/feeds/packages/net/rtorrent/patches/120-fix-ncurses.patch	2012-04-11 12:17:43.562890446 +0400
+--- ../../../openwrt_trunk.orig/feeds/packages/net/rtorrent/patches/120-fix-ncurses.patch	2012-07-11 14:54:01.326744519 +0400
++++ ../../../openwrt_trunk/feeds/packages/net/rtorrent/patches/120-fix-ncurses.patch	2012-07-11 14:54:25.782437071 +0400
 @@ -1,13 +1,11 @@
 -Index: rtorrent-0.8.6/src/display/canvas.h
 -===================================================================

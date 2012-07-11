@@ -1,31 +1,15 @@
---- ../../../openwrt_trunk.orig/feeds/packages/libs/alsa-lib/Makefile	2011-11-25 09:50:00.972811950 +0400
-+++ ../../../openwrt_trunk/feeds/packages/libs/alsa-lib/Makefile	2011-11-26 21:29:50.233996693 +0400
-@@ -21,18 +21,18 @@
- 
- include $(INCLUDE_DIR)/package.mk
- 
--ifeq ($(KERNEL),2.4)
--DEPENDS_KMOD:=+kmod-alsa
--else
--DEPENDS_KMOD:=+kmod-sound-core
--endif
-+# ifeq ($(KERNEL),2.4)
-+# DEPENDS_KMOD:=+kmod-alsa
-+# else
-+# DEPENDS_KMOD:=+kmod-sound-core
-+# endif
- 
- define Package/alsa-lib
-   SECTION:=libs
+--- ../../../openwrt_trunk.orig/feeds/packages/libs/alsa-lib/Makefile	2012-07-11 13:33:34.975419980 +0400
++++ ../../../openwrt_trunk/feeds/packages/libs/alsa-lib/Makefile	2012-07-11 14:10:02.263923019 +0400
+@@ -26,7 +26,7 @@
    CATEGORY:=Libraries
    TITLE:=ALSA (Advanced Linux Sound Architecture) library
    URL:=http://www.alsa-project.org/
--  DEPENDS:=@AUDIO_SUPPORT $(DEPENDS_KMOD)
-+#  DEPENDS:=@AUDIO_SUPPORT $(DEPENDS_KMOD)
+-  DEPENDS:=@AUDIO_SUPPORT +kmod-sound-core +libpthread +librt
++  DEPENDS:=@AUDIO_SUPPORT +libpthread +librt
  endef
  
  define Package/alsa-lib/description
-@@ -54,41 +54,41 @@
+@@ -48,41 +48,41 @@
  endef
  
  define Build/InstallDev

@@ -1,5 +1,5 @@
---- ../../../openwrt_trunk.orig/feeds/packages/net/vnstat/Makefile	2012-05-02 16:17:23.946419053 +0400
-+++ ../../../openwrt_trunk/feeds/packages/net/vnstat/Makefile	2012-06-01 09:51:02.725722035 +0400
+--- ../../../openwrt_trunk.orig/feeds/packages/net/vnstat/Makefile	2012-07-11 14:54:00.806751057 +0400
++++ ../../../openwrt_trunk/feeds/packages/net/vnstat/Makefile	2012-07-11 21:14:28.631766544 +0400
 @@ -55,21 +55,21 @@
  endef
  
@@ -23,7 +23,7 @@
 -		CFLAGS="$(TARGET_CFLAGS) -I$(STAGING_DIR)/usr/include" \
 -		LDFLAGS="$(TARGET_LDFLAGS) -Wl,-rpath-link,$(STAGING_DIR)/usr/lib" \
 +		CFLAGS="$(TARGET_CFLAGS) -I$(STAGING_DIR)/opt/include" \
-+		LDFLAGS="$(TARGET_LDFLAGS) -Wl,-rpath-link,$(STAGING_DIR)/opt/lib" \
++		LDFLAGS="$(TARGET_LDFLAGS)" \
  		all
  endef
  

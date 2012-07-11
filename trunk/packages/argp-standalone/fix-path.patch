@@ -1,0 +1,19 @@
+--- ../../../openwrt_trunk.orig/feeds/packages/libs/argp-standalone/Makefile	2012-07-11 14:54:00.726752064 +0400
++++ ../../../openwrt_trunk/feeds/packages/libs/argp-standalone/Makefile	2012-07-11 22:52:21.669930997 +0400
+@@ -26,12 +26,12 @@
+ 
+ 
+ define Build/InstallDev
+-	$(INSTALL_DIR) $(1)/usr/include
++	$(INSTALL_DIR) $(1)/opt/include
+ 	$(CP)   $(PKG_BUILD_DIR)/argp.h \
+-		$(1)/usr/include/
+-	$(INSTALL_DIR) $(1)/usr/lib
++		$(1)/opt/include/
++	$(INSTALL_DIR) $(1)/opt/lib
+ 	$(CP)   $(PKG_BUILD_DIR)/libargp.a \
+-		$(1)/usr/lib/
++		$(1)/opt/lib/
+ endef
+ 
+ $(eval $(call BuildPackage,argp-standalone))

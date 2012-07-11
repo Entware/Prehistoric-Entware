@@ -1,6 +1,6 @@
---- ../../../openwrt_trunk.orig/feeds/packages/net/transmission/Makefile	2012-05-02 16:17:26.546386367 +0400
-+++ ../../../openwrt_trunk/feeds/packages/net/transmission/Makefile	2012-06-01 09:13:52.411137762 +0400
-@@ -71,11 +71,11 @@
+--- ../../../openwrt_trunk.orig/feeds/packages/net/transmission/Makefile	2012-07-10 18:59:23.017222024 +0400
++++ ../../../openwrt_trunk/feeds/packages/net/transmission/Makefile	2012-07-10 19:00:17.072542456 +0400
+@@ -72,11 +72,11 @@
  endef
  
  define Package/transmission-daemon/conffiles
@@ -14,7 +14,7 @@
  
  CONFIGURE_ARGS += \
  	--enable-daemon \
-@@ -88,31 +88,31 @@
+@@ -89,31 +89,31 @@
  	CFLAGS="$(TARGET_CFLAGS) -D_GNU_SOURCE"
  
  define Package/transmission-daemon/install

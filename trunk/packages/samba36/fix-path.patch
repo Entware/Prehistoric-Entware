@@ -1,7 +1,7 @@
 diff -urx .svn ../../../openwrt_trunk.orig/feeds/packages/net/samba36/Makefile ../../../openwrt_trunk/feeds/packages/net/samba36/Makefile
---- ../../../openwrt_trunk.orig/feeds/packages/net/samba36/Makefile	2012-06-01 10:50:34.468282159 +0400
-+++ ../../../openwrt_trunk/feeds/packages/net/samba36/Makefile	2012-06-01 11:46:43.016537588 +0400
-@@ -75,7 +75,7 @@
+--- ../../../openwrt_trunk.orig/feeds/packages/net/samba36/Makefile	2012-07-10 18:59:22.441229266 +0400
++++ ../../../openwrt_trunk/feeds/packages/net/samba36/Makefile	2012-07-10 19:00:16.620548139 +0400
+@@ -76,7 +76,7 @@
  	samba_cv_zlib_1_2_3=no
  
  CONFIGURE_ARGS += \
@@ -10,7 +10,7 @@ diff -urx .svn ../../../openwrt_trunk.orig/feeds/packages/net/samba36/Makefile .
  	--prefix=/ \
  	--disable-avahi \
  	--disable-cups \
-@@ -84,15 +84,15 @@
+@@ -85,15 +85,15 @@
  	--disable-static \
  	--disable-swat \
  	--disable-shared-libs \
@@ -33,7 +33,7 @@ diff -urx .svn ../../../openwrt_trunk.orig/feeds/packages/net/samba36/Makefile .
  	--with-sendfile-support \
  	--without-cluster-support \
  	--without-ads \
-@@ -111,26 +111,27 @@
+@@ -112,26 +112,27 @@
  MAKE_FLAGS += DYNEXP= PICFLAG= MODULES=
  
  define Package/samba36-server/install
@@ -79,8 +79,8 @@ diff -urx .svn ../../../openwrt_trunk.orig/feeds/packages/net/samba36/Makefile .
  
  $(eval $(call BuildPackage,samba36-client))
 diff -urx .svn ../../../openwrt_trunk.orig/feeds/packages/net/samba36/patches/111-owrt_smbpasswd.patch ../../../openwrt_trunk/feeds/packages/net/samba36/patches/111-owrt_smbpasswd.patch
---- ../../../openwrt_trunk.orig/feeds/packages/net/samba36/patches/111-owrt_smbpasswd.patch	2012-06-01 10:50:34.504281706 +0400
-+++ ../../../openwrt_trunk/feeds/packages/net/samba36/patches/111-owrt_smbpasswd.patch	2012-06-01 10:51:35.483515094 +0400
+--- ../../../openwrt_trunk.orig/feeds/packages/net/samba36/patches/111-owrt_smbpasswd.patch	2012-07-10 18:59:22.445229216 +0400
++++ ../../../openwrt_trunk/feeds/packages/net/samba36/patches/111-owrt_smbpasswd.patch	2012-07-10 19:00:16.624548089 +0400
 @@ -232,15 +232,15 @@
  +		}
  +	}

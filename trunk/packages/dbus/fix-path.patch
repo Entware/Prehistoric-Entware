@@ -1,6 +1,6 @@
 diff -urx .svn ../../../openwrt_trunk.orig/feeds/packages/utils/dbus/files/dbus-launch ../../../openwrt_trunk/feeds/packages/utils/dbus/files/dbus-launch
---- ../../../openwrt_trunk.orig/feeds/packages/utils/dbus/files/dbus-launch	2012-05-02 16:17:34.790282731 +0400
-+++ ../../../openwrt_trunk/feeds/packages/utils/dbus/files/dbus-launch	2012-05-02 16:18:18.737730232 +0400
+--- ../../../openwrt_trunk.orig/feeds/packages/utils/dbus/files/dbus-launch	2012-07-11 14:54:02.066735216 +0400
++++ ../../../openwrt_trunk/feeds/packages/utils/dbus/files/dbus-launch	2012-07-11 14:54:24.250456314 +0400
 @@ -5,8 +5,8 @@
  # dbus-launch-x package. The script is used to prefer dbus-launch with x over
  # the dbus-lauch without x.
@@ -13,21 +13,21 @@ diff -urx .svn ../../../openwrt_trunk.orig/feeds/packages/utils/dbus/files/dbus-
 -	exec /usr/bin/dbus-launch.real $@
 +	exec /opt/bin/dbus-launch.real $@
  fi
+Только в ../../../openwrt_trunk/feeds/packages/utils/dbus/files: S20dbus
 diff -urx .svn ../../../openwrt_trunk.orig/feeds/packages/utils/dbus/Makefile ../../../openwrt_trunk/feeds/packages/utils/dbus/Makefile
---- ../../../openwrt_trunk.orig/feeds/packages/utils/dbus/Makefile	2012-05-02 16:17:34.786282779 +0400
-+++ ../../../openwrt_trunk/feeds/packages/utils/dbus/Makefile	2012-05-31 16:55:12.047009543 +0400
-@@ -22,8 +22,8 @@
+--- ../../../openwrt_trunk.orig/feeds/packages/utils/dbus/Makefile	2012-07-11 14:54:02.066735216 +0400
++++ ../../../openwrt_trunk/feeds/packages/utils/dbus/Makefile	2012-07-11 21:06:25.369839179 +0400
+@@ -22,8 +22,7 @@
  include $(INCLUDE_DIR)/package.mk
  
  TARGET_LDFLAGS+= \
 -	-Wl,-rpath-link=$(STAGING_DIR)/usr/lib \
 -	-Wl,-rpath=/usr/lib/
-+	-Wl,-rpath-link=$(STAGING_DIR)/opt/lib \
 +	-Wl,-rpath=/opt/lib/
  
  define Package/dbus/Default
    SECTION:=utils
-@@ -94,11 +94,11 @@
+@@ -95,11 +94,11 @@
  	--disable-xml-docs \
  	--with-xml="expat" \
  	--with-dbus-user=root \
@@ -43,7 +43,7 @@ diff -urx .svn ../../../openwrt_trunk.orig/feeds/packages/utils/dbus/Makefile ..
  
  CONFIGURE_VARS+= \
  	ac_cv_have_abstract_sockets="yes" \
-@@ -106,79 +106,79 @@
+@@ -107,79 +106,79 @@
  
  
  define Build/InstallDev

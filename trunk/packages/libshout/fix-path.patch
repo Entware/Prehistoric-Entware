@@ -1,11 +1,11 @@
---- ../../../openwrt_trunk.orig/feeds/packages/libs/libshout/Makefile	2011-12-05 10:46:45.000000000 +0400
-+++ ../../../openwrt_trunk/feeds/packages/libs/libshout/Makefile	2011-12-09 14:22:44.317583574 +0400
+--- ../../../openwrt_trunk.orig/feeds/packages/libs/libshout/Makefile	2012-07-11 14:54:00.738751912 +0400
++++ ../../../openwrt_trunk/feeds/packages/libs/libshout/Makefile	2012-07-11 22:46:40.402224884 +0400
 @@ -20,7 +20,7 @@
  
  include $(INCLUDE_DIR)/package.mk
  
 -TARGET_CFLAGS += $(FPIC) -Wl,-rpath-link=$(STAGING_DIR)/usr/lib
-+TARGET_CFLAGS += $(FPIC) -Wl,-rpath-link=$(STAGING_DIR)/opt/lib
++TARGET_CFLAGS += $(FPIC)
  
  define Package/libshout
    SECTION:=libs

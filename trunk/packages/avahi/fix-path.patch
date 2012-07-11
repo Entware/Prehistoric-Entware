@@ -1,5 +1,5 @@
---- ../../../openwrt_trunk.orig/feeds/packages/libs/avahi/Makefile	2012-05-02 16:17:23.550424031 +0400
-+++ ../../../openwrt_trunk/feeds/packages/libs/avahi/Makefile	2012-05-31 15:45:08.450388519 +0400
+--- ../../../openwrt_trunk.orig/feeds/packages/libs/avahi/Makefile	2012-07-10 18:59:22.281231278 +0400
++++ ../../../openwrt_trunk/feeds/packages/libs/avahi/Makefile	2012-07-10 18:59:43.716961794 +0400
 @@ -105,9 +105,9 @@
  endef
  
@@ -13,8 +13,8 @@
  endef
  
  define Package/avahi-dnsconfd
-@@ -235,61 +235,61 @@
- 	CFLAGS="$$$$CFLAGS -DNDEBUG -DDISABLE_SYSTEMD" \
+@@ -236,61 +236,61 @@
+ 	ac_cv_header_sys_capability_h=no \
  
  define Build/InstallDev
 -	$(INSTALL_DIR) $(1)/usr/include

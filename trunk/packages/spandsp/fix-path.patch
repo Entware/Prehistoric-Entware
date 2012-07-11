@@ -1,10 +1,7 @@
---- ../../../openwrt_trunk.orig/feeds/packages/libs/spandsp/Makefile	2012-03-21 16:34:50.339629841 +0400
-+++ ../../../openwrt_trunk/feeds/packages/libs/spandsp/Makefile	2012-03-21 18:50:47.981043815 +0400
-@@ -31,16 +31,17 @@
- endef
- 
+--- ../../../openwrt_trunk.orig/feeds/packages/libs/spandsp/Makefile	2012-07-11 14:54:00.690752516 +0400
++++ ../../../openwrt_trunk/feeds/packages/libs/spandsp/Makefile	2012-07-11 21:27:58.545584546 +0400
+@@ -33,14 +33,14 @@
  TARGET_CFLAGS += $(FPIC)
-+TARGET_LDFLAGS += -Wl,-rpath-link=$(STAGING_DIR)/opt/lib
  
  define Build/InstallDev
 -	$(INSTALL_DIR) $(1)/usr/{lib,include}

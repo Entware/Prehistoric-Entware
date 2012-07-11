@@ -1,15 +1,6 @@
---- ../../../openwrt_trunk.orig/package/e2fsprogs/Makefile	2012-07-10 16:32:09.380275881 +0400
-+++ ../../../openwrt_trunk/package/e2fsprogs/Makefile	2012-07-10 16:38:29.911491955 +0400
-@@ -10,7 +10,7 @@
- PKG_NAME:=e2fsprogs
- PKG_VERSION:=1.42.2
- PKG_MD5SUM:=04f4561a54ad0419248316a00c016baa
--PKG_RELEASE:=1
-+PKG_RELEASE:=2
- 
- PKG_SOURCE:=$(PKG_NAME)-$(PKG_VERSION).tar.gz
- PKG_SOURCE_URL:=@SF/e2fsprogs
-@@ -120,43 +120,44 @@
+--- ../../../openwrt_trunk.orig/package/e2fsprogs/Makefile	2012-07-10 18:59:26.209181897 +0400
++++ ../../../openwrt_trunk/package/e2fsprogs/Makefile	2012-07-10 19:00:03.080718359 +0400
+@@ -122,43 +122,44 @@
  endef
  
  define Package/e2fsprogs/install

@@ -1,6 +1,15 @@
---- ../../../openwrt_trunk.orig/feeds/packages/net/asterisk-1.8.x/Makefile	2012-05-02 16:17:23.886419808 +0400
-+++ ../../../openwrt_trunk/feeds/packages/net/asterisk-1.8.x/Makefile	2012-05-31 15:08:41.823812799 +0400
-@@ -224,7 +224,7 @@
+--- ../../../openwrt_trunk.orig/feeds/packages/net/asterisk-1.8.x/Makefile	2012-07-10 18:59:22.385229969 +0400
++++ ../../../openwrt_trunk/feeds/packages/net/asterisk-1.8.x/Makefile	2012-07-10 21:48:39.773561149 +0400
+@@ -71,7 +71,7 @@
+ define Package/asterisk18-app-meetme
+ $(call Package/asterisk18/Default)
+   TITLE:=conferencing support
+-  DEPENDS:= asterisk18 +dahdi-tools-libtonezone +kmod-dahdi-linux
++  DEPENDS:= asterisk18 +dahdi-tools-libtonezone
+ endef
+ 
+ define Package/asterisk18-app-meetme/description
+@@ -235,7 +235,7 @@
  
  ifneq ($(SDK)$(CONFIG_PACKAGE_asterisk18-app-meetme),)
    CONFIGURE_ARGS+= \
@@ -9,7 +18,7 @@
  else
    CONFIGURE_ARGS+= \
  	--without-dahdi
-@@ -232,8 +232,8 @@
+@@ -243,8 +243,8 @@
  
  ifneq ($(SDK)$(CONFIG_PACKAGE_asterisk18-chan-gtalk),)
    CONFIGURE_ARGS+= \
@@ -20,7 +29,7 @@
    SITE_VARS+= \
  	ac_cv_lib_iksemel_iks_start_sasl=yes \
  	ac_cv_lib_gnutls_gnutls_bye=yes
-@@ -245,7 +245,7 @@
+@@ -256,7 +256,7 @@
  
  ifneq ($(SDK)$(CONFIG_PACKAGE_asterisk18-curl),)
    CONFIGURE_ARGS+= \
@@ -29,7 +38,7 @@
  else
    CONFIGURE_ARGS+= \
  	--without-curl
-@@ -253,7 +253,7 @@
+@@ -264,7 +264,7 @@
  
  ifneq ($(SDK)$(CONFIG_PACKAGE_asterisk18-mysql),)
    CONFIGURE_ARGS+= \
@@ -38,7 +47,16 @@
  else
    CONFIGURE_ARGS+= \
  	--without-mysqlclient
-@@ -269,7 +269,7 @@
+@@ -272,7 +272,7 @@
+ 
+ ifneq ($(SDK)$(CONFIG_PACKAGE_asterisk18-res-fax-spandsp),)
+   CONFIGURE_ARGS+= \
+-    --with-spandsp="$(STAGING_DIR)/usr"
++    --with-spandsp="$(STAGING_DIR)/opt"
+ else
+   CONFIGURE_ARGS+= \
+     --without-spandsp
+@@ -280,7 +280,7 @@
  
  ifneq ($(SDK)$(CONFIG_PACKAGE_asterisk18-chan-mobile),)
    CONFIGURE_ARGS+= \
@@ -47,7 +65,7 @@
  else
    CONFIGURE_ARGS+= \
  	--without-bluetooth
-@@ -277,7 +277,7 @@
+@@ -288,7 +288,7 @@
  
  ifneq ($(SDK)$(CONFIG_PACKAGE_asterisk18-res-srtp),)
    CONFIGURE_ARGS+= \
@@ -56,7 +74,7 @@
  else
    CONFIGURE_ARGS+= \
  	--without-srtp
-@@ -292,13 +292,13 @@
+@@ -304,13 +304,13 @@
  	--without-kde \
  	--without-misdn \
  	--without-nbs \
@@ -72,7 +90,7 @@
  	--without-pri \
  	--without-qt \
  	--without-radius \
-@@ -309,7 +309,7 @@
+@@ -321,7 +321,7 @@
  	--without-tinfo \
  	--without-vorbis \
  	--without-vpb \
@@ -81,7 +99,7 @@
  	--with-sounds-cache="$(DL_DIR)" \
  	--disable-xmldoc
  
-@@ -328,10 +328,10 @@
+@@ -347,10 +347,10 @@
  	ASTCFLAGS="$(EXTRA_CFLAGS) -DLOW_MEMORY" \
  	ASTLDFLAGS="$(EXTRA_LDFLAGS)" \
  	$(MAKE) -C "$(PKG_BUILD_DIR)" \
@@ -96,7 +114,7 @@
  		NOISY_BUILD="1" \
  		DEBUG="" \
  		OPTIMIZE="" \
-@@ -340,227 +340,227 @@
+@@ -359,238 +359,235 @@
  endef
  
  define Build/InstallDev
@@ -131,8 +149,6 @@
 +/opt/etc/asterisk/logger.conf
 +/opt/etc/asterisk/manager.conf
 +/opt/etc/asterisk/rtp.conf
-+/opt/etc/default/asterisk
-+/opt/etc/init.d/asterisk
  endef
  
  define Package/asterisk18/install
@@ -163,10 +179,9 @@
 -	$(INSTALL_BIN)  ./files/asterisk.init $(1)/etc/init.d/asterisk
 +	$(INSTALL_DIR) $(1)/opt/sbin
 +	$(INSTALL_BIN) $(PKG_INSTALL_DIR)/opt/sbin/asterisk $(1)/opt/sbin/
-+	$(INSTALL_DIR) $(1)/opt/etc/default
-+	$(INSTALL_DATA)  ./files/asterisk.default $(1)/opt/etc/default/asterisk
++	$(INSTALL_DIR) $(1)/opt/var/{run,log,spool}/asterisk
 +	$(INSTALL_DIR) $(1)/opt/etc/init.d
-+	$(INSTALL_BIN) ./files/S31asterisk $(1)/opt/etc/init.d
++	$(INSTALL_BIN) ./files/S31asterisk $(1)/opt/etc/init.d/
  endef
  
  define Package/asterisk18-sounds/install
@@ -435,6 +450,22 @@
 +	$(INSTALL_BIN) $(PKG_INSTALL_DIR)/opt/lib/asterisk/modules/res_config_mysql.so $(1)/opt/lib/asterisk/modules/
  endef
  
+ define Package/asterisk18-chan-lantiq/conffiles
+-/etc/asterisk/lantiq.conf
++/opt/etc/asterisk/lantiq.conf
+ endef
+ 
+ define Package/asterisk18-chan-lantiq/install
+-	$(INSTALL_DIR) $(1)/usr/lib/asterisk/modules
+-	$(INSTALL_DIR) $(1)/etc/asterisk
+-	$(INSTALL_DATA) $(PKG_INSTALL_DIR)/etc/asterisk/lantiq.conf $(1)/etc/asterisk/
+-	$(INSTALL_BIN) $(PKG_INSTALL_DIR)/usr/lib/asterisk/modules/chan_lantiq.so $(1)/usr/lib/asterisk/modules/
++	$(INSTALL_DIR) $(1)/opt/lib/asterisk/modules
++	$(INSTALL_DIR) $(1)/opt/etc/asterisk
++	$(INSTALL_DATA) $(PKG_INSTALL_DIR)/opt/etc/asterisk/lantiq.conf $(1)/opt/etc/asterisk/
++	$(INSTALL_BIN) $(PKG_INSTALL_DIR)/opt/lib/asterisk/modules/chan_lantiq.so $(1)/opt/lib/asterisk/modules/
+ endef
+ 
  define Package/asterisk18-res-srtp/install
 -	$(INSTALL_DIR) $(1)/usr/lib/asterisk/modules
 -	$(INSTALL_BIN) $(PKG_INSTALL_DIR)/usr/lib/asterisk/modules/res_srtp.so $(1)/usr/lib/asterisk/modules/
@@ -443,7 +474,7 @@
  endef
  
  define Buildasterisk18ModuleTemplate
-@@ -577,8 +577,8 @@
+@@ -607,8 +604,8 @@
    endef
  
    define Package/asterisk18-$(subst _,-,$(1))/install

@@ -1,6 +1,6 @@
---- ../../../openwrt_trunk.orig/package/util-linux/Makefile	2012-06-01 10:50:53.848038525 +0400
-+++ ../../../openwrt_trunk/package/util-linux/Makefile	2012-06-01 11:52:46.587963686 +0400
-@@ -44,22 +44,22 @@
+--- ../../../openwrt_trunk.orig/package/util-linux/Makefile	2012-07-10 18:59:23.773212520 +0400
++++ ../../../openwrt_trunk/package/util-linux/Makefile	2012-07-10 19:00:23.820457592 +0400
+@@ -45,22 +45,22 @@
  		DESTDIR="$(1)" \
  		installdirs install-data
  
@@ -39,7 +39,7 @@
  endef
  
  define Package/libblkid
-@@ -399,161 +399,161 @@
+@@ -404,161 +404,161 @@
  endef
  
  define Package/libblkid/install

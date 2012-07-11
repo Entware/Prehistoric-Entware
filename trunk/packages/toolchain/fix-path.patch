@@ -1,41 +1,26 @@
---- ../../../openwrt_trunk.orig/package/base-files/Makefile	2012-06-01 10:50:56.460005602 +0400
-+++ ../../../openwrt_trunk/package/base-files/Makefile	2012-06-01 12:45:40.412730511 +0400
-@@ -35,26 +35,12 @@
- define Package/base-files
-   SECTION:=base
-   CATEGORY:=Base system
--  DEPENDS:=+netifd
-   TITLE:=Base filesystem for OpenWrt
-   URL:=http://openwrt.org/
-   VERSION:=$(PKG_RELEASE)-$(REVISION)
- endef
+--- ../../../openwrt_trunk.orig/package/toolchain/Makefile	2012-07-11 13:33:42.403326592 +0400
++++ ../../../openwrt_trunk/package/toolchain/Makefile	2012-07-11 13:34:20.474874943 +0400
+@@ -7,16 +7,12 @@
  
- define Package/base-files/conffiles
--/etc/hosts
--/etc/inittab
--/etc/group
--/etc/passwd
--/etc/shadow
--/etc/profile
--/etc/shells
--/etc/sysctl.conf
--/etc/rc.local
--/etc/sysupgrade.conf
--/etc/config/
--/etc/dropbear/
--/etc/crontabs/
- $(call $(TARGET)/conffiles)
- endef
+ include $(TOPDIR)/rules.mk
+ PKG_NAME:=toolchain
+-PKG_RELEASE:=1
++PKG_RELEASE:=3
  
-@@ -160,7 +146,6 @@
-   DEPENDS:=+libgcc
- endif
-   URL:=$(LIBC_URL)
--  PKG_FLAGS:=hold essential
- endef
+ include $(INCLUDE_DIR)/package.mk
  
+-ifneq ($(DUMP),1)
+-  LIBGCC_VERSION:=$(GCC_VERSION)
+-else
+-  LIBC_VERSION:=<LIBC_VERSION>
+-  LIBGCC_VERSION:=<LIBGCC_VERSION>
+-endif
++LIBC_VERSION:=0.9.32
++LIBGCC_VERSION:=4.5.3
  
-@@ -603,8 +588,8 @@
+ define Package/gcc/Default
+   SECTION:=libs
+@@ -470,8 +466,8 @@
    define Package/libgcc/install
  	for file in $(call qstrip,$(CONFIG_LIBGCC_FILE_SPEC)); do \
  		dir=`dirname $$$$file` ; \
@@ -46,7 +31,7 @@
  	done ; \
  	exit 0
    endef
-@@ -612,16 +597,16 @@
+@@ -479,16 +475,16 @@
    define Package/libgfortran/install
  	for file in $(call qstrip,$(CONFIG_LIBGFORTRAN_FILE_SPEC)); do \
  		dir=`dirname $$$$file` ; \
@@ -67,7 +52,7 @@
  	done ; \
  	exit 0
    endef
-@@ -629,8 +614,8 @@
+@@ -496,8 +492,8 @@
    define Package/libstdcpp/install
  	for file in $(call qstrip,$(CONFIG_LIBSTDCPP_FILE_SPEC)); do \
  		dir=`dirname $$$$file` ; \
@@ -78,7 +63,7 @@
  	done ; \
  	exit 0
    endef
-@@ -638,8 +623,8 @@
+@@ -505,8 +501,8 @@
    define Package/libc/install
  	for file in $(call qstrip,$(CONFIG_LIBC_FILE_SPEC)); do \
  		dir=`dirname $$$$file` ; \
@@ -89,7 +74,7 @@
  	done ; \
  	exit 0
    endef
-@@ -647,8 +632,8 @@
+@@ -514,8 +510,8 @@
    define Package/libpthread/install
  	for file in $(call qstrip,$(CONFIG_LIBPTHREAD_FILE_SPEC)); do \
  		dir=`dirname $$$$file` ; \
@@ -100,7 +85,7 @@
  	done ; \
  	exit 0
    endef
-@@ -656,8 +641,8 @@
+@@ -523,8 +519,8 @@
    define Package/librt/install
  	for file in $(call qstrip,$(CONFIG_LIBRT_FILE_SPEC)); do \
  		dir=`dirname $$$$file` ; \
@@ -111,7 +96,7 @@
  	done ; \
  	exit 0
    endef
-@@ -665,8 +650,8 @@
+@@ -532,8 +528,8 @@
    define Package/ldd/install
  	for file in $(call qstrip,$(CONFIG_LDD_FILE_SPEC)); do \
  		dir=`dirname $$$$file` ; \
@@ -122,7 +107,7 @@
  	done ; \
  	exit 0
    endef
-@@ -674,8 +659,8 @@
+@@ -541,8 +537,8 @@
    define Package/ldconfig/install
  	for file in $(call qstrip,$(CONFIG_LDCONFIG_FILE_SPEC)); do \
  		dir=`dirname $$$$file` ; \

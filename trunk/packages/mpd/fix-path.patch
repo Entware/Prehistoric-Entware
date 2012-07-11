@@ -1,6 +1,6 @@
---- ../../../openwrt_trunk.orig/feeds/packages/sound/mpd/Makefile	2012-05-02 16:17:30.774333215 +0400
-+++ ../../../openwrt_trunk/feeds/packages/sound/mpd/Makefile	2012-05-31 17:58:17.637794254 +0400
-@@ -131,13 +131,13 @@
+--- ../../../openwrt_trunk.orig//feeds/packages/sound/mpd/Makefile	2012-07-11 14:54:02.022735770 +0400
++++ ../../../openwrt_trunk/feeds/packages/sound/mpd/Makefile	2012-07-11 21:23:31.732939871 +0400
+@@ -131,13 +131,12 @@
  	--enable-un \
  
  CONFIGURE_VARS += \
@@ -12,11 +12,10 @@
  
  TARGET_CFLAGS += -std=gnu99
 -TARGET_LDFLAGS += -Wl,-rpath-link=$(STAGING_DIR)/usr/lib
-+TARGET_LDFLAGS += -Wl,-rpath-link=$(STAGING_DIR)/opt/lib
  
  # use gcc instead of g++ to avoid unnecessary linking against libstdc++
  TARGET_CXX:=$(TARGET_CC)
-@@ -160,7 +160,7 @@
+@@ -160,7 +159,7 @@
  	--enable-sndfile \
  	--enable-vorbis \
  	--enable-vorbis-encoder \
@@ -25,7 +24,7 @@
  	--with-tremor=no \
  
  endif
-@@ -189,18 +189,18 @@
+@@ -189,18 +188,18 @@
  endif
  
  define Package/mpd/install

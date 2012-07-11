@@ -1,5 +1,5 @@
---- ../../../openwrt_trunk.orig//feeds/packages/libs/libtorrent/Makefile	2012-06-11 17:15:51.396750972 +0400
-+++ ../../../openwrt_trunk/feeds/packages/libs/libtorrent/Makefile	2012-06-11 23:30:38.591284476 +0400
+--- ../../../openwrt_trunk.orig/feeds/packages/libs/libtorrent/Makefile	2012-07-10 18:59:22.333230624 +0400
++++ ../../../openwrt_trunk/feeds/packages/libs/libtorrent/Makefile	2012-07-10 19:00:03.900708050 +0400
 @@ -8,12 +8,12 @@
  include $(TOPDIR)/rules.mk
  
@@ -13,7 +13,7 @@
 -PKG_MD5SUM:=037499ed708aaf72988cee60e5a8d96b
 +PKG_MD5SUM:=96c0b81501357df402ab592f59ecaeab
  
- PKG_FIXUP:=libtool
+ PKG_FIXUP:=autoreconf
  PKG_BUILD_PARALLEL:=1
 @@ -42,11 +42,10 @@
  TARGET_LDFLAGS += $(LIBGCC_S)

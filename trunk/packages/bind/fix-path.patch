@@ -1,15 +1,15 @@
---- ../../../openwrt_trunk.orig/feeds/packages/net/bind/Makefile	2012-06-01 10:50:38.992225286 +0400
-+++ ../../../openwrt_trunk/feeds/packages/net/bind/Makefile	2012-06-01 10:51:32.447553261 +0400
-@@ -85,7 +85,7 @@
- 	--enable-static \
+--- ../../../openwrt_trunk.orig/feeds/packages/net/bind/Makefile	2012-07-10 18:59:23.021221974 +0400
++++ ../../../openwrt_trunk/feeds/packages/net/bind/Makefile	2012-07-10 21:54:52.536844395 +0400
+@@ -89,7 +89,7 @@
  	--with-randomdev="/dev/urandom" \
  	--disable-threads \
+ 	--disable-linux-caps \
 -	--with-openssl="$(STAGING_DIR)/usr" \
 +	--with-openssl="$(STAGING_DIR)/opt" \
  	--with-libtool \
  	--with-libxml2=no \
  	--enable-epoll=yes \
-@@ -107,80 +107,80 @@
+@@ -111,80 +111,80 @@
  endef
  
  define Package/bind-libs/install

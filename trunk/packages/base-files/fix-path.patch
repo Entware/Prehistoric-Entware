@@ -1,0 +1,11 @@
+--- ../../../openwrt_trunk.orig/package/base-files/Makefile	2012-07-10 18:59:23.801212169 +0400
++++ ../../../openwrt_trunk/package/base-files/Makefile	2012-07-10 19:58:51.840349642 +0400
+@@ -31,7 +31,7 @@
+ define Package/base-files
+   SECTION:=base
+   CATEGORY:=Base system
+-  DEPENDS:=+netifd +libc
++  DEPENDS:=+libc
+   TITLE:=Base filesystem for OpenWrt
+   URL:=http://openwrt.org/
+   VERSION:=$(PKG_RELEASE)-$(REVISION)

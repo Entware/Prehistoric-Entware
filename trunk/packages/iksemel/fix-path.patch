@@ -1,11 +1,10 @@
---- ../../../openwrt_trunk.orig/feeds/packages/libs/iksemel/Makefile	2011-12-05 10:46:45.000000000 +0400
-+++ ../../../openwrt_trunk/feeds/packages/libs/iksemel/Makefile	2011-12-20 15:38:35.646631916 +0400
-@@ -38,31 +38,31 @@
+--- ../../../openwrt_trunk.orig/feeds/packages/libs/iksemel/Makefile	2012-07-11 14:54:00.742751862 +0400
++++ ../../../openwrt_trunk/feeds/packages/libs/iksemel/Makefile	2012-07-11 22:48:04.229163661 +0400
+@@ -38,31 +38,30 @@
  
  TARGET_CFLAGS += $(FPIC)
  TARGET_LDFLAGS += \
 -	-Wl,-rpath-link,$(STAGING_DIR)/usr/lib \
-+	-Wl,-rpath-link,$(STAGING_DIR)/opt/lib \
  	-lgnutls -lgcrypt -lgpg-error
  
  define Build/Configure

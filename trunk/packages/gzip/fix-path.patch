@@ -1,44 +1,31 @@
---- ../../../openwrt_trunk.orig/feeds/packages/utils/gzip/Makefile	2011-11-25 09:49:47.968975431 +0400
-+++ ../../../openwrt_trunk/feeds/packages/utils/gzip/Makefile	2011-11-27 19:01:17.641616923 +0400
-@@ -35,26 +35,26 @@
- 	gl_cv_func_getopt_gnu=yes \
+--- ../../../openwrt_trunk.orig/feeds/packages/utils/gzip/Makefile	2012-07-10 18:59:23.645214129 +0400
++++ ../../../openwrt_trunk/feeds/packages/utils/gzip/Makefile	2012-07-11 12:03:49.827121553 +0400
+@@ -36,25 +36,9 @@
+ 	ac_cv_search_clock_gettime=no
  
  define Package/gzip/install
 -	$(SED) 's,/bin/bash,/bin/sh,g' $(PKG_INSTALL_DIR)/usr/bin/{gunzip,zcat}
 -	$(INSTALL_DIR) $(1)/usr/bin
 -	$(INSTALL_BIN) $(PKG_INSTALL_DIR)/usr/bin/{gunzip,gzip,zcat} $(1)/usr/bin/
-+	$(SED) 's,/bin/bash,/bin/sh,g' $(PKG_INSTALL_DIR)/opt/bin/{gunzip,zcat}
-+	$(INSTALL_DIR) $(1)/opt/bin
-+	$(INSTALL_BIN) $(PKG_INSTALL_DIR)/opt/bin/{gunzip,gzip,zcat} $(1)/opt/bin/
- endef
- 
+-endef
+-
 -define Package/gzip/postinst
-+#define Package/gzip/postinst
- #!/bin/sh
+-#!/bin/sh
 -for app in gunzip gzip zcat; do
 -  ln -sf $${IPKG_INSTROOT}/usr/bin/$$app $${IPKG_INSTROOT}/bin/$$app
 -done
 -endef
-+#for app in gunzip gzip zcat; do
-+#  ln -sf $${IPKG_INSTROOT}/opt/bin/$$app $${IPKG_INSTROOT}/opt/bin/$$app
-+#done
-+#endef
- 
+-
 -define Package/gzip/postrm
-+#define Package/gzip/postrm
- #!/bin/sh
+-#!/bin/sh
 -for app in gunzip gzip zcat; do
 -  ln -sf busybox $${IPKG_INSTROOT}/bin/$$app
 -  $${IPKG_INSTROOT}/bin/$$app 2>&1 | grep 'applet not found' > /dev/null 2>&1 && rm $${IPKG_INSTROOT}/bin/$$app
 -done
 -exit 0
--endef
-+#for app in gunzip gzip zcat; do
-+#  ln -sf busybox $${IPKG_INSTROOT}/opt/bin/$$app
-+#  $${IPKG_INSTROOT}/opt/bin/$$app 2>&1 | grep 'applet not found' > /dev/null 2>&1 && rm $${IPKG_INSTROOT}/opt/bin/$$app
-+#done
-+#exit 0
-+#endef
++	$(SED) 's,/bin/bash,/bin/sh,g' $(PKG_INSTALL_DIR)/opt/bin/{gunzip,zcat}
++	$(INSTALL_DIR) $(1)/opt/bin
++	$(INSTALL_BIN) $(PKG_INSTALL_DIR)/opt/bin/{gunzip,gzip,zcat} $(1)/opt/bin/
+ endef
  
  $(eval $(call BuildPackage,gzip))
- 
