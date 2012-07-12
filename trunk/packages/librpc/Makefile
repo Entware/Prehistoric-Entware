@@ -8,9 +8,8 @@
 all: ./.done
 
 ./.done:
+	cp ./500-change-install-path.patch ../../../openwrt_trunk/package/librpc/patches/
 	patch -p0 -i ./fix-path.patch
-	mkdir ../../../openwrt_trunk/feeds/packages/utils/sane-backends/files
-	 cp ./S01sane-backends ../../../openwrt_trunk/feeds/packages/utils/sane-backends/files/
 	touch $@
 
 clean:

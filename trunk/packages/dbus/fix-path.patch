@@ -13,7 +13,6 @@ diff -urx .svn ../../../openwrt_trunk.orig/feeds/packages/utils/dbus/files/dbus-
 -	exec /usr/bin/dbus-launch.real $@
 +	exec /opt/bin/dbus-launch.real $@
  fi
-Только в ../../../openwrt_trunk/feeds/packages/utils/dbus/files: S20dbus
 diff -urx .svn ../../../openwrt_trunk.orig/feeds/packages/utils/dbus/Makefile ../../../openwrt_trunk/feeds/packages/utils/dbus/Makefile
 --- ../../../openwrt_trunk.orig/feeds/packages/utils/dbus/Makefile	2012-07-11 14:54:02.066735216 +0400
 +++ ../../../openwrt_trunk/feeds/packages/utils/dbus/Makefile	2012-07-11 21:06:25.369839179 +0400

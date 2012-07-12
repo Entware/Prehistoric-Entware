@@ -1,5 +1,14 @@
---- ../../../openwrt_trunk.orig/feeds/packages/lang/ruby/Makefile	2012-05-02 16:17:28.614360360 +0400
-+++ ../../../openwrt_trunk/feeds/packages/lang/ruby/Makefile	2012-05-28 09:54:57.417468846 +0400
+--- ../../../openwrt_trunk.orig/feeds/packages/lang/ruby/Makefile	2012-07-12 09:38:56.134164567 +0400
++++ ../../../openwrt_trunk/feeds/packages/lang/ruby/Makefile	2012-07-12 19:57:25.447637209 +0400
+@@ -72,7 +72,7 @@
+ define Package/ruby-core
+ $(call Package/ruby/Default)
+   TITLE:=Ruby standard libraries
+-  DEPENDS:=ruby +libdb47 +libffi
++  DEPENDS:=ruby +libdb47 +libffi $(ICONV_DEPENDS)
+ endef
+ 
+ define Package/ruby-cgi
 @@ -215,7 +215,8 @@
  
  MAKE_FLAGS += \

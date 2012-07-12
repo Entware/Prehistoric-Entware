@@ -1,7 +1,16 @@
 === Known bugs and odds, to do list ===
 
-e2fsprogs, sane-backends: -O2 GCC workaround switches added, without them GCC chashes.
-nginx: searches it files outside /opt folder
+Some packages was excluded during OpenWRT trunk update (r32656). 
+We must restore it:
+---
+freeswitch, openlzap
+sane-{backends, frontends,libs}
+ow{server,httpd,ftpd,fs,shell}   libow{,-capi}
+zabbix-{agent,sender,server}
+---
+
+palantir: was dropped in OpenWRT as v4l was dropped (see Changeset #32111)
+nginx: searches its files outside /opt folder
 ipset: broken since r398
 sshd: syslogin_perform_logout: logout() returned an error, /var/... or /etc/... somewhere in sources
 bash_completion: /etc/bashcompletion in optware is newer

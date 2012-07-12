@@ -1,5 +1,14 @@
---- ../../../openwrt_trunk.orig/feeds/packages/utils/lsof/Makefile	2012-07-10 18:59:23.673213779 +0400
-+++ ../../../openwrt_trunk/feeds/packages/utils/lsof/Makefile	2012-07-11 12:15:58.801967011 +0400
+--- ../../../openwrt_trunk.orig/feeds/packages/utils/lsof/Makefile	2012-07-12 09:38:56.742156925 +0400
++++ ../../../openwrt_trunk/feeds/packages/utils/lsof/Makefile	2012-07-12 22:31:29.023429813 +0400
+@@ -20,7 +20,7 @@
+ 
+ include $(INCLUDE_DIR)/package.mk
+ 
+-TARGET_LDFLAGS += $(LIBRPC)
++#TARGET_LDFLAGS += $(LIBRPC)
+ 
+ define Package/lsof
+   SECTION:=utils
 @@ -34,7 +34,7 @@
  	cd $(PKG_BUILD_DIR); \
  		LINUX_CLIB="-DGLIBCV=2" \

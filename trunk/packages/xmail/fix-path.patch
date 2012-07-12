@@ -1,6 +1,13 @@
---- ../../../openwrt_trunk.orig/feeds/packages/mail/xmail/Makefile	2012-07-10 18:59:23.745212873 +0400
-+++ ../../../openwrt_trunk/feeds/packages/mail/xmail/Makefile	2012-07-11 13:23:01.459383470 +0400
-@@ -42,18 +42,10 @@
+--- ../../../openwrt_trunk.orig/feeds/packages/mail/xmail/Makefile	2012-07-12 09:38:56.834155768 +0400
++++ ../../../openwrt_trunk/feeds/packages/mail/xmail/Makefile	2012-07-12 22:36:58.951280485 +0400
+@@ -36,24 +36,17 @@
+ 	CFLAGS="$(TARGET_CFLAGS)" \
+ 	$(MAKE) -C $(PKG_BUILD_DIR) -f Makefile.lnx \
+ 		$(TARGET_CONFIGURE_OPTS) \
++		CPPFLAGS="$(TARGET_CPPFLAGS)" \
+ 		LD="$(TARGET_CXX)" \
+ 		all
+ 	tar -cjf $(PKG_BUILD_DIR)/MailRoot.tar.bz2 -C $(PKG_BUILD_DIR)/MailRoot --exclude bin .
  endef
  
  define Package/xmail/install

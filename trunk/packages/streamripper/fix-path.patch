@@ -1,5 +1,14 @@
---- ../../../openwrt_trunk.orig/feeds/packages/sound/streamripper/Makefile	2012-01-20 19:21:08.000000000 +0400
-+++ ../../../openwrt_trunk/feeds/packages/sound/streamripper/Makefile	2012-01-21 20:25:42.335922563 +0400
+--- ../../../openwrt_trunk.orig/feeds/packages/sound/streamripper/Makefile	2012-07-12 09:38:56.638158232 +0400
++++ ../../../openwrt_trunk/feeds/packages/sound/streamripper/Makefile	2012-07-12 20:17:03.732825267 +0400
+@@ -24,7 +24,7 @@
+ define Package/streamripper
+   SECTION:=multimedia
+   CATEGORY:=Multimedia
+-  DEPENDS:=+libmad +libfaad2 +libpthread
++  DEPENDS:=+libmad +libfaad2 +libpthread +librt
+   TITLE:=streamripper
+   URL:=http://streamripper.sourceforge.net/
+ endef
 @@ -45,11 +45,11 @@
  	--with-gnu-ld \
  

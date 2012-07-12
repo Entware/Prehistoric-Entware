@@ -1,5 +1,5 @@
---- ../../../openwrt_trunk.orig/feeds/packages/lang/php5/Makefile	2012-06-01 10:50:41.072199137 +0400
-+++ ../../../openwrt_trunk/feeds/packages/lang/php5/Makefile	2012-06-01 10:51:35.023520877 +0400
+--- ../../../openwrt_trunk.orig/feeds/packages/lang/php5/Makefile	2012-07-12 09:38:56.142164467 +0400
++++ ../../../openwrt_trunk/feeds/packages/lang/php5/Makefile	2012-07-12 14:35:12.550684748 +0400
 @@ -131,14 +131,14 @@
  	--disable-debug \
  	--without-pear \
@@ -278,3 +278,21 @@
    endef
  
    $$(eval $$(call BuildPackage,php5-mod-$(1)))
+@@ -540,7 +540,7 @@
+ $(eval $(call BuildModule,gmp,GMP,+PACKAGE_php5-mod-gmp:libgmp))
+ $(eval $(call BuildModule,hash,Hash))
+ $(eval $(call BuildModule,http,HTTP,+PACKAGE_php5-mod-http:libcurl +PACKAGE_php5-mod-http:libevent2 +PACKAGE_php5-mod-http:librt))
+-$(eval $(call BuildModule,iconv,iConv,+PACKAGE_php5-mod-iconv:libiconv))
++$(eval $(call BuildModule,iconv,iConv,+PACKAGE_php5-mod-iconv:$(ICONV_DEPENDS)))
+ $(eval $(call BuildModule,json,JSON))
+ $(eval $(call BuildModule,ldap,LDAP,+PACKAGE_php5-mod-ldap:libopenldap +PACKAGE_php5-mod-ldap:libsasl2))
+ $(eval $(call BuildModule,libevent,libevent,+PACKAGE_php5-mod-libevent:libevent2))
+@@ -567,6 +567,6 @@
+ $(eval $(call BuildModule,sysvshm,System V semaphore))
+ $(eval $(call BuildModule,tokenizer,Tokenizer))
+ $(eval $(call BuildModule,xml,XML,+PHP5_LIBXML:libxml2 +!PHP5_LIBXML:libexpat))
+-$(eval $(call BuildModule,xmlreader,XMLReader,+@PHP5_LIBXML +PACKAGE_php5-mod-xmlreader:libxml2 +PACKAGE_php5-mod-xmlreader:libiconv))
+-$(eval $(call BuildModule,xmlwriter,XMLWriter,+@PHP5_LIBXML +PACKAGE_php5-mod-xmlwriter:libxml2 +PACKAGE_php5-mod-xmlwriter:libiconv))
++$(eval $(call BuildModule,xmlreader,XMLReader,+@PHP5_LIBXML +PACKAGE_php5-mod-xmlreader:libxml2 +PACKAGE_php5-mod-xmlreader:$(ICONV_DEPENDS)))
++$(eval $(call BuildModule,xmlwriter,XMLWriter,+@PHP5_LIBXML +PACKAGE_php5-mod-xmlwriter:libxml2 +PACKAGE_php5-mod-xmlwriter:$(ICONV_DEPENDS)))
+ $(eval $(call BuildModule,zip,ZIP,+PACKAGE_php5-mod-zip:zlib))

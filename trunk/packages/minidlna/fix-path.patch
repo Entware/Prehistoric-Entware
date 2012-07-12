@@ -1,4 +1,3 @@
-Только в ../../../openwrt_trunk/feeds/packages/multimedia/minidlna/files: S90minidlna
 diff -urx .svn ../../../openwrt_trunk.orig/feeds/packages/multimedia/minidlna/Makefile ../../../openwrt_trunk/feeds/packages/multimedia/minidlna/Makefile
 --- ../../../openwrt_trunk.orig/feeds/packages/multimedia/minidlna/Makefile	2012-07-11 14:54:02.182733760 +0400
 +++ ../../../openwrt_trunk/feeds/packages/multimedia/minidlna/Makefile	2012-07-11 21:31:46.934716760 +0400
@@ -153,4 +152,3 @@ diff -urx .svn ../../../openwrt_trunk.orig/feeds/packages/multimedia/minidlna/pa
   	$(INSTALL) -d $(ETCINSTALLDIR)
   	$(INSTALL) --mode=0644 minidlna.conf $(ETCINSTALLDIR)
   
-Только в ../../../openwrt_trunk/feeds/packages/multimedia/minidlna/patches: 050-inotify_fix.patch
