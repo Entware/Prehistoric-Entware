@@ -54,7 +54,7 @@ toolchain: .toolchain_installed
 
 toolchain_pack: .toolchain_installed .toolchain_packed
 .toolchain_packed:
-	tar -cvzf ../entware-toolchain-$(TOOLCHAIN_REVISION).tar.bz2 /opt/entware-toolchain
+	tar -cvzf ../entware-toolchain-$(TOOLCHAIN_REVISION).tgz /opt/entware-toolchain
 	touch $@
 
 clean:
