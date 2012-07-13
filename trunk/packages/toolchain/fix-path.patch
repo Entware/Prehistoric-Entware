@@ -1,5 +1,5 @@
---- ../../../openwrt_trunk.orig/package/toolchain/Makefile	2012-07-11 13:33:42.403326592 +0400
-+++ ../../../openwrt_trunk/package/toolchain/Makefile	2012-07-11 13:34:20.474874943 +0400
+--- ../../../openwrt_trunk.orig/package/toolchain/Makefile	2012-07-12 09:38:58.914129618 +0400
++++ ../../../openwrt_trunk/package/toolchain/Makefile	2012-07-13 19:49:53.355085645 +0400
 @@ -7,16 +7,12 @@
  
  include $(TOPDIR)/rules.mk
@@ -20,7 +20,24 @@
  
  define Package/gcc/Default
    SECTION:=libs
-@@ -470,8 +466,8 @@
+@@ -53,7 +49,6 @@
+ 
+ define Package/libssp
+ $(call Package/gcc/Default)
+-  DEPENDS+=@SSP_SUPPORT
+   TITLE:=GCC support library
+ endef
+ 
+@@ -61,7 +56,7 @@
+ 	menu "Configuration"
+ 		depends EXTERNAL_TOOLCHAIN && PACKAGE_libssp
+ 
+-	config LIBSPP_ROOT_DIR
++	config LIBSSP_ROOT_DIR
+ 		string
+ 		prompt "libssp shared library base directory"
+ 		depends EXTERNAL_TOOLCHAIN && PACKAGE_libssp
+@@ -470,8 +465,8 @@
    define Package/libgcc/install
  	for file in $(call qstrip,$(CONFIG_LIBGCC_FILE_SPEC)); do \
  		dir=`dirname $$$$file` ; \
@@ -31,7 +48,7 @@
  	done ; \
  	exit 0
    endef
-@@ -479,16 +475,16 @@
+@@ -479,16 +474,16 @@
    define Package/libgfortran/install
  	for file in $(call qstrip,$(CONFIG_LIBGFORTRAN_FILE_SPEC)); do \
  		dir=`dirname $$$$file` ; \
@@ -52,7 +69,7 @@
  	done ; \
  	exit 0
    endef
-@@ -496,8 +492,8 @@
+@@ -496,8 +491,8 @@
    define Package/libstdcpp/install
  	for file in $(call qstrip,$(CONFIG_LIBSTDCPP_FILE_SPEC)); do \
  		dir=`dirname $$$$file` ; \
@@ -63,7 +80,7 @@
  	done ; \
  	exit 0
    endef
-@@ -505,8 +501,8 @@
+@@ -505,8 +500,8 @@
    define Package/libc/install
  	for file in $(call qstrip,$(CONFIG_LIBC_FILE_SPEC)); do \
  		dir=`dirname $$$$file` ; \
@@ -74,7 +91,7 @@
  	done ; \
  	exit 0
    endef
-@@ -514,8 +510,8 @@
+@@ -514,8 +509,8 @@
    define Package/libpthread/install
  	for file in $(call qstrip,$(CONFIG_LIBPTHREAD_FILE_SPEC)); do \
  		dir=`dirname $$$$file` ; \
@@ -85,7 +102,7 @@
  	done ; \
  	exit 0
    endef
-@@ -523,8 +519,8 @@
+@@ -523,8 +518,8 @@
    define Package/librt/install
  	for file in $(call qstrip,$(CONFIG_LIBRT_FILE_SPEC)); do \
  		dir=`dirname $$$$file` ; \
@@ -96,7 +113,7 @@
  	done ; \
  	exit 0
    endef
-@@ -532,8 +528,8 @@
+@@ -532,8 +527,8 @@
    define Package/ldd/install
  	for file in $(call qstrip,$(CONFIG_LDD_FILE_SPEC)); do \
  		dir=`dirname $$$$file` ; \
@@ -107,7 +124,7 @@
  	done ; \
  	exit 0
    endef
-@@ -541,8 +537,8 @@
+@@ -541,8 +536,8 @@
    define Package/ldconfig/install
  	for file in $(call qstrip,$(CONFIG_LDCONFIG_FILE_SPEC)); do \
  		dir=`dirname $$$$file` ; \
