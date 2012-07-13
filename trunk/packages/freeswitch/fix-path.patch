@@ -1,6 +1,6 @@
 diff -urx .svn ../../../openwrt_trunk.orig/feeds/packages/net/freeswitch/files/etc.minimal/autoload_configs/lua.conf.xml ../../../openwrt_trunk/feeds/packages/net/freeswitch/files/etc.minimal/autoload_configs/lua.conf.xml
---- ../../../openwrt_trunk.orig/feeds/packages/net/freeswitch/files/etc.minimal/autoload_configs/lua.conf.xml	2012-07-11 14:54:01.354744169 +0400
-+++ ../../../openwrt_trunk/feeds/packages/net/freeswitch/files/etc.minimal/autoload_configs/lua.conf.xml	2012-07-11 14:54:24.330455324 +0400
+--- ../../../openwrt_trunk.orig/feeds/packages/net/freeswitch/files/etc.minimal/autoload_configs/lua.conf.xml	2012-07-12 09:38:55.962166731 +0400
++++ ../../../openwrt_trunk/feeds/packages/net/freeswitch/files/etc.minimal/autoload_configs/lua.conf.xml	2012-07-12 09:39:18.121888146 +0400
 @@ -5,14 +5,14 @@
      Specify local directories that will be searched for LUA modules
      These entries will be pre-pended to the LUA_CPATH environment variable
@@ -20,8 +20,8 @@ diff -urx .svn ../../../openwrt_trunk.orig/feeds/packages/net/freeswitch/files/e
  
      <!--<param name="xml-handler-script" value="/dp.lua"/>-->
 diff -urx .svn ../../../openwrt_trunk.orig/feeds/packages/net/freeswitch/files/etc.minimal/freeswitch.xml ../../../openwrt_trunk/feeds/packages/net/freeswitch/files/etc.minimal/freeswitch.xml
---- ../../../openwrt_trunk.orig/feeds/packages/net/freeswitch/files/etc.minimal/freeswitch.xml	2012-07-11 14:54:01.358744118 +0400
-+++ ../../../openwrt_trunk/feeds/packages/net/freeswitch/files/etc.minimal/freeswitch.xml	2012-07-11 14:54:24.330455324 +0400
+--- ../../../openwrt_trunk.orig/feeds/packages/net/freeswitch/files/etc.minimal/freeswitch.xml	2012-07-12 09:38:55.966166681 +0400
++++ ../../../openwrt_trunk/feeds/packages/net/freeswitch/files/etc.minimal/freeswitch.xml	2012-07-12 09:39:18.121888146 +0400
 @@ -6,7 +6,7 @@
      FreeSWITCH default config to use only the modules in the freeswitch-minimal
      package, and is less exhaustive.  If you wish to view the default FreeSWITCH 
@@ -32,8 +32,8 @@ diff -urx .svn ../../../openwrt_trunk.orig/feeds/packages/net/freeswitch/files/e
      config comes out of the box already working in most situations as a PBX.  This will
      allow you to get started testing and playing with various things in FreeSWITCH.
 diff -urx .svn ../../../openwrt_trunk.orig/feeds/packages/net/freeswitch/files/etc.packages/blacklist/autoload_configs/blacklist.conf.xml ../../../openwrt_trunk/feeds/packages/net/freeswitch/files/etc.packages/blacklist/autoload_configs/blacklist.conf.xml
---- ../../../openwrt_trunk.orig/feeds/packages/net/freeswitch/files/etc.packages/blacklist/autoload_configs/blacklist.conf.xml	2012-07-11 14:54:01.378743867 +0400
-+++ ../../../openwrt_trunk/feeds/packages/net/freeswitch/files/etc.packages/blacklist/autoload_configs/blacklist.conf.xml	2012-07-11 14:54:25.006446817 +0400
+--- ../../../openwrt_trunk.orig/feeds/packages/net/freeswitch/files/etc.packages/blacklist/autoload_configs/blacklist.conf.xml	2012-07-12 09:38:55.986166430 +0400
++++ ../../../openwrt_trunk/feeds/packages/net/freeswitch/files/etc.packages/blacklist/autoload_configs/blacklist.conf.xml	2012-07-12 09:39:18.121888146 +0400
 @@ -6,6 +6,6 @@
  		NOTE: make sure the file exists and is readable by FreeSWITCH.
  	-->
@@ -43,8 +43,8 @@ diff -urx .svn ../../../openwrt_trunk.orig/feeds/packages/net/freeswitch/files/e
  </lists>
  </configuration>
 diff -urx .svn ../../../openwrt_trunk.orig/feeds/packages/net/freeswitch/files/freeswitch.default ../../../openwrt_trunk/feeds/packages/net/freeswitch/files/freeswitch.default
---- ../../../openwrt_trunk.orig/feeds/packages/net/freeswitch/files/freeswitch.default	2012-07-11 14:54:01.354744169 +0400
-+++ ../../../openwrt_trunk/feeds/packages/net/freeswitch/files/freeswitch.default	2012-07-11 14:54:25.018446673 +0400
+--- ../../../openwrt_trunk.orig/feeds/packages/net/freeswitch/files/freeswitch.default	2012-07-12 09:38:55.962166731 +0400
++++ ../../../openwrt_trunk/feeds/packages/net/freeswitch/files/freeswitch.default	2012-07-12 09:39:18.121888146 +0400
 @@ -1,11 +1,11 @@
 -#FS_DIR="/opt"
 +FS_DIR="/opt"
@@ -64,8 +64,8 @@ diff -urx .svn ../../../openwrt_trunk.orig/feeds/packages/net/freeswitch/files/f
  
  OPTIONS="-conf $FS_DIR_ETC -log $FS_DIR_LOG -db $FS_DIR_DB -mod $FS_DIR_MOD -htdocs $FS_DIR_HTDOCS -scripts $FS_DIR_SCRIPTS"
 diff -urx .svn ../../../openwrt_trunk.orig/feeds/packages/net/freeswitch/files/freeswitch.init ../../../openwrt_trunk/feeds/packages/net/freeswitch/files/freeswitch.init
---- ../../../openwrt_trunk.orig/feeds/packages/net/freeswitch/files/freeswitch.init	2012-07-11 14:54:01.378743867 +0400
-+++ ../../../openwrt_trunk/feeds/packages/net/freeswitch/files/freeswitch.init	2012-07-11 14:54:25.018446673 +0400
+--- ../../../openwrt_trunk.orig/feeds/packages/net/freeswitch/files/freeswitch.init	2012-07-12 09:38:55.986166430 +0400
++++ ../../../openwrt_trunk/feeds/packages/net/freeswitch/files/freeswitch.init	2012-07-12 09:39:18.121888146 +0400
 @@ -2,7 +2,7 @@
  # Copyright (C) 2006 OpenWrt.org
  START=90 
@@ -91,8 +91,17 @@ diff -urx .svn ../../../openwrt_trunk.orig/feeds/packages/net/freeswitch/files/f
  
  restart() {
 diff -urx .svn ../../../openwrt_trunk.orig/feeds/packages/net/freeswitch/Makefile ../../../openwrt_trunk/feeds/packages/net/freeswitch/Makefile
---- ../../../openwrt_trunk.orig/feeds/packages/net/freeswitch/Makefile	2012-07-11 14:54:01.354744169 +0400
-+++ ../../../openwrt_trunk/feeds/packages/net/freeswitch/Makefile	2012-07-11 21:35:31.583889085 +0400
+--- ../../../openwrt_trunk.orig/feeds/packages/net/freeswitch/Makefile	2012-07-12 09:38:55.962166731 +0400
++++ ../../../openwrt_trunk/feeds/packages/net/freeswitch/Makefile	2012-07-13 21:31:50.874168444 +0400
+@@ -173,7 +173,7 @@
+ define Package/$(PKG_NAME)
+ $(call Package/$(PKG_NAME)/Default)
+   TITLE:=FreeSWITCH open source telephony platform
+-  DEPENDS:= +libreadline +libncurses +libpthread +libstdcpp +libopenssl +libpq +librt +zlib
++  DEPENDS:= +libreadline +libncurses +libpthread +libstdcpp +libopenssl +libpq +librt +zlib $(ICONV_DEPENDS)
+   MENU:=1
+ endef
+ 
 @@ -248,7 +248,7 @@
  
  define Package/$(PKG_NAME)-example-config/description
@@ -312,8 +321,8 @@ diff -urx .svn ../../../openwrt_trunk.orig/feeds/packages/net/freeswitch/Makefil
  
    $$(eval $$(call BuildPackage,$(PKG_NAME)-mod-$(1)))
 diff -urx .svn ../../../openwrt_trunk.orig/feeds/packages/net/freeswitch/patches/003-libs-esl-Makefile.patch ../../../openwrt_trunk/feeds/packages/net/freeswitch/patches/003-libs-esl-Makefile.patch
---- ../../../openwrt_trunk.orig/feeds/packages/net/freeswitch/patches/003-libs-esl-Makefile.patch	2012-07-11 14:54:01.354744169 +0400
-+++ ../../../openwrt_trunk/feeds/packages/net/freeswitch/patches/003-libs-esl-Makefile.patch	2012-07-11 14:54:25.022446625 +0400
+--- ../../../openwrt_trunk.orig/feeds/packages/net/freeswitch/patches/003-libs-esl-Makefile.patch	2012-07-12 09:38:55.962166731 +0400
++++ ../../../openwrt_trunk/feeds/packages/net/freeswitch/patches/003-libs-esl-Makefile.patch	2012-07-12 09:39:18.121888146 +0400
 @@ -5,7 +5,7 @@
   CXXFLAGS=$(BASE_FLAGS)
   MYLIB=libesl.a

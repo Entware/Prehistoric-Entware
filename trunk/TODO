@@ -3,7 +3,6 @@
 Some packages was excluded during OpenWRT trunk update (r32656). 
 We must restore it:
 ---
-freeswitch, openlzap
 sane-{backends, frontends,libs}
 zabbix-{agent,sender,server}
 ---
