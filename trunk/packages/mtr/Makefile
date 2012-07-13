@@ -9,6 +9,7 @@ all: ./.done
 
 ./.done:
 	patch -p0 -i ./fix-path.patch
+	patch -p0 -i ./tmp-to-32690.patch
 	touch $@
 
 clean:
