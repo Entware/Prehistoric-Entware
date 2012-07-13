@@ -1,6 +1,14 @@
---- ../../../openwrt_trunk.orig/feeds/packages/admin/zabbix/Makefile	2012-07-10 18:59:23.613214532 +0400
-+++ ../../../openwrt_trunk/feeds/packages/admin/zabbix/Makefile	2012-07-11 13:27:11.344248275 +0400
-@@ -68,48 +68,48 @@
+--- ../../../openwrt_trunk.orig/feeds/packages/admin/zabbix/Makefile	2012-07-12 09:38:56.670157830 +0400
++++ ../../../openwrt_trunk/feeds/packages/admin/zabbix/Makefile	2012-07-13 23:17:26.050529224 +0400
+@@ -26,6 +26,7 @@
+   SECTION:=admin
+   CATEGORY:=Administration
+   TITLE:=Zabbix
++  DEPENDS += $(ICONV_DEPENDS)
+   URL:=http://www.zabbix.com/
+   SUBMENU:=zabbix
+   MAINTAINER:=Mirko Vogt <mirko@openwrt.org>
+@@ -68,48 +69,48 @@
  	--enable-server \
  	--enable-proxy \
  	--disable-java \

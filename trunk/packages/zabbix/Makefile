@@ -8,6 +8,7 @@
 all: ./.done
 
 ./.done:
+	cp ./900-dn_skipname.patch ../../../openwrt_trunk/feeds/packages/admin/zabbix/patches/
 	patch -p0 -i ./fix-path.patch
 	cp ./S07zabbix_agentd ../../../openwrt_trunk/feeds/packages/admin/zabbix/files/
 	touch $@
