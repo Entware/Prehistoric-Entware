@@ -1,12 +1,5 @@
 === Known bugs and odds, to do list ===
 
-Some packages was excluded during OpenWRT trunk update (r32656). 
-We must restore it:
----
-sane-{backends, frontends,libs}
-zabbix-{agent,sender,server}
----
-
 palantir: was dropped in OpenWRT as v4l was dropped (see Changeset #32111)
 nginx: searches its files outside /opt folder
 ipset: broken since r398
