@@ -1,0 +1,109 @@
+--- ../../../openwrt_trunk.orig/feeds/packages/utils/valgrind/Makefile	2012-07-15 21:54:16.737949871 +0400
++++ ../../../openwrt_trunk/feeds/packages/utils/valgrind/Makefile	2012-07-16 23:31:30.494763960 +0400
+@@ -94,68 +94,68 @@
+ 	--without-included-gettext
+ 
+ define Package/valgrind/install	
+-	$(INSTALL_DIR) $(1)/usr/bin
+-	$(INSTALL_BIN) $(PKG_INSTALL_DIR)/usr/bin/valgrind* $(1)/usr/bin/
+-	$(INSTALL_DIR) $(1)/usr/lib/valgrind
++	$(INSTALL_DIR) $(1)/opt/bin
++	$(INSTALL_BIN) $(PKG_INSTALL_DIR)/opt/bin/valgrind* $(1)/opt/bin/
++	$(INSTALL_DIR) $(1)/opt/lib/valgrind
+ 	$(CP) \
+ 		./files/default.supp \
+-		$(PKG_INSTALL_DIR)/usr/lib/valgrind/none-* \
+-		$(PKG_INSTALL_DIR)/usr/lib/valgrind/vgpreload_core*.so \
+-		$(PKG_INSTALL_DIR)/usr/lib/valgrind/$(CPU)-*.xml \
+-		$(PKG_INSTALL_DIR)/usr/lib/valgrind/32bit-core*.xml \
+-		$(PKG_INSTALL_DIR)/usr/lib/valgrind/32bit-linux*.xml \
+-		$(PKG_INSTALL_DIR)/usr/lib/valgrind/memcheck-* \
+-		$(PKG_INSTALL_DIR)/usr/lib/valgrind/vgpreload_memcheck*.so \
+-		$(1)/usr/lib/valgrind/
++		$(PKG_INSTALL_DIR)/opt/lib/valgrind/none-* \
++		$(PKG_INSTALL_DIR)/opt/lib/valgrind/vgpreload_core*.so \
++		$(PKG_INSTALL_DIR)/opt/lib/valgrind/$(CPU)-*.xml \
++		$(PKG_INSTALL_DIR)/opt/lib/valgrind/32bit-core*.xml \
++		$(PKG_INSTALL_DIR)/opt/lib/valgrind/32bit-linux*.xml \
++		$(PKG_INSTALL_DIR)/opt/lib/valgrind/memcheck-* \
++		$(PKG_INSTALL_DIR)/opt/lib/valgrind/vgpreload_memcheck*.so \
++		$(1)/opt/lib/valgrind/
+ endef
+ 
+ define Package/valgrind-cachegrind/install
+-	$(INSTALL_DIR) $(1)/usr/bin
+-	$(INSTALL_BIN) $(PKG_INSTALL_DIR)/usr/bin/cg_* $(1)/usr/bin/
+-	$(INSTALL_DIR) $(1)/usr/lib/valgrind
++	$(INSTALL_DIR) $(1)/opt/bin
++	$(INSTALL_BIN) $(PKG_INSTALL_DIR)/opt/bin/cg_* $(1)/opt/bin/
++	$(INSTALL_DIR) $(1)/opt/lib/valgrind
+ 	$(CP) \
+-		$(PKG_INSTALL_DIR)/usr/lib/valgrind/cachegrind-* \
+-		$(1)/usr/lib/valgrind/
++		$(PKG_INSTALL_DIR)/opt/lib/valgrind/cachegrind-* \
++		$(1)/opt/lib/valgrind/
+ endef
+ 
+ define Package/valgrind-callgrind/install
+-	$(INSTALL_DIR) $(1)/usr/bin
+-	$(INSTALL_BIN) $(PKG_INSTALL_DIR)/usr/bin/callgrind* $(1)/usr/bin/
+-	$(INSTALL_DIR) $(1)/usr/lib/valgrind
++	$(INSTALL_DIR) $(1)/opt/bin
++	$(INSTALL_BIN) $(PKG_INSTALL_DIR)/opt/bin/callgrind* $(1)/opt/bin/
++	$(INSTALL_DIR) $(1)/opt/lib/valgrind
+ 	$(CP) \
+-		$(PKG_INSTALL_DIR)/usr/lib/valgrind/callgrind-* \
+-		$(1)/usr/lib/valgrind/
++		$(PKG_INSTALL_DIR)/opt/lib/valgrind/callgrind-* \
++		$(1)/opt/lib/valgrind/
+ endef
+ 
+ define Package/valgrind-drd/install
+-	$(INSTALL_DIR) $(1)/usr/lib/valgrind
++	$(INSTALL_DIR) $(1)/opt/lib/valgrind
+ 	$(CP) \
+-		$(PKG_INSTALL_DIR)/usr/lib/valgrind/drd-* \
+-		$(PKG_INSTALL_DIR)/usr/lib/valgrind/vgpreload_drd*.so \
+-		$(1)/usr/lib/valgrind/
++		$(PKG_INSTALL_DIR)/opt/lib/valgrind/drd-* \
++		$(PKG_INSTALL_DIR)/opt/lib/valgrind/vgpreload_drd*.so \
++		$(1)/opt/lib/valgrind/
+ endef
+ 
+ define Package/valgrind-massif/install
+-	$(INSTALL_DIR) $(1)/usr/bin
+-	$(INSTALL_BIN) $(PKG_INSTALL_DIR)/usr/bin/ms_print $(1)/usr/bin/
+-	$(INSTALL_DIR) $(1)/usr/lib/valgrind
+-	$(CP) \
+-		$(PKG_INSTALL_DIR)/usr/lib/valgrind/massif-* \
+-		$(PKG_INSTALL_DIR)/usr/lib/valgrind/vgpreload_massif*.so \
+-		$(1)/usr/lib/valgrind/
++	$(INSTALL_DIR) $(1)/opt/bin
++	$(INSTALL_BIN) $(PKG_INSTALL_DIR)/opt/bin/ms_print $(1)/opt/bin/
++	$(INSTALL_DIR) $(1)/opt/lib/valgrind
++	$(CP) \
++		$(PKG_INSTALL_DIR)/opt/lib/valgrind/massif-* \
++		$(PKG_INSTALL_DIR)/opt/lib/valgrind/vgpreload_massif*.so \
++		$(1)/opt/lib/valgrind/
+ endef
+ 
+ define Package/valgrind-helgrind/install
+-	$(INSTALL_DIR) $(1)/usr/lib/valgrind
++	$(INSTALL_DIR) $(1)/opt/lib/valgrind
+ 	$(CP) \
+-		$(PKG_INSTALL_DIR)/usr/lib/valgrind/helgrind-* \
+-		$(PKG_INSTALL_DIR)/usr/lib/valgrind/vgpreload_helgrind*.so \
+-		$(1)/usr/lib/valgrind/
++		$(PKG_INSTALL_DIR)/opt/lib/valgrind/helgrind-* \
++		$(PKG_INSTALL_DIR)/opt/lib/valgrind/vgpreload_helgrind*.so \
++		$(1)/opt/lib/valgrind/
+ endef
+ 
+ define Package/valgrind-vgdb/install
+-	$(INSTALL_DIR) $(1)/usr/bin
+-	$(INSTALL_BIN) $(PKG_INSTALL_DIR)/usr/bin/vgdb $(1)/usr/bin/
++	$(INSTALL_DIR) $(1)/opt/bin
++	$(INSTALL_BIN) $(PKG_INSTALL_DIR)/opt/bin/vgdb $(1)/opt/bin/
+ endef
+ 
+ $(eval $(call BuildPackage,valgrind))
