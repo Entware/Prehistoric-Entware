@@ -1,0 +1,232 @@
+Index: Makefile
+===================================================================
+--- ../../../openwrt_trunk/feeds/packages/admin/zabbix/Makefile	(revision 32497)
++++ ../../../openwrt_trunk/feeds/packages/admin/zabbix/Makefile	(revision 28892)
+@@ -1,5 +1,5 @@
+ #
+-# Copyright (C) 2006-2012 OpenWrt.org
++# Copyright (C) 2006-2011 OpenWrt.org
+ #
+ # This is free software, licensed under the GNU General Public License v2.
+ # See /LICENSE for more information.
+@@ -8,19 +8,17 @@
+ include $(TOPDIR)/rules.mk
+ 
+ PKG_NAME:=zabbix
+-PKG_VERSION:=2.0.0
+-PKG_RELEASE:=1
++PKG_VERSION:=1.6
++PKG_RELEASE:=3
+ 
+ PKG_SOURCE:=$(PKG_NAME)-$(PKG_VERSION).tar.gz
+ PKG_SOURCE_URL:=@SF/zabbix
+-PKG_MD5SUM:=d34d398beddee0eaa999789100cf74e3
++PKG_MD5SUM:=39d4c871439b1b4f0429964b4abbfc45
+ 
++PKG_BUILD_DEPENDS:=libsqlite3
+ PKG_INSTALL:=1
+ 
+-PKG_FIXUP:=autoreconf
+-
+ include $(INCLUDE_DIR)/package.mk
+-include $(INCLUDE_DIR)/nls.mk
+ 
+ define Package/zabbix/Default
+   SECTION:=admin
+@@ -28,7 +26,7 @@
+   TITLE:=Zabbix
+   URL:=http://www.zabbix.com/
+   SUBMENU:=zabbix
+-  MAINTAINER:=Mirko Vogt <mirko@openwrt.org>
++  DEPENDS:=+libcurl
+ endef
+ 
+ define Package/zabbix-agent
+@@ -36,114 +34,64 @@
+   TITLE+= agent
+ endef
+ 
+-define Package/zabbix-agentd
+-  $(call Package/zabbix/Default)
+-  TITLE+= agentd
+-endef
+-
+ define Package/zabbix-sender
+   $(call Package/zabbix/Default)
+   TITLE+= sender
+ endef
+ 
+-define Package/zabbix-get
+-  $(call Package/zabbix/Default)
+-  TITLE+= get
+-endef
+-
+ define Package/zabbix-server
+   $(call Package/zabbix/Default)
+   TITLE+= server
+   DEPENDS += +libsqlite3
+ endef
+ 
+-define Package/zabbix-proxy
+-  $(call Package/zabbix/Default)
+-  TITLE+= proxy
+-  DEPENDS += +libsqlite3
+-endef
+ 
++ifneq ($(SDK),)
++CONFIG_PACKAGE_zabbix-server:=m
++endif
++
+ CONFIGURE_ARGS+= \
+-	--enable-agent \
++	--bindir="/usr/sbin" \
++	--enable-agent
++
++ifneq ($(CONFIG_PACKAGE_zabbix-server),)
++  CONFIGURE_ARGS+= \
+ 	--enable-server \
+-	--enable-proxy \
+-	--disable-java \
+ 	--with-sqlite3="$(STAGING_DIR)/usr"
++endif
+ 
+ MAKE_FLAGS += ARCH="linux"
+ 
+-define Package/zabbix/install/sbin
+-	$(INSTALL_DIR) \
+-		$(1)/usr/sbin
+-
+-	$(INSTALL_BIN) \
+-		$(PKG_INSTALL_DIR)/usr/sbin/zabbix_$(2) \
+-		$(1)/usr/sbin/
++define Package/zabbix-agent/conffiles
++/etc/zabbix/zabbix_agentd.conf
+ endef
+ 
+-define Package/zabbix/install/bin
+-	$(INSTALL_DIR) \
+-		$(1)/usr/bin
+-
+-	$(INSTALL_BIN) \
+-		$(PKG_INSTALL_DIR)/usr/bin/zabbix_$(2) \
+-		$(1)/usr/bin/
+-endef
+-
+-define Package/zabbix/install/etc
+-	$(INSTALL_DIR) \
+-		$(1)/etc
+-
+-	$(INSTALL_CONF) \
+-		$(PKG_INSTALL_DIR)/etc/zabbix_$(2).conf \
+-		$(1)/etc/
+-endef
+-
+-define Package/zabbix/install/init.d
+-	$(INSTALL_DIR) \
+-		$(1)/etc/init.d
+-
+-	$(INSTALL_BIN) \
+-		./files/zabbix_$(2).init \
+-		$(1)/etc/init.d/zabbix_$(2)
+-endef
+-
+-define Package/zabbix-$(1)/conffiles
+-  /etc/zabbix/zabbix_$(1).conf
+-endef
+-
+ define Package/zabbix-agent/install
+-	$(call Package/zabbix/install/sbin,$(1),agent)
+-	$(call Package/zabbix/install/etc,$(1),agent)
++	$(INSTALL_DIR) $(1)/usr/sbin
++	$(INSTALL_BIN) $(PKG_INSTALL_DIR)/usr/sbin/zabbix_agentd $(1)/usr/sbin/
++	$(INSTALL_DIR) $(1)/etc/zabbix
++	$(INSTALL_CONF) ./files/zabbix_agentd.conf $(1)/etc/zabbix/
++	$(INSTALL_DIR) $(1)/etc/init.d
++	$(INSTALL_BIN) ./files/zabbix_agentd.init $(1)/etc/init.d/zabbix_agentd
+ endef
+ 
+-define Package/zabbix-agentd/install
+-	$(call Package/zabbix/install/sbin,$(1),agentd)
+-	$(call Package/zabbix/install/etc,$(1),agentd)
+-	$(call Package/zabbix/install/init.d,$(1),agentd)
+-endef
+-
+ define Package/zabbix-sender/install
+-	$(call Package/zabbix/install/bin,$(1),sender)
++	$(INSTALL_DIR) $(1)/usr/sbin
++	$(INSTALL_BIN) $(PKG_INSTALL_DIR)/usr/sbin/zabbix_sender $(1)/usr/sbin/
++	$(INSTALL_DIR) $(1)/etc/zabbix
+ endef
+ 
+-define Package/zabbix-get/install
+-	$(call Package/zabbix/install/bin,$(1),get)
++define Package/zabbix-server/conffiles
++/etc/zabbix/zabbix_server.conf
+ endef
+ 
+ define Package/zabbix-server/install
+-	$(call Package/zabbix/install/sbin,$(1),server)
+-	$(call Package/zabbix/install/etc,$(1),server)
++	$(INSTALL_DIR) $(1)/usr/sbin
++	$(INSTALL_BIN) $(PKG_INSTALL_DIR)/usr/sbin/zabbix_server $(1)/usr/sbin/
++	$(INSTALL_DIR) $(1)/etc/zabbix
++	$(INSTALL_CONF) $(PKG_BUILD_DIR)/misc/conf/zabbix_server.conf $(1)/etc/zabbix/
+ endef
+ 
+-define Package/zabbix-proxy/install
+-	$(call Package/zabbix/install/sbin,$(1),proxy)
+-	$(call Package/zabbix/install/etc,$(1),proxy)
+-endef
+-
+ $(eval $(call BuildPackage,zabbix-agent))
+-$(eval $(call BuildPackage,zabbix-agentd))
+ $(eval $(call BuildPackage,zabbix-sender))
+ $(eval $(call BuildPackage,zabbix-server))
+-$(eval $(call BuildPackage,zabbix-proxy))
+-$(eval $(call BuildPackage,zabbix-get))
+Index: patches/001-cross_compile.patch
+===================================================================
+--- ../../../openwrt_trunk/feeds/packages/admin/zabbix/patches/001-cross_compile.patch	(revision 32497)
++++ ../../../openwrt_trunk/feeds/packages/admin/zabbix/patches/001-cross_compile.patch	(revision 28892)
+@@ -1,29 +1,13 @@
+---- a/configure.in	2012-06-21 21:32:23.707912790 +0000
+-+++ b/configure.in	2012-06-21 21:33:36.213554564 +0000
+-@@ -806,25 +806,8 @@
++diff -urN zabbix-1.6/configure zabbix-1.6.new/configure
++--- zabbix-1.6/configure	2008-09-18 22:15:39.000000000 +0200
+++++ zabbix-1.6.new/configure	2008-09-30 19:20:43.000000000 +0200
++@@ -4826,8 +4826,7 @@
++   { { echo "$as_me:$LINENO: error: cannot run test program while cross compiling
++ See \`config.log' for more details." >&5
++ echo "$as_me: error: cannot run test program while cross compiling
++-See \`config.log' for more details." >&2;}
++-   { (exit 1); exit 1; }; }
+++See \`config.log' for more details." >&2;} }
++ else
++   cat >conftest.$ac_ext <<_ACEOF
+  
+- dnl Check for %qu format (FreeBSD 4.x)
+- dnl FreeBSD 4.x does not support %llu
+--AC_MSG_CHECKING(for long long format)
+--AC_TRY_RUN(
+--[
+--#include <sys/types.h>
+--int main()
+--{
+--        uint64_t i;
+--
+--        sscanf("200000000010020", "%qu", &i);
+--
+--        if (i == 200000000010020) return 0;
+--        else return -1;
+--}
+--],
+--AC_DEFINE(HAVE_LONG_LONG_QU, 1 ,[Define to 1 if format '%qu' exists.])
+--AC_MSG_RESULT(yes),
+--AC_MSG_RESULT(no))
+--
+- dnl option -rdynamic is needed for readable backtraces
+-+
+- AC_MSG_CHECKING(for -rdynamic linking option)
+- saved_LDFLAGS="$LDFLAGS"
+- LDFLAGS="-rdynamic $LDFLAGS"
