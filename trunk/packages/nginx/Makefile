@@ -9,7 +9,9 @@ all: ./.done
 
 ./.done:
 	patch -p0 -i ./fix-path.patch
+	patch -p0 -i ./modules.patch
 	cp ./110-remove-accep4-support.patch ../../../openwrt_trunk/feeds/packages/net/nginx/patches/
+	cp ./300-http-dav-ext.patch ../../../openwrt_trunk/feeds/packages/net/nginx/patches/
 	cp ./S80nginx ../../../openwrt_trunk/feeds/packages/net/nginx/files/
 	touch $@
 
