@@ -1,0 +1,106 @@
+--- ../../../openwrt_trunk.orig/feeds/packages/net/cups/Makefile	2012-07-15 21:54:18.481949811 +0400
++++ ../../../openwrt_trunk/feeds/packages/net/cups/Makefile	2012-07-17 15:29:36.944782220 +0400
+@@ -18,14 +18,14 @@
+ 	ftp://ftp3.easysw.com/pub/cups/$(PKG_VERSION)
+ PKG_MD5SUM:=8776403ad60fea9e85eab9c04d88560d
+ 
+-TARGET_LDFLAGS+=-Wl,-rpath-link=$(STAGING_DIR)/usr/lib
++TARGET_LDFLAGS+=-Wl,-rpath-link=$(STAGING_DIR)/opt/lib
+ 
+ include $(INCLUDE_DIR)/package.mk
+ 
+ define Package/cups
+   SECTION:=net
+   CATEGORY:=Network
+-  DEPENDS:=+zlib +libpthread +libpng +libjpeg +libstdcpp +libusb
++  DEPENDS:=+zlib +libpthread +libpng +libjpeg +libstdcpp +libusb +libssp
+   TITLE:=Common UNIX Printing System
+   URL:=http://www.cups.org/
+ endef
+@@ -35,10 +35,10 @@
+ endef
+ 
+ define Package/cups/conffiles
+-/etc/cups/classes.conf
+-/etc/cups/client.conf
+-/etc/cups/cupsd.conf
+-/etc/cups/printers.conf
++/opt/etc/cups/classes.conf
++/opt/etc/cups/client.conf
++/opt/etc/cups/cupsd.conf
++/opt/etc/cups/printers.conf
+ endef
+ 
+ define Build/Configure
+@@ -78,43 +78,39 @@
+ 
+ define Package/cups/install
+ 	rm -rf $(1)/etc/cups
+-	$(INSTALL_DIR) $(1)/etc/cups
+-	$(CP) $(PKG_INSTALL_DIR)/etc/cups/* $(1)/etc/cups/
+-	rm -rf $(1)/etc/cups/certs
+-	ln -sf /tmp $(1)/etc/cups/certs
+-	$(INSTALL_DIR) $(1)/usr/bin
+-	$(INSTALL_BIN) $(PKG_INSTALL_DIR)/usr/bin/* $(1)/usr/bin/
+-	rm -f $(1)/usr/bin/cups-config
+-	$(INSTALL_DIR) $(1)/usr/lib
+-	$(CP) $(PKG_INSTALL_DIR)/usr/lib/libcups*.so* $(1)/usr/lib/
+-	$(CP) $(PKG_INSTALL_DIR)/usr/lib/cups $(1)/usr/lib/
+-	$(INSTALL_DIR) $(1)/usr/share/cups/templates
+-	$(CP) $(PKG_INSTALL_DIR)/usr/share/cups/templates/*.tmpl $(1)/usr/share/cups/templates/
+-	$(INSTALL_DIR) $(1)/usr/share/cups/mime
+-	$(CP) $(PKG_INSTALL_DIR)/usr/share/cups/mime/* $(1)/usr/share/cups/mime/
+-	$(INSTALL_DIR) $(1)/usr/share/doc/cups
+-	$(CP) $(PKG_INSTALL_DIR)/usr/share/doc/cups/index.html $(1)/usr/share/doc/cups/
+-	$(CP) $(PKG_INSTALL_DIR)/usr/share/doc/cups/*.css $(1)/usr/share/doc/cups/
+-	$(CP) $(PKG_INSTALL_DIR)/usr/share/doc/cups/images $(1)/usr/share/doc/cups/
+-	$(INSTALL_DIR) $(1)/usr/sbin
++	$(INSTALL_DIR) $(1)/opt/etc/cups
++	$(CP) $(PKG_INSTALL_DIR)/opt/etc/cups/* $(1)/opt/etc/cups/
++	rm -rf $(1)/opt/etc/cups/certs
++	ln -sf /tmp $(1)/opt/etc/cups/certs
++	$(INSTALL_DIR) $(1)/opt/bin
++	$(INSTALL_BIN) $(PKG_INSTALL_DIR)/opt/bin/* $(1)/opt/bin/
++	rm -f $(1)/opt/bin/cups-config
++	$(INSTALL_DIR) $(1)/opt/lib
++	$(CP) $(PKG_INSTALL_DIR)/opt/lib/libcups*.so* $(1)/opt/lib/
++	$(CP) $(PKG_INSTALL_DIR)/opt/lib/cups $(1)/opt/lib/
++	$(INSTALL_DIR) $(1)/opt/share/cups/templates
++	$(CP) $(PKG_INSTALL_DIR)/opt/share/cups/templates/*.tmpl $(1)/opt/share/cups/templates/
++	$(INSTALL_DIR) $(1)/opt/share/cups/mime
++	$(CP) $(PKG_INSTALL_DIR)/opt/share/cups/mime/* $(1)/opt/share/cups/mime/
++	$(INSTALL_DIR) $(1)/opt/sbin
+ 	$(INSTALL_BIN) \
+-		$(PKG_INSTALL_DIR)/usr/sbin/{accept,cupsaddsmb,cupsctl,cupsd,cupsfilter,lpadmin,lpc,lpinfo,lpmove} \
+-		$(1)/usr/sbin/
+-	(cd $(1)/usr/sbin; ln -sf accept reject; ln -sf accept cupsenable; ln -sf accept cupsdisable;)
++		$(PKG_INSTALL_DIR)/opt/sbin/{accept,cupsaddsmb,cupsctl,cupsd,cupsfilter,lpadmin,lpc,lpinfo,lpmove} \
++		$(1)/opt/sbin/
++	(cd $(1)/opt/sbin; ln -sf accept reject; ln -sf accept cupsenable; ln -sf accept cupsdisable;)
+ 	# overwrite default config with our own
+-	$(CP) ./files/etc/cups/* $(1)/etc/cups/
+-	# install initscript with priority 60
+-	$(INSTALL_DIR) $(1)/etc/init.d
+-	$(INSTALL_BIN) ./files/cupsd.init $(1)/etc/init.d/cupsd
++	$(CP) ./files/etc/cups/* $(1)/opt/etc/cups/
++	$(INSTALL_DIR) $(1)/opt/var/cache/cups $(1)/opt/var/cups \
++		$(1)/opt/var/spool/cups/tmp $(1)/opt/etc/init.d
++	$(INSTALL_BIN) ./files/S60cupsd $(1)/opt/etc/init.d/
+ endef
+ 
+ define Build/InstallDev
+-	$(INSTALL_DIR) $(2)/bin
+-	$(INSTALL_BIN) $(PKG_INSTALL_DIR)/usr/bin/cups-config $(2)/bin/
+-	$(INSTALL_DIR) $(1)/usr/include
+-	$(CP) $(PKG_INSTALL_DIR)/usr/include/cups $(1)/usr/include/
+-	$(INSTALL_DIR) $(1)/usr/lib
+-	$(CP) $(PKG_INSTALL_DIR)/usr/lib/libcups*.so* $(1)/usr/lib/
++	$(INSTALL_DIR) $(2)/opt/bin
++	$(INSTALL_BIN) $(PKG_INSTALL_DIR)/opt/bin/cups-config $(2)/opt/bin/
++	$(INSTALL_DIR) $(1)/opt/include
++	$(CP) $(PKG_INSTALL_DIR)/opt/include/cups $(1)/opt/include/
++	$(INSTALL_DIR) $(1)/opt/lib
++	$(CP) $(PKG_INSTALL_DIR)/opt/lib/libcups*.so* $(1)/opt/lib/
+ endef
+ 
+ $(eval $(call BuildPackage,cups))
