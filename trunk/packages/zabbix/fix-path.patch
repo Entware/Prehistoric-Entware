@@ -1,73 +1,65 @@
---- ../../../openwrt_trunk.orig/feeds/packages/admin/zabbix/Makefile	2012-07-12 09:38:56.670157830 +0400
-+++ ../../../openwrt_trunk/feeds/packages/admin/zabbix/Makefile	2012-07-13 23:17:26.050529224 +0400
-@@ -26,6 +26,7 @@
-   SECTION:=admin
-   CATEGORY:=Administration
-   TITLE:=Zabbix
-+  DEPENDS += $(ICONV_DEPENDS)
-   URL:=http://www.zabbix.com/
-   SUBMENU:=zabbix
-   MAINTAINER:=Mirko Vogt <mirko@openwrt.org>
-@@ -68,48 +69,48 @@
+--- ../../../openwrt_trunk.orig/feeds/packages/admin/zabbix/Makefile	2012-05-02 16:17:33.854294504 +0400
++++ ../../../openwrt_trunk/feeds/packages/admin/zabbix/Makefile	2012-06-01 09:59:55.077082694 +0400
+@@ -51,45 +51,45 @@
+ endif
+ 
+ CONFIGURE_ARGS+= \
+-	--bindir="/usr/sbin" \
++	--bindir="/opt/sbin" \
+ 	--enable-agent
+ 
+ ifneq ($(CONFIG_PACKAGE_zabbix-server),)
+   CONFIGURE_ARGS+= \
  	--enable-server \
- 	--enable-proxy \
- 	--disable-java \
 -	--with-sqlite3="$(STAGING_DIR)/usr"
 +	--with-sqlite3="$(STAGING_DIR)/opt"
+ endif
  
  MAKE_FLAGS += ARCH="linux"
  
- define Package/zabbix/install/sbin
- 	$(INSTALL_DIR) \
--		$(1)/usr/sbin
-+		$(1)/opt/sbin
- 
- 	$(INSTALL_BIN) \
--		$(PKG_INSTALL_DIR)/usr/sbin/zabbix_$(2) \
--		$(1)/usr/sbin/
-+		$(PKG_INSTALL_DIR)/opt/sbin/zabbix_$(2) \
-+		$(1)/opt/sbin/
- endef
- 
- define Package/zabbix/install/bin
- 	$(INSTALL_DIR) \
--		$(1)/usr/bin
-+		$(1)/opt/bin
- 
- 	$(INSTALL_BIN) \
--		$(PKG_INSTALL_DIR)/usr/bin/zabbix_$(2) \
--		$(1)/usr/bin/
-+		$(PKG_INSTALL_DIR)/opt/bin/zabbix_$(2) \
-+		$(1)/opt/bin/
- endef
- 
- define Package/zabbix/install/etc
- 	$(INSTALL_DIR) \
--		$(1)/etc
-+		$(1)/opt/etc
- 
- 	$(INSTALL_CONF) \
--		$(PKG_INSTALL_DIR)/etc/zabbix_$(2).conf \
--		$(1)/etc/
-+		$(PKG_INSTALL_DIR)/opt/etc/zabbix_$(2).conf \
-+		$(1)/opt/etc/
- endef
- 
- define Package/zabbix/install/init.d
- 	$(INSTALL_DIR) \
--		$(1)/etc/init.d
-+		$(1)/opt/etc/init.d
- 
- 	$(INSTALL_BIN) \
--		./files/zabbix_$(2).init \
--		$(1)/etc/init.d/zabbix_$(2)
-+		./files/S07zabbix_agentd \
-+		$(1)/opt/etc/init.d
- endef
- 
- define Package/zabbix-$(1)/conffiles
--  /etc/zabbix/zabbix_$(1).conf
-+  /opt/etc/zabbix/zabbix_$(1).conf
+ define Package/zabbix-agent/conffiles
+-/etc/zabbix/zabbix_agentd.conf
++/opt/etc/zabbix/zabbix_agentd.conf
  endef
  
  define Package/zabbix-agent/install
+-	$(INSTALL_DIR) $(1)/usr/sbin
+-	$(INSTALL_BIN) $(PKG_INSTALL_DIR)/usr/sbin/zabbix_agentd $(1)/usr/sbin/
+-	$(INSTALL_DIR) $(1)/etc/zabbix
+-	$(INSTALL_CONF) ./files/zabbix_agentd.conf $(1)/etc/zabbix/
+-	$(INSTALL_DIR) $(1)/etc/init.d
+-	$(INSTALL_BIN) ./files/zabbix_agentd.init $(1)/etc/init.d/zabbix_agentd
++	$(INSTALL_DIR) $(1)/opt/sbin
++	$(INSTALL_BIN) $(PKG_INSTALL_DIR)/opt/sbin/zabbix_agentd $(1)/opt/sbin/
++	$(INSTALL_DIR) $(1)/opt/etc/zabbix
++	$(INSTALL_CONF) ./files/zabbix_agentd.conf $(1)/opt/etc/zabbix/
++	$(INSTALL_DIR) $(1)/opt/etc/init.d
++	$(INSTALL_BIN) ./files/S07zabbix_agentd $(1)/opt/etc/init.d
+ endef
+ 
+ define Package/zabbix-sender/install
+-	$(INSTALL_DIR) $(1)/usr/sbin
+-	$(INSTALL_BIN) $(PKG_INSTALL_DIR)/usr/sbin/zabbix_sender $(1)/usr/sbin/
+-	$(INSTALL_DIR) $(1)/etc/zabbix
++	$(INSTALL_DIR) $(1)/opt/sbin
++	$(INSTALL_BIN) $(PKG_INSTALL_DIR)/opt/sbin/zabbix_sender $(1)/opt/sbin/
++	$(INSTALL_DIR) $(1)/opt/etc/zabbix
+ endef
+ 
+ define Package/zabbix-server/conffiles
+-/etc/zabbix/zabbix_server.conf
++/opt/etc/zabbix/zabbix_server.conf
+ endef
+ 
+ define Package/zabbix-server/install
+-	$(INSTALL_DIR) $(1)/usr/sbin
+-	$(INSTALL_BIN) $(PKG_INSTALL_DIR)/usr/sbin/zabbix_server $(1)/usr/sbin/
+-	$(INSTALL_DIR) $(1)/etc/zabbix
+-	$(INSTALL_CONF) $(PKG_BUILD_DIR)/misc/conf/zabbix_server.conf $(1)/etc/zabbix/
++	$(INSTALL_DIR) $(1)/opt/sbin
++	$(INSTALL_BIN) $(PKG_INSTALL_DIR)/opt/sbin/zabbix_server $(1)/opt/sbin/
++	$(INSTALL_DIR) $(1)/opt/etc/zabbix
++	$(INSTALL_CONF) $(PKG_BUILD_DIR)/misc/conf/zabbix_server.conf $(1)/opt/etc/zabbix/
+ endef
+ 
+ $(eval $(call BuildPackage,zabbix-agent))
