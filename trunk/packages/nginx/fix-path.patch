@@ -1,5 +1,15 @@
---- ../../../openwrt_trunk.orig/feeds/packages/net/nginx/Makefile	2012-07-10 18:59:23.001222227 +0400
-+++ ../../../openwrt_trunk/feeds/packages/net/nginx/Makefile	2012-07-11 12:26:13.742222634 +0400
+diff -urx .svn ../../../openwrt_trunk.orig/feeds/packages/net/nginx/Makefile ../../../openwrt_trunk/feeds/packages/net/nginx/Makefile
+--- ../../../openwrt_trunk.orig/feeds/packages/net/nginx/Makefile	2012-07-18 00:48:36.000000000 +0400
++++ ../../../openwrt_trunk/feeds/packages/net/nginx/Makefile	2012-07-18 00:10:15.000000000 +0400
+@@ -9,7 +9,7 @@
+ 
+ PKG_NAME:=nginx
+ PKG_VERSION:=1.2.2
+-PKG_RELEASE:=1
++PKG_RELEASE:=1a
+ 
+ PKG_SOURCE:=$(PKG_NAME)-$(PKG_VERSION).tar.gz
+ PKG_SOURCE_URL:=http://nginx.org/download/
 @@ -48,12 +48,12 @@
  config_files=nginx.conf mime.types fastcgi_params koi-utf koi-win win-utf
  
@@ -32,7 +42,7 @@
 -			--http-client-body-temp-path=/var/lib/nginx/body \
 -			--http-proxy-temp-path=/var/lib/nginx/proxy \
 -			--http-fastcgi-temp-path=/var/lib/nginx/fastcgi \
-+			--prefix=/opt \
++			--prefix=/opt/share/nginx \
 +			--conf-path=/opt/etc/nginx/nginx.conf \
 +			--error-log-path=/opt/var/log/nginx/error.log \
 +			--pid-path=/opt/var/run/nginx.pid \
@@ -44,7 +54,7 @@
  			--with-cc="$(TARGET_CC)" \
  			--with-cc-opt="$(TARGET_CPPFLAGS) $(TARGET_CFLAGS)" \
  			--with-ld-opt="$(TARGET_LDFLAGS)" \
-@@ -97,12 +97,12 @@
+@@ -97,12 +97,17 @@
  endef
  
  define Package/nginx/install
@@ -55,11 +65,74 @@
 -	$(INSTALL_DIR) $(1)/etc/init.d
 -	$(INSTALL_BIN) ./files/nginx.init $(1)/etc/init.d/nginx
 +	$(INSTALL_DIR) $(1)/opt/sbin
-+	$(INSTALL_BIN) $(PKG_INSTALL_DIR)/opt/sbin/nginx $(1)/opt/sbin/
++	$(INSTALL_BIN) $(PKG_INSTALL_DIR)/opt/share/nginx/sbin/nginx $(1)/opt/sbin/
 +	$(INSTALL_DIR) $(1)/opt/etc/nginx
 +	$(INSTALL_DATA) $(addprefix $(PKG_INSTALL_DIR)/opt/etc/nginx/,$(config_files)) $(1)/opt/etc/nginx/
 +	$(INSTALL_DIR) $(1)/opt/etc/init.d
 +	$(INSTALL_BIN) ./files/S80nginx $(1)/opt/etc/init.d
++	$(INSTALL_DIR) $(1)/opt/share/nginx/html
++	$(INSTALL_DATA) $(PKG_INSTALL_DIR)/opt/share/nginx/html/{index,50x}.html $(1)/opt/share/nginx/html
++	$(INSTALL_DIR) $(1)/opt/var/{run,lock}
++	$(INSTALL_DIR) $(1)/opt/var/log/nginx
++	$(INSTALL_DIR) $(1)/opt/var/lib/nginx/{body,proxy,fastcgi}
  endef
  
  $(eval $(call BuildPackage,nginx))
+diff -urx .svn ../../../openwrt_trunk.orig/feeds/packages/net/nginx/patches/200-config.patch ../../../openwrt_trunk/feeds/packages/net/nginx/patches/200-config.patch
+--- ../../../openwrt_trunk.orig/feeds/packages/net/nginx/patches/200-config.patch	2012-07-18 00:48:36.000000000 +0400
++++ ../../../openwrt_trunk/feeds/packages/net/nginx/patches/200-config.patch	2012-07-18 00:27:37.000000000 +0400
+@@ -1,18 +1,43 @@
+---- a/conf/nginx.conf
+-+++ b/conf/nginx.conf
+-@@ -1,5 +1,5 @@
++--- a/conf/nginx.conf	2011-06-27 19:47:51.000000000 +0400
+++++ b/conf/nginx.conf	2012-07-18 00:22:18.000000000 +0400
++@@ -1,16 +1,16 @@
+  
+ -#user  nobody;
+-+user nobody nogroup;
+++user  nobody;
+  worker_processes  1;
+  
+- #error_log  logs/error.log;
+-@@ -16,7 +16,7 @@ events {
++-#error_log  logs/error.log;
++-#error_log  logs/error.log  notice;
++-#error_log  logs/error.log  info;
+++#error_log  /opt/var/log/nginx/error.log;
+++#error_log  /opt/var/log/nginx/error.log  notice;
+++#error_log  /opt/var/log/nginx/error.log  info;
+  
+- http {
+-     include       mime.types;
+--    default_type  application/octet-stream;
+-+    #default_type  application/octet-stream;
++-#pid        logs/nginx.pid;
+++#pid        /opt/var/run/nginx.pid;
+  
+-     #log_format  main  '$remote_addr - $remote_user [$time_local] "$request" '
++ 
++ events {
++-    worker_connections  1024;
+++    worker_connections  64;
++ }
++ 
++ 
++@@ -22,7 +22,7 @@
+      #                  '$status $body_bytes_sent "$http_referer" '
++     #                  '"$http_user_agent" "$http_x_forwarded_for"';
++ 
++-    #access_log  logs/access.log  main;
+++    #access_log  /opt/var/log/nginx/access.log;
++ 
++     sendfile        on;
++     #tcp_nopush     on;
++@@ -38,7 +38,7 @@
++ 
++         #charset koi8-r;
++ 
++-        #access_log  logs/host.access.log  main;
+++        #access_log  /opt/var/log/nginx/host.access.log;
++ 
++         location / {
++             root   html;
