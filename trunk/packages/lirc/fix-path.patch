@@ -1,0 +1,48 @@
+--- ../../../openwrt_trunk.orig/feeds/packages/utils/lirc/Makefile	2012-07-15 21:54:16.293949886 +0400
++++ ../../../openwrt_trunk/feeds/packages/utils/lirc/Makefile	2012-07-17 12:41:44.701114802 +0400
+@@ -107,7 +107,7 @@
+ 	--enable-sandboxed
+ 
+ define Package/lirc/conffiles
+-/etc/lircd.conf
++/opt/etc/lircd.conf
+ endef
+ 
+ MAKE_FLAGS += \
+@@ -115,10 +115,10 @@
+ 	SUBDIRS="daemons tools"
+ 
+ define  Package/lirc/install
+-	$(INSTALL_DIR) $(1)/usr/sbin/
+-	$(INSTALL_BIN) $(PKG_BUILD_DIR)/daemons/lircd $(1)/usr/sbin/
+-	$(INSTALL_DIR) $(1)/etc
+-	$(INSTALL_CONF) $(PKG_BUILD_DIR)/contrib/lircd.conf $(1)/etc/
++	$(INSTALL_DIR) $(1)/opt/sbin/
++	$(INSTALL_BIN) $(PKG_BUILD_DIR)/daemons/lircd $(1)/opt/sbin/
++	$(INSTALL_DIR) $(1)/opt/etc
++	$(INSTALL_CONF) $(PKG_BUILD_DIR)/contrib/lircd.conf $(1)/opt/etc/
+ endef
+ #todo:
+ #	$(CP) $(PKG_BUILD_DIR)/drivers/lirc_dev/lirc_dev.ko
+@@ -126,15 +126,15 @@
+ #depends on the selected module
+ 
+ define  Package/lircdaemonadd/install
+-	$(INSTALL_DIR) $(1)/usr/sbin/
+-	$(INSTALL_BIN) $(PKG_BUILD_DIR)/daemons/{irrecord,lircmd} $(1)/usr/sbin/
++	$(INSTALL_DIR) $(1)/opt/sbin/
++	$(INSTALL_BIN) $(PKG_BUILD_DIR)/daemons/{irrecord,lircmd} $(1)/opt/sbin/
+ endef
+ 
+ define  Package/lirctools/install
+-	$(INSTALL_DIR) $(1)/usr/sbin/
+-	$(INSTALL_BIN) $(PKG_BUILD_DIR)/tools/irsend $(1)/usr/sbin/
+-	$(INSTALL_BIN) $(PKG_BUILD_DIR)/tools/irw $(1)/usr/sbin/
+-	$(INSTALL_BIN) $(PKG_BUILD_DIR)/tools/mode2 $(1)/usr/sbin/
++	$(INSTALL_DIR) $(1)/opt/sbin/
++	$(INSTALL_BIN) $(PKG_BUILD_DIR)/tools/irsend $(1)/opt/sbin/
++	$(INSTALL_BIN) $(PKG_BUILD_DIR)/tools/irw $(1)/opt/sbin/
++	$(INSTALL_BIN) $(PKG_BUILD_DIR)/tools/mode2 $(1)/opt/sbin/
+ endef
+ 
+ $(eval $(call BuildPackage,lirc))
