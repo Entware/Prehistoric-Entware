@@ -1,5 +1,5 @@
---- ../../../openwrt_trunk.orig/package/librpc/Makefile	2012-07-12 09:38:56.942154412 +0400
-+++ ../../../openwrt_trunk/package/librpc/Makefile	2012-07-12 19:21:24.642810998 +0400
+--- ../../../openwrt_trunk.orig/package/librpc/Makefile	2012-07-15 21:54:20.389949744 +0400
++++ ../../../openwrt_trunk/package/librpc/Makefile	2012-07-17 08:48:03.689606998 +0400
 @@ -9,7 +9,7 @@
  PKG_SOURCE_SUBDIR:=$(PKG_NAME)-$(PKG_VERSION)
  PKG_SOURCE_VERSION:=0a2179bbc0844928f2a0ec01dba93d9b5d6d41a7
@@ -9,18 +9,10 @@
  
  include $(INCLUDE_DIR)/package.mk
  include $(INCLUDE_DIR)/cmake.mk
-@@ -20,9 +20,25 @@
+@@ -20,9 +20,26 @@
    TITLE:=uClibc RPC library
  endef
  
--define Package/librpc/install
--	$(INSTALL_DIR) $(1)/lib/
--	$(INSTALL_DATA) $(PKG_INSTALL_DIR)/usr/lib/librpc.so $(1)/lib/
-+#define Package/librpc/install
-+#	$(INSTALL_DIR) $(1)/opt/lib/
-+#	$(INSTALL_DATA) $(PKG_INSTALL_DIR)/opt/lib/librpc.so $(1)/opt/lib/
-+#endef
-+
 +define Build/Prepare
 +endef
 +
@@ -33,8 +25,16 @@
 +define Build/Install
 +endef
 +
-+define package/librpc/install
-+	true
+ define Package/librpc/install
+-	$(INSTALL_DIR) $(1)/lib/
+-	$(INSTALL_DATA) $(PKG_INSTALL_DIR)/usr/lib/librpc.so $(1)/lib/
++	$(INSTALL_DIR) $(1)/opt/tmp/
++	touch $(1)/opt/tmp/.librpc_placeholder
  endef
  
++#define Package/librpc/install
++#	$(INSTALL_DIR) $(1)/opt/lib/
++#	$(INSTALL_DATA) $(PKG_INSTALL_DIR)/opt/lib/librpc.so $(1)/opt/lib/
++#endef
++
  $(eval $(call BuildPackage,librpc))

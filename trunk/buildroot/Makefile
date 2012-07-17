@@ -22,6 +22,7 @@ all: .done
 	patch -p0 -i ./sdk-rules.patch
 	patch -p0 -i ./package.patch
 	patch -p0 -i ./include-package.patch
+	patch -p0 -i ./ipkg-make-index.patch
 	patch -p0 -i ./add-mirror.patch
 	echo CONFIG_TARGET_rtn=y > ../../openwrt_trunk/.config
 	make -C ../../openwrt_trunk defconfig
