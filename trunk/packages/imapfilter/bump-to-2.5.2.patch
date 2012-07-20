@@ -1,0 +1,121 @@
+diff -urx .svn ../../../openwrt_trunk.orig/feeds/packages/mail/imapfilter/Makefile ../../../openwrt_trunk/feeds/packages/mail/imapfilter/Makefile
+--- ../../../openwrt_trunk.orig/feeds/packages/mail/imapfilter/Makefile	2012-07-18 00:48:37.000000000 +0400
++++ ../../../openwrt_trunk/feeds/packages/mail/imapfilter/Makefile	2012-07-20 13:17:30.000000000 +0400
+@@ -8,21 +8,22 @@
+ include $(TOPDIR)/rules.mk
+ 
+ PKG_NAME:=imapfilter
+-PKG_VERSION:=2.2.2
++PKG_VERSION:=2.5.2
+ PKG_RELEASE:=1
+ 
+-PKG_SOURCE:=$(PKG_NAME)-$(PKG_VERSION).tar.bz2
+-PKG_SOURCE_URL:=http://imapfilter.hellug.gr/source/
+-PKG_MD5SUM:=09c6ffb085a5a244dc9f3e798259f341
++PKG_SOURCE:=$(PKG_NAME)-$(PKG_VERSION).tar.gz
++PKG_SOURCE_URL:=http://github.com/downloads/lefcha/imapfilter/
++PKG_MD5SUM:=a22db55b57893cb53305a5d835ee7bd6
+ 
+ include $(INCLUDE_DIR)/package.mk
++include $(INCLUDE_DIR)/nls.mk
+ 
+ define Package/imapfilter
+   SECTION:=mail
+   CATEGORY:=Mail
+-  DEPENDS:=+liblua +libopenssl +libpcre
++  DEPENDS:=+liblua +libopenssl +libpcre $(ICONV_DEPENDS)
+   TITLE:=IMAP server based email filtering
+-  URL:=http://imapfilter.hellug.gr/
++  URL:=http://github.com/lefcha/imapfilter
+ endef
+ 
+ define Package/imapfilter/description
+@@ -37,33 +38,28 @@
+ 	extension language.
+ endef
+ 
+-define Build/Configure
+-	(cd $(PKG_BUILD_DIR); \
+-		./configure \
+-			-d /usr \
+-	);
+-endef
+-
+ define Build/Compile
+ 	$(MAKE) -C $(PKG_BUILD_DIR) \
+ 		$(TARGET_CONFIGURE_OPTS) \
+ 		INCDIRS="$(TARGET_CPPFLAGS)" \
+ 		LIBDIRS="$(TARGET_LDFLAGS)" \
+ 		MYCFLAGS="$(TARGET_CFLAGS) -std=gnu99" \
+-		MYLDFLAGS="-lcrypt" 
++		MYLDFLAGS="-liconv" \
++		PREFIX="/opt"
+ endef
+ 
+ define Package/imapfilter/conffiles
+-/etc/imapfilter/config.lua
++/opt/etc/imapfilter/config.lua
++/opt/etc/imapfilter/extend.lua
+ endef
+ 
+ define Package/imapfilter/install
+-	$(INSTALL_DIR) $(1)/usr/bin
+-	$(INSTALL_BIN) $(PKG_BUILD_DIR)/imapfilter $(1)/usr/bin/
+-	$(INSTALL_DIR) $(1)/etc/imapfilter
+-	$(INSTALL_CONF) $(PKG_BUILD_DIR)/sample.config.lua $(1)/etc/imapfilter/config.lua
+-	$(INSTALL_DIR) $(1)/usr/share/imapfilter
+-	$(INSTALL_DATA) $(PKG_BUILD_DIR)/{account,auxiliary,common,mailbox,message,options,regex,set,deprecated}.lua $(1)/usr/share/imapfilter/
++	$(INSTALL_DIR) $(1)/opt/bin
++	$(INSTALL_BIN) $(PKG_BUILD_DIR)/src/imapfilter $(1)/opt/bin/
++	$(INSTALL_DIR) $(1)/opt/etc/imapfilter
++	$(INSTALL_CONF) $(PKG_BUILD_DIR)/samples/{config,extend}.lua $(1)/opt/etc/imapfilter
++	$(INSTALL_DIR) $(1)/opt/share/imapfilter
++	$(INSTALL_DATA) $(PKG_BUILD_DIR)/src/*.lua $(1)/opt/share/imapfilter/
+ endef
+ 
+ $(eval $(call BuildPackage,imapfilter))
+diff -urx .svn ../../../openwrt_trunk.orig/feeds/packages/mail/imapfilter/patches/010-pathnames.patch ../../../openwrt_trunk/feeds/packages/mail/imapfilter/patches/010-pathnames.patch
+--- ../../../openwrt_trunk.orig/feeds/packages/mail/imapfilter/patches/010-pathnames.patch	2012-07-18 00:48:37.000000000 +0400
++++ ../../../openwrt_trunk/feeds/packages/mail/imapfilter/patches/010-pathnames.patch	2012-07-20 01:29:57.000000000 +0400
+@@ -1,31 +1,11 @@
+---- a/pathnames.h
+-+++ b/pathnames.h
+-@@ -3,7 +3,7 @@
++--- src/file.c.orig	2012-03-01 00:20:34.000000000 +0400
+++++ b/src/file.c	2012-07-20 01:11:52.000000000 +0400
++@@ -25,7 +25,7 @@
++ 	char *h, *i;
++ 
++ 	h = getenv("HOME");
++-	i = getenv("IMAPFILTER_HOME");
+++	i = "/opt/etc/imapfilter";
+  
+- 
+- /* Program's home directory. */
+--#define PATHNAME_HOME			".imapfilter"
+-+#define PATHNAME_HOME			"/etc/imapfilter"
+- 
+- /* Program's configuration file. */
+- #define PATHNAME_CONFIG			PATHNAME_HOME "/config.lua"
+-@@ -39,7 +39,7 @@
+- #define PATHNAME_CERTS			PATHNAME_HOME "/certificates"
+- 
+- /* Debug temporary file template. */
+--#define PATHNAME_DEBUG			PATHNAME_HOME "/debug.XXXXXX"
+-+#define PATHNAME_DEBUG			"/tmp/imapfilterdebug.XXXXXX"
+- 
+- 
+- #endif				/* PATHNAMES_H */
+---- a/imapfilter.c
+-+++ b/imapfilter.c
+-@@ -50,7 +50,7 @@
+- 	opts.config = NULL;
+- 	opts.oneline = NULL;
+- 
+--	env.home = getenv("HOME");
+-+	env.home = "";
+- 	env.pathmax = -1;
+- 
+- 	while ((c = getopt(argc, argv, "Vc:de:il:v?")) != -1) {
++ 	if (i == NULL)
++ 		n = strlen(h ? h : "") + strlen(h ? "/" : "") +
