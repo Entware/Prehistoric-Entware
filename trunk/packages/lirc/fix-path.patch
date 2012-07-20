@@ -1,5 +1,5 @@
 --- ../../../openwrt_trunk.orig/feeds/packages/utils/lirc/Makefile	2012-07-15 21:54:16.293949886 +0400
-+++ ../../../openwrt_trunk/feeds/packages/utils/lirc/Makefile	2012-07-17 12:41:44.701114802 +0400
++++ ../../../openwrt_trunk/feeds/packages/utils/lirc/Makefile	2012-07-20 08:42:16.436638677 +0400
 @@ -107,7 +107,7 @@
  	--enable-sandboxed
  
@@ -24,7 +24,7 @@
  endef
  #todo:
  #	$(CP) $(PKG_BUILD_DIR)/drivers/lirc_dev/lirc_dev.ko
-@@ -126,15 +126,15 @@
+@@ -126,15 +126,16 @@
  #depends on the selected module
  
  define  Package/lircdaemonadd/install
@@ -43,6 +43,7 @@
 +	$(INSTALL_BIN) $(PKG_BUILD_DIR)/tools/irsend $(1)/opt/sbin/
 +	$(INSTALL_BIN) $(PKG_BUILD_DIR)/tools/irw $(1)/opt/sbin/
 +	$(INSTALL_BIN) $(PKG_BUILD_DIR)/tools/mode2 $(1)/opt/sbin/
++	$(INSTALL_BIN) $(PKG_BUILD_DIR)/tools/irexec $(1)/opt/sbin/
  endef
  
  $(eval $(call BuildPackage,lirc))
