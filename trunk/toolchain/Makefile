@@ -24,6 +24,11 @@ kernel_prepare: .kernel_prepared
 	rm -fr ../../kernel-1.9.2.7-rtn
 	touch $@
 
+kernel_pack: .kernel_prepared .kernel_packed
+.kernel_packed:
+	tar -cvzf ../../entware-kernel-$(TOOLCHAIN_REVISION).tgz ../../linux-2.6.22.19
+	touch $@
+
 toolchain_compile: .toolchain_compiled
 .toolchain_compiled:
 	@echo Making /opt/entware-toolchain directory, root password needed...
@@ -47,6 +52,7 @@ toolchain_compile: .toolchain_compiled
 
 clean:
 	rm -f ./.kernel_prepared
+	rm -f ./.kernel_packed
 	rm -f ./.toolchain_compiled
 
 .PHONY : clean
