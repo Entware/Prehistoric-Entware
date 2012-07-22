@@ -1,12 +1,12 @@
 diff -urx .svn ../../../openwrt_trunk.orig/feeds/packages/mail/imapfilter/Makefile ../../../openwrt_trunk/feeds/packages/mail/imapfilter/Makefile
 --- ../../../openwrt_trunk.orig/feeds/packages/mail/imapfilter/Makefile	2012-07-18 00:48:37.000000000 +0400
-+++ ../../../openwrt_trunk/feeds/packages/mail/imapfilter/Makefile	2012-07-20 13:17:30.000000000 +0400
-@@ -8,21 +8,22 @@
++++ ../../../openwrt_trunk/feeds/packages/mail/imapfilter/Makefile	2012-07-22 21:00:29.000000000 +0400
+@@ -8,12 +8,12 @@
  include $(TOPDIR)/rules.mk
  
  PKG_NAME:=imapfilter
 -PKG_VERSION:=2.2.2
-+PKG_VERSION:=2.5.2
++PKG_VERSION:=2.5.3
  PKG_RELEASE:=1
  
 -PKG_SOURCE:=$(PKG_NAME)-$(PKG_VERSION).tar.bz2
@@ -14,23 +14,20 @@ diff -urx .svn ../../../openwrt_trunk.orig/feeds/packages/mail/imapfilter/Makefi
 -PKG_MD5SUM:=09c6ffb085a5a244dc9f3e798259f341
 +PKG_SOURCE:=$(PKG_NAME)-$(PKG_VERSION).tar.gz
 +PKG_SOURCE_URL:=http://github.com/downloads/lefcha/imapfilter/
-+PKG_MD5SUM:=a22db55b57893cb53305a5d835ee7bd6
++PKG_MD5SUM:=f7ab4246e587f55f3a761a51b9a28417
  
  include $(INCLUDE_DIR)/package.mk
-+include $(INCLUDE_DIR)/nls.mk
  
- define Package/imapfilter
-   SECTION:=mail
+@@ -22,7 +22,7 @@
    CATEGORY:=Mail
--  DEPENDS:=+liblua +libopenssl +libpcre
-+  DEPENDS:=+liblua +libopenssl +libpcre $(ICONV_DEPENDS)
+   DEPENDS:=+liblua +libopenssl +libpcre
    TITLE:=IMAP server based email filtering
 -  URL:=http://imapfilter.hellug.gr/
 +  URL:=http://github.com/lefcha/imapfilter
  endef
  
  define Package/imapfilter/description
-@@ -37,33 +38,28 @@
+@@ -37,33 +37,27 @@
  	extension language.
  endef
  
@@ -48,7 +45,6 @@ diff -urx .svn ../../../openwrt_trunk.orig/feeds/packages/mail/imapfilter/Makefi
  		LIBDIRS="$(TARGET_LDFLAGS)" \
  		MYCFLAGS="$(TARGET_CFLAGS) -std=gnu99" \
 -		MYLDFLAGS="-lcrypt" 
-+		MYLDFLAGS="-liconv" \
 +		PREFIX="/opt"
  endef
  
@@ -76,7 +72,7 @@ diff -urx .svn ../../../openwrt_trunk.orig/feeds/packages/mail/imapfilter/Makefi
  $(eval $(call BuildPackage,imapfilter))
 diff -urx .svn ../../../openwrt_trunk.orig/feeds/packages/mail/imapfilter/patches/010-pathnames.patch ../../../openwrt_trunk/feeds/packages/mail/imapfilter/patches/010-pathnames.patch
 --- ../../../openwrt_trunk.orig/feeds/packages/mail/imapfilter/patches/010-pathnames.patch	2012-07-18 00:48:37.000000000 +0400
-+++ ../../../openwrt_trunk/feeds/packages/mail/imapfilter/patches/010-pathnames.patch	2012-07-20 01:29:57.000000000 +0400
++++ ../../../openwrt_trunk/feeds/packages/mail/imapfilter/patches/010-pathnames.patch	2012-07-20 14:59:38.000000000 +0400
 @@ -1,31 +1,11 @@
 ---- a/pathnames.h
 -+++ b/pathnames.h
