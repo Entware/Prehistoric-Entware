@@ -1,0 +1,40 @@
+--- ../../../openwrt_trunk.orig/feeds/packages/libs/gpgme/Makefile	2012-07-18 00:48:35.000000000 +0400
++++ ../../../openwrt_trunk/feeds/packages/libs/gpgme/Makefile	2012-07-24 04:33:35.000000000 +0400
+@@ -39,25 +39,28 @@
+ CONFIGURE_ARGS += \
+ 	--enable-shared \
+ 	--enable-static \
+-	--with-gpg=/"usr/bin/gpg" \
+-	--with-gpg-error-prefix="$(STAGING_DIR)/usr" \
+-	--with-libassuan-prefix="$(STAGING_DIR)/usr" \
++	--with-gpg="/opt/bin/gpg" \
++	--with-gpg-error-prefix="$(STAGING_DIR)/opt" \
++	--with-libassuan-prefix="$(STAGING_DIR)/opt" \
+ 	--without-g13 \
+ 	--without-gpgconf \
+ 	--without-gpgsm \
+ 	--without-pth \
+ 
+ define Build/InstallDev
+-	$(INSTALL_DIR) $(1)/usr/include
+-	$(CP) $(PKG_INSTALL_DIR)/usr/include/gpgme.h $(1)/usr/include/
++	$(INSTALL_DIR) $(1)/opt/include
++	$(CP) $(PKG_INSTALL_DIR)/opt/include/gpgme.h $(1)/opt/include/
+ 
+-	$(INSTALL_DIR) $(1)/usr/lib
+-	$(CP) $(PKG_INSTALL_DIR)/usr/lib/libgpgme{,-pthread}.{a,so*} $(1)/usr/lib/
++	$(INSTALL_DIR) $(1)/opt/lib
++	$(CP) $(PKG_INSTALL_DIR)/opt/lib/libgpgme{,-pthread}.{a,so*} $(1)/opt/lib/
++	
++	$(INSTALL_DIR) $(1)/opt/bin
++	$(CP) $(PKG_INSTALL_DIR)/opt/bin/* $(1)/opt/bin
+ endef
+ 
+ define Package/libgpgme/install
+-	$(INSTALL_DIR) $(1)/usr/lib
+-	$(CP) $(PKG_INSTALL_DIR)/usr/lib/libgpgme{,-pthread}.so.* $(1)/usr/lib/
++	$(INSTALL_DIR) $(1)/opt/lib
++	$(CP) $(PKG_INSTALL_DIR)/opt/lib/libgpgme{,-pthread}.so.* $(1)/opt/lib/
+ endef
+ 
+ $(eval $(call BuildPackage,libgpgme))
