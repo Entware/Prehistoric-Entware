@@ -1,0 +1,30 @@
+--- ../../../openwrt_trunk.orig/feeds/packages/libs/libidn/Makefile	2012-07-18 00:48:35.000000000 +0400
++++ ../../../openwrt_trunk/feeds/packages/libs/libidn/Makefile	2012-07-24 12:33:02.000000000 +0400
+@@ -45,15 +45,21 @@
+ 	CC="$(TARGET_CC)" \
+ 
+ define Build/InstallDev
+-	$(INSTALL_DIR) $(1)/usr/include
+-	$(CP) $(PKG_INSTALL_DIR)/usr/include/*.h $(1)/usr/include/
+-	$(INSTALL_DIR) $(1)/usr/lib
+-	$(CP) $(PKG_INSTALL_DIR)/usr/lib/libidn.{a,so*} $(1)/usr/lib/
++	$(INSTALL_DIR) $(1)/opt/include
++	$(CP) $(PKG_INSTALL_DIR)/opt/include/*.h $(1)/opt/include/
++	$(INSTALL_DIR) $(1)/opt/lib
++	$(CP) $(PKG_INSTALL_DIR)/opt/lib/libidn.{a,la,so*} $(1)/opt/lib/
++	$(INSTALL_DIR) $(1)/opt/lib/pkgconfig
++	$(CP) $(PKG_INSTALL_DIR)/opt/lib/pkgconfig/libidn.pc $(1)/opt/lib/pkgconfig
++	$(INSTALL_DIR) $(1)/opt/bin
++	$(CP) $(PKG_INSTALL_DIR)/opt/bin/idn $(1)/opt/bin
+ endef
+ 
+ define Package/libidn/install
+-	$(INSTALL_DIR) $(1)/usr/lib
+-	$(CP) $(PKG_INSTALL_DIR)/usr/lib/libidn.so.* $(1)/usr/lib/
++	$(INSTALL_DIR) $(1)/opt/lib
++	$(CP) $(PKG_INSTALL_DIR)/opt/lib/libidn.so.* $(1)/opt/lib/
++	$(INSTALL_DIR) $(1)/opt/bin
++	$(INSTALL_BIN) $(PKG_INSTALL_DIR)/opt/bin/idn $(1)/opt/bin
+ endef
+ 
+ $(eval $(call BuildPackage,libidn))
