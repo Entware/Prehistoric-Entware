@@ -1,0 +1,121 @@
+diff -urx .svn ../../../openwrt_trunk.orig/feeds/packages/net/ntpd/files/ntp.conf ../../../openwrt_trunk/feeds/packages/net/ntpd/files/ntp.conf
+--- ../../../openwrt_trunk.orig/feeds/packages/net/ntpd/files/ntp.conf	2012-07-21 23:10:01.110539887 +0400
++++ ../../../openwrt_trunk/feeds/packages/net/ntpd/files/ntp.conf	2012-07-25 21:41:52.346835327 +0400
+@@ -6,7 +6,7 @@
+ 
+ restrict 127.0.0.1
+ 
+-driftfile  /var/lib/ntp/ntp.drift
++driftfile  /opt/var/spool/ntp/ntp.drift
+ 
+ server 0.openwrt.pool.ntp.org iburst
+ server 1.openwrt.pool.ntp.org iburst
+diff -urx .svn ../../../openwrt_trunk.orig/feeds/packages/net/ntpd/files/ntpd.hotplug ../../../openwrt_trunk/feeds/packages/net/ntpd/files/ntpd.hotplug
+--- ../../../openwrt_trunk.orig/feeds/packages/net/ntpd/files/ntpd.hotplug	2012-07-21 23:10:01.110539887 +0400
++++ ../../../openwrt_trunk/feeds/packages/net/ntpd/files/ntpd.hotplug	2012-07-25 21:33:11.422839524 +0400
+@@ -1,10 +1,10 @@
+ NAME=ntpd
+-CONFIG=/etc/ntp.conf
+-COMMAND=/usr/sbin/$NAME
++CONFIG=/opt/etc/ntp.conf
++COMMAND=/opt/sbin/$NAME
+ 
+ [ "$ACTION" = "ifup" -a "$INTERFACE" = "wan" ] && {
+         [ -x $COMMAND ] && [ -r $CONFIG ] && {
+ 		killall ntpd
+-		/etc/init.d/ntpd start
++		/opt/etc/init.d/S77ntpd start
+         } &
+ }
+diff -urx .svn ../../../openwrt_trunk.orig/feeds/packages/net/ntpd/Makefile ../../../openwrt_trunk/feeds/packages/net/ntpd/Makefile
+--- ../../../openwrt_trunk.orig/feeds/packages/net/ntpd/Makefile	2012-07-21 23:10:01.070539889 +0400
++++ ../../../openwrt_trunk/feeds/packages/net/ntpd/Makefile	2012-07-25 21:40:37.758828722 +0400
+@@ -114,11 +114,11 @@
+ endef
+ 
+ define Package/ntpd/conffiles
+-/etc/ntp.conf
++/opt/etc/ntp.conf
+ endef
+ 
+ TARGET_CPPFLAGS += \
+-	-I$(STAGING_DIR)/usr/include/libelf
++	-I$(STAGING_DIR)/opt/include/libelf
+ 
+ CONFIGURE_VARS += \
+ 	ac_cv_header_md5_h=no \
+@@ -138,53 +138,42 @@
+ ifeq ($(BUILD_VARIANT),ssl)
+   CONFIGURE_ARGS += \
+ 	--with-crypto \
+-	--with-openssl-incdir="$(STAGING_DIR)/usr/include" \
+-	--with-openssl-libdir="$(STAGING_DIR)/usr/lib"
++	--with-openssl-incdir="$(STAGING_DIR)/opt/include" \
++	--with-openssl-libdir="$(STAGING_DIR)/opt/lib"
+ endif
+ 
+ define Package/ntpd/install
+-	$(INSTALL_DIR) $(1)/sbin
+-	$(INSTALL_BIN) $(PKG_BUILD_DIR)/ntpd/ntpd $(1)/sbin/
+-	$(INSTALL_DIR) $(1)/etc
+-	$(INSTALL_CONF) ./files/ntp.conf $(1)/etc/
+-	$(INSTALL_DIR) $(1)/etc/init.d
+-	$(INSTALL_BIN) ./files/ntpd.init $(1)/etc/init.d/ntpd
+-	$(INSTALL_DIR) $(1)/etc/hotplug.d/iface
+-	$(INSTALL_BIN) ./files/ntpd.hotplug $(1)/etc/hotplug.d/iface/20-ntpd
+-endef
+-
+-define Package/ntpd/postinst
+-#!/bin/sh
+-[ -L "$${IPKG_INSTROOT}/usr/sbin/ntpd" ] && rm -f "$${IPKG_INSTROOT}/usr/sbin/ntpd"
+-exit 0
+-endef
+-
+-define Package/ntpd/postrm
+-#!/bin/sh
+-/bin/busybox ntpd -h 2>&1 | grep -q BusyBox && ln -sf ../../bin/busybox /usr/sbin/ntpd
+-exit 0
++	$(INSTALL_DIR) $(1)/opt/sbin
++	$(INSTALL_BIN) $(PKG_BUILD_DIR)/ntpd/ntpd $(1)/opt/sbin/
++	$(INSTALL_DIR) $(1)/opt/etc
++	$(INSTALL_CONF) ./files/ntp.conf $(1)/opt/etc/
++	$(INSTALL_DIR) $(1)/opt/etc/init.d
++	$(INSTALL_BIN) ./files/S77ntpd $(1)/opt/etc/init.d/
++	$(INSTALL_DIR) $(1)/opt/etc/hotplug.d/iface
++	$(INSTALL_BIN) ./files/ntpd.hotplug $(1)/opt/etc/hotplug.d/iface/20-ntpd
++	$(INSTALL_DIR) $(1)/opt/var/spool/ntp
+ endef
+ 
+ Package/ntpd-ssl/conffiles = $(Package/ntpd/conffiles)
+ Package/ntpd-ssl/install = $(Package/ntpd/install)
+ 
+ define Package/ntpdate/install
+-	$(INSTALL_DIR) $(1)/usr/sbin
+-	$(INSTALL_BIN) $(PKG_BUILD_DIR)/ntpdate/ntpdate $(1)/usr/sbin/
+-	$(INSTALL_DIR) $(1)/etc/init.d
+-	$(INSTALL_BIN) ./files/ntpdate.init $(1)/etc/init.d/ntpdate
++	$(INSTALL_DIR) $(1)/opt/sbin
++	$(INSTALL_BIN) $(PKG_BUILD_DIR)/ntpdate/ntpdate $(1)/opt/sbin/
++	$(INSTALL_DIR) $(1)/opt/etc/init.d
++	$(INSTALL_BIN) ./files/S77ntpdate $(1)/opt/etc/init.d/
+ endef
+ 
+ define Package/ntp-utils/install
+-	$(INSTALL_DIR) $(1)/usr/sbin
+-	$(INSTALL_BIN) $(PKG_BUILD_DIR)/ntpdc/ntpdc $(1)/usr/sbin/
+-	$(INSTALL_BIN) $(PKG_BUILD_DIR)/ntpq/ntpq $(1)/usr/sbin/
+-	$(INSTALL_BIN) $(PKG_BUILD_DIR)/util/ntptime $(1)/usr/sbin/
++	$(INSTALL_DIR) $(1)/opt/sbin
++	$(INSTALL_BIN) $(PKG_BUILD_DIR)/ntpdc/ntpdc $(1)/opt/sbin/
++	$(INSTALL_BIN) $(PKG_BUILD_DIR)/ntpq/ntpq $(1)/opt/sbin/
++	$(INSTALL_BIN) $(PKG_BUILD_DIR)/util/ntptime $(1)/opt/sbin/
+ endef
+ 
+ define Package/ntp-keygen/install
+-	$(INSTALL_DIR) $(1)/usr/sbin
+-	$(INSTALL_BIN) $(PKG_BUILD_DIR)/util/ntp-keygen $(1)/usr/sbin/
++	$(INSTALL_DIR) $(1)/opt/sbin
++	$(INSTALL_BIN) $(PKG_BUILD_DIR)/util/ntp-keygen $(1)/opt/sbin/
+ endef
+ 
+ Package/ntp-keygen-ssl/install = $(Package/ntp-keygen/install)

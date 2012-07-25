@@ -1,0 +1,33 @@
+--- ../../../openwrt_trunk.orig/feeds/packages/libs/libcap/Makefile	2012-07-21 23:09:59.206539923 +0400
++++ ../../../openwrt_trunk/feeds/packages/libs/libcap/Makefile	2012-07-25 22:03:20.274809493 +0400
+@@ -18,7 +18,7 @@
+ PKG_INSTALL:=1
+ 
+ include $(INCLUDE_DIR)/package.mk
+-include $(INCLUDE_DIR)/kernel.mk
++#include $(INCLUDE_DIR)/kernel.mk
+ 
+ define Package/libcap
+   TITLE:=Linux capabilities library
+@@ -41,15 +41,15 @@
+     lib="lib"
+ 
+ define Build/InstallDev
+-	$(INSTALL_DIR) $(1)/usr/include/sys
+-	$(CP) $(PKG_INSTALL_DIR)/usr/include/* $(1)/usr/include/
+-	$(INSTALL_DIR) $(1)/usr/lib/
+-	$(CP) $(PKG_INSTALL_DIR)/lib/* $(1)/usr/lib/
++	$(INSTALL_DIR) $(1)/opt/include/sys
++	$(CP) $(PKG_INSTALL_DIR)/usr/include/* $(1)/opt/include/
++	$(INSTALL_DIR) $(1)/opt/lib/
++	$(CP) $(PKG_INSTALL_DIR)/lib/* $(1)/opt/lib/
+ endef
+ 
+ define Package/libcap/install
+-	$(INSTALL_DIR) $(1)/usr/lib
+-	$(CP) $(PKG_INSTALL_DIR)/lib/libcap.so* $(1)/usr/lib/
++	$(INSTALL_DIR) $(1)/opt/lib
++	$(CP) $(PKG_INSTALL_DIR)/lib/libcap.so* $(1)/opt/lib/
+ endef
+ 
+ $(eval $(call BuildPackage,libcap))

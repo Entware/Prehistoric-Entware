@@ -1,0 +1,10 @@
+#!/bin/sh 
+
+ENABLED=yes 
+PROCS=ntpdate 
+ARGS="-s -b -u -t 2 0.openwrt.pool.ntp.org" 
+PREARGS="" 
+DESC=$PROCS 
+PATH=/opt/sbin:/opt/bin:/opt/usr/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin 
+
+. /opt/etc/init.d/rc.func 
