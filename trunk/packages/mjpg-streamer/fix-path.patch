@@ -1,0 +1,33 @@
+--- ../../../openwrt_trunk.orig/feeds/packages/multimedia/mjpg-streamer/Makefile	2012-07-21 23:09:59.362539921 +0400
++++ ../../../openwrt_trunk/feeds/packages/multimedia/mjpg-streamer/Makefile	2012-07-26 10:56:54.101965195 +0400
+@@ -35,21 +35,15 @@
+ EXTRA_CFLAGS += $(TARGET_CPPFLAGS) $(TARGET_LDFLAGS)
+ 
+ define Package/mjpg-streamer/install
+-	$(INSTALL_DIR) $(1)/usr/bin
+-	$(INSTALL_BIN) $(PKG_BUILD_DIR)/mjpg_streamer $(1)/usr/bin/
+-	$(INSTALL_DIR) $(1)/etc/config
+-	$(CP) ./files/mjpg-streamer.config $(1)/etc/config/mjpg-streamer
+-	$(INSTALL_DIR) $(1)/etc/init.d
+-	$(INSTALL_BIN) ./files/mjpg-streamer.init $(1)/etc/init.d/mjpg-streamer
+-	$(INSTALL_DIR) $(1)/usr/lib
+-	$(CP) $(foreach input_plugin,file uvc,$(PKG_BUILD_DIR)/input_$(input_plugin).so) $(1)/usr/lib
+-	$(CP) $(foreach output_plugin,http file,$(PKG_BUILD_DIR)/output_$(output_plugin).so) $(1)/usr/lib
+-	$(INSTALL_DIR) $(1)/etc/hotplug.d/usb
+-	$(INSTALL_DATA) ./files/mjpg-streamer.hotplug $(1)/etc/hotplug.d/usb/20-mjpg-streamer
+-endef
+-
+-define Package/mjpg-streamer/conffiles
+-/etc/config/mjpg-streamer
++	$(INSTALL_DIR) $(1)/opt/bin
++	$(INSTALL_BIN) $(PKG_BUILD_DIR)/mjpg_streamer $(1)/opt/bin/
++	$(INSTALL_DIR) $(1)/opt/etc/init.d
++	$(INSTALL_BIN) ./files/S96mjpg-streamer $(1)/opt/etc/init.d/
++	$(INSTALL_DIR) $(1)/opt/lib
++	$(CP) $(foreach input_plugin,file uvc,$(PKG_BUILD_DIR)/input_$(input_plugin).so) $(1)/opt/lib
++	$(CP) $(foreach output_plugin,http file,$(PKG_BUILD_DIR)/output_$(output_plugin).so) $(1)/opt/lib
+ endef
++#	$(INSTALL_DIR) $(1)/opt/etc/hotplug.d/usb
++#	$(INSTALL_DATA) ./files/mjpg-streamer.hotplug $(1)/opt/etc/hotplug.d/usb/20-mjpg-streamer
+ 
+ $(eval $(call BuildPackage,mjpg-streamer))

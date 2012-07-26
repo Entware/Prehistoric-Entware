@@ -1,0 +1,10 @@
+#!/bin/sh 
+
+ENABLED=yes 
+PROCS=mjpg-streamer 
+ARGS="--input \"input_uvc.so --device /dev/video0 --fps 5 --resolution 640x480 \" --output \"output_http.so --port 8080 \"" 
+PREARGS="" 
+DESC=$PROCS 
+PATH=/opt/sbin:/opt/bin:/opt/usr/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin 
+
+. /opt/etc/init.d/rc.func 
