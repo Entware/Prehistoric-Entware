@@ -1,0 +1,83 @@
+--- ../../../openwrt_trunk.orig/feeds/packages/multimedia/imagemagick/Makefile	2012-07-21 23:09:59.350539920 +0400
++++ ../../../openwrt_trunk/feeds/packages/multimedia/imagemagick/Makefile	2012-07-26 13:38:14.217789243 +0400
+@@ -33,6 +33,7 @@
+ 
+ define Package/imagemagick
+   $(call Package/imagemagick/Default)
++  DEPENDS:=+libfreetype +libltdl +libpthread libstdcpp +libtiff
+ endef
+ 
+ define Package/imagemagick/description
+@@ -94,48 +95,48 @@
+ endef
+ 
+ define Build/InstallDev
+-	$(INSTALL_DIR) $(1)/usr/include/magick
+-	$(INSTALL_DIR) $(1)/usr/include/Magick++
+-	$(INSTALL_DIR) $(1)/usr/include/wand
++	$(INSTALL_DIR) $(1)/opt/include/magick
++	$(INSTALL_DIR) $(1)/opt/include/Magick++
++	$(INSTALL_DIR) $(1)/opt/include/wand
+ 	$(CP) \
+-		$(PKG_INSTALL_DIR)/usr/include/* \
+-		$(1)/usr/include/
++		$(PKG_INSTALL_DIR)/opt/include/* \
++		$(1)/opt/include/
+ 
+-	$(INSTALL_DIR) $(1)/usr/lib/
++	$(INSTALL_DIR) $(1)/opt/lib/
+ 	$(CP) \
+-		$(PKG_INSTALL_DIR)/usr/lib/*.so* \
+-		$(1)/usr/lib/
++		$(PKG_INSTALL_DIR)/opt/lib/*.so* \
++		$(1)/opt/lib/
+ 
+-	$(INSTALL_DIR) $(1)/usr/lib/pkgconfig/
++	$(INSTALL_DIR) $(1)/opt/lib/pkgconfig/
+ 	$(INSTALL_DATA) \
+-		$(PKG_INSTALL_DIR)/usr/lib/pkgconfig/* \
+-		$(1)/usr/lib/pkgconfig/
++		$(PKG_INSTALL_DIR)/opt/lib/pkgconfig/* \
++		$(1)/opt/lib/pkgconfig/
+ endef
+ 
+ define Package/imagemagick/install
+-	$(INSTALL_DIR) $(1)/usr/lib/
++	$(INSTALL_DIR) $(1)/opt/lib/
+ 	$(CP) \
+-		$(PKG_INSTALL_DIR)/usr/lib/*.so* \
+-		$(1)/usr/lib/
++		$(PKG_INSTALL_DIR)/opt/lib/*.so* \
++		$(1)/opt/lib/
+ endef
+ 
+ define Package/imagemagick-tools/install
+-	$(INSTALL_DIR) $(1)/usr/bin/
++	$(INSTALL_DIR) $(1)/opt/bin/
+ 	$(CP) \
+-		$(PKG_INSTALL_DIR)/usr/bin/mogrify \
+-		$(1)/usr/bin/
++		$(PKG_INSTALL_DIR)/opt/bin/mogrify \
++		$(1)/opt/bin/
+ 	$(CP) \
+-		$(PKG_INSTALL_DIR)/usr/bin/convert \
+-		$(1)/usr/bin/
++		$(PKG_INSTALL_DIR)/opt/bin/convert \
++		$(1)/opt/bin/
+ endef
+ 
+ define BuildPlugin
+   define Package/imagemagick-$(1)/install
+-	$(INSTALL_DIR) $$(1)/usr/lib/ImageMagick-$(PKG_VERSION)/modules-Q16/coders
+-	$(CP) $(PKG_INSTALL_DIR)/usr/lib/ImageMagick-$(PKG_VERSION)/modules-Q16/coders/$(1).so \
+-		$$(1)/usr/lib/ImageMagick-$(PKG_VERSION)/modules-Q16/coders
+-	$(CP) $(PKG_INSTALL_DIR)/usr/lib/ImageMagick-$(PKG_VERSION)/modules-Q16/coders/$(1).la \
+-		$$(1)/usr/lib/ImageMagick-$(PKG_VERSION)/modules-Q16/coders
++	$(INSTALL_DIR) $$(1)/opt/lib/ImageMagick-$(PKG_VERSION)/modules-Q16/coders
++	$(CP) $(PKG_INSTALL_DIR)/opt/lib/ImageMagick-$(PKG_VERSION)/modules-Q16/coders/$(1).so \
++		$$(1)/opt/lib/ImageMagick-$(PKG_VERSION)/modules-Q16/coders
++	$(CP) $(PKG_INSTALL_DIR)/opt/lib/ImageMagick-$(PKG_VERSION)/modules-Q16/coders/$(1).la \
++		$$(1)/opt/lib/ImageMagick-$(PKG_VERSION)/modules-Q16/coders
+   endef
+ 
+   $$(eval $$(call BuildPackage,imagemagick-$(1)))
