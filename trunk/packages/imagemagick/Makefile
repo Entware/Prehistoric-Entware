@@ -8,8 +8,6 @@
 all: ./.done
 
 ./.done:
-	mkdir ../../../openwrt_trunk/feeds/packages/multimedia/imagemagick/patches
-	cp ./010-new-zlib-compat.patch ../../../openwrt_trunk/feeds/packages/multimedia/imagemagick/patches/
 	patch -p0 -i ./fix-path.patch
 	touch $@
 

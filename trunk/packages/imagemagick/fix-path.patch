@@ -1,5 +1,16 @@
 --- ../../../openwrt_trunk.orig/feeds/packages/multimedia/imagemagick/Makefile	2012-07-21 23:09:59.350539920 +0400
-+++ ../../../openwrt_trunk/feeds/packages/multimedia/imagemagick/Makefile	2012-07-26 13:38:14.217789243 +0400
++++ ../../../openwrt_trunk/feeds/packages/multimedia/imagemagick/Makefile	2012-07-26 17:01:58.701570170 +0400
+@@ -8,8 +8,8 @@
+ include $(TOPDIR)/rules.mk
+ 
+ PKG_NAME:=imagemagick
+-PKG_VERSION:=6.6.7
+-PKG_REVISION:=3
++PKG_VERSION:=6.7.8
++PKG_REVISION:=6
+ PKG_RELEASE:=1
+ 
+ PKG_BUILD_DIR:=$(BUILD_DIR)/ImageMagick-$(PKG_VERSION)-$(PKG_REVISION)
 @@ -33,6 +33,7 @@
  
  define Package/imagemagick
