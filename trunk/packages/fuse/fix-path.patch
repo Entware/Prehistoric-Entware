@@ -1,6 +1,14 @@
---- ../../../openwrt_trunk.orig/package/fuse/Makefile	2012-07-10 18:59:26.209181897 +0400
-+++ ../../../openwrt_trunk/package/fuse/Makefile	2012-07-11 12:00:13.493840206 +0400
-@@ -50,7 +50,7 @@
+--- ../../../openwrt_trunk.orig/package/fuse/Makefile	2012-07-21 23:10:03.182539851 +0400
++++ ../../../openwrt_trunk/package/fuse/Makefile	2012-07-27 12:43:50.628272466 +0400
+@@ -6,7 +6,6 @@
+ #
+ 
+ include $(TOPDIR)/rules.mk
+-include $(INCLUDE_DIR)/kernel.mk
+ 
+ PKG_NAME:=fuse
+ PKG_VERSION:=2.9.0
+@@ -50,7 +49,7 @@
    SECTION:=libs
    CATEGORY:=Libraries
    TITLE+= (library)
@@ -9,7 +17,7 @@
    SUBMENU:=Filesystem
  endef
  
-@@ -74,29 +74,29 @@
+@@ -74,29 +73,29 @@
  
  define Build/InstallDev
  	@echo "--> Build/InstallDev enter"

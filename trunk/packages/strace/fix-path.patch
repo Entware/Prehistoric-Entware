@@ -1,6 +1,14 @@
---- ../../../openwrt_trunk.orig/feeds/packages/utils/strace/Makefile	2012-06-01 10:50:48.816101785 +0400
-+++ ../../../openwrt_trunk/feeds/packages/utils/strace/Makefile	2012-06-01 10:51:35.663512832 +0400
-@@ -46,8 +46,8 @@
+--- ../../../openwrt_trunk.orig/feeds/packages/utils/strace/Makefile	2012-07-21 23:09:59.682539914 +0400
++++ ../../../openwrt_trunk/feeds/packages/utils/strace/Makefile	2012-07-27 12:32:26.312286171 +0400
+@@ -6,7 +6,6 @@
+ #
+ 
+ include $(TOPDIR)/rules.mk
+-include $(INCLUDE_DIR)/kernel.mk
+ 
+ PKG_NAME:=strace
+ 
+@@ -46,8 +45,8 @@
  	CCOPT="$(TARGET_CFLAGS)"
  
  define Package/strace/install

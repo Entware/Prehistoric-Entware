@@ -1,6 +1,14 @@
---- ../../../openwrt_trunk.orig/package/opkg/Makefile	2012-05-02 16:17:35.442274532 +0400
-+++ ../../../openwrt_trunk/package/opkg/Makefile	2012-05-02 17:54:36.788247338 +0400
-@@ -27,6 +27,7 @@
+--- ../../../openwrt_trunk.orig/package/opkg/Makefile	2012-07-21 23:10:04.294539830 +0400
++++ ../../../openwrt_trunk/package/opkg/Makefile	2012-07-27 12:46:27.904265467 +0400
+@@ -5,7 +5,6 @@
+ # See /LICENSE for more information.
+ 
+ include $(TOPDIR)/rules.mk
+-include $(INCLUDE_DIR)/kernel.mk
+ include $(INCLUDE_DIR)/version.mk
+ 
+ PKG_NAME:=opkg
+@@ -27,6 +26,7 @@
  define Package/opkg
    SECTION:=base
    CATEGORY:=Base system
@@ -8,7 +16,7 @@
    TITLE:=opkg package management system
    MAINTAINER:=Jo-Philipp Wich <xm@subsignal.org>
    URL:=http://wiki.openmoko.org/wiki/Opkg
-@@ -43,40 +44,39 @@
+@@ -43,40 +43,39 @@
  endef
  
  define Package/opkg/conffiles
@@ -62,7 +70,7 @@
  endef
  
  
-@@ -84,7 +84,7 @@
+@@ -84,7 +83,7 @@
  	--disable-curl \
  	--disable-gpg \
  	--with-opkgetcdir=/etc \
