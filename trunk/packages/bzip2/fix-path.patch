@@ -1,6 +1,6 @@
---- ../../../openwrt_trunk.orig/feeds/packages/utils/bzip2/Makefile	2012-05-02 16:17:35.298276342 +0400
-+++ ../../../openwrt_trunk/feeds/packages/utils/bzip2/Makefile	2012-05-28 10:08:52.278974941 +0400
-@@ -43,33 +43,36 @@
+--- ../../../openwrt_trunk.orig/feeds/packages/utils/bzip2/Makefile	2012-07-21 23:09:59.666539915 +0400
++++ ../../../openwrt_trunk/feeds/packages/utils/bzip2/Makefile	2012-07-30 16:15:22.625834428 +0400
+@@ -43,33 +43,34 @@
  	data compressor. This package provides the binary.
  endef
  
@@ -8,9 +8,7 @@
 -CONFIGURE_ARGS += --prefix=/usr
 +TARGET_CFLAGS += \
 +	$(FPIC) \
-+	-Wl,-rpath,/opt/lib
-+
-+CONFIGURE_ARGS += --prefix=/opt
++	$(TARGET_LDFLAGS)
  
  MAKE_FLAGS += \
  	-f Makefile-libbz2_so \
