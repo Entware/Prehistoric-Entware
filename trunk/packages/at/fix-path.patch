@@ -1,0 +1,47 @@
+--- ../../../openwrt_trunk.orig/feeds/packages/utils/at/Makefile	2012-07-18 00:48:35.000000000 +0400
++++ ../../../openwrt_trunk/feeds/packages/utils/at/Makefile	2012-08-01 01:07:27.000000000 +0400
+@@ -32,22 +32,33 @@
+ endef
+ 
+ export SENDMAIL=/bin/true
+-EXTRA_CFLAGS:=-DNEED_YYWRAP -I$(PKG_BUILD_DIR) -I$(STAGING_DIR)/usr/include/libelf \
++EXTRA_CFLAGS:=-DNEED_YYWRAP -I$(PKG_BUILD_DIR) -I$(STAGING_DIR)/opt/include/libelf \
+ 	$(TARGET_LDFLAGS)
+ 
+-CONFIGURE_ARGS+=--prefix=/usr \
++CONFIGURE_ARGS+=--prefix=/opt \
+ 		--with-daemon_username=nobody \
+-		--with-daemon_groupname=nogroup \
+-		--with-jobdir=/var/spool/cron/atjobs \
+-		--with-atspool=/var/spool/cron/atspool
++		--with-daemon_groupname=nobody \
++		--with-jobdir=/opt/var/spool/cron/atjobs \
++		--with-atspool=/opt/var/spool/cron/atspool \
++		--with-loadavg_mx=0.5
+ 
+ define Package/at/install
+-	$(INSTALL_DIR) $(1)/usr/bin $(1)/usr/sbin $(1)/etc/init.d/
+-	$(INSTALL_BIN) ./files/atd.init $(1)/etc/init.d/atd
+-	$(INSTALL_BIN) $(PKG_BUILD_DIR)/at $(1)/usr/bin
+-	ln -sf at $(1)/usr/bin/atq
+-	ln -sf at $(1)/usr/bin/atrm
+-	$(INSTALL_BIN) $(PKG_BUILD_DIR)/atd $(1)/usr/sbin
++	$(INSTALL_DIR) $(1)/opt/bin $(1)/opt/sbin $(1)/opt/etc/init.d/
++	$(INSTALL_BIN) ./files/S50atd $(1)/opt/etc/init.d
++	$(INSTALL_BIN) $(PKG_BUILD_DIR)/at $(1)/opt/bin
++	ln -sf at $(1)/opt/bin/atq
++	ln -sf at $(1)/opt/bin/atrm
++	$(INSTALL_BIN) $(PKG_BUILD_DIR)/atd $(1)/opt/sbin
++	$(INSTALL_BIN) $(PKG_BUILD_DIR)/batch $(1)/opt/bin
++endef
++
++define Package/at/postinst
++#!/bin/sh
++mkdir -m 0755 -p /opt/var/spool/cron/atjobs
++touch /opt/var/spool/cron/atjobs/.SEQ
++chown -R nobody:nobody /opt/var/spool/cron/atjobs
++mkdir -m 0755 -p /opt/var/spool/cron/atspool
++chown -R nobody:nobody /opt/var/spool/cron/atspool 
+ endef
+ 
+ $(eval $(call BuildPackage,at))
