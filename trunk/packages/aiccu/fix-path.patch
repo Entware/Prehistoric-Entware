@@ -1,0 +1,31 @@
+--- ../../../openwrt_trunk.orig/feeds/packages/ipv6/aiccu/Makefile	2012-07-21 23:09:59.126539925 +0400
++++ ../../../openwrt_trunk/feeds/packages/ipv6/aiccu/Makefile	2012-08-03 19:22:49.680246185 +0400
+@@ -22,7 +22,7 @@
+ define Package/aiccu
+   SECTION:=ipv6
+   CATEGORY:=IPv6
+-  DEPENDS:=+libpthread +ip +kmod-sit +kmod-tun
++  DEPENDS:=+libpthread
+   TITLE:=SixXS Automatic IPv6 Connectivity Client Utility
+   URL:=http://www.sixxs.net/tools/aiccu/
+ endef
+@@ -40,16 +40,12 @@
+ endef
+ 
+ define Package/aiccu/conffiles
+-/etc/config/aiccu
++/opt/etc/config/aiccu
+ endef
+ 
+ define Package/aiccu/install
+-	$(INSTALL_DIR) $(1)/usr/sbin
+-	$(INSTALL_BIN) $(PKG_BUILD_DIR)/unix-console/$(PKG_NAME) $(1)/usr/sbin/
+-	$(INSTALL_DIR) $(1)/etc/config
+-	$(INSTALL_CONF) ./files/aiccu.config $(1)/etc/config/aiccu
+-	$(INSTALL_DIR) $(1)/etc/init.d
+-	$(INSTALL_BIN) ./files/aiccu.init $(1)/etc/init.d/aiccu
++	$(INSTALL_DIR) $(1)/opt/sbin
++	$(INSTALL_BIN) $(PKG_BUILD_DIR)/unix-console/$(PKG_NAME) $(1)/opt/sbin/
+ endef
+ 
+ $(eval $(call BuildPackage,aiccu))
