@@ -1,0 +1,50 @@
+--- ../../../openwrt_trunk.orig/feeds/packages/utils/hplip/Makefile	2012-07-21 23:09:59.662539915 +0400
++++ ../../../openwrt_trunk/feeds/packages/utils/hplip/Makefile	2012-08-03 12:53:05.716663330 +0400
+@@ -50,31 +50,31 @@
+ endef
+ 
+ define Package/hplip/install
+-	$(INSTALL_DIR) $(1)/usr/lib
+-	$(CP) $(PKG_BUILD_DIR)/.libs/libhpip.so* $(1)/usr/lib/
+-	$(CP) $(PKG_BUILD_DIR)/.libs/libhpmud.so* $(1)/usr/lib/
++	$(INSTALL_DIR) $(1)/opt/lib
++	$(CP) $(PKG_BUILD_DIR)/.libs/libhpip.so* $(1)/opt/lib/
++	$(CP) $(PKG_BUILD_DIR)/.libs/libhpmud.so* $(1)/opt/lib/
+ 
+-	$(INSTALL_DIR) $(1)/usr/lib/cups/backend
+-	$(INSTALL_BIN) $(PKG_BUILD_DIR)/.libs/hp $(1)/usr/lib/cups/backend
++	$(INSTALL_DIR) $(1)/opt/lib/cups/backend
++	$(INSTALL_BIN) $(PKG_BUILD_DIR)/.libs/hp $(1)/opt/lib/cups/backend
+ 
+-	$(INSTALL_DIR) $(1)/usr/lib/sane
+-	$(CP) $(PKG_BUILD_DIR)/.libs/libsane-hpaio.so* $(1)/usr/lib/sane
++	$(INSTALL_DIR) $(1)/opt/lib/sane
++	$(CP) $(PKG_BUILD_DIR)/.libs/libsane-hpaio.so* $(1)/opt/lib/sane
+ 
+-	$(INSTALL_DIR) $(1)/etc/hp
+-	$(CP) $(PKG_BUILD_DIR)/hplip.conf $(1)/etc/hp/hplip.conf
++	$(INSTALL_DIR) $(1)/opt/etc/hp
++	$(CP) $(PKG_BUILD_DIR)/hplip.conf $(1)/opt/etc/hp/hplip.conf
+ 
+-	$(INSTALL_DIR) $(1)/usr/share/hplip/data/models/
+-	$(CP) $(PKG_BUILD_DIR)/data/models/models.dat $(1)/usr/share/hplip/data/models/
++	$(INSTALL_DIR) $(1)/opt/share/hplip/data/models/
++	$(CP) $(PKG_BUILD_DIR)/data/models/models.dat $(1)/opt/share/hplip/data/models/
+ 
+-	$(INSTALL_DIR) $(1)/etc/hotplug.d/usb/
+-	$(INSTALL_BIN) ./files/20-hplip $(1)/etc/hotplug.d/usb/
++	$(INSTALL_DIR) $(1)/opt/etc/hotplug.d/usb/
++	$(INSTALL_BIN) ./files/20-hplip $(1)/opt/etc/hotplug.d/usb/
+ 
+-	$(INSTALL_DIR) $(1)/etc/sane.d/dll.d/
+-	$(INSTALL_DATA) ./files/hplib.conf $(1)/etc/sane.d/dll.d/hplib
++	$(INSTALL_DIR) $(1)/opt/etc/sane.d/dll.d/
++	$(INSTALL_DATA) ./files/hplib.conf $(1)/opt/etc/sane.d/dll.d/hplib
+ endef
+ 
+ define Package/hplip/conffiles
+-/etc/hp/hplip.conf
++/opt/etc/hp/hplip.conf
+ endef
+ 
+ $(eval $(call BuildPackage,hplip))
