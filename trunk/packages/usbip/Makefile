@@ -8,6 +8,7 @@
 all: ./.done
 
 ./.done:
+	patch -p0 -i ./r32887-to-r32886.patch
 	patch -p0 -i ./fix-path.patch
 	mkdir ../../../openwrt_trunk/feeds/packages/net/usbip/files
 	cp ./S74usbipd ../../../openwrt_trunk/feeds/packages/net/usbip/files/

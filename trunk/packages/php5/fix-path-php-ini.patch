@@ -1,6 +1,6 @@
---- ../../../openwrt_trunk.orig/feeds/packages/lang/php5/files/php.ini	2012-01-20 19:21:03.000000000 +0400
-+++ ../../../openwrt_trunk/feeds/packages/lang/php5/files/php.ini	2012-01-20 19:45:23.000000000 +0400
-@@ -103,7 +103,7 @@
+--- ../../../openwrt_trunk.orig/feeds/packages/lang/php5/files/php.ini	2012-08-06 09:54:12.003011784 +0400
++++ ../../../openwrt_trunk/feeds/packages/lang/php5/files/php.ini	2012-08-06 09:56:38.191010890 +0400
+@@ -96,7 +96,7 @@
  ;error_prepend_string = "<font color=#ff0000>"
  ;error_append_string = "</font>"
  ; Log errors to specified file.
@@ -9,7 +9,7 @@
  ; Log errors to syslog.
  ;error_log = syslog
  
-@@ -131,9 +131,9 @@
+@@ -124,9 +124,9 @@
  
  ; UNIX: "/path1:/path2"
  ;include_path = ".:/php/includes"
@@ -21,7 +21,7 @@
  enable_dl = On
  ;cgi.force_redirect = 1
  ;cgi.nph = 1
-@@ -146,7 +146,7 @@
+@@ -139,7 +139,7 @@
  ; File Uploads
  
  file_uploads = On
@@ -30,7 +30,7 @@
  upload_max_filesize = 2M
  max_file_uploads = 20
  
-@@ -249,7 +249,7 @@
+@@ -242,7 +242,7 @@
  
  [Session]
  session.save_handler = files
@@ -39,7 +39,7 @@
  session.use_cookies = 1
  ;session.cookie_secure =
  session.use_only_cookies = 1
-@@ -303,7 +303,7 @@
+@@ -296,7 +296,7 @@
  
  [soap]
  soap.wsdl_cache_enabled=1

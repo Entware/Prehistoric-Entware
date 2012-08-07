@@ -1,17 +1,17 @@
---- ../../../openwrt_trunk.orig/feeds/packages/libs/libevent/Makefile	2012-07-10 18:59:22.329230675 +0400
-+++ ../../../openwrt_trunk/feeds/packages/libs/libevent/Makefile	2012-07-10 19:00:03.664711017 +0400
+--- ../../../openwrt_trunk.orig/feeds/packages/libs/libevent/Makefile	2012-08-06 09:54:12.599011771 +0400
++++ ../../../openwrt_trunk/feeds/packages/libs/libevent/Makefile	2012-08-06 10:50:53.358948825 +0400
 @@ -52,15 +52,15 @@
  	CFLAGS="$(TARGET_CFLAGS)" \
  
  define Build/InstallDev
--	$(INSTALL_DIR) $(1)/usr/include
--	$(CP) $(PKG_INSTALL_DIR)/usr/include/* $(1)/usr/include/
--	$(INSTALL_DIR) $(1)/usr/lib
--	$(CP) $(PKG_INSTALL_DIR)/usr/lib/*.{a,so} $(1)/usr/lib/
-+	$(INSTALL_DIR) $(1)/opt/include
-+	$(CP) $(PKG_INSTALL_DIR)/opt/include/* $(1)/opt/include/
-+	$(INSTALL_DIR) $(1)/opt/lib
-+	$(CP) $(PKG_INSTALL_DIR)/opt/lib/*.{a,so} $(1)/opt/lib/
+-	$(INSTALL_DIR) $(1)/usr/include/libevent
+-	$(CP) $(PKG_INSTALL_DIR)/usr/include/* $(1)/usr/include/libevent/
+-	$(INSTALL_DIR) $(1)/usr/lib/libevent
+-	$(CP) $(PKG_INSTALL_DIR)/usr/lib/*.{a,so} $(1)/usr/lib/libevent/
++	$(INSTALL_DIR) $(1)/opt/include/libevent
++	$(CP) $(PKG_INSTALL_DIR)/opt/include/* $(1)/opt/include/libevent/
++	$(INSTALL_DIR) $(1)/opt/lib/libevent
++	$(CP) $(PKG_INSTALL_DIR)/opt/lib/*.{a,so} $(1)/opt/lib/libevent/
  endef
  
  define Package/libevent/install

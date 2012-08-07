@@ -1,6 +1,6 @@
---- ../../../openwrt_trunk.orig/feeds/packages/admin/monit/Makefile	2012-05-02 16:17:33.846294593 +0400
-+++ ../../../openwrt_trunk/feeds/packages/admin/monit/Makefile	2012-05-31 17:49:03.599952870 +0400
-@@ -58,7 +58,7 @@
+--- ../../../openwrt_trunk.orig/feeds/packages/admin/monit/Makefile	2012-08-06 09:54:23.719011569 +0400
++++ ../../../openwrt_trunk/feeds/packages/admin/monit/Makefile	2012-08-06 09:55:42.255010138 +0400
+@@ -63,7 +63,7 @@
  ifeq ($(BUILD_VARIANT),ssl)
  	CONFIGURE_ARGS += \
  		--with-ssl \
@@ -9,7 +9,7 @@
  endif
  
  ifeq ($(BUILD_VARIANT),nossl)
-@@ -67,16 +67,15 @@
+@@ -72,16 +72,15 @@
  endif
  
  define Package/monit/conffiles

@@ -1,5 +1,14 @@
---- ../../../openwrt_trunk.orig/feeds/packages/utils/valgrind/Makefile	2012-07-15 21:54:16.737949871 +0400
-+++ ../../../openwrt_trunk/feeds/packages/utils/valgrind/Makefile	2012-07-16 23:31:30.494763960 +0400
+--- ../../../openwrt_trunk.orig/feeds/packages/utils/valgrind/Makefile	2012-08-06 09:54:12.935011767 +0400
++++ ../../../openwrt_trunk/feeds/packages/utils/valgrind/Makefile	2012-08-06 14:19:28.962722219 +0400
+@@ -29,7 +29,7 @@
+ define Package/valgrind
+   SECTION:=utils
+   CATEGORY:=Utilities
+-  DEPENDS:=@mips||mipsel||i386||powerpc @TARGET_omap4 +libpthread +librt
++  DEPENDS:=@mips||mipsel||i386||powerpc +libpthread +librt
+   TITLE:=debugging and profiling tools for Linux
+   URL:=http://www.valgrind.org
+ endef
 @@ -94,68 +94,68 @@
  	--without-included-gettext
  

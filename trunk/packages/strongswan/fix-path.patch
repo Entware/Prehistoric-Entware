@@ -1,0 +1,166 @@
+--- ../../../openwrt_trunk.orig/feeds/packages/net/strongswan/Makefile	2012-08-06 09:54:13.759011752 +0400
++++ ../../../openwrt_trunk/feeds/packages/net/strongswan/Makefile	2012-08-06 14:30:55.522711781 +0400
+@@ -109,10 +109,7 @@
+ 
+ define Package/strongswan
+ $(call Package/strongswan/Default)
+-  DEPENDS:= +libpthread +ip \
+-	+kmod-crypto-authenc \
+-	+kmod-ipsec +kmod-ipsec4 +kmod-ipsec6 \
+-	+kmod-ipt-ipsec +iptables-mod-ipsec
++  DEPENDS:= +libpthread
+ endef
+ 
+ define Package/strongswan/config
+@@ -312,9 +309,9 @@
+   endef
+ 
+   define Package/strongswan-mod-$(1)/install
+-	$(INSTALL_DIR) $$(1)/usr/lib/ipsec/plugins
+-	$(CP) $(PKG_INSTALL_DIR)/usr/lib/ipsec/plugins/libstrongswan-$(1).so \
+-		$$(1)/usr/lib/ipsec/plugins/
++	$(INSTALL_DIR) $$(1)/opt/lib/ipsec/plugins
++	$(CP) $(PKG_INSTALL_DIR)/opt/lib/ipsec/plugins/libstrongswan-$(1).so \
++		$$(1)/opt/lib/ipsec/plugins/
+ 	$(call Plugin/$(1)/install,$$(1))
+   endef
+ 
+@@ -335,23 +332,23 @@
+ 	)
+ 
+ ifneq ($(CONFIG_PACKAGE_strongswan-libfast),)
+-  EXTRA_CPPFLAGS+= -I$(STAGING_DIR)/usr/include/ClearSilver
++  EXTRA_CPPFLAGS+= -I$(STAGING_DIR)/opt/include/ClearSilver
+ endif
+ 
+-EXTRA_LDFLAGS+= -Wl,-rpath-link,$(STAGING_DIR)/usr/lib
++EXTRA_LDFLAGS+= -Wl,-rpath-link,$(STAGING_DIR)/opt/lib
+ 
+ define Package/strongswan/conffiles
+-/etc/ipsec.conf
+-/etc/ipsec.secrets
+-/etc/strongswan.conf
++/opt/etc/ipsec.conf
++/opt/etc/ipsec.secrets
++/opt/etc/strongswan.conf
+ endef
+ 
+ define Package/strongswan/install
+-	$(INSTALL_DIR) $(1)/etc
+-	$(CP) $(PKG_INSTALL_DIR)/etc/strongswan.conf $(1)/etc/
+-	$(INSTALL_DIR) $(1)/usr/lib/ipsec
+-	$(CP) $(PKG_INSTALL_DIR)/usr/lib/ipsec/{libstrongswan.so.*,libhydra.so.*} $(1)/usr/lib/ipsec/
+-	$(INSTALL_CONF) ./files/ipsec.secrets $(1)/etc/
++	$(INSTALL_DIR) $(1)/opt/etc
++	$(CP) $(PKG_INSTALL_DIR)/opt/etc/strongswan.conf $(1)/opt/etc/
++	$(INSTALL_DIR) $(1)/opt/lib/ipsec
++	$(CP) $(PKG_INSTALL_DIR)/opt/lib/ipsec/{libstrongswan.so.*,libhydra.so.*} $(1)/opt/lib/ipsec/
++	$(INSTALL_CONF) ./files/ipsec.secrets $(1)/opt/etc/
+ endef
+ 
+ define Package/strongswan-default/install
+@@ -367,61 +364,61 @@
+ endef
+ 
+ define Package/strongswan-charon/install
+-	$(INSTALL_DIR) $(1)/usr/lib/ipsec
+-	$(INSTALL_BIN) $(PKG_INSTALL_DIR)/usr/lib/ipsec/charon $(1)/usr/lib/ipsec/
+-	$(CP) $(PKG_INSTALL_DIR)/usr/lib/ipsec/libcharon.so.* $(1)/usr/lib/ipsec/
++	$(INSTALL_DIR) $(1)/opt/lib/ipsec
++	$(INSTALL_BIN) $(PKG_INSTALL_DIR)/opt/lib/ipsec/charon $(1)/opt/lib/ipsec/
++	$(CP) $(PKG_INSTALL_DIR)/opt/lib/ipsec/libcharon.so.* $(1)/opt/lib/ipsec/
+ endef
+ 
+ define Package/strongswan-libfast/install
+-	$(INSTALL_DIR) $(1)/usr/lib/ipsec
+-	$(CP) $(PKG_INSTALL_DIR)/usr/lib/ipsec/libfast.so.* $(1)/usr/lib/ipsec/
++	$(INSTALL_DIR) $(1)/opt/lib/ipsec
++	$(CP) $(PKG_INSTALL_DIR)/opt/lib/ipsec/libfast.so.* $(1)/opt/lib/ipsec/
+ endef
+ 
+ define Package/strongswan-utils/install
+-	$(INSTALL_DIR) $(1)/usr/sbin
+-	$(INSTALL_BIN) $(PKG_INSTALL_DIR)/usr/sbin/ipsec $(1)/usr/sbin/
+-	$(INSTALL_DIR) $(1)/usr/lib/ipsec
+-	$(INSTALL_BIN) $(PKG_INSTALL_DIR)/usr/lib/ipsec/{openac,pki,scepclient,_copyright} $(1)/usr/lib/ipsec/
++	$(INSTALL_DIR) $(1)/opt/sbin
++	$(INSTALL_BIN) $(PKG_INSTALL_DIR)/opt/sbin/ipsec $(1)/opt/sbin/
++	$(INSTALL_DIR) $(1)/opt/lib/ipsec
++	$(INSTALL_BIN) $(PKG_INSTALL_DIR)/opt/lib/ipsec/{openac,pki,scepclient,_copyright} $(1)/opt/lib/ipsec/
+ endef
+ 
+ define Plugin/duplicheck/install
+-	$(INSTALL_DIR) $(1)/usr/lib/ipsec/plugins
+-	$(CP) $(PKG_INSTALL_DIR)/usr/lib/ipsec/duplicheck $(1)/usr/lib/ipsec/
+-	$(CP) $(PKG_INSTALL_DIR)/usr/lib/ipsec/plugins/libstrongswan-duplicheck.so $(1)/usr/lib/ipsec/plugins/
++	$(INSTALL_DIR) $(1)/opt/lib/ipsec/plugins
++	$(CP) $(PKG_INSTALL_DIR)/opt/lib/ipsec/duplicheck $(1)/opt/lib/ipsec/
++	$(CP) $(PKG_INSTALL_DIR)/opt/lib/ipsec/plugins/libstrongswan-duplicheck.so $(1)/opt/lib/ipsec/plugins/
+ endef
+ 
+ define Plugin/attr-sql/install
+-	$(INSTALL_DIR) $(1)/usr/lib/ipsec
+-	$(CP) $(PKG_INSTALL_DIR)/usr/lib/ipsec/pool $(1)/usr/lib/ipsec/
++	$(INSTALL_DIR) $(1)/opt/lib/ipsec
++	$(CP) $(PKG_INSTALL_DIR)/opt/lib/ipsec/pool $(1)/opt/lib/ipsec/
+ endef
+ 
+ define Plugin/stroke/install
+-	$(INSTALL_DIR) $(1)/etc/ipsec.d/aacerts
+-	$(INSTALL_DIR) $(1)/etc/ipsec.d/acerts
+-	$(INSTALL_DIR) $(1)/etc/ipsec.d/cacerts
+-	$(INSTALL_DIR) $(1)/etc/ipsec.d/certs
+-	$(INSTALL_DIR) $(1)/etc/ipsec.d/crls
+-	$(INSTALL_DIR) $(1)/etc/ipsec.d/ocspcerts
+-	$(INSTALL_DIR) $(1)/etc/ipsec.d/private
+-	$(INSTALL_DIR) $(1)/etc/ipsec.d/reqs
+-
+-	$(INSTALL_CONF) $(PKG_INSTALL_DIR)/etc/ipsec.conf $(1)/etc/
+-
+-	$(INSTALL_DIR) $(1)/usr/lib/ipsec/plugins
+-	$(INSTALL_BIN) $(PKG_INSTALL_DIR)/usr/lib/ipsec/{starter,stroke,_copyright} $(1)/usr/lib/ipsec/
+-	$(CP) $(PKG_INSTALL_DIR)/usr/lib/ipsec/plugins/libstrongswan-stroke.so $(1)/usr/lib/ipsec/plugins/
++	$(INSTALL_DIR) $(1)/opt/etc/ipsec.d/aacerts
++	$(INSTALL_DIR) $(1)/opt/etc/ipsec.d/acerts
++	$(INSTALL_DIR) $(1)/opt/etc/ipsec.d/cacerts
++	$(INSTALL_DIR) $(1)/opt/etc/ipsec.d/certs
++	$(INSTALL_DIR) $(1)/opt/etc/ipsec.d/crls
++	$(INSTALL_DIR) $(1)/opt/etc/ipsec.d/ocspcerts
++	$(INSTALL_DIR) $(1)/opt/etc/ipsec.d/private
++	$(INSTALL_DIR) $(1)/opt/etc/ipsec.d/reqs
++
++	$(INSTALL_CONF) $(PKG_INSTALL_DIR)/opt/etc/ipsec.conf $(1)/opt/etc/
++
++	$(INSTALL_DIR) $(1)/opt/lib/ipsec/plugins
++	$(INSTALL_BIN) $(PKG_INSTALL_DIR)/opt/lib/ipsec/{starter,stroke,_copyright} $(1)/opt/lib/ipsec/
++	$(CP) $(PKG_INSTALL_DIR)/opt/lib/ipsec/plugins/libstrongswan-stroke.so $(1)/opt/lib/ipsec/plugins/
+ endef
+ 
+ define Plugin/updown/install
+-	$(INSTALL_DIR) $(1)/usr/lib/ipsec/plugins
+-	$(CP) $(PKG_INSTALL_DIR)/usr/lib/ipsec/{_updown,_updown_espmark} $(1)/usr/lib/ipsec/
+-	$(CP) $(PKG_INSTALL_DIR)/usr/lib/ipsec/plugins/libstrongswan-updown.so $(1)/usr/lib/ipsec/plugins/
++	$(INSTALL_DIR) $(1)/opt/lib/ipsec/plugins
++	$(CP) $(PKG_INSTALL_DIR)/opt/lib/ipsec/{_updown,_updown_espmark} $(1)/opt/lib/ipsec/
++	$(CP) $(PKG_INSTALL_DIR)/opt/lib/ipsec/plugins/libstrongswan-updown.so $(1)/opt/lib/ipsec/plugins/
+ endef
+ 
+ define Plugin/whitelist/install
+-	$(INSTALL_DIR) $(1)/usr/lib/ipsec/plugins
+-	$(CP) $(PKG_INSTALL_DIR)/usr/lib/ipsec/whitelist $(1)/usr/lib/ipsec/
+-	$(CP) $(PKG_INSTALL_DIR)/usr/lib/ipsec/plugins/libstrongswan-whitelist.so $(1)/usr/lib/ipsec/plugins/
++	$(INSTALL_DIR) $(1)/opt/lib/ipsec/plugins
++	$(CP) $(PKG_INSTALL_DIR)/opt/lib/ipsec/whitelist $(1)/opt/lib/ipsec/
++	$(CP) $(PKG_INSTALL_DIR)/opt/lib/ipsec/plugins/libstrongswan-whitelist.so $(1)/opt/lib/ipsec/plugins/
+ endef
+ 
+ $(eval $(call BuildPackage,strongswan))
+@@ -433,7 +430,7 @@
+ $(eval $(call BuildPackage,strongswan-utils))
+ $(eval $(call BuildPlugin,addrblock,RFC 3779 address block constraint support,))
+ $(eval $(call BuildPlugin,aes,AES crypto,))
+-$(eval $(call BuildPlugin,af-alg,AF_ALG crypto interface to Linux Crypto API,+kmod-crypto-user))
++$(eval $(call BuildPlugin,af-alg,AF_ALG crypto interface to Linux Crypto API,))
+ $(eval $(call BuildPlugin,agent,SSH agent signing,))
+ $(eval $(call BuildPlugin,attr,file based config,))
+ $(eval $(call BuildPlugin,attr-sql,SQL based config,+strongswan-mod-sql))

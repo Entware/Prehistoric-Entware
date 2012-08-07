@@ -1,6 +1,6 @@
---- ../../../openwrt_trunk.orig/feeds/packages/lang/php5/patches/005-APC.patch	2012-01-20 19:21:04.000000000 +0400
-+++ ../../../openwrt_trunk/feeds/packages/lang/php5/patches/005-APC.patch	2012-01-20 19:45:23.000000000 +0400
-@@ -5801,7 +5801,7 @@
+--- ../../../openwrt_trunk.orig/feeds/packages/lang/php5/patches/005-APC.patch	2012-08-06 09:54:11.991011784 +0400
++++ ../../../openwrt_trunk/feeds/packages/lang/php5/patches/005-APC.patch	2012-08-06 09:56:32.335009225 +0400
+@@ -5969,7 +5969,7 @@
  +{
  +    int fd;
  +    if(pathname == NULL) {
@@ -9,7 +9,7 @@
  +        mktemp(lock_path);
  +        fd = open(lock_path, O_RDWR|O_CREAT, 0666);
  +        if(fd > 0 ) {
-@@ -14293,7 +14293,7 @@
+@@ -15380,7 +15380,7 @@
  +  svn co http://svn.php.net/repository/pecl/apc/trunk apc
  +  cd apc
  +  phpize
@@ -18,7 +18,7 @@
  +  make
  +  export TEST_PHP_ARGS='-n'
  +  make test
-@@ -14314,13 +14314,13 @@
+@@ -15401,13 +15401,13 @@
  +| QUICK INSTALL (DSO) |
  ++---------------------+
  +
@@ -35,7 +35,7 @@
  +$ make
  +$ make install
  +
-@@ -14331,7 +14331,7 @@
+@@ -15418,7 +15418,7 @@
  +that path to the screen.
  +
  +Next you must edit your php.ini file, which is normally located in
@@ -44,7 +44,7 @@
  +
  +    extension="apc.so"
  +
-@@ -14368,7 +14368,7 @@
+@@ -15455,7 +15455,7 @@
  +| VERBOSE INSTALL |
  ++-----------------+
  +
@@ -53,7 +53,7 @@
  +
  +1.  Unpack your distribution file.
  +
-@@ -14388,13 +14388,13 @@
+@@ -15475,13 +15475,13 @@
  +2.  Run phpize.
  +
  +    phpize is a script that should have been installed with PHP, and is
@@ -70,7 +70,7 @@
  +
  +    Its output should resemble this:
  +
-@@ -14441,7 +14441,7 @@
+@@ -15528,7 +15528,7 @@
  +        Installing shared extensions: /path/to/extension/
  +
  +    Copy the path /path/to/extension/ and add the following line to your
@@ -79,7 +79,7 @@
  +
  +        extension="apc.so"
  +
-@@ -18850,13 +18850,13 @@
+@@ -19025,13 +19025,13 @@
  +   phpize
  +   ./configure --enable-apc --enable-mmap
  +   make

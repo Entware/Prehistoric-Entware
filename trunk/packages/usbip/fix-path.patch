@@ -1,5 +1,5 @@
---- ../../../openwrt_trunk.orig/feeds/packages/net/usbip/Makefile	2012-07-10 18:59:23.017222024 +0400
-+++ ../../../openwrt_trunk/feeds/packages/net/usbip/Makefile	2012-07-11 13:10:33.260792321 +0400
+--- ../../../openwrt_trunk/feeds/packages/net/usbip/Makefile.orig	2012-08-06 14:54:12.000000000 +0400
++++ ../../../openwrt_trunk/feeds/packages/net/usbip/Makefile	2012-08-06 14:56:30.218680372 +0400
 @@ -25,7 +25,6 @@
  define Package/usbip/Common
    TITLE:=USB-over-IP
@@ -8,7 +8,7 @@
    MAINTAINER:=Nuno Goncalves <nunojpg@gmail.com>
  endef
  
-@@ -38,53 +37,53 @@
+@@ -38,53 +37,57 @@
  define Package/usbip
  $(call Package/usbip/Default)
    TITLE+= (common)
@@ -77,6 +77,10 @@
 -		$(1)/usr/bin/usbip_bind_driver
 +		$(PKG_INSTALL_DIR)/opt/bin/bind_driver \
 +		$(1)/opt/bin/usbip_bind_driver
++	$(INSTALL_DIR) $(1)/opt/etc/init.d
++	$(CP) \
++		./files/S74usbipd \
++		$(1)/opt/etc/init.d
  endef
  
  $(eval $(call BuildPackage,usbip))

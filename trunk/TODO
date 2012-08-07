@@ -7,4 +7,3 @@ bash_completion: /etc/bashcompletion in optware is newer
 alsa-lib: edit config files
 netatalk: config files fix
 grep from busybox is not full
-cups: add for Airprint MAC users

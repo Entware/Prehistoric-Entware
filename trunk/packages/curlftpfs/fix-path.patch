@@ -1,5 +1,5 @@
---- ../../../openwrt_trunk.orig/feeds/packages/net/curlftpfs/Makefile	2012-01-30 15:02:24.000000000 +0400
-+++ ../../../openwrt_trunk/feeds/packages/net/curlftpfs/Makefile	2012-02-07 11:44:09.599916574 +0400
+--- ../../../openwrt_trunk.orig/feeds/packages/net/curlftpfs/Makefile	2012-08-06 14:41:10.234698134 +0400
++++ ../../../openwrt_trunk/feeds/packages/net/curlftpfs/Makefile	2012-08-06 14:42:41.686696466 +0400
 @@ -33,7 +33,7 @@
  
  EXTRA_CFLAGS += \
@@ -9,8 +9,8 @@
  	-DICONV_CONST=const
  
  EXTRA_LDFLAGS += \
-@@ -41,8 +41,8 @@
- 	-L$(ICONV_PREFIX)/lib
+@@ -42,8 +42,8 @@
+ 	-lpthread
  
  define Package/curlftpfs/install
 -	$(INSTALL_DIR) $(1)/usr/bin

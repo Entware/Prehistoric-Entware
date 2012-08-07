@@ -1,16 +1,21 @@
---- ../../../openwrt_trunk.orig/feeds/packages/multimedia/imagemagick/Makefile	2012-07-21 23:09:59.350539920 +0400
-+++ ../../../openwrt_trunk/feeds/packages/multimedia/imagemagick/Makefile	2012-07-26 17:01:58.701570170 +0400
-@@ -8,8 +8,8 @@
- include $(TOPDIR)/rules.mk
+--- ../../../openwrt_trunk.orig/feeds/packages/multimedia/imagemagick/Makefile	2012-08-06 14:41:05.354698223 +0400
++++ ../../../openwrt_trunk/feeds/packages/multimedia/imagemagick/Makefile	2012-08-06 17:32:26.102515298 +0400
+@@ -9,13 +9,13 @@
  
  PKG_NAME:=imagemagick
--PKG_VERSION:=6.6.7
--PKG_REVISION:=3
-+PKG_VERSION:=6.7.8
-+PKG_REVISION:=6
+ PKG_VERSION:=6.7.8
+-PKG_REVISION:=7
++PKG_REVISION:=8
  PKG_RELEASE:=1
  
  PKG_BUILD_DIR:=$(BUILD_DIR)/ImageMagick-$(PKG_VERSION)-$(PKG_REVISION)
+ PKG_SOURCE:=ImageMagick-$(PKG_VERSION)-$(PKG_REVISION).tar.bz2
+ PKG_SOURCE_URL:=ftp://ftp.fifi.org/pub/ImageMagick/
+-PKG_MD5SUM:=11d5d5b3c6477077292183edcdf99da9
++PKG_MD5SUM:=4e5c8f102f3e7401587c924f5b4bca15
+ 
+ PKG_FIXUP:=autoreconf
+ PKG_REMOVE_FILES:=aclocal.m4 m4/libtool.m4
 @@ -33,6 +33,7 @@
  
  define Package/imagemagick

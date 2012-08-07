@@ -1,23 +1,23 @@
---- ../../../openwrt_trunk.orig/package/uclibc++/Makefile	2012-07-10 18:59:26.209181897 +0400
-+++ ../../../openwrt_trunk/package/uclibc++/Makefile	2012-07-11 13:05:18.876750175 +0400
+--- ../../../openwrt_trunk.orig/package/uclibc++/Makefile	2012-08-06 14:41:21.890697923 +0400
++++ ../../../openwrt_trunk/package/uclibc++/Makefile	2012-08-06 15:49:26.074621200 +0400
 @@ -69,12 +69,12 @@
  endef
  
  define Build/InstallDev
 -	$(INSTALL_DIR) $(2)/bin $(1)/usr/include/uClibc++ $(1)/usr/lib
-+	$(INSTALL_DIR) $(2)/bin $(1)/opt/include/uClibc++ $(1)/opt/lib
- 	$(INSTALL_BIN) $(PKG_INSTALL_DIR)/bin/g++-uc $(2)/bin/
++	$(INSTALL_DIR) $(2)/bin $(1)/opt/include/uClibc++ $(1)/opt/lib  $(TOOLCHAIN_DIR)/bin/
+ 	$(INSTALL_BIN) $(PKG_INSTALL_DIR)/bin/g++-uc $(TOOLCHAIN_DIR)/bin/
 -	$(CP) $(PKG_INSTALL_DIR)/include/* $(1)/usr/include/uClibc++/
 -	$(CP) $(PKG_INSTALL_DIR)/lib/libuClibc++*.{a,so}* $(1)/usr/lib/
--	$(SED) 's|-I/include/|-I$(STAGING_DIR)/usr/include/uClibc++/|g' $(2)/bin/g++-uc
--	$(SED) 's|-L/lib/|-L$(STAGING_DIR)/usr/lib/|g' $(2)/bin/g++-uc
+-	$(SED) 's|-I/include/|-I$(STAGING_DIR)/usr/include/uClibc++/|g' $(TOOLCHAIN_DIR)/bin/g++-uc
+-	$(SED) 's|-L/lib/|-L$(STAGING_DIR)/usr/lib/|g' $(TOOLCHAIN_DIR)/bin/g++-uc
 +	$(CP) $(PKG_INSTALL_DIR)/include/* $(1)/opt/include/uClibc++/
 +	$(CP) $(PKG_INSTALL_DIR)/lib/libuClibc++*.{a,so}* $(1)/opt/lib/
-+	$(SED) 's|-I/include/|-I$(STAGING_DIR)/opt/include/uClibc++/|g' $(2)/bin/g++-uc
-+	$(SED) 's|-L/lib/|-L$(STAGING_DIR)/opt/lib/|g' $(2)/bin/g++-uc
++	$(SED) 's|-I/include/|-I$(STAGING_DIR)/opt/include/uClibc++/|g' $(TOOLCHAIN_DIR)/bin/g++-uc
++	$(SED) 's|-L/lib/|-L$(STAGING_DIR)/opt/lib/|g' $(TOOLCHAIN_DIR)/bin/g++-uc
  # add another wrapper which links against both uClibc++ and libstdc++ 
- 	$(INSTALL_BIN) $(2)/bin/g++-uc $(2)/bin/g++-uc+std
- 	$(SED) 's|^WRAPPER_INCLUDEDIR=.*||g' $(2)/bin/g++-uc+std
+ 	$(INSTALL_BIN) $(TOOLCHAIN_DIR)/bin/g++-uc $(TOOLCHAIN_DIR)/bin/g++-uc+std
+ 	$(SED) 's|^WRAPPER_INCLUDEDIR=.*||g' $(TOOLCHAIN_DIR)/bin/g++-uc+std
 @@ -83,9 +83,9 @@
  endef
  

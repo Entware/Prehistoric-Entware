@@ -1,5 +1,5 @@
---- ../../../openwrt_trunk.orig/feeds/packages/utils/vim/Makefile	2012-07-10 18:59:23.653214029 +0400
-+++ ../../../openwrt_trunk/feeds/packages/utils/vim/Makefile	2012-07-11 13:19:20.622168367 +0400
+--- ../../../openwrt_trunk.orig/feeds/packages/utils/vim/Makefile	2012-08-06 09:54:13.015011764 +0400
++++ ../../../openwrt_trunk/feeds/packages/utils/vim/Makefile	2012-08-06 12:14:00.582859028 +0400
 @@ -58,11 +58,11 @@
  endef
  
@@ -14,7 +14,7 @@
  endef
  
  define Package/vim/description
-@@ -138,9 +138,9 @@
+@@ -145,9 +145,9 @@
  
  define Build/Compile/vim-runtime
  	$(MAKE) -C $(PKG_BUILD_DIR)/src DESTDIR="$(PKG_INSTALL_DIR)" installrtbase
@@ -27,7 +27,7 @@
  endef
  
  define Build/Compile
-@@ -150,23 +150,23 @@
+@@ -158,22 +158,22 @@
  endef
  
  define Package/vim/install
@@ -40,7 +40,6 @@
 +	$(INSTALL_DIR) $(1)/opt/share/vim
 +	$(INSTALL_CONF) ./files/vimrc $(1)/opt/share/vim/
  endef
- 
  
  define Package/vim-full/install
 -	$(INSTALL_DIR) $(1)/usr/bin
@@ -60,7 +59,7 @@
  endef
  
  define Package/vim-help/install
-@@ -174,8 +174,8 @@
+@@ -181,8 +181,8 @@
  endef
  
  define Package/xxd/install

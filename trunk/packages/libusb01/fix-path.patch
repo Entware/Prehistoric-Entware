@@ -1,6 +1,6 @@
---- ../../../openwrt_trunk.orig/feeds/packages/libs/libusb/Makefile	2012-07-11 14:54:00.706752314 +0400
-+++ ../../../openwrt_trunk/feeds/packages/libs/libusb/Makefile	2012-07-11 19:22:42.872071314 +0400
-@@ -47,42 +47,42 @@
+--- ../../../openwrt_trunk.orig/feeds/packages/libs/libusb/Makefile	2012-08-06 09:54:12.091011783 +0400
++++ ../../../openwrt_trunk/feeds/packages/libs/libusb/Makefile	2012-08-06 09:55:41.635010151 +0400
+@@ -48,42 +48,42 @@
  define Build/InstallDev
  	$(INSTALL_DIR) $(2)/bin
  	$(INSTALL_BIN) \

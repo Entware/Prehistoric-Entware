@@ -1,15 +1,6 @@
---- ../../../openwrt_trunk.orig/feeds/packages/lang/erlang/Makefile	2012-03-21 16:34:38.866039807 +0400
-+++ ../../../openwrt_trunk/feeds/packages/lang/erlang/Makefile	2012-03-28 13:30:34.501833342 +0400
-@@ -250,7 +250,7 @@
- 	--disable-smp-support \
- 	--disable-threads \
- 	--without-java \
--	--with-ssl="$(STAGING_DIR)/usr" \
-+	--with-ssl="$(STAGING_DIR)/opt" \
- 	--enable-dynamic-ssl-lib
- 
- CONFIGURE_VARS += \
-@@ -274,33 +274,33 @@
+--- ../../../openwrt_trunk.orig/feeds/packages/lang/erlang/Makefile	2012-08-06 09:54:11.971011783 +0400
++++ ../../../openwrt_trunk/feeds/packages/lang/erlang/Makefile	2012-08-06 09:55:38.975010199 +0400
+@@ -266,33 +266,33 @@
  endef
  
  define Package/erlang/install
@@ -63,7 +54,7 @@
  	done
  endef
  
-@@ -308,10 +308,10 @@
+@@ -300,10 +300,10 @@
  define BuildModule
  
    define Package/erlang-$(1)/install
