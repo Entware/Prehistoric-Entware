@@ -38,7 +38,7 @@ toolchain_compile: .toolchain_compiled
 	@echo Downloading toolchain sources, $(TOOLCHAIN_REVISION)...
 	svn checkout --revision $(TOOLCHAIN_REVISION) http://wl500g.googlecode.com/svn/toolchain ../../toolchain-1.9.2.7-rtn/src
 	cp -f ../../toolchain-1.9.2.7-rtn/src/defconfig ../../toolchain-1.9.2.7-rtn/src/.config
-	sed -i 's,/home/lly/Wl500/rt-n/linux/linux-2.6/,${CURDIR}/../../linux-2.6.22.19,g' ../../toolchain-1.9.2.7-rtn/src/.config
+	sed -i 's,/home/lly/Wl500/rt-n/linux/linux-2.6/,$(shell (cd ${CURDIR}/../.. && pwd -P))/linux-2.6.22.19,g' ../../toolchain-1.9.2.7-rtn/src/.config
 	cp -f ./*-uclibc-*.patch  ../../toolchain-1.9.2.7-rtn/src/toolchain/uClibc/patches/0.9.32/
 	patch -p0 -i ./0.9.32-config.patch
 	patch -p0 -i ./add-mirror.patch

@@ -16,7 +16,7 @@ all: .done
 	patch -p0 -i ./cmake.patch
 	@echo Warning: See ./include/package-defaults.mk for absolute path to linux kernel
 	patch -p0 -i ./package-defaults.patch
-	sed -i 's,__LINUX_DIR_PATH__,${CURDIR}/../../linux-2.6.22.19,g' ../../openwrt_trunk/include/package-defaults.mk
+	sed -i 's,__LINUX_DIR_PATH__,$(shell (cd ${CURDIR}/../.. && pwd -P))/linux-2.6.22.19,g' ../../openwrt_trunk/include/package-defaults.mk
 	patch -p0 -i ./rules.patch
 	patch -p0 -i ./autotools.patch
 	patch -p0 -i ./sdk-rules.patch
