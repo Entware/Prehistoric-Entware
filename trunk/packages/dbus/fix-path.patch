@@ -1,6 +1,6 @@
 diff -urx .svn ../../../openwrt_trunk.orig/feeds/packages/utils/dbus/files/dbus-launch ../../../openwrt_trunk/feeds/packages/utils/dbus/files/dbus-launch
---- ../../../openwrt_trunk.orig/feeds/packages/utils/dbus/files/dbus-launch	2012-07-11 14:54:02.066735216 +0400
-+++ ../../../openwrt_trunk/feeds/packages/utils/dbus/files/dbus-launch	2012-07-11 14:54:24.250456314 +0400
+--- ../../../openwrt_trunk.orig/feeds/packages/utils/dbus/files/dbus-launch	2012-08-06 14:41:05.378698220 +0400
++++ ../../../openwrt_trunk/feeds/packages/utils/dbus/files/dbus-launch	2012-08-06 14:42:41.858696465 +0400
 @@ -5,8 +5,8 @@
  # dbus-launch-x package. The script is used to prefer dbus-launch with x over
  # the dbus-lauch without x.
@@ -14,8 +14,8 @@ diff -urx .svn ../../../openwrt_trunk.orig/feeds/packages/utils/dbus/files/dbus-
 +	exec /opt/bin/dbus-launch.real $@
  fi
 diff -urx .svn ../../../openwrt_trunk.orig/feeds/packages/utils/dbus/Makefile ../../../openwrt_trunk/feeds/packages/utils/dbus/Makefile
---- ../../../openwrt_trunk.orig/feeds/packages/utils/dbus/Makefile	2012-07-11 14:54:02.066735216 +0400
-+++ ../../../openwrt_trunk/feeds/packages/utils/dbus/Makefile	2012-07-11 21:06:25.369839179 +0400
+--- ../../../openwrt_trunk.orig/feeds/packages/utils/dbus/Makefile	2012-08-06 14:41:05.378698220 +0400
++++ ../../../openwrt_trunk/feeds/packages/utils/dbus/Makefile	2012-08-13 17:28:12.490277830 +0400
 @@ -22,8 +22,7 @@
  include $(INCLUDE_DIR)/package.mk
  
@@ -42,7 +42,7 @@ diff -urx .svn ../../../openwrt_trunk.orig/feeds/packages/utils/dbus/Makefile ..
  
  CONFIGURE_VARS+= \
  	ac_cv_have_abstract_sockets="yes" \
-@@ -107,79 +106,79 @@
+@@ -107,79 +106,81 @@
  
  
  define Build/InstallDev
@@ -143,6 +143,8 @@ diff -urx .svn ../../../openwrt_trunk.orig/feeds/packages/utils/dbus/Makefile ..
 +		$(1)/opt/bin/
  
 -	$(INSTALL_DIR) $(1)/etc/init.d
++	$(INSTALL_DIR) $(1)/opt/var/run/dbus
++
 +	$(INSTALL_DIR) $(1)/opt/etc/init.d
  	$(INSTALL_BIN) \
 -		./files/dbus.init \
