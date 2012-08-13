@@ -1,0 +1,43 @@
+--- ../../../openwrt_trunk.orig/feeds/packages/libs/libnids/Makefile	2012-08-06 14:41:05.226698225 +0400
++++ ../../../openwrt_trunk/feeds/packages/libs/libnids/Makefile	2012-08-13 15:47:07.502388430 +0400
+@@ -34,8 +34,8 @@
+ 	$(call Build/Configure/Default, \
+ 		--enable-shared \
+ 		--enable-static \
+-		--with-libnet="$(STAGING_DIR)/usr/lib/libnet-1.0.x" \
+-		--with-libpcap="$(STAGING_DIR)/usr" \
++		--with-libnet="$(STAGING_DIR)/opt/lib/libnet-1.0.x" \
++		--with-libpcap="$(STAGING_DIR)/opt" \
+ 		, \
+ 		CFLAGS="$$$$CFLAGS $$$$CPPFLAGS" \
+ 	)
+@@ -45,22 +45,22 @@
+ 
+ define Build/Compile
+ 	$(MAKE) -C $(PKG_BUILD_DIR) \
+-		LNETLIB="-L$(STAGING_DIR)/usr/lib/libnet-1.0.x/lib -lnet" \
++		LNETLIB="-L$(STAGING_DIR)/opt/lib/libnet-1.0.x/lib -lnet" \
+ 		PCAPLIB="$(TARGET_LDFLAGS) -lpcap" \
+ 		install_prefix="$(PKG_INSTALL_DIR)" \
+ 		all install
+ endef
+ 
+ define Build/InstallDev
+-	$(INSTALL_DIR) $(1)/usr/include
+-	$(CP) $(PKG_INSTALL_DIR)/usr/include/nids.h $(1)/usr/include/
+-	$(INSTALL_DIR) $(1)/usr/lib
+-	$(CP) $(PKG_INSTALL_DIR)/usr/lib/libnids.{a,so*} $(1)/usr/lib/
++	$(INSTALL_DIR) $(1)/opt/include
++	$(CP) $(PKG_INSTALL_DIR)/opt/include/nids.h $(1)/opt/include/
++	$(INSTALL_DIR) $(1)/opt/lib
++	$(CP) $(PKG_INSTALL_DIR)/opt/lib/libnids.{a,so*} $(1)/opt/lib/
+ endef
+ 
+ define Package/libnids/install
+-	$(INSTALL_DIR) $(1)/usr/lib
+-	$(CP) $(PKG_INSTALL_DIR)/usr/lib/libnids.so.* $(1)/usr/lib/
++	$(INSTALL_DIR) $(1)/opt/lib
++	$(CP) $(PKG_INSTALL_DIR)/opt/lib/libnids.so.* $(1)/opt/lib/
+ endef
+ 
+ $(eval $(call BuildPackage,libnids))
