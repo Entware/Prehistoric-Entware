@@ -1,0 +1,403 @@
+--- ../../../openwrt_trunk.orig/feeds/packages/net/freeradius2/Makefile	2012-08-06 14:41:13.830698070 +0400
++++ ../../../openwrt_trunk/feeds/packages/net/freeradius2/Makefile	2012-08-13 15:18:59.790419171 +0400
+@@ -34,9 +34,9 @@
+ endef
+ 
+ define Package/freeradius2/conffiles
+-/etc/freeradius2/clients.conf
+-/etc/freeradius2/radiusd.conf
+-/etc/freeradius2/sites/default
++/opt/etc/freeradius2/clients.conf
++/opt/etc/freeradius2/radiusd.conf
++/opt/etc/freeradius2/sites/default
+ endef
+ 
+ define Package/freeradius2-democerts
+@@ -52,7 +52,7 @@
+ endef
+ 
+ define Package/freeradius2-mod-chap/conffiles
+-/etc/freeradius2/modules/chap
++/opt/etc/freeradius2/modules/chap
+ endef
+ 
+ define Package/freeradius2-mod-detail
+@@ -62,7 +62,7 @@
+ endef
+ 
+ define Package/freeradius2-mod-detail/conffiles
+-/etc/freeradius2/modules/detail
++/opt/etc/freeradius2/modules/detail
+ endef
+ 
+ define Package/freeradius2-mod-eap
+@@ -72,7 +72,7 @@
+ endef
+ 
+ define Package/freeradius2-mod-eap/conffiles
+-/etc/freeradius2/eap.conf
++/opt/etc/freeradius2/eap.conf
+ endef
+ 
+ define Package/freeradius2-mod-eap-gtc
+@@ -118,7 +118,7 @@
+ endef
+ 
+ define Package/freeradius2-mod-exec/conffiles
+-/etc/freeradius2/modules/exec
++/opt/etc/freeradius2/modules/exec
+ endef
+ 
+ define Package/freeradius2-mod-expiration
+@@ -128,7 +128,7 @@
+ endef
+ 
+ define Package/freeradius2-mod-expiration/conffiles
+-/etc/freeradius2/modules/expiration
++/opt/etc/freeradius2/modules/expiration
+ endef
+ 
+ define Package/freeradius2-mod-always
+@@ -138,7 +138,7 @@
+ endef
+ 
+ define Package/freeradius2-mod-always/conffiles
+-/etc/freeradius2/modules/always
++/opt/etc/freeradius2/modules/always
+ endef
+ 
+ define Package/freeradius2-mod-expr
+@@ -148,7 +148,7 @@
+ endef
+ 
+ define Package/freeradius2-mod-expr/conffiles
+-/etc/freeradius2/modules/expr
++/opt/etc/freeradius2/modules/expr
+ endef
+ 
+ define Package/freeradius2-mod-attr-filter
+@@ -158,11 +158,11 @@
+ endef
+ 
+ define Package/freeradius2-mod-attr-filter/conffiles
+-/etc/freeradius2/modules/attr_filter
+-/etc/freeradius2/attrs
+-/etc/freeradius2/attrs.access_reject
+-/etc/freeradius2/attrs.accounting_response
+-/etc/freeradius2/attrs.pre-proxy
++/opt/etc/freeradius2/modules/attr_filter
++/opt/etc/freeradius2/attrs
++/opt/etc/freeradius2/attrs.access_reject
++/opt/etc/freeradius2/attrs.accounting_response
++/opt/etc/freeradius2/attrs.pre-proxy
+ endef
+ 
+ define Package/freeradius2-mod-attr-rewrite
+@@ -172,7 +172,7 @@
+ endef
+ 
+ define Package/freeradius2-mod-attr-rewrite/conffiles
+-/etc/freeradius2/modules/attr_rewrite
++/opt/etc/freeradius2/modules/attr_rewrite
+ endef
+ 
+ define Package/freeradius2-mod-files
+@@ -182,10 +182,10 @@
+ endef
+ 
+ define Package/freeradius2-mod-files/conffiles
+-/etc/freeradius2/acct_users
+-/etc/freeradius2/preproxy_users
+-/etc/freeradius2/users
+-/etc/freeradius2/modules/files
++/opt/etc/freeradius2/acct_users
++/opt/etc/freeradius2/preproxy_users
++/opt/etc/freeradius2/users
++/opt/etc/freeradius2/modules/files
+ endef
+ 
+ define Package/freeradius2-mod-passwd
+@@ -195,7 +195,7 @@
+ endef
+ 
+ define Package/freeradius2-mod-passwd/conffiles
+-/etc/freeradius2/modules/passwd
++/opt/etc/freeradius2/modules/passwd
+ endef
+ 
+ define Package/freeradius2-mod-ldap
+@@ -205,8 +205,8 @@
+ endef
+ 
+ define Package/freeradius2-mod-ldap/conffiles
+-/etc/freeradius2/ldap.attrmap
+-/etc/freeradius2/modules/ldap
++/opt/etc/freeradius2/ldap.attrmap
++/opt/etc/freeradius2/modules/ldap
+ endef
+ 
+ define Package/freeradius2-mod-logintime
+@@ -216,7 +216,7 @@
+ endef
+ 
+ define Package/freeradius2-mod-logintime/conffiles
+-/etc/freeradius2/modules/logintime
++/opt/etc/freeradius2/modules/logintime
+ endef
+ 
+ define Package/freeradius2-mod-mschap
+@@ -226,7 +226,7 @@
+ endef
+ 
+ define Package/freeradius2-mod-mschap/conffiles
+-/etc/freeradius2/modules/mschap
++/opt/etc/freeradius2/modules/mschap
+ endef
+ 
+ define Package/freeradius2-mod-pap
+@@ -236,7 +236,7 @@
+ endef
+ 
+ define Package/freeradius2-mod-pap/conffiles
+-/etc/freeradius2/modules/pap
++/opt/etc/freeradius2/modules/pap
+ endef
+ 
+ define Package/freeradius2-mod-preprocess
+@@ -246,9 +246,9 @@
+ endef
+ 
+ define Package/freeradius2-mod-preprocess/conffiles
+-/etc/freeradius2/hints
+-/etc/freeradius2/huntgroups
+-/etc/freeradius2/modules/preprocess
++/opt/etc/freeradius2/hints
++/opt/etc/freeradius2/huntgroups
++/opt/etc/freeradius2/modules/preprocess
+ endef
+ 
+ define Package/freeradius2-mod-realm
+@@ -258,8 +258,8 @@
+ endef
+ 
+ define Package/freeradius2-mod-realm/conffiles
+-/etc/freeradius2/proxy.conf
+-/etc/freeradius2/modules/realm
++/opt/etc/freeradius2/proxy.conf
++/opt/etc/freeradius2/modules/realm
+ endef
+ 
+ define Package/freeradius2-mod-sql
+@@ -269,7 +269,7 @@
+ endef
+ 
+ define Package/freeradius2-mod-sql/conffiles
+-/etc/freeradius2/sql.conf
++/opt/etc/freeradius2/sql.conf
+ endef
+ 
+ define Package/freeradius2-mod-sql-mysql
+@@ -306,8 +306,8 @@
+ endef
+ 
+ define Package/freeradius2-mod-radutmp/conffiles
+-/etc/freeradius2/modules/radutmp
+-/etc/freeradius2/modules/sradutmp
++/opt/etc/freeradius2/modules/radutmp
++/opt/etc/freeradius2/modules/sradutmp
+ endef
+ 
+ define Package/freeradius2-utils
+@@ -323,20 +323,20 @@
+ endef
+ 
+ CONFIGURE_ARGS+= \
+-	--libdir=/usr/lib/freeradius2 \
+-	--libexecdir=/usr/lib/freeradius2 \
++	--libdir=/opt/lib/freeradius2 \
++	--libexecdir=/opt/lib/freeradius2 \
+ 	--enable-shared \
+ 	--disable-static \
+ 	--disable-developer \
+ 	--with-threads \
+-	--with-openssl-includes="$(STAGING_DIR)/usr/include" \
+-	--with-openssl-libraries="$(STAGING_DIR)/usr/lib" \
++	--with-openssl-includes="$(STAGING_DIR)/opt/include" \
++	--with-openssl-libraries="$(STAGING_DIR)/opt/lib" \
+ 	--with-system-libtool \
+ 	--with-system-libltdl \
+ 	--enable-strict-dependencies \
+-	--with-raddbdir=/etc/freeradius2 \
+-	--with-radacctdir=/var/db/radacct \
+-	--with-logdir=/var/log \
++	--with-raddbdir=/opt/etc/freeradius2 \
++	--with-radacctdir=/opt/var/db/radacct \
++	--with-logdir=/opt/var/log \
+ 	--without-edir \
+ 	--without-snmp \
+ 	--without-rlm_checkval \
+@@ -401,8 +401,8 @@
+ 
+ ifneq ($(SDK)$(CONFIG_PACKAGE_freeradius2-mod-ldap),)
+   CONFIGURE_ARGS+= \
+-		--with-rlm_ldap-include-dir="$(STAGING_DIR)/usr/include" \
+-		--with-rlm_ldap-lib-dir="$(STAGING_DIR)/usr/lib"
++		--with-rlm_ldap-include-dir="$(STAGING_DIR)/opt/include" \
++		--with-rlm_ldap-lib-dir="$(STAGING_DIR)/opt/lib"
+   CONFIGURE_LIBS+= -lcrypto -lssl
+ else
+   CONFIGURE_ARGS+= --without-rlm_ldap
+@@ -410,8 +410,8 @@
+ 
+ ifneq ($(SDK)$(CONFIG_PACKAGE_freeradius2-mod-sql-mysql),)
+   CONFIGURE_ARGS+= \
+-		--with-mysql-include-dir="$(STAGING_DIR)/usr/include" \
+-		--with-mysql-lib-dir="$(STAGING_DIR)/usr/lib/mysql"
++		--with-mysql-include-dir="$(STAGING_DIR)/opt/include" \
++		--with-mysql-lib-dir="$(STAGING_DIR)/opt/lib/mysql"
+   CONFIGURE_LIBS+= -lz
+   CONFIGURE_VARS+= ac_cv_lib_mysqlclient_r_mysql_init=yes
+ else
+@@ -420,8 +420,8 @@
+ 
+ ifneq ($(SDK)$(CONFIG_PACKAGE_freeradius2-mod-sql-pgsql),)
+   CONFIGURE_ARGS+= \
+-		--with-rlm_sql_postgresql-include-dir="$(STAGING_DIR)/usr/include" \
+-		--with-rlm_sql_postgresql-lib-dir="$(STAGING_DIR)/usr/lib"
++		--with-rlm_sql_postgresql-include-dir="$(STAGING_DIR)/opt/include" \
++		--with-rlm_sql_postgresql-lib-dir="$(STAGING_DIR)/opt/lib"
+ else
+   CONFIGURE_ARGS+= --without-rlm_sql_postgresql
+ endif
+@@ -439,8 +439,8 @@
+   CONFIGURE_ARGS+= \
+ 	--with-rlm_sql_sqlite \
+ 	--with-experimental-modules \
+-	--with-sqlite-include-dir="$(STAGING_DIR)/usr/include" \
+-	--with-sqlite-lib-dir="$(STAGING_DIR)/usr/lib"
++	--with-sqlite-include-dir="$(STAGING_DIR)/opt/include" \
++	--with-sqlite-lib-dir="$(STAGING_DIR)/opt/lib"
+ else
+   CONFIGURE_ARGS+= --without-rlm_sql_sqlite
+ endif
+@@ -448,8 +448,8 @@
+ ifneq ($(SDK)$(CONFIG_PACKAGE_freeradius2-mod-eap-peap),)
+   CONFIGURE_ARGS+= \
+   		--with-rlm_eap_peap \
+-		--with-rlm_eap_peap-include-dir="$(STAGING_DIR)/usr/include" \
+-		--with-rlm_eap_peap-lib-dir="$(STAGING_DIR)/usr/lib"
++		--with-rlm_eap_peap-include-dir="$(STAGING_DIR)/opt/include" \
++		--with-rlm_eap_peap-lib-dir="$(STAGING_DIR)/opt/lib"
+   CONFIGURE_LIBS+= -lcrypto -lssl
+ else
+   CONFIGURE_ARGS+= --without-rlm_eap_peap
+@@ -458,8 +458,8 @@
+ ifneq ($(SDK)$(CONFIG_PACKAGE_freeradius2-mod-eap-tls),)
+   CONFIGURE_ARGS+= \
+   		--with-rlm_eap_tls \
+-		--with-rlm_eap_tls-include-dir="$(STAGING_DIR)/usr/include" \
+-		--with-rlm_eap_tls-lib-dir="$(STAGING_DIR)/usr/lib"
++		--with-rlm_eap_tls-include-dir="$(STAGING_DIR)/opt/include" \
++		--with-rlm_eap_tls-lib-dir="$(STAGING_DIR)/opt/lib"
+   CONFIGURE_LIBS+= -lcrypto -lssl
+ else
+   CONFIGURE_ARGS+= --without-rlm_eap_tls
+@@ -468,8 +468,8 @@
+ ifneq ($(SDK)$(CONFIG_PACKAGE_freeradius2-mod-eap-ttls),)
+   CONFIGURE_ARGS+= \
+   		--with-rlm_eap_ttls \
+-		--with-rlm_eap_ttls-include-dir="$(STAGING_DIR)/usr/include" \
+-		--with-rlm_eap_ttls-lib-dir="$(STAGING_DIR)/usr/lib"
++		--with-rlm_eap_ttls-include-dir="$(STAGING_DIR)/opt/include" \
++		--with-rlm_eap_ttls-lib-dir="$(STAGING_DIR)/opt/lib"
+   CONFIGURE_LIBS+= -lcrypto -lssl
+ else
+   CONFIGURE_ARGS+= --without-rlm_eap_ttls
+@@ -519,58 +519,59 @@
+ endef
+ 
+ define Package/freeradius2/install
+-	$(INSTALL_DIR) $(1)/etc/freeradius2
+-	$(INSTALL_DIR) $(1)/etc/freeradius2/modules
+-	$(INSTALL_DIR) $(1)/etc/freeradius2/sites
+-	chmod 771 $(1)/etc/freeradius2
++	$(INSTALL_DIR) $(1)/opt/etc/freeradius2
++	$(INSTALL_DIR) $(1)/opt/etc/freeradius2/modules
++	$(INSTALL_DIR) $(1)/opt/etc/freeradius2/sites
++	chmod 771 $(1)/opt/etc/freeradius2
+ 	for f in clients.conf dictionary radiusd.conf policy.conf; do \
+-		$(CP) $(PKG_INSTALL_DIR)/etc/freeradius2/$$$${f} $(1)/etc/freeradius2/ ; \
++		$(CP) $(PKG_INSTALL_DIR)/opt/etc/freeradius2/$$$${f} $(1)/opt/etc/freeradius2/ ; \
+ 	done
+-	$(CP) $(PKG_INSTALL_DIR)/etc/freeradius2/sites-available/default $(1)/etc/freeradius2/sites/default
+-	$(INSTALL_DIR) $(1)/usr/share/freeradius2
+-	$(CP) $(PKG_INSTALL_DIR)/usr/share/freeradius/dictionary $(1)/usr/share/freeradius2/
+-	$(SED) "s,^\(\$$$$INCLUDE\),#\1,g" $(1)/usr/share/freeradius2/dictionary
++	$(CP) $(PKG_INSTALL_DIR)/opt/etc/freeradius2/sites-available/default $(1)/opt/etc/freeradius2/sites/default
++	$(INSTALL_DIR) $(1)/opt/share/freeradius2
++	$(CP) $(PKG_INSTALL_DIR)/opt/share/freeradius/dictionary $(1)/opt/share/freeradius2/
++	$(SED) "s,^\(\$$$$INCLUDE\),#\1,g" $(1)/opt/share/freeradius2/dictionary
+ 	for f in $(PKG_DICTIONARIES); do \
+-		$(CP) $(PKG_INSTALL_DIR)/usr/share/freeradius/dictionary.$$$${f} $(1)/usr/share/freeradius2/ ; \
+-		$(SED) "s,^#\(\$$$$INCLUDE dictionary\.$$$${f}\),\1,g" $(1)/usr/share/freeradius2/dictionary ; \
++		$(CP) $(PKG_INSTALL_DIR)/opt/share/freeradius/dictionary.$$$${f} $(1)/opt/share/freeradius2/ ; \
++		$(SED) "s,^#\(\$$$$INCLUDE dictionary\.$$$${f}\),\1,g" $(1)/opt/share/freeradius2/dictionary ; \
+ 	done
+-	$(INSTALL_DIR) $(1)/usr/lib/freeradius2
+-	$(CP) $(PKG_INSTALL_DIR)/usr/lib/freeradius2/libfreeradius-radius{,-*}.so $(1)/usr/lib/freeradius2
+-	ln -s freeradius2/libfreeradius-radius-$(PKG_VERSION).so $(1)/usr/lib/
+-	ln -s freeradius2/libfreeradius-eap-$(PKG_VERSION).so $(1)/usr/lib/
+-	$(INSTALL_DIR) $(1)/usr/sbin
+-	$(INSTALL_BIN) $(PKG_INSTALL_DIR)/usr/sbin/radiusd $(1)/usr/sbin/
+-	$(INSTALL_DIR) $(1)/etc/init.d
+-	$(INSTALL_BIN) ./files/radiusd.init $(1)/etc/init.d/radiusd
++	$(INSTALL_DIR) $(1)/opt/lib/freeradius2
++	$(CP) $(PKG_INSTALL_DIR)/opt/lib/freeradius2/libfreeradius-radius{,-*}.so $(1)/opt/lib/freeradius2
++	ln -s freeradius2/libfreeradius-radius-$(PKG_VERSION).so $(1)/opt/lib/
++	ln -s freeradius2/libfreeradius-eap-$(PKG_VERSION).so $(1)/opt/lib/
++	$(INSTALL_DIR) $(1)/opt/sbin
++	$(INSTALL_BIN) $(PKG_INSTALL_DIR)/opt/sbin/radiusd $(1)/opt/sbin/
++	$(INSTALL_DIR) $(1)/opt/etc/init.d
++	$(INSTALL_BIN) ./files/S55radiusd $(1)/opt/etc/init.d
++	$(INSTALL_DIR) $(1)/opt/var/{log,run}  $(1)/opt/var/db/radacct
+ endef
+ 
+ define Package/freeradius2-democerts/install
+-	$(INSTALL_DIR) $(1)/etc/freeradius2/certs
++	$(INSTALL_DIR) $(1)/opt/etc/freeradius2/certs
+ 	$(CP) \
+ 		$(PKG_BUILD_DIR)/raddb/certs/ca.pem \
+ 		$(PKG_BUILD_DIR)/raddb/certs/dh \
+ 		$(PKG_BUILD_DIR)/raddb/certs/random \
+ 		$(PKG_BUILD_DIR)/raddb/certs/server.pem \
+-		$(1)/etc/freeradius2/certs/
++		$(1)/opt/etc/freeradius2/certs/
+ endef
+ 
+ define Package/freeradius2-utils/install
+-	$(INSTALL_DIR) $(1)/usr/bin
++	$(INSTALL_DIR) $(1)/opt/bin
+ 	for f in radclient radeapclient radwho; do \
+-		$(INSTALL_BIN) $(PKG_INSTALL_DIR)/usr/bin/$$$${f} $(1)/usr/bin/ ; \
++		$(INSTALL_BIN) $(PKG_INSTALL_DIR)/opt/bin/$$$${f} $(1)/opt/bin/ ; \
+ 	done
+ endef
+ 
+ define BuildPlugin
+   define Package/$(1)/install
+-	[ -z "$(2)" ] || $(INSTALL_DIR) $$(1)/usr/lib/freeradius2
++	[ -z "$(2)" ] || $(INSTALL_DIR) $$(1)/opt/lib/freeradius2
+ 	for m in $(2); do \
+-		$(CP) $(PKG_INSTALL_DIR)/usr/lib/freeradius2/$$$$$$$${m}{,-*}.so $$(1)/usr/lib/freeradius2 ; \
++		$(CP) $(PKG_INSTALL_DIR)/opt/lib/freeradius2/$$$$$$$${m}{,-*}.so $$(1)/opt/lib/freeradius2 ; \
+ 	done
+-	[ -z "$(3)" ] || $(INSTALL_DIR) $$(1)/etc/freeradius2
+-	[ -z "$(4)" ] || $(INSTALL_DIR) $$(1)/etc/freeradius2/$(4)
++	[ -z "$(3)" ] || $(INSTALL_DIR) $$(1)/opt/etc/freeradius2
++	[ -z "$(4)" ] || $(INSTALL_DIR) $$(1)/opt/etc/freeradius2/$(4)
+ 	for f in $(3); do \
+-		$(CP) $(PKG_INSTALL_DIR)/etc/freeradius2/$$$$$$$${f} $$(1)/etc/freeradius2/$$$$$$$${f} ; \
++		$(CP) $(PKG_INSTALL_DIR)/opt/etc/freeradius2/$$$$$$$${f} $$(1)/opt/etc/freeradius2/$$$$$$$${f} ; \
+ 	done
+   endef
+ 
