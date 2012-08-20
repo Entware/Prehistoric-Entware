@@ -1,0 +1,57 @@
+--- ../../../openwrt_trunk.orig/feeds/packages/multimedia/icecast/Makefile	2012-08-06 14:41:05.358698223 +0400
++++ ../../../openwrt_trunk/feeds/packages/multimedia/icecast/Makefile	2012-08-20 15:00:13.055488481 +0400
+@@ -20,7 +20,7 @@
+ include $(INCLUDE_DIR)/package.mk
+ 
+ TREMOR_BUILD_DIR=$(PKG_BUILD_DIR)/libvorbisidec-1.2.0-dave
+-TREMOR_DIR=$(TREMOR_BUILD_DIR)/ipkg-install/usr
++TREMOR_DIR=$(TREMOR_BUILD_DIR)/ipkg-install/opt
+ 
+ define Package/icecast
+   SECTION:=multimedia
+@@ -56,14 +56,14 @@
+ 	$(call Build/Configure/Default, \
+ 		--enable-yp \
+ 		--with-curl="yes" \
+-		--with-curl-config="$(STAGING_DIR)/usr/bin/curl-config" \
+-		--with-ogg="$(STAGING_DIR)/usr" \
++		--with-curl-config="$(STAGING_DIR)/opt/bin/curl-config" \
++		--with-ogg="$(STAGING_DIR)/opt" \
+ 		--with-speex="no" \
+ 		--with-theora="no" \
+ 		--with-vorbis="$(TREMOR_DIR)" \
+-		--with-xslt-config="$(STAGING_DIR)/usr/bin/xslt-config" \
++		--with-xslt-config="$(STAGING_DIR)/opt/bin/xslt-config" \
+ 		, \
+-		CPPFLAGS="-I$(TREMOR_DIR)/include -I$(STAGING_DIR)/usr/include/libxml2 $(TARGET_CPPFLAGS)" \
++		CPPFLAGS="-I$(TREMOR_DIR)/include -I$(STAGING_DIR)/opt/include/libxml2 $(TARGET_CPPFLAGS)" \
+ 	)
+ endef
+ 
+@@ -75,17 +75,18 @@
+ endef
+ 
+ define Package/icecast/install
+-	$(INSTALL_DIR) $(1)/etc
+-	$(CP) $(PKG_INSTALL_DIR)/etc/icecast.xml $(1)/etc/
+-	$(INSTALL_DIR) $(1)/usr/bin
+-	$(INSTALL_BIN) $(PKG_INSTALL_DIR)/usr/bin/icecast $(1)/usr/bin/
+-	$(INSTALL_DIR) $(1)/usr/share/icecast
+-	$(CP) $(PKG_INSTALL_DIR)/usr/share/icecast/admin $(1)/usr/share/icecast/
+-	$(CP) $(PKG_INSTALL_DIR)/usr/share/icecast/web $(1)/usr/share/icecast/
++	$(INSTALL_DIR) $(1)/opt/etc
++	$(CP) $(PKG_INSTALL_DIR)/opt/etc/icecast.xml $(1)/opt/etc/
++	$(INSTALL_DIR) $(1)/opt/bin
++	$(INSTALL_BIN) $(PKG_INSTALL_DIR)/opt/bin/icecast $(1)/opt/bin/
++	$(INSTALL_DIR) $(1)/opt/share/icecast
++	$(CP) $(PKG_INSTALL_DIR)/opt/share/icecast/admin $(1)/opt/share/icecast/
++	$(CP) $(PKG_INSTALL_DIR)/opt/share/icecast/web $(1)/opt/share/icecast/
++	$(INSTALL_DIR) $(1)/opt/var/log/icecast
+ endef
+ 
+ define Package/icecast/conffiles
+-/etc/icecast.xml
++/opt/etc/icecast.xml
+ endef
+ 
+ $(eval $(call BuildPackage,icecast))

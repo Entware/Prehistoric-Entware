@@ -1,0 +1,107 @@
+--- ../../../openwrt_trunk.orig/feeds/packages/libs/libxslt/Makefile	2012-08-06 14:41:05.294698222 +0400
++++ ../../../openwrt_trunk/feeds/packages/libs/libxslt/Makefile	2012-08-20 14:35:02.579516504 +0400
+@@ -69,50 +69,50 @@
+ TARGET_CFLAGS += $(FPIC)
+ 
+ define Build/InstallDev/Xslt
+-	$(INSTALL_DIR) $(1)/usr/bin $(2)/bin $(1)/usr/include/libxslt \
+-		$(1)/usr/include/libexslt $(1)/usr/lib \
+-		$(1)/usr/lib/pkgconfig $(2)/share/aclocal
++	$(INSTALL_DIR) $(1)/opt/bin $(2)/bin $(1)/opt/include/libxslt \
++		$(1)/opt/include/libexslt $(1)/opt/lib \
++		$(1)/opt/lib/pkgconfig $(2)/share/aclocal
+ 
+ 	$(INSTALL_BIN) \
+-		$(PKG_INSTALL_DIR)/usr/bin/xslt-config \
++		$(PKG_INSTALL_DIR)/opt/bin/xslt-config \
+ 		$(2)/bin/
+ 
+-	ln -sf $(STAGING_DIR)/host/bin/xslt-config $(1)/usr/bin/xslt-config
++	ln -sf $(STAGING_DIR)/host/bin/xslt-config $(1)/opt/bin/xslt-config
+ 
+ 	$(SED) \
+-		's,^\(prefix\|exec_prefix\)=.*,\1=$(STAGING_DIR)/usr,g' \
++		's,^\(prefix\|exec_prefix\)=.*,\1=$(STAGING_DIR)/opt,g' \
+ 		$(2)/bin/xslt-config
+ 
+ 	$(INSTALL_DATA) \
+-		$(PKG_INSTALL_DIR)/usr/include/libxslt/* \
+-		$(1)/usr/include/libxslt/
++		$(PKG_INSTALL_DIR)/opt/include/libxslt/* \
++		$(1)/opt/include/libxslt/
+ 
+ 	$(CP) \
+-		$(PKG_INSTALL_DIR)/usr/lib/libxslt.{la,a,so*} \
+-		$(1)/usr/lib/
++		$(PKG_INSTALL_DIR)/opt/lib/libxslt.{la,a,so*} \
++		$(1)/opt/lib/
+ 
+ 	$(INSTALL_DATA) \
+-		$(PKG_INSTALL_DIR)/usr/lib/pkgconfig/libxslt.pc \
+-		$(1)/usr/lib/pkgconfig/
++		$(PKG_INSTALL_DIR)/opt/lib/pkgconfig/libxslt.pc \
++		$(1)/opt/lib/pkgconfig/
+ 
+ 	$(INSTALL_DATA) \
+-		$(PKG_INSTALL_DIR)/usr/share/aclocal/* \
++		$(PKG_INSTALL_DIR)/opt/share/aclocal/* \
+ 		$(2)/share/aclocal
+ endef
+ 
+ define Build/InstallDev/Exslt
+-	$(INSTALL_DIR) $(1)/usr/include/libexslt $(1)/usr/lib/pkgconfig
++	$(INSTALL_DIR) $(1)/opt/include/libexslt $(1)/opt/lib/pkgconfig
+ 	$(INSTALL_DATA) \
+-		$(PKG_INSTALL_DIR)/usr/include/libexslt/* \
+-		$(1)/usr/include/libexslt/
++		$(PKG_INSTALL_DIR)/opt/include/libexslt/* \
++		$(1)/opt/include/libexslt/
+ 
+ 	$(CP) \
+-		$(PKG_INSTALL_DIR)/usr/lib/libexslt.{la,a,so*} \
+-		$(1)/usr/lib/
++		$(PKG_INSTALL_DIR)/opt/lib/libexslt.{la,a,so*} \
++		$(1)/opt/lib/
+ 
+ 	$(INSTALL_DATA) \
+-		$(PKG_INSTALL_DIR)/usr/lib/pkgconfig/libexslt.pc \
+-		$(1)/usr/lib/pkgconfig/
++		$(PKG_INSTALL_DIR)/opt/lib/pkgconfig/libexslt.pc \
++		$(1)/opt/lib/pkgconfig/
+ endef
+ 
+ define Build/InstallDev
+@@ -121,24 +121,24 @@
+ endef
+ 
+ define Package/libxslt/install
+-	$(INSTALL_DIR) $(1)/usr/lib
++	$(INSTALL_DIR) $(1)/opt/lib
+ 	$(CP) \
+-		$(PKG_INSTALL_DIR)/usr/lib/libxslt.so.* \
+-		$(1)/usr/lib/
++		$(PKG_INSTALL_DIR)/opt/lib/libxslt.so.* \
++		$(1)/opt/lib/
+ endef
+ 
+ define Package/libexslt/install
+-	$(INSTALL_DIR) $(1)/usr/lib
++	$(INSTALL_DIR) $(1)/opt/lib
+ 	$(CP) \
+-		$(PKG_INSTALL_DIR)/usr/lib/libexslt.so.* \
+-		$(1)/usr/lib/
++		$(PKG_INSTALL_DIR)/opt/lib/libexslt.so.* \
++		$(1)/opt/lib/
+ endef
+ 
+ define Package/xsltproc/install
+-	$(INSTALL_DIR) $(1)/usr/bin
++	$(INSTALL_DIR) $(1)/opt/bin
+ 	$(INSTALL_BIN) \
+-		$(PKG_INSTALL_DIR)/usr/bin/xsltproc \
+-		$(1)/usr/bin/
++		$(PKG_INSTALL_DIR)/opt/bin/xsltproc \
++		$(1)/opt/bin/
+ endef
+ 
+ $(eval $(call BuildPackage,libxslt))
