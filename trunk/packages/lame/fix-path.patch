@@ -1,0 +1,37 @@
+--- ../../../openwrt_trunk.orig/feeds/packages/sound/lame/Makefile	2012-08-06 14:41:05.086698226 +0400
++++ ../../../openwrt_trunk/feeds/packages/sound/lame/Makefile	2012-08-20 16:17:19.091405684 +0400
+@@ -55,24 +55,24 @@
+ 
+ 
+ define Package/lame/install
+-	$(INSTALL_DIR) $(1)/usr/bin
+-	$(INSTALL_BIN) $(PKG_INSTALL_DIR)/usr/bin/lame $(1)/usr/bin/
++	$(INSTALL_DIR) $(1)/opt/bin
++	$(INSTALL_BIN) $(PKG_INSTALL_DIR)/opt/bin/lame $(1)/opt/bin/
+ endef
+ 
+ define Package/lame-lib/install
+-	$(INSTALL_DIR) $(1)/usr/lib
+-	$(CP) $(PKG_INSTALL_DIR)/usr/lib/lib*so* $(1)/usr/lib/
++	$(INSTALL_DIR) $(1)/opt/lib
++	$(CP) $(PKG_INSTALL_DIR)/opt/lib/lib*so* $(1)/opt/lib/
+ endef
+ 
+ define Build/InstallDev
+-	$(INSTALL_DIR) $(1)/usr/include/lame
++	$(INSTALL_DIR) $(1)/opt/include/lame
+ 	$(INSTALL_DATA) \
+-		$(PKG_INSTALL_DIR)/usr/include/lame/*.h \
+-		$(1)/usr/include/lame/
+-	$(INSTALL_DIR) $(1)/usr/lib
++		$(PKG_INSTALL_DIR)/opt/include/lame/*.h \
++		$(1)/opt/include/lame/
++	$(INSTALL_DIR) $(1)/opt/lib
+ 	$(CP) \
+-		$(PKG_INSTALL_DIR)/usr/lib/*.{la,so*} \
+-		$(1)/usr/lib/
++		$(PKG_INSTALL_DIR)/opt/lib/*.{la,so*} \
++		$(1)/opt/lib/
+ endef
+ 
+ $(eval $(call BuildPackage,lame-lib))
