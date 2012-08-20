@@ -1,0 +1,13 @@
+--- ../../../openwrt_trunk.orig/feeds/packages/utils/dtach/Makefile	2012-08-06 14:41:05.406698219 +0400
++++ ../../../openwrt_trunk/feeds/packages/utils/dtach/Makefile	2012-08-20 17:02:29.755355740 +0400
+@@ -41,8 +41,8 @@
+ endef
+ 
+ define Package/dtach/install	
+-	$(INSTALL_DIR) $(1)/usr/bin
+-	$(INSTALL_BIN) $(PKG_BUILD_DIR)/dtach $(1)/usr/bin/
++	$(INSTALL_DIR) $(1)/opt/bin
++	$(INSTALL_BIN) $(PKG_BUILD_DIR)/dtach $(1)/opt/bin/
+ endef
+ 
+ $(eval $(call BuildPackage,dtach))
