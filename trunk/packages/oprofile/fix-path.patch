@@ -1,0 +1,69 @@
+--- ../../../openwrt_trunk.orig/feeds/packages/devel/oprofile/Makefile	2012-08-06 14:41:05.094698226 +0400
++++ ../../../openwrt_trunk/feeds/packages/devel/oprofile/Makefile	2012-08-20 21:42:47.479048801 +0400
+@@ -27,7 +27,7 @@
+   CATEGORY:=Development
+   TITLE:=OProfile System Profiler
+   URL:=http://oprofile.sourceforge.net
+-  DEPENDS:=+libpopt +kmod-oprofile +libstdcpp +objdump
++  DEPENDS:=+libpopt +libstdcpp +objdump
+ endef
+ 
+ define Package/oprofile/description
+@@ -50,38 +50,38 @@
+ endef
+ 
+ TARGET_CXXFLAGS += -fpermissive
+-TARGET_LDFLAGS := -L$(STAGING_DIR)/usr/lib $(TARGET_LDFLAGS)
++TARGET_LDFLAGS := -L$(STAGING_DIR)/opt/lib $(TARGET_LDFLAGS)
+ 
+ define Package/oprofile-utils/install
+-	$(INSTALL_DIR) $(1)/usr/bin
++	$(INSTALL_DIR) $(1)/opt/bin
+ 	$(INSTALL_BIN) \
+-		$(PKG_INSTALL_DIR)/usr/bin/opannotate \
+-		$(PKG_INSTALL_DIR)/usr/bin/oparchive \
+-		$(PKG_INSTALL_DIR)/usr/bin/opgprof \
+-		$(1)/usr/bin
++		$(PKG_INSTALL_DIR)/opt/bin/opannotate \
++		$(PKG_INSTALL_DIR)/opt/bin/oparchive \
++		$(PKG_INSTALL_DIR)/opt/bin/opgprof \
++		$(1)/opt/bin
+ endef
+ 
+ define Package/oprofile/install
+-	$(INSTALL_DIR) $(1)/usr/bin
++	$(INSTALL_DIR) $(1)/opt/bin
+ 	$(INSTALL_BIN) \
+-		$(PKG_INSTALL_DIR)/usr/bin/* \
+-		$(1)/usr/bin
++		$(PKG_INSTALL_DIR)/opt/bin/* \
++		$(1)/opt/bin
+ 
+ 	rm -f \
+-		$(1)/usr/bin/opannotate \
+-		$(1)/usr/bin/oparchive \
+-		$(1)/usr/bin/opgprof
++		$(1)/opt/bin/opannotate \
++		$(1)/opt/bin/oparchive \
++		$(1)/opt/bin/opgprof
+ 
+-	$(INSTALL_DIR) $(1)/usr/lib/oprofile
++	$(INSTALL_DIR) $(1)/opt/lib/oprofile
+ 	$(CP) \
+-		$(PKG_INSTALL_DIR)/usr/lib/oprofile/*.so* \
+-		$(1)/usr/lib/oprofile/
++		$(PKG_INSTALL_DIR)/opt/lib/oprofile/*.so* \
++		$(1)/opt/lib/oprofile/
+ 
+-	$(INSTALL_DIR) $(1)/usr/share/oprofile
++	$(INSTALL_DIR) $(1)/opt/share/oprofile
+ 	$(CP) \
+-		$(PKG_INSTALL_DIR)/usr/share/oprofile/stl.pat \
+-		$(PKG_INSTALL_DIR)/usr/share/oprofile/$(patsubst x86,i386,$(LINUX_KARCH)) \
+-		$(1)/usr/share/oprofile/
++		$(PKG_INSTALL_DIR)/opt/share/oprofile/stl.pat \
++		$(PKG_INSTALL_DIR)/opt/share/oprofile/$(patsubst x86,i386,$(LINUX_KARCH)) \
++		$(1)/opt/share/oprofile/
+ endef
+ 
+ $(eval $(call BuildPackage,oprofile))
