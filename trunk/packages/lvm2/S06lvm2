@@ -1,0 +1,40 @@
+#!/bin/sh
+
+prefix="/opt"
+PATH=${prefix}/bin:${prefix}/sbin:/sbin:/bin:/usr/sbin:/usr/bin
+
+start() {
+	echo "starting lvm..."
+	/opt/sbin/lvm vgscan --ignorelockingfailure --mknodes || :
+	/opt/sbin/lvm vgchange -aly --ignorelockingfailure || echo "...failed"
+	}
+
+stop() {
+	echo "stopping lvm..."
+	/opt/sbin/lvm vgchange -aln --ignorelockingfailure || echo "...failed"
+	}
+status() {
+	echo "PID of lvm is `pidof lvm`"
+	}
+
+case "$1" in
+	start)
+		start
+		;;
+	stop)
+		stop
+		;;
+		restart)
+		stop
+		sleep 5
+		start
+		;;
+	status) status
+		;;
+	*)
+		echo "Usage: $0 (start|stop|restart|status)"
+		exit 1
+		;;
+esac
+
+exit 0
