@@ -1,0 +1,35 @@
+--- ../../../openwrt_trunk.orig/feeds/packages/utils/cryptsetup/Makefile	2012-08-06 14:41:05.590698217 +0400
++++ ../../../openwrt_trunk/feeds/packages/utils/cryptsetup/Makefile	2012-08-21 17:35:16.997745635 +0400
+@@ -17,7 +17,7 @@
+ 
+ include $(INCLUDE_DIR)/package.mk
+ 
+-TARGET_LDFLAGS+=-Wl,-rpath-link=$(STAGING_DIR)/usr/lib
++TARGET_LDFLAGS+=-Wl,-rpath-link=$(STAGING_DIR)/opt/lib
+ 
+ define Package/cryptsetup/Default
+   URL:=http://code.google.com/p/cryptsetup/
+@@ -28,7 +28,7 @@
+   SECTION:=utils
+   CATEGORY:=Utilities
+   TITLE:=Cryptsetup
+-  DEPENDS:=+libblkid +libuuid +libpopt +lvm2 +libgcrypt +libdevmapper
++  DEPENDS:=+libblkid +libuuid +libpopt +libgcrypt +libdevmapper
+ endef
+ 
+ define Package/cryptsetup/description
+@@ -41,10 +41,10 @@
+ endef
+ 
+ define Package/cryptsetup/install
+-	$(INSTALL_DIR) $(1)/usr/sbin
+-	$(CP) $(PKG_INSTALL_DIR)/usr/sbin/cryptsetup $(1)/usr/sbin
+-	$(INSTALL_DIR) $(1)/usr/lib
+-	$(CP) $(PKG_INSTALL_DIR)/usr/lib/libcryptsetup.so.* $(1)/usr/lib
++	$(INSTALL_DIR) $(1)/opt/sbin
++	$(CP) $(PKG_INSTALL_DIR)/opt/sbin/cryptsetup $(1)/opt/sbin
++	$(INSTALL_DIR) $(1)/opt/lib
++	$(CP) $(PKG_INSTALL_DIR)/opt/lib/libcryptsetup.so.* $(1)/opt/lib
+ endef
+ 
+ $(eval $(call BuildPackage,cryptsetup))
