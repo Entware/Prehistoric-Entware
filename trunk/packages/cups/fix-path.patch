@@ -1,5 +1,5 @@
---- ../../../openwrt_trunk.orig/feeds/packages/net/cups/Makefile	2012-07-15 21:54:18.481949811 +0400
-+++ ../../../openwrt_trunk/feeds/packages/net/cups/Makefile	2012-07-17 15:29:36.944782220 +0400
+--- ../../../openwrt_trunk.orig/feeds/packages/net/cups/Makefile	2012-08-06 14:41:10.418698132 +0400
++++ ../../../openwrt_trunk/feeds/packages/net/cups/Makefile	2012-08-22 11:50:23.028550599 +0400
 @@ -18,14 +18,14 @@
  	ftp://ftp3.easysw.com/pub/cups/$(PKG_VERSION)
  PKG_MD5SUM:=8776403ad60fea9e85eab9c04d88560d
@@ -89,14 +89,13 @@
  endef
  
  define Build/InstallDev
--	$(INSTALL_DIR) $(2)/bin
+ 	$(INSTALL_DIR) $(2)/bin
 -	$(INSTALL_BIN) $(PKG_INSTALL_DIR)/usr/bin/cups-config $(2)/bin/
 -	$(INSTALL_DIR) $(1)/usr/include
 -	$(CP) $(PKG_INSTALL_DIR)/usr/include/cups $(1)/usr/include/
 -	$(INSTALL_DIR) $(1)/usr/lib
 -	$(CP) $(PKG_INSTALL_DIR)/usr/lib/libcups*.so* $(1)/usr/lib/
-+	$(INSTALL_DIR) $(2)/opt/bin
-+	$(INSTALL_BIN) $(PKG_INSTALL_DIR)/opt/bin/cups-config $(2)/opt/bin/
++	$(INSTALL_BIN) $(PKG_INSTALL_DIR)/opt/bin/cups-config $(2)/bin/
 +	$(INSTALL_DIR) $(1)/opt/include
 +	$(CP) $(PKG_INSTALL_DIR)/opt/include/cups $(1)/opt/include/
 +	$(INSTALL_DIR) $(1)/opt/lib
