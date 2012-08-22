@@ -9,6 +9,7 @@ all: ./.done
 
 ./.done:
 	patch -p0 -i ./fix-path.patch
+	cp -f ./050-login-defs-path.patch ../../../openwrt_trunk/feeds/packages/utils/shadow/patches/
 	touch $@
 
 clean:
