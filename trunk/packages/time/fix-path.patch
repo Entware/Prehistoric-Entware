@@ -1,0 +1,28 @@
+--- ../../../openwrt_trunk.orig/feeds/packages/utils/time/Makefile	2012-08-06 14:41:06.122698205 +0400
++++ ../../../openwrt_trunk/feeds/packages/utils/time/Makefile	2012-08-24 09:40:20.943749879 +0400
+@@ -35,23 +35,9 @@
+   program resource use; `time' reports unavailable information as zero values.
+ endef
+ 
+-define Package/time/preinst
+-#!/bin/sh
+-if [ -e $${IPKG_INSTROOT}/usr/bin/time ]; then
+-  rm $${IPKG_INSTROOT}/usr/bin/time;
+-fi
+-endef
+-
+ define Package/time/install
+-	$(INSTALL_DIR) $(1)/usr/bin
+-	$(INSTALL_BIN) $(PKG_INSTALL_DIR)/usr/bin/time $(1)/usr/bin/
+-endef
+-
+-define Package/time/postrm
+-#!/bin/sh
+-ln -sf ../../bin/busybox $${IPKG_INSTROOT}/usr/bin/time
+-$${IPKG_INSTROOT}/usr/bin/time 2>&1 | grep 'applet not found' > /dev/null 2>&1 && rm $${IPKG_INSTROOT}/usr/bin/time
+-exit 0
++	$(INSTALL_DIR) $(1)/opt/bin
++	$(INSTALL_BIN) $(PKG_INSTALL_DIR)/opt/bin/time $(1)/opt/bin/
+ endef
+ 
+ $(eval $(call BuildPackage,time))
