@@ -1,0 +1,31 @@
+--- ../../../openwrt_trunk.orig/feeds/packages/net/portmap/Makefile	2012-08-06 14:41:09.106698445 +0400
++++ ../../../openwrt_trunk/feeds/packages/net/portmap/Makefile	2012-08-24 16:17:44.495313617 +0400
+@@ -22,7 +22,7 @@
+ define Package/portmap
+   SECTION:=net
+   CATEGORY:=Network
+-  DEPENDS:=+libwrap $(LIBRPC_DEPENDS)
++  DEPENDS:=+libwrap
+   TITLE:=The RPC Portmapper
+   URL:=http://neil.brown.name/portmap/
+ endef
+@@ -35,14 +35,14 @@
+ MAKE_FLAGS += \
+ 	CFLAGS="$(TARGET_CFLAGS) $(TARGET_CPPFLAGS) -DHOSTS_ACCESS -DFACILITY=LOG_DAEMON -DIGNORE_SIGCHLD" \
+ 	RPCUSER="nobody" \
+-	LDLIBS="$(TARGET_LDFLAGS) -lwrap $(LIBRPC)" \
++	LDLIBS="$(TARGET_LDFLAGS) -lwrap" \
+ 	all
+ 
+ define Package/portmap/install
+-	$(INSTALL_DIR) $(1)/usr/sbin
+-	$(INSTALL_BIN) $(PKG_BUILD_DIR)/portmap $(1)/usr/sbin/
+-	$(INSTALL_DIR) $(1)/etc/init.d
+-	$(INSTALL_BIN) ./files/portmap.init $(1)/etc/init.d/portmap
++	$(INSTALL_DIR) $(1)/opt/sbin
++	$(INSTALL_BIN) $(PKG_BUILD_DIR)/portmap $(1)/opt/sbin/
++	$(INSTALL_DIR) $(1)/opt/etc/init.d
++	$(INSTALL_BIN) ./files/S55portmap $(1)/opt/etc/init.d/
+ endef
+ 
+ $(eval $(call BuildPackage,portmap))
