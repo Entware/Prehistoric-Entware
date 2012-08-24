@@ -1,0 +1,13 @@
+--- ../../../openwrt_trunk.orig/feeds/packages/utils/devmem2/Makefile	2012-08-06 14:41:05.978698212 +0400
++++ ../../../openwrt_trunk/feeds/packages/utils/devmem2/Makefile	2012-08-24 09:25:09.103763739 +0400
+@@ -30,8 +30,8 @@
+ endef
+ 
+ define Package/devmem2/install
+-	$(INSTALL_DIR) $(1)/usr/sbin
+-	$(INSTALL_BIN) $(PKG_BUILD_DIR)/devmem2 $(1)/usr/sbin/devmem2
++	$(INSTALL_DIR) $(1)/opt/sbin
++	$(INSTALL_BIN) $(PKG_BUILD_DIR)/devmem2 $(1)/opt/sbin/devmem2
+ endef
+ 
+ $(eval $(call BuildPackage,devmem2))
