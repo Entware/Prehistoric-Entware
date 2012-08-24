@@ -1,0 +1,52 @@
+--- ../../../openwrt_trunk.orig/package/kexec-tools/Makefile	2012-08-06 14:41:18.502697986 +0400
++++ ../../../openwrt_trunk/package/kexec-tools/Makefile	2012-08-24 12:19:16.895572983 +0400
+@@ -37,7 +37,7 @@
+ 	source "$(SOURCE)/Config.in"
+ endef
+ 
+-KEXEC_TARGET_NAME:=$(call qstrip,$(CONFIG_KEXEC_TOOLS_TARGET_NAME))-linux-$(TARGET_SUFFIX)
++KEXEC_TARGET_NAME:=$(call qstrip,$(CONFIG_KEXEC_TOOLS_TARGET_NAME))-linux-gnu
+ 
+ CONFIGURE_ARGS = \
+ 		--target=$(KEXEC_TARGET_NAME) \
+@@ -45,12 +45,12 @@
+ 		--build=$(GNU_HOST_NAME) \
+ 		--program-prefix="" \
+ 		--program-suffix="" \
+-		--prefix=/usr \
+-		--exec-prefix=/usr \
+-		--bindir=/usr/bin \
+-		--sbindir=/usr/sbin \
+-		--libexecdir=/usr/lib \
+-		--sysconfdir=/etc
++		--prefix=/opt \
++		--exec-prefix=/opt \
++		--bindir=/opt/bin \
++		--sbindir=/opt/sbin \
++		--libexecdir=/opt/lib \
++		--sysconfdir=/opt/etc
+ 
+ CONFIGURE_VARS += \
+ 	BUILD_CC="$(HOSTCC)" \
+@@ -63,17 +63,13 @@
+ endef
+ 
+ define Package/kexec-tools/install
+-	$(INSTALL_DIR) $(1)/usr/sbin
++	$(INSTALL_DIR) $(1)/opt/sbin
+ 	$(INSTALL_BIN) \
+-		$(addprefix $(PKG_INSTALL_DIR)/usr/sbin/, \
++		$(addprefix $(PKG_INSTALL_DIR)/opt/sbin/, \
+ 			$(kexec-extra-sbin-y)) \
+ 		$(kexec-extra-bin-y) \
+-		$(PKG_INSTALL_DIR)/usr/sbin/kexec \
+-		$(1)/usr/sbin
+-
+-# make a link for compatability with other distros
+-	$(INSTALL_DIR) $(1)/sbin
+-	ln -s /usr/sbin/kexec $(1)/sbin/kexec
++		$(PKG_INSTALL_DIR)/opt/sbin/kexec \
++		$(1)/opt/sbin
+ endef
+ 
+ $(eval $(call BuildPackage,kexec-tools))
