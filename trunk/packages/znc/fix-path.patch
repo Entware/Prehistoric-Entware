@@ -1,0 +1,100 @@
+--- ../../../openwrt_trunk.orig/feeds/packages/net/znc/Makefile	2012-08-06 14:41:06.986698190 +0400
++++ ../../../openwrt_trunk/feeds/packages/net/znc/Makefile	2012-08-26 20:58:16.923853756 +0400
+@@ -41,22 +41,29 @@
+ endef
+ 
+ define Package/znc/conffiles
+-/etc/config/znc
++/opt/share/znc/configs/znc.conf
+ endef
+ 
+ 
+ define Package/znc/install
+-	$(INSTALL_DIR) $(1)/usr/bin
+-	$(INSTALL_BIN) $(PKG_BUILD_DIR)/znc $(1)/usr/bin/
+-	$(INSTALL_DIR) $(1)/etc/init.d
+-	$(INSTALL_BIN) ./files/znc.init $(1)/etc/init.d/znc
+-	$(INSTALL_DIR) $(1)/etc/config
+-	$(INSTALL_DATA) ./files/znc.conf $(1)/etc/config/znc
+-	$(INSTALL_DIR) $(1)/usr/lib/znc/
+-	$(INSTALL_BIN) $(PKG_BUILD_DIR)/modules/extra/droproot.so $(1)/usr/lib/znc/
++	$(INSTALL_DIR) $(1)/opt/bin
++	$(INSTALL_BIN) $(PKG_BUILD_DIR)/znc $(1)/opt/bin/
++	$(INSTALL_DIR) $(1)/opt/etc/init.d
++	$(INSTALL_BIN) ./files/S99znc $(1)/opt/etc/init.d/
++	$(INSTALL_DIR) $(1)/opt/lib/znc/
++	$(INSTALL_BIN) $(PKG_BUILD_DIR)/modules/extra/droproot.so $(1)/opt/lib/znc
++endef
++
++define Package/znc/postinst
++#!/bin/sh
++
++echo Before using ZNC do not forget to:
++echo a\) Generate new config with \"znc -d /opt/share/znc -c\"
++echo b\) Add a \"LoadModule = droproot nobody nogroup\" string at first string
++echo to /opt/share/znc/configs/znc.conf, where \"nobody\" and \"nogroup\" is
++echo some unprivileged user\\group on your system.
+ endef
+ 
+-
+ ZNC_MODULES :=
+ ZNC_MODULE_TARGETS := extra/droproot.so
+ 
+@@ -72,12 +79,12 @@
+   endef
+ 
+   define Package/znc-mod-$(strip $(1))/install
+-	$(INSTALL_DIR) $$(1)/usr/lib/znc/
+-	$(INSTALL_BIN) $$(PKG_BUILD_DIR)/modules/$(strip $(3))$(subst -,_,$(strip $(1))).so $$(1)/usr/lib/znc/
++	$(INSTALL_DIR) $$(1)/opt/lib/znc/
++	$(INSTALL_BIN) $$(PKG_BUILD_DIR)/modules/$(strip $(3))$(subst -,_,$(strip $(1))).so $$(1)/opt/lib/znc/
+ 	# include webadmin page templates if existing
+ 	if [ -d $$(PKG_BUILD_DIR)/modules/$(strip $(3))data/$(subst -,_,$(strip $(1))) ]; then \
+-		$(INSTALL_DIR) $$(1)/usr/share/znc/modules ;\
+-		$(CP) -r $$(PKG_BUILD_DIR)/modules/$(strip $(3))data/$(subst -,_,$(strip $(1))) $$(1)/usr/share/znc/modules ;\
++		$(INSTALL_DIR) $$(1)/opt/share/znc/modules ;\
++		$(CP) -r $$(PKG_BUILD_DIR)/modules/$(strip $(3))data/$(subst -,_,$(strip $(1))) $$(1)/opt/share/znc/modules ;\
+ 	fi
+   endef
+ 
+@@ -97,12 +104,12 @@
+   endef
+ 
+   define Package/znc-mod-webadmin/install
+-	$(INSTALL_DIR) $$(1)/usr/lib/znc/
+-	$(INSTALL_BIN) $$(PKG_BUILD_DIR)/modules/webadmin.so $$(1)/usr/lib/znc/
+-	$(INSTALL_DIR) $$(1)/usr/share/znc/modules
+-	$(CP) -r $$(PKG_BUILD_DIR)/modules/data/webadmin $$(1)/usr/share/znc/modules
+-	$(INSTALL_DIR) $$(1)/usr/share/znc/webskins/
+-	$(CP) -r $$(PKG_BUILD_DIR)/webskins/_default_ $$(1)/usr/share/znc/webskins/
++	$(INSTALL_DIR) $$(1)/opt/lib/znc/
++	$(INSTALL_BIN) $$(PKG_BUILD_DIR)/modules/webadmin.so $$(1)/opt/lib/znc/
++	$(INSTALL_DIR) $$(1)/opt/share/znc/modules
++	$(CP) -r $$(PKG_BUILD_DIR)/modules/data/webadmin $$(1)/opt/share/znc/modules
++	$(INSTALL_DIR) $$(1)/opt/share/znc/webskins/
++	$(CP) -r $$(PKG_BUILD_DIR)/webskins/_default_ $$(1)/opt/share/znc/webskins/
+   endef
+ 
+   ZNC_MODULES += znc-mod-webadmin
+@@ -121,8 +128,8 @@
+   endef
+ 
+   define Package/znc-webskin-$(strip $(1))/install
+-	$(INSTALL_DIR) $$(1)/usr/share/znc/webskins/
+-	$(CP) -r $$(PKG_BUILD_DIR)/webskins/$(strip $(1)) $$(1)/usr/share/znc/webskins/
++	$(INSTALL_DIR) $$(1)/opt/share/znc/webskins/
++	$(CP) -r $$(PKG_BUILD_DIR)/webskins/$(strip $(1)) $$(1)/opt/share/znc/webskins/
+   endef
+   ZNC_MODULES += znc-webskin-$(strip $(1))
+ endef
+@@ -268,8 +275,8 @@
+ 
+ CONFIGURE_VARS += \
+ 	CXXFLAGS="$(TARGET_CFLAGS) -fno-builtin -fno-rtti -nostdinc++" \
+-	CPPFLAGS="-I$(STAGING_DIR)/usr/include -I$(STAGING_DIR)/include" \
+-	LDFLAGS="-nodefaultlibs -lc -L$(STAGING_DIR)/usr/lib -L$(STAGING_DIR)/lib" \
++	CPPFLAGS="-I$(STAGING_DIR)/opt/include -I$(STAGING_DIR)/include" \
++	LDFLAGS="-nodefaultlibs -lc -L$(STAGING_DIR)/opt/lib -L$(STAGING_DIR)/lib -Wl,--dynamic-linker=/opt/lib/ld-uClibc.so.0" \
+ 	LIBS="-luClibc++ -lm -lssl -lcrypto $(LIBGCC_S) -lc"
+ 
+ CONFIGURE_ARGS += \
