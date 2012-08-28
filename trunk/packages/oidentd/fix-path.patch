@@ -1,0 +1,17 @@
+--- ../../../openwrt_trunk.orig/feeds/packages/net/oidentd/Makefile	2012-08-06 14:41:13.866698066 +0400
++++ ../../../openwrt_trunk/feeds/packages/net/oidentd/Makefile	2012-08-28 10:30:37.445396424 +0400
+@@ -35,10 +35,10 @@
+ endef
+ 
+ define Package/oidentd/install
+-	$(INSTALL_DIR) $(1)/usr/sbin
+-	$(CP) $(PKG_BUILD_DIR)/src/oidentd $(1)/usr/sbin/
+-	$(INSTALL_DIR) $(1)/etc/init.d
+-	$(INSTALL_BIN) ./files/oidentd.init $(1)/etc/init.d/oidentd
++	$(INSTALL_DIR) $(1)/opt/sbin
++	$(INSTALL_BIN) $(PKG_BUILD_DIR)/src/oidentd $(1)/opt/sbin/
++	$(INSTALL_DIR) $(1)/opt/etc/init.d
++	$(INSTALL_BIN) ./files/S39oidentd $(1)/opt/etc/init.d/
+ endef
+ 
+ $(eval $(call BuildPackage,oidentd))
