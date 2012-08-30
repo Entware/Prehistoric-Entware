@@ -1,0 +1,52 @@
+--- ../../../openwrt_trunk.orig/package/comgt/Makefile	2012-08-06 14:41:28.346697804 +0400
++++ ../../../openwrt_trunk/package/comgt/Makefile	2012-08-30 13:35:40.302045514 +0400
+@@ -23,7 +23,6 @@
+   SECTION:=utils
+   CATEGORY:=Utilities
+   TITLE:=Option/Vodafone 3G/GPRS control tool
+-  DEPENDS:=+chat
+   URL:=http://www.pharscape.org/comgt.html
+ endef
+ 
+@@ -37,29 +36,22 @@
+ 	$(MAKE) -C $(PKG_BUILD_DIR) \
+ 		$(TARGET_CONFIGURE_OPTS) \
+ 		CFLAGS="$(TARGET_CFLAGS)" \
+-		LDFLAGS="" \
++		LDFLAGS="$(TARGET_LDFLAGS)" \
+ 		comgt
+ endef
+ 
+ define Package/comgt/install
+-	$(INSTALL_DIR) $(1)/usr/bin
+-	$(INSTALL_BIN) $(PKG_BUILD_DIR)/comgt $(1)/usr/bin/
+-	ln -s comgt $(1)/usr/bin/gcom
+-	$(INSTALL_DIR) $(1)/etc/chatscripts
+-	$(INSTALL_DATA) ./files/3g.chat $(1)/etc/chatscripts/3g.chat
+-	$(INSTALL_DATA) ./files/evdo.chat $(1)/etc/chatscripts/evdo.chat
+-	$(INSTALL_DIR) $(1)/etc/gcom
+-	$(INSTALL_DATA) ./files/setpin.gcom $(1)/etc/gcom/setpin.gcom
+-	$(INSTALL_DATA) ./files/setmode.gcom $(1)/etc/gcom/setmode.gcom
+-	$(INSTALL_DATA) ./files/getcardinfo.gcom $(1)/etc/gcom/getcardinfo.gcom
+-	$(INSTALL_DATA) ./files/getstrength.gcom $(1)/etc/gcom/getstrength.gcom
+-	$(INSTALL_DATA) ./files/getcarrier.gcom $(1)/etc/gcom/getcarrier.gcom
+-	$(INSTALL_DATA) ./files/getcnum.gcom $(1)/etc/gcom/getcnum.gcom
+-	$(INSTALL_DATA) ./files/getimsi.gcom $(1)/etc/gcom/getimsi.gcom
+-	$(INSTALL_DIR) $(1)/etc/hotplug.d/tty
+-	$(INSTALL_DATA) ./files/3g.usb $(1)/etc/hotplug.d/tty/30-3g
+-	$(INSTALL_DIR) $(1)/lib/netifd/proto
+-	$(INSTALL_BIN) ./files/3g.sh $(1)/lib/netifd/proto/3g.sh
++	$(INSTALL_DIR) $(1)/opt/bin
++	$(INSTALL_BIN) $(PKG_BUILD_DIR)/comgt $(1)/opt/bin/
++	ln -s comgt $(1)/opt/bin/gcom
++	$(INSTALL_DIR) $(1)/opt/etc/gcom
++	$(INSTALL_DATA) ./files/setpin.gcom $(1)/opt/etc/gcom/setpin.gcom
++	$(INSTALL_DATA) ./files/setmode.gcom $(1)/opt/etc/gcom/setmode.gcom
++	$(INSTALL_DATA) ./files/getcardinfo.gcom $(1)/opt/etc/gcom/getcardinfo.gcom
++	$(INSTALL_DATA) ./files/getstrength.gcom $(1)/opt/etc/gcom/getstrength.gcom
++	$(INSTALL_DATA) ./files/getcarrier.gcom $(1)/opt/etc/gcom/getcarrier.gcom
++	$(INSTALL_DATA) ./files/getcnum.gcom $(1)/opt/etc/gcom/getcnum.gcom
++	$(INSTALL_DATA) ./files/getimsi.gcom $(1)/opt/etc/gcom/getimsi.gcom
+ endef
+ 
+ $(eval $(call BuildPackage,comgt))
