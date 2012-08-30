@@ -1,6 +1,37 @@
---- ../../../openwrt_trunk.orig/package/ncurses/Makefile	2012-06-01 10:50:57.147997037 +0400
-+++ ../../../openwrt_trunk/package/ncurses/Makefile	2012-06-01 10:51:34.491527565 +0400
-@@ -61,12 +61,12 @@
+--- ../../../openwrt_trunk.orig/package/ncurses/Makefile	2012-08-06 14:41:18.606697979 +0400
++++ ../../../openwrt_trunk/package/ncurses/Makefile	2012-08-30 12:39:28.578108789 +0400
+@@ -9,7 +9,7 @@
+ 
+ PKG_NAME:=ncurses
+ PKG_VERSION:=5.7
+-PKG_RELEASE:=5
++PKG_RELEASE:=6a
+ 
+ PKG_BUILD_DIR:=$(BUILD_DIR)/$(BUILD_VARIANT)/$(PKG_NAME)-$(PKG_VERSION)
+ PKG_SOURCE:=$(PKG_NAME)-$(PKG_VERSION).tar.gz
+@@ -46,6 +46,16 @@
+   VARIANT:=libncursesw
+ endef
+ 
++define Package/ncurses-bin
++  SECTION:=utils
++  CATEGORY:=Utilities
++  SUBMENU:=Terminal
++  DEPENDS:=+libncurses
++  TITLE:=Terminal-related programs
++  URL:=http://www.gnu.org/software/ncurses/
++  VARIANT:=libncurses
++endef
++
+ TARGET_CFLAGS += $(FPIC)
+ 
+ CONFIGURE_ARGS += \
+@@ -56,17 +66,16 @@
+ 	--without-ada \
+ 	--without-debug \
+ 	--without-profile \
+-	--without-progs \
+ 	--disable-big-core \
  	--disable-home-terminfo \
  	--with-normal \
  	--with-shared \
@@ -16,7 +47,27 @@
  endif
  
  ifeq ($(BUILD_VARIANT),libncursesw)
-@@ -91,58 +91,58 @@
+@@ -79,73 +88,86 @@
+ 	BUILD_CC="$(HOSTCC)" \
+ 	HOSTCC="$(HOSTCC)" \
+ 	HOSTCCFLAGS="" \
+-	libs
++	libs \
++	progs
+ 
+ define Build/Install/Default
+ 	$(MAKE_VARS) \
+ 	$(MAKE) -C $(PKG_BUILD_DIR)/$(MAKE_PATH) \
+ 		$(MAKE_INSTALL_FLAGS) \
+-		$(1) install.libs install.data;
++		$(1) install.libs install.progs install.data;
++endef
++
++define Package/ncurses-bin/install
++	$(INSTALL_DIR) $(1)/opt/bin
++	$(CP) $(PKG_INSTALL_DIR)/opt/bin/* $(1)/opt/bin/
+ endef
+ 
  define Package/terminfo/install
  	echo ""
  ifneq ($(HOST_OS),FreeBSD)
@@ -40,6 +91,12 @@
  endif
  endef
  
++define Package/terminfo/postinst
++#!/bin/sh
++
++grep -q "^export TERMINFO" /opt/etc/profile || echo "export TERMINFO=/opt/share/terminfo" >> /opt/etc/profile
++endef
++
  define Package/libncurses/install
 -	$(INSTALL_DIR) $(1)/usr/lib
 -	$(CP) $(PKG_INSTALL_DIR)/usr/lib/lib{curses,ncurses,panel,menu,form}.so* $(1)/usr/lib/
@@ -100,3 +157,7 @@
  endef
  endif
  
+ $(eval $(call BuildPackage,terminfo))
+ $(eval $(call BuildPackage,libncurses))
+ $(eval $(call BuildPackage,libncursesw))
++$(eval $(call BuildPackage,ncurses-bin))
