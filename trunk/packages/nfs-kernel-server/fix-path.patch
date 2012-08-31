@@ -1,0 +1,103 @@
+--- ../../../openwrt_trunk.orig/feeds/packages/net/nfs-kernel-server/Makefile	2012-08-06 14:41:08.818698162 +0400
++++ ../../../openwrt_trunk/feeds/packages/net/nfs-kernel-server/Makefile	2012-08-31 14:23:59.336424072 +0400
+@@ -27,14 +27,14 @@
+   SECTION:=net
+   CATEGORY:=Network
+   SUBMENU:=Filesystem
+-  DEPENDS:=+libwrap +libblkid +libuuid $(LIBRPC_DEPENDS)
++  DEPENDS:=+libwrap +libblkid +libuuid
+   URL:=http://nfs.sourceforge.net/
+ endef
+ 
+ define Package/nfs-kernel-server
+   $(call Package/nfs-kernel-server/Default)
+   TITLE:=Kernel NFS server support
+-  DEPENDS+= +kmod-fs-nfsd +kmod-fs-nfs +portmap
++  DEPENDS+=+portmap
+ endef
+ 
+ define Package/nfs-kernel-server/description
+@@ -52,14 +52,14 @@
+ endef
+ 
+ define Package/nfs-kernel-server/conffiles
+-/etc/exports
++/opt/etc/exports
+ endef
+ 
+ define Package/nfs-utils
+   $(call Package/nfs-kernel-server/Default)
+   SECTION:=utils
+   CATEGORY:=Utilities
+-  DEPENDS+= +libevent +USE_UCLIBC:librpc
++  DEPENDS+= +libevent
+   TITLE:=updated mount utility (includes nfs4)
+ endef
+ 
+@@ -67,10 +67,10 @@
+   Updated mount.nfs command - allows mounting nfs4 volumes
+ endef
+ 
+-TARGET_CFLAGS += -I$(PKG_BUILD_DIR)/lib -I$(STAGING_DIR)/usr/include/libevent \
+-		 -I$(STAGING_DIR)/usr/include/ -Drpc_uint=uint
+-TARGET_LDFLAGS += -Wl,-rpath-link=$(STAGING_DIR)/usr/lib $(LIBRPC) \
+-		  -L$(STAGING_DIR)/usr/lib/libevent
++TARGET_CFLAGS += -I$(PKG_BUILD_DIR)/lib -I$(STAGING_DIR)/opt/include/libevent \
++		 -I$(STAGING_DIR)/opt/include/ -Drpc_uint=uint
++TARGET_LDFLAGS += -Wl,-rpath-link=$(STAGING_DIR)/opt/lib \
++		  -L$(STAGING_DIR)/opt/lib/libevent
+ 
+ CONFIGURE_ARGS += \
+ 	--disable-gss \
+@@ -80,7 +80,9 @@
+ 	--enable-shared \
+ 	--disable-caps \
+ 	--disable-tirpc \
+-	--disable-nfsdcld
++	--disable-nfsdcld \
++	--with-statedir=/opt/var/lib/nfs \
++	--with-statdpath=/opt/var/lib/nfs
+ 
+ CONFIGURE_VARS += \
+ 	CONFIG_SQLITE3_TRUE="\#" \
+@@ -124,26 +126,26 @@
+ endef
+ 
+ define Package/nfs-kernel-server/install
+-	$(INSTALL_DIR) $(1)/etc/init.d $(1)/usr/sbin
+-	$(INSTALL_DATA) ./files/nfsd.exports $(1)/etc/exports
+-	$(INSTALL_BIN) ./files/nfsd.init $(1)/etc/init.d/nfsd
+-	$(INSTALL_BIN) $(PKG_BUILD_DIR)/utils/statd/sm-notify $(1)/usr/sbin/
+-	$(INSTALL_BIN) $(PKG_BUILD_DIR)/utils/statd/statd $(1)/usr/sbin/rpc.statd
+-	$(INSTALL_BIN) $(PKG_BUILD_DIR)/utils/nfsd/nfsd $(1)/usr/sbin/rpc.nfsd
+-	$(INSTALL_BIN) $(PKG_BUILD_DIR)/utils/mountd/mountd $(1)/usr/sbin/rpc.mountd
+-	$(INSTALL_BIN) $(PKG_BUILD_DIR)/utils/exportfs/exportfs $(1)/usr/sbin/
++	$(INSTALL_DIR) $(1)/opt/etc/init.d $(1)/opt/sbin
++	$(INSTALL_DATA) ./files/nfsd.exports $(1)/opt/etc/exports
++	$(INSTALL_BIN) ./files/S57nfs-kernel-server $(1)/opt/etc/init.d/
++	$(INSTALL_BIN) $(PKG_BUILD_DIR)/utils/statd/sm-notify $(1)/opt/sbin/
++	$(INSTALL_BIN) $(PKG_BUILD_DIR)/utils/statd/statd $(1)/opt/sbin/rpc.statd
++	$(INSTALL_BIN) $(PKG_BUILD_DIR)/utils/nfsd/nfsd $(1)/opt/sbin/rpc.nfsd
++	$(INSTALL_BIN) $(PKG_BUILD_DIR)/utils/mountd/mountd $(1)/opt/sbin/rpc.mountd
++	$(INSTALL_BIN) $(PKG_BUILD_DIR)/utils/exportfs/exportfs $(1)/opt/sbin/
+ endef
+ 
+ define Package/nfs-kernel-server-utils/install
+-	$(INSTALL_DIR) $(1)/usr/sbin
+-	$(INSTALL_BIN) $(PKG_BUILD_DIR)/utils/showmount/showmount $(1)/usr/sbin
+-	$(INSTALL_BIN) $(PKG_BUILD_DIR)/utils/nfsstat/nfsstat $(1)/usr/sbin
++	$(INSTALL_DIR) $(1)/opt/sbin
++	$(INSTALL_BIN) $(PKG_BUILD_DIR)/utils/showmount/showmount $(1)/opt/sbin
++	$(INSTALL_BIN) $(PKG_BUILD_DIR)/utils/nfsstat/nfsstat $(1)/opt/sbin
+ endef
+ 
+ define Package/nfs-utils/install
+-	$(INSTALL_DIR) $(1)/sbin
+-	$(INSTALL_BIN) $(PKG_INSTALL_DIR)/sbin/mount.nfs $(1)/sbin/
+-	(cd $(1)/sbin; ln -sf mount.nfs mount.nfs4; ln -sf mount.nfs umount.nfs; ln -sf mount.nfs umount.nfs4)
++	$(INSTALL_DIR) $(1)/opt/sbin
++	$(INSTALL_BIN) $(PKG_INSTALL_DIR)/sbin/mount.nfs $(1)/opt/sbin/
++	(cd $(1)/opt/sbin; ln -sf mount.nfs mount.nfs4; ln -sf mount.nfs umount.nfs; ln -sf mount.nfs umount.nfs4)
+ endef
+ 
+ $(eval $(call HostBuild))

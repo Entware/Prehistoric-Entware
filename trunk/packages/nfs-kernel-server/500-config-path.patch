@@ -1,0 +1,22 @@
+--- a/support/include/nfslib.h	2012-08-31 11:54:37.220582288 +0400
++++ b/support/include/nfslib.h	2012-08-31 11:55:13.656582956 +0400
+@@ -23,16 +23,16 @@
+ #include "xlog.h"
+ 
+ #ifndef _PATH_EXPORTS
+-#define _PATH_EXPORTS		"/etc/exports"
++#define _PATH_EXPORTS		"/opt/etc/exports"
+ #endif
+ #ifndef _PATH_EXPORTS_D
+-#define _PATH_EXPORTS_D         "/etc/exports.d"
++#define _PATH_EXPORTS_D         "/opt/etc/exports.d"
+ #endif
+ #ifndef _EXT_EXPORT
+ #define _EXT_EXPORT             ".exports"
+ #endif
+ #ifndef _PATH_IDMAPDCONF
+-#define _PATH_IDMAPDCONF	"/etc/idmapd.conf"
++#define _PATH_IDMAPDCONF	"/opt/etc/idmapd.conf"
+ #endif
+ #ifndef _PATH_XTAB
+ #define _PATH_XTAB		NFS_STATEDIR "/xtab"
