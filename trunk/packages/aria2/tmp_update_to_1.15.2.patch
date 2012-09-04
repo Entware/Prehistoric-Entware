@@ -1,0 +1,17 @@
+--- ../../../openwrt_trunk/feeds/packages/net/aria2/Makefile.orig	2012-09-04 15:07:41.306133865 +0400
++++ ../../../openwrt_trunk/feeds/packages/net/aria2/Makefile	2012-09-04 15:11:25.546148668 +0400
+@@ -7,12 +7,12 @@
+ include $(TOPDIR)/rules.mk
+ 
+ PKG_NAME:=aria2
+-PKG_VERSION:=1.15.1
++PKG_VERSION:=1.15.2
+ PKG_RELEASE:=1
+ 
+ PKG_SOURCE:=$(PKG_NAME)-$(PKG_VERSION).tar.bz2
+ PKG_SOURCE_URL:=@SF/aria2
+-PKG_MD5SUM:=a749a1f7cfe03a7518630d2310267c42
++PKG_MD5SUM:=211f1e5c1fd28b788e687cb2d851812a
+ PKG_INSTALL:=1
+ 
+ include $(INCLUDE_DIR)/package.mk
