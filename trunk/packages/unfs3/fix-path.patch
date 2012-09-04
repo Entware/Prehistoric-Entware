@@ -1,0 +1,39 @@
+--- ../../../openwrt_trunk.orig/feeds/packages/net/unfs3/Makefile	2012-09-03 12:35:55.735891676 +0400
++++ ../../../openwrt_trunk/feeds/packages/net/unfs3/Makefile	2012-09-03 15:37:43.663693136 +0400
+@@ -23,7 +23,7 @@
+   SECTION:=net
+   CATEGORY:=Network
+   SUBMENU:=Filesystem
+-  DEPENDS:=+portmap $(LIBRPC_DEPENDS)
++  DEPENDS:=+portmap
+   TITLE:=User-space NFSv3 Server
+   URL:=http://unfs3.sourceforge.net/
+ endef
+@@ -35,20 +35,18 @@
+ 	on the server.
+ endef
+ 
+-TARGET_CFLAGS += -I$(STAGING_DIR)/usr/include
+-TARGET_LDFLAGS += $(LIBRPC)
++TARGET_CFLAGS += -I$(STAGING_DIR)/opt/include
+ 
+ define Package/unfs3/install
+-	$(INSTALL_DIR) $(1)/etc/init.d
+-	$(INSTALL_BIN) ./files/$(PKG_NAME).init $(1)/etc/init.d/$(PKG_NAME)
+-	$(INSTALL_DIR) $(1)/etc
+-	$(INSTALL_DATA) ./files/$(PKG_NAME).exports $(1)/etc/exports
+-	$(INSTALL_DIR) $(1)/usr/sbin
+-	$(INSTALL_BIN) $(PKG_BUILD_DIR)/unfsd $(1)/usr/sbin
++	$(INSTALL_DIR) $(1)/opt/etc/init.d
++	$(INSTALL_BIN) ./files/S56unfsd $(1)/opt/etc/init.d/
++	$(INSTALL_DATA) ./files/$(PKG_NAME).exports $(1)/opt/etc/exports
++	$(INSTALL_DIR) $(1)/opt/sbin
++	$(INSTALL_BIN) $(PKG_BUILD_DIR)/unfsd $(1)/opt/sbin
+ endef
+ 
+ define Package/unfs3/conffiles
+-/etc/exports
++/opt/etc/exports
+ endef
+ 
+ $(eval $(call BuildPackage,unfs3))

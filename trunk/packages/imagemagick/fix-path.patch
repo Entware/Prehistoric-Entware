@@ -1,38 +1,12 @@
---- ../../../openwrt_trunk.orig/feeds/packages/multimedia/imagemagick/Makefile	2012-08-06 14:41:05.354698223 +0400
-+++ ../../../openwrt_trunk/feeds/packages/multimedia/imagemagick/Makefile	2012-08-06 17:32:26.102515298 +0400
-@@ -9,13 +9,13 @@
- 
- PKG_NAME:=imagemagick
- PKG_VERSION:=6.7.8
--PKG_REVISION:=7
-+PKG_REVISION:=8
- PKG_RELEASE:=1
- 
- PKG_BUILD_DIR:=$(BUILD_DIR)/ImageMagick-$(PKG_VERSION)-$(PKG_REVISION)
- PKG_SOURCE:=ImageMagick-$(PKG_VERSION)-$(PKG_REVISION).tar.bz2
- PKG_SOURCE_URL:=ftp://ftp.fifi.org/pub/ImageMagick/
--PKG_MD5SUM:=11d5d5b3c6477077292183edcdf99da9
-+PKG_MD5SUM:=4e5c8f102f3e7401587c924f5b4bca15
- 
- PKG_FIXUP:=autoreconf
- PKG_REMOVE_FILES:=aclocal.m4 m4/libtool.m4
-@@ -33,6 +33,7 @@
- 
- define Package/imagemagick
-   $(call Package/imagemagick/Default)
-+  DEPENDS:=+libfreetype +libltdl +libpthread libstdcpp +libtiff
- endef
- 
- define Package/imagemagick/description
-@@ -94,48 +95,48 @@
+--- ../../../openwrt_trunk.orig/feeds/packages/multimedia/imagemagick/Makefile	2012-09-03 12:35:44.683891877 +0400
++++ ../../../openwrt_trunk/feeds/packages/multimedia/imagemagick/Makefile	2012-09-03 15:16:51.619721493 +0400
+@@ -103,47 +103,47 @@
  endef
  
  define Build/InstallDev
 -	$(INSTALL_DIR) $(1)/usr/include/magick
--	$(INSTALL_DIR) $(1)/usr/include/Magick++
 -	$(INSTALL_DIR) $(1)/usr/include/wand
 +	$(INSTALL_DIR) $(1)/opt/include/magick
-+	$(INSTALL_DIR) $(1)/opt/include/Magick++
 +	$(INSTALL_DIR) $(1)/opt/include/wand
  	$(CP) \
 -		$(PKG_INSTALL_DIR)/usr/include/* \

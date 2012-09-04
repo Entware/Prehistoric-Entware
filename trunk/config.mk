@@ -9,7 +9,7 @@
 # with the gods, you should probably leave all this stuff alone.
 
 TOOLCHAIN_REVISION:=r4489
-OPENWRT_REVISION:=33006
+OPENWRT_REVISION:=33312
 
 # Make a copy of clean OpenWRT trunk tree to write patches later.
 # You need it only for adding a new packages.

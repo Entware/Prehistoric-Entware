@@ -1,8 +1,8 @@
---- ../../../openwrt_trunk.orig/feeds/packages/libs/gd/Makefile	2011-11-28 10:57:22.000000000 +0400
-+++ ../../../openwrt_trunk/feeds/packages/libs/gd/Makefile	2011-11-29 13:19:43.914181928 +0400
-@@ -43,8 +43,8 @@
- 	--disable-rpath \
+--- ../../../openwrt_trunk.orig/feeds/packages/libs/gd/Makefile	2012-09-03 12:35:43.775891888 +0400
++++ ../../../openwrt_trunk/feeds/packages/libs/gd/Makefile	2012-09-03 12:37:32.647889911 +0400
+@@ -44,8 +44,8 @@
  	--without-x \
+ 	--without-fontconfig \
  	--without-freetype \
 -	--with-jpeg=$(STAGING_DIR)/usr \
 -	--with-png=$(STAGING_DIR)/usr \
@@ -11,7 +11,7 @@
  	--without-xpm \
  	--without-iconv
  
-@@ -53,24 +53,24 @@
+@@ -54,24 +54,24 @@
  	ac_cv_header_iconv_h=no
  
  define Build/InstallDev

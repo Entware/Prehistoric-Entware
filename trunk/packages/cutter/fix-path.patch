@@ -1,6 +1,14 @@
---- ../../../openwrt_trunk.orig/feeds/packages/net/cutter/Makefile	2012-05-02 16:17:28.226365246 +0400
-+++ ../../../openwrt_trunk/feeds/packages/net/cutter/Makefile	2012-05-28 09:38:06.430174790 +0400
-@@ -31,12 +31,12 @@
+--- ../../../openwrt_trunk.orig/feeds/packages/net/cutter/Makefile	2012-09-03 12:35:50.939891762 +0400
++++ ../../../openwrt_trunk/feeds/packages/net/cutter/Makefile	2012-09-03 13:35:53.579826021 +0400
+@@ -22,7 +22,6 @@
+   CATEGORY:=Network
+   TITLE:=allows an user to abort TCP/IP connections
+   URL:=http://www.lowth.com/cutter/
+-  DEPENDS:=@BROKEN
+ endef
+ 
+ define Package/cutter/description
+@@ -32,12 +31,12 @@
  endef
  	
  define Build/Compile

@@ -28,7 +28,7 @@
    MENU:=1
  endef
  
-@@ -93,6 +93,7 @@
+@@ -88,6 +88,7 @@
  			--with-cc="$(TARGET_CC)" \
  			--with-cc-opt="$(TARGET_CPPFLAGS) $(TARGET_CFLAGS)" \
  			--with-ld-opt="$(TARGET_LDFLAGS)" \

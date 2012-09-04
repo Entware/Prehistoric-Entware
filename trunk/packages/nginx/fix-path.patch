@@ -1,6 +1,6 @@
 diff -urx .svn ../../../openwrt_trunk.orig/feeds/packages/net/nginx/Makefile ../../../openwrt_trunk/feeds/packages/net/nginx/Makefile
---- ../../../openwrt_trunk.orig/feeds/packages/net/nginx/Makefile	2012-07-18 00:48:36.000000000 +0400
-+++ ../../../openwrt_trunk/feeds/packages/net/nginx/Makefile	2012-07-18 00:10:15.000000000 +0400
+--- ../../../openwrt_trunk.orig/feeds/packages/net/nginx/Makefile	2012-09-03 12:35:47.031891837 +0400
++++ ../../../openwrt_trunk/feeds/packages/net/nginx/Makefile	2012-09-03 15:31:47.795699183 +0400
 @@ -9,7 +9,7 @@
  
  PKG_NAME:=nginx
@@ -10,26 +10,16 @@ diff -urx .svn ../../../openwrt_trunk.orig/feeds/packages/net/nginx/Makefile ../
  
  PKG_SOURCE:=$(PKG_NAME)-$(PKG_VERSION).tar.gz
  PKG_SOURCE_URL:=http://nginx.org/download/
-@@ -48,12 +48,12 @@
+@@ -48,7 +48,7 @@
  config_files=nginx.conf mime.types fastcgi_params koi-utf koi-win win-utf
  
  define Package/nginx/conffiles
--/etc/nginx/nginx.conf
--/etc/nginx/mime.types
--/etc/nginx/fastcgi_params
--/etc/nginx/koi-utf
--/etc/nginx/koi-win
--/etc/nginx/win-utf
-+/opt/etc/nginx/nginx.conf
-+/opt/etc/nginx/mime.types
-+/opt/etc/nginx/fastcgi_params
-+/opt/etc/nginx/koi-utf
-+/opt/etc/nginx/koi-win
-+/opt/etc/nginx/win-utf
+-/etc/nginx/
++/opt/etc/nginx/
  endef
  
  ADDITIONAL_MODULES:=
-@@ -81,15 +81,15 @@
+@@ -76,15 +76,15 @@
  	(cd $(PKG_BUILD_DIR) ;\
  		./configure \
  			--crossbuild=Linux::$(ARCH) \
@@ -54,7 +44,7 @@ diff -urx .svn ../../../openwrt_trunk.orig/feeds/packages/net/nginx/Makefile ../
  			--with-cc="$(TARGET_CC)" \
  			--with-cc-opt="$(TARGET_CPPFLAGS) $(TARGET_CFLAGS)" \
  			--with-ld-opt="$(TARGET_LDFLAGS)" \
-@@ -97,12 +97,17 @@
+@@ -92,12 +92,17 @@
  endef
  
  define Package/nginx/install
@@ -79,8 +69,8 @@ diff -urx .svn ../../../openwrt_trunk.orig/feeds/packages/net/nginx/Makefile ../
  
  $(eval $(call BuildPackage,nginx))
 diff -urx .svn ../../../openwrt_trunk.orig/feeds/packages/net/nginx/patches/200-config.patch ../../../openwrt_trunk/feeds/packages/net/nginx/patches/200-config.patch
---- ../../../openwrt_trunk.orig/feeds/packages/net/nginx/patches/200-config.patch	2012-07-18 00:48:36.000000000 +0400
-+++ ../../../openwrt_trunk/feeds/packages/net/nginx/patches/200-config.patch	2012-07-18 00:27:37.000000000 +0400
+--- ../../../openwrt_trunk.orig/feeds/packages/net/nginx/patches/200-config.patch	2012-09-03 12:35:47.031891837 +0400
++++ ../../../openwrt_trunk/feeds/packages/net/nginx/patches/200-config.patch	2012-09-03 12:37:37.267889827 +0400
 @@ -1,18 +1,43 @@
 ---- a/conf/nginx.conf
 -+++ b/conf/nginx.conf

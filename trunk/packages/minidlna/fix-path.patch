@@ -1,6 +1,6 @@
 diff -urx .svn ../../../openwrt_trunk.orig/feeds/packages/multimedia/minidlna/Makefile ../../../openwrt_trunk/feeds/packages/multimedia/minidlna/Makefile
---- ../../../openwrt_trunk.orig/feeds/packages/multimedia/minidlna/Makefile	2012-07-11 14:54:02.182733760 +0400
-+++ ../../../openwrt_trunk/feeds/packages/multimedia/minidlna/Makefile	2012-07-11 21:31:46.934716760 +0400
+--- ../../../openwrt_trunk.orig/feeds/packages/multimedia/minidlna/Makefile	2012-09-03 12:35:44.683891877 +0400
++++ ../../../openwrt_trunk/feeds/packages/multimedia/minidlna/Makefile	2012-09-03 15:21:40.979708707 +0400
 @@ -18,7 +18,6 @@
  PKG_BUILD_PARALLEL:=0
  PKG_BUILD_DEPENDS:=util-linux
@@ -46,7 +46,7 @@ diff -urx .svn ../../../openwrt_trunk.orig/feeds/packages/multimedia/minidlna/Ma
  	-I$(ICONV_PREFIX)/include \
  	-I$(INTL_PREFIX)/include \
  	-D_GNU_SOURCE -D_FILE_OFFSET_BITS=64 \
-@@ -57,31 +56,30 @@
+@@ -57,7 +56,6 @@
  TARGET_LDFLAGS += \
  	-L$(ICONV_PREFIX)/lib \
  	-L$(INTL_PREFIX)/lib \
@@ -54,9 +54,8 @@ diff -urx .svn ../../../openwrt_trunk.orig/feeds/packages/multimedia/minidlna/Ma
  
  MAKE_FLAGS +=\
  	CFLAGS="$(TARGET_CFLAGS) $(TARGET_CPPFLAGS)" \
- 	LDFLAGS="$(TARGET_LDFLAGS)" \
--	ICONV_LIBS="-liconv" \
-+	ICONV_LIBS="-liconv -lintl" \
+@@ -65,23 +63,23 @@
+ 	ICONV_LIBS="-liconv $(if $(INTL_FULL),-lintl)" \
  
  MAKE_VARS +=\
 -	PREFIX="$(STAGING_DIR)/usr" \
@@ -89,8 +88,8 @@ diff -urx .svn ../../../openwrt_trunk.orig/feeds/packages/multimedia/minidlna/Ma
  
  define Package/minidlna/conffiles
 diff -urx .svn ../../../openwrt_trunk.orig/feeds/packages/multimedia/minidlna/patches/010-genconfig-checks.patch ../../../openwrt_trunk/feeds/packages/multimedia/minidlna/patches/010-genconfig-checks.patch
---- ../../../openwrt_trunk.orig/feeds/packages/multimedia/minidlna/patches/010-genconfig-checks.patch	2012-07-11 14:54:02.182733760 +0400
-+++ ../../../openwrt_trunk/feeds/packages/multimedia/minidlna/patches/010-genconfig-checks.patch	2012-07-11 14:54:25.442441344 +0400
+--- ../../../openwrt_trunk.orig/feeds/packages/multimedia/minidlna/patches/010-genconfig-checks.patch	2012-09-03 12:35:44.683891877 +0400
++++ ../../../openwrt_trunk/feeds/packages/multimedia/minidlna/patches/010-genconfig-checks.patch	2012-09-03 15:21:40.979708707 +0400
 @@ -4,13 +4,13 @@
   CONFIGFILE="config.h"
   CONFIGMACRO="__CONFIG_H__"
@@ -108,8 +107,8 @@ diff -urx .svn ../../../openwrt_trunk.orig/feeds/packages/multimedia/minidlna/pa
  -LOG_PATH="${DB_PATH}"
  +LOG_PATH="${LOG_PATH:-$DB_PATH}"
 diff -urx .svn ../../../openwrt_trunk.orig/feeds/packages/multimedia/minidlna/patches/020-makefile-tweaks.patch ../../../openwrt_trunk/feeds/packages/multimedia/minidlna/patches/020-makefile-tweaks.patch
---- ../../../openwrt_trunk.orig/feeds/packages/multimedia/minidlna/patches/020-makefile-tweaks.patch	2012-07-11 14:54:02.182733760 +0400
-+++ ../../../openwrt_trunk/feeds/packages/multimedia/minidlna/patches/020-makefile-tweaks.patch	2012-07-11 14:54:25.442441344 +0400
+--- ../../../openwrt_trunk.orig/feeds/packages/multimedia/minidlna/patches/020-makefile-tweaks.patch	2012-09-03 12:35:44.683891877 +0400
++++ ../../../openwrt_trunk/feeds/packages/multimedia/minidlna/patches/020-makefile-tweaks.patch	2012-09-03 15:21:40.983708893 +0400
 @@ -1,18 +1,19 @@
 ---- a/Makefile
 -+++ b/Makefile

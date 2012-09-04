@@ -1,6 +1,6 @@
 diff -urx .svn ../../../openwrt_trunk.orig/feeds/packages/net/vpnc/Makefile ../../../openwrt_trunk/feeds/packages/net/vpnc/Makefile
---- ../../../openwrt_trunk.orig/feeds/packages/net/vpnc/Makefile	2012-06-01 10:50:40.712203663 +0400
-+++ ../../../openwrt_trunk/feeds/packages/net/vpnc/Makefile	2012-06-01 11:59:41.788941469 +0400
+--- ../../../openwrt_trunk.orig/feeds/packages/net/vpnc/Makefile	2012-09-03 12:35:54.835891691 +0400
++++ ../../../openwrt_trunk/feeds/packages/net/vpnc/Makefile	2012-09-03 15:45:16.015687966 +0400
 @@ -20,7 +20,7 @@
  define Package/vpnc
    SECTION:=net
@@ -34,20 +34,20 @@ diff -urx .svn ../../../openwrt_trunk.orig/feeds/packages/net/vpnc/Makefile ../.
 -	$(CP)	$(PKG_INSTALL_DIR)/usr/sbin/vpnc \
 -		$(PKG_INSTALL_DIR)/usr/sbin/vpnc-disconnect \
 -		$(1)/usr/sbin/
--	install -d -m0700 $(1)/etc/vpnc
+-	$(INSTALL_DIR) $(1)/etc/vpnc
 -	$(INSTALL_CONF) $(PKG_INSTALL_DIR)/etc/vpnc/default.conf $(1)/etc/vpnc/
 +	$(INSTALL_DIR) $(1)/opt/sbin
 +	$(CP)	$(PKG_INSTALL_DIR)/opt/sbin/vpnc \
 +		$(PKG_INSTALL_DIR)/opt/sbin/vpnc-disconnect \
 +		$(1)/opt/sbin/
-+	install -d -m0700 $(1)/opt/etc/vpnc
++	$(INSTALL_DIR) $(1)/opt/etc/vpnc
 +	$(INSTALL_CONF) $(PKG_INSTALL_DIR)/opt/etc/vpnc/default.conf $(1)/opt/etc/vpnc/
  endef
  
  $(eval $(call BuildPackage,vpnc))
 diff -urx .svn ../../../openwrt_trunk.orig/feeds/packages/net/vpnc/patches/001-cross.patch ../../../openwrt_trunk/feeds/packages/net/vpnc/patches/001-cross.patch
---- ../../../openwrt_trunk.orig/feeds/packages/net/vpnc/patches/001-cross.patch	2012-06-01 10:50:40.712203663 +0400
-+++ ../../../openwrt_trunk/feeds/packages/net/vpnc/patches/001-cross.patch	2012-06-01 10:51:36.139506847 +0400
+--- ../../../openwrt_trunk.orig/feeds/packages/net/vpnc/patches/001-cross.patch	2012-09-03 12:35:54.875891690 +0400
++++ ../../../openwrt_trunk/feeds/packages/net/vpnc/patches/001-cross.patch	2012-09-03 15:45:16.019687575 +0400
 @@ -5,10 +5,12 @@
   
   DESTDIR=
@@ -78,8 +78,8 @@ diff -urx .svn ../../../openwrt_trunk.orig/feeds/packages/net/vpnc/patches/001-c
  -ifeq ($(shell uname -s), SunOS)
  +ifeq ($(OS), SunOS)
 diff -urx .svn ../../../openwrt_trunk.orig/feeds/packages/net/vpnc/patches/002-vpn_script.patch ../../../openwrt_trunk/feeds/packages/net/vpnc/patches/002-vpn_script.patch
---- ../../../openwrt_trunk.orig/feeds/packages/net/vpnc/patches/002-vpn_script.patch	2012-06-01 10:50:40.712203663 +0400
-+++ ../../../openwrt_trunk/feeds/packages/net/vpnc/patches/002-vpn_script.patch	2012-06-01 10:51:36.139506847 +0400
+--- ../../../openwrt_trunk.orig/feeds/packages/net/vpnc/patches/002-vpn_script.patch	2012-09-03 12:35:54.875891690 +0400
++++ ../../../openwrt_trunk/feeds/packages/net/vpnc/patches/002-vpn_script.patch	2012-09-03 15:45:16.019687575 +0400
 @@ -14,15 +14,15 @@
   }
   

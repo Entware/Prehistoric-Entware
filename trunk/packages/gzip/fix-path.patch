@@ -12,7 +12,7 @@
 -define Package/gzip/postinst
 -#!/bin/sh
 -for app in gunzip gzip zcat; do
--  ln -sf $${IPKG_INSTROOT}/usr/bin/$$app $${IPKG_INSTROOT}/bin/$$app
+-  ln -sf ../usr/bin/$$app $${IPKG_INSTROOT}/bin/$$app
 -done
 -endef
 -

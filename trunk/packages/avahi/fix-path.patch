@@ -1,6 +1,6 @@
---- ../../../openwrt_trunk.orig/feeds/packages/libs/avahi/Makefile	2012-07-10 18:59:22.281231278 +0400
-+++ ../../../openwrt_trunk/feeds/packages/libs/avahi/Makefile	2012-07-10 18:59:43.716961794 +0400
-@@ -105,9 +105,9 @@
+--- ../../../openwrt_trunk.orig/feeds/packages/libs/avahi/Makefile	2012-09-03 12:35:43.799891893 +0400
++++ ../../../openwrt_trunk/feeds/packages/libs/avahi/Makefile	2012-09-03 12:37:30.423889948 +0400
+@@ -109,9 +109,9 @@
  endef
  
  define Package/avahi-daemon/conffiles
@@ -13,7 +13,7 @@
  endef
  
  define Package/avahi-dnsconfd
-@@ -236,61 +236,61 @@
+@@ -240,61 +240,61 @@
  	ac_cv_header_sys_capability_h=no \
  
  define Build/InstallDev
