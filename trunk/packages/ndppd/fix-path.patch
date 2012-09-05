@@ -1,0 +1,37 @@
+--- ../../../openwrt_trunk.orig/feeds/packages/ipv6/ndppd/Makefile	2012-09-03 15:54:44.071674388 +0400
++++ ../../../openwrt_trunk/feeds/packages/ipv6/ndppd/Makefile	2012-09-05 12:30:47.612748468 +0400
+@@ -31,7 +31,7 @@
+   TITLE:=NDP Proxy Daemon
+   URL:=http://www.priv.nu/projects/ndppd/
+   MAINTAINER:=Gabriel Kerneis <kerneis@pps.jussieu.fr>
+-  DEPENDS:=+kmod-ipv6 $(CXX_DEPENDS)
++  DEPENDS:=$(CXX_DEPENDS)
+ endef
+ 
+ define Package/ndppd/description
+@@ -46,7 +46,7 @@
+ endef
+ 
+ define Package/ndppd/conffiles
+-/etc/ndppd.conf
++/opt/etc/ndppd.conf
+ endef
+ 
+ define Build/Compile
+@@ -59,11 +59,11 @@
+ endef
+ 
+ define Package/ndppd/install
+-	$(INSTALL_DIR) $(1)/usr/sbin
+-	$(INSTALL_BIN) $(PKG_BUILD_DIR)/ndppd $(1)/usr/sbin/
+-	$(INSTALL_DIR) $(1)/etc/init.d
+-	$(INSTALL_BIN) ./files/ndppd.init $(1)/etc/init.d/ndppd
+-	$(INSTALL_CONF) $(PKG_BUILD_DIR)/ndppd.conf-dist $(1)/etc/ndppd.conf
++	$(INSTALL_DIR) $(1)/opt/sbin
++	$(INSTALL_BIN) $(PKG_BUILD_DIR)/ndppd $(1)/opt/sbin/
++	$(INSTALL_DIR) $(1)/opt/etc/init.d
++	$(INSTALL_BIN) ./files/S33ndppd $(1)/opt/etc/init.d/
++	$(INSTALL_CONF) $(PKG_BUILD_DIR)/ndppd.conf-dist $(1)/opt/etc/ndppd.conf
+ endef
+ 
+ $(eval $(call BuildPackage,ndppd))
