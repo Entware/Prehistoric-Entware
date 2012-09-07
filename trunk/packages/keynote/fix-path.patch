@@ -1,0 +1,24 @@
+--- ../../../openwrt_trunk.orig/feeds/packages/libs/keynote/Makefile	2012-09-03 15:54:44.275674384 +0400
++++ ../../../openwrt_trunk/feeds/packages/libs/keynote/Makefile	2012-09-07 16:36:43.361332532 +0400
+@@ -42,15 +42,15 @@
+ 	CFLAGS="$(TARGET_CFLAGS)"
+ 
+ define Build/InstallDev
+-	$(INSTALL_DIR) $(1)/usr/include/keynote
+-	$(CP) $(PKG_BUILD_DIR)/{assertion,header,keynote,signature}.h $(1)/usr/include/keynote/
+-	$(INSTALL_DIR) $(1)/usr/lib
+-	$(CP) $(PKG_BUILD_DIR)/libkeynote.a $(1)/usr/lib/
++	$(INSTALL_DIR) $(1)/opt/include/keynote
++	$(CP) $(PKG_BUILD_DIR)/{assertion,header,keynote,signature}.h $(1)/opt/include/keynote/
++	$(INSTALL_DIR) $(1)/opt/lib
++	$(CP) $(PKG_BUILD_DIR)/libkeynote.a $(1)/opt/lib/
+ endef
+ 
+ define Package/keynote/install
+-	$(INSTALL_DIR) $(1)/usr/sbin
+-	$(INSTALL_BIN) $(PKG_BUILD_DIR)/keynote $(1)/usr/sbin/
++	$(INSTALL_DIR) $(1)/opt/sbin
++	$(INSTALL_BIN) $(PKG_BUILD_DIR)/keynote $(1)/opt/sbin/
+ endef
+ 
+ $(eval $(call BuildPackage,keynote))
