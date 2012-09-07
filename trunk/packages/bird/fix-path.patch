@@ -1,0 +1,33 @@
+--- ../../../openwrt_trunk.orig/feeds/packages/net/bird/Makefile	2012-09-03 15:54:57.843674137 +0400
++++ ../../../openwrt_trunk/feeds/packages/net/bird/Makefile	2012-09-07 16:25:18.513347411 +0400
+@@ -129,23 +129,20 @@
+ $(STAMP_BUILT): $(STAMP_BUILT)-$(2)
+ 
+ define Package/bird$(2)/install
+-	$(INSTALL_DIR)  $$(1)/usr/sbin
+-	$(INSTALL_BIN)  $$(PKG_BUILD_DIR)/bird$(2) $$(1)/usr/sbin/
+-	$(INSTALL_BIN)  ./files/bird$(2)loop $$(1)/usr/sbin/
+-	$(INSTALL_DIR)  $$(1)/etc
+-	$(INSTALL_DATA) ./files/bird$(2).conf $$(1)/etc/
+-	$(INSTALL_DIR)  $$(1)/etc/init.d
+-	$(INSTALL_BIN)  ./files/bird$(2).init $$(1)/etc/init.d/bird$(2)
++	$(INSTALL_DIR)  $$(1)/opt/sbin
++	$(INSTALL_BIN)  $$(PKG_BUILD_DIR)/bird$(2) $$(1)/opt/sbin/
++	$(INSTALL_DIR)  $$(1)/opt/etc
++	$(INSTALL_DATA) ./files/bird$(2).conf $$(1)/opt/etc/
+ 
+ endef
+ 
+ define Package/bird$(2)/conffiles
+-/etc/bird$(2).conf
++/opt/etc/bird$(2).conf
+ endef
+ 
+ define Package/birdc$(2)/install
+-	$(INSTALL_DIR) $$(1)/usr/sbin
+-	$(INSTALL_BIN) $$(PKG_BUILD_DIR)/birdc$(2) $$(1)/usr/sbin/
++	$(INSTALL_DIR) $$(1)/opt/sbin
++	$(INSTALL_BIN) $$(PKG_BUILD_DIR)/birdc$(2) $$(1)/opt/sbin/
+ endef
+ 
+ endef
