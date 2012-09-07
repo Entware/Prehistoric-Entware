@@ -1,6 +1,14 @@
 --- ../../../openwrt_trunk.orig/package/ifenslave/Makefile	2012-09-03 15:55:28.107673584 +0400
-+++ ../../../openwrt_trunk/package/ifenslave/Makefile	2012-09-07 15:53:01.601382419 +0400
-@@ -16,7 +16,6 @@
++++ ../../../openwrt_trunk/package/ifenslave/Makefile	2012-09-07 17:17:52.317290608 +0400
+@@ -6,7 +6,6 @@
+ #
+ 
+ include $(TOPDIR)/rules.mk
+-include $(INCLUDE_DIR)/kernel.mk
+ 
+ PKG_NAME:=ifenslave
+ PKG_RELEASE:=1
+@@ -16,7 +15,6 @@
  define Package/ifenslave
    SECTION:=net
    CATEGORY:=Network
@@ -8,7 +16,7 @@
    TITLE:=A utility to manipulate kernel ethernet bonding devices
    VERSION:=$(LINUX_VERSION)-$(PKG_RELEASE)
    URL:=http://www.kernel.org
-@@ -30,13 +29,13 @@
+@@ -30,13 +28,13 @@
  endef
  
  define Build/Compile
