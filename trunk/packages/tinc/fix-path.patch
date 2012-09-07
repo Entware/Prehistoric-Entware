@@ -1,0 +1,40 @@
+--- ../../../openwrt_trunk.orig/feeds/packages/net/tinc/Makefile	2012-09-03 15:55:15.259673820 +0400
++++ ../../../openwrt_trunk/feeds/packages/net/tinc/Makefile	2012-09-07 16:11:31.465359791 +0400
+@@ -22,7 +22,7 @@
+ define Package/tinc
+   SECTION:=net
+   CATEGORY:=Network
+-  DEPENDS:=+liblzo +libopenssl +kmod-tun
++  DEPENDS:=+liblzo +libopenssl
+   TITLE:=VPN tunneling daemon
+   URL:=http://www.tinc-vpn.org/
+   SUBMENU:=VPN
+@@ -37,23 +37,16 @@
+ 
+ CONFIGURE_ARGS += \
+ 	--with-kernel="$(LINUX_DIR)" \
+-	--with-zlib="$(STAGING_DIR)/usr" \
+-	--with-lzo-include="$(STAGING_DIR)/usr/include/lzo"
++	--with-zlib="$(STAGING_DIR)/opt" \
++	--with-lzo-include="$(STAGING_DIR)/opt/include/lzo"
+ 
+ define Package/tinc/install
+-	$(INSTALL_DIR) $(1)/usr/sbin
+-	$(INSTALL_BIN) $(PKG_INSTALL_DIR)/usr/sbin/tincd $(1)/usr/sbin/
+-	$(INSTALL_DIR) $(1)/etc/init.d/
+-	$(INSTALL_BIN) files/$(PKG_NAME).init $(1)/etc/init.d/$(PKG_NAME)
+-	$(INSTALL_DIR) $(1)/etc/config
+-	$(INSTALL_CONF) files/$(PKG_NAME).config $(1)/etc/config/$(PKG_NAME)
+-	$(INSTALL_DIR) $(1)/etc/openvpn
+-	$(INSTALL_DIR) $(1)/lib/upgrade/keep.d
+-	$(INSTALL_DATA) files/tinc.upgrade $(1)/lib/upgrade/keep.d/tinc
++	$(INSTALL_DIR) $(1)/opt/sbin
++	$(INSTALL_BIN) $(PKG_INSTALL_DIR)/opt/sbin/tincd $(1)/opt/sbin/
+ endef
+ 
+ define Package/tinc/conffiles
+-/etc/config/tinc
++/opt/etc/tinc/
+ endef
+ 
+ $(eval $(call BuildPackage,tinc))
