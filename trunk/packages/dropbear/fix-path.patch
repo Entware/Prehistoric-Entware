@@ -1,6 +1,6 @@
 diff -urx .svn ../../../openwrt_trunk.orig/package/dropbear/Makefile ../../../openwrt_trunk/package/dropbear/Makefile
---- ../../../openwrt_trunk.orig/package/dropbear/Makefile	2012-05-02 16:17:35.674271615 +0400
-+++ ../../../openwrt_trunk/package/dropbear/Makefile	2012-05-31 17:09:16.336395133 +0400
+--- ../../../openwrt_trunk.orig/package/dropbear/Makefile	2012-09-03 15:55:26.039673621 +0400
++++ ../../../openwrt_trunk/package/dropbear/Makefile	2012-09-03 15:56:46.351672159 +0400
 @@ -37,9 +37,9 @@
  endef
  
@@ -80,8 +80,8 @@ diff -urx .svn ../../../openwrt_trunk.orig/package/dropbear/Makefile ../../../op
  
  $(eval $(call BuildPackage,dropbear))
 diff -urx .svn ../../../openwrt_trunk.orig/package/dropbear/patches/100-pubkey_path.patch ../../../openwrt_trunk/package/dropbear/patches/100-pubkey_path.patch
---- ../../../openwrt_trunk.orig/package/dropbear/patches/100-pubkey_path.patch	2012-05-02 16:17:35.674271615 +0400
-+++ ../../../openwrt_trunk/package/dropbear/patches/100-pubkey_path.patch	2012-05-23 09:53:03.000878094 +0400
+--- ../../../openwrt_trunk.orig/package/dropbear/patches/100-pubkey_path.patch	2012-09-03 15:55:26.107673622 +0400
++++ ../../../openwrt_trunk/package/dropbear/patches/100-pubkey_path.patch	2012-09-03 15:56:46.383672160 +0400
 @@ -28,7 +28,7 @@
  +		/* open the file */
  +		authfile = fopen(filename, "r");
@@ -104,3 +104,137 @@ diff -urx .svn ../../../openwrt_trunk.orig/package/dropbear/patches/100-pubkey_p
  +			goto out;
  +		}
  +	} else {
+diff -urx .svn ../../../openwrt_trunk.orig/package/dropbear/patches/120-openwrt_options.patch ../../../openwrt_trunk/package/dropbear/patches/120-openwrt_options.patch
+--- ../../../openwrt_trunk.orig/package/dropbear/patches/120-openwrt_options.patch	2012-09-03 15:55:26.095673621 +0400
++++ ../../../openwrt_trunk/package/dropbear/patches/120-openwrt_options.patch	2012-09-18 22:11:27.000000000 +0400
+@@ -1,6 +1,19 @@
+ --- a/options.h
+ +++ b/options.h
+-@@ -38,7 +38,7 @@
++@@ -21,10 +26,10 @@
++ 
++ /* Default hostkey paths - these can be specified on the command line */
++ #ifndef DSS_PRIV_FILENAME
++-#define DSS_PRIV_FILENAME "/etc/dropbear/dropbear_dss_host_key"
+++#define DSS_PRIV_FILENAME "/opt/etc/dropbear/dropbear_dss_host_key"
++ #endif
++ #ifndef RSA_PRIV_FILENAME
++-#define RSA_PRIV_FILENAME "/etc/dropbear/dropbear_rsa_host_key"
+++#define RSA_PRIV_FILENAME "/opt/etc/dropbear/dropbear_rsa_host_key"
++ #endif
++ 
++ /* Set NON_INETD_MODE if you require daemon functionality (ie Dropbear listens
++@@ -38,7 +43,7 @@
+   * Both of these flags can be defined at once, don't compile without at least
+   * one of them. */
+  #define NON_INETD_MODE
+@@ -9,7 +22,7 @@
+  
+  /* Setting this disables the fast exptmod bignum code. It saves ~5kB, but is
+   * perhaps 20% slower for pubkey operations (it is probably worth experimenting
+-@@ -49,7 +49,7 @@
++@@ -49,7 +54,7 @@
+  several kB in binary size however will make the symmetrical ciphers and hashes
+  slower, perhaps by 50%. Recommended for small systems that aren't doing
+  much traffic. */
+@@ -18,7 +31,7 @@
+  
+  /* Enable X11 Forwarding - server only */
+  #define ENABLE_X11FWD
+-@@ -78,7 +78,7 @@ much traffic. */
++@@ -78,7 +83,7 @@
+  
+  /* Enable "Netcat mode" option. This will forward standard input/output
+   * to a remote TCP-forwarded connection */
+@@ -27,7 +40,7 @@
+  
+  /* Encryption - at least one required.
+   * Protocol RFC requires 3DES and recommends AES128 for interoperability.
+-@@ -89,8 +89,8 @@ much traffic. */
++@@ -89,8 +94,8 @@
+  #define DROPBEAR_AES256
+  /* Compiling in Blowfish will add ~6kB to runtime heap memory usage */
+  /*#define DROPBEAR_BLOWFISH*/
+@@ -38,7 +51,7 @@
+  
+  /* Enable "Counter Mode" for ciphers. This is more secure than normal
+   * CBC mode against certain attacks. This adds around 1kB to binary 
+-@@ -110,7 +110,7 @@ much traffic. */
++@@ -110,7 +115,7 @@
+   * If you disable MD5, Dropbear will fall back to SHA1 fingerprints,
+   * which are not the standard form. */
+  #define DROPBEAR_SHA1_HMAC
+@@ -47,7 +60,12 @@
+  #define DROPBEAR_MD5_HMAC
+  
+  /* Hostkey/public key algorithms - at least one required, these are used
+-@@ -148,7 +148,7 @@ much traffic. */
++@@ -144,15 +149,15 @@
++ #endif
++ 
++ /* Whether to do reverse DNS lookups. */
++-#define DO_HOST_LOOKUP
+++/* #define DO_HOST_LOOKUP */
+  
+  /* Whether to print the message of the day (MOTD). This doesn't add much code
+   * size */
+@@ -56,7 +74,12 @@
+  
+  /* The MOTD file path */
+  #ifndef MOTD_FILENAME
+-@@ -192,7 +192,7 @@ much traffic. */
++-#define MOTD_FILENAME "/etc/motd"
+++#define MOTD_FILENAME "/opt/etc/motd"
++ #endif
++ 
++ /* Authentication Types - at least one required.
++@@ -192,7 +197,7 @@
+   * note that it will be provided for all "hidden" client-interactive
+   * style prompts - if you want something more sophisticated, use 
+   * SSH_ASKPASS instead. Comment out this var to remove this functionality.*/
+@@ -65,3 +88,33 @@
+  
+  /* Define this (as well as ENABLE_CLI_PASSWORD_AUTH) to allow the use of
+   * a helper program for the ssh client. The helper program should be
++@@ -237,25 +242,25 @@
++ /* The default file to store the daemon's process ID, for shutdown
++    scripts etc. This can be overridden with the -P flag */
++ #ifndef DROPBEAR_PIDFILE
++-#define DROPBEAR_PIDFILE "/var/run/dropbear.pid"
+++#define DROPBEAR_PIDFILE "/opt/var/run/dropbear.pid"
++ #endif
++ 
++ /* The command to invoke for xauth when using X11 forwarding.
++  * "-q" for quiet */
++ #ifndef XAUTH_COMMAND
++-#define XAUTH_COMMAND "/usr/bin/X11/xauth -q"
+++#define XAUTH_COMMAND "/opt/bin/X11/xauth -q"
++ #endif
++ 
++ /* if you want to enable running an sftp server (such as the one included with
++  * OpenSSH), set the path below. If the path isn't defined, sftp will not
++  * be enabled */
++ #ifndef SFTPSERVER_PATH
++-#define SFTPSERVER_PATH "/usr/libexec/sftp-server"
+++#define SFTPSERVER_PATH "/opt/libexec/sftp-server"
++ #endif
++ 
++ /* This is used by the scp binary when used as a client binary. If you're
++  * not using the Dropbear client, you'll need to change it */
++-#define _PATH_SSH_PROGRAM "/usr/bin/dbclient"
+++#define _PATH_SSH_PROGRAM "/opt/bin/dbclient"
++ 
++ /* Whether to log commands executed by a client. This only logs the 
++  * (single) command sent to the server, not what a user did in a 
+diff -urx .svn ../../../openwrt_trunk.orig/package/dropbear/patches/500-set-default-path.patch ../../../openwrt_trunk/package/dropbear/patches/500-set-default-path.patch
+--- ../../../openwrt_trunk.orig/package/dropbear/patches/500-set-default-path.patch	2012-09-03 15:55:26.119673622 +0400
++++ ../../../openwrt_trunk/package/dropbear/patches/500-set-default-path.patch	2012-09-18 22:11:55.935308089 +0400
+@@ -5,7 +5,7 @@
+  
+  /* The default path. This will often get replaced by the shell */
+ -#define DEFAULT_PATH "/usr/bin:/bin"
+-+#define DEFAULT_PATH "/bin:/sbin:/usr/bin:/usr/sbin"
+++#define DEFAULT_PATH "/bin:/sbin:/usr/bin:/usr/sbin:/opt/bin:/opt/sbin"
+  
+  /* Some other defines (that mostly should be left alone) are defined
+   * in sysoptions.h */
