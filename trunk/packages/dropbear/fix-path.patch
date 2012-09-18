@@ -1,3 +1,4 @@
+Только в ../../../openwrt_trunk/package/dropbear/files: S51dropbear
 diff -urx .svn ../../../openwrt_trunk.orig/package/dropbear/Makefile ../../../openwrt_trunk/package/dropbear/Makefile
 --- ../../../openwrt_trunk.orig/package/dropbear/Makefile	2012-09-03 15:55:26.039673621 +0400
 +++ ../../../openwrt_trunk/package/dropbear/Makefile	2012-09-03 15:56:46.351672159 +0400
@@ -106,29 +107,16 @@ diff -urx .svn ../../../openwrt_trunk.orig/package/dropbear/patches/100-pubkey_p
  +	} else {
 diff -urx .svn ../../../openwrt_trunk.orig/package/dropbear/patches/120-openwrt_options.patch ../../../openwrt_trunk/package/dropbear/patches/120-openwrt_options.patch
 --- ../../../openwrt_trunk.orig/package/dropbear/patches/120-openwrt_options.patch	2012-09-03 15:55:26.095673621 +0400
-+++ ../../../openwrt_trunk/package/dropbear/patches/120-openwrt_options.patch	2012-09-18 22:11:27.000000000 +0400
-@@ -1,6 +1,19 @@
++++ ../../../openwrt_trunk/package/dropbear/patches/120-openwrt_options.patch	2012-09-18 22:42:58.959272781 +0400
+@@ -1,6 +1,6 @@
  --- a/options.h
  +++ b/options.h
 -@@ -38,7 +38,7 @@
-+@@ -21,10 +26,10 @@
-+ 
-+ /* Default hostkey paths - these can be specified on the command line */
-+ #ifndef DSS_PRIV_FILENAME
-+-#define DSS_PRIV_FILENAME "/etc/dropbear/dropbear_dss_host_key"
-++#define DSS_PRIV_FILENAME "/opt/etc/dropbear/dropbear_dss_host_key"
-+ #endif
-+ #ifndef RSA_PRIV_FILENAME
-+-#define RSA_PRIV_FILENAME "/etc/dropbear/dropbear_rsa_host_key"
-++#define RSA_PRIV_FILENAME "/opt/etc/dropbear/dropbear_rsa_host_key"
-+ #endif
-+ 
-+ /* Set NON_INETD_MODE if you require daemon functionality (ie Dropbear listens
 +@@ -38,7 +43,7 @@
    * Both of these flags can be defined at once, don't compile without at least
    * one of them. */
   #define NON_INETD_MODE
-@@ -9,7 +22,7 @@
+@@ -9,7 +9,7 @@
   
   /* Setting this disables the fast exptmod bignum code. It saves ~5kB, but is
    * perhaps 20% slower for pubkey operations (it is probably worth experimenting
@@ -137,7 +125,7 @@ diff -urx .svn ../../../openwrt_trunk.orig/package/dropbear/patches/120-openwrt_
   several kB in binary size however will make the symmetrical ciphers and hashes
   slower, perhaps by 50%. Recommended for small systems that aren't doing
   much traffic. */
-@@ -18,7 +31,7 @@
+@@ -18,7 +18,7 @@
   
   /* Enable X11 Forwarding - server only */
   #define ENABLE_X11FWD
@@ -146,7 +134,7 @@ diff -urx .svn ../../../openwrt_trunk.orig/package/dropbear/patches/120-openwrt_
   
   /* Enable "Netcat mode" option. This will forward standard input/output
    * to a remote TCP-forwarded connection */
-@@ -27,7 +40,7 @@
+@@ -27,7 +27,7 @@
   
   /* Encryption - at least one required.
    * Protocol RFC requires 3DES and recommends AES128 for interoperability.
@@ -155,7 +143,7 @@ diff -urx .svn ../../../openwrt_trunk.orig/package/dropbear/patches/120-openwrt_
   #define DROPBEAR_AES256
   /* Compiling in Blowfish will add ~6kB to runtime heap memory usage */
   /*#define DROPBEAR_BLOWFISH*/
-@@ -38,7 +51,7 @@
+@@ -38,7 +38,7 @@
   
   /* Enable "Counter Mode" for ciphers. This is more secure than normal
    * CBC mode against certain attacks. This adds around 1kB to binary 
@@ -164,7 +152,7 @@ diff -urx .svn ../../../openwrt_trunk.orig/package/dropbear/patches/120-openwrt_
    * If you disable MD5, Dropbear will fall back to SHA1 fingerprints,
    * which are not the standard form. */
   #define DROPBEAR_SHA1_HMAC
-@@ -47,7 +60,12 @@
+@@ -47,7 +47,12 @@
   #define DROPBEAR_MD5_HMAC
   
   /* Hostkey/public key algorithms - at least one required, these are used
@@ -178,7 +166,7 @@ diff -urx .svn ../../../openwrt_trunk.orig/package/dropbear/patches/120-openwrt_
   
   /* Whether to print the message of the day (MOTD). This doesn't add much code
    * size */
-@@ -56,7 +74,12 @@
+@@ -56,7 +61,12 @@
   
   /* The MOTD file path */
   #ifndef MOTD_FILENAME
@@ -192,7 +180,7 @@ diff -urx .svn ../../../openwrt_trunk.orig/package/dropbear/patches/120-openwrt_
    * note that it will be provided for all "hidden" client-interactive
    * style prompts - if you want something more sophisticated, use 
    * SSH_ASKPASS instead. Comment out this var to remove this functionality.*/
-@@ -65,3 +88,33 @@
+@@ -65,3 +75,33 @@
   
   /* Define this (as well as ENABLE_CLI_PASSWORD_AUTH) to allow the use of
    * a helper program for the ssh client. The helper program should be
