@@ -1,0 +1,36 @@
+--- ../../../openwrt_trunk.orig/feeds/packages/net/n2n/Makefile	2012-09-03 15:54:57.583674142 +0400
++++ ../../../openwrt_trunk/feeds/packages/net/n2n/Makefile	2012-09-19 16:17:54.082130332 +0400
+@@ -28,28 +28,21 @@
+   TITLE:=VPN tunneling daemon
+   URL:=http://www.ntop.org/n2n/
+   SUBMENU:=VPN
+-  DEPENDS:=+libpthread +kmod-tun
++  DEPENDS:=+libpthread
+ endef
+ 
+ define Build/Compile
+ 	$(MAKE) -C $(PKG_BUILD_DIR) \
+ 		$(TARGET_CONFIGURE_OPTS) \
+ 		CFLAGS="$(TARGET_CFLAGS)" \
++		LIBS="-lpthread $(TARGET_LDFLAGS)" \
+ 		INSTALL_PROG=":"
+ endef
+ 
+ define Package/n2n/install
+-	$(INSTALL_DIR) $(1)/usr/sbin
+-	$(INSTALL_BIN) $(PKG_BUILD_DIR)/edge $(1)/usr/sbin/
+-	$(INSTALL_BIN) $(PKG_BUILD_DIR)/supernode $(1)/usr/sbin/
+-	$(INSTALL_DIR) $(1)/etc/config
+-	$(INSTALL_DATA) ./files/n2n.config $(1)/etc/config/n2n
+-	$(INSTALL_DIR) $(1)/etc/init.d
+-	$(INSTALL_BIN) ./files/n2n.init $(1)/etc/init.d/n2n
+-endef
+-
+-define Package/n2n/conffiles
+-/etc/config/n2n
++	$(INSTALL_DIR) $(1)/opt/sbin
++	$(INSTALL_BIN) $(PKG_BUILD_DIR)/edge $(1)/opt/sbin/
++	$(INSTALL_BIN) $(PKG_BUILD_DIR)/supernode $(1)/opt/sbin/
+ endef
+ 
+ $(eval $(call BuildPackage,n2n))
