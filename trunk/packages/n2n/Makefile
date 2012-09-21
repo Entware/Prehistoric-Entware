@@ -9,6 +9,8 @@ all: ./.done
 
 ./.done:
 	patch -p0 -i ./fix-path.patch
+	mkdir -p ../../../openwrt_trunk/feeds//packages/net/n2n/patches/
+	cp -f ./010-LDFLAGS.patch ../../../openwrt_trunk/feeds/packages/net/n2n/patches/
 	touch $@
 
 clean:
