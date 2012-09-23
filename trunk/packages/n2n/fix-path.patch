@@ -1,20 +1,40 @@
---- ../../../openwrt_trunk.orig/feeds/packages/net/n2n/Makefile	2012-09-03 15:54:57.583674142 +0400
-+++ ../../../openwrt_trunk/feeds/packages/net/n2n/Makefile	2012-09-19 16:17:54.082130332 +0400
-@@ -28,28 +28,21 @@
+--- ../../../openwrt_trunk.orig/feeds/packages/net/n2n/Makefile	2012-09-21 10:59:58.469103717 +0400
++++ ../../../openwrt_trunk/feeds/packages/net/n2n/Makefile	2012-09-21 14:08:47.920892494 +0400
+@@ -7,14 +7,12 @@
+ 
+ include $(TOPDIR)/rules.mk
+ 
+-PKG_BRANCH:=trunk
+-PKG_SOURCE_URL:=https://svn.ntop.org/svn/ntop/trunk/n2n
+-PKG_REV:=3875
+-
+ PKG_NAME:=n2n
+-PKG_VERSION:=$(PKG_REV)
+-PKG_RELEASE:=4
++PKG_REV:=5696
++PKG_VERSION:=2.1.0-r$(PKG_REV)
++PKG_RELEASE:=1
+ 
++PKG_SOURCE_URL:=https://svn.ntop.org/svn/ntop/trunk/n2n/n2n_v2/
+ PKG_SOURCE_SUBDIR:=$(PKG_NAME)-$(PKG_VERSION)
+ PKG_SOURCE:=$(PKG_SOURCE_SUBDIR).tar.gz
+ PKG_SOURCE_PROTO:=svn
+@@ -28,28 +26,16 @@
    TITLE:=VPN tunneling daemon
    URL:=http://www.ntop.org/n2n/
    SUBMENU:=VPN
 -  DEPENDS:=+libpthread +kmod-tun
-+  DEPENDS:=+libpthread
++  DEPENDS:=+libopenssl
  endef
  
- define Build/Compile
- 	$(MAKE) -C $(PKG_BUILD_DIR) \
- 		$(TARGET_CONFIGURE_OPTS) \
- 		CFLAGS="$(TARGET_CFLAGS)" \
-+		LIBS="-lpthread $(TARGET_LDFLAGS)" \
- 		INSTALL_PROG=":"
- endef
+-define Build/Compile
+-	$(MAKE) -C $(PKG_BUILD_DIR) \
+-		$(TARGET_CONFIGURE_OPTS) \
+-		CFLAGS="$(TARGET_CFLAGS)" \
+-		INSTALL_PROG=":"
+-endef
++MAKE_FLAGS += \
++	N2N_OSNAME="$(GNU_TARGET_NAME)"
  
  define Package/n2n/install
 -	$(INSTALL_DIR) $(1)/usr/sbin

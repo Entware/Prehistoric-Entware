@@ -1,8 +1,11 @@
 #!/bin/sh 
 
+# Point right interfaces to monitor. Remove -i ppp0 to monitor all of them.
+[ -f "/opt/var/lib/vnstat/*" ] || vnstat -u -i ppp0
+
 ENABLED=yes 
-PROCS=vnstat 
-ARGS="-u -i ppp0" 
+PROCS=vnstatd 
+ARGS="-d" 
 PREARGS="" 
 DESC=$PROCS 
 PATH=/opt/sbin:/opt/bin:/opt/usr/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin 
