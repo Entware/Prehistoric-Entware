@@ -1,12 +1,12 @@
---- ../../../openwrt_trunk.orig/feeds/packages/libs/jpeg/Makefile	2011-11-28 10:57:19.000000000 +0400
-+++ ../../../openwrt_trunk/feeds/packages/libs/jpeg/Makefile	2011-11-29 13:13:08.655154401 +0400
+--- ../../../openwrt_trunk.orig/feeds/packages/libs/jpeg/Makefile	2012-10-09 11:59:36.362030592 +0400
++++ ../../../openwrt_trunk/feeds/packages/libs/jpeg/Makefile	2012-10-09 12:46:08.601982974 +0400
 @@ -62,35 +62,35 @@
  endef
  
  define Build/Compile
 -	$(INSTALL_DIR) $(PKG_INSTALL_DIR)/usr/{include,lib,bin,man/man1}
 +	$(INSTALL_DIR) $(PKG_INSTALL_DIR)/opt/{include,lib,bin,man/man1}
- 	$(MAKE) $(PKG_JOBS) -C $(PKG_BUILD_DIR) \
+ 	+$(MAKE) $(PKG_JOBS) -C $(PKG_BUILD_DIR) \
  		LIBTOOL="./libtool --tag=CC" \
 -		prefix="$(PKG_INSTALL_DIR)/usr" \
 -		exec_prefix="$(PKG_INSTALL_DIR)/usr" \

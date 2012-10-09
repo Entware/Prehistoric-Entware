@@ -1,6 +1,6 @@
 --- ../../../openwrt_trunk.orig/feeds/packages/net/nmap/Makefile	2012-01-30 14:19:58.000000000 +0400
 +++ ../../../openwrt_trunk/feeds/packages/net/nmap/Makefile	2012-01-30 14:52:29.013554229 +0400
-@@ -84,51 +84,52 @@
+@@ -83,51 +83,52 @@
  CONFIGURE_ARGS += \
  	--with-libdnet=included \
  	--with-libpcre=included \

@@ -1,5 +1,5 @@
---- ../../../openwrt_trunk.orig/package/ocf-crypto-headers/Makefile	2011-11-25 09:49:16.061376562 +0400
-+++ ../../../openwrt_trunk/package/ocf-crypto-headers/Makefile	2011-11-25 10:21:59.359213035 +0400
+--- ../../../openwrt_trunk.orig/package/libs/ocf-crypto-headers/Makefile
++++ ../../../openwrt_trunk/package/libs/ocf-crypto-headers/Makefile
 @@ -29,8 +29,8 @@
  endef
  

@@ -26,7 +26,7 @@ kernel_prepare: .kernel_prepared
 
 kernel_pack: .kernel_prepared .kernel_packed
 .kernel_packed:
-	tar -cvzf ../../entware-kernel-$(TOOLCHAIN_REVISION).tgz ../../linux-2.6.22.19
+	tar -cvzf ../../entware-kernel-r$(TOOLCHAIN_REVISION).tgz ../../linux-2.6.22.19
 	touch $@
 
 toolchain_compile: .toolchain_compiled

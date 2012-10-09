@@ -1,5 +1,5 @@
---- ../../../openwrt_trunk.orig/package/uclibc++/Makefile	2012-08-06 14:41:21.890697923 +0400
-+++ ../../../openwrt_trunk/package/uclibc++/Makefile	2012-08-06 15:49:26.074621200 +0400
+--- ../../../openwrt_trunk.orig/package/libs/uclibc++/Makefile
++++ ../../../openwrt_trunk/package/libs/uclibc++/Makefile
 @@ -69,12 +69,12 @@
  endef
  

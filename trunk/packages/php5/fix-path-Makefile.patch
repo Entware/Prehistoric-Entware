@@ -1,5 +1,5 @@
---- ../../../openwrt_trunk.orig/feeds/packages/lang/php5/Makefile	2012-08-06 09:54:11.979011783 +0400
-+++ ../../../openwrt_trunk/feeds/packages/lang/php5/Makefile	2012-08-06 12:56:05.258814520 +0400
+--- ../../../openwrt_trunk.orig/feeds/packages/lang/php5/Makefile	2012-10-08 18:50:32.803155323 +0400
++++ ../../../openwrt_trunk/feeds/packages/lang/php5/Makefile	2012-10-09 10:17:02.866147393 +0400
 @@ -131,13 +131,13 @@
  	--disable-debug \
  	--without-pear \
@@ -244,9 +244,12 @@
  endef
  
  define Build/Prepare
-@@ -494,10 +490,10 @@
+@@ -493,12 +489,12 @@
+ endef
  
  define Build/InstallDev
+-	mkdir -p $(PKG_BUILD_DIR)/staging/usr/bin
++	mkdir -p $(PKG_BUILD_DIR)/staging/opt/bin
  	make -C $(PKG_BUILD_DIR) install INSTALL_ROOT=$(PKG_BUILD_DIR)/staging
 -	rm -f $(PKG_BUILD_DIR)/staging/usr/bin/php
 +	rm -f $(PKG_BUILD_DIR)/staging/opt/bin/php
@@ -258,7 +261,7 @@
  endef
  
  define BuildModule
-@@ -513,10 +509,10 @@
+@@ -514,10 +510,10 @@
    endef
  
    define Package/php5-mod-$(1)/install
@@ -273,7 +276,7 @@
    endef
  
    $$(eval $$(call BuildPackage,php5-mod-$(1)))
-@@ -543,7 +539,7 @@
+@@ -544,7 +540,7 @@
  $(eval $(call BuildModule,gmp,GMP,+PACKAGE_php5-mod-gmp:libgmp))
  $(eval $(call BuildModule,hash,Hash))
  $(eval $(call BuildModule,http,HTTP,+PACKAGE_php5-mod-http:libcurl +PACKAGE_php5-mod-http:libevent2 +PACKAGE_php5-mod-http:librt))
@@ -282,7 +285,7 @@
  $(eval $(call BuildModule,json,JSON))
  $(eval $(call BuildModule,ldap,LDAP,+PACKAGE_php5-mod-ldap:libopenldap +PACKAGE_php5-mod-ldap:libsasl2))
  $(eval $(call BuildModule,libevent,libevent,+PACKAGE_php5-mod-libevent:libevent2))
-@@ -570,6 +566,6 @@
+@@ -571,6 +567,6 @@
  $(eval $(call BuildModule,sysvshm,System V semaphore))
  $(eval $(call BuildModule,tokenizer,Tokenizer))
  $(eval $(call BuildModule,xml,XML,+PHP5_LIBXML:libxml2 +!PHP5_LIBXML:libexpat))

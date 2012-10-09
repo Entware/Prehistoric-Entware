@@ -1,5 +1,5 @@
---- ../../../openwrt_trunk.orig/package/librpc/Makefile	2012-07-15 21:54:20.389949744 +0400
-+++ ../../../openwrt_trunk/package/librpc/Makefile	2012-07-17 08:48:03.689606998 +0400
+--- ../../../openwrt_trunk.orig/package/libs/librpc/Makefile	2012-10-08 18:51:10.419154637 +0400
++++ ../../../openwrt_trunk/package/libs/librpc/Makefile	2012-10-09 09:18:55.962206115 +0400
 @@ -9,7 +9,7 @@
  PKG_SOURCE_SUBDIR:=$(PKG_NAME)-$(PKG_VERSION)
  PKG_SOURCE_VERSION:=0a2179bbc0844928f2a0ec01dba93d9b5d6d41a7
@@ -7,9 +7,9 @@
 -CMAKE_INSTALL:=1
 +#CMAKE_INSTALL:=1
  
- include $(INCLUDE_DIR)/package.mk
- include $(INCLUDE_DIR)/cmake.mk
-@@ -20,9 +20,26 @@
+ PKG_MAINTAINER:=Felix Fietkau <nbd@openwrt.org>
+ 
+@@ -22,9 +22,26 @@
    TITLE:=uClibc RPC library
  endef
  

@@ -1,6 +1,6 @@
---- ../../openwrt_trunk.orig/rules.mk	2012-07-11 14:54:04.350706503 +0400
-+++ ../../openwrt_trunk/rules.mk	2012-07-11 21:00:14.738513878 +0400
-@@ -109,8 +109,8 @@
+--- ../../openwrt_trunk.orig/rules.mk
++++ ../../openwrt_trunk/rules.mk
+@@ -110,8 +110,8 @@
  TARGET_PATH:=$(STAGING_DIR_HOST)/bin:$(subst $(space),:,$(filter-out .,$(filter-out ./,$(subst :,$(space),$(PATH)))))
  TARGET_CFLAGS:=$(TARGET_OPTIMIZATION)$(if $(CONFIG_DEBUG), -g3)
  TARGET_CXXFLAGS = $(TARGET_CFLAGS)

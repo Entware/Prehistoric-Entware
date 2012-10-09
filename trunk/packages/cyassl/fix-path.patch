@@ -1,5 +1,5 @@
---- ../../../openwrt_trunk.orig/package/cyassl/Makefile	2011-11-28 10:56:38.000000000 +0400
-+++ ../../../openwrt_trunk/package/cyassl/Makefile	2011-11-30 13:07:37.780557970 +0400
+--- ../../../openwrt_trunk.orig/package/libs/cyassl/Makefile
++++ ../../../openwrt_trunk/package/libs/cyassl/Makefile
 @@ -41,16 +41,16 @@
  	--enable-singleThreaded
  

@@ -1,6 +1,6 @@
---- ../../openwrt_trunk.orig/include/package-defaults.mk	2012-07-10 18:45:09.783948620 +0400
-+++ ../../openwrt_trunk/include/package-defaults.mk	2012-07-10 18:51:48.806938029 +0400
-@@ -63,7 +63,8 @@
+--- ../../openwrt_trunk.orig/include/package-defaults.mk
++++ ../../openwrt_trunk/include/package-defaults.mk
+@@ -67,7 +67,8 @@
  
  EXTRA_CXXFLAGS = $(EXTRA_CFLAGS)
  
@@ -10,7 +10,7 @@
  CONFIGURE_ARGS = \
  		--target=$(GNU_TARGET_NAME) \
  		--host=$(GNU_TARGET_NAME) \
-@@ -75,9 +76,9 @@
+@@ -79,9 +80,9 @@
  		--bindir=$(CONFIGURE_PREFIX)/bin \
  		--sbindir=$(CONFIGURE_PREFIX)/sbin \
  		--libexecdir=$(CONFIGURE_PREFIX)/lib \

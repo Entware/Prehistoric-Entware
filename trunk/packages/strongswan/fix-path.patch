@@ -1,5 +1,5 @@
---- ../../../openwrt_trunk.orig/feeds/packages/net/strongswan/Makefile	2012-08-06 09:54:13.759011752 +0400
-+++ ../../../openwrt_trunk/feeds/packages/net/strongswan/Makefile	2012-08-06 14:30:55.522711781 +0400
+--- ../../../openwrt_trunk.orig/feeds/packages/net/strongswan/Makefile	2012-10-08 18:50:46.759155068 +0400
++++ ../../../openwrt_trunk/feeds/packages/net/strongswan/Makefile	2012-10-09 10:23:02.150144544 +0400
 @@ -109,10 +109,7 @@
  
  define Package/strongswan
@@ -82,11 +82,11 @@
 -	$(INSTALL_DIR) $(1)/usr/sbin
 -	$(INSTALL_BIN) $(PKG_INSTALL_DIR)/usr/sbin/ipsec $(1)/usr/sbin/
 -	$(INSTALL_DIR) $(1)/usr/lib/ipsec
--	$(INSTALL_BIN) $(PKG_INSTALL_DIR)/usr/lib/ipsec/{openac,pki,scepclient,_copyright} $(1)/usr/lib/ipsec/
+-	$(INSTALL_BIN) $(PKG_INSTALL_DIR)/usr/lib/ipsec/{openac,pki,scepclient} $(1)/usr/lib/ipsec/
 +	$(INSTALL_DIR) $(1)/opt/sbin
 +	$(INSTALL_BIN) $(PKG_INSTALL_DIR)/opt/sbin/ipsec $(1)/opt/sbin/
 +	$(INSTALL_DIR) $(1)/opt/lib/ipsec
-+	$(INSTALL_BIN) $(PKG_INSTALL_DIR)/opt/lib/ipsec/{openac,pki,scepclient,_copyright} $(1)/opt/lib/ipsec/
++	$(INSTALL_BIN) $(PKG_INSTALL_DIR)/opt/lib/ipsec/{openac,pki,scepclient} $(1)/opt/lib/ipsec/
  endef
  
  define Plugin/duplicheck/install
@@ -118,7 +118,7 @@
 -	$(INSTALL_CONF) $(PKG_INSTALL_DIR)/etc/ipsec.conf $(1)/etc/
 -
 -	$(INSTALL_DIR) $(1)/usr/lib/ipsec/plugins
--	$(INSTALL_BIN) $(PKG_INSTALL_DIR)/usr/lib/ipsec/{starter,stroke,_copyright} $(1)/usr/lib/ipsec/
+-	$(INSTALL_BIN) $(PKG_INSTALL_DIR)/usr/lib/ipsec/{starter,stroke} $(1)/usr/lib/ipsec/
 -	$(CP) $(PKG_INSTALL_DIR)/usr/lib/ipsec/plugins/libstrongswan-stroke.so $(1)/usr/lib/ipsec/plugins/
 +	$(INSTALL_DIR) $(1)/opt/etc/ipsec.d/aacerts
 +	$(INSTALL_DIR) $(1)/opt/etc/ipsec.d/acerts
@@ -132,7 +132,7 @@
 +	$(INSTALL_CONF) $(PKG_INSTALL_DIR)/opt/etc/ipsec.conf $(1)/opt/etc/
 +
 +	$(INSTALL_DIR) $(1)/opt/lib/ipsec/plugins
-+	$(INSTALL_BIN) $(PKG_INSTALL_DIR)/opt/lib/ipsec/{starter,stroke,_copyright} $(1)/opt/lib/ipsec/
++	$(INSTALL_BIN) $(PKG_INSTALL_DIR)/opt/lib/ipsec/{starter,stroke} $(1)/opt/lib/ipsec/
 +	$(CP) $(PKG_INSTALL_DIR)/opt/lib/ipsec/plugins/libstrongswan-stroke.so $(1)/opt/lib/ipsec/plugins/
  endef
  

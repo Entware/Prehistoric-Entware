@@ -5,7 +5,7 @@
  include $(TOPDIR)/rules.mk
  PKG_NAME:=toolchain
 -PKG_RELEASE:=1
-+PKG_RELEASE:=3
++PKG_RELEASE:=4
  
  include $(INCLUDE_DIR)/package.mk
  
@@ -16,7 +16,7 @@
 -  LIBGCC_VERSION:=<LIBGCC_VERSION>
 -endif
 +LIBC_VERSION:=0.9.32
-+LIBGCC_VERSION:=4.5.3
++LIBGCC_VERSION:=4.6.3
  
  define Package/gcc/Default
    SECTION:=libs

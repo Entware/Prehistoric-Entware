@@ -1,6 +1,6 @@
---- ../../../openwrt_trunk.orig/feeds/packages/net/tcpdump/Makefile	2011-12-22 10:24:16.000000000 +0400
-+++ ../../../openwrt_trunk/feeds/packages/net/tcpdump/Makefile	2011-12-22 10:30:23.271379053 +0400
-@@ -69,8 +69,8 @@
+--- ../../../openwrt_trunk.orig/feeds/packages/net/tcpdump/Makefile
++++ ../../../openwrt_trunk/feeds/packages/net/tcpdump/Makefile
+@@ -74,8 +74,8 @@
  
  
  define Package/tcpdump/install

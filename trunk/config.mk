@@ -8,8 +8,8 @@
 # Nothing should ever be touched by mere mortals. Unless you hang out
 # with the gods, you should probably leave all this stuff alone.
 
-TOOLCHAIN_REVISION:=r4489
-OPENWRT_REVISION:=33312
+TOOLCHAIN_REVISION:=4667
+OPENWRT_REVISION:=33666
 
 # Make a copy of clean OpenWRT trunk tree to write patches later.
 # You need it only for adding a new packages.

@@ -1,6 +1,6 @@
---- ../../../openwrt_trunk.orig/feeds/packages/devel/diffutils/Makefile	2012-07-10 18:59:23.621214432 +0400
-+++ ../../../openwrt_trunk/feeds/packages/devel/diffutils/Makefile	2012-07-10 22:13:04.851116657 +0400
-@@ -35,24 +35,8 @@
+--- ../../../openwrt_trunk.orig/feeds/packages/devel/diffutils/Makefile
++++ ../../../openwrt_trunk/feeds/packages/devel/diffutils/Makefile
+@@ -36,24 +36,8 @@
  	ac_cv_func_mempcpy=n \
  
  define Package/diffutils/install

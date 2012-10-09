@@ -1,6 +1,6 @@
---- ../../../openwrt_trunk.orig/package/libpcap/Makefile	2012-06-01 10:50:53.344047131 +0400
-+++ ../../../openwrt_trunk/package/libpcap/Makefile	2012-06-01 10:51:33.799536265 +0400
-@@ -67,16 +67,16 @@
+--- ../../../openwrt_trunk.orig/package/libs/libpcap/Makefile
++++ ../../../openwrt_trunk/package/libs/libpcap/Makefile
+@@ -68,16 +68,16 @@
  endef
  
  define Build/InstallDev

@@ -1,15 +1,6 @@
---- ../../openwrt_trunk.orig/include/package-ipkg.mk	2012-07-10 18:45:09.783948620 +0400
-+++ ../../openwrt_trunk/include/package-ipkg.mk	2012-07-10 18:45:14.331891444 +0400
+--- ../../openwrt_trunk.orig/include/package-ipkg.mk	2012-10-08 17:25:13.751248572 +0400
++++ ../../openwrt_trunk/include/package-ipkg.mk	2012-10-08 17:26:05.407247631 +0400
 @@ -9,7 +9,7 @@
- OPKG:= \
-   IPKG_TMP=$(TMP_DIR)/ipkg \
-   IPKG_INSTROOT=$(TARGET_DIR) \
--  IPKG_CONF_DIR=$(STAGING_DIR)/etc \
-+  IPKG_CONF_DIR=$(STAGING_DIR)/opt/etc \
-   IPKG_OFFLINE_ROOT=$(TARGET_DIR) \
-   $(STAGING_DIR_HOST)/bin/opkg \
- 	--offline-root $(TARGET_DIR) \
-@@ -25,7 +25,7 @@
  IPKG_BUILD:= \
    ipkg-build -c -o 0 -g 0
  
@@ -18,7 +9,7 @@
  
  define BuildIPKGVariable
  ifdef Package/$(1)/$(2)
-@@ -179,8 +179,8 @@
+@@ -170,8 +170,8 @@
  				[ -f "$$(IDIR_$(1))/$$$$x" ] || keepfiles="$$$${keepfiles:+$$$$keepfiles }$$$$x"; \
  			done; \
  			[ -z "$$$$keepfiles" ] || { \

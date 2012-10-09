@@ -1,5 +1,14 @@
---- ../../toolchain-1.9.2.7-rtn.orig/src/toolchain/uClibc/config/0.9.32/common	2012-04-11 09:40:46.316525648 +0400
-+++ ../../toolchain-1.9.2.7-rtn/src/toolchain/uClibc/config/0.9.32/common	2012-04-11 09:50:13.425395946 +0400
+--- ../../toolchain-1.9.2.7-rtn/src/toolchain/uClibc/config/0.9.32/common.orig	2012-10-09 11:22:41.330072424 +0400
++++ ../../toolchain-1.9.2.7-rtn/src/toolchain/uClibc/config/0.9.32/common	2012-10-09 11:23:48.934069427 +0400
+@@ -44,7 +44,7 @@
+ # MALLOC_SIMPLE is not set
+ MALLOC_STANDARD=y
+ MULTILIB_DIR="lib"
+-# PTHREADS_DEBUG_SUPPORT is not set
++PTHREADS_DEBUG_SUPPORT=y
+ RUNTIME_PREFIX="/"
+ # SUPPORT_LD_DEBUG is not set
+ # SUPPORT_LD_DEBUG_EARLY is not set
 @@ -119,13 +119,20 @@
  UCLIBC_HAS_GNU_GETSUBOPT=y
  UCLIBC_HAS_GNU_GLOB=y
