@@ -1,5 +1,5 @@
---- ../../../openwrt_trunk.orig/package/toolchain/Makefile	2012-08-06 09:54:31.603011430 +0400
-+++ ../../../openwrt_trunk/package/toolchain/Makefile	2012-08-06 12:45:11.978825061 +0400
+--- ../../../openwrt_trunk.orig/package/toolchain/Makefile	2012-10-09 13:58:35.237900528 +0400
++++ ../../../openwrt_trunk/package/toolchain/Makefile	2012-10-09 21:43:37.401390472 +0400
 @@ -7,16 +7,12 @@
  
  include $(TOPDIR)/rules.mk
@@ -68,7 +68,7 @@
  	done ; \
  	exit 0
    endef
-@@ -496,8 +490,8 @@
+@@ -496,17 +490,18 @@
    define Package/libstdcpp/install
  	for file in $(call qstrip,$(CONFIG_LIBSTDCPP_FILE_SPEC)); do \
  		dir=`dirname $$$$file` ; \
@@ -77,9 +77,10 @@
 +		$(INSTALL_DIR) $(1)/opt/$$$$dir ; \
 +		$(CP) $(call qstrip,$(CONFIG_LIBSTDCPP_ROOT_DIR))/$$$$file $(1)/opt/$$$$dir/ ; \
  	done ; \
++	rm -f $(1)/opt/$$$$dir/*.py ; \
  	exit 0
    endef
-@@ -505,8 +499,8 @@
+ 
    define Package/libc/install
  	for file in $(call qstrip,$(CONFIG_LIBC_FILE_SPEC)); do \
  		dir=`dirname $$$$file` ; \
@@ -90,7 +91,7 @@
  	done ; \
  	exit 0
    endef
-@@ -514,8 +508,8 @@
+@@ -514,8 +509,8 @@
    define Package/libpthread/install
  	for file in $(call qstrip,$(CONFIG_LIBPTHREAD_FILE_SPEC)); do \
  		dir=`dirname $$$$file` ; \
@@ -101,7 +102,7 @@
  	done ; \
  	exit 0
    endef
-@@ -523,8 +517,8 @@
+@@ -523,8 +518,8 @@
    define Package/librt/install
  	for file in $(call qstrip,$(CONFIG_LIBRT_FILE_SPEC)); do \
  		dir=`dirname $$$$file` ; \
@@ -112,7 +113,7 @@
  	done ; \
  	exit 0
    endef
-@@ -532,8 +526,8 @@
+@@ -532,8 +527,8 @@
    define Package/ldd/install
  	for file in $(call qstrip,$(CONFIG_LDD_FILE_SPEC)); do \
  		dir=`dirname $$$$file` ; \
@@ -123,7 +124,7 @@
  	done ; \
  	exit 0
    endef
-@@ -541,8 +535,8 @@
+@@ -541,8 +536,8 @@
    define Package/ldconfig/install
  	for file in $(call qstrip,$(CONFIG_LDCONFIG_FILE_SPEC)); do \
  		dir=`dirname $$$$file` ; \

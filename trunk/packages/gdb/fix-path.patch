@@ -1,6 +1,6 @@
---- ../../../openwrt_trunk.orig/package/gdb/Makefile	2012-10-08 18:51:11.543154615 +0400
-+++ ../../../openwrt_trunk/package/gdb/Makefile	2012-10-09 09:09:01.934214340 +0400
-@@ -70,16 +70,16 @@
+--- ../../../openwrt_trunk.orig/package/gdb/Makefile	2012-10-09 13:58:34.981900553 +0400
++++ ../../../openwrt_trunk/package/gdb/Makefile	2012-10-09 22:05:57.117373736 +0400
+@@ -70,17 +70,15 @@
  endef
  
  define Package/gdb/install
@@ -13,13 +13,14 @@
  define Package/gdbserver/install
 -	$(INSTALL_DIR) $(1)/usr/bin
 -	$(INSTALL_BIN) $(PKG_INSTALL_DIR)/usr/bin/gdbserver $(1)/usr/bin/
-+	$(INSTALL_DIR) $(1)/opt/bin
-+	$(INSTALL_BIN) $(PKG_INSTALL_DIR)/opt/bin/gdbserver $(1)/opt/bin/
- ifneq ($(CONFIG_USE_EGLIBC),)
+-ifneq ($(CONFIG_USE_EGLIBC),)
 -	$(INSTALL_DIR) $(1)/usr/lib
 -	$(CP) $(TOOLCHAIN_DIR)/lib/libthread_db* $(1)/usr/lib
+-endif
++	$(INSTALL_DIR) $(1)/opt/bin
++	$(INSTALL_BIN) $(PKG_INSTALL_DIR)/opt/bin/gdbserver $(1)/opt/bin/
 +	$(INSTALL_DIR) $(1)/opt/lib
-+	$(CP) $(TOOLCHAIN_DIR)/lib/libthread_db* $(1)/opt/lib
- endif
++	$(CP) $(CONFIG_LIBSTDCPP_ROOT_DIR)/lib/libthread_db.so* $(1)/opt/lib
  endef
  
+ $(eval $(call BuildPackage,gdb))
