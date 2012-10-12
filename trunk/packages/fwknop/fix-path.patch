@@ -1,0 +1,75 @@
+--- ../../../openwrt_trunk.orig/feeds/packages/net/fwknop/Makefile	2012-10-09 13:58:22.001900827 +0400
++++ ../../../openwrt_trunk/feeds/packages/net/fwknop/Makefile	2012-10-13 00:06:48.044514115 +0400
+@@ -42,7 +42,7 @@
+   CATEGORY:=Network
+   SUBMENU:=Firewall
+   TITLE+= Daemon
+-  DEPENDS:=+iptables +libfko +libpcap
++  DEPENDS:=+libfko +libpcap
+ endef
+ 
+ define Package/fwknopd/description
+@@ -51,8 +51,8 @@
+ endef
+ 
+ define Package/fwknopd/conffiles
+-/etc/fwknop/access.conf
+-/etc/fwknop/fwknopd.conf
++/opt/etc/fwknop/access.conf
++/opt/etc/fwknop/fwknopd.conf
+ endef
+ 
+ define Package/fwknop
+@@ -84,34 +84,35 @@
+ 
+ CONFIGURE_ARGS += \
+ 	--without-gpgme \
+-	--with-iptables=/usr/sbin/iptables
++	--with-iptables=/usr/sbin/iptables \
++	--disable-stack-protector
+ 
+ define Build/InstallDev
+-	$(INSTALL_DIR) $(1)/usr/include
+-	$(CP) $(PKG_INSTALL_DIR)/usr/include/fko.h $(1)/usr/include/
+-	$(INSTALL_DIR) $(1)/usr/lib
+-	$(CP) $(PKG_INSTALL_DIR)/usr/lib/libfko.{a,la,so*} $(1)/usr/lib/
++	$(INSTALL_DIR) $(1)/opt/include
++	$(CP) $(PKG_INSTALL_DIR)/opt/include/fko.h $(1)/opt/include/
++	$(INSTALL_DIR) $(1)/opt/lib
++	$(CP) $(PKG_INSTALL_DIR)/opt/lib/libfko.{a,la,so*} $(1)/opt/lib/
+ endef
+ 
+ define Package/fwknopd/install
+-	$(INSTALL_DIR) $(1)/etc/fwknop
+-	$(INSTALL_CONF) $(PKG_INSTALL_DIR)/etc/fwknop/{access,fwknopd}.conf \
+-		$(1)/etc/fwknop/
+-	$(INSTALL_DIR) $(1)/etc/init.d
+-	$(INSTALL_BIN) $(PKG_BUILD_DIR)/extras/fwknop.init.openwrt \
+-		$(1)/etc/init.d/fwknopd
+-	$(INSTALL_DIR) $(1)/usr/sbin
+-	$(INSTALL_BIN) $(PKG_INSTALL_DIR)/usr/sbin/fwknopd $(1)/usr/sbin/
++	$(INSTALL_DIR) $(1)/opt/etc/fwknop
++	$(INSTALL_CONF) $(PKG_INSTALL_DIR)/opt/etc/fwknop/{access,fwknopd}.conf \
++		$(1)/opt/etc/fwknop/
++	$(INSTALL_DIR) $(1)/opt/etc/init.d
++	$(INSTALL_BIN) ./files/S05fwknopd \
++		$(1)/opt/etc/init.d/
++	$(INSTALL_DIR) $(1)/opt/sbin
++	$(INSTALL_BIN) $(PKG_INSTALL_DIR)/opt/sbin/fwknopd $(1)/opt/sbin/
+ endef
+ 
+ define Package/fwknop/install
+-	$(INSTALL_DIR) $(1)/usr/bin
+-	$(INSTALL_BIN) $(PKG_INSTALL_DIR)/usr/bin/fwknop $(1)/usr/bin/
++	$(INSTALL_DIR) $(1)/opt/bin
++	$(INSTALL_BIN) $(PKG_INSTALL_DIR)/opt/bin/fwknop $(1)/opt/bin/
+ endef
+ 
+ define Package/libfko/install
+-	$(INSTALL_DIR) $(1)/usr/lib
+-	$(CP) $(PKG_INSTALL_DIR)/usr/lib/libfko.so.* $(1)/usr/lib/
++	$(INSTALL_DIR) $(1)/opt/lib
++	$(CP) $(PKG_INSTALL_DIR)/opt/lib/libfko.so.* $(1)/opt/lib/
+ endef
+ 
+ $(eval $(call BuildPackage,fwknopd))
