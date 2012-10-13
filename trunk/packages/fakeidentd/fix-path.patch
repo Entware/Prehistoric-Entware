@@ -1,0 +1,17 @@
+--- ../../../openwrt_trunk.orig/feeds/packages/net/fakeidentd/Makefile	2012-10-13 22:28:59.287866268 +0600
++++ ../../../openwrt_trunk/feeds/packages/net/fakeidentd/Makefile	2012-10-13 22:28:59.287866268 +0600
+@@ -37,10 +37,10 @@
+ endef
+ 
+ define Package/fakeidentd/install
+-	$(INSTALL_DIR) $(1)/usr/sbin
+-	$(CP) $(PKG_BUILD_DIR)/$(PKG_NAME) $(1)/usr/sbin/
+-	$(INSTALL_DIR) $(1)/etc/init.d
+-	$(INSTALL_BIN) ./files/$(PKG_NAME).init $(1)/etc/init.d/$(PKG_NAME)
++	$(INSTALL_DIR) $(1)/opt/sbin
++	$(CP) $(PKG_BUILD_DIR)/$(PKG_NAME) $(1)/opt/sbin/
++	$(INSTALL_DIR) $(1)/opt/etc/init.d
++	$(INSTALL_BIN) ./files/S85fakeidentd $(1)/opt/etc/init.d/
+ endef
+ 
+ $(eval $(call BuildPackage,fakeidentd))
