@@ -1,0 +1,13 @@
+--- ../../../openwrt_trunk.orig/feeds/packages/utils/hdparm/Makefile	2012-10-09 13:58:18.145900861 +0400
++++ ../../../openwrt_trunk/feeds/packages/utils/hdparm/Makefile	2012-10-17 13:54:34.706337660 +0400
+@@ -30,8 +30,8 @@
+ endef
+ 
+ define Package/hdparm/install
+-	$(INSTALL_DIR) $(1)/sbin
+-	$(INSTALL_BIN) $(PKG_BUILD_DIR)/$(PKG_NAME) $(1)/sbin
++	$(INSTALL_DIR) $(1)/opt/sbin
++	$(INSTALL_BIN) $(PKG_BUILD_DIR)/$(PKG_NAME) $(1)/opt/sbin
+ endef
+ 
+ $(eval $(call BuildPackage,hdparm))
