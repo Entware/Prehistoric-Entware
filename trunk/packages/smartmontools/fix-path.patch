@@ -1,6 +1,24 @@
---- ../../../openwrt_trunk.orig/feeds/packages/utils/smartmontools/Makefile	2012-05-02 16:17:34.874281671 +0400
-+++ ../../../openwrt_trunk/feeds/packages/utils/smartmontools/Makefile	2012-06-01 08:49:19.325463359 +0400
-@@ -54,7 +54,7 @@
+--- ../../../openwrt_trunk.orig/feeds/packages/utils/smartmontools/Makefile	2012-10-09 13:58:18.477900860 +0400
++++ ../../../openwrt_trunk/feeds/packages/utils/smartmontools/Makefile	2012-10-17 09:34:26.318609990 +0400
+@@ -8,12 +8,14 @@
+ include $(TOPDIR)/rules.mk
+ 
+ PKG_NAME:=smartmontools
+-PKG_VERSION:=5.40
+-PKG_RELEASE:=3
++PKG_VERSION:=6.0
++PKG_RELEASE:=1
+ 
+ PKG_SOURCE:=$(PKG_NAME)-$(PKG_VERSION).tar.gz
+ PKG_SOURCE_URL:=@SF/smartmontools
+-PKG_MD5SUM:=0f0be0239914ad87830a4fff594bda5b
++PKG_MD5SUM:=5646a07f5f4bee8e2e649de8c6b7ae87
++
++PKG_INSTALL:=1
+ 
+ include $(INCLUDE_DIR)/package.mk
+ 
+@@ -54,7 +56,7 @@
  
  CONFIGURE_VARS += \
  	CXXFLAGS="$$$$CXXFLAGS -fno-builtin -fno-rtti -nostdinc++" \
@@ -9,14 +27,17 @@
  	LDFLAGS="$$$$LDFLAGS" \
  	LIBS="-nodefaultlibs -lc -luClibc++ -lm $(LIBGCC_S) -lc" \
  
-@@ -71,21 +71,19 @@
+@@ -71,21 +73,23 @@
  endef
  
  define Package/smartmontools/install
 -	$(INSTALL_DIR) $(1)/usr/sbin
 -	$(INSTALL_BIN) $(PKG_BUILD_DIR)/smartctl $(1)/usr/sbin/
 +	$(INSTALL_DIR) $(1)/opt/bin
-+	$(INSTALL_BIN) $(PKG_BUILD_DIR)/smartctl $(1)/opt/bin/
++	$(INSTALL_BIN) $(PKG_INSTALL_DIR)/opt/sbin/smartctl $(1)/opt/bin/
++	$(INSTALL_BIN) $(PKG_INSTALL_DIR)/opt/sbin/update-smart-drivedb $(1)/opt/bin/
++	$(INSTALL_DIR) $(1)/opt/share/smartmontools
++	$(INSTALL_DATA) $(PKG_INSTALL_DIR)/opt/share/smartmontools/drivedb.h $(1)/opt/share/smartmontools/
  endef
  
  define Package/smartd/install
@@ -27,8 +48,9 @@
 -	$(INSTALL_DIR) $(1)/etc/init.d
 -	$(INSTALL_BIN) ./files/smartd.init $(1)/etc/init.d/smartd
 +	$(INSTALL_DIR) $(1)/opt/bin
-+	$(INSTALL_BIN) $(PKG_BUILD_DIR)/smartd $(1)/opt/bin/
++	$(INSTALL_BIN) $(PKG_INSTALL_DIR)/opt/sbin/smartd $(1)/opt/bin/
 +	$(INSTALL_DIR) $(1)/opt/etc/init.d
++	$(INSTALL_CONF) $(PKG_INSTALL_DIR)/opt/etc/smartd.conf $(1)/opt/etc/
 +	$(INSTALL_BIN) ./files/S20smartmontools $(1)/opt/etc/init.d
  endef
  
