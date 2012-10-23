@@ -1,0 +1,179 @@
+diff -urx .svn ../../../openwrt_trunk.orig/feeds/packages/net/snort/files/snort.bin ../../../openwrt_trunk/feeds/packages/net/snort/files/snort.bin
+--- ../../../openwrt_trunk.orig/feeds/packages/net/snort/files/snort.bin	2012-10-09 13:58:19.905900829 +0400
++++ ../../../openwrt_trunk/feeds/packages/net/snort/files/snort.bin	2012-10-23 15:36:35.432773531 +0400
+@@ -1,3 +1,3 @@
+ #!/bin/sh
+ 
+-exec snort.bin --daq-dir /usr/lib/daq/ $*
++exec snort.bin --daq-dir /opt/lib/daq/ $*
+diff -urx .svn ../../../openwrt_trunk.orig/feeds/packages/net/snort/Makefile ../../../openwrt_trunk/feeds/packages/net/snort/Makefile
+--- ../../../openwrt_trunk.orig/feeds/packages/net/snort/Makefile	2012-10-09 13:58:19.901900828 +0400
++++ ../../../openwrt_trunk/feeds/packages/net/snort/Makefile	2012-10-23 15:42:33.032762482 +0400
+@@ -74,22 +74,22 @@
+ 
+ 
+ CONFIGURE_ARGS += \
+-	--prefix="/usr" \
++	--prefix="/opt" \
+ 	--enable-flexresp \
+-	--with-dnet-includes="$(STAGING_DIR)/usr/include" \
+-	--with-dnet-libraries="$(STAGING_DIR)/usr/lib" \
+-	--with-libpcap-includes="$(STAGING_DIR)/usr/include" \
+-	--with-libpcap-libraries="$(STAGING_DIR)/usr/lib" \
+-	--with-libpcre-includes="$(STAGING_DIR)/usr/include" \
+-	--with-libpcre-libraries="$(STAGING_DIR)/usr/lib" \
+-	--with-daq-includes="$(STAGING_DIR)/usr/include" \
+-	--with-daq-libraries="$(STAGING_DIR)/usr/lib" \
++	--with-dnet-includes="$(STAGING_DIR)/opt/include" \
++	--with-dnet-libraries="$(STAGING_DIR)/opt/lib" \
++	--with-libpcap-includes="$(STAGING_DIR)/opt/include" \
++	--with-libpcap-libraries="$(STAGING_DIR)/opt/lib" \
++	--with-libpcre-includes="$(STAGING_DIR)/opt/include" \
++	--with-libpcre-libraries="$(STAGING_DIR)/opt/lib" \
++	--with-daq-includes="$(STAGING_DIR)/opt/include" \
++	--with-daq-libraries="$(STAGING_DIR)/opt/lib" \
+ 	--disable-static-daq
+ 
+ CONFIGURE_VARS += \
+-	CPPFLAGS="$$$$CPPFLAGS -I$(STAGING_DIR)/usr/include/mysql" \
+-	LDFLAGS="$$$$LDFLAGS -L$(STAGING_DIR)/usr/lib/mysql" \
+-	PATH="$(STAGING_DIR)/usr/lib/libnet-1.0.x/bin:$$$$PATH" \
++	CPPFLAGS="$$$$CPPFLAGS -I$(STAGING_DIR)/opt/include/mysql" \
++	LDFLAGS="$$$$LDFLAGS -L$(STAGING_DIR)/opt/lib/mysql" \
++	PATH="$(STAGING_DIR)/opt/lib/libnet-1.0.x/bin:$$$$PATH" \
+ 
+ MAKE_FLAGS += \
+ 	extra_incl="" \
+@@ -106,7 +106,7 @@
+ 	mysql_has_reconnect=yes
+ 
+   CONFIGURE_ARGS += \
+-	--with-mysql="$(STAGING_DIR)/usr" \
++	--with-mysql="$(STAGING_DIR)/opt" \
+ 	--without-postgresql \
+ 
+ endif
+@@ -114,60 +114,55 @@
+ 
+   CONFIGURE_ARGS += \
+ 	--without-mysql \
+-	--with-postgresql="$(STAGING_DIR)/usr" \
++	--with-postgresql="$(STAGING_DIR)/opt" \
+ 
+ endif
+ 
+ define Build/InstallDev
+-	$(INSTALL_DIR) $(STAGING_DIR)/usr/include/snort/dynamic_preproc
++	$(INSTALL_DIR) $(STAGING_DIR)/opt/include/snort/dynamic_preproc
+ 	$(CP) \
+-		$(PKG_INSTALL_DIR)/usr/include/snort/dynamic_preproc/* \
+-		$(STAGING_DIR)/usr/include/snort/dynamic_preproc/
+-	$(INSTALL_DIR) $(STAGING_DIR)/usr/lib/snort/dynamic_preproc
++		$(PKG_INSTALL_DIR)/opt/include/snort/dynamic_preproc/* \
++		$(STAGING_DIR)/opt/include/snort/dynamic_preproc/
++	$(INSTALL_DIR) $(STAGING_DIR)/opt/lib/snort/dynamic_preproc
+ 	$(CP) \
+-		$(PKG_INSTALL_DIR)/usr/lib/snort/dynamic_preproc/* \
+-		$(STAGING_DIR)/usr/lib/snort/dynamic_preproc/
+-	$(INSTALL_DIR) $(STAGING_DIR)/usr/lib/snort_dynamicengine
++		$(PKG_INSTALL_DIR)/opt/lib/snort/dynamic_preproc/* \
++		$(STAGING_DIR)/opt/lib/snort/dynamic_preproc/
++	$(INSTALL_DIR) $(STAGING_DIR)/opt/lib/snort_dynamicengine
+ 	$(CP) \
+-		$(PKG_INSTALL_DIR)/usr/lib/snort_dynamicengine/* \
+-		$(STAGING_DIR)/usr/lib/snort_dynamicengine/
+-	$(INSTALL_DIR) $(STAGING_DIR)/usr/lib/snort_dynamicpreprocessor
++		$(PKG_INSTALL_DIR)/opt/lib/snort_dynamicengine/* \
++		$(STAGING_DIR)/opt/lib/snort_dynamicengine/
++	$(INSTALL_DIR) $(STAGING_DIR)/opt/lib/snort_dynamicpreprocessor
+ 	$(CP) \
+-		$(PKG_INSTALL_DIR)/usr/lib/snort_dynamicpreprocessor/* \
+-		$(STAGING_DIR)/usr/lib/snort_dynamicpreprocessor/
++		$(PKG_INSTALL_DIR)/opt/lib/snort_dynamicpreprocessor/* \
++		$(STAGING_DIR)/opt/lib/snort_dynamicpreprocessor/
+ endef
+ 
+ define Package/snort/conffiles
+-/etc/default/snort
+-/etc/snort/snort.conf
+-/etc/snort/threshold.conf
++/opt/etc/snort/snort.conf
++/opt/etc/snort/threshold.conf
+ endef
+ 
+ define Package/snort/install
+-	$(INSTALL_DIR) $(1)/usr/bin
+-	$(CP) $(PKG_INSTALL_DIR)/usr/bin/snort $(1)/usr/bin/snort.bin
+-	$(CP) $(PKG_INSTALL_DIR)/usr/bin/u2{boat,spewfoo} $(1)/usr/bin
+-	$(INSTALL_BIN) ./files/snort.bin $(1)/usr/bin/snort
+-	$(INSTALL_DIR) $(1)/usr/lib/snort_dynamicengine
+-	$(CP) $(PKG_INSTALL_DIR)/usr/lib/snort_dynamicengine/libsf_engine.so* $(1)/usr/lib/snort_dynamicengine/
+-	$(INSTALL_DIR) $(1)/usr/lib/snort_dynamicpreprocessor
+-	$(CP) $(PKG_INSTALL_DIR)/usr/lib/snort_dynamicpreprocessor/libsf*.so* $(1)/usr/lib/snort_dynamicpreprocessor/
+-	$(INSTALL_DIR) $(1)/etc/snort
+-	$(INSTALL_DATA) $(PKG_BUILD_DIR)/etc/snort.conf $(1)/etc/snort/
+-	$(INSTALL_DATA) $(PKG_BUILD_DIR)/etc/attribute_table.dtd $(1)/etc/snort/
+-	$(INSTALL_DATA) $(PKG_BUILD_DIR)/etc/classification.config $(1)/etc/snort/
+-	$(INSTALL_DATA) $(PKG_BUILD_DIR)/etc/gen-msg.map $(1)/etc/snort/
+-	$(INSTALL_DATA) $(PKG_BUILD_DIR)/etc/reference.config $(1)/etc/snort/
+-	$(INSTALL_DATA) $(PKG_BUILD_DIR)/etc/threshold.conf $(1)/etc/snort/
+-	$(INSTALL_DATA) $(PKG_BUILD_DIR)/etc/unicode.map $(1)/etc/snort/
+-	$(INSTALL_DIR) $(1)/etc/snort/preproc_rules
+-	$(INSTALL_DATA) $(PKG_BUILD_DIR)/preproc_rules/*.rules $(1)/etc/snort/preproc_rules/
+-	$(INSTALL_DIR) $(1)/etc/snort/rules
+-	$(INSTALL_DATA) ./files/snort.local.rules $(1)/etc/snort/rules/local.rules
+-	$(INSTALL_DIR) $(1)/etc/default
+-	$(INSTALL_DATA) ./files/snort.default $(1)/etc/default/snort
+-	$(INSTALL_DIR) $(1)/etc/init.d
+-	$(INSTALL_BIN) ./files/snort.init $(1)/etc/init.d/snort
++	$(INSTALL_DIR) $(1)/opt/bin
++	$(CP) $(PKG_INSTALL_DIR)/opt/bin/snort $(1)/opt/bin/snort.bin
++	$(CP) $(PKG_INSTALL_DIR)/opt/bin/u2{boat,spewfoo} $(1)/opt/bin
++	$(INSTALL_BIN) ./files/snort.bin $(1)/opt/bin/snort
++	$(INSTALL_DIR) $(1)/opt/lib/snort_dynamicengine
++	$(CP) $(PKG_INSTALL_DIR)/opt/lib/snort_dynamicengine/libsf_engine.so* $(1)/opt/lib/snort_dynamicengine/
++	$(INSTALL_DIR) $(1)/opt/lib/snort_dynamicpreprocessor
++	$(CP) $(PKG_INSTALL_DIR)/opt/lib/snort_dynamicpreprocessor/libsf*.so* $(1)/opt/lib/snort_dynamicpreprocessor/
++	$(INSTALL_DIR) $(1)/opt/etc/snort
++	$(INSTALL_DATA) $(PKG_BUILD_DIR)/etc/snort.conf $(1)/opt/etc/snort/
++	$(INSTALL_DATA) $(PKG_BUILD_DIR)/etc/attribute_table.dtd $(1)/opt/etc/snort/
++	$(INSTALL_DATA) $(PKG_BUILD_DIR)/etc/classification.config $(1)/opt/etc/snort/
++	$(INSTALL_DATA) $(PKG_BUILD_DIR)/etc/gen-msg.map $(1)/opt/etc/snort/
++	$(INSTALL_DATA) $(PKG_BUILD_DIR)/etc/reference.config $(1)/opt/etc/snort/
++	$(INSTALL_DATA) $(PKG_BUILD_DIR)/etc/threshold.conf $(1)/opt/etc/snort/
++	$(INSTALL_DATA) $(PKG_BUILD_DIR)/etc/unicode.map $(1)/opt/etc/snort/
++	$(INSTALL_DIR) $(1)/opt/etc/snort/preproc_rules
++	$(INSTALL_DATA) $(PKG_BUILD_DIR)/preproc_rules/*.rules $(1)/opt/etc/snort/preproc_rules/
++	$(INSTALL_DIR) $(1)/opt/etc/snort/rules
++	$(INSTALL_DATA) ./files/snort.local.rules $(1)/opt/etc/snort/rules/local.rules
+ endef
+ 
+ Package/snort-mysql/conffiles = $(Package/snort/conffiles)
+diff -urx .svn ../../../openwrt_trunk.orig/feeds/packages/net/snort/patches/150-config-preprocessors-disable.patch ../../../openwrt_trunk/feeds/packages/net/snort/patches/150-config-preprocessors-disable.patch
+--- ../../../openwrt_trunk.orig/feeds/packages/net/snort/patches/150-config-preprocessors-disable.patch	2012-10-09 13:58:19.905900829 +0400
++++ ../../../openwrt_trunk/feeds/packages/net/snort/patches/150-config-preprocessors-disable.patch	2012-10-23 14:54:31.348807204 +0400
+@@ -63,18 +63,18 @@
+  
+  # path to dynamic preprocessor libraries
+ -dynamicpreprocessor directory /usr/local/lib/snort_dynamicpreprocessor/
+-+#! dynamicpreprocessor directory /usr/local/lib/snort_dynamicpreprocessor/
+-+dynamicpreprocessor directory /usr/lib/snort_dynamicpreprocessor/
+++#! dynamicpreprocessor directory /opt/local/lib/snort_dynamicpreprocessor/
+++dynamicpreprocessor directory /opt/lib/snort_dynamicpreprocessor/
+  
+  # path to base preprocessor engine
+ -dynamicengine /usr/local/lib/snort_dynamicengine/libsf_engine.so
+-+#! dynamicengine /usr/local/lib/snort_dynamicengine/libsf_engine.so
+-+#! dynamicengine /usr/lib/snort_dynamicengine/libsf_engine.so #! disabled for performance reasons
+++#! dynamicengine /opt/local/lib/snort_dynamicengine/libsf_engine.so
+++#! dynamicengine /opt/lib/snort_dynamicengine/libsf_engine.so #! disabled for performance reasons
+  
+  # path to dynamic rules libraries
+ -dynamicdetection directory /usr/local/lib/snort_dynamicrules
+-+#! dynamicdetection directory /usr/local/lib/snort_dynamicrules
+-+#! dynamicdetection directory /usr/lib/snort_dynamicrules #! disabled for performance reasons
+++#! dynamicdetection directory /opt/local/lib/snort_dynamicrules
+++#! dynamicdetection directory /opt/lib/snort_dynamicrules #! disabled for performance reasons
+  
+  ###################################################
+  # Step #5: Configure preprocessors

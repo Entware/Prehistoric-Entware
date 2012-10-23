@@ -1,0 +1,64 @@
+--- ../../../openwrt_trunk.orig/feeds/packages/libs/libdaq/Makefile	2012-10-09 13:58:16.201900894 +0400
++++ ../../../openwrt_trunk/feeds/packages/libs/libdaq/Makefile	2012-10-23 15:19:58.836785069 +0400
+@@ -24,7 +24,7 @@
+   CATEGORY:=Libraries
+   TITLE:=DAQ library
+   URL:=$(PKG_SOURCE_URL)
+-  DEPENDS:=+libdnet +libipq +libpcap
++  DEPENDS:=+libdnet +libpcap
+ endef
+ 
+ define Package/libdaq/description
+@@ -34,10 +34,10 @@
+ CONFIGURE_ARGS+= \
+ 	--disable-static \
+ 	--disable-nfq-module \
+-	--with-dnet-includes="$(STAGING_DIR)/usr/include" \
+-	--with-dnet-libraries="$(STAGING_DIR)/usr/lib" \
+-	--with-libpcap-includes="$(STAGING_DIR)/usr/include" \
+-	--with-libpcap-libraries="$(STAGING_DIR)/usr/lib" \
++	--with-dnet-includes="$(STAGING_DIR)/opt/include" \
++	--with-dnet-libraries="$(STAGING_DIR)/opt/lib" \
++	--with-libpcap-includes="$(STAGING_DIR)/opt/include" \
++	--with-libpcap-libraries="$(STAGING_DIR)/opt/lib" \
+ 
+ define Build/Compile
+ 	$(MAKE) $(MAKE_FLAGS) -C $(PKG_BUILD_DIR)
+@@ -48,23 +48,23 @@
+ endef
+ 
+ define Build/InstallDev
+-	$(INSTALL_DIR) $(STAGING_DIR)/usr/include
+-	$(CP) $(PKG_INSTALL_DIR)/usr/include/*.h $(STAGING_DIR)/usr/include/
+-	$(INSTALL_DIR) $(STAGING_DIR)/usr/lib
+-	$(CP) $(PKG_INSTALL_DIR)/usr/lib/lib* $(STAGING_DIR)/usr/lib/
+-	$(INSTALL_DIR) $(STAGING_DIR)/usr/lib/daq
+-	$(CP) $(PKG_INSTALL_DIR)/usr/lib/daq/* $(STAGING_DIR)/usr/lib/daq/
+-	$(INSTALL_DIR) $(STAGING_DIR)/usr/bin
+-	$(INSTALL_BIN) $(PKG_INSTALL_DIR)/usr/bin/daq-modules-config $(STAGING_DIR)/usr/bin/
++	$(INSTALL_DIR) $(STAGING_DIR)/opt/include
++	$(CP) $(PKG_INSTALL_DIR)/opt/include/*.h $(STAGING_DIR)/opt/include/
++	$(INSTALL_DIR) $(STAGING_DIR)/opt/lib
++	$(CP) $(PKG_INSTALL_DIR)/opt/lib/lib* $(STAGING_DIR)/opt/lib/
++	$(INSTALL_DIR) $(STAGING_DIR)/opt/lib/daq
++	$(CP) $(PKG_INSTALL_DIR)/opt/lib/daq/* $(STAGING_DIR)/opt/lib/daq/
++	$(INSTALL_DIR) $(STAGING_DIR)/opt/bin
++	$(INSTALL_BIN) $(PKG_INSTALL_DIR)/opt/bin/daq-modules-config $(STAGING_DIR)/opt/bin/
+ endef
+ 
+ define Package/libdaq/install
+-	$(INSTALL_DIR) $(1)/usr/lib
+-	$(CP) $(PKG_INSTALL_DIR)/usr/lib/*.so* $(1)/usr/lib/
+-	$(INSTALL_DIR) $(1)/usr/lib/daq
+-	$(CP) $(PKG_INSTALL_DIR)/usr/lib/daq/*.so* $(1)/usr/lib/daq/
+-	$(INSTALL_DIR) $(1)/usr/bin
+-	$(INSTALL_BIN) $(PKG_INSTALL_DIR)/usr/bin/daq-modules-config $(1)/usr/bin/
++	$(INSTALL_DIR) $(1)/opt/lib
++	$(CP) $(PKG_INSTALL_DIR)/opt/lib/*.so* $(1)/opt/lib/
++	$(INSTALL_DIR) $(1)/opt/lib/daq
++	$(CP) $(PKG_INSTALL_DIR)/opt/lib/daq/*.so* $(1)/opt/lib/daq/
++	$(INSTALL_DIR) $(1)/opt/bin
++	$(INSTALL_BIN) $(PKG_INSTALL_DIR)/opt/bin/daq-modules-config $(1)/opt/bin/
+ endef
+ 
+ $(eval $(call BuildPackage,libdaq))
