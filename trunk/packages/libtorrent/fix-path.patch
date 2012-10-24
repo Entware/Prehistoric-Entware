@@ -1,17 +1,17 @@
---- ../../../openwrt_trunk.orig/feeds/packages/libs/libtorrent/Makefile	2012-07-10 18:59:22.333230624 +0400
-+++ ../../../openwrt_trunk/feeds/packages/libs/libtorrent/Makefile	2012-07-10 19:00:03.900708050 +0400
+--- ../../../openwrt_trunk.orig/feeds/packages/libs/libtorrent/Makefile	2012-10-09 13:58:16.393900892 +0400
++++ ../../../openwrt_trunk/feeds/packages/libs/libtorrent/Makefile	2012-10-24 10:36:50.019528256 +0400
 @@ -8,12 +8,12 @@
  include $(TOPDIR)/rules.mk
  
  PKG_NAME:=libtorrent
 -PKG_VERSION:=0.12.6
-+PKG_VERSION:=0.13.2
++PKG_VERSION:=0.13.3
  PKG_RELEASE:=1
  
  PKG_SOURCE:=$(PKG_NAME)-$(PKG_VERSION).tar.gz
  PKG_SOURCE_URL:=http://libtorrent.rakshasa.no/downloads
 -PKG_MD5SUM:=037499ed708aaf72988cee60e5a8d96b
-+PKG_MD5SUM:=96c0b81501357df402ab592f59ecaeab
++PKG_MD5SUM:=e94f6c590bb02aaf4d58618f738a85f2
  
  PKG_FIXUP:=autoreconf
  PKG_BUILD_PARALLEL:=1

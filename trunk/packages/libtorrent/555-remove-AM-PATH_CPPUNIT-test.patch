@@ -1,10 +1,10 @@
---- ../../../feeds/packages/libs/libtorrent/configure.ac	2011-06-21 11:05:28.000000000 +0400
-+++ ./configure.ac	2011-12-12 11:23:23.721712651 +0400
-@@ -17,7 +17,6 @@
+--- a/configure.ac	2012-10-24 11:00:57.559498871 +0400
++++ b/configure.ac	2012-10-24 11:01:02.115499120 +0400
+@@ -19,7 +19,6 @@
  
  AM_INIT_AUTOMAKE
  AM_CONFIG_HEADER(config.h)
 -AM_PATH_CPPUNIT(1.9.6)
- AC_DISABLE_STATIC
  
- AM_DISABLE_STATIC
+ AC_PROG_CXX
+ 

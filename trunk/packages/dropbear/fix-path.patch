@@ -1,4 +1,3 @@
-Только в ../../../openwrt_trunk/package/dropbear/files: S51dropbear
 diff -urx .svn ../../../openwrt_trunk.orig/package/dropbear/Makefile ../../../openwrt_trunk/package/dropbear/Makefile
 --- ../../../openwrt_trunk.orig/package/dropbear/Makefile	2012-09-03 15:55:26.039673621 +0400
 +++ ../../../openwrt_trunk/package/dropbear/Makefile	2012-09-03 15:56:46.351672159 +0400
