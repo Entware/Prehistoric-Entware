@@ -1,0 +1,30 @@
+--- ../../../openwrt_trunk.orig/feeds/packages/net/igmpproxy/Makefile	2012-10-09 13:58:19.297900842 +0400
++++ ../../../openwrt_trunk/feeds/packages/net/igmpproxy/Makefile	2012-10-25 14:44:41.249679324 +0400
+@@ -34,7 +34,7 @@
+ endef
+ 
+ define Package/igmpproxy/conffiles
+-/etc/config/igmpproxy
++/opt/etc/igmpproxy.conf
+ endef
+ 
+ TARGET_CFLAGS += -Dlog=igmpproxy_log
+@@ -46,12 +46,12 @@
+ endef
+ 
+ define Package/igmpproxy/install
+-	$(INSTALL_DIR) $(1)/etc/config
+-	$(INSTALL_CONF) ./files/igmpproxy.config $(1)/etc/config/igmpproxy
+-	$(INSTALL_DIR) $(1)/etc/init.d
+-	$(INSTALL_BIN) ./files/igmpproxy.init $(1)/etc/init.d/igmpproxy
+-	$(INSTALL_DIR) $(1)/usr/sbin
+-	$(INSTALL_BIN) $(PKG_BUILD_DIR)/src/igmpproxy $(1)/usr/sbin/
++	$(INSTALL_DIR) $(1)/opt/etc/
++	$(INSTALL_CONF) $(PKG_BUILD_DIR)/igmpproxy.conf $(1)/opt/etc/
++	$(INSTALL_DIR) $(1)/opt/etc/init.d
++	$(INSTALL_BIN) ./files/S69igmpproxy $(1)/opt/etc/init.d/
++	$(INSTALL_DIR) $(1)/opt/sbin
++	$(INSTALL_BIN) $(PKG_BUILD_DIR)/src/igmpproxy $(1)/opt/sbin/
+ endef
+ 
+ $(eval $(call BuildPackage,igmpproxy))
