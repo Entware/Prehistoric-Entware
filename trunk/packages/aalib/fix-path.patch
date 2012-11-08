@@ -1,6 +1,6 @@
---- ../../../openwrt_trunk.orig/feeds/packages/libs/aalib/Makefile	2011-11-15 14:04:00.000000000 +0400
-+++ ../../../openwrt_trunk/feeds/packages/libs/aalib/Makefile	2011-11-22 14:51:54.088254599 +0400
-@@ -35,26 +35,26 @@
+--- ../../../openwrt_trunk.orig/feeds/packages/libs/aalib/Makefile
++++ ../../../openwrt_trunk/feeds/packages/libs/aalib/Makefile
+@@ -38,26 +38,26 @@
  		--without-x \
  		--without-x11-driver \
  		--without-slang-driver \

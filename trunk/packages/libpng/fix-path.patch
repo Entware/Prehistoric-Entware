@@ -1,6 +1,6 @@
---- ../../../openwrt_trunk.orig/feeds/packages/libs/libpng/Makefile	2011-11-28 10:57:22.000000000 +0400
-+++ ../../../openwrt_trunk/feeds/packages/libs/libpng/Makefile	2011-11-28 16:35:21.928101218 +0400
-@@ -37,27 +37,27 @@
+--- ../../../openwrt_trunk.orig/feeds/packages/libs/libpng/Makefile
++++ ../../../openwrt_trunk/feeds/packages/libs/libpng/Makefile
+@@ -40,27 +40,27 @@
  	--enable-static \
  
  define Build/InstallDev

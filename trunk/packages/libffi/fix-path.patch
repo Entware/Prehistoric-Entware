@@ -1,6 +1,6 @@
---- ../../../openwrt_trunk.orig/feeds/packages/libs/libffi/Makefile	2012-07-10 18:59:22.277231328 +0400
-+++ ../../../openwrt_trunk/feeds/packages/libs/libffi/Makefile	2012-07-10 19:00:03.712710413 +0400
-@@ -50,25 +50,25 @@
+--- ../../../openwrt_trunk.orig/feeds/packages/libs/libffi/Makefile
++++ ../../../openwrt_trunk/feeds/packages/libs/libffi/Makefile
+@@ -53,25 +53,25 @@
  endef
  
  define Build/InstallDev

@@ -44,9 +44,9 @@ diff -urx .svn ../../../openwrt_trunk.orig/feeds/packages/libs/mysql/conf/my.cnf
  #max_binlog_size         = 100M
  #binlog_do_db		= include_database_name
 diff -urx .svn ../../../openwrt_trunk.orig/feeds/packages/libs/mysql/Makefile ../../../openwrt_trunk/feeds/packages/libs/mysql/Makefile
---- ../../../openwrt_trunk.orig/feeds/packages/libs/mysql/Makefile	2012-07-10 18:59:22.337230573 +0400
-+++ ../../../openwrt_trunk/feeds/packages/libs/mysql/Makefile	2012-07-11 12:22:28.529056555 +0400
-@@ -61,7 +61,7 @@
+--- ../../../openwrt_trunk.orig/feeds/packages/libs/mysql/Makefile
++++ ../../../openwrt_trunk/feeds/packages/libs/mysql/Makefile
+@@ -62,7 +62,7 @@
  
  CONFIGURE_VARS += \
          CXXFLAGS="$$$$CXXFLAGS -fno-builtin -fno-rtti -nostdinc++"  \
@@ -55,7 +55,7 @@ diff -urx .svn ../../../openwrt_trunk.orig/feeds/packages/libs/mysql/Makefile ..
          LDFLAGS="$$$$LDFLAGS" \
          LIBS="-nodefaultlibs -luClibc++ -lm -lc $(LIBGCC_S)" \
          CLIENTCLIBS="-nodefaultlibs -luClibc++ -lm -lc $(LIBGCC_S)" \
-@@ -87,7 +87,7 @@
+@@ -88,7 +88,7 @@
  		--without-mysqlmanager \
  		--without-raid \
  		--with-mysqld-user=root \
@@ -64,7 +64,7 @@ diff -urx .svn ../../../openwrt_trunk.orig/feeds/packages/libs/mysql/Makefile ..
  		--without-libwrap \
  		--without-pstack \
  		--with-low-memory \
-@@ -99,7 +99,7 @@
+@@ -100,7 +100,7 @@
  		--without-docs \
  		--without-man \
  		--without-bench \
@@ -73,7 +73,7 @@ diff -urx .svn ../../../openwrt_trunk.orig/feeds/packages/libs/mysql/Makefile ..
  		--without-debug \
  		--with-named-thread-libs=-lpthread \
  		, \
-@@ -157,47 +157,47 @@
+@@ -158,47 +158,47 @@
  
  
  define Build/InstallDev

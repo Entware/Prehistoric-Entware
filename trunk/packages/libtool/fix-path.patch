@@ -1,6 +1,6 @@
 --- ../../../openwrt_trunk.orig/package/libs/libtool/Makefile
 +++ ../../../openwrt_trunk/package/libs/libtool/Makefile
-@@ -36,14 +36,14 @@
+@@ -39,14 +39,14 @@
  		prefix="$(2)" \
  		exec_prefix="$(2)" \
  		install

@@ -1,6 +1,6 @@
---- ../../../openwrt_trunk.orig/feeds/packages/libs/libid3tag/Makefile	2011-12-05 10:46:45.000000000 +0400
-+++ ../../../openwrt_trunk/feeds/packages/libs/libid3tag/Makefile	2011-12-09 11:59:52.756786741 +0400
-@@ -45,15 +45,15 @@
+--- ../../../openwrt_trunk.orig/feeds/packages/libs/libid3tag/Makefile
++++ ../../../openwrt_trunk/feeds/packages/libs/libid3tag/Makefile
+@@ -48,15 +48,15 @@
  endef
  
  define Build/InstallDev

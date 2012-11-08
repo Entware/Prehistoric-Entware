@@ -1,7 +1,7 @@
 diff -urx .svn ../../../openwrt_trunk.orig/package/lua/Makefile ../../../openwrt_trunk/package/lua/Makefile
---- ../../../openwrt_trunk.orig/package/lua/Makefile	2012-01-30 15:01:46.000000000 +0400
-+++ ../../../openwrt_trunk/package/lua/Makefile	2012-02-01 15:49:23.541569948 +0400
-@@ -99,7 +99,7 @@
+--- ../../../openwrt_trunk.orig/package/lua/Makefile
++++ ../../../openwrt_trunk/package/lua/Makefile
+@@ -104,7 +104,7 @@
  		CC="$(TARGET_CROSS)gcc" \
  		AR="$(TARGET_CROSS)ar rcu" \
  		RANLIB="$(TARGET_CROSS)ranlib" \
@@ -10,7 +10,7 @@ diff -urx .svn ../../../openwrt_trunk.orig/package/lua/Makefile ../../../openwrt
  		CFLAGS="$(TARGET_CPPFLAGS) $(TARGET_CFLAGS)" \
  		MYLDFLAGS="$(TARGET_LDFLAGS)" \
  		PKG_VERSION=$(PKG_VERSION) \
-@@ -107,7 +107,7 @@
+@@ -112,7 +112,7 @@
  	rm -rf $(PKG_INSTALL_DIR)
  	mkdir -p $(PKG_INSTALL_DIR)
  	$(MAKE) -C $(PKG_BUILD_DIR) \
@@ -19,7 +19,7 @@ diff -urx .svn ../../../openwrt_trunk.orig/package/lua/Makefile ../../../openwrt
  		install
  endef
  
-@@ -138,36 +138,37 @@
+@@ -143,36 +143,37 @@
  endef
  
  define Build/InstallDev

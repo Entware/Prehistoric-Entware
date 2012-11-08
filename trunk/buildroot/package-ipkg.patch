@@ -1,5 +1,5 @@
---- ../../openwrt_trunk.orig/include/package-ipkg.mk	2012-10-08 17:25:13.751248572 +0400
-+++ ../../openwrt_trunk/include/package-ipkg.mk	2012-10-08 17:26:05.407247631 +0400
+--- ../../openwrt_trunk.orig/include/package-ipkg.mk
++++ ../../openwrt_trunk/include/package-ipkg.mk
 @@ -9,7 +9,7 @@
  IPKG_BUILD:= \
    ipkg-build -c -o 0 -g 0
@@ -9,7 +9,7 @@
  
  define BuildIPKGVariable
  ifdef Package/$(1)/$(2)
-@@ -170,8 +170,8 @@
+@@ -174,8 +174,8 @@
  				[ -f "$$(IDIR_$(1))/$$$$x" ] || keepfiles="$$$${keepfiles:+$$$$keepfiles }$$$$x"; \
  			done; \
  			[ -z "$$$$keepfiles" ] || { \

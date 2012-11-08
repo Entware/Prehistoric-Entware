@@ -1,5 +1,5 @@
---- ../../openwrt_trunk.orig/package/Makefile
-+++ ../../openwrt_trunk/package/Makefile
+--- ../../openwrt_trunk/package/Makefile.orig	2012-11-08 16:20:49.378935754 +0400
++++ ../../openwrt_trunk/package/Makefile	2012-11-08 16:21:31.186934989 +0400
 @@ -46,7 +46,7 @@
  	$(RSTRIP) $(TMP_DIR)/mklibs-out
  	for lib in `ls $(TMP_DIR)/mklibs-out/*.so.* 2>/dev/null`; do \
@@ -16,9 +16,9 @@
 -  IPKG_CONF_DIR=$(STAGING_DIR)/etc \
 +  IPKG_CONF_DIR=$(STAGING_DIR)/opt/etc \
    IPKG_OFFLINE_ROOT=$(TARGET_DIR) \
-   $(STAGING_DIR_HOST)/bin/opkg \
+   $(XARGS) $(STAGING_DIR_HOST)/bin/opkg \
  	--offline-root $(TARGET_DIR) \
-@@ -107,8 +107,8 @@
+@@ -110,8 +110,8 @@
  	@-find $(TARGET_DIR) -name CVS   | $(XARGS) rm -rf
  	@-find $(TARGET_DIR) -name .svn  | $(XARGS) rm -rf
  	@-find $(TARGET_DIR) -name '.#*' | $(XARGS) rm -f

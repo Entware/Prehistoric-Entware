@@ -34,9 +34,9 @@ buildroot: .buildroot_installed
 .buildroot_installed:
 	@echo Deploying OpenWRT Buildroot...
 	[ -d $(TOP)/downloads ] || mkdir -p $(TOP)/downloads
-	if [ -d $(TOP)/downloads/openwrt_trunk.r$(OPENWRT_REVISION) ]; then \
+	if [ -d $(TOP)/downloads/openwrt_trunk-r$(OPENWRT_REVISION) ]; then \
 		mkdir -p $(TOP)/openwrt_trunk ; \
-		cp --recursive --update --force $(TOP)/downloads/openwrt_trunk.r$(OPENWRT_REVISION)/* $(TOP)/openwrt_trunk ; \
+		cp --recursive --update --force $(TOP)/downloads/openwrt_trunk-r$(OPENWRT_REVISION)/* $(TOP)/openwrt_trunk ; \
 	else \
 		svn co --revision=$(OPENWRT_REVISION) svn://svn.openwrt.org/openwrt/trunk/ $(TOP)/openwrt_trunk ; \
 		cp -f ./buildroot/feeds.conf $(TOP)/openwrt_trunk ; \
@@ -46,8 +46,8 @@ buildroot: .buildroot_installed
 		    ./scripts/feeds install -a -p packages ; \
 		    ./scripts/feeds update rtndev ; \
 		    ./scripts/feeds install -a -p rtndev) ; \
-		mkdir -p $(TOP)/openwrt_trunk.orig ; \
-		cp --recursive --update --force $(TOP)/openwrt_trunk/* $(TOP)/downloads/openwrt_trunk.r$(OPENWRT_REVISION) ; \
+		mkdir -p $(TOP)/downloads/openwrt_trunk-r$(OPENWRT_REVISION) ; \
+		cp --recursive --update --force $(TOP)/openwrt_trunk/* $(TOP)/downloads/openwrt_trunk-r$(OPENWRT_REVISION) ; \
 	fi
 	ln -sf $(TOP)/downloads $(TOP)/openwrt_trunk/dl
 	make -C "./buildroot"

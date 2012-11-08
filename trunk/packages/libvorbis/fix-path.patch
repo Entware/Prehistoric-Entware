@@ -1,6 +1,6 @@
---- ../../../openwrt_trunk.orig/feeds/packages/libs/libvorbis/Makefile	2011-12-05 10:46:45.000000000 +0400
-+++ ../../../openwrt_trunk/feeds/packages/libs/libvorbis/Makefile	2011-12-09 12:03:40.441923922 +0400
-@@ -43,19 +43,19 @@
+--- ../../../openwrt_trunk.orig/feeds/packages/libs/libvorbis/Makefile
++++ ../../../openwrt_trunk/feeds/packages/libs/libvorbis/Makefile
+@@ -46,19 +46,19 @@
  	--disable-oggtest \
  
  define Build/InstallDev

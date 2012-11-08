@@ -1,6 +1,6 @@
 --- ../../../openwrt_trunk.orig/package/libs/ocf-crypto-headers/Makefile
 +++ ../../../openwrt_trunk/package/libs/ocf-crypto-headers/Makefile
-@@ -29,8 +29,8 @@
+@@ -32,8 +32,8 @@
  endef
  
  define Build/InstallDev

@@ -1,6 +1,6 @@
---- ../../../openwrt_trunk.orig/feeds/packages/libs/cyrus-sasl/Makefile	2011-11-28 10:57:19.000000000 +0400
-+++ ../../../openwrt_trunk/feeds/packages/libs/cyrus-sasl/Makefile	2011-11-29 16:12:49.621367828 +0400
-@@ -63,7 +63,7 @@
+--- ../../../openwrt_trunk.orig/feeds/packages/libs/cyrus-sasl/Makefile
++++ ../../../openwrt_trunk/feeds/packages/libs/cyrus-sasl/Makefile
+@@ -66,7 +66,7 @@
  	--without-authdaemond \
  	--without-pwcheck \
  	--with-ipctype=unix \
@@ -9,7 +9,7 @@
  	--without-des \
  	--without-opie \
  	--without-ldap \
-@@ -88,21 +88,21 @@
+@@ -91,21 +91,21 @@
  endef
  
  define Build/InstallDev
