@@ -9,8 +9,4 @@
 # with the gods, you should probably leave all this stuff alone.
 
 TOOLCHAIN_REVISION:=4667
-OPENWRT_REVISION:=33666
-
-# Make a copy of clean OpenWRT trunk tree to write patches later.
-# You need it only for adding a new packages.
-BUILDROOT_BACKUP:=yes
+OPENWRT_REVISION:=34120

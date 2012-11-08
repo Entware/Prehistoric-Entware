@@ -9,22 +9,23 @@
 #
 
 include ./config.mk
+export TOP:=$(shell (cd .. && pwd -P))
 
 all: .toolchain_installed .buildroot_installed .packages_prepared .packages_compiled
 
 packages_compile: .packages_compiled
 .packages_compiled:
-	make -C "../openwrt_trunk" tools/compile
-	make -C "../openwrt_trunk" tools/install
-	make -C "../openwrt_trunk" package/compile
-	make -C "../openwrt_trunk" package/index
+	make -C "$(TOP)/openwrt_trunk" tools/compile
+	make -C "$(TOP)/openwrt_trunk" tools/install
+	make -C "$(TOP)/openwrt_trunk" package/compile
+	make -C "$(TOP)/openwrt_trunk" package/index
 	touch $@
 
 packages: .packages_prepared
 .packages_prepared:
 	@echo Processing OpenWRT packages...
 	@for dir in `ls ./packages`; do ( \
-	    make -C "./packages/$$dir"; \
+	    make -C "./packages/$$dir" ; \
 	); done
 	@echo Done!
 	touch $@
@@ -32,30 +33,42 @@ packages: .packages_prepared
 buildroot: .buildroot_installed
 .buildroot_installed:
 	@echo Deploying OpenWRT Buildroot...
-	svn co --revision=$(OPENWRT_REVISION) svn://svn.openwrt.org/openwrt/trunk/ ../openwrt_trunk
-	cp -f ./buildroot/feeds.conf ../openwrt_trunk
-	sed -i 's,packages@XXXXX,packages@${OPENWRT_REVISION},g' ../openwrt_trunk/feeds.conf
-	(cd ../openwrt_trunk; \
-	./scripts/feeds update packages; \
-	./scripts/feeds install -a -p packages; \
-	./scripts/feeds update rtndev; \
-	./scripts/feeds install -a -p rtndev)
-ifeq ($(BUILDROOT_BACKUP),yes)
-	mkdir -p ../openwrt_trunk.orig
-	cp --recursive --update --force ../openwrt_trunk/* ../openwrt_trunk.orig
-endif
+	[ -d $(TOP)/downloads ] || mkdir -p $(TOP)/downloads
+	if [ -d $(TOP)/downloads/openwrt_trunk.r$(OPENWRT_REVISION) ]; then \
+		mkdir -p $(TOP)/openwrt_trunk ; \
+		cp --recursive --update --force $(TOP)/downloads/openwrt_trunk.r$(OPENWRT_REVISION)/* $(TOP)/openwrt_trunk ; \
+	else \
+		svn co --revision=$(OPENWRT_REVISION) svn://svn.openwrt.org/openwrt/trunk/ $(TOP)/openwrt_trunk ; \
+		cp -f ./buildroot/feeds.conf $(TOP)/openwrt_trunk ; \
+		sed -i 's,packages@XXXXX,packages@$(OPENWRT_REVISION),g' $(TOP)/openwrt_trunk/feeds.conf ; \
+		(cd $(TOP)/openwrt_trunk ; \
+		    ./scripts/feeds update packages ; \
+		    ./scripts/feeds install -a -p packages ; \
+		    ./scripts/feeds update rtndev ; \
+		    ./scripts/feeds install -a -p rtndev) ; \
+		mkdir -p $(TOP)/openwrt_trunk.orig ; \
+		cp --recursive --update --force $(TOP)/openwrt_trunk/* $(TOP)/downloads/openwrt_trunk.r$(OPENWRT_REVISION) ; \
+	fi
+	ln -sf $(TOP)/downloads $(TOP)/openwrt_trunk/dl
 	make -C "./buildroot"
 	touch $@
 
 toolchain: .toolchain_installed
 .toolchain_installed:
+	[ -d $(TOP)/downloads ] || mkdir -p $(TOP)/downloads
 	make -C "./toolchain"
 	touch $@
 
-toolchain_pack: .toolchain_installed .toolchain_packed
-.toolchain_packed:
-	tar -cvzf ../entware-toolchain-r$(TOOLCHAIN_REVISION).tgz /opt/entware-toolchain
-	touch $@
+distclean:
+	@for dir in `ls ./packages`; do ( \
+	    make -C "./packages/$$dir" clean; \
+	); done
+	rm -f .packages_prepared
+	make -C "./buildroot" distclean
+	rm -f .buildroot_installed
+	make -C "./toolchain" distclean
+	rm -f .toolchain_installed
+	rm -f .packages_compiled
 
 clean:
 	@for dir in `ls ./packages`; do ( \
@@ -66,8 +79,6 @@ clean:
 	rm -f .buildroot_installed
 	make -C "./toolchain" clean
 	rm -f .toolchain_installed
-	rm -f .toolchain_downloaded
-	rm -f .toolchain_packed
 	rm -f .packages_compiled
 
-.PHONY : clean
+.PHONY : distclean clean
