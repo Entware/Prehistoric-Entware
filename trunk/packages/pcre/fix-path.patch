@@ -1,7 +1,7 @@
 diff -r -u -x .svn ../../../openwrt_trunk.orig/feeds/packages/libs/pcre//Makefile ../../../openwrt_trunk/feeds/packages/libs/pcre//Makefile
 --- ../../../openwrt_trunk.orig/feeds/packages/libs/pcre//Makefile	2011-11-15 14:03:59.000000000 +0400
 +++ ../../../openwrt_trunk/feeds/packages/libs/pcre//Makefile	2011-11-24 11:46:26.696791881 +0400
-@@ -55,31 +55,31 @@
+@@ -58,31 +58,31 @@
  	CFLAGS="$(TARGET_CFLAGS)"
  
  define Build/InstallDev

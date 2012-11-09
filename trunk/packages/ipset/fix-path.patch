@@ -1,6 +1,6 @@
---- ../../../openwrt_trunk.orig/feeds/packages/net/ipset/Makefile	2012-06-01 10:50:37.924238650 +0400
-+++ ../../../openwrt_trunk/feeds/packages/net/ipset/Makefile	2012-06-01 10:51:33.199543808 +0400
-@@ -29,7 +29,7 @@
+--- ../../../openwrt_trunk.orig/package/network/utils/ipset/Makefile
++++ ../../../openwrt_trunk/package/network/utils/ipset/Makefile
+@@ -31,7 +31,7 @@
  $(call Package/ipset/Default)
    SECTION:=net
    CATEGORY:=Network
@@ -9,7 +9,7 @@
    TITLE:=IPset administration utility
    URL:=http://ipset.netfilter.org/
  endef
-@@ -61,10 +61,10 @@
+@@ -63,10 +63,10 @@
  endef
  
  define Package/ipset/install

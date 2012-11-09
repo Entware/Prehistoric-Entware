@@ -1,6 +1,6 @@
---- ../../../openwrt_trunk.orig/package/kexec-tools/Makefile	2012-08-06 14:41:18.502697986 +0400
-+++ ../../../openwrt_trunk/package/kexec-tools/Makefile	2012-08-24 12:19:16.895572983 +0400
-@@ -37,7 +37,7 @@
+--- ../../../openwrt_trunk.orig/package/boot/kexec-tools/Makefile
++++ ../../../openwrt_trunk/package/boot/kexec-tools/Makefile
+@@ -38,7 +38,7 @@
  	source "$(SOURCE)/Config.in"
  endef
  
@@ -9,7 +9,7 @@
  
  CONFIGURE_ARGS = \
  		--target=$(KEXEC_TARGET_NAME) \
-@@ -45,12 +45,12 @@
+@@ -46,12 +46,12 @@
  		--build=$(GNU_HOST_NAME) \
  		--program-prefix="" \
  		--program-suffix="" \
@@ -28,7 +28,7 @@
  
  CONFIGURE_VARS += \
  	BUILD_CC="$(HOSTCC)" \
-@@ -63,17 +63,13 @@
+@@ -64,17 +64,13 @@
  endef
  
  define Package/kexec-tools/install

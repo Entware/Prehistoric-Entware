@@ -1,5 +1,5 @@
---- ../../../openwrt_trunk.orig/feeds/packages/net/asterisk-1.8.x/Makefile	2012-10-08 18:50:47.799155049 +0400
-+++ ../../../openwrt_trunk/feeds/packages/net/asterisk-1.8.x/Makefile	2012-10-08 18:52:08.575153578 +0400
+--- ../../../downloads/openwrt_trunk-r34120/feeds/packages/net/asterisk-1.8.x/Makefile	2012-11-08 16:16:42.774940244 +0400
++++ ../../../openwrt_trunk/feeds/packages/net/asterisk-1.8.x/Makefile	2012-11-09 09:14:50.049828832 +0400
 @@ -71,7 +71,7 @@
  define Package/asterisk18-app-meetme
  $(call Package/asterisk18/Default)
@@ -9,7 +9,7 @@
  endef
  
  define Package/asterisk18-app-meetme/description
-@@ -236,7 +236,7 @@
+@@ -247,7 +247,7 @@
  
  ifneq ($(SDK)$(CONFIG_PACKAGE_asterisk18-app-meetme),)
    CONFIGURE_ARGS+= \
@@ -18,7 +18,7 @@
  else
    CONFIGURE_ARGS+= \
  	--without-dahdi
-@@ -244,8 +244,8 @@
+@@ -255,8 +255,8 @@
  
  ifneq ($(SDK)$(CONFIG_PACKAGE_asterisk18-chan-gtalk),)
    CONFIGURE_ARGS+= \
@@ -29,7 +29,7 @@
    SITE_VARS+= \
  	ac_cv_lib_iksemel_iks_start_sasl=yes \
  	ac_cv_lib_gnutls_gnutls_bye=yes
-@@ -257,7 +257,7 @@
+@@ -268,7 +268,7 @@
  
  ifneq ($(SDK)$(CONFIG_PACKAGE_asterisk18-curl),)
    CONFIGURE_ARGS+= \
@@ -38,7 +38,7 @@
  else
    CONFIGURE_ARGS+= \
  	--without-curl
-@@ -265,7 +265,7 @@
+@@ -276,7 +276,7 @@
  
  ifneq ($(SDK)$(CONFIG_PACKAGE_asterisk18-mysql),)
    CONFIGURE_ARGS+= \
@@ -47,7 +47,7 @@
  else
    CONFIGURE_ARGS+= \
  	--without-mysqlclient
-@@ -273,7 +273,7 @@
+@@ -284,7 +284,7 @@
  
  ifneq ($(SDK)$(CONFIG_PACKAGE_asterisk18-res-fax-spandsp),)
    CONFIGURE_ARGS+= \
@@ -56,7 +56,7 @@
  else
    CONFIGURE_ARGS+= \
      --without-spandsp
-@@ -281,7 +281,7 @@
+@@ -292,7 +292,7 @@
  
  ifneq ($(SDK)$(CONFIG_PACKAGE_asterisk18-chan-mobile),)
    CONFIGURE_ARGS+= \
@@ -65,7 +65,7 @@
  else
    CONFIGURE_ARGS+= \
  	--without-bluetooth
-@@ -289,7 +289,7 @@
+@@ -300,7 +300,7 @@
  
  ifneq ($(SDK)$(CONFIG_PACKAGE_asterisk18-res-srtp),)
    CONFIGURE_ARGS+= \
@@ -74,7 +74,7 @@
  else
    CONFIGURE_ARGS+= \
  	--without-srtp
-@@ -305,13 +305,13 @@
+@@ -316,12 +316,12 @@
  	--without-kde \
  	--without-misdn \
  	--without-nbs \
@@ -82,7 +82,6 @@
 +	--with-ncurses="$(STAGING_DIR)/opt" \
  	--without-netsnmp \
  	--without-newt \
- 	--without-odbc \
  	--without-ogg \
  	--without-osptk \
 -	--with-popt="$(STAGING_DIR)/usr" \
@@ -90,7 +89,7 @@
  	--without-pri \
  	--without-qt \
  	--without-radius \
-@@ -322,7 +322,7 @@
+@@ -332,7 +332,7 @@
  	--without-tinfo \
  	--without-vorbis \
  	--without-vpb \
@@ -99,7 +98,7 @@
  	--with-sounds-cache="$(DL_DIR)" \
  	--disable-xmldoc
  
-@@ -348,10 +348,10 @@
+@@ -358,10 +358,10 @@
  	ASTCFLAGS="$(EXTRA_CFLAGS) -DLOW_MEMORY" \
  	ASTLDFLAGS="$(EXTRA_LDFLAGS)" \
  	$(MAKE) -C "$(PKG_BUILD_DIR)" \
@@ -114,7 +113,7 @@
  		NOISY_BUILD="1" \
  		DEBUG="" \
  		OPTIMIZE="" \
-@@ -360,238 +360,235 @@
+@@ -370,245 +370,242 @@
  endef
  
  define Build/InstallDev
@@ -473,8 +472,19 @@
 +	$(INSTALL_BIN) $(PKG_INSTALL_DIR)/opt/lib/asterisk/modules/res_srtp.so $(1)/opt/lib/asterisk/modules/
  endef
  
+ define Package/asterisk18-odbc/install
+-	$(INSTALL_DIR) $(1)/etc/asterisk
+-	$(CP) $(PKG_INSTALL_DIR)/etc/asterisk/*odbc*.conf $(1)/etc/asterisk/
+-	$(INSTALL_DIR) $(1)/usr/lib/asterisk/modules
+-	$(CP) $(PKG_INSTALL_DIR)/usr/lib/asterisk/modules/*odbc*.so $(1)/usr/lib/asterisk/modules/
++	$(INSTALL_DIR) $(1)/opt/etc/asterisk
++	$(CP) $(PKG_INSTALL_DIR)/opt/etc/asterisk/*odbc*.conf $(1)/opt/etc/asterisk/
++	$(INSTALL_DIR) $(1)/opt/lib/asterisk/modules
++	$(CP) $(PKG_INSTALL_DIR)/opt/lib/asterisk/modules/*odbc*.so $(1)/opt/lib/asterisk/modules/
+ endef
+ 
  define Buildasterisk18ModuleTemplate
-@@ -608,8 +605,8 @@
+@@ -625,8 +622,8 @@
    endef
  
    define Package/asterisk18-$(subst _,-,$(1))/install

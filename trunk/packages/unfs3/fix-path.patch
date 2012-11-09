@@ -1,6 +1,6 @@
---- ../../../openwrt_trunk.orig/feeds/packages/net/unfs3/Makefile	2012-09-03 12:35:55.735891676 +0400
-+++ ../../../openwrt_trunk/feeds/packages/net/unfs3/Makefile	2012-09-03 15:37:43.663693136 +0400
-@@ -23,7 +23,7 @@
+--- ../../../openwrt_trunk.orig/feeds/packages/net/unfs3/Makefile
++++ ../../../openwrt_trunk/feeds/packages/net/unfs3/Makefile
+@@ -26,7 +26,7 @@
    SECTION:=net
    CATEGORY:=Network
    SUBMENU:=Filesystem
@@ -9,7 +9,7 @@
    TITLE:=User-space NFSv3 Server
    URL:=http://unfs3.sourceforge.net/
  endef
-@@ -35,20 +35,18 @@
+@@ -38,20 +38,18 @@
  	on the server.
  endef
  

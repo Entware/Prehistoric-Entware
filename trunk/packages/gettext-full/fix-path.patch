@@ -1,6 +1,6 @@
---- ../../../openwrt_trunk.orig/feeds/packages/libs/gettext-full/Makefile	2012-09-03 12:35:43.899891892 +0400
-+++ ../../../openwrt_trunk/feeds/packages/libs/gettext-full/Makefile	2012-09-03 15:03:38.923729485 +0400
-@@ -41,23 +41,24 @@
+--- ../../../openwrt_trunk/package/libs/gettext-full/Makefile.orig	2012-11-08 16:20:49.918935742 +0400
++++ ../../../openwrt_trunk/package/libs/gettext-full/Makefile	2012-11-09 10:10:10.153766970 +0400
+@@ -46,23 +46,24 @@
  	--disable-openmp \
  	--with-included-gettext \
  	--without-libintl-prefix \
@@ -32,4 +32,4 @@
 +	$(CP) $(PKG_INSTALL_DIR)/opt/lib/libintl.so* $(1)/opt/lib/
  endef
  
- $(eval $(call BuildPackage,libintl-full))
+ $(eval $(call HostBuild))

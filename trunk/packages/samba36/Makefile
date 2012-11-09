@@ -9,7 +9,7 @@ all: ./.done
 
 ./.done:
 	patch -p0 -i ./fix-path.patch
-	cp ./S08samba ../../../openwrt_trunk/feeds/packages/net/samba36/files/
+	cp ./S08samba ../../../openwrt_trunk/package/network/services/samba36/files/
 	touch $@
 
 clean:

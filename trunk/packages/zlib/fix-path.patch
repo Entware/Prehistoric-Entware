@@ -1,6 +1,6 @@
 --- ../../../openwrt_trunk.orig/package/libs/zlib/Makefile
 +++ ../../../openwrt_trunk/package/libs/zlib/Makefile
-@@ -30,7 +30,7 @@
+@@ -33,7 +33,7 @@
  		LDSHARED="$(TARGET_CC) -shared -Wl,-soname,libz.so.1" \
  		CFLAGS="$(TARGET_CFLAGS) $(FPIC)" \
  		./configure \
@@ -9,7 +9,7 @@
  			--shared \
  			--uname=Linux \
  	);
-@@ -48,22 +48,22 @@
+@@ -51,22 +51,22 @@
  endef
  
  define Build/InstallDev

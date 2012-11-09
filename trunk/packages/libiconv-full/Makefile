@@ -9,7 +9,7 @@ all: ./.done
 
 ./.done:
 	patch -p0 -i ./fix-path.patch
-	rm ../../../openwrt_trunk/feeds/packages/libs/libiconv-full/patches/100-strip_charsets.patch
+	rm -f ../../../openwrt_trunk/package/libs/libiconv-full/patches/100-strip_charsets.patch
 	touch $@
 
 clean:

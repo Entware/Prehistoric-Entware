@@ -1,6 +1,6 @@
---- ../../../openwrt_trunk.orig/feeds/packages/libs/sysfsutils/Makefile	2011-11-28 10:57:21.000000000 +0400
-+++ ../../../openwrt_trunk/feeds/packages/libs/sysfsutils/Makefile	2011-11-28 15:33:10.997168637 +0400
-@@ -48,21 +48,21 @@
+--- ../../../openwrt_trunk.orig/package/libs/sysfsutils/Makefile
++++ ../../../openwrt_trunk/package/libs/sysfsutils/Makefile
+@@ -52,21 +52,21 @@
  endef
  
  define Build/InstallDev

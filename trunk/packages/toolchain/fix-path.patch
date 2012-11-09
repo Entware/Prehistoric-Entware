@@ -1,11 +1,13 @@
---- ../../../openwrt_trunk.orig/package/toolchain/Makefile	2012-10-09 13:58:35.237900528 +0400
-+++ ../../../openwrt_trunk/package/toolchain/Makefile	2012-10-09 21:43:37.401390472 +0400
-@@ -7,16 +7,12 @@
+--- ../../../openwrt_trunk/package/toolchain/Makefile.orig	2012-11-08 16:20:50.126935737 +0400
++++ ../../../openwrt_trunk/package/toolchain/Makefile	2012-11-09 11:27:14.853686915 +0400
+@@ -7,18 +7,14 @@
  
  include $(TOPDIR)/rules.mk
  PKG_NAME:=toolchain
 -PKG_RELEASE:=1
 +PKG_RELEASE:=4
+ 
+ PKG_MAINTAINER:=Felix Fietkau <nbd@openwrt.org>
  
  include $(INCLUDE_DIR)/package.mk
  
@@ -20,7 +22,7 @@
  
  define Package/gcc/Default
    SECTION:=libs
-@@ -53,7 +49,6 @@
+@@ -55,7 +51,6 @@
  
  define Package/libssp
  $(call Package/gcc/Default)
@@ -28,7 +30,7 @@
    TITLE:=GCC support library
  endef
  
-@@ -112,7 +107,6 @@
+@@ -114,7 +109,6 @@
    VERSION:=$(LIBC_VERSION)-$(PKG_RELEASE)
    DEPENDS:=+libgcc
    URL:=$(LIBC_URL)
@@ -36,7 +38,7 @@
  endef
  
  
-@@ -470,8 +464,8 @@
+@@ -485,8 +479,8 @@
    define Package/libgcc/install
  	for file in $(call qstrip,$(CONFIG_LIBGCC_FILE_SPEC)); do \
  		dir=`dirname $$$$file` ; \
@@ -47,7 +49,7 @@
  	done ; \
  	exit 0
    endef
-@@ -479,16 +473,16 @@
+@@ -494,16 +488,16 @@
    define Package/libgfortran/install
  	for file in $(call qstrip,$(CONFIG_LIBGFORTRAN_FILE_SPEC)); do \
  		dir=`dirname $$$$file` ; \
@@ -68,7 +70,7 @@
  	done ; \
  	exit 0
    endef
-@@ -496,17 +490,18 @@
+@@ -511,17 +505,18 @@
    define Package/libstdcpp/install
  	for file in $(call qstrip,$(CONFIG_LIBSTDCPP_FILE_SPEC)); do \
  		dir=`dirname $$$$file` ; \
@@ -91,7 +93,7 @@
  	done ; \
  	exit 0
    endef
-@@ -514,8 +509,8 @@
+@@ -529,17 +524,22 @@
    define Package/libpthread/install
  	for file in $(call qstrip,$(CONFIG_LIBPTHREAD_FILE_SPEC)); do \
  		dir=`dirname $$$$file` ; \
@@ -102,7 +104,12 @@
  	done ; \
  	exit 0
    endef
-@@ -523,8 +518,8 @@
+ 
++  define Package/libthread-db/install
++	$(INSTALL_DIR) $(1)/opt/lib
++	$(CP) $(call qstrip,$(CONFIG_LIBPTHREAD_ROOT_DIR))/lib/libthread_db{-*.so,.so.*} $(1)/opt/lib/
++  endef
++
    define Package/librt/install
  	for file in $(call qstrip,$(CONFIG_LIBRT_FILE_SPEC)); do \
  		dir=`dirname $$$$file` ; \
@@ -113,7 +120,7 @@
  	done ; \
  	exit 0
    endef
-@@ -532,8 +527,8 @@
+@@ -547,8 +547,8 @@
    define Package/ldd/install
  	for file in $(call qstrip,$(CONFIG_LDD_FILE_SPEC)); do \
  		dir=`dirname $$$$file` ; \
@@ -124,7 +131,7 @@
  	done ; \
  	exit 0
    endef
-@@ -541,8 +536,8 @@
+@@ -556,8 +556,8 @@
    define Package/ldconfig/install
  	for file in $(call qstrip,$(CONFIG_LDCONFIG_FILE_SPEC)); do \
  		dir=`dirname $$$$file` ; \

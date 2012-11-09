@@ -1,6 +1,6 @@
---- ../../../openwrt_trunk.orig/feeds/packages/net/iperf/Makefile	2012-07-10 18:59:23.033221824 +0400
-+++ ../../../openwrt_trunk/feeds/packages/net/iperf/Makefile	2012-07-10 19:00:03.448713732 +0400
-@@ -75,8 +75,8 @@
+--- ../../../openwrt_trunk.orig/package/network/utils/iperf/Makefile
++++ ../../../openwrt_trunk/package/network/utils/iperf/Makefile
+@@ -77,8 +77,8 @@
  endif
  
  define Package/iperf/install

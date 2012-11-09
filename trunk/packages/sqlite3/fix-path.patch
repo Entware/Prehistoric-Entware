@@ -1,6 +1,6 @@
---- ../../../openwrt_trunk.orig/feeds/packages/libs/sqlite3/Makefile	2011-11-25 09:50:10.856687692 +0400
-+++ ../../../openwrt_trunk/feeds/packages/libs/sqlite3/Makefile	2011-11-25 09:49:34.469145147 +0400
-@@ -80,22 +80,22 @@
+--- ../../../openwrt_trunk.orig/feeds/packages/libs/sqlite3/Makefile
++++ ../../../openwrt_trunk/feeds/packages/libs/sqlite3/Makefile
+@@ -83,22 +83,22 @@
  	config_TARGET_READLINE_LIBS="$(TARGET_LDFLAGS) -lreadline -lncurses" \
  
  define Build/InstallDev

@@ -1,6 +1,6 @@
---- ../../../openwrt_trunk.orig/package/comgt/Makefile	2012-08-06 14:41:28.346697804 +0400
-+++ ../../../openwrt_trunk/package/comgt/Makefile	2012-08-30 13:35:40.302045514 +0400
-@@ -23,7 +23,6 @@
+--- ../../../openwrt_trunk.orig/package/network/utils/comgt/Makefile
++++ ../../../openwrt_trunk/package/network/utils/comgt/Makefile
+@@ -25,7 +25,6 @@
    SECTION:=utils
    CATEGORY:=Utilities
    TITLE:=Option/Vodafone 3G/GPRS control tool
@@ -8,7 +8,7 @@
    URL:=http://www.pharscape.org/comgt.html
  endef
  
-@@ -37,29 +36,22 @@
+@@ -39,29 +38,22 @@
  	$(MAKE) -C $(PKG_BUILD_DIR) \
  		$(TARGET_CONFIGURE_OPTS) \
  		CFLAGS="$(TARGET_CFLAGS)" \

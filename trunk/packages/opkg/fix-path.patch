@@ -1,5 +1,5 @@
---- ../../../openwrt_trunk.orig/package/opkg/Makefile	2012-10-08 18:51:10.459154635 +0400
-+++ ../../../openwrt_trunk/package/opkg/Makefile	2012-10-09 10:12:47.382153569 +0400
+--- ../../../openwrt_trunk.orig/package/opkg/Makefile
++++ ../../../openwrt_trunk/package/opkg/Makefile
 @@ -5,7 +5,6 @@
  # See /LICENSE for more information.
  
@@ -8,7 +8,7 @@
  include $(INCLUDE_DIR)/version.mk
  
  PKG_NAME:=opkg
-@@ -47,7 +46,7 @@
+@@ -50,7 +49,7 @@
  endef
  
  define Package/opkg/conffiles
@@ -17,7 +17,7 @@
  endef
  
  TARGET_CFLAGS += $(if $(CONFIG_GCC_VERSION_4_3)$(CONFIG_GCC_VERSION_4_4),-Wno-array-bounds)
-@@ -57,27 +56,29 @@
+@@ -60,27 +59,29 @@
  CONFIGURE_ARGS += \
  	--disable-curl \
  	--disable-gpg \

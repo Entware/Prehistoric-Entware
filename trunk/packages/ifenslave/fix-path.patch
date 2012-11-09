@@ -1,5 +1,5 @@
---- ../../../openwrt_trunk.orig/package/ifenslave/Makefile	2012-10-09 13:58:35.293900549 +0400
-+++ ../../../openwrt_trunk/package/ifenslave/Makefile	2012-10-09 22:41:18.869330909 +0400
+--- ../../../openwrt_trunk.orig/package/network/utils/ifenslave/Makefile
++++ ../../../openwrt_trunk/package/network/utils/ifenslave/Makefile
 @@ -6,9 +6,9 @@
  #
  

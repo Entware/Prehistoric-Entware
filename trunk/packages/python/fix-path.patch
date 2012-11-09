@@ -24,7 +24,7 @@ diff -urx .svn ../../../openwrt_trunk.orig/feeds/packages/lang/python/files/pyth
 diff -urx .svn ../../../openwrt_trunk.orig/feeds/packages/lang/python/Makefile ../../../openwrt_trunk/feeds/packages/lang//python/Makefile
 --- ../../../openwrt_trunk.orig/feeds/packages/lang/python/Makefile	2012-07-10 18:59:23.109220868 +0400
 +++ ../../../openwrt_trunk/feeds/packages/lang//python/Makefile	2012-07-11 12:44:24.596500063 +0400
-@@ -153,11 +153,11 @@
+@@ -156,11 +156,11 @@
  	$(CP) $(STAGING_DIR_HOST)/bin/pgen $(PKG_BUILD_DIR)/hostpgen
  	$(CP) $(STAGING_DIR_HOST)/bin/python$(PYTHON_VERSION) $(PKG_BUILD_DIR)/hostpython
  	$(call Build/Configure/Default, \
@@ -38,7 +38,7 @@ diff -urx .svn ../../../openwrt_trunk.orig/feeds/packages/lang/python/Makefile .
  		$(ENABLE_IPV6) \
  		ac_cv_have_chflags=no \
  		ac_cv_have_lchflags=no \
-@@ -169,286 +169,286 @@
+@@ -172,286 +172,286 @@
  endef
  
  define Build/InstallDev

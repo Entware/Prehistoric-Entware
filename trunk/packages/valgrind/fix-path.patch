@@ -1,6 +1,6 @@
---- ../../../openwrt_trunk.orig/feeds/packages/utils/valgrind/Makefile	2012-10-08 18:50:39.459155198 +0400
-+++ ../../../openwrt_trunk/feeds/packages/utils/valgrind/Makefile	2012-10-08 18:54:10.667151354 +0400
-@@ -89,68 +89,68 @@
+--- ../../../openwrt_trunk.orig/package/devel/valgrind/Makefile
++++ ../../../openwrt_trunk/package/devel/valgrind/Makefile
+@@ -91,68 +91,68 @@
  	--without-included-gettext
  
  define Package/valgrind/install	

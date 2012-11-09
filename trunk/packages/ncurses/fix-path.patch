@@ -1,5 +1,5 @@
---- ../../../openwrt_trunk.orig/package/libs/ncurses/Makefile
-+++ ../../../openwrt_trunk/package/libs/ncurses/Makefile
+--- ../../../openwrt_trunk/package/libs/ncurses/Makefile.orig	2012-11-08 16:20:49.814935744 +0400
++++ ../../../openwrt_trunk/package/libs/ncurses/Makefile	2012-11-09 11:06:25.617705440 +0400
 @@ -9,7 +9,7 @@
  
  PKG_NAME:=ncurses
@@ -9,7 +9,7 @@
  
  PKG_BUILD_DIR:=$(BUILD_DIR)/$(BUILD_VARIANT)/$(PKG_NAME)-$(PKG_VERSION)
  PKG_SOURCE:=$(PKG_NAME)-$(PKG_VERSION).tar.gz
-@@ -46,6 +46,16 @@
+@@ -49,6 +49,16 @@
    VARIANT:=libncursesw
  endef
  
@@ -26,7 +26,7 @@
  TARGET_CFLAGS += $(FPIC)
  
  CONFIGURE_ARGS += \
-@@ -56,17 +66,16 @@
+@@ -59,13 +69,12 @@
  	--without-ada \
  	--without-debug \
  	--without-profile \
@@ -40,6 +40,10 @@
 +	--with-terminfo-dirs=/opt/share/terminfo \
 +	--with-default-terminfo-dir=/opt/share/terminfo
  
+ ifneq ($(INSTALL_LIBSTDCPP),y)
+ CONFIGURE_ARGS += \
+@@ -74,7 +83,7 @@
+ 
  ifeq ($(HOST_OS),FreeBSD)
  	CONFIGURE_ARGS +=
 -		--with-terminfo=/usr/share/terminfo.db 
@@ -47,7 +51,7 @@
  endif
  
  ifeq ($(BUILD_VARIANT),libncursesw)
-@@ -79,73 +88,86 @@
+@@ -87,73 +96,86 @@
  	BUILD_CC="$(HOSTCC)" \
  	HOSTCC="$(HOSTCC)" \
  	HOSTCCFLAGS="" \
