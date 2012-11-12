@@ -1,0 +1,10 @@
+--- a/nfs_prot.x
++++ b/nfs_prot.x
+@@ -193,7 +193,6 @@
+ typedef u_int64_t	uint64;
+ typedef int64_t		int64;
+ typedef unsigned int	uint32;
+-typedef int		int32;
+ typedef string		filename3<>;
+ typedef string		nfspath3<>;
+ typedef uint64		fileid3;

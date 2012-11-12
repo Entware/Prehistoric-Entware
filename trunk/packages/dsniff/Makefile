@@ -9,6 +9,7 @@ all: ./.done
 
 ./.done:
 	patch -p0 -i ./fix-path.patch
+	cp -f ./020-int-definition.patch ../../../openwrt_trunk/feeds/packages/net/dsniff/patches/
 	touch $@
 
 clean:
