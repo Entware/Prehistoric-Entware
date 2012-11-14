@@ -1,0 +1,26 @@
+--- a/lib/strutil/strutil.c	2012-04-02 17:46:22.000000000 +0400
++++ b/lib/strutil/strutil.c	2012-11-15 01:55:32.000000000 +0400
+@@ -331,10 +331,10 @@
+            to utf-8 or UTF-8.
+            On Mac OS X, it returns the same case as the LANG input.
+            So let tranform result of nl_langinfo (CODESET) to upper case  unconditionally. */
+-        term_encoding = g_ascii_strup (nl_langinfo (CODESET), -1);
++        /*term_encoding = g_ascii_strup (nl_langinfo (CODESET), -1);*/
+     }
+ 
+-    return term_encoding;
++    return "UTF-8";
+ }
+ 
+ static int
+--- a/lib/tty/tty-slang.c
++++ b/lib/tty/tty-slang.c
+@@ -274,7 +274,7 @@ tty_init (gboolean mouse_enable, gboolea
+ {
+     SLtt_Ignore_Beep = 1;
+ 
+-    SLutf8_enable (-1);         /* has to be called first before any of the other functions. */
++    SLutf8_enable (1);         /* has to be called first before any of the other functions. */
+     SLtt_get_terminfo ();
+     /*
+      * If the terminal in not in terminfo but begins with a well-known
