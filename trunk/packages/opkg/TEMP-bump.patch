@@ -1,0 +1,7 @@
+--- ../../../openwrt_trunk/package/opkg/Makefile.orig	2012-11-10 01:32:12.000000000 +0400
++++ ../../../openwrt_trunk/package/opkg/Makefile	2012-11-17 00:54:56.000000000 +0400
+@@ -12,3 +12,3 @@
+ PKG_VERSION:=$(PKG_REV)
+-PKG_RELEASE:=2
++PKG_RELEASE:=3
+ 
