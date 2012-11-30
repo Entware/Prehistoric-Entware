@@ -1,6 +1,33 @@
---- ../../../openwrt_trunk.orig/feeds/packages/utils/nano/Makefile	2011-12-28 08:43:25.000000000 +0400
-+++ ../../../openwrt_trunk/feeds/packages/utils/nano/Makefile	2012-01-12 14:51:20.055197669 +0400
-@@ -45,8 +45,8 @@
+--- ../../../downloads/openwrt_trunk-r34120/feeds/packages/utils/nano/Makefile	2012-11-09 11:32:20.661677175 +0400
++++ ../../../openwrt_trunk/feeds/packages/utils/nano/Makefile	2012-11-30 08:50:40.568801827 +0400
+@@ -9,7 +9,7 @@
+ 
+ PKG_NAME:=nano
+ PKG_VERSION:=2.2.6
+-PKG_RELEASE:=1
++PKG_RELEASE:=1a
+ 
+ PKG_SOURCE:=$(PKG_NAME)-$(PKG_VERSION).tar.gz
+ PKG_SOURCE_URL:=http://www.nano-editor.org/dist/v2.2
+@@ -36,17 +36,25 @@
+ endef
+ 
+ CONFIGURE_ARGS += \
+-	--enable-tiny \
+ 	--disable-glibtest \
+ 	--disable-utf8 \
+ 	--without-slang \
++	--enable-wrapping \
++	--disable-help \
++	--disable-justify \
++	--disable-mouse \
++	--disable-operatingdir \
++	--disable-speller \
++	--disable-tabcomp \
++	--disable-browser \
++	--disable-color \
+ 
+ CONFIGURE_VARS += \
  	ac_cv_header_regex_h=no \
  
  define Package/nano/install
