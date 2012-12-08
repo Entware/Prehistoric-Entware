@@ -1,11 +1,15 @@
---- ../../../downloads/openwrt_trunk-r34120/feeds/packages/utils/smartmontools/Makefile	2012-11-09 11:32:20.601677177 +0400
-+++ ../../../openwrt_trunk/feeds/packages/utils/smartmontools/Makefile	2012-11-09 15:30:18.161415927 +0400
-@@ -8,19 +8,21 @@
+--- ../../../openwrt_trunk/feeds/packages/utils/smartmontools/Makefile.orig	2012-12-06 15:27:19.357111699 +0400
++++ ../../../openwrt_trunk/feeds/packages/utils/smartmontools/Makefile	2012-12-07 12:05:21.575758025 +0400
+@@ -6,22 +6,24 @@
+ #
+ 
  include $(TOPDIR)/rules.mk
+-include $(INCLUDE_DIR)/uclibc++.mk
++#include $(INCLUDE_DIR)/uclibc++.mk
  
  PKG_NAME:=smartmontools
 -PKG_VERSION:=5.40
--PKG_RELEASE:=3
+-PKG_RELEASE:=4
 +PKG_VERSION:=6.0
 +PKG_RELEASE:=1
  
@@ -26,7 +30,7 @@
    TITLE:=S.M.A.R.T Monitoring
    URL:=http://smartmontools.sourceforge.net/
  endef
-@@ -54,7 +56,7 @@
+@@ -55,7 +57,7 @@
  
  CONFIGURE_VARS += \
  	CXXFLAGS="$$$$CXXFLAGS -fno-builtin -fno-rtti -nostdinc++" \
@@ -35,7 +39,7 @@
  	LDFLAGS="$$$$LDFLAGS" \
  	LIBS="-nodefaultlibs -lc -luClibc++ -lm $(LIBGCC_S) -lc" \
  
-@@ -71,21 +73,23 @@
+@@ -73,21 +75,23 @@
  endef
  
  define Package/smartmontools/install

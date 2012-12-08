@@ -1,6 +1,6 @@
---- ../../../openwrt_trunk.orig/feeds/packages/libs/glib2/Makefile	2011-11-15 14:03:59.000000000 +0400
-+++ ../../../openwrt_trunk/feeds/packages/libs/glib2/Makefile	2011-11-24 11:38:25.146827151 +0400
-@@ -58,42 +58,42 @@
+--- ../../../openwrt_trunk.orig/feeds/packages/libs/glib2/Makefile
++++ ../../../openwrt_trunk/feeds/packages/libs/glib2/Makefile
+@@ -57,42 +57,42 @@
  endef
  
  define Build/InstallDev

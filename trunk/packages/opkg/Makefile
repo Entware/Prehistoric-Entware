@@ -13,7 +13,6 @@ all: ./.done
 	cp ./999-change-default-config-path.patch ../../../openwrt_trunk/package/opkg/patches
 	cp ./999-free-space-calc.patch ../../../openwrt_trunk/package/opkg/patches
 	rm ../../../openwrt_trunk/package/opkg/patches/009-remove-upgrade-all.patch
-	patch -p0 -i ./TEMP-bump.patch
 	cp ./040-TEMP-wrap-descriptions-only-on-ttys.patch ../../../openwrt_trunk/package/opkg/patches
 	cp ./050-TEMP-add-case-insensitive-flag.patch ../../../openwrt_trunk/package/opkg/patches
 	cp ./060-TEMP-add-find-command.patch ../../../openwrt_trunk/package/opkg/patches

@@ -1,6 +1,6 @@
-diff -r -u -x .svn ../../../openwrt_trunk.orig/feeds/packages/libs/pcre//Makefile ../../../openwrt_trunk/feeds/packages/libs/pcre//Makefile
---- ../../../openwrt_trunk.orig/feeds/packages/libs/pcre//Makefile	2011-11-15 14:03:59.000000000 +0400
-+++ ../../../openwrt_trunk/feeds/packages/libs/pcre//Makefile	2011-11-24 11:46:26.696791881 +0400
+diff -r -u -x .svn ../../../openwrt_trunk.orig/feeds/packages/libs/pcre/Makefile ../../../openwrt_trunk/feeds/packages/libs/pcre/Makefile
+--- ../../../openwrt_trunk.orig/feeds/packages/libs/pcre/Makefile	2011-11-15 14:03:59.000000000 +0400
++++ ../../../openwrt_trunk/feeds/packages/libs/pcre/Makefile	2011-11-24 11:46:26.696791881 +0400
 @@ -58,31 +58,31 @@
  	CFLAGS="$(TARGET_CFLAGS)"
  
@@ -46,9 +46,9 @@ diff -r -u -x .svn ../../../openwrt_trunk.orig/feeds/packages/libs/pcre//Makefil
  endef
  
  $(eval $(call BuildPackage,libpcre))
-diff -r -u -x .svn ../../../openwrt_trunk.orig/feeds/packages/libs/pcre//patches/750-pcre_config_cross.patch ../../../openwrt_trunk/feeds/packages/libs/pcre//patches/750-pcre_config_cross.patch
---- ../../../openwrt_trunk.orig/feeds/packages/libs/pcre//patches/750-pcre_config_cross.patch	2011-11-15 14:03:59.000000000 +0400
-+++ ../../../openwrt_trunk/feeds/packages/libs/pcre//patches/750-pcre_config_cross.patch	2011-11-24 09:41:25.993921791 +0400
+diff -r -u -x .svn ../../../openwrt_trunk.orig/feeds/packages/libs/pcre/patches/750-pcre_config_cross.patch ../../../openwrt_trunk/feeds/packages/libs/pcre/patches/750-pcre_config_cross.patch
+--- ../../../openwrt_trunk.orig/feeds/packages/libs/pcre/patches/750-pcre_config_cross.patch	2011-11-15 14:03:59.000000000 +0400
++++ ../../../openwrt_trunk/feeds/packages/libs/pcre/patches/750-pcre_config_cross.patch	2011-11-24 09:41:25.993921791 +0400
 @@ -5,7 +5,7 @@
     ;;
   esac

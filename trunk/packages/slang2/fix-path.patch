@@ -1,6 +1,6 @@
-diff -r -u -x .svn ../../../openwrt_trunk.orig/feeds/packages/libs/slang2//files/ncurses5-config ../../../openwrt_trunk/feeds/packages/libs/slang2//files/ncurses5-config
---- ../../../openwrt_trunk.orig/feeds/packages/libs/slang2//files/ncurses5-config	2011-11-25 09:50:11.124684325 +0400
-+++ ../../../openwrt_trunk/feeds/packages/libs/slang2//files/ncurses5-config	2011-11-25 22:42:32.131839971 +0400
+diff -r -u -x .svn ../../../openwrt_trunk.orig/feeds/packages/libs/slang2/files/ncurses5-config ../../../openwrt_trunk/feeds/packages/libs/slang2/files/ncurses5-config
+--- ../../../openwrt_trunk.orig/feeds/packages/libs/slang2/files/ncurses5-config	2011-11-25 09:50:11.124684325 +0400
++++ ../../../openwrt_trunk/feeds/packages/libs/slang2/files/ncurses5-config	2011-11-25 22:42:32.131839971 +0400
 @@ -1,6 +1,6 @@
  #!/bin/sh
  
@@ -9,9 +9,9 @@ diff -r -u -x .svn ../../../openwrt_trunk.orig/feeds/packages/libs/slang2//files
 +	echo "/opt/share/terminfo"
  fi
  
-diff -r -u -x .svn ../../../openwrt_trunk.orig/feeds/packages/libs/slang2//Makefile ../../../openwrt_trunk/feeds/packages/libs/slang2//Makefile
---- ../../../openwrt_trunk.orig/feeds/packages/libs/slang2//Makefile	2011-11-25 09:50:11.128684274 +0400
-+++ ../../../openwrt_trunk/feeds/packages/libs/slang2//Makefile	2011-11-25 22:44:29.386382531 +0400
+diff -r -u -x .svn ../../../openwrt_trunk.orig/feeds/packages/libs/slang2/Makefile ../../../openwrt_trunk/feeds/packages/libs/slang2/Makefile
+--- ../../../openwrt_trunk.orig/feeds/packages/libs/slang2/Makefile	2011-11-25 09:50:11.128684274 +0400
++++ ../../../openwrt_trunk/feeds/packages/libs/slang2/Makefile	2011-11-25 22:44:29.386382531 +0400
 @@ -73,24 +73,24 @@
  endef
  

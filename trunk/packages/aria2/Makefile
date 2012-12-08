@@ -9,7 +9,6 @@ all: ./.done
 
 ./.done:
 	patch -p0 -i ./fix-path.patch
-	patch -p0 -i ./tmp_update_to_1.15.2.patch
 	mkdir ../../../openwrt_trunk/feeds/packages/net/aria2/files
 	cp ./aria2.conf ../../../openwrt_trunk/feeds/packages/net/aria2/files/
 	cp ./S81aria2 ../../../openwrt_trunk/feeds/packages/net/aria2/files/

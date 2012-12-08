@@ -9,8 +9,7 @@ all: ./.done
 
 ./.done:
 	patch -p0 -i ./fix-path.patch
-	cp ./110-remove-accep4-support.patch ../../../openwrt_trunk/feeds/packages/net/nginx/patches/
-	cp ./S80nginx ../../../openwrt_trunk/feeds/packages/net/nginx/files/
+	cp -f ./500-conf.patch ../../../openwrt_trunk/feeds/packages/utils/rsnapshot/patches/
 	touch $@
 
 clean:

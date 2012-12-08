@@ -1,6 +1,6 @@
 Index: Makefile
 ===================================================================
---- ../../../openwrt_trunk/feeds/packages/admin/zabbix/Makefile	(revision 32497)
+--- ../../../openwrt_trunk/feeds/packages/admin/zabbix/Makefile.orig	(revision 34500)
 +++ ../../../openwrt_trunk/feeds/packages/admin/zabbix/Makefile	(revision 28892)
 @@ -1,5 +1,5 @@
  #
@@ -42,7 +42,7 @@ Index: Makefile
  endef
  
  define Package/zabbix-agent
-@@ -36,114 +34,64 @@
+@@ -36,128 +34,64 @@
    TITLE+= agent
  endef
  
@@ -73,10 +73,14 @@ Index: Makefile
 -  DEPENDS += +libsqlite3
 -endef
  
+-define Package/zabbix-agentd/config
+-  select BUSYBOX_CONFIG_HOSTNAME if !PACKAGE_net-tools-hostname
+-  select BUSYBOX_CONFIG_UNAME if !PACKAGE_coreutils-uname
+-endef
 +ifneq ($(SDK),)
 +CONFIG_PACKAGE_zabbix-server:=m
 +endif
-+
+ 
  CONFIGURE_ARGS+= \
 -	--enable-agent \
 +	--bindir="/usr/sbin" \
@@ -99,10 +103,8 @@ Index: Makefile
 -	$(INSTALL_BIN) \
 -		$(PKG_INSTALL_DIR)/usr/sbin/zabbix_$(2) \
 -		$(1)/usr/sbin/
-+define Package/zabbix-agent/conffiles
-+/etc/zabbix/zabbix_agentd.conf
- endef
- 
+-endef
+-
 -define Package/zabbix/install/bin
 -	$(INSTALL_DIR) \
 -		$(1)/usr/bin
@@ -130,10 +132,20 @@ Index: Makefile
 -		$(1)/etc/init.d/zabbix_$(2)
 -endef
 -
--define Package/zabbix-$(1)/conffiles
--  /etc/zabbix/zabbix_$(1).conf
+ define Package/zabbix-agent/conffiles
+-/etc/zabbix_agent.conf
++/etc/zabbix/zabbix_agentd.conf
+ endef
+-define Package/zabbix-agentd/conffiles
+-/etc/zabbix_agentd.conf
 -endef
--
+-define Package/zabbix-server/conffiles
+-/etc/zabbix_server.conf
+-endef
+-define Package/zabbix-proxy/conffiles
+-/etc/zabbix_proxy.conf
+-endef
+ 
  define Package/zabbix-agent/install
 -	$(call Package/zabbix/install/sbin,$(1),agent)
 -	$(call Package/zabbix/install/etc,$(1),agent)
@@ -184,49 +196,3 @@ Index: Makefile
  $(eval $(call BuildPackage,zabbix-server))
 -$(eval $(call BuildPackage,zabbix-proxy))
 -$(eval $(call BuildPackage,zabbix-get))
-Index: patches/001-cross_compile.patch
-===================================================================
---- ../../../openwrt_trunk/feeds/packages/admin/zabbix/patches/001-cross_compile.patch	(revision 32497)
-+++ ../../../openwrt_trunk/feeds/packages/admin/zabbix/patches/001-cross_compile.patch	(revision 28892)
-@@ -1,29 +1,13 @@
----- a/configure.in	2012-06-21 21:32:23.707912790 +0000
--+++ b/configure.in	2012-06-21 21:33:36.213554564 +0000
--@@ -806,25 +806,8 @@
-+diff -urN zabbix-1.6/configure zabbix-1.6.new/configure
-+--- zabbix-1.6/configure	2008-09-18 22:15:39.000000000 +0200
-++++ zabbix-1.6.new/configure	2008-09-30 19:20:43.000000000 +0200
-+@@ -4826,8 +4826,7 @@
-+   { { echo "$as_me:$LINENO: error: cannot run test program while cross compiling
-+ See \`config.log' for more details." >&5
-+ echo "$as_me: error: cannot run test program while cross compiling
-+-See \`config.log' for more details." >&2;}
-+-   { (exit 1); exit 1; }; }
-++See \`config.log' for more details." >&2;} }
-+ else
-+   cat >conftest.$ac_ext <<_ACEOF
-  
-- dnl Check for %qu format (FreeBSD 4.x)
-- dnl FreeBSD 4.x does not support %llu
---AC_MSG_CHECKING(for long long format)
---AC_TRY_RUN(
---[
---#include <sys/types.h>
---int main()
---{
---        uint64_t i;
---
---        sscanf("200000000010020", "%qu", &i);
---
---        if (i == 200000000010020) return 0;
---        else return -1;
---}
---],
---AC_DEFINE(HAVE_LONG_LONG_QU, 1 ,[Define to 1 if format '%qu' exists.])
---AC_MSG_RESULT(yes),
---AC_MSG_RESULT(no))
---
-- dnl option -rdynamic is needed for readable backtraces
--+
-- AC_MSG_CHECKING(for -rdynamic linking option)
-- saved_LDFLAGS="$LDFLAGS"
-- LDFLAGS="-rdynamic $LDFLAGS"

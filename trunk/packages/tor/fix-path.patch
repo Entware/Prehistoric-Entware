@@ -1,6 +1,6 @@
---- ../../../openwrt_trunk.orig/feeds/packages/net/tor/Makefile	2012-01-20 19:21:04.000000000 +0400
-+++ ../../../openwrt_trunk/feeds/packages/net/tor/Makefile	2012-01-21 19:38:44.817498522 +0400
-@@ -47,12 +47,12 @@
+--- ../../../openwrt_trunk/feeds/packages/net/tor/Makefile.orig	2012-12-06 15:27:21.000000000 +0400
++++ ../../../openwrt_trunk/feeds/packages/net/tor/Makefile	2012-12-07 11:49:59.331780142 +0400
+@@ -69,16 +69,16 @@
  endef
  
  define Package/tor/conffiles
@@ -13,10 +13,16 @@
 -	--with-ssl-dir="$(STAGING_DIR)/usr" \
 +	--with-libevent-dir="$(STAGING_DIR)/opt" \
 +	--with-ssl-dir="$(STAGING_DIR)/opt" \
+ 	--enable-upnp \
+-	--with-libminiupnpc-dir="$(STAGING_DIR)/usr" \
++	--with-libminiupnpc-dir="$(STAGING_DIR)/opt" \
+ 	--enable-nat-pmp \
+-	--with-libnatpmp-dir="$(STAGING_DIR)/usr" \
++	--with-libnatpmp-dir="$(STAGING_DIR)/opt" \
  	--disable-asciidoc
  
- CONFIGURE_VARS += \
-@@ -63,17 +63,16 @@
+ ifneq ($(CONFIG_SSP_SUPPORT),y)
+@@ -94,22 +94,20 @@
  	CFLAGS="$(TARGET_CFLAGS)"
  
  define Package/tor/install
@@ -28,9 +34,15 @@
 -	$(INSTALL_CONF) $(PKG_INSTALL_DIR)/etc/tor/torrc.sample $(1)/etc/tor/torrc
 +	$(INSTALL_DIR) $(1)/opt/sbin
 +	$(INSTALL_BIN) $(PKG_INSTALL_DIR)/opt/bin/tor $(1)/opt/sbin/
-+	$(INSTALL_DIR) $(1)/opt/etc
 +	$(INSTALL_DIR) $(1)/opt/etc/tor
 +	$(INSTALL_CONF) $(PKG_INSTALL_DIR)/opt/etc/tor/torrc.sample $(1)/opt/etc/tor/torrc
+ endef
+ 
+ define Package/tor-fw-helper/install
+-	$(INSTALL_DIR) $(1)/usr/bin
+-	$(INSTALL_BIN) $(PKG_INSTALL_DIR)/usr/bin/tor-fw-helper $(1)/usr/bin/
++	$(INSTALL_DIR) $(1)/opt/bin
++	$(INSTALL_BIN) $(PKG_INSTALL_DIR)/opt/bin/tor-fw-helper $(1)/opt/bin/
  endef
  
  define Package/tor-geoip/install

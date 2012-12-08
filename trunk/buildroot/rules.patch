@@ -1,6 +1,6 @@
 --- ../../openwrt_trunk.orig/rules.mk
 +++ ../../openwrt_trunk/rules.mk
-@@ -110,8 +110,8 @@
+@@ -111,8 +111,8 @@
  TARGET_PATH:=$(STAGING_DIR_HOST)/bin:$(subst $(space),:,$(filter-out .,$(filter-out ./,$(subst :,$(space),$(PATH)))))
  TARGET_CFLAGS:=$(TARGET_OPTIMIZATION)$(if $(CONFIG_DEBUG), -g3)
  TARGET_CXXFLAGS = $(TARGET_CFLAGS)

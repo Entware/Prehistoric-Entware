@@ -1,15 +1,15 @@
---- ../../../openwrt_trunk.orig/feeds/packages/utils/sane-backends/Makefile	2012-07-15 21:54:16.353949884 +0400
-+++ ../../../openwrt_trunk/feeds/packages/utils/sane-backends/Makefile	2012-07-16 11:38:44.028235527 +0400
-@@ -47,7 +47,7 @@
+--- ../../../downloads/openwrt_trunk-r34568/feeds/packages/utils/sane-backends/Makefile	2012-12-07 16:49:59.311447492 +0400
++++ ../../../openwrt_trunk/feeds/packages/utils/sane-backends/Makefile	2012-12-07 16:51:38.071445676 +0400
+@@ -48,7 +48,7 @@
    $(call Package/sane-backends/Default)
    SECTION:=libs
    CATEGORY:=Libraries
--  DEPENDS:=+libjpeg +libtiff +libusb +libv4l
-+  DEPENDS:=+libjpeg +libtiff +libusb
+-  DEPENDS:=+libjpeg +libtiff +libusb +libv4l +cups
++  DEPENDS:=+libjpeg +libtiff +libusb +cups
    TITLE+= (libraries)
  endef
  
-@@ -70,7 +70,7 @@
+@@ -71,7 +71,7 @@
  endef
  
  TARGET_LDFLAGS += \
@@ -18,7 +18,7 @@
  	-Wl,-rpath-link $(PKG_BUILD_DIR)/backend/.libs
  
  CONFIGURE_ARGS+= \
-@@ -88,33 +88,36 @@
+@@ -89,33 +89,36 @@
  endef
  
  define Package/sane-backends/conffiles

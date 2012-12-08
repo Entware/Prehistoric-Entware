@@ -9,4 +9,4 @@
 # with the gods, you should probably leave all this stuff alone.
 
 TOOLCHAIN_REVISION:=4667
-OPENWRT_REVISION:=34120
+OPENWRT_REVISION:=34568

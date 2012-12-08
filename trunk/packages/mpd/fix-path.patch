@@ -1,4 +1,4 @@
---- ../../../openwrt_trunk.orig//feeds/packages/sound/mpd/Makefile	2012-07-11 14:54:02.022735770 +0400
+--- ../../../openwrt_trunk.orig/feeds/packages/sound/mpd/Makefile	2012-07-11 14:54:02.022735770 +0400
 +++ ../../../openwrt_trunk/feeds/packages/sound/mpd/Makefile	2012-07-11 21:23:31.732939871 +0400
 @@ -131,13 +131,12 @@
  	--enable-un \

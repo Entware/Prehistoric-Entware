@@ -1,14 +1,5 @@
 --- ../../../openwrt_trunk.orig/feeds/packages/libs/libdaq/Makefile	2012-10-09 13:58:16.201900894 +0400
 +++ ../../../openwrt_trunk/feeds/packages/libs/libdaq/Makefile	2012-10-23 15:19:58.836785069 +0400
-@@ -24,7 +24,7 @@
-   CATEGORY:=Libraries
-   TITLE:=DAQ library
-   URL:=$(PKG_SOURCE_URL)
--  DEPENDS:=+libdnet +libipq +libpcap
-+  DEPENDS:=+libdnet +libpcap
- endef
- 
- define Package/libdaq/description
 @@ -34,10 +34,10 @@
  CONFIGURE_ARGS+= \
  	--disable-static \
