@@ -1,6 +1,6 @@
-diff -urx .svn ../../../downloads/openwrt_trunk-r34530/package/network/services/dropbear/Makefile ../../../openwrt_trunk/package/network/services/dropbear/Makefile
---- ../../../downloads/openwrt_trunk-r34530/package/network/services/dropbear/Makefile	2012-12-06 15:28:19.277110607 +0400
-+++ ../../../openwrt_trunk/package/network/services/dropbear/Makefile	2012-12-07 14:49:14.043577990 +0400
+diff -urx .svn ../../../downloads/openwrt_trunk-r34568/package/network/services/dropbear/Makefile ../../../openwrt_trunk/package/network/services/dropbear/Makefile
+--- ../../../downloads/openwrt_trunk-r34568/package/network/services/dropbear/Makefile	2012-12-07 16:50:23.847447028 +0400
++++ ../../../openwrt_trunk/package/network/services/dropbear/Makefile	2012-12-10 21:17:29.369252161 +0400
 @@ -40,9 +40,9 @@
  endef
  
@@ -14,17 +14,20 @@ diff -urx .svn ../../../downloads/openwrt_trunk-r34530/package/network/services/
  endef
  
  define Package/dropbearconvert
-@@ -69,9 +69,6 @@
+@@ -69,8 +69,10 @@
  	--disable-zlib \
  	--enable-bundled-libtom
  
 -TARGET_CFLAGS += -DARGTYPE=3 -ffunction-sections -fdata-sections
 -TARGET_LDFLAGS += -Wl,--gc-sections
--
++define Build/Configure 
++	$(SED) 's,/etc/,/opt/etc/,g' $(PKG_BUILD_DIR)/options.h
++	$(call Build/Configure/Default)
++endef
+ 
  define Build/Compile
  	+$(MAKE) $(PKG_JOBS) -C $(PKG_BUILD_DIR) \
- 		$(TARGET_CONFIGURE_OPTS) \
-@@ -83,26 +80,32 @@
+@@ -83,26 +85,32 @@
  endef
  
  define Package/dropbear/install
@@ -74,9 +77,9 @@ diff -urx .svn ../../../downloads/openwrt_trunk-r34530/package/network/services/
  endef
  
  $(eval $(call BuildPackage,dropbear))
-diff -urx .svn ../../../downloads/openwrt_trunk-r34530/package/network/services/dropbear/patches/100-pubkey_path.patch ../../../openwrt_trunk/package/network/services/dropbear/patches/100-pubkey_path.patch
---- ../../../downloads/openwrt_trunk-r34530/package/network/services/dropbear/patches/100-pubkey_path.patch	2012-12-06 15:28:19.297110609 +0400
-+++ ../../../openwrt_trunk/package/network/services/dropbear/patches/100-pubkey_path.patch	2012-12-06 15:29:09.537109692 +0400
+diff -urx .svn ../../../downloads/openwrt_trunk-r34568/package/network/services/dropbear/patches/100-pubkey_path.patch ../../../openwrt_trunk/package/network/services/dropbear/patches/100-pubkey_path.patch
+--- ../../../downloads/openwrt_trunk-r34568/package/network/services/dropbear/patches/100-pubkey_path.patch	2012-12-07 16:50:23.879447030 +0400
++++ ../../../openwrt_trunk/package/network/services/dropbear/patches/100-pubkey_path.patch	2012-12-07 16:51:14.631446101 +0400
 @@ -28,7 +28,7 @@
  +		/* open the file */
  +		authfile = fopen(filename, "r");
@@ -99,9 +102,9 @@ diff -urx .svn ../../../downloads/openwrt_trunk-r34530/package/network/services/
  +			goto out;
  +		}
  +	} else {
-diff -urx .svn ../../../downloads/openwrt_trunk-r34530/package/network/services/dropbear/patches/120-openwrt_options.patch ../../../openwrt_trunk/package/network/services/dropbear/patches/120-openwrt_options.patch
---- ../../../downloads/openwrt_trunk-r34530/package/network/services/dropbear/patches/120-openwrt_options.patch	2012-12-06 15:28:19.293110608 +0400
-+++ ../../../openwrt_trunk/package/network/services/dropbear/patches/120-openwrt_options.patch	2012-12-06 15:29:09.537109693 +0400
+diff -urx .svn ../../../downloads/openwrt_trunk-r34568/package/network/services/dropbear/patches/120-openwrt_options.patch ../../../openwrt_trunk/package/network/services/dropbear/patches/120-openwrt_options.patch
+--- ../../../downloads/openwrt_trunk-r34568/package/network/services/dropbear/patches/120-openwrt_options.patch	2012-12-07 16:50:23.879447030 +0400
++++ ../../../openwrt_trunk/package/network/services/dropbear/patches/120-openwrt_options.patch	2012-12-07 16:51:14.631446101 +0400
 @@ -1,6 +1,6 @@
  --- a/options.h
  +++ b/options.h
@@ -194,9 +197,9 @@ diff -urx .svn ../../../downloads/openwrt_trunk-r34530/package/network/services/
 + 
 + /* Whether to log commands executed by a client. This only logs the 
 +  * (single) command sent to the server, not what a user did in a 
-diff -urx .svn ../../../downloads/openwrt_trunk-r34530/package/network/services/dropbear/patches/500-set-default-path.patch ../../../openwrt_trunk/package/network/services/dropbear/patches/500-set-default-path.patch
---- ../../../downloads/openwrt_trunk-r34530/package/network/services/dropbear/patches/500-set-default-path.patch	2012-12-06 15:28:19.297110609 +0400
-+++ ../../../openwrt_trunk/package/network/services/dropbear/patches/500-set-default-path.patch	2012-12-06 15:29:09.537109693 +0400
+diff -urx .svn ../../../downloads/openwrt_trunk-r34568/package/network/services/dropbear/patches/500-set-default-path.patch ../../../openwrt_trunk/package/network/services/dropbear/patches/500-set-default-path.patch
+--- ../../../downloads/openwrt_trunk-r34568/package/network/services/dropbear/patches/500-set-default-path.patch	2012-12-07 16:50:23.879447030 +0400
++++ ../../../openwrt_trunk/package/network/services/dropbear/patches/500-set-default-path.patch	2012-12-07 16:51:14.631446101 +0400
 @@ -5,7 +5,7 @@
   
   /* The default path. This will often get replaced by the shell */
