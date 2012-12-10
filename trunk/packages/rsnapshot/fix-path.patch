@@ -1,5 +1,5 @@
---- ../../../downloads/openwrt_trunk-r34530/feeds/packages/utils/rsnapshot/Makefile	2012-12-06 15:28:05.569110857 +0400
-+++ ../../../openwrt_trunk//feeds/packages/utils/rsnapshot/Makefile	2012-12-07 16:40:04.447459937 +0400
+--- ../../../downloads/openwrt_trunk-r34568/feeds/packages/utils/rsnapshot/Makefile	2012-12-07 16:49:58.807447468 +0400
++++ ../../../openwrt_trunk/feeds/packages/utils/rsnapshot/Makefile	2012-12-10 16:04:51.681597513 +0400
 @@ -40,7 +40,10 @@
  		+perlbase-selectsaver \
  		+perlbase-symbol \
@@ -12,22 +12,24 @@
  endef
  
  define Package/rsnapshot/description
-@@ -52,22 +55,24 @@
+@@ -52,22 +55,25 @@
    space of one full backup, plus incrementals.
  endef
  
 -CONFIGURE_ARGS += --with-cp=/bin/cp \
 -		  --with-rsync=/usr/bin/rsync \
-+CONFIGURE_ARGS += --with-cp=/opt/bin/cp \
-+		  --with-rsync=/opt/bin/rsync \
- 		  --with-rm=/bin/rm \
+-		  --with-rm=/bin/rm \
 -		  --with-ssh=/usr/bin/ssh \
 -		  --with-logger=/usr/bin/logger \
 -		  --with-du=/usr/bin/du
-+		  --with-ssh=/opt/bin/ssh \
-+		  --without-logger \
-+		  --with-perl=/opt/bin/perl \
-+		  --with-du=/opt/bin/du
++CONFIGURE_ARGS += --without-logger \
++
++CONFIGURE_VARS += ac_cv_path_PERL=/opt/bin/perl \
++		  ac_cv_path_RSYNC=/opt/bin/rsync \
++		  ac_cv_path_CP=/opt/bin/cp \
++		  ac_cv_path_RM=/opt/bin/rm \
++		  ac_cv_path_DU=/opt/bin/du \
++		  ac_cv_path_SSH=/opt/bin/ssh \
  
  define Package/rsnapshot/install
 -	$(INSTALL_DIR) $(1)/usr/bin

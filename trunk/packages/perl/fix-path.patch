@@ -1,6 +1,6 @@
-diff -urx .svn ../../../openwrt_trunk.orig/feeds/packages/lang/perl/files/config.sh-mipsel.in ../../../openwrt_trunk/feeds/packages/lang/perl/files/config.sh-mipsel.in
---- ../../../openwrt_trunk.orig/feeds/packages/lang/perl/files/config.sh-mipsel.in	2012-05-02 16:17:28.618360323 +0400
-+++ ../../../openwrt_trunk/feeds/packages/lang/perl/files/config.sh-mipsel.in	2012-05-02 16:22:05.566119710 +0400
+diff -urx .svn ../../../downloads/openwrt_trunk-r34568/feeds/packages/lang/perl/files/config.sh-mipsel.in ../../../openwrt_trunk/feeds/packages/lang/perl/files/config.sh-mipsel.in
+--- ../../../downloads/openwrt_trunk-r34568/feeds/packages/lang/perl/files/config.sh-mipsel.in	2012-12-07 16:49:57.131447517 +0400
++++ ../../../openwrt_trunk/feeds/packages/lang/perl/files/config.sh-mipsel.in	2012-12-07 16:51:36.803445705 +0400
 @@ -697,25 +697,25 @@
  inc_version_list_init='0'
  incpath=''
@@ -125,9 +125,9 @@ diff -urx .svn ../../../openwrt_trunk.orig/feeds/packages/lang/perl/files/config
  timetype='time_t'
  tmpnam_r_proto='0'
  to=':'
-diff -urx .svn ../../../openwrt_trunk.orig/feeds/packages/lang/perl/files/Module/ScanDeps.pm ../../../openwrt_trunk/feeds/packages/lang/perl/files/Module/ScanDeps.pm
---- ../../../openwrt_trunk.orig/feeds/packages/lang/perl/files/Module/ScanDeps.pm	2012-05-02 16:17:28.618360323 +0400
-+++ ../../../openwrt_trunk/feeds/packages/lang/perl/files/Module/ScanDeps.pm	2012-05-02 16:22:05.566119710 +0400
+diff -urx .svn ../../../downloads/openwrt_trunk-r34568/feeds/packages/lang/perl/files/Module/ScanDeps.pm ../../../openwrt_trunk/feeds/packages/lang/perl/files/Module/ScanDeps.pm
+--- ../../../downloads/openwrt_trunk-r34568/feeds/packages/lang/perl/files/Module/ScanDeps.pm	2012-12-07 16:49:57.131447517 +0400
++++ ../../../openwrt_trunk/feeds/packages/lang/perl/files/Module/ScanDeps.pm	2012-12-07 16:51:36.811445681 +0400
 @@ -71,7 +71,7 @@
  (e.g. C<Test/More.pm>); the values are hash references with this structure:
  
@@ -137,9 +137,9 @@ diff -urx .svn ../../../openwrt_trunk.orig/feeds/packages/lang/perl/files/Module
          key     => 'Test/More.pm',
          type    => 'module',    # or 'autoload', 'data', 'shared'
          used_by => [ 'Test/Simple.pm', ... ],
-diff -urx .svn ../../../openwrt_trunk.orig/feeds/packages/lang/perl/files/perlmod-deps.sh ../../../openwrt_trunk/feeds/packages/lang/perl/files/perlmod-deps.sh
---- ../../../openwrt_trunk.orig/feeds/packages/lang/perl/files/perlmod-deps.sh	2012-05-02 16:17:28.618360323 +0400
-+++ ../../../openwrt_trunk/feeds/packages/lang/perl/files/perlmod-deps.sh	2012-05-02 16:22:05.570121659 +0400
+diff -urx .svn ../../../downloads/openwrt_trunk-r34568/feeds/packages/lang/perl/files/perlmod-deps.sh ../../../openwrt_trunk/feeds/packages/lang/perl/files/perlmod-deps.sh
+--- ../../../downloads/openwrt_trunk-r34568/feeds/packages/lang/perl/files/perlmod-deps.sh	2012-12-07 16:49:57.131447517 +0400
++++ ../../../openwrt_trunk/feeds/packages/lang/perl/files/perlmod-deps.sh	2012-12-07 16:51:36.811445676 +0400
 @@ -12,8 +12,8 @@
  fi
  
@@ -160,9 +160,9 @@ diff -urx .svn ../../../openwrt_trunk.orig/feeds/packages/lang/perl/files/perlmo
  
  sub scandeps {
      my $builddir = Cwd::abs_path(shift);
-diff -urx .svn ../../../openwrt_trunk.orig/feeds/packages/lang/perl/files/scan-perlbase.sh ../../../openwrt_trunk/feeds/packages/lang/perl/files/scan-perlbase.sh
---- ../../../openwrt_trunk.orig/feeds/packages/lang/perl/files/scan-perlbase.sh	2012-05-02 16:17:28.618360323 +0400
-+++ ../../../openwrt_trunk/feeds/packages/lang/perl/files/scan-perlbase.sh	2012-05-02 16:22:05.570121659 +0400
+diff -urx .svn ../../../downloads/openwrt_trunk-r34568/feeds/packages/lang/perl/files/scan-perlbase.sh ../../../openwrt_trunk/feeds/packages/lang/perl/files/scan-perlbase.sh
+--- ../../../downloads/openwrt_trunk-r34568/feeds/packages/lang/perl/files/scan-perlbase.sh	2012-12-07 16:49:57.131447517 +0400
++++ ../../../openwrt_trunk/feeds/packages/lang/perl/files/scan-perlbase.sh	2012-12-07 16:51:36.811445676 +0400
 @@ -12,8 +12,8 @@
  fi
  
@@ -174,9 +174,9 @@ diff -urx .svn ../../../openwrt_trunk.orig/feeds/packages/lang/perl/files/scan-p
  INC_DIR="$(dirname $0)"
  shift
  
-diff -urx .svn ../../../openwrt_trunk.orig/feeds/packages/lang/perl/Makefile ../../../openwrt_trunk/feeds/packages/lang/perl/Makefile
---- ../../../openwrt_trunk.orig/feeds/packages/lang/perl/Makefile	2012-05-02 16:17:28.614360360 +0400
-+++ ../../../openwrt_trunk/feeds/packages/lang/perl/Makefile	2012-05-26 22:26:16.337079295 +0400
+diff -urx .svn ../../../downloads/openwrt_trunk-r34568/feeds/packages/lang/perl/Makefile ../../../openwrt_trunk/feeds/packages/lang/perl/Makefile
+--- ../../../downloads/openwrt_trunk-r34568/feeds/packages/lang/perl/Makefile	2012-12-07 16:49:57.127447517 +0400
++++ ../../../openwrt_trunk/feeds/packages/lang/perl/Makefile	2012-12-07 16:51:36.811445676 +0400
 @@ -68,14 +68,15 @@
  
  define Build/microperl/Compile
@@ -224,9 +224,23 @@ diff -urx .svn ../../../openwrt_trunk.orig/feeds/packages/lang/perl/Makefile ../
  endef
  
  ifneq ($(CONFIG_PACKAGE_microperl),)
-diff -urx .svn ../../../openwrt_trunk.orig/feeds/packages/lang/perl/perlmod.mk ../../../openwrt_trunk/feeds/packages/lang/perl/perlmod.mk
---- ../../../openwrt_trunk.orig/feeds/packages/lang/perl/perlmod.mk	2012-05-02 16:17:28.614360360 +0400
-+++ ../../../openwrt_trunk/feeds/packages/lang/perl/perlmod.mk	2012-05-02 16:22:05.570121659 +0400
+diff -urx .svn ../../../downloads/openwrt_trunk-r34568/feeds/packages/lang/perl/perlbase.mk ../../../openwrt_trunk/feeds/packages/lang/perl/perlbase.mk
+--- ../../../downloads/openwrt_trunk-r34568/feeds/packages/lang/perl/perlbase.mk	2012-12-07 16:49:57.127447517 +0400
++++ ../../../openwrt_trunk/feeds/packages/lang/perl/perlbase.mk	2012-12-10 14:03:18.517730937 +0400
+@@ -1466,8 +1466,8 @@
+ endef
+ 
+ define Package/perlbase-test/install
+-	$(INSTALL_DIR) $(1)/usr/bin
+-	$(INSTALL_BIN) $(PKG_INSTALL_DIR)/usr/bin/prove $(1)/usr/bin/
++	$(INSTALL_DIR) $(1)/opt/bin
++	$(INSTALL_BIN) $(PKG_INSTALL_DIR)/opt/bin/prove $(1)/opt/bin/
+ 	$(call perlmod/Install,$(1),Test Test.pm,Test/Harness/TAP.pod Test/Tutorial.pod)
+ endef
+ 
+diff -urx .svn ../../../downloads/openwrt_trunk-r34568/feeds/packages/lang/perl/perlmod.mk ../../../openwrt_trunk/feeds/packages/lang/perl/perlmod.mk
+--- ../../../downloads/openwrt_trunk-r34568/feeds/packages/lang/perl/perlmod.mk	2012-12-07 16:49:57.127447517 +0400
++++ ../../../openwrt_trunk/feeds/packages/lang/perl/perlmod.mk	2012-12-07 16:51:36.811445676 +0400
 @@ -2,11 +2,11 @@
  #
  

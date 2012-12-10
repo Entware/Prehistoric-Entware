@@ -8,6 +8,7 @@
 all: ./.done
 
 ./.done:
+	patch -p0 -i ./downgrade_from_2.34.3_to_2.26.1.patch
 	patch -p0 -i ./fix-path.patch
 	touch $@
 

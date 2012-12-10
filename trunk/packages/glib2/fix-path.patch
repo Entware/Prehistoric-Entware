@@ -1,6 +1,6 @@
 --- ../../../openwrt_trunk.orig/feeds/packages/libs/glib2/Makefile
 +++ ../../../openwrt_trunk/feeds/packages/libs/glib2/Makefile
-@@ -57,42 +57,42 @@
+@@ -58,42 +58,42 @@
  endef
  
  define Build/InstallDev
