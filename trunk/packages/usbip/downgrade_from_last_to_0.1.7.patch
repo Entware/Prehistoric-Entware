@@ -1,6 +1,8 @@
---- ../../../openwrt_trunk/feeds/packages/net/usbip/Makefile.orig	2012-08-06 09:53:40.487012358 +0400
-+++ ../../../openwrt_trunk/feeds/packages/net/usbip/Makefile	2012-08-06 12:07:44.210865699 +0400
-@@ -1,30 +1,19 @@
+Index: Makefile
+===================================================================
+--- ../../../openwrt_trunk/feeds/packages/net/usbip/Makefile	(revision 32887)
++++ ../../../openwrt_trunk/feeds/packages/net/usbip/Makefile	(revision 32206)
+@@ -1,31 +1,20 @@
  #
 -# Copyright (C) 2010-2012 OpenWrt.org
 +# Copyright (C) 2010-2011 OpenWrt.org
@@ -24,18 +26,19 @@
 -PKG_SOURCE_URL:=
 -PKG_MD5SUM:=unknown
 -PATCH_DIR:=./patches-$(PKG_VERSION)
--
++PKG_SOURCE:=$(PKG_NAME)-$(PKG_VERSION).tar.gz
++PKG_SOURCE_URL:=@SF/usbip
++PKG_MD5SUM:=d1094b6d4449787864f8be001639232c
+ 
 -define prepare_source_directory
 -	rm -rf $(PKG_BUILD_DIR)
 -	$(CP) $(LINUX_DIR)/drivers/staging/usbip/userspace $(PKG_BUILD_DIR)
 -endef
 -Hooks/Prepare/Pre += prepare_source_directory
-+PKG_SOURCE:=$(PKG_NAME)-$(PKG_VERSION).tar.gz
-+PKG_SOURCE_URL:=@SF/usbip
-+PKG_MD5SUM:=d1094b6d4449787864f8be001639232c
- 
+-
  PKG_BUILD_DEPENDS:=glib2 sysfsutils
  PKG_FIXUP:=autoreconf
+ PKG_INSTALL:=1
 @@ -36,70 +25,68 @@
  define Package/usbip/Common
    TITLE:=USB-over-IP
@@ -78,15 +81,15 @@
 -MAKE_PATH:=.
 -LIBTOOL_PATHS:=.
 -MAKE_FLAGS+=CFLAGS="-Wno-implicit-function-declaration"
--
--define Build/Configure
--	(cd $(PKG_BUILD_DIR); ./autogen.sh );
--	$(call Build/Configure/Default)
--endef
 +CONFIGURE_PATH:=./src
 +MAKE_PATH:=./src
 +LIBTOOL_PATHS:=./src
  
+-define Build/Configure
+-	(cd $(PKG_BUILD_DIR); ./autogen.sh );
+-	$(call Build/Configure/Default)
+-endef
+-
  CFLAGS+="$(TARGET_CFLAGS) -I$(STAGING_DIR)/usr/include"
  
 -define Download/usb.ids
