@@ -1,0 +1,11 @@
+--- a/tspc-advanced/src/lib/md5c.c	2012-04-12 14:07:30.549406618 +0400
++++ b/tspc-advanced/src/lib/md5c.c	2012-04-12 14:08:04.168986667 +0400
+@@ -44,7 +44,7 @@
+ 
+ #include "platform.h"
+ 
+-#include "md5.h"
++#include "../../include/md5.h"
+ 
+ static void MD5Transform __P((uint32_t [4], const unsigned char [64]));
+ 
