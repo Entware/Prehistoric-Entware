@@ -1,0 +1,45 @@
+--- ../../../downloads/openwrt_trunk-r34568/feeds/packages/libs/wxbase/Makefile	2012-12-07 16:49:57.431447508 +0400
++++ ../../../openwrt_trunk/feeds/packages/libs/wxbase/Makefile	2012-12-27 11:44:11.295128312 +0400
+@@ -8,12 +8,12 @@
+ include $(TOPDIR)/rules.mk
+ 
+ PKG_NAME:=wxbase
+-PKG_VERSION:=2.8.10
++PKG_VERSION:=2.8.12
+ PKG_RELEASE:=1
+ 
+ PKG_SOURCE:=wxGTK-$(PKG_VERSION).tar.bz2
+ PKG_SOURCE_URL:=@SF/wxwindows
+-PKG_MD5SUM:=88b867bc118a183af56efc67014bdf27
++PKG_MD5SUM:=08f81ab60647308058f6ce99712b14f8
+ 
+ PKG_BUILD_DIR:=$(BUILD_DIR)/wxGTK-$(PKG_VERSION)
+ 
+@@ -116,18 +116,18 @@
+ endif
+ 
+ define Build/InstallDev
+-	$(INSTALL_DIR) $(1)/usr/bin $(1)/usr/include $(1)/usr/lib
+-	$(CP) -L $(PKG_BUILD_DIR)/wx-config $(1)/usr/bin/
+-	$(CP) $(PKG_INSTALL_DIR)/usr/include/wx-2.8 $(1)/usr/include/
+-	$(CP) $(PKG_INSTALL_DIR)/usr/lib/libwx_base$(LIB_PFX){,_net,_xml}-*.so* $(1)/usr/lib/
+-	$(CP) $(PKG_INSTALL_DIR)/usr/lib/wx $(1)/usr/lib/
+-	$(SED) 's,-I$$$${includedir}/wx-2.8,-I$(STAGING_DIR)/usr/include/wx-2.8,g' $(1)/usr/bin/wx-config
+-	$(SED) 's,-I$$$${libdir}/wx/include,-I$(STAGING_DIR)/usr/lib/wx/include,g' $(1)/usr/bin/wx-config
++	$(INSTALL_DIR) $(1)/opt/bin $(1)/opt/include $(1)/opt/lib
++	$(CP) -L $(PKG_BUILD_DIR)/wx-config $(1)/opt/bin/
++	$(CP) $(PKG_INSTALL_DIR)/opt/include/wx-2.8 $(1)/opt/include/
++	$(CP) $(PKG_INSTALL_DIR)/opt/lib/libwx_base$(LIB_PFX){,_net,_xml}-*.so* $(1)/opt/lib/
++	$(CP) $(PKG_INSTALL_DIR)/opt/lib/wx $(1)/opt/lib/
++	$(SED) 's,-I$$$${includedir}/wx-2.8,-I$(STAGING_DIR)/opt/include/wx-2.8,g' $(1)/opt/bin/wx-config
++	$(SED) 's,-I$$$${libdir}/wx/include,-I$(STAGING_DIR)/opt/lib/wx/include,g' $(1)/opt/bin/wx-config
+ endef
+ 
+ define Package/libwxbase/install
+-	$(INSTALL_DIR) $(1)/usr/lib
+-	$(CP) $(PKG_INSTALL_DIR)/usr/lib/libwx_base$(LIB_PFX){,_net,_xml}-*.so.* $(1)/usr/lib/
++	$(INSTALL_DIR) $(1)/opt/lib
++	$(CP) $(PKG_INSTALL_DIR)/opt/lib/libwx_base$(LIB_PFX){,_net,_xml}-*.so.* $(1)/opt/lib/
+ endef
+ 
+ $(eval $(call BuildPackage,libwxbase))

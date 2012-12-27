@@ -1,0 +1,205 @@
+diff -urx .svn ../../../downloads/openwrt_trunk-r34568/feeds/packages/net/amule/Makefile ../../../openwrt_trunk/feeds/packages/net/amule/Makefile
+--- ../../../downloads/openwrt_trunk-r34568/feeds/packages/net/amule/Makefile	2012-12-07 16:50:15.175447182 +0400
++++ ../../../openwrt_trunk/feeds/packages/net/amule/Makefile	2012-12-27 12:37:15.839071490 +0400
+@@ -8,12 +8,12 @@
+ include $(TOPDIR)/rules.mk
+ 
+ PKG_NAME:=aMule
+-PKG_VERSION:=2.2.6
++PKG_VERSION:=2.3.1
+ PKG_RELEASE:=1
+ 
+ PKG_SOURCE:=$(PKG_NAME)-$(PKG_VERSION).tar.bz2
+ PKG_SOURCE_URL:=@SF/amule
+-PKG_MD5SUM:=530d9b48187e36f78fc21bb19e94326d
++PKG_MD5SUM:=31724290a440943f5b05d4dca413fe02
+ 
+ PKG_BUILD_DEPENDS:=libgd
+ 
+@@ -26,11 +26,10 @@
+   CATEGORY:=Network
+   TITLE:=A multi-platform eMule-like ed2k client
+   URL:=http://www.amule.org/
+-  DEPENDS:=+libpng +libpthread +libncurses +libreadline +libwxbase +libcryptoxx
++  DEPENDS:=+libpng +libpthread +libncurses +libreadline +libwxbase +libcryptoxx $(ICONV_DEPENDS)
+ endef
+ 
+ CONFIGURE_ARGS+= \
+-	--enable-shared \
+ 	--disable-static \
+ 	--disable-rpath \
+ 	--with-gnu-ld \
+@@ -41,30 +40,21 @@
+ 	--disable-monolithic \
+ 	--enable-amule-daemon \
+ 	--enable-amulecmd \
+-	--disable-amulecmdgui \
+ 	--enable-webserver \
+-	--disable-webservergui \
+ 	--disable-amule-gui \
+ 	--disable-cas \
+ 	--disable-wxcas \
+ 	--disable-ed2k \
+ 	--disable-alc \
+ 	--disable-alcc \
+-	--disable-systray \
+-	--disable-utf8-systray \
+-	--enable-embedded-crypto \
+-	--enable-gsocket \
+-	--disable-gtktest \
+-	--disable-crypto \
+ 	\
+-	--with-zlib="$(STAGING_DIR)/usr" \
+-	--with-gdlib-prefix="$(STAGING_DIR)/usr" \
+-	--with-libpng-prefix="$(STAGING_DIR)/usr" \
+-	--with-wx-prefix="$(STAGING_DIR)/usr" \
+-	--with-crypto-prefix="$(STAGING_DIR)/usr" \
++	--with-zlib="$(STAGING_DIR)/opt" \
++	--with-gdlib-prefix="$(STAGING_DIR)/opt" \
++	--with-libpng-prefix="$(STAGING_DIR)/opt" \
++	--with-wx-prefix="$(STAGING_DIR)/opt" \
++	--with-crypto-prefix="$(STAGING_DIR)/opt" \
+ 	--with-libiconv-prefix="$(ICONV_PREFIX)" \
+ 	--with-libintl-prefix="$(INTL_PREFIX)" \
+-	--without-x \
+ 
+ TARGET_LDFLAGS += \
+ 	-liconv
+@@ -77,10 +67,13 @@
+ endef
+ 
+ define Package/amule/install
+-	$(INSTALL_DIR) $(1)/usr/bin
+-	$(INSTALL_BIN) $(PKG_INSTALL_DIR)/usr/bin/amule{cmd,d,web} $(1)/usr/bin/
+-	$(INSTALL_DIR) $(1)/usr/share
+-	$(CP) $(PKG_INSTALL_DIR)/usr/share/amule $(1)/usr/share/
++	$(INSTALL_DIR) $(1)/opt/bin
++	$(INSTALL_BIN) $(PKG_INSTALL_DIR)/opt/bin/amule{cmd,d,web} $(1)/opt/bin/
++	$(INSTALL_DIR) $(1)/opt/share
++	$(CP) $(PKG_INSTALL_DIR)/opt/share/amule $(1)/opt/share/
++	$(INSTALL_DIR) $(1)/opt/etc/init.d
++	$(INSTALL_BIN) ./files/S57amuled $(1)/opt/etc/init.d
++	$(INSTALL_DIR) $(1)/opt/var/amule
+ endef
+ 
+ $(eval $(call BuildPackage,amule))
+diff -urx .svn ../../../downloads/openwrt_trunk-r34568/feeds/packages/net/amule/patches/001-no_backtrace.patch ../../../openwrt_trunk/feeds/packages/net/amule/patches/001-no_backtrace.patch
+--- ../../../downloads/openwrt_trunk-r34568/feeds/packages/net/amule/patches/001-no_backtrace.patch	2012-12-07 16:50:15.207447181 +0400
++++ ../../../openwrt_trunk/feeds/packages/net/amule/patches/001-no_backtrace.patch	2012-12-27 11:55:43.175112141 +0400
+@@ -1,29 +1,23 @@
+-Index: aMule-2.2.6/configure
+-===================================================================
+---- aMule-2.2.6.orig/configure	2012-07-28 23:50:12.000000000 +0200
+-+++ aMule-2.2.6/configure	2012-07-28 23:50:51.000000000 +0200
+-@@ -18375,93 +18375,6 @@
++--- ./configure.orig	2012-12-27 11:52:01.851101785 +0400
+++++ ./configure	2012-12-27 11:54:30.503115686 +0400
++@@ -13984,67 +13984,6 @@
+  
+  
+  
+ -# Check for bfd.h (to have proper backtraces without using wxExecute)
+ -
+--	echo "$as_me:$LINENO: checking for bfd" >&5
+--echo $ECHO_N "checking for bfd... $ECHO_C" >&6
++-	{ $as_echo "$as_me:${as_lineno-$LINENO}: checking for bfd" >&5
++-$as_echo_n "checking for bfd... " >&6; }
+ -	result=no
+--	for bfd_ldadd in "" "${LIBINTL}"; do
++-	for bfd_ldadd in "" "${LIBINTL}" "-ldl" "-ldl ${LIBINTL}"; do
+ -		mule_backup_LIBS="$LIBS"
+ -		mule_backup_LDFLAGS="$LDFLAGS"
+ -		LIBS="-lbfd -liberty ${bfd_ldadd} ${ZLIB_LIBS} $LIBS"
+ -		LDFLAGS="$LDFLAGS ${ZLIB_LDFLAGS}"
+--		cat >conftest.$ac_ext <<_ACEOF
+--
+--			/* confdefs.h.  */
+--_ACEOF
+--cat confdefs.h >>conftest.$ac_ext
+--cat >>conftest.$ac_ext <<_ACEOF
++-		cat confdefs.h - <<_ACEOF >conftest.$ac_ext
+ -/* end confdefs.h.  */
+ -
++-
+ -				#include <ansidecl.h>
+ -				#include <bfd.h>
+ -
+@@ -38,28 +32,7 @@
+ -}
+ -
+ -_ACEOF
+--rm -f conftest.$ac_objext conftest$ac_exeext
+--if { (eval echo "$as_me:$LINENO: \"$ac_link\"") >&5
+--  (eval $ac_link) 2>conftest.er1
+--  ac_status=$?
+--  grep -v '^ *+' conftest.er1 >conftest.err
+--  rm -f conftest.er1
+--  cat conftest.err >&5
+--  echo "$as_me:$LINENO: \$? = $ac_status" >&5
+--  (exit $ac_status); } &&
+--	 { ac_try='test -z "$ac_c_werror_flag"
+--			 || test ! -s conftest.err'
+--  { (eval echo "$as_me:$LINENO: \"$ac_try\"") >&5
+--  (eval $ac_try) 2>&5
+--  ac_status=$?
+--  echo "$as_me:$LINENO: \$? = $ac_status" >&5
+--  (exit $ac_status); }; } &&
+--	 { ac_try='test -s conftest$ac_exeext'
+--  { (eval echo "$as_me:$LINENO: \"$ac_try\"") >&5
+--  (eval $ac_try) 2>&5
+--  ac_status=$?
+--  echo "$as_me:$LINENO: \$? = $ac_status" >&5
+--  (exit $ac_status); }; }; then
++-if ac_fn_c_try_link "$LINENO"; then :
+ -
+ -			result=yes
+ -			BFD_CPPFLAGS="-DHAVE_BFD"
+@@ -68,31 +41,30 @@
+ -			LDFLAGS="$mule_backup_LDFLAGS"
+ -			break
+ -
+--else
+--  echo "$as_me: failed program was:" >&5
+--sed 's/^/| /' conftest.$ac_ext >&5
+--
+ -fi
+--rm -f conftest.err conftest.$ac_objext \
+--      conftest$ac_exeext conftest.$ac_ext
++-rm -f core conftest.err conftest.$ac_objext \
++-    conftest$ac_exeext conftest.$ac_ext
+ -		LIBS="$mule_backup_LIBS"
+ -		LDFLAGS="$mule_backup_LDFLAGS"
+ -	done
+ -
+--	echo "$as_me:$LINENO: result: $result" >&5
+--echo "${ECHO_T}$result" >&6
++-	{ $as_echo "$as_me:${as_lineno-$LINENO}: result: $result" >&5
++-$as_echo "$result" >&6; }
+ -
+--	if test $result = no; then
+--  { echo "$as_me:$LINENO: WARNING:
+--	bfd.h not found or unusable, please install binutils development
+--	package if you are a developer or want to help testing aMule" >&5
+--echo "$as_me: WARNING:
+--	bfd.h not found or unusable, please install binutils development
+--	package if you are a developer or want to help testing aMule" >&2;}
++-	if test $result = no; then :
++-  { $as_echo "$as_me:${as_lineno-$LINENO}: WARNING:
++-        bfd.h not found or unusable, please install binutils development
++-        package if you are a developer or want to help testing aMule" >&5
++-$as_echo "$as_me: WARNING:
++-        bfd.h not found or unusable, please install binutils development
++-        package if you are a developer or want to help testing aMule" >&2;}
++-_mule_warning_10=yes
++-_mule_has_warnings=yes
+ -
+ -fi
+ -
+ -
+- 	echo "$as_me:$LINENO: checking for <execinfo.h> and backtrace()" >&5
+- echo $ECHO_N "checking for <execinfo.h> and backtrace()... $ECHO_C" >&6
+- 	cat >conftest.$ac_ext <<_ACEOF
++-
++ 	{ $as_echo "$as_me:${as_lineno-$LINENO}: checking for <execinfo.h> and backtrace()" >&5
++ $as_echo_n "checking for <execinfo.h> and backtrace()... " >&6; }
++ 	cat confdefs.h - <<_ACEOF >conftest.$ac_ext
