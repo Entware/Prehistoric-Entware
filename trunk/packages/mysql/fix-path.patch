@@ -1,6 +1,6 @@
-diff -urx .svn ../../../openwrt_trunk.orig/feeds/packages/libs/mysql/conf/my.cnf ../../../openwrt_trunk/feeds/packages/libs/mysql/conf/my.cnf
---- ../../../openwrt_trunk.orig/feeds/packages/libs/mysql/conf/my.cnf	2012-07-10 18:59:22.337230573 +0400
-+++ ../../../openwrt_trunk/feeds/packages/libs/mysql/conf/my.cnf	2012-07-10 19:00:04.188704430 +0400
+diff -urx .svn ../../../downloads/openwrt_trunk-r35342/feeds/packages/libs/mysql/conf/my.cnf ../../../openwrt_trunk/feeds/packages/libs/mysql/conf/my.cnf
+--- ../../../downloads/openwrt_trunk-r35342/feeds/packages/libs/mysql/conf/my.cnf	2013-01-28 14:41:49.755275486 +0400
++++ ../../../openwrt_trunk/feeds/packages/libs/mysql/conf/my.cnf	2013-01-28 14:43:25.635273738 +0400
 @@ -1,20 +1,20 @@
  [client]
  port		= 3306
@@ -43,37 +43,28 @@ diff -urx .svn ../../../openwrt_trunk.orig/feeds/packages/libs/mysql/conf/my.cnf
  #expire_logs_days	= 10
  #max_binlog_size         = 100M
  #binlog_do_db		= include_database_name
-diff -urx .svn ../../../openwrt_trunk.orig/feeds/packages/libs/mysql/Makefile ../../../openwrt_trunk/feeds/packages/libs/mysql/Makefile
---- ../../../openwrt_trunk.orig/feeds/packages/libs/mysql/Makefile
-+++ ../../../openwrt_trunk/feeds/packages/libs/mysql/Makefile
-@@ -62,7 +62,7 @@
+diff -urx .svn ../../../downloads/openwrt_trunk-r35342/feeds/packages/libs/mysql/Makefile ../../../openwrt_trunk/feeds/packages/libs/mysql/Makefile
+--- ../../../downloads/openwrt_trunk-r35342/feeds/packages/libs/mysql/Makefile	2013-01-28 14:41:49.755275486 +0400
++++ ../../../openwrt_trunk/feeds/packages/libs/mysql/Makefile	2013-02-04 15:55:52.660177684 +0400
+@@ -68,7 +68,7 @@
+ 	--without-mysqlmanager \
+ 	--without-raid \
+ 	--with-mysqld-user=root \
+-	--with-unix-socket-path=/tmp \
++	--with-unix-socket-path=/opt/tmp \
+ 	--without-libwrap \
+ 	--without-pstack \
+ 	--with-low-memory \
+@@ -80,7 +80,7 @@
+ 	--without-docs \
+ 	--without-man \
+ 	--without-bench \
+-	--without-readline \
++	--with-readline \
+ 	--without-debug \
+ 	--with-named-thread-libs=-lpthread
  
- CONFIGURE_VARS += \
-         CXXFLAGS="$$$$CXXFLAGS -fno-builtin -fno-rtti -nostdinc++"  \
--        CPPFLAGS="$$$$CPPFLAGS -I$(STAGING_DIR)/usr/include/uClibc++" \
-+        CPPFLAGS="$$$$CPPFLAGS -I$(STAGING_DIR)/opt/include/uClibc++" \
-         LDFLAGS="$$$$LDFLAGS" \
-         LIBS="-nodefaultlibs -luClibc++ -lm -lc $(LIBGCC_S)" \
-         CLIENTCLIBS="-nodefaultlibs -luClibc++ -lm -lc $(LIBGCC_S)" \
-@@ -88,7 +88,7 @@
- 		--without-mysqlmanager \
- 		--without-raid \
- 		--with-mysqld-user=root \
--		--with-unix-socket-path=/tmp \
-+		--with-unix-socket-path=/opt/tmp \
- 		--without-libwrap \
- 		--without-pstack \
- 		--with-low-memory \
-@@ -100,7 +100,7 @@
- 		--without-docs \
- 		--without-man \
- 		--without-bench \
--		--without-readline \
-+		--with-readline \
- 		--without-debug \
- 		--with-named-thread-libs=-lpthread \
- 		, \
-@@ -158,47 +158,47 @@
+@@ -140,47 +140,47 @@
  
  
  define Build/InstallDev

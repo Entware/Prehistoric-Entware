@@ -1,27 +1,6 @@
-diff -urx .svn ../../../openwrt_trunk.orig/feeds/packages/net/freeswitch/files/etc.minimal/autoload_configs/lua.conf.xml ../../../openwrt_trunk/feeds/packages/net/freeswitch/files/etc.minimal/autoload_configs/lua.conf.xml
---- ../../../openwrt_trunk.orig/feeds/packages/net/freeswitch/files/etc.minimal/autoload_configs/lua.conf.xml	2012-07-12 09:38:55.962166731 +0400
-+++ ../../../openwrt_trunk/feeds/packages/net/freeswitch/files/etc.minimal/autoload_configs/lua.conf.xml	2012-07-12 09:39:18.121888146 +0400
-@@ -5,14 +5,14 @@
-     Specify local directories that will be searched for LUA modules
-     These entries will be pre-pended to the LUA_CPATH environment variable
-     -->
--    <!-- <param name="module-directory" value="/usr/lib/lua/5.1/?.so"/> -->
--    <!-- <param name="module-directory" value="/usr/local/lib/lua/5.1/?.so"/> -->
-+    <!-- <param name="module-directory" value="/opt/lib/lua/5.1/?.so"/> -->
-+    <!-- <param name="module-directory" value="/opt/local/lib/lua/5.1/?.so"/> -->
- 
-     <!-- 
-     Specify local directories that will be searched for LUA scripts
-     These entries will be pre-pended to the LUA_PATH environment variable
-     -->
--    <!-- <param name="script-directory" value="/usr/local/lua/?.lua"/> -->
-+    <!-- <param name="script-directory" value="/opt/local/lua/?.lua"/> -->
-     <!-- <param name="script-directory" value="$${base_dir}/scripts/?.lua"/> -->
- 
-     <!--<param name="xml-handler-script" value="/dp.lua"/>-->
-diff -urx .svn ../../../openwrt_trunk.orig/feeds/packages/net/freeswitch/files/etc.minimal/freeswitch.xml ../../../openwrt_trunk/feeds/packages/net/freeswitch/files/etc.minimal/freeswitch.xml
---- ../../../openwrt_trunk.orig/feeds/packages/net/freeswitch/files/etc.minimal/freeswitch.xml	2012-07-12 09:38:55.966166681 +0400
-+++ ../../../openwrt_trunk/feeds/packages/net/freeswitch/files/etc.minimal/freeswitch.xml	2012-07-12 09:39:18.121888146 +0400
+diff -urx .svn ../../../openwrt_trunk/dl/openwrt_trunk-r35342/feeds/packages/net/freeswitch/files/etc.minimal/freeswitch.xml ../../../openwrt_trunk/feeds/packages/net/freeswitch/files/etc.minimal/freeswitch.xml
+--- ../../../openwrt_trunk/dl/openwrt_trunk-r35342/feeds/packages/net/freeswitch/files/etc.minimal/freeswitch.xml	2013-01-28 14:42:01.367275273 +0400
++++ ../../../openwrt_trunk/feeds/packages/net/freeswitch/files/etc.minimal/freeswitch.xml	2013-02-04 15:36:02.408200858 +0400
 @@ -6,7 +6,7 @@
      FreeSWITCH default config to use only the modules in the freeswitch-minimal
      package, and is less exhaustive.  If you wish to view the default FreeSWITCH 
@@ -31,78 +10,33 @@ diff -urx .svn ../../../openwrt_trunk.orig/feeds/packages/net/freeswitch/files/e
      down into all the directories including files which include more files.  The default
      config comes out of the box already working in most situations as a PBX.  This will
      allow you to get started testing and playing with various things in FreeSWITCH.
-diff -urx .svn ../../../openwrt_trunk.orig/feeds/packages/net/freeswitch/files/etc.packages/blacklist/autoload_configs/blacklist.conf.xml ../../../openwrt_trunk/feeds/packages/net/freeswitch/files/etc.packages/blacklist/autoload_configs/blacklist.conf.xml
---- ../../../openwrt_trunk.orig/feeds/packages/net/freeswitch/files/etc.packages/blacklist/autoload_configs/blacklist.conf.xml	2012-07-12 09:38:55.986166430 +0400
-+++ ../../../openwrt_trunk/feeds/packages/net/freeswitch/files/etc.packages/blacklist/autoload_configs/blacklist.conf.xml	2012-07-12 09:39:18.121888146 +0400
-@@ -6,6 +6,6 @@
- 		NOTE: make sure the file exists and is readable by FreeSWITCH.
- 	-->
- 
--	<list name="blocked" filename="/etc/freeswitch/blacklists/blocked.list"/>
-+	<list name="blocked" filename="/opt/etc/freeswitch/blacklists/blocked.list"/>
- </lists>
- </configuration>
-diff -urx .svn ../../../openwrt_trunk.orig/feeds/packages/net/freeswitch/files/freeswitch.default ../../../openwrt_trunk/feeds/packages/net/freeswitch/files/freeswitch.default
---- ../../../openwrt_trunk.orig/feeds/packages/net/freeswitch/files/freeswitch.default	2012-07-12 09:38:55.962166731 +0400
-+++ ../../../openwrt_trunk/feeds/packages/net/freeswitch/files/freeswitch.default	2012-07-12 09:39:18.121888146 +0400
+diff -urx .svn ../../../openwrt_trunk/dl/openwrt_trunk-r35342/feeds/packages/net/freeswitch/files/freeswitch.default ../../../openwrt_trunk/feeds/packages/net/freeswitch/files/freeswitch.default
+--- ../../../openwrt_trunk/dl/openwrt_trunk-r35342/feeds/packages/net/freeswitch/files/freeswitch.default	2013-01-28 14:42:01.175275277 +0400
++++ ../../../openwrt_trunk/feeds/packages/net/freeswitch/files/freeswitch.default	2013-02-04 15:21:20.556214578 +0400
 @@ -1,11 +1,11 @@
--#FS_DIR="/opt"
-+FS_DIR="/opt"
- FS_DIR_ETC="$FS_DIR/etc/freeswitch"
+ #FS_DIR="/opt"
+-FS_DIR_ETC="$FS_DIR/etc/freeswitch"
 -FS_DIR_MOD="$FS_DIR/usr/lib/freeswitch"
-+FS_DIR_MOD="$FS_DIR/lib/freeswitch"
- FS_DIR_DB="$FS_DIR/tmp/freeswitch/db"
- FS_DIR_LOG="$FS_DIR/tmp/freeswitch/log"
+-FS_DIR_DB="$FS_DIR/tmp/freeswitch/db"
+-FS_DIR_LOG="$FS_DIR/tmp/freeswitch/log"
 -FS_DIR_SCRIPTS="$FS_DIR/usr/share/freeswitch/scripts"
 -FS_DIR_HTDOCS="$FS_DIR/usr/share/freeswitch/htdocs"
 -FS_DIR_RECORDINGS="/var/lib/freeswitch/recordings" # NOTE: must be changed in config as well
 -FS_DIR_VM_STORAGE="/var/lib/freeswitch/storage" # NOTE: must be changed in config as well
-+FS_DIR_SCRIPTS="$FS_DIR/share/freeswitch/scripts"
-+FS_DIR_HTDOCS="$FS_DIR/share/freeswitch/htdocs"
-+FS_DIR_RECORDINGS="$FS_DIR/var/lib/freeswitch/recordings" # NOTE: must be changed in config as well
-+FS_DIR_VM_STORAGE="$FS_DIR/var/lib/freeswitch/storage" # NOTE: must be changed in config as well
++FS_DIR_ETC="$FS_DIR/opt/etc/freeswitch"
++FS_DIR_MOD="$FS_DIR/opt/lib/freeswitch"
++FS_DIR_DB="$FS_DIR/opt/tmp/freeswitch/db"
++FS_DIR_LOG="$FS_DIR/opt/tmp/freeswitch/log"
++FS_DIR_SCRIPTS="$FS_DIR/opt/share/freeswitch/scripts"
++FS_DIR_HTDOCS="$FS_DIR/opt/share/freeswitch/htdocs"
++FS_DIR_RECORDINGS="/opt/var/lib/freeswitch/recordings" # NOTE: must be changed in config as well
++FS_DIR_VM_STORAGE="/opt/var/lib/freeswitch/storage" # NOTE: must be changed in config as well
  
  OPTIONS="-conf $FS_DIR_ETC -log $FS_DIR_LOG -db $FS_DIR_DB -mod $FS_DIR_MOD -htdocs $FS_DIR_HTDOCS -scripts $FS_DIR_SCRIPTS"
-diff -urx .svn ../../../openwrt_trunk.orig/feeds/packages/net/freeswitch/files/freeswitch.init ../../../openwrt_trunk/feeds/packages/net/freeswitch/files/freeswitch.init
---- ../../../openwrt_trunk.orig/feeds/packages/net/freeswitch/files/freeswitch.init	2012-07-12 09:38:55.986166430 +0400
-+++ ../../../openwrt_trunk/feeds/packages/net/freeswitch/files/freeswitch.init	2012-07-12 09:39:18.121888146 +0400
-@@ -2,7 +2,7 @@
- # Copyright (C) 2006 OpenWrt.org
- START=90 
- 
--DEFAULT=/etc/default/freeswitch
-+DEFAULT=/opt/etc/default/freeswitch
- OPTIONS=""
- 
- boot() {
-@@ -17,12 +17,12 @@
- 	mkdir -p $FS_DIR_RECORDINGS
- 	mkdir -p $FS_DIR_VM_STORAGE
- 	ulimit -s 240
--	$FS_DIR/usr/bin/freeswitch $OPTIONS -nc
-+	$FS_DIR/opt/bin/freeswitch $OPTIONS -nc
- }
- 
- stop() {
- 	[ -f $DEFAULT ] && . $DEFAULT
--	$FS_DIR/usr/bin/freeswitch $OPTIONS -stop
-+	$FS_DIR/opt/bin/freeswitch $OPTIONS -stop
- }
- 
- restart() {
-diff -urx .svn ../../../openwrt_trunk.orig/feeds/packages/net/freeswitch/Makefile ../../../openwrt_trunk/feeds/packages/net/freeswitch/Makefile
---- ../../../openwrt_trunk.orig/feeds/packages/net/freeswitch/Makefile	2012-07-12 09:38:55.962166731 +0400
-+++ ../../../openwrt_trunk/feeds/packages/net/freeswitch/Makefile	2012-07-13 21:31:50.874168444 +0400
-@@ -173,7 +173,7 @@
- define Package/$(PKG_NAME)
- $(call Package/$(PKG_NAME)/Default)
-   TITLE:=FreeSWITCH open source telephony platform
--  DEPENDS:= +libreadline +libncurses +libpthread +libstdcpp +libopenssl +libpq +librt +zlib
-+  DEPENDS:= +libreadline +libncurses +libpthread +libstdcpp +libopenssl +libpq +librt +zlib $(ICONV_DEPENDS)
-   MENU:=1
- endef
- 
-@@ -248,7 +248,7 @@
+diff -urx .svn ../../../openwrt_trunk/dl/openwrt_trunk-r35342/feeds/packages/net/freeswitch/Makefile ../../../openwrt_trunk/feeds/packages/net/freeswitch/Makefile
+--- ../../../openwrt_trunk/dl/openwrt_trunk-r35342/feeds/packages/net/freeswitch/Makefile	2013-01-28 14:42:01.115275278 +0400
++++ ../../../openwrt_trunk/feeds/packages/net/freeswitch/Makefile	2013-02-04 15:37:56.320197132 +0400
+@@ -276,7 +276,7 @@
  
  define Package/$(PKG_NAME)-example-config/description
    The default configuration included with FreeSWITCH. It is not intended to be
@@ -111,7 +45,7 @@ diff -urx .svn ../../../openwrt_trunk.orig/feeds/packages/net/freeswitch/Makefil
    be an example of how FreeSWITCH can be configured.
  endef
  
-@@ -439,24 +439,24 @@
+@@ -461,24 +461,24 @@
  CONFIGURE_ARGS+= \
  	--host=$(GNU_TARGET_NAME) \
  	--build=$(GNU_HOST_NAME) \
@@ -146,16 +80,16 @@ diff -urx .svn ../../../openwrt_trunk.orig/feeds/packages/net/freeswitch/Makefil
  
  
  CONFIGURE_VARS+= \
-@@ -478,7 +478,7 @@
+@@ -502,7 +502,7 @@
  	CFLAGS="${FS_TARGET_CPPFLAGS} ${FS_TARGET_CFLAGS}" \
  	CXXFLAGS="${FS_TARGET_CPPFLAGS} ${FS_TARGET_CXXFLAGS}" \
  	CPPFLAGS="${FS_TARGET_CPPFLAGS}" \
 -	LDFLAGS="${TARGET_LDFLAGS} -Wl,-rpath-link=\"${STAGING_DIR}/usr/lib\"" \
-+	LDFLAGS="${TARGET_LDFLAGS}" \
++	LDFLAGS="${TARGET_LDFLAGS} -Wl,-rpath-link=\"${STAGING_DIR}/opt/lib\"" \
  	PATH="${PATH}:${STAGING_DIR}" \
  	HOST_CC="/usr/bin/cc" \
  	HOST_CXX="/usr/bin/g++" \
-@@ -536,93 +536,87 @@
+@@ -563,92 +563,86 @@
  		DESTDIR="$(PKG_INSTALL_DIR)" \
  		LDFLAGS_FOR_BUILD="$(HOST_LDFLAGS)" \
  		all $(MAKE_INSTALL_TARGETS)
@@ -168,37 +102,43 @@ diff -urx .svn ../../../openwrt_trunk.orig/feeds/packages/net/freeswitch/Makefil
  
  define Build/InstallDev
 -	$(INSTALL_DIR) $(1)/usr/include/$(PKG_NAME)
--	$(CP) $(PKG_INSTALL_DIR)/usr/share/$(PKG_NAME)/include/* $(1)/usr/include/$(PKG_NAME)/
 -	$(INSTALL_DIR) $(1)/usr/lib
+-	$(CP) $(PKG_INSTALL_DIR)/usr/share/$(PKG_NAME)/include/* $(1)/usr/include/$(PKG_NAME)/
 -	$(CP) $(PKG_INSTALL_DIR)/usr/lib/lib$(PKG_NAME).{a,so*} $(1)/usr/lib/
 +	$(INSTALL_DIR) $(1)/opt/include/$(PKG_NAME)
-+	$(CP) $(PKG_INSTALL_DIR)/opt/share/$(PKG_NAME)/include/* $(1)/opt/include/$(PKG_NAME)/
 +	$(INSTALL_DIR) $(1)/opt/lib
++	$(CP) $(PKG_INSTALL_DIR)/opt/share/$(PKG_NAME)/include/* $(1)/opt/include/$(PKG_NAME)/
 +	$(CP) $(PKG_INSTALL_DIR)/opt/lib/lib$(PKG_NAME).{a,so*} $(1)/opt/lib/
  endef
  
  
  define Package/$(PKG_NAME)/install
--	$(INSTALL_DIR) $(1)/usr/bin
--	$(CP) $(PKG_INSTALL_DIR)/usr/bin/$(PKG_NAME) $(1)/usr/bin/
--	$(INSTALL_DIR) $(1)/usr/lib
--	$(CP) $(PKG_INSTALL_DIR)/usr/lib/lib$(PKG_NAME).so.* $(1)/usr/lib/
--	$(INSTALL_DIR) $(1)/usr/lib/$(PKG_NAME)
--	$(INSTALL_DIR) $(1)/etc/default
--	$(INSTALL_DATA) ./files/$(PKG_NAME).default $(1)/etc/default/$(PKG_NAME)
--	$(INSTALL_DIR) $(1)/etc/init.d
--	$(INSTALL_BIN) ./files/$(PKG_NAME).init $(1)/etc/init.d/$(PKG_NAME)
--	$(INSTALL_DIR) $(1)/etc/hotplug.d/iface
--	$(INSTALL_DATA) ./files/$(PKG_NAME).hotplug $(1)/etc/hotplug.d/iface/90-$(PKG_NAME)
 -	$(INSTALL_DIR) $(1)/etc/config
+-	$(INSTALL_DIR) $(1)/etc/default
+-	$(INSTALL_DIR) $(1)/etc/$(PKG_NAME)
+-	$(INSTALL_DIR) $(1)/etc/$(PKG_NAME)/scripts
+-	$(INSTALL_DIR) $(1)/etc/hotplug.d/iface
+-	$(INSTALL_DIR) $(1)/etc/init.d
+-	$(INSTALL_DIR) $(1)/usr/bin
+-	$(INSTALL_DIR) $(1)/usr/lib
+-	$(INSTALL_DIR) $(1)/usr/lib/pkgconfig
+-	$(INSTALL_BIN) ./files/$(PKG_NAME).init $(1)/etc/init.d/$(PKG_NAME)
 -	$(INSTALL_DATA) ./files/$(PKG_NAME).config $(1)/etc/config/$(PKG_NAME)
+-	$(INSTALL_DATA) ./files/$(PKG_NAME).default $(1)/etc/default/$(PKG_NAME)
+-	$(INSTALL_DATA) ./files/$(PKG_NAME).hotplug $(1)/etc/hotplug.d/iface/90-$(PKG_NAME)
+-	$(CP) $(PKG_INSTALL_DIR)/usr/bin/$(PKG_NAME) $(1)/usr/bin/
+-	$(CP) $(PKG_INSTALL_DIR)/usr/lib/lib$(PKG_NAME)* $(1)/usr/lib/
+-	$(CP) $(PKG_INSTALL_DIR)/usr/lib/pkgconfig/$(PKG_NAME).pc $(1)/usr/lib/pkgconfig/
++	$(INSTALL_DIR) $(1)/opt/etc/config
++	$(INSTALL_DIR) $(1)/opt/etc/default
++	$(INSTALL_DIR) $(1)/opt/etc/$(PKG_NAME)
++	$(INSTALL_DIR) $(1)/opt/etc/$(PKG_NAME)/scripts
 +	$(INSTALL_DIR) $(1)/opt/bin
-+	$(CP) $(PKG_INSTALL_DIR)/opt/bin/$(PKG_NAME) $(1)/opt/bin/
 +	$(INSTALL_DIR) $(1)/opt/lib
-+	$(CP) $(PKG_INSTALL_DIR)/opt/lib/lib$(PKG_NAME).so.* $(1)/opt/lib/
-+	$(INSTALL_DIR) $(1)/opt/lib/$(PKG_NAME)
-+	$(INSTALL_DIR) $(1)/opt/etc/hotplug.d/iface
-+	$(INSTALL_DATA) ./files/$(PKG_NAME).hotplug $(1)/opt/etc/hotplug.d/iface/90-$(PKG_NAME)
++	$(INSTALL_DIR) $(1)/opt/lib/pkgconfig
++	$(CP) $(PKG_INSTALL_DIR)/opt/bin/$(PKG_NAME) $(1)/opt/bin/
++	$(CP) $(PKG_INSTALL_DIR)/opt/lib/lib$(PKG_NAME)* $(1)/opt/lib/
++	$(CP) $(PKG_INSTALL_DIR)/opt/lib/pkgconfig/$(PKG_NAME).pc $(1)/opt/lib/pkgconfig/
  endef
  
  
@@ -240,7 +180,7 @@ diff -urx .svn ../../../openwrt_trunk.orig/feeds/packages/net/freeswitch/Makefil
 -	$(INSTALL_DIR) $(1)/etc/$(PKG_NAME)
 -	$(CP) ./files/etc.minimal/* $(1)/etc/$(PKG_NAME)/
 +	$(INSTALL_DIR) $(1)/opt/etc/$(PKG_NAME)
-+	$(CP) ./files/etc.minimal/* $(1)/opt/etc/$(PKG_NAME)/
++	$(CP) ./files/opt/etc.minimal/* $(1)/opt/etc/$(PKG_NAME)/
  endef
  
  
@@ -259,12 +199,6 @@ diff -urx .svn ../../../openwrt_trunk.orig/feeds/packages/net/freeswitch/Makefil
 +	$(CP) $(PKG_INSTALL_DIR)/opt/share/$(PKG_NAME)/sounds/music $(1)/opt/share/$(PKG_NAME)/sounds/
  endef
  
- define Package/libopenzap/install
--	$(INSTALL_DIR) $(1)/usr/lib
--	$(CP) $(PKG_INSTALL_DIR)/usr/lib/libopenzap.so* $(1)/usr/lib/
-+	$(INSTALL_DIR) $(1)/opt/lib
-+	$(CP) $(PKG_INSTALL_DIR)/opt/lib/libopenzap.so* $(1)/opt/lib/
- endef
  
  define Package/$(PKG_NAME)-tools/install
 -	$(INSTALL_DIR) $(1)/usr/bin
@@ -284,26 +218,58 @@ diff -urx .svn ../../../openwrt_trunk.orig/feeds/packages/net/freeswitch/Makefil
  endef
  
  
-@@ -641,28 +635,28 @@
+@@ -667,10 +661,10 @@
+   endef
+ 
+   define Package/$(PKG_NAME)-$(1)/install
+-	[ -d "$$(1)/usr/lib/pkgconfig" ] || $(INSTALL_DIR) $$(1)/usr/lib/pkgconfig
++	[ -d "$$(1)/opt/lib/pkgconfig" ] || $(INSTALL_DIR) $$(1)/opt/lib/pkgconfig
+ 
+-	$(CP) $(PKG_INSTALL_DIR)/usr/lib/pkgconfig/$(patsubst lib%,%,${3}).pc $$(1)/usr/lib/pkgconfig
+-	$(CP) $(PKG_INSTALL_DIR)/usr/lib/${1}* $$(1)/usr/lib/
++	$(CP) $(PKG_INSTALL_DIR)/opt/lib/pkgconfig/$(patsubst lib%,%,${3}).pc $$(1)/opt/lib/pkgconfig
++	$(CP) $(PKG_INSTALL_DIR)/opt/lib/${1}* $$(1)/opt/lib/
+   endef
+ 
+   $$(eval $$(call BuildPackage,$(PKG_NAME)-$(1)))
+@@ -694,42 +688,42 @@
    endef
  
    define Package/$(PKG_NAME)-mod-$(1)/install
--	[ -z "$(3)" ] || $(INSTALL_DIR) $$(1)/usr/lib/$(PKG_NAME)
-+	[ -z "$(3)" ] || $(INSTALL_DIR) $$(1)/opt/lib/$(PKG_NAME)
- 	for f in $(3); do \
- 		$(CP) \
--			$(PKG_INSTALL_DIR)/usr/lib/$(PKG_NAME)/$$$$$$$${f}.so \
--			$$(1)/usr/lib/$(PKG_NAME)/ ; \
-+			$(PKG_INSTALL_DIR)/opt/lib/$(PKG_NAME)/$$$$$$$${f}.so \
-+			$$(1)/opt/lib/$(PKG_NAME)/ ; \
+-	[ -z "mod_$(subst -,_,$(1))" ] || $(INSTALL_DIR) $$(1)/usr/lib/$(PKG_NAME)
++	[ -z "mod_$(subst -,_,$(1))" ] || $(INSTALL_DIR) $$(1)/opt/lib/$(PKG_NAME)
+ 
+-	for f in $$$$(realpath $$$$(wildcard $(PKG_INSTALL_DIR)/usr/lib/$(PKG_NAME)/mod_$(subst -,_,$(1)).*)) $$$$(wildcard $(PKG_INSTALL_DIR)/usr/lib/$(PKG_NAME)/$(4)_*); \
++	for f in $$$$(realpath $$$$(wildcard $(PKG_INSTALL_DIR)/opt/lib/$(PKG_NAME)/mod_$(subst -,_,$(1)).*)) $$$$(wildcard $(PKG_INSTALL_DIR)/opt/lib/$(PKG_NAME)/$(4)_*); \
+ 	do \
+-		$(CP) $$$$$$$${f} $$(1)/usr/lib/$(PKG_NAME)/; \
++		$(CP) $$$$$$$${f} $$(1)/opt/lib/$(PKG_NAME)/; \
  	done
- 	if [ -d "./files/etc.packages/$(1)" ]; then \
--		$(INSTALL_DIR) $$(1)/etc/$(PKG_NAME) ; \
-+		$(INSTALL_DIR) $$(1)/opt/etc/$(PKG_NAME) ; \
- 		$(CP) \
- 			./files/etc.packages/$(1)/* \
--			$$(1)/etc/$(PKG_NAME)/ ; \
-+			$$(1)/opt/etc/$(PKG_NAME)/ ; \
+ 
+ 	for f in $(5); \
+ 	do \
+-		[ -d "$(dirname $$(1)/usr/${f})" ] || $(INSTALL_DIR) $(dirname $$(1)/usr/${f}); \
+-		$(CP) $(PKG_INSTALL_DIR)/usr/${f} $$(1)/usr/${f}; \
++		[ -d "$(dirname $$(1)/opt/${f})" ] || $(INSTALL_DIR) $(dirname $$(1)/opt/${f}); \
++		$(CP) $(PKG_INSTALL_DIR)/opt/${f} $$(1)/opt/${f}; \
+ 	done
+ 
+ 	#
+ 	# mod_$(subst -,_,$(1)) XML configuration files $(3)
+ 	#
+-	$(and "$(3)" == "vanilla" ],$(firstword $(wildcard ${PKG_BUILD_DIR}/conf/$(3)/autoload_configs/$(subst -,_,$(1)).conf.xml)),[ -d $$(1)/etc/$(PKG_NAME)/autoload_configs ] || $(INSTALL_DIR) $$(1)/etc/$(PKG_NAME)/autoload_configs;$(CP) $(firstword $(wildcard ${PKG_BUILD_DIR}/conf/$(3)/autoload_configs/$(subst -,_,$(1)).conf.xml)) $$(1)/etc/$(PKG_NAME)/autoload_configs)
+-	$(and !$(3),$(firstword $(wildcard ${PKG_BUILD_DIR}/src/mod/*/mod_$(subst -,_,$(1))/conf/autoload_configs/$(subst -,_,$(1)).conf.xml)),[ -d $$(1)/etc/$(PKG_NAME)/autoload_configs ] || $(INSTALL_DIR) $$(1)/etc/$(PKG_NAME)/autoload_configs;$(CP) $(firstword $(wildcard ${PKG_BUILD_DIR}/src/mod/*/mod_$(subst -,_,$(1))/conf/autoload_configs/$(subst -,_,$(1)).conf.xml)) $$(1)/etc/$(PKG_NAME)/autoload_configs)
++	$(and "$(3)" == "vanilla" ],$(firstword $(wildcard ${PKG_BUILD_DIR}/conf/$(3)/autoload_configs/$(subst -,_,$(1)).conf.xml)),[ -d $$(1)/opt/etc/$(PKG_NAME)/autoload_configs ] || $(INSTALL_DIR) $$(1)/opt/etc/$(PKG_NAME)/autoload_configs;$(CP) $(firstword $(wildcard ${PKG_BUILD_DIR}/conf/$(3)/autoload_configs/$(subst -,_,$(1)).conf.xml)) $$(1)/opt/etc/$(PKG_NAME)/autoload_configs)
++	$(and !$(3),$(firstword $(wildcard ${PKG_BUILD_DIR}/src/mod/*/mod_$(subst -,_,$(1))/conf/autoload_configs/$(subst -,_,$(1)).conf.xml)),[ -d $$(1)/opt/etc/$(PKG_NAME)/autoload_configs ] || $(INSTALL_DIR) $$(1)/opt/etc/$(PKG_NAME)/autoload_configs;$(CP) $(firstword $(wildcard ${PKG_BUILD_DIR}/src/mod/*/mod_$(subst -,_,$(1))/conf/autoload_configs/$(subst -,_,$(1)).conf.xml)) $$(1)/opt/etc/$(PKG_NAME)/autoload_configs)
+ 
+ 	#
+ 	# Additional configuration files for mod_YAML (vanilla)
+ 	#
+ 	if [ "$(1)" == "yaml" ] && [ -d ${PKG_BUILD_DIR}/conf/$(3)/yaml ]; then \
+-		[ -d  $$(1)/etc/$(PKG_NAME)/yaml ] || $(INSTALL_DIR) $$(1)/etc/$(PKG_NAME)/yaml; \
+-		$(CP) $(wildcard ${PKG_BUILD_DIR}/conf/$(3)/yaml/*) $$(1)/etc/$(PKG_NAME)/yaml; \
++		[ -d  $$(1)/opt/etc/$(PKG_NAME)/yaml ] || $(INSTALL_DIR) $$(1)/opt/etc/$(PKG_NAME)/yaml; \
++		$(CP) $(wildcard ${PKG_BUILD_DIR}/conf/$(3)/yaml/*) $$(1)/opt/etc/$(PKG_NAME)/yaml; \
  	fi
    endef
  
@@ -320,9 +286,9 @@ diff -urx .svn ../../../openwrt_trunk.orig/feeds/packages/net/freeswitch/Makefil
    endef
  
    $$(eval $$(call BuildPackage,$(PKG_NAME)-mod-$(1)))
-diff -urx .svn ../../../openwrt_trunk.orig/feeds/packages/net/freeswitch/patches/003-libs-esl-Makefile.patch ../../../openwrt_trunk/feeds/packages/net/freeswitch/patches/003-libs-esl-Makefile.patch
---- ../../../openwrt_trunk.orig/feeds/packages/net/freeswitch/patches/003-libs-esl-Makefile.patch	2012-07-12 09:38:55.962166731 +0400
-+++ ../../../openwrt_trunk/feeds/packages/net/freeswitch/patches/003-libs-esl-Makefile.patch	2012-07-12 09:39:18.121888146 +0400
+diff -urx .svn ../../../openwrt_trunk/dl/openwrt_trunk-r35342/feeds/packages/net/freeswitch/patches/100-libs-esl-Makefile.patch ../../../openwrt_trunk/feeds/packages/net/freeswitch/patches/100-libs-esl-Makefile.patch
+--- ../../../openwrt_trunk/dl/openwrt_trunk-r35342/feeds/packages/net/freeswitch/patches/100-libs-esl-Makefile.patch	2013-01-28 14:42:01.163275278 +0400
++++ ../../../openwrt_trunk/feeds/packages/net/freeswitch/patches/100-libs-esl-Makefile.patch	2013-02-04 15:30:15.832203968 +0400
 @@ -5,7 +5,7 @@
   CXXFLAGS=$(BASE_FLAGS)
   MYLIB=libesl.a

@@ -9,7 +9,7 @@
  	$(Build/Configure/Default)
  endef
  
-@@ -31,10 +31,11 @@
+@@ -34,10 +34,11 @@
    endef
  
    define Package/php5-pecl-$(1)/install

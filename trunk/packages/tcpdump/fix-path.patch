@@ -1,6 +1,6 @@
---- ../../../openwrt_trunk.orig/package/network/utils/tcpdump/Makefile
-+++ ../../../openwrt_trunk/package/network/utils/tcpdump/Makefile
-@@ -76,8 +76,8 @@
+--- ../../../downloads/openwrt_trunk-r35342/package/network/utils/tcpdump/Makefile	2013-01-28 14:42:19.967274934 +0400
++++ ../../../openwrt_trunk/package/network/utils/tcpdump/Makefile	2013-01-28 14:43:40.331273471 +0400
+@@ -79,8 +79,8 @@
  
  
  define Package/tcpdump/install

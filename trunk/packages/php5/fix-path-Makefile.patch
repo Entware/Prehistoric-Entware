@@ -1,6 +1,6 @@
---- ../../../openwrt_trunk.orig/feeds/packages/lang/php5/Makefile	2012-10-08 18:50:32.803155323 +0400
-+++ ../../../openwrt_trunk/feeds/packages/lang/php5/Makefile	2012-10-09 10:17:02.866147393 +0400
-@@ -131,13 +131,13 @@
+--- ../../../downloads/openwrt_trunk-r35342/feeds/packages/lang/php5/Makefile	2013-01-28 14:41:49.587275488 +0400
++++ ../../../openwrt_trunk/feeds/packages/lang/php5/Makefile	2013-02-04 17:18:53.820086060 +0400
+@@ -130,13 +130,13 @@
  	--disable-debug \
  	--without-pear \
  	\
@@ -19,7 +19,7 @@
  	--disable-phar
  
  ifneq ($(SDK)$(CONFIG_PACKAGE_php5-cli),)
-@@ -171,7 +171,7 @@
+@@ -164,7 +164,7 @@
  endif
  
  ifneq ($(SDK)$(CONFIG_PACKAGE_php5-mod-curl),)
@@ -28,7 +28,7 @@
  else
    CONFIGURE_ARGS+= --without-curl
  endif
-@@ -183,7 +183,7 @@
+@@ -176,7 +176,7 @@
  endif
  
  ifneq ($(SDK)$(CONFIG_PACKAGE_php5-mod-gettext),)
@@ -37,7 +37,7 @@
  else
    CONFIGURE_ARGS+= --without-gettext
  endif
-@@ -216,8 +216,8 @@
+@@ -203,8 +203,8 @@
    CONFIGURE_ARGS+= \
  	--with-gd=shared \
  	--without-freetype-dir \
@@ -48,7 +48,7 @@
  	--without-xpm-dir \
  	--without-t1lib \
  	--enable-gd-native-ttf \
-@@ -227,7 +227,7 @@
+@@ -214,7 +214,7 @@
  endif
  
  ifneq ($(SDK)$(CONFIG_PACKAGE_php5-mod-gmp),)
@@ -57,16 +57,7 @@
  else
    CONFIGURE_ARGS+= --without-gmp
  endif
-@@ -242,7 +242,7 @@
-   CONFIGURE_ARGS+= \
- 	--enable-http=shared \
- 	--without-http-shared-deps \
--	--with-http-curl-requests="$(STAGING_DIR)/usr"
-+	--with-http-curl-requests="$(STAGING_DIR)/opt"
- else
-   CONFIGURE_ARGS+= --disable-http
- endif
-@@ -261,14 +261,14 @@
+@@ -239,8 +239,8 @@
  
  ifneq ($(SDK)$(CONFIG_PACKAGE_php5-mod-ldap),)
    CONFIGURE_ARGS+= \
@@ -77,14 +68,7 @@
  else
    CONFIGURE_ARGS+= --without-ldap
  endif
- 
- ifneq ($(SDK)$(CONFIG_PACKAGE_php5-mod-libevent),)
--  CONFIGURE_ARGS+= --with-libevent=shared,"$(STAGING_DIR)/usr"
-+  CONFIGURE_ARGS+= --with-libevent=shared,"$(STAGING_DIR)/opt"
- else
-   CONFIGURE_ARGS+= --without-libevent
- endif
-@@ -280,28 +280,28 @@
+@@ -252,28 +252,28 @@
  endif
  
  ifneq ($(SDK)$(CONFIG_PACKAGE_php5-mod-mcrypt),)
@@ -118,7 +102,7 @@
  else
    CONFIGURE_ARGS+= --without-openssl
  endif
-@@ -315,17 +315,17 @@
+@@ -287,17 +287,17 @@
  ifneq ($(SDK)$(CONFIG_PACKAGE_php5-mod-pdo),)
    CONFIGURE_ARGS+= --enable-pdo=shared
    ifneq ($(SDK)$(CONFIG_PACKAGE_php5-mod-pdo-mysql),)
@@ -139,7 +123,7 @@
    else
      CONFIGURE_ARGS+= --without-pdo-sqlite
    endif
-@@ -334,7 +334,7 @@
+@@ -306,7 +306,7 @@
  endif
  
  ifneq ($(SDK)$(CONFIG_PACKAGE_php5-mod-pgsql),)
@@ -148,7 +132,7 @@
  else
    CONFIGURE_ARGS+= --without-pgsql
  endif
-@@ -370,13 +370,13 @@
+@@ -342,13 +342,13 @@
  endif
  
  ifneq ($(SDK)$(CONFIG_PACKAGE_php5-mod-sqlite),)
@@ -164,7 +148,7 @@
  else
    CONFIGURE_ARGS+= --without-sqlite3
  endif
-@@ -406,24 +406,24 @@
+@@ -378,24 +378,24 @@
  endif
  
  ifneq ($(SDK)$(CONFIG_PACKAGE_php5-mod-xml),)
@@ -194,7 +178,7 @@
  else
    CONFIGURE_ARGS+= --disable-xmlwriter
  endif
-@@ -442,7 +442,7 @@
+@@ -414,7 +414,7 @@
  
  ifneq ($(SDK)$(CONFIG_PHP5_LIBXML),)
    CONFIGURE_ARGS+= --enable-libxml
@@ -203,7 +187,7 @@
  else
    CONFIGURE_ARGS+= --disable-libxml
  endif
-@@ -460,31 +460,27 @@
+@@ -432,31 +432,27 @@
  	ac_cv_php_xml2_config_path="$(STAGING_DIR)/host/bin/xml2-config" \
  
  define Package/php5/conffiles
@@ -244,7 +228,7 @@
  endef
  
  define Build/Prepare
-@@ -493,12 +489,12 @@
+@@ -465,13 +461,13 @@
  endef
  
  define Build/InstallDev
@@ -256,12 +240,14 @@
  	$(CP) $(PKG_BUILD_DIR)/staging/* $(STAGING_DIR_HOST)
 -	sed -i -e "s#prefix='/usr'#prefix='$(STAGING_DIR_HOST)/usr'#" $(STAGING_DIR_HOST)/usr/bin/phpize
 -	sed -i -e "s#exec_prefix=\"\`eval echo /usr\`\"#exec_prefix='$(STAGING_DIR_HOST)/usr'#" $(STAGING_DIR_HOST)/usr/bin/phpize
+-	sed -i -e "s#prefix=\"/usr\"#prefix=\"$(STAGING_DIR_HOST)/usr\"#" $(STAGING_DIR_HOST)/usr/bin/php-config
 +	sed -i -e "s#prefix='/opt'#prefix='$(STAGING_DIR_HOST)/opt'#" $(STAGING_DIR_HOST)/opt/bin/phpize
 +	sed -i -e "s#exec_prefix=\"\`eval echo /opt\`\"#exec_prefix='$(STAGING_DIR_HOST)/opt'#" $(STAGING_DIR_HOST)/opt/bin/phpize
++	sed -i -e "s#prefix=\"/opt\"#prefix=\"$(STAGING_DIR_HOST)/opt\"#" $(STAGING_DIR_HOST)/opt/bin/php-config
  endef
  
  define BuildModule
-@@ -514,10 +510,10 @@
+@@ -487,10 +483,10 @@
    endef
  
    define Package/php5-mod-$(1)/install
@@ -276,16 +262,16 @@
    endef
  
    $$(eval $$(call BuildPackage,php5-mod-$(1)))
-@@ -544,7 +540,7 @@
+@@ -514,7 +510,7 @@
+ $(eval $(call BuildModule,gd,GD graphics,+PACKAGE_php5-mod-gd:libjpeg +PACKAGE_php5-mod-gd:libpng))
  $(eval $(call BuildModule,gmp,GMP,+PACKAGE_php5-mod-gmp:libgmp))
  $(eval $(call BuildModule,hash,Hash))
- $(eval $(call BuildModule,http,HTTP,+PACKAGE_php5-mod-http:libcurl +PACKAGE_php5-mod-http:libevent2 +PACKAGE_php5-mod-http:librt))
 -$(eval $(call BuildModule,iconv,iConv,+PACKAGE_php5-mod-iconv:libiconv))
 +$(eval $(call BuildModule,iconv,iConv,+PACKAGE_php5-mod-iconv:libiconv-full))
  $(eval $(call BuildModule,json,JSON))
  $(eval $(call BuildModule,ldap,LDAP,+PACKAGE_php5-mod-ldap:libopenldap +PACKAGE_php5-mod-ldap:libsasl2))
- $(eval $(call BuildModule,libevent,libevent,+PACKAGE_php5-mod-libevent:libevent2))
-@@ -571,6 +567,6 @@
+ $(eval $(call BuildModule,mbstring,MBString))
+@@ -540,6 +536,6 @@
  $(eval $(call BuildModule,sysvshm,System V semaphore))
  $(eval $(call BuildModule,tokenizer,Tokenizer))
  $(eval $(call BuildModule,xml,XML,+PHP5_LIBXML:libxml2 +!PHP5_LIBXML:libexpat))

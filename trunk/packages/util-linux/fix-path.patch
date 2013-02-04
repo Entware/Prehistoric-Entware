@@ -1,5 +1,5 @@
---- ../../../openwrt_trunk.orig/package/util-linux/Makefile
-+++ ../../../openwrt_trunk/package/util-linux/Makefile
+--- ../../../downloads/openwrt_trunk-r35342/package/util-linux/Makefile	2013-01-28 14:42:16.079275005 +0400
++++ ../../../openwrt_trunk/package/util-linux/Makefile	2013-02-04 16:42:21.592121882 +0400
 @@ -45,22 +45,22 @@
  		DESTDIR="$(1)" \
  		installdirs install-data
@@ -64,15 +64,15 @@
  endef
  
  define Package/agetty/install
--	$(INSTALL_DIR) $(1)/sbin
--	$(INSTALL_BIN) $(PKG_BUILD_DIR)/term-utils/agetty $(1)/sbin/
+-	$(INSTALL_DIR) $(1)/usr/sbin
+-	$(INSTALL_BIN) $(PKG_BUILD_DIR)/term-utils/agetty $(1)/usr/sbin/
 +	$(INSTALL_DIR) $(1)/opt/sbin
 +	$(INSTALL_BIN) $(PKG_BUILD_DIR)/term-utils/agetty $(1)/opt/sbin/
  endef
  
  define Package/blkid/install
--	$(INSTALL_DIR) $(1)/sbin
--	$(INSTALL_BIN) $(PKG_BUILD_DIR)/misc-utils/.libs/blkid $(1)/sbin/
+-	$(INSTALL_DIR) $(1)/usr/sbin
+-	$(INSTALL_BIN) $(PKG_BUILD_DIR)/misc-utils/.libs/blkid $(1)/usr/sbin/
 +	$(INSTALL_DIR) $(1)/opt/sbin
 +	$(INSTALL_BIN) $(PKG_BUILD_DIR)/misc-utils/.libs/blkid $(1)/opt/sbin/
  endef
@@ -85,22 +85,22 @@
  endef
  
  define Package/cfdisk/install
--	$(INSTALL_DIR) $(1)/sbin
--	$(INSTALL_BIN) $(PKG_BUILD_DIR)/fdisk/.libs/cfdisk $(1)/sbin/
+-	$(INSTALL_DIR) $(1)/usr/sbin
+-	$(INSTALL_BIN) $(PKG_BUILD_DIR)/fdisk/.libs/cfdisk $(1)/usr/sbin/
 +	$(INSTALL_DIR) $(1)/opt/sbin
 +	$(INSTALL_BIN) $(PKG_BUILD_DIR)/fdisk/.libs/cfdisk $(1)/opt/sbin/
  endef
  
  define Package/fdisk/install
--	$(INSTALL_DIR) $(1)/sbin
--	$(INSTALL_BIN) $(PKG_BUILD_DIR)/fdisk/.libs/fdisk $(1)/sbin/
+-	$(INSTALL_DIR) $(1)/usr/sbin
+-	$(INSTALL_BIN) $(PKG_BUILD_DIR)/fdisk/.libs/fdisk $(1)/usr/sbin/
 +	$(INSTALL_DIR) $(1)/opt/sbin
 +	$(INSTALL_BIN) $(PKG_BUILD_DIR)/fdisk/.libs/fdisk $(1)/opt/sbin/
  endef
  
  define Package/findfs/install
--	$(INSTALL_DIR) $(1)/sbin
--	$(INSTALL_BIN) $(PKG_BUILD_DIR)/misc-utils/.libs/findfs $(1)/sbin/
+-	$(INSTALL_DIR) $(1)/usr/sbin
+-	$(INSTALL_BIN) $(PKG_BUILD_DIR)/misc-utils/.libs/findfs $(1)/usr/sbin/
 +	$(INSTALL_DIR) $(1)/opt/sbin
 +	$(INSTALL_BIN) $(PKG_BUILD_DIR)/misc-utils/.libs/findfs $(1)/opt/sbin/
  endef
@@ -120,8 +120,8 @@
  endef
  
  define Package/hwclock/install
--	$(INSTALL_DIR) $(1)/sbin
--	$(INSTALL_BIN) $(PKG_BUILD_DIR)/hwclock/hwclock $(1)/sbin/
+-	$(INSTALL_DIR) $(1)/usr/sbin
+-	$(INSTALL_BIN) $(PKG_BUILD_DIR)/hwclock/hwclock $(1)/usr/sbin/
 +	$(INSTALL_DIR) $(1)/opt/sbin
 +	$(INSTALL_BIN) $(PKG_BUILD_DIR)/hwclock/hwclock $(1)/opt/sbin/
  endef
@@ -141,15 +141,15 @@
  endef
  
  define Package/losetup/install
--	$(INSTALL_DIR) $(1)/sbin
--	$(INSTALL_BIN) $(PKG_BUILD_DIR)/sys-utils/losetup $(1)/sbin/
+-	$(INSTALL_DIR) $(1)/usr/sbin
+-	$(INSTALL_BIN) $(PKG_BUILD_DIR)/sys-utils/losetup $(1)/usr/sbin/
 +	$(INSTALL_DIR) $(1)/opt/sbin
 +	$(INSTALL_BIN) $(PKG_BUILD_DIR)/sys-utils/losetup $(1)/opt/sbin/
  endef
  
  define Package/lsblk/install
--	$(INSTALL_DIR) $(1)/bin
--	$(INSTALL_BIN) $(PKG_BUILD_DIR)/misc-utils/.libs/lsblk $(1)/bin/
+-	$(INSTALL_DIR) $(1)/usr/bin
+-	$(INSTALL_BIN) $(PKG_BUILD_DIR)/misc-utils/.libs/lsblk $(1)/usr/bin/
 +	$(INSTALL_DIR) $(1)/opt/bin
 +	$(INSTALL_BIN) $(PKG_BUILD_DIR)/misc-utils/.libs/lsblk $(1)/opt/bin/
  endef
@@ -162,10 +162,10 @@
  endef
  
  define Package/mount-utils/install
--	$(INSTALL_DIR) $(1)/bin
--	$(INSTALL_BIN) $(PKG_BUILD_DIR)/sys-utils/.libs/{u,}mount $(1)/bin/
--	$(INSTALL_BIN) $(PKG_BUILD_DIR)/sys-utils/.libs/mountpoint $(1)/bin/
--	$(INSTALL_BIN) $(PKG_BUILD_DIR)/misc-utils/.libs/findmnt $(1)/bin/
+-	$(INSTALL_DIR) $(1)/usr/bin
+-	$(INSTALL_BIN) $(PKG_BUILD_DIR)/sys-utils/.libs/{u,}mount $(1)/usr/bin/
+-	$(INSTALL_BIN) $(PKG_BUILD_DIR)/sys-utils/.libs/mountpoint $(1)/usr/bin/
+-	$(INSTALL_BIN) $(PKG_BUILD_DIR)/misc-utils/.libs/findmnt $(1)/usr/bin/
 +	$(INSTALL_DIR) $(1)/opt/bin
 +	$(INSTALL_BIN) $(PKG_BUILD_DIR)/sys-utils/.libs/{u,}mount $(1)/opt/bin/
 +	$(INSTALL_BIN) $(PKG_BUILD_DIR)/sys-utils/.libs/mountpoint $(1)/opt/bin/
@@ -173,16 +173,16 @@
  endef
  
  define Package/namei/install
--	$(INSTALL_DIR) $(1)/usr/bin/
+-	$(INSTALL_DIR) $(1)/usr/bin
 -	$(INSTALL_BIN) $(PKG_BUILD_DIR)/misc-utils/namei $(1)/usr/bin/
-+	$(INSTALL_DIR) $(1)/opt/bin/
++	$(INSTALL_DIR) $(1)/opt/bin
 +	$(INSTALL_BIN) $(PKG_BUILD_DIR)/misc-utils/namei $(1)/opt/bin/
  endef
  
  define Package/rename/install
--	$(INSTALL_DIR) $(1)/usr/bin/
+-	$(INSTALL_DIR) $(1)/usr/bin
 -	$(INSTALL_BIN) $(PKG_BUILD_DIR)/misc-utils/rename $(1)/usr/bin/
-+	$(INSTALL_DIR) $(1)/opt/bin/
++	$(INSTALL_DIR) $(1)/opt/bin
 +	$(INSTALL_BIN) $(PKG_BUILD_DIR)/misc-utils/rename $(1)/opt/bin/
  endef
  
@@ -214,18 +214,18 @@
  endef
  
  define Package/sfdisk/install
--	$(INSTALL_DIR) $(1)/sbin
--	$(INSTALL_BIN) $(PKG_BUILD_DIR)/fdisk/sfdisk $(1)/sbin/
+-	$(INSTALL_DIR) $(1)/usr/sbin
+-	$(INSTALL_BIN) $(PKG_BUILD_DIR)/fdisk/sfdisk $(1)/usr/sbin/
 +	$(INSTALL_DIR) $(1)/opt/sbin
 +	$(INSTALL_BIN) $(PKG_BUILD_DIR)/fdisk/sfdisk $(1)/opt/sbin/
  endef
  
  define Package/swap-utils/install
--	$(INSTALL_DIR) $(1)/sbin
--	$(INSTALL_BIN) $(PKG_BUILD_DIR)/disk-utils/.libs/mkswap $(1)/sbin/
--	$(INSTALL_BIN) $(PKG_BUILD_DIR)/disk-utils/.libs/swaplabel $(1)/sbin/
--	$(INSTALL_BIN) $(PKG_BUILD_DIR)/sys-utils/.libs/swapon $(1)/sbin/
--	ln -sf swapon $(1)/sbin/swapoff
+-	$(INSTALL_DIR) $(1)/usr/sbin
+-	$(INSTALL_BIN) $(PKG_BUILD_DIR)/disk-utils/.libs/mkswap $(1)/usr/sbin/
+-	$(INSTALL_BIN) $(PKG_BUILD_DIR)/disk-utils/.libs/swaplabel $(1)/usr/sbin/
+-	$(INSTALL_BIN) $(PKG_BUILD_DIR)/sys-utils/.libs/swapon $(1)/usr/sbin/
+-	ln -sf swapon $(1)/usr/sbin/swapoff
 +	$(INSTALL_DIR) $(1)/opt/sbin
 +	$(INSTALL_BIN) $(PKG_BUILD_DIR)/disk-utils/.libs/mkswap $(1)/opt/sbin/
 +	$(INSTALL_BIN) $(PKG_BUILD_DIR)/disk-utils/.libs/swaplabel $(1)/opt/sbin/
@@ -262,8 +262,8 @@
  endef
  
  define Package/wipefs/install
--	$(INSTALL_DIR) $(1)/sbin
--	$(INSTALL_BIN) $(PKG_BUILD_DIR)/misc-utils/.libs/wipefs $(1)/sbin/
+-	$(INSTALL_DIR) $(1)/usr/sbin
+-	$(INSTALL_BIN) $(PKG_BUILD_DIR)/misc-utils/.libs/wipefs $(1)/usr/sbin/
 +	$(INSTALL_DIR) $(1)/opt/sbin
 +	$(INSTALL_BIN) $(PKG_BUILD_DIR)/misc-utils/.libs/wipefs $(1)/opt/sbin/
  endef

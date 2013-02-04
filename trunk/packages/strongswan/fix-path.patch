@@ -1,5 +1,5 @@
---- ../../../openwrt_trunk.orig/feeds/packages/net/strongswan/Makefile	2012-10-08 18:50:46.759155068 +0400
-+++ ../../../openwrt_trunk/feeds/packages/net/strongswan/Makefile	2012-10-09 10:23:02.150144544 +0400
+--- ../../../downloads/openwrt_trunk-r35342/feeds/packages/net/strongswan/Makefile	2013-01-28 14:41:57.995275334 +0400
++++ ../../../openwrt_trunk/feeds/packages/net/strongswan/Makefile	2013-01-28 14:43:40.123273476 +0400
 @@ -109,10 +109,7 @@
  
  define Package/strongswan
@@ -12,7 +12,7 @@
  endef
  
  define Package/strongswan/config
-@@ -312,9 +309,9 @@
+@@ -313,9 +310,9 @@
    endef
  
    define Package/strongswan-mod-$(1)/install
@@ -25,7 +25,7 @@
  	$(call Plugin/$(1)/install,$$(1))
    endef
  
-@@ -335,23 +332,23 @@
+@@ -336,23 +333,23 @@
  	)
  
  ifneq ($(CONFIG_PACKAGE_strongswan-libfast),)
@@ -59,7 +59,7 @@
  endef
  
  define Package/strongswan-default/install
-@@ -367,61 +364,61 @@
+@@ -368,61 +365,61 @@
  endef
  
  define Package/strongswan-charon/install
@@ -155,7 +155,7 @@
  endef
  
  $(eval $(call BuildPackage,strongswan))
-@@ -433,7 +430,7 @@
+@@ -434,7 +431,7 @@
  $(eval $(call BuildPackage,strongswan-utils))
  $(eval $(call BuildPlugin,addrblock,RFC 3779 address block constraint support,))
  $(eval $(call BuildPlugin,aes,AES crypto,))

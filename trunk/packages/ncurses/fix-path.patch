@@ -1,5 +1,5 @@
---- ../../../openwrt_trunk/package/libs/ncurses/Makefile.orig	2012-11-08 16:20:49.814935744 +0400
-+++ ../../../openwrt_trunk/package/libs/ncurses/Makefile	2012-11-09 11:06:25.617705440 +0400
+--- ../../../downloads/openwrt_trunk-r35342/package/libs/ncurses/Makefile	2013-01-28 14:42:14.415275036 +0400
++++ ../../../openwrt_trunk/package/libs/ncurses/Makefile	2013-01-28 14:43:25.707273739 +0400
 @@ -9,7 +9,7 @@
  
  PKG_NAME:=ncurses
@@ -40,7 +40,7 @@
 +	--with-terminfo-dirs=/opt/share/terminfo \
 +	--with-default-terminfo-dir=/opt/share/terminfo
  
- ifneq ($(INSTALL_LIBSTDCPP),y)
+ ifneq ($(CONFIG_INSTALL_LIBSTDCPP),y)
  CONFIGURE_ARGS += \
 @@ -74,7 +83,7 @@
  

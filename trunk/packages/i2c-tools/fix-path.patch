@@ -1,5 +1,5 @@
---- ../../../openwrt_trunk.orig/feeds/packages/utils/i2c-tools/Makefile	2012-09-03 15:54:45.063674370 +0400
-+++ ../../../openwrt_trunk/feeds/packages/utils/i2c-tools/Makefile	2012-09-07 17:13:12.933289006 +0400
+--- ../../../downloads/openwrt_trunk-r35342/feeds/packages/utils/i2c-tools/Makefile	2013-01-28 14:41:50.343275474 +0400
++++ ../../../openwrt_trunk/feeds/packages/utils/i2c-tools/Makefile	2013-01-28 14:43:19.603273848 +0400
 @@ -6,7 +6,6 @@
  #
  
@@ -7,7 +7,7 @@
 -include $(INCLUDE_DIR)/kernel.mk
  
  PKG_NAME:=i2c-tools
- PKG_VERSION:=3.0.3
+ PKG_VERSION:=3.1.0
 @@ -59,7 +58,7 @@
    define Build/Compile/python-smbus
  	$(if $(Build/Compile/PyMod),,@echo Python packaging code not found.; false)

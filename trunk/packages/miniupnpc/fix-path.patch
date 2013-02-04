@@ -1,6 +1,6 @@
---- ../../../openwrt_trunk.orig/feeds/packages/net/miniupnpc/Makefile	2012-02-21 11:20:01.000000000 +0400
-+++ ../../../openwrt_trunk/feeds/packages/net/miniupnpc/Makefile	2012-02-21 12:27:28.439693947 +0400
-@@ -46,26 +46,26 @@
+--- ../../../downloads/openwrt_trunk-r35342/feeds/packages/net/miniupnpc/Makefile	2013-01-28 14:42:06.659275179 +0400
++++ ../../../openwrt_trunk/feeds/packages/net/miniupnpc/Makefile	2013-01-28 14:43:25.403273745 +0400
+@@ -47,26 +47,26 @@
  	PREFIX="$(PKG_INSTALL_DIR)"
  
  define Build/InstallDev

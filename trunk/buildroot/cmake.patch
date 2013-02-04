@@ -1,11 +1,11 @@
---- ../../openwrt_trunk.orig/include/cmake.mk	2012-06-01 10:50:51.776064601 +0400
-+++ ../../openwrt_trunk/include/cmake.mk	2012-06-01 10:51:21.195694716 +0400
-@@ -51,7 +51,7 @@
+--- ../../openwrt_trunk/include/cmake.mk.orig	2013-01-28 14:40:32.659276888 +0400
++++ ../../openwrt_trunk/include/cmake.mk	2013-01-28 14:42:51.747274356 +0400
+@@ -53,7 +53,7 @@
  			-DCMAKE_FIND_ROOT_PATH_MODE_LIBRARY=ONLY \
  			-DCMAKE_FIND_ROOT_PATH_MODE_INCLUDE=ONLY \
  			-DCMAKE_STRIP=: \
 -			-DCMAKE_INSTALL_PREFIX=/usr \
 +			-DCMAKE_INSTALL_PREFIX=/opt \
  			-DDL_LIBRARY=$(STAGING_DIR) \
+                         -DCMAKE_PREFIX_PATH=$(STAGING_DIR) \
  			$(CMAKE_OPTIONS) \
- 		. \

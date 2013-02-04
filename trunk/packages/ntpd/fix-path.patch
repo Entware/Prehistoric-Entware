@@ -1,6 +1,6 @@
-diff -urx .svn ../../../openwrt_trunk.orig/feeds/packages/net/ntpd/files/ntp.conf ../../../openwrt_trunk/feeds/packages/net/ntpd/files/ntp.conf
---- ../../../openwrt_trunk.orig/feeds/packages/net/ntpd/files/ntp.conf	2012-07-21 23:10:01.110539887 +0400
-+++ ../../../openwrt_trunk/feeds/packages/net/ntpd/files/ntp.conf	2012-07-25 21:41:52.346835327 +0400
+diff -urx .svn ../../../downloads/openwrt_trunk-r35342/feeds/packages/net/ntpd/files/ntp.conf ../../../openwrt_trunk/feeds/packages/net/ntpd/files/ntp.conf
+--- ../../../downloads/openwrt_trunk-r35342/feeds/packages/net/ntpd/files/ntp.conf	2013-01-28 14:42:01.971275259 +0400
++++ ../../../openwrt_trunk/feeds/packages/net/ntpd/files/ntp.conf	2013-01-28 14:43:26.131273731 +0400
 @@ -6,7 +6,7 @@
  
  restrict 127.0.0.1
@@ -10,9 +10,9 @@ diff -urx .svn ../../../openwrt_trunk.orig/feeds/packages/net/ntpd/files/ntp.con
  
  server 0.openwrt.pool.ntp.org iburst
  server 1.openwrt.pool.ntp.org iburst
-diff -urx .svn ../../../openwrt_trunk.orig/feeds/packages/net/ntpd/files/ntpd.hotplug ../../../openwrt_trunk/feeds/packages/net/ntpd/files/ntpd.hotplug
---- ../../../openwrt_trunk.orig/feeds/packages/net/ntpd/files/ntpd.hotplug	2012-07-21 23:10:01.110539887 +0400
-+++ ../../../openwrt_trunk/feeds/packages/net/ntpd/files/ntpd.hotplug	2012-07-25 21:33:11.422839524 +0400
+diff -urx .svn ../../../downloads/openwrt_trunk-r35342/feeds/packages/net/ntpd/files/ntpd.hotplug ../../../openwrt_trunk/feeds/packages/net/ntpd/files/ntpd.hotplug
+--- ../../../downloads/openwrt_trunk-r35342/feeds/packages/net/ntpd/files/ntpd.hotplug	2013-01-28 14:42:01.995275268 +0400
++++ ../../../openwrt_trunk/feeds/packages/net/ntpd/files/ntpd.hotplug	2013-01-28 14:43:26.147273731 +0400
 @@ -1,10 +1,10 @@
  NAME=ntpd
 -CONFIG=/etc/ntp.conf
@@ -27,10 +27,10 @@ diff -urx .svn ../../../openwrt_trunk.orig/feeds/packages/net/ntpd/files/ntpd.ho
 +		/opt/etc/init.d/S77ntpd start
          } &
  }
-diff -urx .svn ../../../openwrt_trunk.orig/feeds/packages/net/ntpd/Makefile ../../../openwrt_trunk/feeds/packages/net/ntpd/Makefile
---- ../../../openwrt_trunk.orig/feeds/packages/net/ntpd/Makefile	2012-07-21 23:10:01.070539889 +0400
-+++ ../../../openwrt_trunk/feeds/packages/net/ntpd/Makefile	2012-07-25 21:40:37.758828722 +0400
-@@ -114,11 +114,11 @@
+diff -urx .svn ../../../downloads/openwrt_trunk-r35342/feeds/packages/net/ntpd/Makefile ../../../openwrt_trunk/feeds/packages/net/ntpd/Makefile
+--- ../../../downloads/openwrt_trunk-r35342/feeds/packages/net/ntpd/Makefile	2013-01-28 14:42:01.943275262 +0400
++++ ../../../openwrt_trunk/feeds/packages/net/ntpd/Makefile	2013-02-04 16:07:16.296164716 +0400
+@@ -114,7 +114,7 @@
  endef
  
  define Package/ntpd/conffiles
@@ -38,13 +38,8 @@ diff -urx .svn ../../../openwrt_trunk.orig/feeds/packages/net/ntpd/Makefile ../.
 +/opt/etc/ntp.conf
  endef
  
- TARGET_CPPFLAGS += \
--	-I$(STAGING_DIR)/usr/include/libelf
-+	-I$(STAGING_DIR)/opt/include/libelf
- 
  CONFIGURE_VARS += \
- 	ac_cv_header_md5_h=no \
-@@ -138,53 +138,42 @@
+@@ -135,53 +135,42 @@
  ifeq ($(BUILD_VARIANT),ssl)
    CONFIGURE_ARGS += \
  	--with-crypto \

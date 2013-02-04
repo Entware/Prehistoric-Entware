@@ -1,12 +1,12 @@
-diff -urx .svn ../../../openwrt_trunk.orig/feeds/packages/net/net-snmp/files/snmpd.default ../../../openwrt_trunk/feeds/packages/net/net-snmp/files/snmpd.default
---- ../../../openwrt_trunk.orig/feeds/packages/net/net-snmp/files/snmpd.default	2012-03-21 16:34:32.959162051 +0400
-+++ ../../../openwrt_trunk/feeds/packages/net/net-snmp/files/snmpd.default	2012-03-28 13:57:24.418994600 +0400
+diff -urx .svn ../../../downloads/openwrt_trunk-r35342/feeds/packages/net/net-snmp/files/snmpd.default ../../../openwrt_trunk/feeds/packages/net/net-snmp/files/snmpd.default
+--- ../../../downloads/openwrt_trunk-r35342/feeds/packages/net/net-snmp/files/snmpd.default	2013-01-28 14:42:11.323275090 +0400
++++ ../../../openwrt_trunk/feeds/packages/net/net-snmp/files/snmpd.default	2013-01-28 14:43:25.843273737 +0400
 @@ -1 +1 @@
 -OPTIONS="-Lf /dev/null -p /var/run/snmpd.pid"
 +OPTIONS="-Lf /dev/null -p /opt/var/run/snmpd.pid"
-diff -urx .svn ../../../openwrt_trunk.orig/feeds/packages/net/net-snmp/files/snmpd.init ../../../openwrt_trunk/feeds/packages/net/net-snmp/files/snmpd.init
---- ../../../openwrt_trunk.orig/feeds/packages/net/net-snmp/files/snmpd.init	2012-03-21 16:34:32.959162051 +0400
-+++ ../../../openwrt_trunk/feeds/packages/net/net-snmp/files/snmpd.init	2012-03-28 13:58:06.770457207 +0400
+diff -urx .svn ../../../downloads/openwrt_trunk-r35342/feeds/packages/net/net-snmp/files/snmpd.init ../../../openwrt_trunk/feeds/packages/net/net-snmp/files/snmpd.init
+--- ../../../downloads/openwrt_trunk-r35342/feeds/packages/net/net-snmp/files/snmpd.init	2013-01-28 14:42:11.339275095 +0400
++++ ../../../openwrt_trunk/feeds/packages/net/net-snmp/files/snmpd.init	2013-01-28 14:43:25.855273734 +0400
 @@ -2,10 +2,10 @@
  # Copyright (C) 2008 OpenWrt.org
  START=50
@@ -22,7 +22,7 @@ diff -urx .svn ../../../openwrt_trunk.orig/feeds/packages/net/net-snmp/files/snm
  PID_F=$RUN_D/snmpd.pid
  RUN_C=$RUN_D/snmpd.conf
  
-@@ -127,7 +127,7 @@
+@@ -138,7 +138,7 @@
  	config_foreach snmpd_exec_add exec
  
  	[ -f $DEFAULT ] && . $DEFAULT
@@ -31,9 +31,9 @@ diff -urx .svn ../../../openwrt_trunk.orig/feeds/packages/net/net-snmp/files/snm
  }
  stop() {
  	[ -f $PID_F ] && kill $(cat $PID_F)
-diff -urx .svn ../../../openwrt_trunk.orig/feeds/packages/net/net-snmp/Makefile ../../../openwrt_trunk/feeds/packages/net/net-snmp/Makefile
---- ../../../openwrt_trunk.orig/feeds/packages/net/net-snmp/Makefile	2012-03-21 16:34:32.959162051 +0400
-+++ ../../../openwrt_trunk/feeds/packages/net/net-snmp/Makefile	2012-03-28 14:00:00.729023843 +0400
+diff -urx .svn ../../../downloads/openwrt_trunk-r35342/feeds/packages/net/net-snmp/Makefile ../../../openwrt_trunk/feeds/packages/net/net-snmp/Makefile
+--- ../../../downloads/openwrt_trunk-r35342/feeds/packages/net/net-snmp/Makefile	2013-01-28 14:42:11.215275095 +0400
++++ ../../../openwrt_trunk/feeds/packages/net/net-snmp/Makefile	2013-01-28 14:43:25.855273734 +0400
 @@ -156,8 +156,8 @@
  	--enable-shared \
  	--enable-static \
@@ -136,9 +136,9 @@ diff -urx .svn ../../../openwrt_trunk.orig/feeds/packages/net/net-snmp/Makefile 
  endef
  
  $(eval $(call BuildPackage,libnetsnmp))
-diff -urx .svn ../../../openwrt_trunk.orig/feeds/packages/net/net-snmp/patches/120-debian-searchdirs.patch ../../../openwrt_trunk/feeds/packages/net/net-snmp/patches/120-debian-searchdirs.patch
---- ../../../openwrt_trunk.orig/feeds/packages/net/net-snmp/patches/120-debian-searchdirs.patch	2012-03-21 16:34:32.959162051 +0400
-+++ ../../../openwrt_trunk/feeds/packages/net/net-snmp/patches/120-debian-searchdirs.patch	2012-03-28 13:51:33.103408978 +0400
+diff -urx .svn ../../../downloads/openwrt_trunk-r35342/feeds/packages/net/net-snmp/patches/120-debian-searchdirs.patch ../../../openwrt_trunk/feeds/packages/net/net-snmp/patches/120-debian-searchdirs.patch
+--- ../../../downloads/openwrt_trunk-r35342/feeds/packages/net/net-snmp/patches/120-debian-searchdirs.patch	2013-01-28 14:42:11.283275095 +0400
++++ ../../../openwrt_trunk/feeds/packages/net/net-snmp/patches/120-debian-searchdirs.patch	2013-01-28 14:43:25.867273734 +0400
 @@ -6,9 +6,9 @@
   }
  -push @def_search_dirs, "/usr/local/share/snmp/";
@@ -152,9 +152,9 @@ diff -urx .svn ../../../openwrt_trunk.orig/feeds/packages/net/net-snmp/patches/1
   push @def_search_dirs, "./mib2c-conf.d";
   
   sub usage {
-diff -urx .svn ../../../openwrt_trunk.orig/feeds/packages/net/net-snmp/patches/140-debian-docfiles.patch ../../../openwrt_trunk/feeds/packages/net/net-snmp/patches/140-debian-docfiles.patch
---- ../../../openwrt_trunk.orig/feeds/packages/net/net-snmp/patches/140-debian-docfiles.patch	2012-03-21 16:34:32.959162051 +0400
-+++ ../../../openwrt_trunk/feeds/packages/net/net-snmp/patches/140-debian-docfiles.patch	2012-03-28 13:53:30.441936112 +0400
+diff -urx .svn ../../../downloads/openwrt_trunk-r35342/feeds/packages/net/net-snmp/patches/140-debian-docfiles.patch ../../../openwrt_trunk/feeds/packages/net/net-snmp/patches/140-debian-docfiles.patch
+--- ../../../downloads/openwrt_trunk-r35342/feeds/packages/net/net-snmp/patches/140-debian-docfiles.patch	2013-01-28 14:42:11.283275095 +0400
++++ ../../../openwrt_trunk/feeds/packages/net/net-snmp/patches/140-debian-docfiles.patch	2013-01-28 14:43:25.879273734 +0400
 @@ -5,7 +5,7 @@
      How do I configure SNMPv3 users?
      The 'createUser' line disappears when I start the agent.  Why?
@@ -249,9 +249,9 @@ diff -urx .svn ../../../openwrt_trunk.orig/feeds/packages/net/net-snmp/patches/1
     Ready-installed versions often look for the file as /etc/snmpd.conf,
     or /etc/snmp/snmpd.conf.  Try moving the old config file to the new
     location, and restart the agent.
-diff -urx .svn ../../../openwrt_trunk.orig/feeds/packages/net/net-snmp/patches/150-debian-defaultconfig.patch ../../../openwrt_trunk/feeds/packages/net/net-snmp/patches/150-debian-defaultconfig.patch
---- ../../../openwrt_trunk.orig/feeds/packages/net/net-snmp/patches/150-debian-defaultconfig.patch	2012-03-21 16:34:32.959162051 +0400
-+++ ../../../openwrt_trunk/feeds/packages/net/net-snmp/patches/150-debian-defaultconfig.patch	2012-03-28 13:54:23.729259630 +0400
+diff -urx .svn ../../../downloads/openwrt_trunk-r35342/feeds/packages/net/net-snmp/patches/150-debian-defaultconfig.patch ../../../openwrt_trunk/feeds/packages/net/net-snmp/patches/150-debian-defaultconfig.patch
+--- ../../../downloads/openwrt_trunk-r35342/feeds/packages/net/net-snmp/patches/150-debian-defaultconfig.patch	2013-01-28 14:42:11.251275098 +0400
++++ ../../../openwrt_trunk/feeds/packages/net/net-snmp/patches/150-debian-defaultconfig.patch	2013-01-28 14:43:25.895273735 +0400
 @@ -5,7 +5,7 @@
   #
   # This file is intended to only be an example.  If, however, you want

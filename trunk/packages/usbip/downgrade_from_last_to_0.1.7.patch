@@ -1,6 +1,6 @@
 Index: Makefile
 ===================================================================
---- ../../../openwrt_trunk/feeds/packages/net/usbip/Makefile	(revision 32887)
+--- ../../../openwrt_trunk/feeds/packages/net/usbip/Makefile	(revision 35474)
 +++ ../../../openwrt_trunk/feeds/packages/net/usbip/Makefile	(revision 32206)
 @@ -1,31 +1,20 @@
  #
@@ -39,13 +39,7 @@ Index: Makefile
  PKG_BUILD_DEPENDS:=glib2 sysfsutils
  PKG_FIXUP:=autoreconf
  PKG_INSTALL:=1
-@@ -36,70 +25,68 @@
- define Package/usbip/Common
-   TITLE:=USB-over-IP
-   URL:=http://usbip.sourceforge.net/
--  DEPENDS:=@USB_SUPPORT @LINUX_3_3
-+  DEPENDS:=@USB_SUPPORT
-   MAINTAINER:=Nuno Goncalves <nunojpg@gmail.com>
+@@ -41,65 +30,63 @@
  endef
  
  define Package/usbip/Default

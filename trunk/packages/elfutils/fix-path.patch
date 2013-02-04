@@ -1,0 +1,33 @@
+--- ../../../downloads/openwrt_trunk-r35342/feeds/packages/libs/elfutils/Makefile	2013-01-28 14:41:49.671275486 +0400
++++ ../../../openwrt_trunk/feeds/packages/libs/elfutils/Makefile	2013-02-04 15:48:36.080184976 +0400
+@@ -51,21 +51,21 @@
+ 	--disable-werror
+ 
+ define Build/InstallDev
+-	$(INSTALL_DIR) $(1)/usr/include
+-	$(CP) $(PKG_INSTALL_DIR)/usr/include/* $(1)/usr/include/
+-	$(INSTALL_DIR) $(1)/usr/lib
+-	$(CP) $(PKG_BUILD_DIR)/libdw/libdw.{a,so*} $(1)/usr/lib/
+-	$(CP) $(PKG_BUILD_DIR)/libelf/libelf.{a,so*} $(1)/usr/lib/
++	$(INSTALL_DIR) $(1)/opt/include
++	$(CP) $(PKG_INSTALL_DIR)/opt/include/* $(1)/opt/include/
++	$(INSTALL_DIR) $(1)/opt/lib
++	$(CP) $(PKG_BUILD_DIR)/libdw/libdw.{a,so*} $(1)/opt/lib/
++	$(CP) $(PKG_BUILD_DIR)/libelf/libelf.{a,so*} $(1)/opt/lib/
+ endef
+ 
+ define Package/libdw/install
+-	$(INSTALL_DIR) $(1)/usr/lib
+-	$(CP) $(PKG_BUILD_DIR)/libdw/libdw.so* $(1)/usr/lib/
++	$(INSTALL_DIR) $(1)/opt/lib
++	$(CP) $(PKG_BUILD_DIR)/libdw/libdw.so* $(1)/opt/lib/
+ endef
+ 
+ define Package/libelf1/install
+-	$(INSTALL_DIR) $(1)/usr/lib
+-	$(CP) $(PKG_BUILD_DIR)/libelf/libelf.so* $(1)/usr/lib/
++	$(INSTALL_DIR) $(1)/opt/lib
++	$(CP) $(PKG_BUILD_DIR)/libelf/libelf.so* $(1)/opt/lib/
+ endef
+ 
+ $(eval $(call BuildPackage,libdw))
