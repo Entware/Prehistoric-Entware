@@ -9,7 +9,6 @@ all: ./.done
 
 ./.done:
 	patch -p0 -i ./fix-path.patch
-	cat ./100-disable-testsuites.patch > ../../../openwrt_trunk/feeds/packages/libs/polarssl/patches/100-disable-testsuites.patch
 	touch $@
 
 clean:

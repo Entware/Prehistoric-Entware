@@ -9,7 +9,7 @@ all: ./.done
 
 ./.done:
 	patch -p0 -i ./fix-path.patch
-	cp ./S20openvpn ../../../openwrt_trunk/feeds/packages/net/openvpn/files/
+	cp ./S20openvpn ../../../openwrt_trunk/package/network/services/openvpn/files/
 	touch $@
 
 clean:

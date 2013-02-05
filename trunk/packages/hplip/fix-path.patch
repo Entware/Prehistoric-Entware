@@ -1,5 +1,5 @@
---- ../../../openwrt_trunk.orig/feeds/packages/utils/hplip/Makefile	2012-08-06 14:41:05.958698207 +0400
-+++ ../../../openwrt_trunk/feeds/packages/utils/hplip/Makefile	2012-08-13 23:39:02.757881507 +0400
+--- ../../../downloads/openwrt_trunk-r35474/feeds/packages/utils/hplip/Makefile	2013-02-05 09:10:57.607046116 +0400
++++ ../../../openwrt_trunk/feeds/packages/utils/hplip/Makefile	2013-02-05 09:41:24.699012109 +0400
 @@ -8,15 +8,15 @@
  include $(TOPDIR)/rules.mk
  
@@ -24,8 +24,8 @@
    CATEGORY:=Utilities
    TITLE:=HP Linux Imaging and Printing
    URL:=http://sourceforge.net/projects/hplip/
--  DEPENDS+=+libjpeg +libtiff +libusb +cups +sane-libs
-+  DEPENDS+=+libjpeg +libtiff +libusb-1.0 +cups +sane-libs +dbus +python
+-  DEPENDS+=+libjpeg +libtiff +libusb-compat +cups +sane-libs
++  DEPENDS+=+libjpeg +libtiff +libusb-compat +cups +sane-libs +dbus +python
  endef
  
  define Package/hplip/description

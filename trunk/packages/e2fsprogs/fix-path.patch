@@ -1,5 +1,5 @@
---- ../../../openwrt_trunk.orig/package/e2fsprogs/Makefile	2012-07-10 18:59:26.209181897 +0400
-+++ ../../../openwrt_trunk/package/e2fsprogs/Makefile	2012-07-10 19:00:03.080718359 +0400
+--- ../../../openwrt_trunk.orig/package/system/utils/e2fsprogs/Makefile	2012-07-10 18:59:26.209181897 +0400
++++ ../../../openwrt_trunk/package/system/utils/e2fsprogs/Makefile	2012-07-10 19:00:03.080718359 +0400
 @@ -122,43 +122,44 @@
  endef
  

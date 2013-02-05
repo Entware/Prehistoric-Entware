@@ -1,5 +1,5 @@
---- ../../../openwrt_trunk.orig/feeds/packages/utils/cryptsetup/Makefile	2012-08-06 14:41:05.590698217 +0400
-+++ ../../../openwrt_trunk/feeds/packages/utils/cryptsetup/Makefile	2012-08-21 17:35:16.997745635 +0400
+--- ../../../downloads/openwrt_trunk-r35474/feeds/packages/utils/cryptsetup/Makefile	2013-02-05 09:10:57.291046120 +0400
++++ ../../../openwrt_trunk/feeds/packages/utils/cryptsetup/Makefile	2013-02-05 09:22:56.431033407 +0400
 @@ -17,7 +17,7 @@
  
  include $(INCLUDE_DIR)/package.mk
@@ -13,7 +13,7 @@
    SECTION:=utils
    CATEGORY:=Utilities
    TITLE:=Cryptsetup
--  DEPENDS:=+libblkid +libuuid +libpopt +lvm2 +libgcrypt +libdevmapper
+-  DEPENDS:=+libblkid +libuuid +libpopt +lvm2 +libgcrypt +libdevmapper +@KERNEL_DIRECT_IO
 +  DEPENDS:=+libblkid +libuuid +libpopt +libgcrypt +libdevmapper
  endef
  

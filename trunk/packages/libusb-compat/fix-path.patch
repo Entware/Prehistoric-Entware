@@ -1,0 +1,13 @@
+--- ../../../downloads/openwrt_trunk-r35474/package/libs/libusb-compat/Makefile	2013-02-05 09:11:10.911045870 +0400
++++ ../../../openwrt_trunk/package/libs/libusb-compat/Makefile	2013-02-05 09:50:56.379003634 +0400
+@@ -42,8 +42,8 @@
+ endef
+ 
+ define Package/libusb-compat/install
+-	$(INSTALL_DIR) $(1)/usr/lib
+-	$(CP) $(PKG_INSTALL_DIR)/usr/lib/libusb-0.1.so* $(1)/usr/lib/
++	$(INSTALL_DIR) $(1)/opt/lib
++	$(CP) $(PKG_INSTALL_DIR)/opt/lib/libusb-0.1.so* $(1)/opt/lib/
+ endef
+ 
+ $(eval $(call BuildPackage,libusb-compat))

@@ -1,5 +1,5 @@
---- ../../../openwrt_trunk.orig/package/usbreset/Makefile	2012-08-06 14:41:27.702697816 +0400
-+++ ../../../openwrt_trunk/package/usbreset/Makefile	2012-08-24 11:44:24.603611629 +0400
+--- ../../../openwrt_trunk.orig/package/system/utils/usbreset/Makefile	2012-08-06 14:41:27.702697816 +0400
++++ ../../../openwrt_trunk/package/system/utils/usbreset/Makefile	2012-08-24 11:44:24.603611629 +0400
 @@ -32,13 +32,13 @@
  endef
  

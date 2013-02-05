@@ -8,4 +8,3 @@ alsa-lib: edit config files
 netatalk: config files fix
 grep from busybox is not full
 tvheadend: adopt OpenWRT's package as our custom rtndev/tvheadend
-gw6c: adopt OpenWRT's package as our custom rtndev/gogoclient
