@@ -1,6 +1,6 @@
-diff -urx .svn ../../../downloads/openwrt_trunk-r35342/feeds/packages/libs/mysql/conf/my.cnf ../../../openwrt_trunk/feeds/packages/libs/mysql/conf/my.cnf
---- ../../../downloads/openwrt_trunk-r35342/feeds/packages/libs/mysql/conf/my.cnf	2013-01-28 14:41:49.755275486 +0400
-+++ ../../../openwrt_trunk/feeds/packages/libs/mysql/conf/my.cnf	2013-01-28 14:43:25.635273738 +0400
+diff -urx .svn ../../../downloads/openwrt_trunk-r35474/feeds/packages/libs/mysql/conf/my.cnf ../../../openwrt_trunk/feeds/packages/libs/mysql/conf/my.cnf
+--- ../../../downloads/openwrt_trunk-r35474/feeds/packages/libs/mysql/conf/my.cnf	2013-02-05 10:42:11.338946404 +0400
++++ ../../../openwrt_trunk/feeds/packages/libs/mysql/conf/my.cnf	2013-02-05 10:43:50.862944592 +0400
 @@ -1,20 +1,20 @@
  [client]
  port		= 3306
@@ -43,10 +43,20 @@ diff -urx .svn ../../../downloads/openwrt_trunk-r35342/feeds/packages/libs/mysql
  #expire_logs_days	= 10
  #max_binlog_size         = 100M
  #binlog_do_db		= include_database_name
-diff -urx .svn ../../../downloads/openwrt_trunk-r35342/feeds/packages/libs/mysql/Makefile ../../../openwrt_trunk/feeds/packages/libs/mysql/Makefile
---- ../../../downloads/openwrt_trunk-r35342/feeds/packages/libs/mysql/Makefile	2013-01-28 14:41:49.755275486 +0400
-+++ ../../../openwrt_trunk/feeds/packages/libs/mysql/Makefile	2013-02-04 15:55:52.660177684 +0400
-@@ -68,7 +68,7 @@
+diff -urx .svn ../../../downloads/openwrt_trunk-r35474/feeds/packages/libs/mysql/Makefile ../../../openwrt_trunk/feeds/packages/libs/mysql/Makefile
+--- ../../../downloads/openwrt_trunk-r35474/feeds/packages/libs/mysql/Makefile	2013-02-05 10:42:11.334946404 +0400
++++ ../../../openwrt_trunk/feeds/packages/libs/mysql/Makefile	2013-02-05 14:16:03.282717803 +0400
+@@ -17,7 +17,8 @@
+ 	http://mysql.planetmirror.com/Downloads/MySQL-5.1/ \
+ 	http://mysql.he.net/Downloads/MySQL-5.1/ \
+ 	http://www.linorg.usp.br/mysql/Downloads/MySQL-5.1/ \
+-	http://mysql.holywar.net/Downloads/MySQL-5.1/
++	http://mysql.holywar.net/Downloads/MySQL-5.1/ \
++	http://downloads.mysql.com/archives/mysql-5.1/
+ PKG_MD5SUM:=a43ffa58e3611e5a557feb745596aca3
+ 
+ PKG_BUILD_DEPENDS:=libncurses libreadline
+@@ -68,7 +69,7 @@
  	--without-mysqlmanager \
  	--without-raid \
  	--with-mysqld-user=root \
@@ -55,7 +65,7 @@ diff -urx .svn ../../../downloads/openwrt_trunk-r35342/feeds/packages/libs/mysql
  	--without-libwrap \
  	--without-pstack \
  	--with-low-memory \
-@@ -80,7 +80,7 @@
+@@ -80,7 +81,7 @@
  	--without-docs \
  	--without-man \
  	--without-bench \
@@ -64,7 +74,7 @@ diff -urx .svn ../../../downloads/openwrt_trunk-r35342/feeds/packages/libs/mysql
  	--without-debug \
  	--with-named-thread-libs=-lpthread
  
-@@ -140,47 +140,47 @@
+@@ -140,47 +141,47 @@
  
  
  define Build/InstallDev

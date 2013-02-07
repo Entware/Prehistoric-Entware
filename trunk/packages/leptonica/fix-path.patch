@@ -1,6 +1,11 @@
---- ../../../openwrt_trunk.orig/feeds/packages/libs/leptonica/Makefile	2012-07-11 14:54:00.746751812 +0400
-+++ ../../../openwrt_trunk/feeds/packages/libs/leptonica/Makefile	2012-07-11 22:49:11.208327830 +0400
-@@ -29,18 +29,17 @@
+--- ../../../downloads/openwrt_trunk-r35474/feeds/packages/libs/leptonica/Makefile	2013-02-05 10:42:11.346946404 +0400
++++ ../../../openwrt_trunk/feeds/packages/libs/leptonica/Makefile	2013-02-06 17:07:22.820951527 +0400
+@@ -25,22 +25,21 @@
+   CATEGORY:=Libraries
+   TITLE:=A library for efficient image processing and image analysis operations
+   URL:=http://leptonica.googlecode.com/
+-  DEPENDS:=+giflib +libjpeg +libpng +libtiff +zlib
++  DEPENDS:=+giflib +libjpeg-turbo +libpng +libtiff +zlib
  endef
  
  TARGET_CFLAGS += $(FPIC)

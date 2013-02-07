@@ -1,6 +1,5 @@
 === Known bugs and odds, to do list ===
 
-palantir: was dropped in OpenWRT as v4l was dropped (see Changeset #32111)
 ipset: broken since r398
 sshd: syslogin_perform_logout: logout() returned an error, /var/... or /etc/... somewhere in sources
 bash_completion: /etc/bashcompletion in optware is newer
@@ -8,3 +7,7 @@ alsa-lib: edit config files
 netatalk: config files fix
 grep from busybox is not full
 tvheadend: adopt OpenWRT's package as our custom rtndev/tvheadend
+gdb downgraded from 7.5 to 7.3.1 due to gnu_v3_object_ctor_group() absence https://dev.openwrt.org/changeset?sfp_email=&sfph_mail=&reponame=&new=34007%40trunk%2Fpackage%2Fdevel%2Fgdb&old=33523%40trunk%2Fpackage%2Fgdb
+usbip downgraded due to dropping earlier k2.6 support in OpenWRT
+freeswitch: spandsp marked as broken for now.
+elfutils: is a fake package for now, still old libelf package used due to our 2.6 kernel

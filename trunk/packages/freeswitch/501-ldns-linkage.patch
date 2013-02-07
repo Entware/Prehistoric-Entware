@@ -1,0 +1,11 @@
+--- ./libs/ldns/Makefile.in.orig	2013-02-06 14:20:01.957132566 +0400
++++ ./libs/ldns/Makefile.in	2013-02-06 14:20:37.873134911 +0400
+@@ -121,7 +121,7 @@
+ all:		copy-headers lib linktest manpages @PYLDNS@
+ 
+ linktest:	$(srcdir)/linktest.c $(LIBDNS_HEADERS) ldns/net.h ldns/util.h ldns/config.h libldns.la
+-		$(LIBTOOL) --mode=link $(CC) $(srcdir)/linktest.c $(CPPFLAGS) $(LIBSSL_CPPFLAGS) $(CFLAGS) -lldns $(LIBS) -o linktest
++		$(LIBTOOL) --mode=link $(CC) $(srcdir)/linktest.c $(CPPFLAGS) $(LIBSSL_CPPFLAGS) $(CFLAGS) $(LDFLAGS) -lldns $(LIBS) -o linktest
+ 
+ lib:		libldns.la
+ 		if [ ! -d lib ] ; then ln -s .libs lib ; fi ;		

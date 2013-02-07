@@ -1,6 +1,6 @@
-diff -urx .svn ../../../openwrt_trunk.orig/feeds/packages/multimedia/minidlna/Makefile ../../../openwrt_trunk/feeds/packages/multimedia/minidlna/Makefile
---- ../../../openwrt_trunk.orig/feeds/packages/multimedia/minidlna/Makefile	2012-09-03 12:35:44.683891877 +0400
-+++ ../../../openwrt_trunk/feeds/packages/multimedia/minidlna/Makefile	2012-09-03 15:21:40.979708707 +0400
+diff -urx .svn ../../../downloads/openwrt_trunk-r35474/feeds/packages/multimedia/minidlna/Makefile ../../../openwrt_trunk/feeds/packages/multimedia/minidlna/Makefile
+--- ../../../downloads/openwrt_trunk-r35474/feeds/packages/multimedia/minidlna/Makefile	2013-02-05 10:42:11.446946402 +0400
++++ ../../../openwrt_trunk/feeds/packages/multimedia/minidlna/Makefile	2013-02-06 16:48:39.040972013 +0400
 @@ -18,7 +18,6 @@
  PKG_BUILD_PARALLEL:=0
  PKG_BUILD_DEPENDS:=util-linux
@@ -9,11 +9,13 @@ diff -urx .svn ../../../openwrt_trunk.orig/feeds/packages/multimedia/minidlna/Ma
  include $(INCLUDE_DIR)/package.mk
  include $(INCLUDE_DIR)/nls.mk
  
-@@ -28,7 +27,7 @@
+@@ -27,8 +26,8 @@
+   CATEGORY:=Multimedia
    TITLE:=UPnP A/V & DLNA Media Server
    URL:=http://minidlna.sourceforge.net/
-   DEPENDS:= +libpthread +libexif +libjpeg +libsqlite3 +libffmpeg \
+-  DEPENDS:= +libpthread +libexif +libjpeg +libsqlite3 +libffmpeg \
 -  	+libid3tag +libflac +libvorbis +libuuid \
++  DEPENDS:= +libpthread +libexif +libjpeg-turbo +libsqlite3 +libffmpeg \
 +  	+libid3tag +libflac +libvorbis +libuuid +libbz2 \
    	$(ICONV_DEPENDS) $(INTL_DEPENDS)
  endef
@@ -87,9 +89,9 @@ diff -urx .svn ../../../openwrt_trunk.orig/feeds/packages/multimedia/minidlna/Ma
  endef
  
  define Package/minidlna/conffiles
-diff -urx .svn ../../../openwrt_trunk.orig/feeds/packages/multimedia/minidlna/patches/010-genconfig-checks.patch ../../../openwrt_trunk/feeds/packages/multimedia/minidlna/patches/010-genconfig-checks.patch
---- ../../../openwrt_trunk.orig/feeds/packages/multimedia/minidlna/patches/010-genconfig-checks.patch	2012-09-03 12:35:44.683891877 +0400
-+++ ../../../openwrt_trunk/feeds/packages/multimedia/minidlna/patches/010-genconfig-checks.patch	2012-09-03 15:21:40.979708707 +0400
+diff -urx .svn ../../../downloads/openwrt_trunk-r35474/feeds/packages/multimedia/minidlna/patches/010-genconfig-checks.patch ../../../openwrt_trunk/feeds/packages/multimedia/minidlna/patches/010-genconfig-checks.patch
+--- ../../../downloads/openwrt_trunk-r35474/feeds/packages/multimedia/minidlna/patches/010-genconfig-checks.patch	2013-02-05 10:42:11.446946402 +0400
++++ ../../../openwrt_trunk/feeds/packages/multimedia/minidlna/patches/010-genconfig-checks.patch	2013-02-05 10:43:50.510944598 +0400
 @@ -4,13 +4,13 @@
   CONFIGFILE="config.h"
   CONFIGMACRO="__CONFIG_H__"
@@ -106,9 +108,9 @@ diff -urx .svn ../../../openwrt_trunk.orig/feeds/packages/multimedia/minidlna/pa
   # Log path
  -LOG_PATH="${DB_PATH}"
  +LOG_PATH="${LOG_PATH:-$DB_PATH}"
-diff -urx .svn ../../../openwrt_trunk.orig/feeds/packages/multimedia/minidlna/patches/020-makefile-tweaks.patch ../../../openwrt_trunk/feeds/packages/multimedia/minidlna/patches/020-makefile-tweaks.patch
---- ../../../openwrt_trunk.orig/feeds/packages/multimedia/minidlna/patches/020-makefile-tweaks.patch	2012-09-03 12:35:44.683891877 +0400
-+++ ../../../openwrt_trunk/feeds/packages/multimedia/minidlna/patches/020-makefile-tweaks.patch	2012-09-03 15:21:40.983708893 +0400
+diff -urx .svn ../../../downloads/openwrt_trunk-r35474/feeds/packages/multimedia/minidlna/patches/020-makefile-tweaks.patch ../../../openwrt_trunk/feeds/packages/multimedia/minidlna/patches/020-makefile-tweaks.patch
+--- ../../../downloads/openwrt_trunk-r35474/feeds/packages/multimedia/minidlna/patches/020-makefile-tweaks.patch	2013-02-05 10:42:11.446946402 +0400
++++ ../../../openwrt_trunk/feeds/packages/multimedia/minidlna/patches/020-makefile-tweaks.patch	2013-02-05 10:43:50.514944596 +0400
 @@ -1,18 +1,19 @@
 ---- a/Makefile
 -+++ b/Makefile

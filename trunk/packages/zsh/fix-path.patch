@@ -1,0 +1,51 @@
+--- ../../../downloads/openwrt_trunk-r35474/feeds/packages/utils/zsh/Makefile	2013-02-05 10:42:12.266946388 +0400
++++ ../../../openwrt_trunk/feeds/packages/utils/zsh/Makefile	2013-02-05 14:08:08.790725645 +0400
+@@ -21,7 +21,7 @@
+   SECTION:=utils
+   CATEGORY:=Utilities
+   TITLE:=The Z shell
+-  DEPENDS:=+libncurses +librt
++  DEPENDS:=+libncurses +librt +libgdbm
+   URL:=http://www.zsh.org/
+ endef
+ 
+@@ -34,10 +34,15 @@
+         mechanism, and a host of other features.
+ endef
+ 
++CONFIGURE_VARS += \
++	zsh_cv_sys_nis=no \
++	zsh_cv_sys_nis_plus=no
++
+ define Build/Configure
+ 	$(call Build/Configure/Default, \
+-		--bindir=/bin \
+-		--disable-etcdir \
++		--bindir=/opt/bin \
++		--enable-etcdir=/opt/etc \
++		--enable-multibyte \
+ 		--with-term-lib="ncurses ncursesw" \
+ 	)
+ 	# Do not install these functions:
+@@ -59,17 +64,11 @@
+ 	$(MAKE) -C $(PKG_BUILD_DIR) DESTDIR="$(PKG_INSTALL_DIR)" install
+ endef
+ 
+-define Package/zsh/postinst
+-#!/bin/sh
+-grep zsh $${IPKG_INSTROOT}/etc/shells || \
+-	echo "/bin/zsh" >> $${IPKG_INSTROOT}/etc/shells
+-endef
+-
+ define Package/zsh/install
+-	$(INSTALL_DIR) $(1)/bin
+-	$(INSTALL_BIN) $(PKG_INSTALL_DIR)/bin/zsh $(1)/bin/
+-	$(INSTALL_DIR) $(1)/usr/share/zsh/$(PKG_VERSION)
+-	$(CP) $(PKG_INSTALL_DIR)/usr/share/zsh/$(PKG_VERSION)/* $(1)/usr/share/zsh/$(PKG_VERSION)/
++	$(INSTALL_DIR) $(1)/opt/bin
++	$(INSTALL_BIN) $(PKG_INSTALL_DIR)/opt/bin/zsh $(1)/opt/bin/
++	$(INSTALL_DIR) $(1)/opt/share/zsh/$(PKG_VERSION)
++	$(CP) $(PKG_INSTALL_DIR)/opt/share/zsh/$(PKG_VERSION)/* $(1)/opt/share/zsh/$(PKG_VERSION)/
+ endef
+ 
+ $(eval $(call BuildPackage,zsh))

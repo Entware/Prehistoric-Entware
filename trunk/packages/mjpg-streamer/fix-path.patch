@@ -1,5 +1,14 @@
---- ../../../openwrt_trunk.orig/feeds/packages/multimedia/mjpg-streamer/Makefile	2012-09-03 15:54:44.567674379 +0400
-+++ ../../../openwrt_trunk/feeds/packages/multimedia/mjpg-streamer/Makefile	2012-09-04 10:03:57.686484050 +0400
+--- ../../../downloads/openwrt_trunk-r35474/feeds/packages/multimedia/mjpg-streamer/Makefile	2013-02-05 10:42:11.474946402 +0400
++++ ../../../openwrt_trunk/feeds/packages/multimedia/mjpg-streamer/Makefile	2013-02-06 16:58:20.524961971 +0400
+@@ -24,7 +24,7 @@
+   SECTION:=multimedia
+   CATEGORY:=Multimedia
+   TITLE:=MJPG-streamer
+-  DEPENDS:=+libpthread +libjpeg
++  DEPENDS:=+libpthread +libjpeg-turbo
+   URL:=http://mjpg-streamer.wiki.sourceforge.net/
+ endef
+ 
 @@ -35,23 +35,15 @@
  EXTRA_CFLAGS += $(TARGET_CPPFLAGS) $(TARGET_LDFLAGS)
  

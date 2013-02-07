@@ -10,7 +10,8 @@ all: ./.done
 
 ./.done:
 	patch -p0 -i ./fix-path.patch
-	cp ./S60cupsd ../../../openwrt_trunk/feeds/packages/net/cups/files/
+	cp -f ./S60cupsd ../../../openwrt_trunk/feeds/packages/net/cups/files/
+	cp -f ./500-ppdc-linkage.patch ../../../openwrt_trunk/feeds/packages/net/cups/patches/
 	touch $@
 
 clean:

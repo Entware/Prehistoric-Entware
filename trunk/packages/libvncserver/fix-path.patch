@@ -1,5 +1,14 @@
---- ../../../openwrt_trunk.orig/feeds/packages/libs/libvncserver/Makefile	2011-12-05 10:46:45.000000000 +0400
-+++ ../../../openwrt_trunk/feeds/packages/libs/libvncserver/Makefile	2011-12-21 10:37:18.602694468 +0400
+--- ../../../downloads/openwrt_trunk-r35474/feeds/packages/libs/libvncserver/Makefile	2013-02-05 10:42:11.382946403 +0400
++++ ../../../openwrt_trunk/feeds/packages/libs/libvncserver/Makefile	2013-02-06 16:39:21.572983492 +0400
+@@ -24,7 +24,7 @@
+ define Package/libvncserver
+   SECTION:=libs
+   CATEGORY:=Libraries
+-  DEPENDS:=+zlib +libjpeg +libpthread $(ICONV_DEPENDS)
++  DEPENDS:=+zlib +libjpeg-turbo +libpthread $(ICONV_DEPENDS)
+   TITLE:=VNC Server Library
+   URL:=http://libvncserver.sourceforge.net/
+ endef
 @@ -45,15 +45,15 @@
  	--without-avahi
  

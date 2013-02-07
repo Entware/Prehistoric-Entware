@@ -1,0 +1,11 @@
+--- ./libs/libzrtp/include/zrtp_config_user.h.orig	2013-02-06 13:07:52.325213281 +0400
++++ ./libs/libzrtp/include/zrtp_config_user.h	2013-02-06 13:08:50.881211550 +0400
+@@ -66,7 +66,7 @@
+ #define ZBO_LITTLE_ENDIAN			0x1234
+ 
+ /** \brief Define Platform Byte Order manually there */
+-//#define ZRTP_BYTE_ORDER
++#define ZRTP_BYTE_ORDER	ZBO_LITTLE_ENDIAN
+ 
+ /** \brief Defines the max length in bytes of a binary SAS digest */
+ #ifndef ZRTP_SAS_DIGEST_LENGTH

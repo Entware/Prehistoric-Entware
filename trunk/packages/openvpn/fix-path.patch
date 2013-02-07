@@ -1,6 +1,14 @@
---- ../../../downloads/openwrt_trunk-r35474/package/network/services/openvpn/Makefile	2013-02-05 09:11:14.427045805 +0400
-+++ ../../../openwrt_trunk/package/network/services/openvpn/Makefile	2013-02-05 10:08:46.634998773 +0400
-@@ -31,7 +31,7 @@
+--- ../../../downloads/openwrt_trunk-r35474/package/network/services/openvpn/Makefile	2013-02-05 10:42:43.814945812 +0400
++++ ../../../openwrt_trunk/package/network/services/openvpn/Makefile	2013-02-06 20:42:01.148716861 +0400
+@@ -9,7 +9,6 @@
+ 
+ PKG_NAME:=openvpn
+ 
+-PKG_REV:=56cffde5d5320e0b1ec364d3e486aca9
+ PKG_VERSION:=2.3.0
+ PKG_RELEASE=1
+ 
+@@ -31,7 +30,7 @@
    URL:=http://openvpn.net
    SUBMENU:=VPN
    MENU:=1
@@ -9,20 +17,27 @@
    VARIANT:=$(1)
    MAINTAINER:=Mirko Vogt <mirko@openwrt.org>
  endef
-@@ -55,9 +55,9 @@
- endef
+@@ -48,19 +47,6 @@
+ Package/openvpn-polarssl/config=$(call Package/openvpn/config/Default,polarssl)
+ Package/openvpn-nossl/config=$(call Package/openvpn/config/Default,nossl)
  
- define Package/openvpn-easy-rsa/conffiles
+-define Package/openvpn-easy-rsa
+-  $(call Package/openvpn)
+-  DEPENDS:=+openssl-util
+-  TITLE:=Simple shell scripts to manage a Certificate Authority
+-endef
+-
+-define Package/openvpn-easy-rsa/conffiles
 -/etc/easy-rsa/keys/serial
 -/etc/easy-rsa/keys/index.txt
 -/etc/easy-rsa/vars
-+/opt/opt/etc/easy-rsa/keys/serial
-+/opt/opt/etc/easy-rsa/keys/index.txt
-+/opt/opt/etc/easy-rsa/vars
- endef
- 
- 
-@@ -75,7 +75,7 @@
+-endef
+-
+-
+ ifeq ($(BUILD_VARIANT),polarssl)
+ CONFIG_OPENVPN_POLARSSL:=y
+ endif
+@@ -75,7 +61,7 @@
  	IFCONFIG=/sbin/ifconfig \
  	ROUTE=/sbin/route \
  	IPROUTE=/usr/sbin/ip \
@@ -31,7 +46,7 @@
  
  define Build/Configure
  	$(call Build/Configure/Default, \
-@@ -104,42 +104,35 @@
+@@ -104,45 +90,26 @@
  endef
  
  define Package/openvpn-$(BUILD_VARIANT)/conffiles
@@ -60,18 +75,18 @@
  	$(INSTALL_BIN) \
 -		files/openvpn.init \
 -		$(1)/etc/init.d/openvpn
-+		files/S20openvpn \
-+		$(1)/opt/etc/init.d
- 
+-
 -	$(INSTALL_CONF) files/openvpn.config \
 -		$(1)/etc/config/openvpn
 -
 -	$(INSTALL_DATA) \
 -		files/openvpn.upgrade \
 -		$(1)/lib/upgrade/keep.d/openvpn
- endef
+-endef
++		files/S20openvpn \
++		$(1)/opt/etc/init.d
  
- define Package/openvpn-easy-rsa/install
+-define Package/openvpn-easy-rsa/install
 -	$(INSTALL_DIR) $(1)/usr/sbin
 -	$(CP) $(PKG_BUILD_DIR)/easy-rsa/2.0/{build-*,clean-all,inherit-inter,list-crl,pkitool,revoke-full,sign-req,whichopensslcnf} $(1)/usr/sbin/
 -	$(INSTALL_DIR) $(1)/etc/easy-rsa
@@ -80,14 +95,9 @@
 -	$(INSTALL_DIR) $(1)/etc/easy-rsa/keys
 -	$(INSTALL_DATA) files/easy-rsa.index $(1)/etc/easy-rsa/keys/index.txt
 -	$(INSTALL_DATA) files/easy-rsa.serial $(1)/etc/easy-rsa/keys/serial
-+	$(INSTALL_DIR) $(1)/opt/sbin
-+	$(CP) $(PKG_BUILD_DIR)/easy-rsa/2.0/{build-*,clean-all,inherit-inter,list-crl,pkitool,revoke-full,sign-req,whichopensslcnf} $(1)/opt/sbin/
-+	$(INSTALL_DIR) $(1)/opt/etc/easy-rsa
-+	$(INSTALL_DATA) $(PKG_BUILD_DIR)/easy-rsa/2.0/openssl-1.0.0.cnf $(1)/opt/etc/easy-rsa/openssl-1.0.0.cnf
-+	$(INSTALL_DATA) $(PKG_BUILD_DIR)/easy-rsa/2.0/vars $(1)/opt/etc/easy-rsa/vars
-+	$(INSTALL_DIR) $(1)/opt/etc/easy-rsa/keys
-+	$(INSTALL_DATA) files/easy-rsa.index $(1)/opt/etc/easy-rsa/keys/index.txt
-+	$(INSTALL_DATA) files/easy-rsa.serial $(1)/opt/etc/easy-rsa/keys/serial
  endef
  
  $(eval $(call BuildPackage,openvpn-openssl))
+ $(eval $(call BuildPackage,openvpn-polarssl))
+ $(eval $(call BuildPackage,openvpn-nossl))
+-$(eval $(call BuildPackage,openvpn-easy-rsa))

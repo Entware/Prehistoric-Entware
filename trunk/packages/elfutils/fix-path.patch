@@ -1,33 +1,60 @@
---- ../../../downloads/openwrt_trunk-r35342/feeds/packages/libs/elfutils/Makefile	2013-01-28 14:41:49.671275486 +0400
-+++ ../../../openwrt_trunk/feeds/packages/libs/elfutils/Makefile	2013-02-04 15:48:36.080184976 +0400
-@@ -51,21 +51,21 @@
+--- ../../../downloads/openwrt_trunk-r35474/feeds/packages/libs/elfutils/Makefile	2013-02-05 10:42:11.306946403 +0400
++++ ../../../openwrt_trunk/feeds/packages/libs/elfutils/Makefile	2013-02-05 17:09:06.174525319 +0400
+@@ -14,22 +14,19 @@
+ PKG_SOURCE_URL:=http://fedorahosted.org/releases/e/l/$(PKG_NAME)/$(PKG_VERSION)
+ PKG_MD5SUM:=163a5712b86f6bdfebdf233cc6e2192d
+ 
+-PKG_INSTALL:=1
+-
+ include $(INCLUDE_DIR)/package.mk
+ include $(INCLUDE_DIR)/nls.mk
+ 
+ define Package/elfutils/Default
+   SECTION:=libs
+   CATEGORY:=Libraries
+-  DEPENDS:=$(INTL_DEPENDS) +USE_UCLIBC:argp-standalone
++  DEPENDS:=+libelf
+   TITLE:=ELF manipulation libraries
+   URL:=https://fedorahosted.org/elfutils/
+ endef
+ 
+ define Package/libdw
+   $(call Package/elfutils/Default)
+-  DEPENDS:=libelf1 +zlib +libbz2
+   TITLE+= (libdw)
+ endef
+ 
+@@ -50,22 +47,23 @@
+ CONFIGURE_ARGS += \
  	--disable-werror
  
- define Build/InstallDev
+-define Build/InstallDev
 -	$(INSTALL_DIR) $(1)/usr/include
 -	$(CP) $(PKG_INSTALL_DIR)/usr/include/* $(1)/usr/include/
 -	$(INSTALL_DIR) $(1)/usr/lib
 -	$(CP) $(PKG_BUILD_DIR)/libdw/libdw.{a,so*} $(1)/usr/lib/
 -	$(CP) $(PKG_BUILD_DIR)/libelf/libelf.{a,so*} $(1)/usr/lib/
-+	$(INSTALL_DIR) $(1)/opt/include
-+	$(CP) $(PKG_INSTALL_DIR)/opt/include/* $(1)/opt/include/
-+	$(INSTALL_DIR) $(1)/opt/lib
-+	$(CP) $(PKG_BUILD_DIR)/libdw/libdw.{a,so*} $(1)/opt/lib/
-+	$(CP) $(PKG_BUILD_DIR)/libelf/libelf.{a,so*} $(1)/opt/lib/
++define Build/Prepare
++endef
++
++define Build/Configure
++endef
++
++define Build/Compile
  endef
  
  define Package/libdw/install
 -	$(INSTALL_DIR) $(1)/usr/lib
 -	$(CP) $(PKG_BUILD_DIR)/libdw/libdw.so* $(1)/usr/lib/
-+	$(INSTALL_DIR) $(1)/opt/lib
-+	$(CP) $(PKG_BUILD_DIR)/libdw/libdw.so* $(1)/opt/lib/
++	$(INSTALL_DIR) $(1)/opt/tmp
++	touch $(1)/opt/tmp/libdw.placeholder
  endef
  
  define Package/libelf1/install
 -	$(INSTALL_DIR) $(1)/usr/lib
 -	$(CP) $(PKG_BUILD_DIR)/libelf/libelf.so* $(1)/usr/lib/
-+	$(INSTALL_DIR) $(1)/opt/lib
-+	$(CP) $(PKG_BUILD_DIR)/libelf/libelf.so* $(1)/opt/lib/
++	$(INSTALL_DIR) $(1)/opt/tmp
++	touch $(1)/opt/tmp/libelf1.placeholder
  endef
  
  $(eval $(call BuildPackage,libdw))

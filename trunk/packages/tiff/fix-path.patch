@@ -1,5 +1,14 @@
---- ../../../openwrt_trunk.orig/feeds/packages/libs/tiff/Makefile	2012-08-06 09:54:12.431011774 +0400
-+++ ../../../openwrt_trunk/feeds/packages/libs/tiff/Makefile	2012-08-06 09:56:43.791009019 +0400
+--- ../../../downloads/openwrt_trunk-r35474/feeds/packages/libs/tiff/Makefile	2013-02-05 10:42:11.390946404 +0400
++++ ../../../openwrt_trunk/feeds/packages/libs/tiff/Makefile	2013-02-05 14:05:47.810724032 +0400
+@@ -36,7 +36,7 @@
+   SECTION:=libs
+   CATEGORY:=Libraries
+   TITLE+= library
+-  DEPENDS:=+zlib +libjpeg
++  DEPENDS:=+zlib +libjpeg-turbo +liblzma
+ endef
+ 
+ define Package/libtiffxx
 @@ -80,24 +80,24 @@
  endef
  

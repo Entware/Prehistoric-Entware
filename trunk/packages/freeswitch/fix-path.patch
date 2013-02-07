@@ -1,6 +1,6 @@
 diff -urx .svn ../../../downloads/openwrt_trunk-r35474/feeds/packages/net/freeswitch/files/freeswitch.default ../../../openwrt_trunk/feeds/packages/net/freeswitch/files/freeswitch.default
---- ../../../downloads/openwrt_trunk-r35474/feeds/packages/net/freeswitch/files/freeswitch.default	2013-02-05 09:11:00.339046065 +0400
-+++ ../../../openwrt_trunk/feeds/packages/net/freeswitch/files/freeswitch.default	2013-02-05 09:32:49.439019372 +0400
+--- ../../../downloads/openwrt_trunk-r35474/feeds/packages/net/freeswitch/files/freeswitch.default	2013-02-05 10:42:23.818946178 +0400
++++ ../../../openwrt_trunk/feeds/packages/net/freeswitch/files/freeswitch.default	2013-02-05 10:43:46.630944667 +0400
 @@ -1,11 +1,11 @@
  #FS_DIR="/opt"
 -FS_DIR_ETC="$FS_DIR/etc/freeswitch"
@@ -22,8 +22,17 @@ diff -urx .svn ../../../downloads/openwrt_trunk-r35474/feeds/packages/net/freesw
  
  OPTIONS="-conf $FS_DIR_ETC -log $FS_DIR_LOG -db $FS_DIR_DB -mod $FS_DIR_MOD -htdocs $FS_DIR_HTDOCS -scripts $FS_DIR_SCRIPTS"
 diff -urx .svn ../../../downloads/openwrt_trunk-r35474/feeds/packages/net/freeswitch/Makefile ../../../openwrt_trunk/feeds/packages/net/freeswitch/Makefile
---- ../../../downloads/openwrt_trunk-r35474/feeds/packages/net/freeswitch/Makefile	2013-02-05 09:11:00.335046065 +0400
-+++ ../../../openwrt_trunk/feeds/packages/net/freeswitch/Makefile	2013-02-05 09:38:39.355013681 +0400
+--- ../../../downloads/openwrt_trunk-r35474/feeds/packages/net/freeswitch/Makefile	2013-02-05 10:42:23.726946179 +0400
++++ ../../../openwrt_trunk/feeds/packages/net/freeswitch/Makefile	2013-02-06 15:49:53.325036083 +0400
+@@ -191,7 +191,7 @@
+ define Package/$(PKG_NAME)
+ $(call Package/$(PKG_NAME)/Default)
+   TITLE:=FreeSWITCH open source telephony platform ($(PKG_SOURCE_VERSION_SHORT))
+-  DEPENDS:=+libcurl +libjpeg +libncurses +libpq +libpthread +librt +libstdcpp
++  DEPENDS:=+libcurl +libjpeg-turbo +libncurses +libpq +libpthread +librt +libstdcpp $(ICONV_DEPENDS)
+   MENU:=1
+ endef
+ 
 @@ -276,7 +276,7 @@
  
  define Package/$(PKG_NAME)-example-config/description
@@ -33,7 +42,7 @@ diff -urx .svn ../../../downloads/openwrt_trunk-r35474/feeds/packages/net/freesw
    be an example of how FreeSWITCH can be configured.
  endef
  
-@@ -461,25 +461,25 @@
+@@ -461,27 +461,27 @@
  CONFIGURE_ARGS+= \
  	--host=$(GNU_TARGET_NAME) \
  	--build=$(GNU_HOST_NAME) \
@@ -64,17 +73,20 @@ diff -urx .svn ../../../downloads/openwrt_trunk-r35474/feeds/packages/net/freesw
  	$(call autoconf_bool,CONFIG_FS_SOFIA_WITH_ODBC,core-odbc-support) \
 -	$(if $(CONFIG_FS_SOFIA_WITH_ODBC),--with-odbc="$(STAGING_DIR)/usr") \
 -	$(if $(CONFIG_FS_SOFIA_WITH_ODBC),--with-odbc-lib="$(STAGING_DIR)/usr/lib") \
+-
 +	$(if $(CONFIG_FS_SOFIA_WITH_ODBC),--with-odbc="$(STAGING_DIR)/opt") \
 +	$(if $(CONFIG_FS_SOFIA_WITH_ODBC),--with-odbc-lib="$(STAGING_DIR)/opt/lib") \
  
- 
++TOOLCHAIN_DIR=/opt/entware-toolchain
  CONFIGURE_VARS+= \
+ 	config_TARGET_CC="$(TOOLCHAIN_DIR)/bin/${TARGET_CC}" \
+ 	config_TARGET_CFLAGS="${FS_TARGET_CPPFLAGS} ${FS_TARGET_CFLAGS}" \
 @@ -505,7 +505,7 @@
  	CFLAGS="${FS_TARGET_CPPFLAGS} ${FS_TARGET_CFLAGS}" \
  	CXXFLAGS="${FS_TARGET_CPPFLAGS} ${FS_TARGET_CXXFLAGS}" \
  	CPPFLAGS="${FS_TARGET_CPPFLAGS}" \
 -	LDFLAGS="${TARGET_LDFLAGS} -Wl,-rpath-link=\"${STAGING_DIR}/usr/lib\"" \
-+	LDFLAGS="${TARGET_LDFLAGS} -Wl,-rpath-link=\"${STAGING_DIR}/opt/lib\"" \
++	LDFLAGS="${TARGET_LDFLAGS}" \
  	PATH="${PATH}:${STAGING_DIR}" \
  	HOST_CC="/usr/bin/cc" \
  	HOST_CXX="/usr/bin/g++" \
@@ -309,9 +321,33 @@ diff -urx .svn ../../../downloads/openwrt_trunk-r35474/feeds/packages/net/freesw
    endef
  
    $$(eval $$(call BuildPackage,$(PKG_NAME)-mod-$(1)))
+@@ -886,7 +886,7 @@
+ $(eval $(call BuildPlugin,snom,SNOM specific features,vanilla,,,,))
+ $(eval $(call BuildPlugin,sofia,SOFIA SIP,mod,,,,)) # ~/conf
+ $(eval $(call BuildPlugin,sonar,Sonar Ping Timer,vanilla,,,,))
+-$(eval $(call BuildPlugin,spandsp,Span DSP,mod,,,,+libjpeg)) # ~/conf
++$(eval $(call BuildPlugin,spandsp,Span DSP,mod,,,,@BROKEN)) # ~/conf
+ $(eval $(call BuildPlugin,speex,Speex codec,mod,,,,))
+ $(eval $(call BuildPlugin,spidermonkey,JavaScript,vanilla,,,,@BROKEN)) # fails in js
+ $(eval $(call BuildPlugin,spidermonkey-core_db,JavaScript DB,vanilla,,,,@BROKEN))
+diff -urx .svn ../../../downloads/openwrt_trunk-r35474/feeds/packages/net/freeswitch/patches/003-Makefile.am.patch ../../../openwrt_trunk/feeds/packages/net/freeswitch/patches/003-Makefile.am.patch
+--- ../../../downloads/openwrt_trunk-r35474/feeds/packages/net/freeswitch/patches/003-Makefile.am.patch	2013-02-05 10:42:23.810946177 +0400
++++ ../../../openwrt_trunk/feeds/packages/net/freeswitch/patches/003-Makefile.am.patch	2013-02-06 14:59:10.645092056 +0400
+@@ -30,9 +30,9 @@
+  tiff-reconf:
+  	cd libs/tiff-4.0.2 && autoreconf -fi
+ -	cd libs/tiff-4.0.2 && sh ./configure.gnu
+-+	cd libs/tiff-4.0.2 && sh ./configure.gnu --host="$(GNU_TARGET_NAME)" --prefix="/usr"
+++	cd libs/tiff-4.0.2 && sh ./configure.gnu --host="$(GNU_TARGET_NAME)" --prefix="/opt"
+ +	cd libs/spandsp && autoreconf -fi
+-+	cd libs/spandsp && sh ./configure.gnu --host="$(GNU_TARGET_NAME)" --prefix="/usr"
+++	cd libs/spandsp && sh ./configure.gnu --host="$(GNU_TARGET_NAME)" --prefix="/opt"
+  	cd libs/tiff-4.0.2 && make
+  
+  python-reconf:
 diff -urx .svn ../../../downloads/openwrt_trunk-r35474/feeds/packages/net/freeswitch/patches/100-libs-esl-Makefile.patch ../../../openwrt_trunk/feeds/packages/net/freeswitch/patches/100-libs-esl-Makefile.patch
---- ../../../downloads/openwrt_trunk-r35474/feeds/packages/net/freeswitch/patches/100-libs-esl-Makefile.patch	2013-02-05 09:11:00.339046065 +0400
-+++ ../../../openwrt_trunk/feeds/packages/net/freeswitch/patches/100-libs-esl-Makefile.patch	2013-02-05 09:32:49.451020380 +0400
+--- ../../../downloads/openwrt_trunk-r35474/feeds/packages/net/freeswitch/patches/100-libs-esl-Makefile.patch	2013-02-05 10:42:23.802946174 +0400
++++ ../../../openwrt_trunk/feeds/packages/net/freeswitch/patches/100-libs-esl-Makefile.patch	2013-02-05 10:43:46.642944668 +0400
 @@ -5,7 +5,7 @@
   CXXFLAGS=$(BASE_FLAGS)
   MYLIB=libesl.a

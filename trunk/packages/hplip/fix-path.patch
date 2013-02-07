@@ -25,7 +25,7 @@
    TITLE:=HP Linux Imaging and Printing
    URL:=http://sourceforge.net/projects/hplip/
 -  DEPENDS+=+libjpeg +libtiff +libusb-compat +cups +sane-libs
-+  DEPENDS+=+libjpeg +libtiff +libusb-compat +cups +sane-libs +dbus +python
++  DEPENDS+=+libjpeg +libtiff +libusb-compat +cups +sane-libs +dbus +python +libcupsimage
  endef
  
  define Package/hplip/description

@@ -1,5 +1,14 @@
---- ../../../openwrt_trunk.orig/package/boot/kexec-tools/Makefile
-+++ ../../../openwrt_trunk/package/boot/kexec-tools/Makefile
+--- ../../../downloads/openwrt_trunk-r35474/package/boot/kexec-tools/Makefile	2013-02-05 10:42:42.642945832 +0400
++++ ../../../openwrt_trunk/package/boot/kexec-tools/Makefile	2013-02-05 11:47:01.638875513 +0400
+@@ -22,7 +22,7 @@
+ define Package/kexec-tools
+   SECTION:=utils
+   CATEGORY:=Utilities
+-  DEPENDS:=@armeb||@arm||@i386||@powerpc64||@mipsel||@mips +zlib
++  DEPENDS:=@armeb||@arm||@i386||@powerpc64||@mipsel||@mips +zlib +liblzma
+   TITLE:=Kernel boots kernel
+   URL:=http://kernel.org/pub/linux/kernel/people/horms/kexec-tools/
+   MAINTAINER:=Florian Fainelli <florian@openwrt.org>
 @@ -38,7 +38,7 @@
  	source "$(SOURCE)/Config.in"
  endef

@@ -1,5 +1,5 @@
---- ../../../downloads/openwrt_trunk-r35342/feeds/packages/lang/php5/Makefile	2013-01-28 14:41:49.587275488 +0400
-+++ ../../../openwrt_trunk/feeds/packages/lang/php5/Makefile	2013-02-04 17:18:53.820086060 +0400
+--- ../../../downloads/openwrt_trunk-r35474/feeds/packages/lang/php5/Makefile	2013-02-05 10:42:11.222946407 +0400
++++ ../../../openwrt_trunk/feeds/packages/lang/php5/Makefile	2013-02-06 17:12:59.344945396 +0400
 @@ -130,13 +130,13 @@
  	--disable-debug \
  	--without-pear \
@@ -262,8 +262,12 @@
    endef
  
    $$(eval $$(call BuildPackage,php5-mod-$(1)))
-@@ -514,7 +510,7 @@
- $(eval $(call BuildModule,gd,GD graphics,+PACKAGE_php5-mod-gd:libjpeg +PACKAGE_php5-mod-gd:libpng))
+@@ -511,10 +507,10 @@
+ $(eval $(call BuildModule,exif,EXIF))
+ $(eval $(call BuildModule,ftp,FTP,+PACKAGE_php5-mod-ftp:libopenssl))
+ $(eval $(call BuildModule,gettext,Gettext,+PACKAGE_php5-mod-gettext:libintl-full))
+-$(eval $(call BuildModule,gd,GD graphics,+PACKAGE_php5-mod-gd:libjpeg +PACKAGE_php5-mod-gd:libpng))
++$(eval $(call BuildModule,gd,GD graphics,+PACKAGE_php5-mod-gd:libjpeg-turbo +PACKAGE_php5-mod-gd:libpng))
  $(eval $(call BuildModule,gmp,GMP,+PACKAGE_php5-mod-gmp:libgmp))
  $(eval $(call BuildModule,hash,Hash))
 -$(eval $(call BuildModule,iconv,iConv,+PACKAGE_php5-mod-iconv:libiconv))

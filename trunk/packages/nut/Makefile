@@ -9,8 +9,7 @@ all: ./.done
 
 ./.done:
 	patch -p0 -i ./fix-path.patch
-	cp -f ./500-libzrtp-byte-order.patch ../../../openwrt_trunk/feeds/packages/net/freeswitch/patches/
-	cp -f ./501-ldns-linkage.patch ../../../openwrt_trunk/feeds/packages/net/freeswitch/patches/
+	 cp -f ./S15upsd ../../../openwrt_trunk/feeds/packages/utils/nut/files/
 	touch $@
 
 clean:

@@ -1,6 +1,6 @@
-diff -urx .svn ../../../downloads/openwrt_trunk-r35342/feeds/packages/net/cups/files/etc/cups/cupsd.conf ../../../openwrt_trunk/feeds/packages/net/cups/files/etc/cups/cupsd.conf
---- ../../../downloads/openwrt_trunk-r35342/feeds/packages/net/cups/files/etc/cups/cupsd.conf	2013-01-28 14:42:06.399275182 +0400
-+++ ../../../openwrt_trunk/feeds/packages/net/cups/files/etc/cups/cupsd.conf	2013-02-04 11:57:23.496440371 +0400
+diff -urx .svn ../../../downloads/openwrt_trunk-r35474/feeds/packages/net/cups/files/etc/cups/cupsd.conf ../../../openwrt_trunk/feeds/packages/net/cups/files/etc/cups/cupsd.conf
+--- ../../../downloads/openwrt_trunk-r35474/feeds/packages/net/cups/files/etc/cups/cupsd.conf	2013-02-05 10:42:29.614946070 +0400
++++ ../../../openwrt_trunk/feeds/packages/net/cups/files/etc/cups/cupsd.conf	2013-02-05 10:43:45.882944682 +0400
 @@ -21,12 +21,12 @@
  MaxPrinterHistory 10
  #Printcap /etc/printcap
@@ -16,9 +16,9 @@ diff -urx .svn ../../../downloads/openwrt_trunk-r35342/feeds/packages/net/cups/f
  Port 631
  HostNameLookups Off
  KeepAlive On
-diff -urx .svn ../../../downloads/openwrt_trunk-r35342/feeds/packages/net/cups/Makefile ../../../openwrt_trunk/feeds/packages/net/cups/Makefile
---- ../../../downloads/openwrt_trunk-r35342/feeds/packages/net/cups/Makefile	2013-01-28 14:42:06.347275182 +0400
-+++ ../../../openwrt_trunk/feeds/packages/net/cups/Makefile	2013-02-04 11:56:29.072440140 +0400
+diff -urx .svn ../../../downloads/openwrt_trunk-r35474/feeds/packages/net/cups/Makefile ../../../openwrt_trunk/feeds/packages/net/cups/Makefile
+--- ../../../downloads/openwrt_trunk-r35474/feeds/packages/net/cups/Makefile	2013-02-05 10:42:29.474946071 +0400
++++ ../../../openwrt_trunk/feeds/packages/net/cups/Makefile	2013-02-06 11:35:55.109312870 +0400
 @@ -18,7 +18,7 @@
  	ftp://ftp3.easysw.com/pub/cups/$(PKG_VERSION)
  PKG_MD5SUM:=de3006e5cf1ee78a9c6145ce62c4e982
@@ -50,6 +50,15 @@ diff -urx .svn ../../../downloads/openwrt_trunk-r35342/feeds/packages/net/cups/M
  endef
  
  define Package/cups-client/description
+@@ -101,7 +101,7 @@
+ $(call Package/cups/Default)
+   SECTION:=libs
+   CATEGORY:=Libraries
+-  DEPENDS:=+zlib +libpthread +libpng +libjpeg
++  DEPENDS:=+zlib +libpthread +libpng +libjpeg-turbo +libssp
+   TITLE:=Common UNIX Printing System - Core library
+ endef
+ 
 @@ -426,247 +426,247 @@
  endef
  
