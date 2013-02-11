@@ -1,0 +1,23 @@
+--- ../../../downloads/openwrt_trunk-r35474/feeds/packages/net/udpxy/Makefile	2013-02-05 10:42:18.514946249 +0400
++++ ../../../openwrt_trunk/feeds/packages/net/udpxy/Makefile	2013-02-11 21:18:10.140809408 +0400
+@@ -39,14 +39,14 @@
+ endef
+ 
+ MAKE_FLAGS += \
+-	INSTALLROOT="$(PKG_INSTALL_DIR)/usr"
++	INSTALLROOT="$(PKG_INSTALL_DIR)/opt"
+ 
+ define Package/udpxy/install
+-	$(INSTALL_DIR) $(1)/etc/init.d
+-	$(INSTALL_BIN) ./files/udpxy.init $(1)/etc/init.d/udpxy
+-	$(INSTALL_DIR) $(1)/usr/bin
+-	$(INSTALL_BIN) $(PKG_INSTALL_DIR)/usr/bin/udpxy $(1)/usr/bin/
+-	ln -sf udpxy $(1)/usr/bin/udpxrec
++	$(INSTALL_DIR) $(1)/opt/etc/init.d
++	$(INSTALL_BIN) ./files/S29udpxy $(1)/opt/etc/init.d/
++	$(INSTALL_DIR) $(1)/opt/bin
++	$(INSTALL_BIN) $(PKG_INSTALL_DIR)/opt/bin/udpxy $(1)/opt/bin/
++	ln -sf udpxy $(1)/opt/bin/udpxrec
+ endef
+ 
+ $(eval $(call BuildPackage,udpxy))
