@@ -1,6 +1,15 @@
---- ../../../downloads/openwrt_trunk-r35474/feeds/packages/net/znc/Makefile	2013-02-05 09:10:58.667046100 +0400
-+++ ../../../openwrt_trunk/feeds/packages/net/znc/Makefile	2013-02-05 10:24:49.542965090 +0400
-@@ -41,22 +41,29 @@
+--- ../../../downloads/openwrt_trunk-r35474/feeds/packages/net/znc/Makefile	2013-02-05 10:42:21.354946223 +0400
++++ ../../../openwrt_trunk/feeds/packages/net/znc/Makefile	2013-02-11 14:23:48.849260067 +0400
+@@ -9,7 +9,7 @@
+ 
+ PKG_NAME:=znc
+ PKG_VERSION:=1.0
+-PKG_RELEASE:=1
++PKG_RELEASE:=1a
+ 
+ PKG_SOURCE:=$(PKG_NAME)-$(PKG_VERSION).tar.gz
+ PKG_SOURCE_URL:=http://znc.in/releases \
+@@ -41,21 +41,28 @@
  endef
  
  define Package/znc/conffiles
@@ -24,8 +33,8 @@
 +	$(INSTALL_BIN) ./files/S99znc $(1)/opt/etc/init.d/
 +	$(INSTALL_DIR) $(1)/opt/lib/znc/
 +	$(INSTALL_BIN) $(PKG_BUILD_DIR)/modules/droproot.so $(1)/opt/lib/znc/
-+endef
-+
+ endef
+ 
 +define Package/znc/postinst
 +#!/bin/sh
 +
@@ -34,12 +43,10 @@
 +echo b\) Add a \"LoadModule = droproot nobody nogroup\" string at first string
 +echo to /opt/share/znc/configs/znc.conf, where \"nobody\" and \"nogroup\" is
 +echo some unprivileged user\\group on your system.
- endef
++endef
  
--
  ZNC_MODULES :=
  ZNC_MODULE_TARGETS := droproot.so
- 
 @@ -72,12 +79,12 @@
    endef
  
@@ -94,7 +101,7 @@
 -	CPPFLAGS="-I$(STAGING_DIR)/usr/include -I$(STAGING_DIR)/include" \
 -	LDFLAGS="-nodefaultlibs -lc -L$(STAGING_DIR)/usr/lib -L$(STAGING_DIR)/lib" \
 +	CPPFLAGS="-I$(STAGING_DIR)/opt/include -I$(STAGING_DIR)/include" \
-+	LDFLAGS="-nodefaultlibs -lc -L$(STAGING_DIR)/opt/lib -L$(STAGING_DIR)/lib" \
++	LDFLAGS="-nodefaultlibs -lc -L$(STAGING_DIR)/opt/lib -L$(STAGING_DIR)/lib -Wl,--dynamic-linker=/opt/lib/ld-uClibc.so.0 -Wl,-rpath,/opt/lib" \
  	LIBS="-luClibc++ -lm -lssl -lcrypto $(LIBGCC_S) -lc"
  
  CONFIGURE_ARGS += \
