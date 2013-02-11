@@ -1,0 +1,29 @@
+--- a/src/access.c	2011-12-21 14:35:25.000000000 +0400
++++ b/src/access.c	2011-12-21 15:49:45.606271111 +0400
+@@ -210,11 +210,11 @@
+ 
+   if(superuser_username != NULL && superuser_password != NULL) {
+ 
+-    SHA_Init(&shactx);
+-    SHA_Update(&shactx, (const uint8_t *)superuser_password,
++    SHA1_Init(&shactx);
++    SHA1_Update(&shactx, (const uint8_t *)superuser_password,
+ 	       strlen(superuser_password));
+-    SHA_Update(&shactx, challenge, 32);
+-    SHA_Final(d, &shactx);
++    SHA1_Update(&shactx, challenge, 32);
++    SHA1_Final(d, &shactx);
+ 
+     if(!strcmp(superuser_username, username) && !memcmp(d, digest, 20))
+       return 0xffffffff;
+@@ -229,8 +229,8 @@
+     if((b & ae->ae_netmask) != ae->ae_network)
+       continue; /* IP based access mismatches */
+ 
+-    SHA_Init(&shactx);
+-    SHA_Update(&shactx, (const uint8_t *)ae->ae_password,
++    SHA1_Init(&shactx);
++    SHA1_Update(&shactx, (const uint8_t *)ae->ae_password,
+ 	      strlen(ae->ae_password));
+     SHA1_Update(&shactx, challenge, 32);
+     SHA1_Final(d, &shactx);
