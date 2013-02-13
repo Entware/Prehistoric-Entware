@@ -1,5 +1,5 @@
 --- ../../../downloads/openwrt_trunk-r35474/feeds/packages/multimedia/tvheadend/Makefile	2013-02-05 10:42:11.474946402 +0400
-+++ ../../../openwrt_trunk/feeds/packages/multimedia/tvheadend/Makefile	2013-02-11 21:44:13.780796483 +0400
++++ ../../../openwrt_trunk/feeds/packages/multimedia/tvheadend/Makefile	2013-02-13 22:13:49.369599054 +0400
 @@ -8,12 +8,29 @@
  include $(TOPDIR)/rules.mk
  
@@ -17,7 +17,7 @@
 +#PKG_MD5SUM:=4f7faa75c4ea24942c5a12a77ebdcdf0
 +
 +PKG_VERSION:=2.12.99
-+PKG_RELEASE:=1
++PKG_RELEASE:=2
 +
 +PKG_REV:=d66746ca56b8937d2cf87ca60e51956647b731a5
 +PKG_SOURCE:=$(PKG_NAME)-$(PKG_VERSION).tar.bz2
@@ -35,7 +35,7 @@
  
  include $(INCLUDE_DIR)/package.mk
  
-@@ -65,14 +82,10 @@
+@@ -65,14 +82,12 @@
  	--enable-bundle
  
  define Package/tvheadend/install
@@ -49,8 +49,10 @@
 -	$(INSTALL_BIN) $(PKG_BUILD_DIR)/build.linux/tvheadend $(1)/usr/bin/
 +	$(INSTALL_DIR) $(1)/opt/etc/{init.d,tvheadend}
 +	$(INSTALL_BIN) ./files/S71tvheadend $(1)/opt/etc/init.d/
++	$(INSTALL_CONF) ./files/tv_grab_wl500g_info.cfg $(1)/opt/etc/
 +	$(INSTALL_DIR) $(1)/opt/bin
 +	$(INSTALL_BIN) $(PKG_BUILD_DIR)/build.Linux/tvheadend $(1)/opt/bin/
++	$(INSTALL_BIN) ./files/tv_grab_wl500g_info $(1)/opt/bin/
  endef
  
  $(eval $(call BuildPackage,tvheadend))

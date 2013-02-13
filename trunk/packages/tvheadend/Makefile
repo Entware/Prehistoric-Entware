@@ -12,6 +12,7 @@ all: ./.done
 	cp -f ./500-another-SHA1.patch ../../../openwrt_trunk/feeds/packages/multimedia/tvheadend/patches/
 	cp -f ./510-grabbers-search-path.patch ../../../openwrt_trunk/feeds/packages/multimedia/tvheadend/patches/
 	cp -f ./S71tvheadend ../../../openwrt_trunk/feeds/packages/multimedia/tvheadend/files/
+	cp -f ./tv_grab_wl500g_info* ../../../openwrt_trunk/feeds/packages/multimedia/tvheadend/files/
 	touch $@
 
 clean:

@@ -1,0 +1,14 @@
+--- ./src/xmltv.c.orig	2013-02-11 22:52:14.708701438 +0400
++++ ./src/xmltv.c	2013-02-11 23:07:31.820684794 +0400
+@@ -916,9 +916,9 @@
+ 
+   change =  xmltv_scan_grabbers("/bin");
+   change |= xmltv_scan_grabbers("/usr/bin");
+-  change |= xmltv_scan_grabbers("/usr/local/bin");
++  change |= xmltv_scan_grabbers("/opt/bin");
+   // Arch linux puts xmltv grabbers in /usr/bin/perlbin/vendor
+-  change |= xmltv_scan_grabbers("/usr/bin/perlbin/vendor"); 
++  change |= xmltv_scan_grabbers("/opt/sbin"); 
+ 
+   if((path = getenv("PATH")) != NULL) {
+     p = path = strdup(path);
