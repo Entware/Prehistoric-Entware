@@ -1,0 +1,42 @@
+--- ../../../downloads/openwrt_trunk-r35474/feeds/packages/net/stunnel/Makefile	2013-02-05 10:42:23.602946180 +0400
++++ ../../../openwrt_trunk/feeds/packages/net/stunnel/Makefile	2013-02-15 15:04:37.226920693 +0400
+@@ -37,29 +37,27 @@
+ endef
+ 
+ define Package/stunnel/conffiles
+-/etc/stunnel/stunnel.conf
++/opt/etc/stunnel/stunnel.conf
+ endef
+ 
+ CONFIGURE_ARGS+= \
+ 	--with-random=/dev/urandom \
+ 	--with-threads=fork \
+-	--with-ssl=$(STAGING_DIR)/usr \
++	--with-ssl=$(STAGING_DIR)/opt \
+ 
+ define Build/Compile
+-	mkdir -p $(PKG_INSTALL_DIR)/etc/stunnel
+-	echo '#dummy' > $(PKG_INSTALL_DIR)/etc/stunnel/stunnel.pem
++	mkdir -p $(PKG_INSTALL_DIR)/opt/etc/stunnel
++	echo '#dummy' > $(PKG_INSTALL_DIR)/opt/etc/stunnel/stunnel.pem
+ 	$(call Build/Compile/Default)
+ endef
+ 
+ define Package/stunnel/install
+-	$(INSTALL_DIR) $(1)/usr/bin
+-	$(INSTALL_BIN) $(PKG_INSTALL_DIR)/usr/bin/stunnel $(1)/usr/bin/
+-	$(INSTALL_DIR) $(1)/usr/lib/stunnel
+-	$(INSTALL_BIN) $(PKG_INSTALL_DIR)/usr/lib/stunnel/libstunnel.so $(1)/usr/lib/stunnel/
+-	$(INSTALL_DIR) $(1)/etc/stunnel
+-	$(INSTALL_CONF) $(PKG_INSTALL_DIR)/etc/stunnel/stunnel.conf-sample $(1)/etc/stunnel/stunnel.conf
+-	$(INSTALL_DIR) $(1)/etc/init.d
+-	$(INSTALL_BIN) ./files/stunnel.init $(1)/etc/init.d/stunnel
++	$(INSTALL_DIR) $(1)/opt/bin
++	$(INSTALL_BIN) $(PKG_INSTALL_DIR)/opt/bin/stunnel $(1)/opt/bin/
++	$(INSTALL_DIR) $(1)/opt/lib/stunnel
++	$(INSTALL_BIN) $(PKG_INSTALL_DIR)/opt/lib/stunnel/libstunnel.so $(1)/opt/lib/stunnel/
++	$(INSTALL_DIR) $(1)/opt/etc/stunnel
++	$(INSTALL_CONF) $(PKG_INSTALL_DIR)/opt/etc/stunnel/stunnel.conf-sample $(1)/opt/etc/stunnel/stunnel.conf
+ endef
+ 
+ $(eval $(call BuildPackage,stunnel))
