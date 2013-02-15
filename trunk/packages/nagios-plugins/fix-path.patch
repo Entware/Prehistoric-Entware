@@ -1,0 +1,22 @@
+--- ../../../downloads/openwrt_trunk-r35474/feeds/packages/admin/nagios-plugins/Makefile	2013-02-05 10:42:35.442945960 +0400
++++ ../../../openwrt_trunk/feeds/packages/admin/nagios-plugins/Makefile	2013-02-15 15:19:00.046902664 +0400
+@@ -33,7 +33,7 @@
+ 
+ CONFIGURE_ARGS += \
+ 	--without-mysql \
+-	--with-openssl="$(STAGING_DIR)/usr" \
++	--with-openssl="$(STAGING_DIR)/opt" \
+ 	--with-ping-command="/bin/ping -w %d -c %d %s" \
+ 	--with-ping6-command="/bin/ping6 -w %d -c %d %s" \
+ 	--with-ps-command="/bin/ps -Aopid" \
+@@ -45,8 +45,8 @@
+ 	--with-nslookup-command="/usr/bin/nslookup"
+ 
+ define Package/nagios-plugins/install
+-	$(INSTALL_DIR) $(1)/usr/libexec/nagios
+-	$(CP) $(PKG_INSTALL_DIR)/usr/lib/* $(1)/usr/libexec/nagios/
++	$(INSTALL_DIR) $(1)/opt/libexec/nagios
++	$(CP) $(PKG_INSTALL_DIR)/opt/lib/* $(1)/opt/libexec/nagios/
+ endef
+ 
+ $(eval $(call BuildPackage,nagios-plugins))
