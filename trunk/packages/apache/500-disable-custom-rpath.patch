@@ -1,0 +1,12 @@
+--- ./support/envvars-std.in.orig	2013-02-15 14:02:31.206988556 +0400
++++ ./support/envvars-std.in	2013-02-15 14:02:51.674980825 +0400
+@@ -18,7 +18,7 @@
+ #
+ # This file is generated from envvars-std.in
+ #
+-@SHLIBPATH_VAR@="@exp_libdir@:$@SHLIBPATH_VAR@"
+-export @SHLIBPATH_VAR@
++#@SHLIBPATH_VAR@="@exp_libdir@:$@SHLIBPATH_VAR@"
++#export @SHLIBPATH_VAR@
+ #
+ @OS_SPECIFIC_VARS@

@@ -9,6 +9,7 @@ all: ./.done
 
 ./.done:
 	patch -p0 -i ./fix-path.patch
+	cp -f ./500-disable-custom-rpath.patch ../../../openwrt_trunk/feeds/packages/net/apache/patches/
 	touch $@
 
 clean:

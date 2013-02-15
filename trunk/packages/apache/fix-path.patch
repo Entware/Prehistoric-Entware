@@ -1,5 +1,14 @@
---- ../../../openwrt_trunk.orig/feeds/packages/net/apache/Makefile	2012-05-02 16:17:28.242365046 +0400
-+++ ../../../openwrt_trunk/feeds/packages/net/apache/Makefile	2012-05-31 14:06:20.694682385 +0400
+--- ../../../downloads/openwrt_trunk-r35474/feeds/packages/net/apache/Makefile	2013-02-05 10:42:25.814946140 +0400
++++ ../../../openwrt_trunk/feeds/packages/net/apache/Makefile	2013-02-15 14:05:13.410985352 +0400
+@@ -9,7 +9,7 @@
+ 
+ PKG_NAME:=apache
+ PKG_VERSION:=2.2.15
+-PKG_RELEASE:=3
++PKG_RELEASE:=3a
+ PKG_SOURCE_NAME:=httpd
+ 
+ PKG_SOURCE:=$(PKG_SOURCE_NAME)-$(PKG_VERSION).tar.bz2
 @@ -46,33 +46,23 @@
  $(call Package/apache/Default/description)
   .
