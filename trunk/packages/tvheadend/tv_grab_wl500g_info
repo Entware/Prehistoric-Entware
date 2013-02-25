@@ -11,59 +11,65 @@ SEDCMD="/bin/sed"
 WGETCMD="/usr/bin/wget"
 GZIPCMD="/bin/gunzip"
 
-if [ "$1" = "--configure" ] ; then
+
+GetXmltv () {
+
     $WGETCMD -q -O - $XMLTV_SRC | $GZIPCMD > $XMLTV_FILE
     [ -e "$XMLTV_FILE" ] || exit 1;
-    grep -E ^\<"channel\ id|display-name" $XMLTV_FILE
-    rm -f $XMLTV_FILE
-    exit
-fi
 
-if [ "$1" = "--version" ] ; then
-    echo "This is a tv_grab_wl500g_info v.0.1 grabber"
-    echo "for russian www.teleguide.info site. Made by wl500g.info community."
-    exit
-fi
+}
 
-if [ "$1" = "--description" ] ; then
-    echo "teleguide.info grabber by wl500g.info community"
-    exit
-fi
 
-if [ "$1" = "--capabilities" ] ; then
-    echo "teleguide.info"
-    exit
-fi
+case $1 in
 
-$WGETCMD -q -O - $XMLTV_SRC | $GZIPCMD > $XMLTV_FILE
+    "--configure")
+        GetXmltv
+        $SEDCMD -n '/<channel/p;/<display-name/p' $XMLTV_FILE
+        rm -f $XMLTV_FILE
+    ;;
+    "--version")
+        echo "This is a tv_grab_wl500g_info v.0.1 grabber"
+        echo "for russian www.teleguide.info site. Made by wl500g.info community."
+    ;;
+    "--description")
+        echo "teleguide.info grabber by wl500g.info community"
+    ;;
+    "--capabilities")
+        echo "teleguide.info"
+    ;;
+    *)
+        GetXmltv
 
-[ -e "$XMLTV_FILE" ] || exit 1;
+        printf "<?xml version=\"1.0\" encoding=\"utf-8\"?>\n<!DOCTYPE tv SYSTEM \"xmltv.dtd\">\n<tv>\n"
 
-printf "<?xml version=\"1.0\" encoding=\"utf-8\"?>\n<!DOCTYPE tv SYSTEM \"xmltv.dtd\">\n<tv>\n"
+        while read chanid
+        do
 
-while read chanid
-do
+            $SEDCMD -n -e "
+                /id=\"${chanid}\"/,/<\/channel\>/p
+                /channel=\"${chanid}\"/,/programme\>/{
+                /<[/]\{0,1\}programme/{
+                p
+                b end
+                }
+                /<[/]\{0,1\}title/{
+                p
+                b end
+                }
+                b end
+                }
+                :end
+            " $XMLTV_FILE
 
-    $SEDCMD -n -e "
-        /id=\"${chanid}\"/,/<\/channel\>/p
-        /channel=\"${chanid}\"/,/programme\>/{
-        /<[/]\{0,1\}programme/{
-        p
-        b end
-        }
-        /<[/]\{0,1\}title/{
-        p
-        b end
-        }
-        b end
-        }
-        :end
-        " $XMLTV_FILE
+        done < $IDLIST
 
-done < $IDLIST
+        printf "</tv>\n"
 
-printf "</tv>\n"
+        rm -f $XMLTV_FILE
 
-rm -f $XMLTV_FILE
+    ;;
+
+esac
+
 
 exit 0;

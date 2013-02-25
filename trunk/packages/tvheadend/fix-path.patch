@@ -1,15 +1,15 @@
 --- ../../../downloads/openwrt_trunk-r35474/feeds/packages/multimedia/tvheadend/Makefile	2013-02-05 10:42:11.474946402 +0400
-+++ ../../../openwrt_trunk/feeds/packages/multimedia/tvheadend/Makefile	2013-02-15 13:13:09.251040628 +0400
++++ ../../../openwrt_trunk/feeds/packages/multimedia/tvheadend/Makefile	2013-02-25 09:34:05.830508476 +0400
 @@ -8,12 +8,17 @@
  include $(TOPDIR)/rules.mk
  
  PKG_NAME:=tvheadend
 -PKG_VERSION:=3.2
 -PKG_RELEASE:=0.1
-+PKG_VERSION:=3.2-20130209
++PKG_VERSION:=3.5-20130222
 +PKG_RELEASE:=1
  
-+PKG_REV:=79c134f9c401679b01d46b8857148c5457267224
++PKG_REV:=229a8d75d850a1dfd8694959e5e1114c5366f294
  PKG_SOURCE:=$(PKG_NAME)-$(PKG_VERSION).tar.gz
 -PKG_SOURCE_URL:=https://github.com/downloads/tvheadend/tvheadend/
 -PKG_MD5SUM:=4f7faa75c4ea24942c5a12a77ebdcdf0
@@ -22,12 +22,11 @@
  
  include $(INCLUDE_DIR)/package.mk
  
-@@ -62,17 +67,20 @@
+@@ -62,17 +67,19 @@
  
  CONFIGURE_ARGS += \
  	--release \
 -	--enable-bundle
-+	--disable-timeshift \
 +	--disable-imagecache \
 +	--disable-libav \
 +	--disable-zlib \
@@ -43,10 +42,10 @@
 -	$(INSTALL_BIN) $(PKG_BUILD_DIR)/build.linux/tvheadend $(1)/usr/bin/
 +	$(INSTALL_DIR) $(1)/opt/etc/{init.d,tvheadend}
 +	$(INSTALL_BIN) ./files/S71tvheadend $(1)/opt/etc/init.d/
-+	$(INSTALL_CONF) ./files/tv_grab_wl500g_info.cfg $(1)/opt/etc/
++	$(INSTALL_CONF) ./files/tv_grab_wl500g_info.{cfg,offset} $(1)/opt/etc/
 +	$(INSTALL_DIR) $(1)/opt/bin
 +	$(INSTALL_BIN) $(PKG_INSTALL_DIR)/opt/bin/tvheadend $(1)/opt/bin/
-+	$(INSTALL_BIN) ./files/tv_grab_wl500g_info $(1)/opt/bin/
++	$(INSTALL_BIN) ./files/tv_grab_wl500g_info{,_toffset} $(1)/opt/bin/
 +	$(INSTALL_DIR) $(1)/opt/share/tvheadend
 +	$(CP) -r $(PKG_INSTALL_DIR)/opt/share/tvheadend/* $(1)/opt/share/tvheadend/
  endef
