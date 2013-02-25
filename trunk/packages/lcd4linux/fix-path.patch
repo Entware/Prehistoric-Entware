@@ -1,5 +1,5 @@
---- ../../../openwrt_trunk.orig/feeds/packages/utils/lcd4linux/Makefile	2012-07-11 14:54:02.094734866 +0400
-+++ ../../../openwrt_trunk/feeds/packages/utils/lcd4linux/Makefile	2012-07-11 21:17:20.085612531 +0400
+--- ../../../downloads/openwrt_trunk-r35474/feeds/packages/utils/lcd4linux/Makefile	2013-02-05 10:42:11.730946397 +0400
++++ ../../../openwrt_trunk/feeds/packages/utils/lcd4linux/Makefile	2013-02-25 08:43:48.674566413 +0400
 @@ -129,9 +129,10 @@
  	libnmeap \
  	libsqlite3 \
@@ -12,7 +12,23 @@
  #	libftdi \
  #	libX11 \
  #	python \
-@@ -225,8 +226,6 @@
+@@ -161,7 +162,6 @@
+ $(call Package/lcd4linux/Default)
+   DEPENDS:= \
+ 	+LCD4LINUX_CUSTOM_NEEDS_libdbus:libdbus \
+-	+LCD4LINUX_CUSTOM_NEEDS_libdpf:libdpf \
+ 	+LCD4LINUX_CUSTOM_NEEDS_libgd:libgd \
+ 	$(if $(ICONV_FULL),+LCD4LINUX_CUSTOM_NEEDS_libiconv:libiconv-full) \
+ 	+LCD4LINUX_CUSTOM_NEEDS_libjpeg:libjpeg \
+@@ -196,7 +196,6 @@
+ $(call Package/lcd4linux/Default)
+   DEPENDS:= @DEVEL \
+ 	+libdbus \
+-	+libdpf \
+ 	+libgd \
+ 	$(if $(ICONV_FULL),+libiconv-full) \
+ 	+libmpdclient \
+@@ -225,8 +224,6 @@
  CONFIGURE_ARGS+= \
  	--disable-rpath \
  
@@ -21,7 +37,7 @@
  ifeq ($(BUILD_VARIANT),custom)
  
    LCD4LINUX_CUSTOM_DRIVERS:= $(strip $(foreach c, $(LCD4LINUX_DRIVERS), \
-@@ -254,7 +253,7 @@
+@@ -254,7 +251,7 @@
    endif
  
    ifneq ($(CONFIG_LCD4LINUX_CUSTOM_NEEDS_libmysqlclient),)
@@ -30,7 +46,7 @@
    endif
  
  #  ifneq ($(CONFIG_LCD4LINUX_CUSTOM_NEEDS_python),)
-@@ -288,27 +287,27 @@
+@@ -288,27 +285,27 @@
  	--without-python \
  	--without-x \
  
