@@ -1,5 +1,5 @@
---- ../../../openwrt_trunk.orig/feeds/packages/multimedia/ffmpeg/Makefile
-+++ ../../../openwrt_trunk/feeds/packages/multimedia/ffmpeg/Makefile
+--- ../../../downloads/openwrt_trunk-r35953/feeds/packages/multimedia/ffmpeg/Makefile	2013-03-11 09:29:39.434073814 +0400
++++ ../../../openwrt_trunk/feeds/packages/multimedia/ffmpeg/Makefile	2013-03-11 10:37:52.541992725 +0400
 @@ -278,7 +278,7 @@
  	--cross-prefix="$(TARGET_CROSS)" \
  	--arch="$(ARCH)" \
@@ -9,7 +9,7 @@
  	--enable-shared \
  	--enable-static \
  	--disable-debug \
-@@ -362,21 +362,21 @@
+@@ -364,21 +364,21 @@
  endef
  
  define Build/InstallDev/custom
@@ -29,21 +29,21 @@
  
  define Build/InstallDev/full
 -	$(INSTALL_DIR) $(1)/usr/include
--	$(CP) $(PKG_INSTALL_DIR)/usr/include/lib{avcodec,avdevice,avfilter,avformat,avutil,postproc,swscale} $(1)/usr/include/
+-	$(CP) $(PKG_INSTALL_DIR)/usr/include/lib{avcodec,avdevice,avfilter,avformat,avutil,postproc,swresample,swscale} $(1)/usr/include/
 -	$(INSTALL_DIR) $(1)/usr/lib
--	$(CP) $(PKG_INSTALL_DIR)/usr/lib/lib{avcodec,avdevice,avfilter,avformat,avutil,postproc,swscale}.{a,so*} $(1)/usr/lib/
+-	$(CP) $(PKG_INSTALL_DIR)/usr/lib/lib{avcodec,avdevice,avfilter,avformat,avutil,postproc,swresample,swscale}.{a,so*} $(1)/usr/lib/
 -	$(INSTALL_DIR) $(1)/usr/lib/pkgconfig
--	$(CP) $(PKG_INSTALL_DIR)/usr/lib/pkgconfig/lib{avcodec,avdevice,avfilter,avformat,avutil,postproc,swscale}.pc $(1)/usr/lib/pkgconfig/
+-	$(CP) $(PKG_INSTALL_DIR)/usr/lib/pkgconfig/lib{avcodec,avdevice,avfilter,avformat,avutil,postproc,swresample,swscale}.pc $(1)/usr/lib/pkgconfig/
 +	$(INSTALL_DIR) $(1)/opt/include
-+	$(CP) $(PKG_INSTALL_DIR)/opt/include/lib{avcodec,avdevice,avfilter,avformat,avutil,postproc,swscale} $(1)/opt/include/
++	$(CP) $(PKG_INSTALL_DIR)/opt/include/lib{avcodec,avdevice,avfilter,avformat,avutil,postproc,swresample,swscale} $(1)/opt/include/
 +	$(INSTALL_DIR) $(1)/opt/lib
-+	$(CP) $(PKG_INSTALL_DIR)/opt/lib/lib{avcodec,avdevice,avfilter,avformat,avutil,postproc,swscale}.{a,so*} $(1)/opt/lib/
++	$(CP) $(PKG_INSTALL_DIR)/opt/lib/lib{avcodec,avdevice,avfilter,avformat,avutil,postproc,swresample,swscale}.{a,so*} $(1)/opt/lib/
 +	$(INSTALL_DIR) $(1)/opt/lib/pkgconfig
-+	$(CP) $(PKG_INSTALL_DIR)/opt/lib/pkgconfig/lib{avcodec,avdevice,avfilter,avformat,avutil,postproc,swscale}.pc $(1)/opt/lib/pkgconfig/
++	$(CP) $(PKG_INSTALL_DIR)/opt/lib/pkgconfig/lib{avcodec,avdevice,avfilter,avformat,avutil,postproc,swresample,swscale}.pc $(1)/opt/lib/pkgconfig/
  endef
  
  Build/InstallDev/mini = $(Build/InstallDev/custom)
-@@ -400,28 +400,28 @@
+@@ -402,28 +402,28 @@
  endif
  
  define Package/ffmpeg/install
@@ -76,9 +76,9 @@
  
  define Package/libffmpeg-full/install
 -	$(INSTALL_DIR) $(1)/usr/lib
--	$(CP) $(PKG_INSTALL_DIR)/usr/lib/lib{avcodec,avdevice,avfilter,avformat,avutil,postproc,swscale}.so.* $(1)/usr/lib/
+-	$(CP) $(PKG_INSTALL_DIR)/usr/lib/lib{avcodec,avdevice,avfilter,avformat,avutil,postproc,swresample,swscale}.so.* $(1)/usr/lib/
 +	$(INSTALL_DIR) $(1)/opt/lib
-+	$(CP) $(PKG_INSTALL_DIR)/opt/lib/lib{avcodec,avdevice,avfilter,avformat,avutil,postproc,swscale}.so.* $(1)/opt/lib/
++	$(CP) $(PKG_INSTALL_DIR)/opt/lib/lib{avcodec,avdevice,avfilter,avformat,avutil,postproc,swresample,swscale}.so.* $(1)/opt/lib/
  endef
  
  Package/libffmpeg-mini/install = $(Package/libffmpeg-custom/install)

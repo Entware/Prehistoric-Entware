@@ -1,6 +1,6 @@
-diff -urx .svn ../../../downloads/openwrt_trunk-r35474/feeds/packages/net/freeswitch/files/freeswitch.default ../../../openwrt_trunk/feeds/packages/net/freeswitch/files/freeswitch.default
---- ../../../downloads/openwrt_trunk-r35474/feeds/packages/net/freeswitch/files/freeswitch.default	2013-02-05 10:42:23.818946178 +0400
-+++ ../../../openwrt_trunk/feeds/packages/net/freeswitch/files/freeswitch.default	2013-02-05 10:43:46.630944667 +0400
+diff -urx .svn ../../../downloads/openwrt_trunk-r35953/feeds/packages/net/freeswitch/files/freeswitch.default ../../../openwrt_trunk/feeds/packages/net/freeswitch/files/freeswitch.default
+--- ../../../downloads/openwrt_trunk-r35953/feeds/packages/net/freeswitch/files/freeswitch.default	2013-03-11 09:29:41.270073781 +0400
++++ ../../../openwrt_trunk/feeds/packages/net/freeswitch/files/freeswitch.default	2013-03-11 09:30:46.906072583 +0400
 @@ -1,11 +1,11 @@
  #FS_DIR="/opt"
 -FS_DIR_ETC="$FS_DIR/etc/freeswitch"
@@ -21,19 +21,19 @@ diff -urx .svn ../../../downloads/openwrt_trunk-r35474/feeds/packages/net/freesw
 +FS_DIR_VM_STORAGE="/opt/var/lib/freeswitch/storage" # NOTE: must be changed in config as well
  
  OPTIONS="-conf $FS_DIR_ETC -log $FS_DIR_LOG -db $FS_DIR_DB -mod $FS_DIR_MOD -htdocs $FS_DIR_HTDOCS -scripts $FS_DIR_SCRIPTS"
-diff -urx .svn ../../../downloads/openwrt_trunk-r35474/feeds/packages/net/freeswitch/Makefile ../../../openwrt_trunk/feeds/packages/net/freeswitch/Makefile
---- ../../../downloads/openwrt_trunk-r35474/feeds/packages/net/freeswitch/Makefile	2013-02-05 10:42:23.726946179 +0400
-+++ ../../../openwrt_trunk/feeds/packages/net/freeswitch/Makefile	2013-02-06 15:49:53.325036083 +0400
-@@ -191,7 +191,7 @@
+diff -urx .svn ../../../downloads/openwrt_trunk-r35953/feeds/packages/net/freeswitch/Makefile ../../../openwrt_trunk/feeds/packages/net/freeswitch/Makefile
+--- ../../../downloads/openwrt_trunk-r35953/feeds/packages/net/freeswitch/Makefile	2013-03-11 09:29:41.262073781 +0400
++++ ../../../openwrt_trunk/feeds/packages/net/freeswitch/Makefile	2013-03-11 10:48:58.521988908 +0400
+@@ -192,7 +192,7 @@
  define Package/$(PKG_NAME)
  $(call Package/$(PKG_NAME)/Default)
    TITLE:=FreeSWITCH open source telephony platform ($(PKG_SOURCE_VERSION_SHORT))
--  DEPENDS:=+libcurl +libjpeg +libncurses +libpq +libpthread +librt +libstdcpp
-+  DEPENDS:=+libcurl +libjpeg-turbo +libncurses +libpq +libpthread +librt +libstdcpp $(ICONV_DEPENDS)
+-  DEPENDS:=+libcurl +libiconv-full +libjpeg +libncurses +libpq +libpthread +librt +libstdcpp
++  DEPENDS:=+libcurl +libiconv-full +libjpeg-turbo +libncurses +libpq +libpthread +librt +libstdcpp $(ICONV_DEPENDS)
    MENU:=1
  endef
  
-@@ -276,7 +276,7 @@
+@@ -277,7 +277,7 @@
  
  define Package/$(PKG_NAME)-example-config/description
    The default configuration included with FreeSWITCH. It is not intended to be
@@ -42,7 +42,7 @@ diff -urx .svn ../../../downloads/openwrt_trunk-r35474/feeds/packages/net/freesw
    be an example of how FreeSWITCH can be configured.
  endef
  
-@@ -461,27 +461,27 @@
+@@ -540,27 +540,27 @@
  CONFIGURE_ARGS+= \
  	--host=$(GNU_TARGET_NAME) \
  	--build=$(GNU_HOST_NAME) \
@@ -79,18 +79,18 @@ diff -urx .svn ../../../downloads/openwrt_trunk-r35474/feeds/packages/net/freesw
  
 +TOOLCHAIN_DIR=/opt/entware-toolchain
  CONFIGURE_VARS+= \
- 	config_TARGET_CC="$(TOOLCHAIN_DIR)/bin/${TARGET_CC}" \
- 	config_TARGET_CFLAGS="${FS_TARGET_CPPFLAGS} ${FS_TARGET_CFLAGS}" \
-@@ -505,7 +505,7 @@
- 	CFLAGS="${FS_TARGET_CPPFLAGS} ${FS_TARGET_CFLAGS}" \
- 	CXXFLAGS="${FS_TARGET_CPPFLAGS} ${FS_TARGET_CXXFLAGS}" \
- 	CPPFLAGS="${FS_TARGET_CPPFLAGS}" \
--	LDFLAGS="${TARGET_LDFLAGS} -Wl,-rpath-link=\"${STAGING_DIR}/usr/lib\"" \
-+	LDFLAGS="${TARGET_LDFLAGS}" \
- 	PATH="${PATH}:${STAGING_DIR}" \
+ 	config_TARGET_CC="$(TOOLCHAIN_DIR)/bin/$(TARGET_CC)" \
+ 	config_TARGET_CFLAGS="$(FS_TARGET_CPPFLAGS) $(FS_TARGET_CFLAGS)" \
+@@ -584,7 +584,7 @@
+ 	CFLAGS="$(FS_TARGET_CPPFLAGS) $(FS_TARGET_CFLAGS)" \
+ 	CXXFLAGS="$(FS_TARGET_CPPFLAGS) $(FS_TARGET_CXXFLAGS)" \
+ 	CPPFLAGS="$(FS_TARGET_CPPFLAGS)" \
+-	LDFLAGS="$(TARGET_LDFLAGS) -Wl,-rpath-link=\"$(STAGING_DIR)/usr/lib\"" \
++	LDFLAGS="$(TARGET_LDFLAGS)" \
+ 	PATH="$(PATH):$(STAGING_DIR)" \
  	HOST_CC="/usr/bin/cc" \
  	HOST_CXX="/usr/bin/g++" \
-@@ -566,101 +566,101 @@
+@@ -651,80 +651,80 @@
  		DESTDIR="$(PKG_INSTALL_DIR)" \
  		LDFLAGS_FOR_BUILD="$(HOST_LDFLAGS)" \
  		all $(MAKE_INSTALL_TARGETS)
@@ -130,6 +130,7 @@ diff -urx .svn ../../../downloads/openwrt_trunk-r35474/feeds/packages/net/freesw
 -	$(CP) $(PKG_INSTALL_DIR)/usr/bin/$(PKG_NAME) $(1)/usr/bin/
 -	$(CP) $(PKG_INSTALL_DIR)/usr/lib/lib$(PKG_NAME)* $(1)/usr/lib/
 -	$(CP) $(PKG_INSTALL_DIR)/usr/lib/pkgconfig/$(PKG_NAME).pc $(1)/usr/lib/pkgconfig/
+-	$(if $(1)/usr/lib/lib$(PKG_NAME).la,sed -i -e "s#-lcurl -lz\(.*\)/usr/lib/libexpat.la\(.*\)$(TOOLCHAIN_DIR)/$(REAL_GNU_TARGET_NAME)\(.*\)#-L/usr/lib -lcurl -lz /usr/lib/libexpat.la\2/usr\3#g" $(1)/usr/lib/lib$(PKG_NAME).la)
 +	$(INSTALL_DIR) $(1)/opt/etc/config
 +	$(INSTALL_DIR) $(1)/opt/etc/default
 +	$(INSTALL_DIR) $(1)/opt/etc/$(PKG_NAME)
@@ -146,6 +147,7 @@ diff -urx .svn ../../../downloads/openwrt_trunk-r35474/feeds/packages/net/freesw
 +	$(CP) $(PKG_INSTALL_DIR)/opt/bin/$(PKG_NAME) $(1)/opt/bin/
 +	$(CP) $(PKG_INSTALL_DIR)/opt/lib/lib$(PKG_NAME)* $(1)/opt/lib/
 +	$(CP) $(PKG_INSTALL_DIR)/opt/lib/pkgconfig/$(PKG_NAME).pc $(1)/opt/lib/pkgconfig/
++	$(if $(1)/opt/lib/lib$(PKG_NAME).la,sed -i -e "s#-lcurl -lz\(.*\)/opt/lib/libexpat.la\(.*\)$(TOOLCHAIN_DIR)/$(REAL_GNU_TARGET_NAME)\(.*\)#-L/opt/lib -lcurl -lz /opt/lib/libexpat.la\2/opt\3#g" $(1)/opt/lib/lib$(PKG_NAME).la)
  endef
  
  
@@ -165,9 +167,9 @@ diff -urx .svn ../../../downloads/openwrt_trunk-r35474/feeds/packages/net/freesw
  
  define Package/$(PKG_NAME)-config-upstream-defaults/install
 -	$(INSTALL_DIR) $(1)/etc/$(PKG_NAME)
--	$(CP) $(PKG_INSTALL_DIR)/etc/$(PKG_NAME)/* $(1)/etc/$(PKG_NAME)/
+-	$(CP) $(PKG_INSTALL_DIR)/etc/$(PKG_NAME) $(1)/etc
 +	$(INSTALL_DIR) $(1)/opt/etc/$(PKG_NAME)
-+	$(CP) $(PKG_INSTALL_DIR)/opt/etc/$(PKG_NAME)/* $(1)/opt/etc/$(PKG_NAME)/
++	$(CP) $(PKG_INSTALL_DIR)/opt/etc/$(PKG_NAME) $(1)/opt/etc
  endef
  
  
@@ -188,32 +190,117 @@ diff -urx .svn ../../../downloads/openwrt_trunk-r35474/feeds/packages/net/freesw
 +	$(INSTALL_DIR) $(1)/opt/etc/$(PKG_NAME)/autoload_configs
  
  	#
- 	# Copying dialplan directory jingle_profiles sip_profiles $(PKG_NAME).xml fur_elise.ttml mime.types tetris.ttml tones.conf vars.xml
+ 	# Copying dialplan directory jingle_profiles sip_profiles $(PKG_NAME).xml
+ 	# fur_elise.ttml mime.types tetris.ttml tones.conf vars.xml
  	#
--	$(foreach ff,dialplan directory jingle_profiles sip_profiles $(PKG_NAME).xml fur_elise.ttml mime.types tetris.ttml tones.conf vars.xml,$(if ${PKG_BUILD_DIR}/conf/vanilla/$(ff),$(CP) ${PKG_BUILD_DIR}/conf/vanilla/$(ff) $(1)/etc/$(PKG_NAME);))
-+	$(foreach ff,dialplan directory jingle_profiles sip_profiles $(PKG_NAME).xml fur_elise.ttml mime.types tetris.ttml tones.conf vars.xml,$(if ${PKG_BUILD_DIR}/conf/vanilla/$(ff),$(CP) ${PKG_BUILD_DIR}/conf/vanilla/$(ff) $(1)/opt/etc/$(PKG_NAME);))
+-	$(foreach f,dialplan directory jingle_profiles sip_profiles $(PKG_NAME).xml fur_elise.ttml mime.types tetris.ttml tones.conf vars.xml,$(if $(PKG_BUILD_DIR)/conf/vanilla/$(f),$(CP) $(PKG_BUILD_DIR)/conf/vanilla/$(f) $(1)/etc/$(PKG_NAME);))
++	$(foreach f,dialplan directory jingle_profiles sip_profiles $(PKG_NAME).xml fur_elise.ttml mime.types tetris.ttml tones.conf vars.xml,$(if $(PKG_BUILD_DIR)/conf/vanilla/$(f),$(CP) $(PKG_BUILD_DIR)/conf/vanilla/$(f) $(1)/opt/etc/$(PKG_NAME);))
  
  	#
  	# Copying acl ivr modules post_load_modules switch timezones
  	#
--	$(foreach ff,acl ivr modules post_load_modules switch timezones,$(if ${PKG_BUILD_DIR}/conf/vanilla/autoload_configs/$(ff).conf.xml,$(CP) ${PKG_BUILD_DIR}/conf/vanilla/autoload_configs/$(ff).conf.xml $(1)/etc/$(PKG_NAME)/autoload_configs;))
-+	$(foreach ff,acl ivr modules post_load_modules switch timezones,$(if ${PKG_BUILD_DIR}/conf/vanilla/autoload_configs/$(ff).conf.xml,$(CP) ${PKG_BUILD_DIR}/conf/vanilla/autoload_configs/$(ff).conf.xml $(1)/opt/etc/$(PKG_NAME)/autoload_configs;))
+-	$(foreach f,acl ivr modules post_load_modules switch timezones,$(if $(PKG_BUILD_DIR)/conf/vanilla/autoload_configs/$(f).conf.xml,$(CP) $(PKG_BUILD_DIR)/conf/vanilla/autoload_configs/$(f).conf.xml $(1)/etc/$(PKG_NAME)/autoload_configs;))
++	$(foreach f,acl ivr modules post_load_modules switch timezones,$(if $(PKG_BUILD_DIR)/conf/vanilla/autoload_configs/$(f).conf.xml,$(CP) $(PKG_BUILD_DIR)/conf/vanilla/autoload_configs/$(f).conf.xml $(1)/opt/etc/$(PKG_NAME)/autoload_configs;))
  endef
  
  
- define Package/$(PKG_NAME)-sounds-en/install
--	$(INSTALL_DIR) $(1)/usr/share/$(PKG_NAME)/sounds
--	$(CP) $(PKG_INSTALL_DIR)/usr/share/$(PKG_NAME)/sounds/en $(1)/usr/share/$(PKG_NAME)/sounds/
-+	$(INSTALL_DIR) $(1)/opt/share/$(PKG_NAME)/sounds
-+	$(CP) $(PKG_INSTALL_DIR)/opt/share/$(PKG_NAME)/sounds/en $(1)/opt/share/$(PKG_NAME)/sounds/
+@@ -732,10 +732,10 @@
+ 	#
+ 	# sounds-en-8KHz
+ 	#
+-	for dir in `(cd $(PKG_INSTALL_DIR)/usr/share/$(PKG_NAME)/sounds/en/us/callie;ls)`; \
++	for dir in `(cd $(PKG_INSTALL_DIR)/opt/share/$(PKG_NAME)/sounds/en/us/callie;ls)`; \
+ 	do \
+-		[ -d $(1)/usr/share/$(PKG_NAME)/sounds/en/us/callie/$$$${dir}/8000 ] || $(INSTALL_DIR) $(1)/usr/share/$(PKG_NAME)/sounds/en/us/callie/$$$${dir}/8000; \
+-		$(CP) $(PKG_INSTALL_DIR)/usr/share/$(PKG_NAME)/sounds/en/us/callie/$$$${dir}/8000/* $(1)/usr/share/$(PKG_NAME)/sounds/en/us/callie/$$$${dir}/8000; \
++		[ -d $(1)/opt/share/$(PKG_NAME)/sounds/en/us/callie/$$$${dir}/8000 ] || $(INSTALL_DIR) $(1)/opt/share/$(PKG_NAME)/sounds/en/us/callie/$$$${dir}/8000; \
++		$(CP) $(PKG_INSTALL_DIR)/opt/share/$(PKG_NAME)/sounds/en/us/callie/$$$${dir}/8000/* $(1)/opt/share/$(PKG_NAME)/sounds/en/us/callie/$$$${dir}/8000; \
+ 	done
+ endef
+ 
+@@ -744,10 +744,10 @@
+ 	#
+ 	# sounds-en-16KHz
+ 	#
+-	for dir in `(cd $(PKG_INSTALL_DIR)/usr/share/$(PKG_NAME)/sounds/en/us/callie;ls)`; \
++	for dir in `(cd $(PKG_INSTALL_DIR)/opt/share/$(PKG_NAME)/sounds/en/us/callie;ls)`; \
+ 	do \
+-		[ -d $(1)/usr/share/$(PKG_NAME)/sounds/en/us/callie/$$$${dir}/16000 ] || $(INSTALL_DIR) $(1)/usr/share/$(PKG_NAME)/sounds/en/us/callie/$$$${dir}/16000; \
+-		$(CP) $(PKG_INSTALL_DIR)/usr/share/$(PKG_NAME)/sounds/en/us/callie/$$$${dir}/16000/* $(1)/usr/share/$(PKG_NAME)/sounds/en/us/callie/$$$${dir}/16000; \
++		[ -d $(1)/opt/share/$(PKG_NAME)/sounds/en/us/callie/$$$${dir}/16000 ] || $(INSTALL_DIR) $(1)/opt/share/$(PKG_NAME)/sounds/en/us/callie/$$$${dir}/16000; \
++		$(CP) $(PKG_INSTALL_DIR)/opt/share/$(PKG_NAME)/sounds/en/us/callie/$$$${dir}/16000/* $(1)/opt/share/$(PKG_NAME)/sounds/en/us/callie/$$$${dir}/16000; \
+ 	done
+ endef
+ 
+@@ -756,10 +756,10 @@
+ 	#
+ 	# sounds-en-32KHz
+ 	#
+-	for dir in `(cd $(PKG_INSTALL_DIR)/usr/share/$(PKG_NAME)/sounds/en/us/callie;ls)`; \
++	for dir in `(cd $(PKG_INSTALL_DIR)/opt/share/$(PKG_NAME)/sounds/en/us/callie;ls)`; \
+ 	do \
+-		[ -d $(1)/usr/share/$(PKG_NAME)/sounds/en/us/callie/$$$${dir}/32000 ] || $(INSTALL_DIR) $(1)/usr/share/$(PKG_NAME)/sounds/en/us/callie/$$$${dir}/32000; \
+-		$(CP) $(PKG_INSTALL_DIR)/usr/share/$(PKG_NAME)/sounds/en/us/callie/$$$${dir}/32000/* $(1)/usr/share/$(PKG_NAME)/sounds/en/us/callie/$$$${dir}/32000; \
++		[ -d $(1)/opt/share/$(PKG_NAME)/sounds/en/us/callie/$$$${dir}/32000 ] || $(INSTALL_DIR) $(1)/opt/share/$(PKG_NAME)/sounds/en/us/callie/$$$${dir}/32000; \
++		$(CP) $(PKG_INSTALL_DIR)/opt/share/$(PKG_NAME)/sounds/en/us/callie/$$$${dir}/32000/* $(1)/opt/share/$(PKG_NAME)/sounds/en/us/callie/$$$${dir}/32000; \
+ 	done
+ endef
+ 
+@@ -768,10 +768,10 @@
+ 	#
+ 	# sounds-en-48KHz
+ 	#
+-	for dir in `(cd $(PKG_INSTALL_DIR)/usr/share/$(PKG_NAME)/sounds/en/us/callie;ls)`; \
++	for dir in `(cd $(PKG_INSTALL_DIR)/opt/share/$(PKG_NAME)/sounds/en/us/callie;ls)`; \
+ 	do \
+-		[ -d $(1)/usr/share/$(PKG_NAME)/sounds/en/us/callie/$$$${dir}/48000 ] || $(INSTALL_DIR) $(1)/usr/share/$(PKG_NAME)/sounds/en/us/callie/$$$${dir}/48000; \
+-		$(CP) $(PKG_INSTALL_DIR)/usr/share/$(PKG_NAME)/sounds/en/us/callie/$$$${dir}/48000/* $(1)/usr/share/$(PKG_NAME)/sounds/en/us/callie/$$$${dir}/48000; \
++		[ -d $(1)/opt/share/$(PKG_NAME)/sounds/en/us/callie/$$$${dir}/48000 ] || $(INSTALL_DIR) $(1)/opt/share/$(PKG_NAME)/sounds/en/us/callie/$$$${dir}/48000; \
++		$(CP) $(PKG_INSTALL_DIR)/opt/share/$(PKG_NAME)/sounds/en/us/callie/$$$${dir}/48000/* $(1)/opt/share/$(PKG_NAME)/sounds/en/us/callie/$$$${dir}/48000; \
+ 	done
+ endef
+ 
+@@ -780,8 +780,8 @@
+ 	#
+ 	# sounds-moh-8KHz
+ 	#
+-	[ -d $(1)/usr/share/$(PKG_NAME)/sounds/music/8000 ] || $(INSTALL_DIR) $(1)/usr/share/$(PKG_NAME)/sounds/music/8000;
+-	$(CP) $(PKG_INSTALL_DIR)/usr/share/$(PKG_NAME)/sounds/music/8000 $(1)/usr/share/$(PKG_NAME)/sounds/music;
++	[ -d $(1)/opt/share/$(PKG_NAME)/sounds/music/8000 ] || $(INSTALL_DIR) $(1)/opt/share/$(PKG_NAME)/sounds/music/8000;
++	$(CP) $(PKG_INSTALL_DIR)/opt/share/$(PKG_NAME)/sounds/music/8000 $(1)/opt/share/$(PKG_NAME)/sounds/music;
  endef
  
  
- define Package/$(PKG_NAME)-sounds-moh/install
--	$(INSTALL_DIR) $(1)/usr/share/$(PKG_NAME)/sounds
--	$(CP) $(PKG_INSTALL_DIR)/usr/share/$(PKG_NAME)/sounds/music $(1)/usr/share/$(PKG_NAME)/sounds/
-+	$(INSTALL_DIR) $(1)/opt/share/$(PKG_NAME)/sounds
-+	$(CP) $(PKG_INSTALL_DIR)/opt/share/$(PKG_NAME)/sounds/music $(1)/opt/share/$(PKG_NAME)/sounds/
+@@ -789,8 +789,8 @@
+ 	#
+ 	# sounds-moh-16KHz
+ 	#
+-	[ -d $(1)/usr/share/$(PKG_NAME)/sounds/music/16000 ] || $(INSTALL_DIR) $(1)/usr/share/$(PKG_NAME)/sounds/music/16000;
+-	$(CP) $(PKG_INSTALL_DIR)/usr/share/$(PKG_NAME)/sounds/music/16000 $(1)/usr/share/$(PKG_NAME)/sounds/music;
++	[ -d $(1)/opt/share/$(PKG_NAME)/sounds/music/16000 ] || $(INSTALL_DIR) $(1)/opt/share/$(PKG_NAME)/sounds/music/16000;
++	$(CP) $(PKG_INSTALL_DIR)/opt/share/$(PKG_NAME)/sounds/music/16000 $(1)/opt/share/$(PKG_NAME)/sounds/music;
+ endef
+ 
+ 
+@@ -798,8 +798,8 @@
+ 	#
+ 	# sounds-moh-32KHz
+ 	#
+-	[ -d $(1)/usr/share/$(PKG_NAME)/sounds/music/32000 ] || $(INSTALL_DIR) $(1)/usr/share/$(PKG_NAME)/sounds/music/32000;
+-	$(CP) $(PKG_INSTALL_DIR)/usr/share/$(PKG_NAME)/sounds/music/32000 $(1)/usr/share/$(PKG_NAME)/sounds/music;
++	[ -d $(1)/opt/share/$(PKG_NAME)/sounds/music/32000 ] || $(INSTALL_DIR) $(1)/opt/share/$(PKG_NAME)/sounds/music/32000;
++	$(CP) $(PKG_INSTALL_DIR)/opt/share/$(PKG_NAME)/sounds/music/32000 $(1)/opt/share/$(PKG_NAME)/sounds/music;
+ endef
+ 
+ 
+@@ -807,19 +807,19 @@
+ 	#
+ 	# sounds-moh-48KHz
+ 	#
+-	[ -d $(1)/usr/share/$(PKG_NAME)/sounds/music/48000 ] || $(INSTALL_DIR) $(1)/usr/share/$(PKG_NAME)/sounds/music/48000;
+-	$(CP) $(PKG_INSTALL_DIR)/usr/share/$(PKG_NAME)/sounds/music/48000 $(1)/usr/share/$(PKG_NAME)/sounds/music;
++	[ -d $(1)/opt/share/$(PKG_NAME)/sounds/music/48000 ] || $(INSTALL_DIR) $(1)/opt/share/$(PKG_NAME)/sounds/music/48000;
++	$(CP) $(PKG_INSTALL_DIR)/opt/share/$(PKG_NAME)/sounds/music/48000 $(1)/opt/share/$(PKG_NAME)/sounds/music;
  endef
  
  
@@ -235,21 +322,23 @@ diff -urx .svn ../../../downloads/openwrt_trunk-r35474/feeds/packages/net/freesw
  endef
  
  
-@@ -679,10 +679,10 @@
+@@ -838,11 +838,11 @@
    endef
  
    define Package/$(PKG_NAME)-$(1)/install
 -	[ -d "$$(1)/usr/lib/pkgconfig" ] || $(INSTALL_DIR) $$(1)/usr/lib/pkgconfig
 +	[ -d "$$(1)/opt/lib/pkgconfig" ] || $(INSTALL_DIR) $$(1)/opt/lib/pkgconfig
  
--	$(CP) $(PKG_INSTALL_DIR)/usr/lib/pkgconfig/$(patsubst lib%,%,${3}).pc $$(1)/usr/lib/pkgconfig
--	$(CP) $(PKG_INSTALL_DIR)/usr/lib/${1}* $$(1)/usr/lib/
-+	$(CP) $(PKG_INSTALL_DIR)/opt/lib/pkgconfig/$(patsubst lib%,%,${3}).pc $$(1)/opt/lib/pkgconfig
-+	$(CP) $(PKG_INSTALL_DIR)/opt/lib/${1}* $$(1)/opt/lib/
+-	$(CP) $(PKG_INSTALL_DIR)/usr/lib/pkgconfig/$(patsubst lib%,%,$(3)).pc $$(1)/usr/lib/pkgconfig
+-	$(CP) $(PKG_INSTALL_DIR)/usr/lib/$(1)* $$(1)/usr/lib/
+-	$(if $$(1)/usr/lib/$(1).la,sed -i -e "s#\(^.*\)=' \(.*\)-lm\(.*\)#\1=' -L/usr/lib -L/usr/lib/libiconv-full/lib -L/usr/lib/libintl-full/lib -lm\3#g" $$(1)/usr/lib/$(1).la)
++	$(CP) $(PKG_INSTALL_DIR)/opt/lib/pkgconfig/$(patsubst lib%,%,$(3)).pc $$(1)/opt/lib/pkgconfig
++	$(CP) $(PKG_INSTALL_DIR)/opt/lib/$(1)* $$(1)/opt/lib/
++	$(if $$(1)/opt/lib/$(1).la,sed -i -e "s#\(^.*\)=' \(.*\)-lm\(.*\)#\1=' -L/opt/lib -L/opt/lib/libiconv-full/lib -L/opt/lib/libintl-full/lib -lm\3#g" $$(1)/opt/lib/$(1).la)
    endef
  
    $$(eval $$(call BuildPackage,$(PKG_NAME)-$(1)))
-@@ -706,58 +706,58 @@
+@@ -866,65 +866,65 @@
    endef
  
    define Package/$(PKG_NAME)-mod-$(1)/install
@@ -263,49 +352,57 @@ diff -urx .svn ../../../downloads/openwrt_trunk-r35474/feeds/packages/net/freesw
 +		$(CP) $$$$$$$${f} $$(1)/opt/lib/$(PKG_NAME)/; \
  	done
  
- 	for f in $(5); \
+ 	#
+ 	# mod_$(subst -,_,$(1)): $(5)
+ 	#
+-	$(foreach f,$(5),[ -d $(dir $$(1)/usr/${f}) ] || $(INSTALL_DIR) $(dir $$(1)/usr/${f});$(CP) $(PKG_INSTALL_DIR)/usr/${f} $$(1)/usr;)
++	$(foreach f,$(5),[ -d $(dir $$(1)/opt/${f}) ] || $(INSTALL_DIR) $(dir $$(1)/opt/${f});$(CP) $(PKG_INSTALL_DIR)/opt/${f} $$(1)/opt;)
+ 
+ 	#
+ 	# mod_$(subst -,_,$(1)): Clean installed library control files from referencig to OpenWRT PATH.
+ 	#
+-	for f in `ls $$(1)/usr/lib/$(PKG_NAME)/*.la`; \
++	for f in `ls $$(1)/opt/lib/$(PKG_NAME)/*.la`; \
  	do \
--		[ -d "$(dirname $$(1)/usr/${f})" ] || $(INSTALL_DIR) $(dirname $$(1)/usr/${f}); \
--		$(CP) $(PKG_INSTALL_DIR)/usr/${f} $$(1)/usr/${f}; \
-+		[ -d "$(dirname $$(1)/opt/${f})" ] || $(INSTALL_DIR) $(dirname $$(1)/opt/${f}); \
-+		$(CP) $(PKG_INSTALL_DIR)/opt/${f} $$(1)/opt/${f}; \
+-		sed -i -e "s#' \(.*\)/usr/lib/libexpat.la\(.*\)$(TOOLCHAIN_DIR)/$(REAL_GNU_TARGET_NAME)\(.*\)#' -L/usr/lib -L/usr/lib/libiconv-full/lib -L/usr/lib/libintl-full/lib /usr/lib/lib$(PKG_NAME).la /usr/lib/libexpat.la\2/usr\3#g;s#' \(.*\)/usr/lib/libintl-full/lib#' -L/usr/lib -L/usr/lib/libiconv-full/lib -L/usr/lib/libintl-full/lib#g;s#-L\.\.##g;s#$(PKG_BUILD_DIR)\(.*\)/usr/lib/libtiff.la\(.*\)#/usr/lib/libtiff.la\2#g" $$$$$$$${f}; \
++		sed -i -e "s#' \(.*\)/opt/lib/libexpat.la\(.*\)$(TOOLCHAIN_DIR)/$(REAL_GNU_TARGET_NAME)\(.*\)#' -L/opt/lib -L/opt/lib/libiconv-full/lib -L/opt/lib/libintl-full/lib /opt/lib/lib$(PKG_NAME).la /opt/lib/libexpat.la\2/opt\3#g;s#' \(.*\)/opt/lib/libintl-full/lib#' -L/opt/lib -L/opt/lib/libiconv-full/lib -L/opt/lib/libintl-full/lib#g;s#-L\.\.##g;s#$(PKG_BUILD_DIR)\(.*\)/opt/lib/libtiff.la\(.*\)#/opt/lib/libtiff.la\2#g" $$$$$$$${f}; \
  	done
  
  	#
- 	# 1. mod_$(subst -,_,$(1)) XML configuration files from: $$$$(patsubst ${PKG_BUILD_DIR}/%,%,$$$$(firstword $$$$(wildcard ${PKG_BUILD_DIR}/conf/$(3)/autoload_configs/$(subst -,_,$(1)).conf.xml)))
+ 	# 1. mod_$(subst -,_,$(1)) XML configuration files from: $$$$(patsubst $(PKG_BUILD_DIR)/%,%,$$$$(firstword $$$$(wildcard $(PKG_BUILD_DIR)/conf/$(3)/autoload_configs/$(subst -,_,$(1)).conf.xml)))
  	#
--	$$$$(if $$$$(firstword $$$$(wildcard ${PKG_BUILD_DIR}/conf/$(3)/autoload_configs/$(subst -,_,$(1)).conf.xml)),[ -d $$(1)/etc/$(PKG_NAME)/autoload_configs ] || $(INSTALL_DIR) $$(1)/etc/$(PKG_NAME)/autoload_configs;$(CP) $$$$(firstword $$$$(wildcard ${PKG_BUILD_DIR}/conf/$(3)/autoload_configs/$(subst -,_,$(1)).conf.xml)) $$(1)/etc/$(PKG_NAME)/autoload_configs)
-+	$$$$(if $$$$(firstword $$$$(wildcard ${PKG_BUILD_DIR}/conf/$(3)/autoload_configs/$(subst -,_,$(1)).conf.xml)),[ -d $$(1)/opt/etc/$(PKG_NAME)/autoload_configs ] || $(INSTALL_DIR) $$(1)/opt/etc/$(PKG_NAME)/autoload_configs;$(CP) $$$$(firstword $$$$(wildcard ${PKG_BUILD_DIR}/conf/$(3)/autoload_configs/$(subst -,_,$(1)).conf.xml)) $$(1)/opt/etc/$(PKG_NAME)/autoload_configs)
+-	$$$$(if $$$$(firstword $$$$(wildcard $(PKG_BUILD_DIR)/conf/$(3)/autoload_configs/$(subst -,_,$(1)).conf.xml)),[ -d $$(1)/etc/$(PKG_NAME)/autoload_configs ] || $(INSTALL_DIR) $$(1)/etc/$(PKG_NAME)/autoload_configs;$(CP) $$$$(firstword $$$$(wildcard $(PKG_BUILD_DIR)/conf/$(3)/autoload_configs/$(subst -,_,$(1)).conf.xml)) $$(1)/etc/$(PKG_NAME)/autoload_configs)
++	$$$$(if $$$$(firstword $$$$(wildcard $(PKG_BUILD_DIR)/conf/$(3)/autoload_configs/$(subst -,_,$(1)).conf.xml)),[ -d $$(1)/opt/etc/$(PKG_NAME)/autoload_configs ] || $(INSTALL_DIR) $$(1)/opt/etc/$(PKG_NAME)/autoload_configs;$(CP) $$$$(firstword $$$$(wildcard $(PKG_BUILD_DIR)/conf/$(3)/autoload_configs/$(subst -,_,$(1)).conf.xml)) $$(1)/opt/etc/$(PKG_NAME)/autoload_configs)
  
  	#
- 	# 2. mod_$(subst -,_,$(1)) XML configuration files from: $$$$(patsubst ${PKG_BUILD_DIR}/%,%,$$$$(firstword $$$$(wildcard ${PKG_BUILD_DIR}/$(3)/$(1)/*/$(subst -,_,$(1)).conf.xml)))
+ 	# 2. mod_$(subst -,_,$(1)) XML configuration files from: $$$$(patsubst $(PKG_BUILD_DIR)/%,%,$$$$(firstword $$$$(wildcard $(PKG_BUILD_DIR)/$(3)/$(1)/*/$(subst -,_,$(1)).conf.xml)))
  	#
--	$$$$(if $$$$(firstword $$$$(wildcard ${PKG_BUILD_DIR}/$(3)/$(1)/*/$(subst -,_,$(1)).conf.xml)),[ -d $$(1)/etc/$(PKG_NAME)/autoload_configs ] || $(INSTALL_DIR) $$(1)/etc/$(PKG_NAME)/autoload_configs;$(CP) $$$$(firstword $$$$(wildcard ${PKG_BUILD_DIR}/$(3)/$(1)/*/$(subst -,_,$(1)).conf.xml)) $$(1)/etc/$(PKG_NAME)/autoload_configs)
-+	$$$$(if $$$$(firstword $$$$(wildcard ${PKG_BUILD_DIR}/$(3)/$(1)/*/$(subst -,_,$(1)).conf.xml)),[ -d $$(1)/opt/etc/$(PKG_NAME)/autoload_configs ] || $(INSTALL_DIR) $$(1)/opt/etc/$(PKG_NAME)/autoload_configs;$(CP) $$$$(firstword $$$$(wildcard ${PKG_BUILD_DIR}/$(3)/$(1)/*/$(subst -,_,$(1)).conf.xml)) $$(1)/opt/etc/$(PKG_NAME)/autoload_configs)
+-	$$$$(if $$$$(firstword $$$$(wildcard $(PKG_BUILD_DIR)/$(3)/$(1)/*/$(subst -,_,$(1)).conf.xml)),[ -d $$(1)/etc/$(PKG_NAME)/autoload_configs ] || $(INSTALL_DIR) $$(1)/etc/$(PKG_NAME)/autoload_configs;$(CP) $$$$(firstword $$$$(wildcard $(PKG_BUILD_DIR)/$(3)/$(1)/*/$(subst -,_,$(1)).conf.xml)) $$(1)/etc/$(PKG_NAME)/autoload_configs)
++	$$$$(if $$$$(firstword $$$$(wildcard $(PKG_BUILD_DIR)/$(3)/$(1)/*/$(subst -,_,$(1)).conf.xml)),[ -d $$(1)/opt/etc/$(PKG_NAME)/autoload_configs ] || $(INSTALL_DIR) $$(1)/opt/etc/$(PKG_NAME)/autoload_configs;$(CP) $$$$(firstword $$$$(wildcard $(PKG_BUILD_DIR)/$(3)/$(1)/*/$(subst -,_,$(1)).conf.xml)) $$(1)/opt/etc/$(PKG_NAME)/autoload_configs)
  
  	#
- 	# 3. mod_$(subst -,_,$(1)) XML configuration files from: $$$$(patsubst ${PKG_BUILD_DIR}/%,%,$$$$(firstword $$$$(wildcard ${PKG_BUILD_DIR}/src/$(3)/*/mod_$(subst -,_,$(1))/conf/autoload_configs/$(subst -,_,$(1)).conf.xml)))
+ 	# 3. mod_$(subst -,_,$(1)) XML configuration files from: $$$$(patsubst $(PKG_BUILD_DIR)/%,%,$$$$(firstword $$$$(wildcard $(PKG_BUILD_DIR)/src/$(3)/*/mod_$(subst -,_,$(1))/conf/autoload_configs/$(subst -,_,$(1)).conf.xml)))
  	#
--	$$$$(if $$$$(firstword $$$$(wildcard ${PKG_BUILD_DIR}/src/$(3)/*/mod_$(subst -,_,$(1))/conf/autoload_configs/$(subst -,_,$(1)).conf.xml)),[ -d $$(1)/etc/$(PKG_NAME)/autoload_configs ] || $(INSTALL_DIR) $$(1)/etc/$(PKG_NAME)/autoload_configs;$(CP) $$$$(firstword $$$$(wildcard ${PKG_BUILD_DIR}/src/$(3)/*/mod_$(subst -,_,$(1))/conf/autoload_configs/$(subst -,_,$(1)).conf.xml)) $$(1)/etc/$(PKG_NAME)/autoload_configs)
-+	$$$$(if $$$$(firstword $$$$(wildcard ${PKG_BUILD_DIR}/src/$(3)/*/mod_$(subst -,_,$(1))/conf/autoload_configs/$(subst -,_,$(1)).conf.xml)),[ -d $$(1)/opt/etc/$(PKG_NAME)/autoload_configs ] || $(INSTALL_DIR) $$(1)/opt/etc/$(PKG_NAME)/autoload_configs;$(CP) $$$$(firstword $$$$(wildcard ${PKG_BUILD_DIR}/src/$(3)/*/mod_$(subst -,_,$(1))/conf/autoload_configs/$(subst -,_,$(1)).conf.xml)) $$(1)/opt/etc/$(PKG_NAME)/autoload_configs)
+-	$$$$(if $$$$(firstword $$$$(wildcard $(PKG_BUILD_DIR)/src/$(3)/*/mod_$(subst -,_,$(1))/conf/autoload_configs/$(subst -,_,$(1)).conf.xml)),[ -d $$(1)/etc/$(PKG_NAME)/autoload_configs ] || $(INSTALL_DIR) $$(1)/etc/$(PKG_NAME)/autoload_configs;$(CP) $$$$(firstword $$$$(wildcard $(PKG_BUILD_DIR)/src/$(3)/*/mod_$(subst -,_,$(1))/conf/autoload_configs/$(subst -,_,$(1)).conf.xml)) $$(1)/etc/$(PKG_NAME)/autoload_configs)
++	$$$$(if $$$$(firstword $$$$(wildcard $(PKG_BUILD_DIR)/src/$(3)/*/mod_$(subst -,_,$(1))/conf/autoload_configs/$(subst -,_,$(1)).conf.xml)),[ -d $$(1)/opt/etc/$(PKG_NAME)/autoload_configs ] || $(INSTALL_DIR) $$(1)/opt/etc/$(PKG_NAME)/autoload_configs;$(CP) $$$$(firstword $$$$(wildcard $(PKG_BUILD_DIR)/src/$(3)/*/mod_$(subst -,_,$(1))/conf/autoload_configs/$(subst -,_,$(1)).conf.xml)) $$(1)/opt/etc/$(PKG_NAME)/autoload_configs)
  
  	#
- 	# 4. mod_$(subst -,_,$(1)) XML configuration files from: $$$$(patsubst ${PKG_BUILD_DIR}/%,%,$$$$(firstword $$$$(wildcard ${PKG_BUILD_DIR}/src/$(3)/*/mod_$(subst -,_,$(1))/configs/$(subst -,_,$(1)).conf.xml)))
+ 	# 4. mod_$(subst -,_,$(1)) XML configuration files from: $$$$(patsubst $(PKG_BUILD_DIR)/%,%,$$$$(firstword $$$$(wildcard $(PKG_BUILD_DIR)/src/$(3)/*/mod_$(subst -,_,$(1))/conf*/$(subst -,_,$(1)).conf.xml)))
  	#
--	$$$$(if $$$$(firstword $$$$(wildcard ${PKG_BUILD_DIR}/src/$(3)/*/mod_$(subst -,_,$(1))/configs/$(subst -,_,$(1)).conf.xml)),[ -d $$(1)/etc/$(PKG_NAME)/autoload_configs ] || $(INSTALL_DIR) $$(1)/etc/$(PKG_NAME)/autoload_configs;$(CP) $$$$(firstword $$$$(wildcard ${PKG_BUILD_DIR}/src/$(3)/*/mod_$(subst -,_,$(1))/configs/$(subst -,_,$(1)).conf.xml)) $$(1)/etc/$(PKG_NAME)/autoload_configs)
-+	$$$$(if $$$$(firstword $$$$(wildcard ${PKG_BUILD_DIR}/src/$(3)/*/mod_$(subst -,_,$(1))/configs/$(subst -,_,$(1)).conf.xml)),[ -d $$(1)/opt/etc/$(PKG_NAME)/autoload_configs ] || $(INSTALL_DIR) $$(1)/opt/etc/$(PKG_NAME)/autoload_configs;$(CP) $$$$(firstword $$$$(wildcard ${PKG_BUILD_DIR}/src/$(3)/*/mod_$(subst -,_,$(1))/configs/$(subst -,_,$(1)).conf.xml)) $$(1)/opt/etc/$(PKG_NAME)/autoload_configs)
+-	$$$$(if $$$$(firstword $$$$(wildcard $(PKG_BUILD_DIR)/src/$(3)/*/mod_$(subst -,_,$(1))/conf*/$(subst -,_,$(1)).conf.xml)),[ -d $$(1)/etc/$(PKG_NAME)/autoload_configs ] || $(INSTALL_DIR) $$(1)/etc/$(PKG_NAME)/autoload_configs;$(CP) $$$$(firstword $$$$(wildcard $(PKG_BUILD_DIR)/src/$(3)/*/mod_$(subst -,_,$(1))/conf*/$(subst -,_,$(1)).conf.xml)) $$(1)/etc/$(PKG_NAME)/autoload_configs)
++	$$$$(if $$$$(firstword $$$$(wildcard $(PKG_BUILD_DIR)/src/$(3)/*/mod_$(subst -,_,$(1))/conf*/$(subst -,_,$(1)).conf.xml)),[ -d $$(1)/opt/etc/$(PKG_NAME)/autoload_configs ] || $(INSTALL_DIR) $$(1)/opt/etc/$(PKG_NAME)/autoload_configs;$(CP) $$$$(firstword $$$$(wildcard $(PKG_BUILD_DIR)/src/$(3)/*/mod_$(subst -,_,$(1))/conf*/$(subst -,_,$(1)).conf.xml)) $$(1)/opt/etc/$(PKG_NAME)/autoload_configs)
  
  	#
- 	# 5. mod_$(subst -,_,$(1)) XML configuration files from: $$$$(patsubst ${PKG_BUILD_DIR}/%,%,$$$$(firstword $$$$(wildcard ${PKG_BUILD_DIR}/src/$(3)/*/mod_$(subst -,_,$(1))/$(subst -,_,$(1)).conf.xml)))
+ 	# 5. mod_$(subst -,_,$(1)) XML configuration files from: $$$$(patsubst $(PKG_BUILD_DIR)/%,%,$$$$(firstword $$$$(wildcard $(PKG_BUILD_DIR)/src/$(3)/*/mod_$(subst -,_,$(1))/$(subst -,_,$(1)).conf.xml)))
  	#
--	$$$$(if $$$$(firstword $$$$(wildcard ${PKG_BUILD_DIR}/src/$(3)/*/mod_$(subst -,_,$(1))/$(subst -,_,$(1)).conf.xml)),[ -d $$(1)/etc/$(PKG_NAME)/autoload_configs ] || $(INSTALL_DIR) $$(1)/etc/$(PKG_NAME)/autoload_configs;$(CP) $$$$(firstword $$$$(wildcard ${PKG_BUILD_DIR}/src/$(3)/*/mod_$(subst -,_,$(1))/$(subst -,_,$(1)).conf.xml)) $$(1)/etc/$(PKG_NAME)/autoload_configs)
-+	$$$$(if $$$$(firstword $$$$(wildcard ${PKG_BUILD_DIR}/src/$(3)/*/mod_$(subst -,_,$(1))/$(subst -,_,$(1)).conf.xml)),[ -d $$(1)/opt/etc/$(PKG_NAME)/autoload_configs ] || $(INSTALL_DIR) $$(1)/opt/etc/$(PKG_NAME)/autoload_configs;$(CP) $$$$(firstword $$$$(wildcard ${PKG_BUILD_DIR}/src/$(3)/*/mod_$(subst -,_,$(1))/$(subst -,_,$(1)).conf.xml)) $$(1)/opt/etc/$(PKG_NAME)/autoload_configs)
+-	$$$$(if $$$$(firstword $$$$(wildcard $(PKG_BUILD_DIR)/src/$(3)/*/mod_$(subst -,_,$(1))/$(subst -,_,$(1)).conf.xml)),[ -d $$(1)/etc/$(PKG_NAME)/autoload_configs ] || $(INSTALL_DIR) $$(1)/etc/$(PKG_NAME)/autoload_configs;$(CP) $$$$(firstword $$$$(wildcard $(PKG_BUILD_DIR)/src/$(3)/*/mod_$(subst -,_,$(1))/$(subst -,_,$(1)).conf.xml)) $$(1)/etc/$(PKG_NAME)/autoload_configs)
++	$$$$(if $$$$(firstword $$$$(wildcard $(PKG_BUILD_DIR)/src/$(3)/*/mod_$(subst -,_,$(1))/$(subst -,_,$(1)).conf.xml)),[ -d $$(1)/opt/etc/$(PKG_NAME)/autoload_configs ] || $(INSTALL_DIR) $$(1)/opt/etc/$(PKG_NAME)/autoload_configs;$(CP) $$$$(firstword $$$$(wildcard $(PKG_BUILD_DIR)/src/$(3)/*/mod_$(subst -,_,$(1))/$(subst -,_,$(1)).conf.xml)) $$(1)/opt/etc/$(PKG_NAME)/autoload_configs)
  
  	#
- 	# 6. Additional configuration files for mod_$(subst -,_,$(1)) from: $$$$(patsubst ${PKG_BUILD_DIR}/%,%,$$$$(firstword $$$$(wildcard ${PKG_BUILD_DIR}/conf/$(3)/$(1)/*.$(1))))
+ 	# 6. Additional configuration files for mod_$(subst -,_,$(1)) from: $$$$(patsubst $(PKG_BUILD_DIR)/%,%,$$$$(firstword $$$$(wildcard $(PKG_BUILD_DIR)/conf/$(3)/$(1)/*.$(1))))
  	#
--	$$$$(if $$$$(firstword $$$$(wildcard ${PKG_BUILD_DIR}/conf/$(3)/$(1)/*.$(1))),[ -d $$(1)/etc/$(PKG_NAME)/$(1) ] || $(INSTALL_DIR) $$(1)/etc/$(PKG_NAME)/$(1);$(CP) ${PKG_BUILD_DIR}/conf/$(3)/$(1) $$(1)/etc/$(PKG_NAME))
-+	$$$$(if $$$$(firstword $$$$(wildcard ${PKG_BUILD_DIR}/conf/$(3)/$(1)/*.$(1))),[ -d $$(1)/opt/etc/$(PKG_NAME)/$(1) ] || $(INSTALL_DIR) $$(1)/opt/etc/$(PKG_NAME)/$(1);$(CP) ${PKG_BUILD_DIR}/conf/$(3)/$(1) $$(1)/opt/etc/$(PKG_NAME))
+-	$$$$(if $$$$(firstword $$$$(wildcard $(PKG_BUILD_DIR)/conf/$(3)/$(1)/*.$(1))),[ -d $$(1)/etc/$(PKG_NAME)/$(1) ] || $(INSTALL_DIR) $$(1)/etc/$(PKG_NAME)/$(1);$(CP) $(PKG_BUILD_DIR)/conf/$(3)/$(1) $$(1)/etc/$(PKG_NAME))
++	$$$$(if $$$$(firstword $$$$(wildcard $(PKG_BUILD_DIR)/conf/$(3)/$(1)/*.$(1))),[ -d $$(1)/opt/etc/$(PKG_NAME)/$(1) ] || $(INSTALL_DIR) $$(1)/opt/etc/$(PKG_NAME)/$(1);$(CP) $(PKG_BUILD_DIR)/conf/$(3)/$(1) $$(1)/opt/etc/$(PKG_NAME))
    endef
  
    define Package/$(PKG_NAME)-mod-$(1)/postinst
@@ -314,14 +411,14 @@ diff -urx .svn ../../../downloads/openwrt_trunk-r35474/feeds/packages/net/freesw
 +sed -i -e 's|^\([ \t]*\)<!-- *\(.*\)"mod_$(subst -,_,$(1))"\(.*\) *-->\(.*\)$$$$|\1\2"mod_$(subst -,_,$(1))"\3\4|' $$$${IPKG_INSTROOT}/opt/etc/$(PKG_NAME)/autoload_configs/modules.conf.xml
    endef
  
-   define Package/$(PKG_NAME)-mod-$(1)/postrm
+   define Package/$(PKG_NAME)-mod-$(1)/prerm
  #!/bin/sh
 -sed -i -e 's|^\([ \t]*\)\(.*\)"mod_$(subst -,_,$(1))"\(.*\)$$$$|\1<!-- \2"mod_$(subst -,_,$(1))"\3 -->|' $$$${IPKG_INSTROOT}/etc/$(PKG_NAME)/autoload_configs/modules.conf.xml
 +sed -i -e 's|^\([ \t]*\)\(.*\)"mod_$(subst -,_,$(1))"\(.*\)$$$$|\1<!-- \2"mod_$(subst -,_,$(1))"\3 -->|' $$$${IPKG_INSTROOT}/opt/etc/$(PKG_NAME)/autoload_configs/modules.conf.xml
    endef
  
    $$(eval $$(call BuildPackage,$(PKG_NAME)-mod-$(1)))
-@@ -886,7 +886,7 @@
+@@ -1059,7 +1059,7 @@
  $(eval $(call BuildPlugin,snom,SNOM specific features,vanilla,,,,))
  $(eval $(call BuildPlugin,sofia,SOFIA SIP,mod,,,,)) # ~/conf
  $(eval $(call BuildPlugin,sonar,Sonar Ping Timer,vanilla,,,,))
@@ -330,9 +427,9 @@ diff -urx .svn ../../../downloads/openwrt_trunk-r35474/feeds/packages/net/freesw
  $(eval $(call BuildPlugin,speex,Speex codec,mod,,,,))
  $(eval $(call BuildPlugin,spidermonkey,JavaScript,vanilla,,,,@BROKEN)) # fails in js
  $(eval $(call BuildPlugin,spidermonkey-core_db,JavaScript DB,vanilla,,,,@BROKEN))
-diff -urx .svn ../../../downloads/openwrt_trunk-r35474/feeds/packages/net/freeswitch/patches/003-Makefile.am.patch ../../../openwrt_trunk/feeds/packages/net/freeswitch/patches/003-Makefile.am.patch
---- ../../../downloads/openwrt_trunk-r35474/feeds/packages/net/freeswitch/patches/003-Makefile.am.patch	2013-02-05 10:42:23.810946177 +0400
-+++ ../../../openwrt_trunk/feeds/packages/net/freeswitch/patches/003-Makefile.am.patch	2013-02-06 14:59:10.645092056 +0400
+diff -urx .svn ../../../downloads/openwrt_trunk-r35953/feeds/packages/net/freeswitch/patches/003-Makefile.am.patch ../../../openwrt_trunk/feeds/packages/net/freeswitch/patches/003-Makefile.am.patch
+--- ../../../downloads/openwrt_trunk-r35953/feeds/packages/net/freeswitch/patches/003-Makefile.am.patch	2013-03-11 09:29:41.270073781 +0400
++++ ../../../openwrt_trunk/feeds/packages/net/freeswitch/patches/003-Makefile.am.patch	2013-03-11 09:30:46.910072583 +0400
 @@ -30,9 +30,9 @@
   tiff-reconf:
   	cd libs/tiff-4.0.2 && autoreconf -fi
@@ -345,9 +442,9 @@ diff -urx .svn ../../../downloads/openwrt_trunk-r35474/feeds/packages/net/freesw
   	cd libs/tiff-4.0.2 && make
   
   python-reconf:
-diff -urx .svn ../../../downloads/openwrt_trunk-r35474/feeds/packages/net/freeswitch/patches/100-libs-esl-Makefile.patch ../../../openwrt_trunk/feeds/packages/net/freeswitch/patches/100-libs-esl-Makefile.patch
---- ../../../downloads/openwrt_trunk-r35474/feeds/packages/net/freeswitch/patches/100-libs-esl-Makefile.patch	2013-02-05 10:42:23.802946174 +0400
-+++ ../../../openwrt_trunk/feeds/packages/net/freeswitch/patches/100-libs-esl-Makefile.patch	2013-02-05 10:43:46.642944668 +0400
+diff -urx .svn ../../../downloads/openwrt_trunk-r35953/feeds/packages/net/freeswitch/patches/100-libs-esl-Makefile.patch ../../../openwrt_trunk/feeds/packages/net/freeswitch/patches/100-libs-esl-Makefile.patch
+--- ../../../downloads/openwrt_trunk-r35953/feeds/packages/net/freeswitch/patches/100-libs-esl-Makefile.patch	2013-03-11 09:29:41.270073781 +0400
++++ ../../../openwrt_trunk/feeds/packages/net/freeswitch/patches/100-libs-esl-Makefile.patch	2013-03-11 09:30:46.910072583 +0400
 @@ -5,7 +5,7 @@
   CXXFLAGS=$(BASE_FLAGS)
   MYLIB=libesl.a

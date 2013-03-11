@@ -1,6 +1,6 @@
---- ../../../downloads/openwrt_trunk-r35474/feeds/packages/utils/zsh/Makefile	2013-02-05 10:42:12.266946388 +0400
-+++ ../../../openwrt_trunk/feeds/packages/utils/zsh/Makefile	2013-02-05 14:08:08.790725645 +0400
-@@ -21,7 +21,7 @@
+--- ../../../downloads/openwrt_trunk-r35953/feeds/packages/utils/zsh/Makefile	2013-03-11 09:29:39.698073805 +0400
++++ ../../../openwrt_trunk/feeds/packages/utils/zsh/Makefile	2013-03-11 11:42:40.573928398 +0400
+@@ -23,7 +23,7 @@
    SECTION:=utils
    CATEGORY:=Utilities
    TITLE:=The Z shell
@@ -9,13 +9,13 @@
    URL:=http://www.zsh.org/
  endef
  
-@@ -34,10 +34,15 @@
+@@ -36,10 +36,15 @@
          mechanism, and a host of other features.
  endef
  
 +CONFIGURE_VARS += \
-+	zsh_cv_sys_nis=no \
-+	zsh_cv_sys_nis_plus=no
++       zsh_cv_sys_nis=no \
++       zsh_cv_sys_nis_plus=no
 +
  define Build/Configure
  	$(call Build/Configure/Default, \
@@ -24,11 +24,11 @@
 +		--bindir=/opt/bin \
 +		--enable-etcdir=/opt/etc \
 +		--enable-multibyte \
- 		--with-term-lib="ncurses ncursesw" \
+ 		--with-term-lib="ncurses" \
  	)
  	# Do not install these functions:
-@@ -59,17 +64,11 @@
- 	$(MAKE) -C $(PKG_BUILD_DIR) DESTDIR="$(PKG_INSTALL_DIR)" install
+@@ -57,17 +62,11 @@
+ 	$(MAKE) -C $(PKG_BUILD_DIR) DESTDIR="$(PKG_INSTALL_DIR)" prep
  endef
  
 -define Package/zsh/postinst

@@ -1,7 +1,0 @@
---- ../../../openwrt_trunk/feeds/packages/net/asterisk-chan-sccp-b/Makefile.prev	2012-11-10 03:23:41.000000000 +0400
-+++ ../../../openwrt_trunk/feeds/packages/net/asterisk-chan-sccp-b/Makefile	2012-11-10 03:23:56.000000000 +0400
-@@ -15,3 +15,3 @@
- PKG_SOURCE:=$(PKG_NAME)-$(PKG_VERSION).tar.gz
--PKG_SOURCE_URL:=https://chan-sccp-b.svn.sourceforge.net/svnroot/chan-sccp-b/trunk
-+PKG_SOURCE_URL:=http://svn.code.sf.net/p/chan-sccp-b/code/trunk
- PKG_SOURCE_SUBDIR:=$(PKG_NAME)-$(PKG_VERSION)

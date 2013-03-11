@@ -1,6 +1,6 @@
 --- ../../../openwrt_trunk.orig/feeds/packages/libs/libdlna/Makefile	2012-07-11 14:54:00.690752516 +0400
 +++ ../../../openwrt_trunk/feeds/packages/libs/libdlna/Makefile	2012-07-11 21:29:04.908758878 +0400
-@@ -40,12 +40,12 @@
+@@ -43,12 +43,12 @@
  	# this is *NOT* GNU configure
  	( cd $(PKG_BUILD_DIR); \
  		CFLAGS="$(TARGET_CFLAGS) $(TARGET_CPPFLAGS)" \
@@ -15,7 +15,7 @@
  		--enable-shared \
  		--enable-static \
  		--disable-debug \
-@@ -62,17 +62,17 @@
+@@ -65,17 +65,17 @@
  TARGET_CFLAGS += $(FPIC)
  
  define Build/InstallDev

@@ -59,7 +59,7 @@ diff -urx .svn ../../../downloads/openwrt_trunk-r35474/feeds/packages/net/cups/M
    TITLE:=Common UNIX Printing System - Core library
  endef
  
-@@ -426,247 +426,247 @@
+@@ -427,247 +427,247 @@
  endef
  
  define Package/cups/install
@@ -172,11 +172,11 @@ diff -urx .svn ../../../downloads/openwrt_trunk-r35474/feeds/packages/net/cups/M
  
  define Package/cups-filters/install
 -	$(INSTALL_DIR) $(1)/usr/lib/cups/filter
--	$(CP) $(PKG_INSTALL_DIR)/usr/lib/cups/filter/{bannertops,commandtoescpx,commandtopclx,imagetops,imagetoraster,pdftops,rastertoepson,rastertopwg,rastertohp,rastertoescpx,rastertopclx,rastertolabel,texttops} \
+-	$(CP) $(PKG_INSTALL_DIR)/usr/lib/cups/filter/{bannertops,commandtoescpx,commandtopclx,imagetops,imagetoraster,rastertoepson,rastertopwg,rastertohp,rastertoescpx,rastertopclx,rastertolabel,texttops} \
 -		$(1)/usr/lib/cups/filter
 -	(cd $(1)/usr/lib/cups/filter; ln -sf rastertolabel rastertodymo;)
 +	$(INSTALL_DIR) $(1)/opt/lib/cups/filter
-+	$(CP) $(PKG_INSTALL_DIR)/opt/lib/cups/filter/{bannertops,commandtoescpx,commandtopclx,imagetops,imagetoraster,pdftops,rastertoepson,rastertopwg,rastertohp,rastertoescpx,rastertopclx,rastertolabel,texttops} \
++	$(CP) $(PKG_INSTALL_DIR)/opt/lib/cups/filter/{bannertops,commandtoescpx,commandtopclx,imagetops,imagetoraster,rastertoepson,rastertopwg,rastertohp,rastertoescpx,rastertopclx,rastertolabel,texttops} \
 +		$(1)/opt/lib/cups/filter
 +	(cd $(1)/opt/lib/cups/filter; ln -sf rastertolabel rastertodymo;)
  endef

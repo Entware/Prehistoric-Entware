@@ -1,5 +1,5 @@
---- ../../../downloads/openwrt_trunk-r35342/feeds/packages/net/ipsec-tools/Makefile	2013-01-28 14:42:02.431275255 +0400
-+++ ../../../openwrt_trunk/feeds/packages/net/ipsec-tools/Makefile	2013-01-28 14:43:19.815273844 +0400
+--- ../../../downloads/openwrt_trunk-r35953/feeds/packages/net/ipsec-tools/Makefile	2013-03-11 09:29:42.414073762 +0400
++++ ../../../openwrt_trunk/feeds/packages/net/ipsec-tools/Makefile	2013-03-11 11:46:21.697924399 +0400
 @@ -6,7 +6,6 @@
  #
  
@@ -7,7 +7,7 @@
 -include $(INCLUDE_DIR)/kernel.mk
  
  PKG_NAME:=ipsec-tools
- PKG_VERSION:=0.8.0
+ PKG_VERSION:=0.8.1
 @@ -27,7 +26,7 @@
    SECTION:=net
    CATEGORY:=Network

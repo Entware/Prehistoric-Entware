@@ -1,6 +1,6 @@
 --- ../../../openwrt_trunk.orig/feeds/packages/libs/libid3tag/Makefile
 +++ ../../../openwrt_trunk/feeds/packages/libs/libid3tag/Makefile
-@@ -48,15 +48,15 @@
+@@ -50,15 +50,15 @@
  endef
  
  define Build/InstallDev

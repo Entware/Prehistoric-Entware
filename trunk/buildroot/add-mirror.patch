@@ -1,6 +1,6 @@
 --- ../../openwrt_trunk.orig/scripts/download.pl	2012-06-02 15:57:48.000000000 +0400
 +++ ../../openwrt_trunk/scripts/download.pl	2012-06-02 16:15:12.000000000 +0400
-@@ -197,6 +197,7 @@
+@@ -194,6 +194,7 @@
  #push @mirrors, 'http://mirror1.openwrt.org';
  push @mirrors, 'http://mirror2.openwrt.org/sources';
  push @mirrors, 'http://downloads.openwrt.org/sources';

@@ -38,7 +38,7 @@
  endef
  
  
-@@ -500,8 +494,8 @@
+@@ -505,8 +499,8 @@
    define Package/libgcc/install
  	for file in $(call qstrip,$(CONFIG_LIBGCC_FILE_SPEC)); do \
  		dir=`dirname $$$$file` ; \
@@ -49,7 +49,7 @@
  	done ; \
  	exit 0
    endef
-@@ -509,16 +503,16 @@
+@@ -514,16 +508,16 @@
    define Package/libgfortran/install
  	for file in $(call qstrip,$(CONFIG_LIBGFORTRAN_FILE_SPEC)); do \
  		dir=`dirname $$$$file` ; \
@@ -70,7 +70,7 @@
  	done ; \
  	exit 0
    endef
-@@ -526,17 +520,18 @@
+@@ -531,17 +525,18 @@
    define Package/libstdcpp/install
  	for file in $(call qstrip,$(CONFIG_LIBSTDCPP_FILE_SPEC)); do \
  		dir=`dirname $$$$file` ; \
@@ -93,7 +93,7 @@
  	done ; \
  	exit 0
    endef
-@@ -544,17 +539,22 @@
+@@ -549,17 +544,22 @@
    define Package/libpthread/install
  	for file in $(call qstrip,$(CONFIG_LIBPTHREAD_FILE_SPEC)); do \
  		dir=`dirname $$$$file` ; \
@@ -120,7 +120,7 @@
  	done ; \
  	exit 0
    endef
-@@ -562,8 +562,8 @@
+@@ -567,8 +567,8 @@
    define Package/ldd/install
  	for file in $(call qstrip,$(CONFIG_LDD_FILE_SPEC)); do \
  		dir=`dirname $$$$file` ; \
@@ -131,7 +131,7 @@
  	done ; \
  	exit 0
    endef
-@@ -571,8 +571,8 @@
+@@ -576,8 +576,8 @@
    define Package/ldconfig/install
  	for file in $(call qstrip,$(CONFIG_LDCONFIG_FILE_SPEC)); do \
  		dir=`dirname $$$$file` ; \
