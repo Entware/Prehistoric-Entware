@@ -9,6 +9,7 @@ all: ./.done
 
 ./.done:
 	patch -p0 -i ./fix-path.patch
+	cp -f ./500-disable-insmod-flags.patch ../../../openwrt_trunk/feeds/packages/net/strongswan/patches/
 	touch $@
 
 clean:
