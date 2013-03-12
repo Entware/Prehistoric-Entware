@@ -8,7 +8,7 @@ Requirements
    diffutils file flex g++ gawk groff-base libncurses-dev libtool \
    libslang2 make patch perl sed shtool subversion tar texinfo \
    zlib1g zlib1g-dev git-core gettext libexpat1-dev libssl-dev \
-   cvs gperf unzip python libxml-parser-perl gcc-multilib doxigen
+   cvs gperf unzip python libxml-parser-perl gcc-multilib doxygen
 
 Note: doxigen is for freeswitch package only, since r35953.
 
