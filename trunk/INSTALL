@@ -10,7 +10,7 @@ Requirements
    zlib1g zlib1g-dev git-core gettext libexpat1-dev libssl-dev \
    cvs gperf unzip python libxml-parser-perl gcc-multilib doxygen
 
-Note: doxigen is for freeswitch package only, since r35953.
+Note: doxygen is for freeswitch package only, since r35953.
 
 - At least 20Gb of disk space,
 - Approx. 5 hours to compile all stuff.
