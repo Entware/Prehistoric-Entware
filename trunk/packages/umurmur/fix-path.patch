@@ -1,5 +1,14 @@
---- ../../../openwrt_trunk.orig/feeds/packages/net/umurmur/Makefile	2012-06-01 10:50:34.428282662 +0400
-+++ ../../../openwrt_trunk/feeds/packages/net/umurmur/Makefile	2012-06-01 10:51:36.027508255 +0400
+--- ../../../downloads/openwrt_trunk-r35953/feeds/packages/net/umurmur/Makefile	2013-03-11 09:29:43.058073746 +0400
++++ ../../../openwrt_trunk/feeds/packages/net/umurmur/Makefile	2013-03-12 22:11:00.939659441 +0400
+@@ -8,7 +8,7 @@
+ 
+ PKG_NAME:=umurmur
+ PKG_VERSION:=0.2.10
+-PKG_RELEASE:=1
++PKG_RELEASE:=1a
+ 
+ PKG_SOURCE:=$(PKG_NAME)-$(PKG_VERSION).tar.gz
+ PKG_SOURCE_URL:=http://umurmur.googlecode.com/files
 @@ -64,19 +64,18 @@
  endef
  
