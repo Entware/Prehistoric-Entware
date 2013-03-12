@@ -1,5 +1,14 @@
---- ../../../openwrt_trunk.orig/package/libs/polarssl/Makefile	2012-06-01 10:50:33.816290354 +0400
-+++ ../../../openwrt_trunk/package/libs/polarssl/Makefile	2012-06-01 10:51:35.067520324 +0400
+--- ../../../downloads/openwrt_trunk-r35953/package/libs/polarssl/Makefile	2013-03-11 09:29:49.558073632 +0400
++++ ../../../openwrt_trunk/package/libs/polarssl/Makefile	2013-03-12 21:24:35.971719532 +0400
+@@ -9,7 +9,7 @@
+ 
+ PKG_NAME:=polarssl
+ PKG_VERSION:=1.2.5
+-PKG_RELEASE:=1
++PKG_RELEASE:=1a
+ 
+ PKG_SOURCE:=$(PKG_NAME)-$(PKG_VERSION)-gpl.tgz
+ PKG_SOURCE_URL:=https://polarssl.org/code/releases
 @@ -61,20 +61,20 @@
  	-DUSE_SHARED_POLARSSL_LIBRARY:Bool=ON \
  
