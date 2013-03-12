@@ -1,11 +1,22 @@
---- ../../../openwrt_trunk.orig/feeds/packages/libs/gd/Makefile	2012-09-03 12:35:43.775891888 +0400
-+++ ../../../openwrt_trunk/feeds/packages/libs/gd/Makefile	2012-09-03 12:37:32.647889911 +0400
-@@ -44,8 +44,8 @@
+--- ../../../downloads/openwrt_trunk-r35953/feeds/packages/libs/gd/Makefile	2013-03-11 09:29:39.222073818 +0400
++++ ../../../openwrt_trunk/feeds/packages/libs/gd/Makefile	2013-03-11 14:24:34.849750390 +0400
+@@ -25,7 +25,7 @@
+ define Package/libgd
+   SECTION:=libs
+   CATEGORY:=Libraries
+-  DEPENDS:=+libjpeg +libpng
++  DEPENDS:=+libjpeg-turbo +libpng +libfreetype
+   TITLE:=The GD graphics library
+   URL:=http://www.libgd.org/
+ endef
+@@ -43,9 +43,9 @@
+ 	--disable-rpath \
  	--without-x \
  	--without-fontconfig \
- 	--without-freetype \
+-	--without-freetype \
 -	--with-jpeg=$(STAGING_DIR)/usr \
 -	--with-png=$(STAGING_DIR)/usr \
++	--with-freetype=$(STAGING_DIR)/opt \
 +	--with-jpeg=$(STAGING_DIR)/opt \
 +	--with-png=$(STAGING_DIR)/opt \
  	--without-xpm \

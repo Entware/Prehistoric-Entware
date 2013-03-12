@@ -1,5 +1,30 @@
---- ../../../openwrt_trunk.orig/feeds/packages/sound/mpd/Makefile	2012-07-11 14:54:02.022735770 +0400
-+++ ../../../openwrt_trunk/feeds/packages/sound/mpd/Makefile	2012-07-11 21:23:31.732939871 +0400
+--- ../../../downloads/openwrt_trunk-r35953/feeds/packages/sound/mpd/Makefile	2013-03-11 09:29:38.918073822 +0400
++++ ../../../openwrt_trunk/feeds/packages/sound/mpd/Makefile	2013-03-11 17:03:12.353578572 +0400
+@@ -8,12 +8,12 @@
+ include $(TOPDIR)/rules.mk
+ 
+ PKG_NAME:=mpd
+-PKG_VERSION:=0.16.5
+-PKG_RELEASE:=2
++PKG_VERSION:=0.17.3
++PKG_RELEASE:=1
+ 
+ PKG_SOURCE:=$(PKG_NAME)-$(PKG_VERSION).tar.bz2
+ PKG_SOURCE_URL:=@SF/musicpd
+-PKG_MD5SUM:=f7564cff12035f6a1112cce770655df7
++PKG_MD5SUM:=cfc9dbf54f52569b998677fe1fa79c11
+ 
+ PKG_BUILD_DIR:=$(BUILD_DIR)/$(PKG_NAME)-$(BUILD_VARIANT)/$(PKG_NAME)-$(PKG_VERSION)
+ PKG_BUILD_PARALLEL:=1
+@@ -31,7 +31,7 @@
+   CATEGORY:=Sound
+   TITLE:=Music Player Daemon
+   URL:=http://www.musicpd.org/
+-  DEPENDS:= +glib2 +libcurl +libpthread \
++  DEPENDS:= +glib2 +libcurl +libpthread +libsoup \
+ 	+libflac +BUILD_PATENTED:libmad +libvorbisidec
+ endef
+ 
 @@ -131,13 +131,12 @@
  	--enable-un \
  
