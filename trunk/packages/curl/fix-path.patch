@@ -1,6 +1,24 @@
---- ../../../openwrt_trunk.orig/feeds/packages/libs/curl/Makefile
-+++ ../../../openwrt_trunk/feeds/packages/libs/curl/Makefile
-@@ -73,14 +73,14 @@
+--- ../../../downloads/openwrt_trunk-r35953/feeds/packages/libs/curl/Makefile	2013-03-11 09:29:39.194073817 +0400
++++ ../../../openwrt_trunk/feeds/packages/libs/curl/Makefile	2013-03-14 12:14:39.609175007 +0400
+@@ -9,7 +9,7 @@
+ 
+ PKG_NAME:=curl
+ PKG_VERSION:=7.29.0
+-PKG_RELEASE:=1
++PKG_RELEASE:=1a
+ 
+ PKG_SOURCE:=$(PKG_NAME)-$(PKG_VERSION).tar.bz2
+ PKG_SOURCE_URL:=http://curl.haxx.se/download/ \
+@@ -46,7 +46,7 @@
+   $(call Package/curl/Default)
+   SECTION:=libs
+   CATEGORY:=Libraries
+-  DEPENDS:=+libopenssl +zlib
++  DEPENDS:=+libopenssl +zlib +librtmp +libidn
+   TITLE:=A client-side URL transfer library
+ endef
+ 
+@@ -73,18 +73,19 @@
  	--enable-tftp \
  	--disable-verbose \
  	--with-random="/dev/urandom" \
@@ -9,7 +27,9 @@
  	--without-ca-bundle \
  	--without-gnutls \
  	--without-krb4 \
- 	--without-libidn \
+-	--without-libidn \
++	--with-libidn="$(STAGING_DIR)/opt" \
++	--with-librtmp="$(STAGING_DIR)/opt" \
  	--without-nss \
  	--without-libssh2 \
 -	--with-zlib="$(STAGING_DIR)/usr" \
@@ -17,7 +37,12 @@
  	$(call autoconf_bool,CONFIG_IPV6,ipv6) \
  
  CONFIGURE_VARS += \
-@@ -95,24 +95,24 @@
+-	LIBS="-lcrypto -lssl -lz" \
++	LIBS="-lcrypto -lssl -lz -lrtmp" \
+ 	CC="$(filter-out ccache,$(TARGET_CC))"
+ 
+ define Build/Compile
+@@ -95,24 +96,24 @@
  endef
  
  define Build/InstallDev
