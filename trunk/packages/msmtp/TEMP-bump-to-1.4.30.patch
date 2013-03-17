@@ -1,0 +1,12 @@
+--- ../../../openwrt_trunk/feeds/packages/mail/msmtp/Makefile.my0	2013-03-17 20:21:31.000000000 +0400
++++ ../../../openwrt_trunk/feeds/packages/mail/msmtp/Makefile	2013-03-17 20:39:17.000000000 +0400
+@@ -11,3 +11,3 @@
+ PKG_NAME:=msmtp
+-PKG_VERSION:=1.4.27
++PKG_VERSION:=1.4.30
+ PKG_RELEASE:=1
+@@ -16,3 +16,3 @@
+ PKG_SOURCE_URL:=@SF/msmtp
+-PKG_MD5SUM:=2d6d10d9c59ed2b2635554ed35fb9226
++PKG_MD5SUM:=4d32724a2b03f07aa6d4ea9d49367ad3
+ 

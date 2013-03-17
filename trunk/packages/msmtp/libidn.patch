@@ -1,0 +1,27 @@
+--- ../../../openwrt_trunk/feeds/packages/mail/msmtp/Makefile.prev	2013-03-15 02:15:02.000000000 +0400
++++ ../../../openwrt_trunk/feeds/packages/mail/msmtp/Makefile	2013-03-17 20:21:31.000000000 +0400
+@@ -27,6 +27,7 @@
+   SECTION:=mail
+   CATEGORY:=Mail
+   TITLE:=Simple sendmail SMTP forwarding
++  DEPENDS:= +libidn
+   URL:=http://msmtp.sourceforge.net/
+ endef
+ 
+@@ -46,7 +47,7 @@
+ endef
+ 
+ define Package/msmtp/conffiles
+-/etc/msmtprc
++/opt/etc/msmtprc
+ endef
+ 
+ define Package/msmtp/description
+@@ -80,7 +81,6 @@
+ 	--disable-rpath \
+ 	--without-libintl-prefix \
+ 	--without-libgsasl \
+-	--without-libidn
+ 
+ MAKE_FLAGS :=
+ 
