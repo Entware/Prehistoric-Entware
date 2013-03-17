@@ -9,6 +9,8 @@ all: ./.done
 
 ./.done:
 	patch -p0 -i ./fix-path.patch
+	patch -p0 -i ./libidn.patch
+	patch -p0 -i ./TEMP-bump-to-0.12pre6.patch
 	touch $@
 
 clean:
