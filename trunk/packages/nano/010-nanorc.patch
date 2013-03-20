@@ -1,0 +1,89 @@
+--- a/doc/nanorc.sample.in	2010-08-11 06:43:14.000000000 +0400
++++ b/doc/nanorc.sample.in	2013-03-20 04:23:13.000000000 +0400
+@@ -42,7 +42,7 @@
+ 
+ ## Constantly display the cursor position in the statusbar.  Note that
+ ## this overrides "quickblank".
+-# set const
++set const
+ 
+ ## Use cut to end of line by default.
+ # set cut
+@@ -91,7 +91,7 @@
+ # set nonewlines
+ 
+ ## Don't wrap text at all.
+-# set nowrap
++set nowrap
+ 
+ ## Set operating directory.  nano will not read or write files outside
+ ## this directory and its subdirectories.  Also, the current directory
+@@ -234,13 +234,13 @@
+ 
+ 
+ ## Nanorc files
+-# include "@PKGDATADIR@/nanorc.nanorc"
++include "@PKGDATADIR@/nanorc.nanorc"
+ 
+ ## C/C++
+-# include "@PKGDATADIR@/c.nanorc"
++include "@PKGDATADIR@/c.nanorc"
+ 
+ ## Makefiles
+-# include "@PKGDATADIR@/makefile.nanorc"
++include "@PKGDATADIR@/makefile.nanorc"
+ 
+ ## Cascading Style Sheets
+ # include "@PKGDATADIR@/css.nanorc"
+@@ -252,10 +252,10 @@
+ # include "@PKGDATADIR@/gentoo.nanorc"
+ 
+ ## HTML
+-# include "@PKGDATADIR@/html.nanorc"
++include "@PKGDATADIR@/html.nanorc"
+ 
+ ## PHP
+-# include "@PKGDATADIR@/php.nanorc"
++include "@PKGDATADIR@/php.nanorc"
+ 
+ ## TCL
+ # include "@PKGDATADIR@/tcl.nanorc"
+@@ -264,10 +264,10 @@
+ # include "@PKGDATADIR@/tex.nanorc"
+ 
+ ## Quoted emails (under e.g. mutt)
+-# include "@PKGDATADIR@/mutt.nanorc"
++include "@PKGDATADIR@/mutt.nanorc"
+ 
+ ## Patch files
+-# include "@PKGDATADIR@/patch.nanorc"
++include "@PKGDATADIR@/patch.nanorc"
+ 
+ ## Manpages
+ # include "@PKGDATADIR@/man.nanorc"
+@@ -276,10 +276,10 @@
+ # include "@PKGDATADIR@/groff.nanorc"
+ 
+ ## Perl
+-# include "@PKGDATADIR@/perl.nanorc"
++include "@PKGDATADIR@/perl.nanorc"
+ 
+ ## Python
+-# include "@PKGDATADIR@/python.nanorc"
++include "@PKGDATADIR@/python.nanorc"
+ 
+ ## Ruby
+ # include "@PKGDATADIR@/ruby.nanorc"
+@@ -303,10 +303,10 @@
+ # include "@PKGDATADIR@/asm.nanorc"
+ 
+ ## Bourne shell scripts
+-# include "@PKGDATADIR@/sh.nanorc"
++include "@PKGDATADIR@/sh.nanorc"
+ 
+ ## POV-Ray
+ # include "@PKGDATADIR@/pov.nanorc"
+ 
+ ## XML-type files
+-# include "@PKGDATADIR@/xml.nanorc"
++include "@PKGDATADIR@/xml.nanorc"
