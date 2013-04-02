@@ -1,6 +1,6 @@
 --- ../../../openwrt_trunk.orig/package/libs/libpcap/Makefile
 +++ ../../../openwrt_trunk/package/libs/libpcap/Makefile
-@@ -70,16 +70,16 @@
+@@ -74,16 +74,16 @@
  endef
  
  define Build/InstallDev

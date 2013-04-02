@@ -5,7 +5,7 @@
    SECTION:=libs
    CATEGORY:=Libraries
 -  DEPENDS:=+libjpeg +libpng
-+  DEPENDS:=+libjpeg-turbo +libpng +libfreetype
++  DEPENDS:=+libjpeg +libpng +libfreetype
    TITLE:=The GD graphics library
    URL:=http://www.libgd.org/
  endef

@@ -5,7 +5,7 @@
    CATEGORY:=Libraries
    TITLE+= library
 -  DEPENDS:=+zlib +libjpeg
-+  DEPENDS:=+zlib +libjpeg-turbo +liblzma
++  DEPENDS:=+zlib +libjpeg +liblzma
  endef
  
  define Package/libtiffxx

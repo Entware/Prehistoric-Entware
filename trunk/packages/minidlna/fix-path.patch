@@ -15,7 +15,7 @@ diff -urx .svn ../../../downloads/openwrt_trunk-r35474/feeds/packages/multimedia
    URL:=http://minidlna.sourceforge.net/
 -  DEPENDS:= +libpthread +libexif +libjpeg +libsqlite3 +libffmpeg \
 -  	+libid3tag +libflac +libvorbis +libuuid \
-+  DEPENDS:= +libpthread +libexif +libjpeg-turbo +libsqlite3 +libffmpeg \
++  DEPENDS:= +libpthread +libexif +libjpeg +libsqlite3 +libffmpeg \
 +  	+libid3tag +libflac +libvorbis +libuuid +libbz2 \
    	$(ICONV_DEPENDS) $(INTL_DEPENDS)
  endef

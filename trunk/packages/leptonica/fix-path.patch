@@ -5,7 +5,7 @@
    TITLE:=A library for efficient image processing and image analysis operations
    URL:=http://leptonica.googlecode.com/
 -  DEPENDS:=+giflib +libjpeg +libpng +libtiff +zlib
-+  DEPENDS:=+giflib +libjpeg-turbo +libpng +libtiff +zlib
++  DEPENDS:=+giflib +libjpeg +libpng +libtiff +zlib
  endef
  
  TARGET_CFLAGS += $(FPIC)

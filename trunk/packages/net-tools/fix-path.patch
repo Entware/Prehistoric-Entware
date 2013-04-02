@@ -1,14 +1,5 @@
 --- ../../../openwrt_trunk.orig/feeds/packages/net/net-tools/Makefile	2012-08-08 03:56:29.000000000 +0400
 +++ ../../../openwrt_trunk/feeds/packages/net/net-tools/Makefile	2012-09-03 00:39:09.000000000 +0400
-@@ -9,7 +9,7 @@
- 
- PKG_NAME:=net-tools
- PKG_VERSION:=1.60
--PKG_RELEASE:=2
-+PKG_RELEASE:=2a
- 
- PKG_SOURCE:=$(PKG_NAME)-$(PKG_VERSION).tar.bz2
- PKG_SOURCE_URL:=http://www.tazenda.demon.co.uk/phil/net-tools/
 @@ -223,12 +223,13 @@
  	$(MAKE) -C $(PKG_BUILD_DIR) \
  	CC="$(TARGET_CC)" \

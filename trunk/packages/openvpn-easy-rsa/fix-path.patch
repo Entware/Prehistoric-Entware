@@ -1,0 +1,38 @@
+--- ../../../downloads/openwrt_trunk-r36151/package/network/services/openvpn-easy-rsa/Makefile	2013-04-02 14:27:53.001539996 +0400
++++ ../../../openwrt_trunk/package/network/services/openvpn-easy-rsa/Makefile	2013-04-02 15:20:17.489477643 +0400
+@@ -33,9 +33,9 @@
+ endef
+ 
+ define Package/openvpn-easy-rsa/conffiles
+-/etc/easy-rsa/keys/serial
+-/etc/easy-rsa/keys/index.txt
+-/etc/easy-rsa/vars
++/opt/etc/easy-rsa/keys/serial
++/opt/etc/easy-rsa/keys/index.txt
++/opt/etc/easy-rsa/vars
+ endef
+ 
+ define Build/Configure
+@@ -47,14 +47,14 @@
+ endef
+ 
+ define Package/openvpn-easy-rsa/install
+-	$(INSTALL_DIR) $(1)/usr/sbin
+-	$(CP) $(PKG_BUILD_DIR)/easy-rsa/2.0/{build-*,clean-all,inherit-inter,list-crl,pkitool,revoke-full,sign-req,whichopensslcnf} $(1)/usr/sbin/
+-	$(INSTALL_DIR) $(1)/etc/easy-rsa
+-	$(INSTALL_DATA) $(PKG_BUILD_DIR)/easy-rsa/2.0/openssl-1.0.0.cnf $(1)/etc/easy-rsa/openssl-1.0.0.cnf
+-	$(INSTALL_DATA) $(PKG_BUILD_DIR)/easy-rsa/2.0/vars $(1)/etc/easy-rsa/vars
+-	$(INSTALL_DIR) $(1)/etc/easy-rsa/keys
+-	$(INSTALL_DATA) files/easy-rsa.index $(1)/etc/easy-rsa/keys/index.txt
+-	$(INSTALL_DATA) files/easy-rsa.serial $(1)/etc/easy-rsa/keys/serial
++	$(INSTALL_DIR) $(1)/opt/sbin
++	$(CP) $(PKG_BUILD_DIR)/easy-rsa/2.0/{build-*,clean-all,inherit-inter,list-crl,pkitool,revoke-full,sign-req,whichopensslcnf} $(1)/opt/sbin/
++	$(INSTALL_DIR) $(1)/opt/etc/easy-rsa
++	$(INSTALL_DATA) $(PKG_BUILD_DIR)/easy-rsa/2.0/openssl-1.0.0.cnf $(1)/opt/etc/easy-rsa/openssl-1.0.0.cnf
++	$(INSTALL_DATA) $(PKG_BUILD_DIR)/easy-rsa/2.0/vars $(1)/opt/etc/easy-rsa/vars
++	$(INSTALL_DIR) $(1)/opt/etc/easy-rsa/keys
++	$(INSTALL_DATA) files/easy-rsa.index $(1)/opt/etc/easy-rsa/keys/index.txt
++	$(INSTALL_DATA) files/easy-rsa.serial $(1)/opt/etc/easy-rsa/keys/serial
+ endef
+ 
+ $(eval $(call BuildPackage,openvpn-easy-rsa))

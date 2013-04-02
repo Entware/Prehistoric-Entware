@@ -1,6 +1,6 @@
 --- ../../../openwrt_trunk/package/base-files/Makefile.orig	2013-01-28 14:40:44.000000000 +0400
 +++ ../../../openwrt_trunk/package/base-files/Makefile	2013-02-04 11:24:05.028473991 +0400
-@@ -28,7 +28,7 @@
+@@ -29,7 +29,7 @@
  define Package/base-files
    SECTION:=base
    CATEGORY:=Base system

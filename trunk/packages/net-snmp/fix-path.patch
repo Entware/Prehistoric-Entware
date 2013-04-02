@@ -37,7 +37,7 @@ diff -urx .svn ../../../downloads/openwrt_trunk-r35342/feeds/packages/net/net-sn
 @@ -156,8 +156,8 @@
  	--enable-shared \
  	--enable-static \
- 	--with-endianness=little \
+ 	--with-endianness=$(if $(CONFIG_BIG_ENDIAN),big,little) \
 -	--with-logfile=/var/log/snmpd.log \
 -	--with-persistent-directory=/usr/lib/snmp/ \
 +	--with-logfile=/opt/var/log/snmpd.log \

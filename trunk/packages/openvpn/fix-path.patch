@@ -18,7 +18,7 @@
  
  define Build/Configure
  	$(call Build/Configure/Default, \
-@@ -89,32 +89,18 @@
+@@ -90,32 +90,18 @@
  	)
  endef
  

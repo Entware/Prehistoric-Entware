@@ -1,0 +1,17 @@
+--- ../../../downloads/openwrt_trunk-r36151/feeds/packages/multimedia/shairport/Makefile	2013-04-02 14:27:27.653540457 +0400
++++ ../../../openwrt_trunk/feeds/packages/multimedia/shairport/Makefile	2013-04-02 15:31:35.841466430 +0400
+@@ -45,12 +45,8 @@
+ 	LDFLAGS="$(TARGET_LDFLAGS) $(LIBS)"
+ 
+ define Package/shairport/install
+-	$(INSTALL_DIR) $(1)/usr/sbin
+-	$(INSTALL_BIN) $(PKG_BUILD_DIR)/shairport $(1)/usr/sbin/
+-	$(INSTALL_DIR) $(1)/etc/init.d/
+-	$(INSTALL_BIN) files/shairport.init $(1)/etc/init.d/shairport
+-	$(INSTALL_DIR) $(1)/etc/config
+-	$(INSTALL_DATA) files/shairport.config $(1)/etc/config/shairport
++	$(INSTALL_DIR) $(1)/opt/sbin
++	$(INSTALL_BIN) $(PKG_BUILD_DIR)/shairport $(1)/opt/sbin/
+ endef
+ 
+ $(eval $(call BuildPackage,shairport))

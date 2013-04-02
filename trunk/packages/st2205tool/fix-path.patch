@@ -5,7 +5,7 @@
    CATEGORY:=Libraries
    TITLE:=ST220xu powered photo-frames library
 -  DEPENDS:=+libgd
-+  DEPENDS:=+libgd +libjpeg-turbo
++  DEPENDS:=+libgd +libjpeg
    URL:=http://picframe.spritesserver.nl/wiki/
  endef
  

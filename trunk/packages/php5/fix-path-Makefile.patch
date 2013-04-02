@@ -267,7 +267,7 @@
  $(eval $(call BuildModule,ftp,FTP,+PACKAGE_php5-mod-ftp:libopenssl))
  $(eval $(call BuildModule,gettext,Gettext,+PACKAGE_php5-mod-gettext:libintl-full))
 -$(eval $(call BuildModule,gd,GD graphics,+PACKAGE_php5-mod-gd:libjpeg +PACKAGE_php5-mod-gd:libpng))
-+$(eval $(call BuildModule,gd,GD graphics,+PACKAGE_php5-mod-gd:libjpeg-turbo +PACKAGE_php5-mod-gd:libpng))
++$(eval $(call BuildModule,gd,GD graphics,+PACKAGE_php5-mod-gd:libjpeg +PACKAGE_php5-mod-gd:libpng))
  $(eval $(call BuildModule,gmp,GMP,+PACKAGE_php5-mod-gmp:libgmp))
  $(eval $(call BuildModule,hash,Hash))
 -$(eval $(call BuildModule,iconv,iConv,+PACKAGE_php5-mod-iconv:libiconv))

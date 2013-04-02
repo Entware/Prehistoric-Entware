@@ -55,7 +55,7 @@ diff -urx .svn ../../../downloads/openwrt_trunk-r35474/feeds/packages/net/cups/M
    SECTION:=libs
    CATEGORY:=Libraries
 -  DEPENDS:=+zlib +libpthread +libpng +libjpeg
-+  DEPENDS:=+zlib +libpthread +libpng +libjpeg-turbo +libssp
++  DEPENDS:=+zlib +libpthread +libpng +libjpeg +libssp
    TITLE:=Common UNIX Printing System - Core library
  endef
  

@@ -1,14 +1,5 @@
 --- ../../../downloads/openwrt_trunk-r35474/feeds/packages/lang/python-imaging-library/Makefile	2013-02-05 10:42:11.242946404 +0400
 +++ ../../../openwrt_trunk/feeds/packages/lang/python-imaging-library/Makefile	2013-02-06 17:11:25.536947104 +0400
-@@ -27,7 +27,7 @@
-   SUBMENU:=Python
-   TITLE:=Python Imaging Library (PIL)
-   URL:=http://www.pythonware.com/products/pil/
--  DEPENDS:=+python +libfreetype +libjpeg +zlib
-+  DEPENDS:=+python +libfreetype +libjpeg-turbo +zlib
- endef
- 
- define Package/python-imaging-library/description
 @@ -45,7 +45,7 @@
  
  define Build/Compile

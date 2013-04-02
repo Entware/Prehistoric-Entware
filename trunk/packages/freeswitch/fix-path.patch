@@ -29,7 +29,7 @@ diff -urx .svn ../../../downloads/openwrt_trunk-r35953/feeds/packages/net/freesw
  $(call Package/$(PKG_NAME)/Default)
    TITLE:=FreeSWITCH open source telephony platform ($(PKG_SOURCE_VERSION_SHORT))
 -  DEPENDS:=+libcurl +libiconv-full +libjpeg +libncurses +libpq +libpthread +librt +libstdcpp
-+  DEPENDS:=+libcurl +libiconv-full +libjpeg-turbo +libncurses +libpq +libpthread +librt +libstdcpp $(ICONV_DEPENDS)
++  DEPENDS:=+libcurl +libiconv-full +libjpeg +libncurses +libpq +libpthread +librt +libstdcpp $(ICONV_DEPENDS)
    MENU:=1
  endef
  
