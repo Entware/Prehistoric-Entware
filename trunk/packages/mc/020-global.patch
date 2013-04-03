@@ -1,6 +1,6 @@
---- ./lib/global.h.orig	2012-03-19 19:47:17.000000000 +0400
-+++ ./lib/global.h	2012-04-02 14:38:49.458269824 +0400
-@@ -122,7 +122,7 @@
+--- a/lib/global.h
++++ b/lib/global.h
+@@ -129,7 +129,7 @@
  #define PATH_SEP '/'
  #define PATH_SEP_STR "/"
  #define PATH_ENV_SEP ':'
