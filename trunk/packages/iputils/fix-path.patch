@@ -1,0 +1,71 @@
+--- ../../../downloads/openwrt_trunk-r36151/package/network/utils/iputils/Makefile	2013-04-02 14:27:53.593539984 +0400
++++ ../../../openwrt_trunk/package/network/utils/iputils/Makefile	2013-04-04 11:38:40.886579002 +0400
+@@ -67,7 +67,7 @@
+ define Package/iputils-ping6
+ $(call Package/iputils/Default)
+   TITLE:=iputils - ping6
+-  DEPENDS+= @IPV6
++  DEPENDS+=+libopenssl @IPV6
+ endef
+ 
+ define Package/iputils-ping6/description
+@@ -131,43 +131,43 @@
+ 	CONFIG_USE_UCLIBC="$(CONFIG_USE_UCLIBC)" \
+ 
+ define Package/iputils-arping/install
+-	$(INSTALL_DIR) $(1)/usr/bin
+-	$(INSTALL_BIN) $(PKG_BUILD_DIR)/arping $(1)/usr/bin/
++	$(INSTALL_DIR) $(1)/opt/bin
++	$(INSTALL_BIN) $(PKG_BUILD_DIR)/arping $(1)/opt/bin/
+ endef
+ 
+ define Package/iputils-clockdiff/install
+-	$(INSTALL_DIR) $(1)/usr/bin
+-	$(INSTALL_BIN) $(PKG_BUILD_DIR)/clockdiff $(1)/usr/bin/
++	$(INSTALL_DIR) $(1)/opt/bin
++	$(INSTALL_BIN) $(PKG_BUILD_DIR)/clockdiff $(1)/opt/bin/
+ endef
+ 
+ define Package/iputils-ping/install
+-	$(INSTALL_DIR) $(1)/usr/bin
+-	$(INSTALL_BIN) $(PKG_BUILD_DIR)/ping $(1)/usr/bin/
++	$(INSTALL_DIR) $(1)/opt/bin
++	$(INSTALL_BIN) $(PKG_BUILD_DIR)/ping $(1)/opt/bin/
+ endef
+ 
+ define Package/iputils-ping6/install
+-	$(INSTALL_DIR) $(1)/usr/bin
+-	$(INSTALL_BIN) $(PKG_BUILD_DIR)/ping6 $(1)/usr/bin/
++	$(INSTALL_DIR) $(1)/opt/bin
++	$(INSTALL_BIN) $(PKG_BUILD_DIR)/ping6 $(1)/opt/bin/
+ endef
+ 
+ define Package/iputils-tftpd/install
+-	$(INSTALL_DIR) $(1)/usr/sbin
+-	$(INSTALL_BIN) $(PKG_BUILD_DIR)/tftpd $(1)/usr/sbin/
++	$(INSTALL_DIR) $(1)/opt/sbin
++	$(INSTALL_BIN) $(PKG_BUILD_DIR)/tftpd $(1)/opt/sbin/
+ endef
+ 
+ define Package/iputils-tracepath/install
+-	$(INSTALL_DIR) $(1)/usr/bin
+-	$(INSTALL_BIN) $(PKG_BUILD_DIR)/tracepath $(1)/usr/bin/
++	$(INSTALL_DIR) $(1)/opt/bin
++	$(INSTALL_BIN) $(PKG_BUILD_DIR)/tracepath $(1)/opt/bin/
+ endef
+ 
+ define Package/iputils-tracepath6/install
+-	$(INSTALL_DIR) $(1)/usr/bin
+-	$(INSTALL_BIN) $(PKG_BUILD_DIR)/tracepath6 $(1)/usr/bin/
++	$(INSTALL_DIR) $(1)/opt/bin
++	$(INSTALL_BIN) $(PKG_BUILD_DIR)/tracepath6 $(1)/opt/bin/
+ endef
+ 
+ define Package/iputils-traceroute6/install
+-	$(INSTALL_DIR) $(1)/usr/bin
+-	$(INSTALL_BIN) $(PKG_BUILD_DIR)/traceroute6 $(1)/usr/bin/
++	$(INSTALL_DIR) $(1)/opt/bin
++	$(INSTALL_BIN) $(PKG_BUILD_DIR)/traceroute6 $(1)/opt/bin/
+ endef
+ 
+ $(eval $(call BuildPackage,iputils-arping))
