@@ -60,7 +60,7 @@ case "$rc" in
         fi
 	echo ok
         ;;
-    *)  
+    *) 
         echo "Usage: $0 (start|stop|restart|dumpall|usage)"
         ;;
 esac
