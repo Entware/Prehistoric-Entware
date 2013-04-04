@@ -1,0 +1,50 @@
+--- ../../../downloads/openwrt_trunk-r36151/feeds/packages/utils/pcsc-lite/Makefile	2013-04-02 14:27:29.825540418 +0400
++++ ../../../openwrt_trunk/feeds/packages/utils/pcsc-lite/Makefile	2013-04-04 13:00:27.790488433 +0400
+@@ -66,32 +66,32 @@
+ 	--disable-libudev \
+ 	--enable-libusb \
+ 	--enable-static \
+-	--enable-usbdropdir=/usr/lib/pcsc/drivers
++	--enable-usbdropdir=/opt/lib/pcsc/drivers
+ 
+ define Build/InstallDev
+-	$(INSTALL_DIR) $(1)/usr/include/PCSC
+-	$(CP) $(PKG_INSTALL_DIR)/usr/include/PCSC/* $(1)/usr/include/PCSC/
+-	$(INSTALL_DIR) $(1)/usr/lib
+-	$(CP) $(PKG_INSTALL_DIR)/usr/lib/libpcsclite.{a,so*} $(1)/usr/lib/
+-	$(INSTALL_DIR) $(1)/usr/lib/pkgconfig
+-	$(CP) $(PKG_INSTALL_DIR)/usr/lib/pkgconfig/libpcsclite.pc $(1)/usr/lib/pkgconfig/
++	$(INSTALL_DIR) $(1)/opt/include/PCSC
++	$(CP) $(PKG_INSTALL_DIR)/opt/include/PCSC/* $(1)/opt/include/PCSC/
++	$(INSTALL_DIR) $(1)/opt/lib
++	$(CP) $(PKG_INSTALL_DIR)/opt/lib/libpcsclite.{a,so*} $(1)/opt/lib/
++	$(INSTALL_DIR) $(1)/opt/lib/pkgconfig
++	$(CP) $(PKG_INSTALL_DIR)/opt/lib/pkgconfig/libpcsclite.pc $(1)/opt/lib/pkgconfig/
+ endef
+ 
+ define Package/libpcsclite/install
+-	$(INSTALL_DIR) $(1)/usr/lib
+-	$(CP) $(PKG_INSTALL_DIR)/usr/lib/libpcsclite.so.* $(1)/usr/lib/
++	$(INSTALL_DIR) $(1)/opt/lib
++	$(CP) $(PKG_INSTALL_DIR)/opt/lib/libpcsclite.so.* $(1)/opt/lib/
+ endef
+ 
+ define Package/pcscd/conffiles
+-/etc/reader.conf.d/reader.conf
++/opt/etc/reader.conf.d/reader.conf
+ endef
+ 
+ define Package/pcscd/install
+-	$(INSTALL_DIR) $(1)/usr/sbin
+-	$(INSTALL_BIN) $(PKG_INSTALL_DIR)/usr/sbin/pcscd $(1)/usr/sbin/
+-	$(INSTALL_DIR) $(1)/etc/init.d
+-	$(INSTALL_BIN) ./files/pcscd.init $(1)/etc/init.d/pcscd
+-	$(INSTALL_DIR) $(1)/etc/reader.conf.d
++	$(INSTALL_DIR) $(1)/opt/sbin
++	$(INSTALL_BIN) $(PKG_INSTALL_DIR)/opt/sbin/pcscd $(1)/opt/sbin/
++	$(INSTALL_DIR) $(1)/opt/etc/init.d
++	$(INSTALL_BIN) ./files/S48pcscd $(1)/opt/etc/init.d/
++	$(INSTALL_DIR) $(1)/opt/etc/reader.conf.d
+ endef
+ 
+ $(eval $(call BuildPackage,libpcsclite))

@@ -1,0 +1,13 @@
+#!/bin/sh
+
+mkdir -m 0700 -p /opt/var/racoon
+[ -f /opt/etc/ipsec.conf ] && /opt/sbin/setkey -f /opt/etc/ipsec.conf
+
+ENABLED=yes
+PROCS=pcscd
+ARGS=""
+PREARGS=""
+DESC=$PROCS
+PATH=/opt/sbin:/opt/bin:/opt/usr/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin
+
+. /opt/etc/init.d/rc.func
