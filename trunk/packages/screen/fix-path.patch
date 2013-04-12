@@ -6,7 +6,7 @@
  	$(call Build/Configure/Default,\
 -		--with-sys-screenrc=/etc/screenrc,\
 +		--with-sys-screenrc=/opt/etc/screenrc\
-+		--with-socket-dir=/opt/tmp/srceens \
++		--with-socket-dir=/opt/tmp/screens \
  		LIBS="-lcrypt" \
  	)
  endef
