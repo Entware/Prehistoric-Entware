@@ -1,0 +1,43 @@
+--- ../../../downloads/openwrt_trunk-r36151/package/libs/libubox/Makefile	2013-04-02 14:27:50.309540045 +0400
++++ ../../../openwrt_trunk/package/libs/libubox/Makefile	2013-04-12 11:09:48.499048129 +0400
+@@ -54,29 +54,29 @@
+   TITLE:=Minimalistic JSON based scripting engine
+ endef
+ 
+-TARGET_CFLAGS += -I$(STAGING_DIR)/usr/include
++TARGET_CFLAGS += -I$(STAGING_DIR)/opt/include
+ CMAKE_OPTIONS = \
+-	-DLUAPATH=/usr/lib/lua
++	-DLUAPATH=/opt/lib/lua
+ 
+ define Package/libubox/install
+-	$(INSTALL_DIR) $(1)/lib/
+-	$(INSTALL_DATA) $(PKG_INSTALL_DIR)/usr/lib/libubox.so $(1)/lib/
++	$(INSTALL_DIR) $(1)/opt/lib/
++	$(INSTALL_DATA) $(PKG_INSTALL_DIR)/opt/lib/libubox.so $(1)/opt/lib/
+ endef
+ 
+ define Package/libblobmsg-json/install
+-	$(INSTALL_DIR) $(1)/lib/
+-	$(INSTALL_DATA) $(PKG_INSTALL_DIR)/usr/lib/libblobmsg_json.so $(1)/lib/
++	$(INSTALL_DIR) $(1)/opt/lib/
++	$(INSTALL_DATA) $(PKG_INSTALL_DIR)/opt/lib/libblobmsg_json.so $(1)/opt/lib/
+ endef
+ 
+ define Package/jshn/install
+-	$(INSTALL_DIR) $(1)/usr/bin $(1)/usr/share/libubox
+-	$(INSTALL_BIN) $(PKG_INSTALL_DIR)/usr/bin/jshn $(1)/usr/bin
+-	$(INSTALL_DATA) $(PKG_INSTALL_DIR)/usr/share/libubox/jshn.sh $(1)/usr/share/libubox
++	$(INSTALL_DIR) $(1)/opt/bin $(1)/opt/share/libubox
++	$(INSTALL_BIN) $(PKG_INSTALL_DIR)/opt/bin/jshn $(1)/opt/bin
++	$(INSTALL_DATA) $(PKG_INSTALL_DIR)/opt/share/libubox/jshn.sh $(1)/opt/share/libubox
+ endef
+ 
+ define Package/libjson-script/install
+-	$(INSTALL_DIR) $(1)/lib/
+-	$(INSTALL_DATA) $(PKG_INSTALL_DIR)/usr/lib/libjson_script.so $(1)/lib/
++	$(INSTALL_DIR) $(1)/opt/lib/
++	$(INSTALL_DATA) $(PKG_INSTALL_DIR)/opt/lib/libjson_script.so $(1)/opt/lib/
+ endef
+ 
+ $(eval $(call BuildPackage,libubox))
