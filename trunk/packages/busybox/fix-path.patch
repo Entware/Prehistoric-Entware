@@ -1,0 +1,94 @@
+diff -urx .svn ../../../downloads/openwrt_trunk-r36151/package/busybox/Makefile ../../../openwrt_trunk/package/busybox/Makefile
+--- ../../../downloads/openwrt_trunk-r36151/package/busybox/Makefile	2013-04-02 14:27:54.537539967 +0400
++++ ../../../openwrt_trunk/package/busybox/Makefile	2013-04-25 14:06:15.336604039 +0400
+@@ -10,7 +10,7 @@
+ PKG_NAME:=busybox
+ PKG_VERSION:=1.19.4
+ PKG_RELEASE:=6
+-PKG_FLAGS:=essential
++#PKG_FLAGS:=essential
+ 
+ PKG_SOURCE:=$(PKG_NAME)-$(PKG_VERSION).tar.bz2
+ PKG_SOURCE_URL:=http://www.busybox.net/downloads \
+@@ -99,20 +99,53 @@
+ 		CC="$(TARGET_CC)" \
+ 		CROSS_COMPILE="$(TARGET_CROSS)" \
+ 		EXTRA_CFLAGS="$(TARGET_CFLAGS)" \
++		EXTRA_LDFLAGS="$(TARGET_LDFLAGS)" \
+ 		ARCH="$(ARCH)" \
+-		CONFIG_PREFIX="$(PKG_INSTALL_DIR)" \
++		CONFIG_PREFIX="$(PKG_INSTALL_DIR)/opt" \
+ 		LDLIBS="$(LDLIBS)" \
+ 		$(BB_MAKE_VERBOSE) \
+ 		install
+ endef
+ 
+ define Package/busybox/install
+-	$(INSTALL_DIR) $(1)/etc/init.d
+-	$(CP) $(PKG_INSTALL_DIR)/* $(1)/
+-	for tmp in $(init-y); do \
+-		$(INSTALL_BIN) ./files/$$$$tmp $(1)/etc/init.d/$$$$tmp; \
+-	done
+-	-rm -rf $(1)/lib64
++	$(INSTALL_DIR) $(1)/opt/{bin,sbin}
++	$(INSTALL_BIN) $(PKG_INSTALL_DIR)/opt/bin/busybox $(1)/opt/bin/
++	$(INSTALL_DIR) $(1)/opt/share
++	(cd $(PKG_INSTALL_DIR); \
++	    find ./opt -lname "*" | sed "s|^./opt/||g" > $(1)/opt/share/busybox_applets.lst.dist)
++endef
++
++define Package/busybox/postinst
++#!/bin/sh
++
++cd /opt
++rm -f share/busybox_applets.lst
++for applet in $$(cat share/busybox_applets.lst.dist)
++do
++    if [ ! -e $$applet ]
++    then
++	ln -s /opt/bin/busybox $$applet
++	echo "$$applet" >> share/busybox_applets.lst
++    else
++	echo "Warning: '/opt/$$applet' is already exists, skipping."
++    fi
++done
++endef
++
++define Package/busybox/postrm
++#!/bin/sh
++
++cd /opt
++for applet in $$(cat share/busybox_applets.lst)
++do
++    if [ -L $$applet ]
++    then
++	rm -f $$applet
++    else
++	echo "Warning: '/opt/$$applet' has been deleted\modified before, skipping."
++    fi
++done
++rm -f share/busybox_applets.lst
+ endef
+ 
+ $(eval $(call BuildPackage,busybox))
+diff -urx .svn ../../../downloads/openwrt_trunk-r36151/package/busybox/patches/200-etc_crontabs.patch ../../../openwrt_trunk/package/busybox/patches/200-etc_crontabs.patch
+--- ../../../downloads/openwrt_trunk-r36151/package/busybox/patches/200-etc_crontabs.patch	2013-04-02 14:27:54.577539966 +0400
++++ ../../../openwrt_trunk/package/busybox/patches/200-etc_crontabs.patch	2013-04-25 12:03:22.496731959 +0400
+@@ -5,7 +5,7 @@
+  
+  #define TMPDIR          CONFIG_FEATURE_CROND_DIR
+ -#define CRONTABS        CONFIG_FEATURE_CROND_DIR "/crontabs"
+-+#define CRONTABS        "/etc/crontabs"
+++#define CRONTABS        "/opt/etc/crontabs"
+  #ifndef SENDMAIL
+  # define SENDMAIL       "sendmail"
+  #endif
+@@ -16,7 +16,7 @@
+  #include "libbb.h"
+  
+ -#define CRONTABS        CONFIG_FEATURE_CROND_DIR "/crontabs"
+-+#define CRONTABS        "/etc/crontabs"
+++#define CRONTABS        "/opt/etc/crontabs"
+  #ifndef CRONUPDATE
+  #define CRONUPDATE      "cron.update"
+  #endif
