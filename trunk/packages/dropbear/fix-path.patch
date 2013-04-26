@@ -1,6 +1,15 @@
-diff -urx .svn ../../../downloads/openwrt_trunk-r34568/package/network/services/dropbear/Makefile ../../../openwrt_trunk/package/network/services/dropbear/Makefile
---- ../../../downloads/openwrt_trunk-r34568/package/network/services/dropbear/Makefile	2012-12-07 16:50:23.847447028 +0400
-+++ ../../../openwrt_trunk/package/network/services/dropbear/Makefile	2012-12-10 21:17:29.369252161 +0400
+diff -urx .svn ../../../downloads/openwrt_trunk-r36151/package/network/services/dropbear/Makefile ../../../openwrt_trunk/package/network/services/dropbear/Makefile
+--- ../../../downloads/openwrt_trunk-r36151/package/network/services/dropbear/Makefile	2013-04-02 14:27:52.693540002 +0400
++++ ../../../openwrt_trunk/package/network/services/dropbear/Makefile	2013-04-26 23:43:00.190393583 +0400
+@@ -9,7 +9,7 @@
+ 
+ PKG_NAME:=dropbear
+ PKG_VERSION:=2012.55
+-PKG_RELEASE:=2
++PKG_RELEASE:=2a
+ 
+ PKG_SOURCE:=$(PKG_NAME)-$(PKG_VERSION).tar.bz2
+ PKG_SOURCE_URL:= \
 @@ -40,9 +40,9 @@
  endef
  
@@ -14,20 +23,17 @@ diff -urx .svn ../../../downloads/openwrt_trunk-r34568/package/network/services/
  endef
  
  define Package/dropbearconvert
-@@ -69,8 +69,10 @@
+@@ -69,9 +69,6 @@
  	--disable-zlib \
  	--enable-bundled-libtom
  
 -TARGET_CFLAGS += -DARGTYPE=3 -ffunction-sections -fdata-sections
 -TARGET_LDFLAGS += -Wl,--gc-sections
-+define Build/Configure 
-+	$(SED) 's,/etc/,/opt/etc/,g' $(PKG_BUILD_DIR)/options.h
-+	$(call Build/Configure/Default)
-+endef
- 
+-
  define Build/Compile
  	+$(MAKE) $(PKG_JOBS) -C $(PKG_BUILD_DIR) \
-@@ -83,26 +85,32 @@
+ 		$(TARGET_CONFIGURE_OPTS) \
+@@ -83,26 +80,32 @@
  endef
  
  define Package/dropbear/install
@@ -77,9 +83,9 @@ diff -urx .svn ../../../downloads/openwrt_trunk-r34568/package/network/services/
  endef
  
  $(eval $(call BuildPackage,dropbear))
-diff -urx .svn ../../../downloads/openwrt_trunk-r34568/package/network/services/dropbear/patches/100-pubkey_path.patch ../../../openwrt_trunk/package/network/services/dropbear/patches/100-pubkey_path.patch
---- ../../../downloads/openwrt_trunk-r34568/package/network/services/dropbear/patches/100-pubkey_path.patch	2012-12-07 16:50:23.879447030 +0400
-+++ ../../../openwrt_trunk/package/network/services/dropbear/patches/100-pubkey_path.patch	2012-12-07 16:51:14.631446101 +0400
+diff -urx .svn ../../../downloads/openwrt_trunk-r36151/package/network/services/dropbear/patches/100-pubkey_path.patch ../../../openwrt_trunk/package/network/services/dropbear/patches/100-pubkey_path.patch
+--- ../../../downloads/openwrt_trunk-r36151/package/network/services/dropbear/patches/100-pubkey_path.patch	2013-04-02 14:27:52.725540001 +0400
++++ ../../../openwrt_trunk/package/network/services/dropbear/patches/100-pubkey_path.patch	2013-04-02 15:54:15.281445595 +0400
 @@ -28,7 +28,7 @@
  +		/* open the file */
  +		authfile = fopen(filename, "r");
@@ -102,110 +108,3 @@ diff -urx .svn ../../../downloads/openwrt_trunk-r34568/package/network/services/
  +			goto out;
  +		}
  +	} else {
-diff -urx .svn ../../../downloads/openwrt_trunk-r34568/package/network/services/dropbear/patches/120-openwrt_options.patch ../../../openwrt_trunk/package/network/services/dropbear/patches/120-openwrt_options.patch
---- ../../../downloads/openwrt_trunk-r34568/package/network/services/dropbear/patches/120-openwrt_options.patch	2012-12-07 16:50:23.879447030 +0400
-+++ ../../../openwrt_trunk/package/network/services/dropbear/patches/120-openwrt_options.patch	2012-12-07 16:51:14.631446101 +0400
-@@ -1,6 +1,6 @@
- --- a/options.h
- +++ b/options.h
--@@ -38,7 +38,7 @@
-+@@ -38,7 +43,7 @@
-   * Both of these flags can be defined at once, don't compile without at least
-   * one of them. */
-  #define NON_INETD_MODE
-@@ -9,7 +9,7 @@
-  
-  /* Setting this disables the fast exptmod bignum code. It saves ~5kB, but is
-   * perhaps 20% slower for pubkey operations (it is probably worth experimenting
--@@ -49,7 +49,7 @@
-+@@ -49,7 +54,7 @@
-  several kB in binary size however will make the symmetrical ciphers and hashes
-  slower, perhaps by 50%. Recommended for small systems that aren't doing
-  much traffic. */
-@@ -18,7 +18,7 @@
-  
-  /* Enable X11 Forwarding - server only */
-  #define ENABLE_X11FWD
--@@ -78,7 +78,7 @@ much traffic. */
-+@@ -78,7 +83,7 @@
-  
-  /* Enable "Netcat mode" option. This will forward standard input/output
-   * to a remote TCP-forwarded connection */
-@@ -27,7 +27,7 @@
-  
-  /* Encryption - at least one required.
-   * Protocol RFC requires 3DES and recommends AES128 for interoperability.
--@@ -89,8 +89,8 @@ much traffic. */
-+@@ -89,8 +94,8 @@
-  #define DROPBEAR_AES256
-  /* Compiling in Blowfish will add ~6kB to runtime heap memory usage */
-  /*#define DROPBEAR_BLOWFISH*/
-@@ -38,7 +38,7 @@
-  
-  /* Enable "Counter Mode" for ciphers. This is more secure than normal
-   * CBC mode against certain attacks. This adds around 1kB to binary 
--@@ -110,7 +110,7 @@ much traffic. */
-+@@ -110,7 +115,7 @@
-   * If you disable MD5, Dropbear will fall back to SHA1 fingerprints,
-   * which are not the standard form. */
-  #define DROPBEAR_SHA1_HMAC
-@@ -61,7 +61,12 @@
-  
-  /* The MOTD file path */
-  #ifndef MOTD_FILENAME
--@@ -192,7 +192,7 @@ much traffic. */
-+-#define MOTD_FILENAME "/etc/motd"
-++#define MOTD_FILENAME "/opt/etc/motd"
-+ #endif
-+ 
-+ /* Authentication Types - at least one required.
-+@@ -192,7 +197,7 @@
-   * note that it will be provided for all "hidden" client-interactive
-   * style prompts - if you want something more sophisticated, use 
-   * SSH_ASKPASS instead. Comment out this var to remove this functionality.*/
-@@ -70,3 +75,33 @@
-  
-  /* Define this (as well as ENABLE_CLI_PASSWORD_AUTH) to allow the use of
-   * a helper program for the ssh client. The helper program should be
-+@@ -237,25 +242,25 @@
-+ /* The default file to store the daemon's process ID, for shutdown
-+    scripts etc. This can be overridden with the -P flag */
-+ #ifndef DROPBEAR_PIDFILE
-+-#define DROPBEAR_PIDFILE "/var/run/dropbear.pid"
-++#define DROPBEAR_PIDFILE "/opt/var/run/dropbear.pid"
-+ #endif
-+ 
-+ /* The command to invoke for xauth when using X11 forwarding.
-+  * "-q" for quiet */
-+ #ifndef XAUTH_COMMAND
-+-#define XAUTH_COMMAND "/usr/bin/X11/xauth -q"
-++#define XAUTH_COMMAND "/opt/bin/X11/xauth -q"
-+ #endif
-+ 
-+ /* if you want to enable running an sftp server (such as the one included with
-+  * OpenSSH), set the path below. If the path isn't defined, sftp will not
-+  * be enabled */
-+ #ifndef SFTPSERVER_PATH
-+-#define SFTPSERVER_PATH "/usr/libexec/sftp-server"
-++#define SFTPSERVER_PATH "/opt/libexec/sftp-server"
-+ #endif
-+ 
-+ /* This is used by the scp binary when used as a client binary. If you're
-+  * not using the Dropbear client, you'll need to change it */
-+-#define _PATH_SSH_PROGRAM "/usr/bin/dbclient"
-++#define _PATH_SSH_PROGRAM "/opt/bin/dbclient"
-+ 
-+ /* Whether to log commands executed by a client. This only logs the 
-+  * (single) command sent to the server, not what a user did in a 
-diff -urx .svn ../../../downloads/openwrt_trunk-r34568/package/network/services/dropbear/patches/500-set-default-path.patch ../../../openwrt_trunk/package/network/services/dropbear/patches/500-set-default-path.patch
---- ../../../downloads/openwrt_trunk-r34568/package/network/services/dropbear/patches/500-set-default-path.patch	2012-12-07 16:50:23.879447030 +0400
-+++ ../../../openwrt_trunk/package/network/services/dropbear/patches/500-set-default-path.patch	2012-12-07 16:51:14.631446101 +0400
-@@ -5,7 +5,7 @@
-  
-  /* The default path. This will often get replaced by the shell */
- -#define DEFAULT_PATH "/usr/bin:/bin"
--+#define DEFAULT_PATH "/bin:/sbin:/usr/bin:/usr/sbin"
-++#define DEFAULT_PATH "/bin:/sbin:/usr/bin:/usr/sbin:/opt/bin:/opt/sbin"
-  
-  /* Some other defines (that mostly should be left alone) are defined
-   * in sysoptions.h */

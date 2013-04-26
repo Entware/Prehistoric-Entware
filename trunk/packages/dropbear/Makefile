@@ -9,7 +9,8 @@ all: ./.done
 
 ./.done:
 	patch -p0 -i ./fix-path.patch
-	cp ./S51dropbear ../../../openwrt_trunk/package/network/services/dropbear/files/
+	cp -f ./900-entware-options.patch ../../../openwrt_trunk/package/network/services/dropbear/patches/
+	cp -f ./S51dropbear ../../../openwrt_trunk/package/network/services/dropbear/files/
 	touch $@
 
 clean:
