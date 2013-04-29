@@ -2,7 +2,7 @@
 
 ENABLED=yes
 PROCS=sslh
-ARGS="-p 0.0.0.0:443 --ssh localhost:22 --ssl localhost:443 --openvpn localhost:1194 --tinc localhost:655 --xmpp localhost:5222 -t 2 -v 0"
+ARGS="--ssh localhost:22 --ssl localhost:443 --openvpn localhost:1194 --tinc localhost:655 --xmpp localhost:5222 -t 2 -v 0"
 PREARGS=""
 DESC=$PROCS
 PATH=/opt/sbin:/opt/bin:/opt/usr/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin
