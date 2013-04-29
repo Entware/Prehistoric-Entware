@@ -1,5 +1,5 @@
---- ../../../downloads/openwrt_trunk-r36151/feeds/packages/net/n2n/Makefile	2013-04-02 14:27:31.161540391 +0400
-+++ ../../../openwrt_trunk/feeds/packages/net/n2n/Makefile	2013-04-03 09:05:50.720323868 +0400
+--- ../../../downloads/openwrt_trunk-r36151/feeds/packages/net/n2n/Makefile
++++ ../../../openwrt_trunk/feeds/packages/net/n2n/Makefile
 @@ -7,14 +7,12 @@
  
  include $(TOPDIR)/rules.mk
@@ -11,7 +11,7 @@
  PKG_NAME:=n2n
 -PKG_VERSION:=$(PKG_REV)
 -PKG_RELEASE:=4
-+PKG_REV:=6108
++PKG_REV:=6203
 +PKG_VERSION:=2.1.0-r$(PKG_REV)
 +PKG_RELEASE:=1
  
