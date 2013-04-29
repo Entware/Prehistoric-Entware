@@ -1,6 +1,45 @@
-diff -Naur ../../../openwrt_trunk.orig/feeds/packages/mail/msmtp/Makefile ../../../openwrt_trunk/feeds/packages/mail/msmtp/Makefile
---- ../../../openwrt_trunk.orig/feeds/packages/mail/msmtp/Makefile	2012-03-26 10:57:38.608337446 +0400
-+++ ../../../openwrt_trunk/feeds/packages/mail/msmtp/Makefile	2012-03-26 21:27:29.401871065 +0400
+--- ../../../downloads/openwrt_trunk-r36151/feeds/packages/mail/msmtp/Makefile	2013-04-02 14:27:45.133540139 +0400
++++ ../../../openwrt_trunk/feeds/packages/mail/msmtp/Makefile	2013-04-29 16:22:35.314157193 +0400
+@@ -9,12 +9,12 @@
+ include $(TOPDIR)/rules.mk
+ 
+ PKG_NAME:=msmtp
+-PKG_VERSION:=1.4.27
++PKG_VERSION:=1.4.31
+ PKG_RELEASE:=1
+ 
+ PKG_SOURCE:=$(PKG_NAME)-$(PKG_VERSION).tar.bz2
+ PKG_SOURCE_URL:=@SF/msmtp
+-PKG_MD5SUM:=2d6d10d9c59ed2b2635554ed35fb9226
++PKG_MD5SUM:=792ac0ffa30dc95ea1889a548128186d
+ 
+ PKG_FIXUP:=autoreconf
+ PKG_INSTALL:=1
+@@ -27,6 +27,7 @@
+   SECTION:=mail
+   CATEGORY:=Mail
+   TITLE:=Simple sendmail SMTP forwarding
++  DEPENDS:= +libidn
+   URL:=http://msmtp.sourceforge.net/
+ endef
+ 
+@@ -46,7 +47,7 @@
+ endef
+ 
+ define Package/msmtp/conffiles
+-/etc/msmtprc
++/opt/etc/msmtprc
+ endef
+ 
+ define Package/msmtp/description
+@@ -80,7 +81,6 @@
+ 	--disable-rpath \
+ 	--without-libintl-prefix \
+ 	--without-libgsasl \
+-	--without-libidn
+ 
+ MAKE_FLAGS :=
+ 
 @@ -95,16 +95,16 @@
  endif
  
