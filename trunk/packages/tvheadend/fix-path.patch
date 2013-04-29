@@ -1,15 +1,15 @@
 --- ../../../downloads/openwrt_trunk-r36151/feeds/packages/multimedia/tvheadend/Makefile	2013-04-02 14:27:27.681540457 +0400
-+++ ../../../openwrt_trunk/feeds/packages/multimedia/tvheadend/Makefile	2013-04-03 09:09:50.636313707 +0400
++++ ../../../openwrt_trunk/feeds/packages/multimedia/tvheadend/Makefile	2013-04-29 17:02:56.254112820 +0400
 @@ -8,12 +8,17 @@
  include $(TOPDIR)/rules.mk
  
  PKG_NAME:=tvheadend
 -PKG_VERSION:=3.2
 -PKG_RELEASE:=0.1
-+PKG_VERSION:=3.5-20130328
++PKG_VERSION:=3.5-20130423
 +PKG_RELEASE:=1
  
-+PKG_REV:=e9ce02138e81d0dd94a2b155e57fda282063c008
++PKG_REV:=a2ccbb2de6eb50f7506f6da018625778cc6b4f8f
  PKG_SOURCE:=$(PKG_NAME)-$(PKG_VERSION).tar.gz
 -PKG_SOURCE_URL:=https://github.com/downloads/tvheadend/tvheadend/
 -PKG_MD5SUM:=4f7faa75c4ea24942c5a12a77ebdcdf0
@@ -22,7 +22,7 @@
  
  include $(INCLUDE_DIR)/package.mk
  
-@@ -62,17 +67,19 @@
+@@ -62,17 +67,24 @@
  
  CONFIGURE_ARGS += \
  	--release \
@@ -30,6 +30,11 @@
 +	--disable-imagecache \
 +	--disable-libav \
 +	--disable-zlib \
++
++define Build/Prepare
++	$(call Build/Prepare/Default)
++	$(SED) "s|0.0.0~unknown|$(PKG_VERSION)|g" $(PKG_BUILD_DIR)/support/version
++endef
  
  define Package/tvheadend/install
 -	$(INSTALL_DIR) $(1)/etc/tvheadend
