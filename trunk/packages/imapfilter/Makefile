@@ -8,7 +8,7 @@
 all: ./.done
 
 ./.done:
-	patch -p0 -i ./bump-version.patch
+	patch -p0 -i ./fix-path.patch
 	touch $@
 
 clean:

@@ -1,24 +1,26 @@
-diff -urx .svn ../../../openwrt_trunk.orig/feeds/packages/mail/imapfilter/Makefile ../../../openwrt_trunk/feeds/packages/mail/imapfilter/Makefile
---- ../../../openwrt_trunk.orig/feeds/packages/mail/imapfilter/Makefile	2012-07-18 00:48:37.000000000 +0400
-+++ ../../../openwrt_trunk/feeds/packages/mail/imapfilter/Makefile	2012-07-22 21:00:29.000000000 +0400
-@@ -8,12 +8,12 @@
+diff -urx .svn ../../../downloads/openwrt_trunk-r36151/feeds/packages/mail/imapfilter/Makefile ../../../openwrt_trunk/feeds/packages/mail/imapfilter/Makefile
+--- ../../../downloads/openwrt_trunk-r36151/feeds/packages/mail/imapfilter/Makefile	2013-04-02 14:27:45.213540138 +0400
++++ ../../../openwrt_trunk/feeds/packages/mail/imapfilter/Makefile	2013-04-29 15:59:07.826191684 +0400
+@@ -8,12 +8,15 @@
  include $(TOPDIR)/rules.mk
  
  PKG_NAME:=imapfilter
 -PKG_VERSION:=2.2.2
-+PKG_VERSION:=2.5.3
++PKG_VERSION:=2.5.4
++PKG_REV:=7593368952a973d0b738a30fa0f4928b4db15a96
  PKG_RELEASE:=1
  
--PKG_SOURCE:=$(PKG_NAME)-$(PKG_VERSION).tar.bz2
+ PKG_SOURCE:=$(PKG_NAME)-$(PKG_VERSION).tar.bz2
 -PKG_SOURCE_URL:=http://imapfilter.hellug.gr/source/
 -PKG_MD5SUM:=09c6ffb085a5a244dc9f3e798259f341
-+PKG_SOURCE:=$(PKG_NAME)-$(PKG_VERSION).tar.gz
-+PKG_SOURCE_URL:=http://github.com/downloads/lefcha/imapfilter/
-+PKG_MD5SUM:=f7ab4246e587f55f3a761a51b9a28417
++PKG_SOURCE_SUBDIR:=$(PKG_NAME)-$(PKG_VERSION)
++PKG_SOURCE_URL:=git://github.com/lefcha/imapfilter.git
++PKG_SOURCE_PROTO:=git
++PKG_SOURCE_VERSION:=$(PKG_REV)
  
  include $(INCLUDE_DIR)/package.mk
  
-@@ -22,7 +22,7 @@
+@@ -22,7 +25,7 @@
    CATEGORY:=Mail
    DEPENDS:=+liblua +libopenssl +libpcre
    TITLE:=IMAP server based email filtering
@@ -27,7 +29,7 @@ diff -urx .svn ../../../openwrt_trunk.orig/feeds/packages/mail/imapfilter/Makefi
  endef
  
  define Package/imapfilter/description
-@@ -37,33 +37,27 @@
+@@ -37,33 +40,27 @@
  	extension language.
  endef
  
@@ -70,15 +72,15 @@ diff -urx .svn ../../../openwrt_trunk.orig/feeds/packages/mail/imapfilter/Makefi
  endef
  
  $(eval $(call BuildPackage,imapfilter))
-diff -urx .svn ../../../openwrt_trunk.orig/feeds/packages/mail/imapfilter/patches/010-pathnames.patch ../../../openwrt_trunk/feeds/packages/mail/imapfilter/patches/010-pathnames.patch
---- ../../../openwrt_trunk.orig/feeds/packages/mail/imapfilter/patches/010-pathnames.patch	2012-07-18 00:48:37.000000000 +0400
-+++ ../../../openwrt_trunk/feeds/packages/mail/imapfilter/patches/010-pathnames.patch	2012-07-20 14:59:38.000000000 +0400
+diff -urx .svn ../../../downloads/openwrt_trunk-r36151/feeds/packages/mail/imapfilter/patches/010-pathnames.patch ../../../openwrt_trunk/feeds/packages/mail/imapfilter/patches/010-pathnames.patch
+--- ../../../downloads/openwrt_trunk-r36151/feeds/packages/mail/imapfilter/patches/010-pathnames.patch	2013-04-02 14:27:45.245540136 +0400
++++ ../../../openwrt_trunk/feeds/packages/mail/imapfilter/patches/010-pathnames.patch	2013-04-29 15:58:29.686184804 +0400
 @@ -1,31 +1,11 @@
 ---- a/pathnames.h
 -+++ b/pathnames.h
 -@@ -3,7 +3,7 @@
-+--- src/file.c.orig	2012-03-01 00:20:34.000000000 +0400
-++++ b/src/file.c	2012-07-20 01:11:52.000000000 +0400
++--- a/src/file.c
+++++ b/src/file.c
 +@@ -25,7 +25,7 @@
 + 	char *h, *i;
 + 
