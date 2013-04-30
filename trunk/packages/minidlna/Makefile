@@ -10,6 +10,7 @@ all: ./.done
 ./.done:
 	patch -p0 -i ./fix-path.patch
 	cp -f ./050-inotify_fix.patch ../../../openwrt_trunk/feeds/packages/multimedia/minidlna/patches/
+	cp -f ./060-file-streaming.patch ../../../openwrt_trunk/feeds/packages/multimedia/minidlna/patches/
 	cp ./S90minidlna ../../../openwrt_trunk/feeds/packages/multimedia/minidlna/files/
 	touch $@
 
