@@ -1,10 +1,20 @@
---- ../../../openwrt_trunk.orig/feeds/packages/mail/xmail/Makefile	2012-07-12 09:38:56.834155768 +0400
-+++ ../../../openwrt_trunk/feeds/packages/mail/xmail/Makefile	2012-07-12 22:36:58.951280485 +0400
-@@ -36,24 +36,17 @@
+--- ../../../downloads/openwrt_trunk-r36151/feeds/packages/mail/xmail/Makefile	2013-04-02 14:27:44.953540141 +0400
++++ ../../../openwrt_trunk/feeds/packages/mail/xmail/Makefile	2013-04-30 13:29:59.604773890 +0400
+@@ -9,7 +9,7 @@
+ 
+ PKG_NAME:=xmail
+ PKG_VERSION:=1.26
+-PKG_RELEASE:=3
++PKG_RELEASE:=3a
+ 
+ PKG_SOURCE:=$(PKG_NAME)-$(PKG_VERSION).tar.gz
+ PKG_SOURCE_URL:=http://www.xmailserver.org/
+@@ -36,24 +36,18 @@
  	CFLAGS="$(TARGET_CFLAGS)" \
  	$(MAKE) -C $(PKG_BUILD_DIR) -f Makefile.lnx \
  		$(TARGET_CONFIGURE_OPTS) \
 +		CPPFLAGS="$(TARGET_CPPFLAGS)" \
++		LDFLAGS="$(TARGET_LDFLAGS) -lpthread -lssl" \
  		LD="$(TARGET_CXX)" \
  		all
  	tar -cjf $(PKG_BUILD_DIR)/MailRoot.tar.bz2 -C $(PKG_BUILD_DIR)/MailRoot --exclude bin .
