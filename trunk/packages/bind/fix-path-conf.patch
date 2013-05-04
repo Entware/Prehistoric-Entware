@@ -1,0 +1,45 @@
+--- ../../../openwrt_trunk.orig/feeds/packages/net/bind/files/bind/named.conf.example	2013-04-03 12:11:08.410487396 +0400
++++ ../../../openwrt_trunk/feeds/packages/net/bind/files/bind/named.conf.example	2013-05-04 12:02:12.744910577 +0400
+@@ -1,7 +1,7 @@
+ // This is the primary configuration file for the BIND DNS server named.
+ 
+ options {
+-	directory "/tmp";
++	directory "/opt/tmp";
+ 
+ 	// If your ISP provided one or more IP addresses for stable 
+ 	// nameservers, you probably want to use them as forwarders.  
+@@ -18,7 +18,7 @@
+ // prime the server with knowledge of the root servers
+ zone "." {
+ 	type hint;
+-	file "/etc/bind/db.root";
++	file "/opt/etc/bind/db.root";
+ };
+ 
+ // be authoritative for the localhost forward and reverse zones, and for
+@@ -26,20 +26,20 @@
+ 
+ zone "localhost" {
+ 	type master;
+-	file "/etc/bind/db.local";
++	file "/opt/etc/bind/db.local";
+ };
+ 
+ zone "127.in-addr.arpa" {
+ 	type master;
+-	file "/etc/bind/db.127";
++	file "/opt/etc/bind/db.127";
+ };
+ 
+ zone "0.in-addr.arpa" {
+ 	type master;
+-	file "/etc/bind/db.0";
++	file "/opt/etc/bind/db.0";
+ };
+ 
+ zone "255.in-addr.arpa" {
+ 	type master;
+-	file "/etc/bind/db.255";
++	file "/opt/etc/bind/db.255";
+ };
