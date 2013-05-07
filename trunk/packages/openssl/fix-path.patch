@@ -20,7 +20,7 @@
  			$(TARGET_CPPFLAGS) \
  			$(TARGET_LDFLAGS) -ldl \
  			-DOPENSSL_SMALL_FOOTPRINT \
-@@ -151,29 +151,32 @@
+@@ -153,29 +153,32 @@
  endef
  
  define Build/InstallDev

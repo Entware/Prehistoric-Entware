@@ -1,6 +1,7 @@
---- ../../../downloads/openwrt_trunk-r35342/feeds/packages/net/strongswan/Makefile	2013-01-28 14:41:57.995275334 +0400
-+++ ../../../openwrt_trunk/feeds/packages/net/strongswan/Makefile	2013-01-28 14:43:40.123273476 +0400
-@@ -109,10 +109,7 @@
+diff -urx .svn ../../../downloads/openwrt_trunk-r36556/feeds/packages/net/strongswan/Makefile ../../../openwrt_trunk/feeds/packages/net/strongswan/Makefile
+--- ../../../downloads/openwrt_trunk-r36556/feeds/packages/net/strongswan/Makefile	2013-05-06 15:25:41.059204422 +0400
++++ ../../../openwrt_trunk/feeds/packages/net/strongswan/Makefile	2013-05-07 10:09:33.341980619 +0400
+@@ -110,10 +110,7 @@
  
  define Package/strongswan
  $(call Package/strongswan/Default)
@@ -12,7 +13,7 @@
  endef
  
  define Package/strongswan/config
-@@ -313,9 +310,9 @@
+@@ -315,9 +312,9 @@
    endef
  
    define Package/strongswan-mod-$(1)/install
@@ -25,7 +26,7 @@
  	$(call Plugin/$(1)/install,$$(1))
    endef
  
-@@ -336,23 +333,23 @@
+@@ -338,26 +335,26 @@
  	)
  
  ifneq ($(CONFIG_PACKAGE_strongswan-libfast),)
@@ -39,9 +40,11 @@
  define Package/strongswan/conffiles
 -/etc/ipsec.conf
 -/etc/ipsec.secrets
+-/etc/ipsec.user
 -/etc/strongswan.conf
 +/opt/etc/ipsec.conf
 +/opt/etc/ipsec.secrets
++/opt/etc/ipsec.user
 +/opt/etc/strongswan.conf
  endef
  
@@ -51,15 +54,19 @@
 -	$(INSTALL_DIR) $(1)/usr/lib/ipsec
 -	$(CP) $(PKG_INSTALL_DIR)/usr/lib/ipsec/{libstrongswan.so.*,libhydra.so.*} $(1)/usr/lib/ipsec/
 -	$(INSTALL_CONF) ./files/ipsec.secrets $(1)/etc/
+-	$(INSTALL_DIR) $(1)/etc/init.d
+-	$(INSTALL_BIN) ./files/ipsec.init $(1)/etc/init.d/ipsec
 +	$(INSTALL_DIR) $(1)/opt/etc
 +	$(CP) $(PKG_INSTALL_DIR)/opt/etc/strongswan.conf $(1)/opt/etc/
 +	$(INSTALL_DIR) $(1)/opt/lib/ipsec
 +	$(CP) $(PKG_INSTALL_DIR)/opt/lib/ipsec/{libstrongswan.so.*,libhydra.so.*} $(1)/opt/lib/ipsec/
 +	$(INSTALL_CONF) ./files/ipsec.secrets $(1)/opt/etc/
++	$(INSTALL_DIR) $(1)/opt/etc/init.d
++	$(INSTALL_BIN) ./files/S90strongswan $(1)/opt/etc/init.d
  endef
  
  define Package/strongswan-default/install
-@@ -368,61 +365,61 @@
+@@ -373,69 +370,69 @@
  endef
  
  define Package/strongswan-charon/install
@@ -96,6 +103,15 @@
 +	$(INSTALL_DIR) $(1)/opt/lib/ipsec/plugins
 +	$(CP) $(PKG_INSTALL_DIR)/opt/lib/ipsec/duplicheck $(1)/opt/lib/ipsec/
 +	$(CP) $(PKG_INSTALL_DIR)/opt/lib/ipsec/plugins/libstrongswan-duplicheck.so $(1)/opt/lib/ipsec/plugins/
+ endef
+ 
+ define Plugin/eap-radius/install
+-	$(INSTALL_DIR) $(1)/usr/lib/ipsec/plugins
+-	$(CP) $(PKG_INSTALL_DIR)/usr/lib/ipsec/libradius.so.* $(1)/usr/lib/ipsec/
+-	$(CP) $(PKG_INSTALL_DIR)/usr/lib/ipsec/plugins/libstrongswan-eap-radius.so $(1)/usr/lib/ipsec/plugins/
++	$(INSTALL_DIR) $(1)/opt/lib/ipsec/plugins
++	$(CP) $(PKG_INSTALL_DIR)/opt/lib/ipsec/libradius.so.* $(1)/opt/lib/ipsec/
++	$(CP) $(PKG_INSTALL_DIR)/opt/lib/ipsec/plugins/libstrongswan-eap-radius.so $(1)/opt/lib/ipsec/plugins/
  endef
  
  define Plugin/attr-sql/install
@@ -140,9 +156,13 @@
 -	$(INSTALL_DIR) $(1)/usr/lib/ipsec/plugins
 -	$(CP) $(PKG_INSTALL_DIR)/usr/lib/ipsec/{_updown,_updown_espmark} $(1)/usr/lib/ipsec/
 -	$(CP) $(PKG_INSTALL_DIR)/usr/lib/ipsec/plugins/libstrongswan-updown.so $(1)/usr/lib/ipsec/plugins/
+-	$(INSTALL_DIR) $(1)/etc
+-	$(INSTALL_CONF) ./files/ipsec.user $(1)/etc/
 +	$(INSTALL_DIR) $(1)/opt/lib/ipsec/plugins
 +	$(CP) $(PKG_INSTALL_DIR)/opt/lib/ipsec/{_updown,_updown_espmark} $(1)/opt/lib/ipsec/
 +	$(CP) $(PKG_INSTALL_DIR)/opt/lib/ipsec/plugins/libstrongswan-updown.so $(1)/opt/lib/ipsec/plugins/
++	$(INSTALL_DIR) $(1)/opt/etc
++	$(INSTALL_CONF) ./files/ipsec.user $(1)/opt/etc/
  endef
  
  define Plugin/whitelist/install
@@ -155,7 +175,7 @@
  endef
  
  $(eval $(call BuildPackage,strongswan))
-@@ -434,7 +431,7 @@
+@@ -447,7 +444,7 @@
  $(eval $(call BuildPackage,strongswan-utils))
  $(eval $(call BuildPlugin,addrblock,RFC 3779 address block constraint support,))
  $(eval $(call BuildPlugin,aes,AES crypto,))
@@ -164,3 +184,47 @@
  $(eval $(call BuildPlugin,agent,SSH agent signing,))
  $(eval $(call BuildPlugin,attr,file based config,))
  $(eval $(call BuildPlugin,attr-sql,SQL based config,+strongswan-mod-sql))
+diff -urx .svn ../../../downloads/openwrt_trunk-r36556/feeds/packages/net/strongswan/patches/201-no-modprobe.patch ../../../openwrt_trunk/feeds/packages/net/strongswan/patches/201-no-modprobe.patch
+--- ../../../downloads/openwrt_trunk-r36556/feeds/packages/net/strongswan/patches/201-no-modprobe.patch	2013-05-06 15:25:41.059204422 +0400
++++ ../../../openwrt_trunk/feeds/packages/net/strongswan/patches/201-no-modprobe.patch	2013-05-07 10:02:56.169982103 +0400
+@@ -5,7 +5,7 @@
+  		if (stat(PROC_MODULES, &stb) == 0)
+  		{
+ -			ignore_result(system("modprobe -qv af_key"));
+-+			ignore_result(system("insmod -qv af_key"));
+++			ignore_result(system("insmod af_key"));
+  		}
+  
+  		/* now test again */
+@@ -18,11 +18,11 @@
+ -		ignore_result(system("modprobe -qv ipcomp"));
+ -		ignore_result(system("modprobe -qv xfrm4_tunnel"));
+ -		ignore_result(system("modprobe -qv xfrm_user"));
+-+		ignore_result(system("insmod -qv ah4"));
+-+		ignore_result(system("insmod -qv esp4"));
+-+		ignore_result(system("insmod -qv ipcomp"));
+-+		ignore_result(system("insmod -qv xfrm4_tunnel"));
+-+		ignore_result(system("insmod -qv xfrm_user"));
+++		ignore_result(system("insmod ah4"));
+++		ignore_result(system("insmod esp4"));
+++		ignore_result(system("insmod ipcomp"));
+++		ignore_result(system("insmod xfrm4_tunnel"));
+++		ignore_result(system("insmod xfrm_user"));
+  	}
+  
+  	DBG2(DBG_APP, "found netkey IPsec stack");
+diff -urx .svn ../../../downloads/openwrt_trunk-r36556/feeds/packages/net/strongswan/patches/300-include-ipsec-user-script.patch ../../../openwrt_trunk/feeds/packages/net/strongswan/patches/300-include-ipsec-user-script.patch
+--- ../../../downloads/openwrt_trunk-r36556/feeds/packages/net/strongswan/patches/300-include-ipsec-user-script.patch	2013-05-06 15:25:41.059204422 +0400
++++ ../../../openwrt_trunk/feeds/packages/net/strongswan/patches/300-include-ipsec-user-script.patch	2013-05-07 10:00:57.073985036 +0400
+@@ -9,9 +9,9 @@
+ -# you need changes, make a copy of this under another name, and customize
+ -# that, and use the (left/right)updown parameters in ipsec.conf to make
+ -# strongSwan use yours instead of this default one.
+-+# Add your custom ip rules to the /etc/ipsec.user file if you need that functionality.
+++# Add your custom ip rules to the /opt/etc/ipsec.user file if you need that functionality.
+ +
+-+[ -e /etc/ipsec.user ] && . /etc/ipsec.user "$1"
+++[ -e /opt/etc/ipsec.user ] && . /opt/etc/ipsec.user "$1"
+  
+  # things that this script gets (from ipsec_pluto(8) man page)
+  #

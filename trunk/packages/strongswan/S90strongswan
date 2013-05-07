@@ -1,0 +1,19 @@
+#!/bin/sh
+
+PATH=/opt/sbin:/opt/bin:/opt/usr/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin
+
+start() {
+	ipsec start
+}
+
+stop() {
+	ipsec stop
+}
+
+restart() {
+	ipsec restart
+}
+
+reload() {
+	ipsec update
+}

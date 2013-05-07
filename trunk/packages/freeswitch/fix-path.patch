@@ -1,6 +1,6 @@
-diff -urx .svn ../../../downloads/openwrt_trunk-r35953/feeds/packages/net/freeswitch/files/freeswitch.default ../../../openwrt_trunk/feeds/packages/net/freeswitch/files/freeswitch.default
---- ../../../downloads/openwrt_trunk-r35953/feeds/packages/net/freeswitch/files/freeswitch.default	2013-03-11 09:29:41.270073781 +0400
-+++ ../../../openwrt_trunk/feeds/packages/net/freeswitch/files/freeswitch.default	2013-03-11 09:30:46.906072583 +0400
+diff -urx .svn ../../../downloads/openwrt_trunk-r35953/feeds/telephony/freeswitch/files/freeswitch.default ../../../openwrt_trunk/feeds/telephony/freeswitch/files/freeswitch.default
+--- ../../../downloads/openwrt_trunk-r35953/feeds/telephony/freeswitch/files/freeswitch.default	2013-03-11 09:29:41.270073781 +0400
++++ ../../../openwrt_trunk/feeds/telephony/freeswitch/files/freeswitch.default	2013-03-11 09:30:46.906072583 +0400
 @@ -1,11 +1,11 @@
  #FS_DIR="/opt"
 -FS_DIR_ETC="$FS_DIR/etc/freeswitch"
@@ -21,9 +21,9 @@ diff -urx .svn ../../../downloads/openwrt_trunk-r35953/feeds/packages/net/freesw
 +FS_DIR_VM_STORAGE="/opt/var/lib/freeswitch/storage" # NOTE: must be changed in config as well
  
  OPTIONS="-conf $FS_DIR_ETC -log $FS_DIR_LOG -db $FS_DIR_DB -mod $FS_DIR_MOD -htdocs $FS_DIR_HTDOCS -scripts $FS_DIR_SCRIPTS"
-diff -urx .svn ../../../downloads/openwrt_trunk-r35953/feeds/packages/net/freeswitch/Makefile ../../../openwrt_trunk/feeds/packages/net/freeswitch/Makefile
---- ../../../downloads/openwrt_trunk-r35953/feeds/packages/net/freeswitch/Makefile	2013-03-11 09:29:41.262073781 +0400
-+++ ../../../openwrt_trunk/feeds/packages/net/freeswitch/Makefile	2013-03-11 10:48:58.521988908 +0400
+diff -urx .svn ../../../downloads/openwrt_trunk-r35953/feeds/telephony/freeswitch/Makefile ../../../openwrt_trunk/feeds/telephony/freeswitch/Makefile
+--- ../../../downloads/openwrt_trunk-r35953/feeds/telephony/freeswitch/Makefile	2013-03-11 09:29:41.262073781 +0400
++++ ../../../openwrt_trunk/feeds/telephony/freeswitch/Makefile	2013-03-11 10:48:58.521988908 +0400
 @@ -192,7 +192,7 @@
  define Package/$(PKG_NAME)
  $(call Package/$(PKG_NAME)/Default)
@@ -427,9 +427,9 @@ diff -urx .svn ../../../downloads/openwrt_trunk-r35953/feeds/packages/net/freesw
  $(eval $(call BuildPlugin,speex,Speex codec,mod,,,,))
  $(eval $(call BuildPlugin,spidermonkey,JavaScript,vanilla,,,,@BROKEN)) # fails in js
  $(eval $(call BuildPlugin,spidermonkey-core_db,JavaScript DB,vanilla,,,,@BROKEN))
-diff -urx .svn ../../../downloads/openwrt_trunk-r35953/feeds/packages/net/freeswitch/patches/003-Makefile.am.patch ../../../openwrt_trunk/feeds/packages/net/freeswitch/patches/003-Makefile.am.patch
---- ../../../downloads/openwrt_trunk-r35953/feeds/packages/net/freeswitch/patches/003-Makefile.am.patch	2013-03-11 09:29:41.270073781 +0400
-+++ ../../../openwrt_trunk/feeds/packages/net/freeswitch/patches/003-Makefile.am.patch	2013-03-11 09:30:46.910072583 +0400
+diff -urx .svn ../../../downloads/openwrt_trunk-r35953/feeds/telephony/freeswitch/patches/003-Makefile.am.patch ../../../openwrt_trunk/feeds/telephony/freeswitch/patches/003-Makefile.am.patch
+--- ../../../downloads/openwrt_trunk-r35953/feeds/telephony/freeswitch/patches/003-Makefile.am.patch	2013-03-11 09:29:41.270073781 +0400
++++ ../../../openwrt_trunk/feeds/telephony/freeswitch/patches/003-Makefile.am.patch	2013-03-11 09:30:46.910072583 +0400
 @@ -30,9 +30,9 @@
   tiff-reconf:
   	cd libs/tiff-4.0.2 && autoreconf -fi
@@ -442,9 +442,9 @@ diff -urx .svn ../../../downloads/openwrt_trunk-r35953/feeds/packages/net/freesw
   	cd libs/tiff-4.0.2 && make
   
   python-reconf:
-diff -urx .svn ../../../downloads/openwrt_trunk-r35953/feeds/packages/net/freeswitch/patches/100-libs-esl-Makefile.patch ../../../openwrt_trunk/feeds/packages/net/freeswitch/patches/100-libs-esl-Makefile.patch
---- ../../../downloads/openwrt_trunk-r35953/feeds/packages/net/freeswitch/patches/100-libs-esl-Makefile.patch	2013-03-11 09:29:41.270073781 +0400
-+++ ../../../openwrt_trunk/feeds/packages/net/freeswitch/patches/100-libs-esl-Makefile.patch	2013-03-11 09:30:46.910072583 +0400
+diff -urx .svn ../../../downloads/openwrt_trunk-r35953/feeds/telephony/freeswitch/patches/100-libs-esl-Makefile.patch ../../../openwrt_trunk/feeds/telephony/freeswitch/patches/100-libs-esl-Makefile.patch
+--- ../../../downloads/openwrt_trunk-r35953/feeds/telephony/freeswitch/patches/100-libs-esl-Makefile.patch	2013-03-11 09:29:41.270073781 +0400
++++ ../../../openwrt_trunk/feeds/telephony/freeswitch/patches/100-libs-esl-Makefile.patch	2013-03-11 09:30:46.910072583 +0400
 @@ -5,7 +5,7 @@
   CXXFLAGS=$(BASE_FLAGS)
   MYLIB=libesl.a

@@ -1,5 +1,71 @@
---- ../../../openwrt_trunk.orig/feeds/packages/net/nginx/patches/200-config.patch
-+++ ../../../openwrt_trunk/feeds/packages/net/nginx/patches/200-config.patch
+diff -urx .svn ../../../downloads/openwrt_trunk-r36556/feeds/packages/net/nginx/Makefile ../../../openwrt_trunk/feeds/packages/net/nginx/Makefile
+--- ../../../downloads/openwrt_trunk-r36556/feeds/packages/net/nginx/Makefile	2013-05-06 15:25:41.443204414 +0400
++++ ../../../openwrt_trunk/feeds/packages/net/nginx/Makefile	2013-05-07 09:35:24.062013807 +0400
+@@ -73,7 +73,7 @@
+ config_files=nginx.conf mime.types fastcgi_params koi-utf koi-win win-utf
+ 
+ define Package/nginx/conffiles
+-/etc/nginx/
++/opt/etc/nginx/
+ endef
+ 
+ ADDITIONAL_MODULES:=
+@@ -172,18 +172,18 @@
+ define Build/Configure
+ 	# TODO: fix --crossbuild
+ 	(cd $(PKG_BUILD_DIR) ;\
+-		$(if $(CONFIG_NGINX_LUA),LUA_INC=$(STAGING_DIR)/usr/include LUA_LIB=$(STAGING_DIR)/usr/lib) \
++		$(if $(CONFIG_NGINX_LUA),LUA_INC=$(STAGING_DIR)/opt/include LUA_LIB=$(STAGING_DIR)/opt/lib) \
+ 		./configure \
+ 			--crossbuild=Linux::$(ARCH) \
+-			--prefix=/usr \
+-			--conf-path=/etc/nginx/nginx.conf \
+-			--error-log-path=/var/log/nginx/error.log \
+-			--pid-path=/var/run/nginx.pid \
+-			--lock-path=/var/lock/nginx.lock \
+-			--http-log-path=/var/log/nginx/access.log \
+-			--http-client-body-temp-path=/var/lib/nginx/body \
+-			--http-proxy-temp-path=/var/lib/nginx/proxy \
+-			--http-fastcgi-temp-path=/var/lib/nginx/fastcgi \
++			--prefix=/opt/share/nginx \
++			--conf-path=/opt/etc/nginx/nginx.conf \
++			--error-log-path=/opt/var/log/nginx/error.log \
++			--pid-path=/opt/var/run/nginx.pid \
++			--lock-path=/opt/var/lock/nginx.lock \
++			--http-log-path=/opt/var/log/nginx/access.log \
++			--http-client-body-temp-path=/opt/var/lib/nginx/body \
++			--http-proxy-temp-path=/opt/var/lib/nginx/proxy \
++			--http-fastcgi-temp-path=/opt/var/lib/nginx/fastcgi \
+ 			--with-cc="$(TARGET_CC)" \
+ 			--with-cc-opt="$(TARGET_CPPFLAGS) $(TARGET_CFLAGS)" \
+ 			--with-ld-opt="$(TARGET_LDFLAGS)" \
+@@ -191,12 +191,17 @@
+ endef
+ 
+ define Package/nginx/install
+-	$(INSTALL_DIR) $(1)/usr/sbin
+-	$(INSTALL_BIN) $(PKG_INSTALL_DIR)/usr/sbin/nginx $(1)/usr/sbin/
+-	$(INSTALL_DIR) $(1)/etc/nginx
+-	$(INSTALL_DATA) $(addprefix $(PKG_INSTALL_DIR)/etc/nginx/,$(config_files)) $(1)/etc/nginx/
+-	$(INSTALL_DIR) $(1)/etc/init.d
+-	$(INSTALL_BIN) ./files/nginx.init $(1)/etc/init.d/nginx
++	$(INSTALL_DIR) $(1)/opt/sbin
++	$(INSTALL_BIN) $(PKG_INSTALL_DIR)/opt/share/nginx/sbin/nginx $(1)/opt/sbin/
++	$(INSTALL_DIR) $(1)/opt/etc/nginx
++	$(INSTALL_DATA) $(addprefix $(PKG_INSTALL_DIR)/opt/etc/nginx/,$(config_files)) $(1)/opt/etc/nginx/
++	$(INSTALL_DIR) $(1)/opt/etc/init.d
++	$(INSTALL_BIN) ./files/S80nginx $(1)/opt/etc/init.d
++	$(INSTALL_DIR) $(1)/opt/share/nginx/html
++	$(INSTALL_DATA) $(PKG_INSTALL_DIR)/opt/share/nginx/html/{index,50x}.html $(1)/opt/share/nginx/html
++	$(INSTALL_DIR) $(1)/opt/var/{run,lock}
++	$(INSTALL_DIR) $(1)/opt/var/log/nginx
++	$(INSTALL_DIR) $(1)/opt/var/lib/nginx/{body,proxy,fastcgi}
+ endef
+ 
+ define Build/Prepare
+diff -urx .svn ../../../downloads/openwrt_trunk-r36556/feeds/packages/net/nginx/patches/200-config.patch ../../../openwrt_trunk/feeds/packages/net/nginx/patches/200-config.patch
+--- ../../../downloads/openwrt_trunk-r36556/feeds/packages/net/nginx/patches/200-config.patch	2013-05-06 15:25:41.503204410 +0400
++++ ../../../openwrt_trunk/feeds/packages/net/nginx/patches/200-config.patch	2013-05-07 09:35:24.058013942 +0400
 @@ -1,18 +1,43 @@
 ---- a/conf/nginx.conf
 -+++ b/conf/nginx.conf
@@ -55,67 +121,3 @@
 + 
 +         location / {
 +             root   html;
---- ../../../openwrt_trunk/feeds/packages/net/nginx/Makefile.orig	2012-12-06 15:27:26.469111569 +0400
-+++ ../../../openwrt_trunk/feeds/packages/net/nginx/Makefile	2012-12-07 12:45:53.295715932 +0400
-@@ -72,7 +72,7 @@
- config_files=nginx.conf mime.types fastcgi_params koi-utf koi-win win-utf
- 
- define Package/nginx/conffiles
--/etc/nginx/
-+/opt/etc/nginx/
- endef
- 
- ADDITIONAL_MODULES:=
-@@ -173,18 +173,18 @@
- define Build/Configure
- 	# TODO: fix --crossbuild
- 	(cd $(PKG_BUILD_DIR) ;\
--		$(if $(CONFIG_NGINX_MODULE_LUA),LUA_INC=$(STAGING_DIR)/usr/include LUA_LIB=$(STAGING_DIR)/usr/lib) \
-+		$(if $(CONFIG_NGINX_MODULE_LUA),LUA_INC=$(STAGING_DIR)/opt/include LUA_LIB=$(STAGING_DIR)/opt/lib) \
- 		./configure \
- 			--crossbuild=Linux::$(ARCH) \
--			--prefix=/usr \
--			--conf-path=/etc/nginx/nginx.conf \
--			--error-log-path=/var/log/nginx/error.log \
--			--pid-path=/var/run/nginx.pid \
--			--lock-path=/var/lock/nginx.lock \
--			--http-log-path=/var/log/nginx/access.log \
--			--http-client-body-temp-path=/var/lib/nginx/body \
--			--http-proxy-temp-path=/var/lib/nginx/proxy \
--			--http-fastcgi-temp-path=/var/lib/nginx/fastcgi \
-+			--prefix=/opt/share/nginx \
-+			--conf-path=/opt/etc/nginx/nginx.conf \
-+			--error-log-path=/opt/var/log/nginx/error.log \
-+			--pid-path=/opt/var/run/nginx.pid \
-+			--lock-path=/opt/var/lock/nginx.lock \
-+			--http-log-path=/opt/var/log/nginx/access.log \
-+			--http-client-body-temp-path=/opt/var/lib/nginx/body \
-+			--http-proxy-temp-path=/opt/var/lib/nginx/proxy \
-+			--http-fastcgi-temp-path=/opt/var/lib/nginx/fastcgi \
- 			--with-cc="$(TARGET_CC)" \
- 			--with-cc-opt="$(TARGET_CPPFLAGS) $(TARGET_CFLAGS)" \
- 			--with-ld-opt="$(TARGET_LDFLAGS)" \
-@@ -192,12 +192,17 @@
- endef
- 
- define Package/nginx/install
--	$(INSTALL_DIR) $(1)/usr/sbin
--	$(INSTALL_BIN) $(PKG_INSTALL_DIR)/usr/sbin/nginx $(1)/usr/sbin/
--	$(INSTALL_DIR) $(1)/etc/nginx
--	$(INSTALL_DATA) $(addprefix $(PKG_INSTALL_DIR)/etc/nginx/,$(config_files)) $(1)/etc/nginx/
--	$(INSTALL_DIR) $(1)/etc/init.d
--	$(INSTALL_BIN) ./files/nginx.init $(1)/etc/init.d/nginx
-+	$(INSTALL_DIR) $(1)/opt/sbin
-+	$(INSTALL_BIN) $(PKG_INSTALL_DIR)/opt/share/nginx/sbin/nginx $(1)/opt/sbin/
-+	$(INSTALL_DIR) $(1)/opt/etc/nginx
-+	$(INSTALL_DATA) $(addprefix $(PKG_INSTALL_DIR)/opt/etc/nginx/,$(config_files)) $(1)/opt/etc/nginx/
-+	$(INSTALL_DIR) $(1)/opt/etc/init.d
-+	$(INSTALL_BIN) ./files/S80nginx $(1)/opt/etc/init.d
-+	$(INSTALL_DIR) $(1)/opt/share/nginx/html
-+	$(INSTALL_DATA) $(PKG_INSTALL_DIR)/opt/share/nginx/html/{index,50x}.html $(1)/opt/share/nginx/html
-+	$(INSTALL_DIR) $(1)/opt/var/{run,lock}
-+	$(INSTALL_DIR) $(1)/opt/var/log/nginx
-+	$(INSTALL_DIR) $(1)/opt/var/lib/nginx/{body,proxy,fastcgi}
- endef
- 
- define Build/Prepare

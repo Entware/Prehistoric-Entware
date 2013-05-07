@@ -1,5 +1,5 @@
---- ../../../downloads/openwrt_trunk-r34120/feeds/packages/net/asterisk-1.8.x/Makefile	2012-11-08 16:16:42.774940244 +0400
-+++ ../../../openwrt_trunk/feeds/packages/net/asterisk-1.8.x/Makefile	2012-11-09 09:14:50.049828832 +0400
+--- ../../../downloads/openwrt_trunk-r34120/feeds/telephony/asterisk-1.8.x/Makefile
++++ ../../../openwrt_trunk/feeds/telephony/asterisk-1.8.x/Makefile
 @@ -71,7 +71,7 @@
  define Package/asterisk18-app-meetme
  $(call Package/asterisk18/Default)

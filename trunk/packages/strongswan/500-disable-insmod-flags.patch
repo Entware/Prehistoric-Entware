@@ -1,31 +1,3 @@
---- a/src/starter/netkey.c
-+++ b/src/starter/netkey.c
-@@ -31,7 +31,7 @@
- 		/* af_key module makes the netkey proc interface visible */
- 		if (stat(PROC_MODULES, &stb) == 0)
- 		{
--			ignore_result(system("insmod -qv af_key"));
-+			ignore_result(system("insmod af_key"));
- 		}
- 
- 		/* now test again */
-@@ -45,11 +45,11 @@
- 	/* make sure that all required IPsec modules are loaded */
- 	if (stat(PROC_MODULES, &stb) == 0)
- 	{
--		ignore_result(system("insmod -qv ah4"));
--		ignore_result(system("insmod -qv esp4"));
--		ignore_result(system("insmod -qv ipcomp"));
--		ignore_result(system("insmod -qv xfrm4_tunnel"));
--		ignore_result(system("insmod -qv xfrm_user"));
-+		ignore_result(system("insmod ah4"));
-+		ignore_result(system("insmod esp4"));
-+		ignore_result(system("insmod ipcomp"));
-+		ignore_result(system("insmod xfrm4_tunnel"));
-+		ignore_result(system("insmod xfrm_user"));
- 	}
- 
- 	DBG2(DBG_APP, "found netkey IPsec stack");
 --- a/src/starter/klips.c
 +++ b/src/starter/klips.c
 @@ -30,7 +30,7 @@
@@ -33,7 +5,7 @@
  		if (stat(PROC_MODULES, &stb) == 0)
  		{
 -			ignore_result(system("modprobe -qv ipsec"));
-+			ignore_result(system("modprobe ipsec"));
++			ignore_result(system("insmod ipsec"));
  		}
  
  		/* now test again */
@@ -44,9 +16,9 @@
 -	ignore_result(system("modprobe -qv ipsec_aes"));
 -	ignore_result(system("modprobe -qv ipsec_blowfish"));
 -	ignore_result(system("modprobe -qv ipsec_sha2"));
-+	ignore_result(system("modprobe ipsec_aes"));
-+	ignore_result(system("modprobe ipsec_blowfish"));
-+	ignore_result(system("modprobe ipsec_sha2"));
++	ignore_result(system("insmod ipsec_aes"));
++	ignore_result(system("insmod ipsec_blowfish"));
++	ignore_result(system("insmod ipsec_sha2"));
  
  	DBG2(DBG_APP, "found KLIPS IPsec stack");
  	return TRUE;

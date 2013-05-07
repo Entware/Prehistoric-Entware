@@ -1,14 +1,5 @@
---- ../../../downloads/openwrt_trunk-r35342/package/libs/ncurses/Makefile	2013-01-28 14:42:14.415275036 +0400
-+++ ../../../openwrt_trunk/package/libs/ncurses/Makefile	2013-01-28 14:43:25.707273739 +0400
-@@ -9,7 +9,7 @@
- 
- PKG_NAME:=ncurses
- PKG_VERSION:=5.7
--PKG_RELEASE:=5
-+PKG_RELEASE:=6a
- 
- PKG_BUILD_DIR:=$(BUILD_DIR)/$(BUILD_VARIANT)/$(PKG_NAME)-$(PKG_VERSION)
- PKG_SOURCE:=$(PKG_NAME)-$(PKG_VERSION).tar.gz
+--- ../../../downloads/openwrt_trunk-r35342/package/libs/ncurses/Makefile
++++ ../../../openwrt_trunk/package/libs/ncurses/Makefile
 @@ -49,6 +49,16 @@
    VARIANT:=libncursesw
  endef
