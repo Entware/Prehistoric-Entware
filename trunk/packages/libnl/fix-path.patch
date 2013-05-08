@@ -1,6 +1,6 @@
---- ../../../downloads/openwrt_trunk-r36556/package/libs/libnl/Makefile	2013-05-06 15:25:50.779204245 +0400
-+++ ../../../openwrt_trunk/package/libs/libnl/Makefile	2013-05-07 09:12:45.778036353 +0400
-@@ -41,16 +41,16 @@
+--- ../../../openwrt_trunk.orig/package/libs/libnl/Makefile
++++ ../../../openwrt_trunk/package/libs/libnl/Makefile
+@@ -40,17 +40,17 @@
  define Build/InstallDev
  	$(INSTALL_DIR) $(1)
  	$(CP) $(PKG_INSTALL_DIR)/* $(1)/
@@ -12,15 +12,17 @@
  
  define Package/libnl/install
 -	$(INSTALL_DIR) $(1)/usr/lib
--	$(CP) $(PKG_INSTALL_DIR)/usr/lib/libnl-route-3.so.* $(1)/usr/lib/
--	$(CP) $(PKG_INSTALL_DIR)/usr/lib/libnl-genl-3.so.* $(1)/usr/lib/
--	$(CP) $(PKG_INSTALL_DIR)/usr/lib/libnl-nf-3.so.* $(1)/usr/lib/
--	$(CP) $(PKG_INSTALL_DIR)/usr/lib/libnl-3.so.* $(1)/usr/lib/
+-	$(CP) $(PKG_INSTALL_DIR)/usr/lib/libnl-route.so.* $(1)/usr/lib/
+-	$(CP) $(PKG_INSTALL_DIR)/usr/lib/libnl-genl.so.* $(1)/usr/lib/
+-	$(CP) $(PKG_INSTALL_DIR)/usr/lib/libnl-nf.so.* $(1)/usr/lib/
+-	$(CP) $(PKG_INSTALL_DIR)/usr/lib/libnl-route.so.* $(1)/usr/lib/
+-	$(CP) $(PKG_INSTALL_DIR)/usr/lib/libnl.so.* $(1)/usr/lib/
 +	$(INSTALL_DIR) $(1)/opt/lib
-+	$(CP) $(PKG_INSTALL_DIR)/opt/lib/libnl-route-3.so.* $(1)/opt/lib/
-+	$(CP) $(PKG_INSTALL_DIR)/opt/lib/libnl-genl-3.so.* $(1)/opt/lib/
-+	$(CP) $(PKG_INSTALL_DIR)/opt/lib/libnl-nf-3.so.* $(1)/opt/lib/
-+	$(CP) $(PKG_INSTALL_DIR)/opt/lib/libnl-3.so.* $(1)/opt/lib/
++	$(CP) $(PKG_INSTALL_DIR)/opt/lib/libnl-route.so.* $(1)/opt/lib/
++	$(CP) $(PKG_INSTALL_DIR)/opt/lib/libnl-genl.so.* $(1)/opt/lib/
++	$(CP) $(PKG_INSTALL_DIR)/opt/lib/libnl-nf.so.* $(1)/opt/lib/
++	$(CP) $(PKG_INSTALL_DIR)/opt/lib/libnl-route.so.* $(1)/opt/lib/
++	$(CP) $(PKG_INSTALL_DIR)/opt/lib/libnl.so.* $(1)/opt/lib/
  endef
  
  $(eval $(call BuildPackage,libnl))

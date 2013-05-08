@@ -17,6 +17,7 @@ packages_compile: .packages_compiled
 .packages_compiled:
 	make -C "$(TOP)/openwrt_trunk" tools/compile
 	make -C "$(TOP)/openwrt_trunk" tools/install
+	@echo Press \"Ctrl + c\" if you don\'t need to compile whole repository...
 	make -C "$(TOP)/openwrt_trunk" package/compile
 	make -C "$(TOP)/openwrt_trunk" package/index
 	touch $@
@@ -42,10 +43,11 @@ buildroot: .buildroot_installed
 		cp -f ./buildroot/feeds.conf $(TOP)/openwrt_trunk ; \
 		sed -i 's,packages@XXXXX,packages@$(OPENWRT_REVISION),g' $(TOP)/openwrt_trunk/feeds.conf ; \
 		(cd $(TOP)/openwrt_trunk ; \
-		    ./scripts/feeds update packages ; \
-		    ./scripts/feeds install -a -p packages ; \
-		    ./scripts/feeds update rtndev ; \
-		    ./scripts/feeds install -a -p rtndev) ; \
+		    for feed in packages telephony rtndev ; \
+		    do \
+			./scripts/feeds update $$feed ; \
+			./scripts/feeds install -a -p $$feed ; \
+		    done) ; \
 		mkdir -p $(TOP)/downloads/openwrt_trunk-r$(OPENWRT_REVISION) ; \
 		cp --recursive --update --force $(TOP)/openwrt_trunk/* $(TOP)/downloads/openwrt_trunk-r$(OPENWRT_REVISION) ; \
 	fi

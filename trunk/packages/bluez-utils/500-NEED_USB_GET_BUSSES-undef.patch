@@ -1,0 +1,11 @@
+--- ./tools/dfubabel.c.orig	2013-05-08 09:43:24.995055539 +0400
++++ ./tools/dfubabel.c	2013-05-08 09:44:05.131051616 +0400
+@@ -34,7 +34,7 @@
+ 
+ #include <usb.h>
+ 
+-#ifdef NEED_USB_GET_BUSSES
++#if 0
+ static inline struct usb_bus *usb_get_busses(void)
+ {
+ 	return usb_busses;

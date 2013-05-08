@@ -1,0 +1,106 @@
+Index: ../../../openwrt_trunk/package/libs/libnl/Makefile
+===================================================================
+--- ../../../openwrt_trunk/package/libs/libnl/Makefile	(revision 36394)
++++ ../../../openwrt_trunk/package/libs/libnl/Makefile	(revision 33657)
+@@ -1,5 +1,5 @@
+ #
+-# Copyright (C) 2006-2013 OpenWrt.org
++# Copyright (C) 2006-2009 OpenWrt.org
+ #
+ # This is free software, licensed under the GNU General Public License v2.
+ # See /LICENSE for more information.
+@@ -8,12 +8,12 @@
+ include $(TOPDIR)/rules.mk
+ 
+ PKG_NAME:=libnl
+-PKG_VERSION:=3.2.21
++PKG_VERSION:=2.0
+ PKG_RELEASE:=1
+ 
+ PKG_SOURCE:=$(PKG_NAME)-$(PKG_VERSION).tar.gz
+ PKG_SOURCE_URL:=http://www.infradead.org/~tgr/libnl/files/
+-PKG_MD5SUM:=6fe7136558a9071e70673dcda38545b3
++PKG_MD5SUM:=6aaf1e9802a17a7d702bb0638044ffa7
+ 
+ include $(INCLUDE_DIR)/package.mk
+ 
+@@ -21,7 +21,6 @@
+   SECTION:=libs
+   CATEGORY:=Libraries
+   TITLE:=netlink socket library
+-  DEPENDS:=+libpthread
+   URL:=http://people.suug.ch/~tgr/libnl/
+ endef
+ 
+@@ -47,10 +46,11 @@
+ 
+ define Package/libnl/install
+ 	$(INSTALL_DIR) $(1)/usr/lib
+-	$(CP) $(PKG_INSTALL_DIR)/usr/lib/libnl-route-3.so.* $(1)/usr/lib/
+-	$(CP) $(PKG_INSTALL_DIR)/usr/lib/libnl-genl-3.so.* $(1)/usr/lib/
+-	$(CP) $(PKG_INSTALL_DIR)/usr/lib/libnl-nf-3.so.* $(1)/usr/lib/
+-	$(CP) $(PKG_INSTALL_DIR)/usr/lib/libnl-3.so.* $(1)/usr/lib/
++	$(CP) $(PKG_INSTALL_DIR)/usr/lib/libnl-route.so.* $(1)/usr/lib/
++	$(CP) $(PKG_INSTALL_DIR)/usr/lib/libnl-genl.so.* $(1)/usr/lib/
++	$(CP) $(PKG_INSTALL_DIR)/usr/lib/libnl-nf.so.* $(1)/usr/lib/
++	$(CP) $(PKG_INSTALL_DIR)/usr/lib/libnl-route.so.* $(1)/usr/lib/
++	$(CP) $(PKG_INSTALL_DIR)/usr/lib/libnl.so.* $(1)/usr/lib/
+ endef
+ 
+ $(eval $(call BuildPackage,libnl))
+Index: ../../../openwrt_trunk/package/libs/libnl/patches/160-update_includes_for_iw.patch
+===================================================================
+--- ../../../openwrt_trunk/package/libs/libnl/patches/160-update_includes_for_iw.patch	(revision 0)
++++ ../../../openwrt_trunk/package/libs/libnl/patches/160-update_includes_for_iw.patch	(revision 33657)
+@@ -0,0 +1,34 @@
++--- a/include/linux/genetlink.h
+++++ b/include/linux/genetlink.h
++@@ -39,6 +39,9 @@ enum {
++ 	CTRL_CMD_NEWOPS,
++ 	CTRL_CMD_DELOPS,
++ 	CTRL_CMD_GETOPS,
+++	CTRL_CMD_NEWMCAST_GRP,
+++	CTRL_CMD_DELMCAST_GRP,
+++	CTRL_CMD_GETMCAST_GRP, /* unused */
++ 	__CTRL_CMD_MAX,
++ };
++ 
++@@ -52,6 +55,7 @@ enum {
++ 	CTRL_ATTR_HDRSIZE,
++ 	CTRL_ATTR_MAXATTR,
++ 	CTRL_ATTR_OPS,
+++	CTRL_ATTR_MCAST_GROUPS,
++ 	__CTRL_ATTR_MAX,
++ };
++ 
++@@ -66,4 +70,13 @@ enum {
++ 
++ #define CTRL_ATTR_OP_MAX (__CTRL_ATTR_OP_MAX - 1)
++ 
+++enum {
+++	CTRL_ATTR_MCAST_GRP_UNSPEC,
+++	CTRL_ATTR_MCAST_GRP_NAME,
+++	CTRL_ATTR_MCAST_GRP_ID,
+++	__CTRL_ATTR_MCAST_GRP_MAX,
+++};
+++
+++#define CTRL_ATTR_MCAST_GRP_MAX (__CTRL_ATTR_MCAST_GRP_MAX - 1)
+++
++ #endif	/* __LINUX_GENERIC_NETLINK_H */
+Index: ../../../openwrt_trunk/package/libs/libnl/patches/110-offsetof.patch
+===================================================================
+--- ../../../openwrt_trunk/package/libs/libnl/patches/110-offsetof.patch	(revision 0)
++++ ../../../openwrt_trunk/package/libs/libnl/patches/110-offsetof.patch	(revision 33657)
+@@ -0,0 +1,12 @@
++--- a/include/netlink-local.h
+++++ b/include/netlink-local.h
++@@ -337,7 +337,9 @@ static inline int nl_cb_call(struct nl_c
++ }
++ 
++ #define ARRAY_SIZE(X) (sizeof(X) / sizeof((X)[0]))
+++#ifndef offsetof
++ #define offsetof(TYPE, MEMBER) ((size_t) &((TYPE *)0)->MEMBER)
+++#endif
++ 
++ #define __init __attribute__ ((constructor))
++ #define __exit __attribute__ ((destructor))

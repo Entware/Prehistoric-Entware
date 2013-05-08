@@ -1,0 +1,68 @@
+--- ../../../downloads/openwrt_trunk-r36569/feeds/packages/utils/xz/Makefile	2013-05-07 10:43:08.397939356 +0400
++++ ../../../openwrt_trunk/feeds/packages/utils/xz/Makefile	2013-05-07 11:15:22.189904132 +0400
+@@ -85,20 +85,20 @@
+ 	--disable-werror
+ 
+ define Build/InstallDev
+-	$(INSTALL_DIR) $(1)/usr/include/lzma
++	$(INSTALL_DIR) $(1)/opt/include/lzma
+ 	$(CP) \
+-		$(PKG_INSTALL_DIR)/usr/include/lzma.h \
+-		$(1)/usr/include/
++		$(PKG_INSTALL_DIR)/opt/include/lzma.h \
++		$(1)/opt/include/
+ 	$(CP) \
+-		$(PKG_INSTALL_DIR)/usr/include/lzma/*.h \
+-		$(1)/usr/include/lzma/
+-	$(INSTALL_DIR) $(1)/usr/lib/pkgconfig
++		$(PKG_INSTALL_DIR)/opt/include/lzma/*.h \
++		$(1)/opt/include/lzma/
++	$(INSTALL_DIR) $(1)/opt/lib/pkgconfig
+ 	$(CP) \
+-		$(PKG_INSTALL_DIR)/usr/lib/pkgconfig/liblzma.pc \
+-		$(1)/usr/lib/pkgconfig/
++		$(PKG_INSTALL_DIR)/opt/lib/pkgconfig/liblzma.pc \
++		$(1)/opt/lib/pkgconfig/
+ 	$(CP) \
+-		$(PKG_INSTALL_DIR)/usr/lib/liblzma.* \
+-		$(1)/usr/lib/
++		$(PKG_INSTALL_DIR)/opt/lib/liblzma.* \
++		$(1)/opt/lib/
+ endef
+ 
+ define Package/xz/install
+@@ -107,15 +107,15 @@
+ 
+ define BuildPlugin
+   define Package/$(1)/install
+-	$(INSTALL_DIR) $$(1)/usr/bin
++	$(INSTALL_DIR) $$(1)/opt/bin
+ ifneq ($(XZ_DEPENDS_$(2)),)
+ 	$(CP) \
+-		$(PKG_INSTALL_DIR)/usr/bin/$(2) \
+-		$$(1)/usr/bin/
++		$(PKG_INSTALL_DIR)/opt/bin/$(2) \
++		$$(1)/opt/bin/
+ else
+ 	$(INSTALL_BIN) \
+-		$(PKG_INSTALL_DIR)/usr/bin/$(2) \
+-		$$(1)/usr/bin/
++		$(PKG_INSTALL_DIR)/opt/bin/$(2) \
++		$$(1)/opt/bin/
+ endif
+   endef
+ 
+@@ -123,10 +123,10 @@
+ endef
+ 
+ define Package/liblzma/install
+-	$(INSTALL_DIR) $(1)/usr/lib
++	$(INSTALL_DIR) $(1)/opt/lib
+ 	$(CP) \
+-		$(PKG_INSTALL_DIR)/usr/lib/liblzma.so* \
+-		$(1)/usr/lib/
++		$(PKG_INSTALL_DIR)/opt/lib/liblzma.so* \
++		$(1)/opt/lib/
+ endef
+ 
+ $(eval $(call BuildPackage,xz))
