@@ -1,6 +1,15 @@
-diff -urx .svn ../../../downloads/openwrt_trunk-r36151/feeds/packages/mail/dovecot/Makefile ../../../openwrt_trunk/feeds/packages/mail/dovecot/Makefile
---- ../../../downloads/openwrt_trunk-r36151/feeds/packages/mail/dovecot/Makefile	2013-04-02 14:27:45.193540138 +0400
-+++ ../../../openwrt_trunk/feeds/packages/mail/dovecot/Makefile	2013-04-12 10:06:22.195119943 +0400
+diff -urx .svn ../../../downloads/openwrt_trunk-r36569/feeds/packages/mail/dovecot/Makefile ../../../openwrt_trunk/feeds/packages/mail/dovecot/Makefile
+--- ../../../downloads/openwrt_trunk-r36569/feeds/packages/mail/dovecot/Makefile	2013-05-07 10:43:19.493939156 +0400
++++ ../../../openwrt_trunk/feeds/packages/mail/dovecot/Makefile	2013-05-13 11:07:40.395094834 +0400
+@@ -9,7 +9,7 @@
+ 
+ PKG_NAME:=dovecot
+ PKG_VERSION:=1.2.13
+-PKG_RELEASE:=2
++PKG_RELEASE:=2a
+ 
+ PKG_SOURCE:=$(PKG_NAME)-$(PKG_VERSION).tar.gz
+ PKG_SOURCE_URL:=http://www.dovecot.org/releases/1.2
 @@ -36,7 +36,7 @@
  	--without-gssapi \
  	--without-pam \
@@ -39,9 +48,9 @@ diff -urx .svn ../../../downloads/openwrt_trunk-r36151/feeds/packages/mail/dovec
  endef
  
  $(eval $(call BuildPackage,dovecot))
-diff -urx .svn ../../../downloads/openwrt_trunk-r36151/feeds/packages/mail/dovecot/patches/002-example_conf.patch ../../../openwrt_trunk/feeds/packages/mail/dovecot/patches/002-example_conf.patch
---- ../../../downloads/openwrt_trunk-r36151/feeds/packages/mail/dovecot/patches/002-example_conf.patch	2013-04-02 14:27:45.197540138 +0400
-+++ ../../../openwrt_trunk/feeds/packages/mail/dovecot/patches/002-example_conf.patch	2013-04-12 09:56:49.207130216 +0400
+diff -urx .svn ../../../downloads/openwrt_trunk-r36569/feeds/packages/mail/dovecot/patches/002-example_conf.patch ../../../openwrt_trunk/feeds/packages/mail/dovecot/patches/002-example_conf.patch
+--- ../../../downloads/openwrt_trunk-r36569/feeds/packages/mail/dovecot/patches/002-example_conf.patch	2013-05-07 10:43:19.497939156 +0400
++++ ../../../openwrt_trunk/feeds/packages/mail/dovecot/patches/002-example_conf.patch	2013-05-08 13:20:38.518819231 +0400
 @@ -5,23 +5,23 @@
   protocol imap {
     # Login executable location.
