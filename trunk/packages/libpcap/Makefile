@@ -9,6 +9,7 @@ all: ./.done
 
 ./.done:
 	patch -p0 -i ./fix-path.patch
+	cp -f ./500-bcrm-et-workaround.patch ../../../openwrt_trunk/package/libs/libpcap/patches/
 	touch $@
 
 clean:

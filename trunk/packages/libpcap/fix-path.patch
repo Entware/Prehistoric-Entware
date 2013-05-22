@@ -1,5 +1,14 @@
---- ../../../openwrt_trunk.orig/package/libs/libpcap/Makefile
-+++ ../../../openwrt_trunk/package/libs/libpcap/Makefile
+--- ../../../downloads/openwrt_trunk-r36569/package/libs/libpcap/Makefile	2013-05-07 10:43:21.241939125 +0400
++++ ../../../openwrt_trunk/package/libs/libpcap/Makefile	2013-05-22 18:11:35.584469457 +0400
+@@ -9,7 +9,7 @@
+ 
+ PKG_NAME:=libpcap
+ PKG_VERSION:=1.3.0
+-PKG_RELEASE:=1
++PKG_RELEASE:=1a
+ 
+ PKG_SOURCE:=$(PKG_NAME)-$(PKG_VERSION).tar.gz
+ PKG_SOURCE_URL:=http://www.tcpdump.org/release/
 @@ -74,16 +74,16 @@
  endef
  

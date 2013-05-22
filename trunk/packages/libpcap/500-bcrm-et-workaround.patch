@@ -1,0 +1,11 @@
+--- a/pcap-linux.c
++++ b/pcap-linux.c
+@@ -4940,7 +4940,7 @@
+ 	eval.cmd = cmd;
+ 	ifr.ifr_data = (caddr_t)&eval;
+ 	if (ioctl(handle->fd, SIOCETHTOOL, &ifr) == -1) {
+-		if (errno == EOPNOTSUPP) {
++		if (errno == EOPNOTSUPP || errno == EINVAL) {
+ 			/*
+ 			 * OK, let's just return 0, which, in our
+ 			 * case, either means "no, what we're asking
