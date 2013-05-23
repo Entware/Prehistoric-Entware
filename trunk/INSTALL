@@ -3,14 +3,16 @@ These are generic installation instructions.
 Requirements
 ============
 
-- A generic Linux compilation environment, tested on Debian 6 and Ubuntu 11.х:
+- A generic Linux compilation environment, tested on Debian 6, Debian 7, Ubuntu 11.х, Ubuntu 12.04:
    $ sudo apt-get install autoconf automake bash bison bzip2 \
    diffutils file flex g++ gawk groff-base libncurses-dev libtool \
    libslang2 make patch perl sed shtool subversion tar texinfo \
    zlib1g zlib1g-dev git-core gettext libexpat1-dev libssl-dev \
-   cvs gperf unzip python libxml-parser-perl gcc-multilib doxygen
+   cvs gperf unzip python libxml-parser-perl doxygen
 
-Note: doxygen is for freeswitch package only, since r35953.
+Note1: doxygen is for freeswitch package only, since r35953.
+Note2: 64 bit distro requires also gcc-multilib
+Note3: Ubuntu 13.x is not recommended now (may 2013)
 
 - At least 20Gb of disk space,
 - Approx. 5 hours to compile all stuff.
