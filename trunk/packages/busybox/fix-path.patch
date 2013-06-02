@@ -7,7 +7,7 @@ diff -urx .svn ../../../downloads/openwrt_trunk-r36151/package/busybox/Makefile 
  PKG_VERSION:=1.19.4
 -PKG_RELEASE:=6
 -PKG_FLAGS:=essential
-+PKG_RELEASE:=6a
++PKG_RELEASE:=6b
  
  PKG_SOURCE:=$(PKG_NAME)-$(PKG_VERSION).tar.bz2
  PKG_SOURCE_URL:=http://www.busybox.net/downloads \
