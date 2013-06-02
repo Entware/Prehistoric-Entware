@@ -1,0 +1,22 @@
+--- ../../../openwrt_trunk.orig/feeds/packages/libs/jansson/Makefile	2013-05-10 18:57:39.578041004 +0400
++++ ../../../openwrt_trunk/feeds/packages/libs/jansson/Makefile	2013-06-02 18:49:22.907908693 +0400
+@@ -30,14 +30,14 @@
+ TARGET_CFLAGS += $(FPIC)
+ 
+ define Build/InstallDev
+-	$(INSTALL_DIR) $(1)/usr/{lib,include}
+-	$(CP) $(PKG_INSTALL_DIR)/usr/lib/libjansson* $(1)/usr/lib
+-	$(CP) $(PKG_INSTALL_DIR)/usr/include/* $(1)/usr/include/
++	$(INSTALL_DIR) $(1)/opt/{lib,include}
++	$(CP) $(PKG_INSTALL_DIR)/opt/lib/libjansson* $(1)/opt/lib
++	$(CP) $(PKG_INSTALL_DIR)/opt/include/* $(1)/opt/include/
+ endef
+ 
+ define Package/jansson/install
+-	$(INSTALL_DIR) $(1)/usr/lib
+-	$(CP) $(PKG_INSTALL_DIR)/usr/lib/libjansson*so* $(1)/usr/lib/
++	$(INSTALL_DIR) $(1)/opt/lib
++	$(CP) $(PKG_INSTALL_DIR)/opt/lib/libjansson*so* $(1)/opt/lib/
+ endef
+ 
+ $(eval $(call BuildPackage,jansson))
