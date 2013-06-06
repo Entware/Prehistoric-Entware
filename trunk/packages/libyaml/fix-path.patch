@@ -1,0 +1,22 @@
+--- ../../../openwrt_trunk.orig/feeds/packages/libs/libyaml/Makefile	2013-05-10 18:57:39.515281094 +0400
++++ ../../../openwrt_trunk/feeds/packages/libs/libyaml/Makefile	2013-06-06 10:06:25.970993251 +0400
+@@ -35,14 +35,14 @@
+ endef
+ 
+ define Package/libyaml/install
+-	$(INSTALL_DIR) $(1)/usr/lib
+-	$(INSTALL_DATA) $(PKG_INSTALL_DIR)/usr/lib/libyaml.so $(1)/usr/lib/
++	$(INSTALL_DIR) $(1)/opt/lib
++	$(INSTALL_DATA) $(PKG_INSTALL_DIR)/opt/lib/libyaml.so $(1)/opt/lib/
+ endef
+ 
+ define Build/InstallDev
+-	$(INSTALL_DIR) $(1)/usr/include $(1)/usr/lib
+-	$(INSTALL_DATA) $(PKG_INSTALL_DIR)/usr/include/* $(1)/usr/include/
+-	$(INSTALL_DATA) $(PKG_INSTALL_DIR)/usr/lib/libyaml.{a,la} $(1)/usr/lib/
++	$(INSTALL_DIR) $(1)/opt/include $(1)/opt/lib
++	$(INSTALL_DATA) $(PKG_INSTALL_DIR)/opt/include/* $(1)/opt/include/
++	$(INSTALL_DATA) $(PKG_INSTALL_DIR)/opt/lib/libyaml.{a,la} $(1)/opt/lib/
+ endef
+ 
+ $(eval $(call BuildPackage,libyaml))

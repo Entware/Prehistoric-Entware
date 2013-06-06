@@ -1,0 +1,11 @@
+--- ../../../openwrt_trunk.orig/feeds/packages/lang/pyyaml/Makefile	2013-05-10 18:57:39.648906110 +0400
++++ ../../../openwrt_trunk/feeds/packages/lang/pyyaml/Makefile	2013-06-06 10:00:24.970906636 +0400
+@@ -34,7 +34,7 @@
+ endef
+ 
+ define Build/Compile
+-	$(call Build/Compile/PyMod,,--with-libyaml install --prefix="$(PKG_INSTALL_DIR)/usr")
++	$(call Build/Compile/PyMod,,--with-libyaml install --prefix=/opt --root=$(PKG_INSTALL_DIR))
+ endef
+ 
+ define Package/pyyaml/install
