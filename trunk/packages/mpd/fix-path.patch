@@ -1,5 +1,5 @@
---- ../../../downloads/openwrt_trunk-r36151/feeds/packages/sound/mpd/Makefile	2013-04-02 14:27:24.649540511 +0400
-+++ ../../../openwrt_trunk/feeds/packages/sound/mpd/Makefile	2013-04-29 16:12:51.538169869 +0400
+--- ../../../openwrt_trunk.orig/feeds/packages/sound/mpd/Makefile	2013-05-10 18:57:39.398986865 +0400
++++ ../../../openwrt_trunk/feeds/packages/sound/mpd/Makefile	2013-06-10 02:04:27.696066717 +0400
 @@ -8,12 +8,12 @@
  include $(TOPDIR)/rules.mk
  
@@ -7,7 +7,7 @@
 -PKG_VERSION:=0.16.5
 -PKG_RELEASE:=2
 +PKG_VERSION:=0.17.4
-+PKG_RELEASE:=1
++PKG_RELEASE:=1a
  
  PKG_SOURCE:=$(PKG_NAME)-$(PKG_VERSION).tar.bz2
 -PKG_SOURCE_URL:=@SF/musicpd
@@ -25,6 +25,26 @@
 +  DEPENDS:= +glib2 +libcurl +libpthread +libsoup \
  	+libflac +BUILD_PATENTED:libmad +libvorbisidec
  endef
+ 
+@@ -61,8 +61,8 @@
+ endef
+ 
+ define Package/mpd-full/conffiles
+-/etc/avahi/services/mpd.service
+-/etc/mpd.conf
++/opt/etc/avahi/services/mpd.service
++/opt/etc/mpd.conf
+ endef
+ 
+ 
+@@ -81,7 +81,7 @@
+ endef
+ 
+ define Package/mpd-mini/conffiles
+-/etc/mpd.conf
++/opt/etc/mpd.conf
+ endef
+ 
  
 @@ -131,13 +131,12 @@
  	--enable-un \
