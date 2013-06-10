@@ -1,6 +1,6 @@
 --- ../../../openwrt_trunk.orig/package/devel/valgrind/Makefile
 +++ ../../../openwrt_trunk/package/devel/valgrind/Makefile
-@@ -91,68 +91,68 @@
+@@ -92,68 +92,68 @@
  	--without-included-gettext
  
  define Package/valgrind/install	

@@ -1,9 +1,9 @@
---- ../../../openwrt_trunk.orig/feeds/packages/ipv6/aiccu/Makefile	2012-08-06 09:54:11.951011783 +0400
-+++ ../../../openwrt_trunk/feeds/packages/ipv6/aiccu/Makefile	2012-08-06 10:29:31.702978983 +0400
+--- ../../../openwrt_trunk.orig/feeds/packages/ipv6/aiccu/Makefile
++++ ../../../openwrt_trunk/feeds/packages/ipv6/aiccu/Makefile
 @@ -22,7 +22,7 @@
  define Package/aiccu
-   SECTION:=ipv6
-   CATEGORY:=IPv6
+   SECTION:=net
+   CATEGORY:=Network
 -  DEPENDS:=+libpthread +ip +kmod-sit +kmod-tun
 +  DEPENDS:=+libpthread
    TITLE:=SixXS Automatic IPv6 Connectivity Client Utility

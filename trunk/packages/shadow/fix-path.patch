@@ -1,5 +1,5 @@
---- ../../../downloads/openwrt_trunk-r36556/feeds/packages/utils/shadow/Makefile	2013-05-06 15:25:39.323204447 +0400
-+++ ../../../openwrt_trunk/feeds/packages/utils/shadow/Makefile	2013-05-07 09:42:00.430004561 +0400
+--- ../../../openwrt_trunk/feeds/packages/utils/shadow/Makefile.orig	2013-06-10 09:24:18.033865195 +0400
++++ ../../../openwrt_trunk/feeds/packages/utils/shadow/Makefile	2013-06-10 09:26:38.309862640 +0400
 @@ -15,7 +15,7 @@
  PKG_SOURCE_URL:=http://pkg-shadow.alioth.debian.org/releases
  PKG_MD5SUM:=a00449aa439c69287b6d472191dc2247
@@ -9,7 +9,7 @@
  PKG_BUILD_PARALLEL:=1
  PKG_INSTALL:=1
  
-@@ -81,23 +81,24 @@
+@@ -80,23 +80,24 @@
  
  
  define Package/shadow-common/conffiles

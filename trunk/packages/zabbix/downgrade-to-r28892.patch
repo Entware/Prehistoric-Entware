@@ -1,6 +1,123 @@
+Index: ../../../openwrt_trunk/feeds/packages/admin/zabbix/files/zabbix_helper_mac80211.c
+===================================================================
+--- ../../../openwrt_trunk/feeds/packages/admin/zabbix/files/zabbix_helper_mac80211.c	(revision 36889)
++++ ../../../openwrt_trunk/feeds/packages/admin/zabbix/files/zabbix_helper_mac80211.c	(revision 28892)
+@@ -1,32 +0,0 @@
+-#define _GNU_SOURCE
+-#include <stdio.h>
+-#include <string.h>
+-#include <stdlib.h>
+-
+-int main(int argc, char *argv[]) {
+-
+-    if(argc == 3) {
+-        char *phy = NULL;
+-        char *stat = NULL;
+-        char *filename = NULL;
+-        FILE *f = NULL;
+-        phy = basename(argv[1]);
+-        stat = basename(argv[2]);
+-        if(asprintf(&filename, "/sys/kernel/debug/ieee80211/%s/statistics/%s", phy, stat) > 0)
+-            f = fopen(filename, "r");
+-
+-        if(f != NULL) {
+-            char temp[256];
+-            while (fgets(temp, 256, f) != NULL)
+-                printf("%s",temp);
+-
+-            fclose(f);
+-        }
+-        free(filename);
+-    } else {
+-        fprintf(stderr, "Usage: %s PHY STAT\n",argv[0]);
+-        fprintf(stderr, " cat /sys/kernel/debug/ieee80211/PHY/statistics/STAT as root\n");
+-        return 1;
+-    } 
+-    return 0;
+-}
+Index: ../../../openwrt_trunk/feeds/packages/admin/zabbix/files/mac80211
+===================================================================
+--- ../../../openwrt_trunk/feeds/packages/admin/zabbix/files/mac80211	(revision 36889)
++++ ../../../openwrt_trunk/feeds/packages/admin/zabbix/files/mac80211	(revision 28892)
+@@ -1,27 +0,0 @@
+-#see http://wiki.openwrt.org/doc/howto/zabbix for ready to use templates
+-
+-# If you want to know the exact meaning of an UserParameter, you can search in the ieee80211 standard:
+-# http://standards.ieee.org/getieee802/download/802.11-2012.pdf
+-# exemple: for mac80211.ACKFailureCount search for dot11ACKFailureCount (page 2145)
+-
+-# mac80211 phy discovery (like 'phy0')
+-# exemple: {"data":[{"{#PHY}":"phy0"}]}
+-#
+-UserParameter=mac80211.phydiscovery,for phy in $(ls /sys/kernel/debug/ieee80211/); do list="$list,"'{"{#PHY}":"'$phy'"}'; done; echo '{"data":['${list#,}']}'
+-
+-#phy statistics (you need {#PHY} as parameter)
+-#
+-UserParameter=mac80211.ACKFailureCount[*],zabbix_helper_mac80211 $1 dot11ACKFailureCount
+-UserParameter=mac80211.FCSErrorCount[*],zabbix_helper_mac80211 $1 dot11FCSErrorCount
+-UserParameter=mac80211.RTSFailureCount[*],zabbix_helper_mac80211 $1 dot11RTSFailureCount
+-UserParameter=mac80211.RTSSuccessCount[*],zabbix_helper_mac80211 $1 dot11RTSSuccessCount
+-UserParameter=mac80211.FailedCount[*],zabbix_helper_mac80211 $1 failed_count
+-UserParameter=mac80211.FrameDuplicateCount[*],zabbix_helper_mac80211 $1 frame_duplicate_count
+-UserParameter=mac80211.MulticastReceivedFrameCount[*],zabbix_helper_mac80211 $1 multicast_received_frame_count
+-UserParameter=mac80211.MulticastTransmittedFrameCount[*],zabbix_helper_mac80211 $1 multicast_transmitted_frame_count
+-UserParameter=mac80211.MultipleRetryCount[*],zabbix_helper_mac80211 $1 multiple_retry_count
+-UserParameter=mac80211.ReceivedFragmentCount[*],zabbix_helper_mac80211 $1 received_fragment_count
+-UserParameter=mac80211.RetryCount[*],zabbix_helper_mac80211 $1 retry_count
+-UserParameter=mac80211.TransmittedFragmentCount[*],zabbix_helper_mac80211 $1 transmitted_fragment_count
+-UserParameter=mac80211.TransmittedFrameCount[*],zabbix_helper_mac80211 $1 transmitted_frame_count
+-
+Index: ../../../openwrt_trunk/feeds/packages/admin/zabbix/files/wifi
+===================================================================
+--- ../../../openwrt_trunk/feeds/packages/admin/zabbix/files/wifi	(revision 36889)
++++ ../../../openwrt_trunk/feeds/packages/admin/zabbix/files/wifi	(revision 28892)
+@@ -1,29 +0,0 @@
+-#see http://wiki.openwrt.org/doc/howto/zabbix for ready to use templates
+-
+-# wifi interface discovery
+-# exemple: {"data":[{"{#IF}":"wlan0", "{#MODE}":"ap", "{#SSID}":"Openwrt", "{#NET}":"lan", "{#DEV}":"radio0", "{#ENC}":"psk2+ccmp", "{#TYPE}":"mac80211", "{#HWMODE}":"11ng", "{#CHANNEL}":"11", "{#BSSID}":"xx:xx:xx:xx:xx:xx"}]}
+-#
+-UserParameter=wifi.ifdiscovery,lua -l uci -l iwinfo -e 'x = uci.cursor(nil, "/var/state");list = "{\"data\":[";x:foreach("wireless", "wifi-iface", function(s) list=list.."{\"{#IF}\":\""..s.ifname.."\", \"{#MODE}\":\""..s.mode.."\", \"{#SSID}\":\""..s.ssid.."\", \"{#NET}\":\""..s.network.."\", \"{#DEV}\":\""..s.device.."\", \"{#ENC}\":\""..(s.encryption or "?").."\", \"{#TYPE}\":\""..x:get("wireless",s.device,"type").."\", \"{#HWMODE}\":\""..(x:get("wireless",s.device,"hwmode") or "?").."\", \"{#CHANNEL}\":\""..x:get("wireless",s.device,"channel").."\", \"{#BSSID}\":\""..iwinfo[iwinfo.type(s.ifname)].bssid(s.ifname).."\"}," end); list=string.gsub(list,",$",""); print(list.."]}")'
+-
+-
+-#iwinfo info (you need {#IF} as parameter, like 'wlan0')
+-UserParameter=wifi.iwinfo.channel[*],lua -l iwinfo -e "print(iwinfo[iwinfo.type('$1')].channel('$1'))"
+-UserParameter=wifi.iwinfo.frequency[*],lua -l iwinfo -e "print(iwinfo[iwinfo.type('$1')].frequency('$1'))"
+-UserParameter=wifi.iwinfo.txpower[*],lua -l iwinfo -e "print(iwinfo[iwinfo.type('$1')].txpower('$1'))"
+-UserParameter=wifi.iwinfo.bitrate[*],lua -l iwinfo -e "b = iwinfo[iwinfo.type('$1')].bitrate('$1'); print(b or '0')"
+-UserParameter=wifi.iwinfo.signal[*],lua -l iwinfo -e "s = iwinfo[iwinfo.type('$1')].signal('$1'); print(s or '-255')"
+-UserParameter=wifi.iwinfo.noise[*],lua -l iwinfo -e "print(iwinfo[iwinfo.type('$1')].noise('$1'))"
+-UserParameter=wifi.iwinfo.quality[*],lua -l iwinfo -e "print(iwinfo[iwinfo.type('$1')].quality('$1'))"
+-UserParameter=wifi.iwinfo.quality_max[*],lua -l iwinfo -e "print(iwinfo[iwinfo.type('$1')].quality_max('$1'))"
+-UserParameter=wifi.iwinfo.mode[*],lua -l iwinfo -e "print(iwinfo[iwinfo.type('$1')].mode('$1'))"
+-UserParameter=wifi.iwinfo.ssid[*],lua -l iwinfo -e "print(iwinfo[iwinfo.type('$1')].ssid('$1'))"
+-UserParameter=wifi.iwinfo.bssid[*],lua -l iwinfo -e "print(iwinfo[iwinfo.type('$1')].bssid('$1'))"
+-UserParameter=wifi.iwinfo.country[*],lua -l iwinfo -e "print(iwinfo[iwinfo.type('$1')].country('$1'))"
+-UserParameter=wifi.iwinfo.nbusers[*],lua -l iwinfo -e "n = 0; for _,_ in pairs(iwinfo[iwinfo.type('$1')].assoclist('$1')) do n = n + 1 end; print(n)"
+-UserParameter=wifi.iwinfo.encryption[*],lua -l iwinfo -e "e = iwinfo[iwinfo.type('$1')].encryption('$1'); print(e and e.description or 'None')"
+-UserParameter=wifi.iwinfo.hwmode[*],lua -l iwinfo -e "x=iwinfo[iwinfo.type('$1')].hwmodelist('$1'); print((x.a and 'a' or '')..(x.b and 'b' or '')..(x.g and 'g' or '')..(x.n and 'n' or ''))"
+-
+-#uci info (you need {#DEV} as parameter, like 'radio0')
+-UserParameter=wifi.uci.hwmode[*],lua -l uci -e "x = uci.cursor(nil, '/var/state'); print(x:get('wireless','$1','hwmode'))"
+-UserParameter=wifi.uci.channel[*],lua -l uci -e "x = uci.cursor(nil, '/var/state'); print(x:get('wireless','$1','channel'))"
+-UserParameter=wifi.uci.txpower[*],lua -l uci -e "x = uci.cursor(nil, '/var/state'); print(x:get('wireless','$1','txpower'))"
+Index: ../../../openwrt_trunk/feeds/packages/admin/zabbix/files/network
+===================================================================
+--- ../../../openwrt_trunk/feeds/packages/admin/zabbix/files/network	(revision 36889)
++++ ../../../openwrt_trunk/feeds/packages/admin/zabbix/files/network	(revision 28892)
+@@ -1,9 +0,0 @@
+-#see http://wiki.openwrt.org/doc/howto/zabbix for ready to use templates
+-
+-# network interface discovery
+-# exemple: {"data":[{"{#IF}":"lo", "{#NET}":"loopback"},{"{#IF}":"br-lan", "{#NET}":"lan"},{"{#IF}":"eth0.1", "{#NET}":"wan"}]}
+-#
+-UserParameter=netowrt.discovery,lua -l uci -e 'x = uci.cursor(nil, "/var/state");list = "{\"data\":[";x:foreach("network", "interface", function(s) list=list.."{\"{#IF}\":\""..s.ifname.."\", \"{#NET}\":\""..s[".name"].."\"}," end); list=string.gsub(list,",$",""); print(list.."]}")'
+-
+-
+-
 Index: ../../../openwrt_trunk/feeds/packages/admin/zabbix/files/zabbix_agentd.init
 ===================================================================
---- ../../../openwrt_trunk/feeds/packages/admin/zabbix/files/zabbix_agentd.init	(revision 35953)
+--- ../../../openwrt_trunk/feeds/packages/admin/zabbix/files/zabbix_agentd.init	(revision 36889)
 +++ ../../../openwrt_trunk/feeds/packages/admin/zabbix/files/zabbix_agentd.init	(revision 28892)
 @@ -3,31 +3,23 @@
  
@@ -48,7 +165,7 @@ Index: ../../../openwrt_trunk/feeds/packages/admin/zabbix/files/zabbix_agentd.in
  }
 Index: ../../../openwrt_trunk/feeds/packages/admin/zabbix/files/zabbix_agentd.conf
 ===================================================================
---- ../../../openwrt_trunk/feeds/packages/admin/zabbix/files/zabbix_agentd.conf	(revision 35953)
+--- ../../../openwrt_trunk/feeds/packages/admin/zabbix/files/zabbix_agentd.conf	(revision 0)
 +++ ../../../openwrt_trunk/feeds/packages/admin/zabbix/files/zabbix_agentd.conf	(revision 28892)
 @@ -0,0 +1,85 @@
 +# This is config file for zabbix_agentd
@@ -138,7 +255,7 @@ Index: ../../../openwrt_trunk/feeds/packages/admin/zabbix/files/zabbix_agentd.co
 +
 Index: ../../../openwrt_trunk/feeds/packages/admin/zabbix/patches/002-fix-res_send-on-uclibc.patch
 ===================================================================
---- ../../../openwrt_trunk/feeds/packages/admin/zabbix/patches/002-fix-res_send-on-uclibc.patch	(revision 35953)
+--- ../../../openwrt_trunk/feeds/packages/admin/zabbix/patches/002-fix-res_send-on-uclibc.patch	(revision 36889)
 +++ ../../../openwrt_trunk/feeds/packages/admin/zabbix/patches/002-fix-res_send-on-uclibc.patch	(revision 28892)
 @@ -1,35 +0,0 @@
 ---- a/configure.in	2013-02-14 18:29:28.145419003 +0100
@@ -178,11 +295,9 @@ Index: ../../../openwrt_trunk/feeds/packages/admin/zabbix/patches/002-fix-res_se
 - 
 Index: ../../../openwrt_trunk/feeds/packages/admin/zabbix/patches/010-change-agentd-config.patch
 ===================================================================
---- ../../../openwrt_trunk/feeds/packages/admin/zabbix/patches/010-change-agentd-config.patch	(revision 35953)
+--- ../../../openwrt_trunk/feeds/packages/admin/zabbix/patches/010-change-agentd-config.patch	(revision 36889)
 +++ ../../../openwrt_trunk/feeds/packages/admin/zabbix/patches/010-change-agentd-config.patch	(revision 28892)
-@@ -1,54 +0,0 @@
--diff --git a/conf/zabbix_agentd.conf b/conf/zabbix_agentd.conf
--index ed04751..e714c4d 100644
+@@ -1,61 +0,0 @@
 ---- a/conf/zabbix_agentd.conf
 -+++ b/conf/zabbix_agentd.conf
 -@@ -3,12 +3,8 @@
@@ -235,9 +350,39 @@ Index: ../../../openwrt_trunk/feeds/packages/admin/zabbix/patches/010-change-age
 - ### Option: HostnameItem
 - #	Item used for generating Hostname if it is undefined.
 - #	Ignored if Hostname is defined.
+-@@ -213,7 +204,7 @@ Hostname=Zabbix server
+- # Include=
+- 
+- # Include=/usr/local/etc/zabbix_agentd.userparams.conf
+--# Include=/usr/local/etc/zabbix_agentd.conf.d/
+-+Include=/etc/zabbix_agentd.conf.d/
+- 
+- ####### USER-DEFINED MONITORED PARAMETERS #######
+- 
+Index: ../../../openwrt_trunk/feeds/packages/admin/zabbix/patches/002-uclibc_loadavg.patch
+===================================================================
+--- ../../../openwrt_trunk/feeds/packages/admin/zabbix/patches/002-uclibc_loadavg.patch	(revision 36889)
++++ ../../../openwrt_trunk/feeds/packages/admin/zabbix/patches/002-uclibc_loadavg.patch	(revision 28892)
+@@ -1,6 +1,7 @@
+---- a/src/libs/zbxsysinfo/linux/cpu.c	2013-02-12 12:27:22.000000000 +0100
+-+++ b/src/libs/zbxsysinfo/linux/cpu.c	2013-02-14 18:38:02.517429349 +0100
+-@@ -21,6 +21,45 @@
++diff -urN zabbix-1.6/src/libs/zbxsysinfo/linux/cpu.c zabbix-1.6.new/src/libs/zbxsysinfo/linux/cpu.c
++--- zabbix-1.6/src/libs/zbxsysinfo/linux/cpu.c	2008-09-18 22:15:26.000000000 +0200
+++++ zabbix-1.6.new/src/libs/zbxsysinfo/linux/cpu.c	2008-09-30 19:32:54.000000000 +0200
++@@ -22,6 +22,45 @@
+  #include "sysinfo.h"
+  #include "stats.h"
+  
+@@ -45,4 +46,4 @@
+ +
+  int	SYSTEM_CPU_NUM(const char *cmd, const char *param, unsigned flags, AGENT_RESULT *result)
+  {
+- 	char	tmp[16];
++ 	char	mode[128];
 Index: ../../../openwrt_trunk/feeds/packages/admin/zabbix/patches/001-cross_compile.patch
 ===================================================================
---- ../../../openwrt_trunk/feeds/packages/admin/zabbix/patches/001-cross_compile.patch	(revision 35953)
+--- ../../../openwrt_trunk/feeds/packages/admin/zabbix/patches/001-cross_compile.patch	(revision 36889)
 +++ ../../../openwrt_trunk/feeds/packages/admin/zabbix/patches/001-cross_compile.patch	(revision 28892)
 @@ -1,29 +1,13 @@
 ---- a/configure.in	2012-06-21 21:32:23.707912790 +0000
@@ -281,30 +426,9 @@ Index: ../../../openwrt_trunk/feeds/packages/admin/zabbix/patches/001-cross_comp
 - AC_MSG_CHECKING(for -rdynamic linking option)
 - saved_LDFLAGS="$LDFLAGS"
 - LDFLAGS="-rdynamic $LDFLAGS"
-Index: ../../../openwrt_trunk/feeds/packages/admin/zabbix/patches/002-uclibc_loadavg.patch
-===================================================================
---- ../../../openwrt_trunk/feeds/packages/admin/zabbix/patches/002-uclibc_loadavg.patch	(revision 35953)
-+++ ../../../openwrt_trunk/feeds/packages/admin/zabbix/patches/002-uclibc_loadavg.patch	(revision 28892)
-@@ -1,6 +1,7 @@
----- a/src/libs/zbxsysinfo/linux/cpu.c	2013-02-12 12:27:22.000000000 +0100
--+++ b/src/libs/zbxsysinfo/linux/cpu.c	2013-02-14 18:38:02.517429349 +0100
--@@ -21,6 +21,45 @@
-+diff -urN zabbix-1.6/src/libs/zbxsysinfo/linux/cpu.c zabbix-1.6.new/src/libs/zbxsysinfo/linux/cpu.c
-+--- zabbix-1.6/src/libs/zbxsysinfo/linux/cpu.c	2008-09-18 22:15:26.000000000 +0200
-++++ zabbix-1.6.new/src/libs/zbxsysinfo/linux/cpu.c	2008-09-30 19:32:54.000000000 +0200
-+@@ -22,6 +22,45 @@
-  #include "sysinfo.h"
-  #include "stats.h"
-  
-@@ -45,4 +46,4 @@
- +
-  int	SYSTEM_CPU_NUM(const char *cmd, const char *param, unsigned flags, AGENT_RESULT *result)
-  {
-- 	char	tmp[16];
-+ 	char	mode[128];
 Index: ../../../openwrt_trunk/feeds/packages/admin/zabbix/Makefile
 ===================================================================
---- ../../../openwrt_trunk/feeds/packages/admin/zabbix/Makefile	(revision 35953)
+--- ../../../openwrt_trunk/feeds/packages/admin/zabbix/Makefile	(revision 36889)
 +++ ../../../openwrt_trunk/feeds/packages/admin/zabbix/Makefile	(revision 28892)
 @@ -1,5 +1,5 @@
  #
@@ -317,14 +441,14 @@ Index: ../../../openwrt_trunk/feeds/packages/admin/zabbix/Makefile
  include $(TOPDIR)/rules.mk
  
  PKG_NAME:=zabbix
--PKG_VERSION:=2.0.5
+-PKG_VERSION:=2.0.6
 -PKG_RELEASE:=1
 +PKG_VERSION:=1.6
 +PKG_RELEASE:=3
  
  PKG_SOURCE:=$(PKG_NAME)-$(PKG_VERSION).tar.gz
  PKG_SOURCE_URL:=@SF/zabbix
--PKG_MD5SUM:=0c0721c31889b63bce9aa556bcb927e8
+-PKG_MD5SUM:=f7261987731dd74b58cb1da890655ddc
 +PKG_MD5SUM:=39d4c871439b1b4f0429964b4abbfc45
  
 +PKG_BUILD_DEPENDS:=libsqlite3
@@ -346,13 +470,31 @@ Index: ../../../openwrt_trunk/feeds/packages/admin/zabbix/Makefile
  endef
  
  define Package/zabbix-agent
-@@ -36,128 +34,64 @@
+@@ -36,213 +34,64 @@
    TITLE+= agent
  endef
  
 -define Package/zabbix-agentd
 -  $(call Package/zabbix/Default)
 -  TITLE+= agentd
+-endef
+-
+-define Package/zabbix-extra-mac80211
+-  $(call Package/zabbix/Default)
+-  TITLE+= discovery/userparameters for mac80211
+-  DEPENDS += +zabbix-agentd @PACKAGE_MAC80211_DEBUGFS @KERNEL_DEBUG_FS
+-endef
+-
+-define Package/zabbix-extra-network
+-  $(call Package/zabbix/Default)
+-  TITLE+= discovery/userparameters for network
+-  DEPENDS += +zabbix-agentd +libuci-lua +lua
+-endef
+-
+-define Package/zabbix-extra-wifi
+-  $(call Package/zabbix/Default)
+-  TITLE+= discovery/userparameters for wifi
+-  DEPENDS += +zabbix-agentd +libiwinfo-lua +libuci-lua +lua
 -endef
 -
  define Package/zabbix-sender
@@ -377,14 +519,33 @@ Index: ../../../openwrt_trunk/feeds/packages/admin/zabbix/Makefile
 -  DEPENDS += +libsqlite3
 -endef
  
--define Package/zabbix-agentd/config
--  select BUSYBOX_CONFIG_HOSTNAME if !PACKAGE_net-tools-hostname
--  select BUSYBOX_CONFIG_UNAME if !PACKAGE_coreutils-uname
+-define Package/zabbix-extra-mac80211/description
+-An extra package for zabbix-agentd that adds a discovery rule for mac80211 wifi phy and many userparameters.
+-It contains an suid helper to allow zabbix-agentd to still run as zabbix user and not as root.
+-See http://wiki.openwrt.org/doc/howto/zabbix for ready to use zabbix templates.
 -endef
 +ifneq ($(SDK),)
 +CONFIG_PACKAGE_zabbix-server:=m
 +endif
  
+-define Package/zabbix-extra-network/description
+-An extra package for zabbix-agentd that adds a discovery rule for openwrt network interfaces.
+-The idea here is to discover only interfaces listed in /etc/config/network (discover br-lan and not eth0.1 and wlan0)
+-See http://wiki.openwrt.org/doc/howto/zabbix for ready to use zabbix templates.
+-endef
+-
+-define Package/zabbix-extra-wifi/description
+-An extra package for zabbix-agentd that adds a discovery rule for wifi interfaces and many userparameters.
+-As it uses libiwinfo, it works with all wifi devices supported by openwrt.
+-See http://wiki.openwrt.org/doc/howto/zabbix for ready to use zabbix templates.
+-endef
+-
+-
+-define Package/zabbix-agentd/config
+-  select BUSYBOX_CONFIG_HOSTNAME if !PACKAGE_net-tools-hostname
+-  select BUSYBOX_CONFIG_UNAME if !PACKAGE_coreutils-uname
+-endef
+-
  CONFIGURE_ARGS+= \
 -	--enable-agent \
 +	--bindir="/usr/sbin" \
@@ -436,6 +597,15 @@ Index: ../../../openwrt_trunk/feeds/packages/admin/zabbix/Makefile
 -		$(1)/etc/init.d/zabbix_$(2)
 -endef
 -
+-define Package/zabbix/install/zabbix.conf.d
+-	$(INSTALL_DIR) \
+-		$(1)/etc/zabbix_$(2).conf.d
+-
+-	$(INSTALL_BIN) \
+-		./files/$(3) \
+-		$(1)/etc/zabbix_$(2).conf.d/$(3)
+-endef
+-
  define Package/zabbix-agent/conffiles
 -/etc/zabbix_agent.conf
 +/etc/zabbix/zabbix_agentd.conf
@@ -450,6 +620,27 @@ Index: ../../../openwrt_trunk/feeds/packages/admin/zabbix/Makefile
 -/etc/zabbix_proxy.conf
 -endef
  
+-ifdef CONFIG_PACKAGE_zabbix-extra-mac80211
+-define Build/Prepare/zabbix-extra-mac80211
+-	mkdir -p $(PKG_BUILD_DIR)/zabbix-extra-mac80211
+-	$(CP) ./files/zabbix_helper_mac80211.c $(PKG_BUILD_DIR)/zabbix-extra-mac80211/
+-endef
+-
+-define Build/Compile/zabbix-extra-mac80211
+-	$(TARGET_CC) $(TARGET_CFLAGS) $(PKG_BUILD_DIR)/zabbix-extra-mac80211/zabbix_helper_mac80211.c -o $(PKG_BUILD_DIR)/zabbix-extra-mac80211/zabbix_helper_mac80211
+-endef
+-endif
+-
+-define Build/Prepare
+-	$(call Build/Prepare/Default)
+-	$(call Build/Prepare/zabbix-extra-mac80211)
+-endef
+-
+-define Build/Compile
+-	$(call Build/Compile/Default)
+-	$(call Build/Compile/zabbix-extra-mac80211)
+-endef
+-
  define Package/zabbix-agent/install
 -	$(call Package/zabbix/install/sbin,$(1),agent)
 -	$(call Package/zabbix/install/etc,$(1),agent)
@@ -465,6 +656,21 @@ Index: ../../../openwrt_trunk/feeds/packages/admin/zabbix/Makefile
 -	$(call Package/zabbix/install/sbin,$(1),agentd)
 -	$(call Package/zabbix/install/etc,$(1),agentd)
 -	$(call Package/zabbix/install/init.d,$(1),agentd)
+-endef
+-
+-define Package/zabbix-extra-mac80211/install
+-	$(call Package/zabbix/install/zabbix.conf.d,$(1),agentd,mac80211)
+-	$(INSTALL_DIR) $(1)/usr/bin
+-	$(INSTALL_BIN) $(PKG_BUILD_DIR)/zabbix-extra-mac80211/zabbix_helper_mac80211 $(1)/usr/bin/
+-	chmod 4755 $(1)/usr/bin/zabbix_helper_mac80211
+-endef
+-
+-define Package/zabbix-extra-network/install
+-	$(call Package/zabbix/install/zabbix.conf.d,$(1),agentd,network)
+-endef
+-
+-define Package/zabbix-extra-wifi/install
+-	$(call Package/zabbix/install/zabbix.conf.d,$(1),agentd,wifi)
 -endef
 -
  define Package/zabbix-sender/install
@@ -496,6 +702,9 @@ Index: ../../../openwrt_trunk/feeds/packages/admin/zabbix/Makefile
 -
  $(eval $(call BuildPackage,zabbix-agent))
 -$(eval $(call BuildPackage,zabbix-agentd))
+-$(eval $(call BuildPackage,zabbix-extra-mac80211))
+-$(eval $(call BuildPackage,zabbix-extra-network))
+-$(eval $(call BuildPackage,zabbix-extra-wifi))
  $(eval $(call BuildPackage,zabbix-sender))
  $(eval $(call BuildPackage,zabbix-server))
 -$(eval $(call BuildPackage,zabbix-proxy))

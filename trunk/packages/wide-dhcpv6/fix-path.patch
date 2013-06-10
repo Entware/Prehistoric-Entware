@@ -1,7 +1,7 @@
---- ../../../openwrt_trunk.orig/feeds/packages/ipv6/wide-dhcpv6/Makefile	2012-09-03 15:54:44.059674388 +0400
-+++ ../../../openwrt_trunk/feeds/packages/ipv6/wide-dhcpv6/Makefile	2012-09-05 16:22:48.932491042 +0400
+--- ../../../openwrt_trunk/feeds/packages/ipv6/wide-dhcpv6/Makefile.orig	2013-06-10 09:24:19.141865176 +0400
++++ ../../../openwrt_trunk/feeds/packages/ipv6/wide-dhcpv6/Makefile	2013-06-10 09:26:39.809862612 +0400
 @@ -22,7 +22,6 @@
-   CATEGORY:=IPv6
+   CATEGORY:=Network
    TITLE:=WIDE-DHCPv6
    SUBMENU:=wide-dhcpv6
 -  DEPENDS:=+kmod-ipv6 

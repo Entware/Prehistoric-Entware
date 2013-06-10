@@ -1,6 +1,6 @@
-diff -urx .svn ../../../downloads/openwrt_trunk-r35953/feeds/telephony/freeswitch/files/freeswitch.default ../../../openwrt_trunk/feeds/telephony/freeswitch/files/freeswitch.default
---- ../../../downloads/openwrt_trunk-r35953/feeds/telephony/freeswitch/files/freeswitch.default	2013-03-11 09:29:41.270073781 +0400
-+++ ../../../openwrt_trunk/feeds/telephony/freeswitch/files/freeswitch.default	2013-03-11 09:30:46.906072583 +0400
+diff -urx .svn ../../../downloads/openwrt_trunk-r36889/feeds/telephony/freeswitch/files/freeswitch.default ../../../openwrt_trunk/feeds/telephony/freeswitch/files/freeswitch.default
+--- ../../../downloads/openwrt_trunk-r36889/feeds/telephony/freeswitch/files/freeswitch.default	2013-06-10 09:25:23.613864003 +0400
++++ ../../../openwrt_trunk/feeds/telephony/freeswitch/files/freeswitch.default	2013-06-10 09:26:28.245862822 +0400
 @@ -1,11 +1,11 @@
  #FS_DIR="/opt"
 -FS_DIR_ETC="$FS_DIR/etc/freeswitch"
@@ -21,19 +21,10 @@ diff -urx .svn ../../../downloads/openwrt_trunk-r35953/feeds/telephony/freeswitc
 +FS_DIR_VM_STORAGE="/opt/var/lib/freeswitch/storage" # NOTE: must be changed in config as well
  
  OPTIONS="-conf $FS_DIR_ETC -log $FS_DIR_LOG -db $FS_DIR_DB -mod $FS_DIR_MOD -htdocs $FS_DIR_HTDOCS -scripts $FS_DIR_SCRIPTS"
-diff -urx .svn ../../../downloads/openwrt_trunk-r35953/feeds/telephony/freeswitch/Makefile ../../../openwrt_trunk/feeds/telephony/freeswitch/Makefile
---- ../../../downloads/openwrt_trunk-r35953/feeds/telephony/freeswitch/Makefile	2013-03-11 09:29:41.262073781 +0400
-+++ ../../../openwrt_trunk/feeds/telephony/freeswitch/Makefile	2013-03-11 10:48:58.521988908 +0400
-@@ -192,7 +192,7 @@
- define Package/$(PKG_NAME)
- $(call Package/$(PKG_NAME)/Default)
-   TITLE:=FreeSWITCH open source telephony platform ($(PKG_SOURCE_VERSION_SHORT))
--  DEPENDS:=+libcurl +libiconv-full +libjpeg +libncurses +libpq +libpthread +librt +libstdcpp
-+  DEPENDS:=+libcurl +libiconv-full +libjpeg +libncurses +libpq +libpthread +librt +libstdcpp $(ICONV_DEPENDS)
-   MENU:=1
- endef
- 
-@@ -277,7 +277,7 @@
+diff -urx .svn ../../../downloads/openwrt_trunk-r36889/feeds/telephony/freeswitch/Makefile ../../../openwrt_trunk/feeds/telephony/freeswitch/Makefile
+--- ../../../downloads/openwrt_trunk-r36889/feeds/telephony/freeswitch/Makefile	2013-06-10 09:25:23.613864003 +0400
++++ ../../../openwrt_trunk/feeds/telephony/freeswitch/Makefile	2013-06-10 11:13:47.381746652 +0400
+@@ -305,7 +305,7 @@
  
  define Package/$(PKG_NAME)-example-config/description
    The default configuration included with FreeSWITCH. It is not intended to be
@@ -42,7 +33,12 @@ diff -urx .svn ../../../downloads/openwrt_trunk-r35953/feeds/telephony/freeswitc
    be an example of how FreeSWITCH can be configured.
  endef
  
-@@ -540,27 +540,27 @@
+@@ -564,32 +564,32 @@
+ FS_TARGET_CXXFLAGS:= $(TARGET_CXXFLAGS) -DLUA_USE_LINUX $(FPIC) -Wno-format
+ FS_TARGET_CPPFLAGS:= -I. -I./lua $(if $(CONFIG_PACKAGE_$(PKG_NAME)-mod-erlang-event),-I$(STAGING_DIR_HOST)/lib/erlang/lib/erl_interface-3.7.7/include) $(if $(CONFIG_PACKAGE_$(PKG_NAME)-mod-json-cdr),-Wno-error) $(TARGET_CPPFLAGS)
+ 
+-
++TOOLCHAIN_DIR=/opt/entware-toolchain
  CONFIGURE_ARGS+= \
  	--host=$(GNU_TARGET_NAME) \
  	--build=$(GNU_HOST_NAME) \
@@ -61,27 +57,27 @@ diff -urx .svn ../../../downloads/openwrt_trunk-r35953/feeds/telephony/freeswitc
  	$(if $(CONFIG_FS_SOFIA_WITH_MYSQL),--with-mysql,--without-mysql) \
  	$(call autoconf_bool,CONFIG_FS_SOFIA_WITH_IPV6,ipv6) \
  	$(call autoconf_bool,CONFIG_FS_SOFIA_WITH_OPT,optimization) \
--	$(if $(CONFIG_PACKAGE_$(PKG_NAME)-mod-celt),--with-ogg="$(STAGING_DIR)/usr",--without-iogg) \
+ 	$(if $(CONFIG_PACKAGE_$(PKG_NAME)-mod-erlang-event),--with-erlang,--without-erlang) \
+-	$(if $(CONFIG_PACKAGE_$(PKG_NAME)-mod-celt),--with-ogg="$(STAGING_DIR)/usr",--without-ogg) \
 -	$(if ($(CONFIG_PACKAGE_$(PKG_NAME)-mod-curl)|$(CONFIG_PACKAGE_$(PKG_NAME)-mod-xml-cdr)|$(CONFIG_PACKAGE_$(PKG_NAME)-mod-xml-curl)),--with-libcurl="$(STAGING_DIR)/usr",--without-libcurl) \
 -	$(if $(CONFIG_PACKAGE_$(PKG_NAME)-mod-java),--with-java="$(STAGING_DIR)/usr",--without-java) \
-+	$(if $(CONFIG_PACKAGE_$(PKG_NAME)-mod-celt),--with-ogg="$(STAGING_DIR)/opt",--without-iogg) \
++	$(if $(CONFIG_PACKAGE_$(PKG_NAME)-mod-celt),--with-ogg="$(STAGING_DIR)/opt",--without-ogg) \
 +	$(if ($(CONFIG_PACKAGE_$(PKG_NAME)-mod-curl)|$(CONFIG_PACKAGE_$(PKG_NAME)-mod-xml-cdr)|$(CONFIG_PACKAGE_$(PKG_NAME)-mod-xml-curl)),--with-libcurl="$(STAGING_DIR)/opt",--without-libcurl) \
 +	$(if $(CONFIG_PACKAGE_$(PKG_NAME)-mod-java),--with-java="$(STAGING_DIR)/opt",--without-java) \
+ 	$(call autoconf_bool,CONFIG_FS_SOFIA_WITH_POSTGRESQL,core-pgsql-support) \
+ 	$(call autoconf_bool,CONFIG_PACKAGE_$(PKG_NAME)-mod-spandsp && CONFIG_FS_SOFIA_WITH_FIXED_POINT,fixed-point) \
  	$(call autoconf_bool,CONFIG_PACKAGE_$(PKG_NAME)-mod-spandsp,builtin-tiff) \
  	$(call autoconf_bool,CONFIG_PACKAGE_$(PKG_NAME)-mod-timerfd,timerfd-wrapper) \
  	$(call autoconf_bool,CONFIG_FS_SOFIA_WITH_BUILTIN_ZRTP,zrtp) \
  	$(call autoconf_bool,CONFIG_FS_SOFIA_WITH_ODBC,core-odbc-support) \
 -	$(if $(CONFIG_FS_SOFIA_WITH_ODBC),--with-odbc="$(STAGING_DIR)/usr") \
 -	$(if $(CONFIG_FS_SOFIA_WITH_ODBC),--with-odbc-lib="$(STAGING_DIR)/usr/lib") \
--
 +	$(if $(CONFIG_FS_SOFIA_WITH_ODBC),--with-odbc="$(STAGING_DIR)/opt") \
 +	$(if $(CONFIG_FS_SOFIA_WITH_ODBC),--with-odbc-lib="$(STAGING_DIR)/opt/lib") \
  
-+TOOLCHAIN_DIR=/opt/entware-toolchain
+ 
  CONFIGURE_VARS+= \
- 	config_TARGET_CC="$(TOOLCHAIN_DIR)/bin/$(TARGET_CC)" \
- 	config_TARGET_CFLAGS="$(FS_TARGET_CPPFLAGS) $(FS_TARGET_CFLAGS)" \
-@@ -584,7 +584,7 @@
+@@ -615,7 +615,7 @@
  	CFLAGS="$(FS_TARGET_CPPFLAGS) $(FS_TARGET_CFLAGS)" \
  	CXXFLAGS="$(FS_TARGET_CPPFLAGS) $(FS_TARGET_CXXFLAGS)" \
  	CPPFLAGS="$(FS_TARGET_CPPFLAGS)" \
@@ -90,7 +86,7 @@ diff -urx .svn ../../../downloads/openwrt_trunk-r35953/feeds/telephony/freeswitc
  	PATH="$(PATH):$(STAGING_DIR)" \
  	HOST_CC="/usr/bin/cc" \
  	HOST_CXX="/usr/bin/g++" \
-@@ -651,80 +651,80 @@
+@@ -682,80 +682,80 @@
  		DESTDIR="$(PKG_INSTALL_DIR)" \
  		LDFLAGS_FOR_BUILD="$(HOST_LDFLAGS)" \
  		all $(MAKE_INSTALL_TARGETS)
@@ -140,9 +136,9 @@ diff -urx .svn ../../../downloads/openwrt_trunk-r35953/feeds/telephony/freeswitc
 +	$(INSTALL_DIR) $(1)/opt/bin
 +	$(INSTALL_DIR) $(1)/opt/lib
 +	$(INSTALL_DIR) $(1)/opt/lib/pkgconfig
-+	$(INSTALL_BIN) ./files/$(PKG_NAME).init $(1)/opt/etc/init.d/$(PKG_NAME)
-+	$(INSTALL_DATA) ./files/$(PKG_NAME).config $(1)/opt/etc/config/$(PKG_NAME)
-+	$(INSTALL_DATA) ./files/$(PKG_NAME).default $(1)/opt/etc/default/$(PKG_NAME)
++#	$(INSTALL_BIN) ./files/$(PKG_NAME).init $(1)/opt/etc/init.d/$(PKG_NAME)
++#	$(INSTALL_DATA) ./files/$(PKG_NAME).config $(1)/opt/etc/config/$(PKG_NAME)
++#	$(INSTALL_DATA) ./files/$(PKG_NAME).default $(1)/opt/etc/default/$(PKG_NAME)
 +	$(INSTALL_DATA) ./files/$(PKG_NAME).hotplug $(1)/opt/etc/hotplug.d/iface/90-$(PKG_NAME)
 +	$(CP) $(PKG_INSTALL_DIR)/opt/bin/$(PKG_NAME) $(1)/opt/bin/
 +	$(CP) $(PKG_INSTALL_DIR)/opt/lib/lib$(PKG_NAME)* $(1)/opt/lib/
@@ -193,8 +189,8 @@ diff -urx .svn ../../../downloads/openwrt_trunk-r35953/feeds/telephony/freeswitc
  	# Copying dialplan directory jingle_profiles sip_profiles $(PKG_NAME).xml
  	# fur_elise.ttml mime.types tetris.ttml tones.conf vars.xml
  	#
--	$(foreach f,dialplan directory jingle_profiles sip_profiles $(PKG_NAME).xml fur_elise.ttml mime.types tetris.ttml tones.conf vars.xml,$(if $(PKG_BUILD_DIR)/conf/vanilla/$(f),$(CP) $(PKG_BUILD_DIR)/conf/vanilla/$(f) $(1)/etc/$(PKG_NAME);))
-+	$(foreach f,dialplan directory jingle_profiles sip_profiles $(PKG_NAME).xml fur_elise.ttml mime.types tetris.ttml tones.conf vars.xml,$(if $(PKG_BUILD_DIR)/conf/vanilla/$(f),$(CP) $(PKG_BUILD_DIR)/conf/vanilla/$(f) $(1)/opt/etc/$(PKG_NAME);))
+-	$(foreach f,dialplan directory jingle_profiles sip_profiles $(PKG_NAME).xml fur_elise.ttml mime.types tetris.ttml vars.xml,$(if $(PKG_BUILD_DIR)/conf/vanilla/$(f),$(CP) $(PKG_BUILD_DIR)/conf/vanilla/$(f) $(1)/etc/$(PKG_NAME);))
++	$(foreach f,dialplan directory jingle_profiles sip_profiles $(PKG_NAME).xml fur_elise.ttml mime.types tetris.ttml vars.xml,$(if $(PKG_BUILD_DIR)/conf/vanilla/$(f),$(CP) $(PKG_BUILD_DIR)/conf/vanilla/$(f) $(1)/opt/etc/$(PKG_NAME);))
  
  	#
  	# Copying acl ivr modules post_load_modules switch timezones
@@ -204,7 +200,7 @@ diff -urx .svn ../../../downloads/openwrt_trunk-r35953/feeds/telephony/freeswitc
  endef
  
  
-@@ -732,10 +732,10 @@
+@@ -763,10 +763,10 @@
  	#
  	# sounds-en-8KHz
  	#
@@ -218,7 +214,7 @@ diff -urx .svn ../../../downloads/openwrt_trunk-r35953/feeds/telephony/freeswitc
  	done
  endef
  
-@@ -744,10 +744,10 @@
+@@ -775,10 +775,10 @@
  	#
  	# sounds-en-16KHz
  	#
@@ -232,7 +228,7 @@ diff -urx .svn ../../../downloads/openwrt_trunk-r35953/feeds/telephony/freeswitc
  	done
  endef
  
-@@ -756,10 +756,10 @@
+@@ -787,10 +787,10 @@
  	#
  	# sounds-en-32KHz
  	#
@@ -246,7 +242,7 @@ diff -urx .svn ../../../downloads/openwrt_trunk-r35953/feeds/telephony/freeswitc
  	done
  endef
  
-@@ -768,10 +768,10 @@
+@@ -799,10 +799,10 @@
  	#
  	# sounds-en-48KHz
  	#
@@ -260,7 +256,7 @@ diff -urx .svn ../../../downloads/openwrt_trunk-r35953/feeds/telephony/freeswitc
  	done
  endef
  
-@@ -780,8 +780,8 @@
+@@ -811,8 +811,8 @@
  	#
  	# sounds-moh-8KHz
  	#
@@ -271,7 +267,7 @@ diff -urx .svn ../../../downloads/openwrt_trunk-r35953/feeds/telephony/freeswitc
  endef
  
  
-@@ -789,8 +789,8 @@
+@@ -820,8 +820,8 @@
  	#
  	# sounds-moh-16KHz
  	#
@@ -282,7 +278,7 @@ diff -urx .svn ../../../downloads/openwrt_trunk-r35953/feeds/telephony/freeswitc
  endef
  
  
-@@ -798,8 +798,8 @@
+@@ -829,8 +829,8 @@
  	#
  	# sounds-moh-32KHz
  	#
@@ -293,7 +289,7 @@ diff -urx .svn ../../../downloads/openwrt_trunk-r35953/feeds/telephony/freeswitc
  endef
  
  
-@@ -807,19 +807,19 @@
+@@ -838,19 +838,19 @@
  	#
  	# sounds-moh-48KHz
  	#
@@ -322,23 +318,7 @@ diff -urx .svn ../../../downloads/openwrt_trunk-r35953/feeds/telephony/freeswitc
  endef
  
  
-@@ -838,11 +838,11 @@
-   endef
- 
-   define Package/$(PKG_NAME)-$(1)/install
--	[ -d "$$(1)/usr/lib/pkgconfig" ] || $(INSTALL_DIR) $$(1)/usr/lib/pkgconfig
-+	[ -d "$$(1)/opt/lib/pkgconfig" ] || $(INSTALL_DIR) $$(1)/opt/lib/pkgconfig
- 
--	$(CP) $(PKG_INSTALL_DIR)/usr/lib/pkgconfig/$(patsubst lib%,%,$(3)).pc $$(1)/usr/lib/pkgconfig
--	$(CP) $(PKG_INSTALL_DIR)/usr/lib/$(1)* $$(1)/usr/lib/
--	$(if $$(1)/usr/lib/$(1).la,sed -i -e "s#\(^.*\)=' \(.*\)-lm\(.*\)#\1=' -L/usr/lib -L/usr/lib/libiconv-full/lib -L/usr/lib/libintl-full/lib -lm\3#g" $$(1)/usr/lib/$(1).la)
-+	$(CP) $(PKG_INSTALL_DIR)/opt/lib/pkgconfig/$(patsubst lib%,%,$(3)).pc $$(1)/opt/lib/pkgconfig
-+	$(CP) $(PKG_INSTALL_DIR)/opt/lib/$(1)* $$(1)/opt/lib/
-+	$(if $$(1)/opt/lib/$(1).la,sed -i -e "s#\(^.*\)=' \(.*\)-lm\(.*\)#\1=' -L/opt/lib -L/opt/lib/libiconv-full/lib -L/opt/lib/libintl-full/lib -lm\3#g" $$(1)/opt/lib/$(1).la)
-   endef
- 
-   $$(eval $$(call BuildPackage,$(PKG_NAME)-$(1)))
-@@ -866,65 +866,65 @@
+@@ -870,65 +870,65 @@
    endef
  
    define Package/$(PKG_NAME)-mod-$(1)/install
@@ -355,8 +335,8 @@ diff -urx .svn ../../../downloads/openwrt_trunk-r35953/feeds/telephony/freeswitc
  	#
  	# mod_$(subst -,_,$(1)): $(5)
  	#
--	$(foreach f,$(5),[ -d $(dir $$(1)/usr/${f}) ] || $(INSTALL_DIR) $(dir $$(1)/usr/${f});$(CP) $(PKG_INSTALL_DIR)/usr/${f} $$(1)/usr;)
-+	$(foreach f,$(5),[ -d $(dir $$(1)/opt/${f}) ] || $(INSTALL_DIR) $(dir $$(1)/opt/${f});$(CP) $(PKG_INSTALL_DIR)/opt/${f} $$(1)/opt;)
+-	$(foreach f,$(5),[ -d $(dir $$(1)/usr/${f}) ] || $(INSTALL_DIR) $(dir $$(1)/usr/${f});$(CP) $$$$(wildcard $(PKG_INSTALL_DIR)/usr/${f}*) $(dir $$(1)/usr/${f});)
++	$(foreach f,$(5),[ -d $(dir $$(1)/opt/${f}) ] || $(INSTALL_DIR) $(dir $$(1)/opt/${f});$(CP) $$$$(wildcard $(PKG_INSTALL_DIR)/opt/${f}*) $(dir $$(1)/opt/${f});)
  
  	#
  	# mod_$(subst -,_,$(1)): Clean installed library control files from referencig to OpenWRT PATH.
@@ -418,7 +398,7 @@ diff -urx .svn ../../../downloads/openwrt_trunk-r35953/feeds/telephony/freeswitc
    endef
  
    $$(eval $$(call BuildPackage,$(PKG_NAME)-mod-$(1)))
-@@ -1059,7 +1059,7 @@
+@@ -1057,7 +1057,7 @@
  $(eval $(call BuildPlugin,snom,SNOM specific features,vanilla,,,,))
  $(eval $(call BuildPlugin,sofia,SOFIA SIP,mod,,,,)) # ~/conf
  $(eval $(call BuildPlugin,sonar,Sonar Ping Timer,vanilla,,,,))
@@ -427,9 +407,9 @@ diff -urx .svn ../../../downloads/openwrt_trunk-r35953/feeds/telephony/freeswitc
  $(eval $(call BuildPlugin,speex,Speex codec,mod,,,,))
  $(eval $(call BuildPlugin,spidermonkey,JavaScript,vanilla,,,,@BROKEN)) # fails in js
  $(eval $(call BuildPlugin,spidermonkey-core_db,JavaScript DB,vanilla,,,,@BROKEN))
-diff -urx .svn ../../../downloads/openwrt_trunk-r35953/feeds/telephony/freeswitch/patches/003-Makefile.am.patch ../../../openwrt_trunk/feeds/telephony/freeswitch/patches/003-Makefile.am.patch
---- ../../../downloads/openwrt_trunk-r35953/feeds/telephony/freeswitch/patches/003-Makefile.am.patch	2013-03-11 09:29:41.270073781 +0400
-+++ ../../../openwrt_trunk/feeds/telephony/freeswitch/patches/003-Makefile.am.patch	2013-03-11 09:30:46.910072583 +0400
+diff -urx .svn ../../../downloads/openwrt_trunk-r36889/feeds/telephony/freeswitch/patches/003-Makefile.am.patch ../../../openwrt_trunk/feeds/telephony/freeswitch/patches/003-Makefile.am.patch
+--- ../../../downloads/openwrt_trunk-r36889/feeds/telephony/freeswitch/patches/003-Makefile.am.patch	2013-06-10 09:25:23.613864003 +0400
++++ ../../../openwrt_trunk/feeds/telephony/freeswitch/patches/003-Makefile.am.patch	2013-06-10 09:26:28.245862822 +0400
 @@ -30,9 +30,9 @@
   tiff-reconf:
   	cd libs/tiff-4.0.2 && autoreconf -fi
@@ -442,9 +422,9 @@ diff -urx .svn ../../../downloads/openwrt_trunk-r35953/feeds/telephony/freeswitc
   	cd libs/tiff-4.0.2 && make
   
   python-reconf:
-diff -urx .svn ../../../downloads/openwrt_trunk-r35953/feeds/telephony/freeswitch/patches/100-libs-esl-Makefile.patch ../../../openwrt_trunk/feeds/telephony/freeswitch/patches/100-libs-esl-Makefile.patch
---- ../../../downloads/openwrt_trunk-r35953/feeds/telephony/freeswitch/patches/100-libs-esl-Makefile.patch	2013-03-11 09:29:41.270073781 +0400
-+++ ../../../openwrt_trunk/feeds/telephony/freeswitch/patches/100-libs-esl-Makefile.patch	2013-03-11 09:30:46.910072583 +0400
+diff -urx .svn ../../../downloads/openwrt_trunk-r36889/feeds/telephony/freeswitch/patches/100-libs-esl-Makefile.patch ../../../openwrt_trunk/feeds/telephony/freeswitch/patches/100-libs-esl-Makefile.patch
+--- ../../../downloads/openwrt_trunk-r36889/feeds/telephony/freeswitch/patches/100-libs-esl-Makefile.patch	2013-06-10 09:25:23.613864003 +0400
++++ ../../../openwrt_trunk/feeds/telephony/freeswitch/patches/100-libs-esl-Makefile.patch	2013-06-10 09:26:28.245862822 +0400
 @@ -5,7 +5,7 @@
   CXXFLAGS=$(BASE_FLAGS)
   MYLIB=libesl.a

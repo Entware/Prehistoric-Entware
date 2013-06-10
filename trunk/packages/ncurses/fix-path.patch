@@ -1,6 +1,6 @@
---- ../../../downloads/openwrt_trunk-r36569/package/libs/ncurses/Makefile	2013-05-07 10:43:21.521939119 +0400
-+++ ../../../openwrt_trunk/package/libs/ncurses/Makefile	2013-05-07 17:09:19.836143612 +0400
-@@ -49,23 +49,33 @@
+--- ../../../openwrt_trunk/package/libs/ncurses/Makefile.orig	2013-06-10 09:23:56.561865586 +0400
++++ ../../../openwrt_trunk/package/libs/ncurses/Makefile	2013-06-10 09:26:35.553862690 +0400
+@@ -49,27 +49,37 @@
    VARIANT:=libncursesw
  endef
  
@@ -36,10 +36,6 @@
 +	--with-terminfo-dirs=/opt/share/terminfo \
 +	--with-default-terminfo-dir=/opt/share/terminfo
  
- ifneq ($(CONFIG_INSTALL_LIBSTDCPP),y)
- CONFIGURE_ARGS += \
-@@ -74,7 +84,7 @@
- 
  ifeq ($(HOST_OS),FreeBSD)
  	CONFIGURE_ARGS +=
 -		--with-terminfo=/usr/share/terminfo.db 
@@ -47,7 +43,7 @@
  endif
  
  ifeq ($(BUILD_VARIANT),libncursesw)
-@@ -87,73 +97,86 @@
+@@ -82,73 +92,86 @@
  	BUILD_CC="$(HOSTCC)" \
  	HOSTCC="$(HOSTCC)" \
  	HOSTCCFLAGS="" \

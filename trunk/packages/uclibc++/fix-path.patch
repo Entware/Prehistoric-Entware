@@ -1,6 +1,6 @@
 --- ../../../openwrt_trunk.orig/package/libs/uclibc++/Makefile
 +++ ../../../openwrt_trunk/package/libs/uclibc++/Makefile
-@@ -70,12 +70,12 @@
+@@ -69,12 +69,12 @@
  endef
  
  define Build/InstallDev
@@ -18,7 +18,7 @@
  # add another wrapper which links against both uClibc++ and libstdc++ 
  	$(INSTALL_BIN) $(TOOLCHAIN_DIR)/bin/g++-uc $(TOOLCHAIN_DIR)/bin/g++-uc+std
  	$(SED) 's|^WRAPPER_INCLUDEDIR=.*||g' $(TOOLCHAIN_DIR)/bin/g++-uc+std
-@@ -84,9 +84,9 @@
+@@ -83,9 +83,9 @@
  endef
  
  define Package/uclibcxx/install
