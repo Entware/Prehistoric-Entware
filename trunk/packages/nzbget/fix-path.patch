@@ -1,17 +1,42 @@
---- ../../../downloads/openwrt_trunk-r35474/feeds/packages/net/nzbget/Makefile	2013-02-05 10:42:22.002946211 +0400
-+++ ../../../openwrt_trunk/feeds/packages/net/nzbget/Makefile	2013-02-15 14:31:08.106956497 +0400
-@@ -20,7 +20,7 @@
+--- ../../../downloads/openwrt_trunk-r36889/feeds/packages/net/nzbget/Makefile	2013-06-10 09:25:14.753864157 +0400
++++ ../../../openwrt_trunk/feeds/packages/net/nzbget/Makefile	2013-06-11 16:09:05.963850048 +0400
+@@ -8,26 +8,22 @@
+ include $(TOPDIR)/rules.mk
+ 
+ PKG_NAME:=nzbget
+-PKG_VERSION:=0.8.0
++PKG_VERSION:=10.2
+ PKG_RELEASE:=1
+ 
+ PKG_SOURCE:=$(PKG_NAME)-$(PKG_VERSION).tar.gz
+ PKG_SOURCE_URL:=@SF/nzbget
+ PKG_MD5SUM:=c47f464fe988deeb4fc5381506c1fbe3
+ 
+-PKG_FIXUP:=autoreconf
+ PKG_INSTALL:=1
  
  include $(INCLUDE_DIR)/package.mk
  
 -TARGET_LDFLAGS+=-Wl,-rpath-link="$(STAGING_DIR)/usr/lib" -lcrypto -lsigc-2.0
-+TARGET_LDFLAGS+=-Wl,-rpath-link="$(STAGING_DIR)/opt/lib" -lcrypto -lsigc-2.0
- TARGET_CFLAGS += $(FPIC)
- 
+-TARGET_CFLAGS += $(FPIC)
+-
  define Package/nzbget
-@@ -40,30 +40,30 @@
+   SUBMENU:=NNTP
+   SECTION:=net
+   CATEGORY:=Network
+-  DEPENDS:=+libxml2 +libpar2 +libopenssl +libpthread +libncurses
++  DEPENDS:=+libxml2 +libpar2 +libopenssl +libncurses
+   URL:=http://nzbget.sourceforge.net/
+   TITLE:=Binary newsgrabber for nzb-files
+   MAINTAINER:=Artur Wronowski <arteqw@gmail.com>
+@@ -37,33 +33,40 @@
+ A command-line client/server based binary newsgrabber for nzb-files.
+ endef
+ 
++
  CONFIGURE_ARGS += \
- 	--disable-nls \
+-	--disable-nls \
++	--disable-libpar2-bugfixes-check \
  	--with-tlslib=OpenSSL \
 -	--with-libpar2-includes=$(STAGING_DIR)/usr/include/libpar2 \
 -	--with-libpar2-libraries=$(STAGING_DIR)/usr/lib \
@@ -21,6 +46,12 @@
 -	--with-openssl-libraries=$(STAGING_DIR)/usr/lib \
 -	--with-libcurses-includes=$(STAGING_DIR)/usr/include \
 -	--with-libcurses-libraries=$(STAGING_DIR)/usr/lib \
+-	, \
+-	PKG_CONFIG_PATH="$(STAGING_DIR)/usr/lib/pkgconfig"
+-
+-CONFIGURE_VARS += \
+-	ac_cv_header_regex_h=no \
+-	CPPFLAGS="-I$(STAGING_DIR)/usr/include/libxml2 $$$$CPPFLAGS"
 +	--with-libpar2-includes=$(STAGING_DIR)/opt/include/libpar2 \
 +	--with-libpar2-libraries=$(STAGING_DIR)/opt/lib \
 +	--with-libsigc-includes=$(STAGING_DIR)/opt/include/sigc++-2.0 \
@@ -29,14 +60,12 @@
 +	--with-openssl-libraries=$(STAGING_DIR)/opt/lib \
 +	--with-libcurses-includes=$(STAGING_DIR)/opt/include \
 +	--with-libcurses-libraries=$(STAGING_DIR)/opt/lib \
- 	, \
--	PKG_CONFIG_PATH="$(STAGING_DIR)/usr/lib/pkgconfig"
-+	PKG_CONFIG_PATH="$(STAGING_DIR)/opt/lib/pkgconfig"
- 
- CONFIGURE_VARS += \
- 	ac_cv_header_regex_h=no \
--	CPPFLAGS="-I$(STAGING_DIR)/usr/include/libxml2 $$$$CPPFLAGS"
-+	CPPFLAGS="-I$(STAGING_DIR)/opt/include/libxml2 $$$$CPPFLAGS"
++
++define Build/Configure
++	$(call Build/Configure/Default)
++	$(SED) 's|-I/usr/include||g' $(PKG_BUILD_DIR)/Makefile
++endef
++
  
  define Package/nzbget/install
 -	$(INSTALL_DIR) $(1)/usr/bin
@@ -44,14 +73,20 @@
 -	$(INSTALL_DIR) $(1)/etc
 -	$(INSTALL_DATA) $(PKG_BUILD_DIR)/nzbget.conf.example $(1)/etc/nzbget.conf
 +	$(INSTALL_DIR) $(1)/opt/bin
-+	$(INSTALL_BIN) $(PKG_INSTALL_DIR)/opt/bin/nzbget $(1)/opt/bin/
-+	$(INSTALL_DIR) $(1)/opt/etc
-+	$(INSTALL_DATA) $(PKG_BUILD_DIR)/nzbget.conf.example $(1)/opt/etc/nzbget.conf
++	$(INSTALL_BIN) $(PKG_INSTALL_DIR)/opt/bin/nzbget* $(1)/opt/bin/
++	$(INSTALL_DIR) $(1)/opt/sbin
++	$(INSTALL_BIN) $(PKG_INSTALL_DIR)/opt/sbin/nzbgetd $(1)/opt/sbin/
++	$(INSTALL_DIR) $(1)/opt/etc/init.d
++	$(INSTALL_BIN) ./files/S75nzbget $(1)/opt/etc/init.d/
++	$(INSTALL_DATA) $(PKG_INSTALL_DIR)/opt/share/nzbget/nzbget*.conf $(1)/opt/etc/
++	$(INSTALL_DIR) $(1)/opt/share/nzbget
++	$(CP) $(PKG_INSTALL_DIR)/opt/share/nzbget/* $(1)/opt/share/nzbget/
  endef
  
  define Package/nzbget/conffiles
 -/etc/nzbget.conf
 +/opt/etc/nzbget.conf
++/opt/etc/nzbget-postprocess.conf
  endef
  
  $(eval $(call BuildPackage,nzbget))
