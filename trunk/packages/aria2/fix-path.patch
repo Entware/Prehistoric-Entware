@@ -1,17 +1,17 @@
---- ../../../downloads/openwrt_trunk-r36151/feeds/packages/net/aria2/Makefile	2013-04-02 14:27:38.813540255 +0400
-+++ ../../../openwrt_trunk/feeds/packages/net/aria2/Makefile	2013-04-29 15:43:09.490202365 +0400
+--- ../../../downloads/openwrt_trunk-r36889/feeds/packages/net/aria2/Makefile	2013-06-10 09:25:17.405864099 +0400
++++ ../../../openwrt_trunk/feeds/packages/net/aria2/Makefile	2013-06-11 09:42:57.096269374 +0400
 @@ -7,12 +7,12 @@
  include $(TOPDIR)/rules.mk
  
  PKG_NAME:=aria2
 -PKG_VERSION:=1.16.3
-+PKG_VERSION:=1.17.0
++PKG_VERSION:=1.17.1
  PKG_RELEASE:=1
  
  PKG_SOURCE:=$(PKG_NAME)-$(PKG_VERSION).tar.bz2
  PKG_SOURCE_URL:=@SF/aria2
 -PKG_MD5SUM:=2f37c41e6a9f883f75525970582b1414
-+PKG_MD5SUM:=9e2b4f1103a05c6b087b8f380a82df5b
++PKG_MD5SUM:=86229ef8d289893934cb3af25c8fddf6
  PKG_INSTALL:=1
  
  include $(INCLUDE_DIR)/package.mk
