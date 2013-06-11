@@ -1,13 +1,13 @@
-diff -urx .svn ../../../downloads/openwrt_trunk-r36151/feeds/packages/mail/imapfilter/Makefile ../../../openwrt_trunk/feeds/packages/mail/imapfilter/Makefile
---- ../../../downloads/openwrt_trunk-r36151/feeds/packages/mail/imapfilter/Makefile	2013-04-02 14:27:45.213540138 +0400
-+++ ../../../openwrt_trunk/feeds/packages/mail/imapfilter/Makefile	2013-04-29 15:59:07.826191684 +0400
+diff -urx .svn ../../../downloads/openwrt_trunk-r36889/feeds/packages/mail/imapfilter/Makefile ../../../openwrt_trunk/feeds/packages/mail/imapfilter/Makefile
+--- ../../../downloads/openwrt_trunk-r36889/feeds/packages/mail/imapfilter/Makefile	2013-06-10 09:25:23.477864005 +0400
++++ ../../../openwrt_trunk/feeds/packages/mail/imapfilter/Makefile	2013-06-11 09:49:37.024264089 +0400
 @@ -8,12 +8,15 @@
  include $(TOPDIR)/rules.mk
  
  PKG_NAME:=imapfilter
 -PKG_VERSION:=2.2.2
-+PKG_VERSION:=2.5.4
-+PKG_REV:=7593368952a973d0b738a30fa0f4928b4db15a96
++PKG_VERSION:=2.5.5
++PKG_REV:=ef03d60ba3c3c3b0696735931afe08ff9c89b37c
  PKG_RELEASE:=1
  
  PKG_SOURCE:=$(PKG_NAME)-$(PKG_VERSION).tar.bz2
@@ -72,9 +72,9 @@ diff -urx .svn ../../../downloads/openwrt_trunk-r36151/feeds/packages/mail/imapf
  endef
  
  $(eval $(call BuildPackage,imapfilter))
-diff -urx .svn ../../../downloads/openwrt_trunk-r36151/feeds/packages/mail/imapfilter/patches/010-pathnames.patch ../../../openwrt_trunk/feeds/packages/mail/imapfilter/patches/010-pathnames.patch
---- ../../../downloads/openwrt_trunk-r36151/feeds/packages/mail/imapfilter/patches/010-pathnames.patch	2013-04-02 14:27:45.245540136 +0400
-+++ ../../../openwrt_trunk/feeds/packages/mail/imapfilter/patches/010-pathnames.patch	2013-04-29 15:58:29.686184804 +0400
+diff -urx .svn ../../../downloads/openwrt_trunk-r36889/feeds/packages/mail/imapfilter/patches/010-pathnames.patch ../../../openwrt_trunk/feeds/packages/mail/imapfilter/patches/010-pathnames.patch
+--- ../../../downloads/openwrt_trunk-r36889/feeds/packages/mail/imapfilter/patches/010-pathnames.patch	2013-06-10 09:25:23.525864002 +0400
++++ ../../../openwrt_trunk/feeds/packages/mail/imapfilter/patches/010-pathnames.patch	2013-06-10 09:26:28.673862815 +0400
 @@ -1,31 +1,11 @@
 ---- a/pathnames.h
 -+++ b/pathnames.h
