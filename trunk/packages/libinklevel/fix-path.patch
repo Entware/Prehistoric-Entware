@@ -1,0 +1,30 @@
+--- ../../../openwrt_trunk.orig/feeds/packages/libs/libinklevel/Makefile	2013-06-14 04:07:50.303050466 +0400
++++ ../../../openwrt_trunk/feeds/packages/libs/libinklevel/Makefile	2013-06-21 04:07:38.023907785 +0400
+@@ -39,11 +39,11 @@
+ define Build/InstallDev
+-	$(INSTALL_DIR) $(1)/usr/include
++	$(INSTALL_DIR) $(1)/opt/include
+ 	$(INSTALL_DATA) \
+-		$(PKG_INSTALL_DIR)/usr/include/inklevel.h \
+-		$(1)/usr/include/
++		$(PKG_INSTALL_DIR)/opt/include/inklevel.h \
++		$(1)/opt/include/
+ 
+-	$(INSTALL_DIR) $(1)/usr/lib
++	$(INSTALL_DIR) $(1)/opt/lib
+ 	$(CP) \
+-		$(PKG_INSTALL_DIR)/usr/lib/libinklevel.so* \
+-		$(1)/usr/lib/
++		$(PKG_INSTALL_DIR)/opt/lib/libinklevel.so* \
++		$(1)/opt/lib/
+ endef
+@@ -51,6 +51,6 @@
+ define Package/libinklevel/install
+-	$(INSTALL_DIR) $(1)/usr/lib
++	$(INSTALL_DIR) $(1)/opt/lib
+ 	$(CP) \
+-		$(PKG_INSTALL_DIR)/usr/lib/libinklevel.so* \
+-		$(1)/usr/lib/
++		$(PKG_INSTALL_DIR)/opt/lib/libinklevel.so* \
++		$(1)/opt/lib/
+ endef
