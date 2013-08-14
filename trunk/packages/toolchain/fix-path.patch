@@ -1,5 +1,5 @@
---- ../../../openwrt_trunk/package/toolchain/Makefile.orig	2013-06-10 09:23:55.417865608 +0400
-+++ ../../../openwrt_trunk/package/toolchain/Makefile	2013-06-10 09:26:39.381862620 +0400
+--- ../../../openwrt_trunk/package/libs/toolchain/Makefile.orig
++++ ../../../openwrt_trunk/package/libs/toolchain/Makefile
 @@ -7,18 +7,14 @@
  
  include $(TOPDIR)/rules.mk

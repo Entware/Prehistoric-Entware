@@ -1,7 +1,7 @@
---- ../../openwrt_trunk/rules.mk.orig	2013-05-06 15:20:51.000000000 +0400
-+++ ../../openwrt_trunk/rules.mk	2013-05-06 15:30:19.311197090 +0400
-@@ -130,8 +130,8 @@
- TARGET_CFLAGS:=$(TARGET_OPTIMIZATION)$(if $(CONFIG_DEBUG), -g3)
+--- ../../rules.mk.orig
++++ ../../rules.mk
+@@ -131,8 +131,8 @@
+ TARGET_CFLAGS:=$(TARGET_OPTIMIZATION)$(if $(CONFIG_DEBUG), -g3) $(EXTRA_OPTIMIZATION)
  TARGET_CXXFLAGS = $(TARGET_CFLAGS)
  TARGET_ASFLAGS = $(TARGET_CFLAGS) $(TARGET_ASFLAGS_OVERRIDE)
 -TARGET_CPPFLAGS:=-I$(STAGING_DIR)/usr/include -I$(STAGING_DIR)/include

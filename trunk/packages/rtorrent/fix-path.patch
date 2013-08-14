@@ -1,35 +1,15 @@
-diff -urx .svn ../../../openwrt_trunk.orig/feeds/packages/net/rtorrent/Makefile ../../../openwrt_trunk/feeds/packages/net/rtorrent/Makefile
---- ../../../openwrt_trunk.orig/feeds/packages/net/rtorrent/Makefile	2012-10-09 13:58:20.621900814 +0400
-+++ ../../../openwrt_trunk/feeds/packages/net/rtorrent/Makefile	2012-10-24 10:35:59.367527291 +0400
-@@ -8,12 +8,12 @@
- include $(TOPDIR)/rules.mk
- 
- PKG_NAME:=rtorrent
--PKG_VERSION:=0.8.6
-+PKG_VERSION:=0.9.3
- PKG_RELEASE:=1
- 
- PKG_SOURCE:=$(PKG_NAME)-$(PKG_VERSION).tar.gz
- PKG_SOURCE_URL:=http://libtorrent.rakshasa.no/downloads
--PKG_MD5SUM:=b804c45c01c40312926bcea6b55bb084
-+PKG_MD5SUM:=0bf2f262faa8c8c8d3b11ce286ea2bf2
- 
- PKG_FIXUP:=autoreconf
- PKG_BUILD_PARALLEL:=1
-@@ -39,11 +39,9 @@
+--- ../../../openwrt_trunk/feeds/packages/net/rtorrent/Makefile.orig	2013-08-09 12:56:11.370797755 +0400
++++ ../../../openwrt_trunk/feeds/packages/net/rtorrent/Makefile	2013-08-14 16:05:29.098717227 +0400
+@@ -40,7 +40,7 @@
+  clients in an ncurses client. 
  endef
  
- TARGET_CPPFLAGS += -fno-strict-aliasing -fno-inline
 -TARGET_LDFLAGS += -lpthread -Wl,-rpath-link=$(STAGING_DIR)/usr/lib
 +TARGET_LDFLAGS += -lpthread
  
  CONFIGURE_ARGS+= \
--	--enable-shared \
--	--disable-static \
- 	--disable-debug \
- 	--with-xmlrpc-c
- 
-@@ -53,8 +51,8 @@
+ 	--enable-shared \
+@@ -54,8 +54,8 @@
  endef
  
  define Package/rtorrent/install
@@ -40,63 +20,3 @@ diff -urx .svn ../../../openwrt_trunk.orig/feeds/packages/net/rtorrent/Makefile 
  endef
  
  $(eval $(call BuildPackage,rtorrent))
-diff -urx .svn ../../../openwrt_trunk.orig/feeds/packages/net/rtorrent/patches/100-fix-cross_compile.patch ../../../openwrt_trunk/feeds/packages/net/rtorrent/patches/100-fix-cross_compile.patch
---- ../../../openwrt_trunk.orig/feeds/packages/net/rtorrent/patches/100-fix-cross_compile.patch	2012-10-09 13:58:20.633900815 +0400
-+++ ../../../openwrt_trunk/feeds/packages/net/rtorrent/patches/100-fix-cross_compile.patch	2012-10-24 12:04:11.579427026 +0400
-@@ -1,22 +1,20 @@
--Index: rtorrent-0.8.6/scripts/common.m4
--===================================================================
----- rtorrent-0.8.6.orig/scripts/common.m4
--+++ rtorrent-0.8.6/scripts/common.m4
--@@ -184,7 +184,7 @@ AC_DEFUN([TORRENT_CHECK_MADVISE], [
-+--- a/scripts/common.m4
-++++ b/scripts/common.m4
-+@@ -223,7 +223,7 @@
-  AC_DEFUN([TORRENT_CHECK_EXECINFO], [
-    AC_MSG_CHECKING(for execinfo.h)
-  
---  AC_RUN_IFELSE(
--+  AC_LINK_IFELSE(
--     [[#include <execinfo.h>
-+-  AC_RUN_IFELSE([AC_LANG_SOURCE([
-++  AC_LINK_IFELSE([AC_LANG_SOURCE([
-+       #include <execinfo.h>
-        int main() { backtrace((void**)0, 0); backtrace_symbols((char**)0, 0); return 0;}
--     ]],
--@@ -199,7 +199,7 @@ AC_DEFUN([TORRENT_CHECK_EXECINFO], [
-+       ])],
-+@@ -238,7 +238,7 @@
-  AC_DEFUN([TORRENT_CHECK_ALIGNED], [
-    AC_MSG_CHECKING(the byte alignment)
-  
---  AC_RUN_IFELSE(
--+  AC_LINK_IFELSE(
--     [[#include <inttypes.h>
-+-  AC_RUN_IFELSE([AC_LANG_SOURCE([
-++  AC_LINK_IFELSE([AC_LANG_SOURCE([
-+       #include <inttypes.h>
-        int main() {
--         char buf[8] = { 0, 0, 0, 0, 1, 0, 0, 0 };
-+         char buf@<:@8@:>@ = { 0, 0, 0, 0, 1, 0, 0, 0 };
-diff -urx .svn ../../../openwrt_trunk.orig/feeds/packages/net/rtorrent/patches/120-fix-ncurses.patch ../../../openwrt_trunk/feeds/packages/net/rtorrent/patches/120-fix-ncurses.patch
---- ../../../openwrt_trunk.orig/feeds/packages/net/rtorrent/patches/120-fix-ncurses.patch	2012-10-09 13:58:20.633900815 +0400
-+++ ../../../openwrt_trunk/feeds/packages/net/rtorrent/patches/120-fix-ncurses.patch	2012-10-24 12:07:05.091425303 +0400
-@@ -1,13 +1,11 @@
--Index: rtorrent-0.8.6/src/display/canvas.h
--===================================================================
----- rtorrent-0.8.6.orig/src/display/canvas.h
--+++ rtorrent-0.8.6/src/display/canvas.h
-+--- a/src/display/canvas.h
-++++ b/src/display/canvas.h
- @@ -48,7 +48,7 @@ class Canvas {
-  public:
-    typedef std::vector<Attributes> attributes_list;
-  
---  Canvas(int x = 0, int y = 0, int width = 0, int height = 0) :
--+  Canvas(int x = 0, int y = 0, int width = 1, int height = 1) :
--     m_window(newwin(height, width, y, x)) {}
-+-  Canvas(int x = 0, int y = 0, int width = 0, int height = 0);
-++  Canvas(int x = 0, int y = 0, int width = 1, int height = 1);
-    ~Canvas() { delwin(m_window); }
-  
-+   void                refresh()                                               { wnoutrefresh(m_window); }

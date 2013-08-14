@@ -9,7 +9,7 @@ all: ./.done
 
 ./.done:
 	patch -p0 -i ./fix-path.patch
-	cp ./S31asterisk ../../../openwrt_trunk/feeds/telephony/asterisk-1.8.x/files/
+	cp ./S31asterisk ../../../openwrt_trunk/feeds/telephony/net/asterisk-1.8.x/files/
 	touch $@
 
 clean:

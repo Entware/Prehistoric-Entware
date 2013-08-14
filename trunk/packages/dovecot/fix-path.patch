@@ -1,114 +1,46 @@
-diff -urx .svn ../../../downloads/openwrt_trunk-r36569/feeds/packages/mail/dovecot/Makefile ../../../openwrt_trunk/feeds/packages/mail/dovecot/Makefile
---- ../../../downloads/openwrt_trunk-r36569/feeds/packages/mail/dovecot/Makefile	2013-05-07 10:43:19.493939156 +0400
-+++ ../../../openwrt_trunk/feeds/packages/mail/dovecot/Makefile	2013-05-13 11:07:40.395094834 +0400
-@@ -9,7 +9,7 @@
- 
- PKG_NAME:=dovecot
- PKG_VERSION:=1.2.13
--PKG_RELEASE:=2
-+PKG_RELEASE:=2a
- 
- PKG_SOURCE:=$(PKG_NAME)-$(PKG_VERSION).tar.gz
- PKG_SOURCE_URL:=http://www.dovecot.org/releases/1.2
+--- ../../../openwrt_trunk/feeds/packages/mail/dovecot/Makefile.orig	2013-08-09 12:56:11.000000000 +0400
++++ ../../../openwrt_trunk/feeds/packages/mail/dovecot/Makefile	2013-08-14 14:24:00.418835907 +0400
 @@ -36,7 +36,7 @@
+ CONFIGURE_ARGS += \
  	--without-gssapi \
  	--without-pam \
- 	--without-libcap \
 -	--with-moduledir=/usr/lib/dovecot/modules \
 +	--with-moduledir=/opt/lib/dovecot/modules \
- 	--with-notify=dnotify \
+ 	--with-notify=dnotify
  
  CONFIGURE_VARS += \
-@@ -53,19 +53,19 @@
- 	lib_cv_va_val_copy=yes \
+@@ -53,20 +53,20 @@
+ 	lib_cv_va_val_copy=yes
  
  define Package/dovecot/install
--	$(INSTALL_DIR) $(1)/etc/init.d
--	$(INSTALL_BIN) ./files/dovecot.init $(1)/etc/init.d/dovecot
--	$(INSTALL_CONF) $(PKG_INSTALL_DIR)/etc/dovecot-example.conf $(1)/etc/dovecot.conf
--	$(INSTALL_DIR) $(1)/usr/lib/dovecot
+-	$(INSTALL_DIR)  $(1)/etc/init.d \
+-			$(1)/etc/dovecot \
+-			$(1)/usr/share/doc/dovecot/example-config \
+-			$(1)/usr/lib/dovecot \
+-			$(1)/usr/bin \
+-			$(1)/usr/sbin
+-	$(CP) $(PKG_INSTALL_DIR)/etc/dovecot/* $(1)/etc/dovecot/
 -	$(CP) $(PKG_INSTALL_DIR)/usr/lib/dovecot/* $(1)/usr/lib/dovecot/
--	$(INSTALL_DIR) $(1)/usr/sbin
+-	$(CP) $(PKG_INSTALL_DIR)/usr/share/doc/dovecot/example-config $(1)/usr/share/doc/dovecot/example-config
+-	$(INSTALL_BIN) $(PKG_INSTALL_DIR)/usr/bin/doveconf $(1)/usr/bin/
 -	$(INSTALL_BIN) $(PKG_INSTALL_DIR)/usr/sbin/* $(1)/usr/sbin/
--	find $(1)/usr/lib/dovecot/modules/ \
-+	$(INSTALL_DIR) $(1)/opt/etc/init.d
-+	$(INSTALL_BIN) ./files/S90dovecot $(1)/opt/etc/init.d/
-+	$(INSTALL_CONF) $(PKG_INSTALL_DIR)/opt/etc/dovecot-example.conf $(1)/opt/etc/dovecot.conf
-+	$(INSTALL_DIR) $(1)/opt/lib/dovecot
+-	$(INSTALL_BIN) ./files/dovecot.init $(1)/etc/init.d/dovecot
+-	rm  $(1)/usr/lib/dovecot/dovecot-config
+-	find $(1)/usr/lib/dovecot/ -name "*.a" -o -name "*.la" | xargs rm
++	$(INSTALL_DIR)  $(1)/opt/etc/init.d \
++			$(1)/opt/etc/dovecot \
++			$(1)/opt/share/doc/dovecot/example-config \
++			$(1)/opt/lib/dovecot \
++			$(1)/opt/bin \
++			$(1)/opt/sbin
++	$(CP) $(PKG_INSTALL_DIR)/opt/etc/dovecot/* $(1)/opt/etc/dovecot/
 +	$(CP) $(PKG_INSTALL_DIR)/opt/lib/dovecot/* $(1)/opt/lib/dovecot/
-+	$(INSTALL_DIR) $(1)/opt/sbin
++	$(CP) $(PKG_INSTALL_DIR)/opt/share/doc/dovecot/example-config $(1)/opt/share/doc/dovecot/example-config
++	$(INSTALL_BIN) $(PKG_INSTALL_DIR)/opt/bin/doveconf $(1)/opt/bin/
 +	$(INSTALL_BIN) $(PKG_INSTALL_DIR)/opt/sbin/* $(1)/opt/sbin/
-+	find $(1)/opt/lib/dovecot/modules/ \
- 		-name "*.a" -o -name "*.la" | xargs rm
- endef
- 
- define Package/dovecot/conffiles
--/etc/dovecot.conf
-+/opt/etc/dovecot.conf
++	$(INSTALL_BIN) ./files/S90dovecot $(1)/opt/etc/init.d/
++	rm  $(1)/opt/lib/dovecot/dovecot-config
++	find $(1)/opt/lib/dovecot/ -name "*.a" -o -name "*.la" | xargs rm
  endef
  
  $(eval $(call BuildPackage,dovecot))
-diff -urx .svn ../../../downloads/openwrt_trunk-r36569/feeds/packages/mail/dovecot/patches/002-example_conf.patch ../../../openwrt_trunk/feeds/packages/mail/dovecot/patches/002-example_conf.patch
---- ../../../downloads/openwrt_trunk-r36569/feeds/packages/mail/dovecot/patches/002-example_conf.patch	2013-05-07 10:43:19.497939156 +0400
-+++ ../../../openwrt_trunk/feeds/packages/mail/dovecot/patches/002-example_conf.patch	2013-05-08 13:20:38.518819231 +0400
-@@ -5,23 +5,23 @@
-  protocol imap {
-    # Login executable location.
- -  #login_executable = /usr/libexec/dovecot/imap-login
--+  #login_executable = /usr/lib/dovecot/imap-login
-++  #login_executable = /opt/lib/dovecot/imap-login
-  
-    # IMAP executable location. Changing this allows you to execute other
-    # binaries before the imap process is executed.
-    #
-    # This would write rawlogs into user's ~/dovecot.rawlog/, if it exists:
- -  #   mail_executable = /usr/libexec/dovecot/rawlog /usr/libexec/dovecot/imap
--+  #   mail_executable = /usr/lib/dovecot/rawlog /usr/lib/dovecot/imap
-++  #   mail_executable = /opt/lib/dovecot/rawlog /opt/lib/dovecot/imap
-    # <doc/wiki/Debugging/Rawlog.txt>
-    #
-    # This would attach gdb into the imap process and write backtraces into
-    # /tmp/gdbhelper.* files:
- -  #   mail_executable = /usr/libexec/dovecot/gdbhelper /usr/libexec/dovecot/imap
--+  #   mail_executable = /usr/lib/dovecot/gdbhelper /usr/lib/dovecot/imap
-++  #   mail_executable = /opt/lib/dovecot/gdbhelper /opt/lib/dovecot/imap
-    #
- -  #mail_executable = /usr/libexec/dovecot/imap
--+  #mail_executable = /usr/lib/dovecot/imap
-++  #mail_executable = /opt/lib/dovecot/imap
-  
-    # Maximum IMAP command line length in bytes. Some clients generate very long
-    # command lines with huge mailboxes, so you may need to raise this if you get
-@@ -30,12 +30,12 @@
-  protocol pop3 {
-    # Login executable location.
- -  #login_executable = /usr/libexec/dovecot/pop3-login
--+  #login_executable = /usr/lib/dovecot/pop3-login
-++  #login_executable = /opt/lib/dovecot/pop3-login
-  
-    # POP3 executable location. See IMAP's mail_executable above for examples
-    # how this could be changed.
- -  #mail_executable = /usr/libexec/dovecot/pop3
--+  #mail_executable = /usr/lib/dovecot/pop3
-++  #mail_executable = /opt/lib/dovecot/pop3
-  
-    # Don't try to set mails non-recent or seen with POP3 sessions. This is
-    # mostly intended to reduce disk I/O. With maildir it doesn't move files
-@@ -44,7 +44,7 @@
-  
-  # Executable location
- -#auth_executable = /usr/libexec/dovecot/dovecot-auth
--+#auth_executable = /usr/lib/dovecot/dovecot-auth
-++#auth_executable = /opt/lib/dovecot/dovecot-auth
-  
-  # Set max. process size in megabytes.
-  #auth_process_size = 256
-@@ -81,7 +81,7 @@
-    # expired mails. The actual expunging is done in a nightly cronjob, which
-    # you must set up:
- -  #   dovecot --exec-mail ext /usr/libexec/dovecot/expire-tool
--+  #   dovecot --exec-mail ext /usr/lib/dovecot/expire-tool
-++  #   dovecot --exec-mail ext /opt/lib/dovecot/expire-tool
-    #expire = Trash 7 Spam 30
-    #expire_dict = proxy::expire
-  

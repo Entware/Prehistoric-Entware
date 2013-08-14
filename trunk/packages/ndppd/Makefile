@@ -9,9 +9,9 @@ all: ./.done
 
 ./.done:
 	patch -p0 -i ./fix-path.patch
-	mkdir -p ../../../openwrt_trunk/feeds/packages/ipv6/ndppd/patches/
-	cp -f ./500-config-path.patch ../../../openwrt_trunk/feeds/packages/ipv6/ndppd/patches/
-	cp -f ./S33ndppd ../../../openwrt_trunk/feeds/packages/ipv6/ndppd/files/
+	mkdir -p ../../../openwrt_trunk/feeds/routing/ndppd/patches/
+	cp -f ./500-config-path.patch ../../../openwrt_trunk/feeds/routing/ndppd/patches/
+	cp -f ./S33ndppd ../../../openwrt_trunk/feeds/routing/ndppd/files/
 	touch $@
 
 clean:

@@ -41,9 +41,8 @@ buildroot: .buildroot_installed
 	else \
 		svn co --revision=$(OPENWRT_REVISION) svn://svn.openwrt.org/openwrt/trunk/ $(TOP)/openwrt_trunk ; \
 		cp -f ./buildroot/feeds.conf $(TOP)/openwrt_trunk ; \
-		sed -i 's,packages@XXXXX,packages@$(OPENWRT_REVISION),g' $(TOP)/openwrt_trunk/feeds.conf ; \
 		(cd $(TOP)/openwrt_trunk ; \
-		    for feed in packages telephony rtndev ; \
+		    for feed in packages routing telephony rtndev ; \
 		    do \
 			./scripts/feeds update $$feed ; \
 			./scripts/feeds install -a -p $$feed ; \

@@ -1,5 +1,5 @@
---- ../../../openwrt_trunk.orig/package/opkg/Makefile
-+++ ../../../openwrt_trunk/package/opkg/Makefile
+--- ../../../openwrt_trunk.orig/package/system/opkg/Makefile
++++ ../../../openwrt_trunk/package/system/opkg/Makefile
 @@ -5,7 +5,6 @@
  # See /LICENSE for more information.
  

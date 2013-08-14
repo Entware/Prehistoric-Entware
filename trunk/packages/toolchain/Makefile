@@ -9,7 +9,7 @@ all: ./.done
 
 ./.done:
 	patch -p0 -i ./fix-path.patch
-	@echo Check uClibc/GCC versions at ./openwrt_trunk/package/toolchain/Makefile.
+	@echo Check uClibc/GCC versions at ./openwrt_trunk/package/libs/toolchain/Makefile.
 	touch $@
 
 clean:

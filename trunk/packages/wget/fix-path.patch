@@ -1,6 +1,6 @@
 --- ../../../openwrt_trunk.orig/feeds/packages/net/wget/Makefile
 +++ ../../../openwrt_trunk/feeds/packages/net/wget/Makefile
-@@ -68,7 +68,7 @@
+@@ -71,7 +71,7 @@
  ifeq ($(BUILD_VARIANT),ssl)
  	CONFIGURE_ARGS+= \
  		--with-ssl=openssl \
@@ -9,7 +9,7 @@
  endif
  
  ifeq ($(BUILD_VARIANT),nossl)
-@@ -77,50 +77,51 @@
+@@ -80,50 +80,51 @@
  endif
  
  define Package/wget/install

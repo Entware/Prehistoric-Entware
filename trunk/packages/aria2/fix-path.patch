@@ -1,21 +1,6 @@
---- ../../../downloads/openwrt_trunk-r36889/feeds/packages/net/aria2/Makefile	2013-06-10 09:25:17.405864099 +0400
-+++ ../../../openwrt_trunk/feeds/packages/net/aria2/Makefile	2013-06-11 09:42:57.096269374 +0400
-@@ -7,12 +7,12 @@
- include $(TOPDIR)/rules.mk
- 
- PKG_NAME:=aria2
--PKG_VERSION:=1.16.3
-+PKG_VERSION:=1.17.1
- PKG_RELEASE:=1
- 
- PKG_SOURCE:=$(PKG_NAME)-$(PKG_VERSION).tar.bz2
- PKG_SOURCE_URL:=@SF/aria2
--PKG_MD5SUM:=2f37c41e6a9f883f75525970582b1414
-+PKG_MD5SUM:=86229ef8d289893934cb3af25c8fddf6
- PKG_INSTALL:=1
- 
- include $(INCLUDE_DIR)/package.mk
-@@ -46,12 +46,16 @@
+--- ../../../openwrt_trunk/feeds/packages/net/aria2/Makefile.orig	2013-08-14 14:05:17.778852863 +0400
++++ ../../../openwrt_trunk/feeds/packages/net/aria2/Makefile	2013-08-14 14:04:18.514854092 +0400
+@@ -46,12 +46,15 @@
  	--with-libz
  
  CONFIGURE_VARS += \
@@ -32,7 +17,6 @@
 +	$(INSTALL_DIR) $(1)/opt/var/{log,run} $(1)/opt/etc/init.d
 +	$(INSTALL_CONF) ./files/aria2.conf $(1)/opt/etc/
 +	$(INSTALL_BIN) ./files/S81aria2 $(1)/opt/etc/init.d/
-+
  endef
  
  $(eval $(call BuildPackage,aria2))

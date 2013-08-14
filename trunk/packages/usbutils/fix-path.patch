@@ -1,5 +1,5 @@
---- ../../../downloads/openwrt_trunk-r35474/package/system/utils/usbutils/Makefile	2013-02-05 09:11:20.171045705 +0400
-+++ ../../../openwrt_trunk/package/system/utils/usbutils/Makefile	2013-02-05 10:31:42.074961918 +0400
+--- ../../../downloads/openwrt_trunk-r35474/package/utils/usbutils/Makefile
++++ ../../../openwrt_trunk/package/utils/usbutils/Makefile
 @@ -48,10 +48,10 @@
  endef
  

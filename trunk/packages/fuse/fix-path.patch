@@ -1,5 +1,5 @@
---- ../../../openwrt_trunk.orig/package/fuse/Makefile
-+++ ../../../openwrt_trunk/package/fuse/Makefile
+--- ../../../openwrt_trunk.orig/package/utils/fuse/Makefile
++++ ../../../openwrt_trunk/package/utils/fuse/Makefile
 @@ -6,7 +6,6 @@
  #
  

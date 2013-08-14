@@ -9,7 +9,7 @@
  
  define BuildIPKGVariable
  ifdef Package/$(1)/$(2)
-@@ -173,8 +173,8 @@
+@@ -176,8 +176,8 @@
  				[ -f "$$(IDIR_$(1))/$$$$x" ] || keepfiles="$$$${keepfiles:+$$$$keepfiles }$$$$x"; \
  			done; \
  			[ -z "$$$$keepfiles" ] || { \

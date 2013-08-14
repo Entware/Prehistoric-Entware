@@ -9,7 +9,6 @@ all: ./.done
 
 ./.done:
 	patch -p0 -i ./fix-path.patch
-	patch -p0 -i ./add-bin.patch
 	touch $@
 
 clean:

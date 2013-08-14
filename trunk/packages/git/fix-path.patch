@@ -1,14 +1,5 @@
 --- ../../../downloads/openwrt_trunk-r36889/feeds/packages/net/git/Makefile	2013-06-10 09:25:14.725864163 +0400
 +++ ../../../openwrt_trunk/feeds/packages/net/git/Makefile	2013-06-19 17:21:11.726223850 +0400
-@@ -9,7 +9,7 @@
- 
- PKG_NAME:=git
- PKG_VERSION:=1.7.11.2
--PKG_RELEASE:=1
-+PKG_RELEASE:=1a
- 
- PKG_SOURCE:=$(PKG_NAME)-$(PKG_VERSION).tar.gz
- PKG_SOURCE_URL:=http://git-core.googlecode.com/files/
 @@ -24,7 +24,7 @@
    SECTION:=net
    CATEGORY:=Network

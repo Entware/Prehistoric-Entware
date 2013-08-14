@@ -1,6 +1,6 @@
---- ../../../openwrt_trunk.orig/package/system/utils/e2fsprogs/Makefile	2012-07-10 18:59:26.209181897 +0400
-+++ ../../../openwrt_trunk/package/system/utils/e2fsprogs/Makefile	2012-07-10 19:00:03.080718359 +0400
-@@ -122,43 +122,44 @@
+--- ../../../openwrt_trunk/package/utils/e2fsprogs/Makefile.orig	2013-08-09 12:56:03.000000000 +0400
++++ ../../../openwrt_trunk/package/utils/e2fsprogs/Makefile	2013-08-14 15:08:03.614791890 +0400
+@@ -110,54 +110,58 @@
  endef
  
  define Package/e2fsprogs/install
@@ -20,29 +20,40 @@
 +	$(INSTALL_BIN) $(PKG_INSTALL_DIR)/opt/sbin/e2fsck $(1)/opt/sbin/
 +	$(INSTALL_BIN) $(PKG_INSTALL_DIR)/opt/sbin/mke2fs $(1)/opt/sbin/
 +	$(INSTALL_BIN) $(PKG_INSTALL_DIR)/opt/sbin/filefrag $(1)/opt/sbin/
++	$(INSTALL_DIR) $(1)/opt/bin
++	$(INSTALL_BIN) $(PKG_INSTALL_DIR)/opt/bin/chattrs $(1)/opt/bin/
++	$(INSTALL_BIN) $(PKG_INSTALL_DIR)/opt/bin/lsattr $(1)/opt/bin/
 +	ln -sf mke2fs $(1)/opt/sbin/mkfs.ext2
 +	ln -sf mke2fs $(1)/opt/sbin/mkfs.ext3
 +	ln -sf mke2fs $(1)/opt/sbin/mkfs.ext4
 +	$(INSTALL_DIR) $(1)/opt/lib
 +	$(CP) $(PKG_INSTALL_DIR)/opt/lib/libe2p.so.* $(1)/opt/lib/
-+	$(INSTALL_DIR) $(1)/opt/etc
++	$(INSTALL_DIR) $(1)/opt/etc/init.d
 +	$(INSTALL_DIR) $(1)/opt/lib/functions/fsck
 +	$(INSTALL_DATA) ./files/e2fsck.sh $(1)/opt/lib/functions/fsck/
-+	$(INSTALL_DATA) ./files/e2fsck.conf $(1)/opt/etc/
++	$(INSTALL_DATA) ./files/e2fsck.conf $(1)/opt/etc/e2fsck.conf
  endef
  
  define Package/libcom_err/install
--	$(INSTALL_DIR) $(1)/usr/lib
--	$(CP) $(PKG_INSTALL_DIR)/usr/lib/libcom_err.so.* $(1)/usr/lib/
-+	$(INSTALL_DIR) $(1)/opt/lib
-+	$(CP) $(PKG_INSTALL_DIR)/opt/lib/libcom_err.so.* $(1)/opt/lib/
  endef
  
  define Package/libext2fs/install
 -	$(INSTALL_DIR) $(1)/usr/lib
--	$(CP) $(PKG_INSTALL_DIR)/usr/lib/libext2fs.so.* $(1)/usr/lib/
 +	$(INSTALL_DIR) $(1)/opt/lib
-+	$(CP) $(PKG_INSTALL_DIR)/opt/lib/libext2fs.so.* $(1)/opt/lib/
+ 	$(CP) \
+-		$(PKG_INSTALL_DIR)/usr/lib/libext2fs.so.* \
+-		$(PKG_INSTALL_DIR)/usr/lib/libcom_err.so.* \
+-		$(1)/usr/lib/
++		$(PKG_INSTALL_DIR)/opt/lib/libext2fs.so.* \
++		$(PKG_INSTALL_DIR)/opt/lib/libcom_err.so.* \
++		$(1)/opt/lib/
+ endef
+ 
+ define Package/libext2fs/install_lib
+-	$(INSTALL_DIR) $(1)/usr/lib
+-	$(CP) $(PKG_BUILD_DIR)/lib/ext2fs/libext2fs.a $(1)/usr/lib/libext2fs_pic.a
++	$(INSTALL_DIR) $(1)/opt/lib
++	$(CP) $(PKG_BUILD_DIR)/lib/ext2fs/libext2fs.a $(1)/opt/lib/libext2fs_pic.a
  endef
  
  define Package/tune2fs/install
@@ -50,6 +61,13 @@
 -	$(INSTALL_BIN) $(PKG_INSTALL_DIR)/usr/sbin/tune2fs $(1)/usr/sbin/
 +	$(INSTALL_DIR) $(1)/opt/sbin
 +	$(INSTALL_BIN) $(PKG_INSTALL_DIR)/opt/sbin/tune2fs $(1)/opt/sbin/
+ endef
+ 
+ define Package/e4defrag/install
+-	$(INSTALL_DIR) $(1)/usr/sbin
+-	$(INSTALL_BIN) $(PKG_INSTALL_DIR)/usr/sbin/e4defrag $(1)/usr/sbin/
++	$(INSTALL_DIR) $(1)/opt/sbin
++	$(INSTALL_BIN) $(PKG_INSTALL_DIR)/opt/sbin/e4defrag $(1)/opt/sbin/
  endef
  
  define Package/resize2fs/install

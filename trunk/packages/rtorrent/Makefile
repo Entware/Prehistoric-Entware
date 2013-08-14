@@ -9,7 +9,6 @@ all: ./.done
 
 ./.done:
 	patch -p0 -i ./fix-path.patch
-	cp -f ./555-disable-AM_PATH_CPPUNIT-check.patch ../../../openwrt_trunk/feeds/packages/net/rtorrent/patches/
 	touch $@
 
 clean:

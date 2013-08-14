@@ -1,7 +1,7 @@
---- ../../../openwrt_trunk.orig/package/system/utils/xfsprogs/Makefile	2011-12-28 08:42:39.000000000 +0400
-+++ ../../../openwrt_trunk/package/system/utils/xfsprogs/Makefile	2012-01-02 20:04:58.384753733 +0400
-@@ -47,7 +47,7 @@
- 	--enable-lib64=no
+--- ../../../openwrt_trunk/package/utils/xfsprogs/Makefile.orig	2013-08-09 12:56:03.302797902 +0400
++++ ../../../openwrt_trunk/package/utils/xfsprogs/Makefile	2013-08-14 16:28:43.246695614 +0400
+@@ -48,7 +48,7 @@
+ 	--enable-blkid=no
  
  TARGET_CFLAGS += \
 -	-I$(STAGING_DIR)/usr/include \
@@ -9,7 +9,7 @@
  	-D_LARGEFILE64_SOURCE \
  	-D_FILE_OFFSET_BITS=64 \
  	-D_GNU_SOURCE
-@@ -57,29 +57,29 @@
+@@ -58,29 +58,29 @@
  	PCFLAGS="-Wall" \
  	PKG_PLATFORM=linux \
  	ENABLE_GETTEXT=no \

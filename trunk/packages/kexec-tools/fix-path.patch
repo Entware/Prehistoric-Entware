@@ -1,15 +1,15 @@
---- ../../../downloads/openwrt_trunk-r35474/package/boot/kexec-tools/Makefile	2013-02-05 10:42:42.642945832 +0400
-+++ ../../../openwrt_trunk/package/boot/kexec-tools/Makefile	2013-02-05 11:47:01.638875513 +0400
-@@ -22,7 +22,7 @@
+--- ../../../openwrt_trunk/package/boot/kexec-tools/Makefile.orig	2013-08-09 12:56:03.474797900 +0400
++++ ../../../openwrt_trunk/package/boot/kexec-tools/Makefile	2013-08-14 15:30:04.718758596 +0400
+@@ -24,7 +24,7 @@
  define Package/kexec-tools
    SECTION:=utils
    CATEGORY:=Utilities
--  DEPENDS:=@armeb||@arm||@i386||@powerpc64||@mipsel||@mips +zlib
-+  DEPENDS:=@armeb||@arm||@i386||@powerpc64||@mipsel||@mips +zlib +liblzma
+-  DEPENDS:=@armeb||@arm||@i386||@powerpc64||@mipsel||@mips +KEXEC_ZLIB:zlib
++  DEPENDS:=@armeb||@arm||@i386||@powerpc64||@mipsel||@mips +KEXEC_ZLIB:zlib +liblzma
    TITLE:=Kernel boots kernel
    URL:=http://kernel.org/pub/linux/kernel/people/horms/kexec-tools/
    MAINTAINER:=Florian Fainelli <florian@openwrt.org>
-@@ -38,7 +38,7 @@
+@@ -40,7 +40,7 @@
  	source "$(SOURCE)/Config.in"
  endef
  
@@ -18,7 +18,7 @@
  
  CONFIGURE_ARGS = \
  		--target=$(KEXEC_TARGET_NAME) \
-@@ -46,12 +46,12 @@
+@@ -48,12 +48,12 @@
  		--build=$(GNU_HOST_NAME) \
  		--program-prefix="" \
  		--program-suffix="" \
@@ -27,17 +27,17 @@
 -		--bindir=/usr/bin \
 -		--sbindir=/usr/sbin \
 -		--libexecdir=/usr/lib \
--		--sysconfdir=/etc
+-		--sysconfdir=/etc \
 +		--prefix=/opt \
 +		--exec-prefix=/opt \
 +		--bindir=/opt/bin \
 +		--sbindir=/opt/sbin \
 +		--libexecdir=/opt/lib \
-+		--sysconfdir=/opt/etc
++		--sysconfdir=/opt/etc \
+ 		$(if $(CONFIG_KEXEC_ZLIB),--with,--without)-zlib
  
- CONFIGURE_VARS += \
- 	BUILD_CC="$(HOSTCC)" \
-@@ -64,17 +64,13 @@
+ TARGET_CFLAGS += -ffunction-sections -fdata-sections
+@@ -70,17 +70,13 @@
  endef
  
  define Package/kexec-tools/install

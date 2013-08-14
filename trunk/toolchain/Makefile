@@ -27,7 +27,7 @@ kernel_prepare: .kernel_prepared
 	    rm -fr $(TOP)/kernel-1.9.2.7-rtn; \
 	    (cd $(TOP); tar -czf $(TOP)/downloads/entware-kernel-r$(TOOLCHAIN_REVISION).tgz ./linux-2.6.22.19); \
 	fi
-	@echo Preparing kernel finished.
+	@echo Kernel files ready.
 	touch $@
 
 toolchain_compile: .toolchain_compiled

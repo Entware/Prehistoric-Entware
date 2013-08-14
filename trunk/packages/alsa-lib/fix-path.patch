@@ -1,5 +1,5 @@
---- ../../../openwrt_trunk.orig/feeds/packages/libs/alsa-lib/Makefile
-+++ ../../../openwrt_trunk/feeds/packages/libs/alsa-lib/Makefile
+--- ../../../openwrt_trunk/feeds/packages/libs/alsa-lib/Makefile.orig	2013-08-09 12:56:11.254797756 +0400
++++ ../../../openwrt_trunk/feeds/packages/libs/alsa-lib/Makefile	2013-08-14 13:53:48.274866156 +0400
 @@ -29,7 +29,7 @@
    CATEGORY:=Libraries
    TITLE:=ALSA (Advanced Linux Sound Architecture) library
@@ -9,7 +9,7 @@
  endef
  
  define Package/alsa-lib/description
-@@ -51,41 +51,41 @@
+@@ -50,41 +50,41 @@
  endef
  
  define Build/InstallDev
@@ -24,9 +24,9 @@
 -	$(INSTALL_DIR) $(1)/usr/lib/pkgconfig
 +	$(INSTALL_DIR) $(1)/opt/lib/pkgconfig
  	$(CP) \
--		$(PKG_INSTALL_DIR)/usr/lib/libasound.{la,a,so*} \
+-		$(PKG_INSTALL_DIR)/usr/lib/libasound.{la,so*} \
 -		$(1)/usr/lib/
-+		$(PKG_INSTALL_DIR)/opt/lib/libasound.{la,a,so*} \
++		$(PKG_INSTALL_DIR)/opt/lib/libasound.{la,so*} \
 +		$(1)/opt/lib/
  	$(INSTALL_DATA) \
 -		$(PKG_INSTALL_DIR)/usr/lib/pkgconfig/alsa.pc \
