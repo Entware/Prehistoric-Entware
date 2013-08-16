@@ -1,5 +1,0 @@
---- ../../../openwrt_trunk/feeds/packages/net/nzbget/Makefile.prev	2013-06-14 04:08:08.000000000 +0400
-+++ ../../../openwrt_trunk/feeds/packages/net/nzbget/Makefile	2013-06-15 07:16:44.133924269 +0400
-@@ -16 +16 @@
--PKG_MD5SUM:=c47f464fe988deeb4fc5381506c1fbe3
-+PKG_MD5SUM:=c811dfeef83ad61be8be1d478501f7f6

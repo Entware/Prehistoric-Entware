@@ -1,16 +1,17 @@
---- ../../../downloads/openwrt_trunk-r36889/feeds/packages/net/nzbget/Makefile	2013-06-10 09:25:14.753864157 +0400
-+++ ../../../openwrt_trunk/feeds/packages/net/nzbget/Makefile	2013-06-11 16:09:05.963850048 +0400
+--- ../../../downloads/openwrt_trunk-r37769/feeds/packages/net/nzbget/Makefile	2013-08-15 09:37:02.837572161 +0400
++++ ../../../openwrt_trunk/feeds/packages/net/nzbget/Makefile	2013-08-16 11:57:27.103847049 +0400
 @@ -8,26 +8,22 @@
  include $(TOPDIR)/rules.mk
  
  PKG_NAME:=nzbget
 -PKG_VERSION:=0.8.0
-+PKG_VERSION:=10.2
++PKG_VERSION:=11.0
  PKG_RELEASE:=1
  
  PKG_SOURCE:=$(PKG_NAME)-$(PKG_VERSION).tar.gz
  PKG_SOURCE_URL:=@SF/nzbget
- PKG_MD5SUM:=c47f464fe988deeb4fc5381506c1fbe3
+-PKG_MD5SUM:=c47f464fe988deeb4fc5381506c1fbe3
++PKG_MD5SUM:=4f00039cc36e50fe68fc75e37b5a0406
  
 -PKG_FIXUP:=autoreconf
  PKG_INSTALL:=1

@@ -9,7 +9,6 @@ all: ./.done
 
 ./.done:
 	patch -p0 -i ./fix-path.patch
-	patch -p0 -i ./fix-md5.patch
 	mkdir -p ../../../openwrt_trunk/feeds/packages/net/nzbget/files
 	cp -f ./S75nzbget ../../../openwrt_trunk/feeds/packages/net/nzbget/files/
 	rm -f ../../../openwrt_trunk/feeds/packages/net/nzbget/patches/001-openssl-1.0.0-compat.patch
