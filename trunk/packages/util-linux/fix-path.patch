@@ -1,5 +1,5 @@
---- ../../../openwrt_trunk/package/utils/util-linux/Makefile.orig	2013-08-09 12:56:03.000000000 +0400
-+++ ../../../openwrt_trunk/package/utils/util-linux/Makefile	2013-08-14 16:25:59.082703356 +0400
+--- ../../../downloads/openwrt_trunk-r37769/package/utils/util-linux/Makefile	2013-08-15 09:37:03.281572152 +0400
++++ ../../../openwrt_trunk/package/utils/util-linux/Makefile	2013-08-16 11:33:26.715871065 +0400
 @@ -45,22 +45,22 @@
  		DESTDIR="$(1)" \
  		installdirs install-data
@@ -39,7 +39,7 @@
  endef
  
  define Package/libblkid
-@@ -404,159 +404,159 @@
+@@ -404,159 +404,161 @@
  endef
  
  define Package/libblkid/install
@@ -227,6 +227,8 @@
 +	$(INSTALL_DIR) $(1)/opt/sbin
 +	$(INSTALL_BIN) $(PKG_BUILD_DIR)/disk-utils/.libs/mkswap $(1)/opt/sbin/
 +	$(INSTALL_BIN) $(PKG_BUILD_DIR)/disk-utils/.libs/swaplabel $(1)/opt/sbin/
++	$(INSTALL_BIN) $(PKG_BUILD_DIR)/sys-utils/.libs/swapon $(1)/opt/sbin/
++	$(LN) swapon $(1)/opt/sbin/swapoff
  endef
  
  define Package/uuidd/install

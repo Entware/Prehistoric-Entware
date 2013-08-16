@@ -9,6 +9,7 @@ all: ./.done
 
 ./.done:
 	patch -p0 -i ./fix-path.patch
+	cp -f ./500-old-gcc-ld-bugfix.patch ../../../openwrt_trunk/feeds/packages/libs/alsa-lib/patches/
 	touch $@
 
 clean:

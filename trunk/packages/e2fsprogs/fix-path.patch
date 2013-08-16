@@ -1,6 +1,23 @@
---- ../../../openwrt_trunk/package/utils/e2fsprogs/Makefile.orig	2013-08-09 12:56:03.000000000 +0400
-+++ ../../../openwrt_trunk/package/utils/e2fsprogs/Makefile	2013-08-14 15:08:03.614791890 +0400
-@@ -110,54 +110,58 @@
+--- ../../../downloads/openwrt_trunk-r37769/package/utils/e2fsprogs/Makefile	2013-08-15 09:37:03.293572153 +0400
++++ ../../../openwrt_trunk/package//utils/e2fsprogs/Makefile	2013-08-16 11:23:00.507886949 +0400
+@@ -44,6 +44,7 @@
+   SECTION:=libs
+   CATEGORY:=Libraries
+   TITLE:=ext2/3/4 filesystem library
++  DEPENDS:=+librt
+ endef
+ 
+ define Package/libext2fs/description
+@@ -102,7 +103,7 @@
+ 		LDFLAGS="" \
+ 		subst
+ 	$(MAKE) -C $(PKG_BUILD_DIR) \
+-		LDFLAGS=-Wl,--gc-sections \
++		LDFLAGS="$(TARGET_LDFLAGS) -Wl,--gc-sections" \
+ 		BUILDCC="$(HOSTCC)" \
+ 		DESTDIR="$(PKG_INSTALL_DIR)" \
+ 		LIBBLKID="$(PKG_BUILD_DIR)/lib/libblkid.a -luuid" \
+@@ -110,54 +111,58 @@
  endef
  
  define Package/e2fsprogs/install
@@ -21,7 +38,7 @@
 +	$(INSTALL_BIN) $(PKG_INSTALL_DIR)/opt/sbin/mke2fs $(1)/opt/sbin/
 +	$(INSTALL_BIN) $(PKG_INSTALL_DIR)/opt/sbin/filefrag $(1)/opt/sbin/
 +	$(INSTALL_DIR) $(1)/opt/bin
-+	$(INSTALL_BIN) $(PKG_INSTALL_DIR)/opt/bin/chattrs $(1)/opt/bin/
++	$(INSTALL_BIN) $(PKG_INSTALL_DIR)/opt/bin/chattr $(1)/opt/bin/
 +	$(INSTALL_BIN) $(PKG_INSTALL_DIR)/opt/bin/lsattr $(1)/opt/bin/
 +	ln -sf mke2fs $(1)/opt/sbin/mkfs.ext2
 +	ln -sf mke2fs $(1)/opt/sbin/mkfs.ext3

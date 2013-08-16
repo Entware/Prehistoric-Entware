@@ -1,0 +1,13 @@
+--- a/m4/attributes.m4
++++ b/m4/attributes.m4
+@@ -114,10 +114,6 @@
+         dnl First of all check for the --no-undefined variant of GNU ld. This allows
+         dnl for a much more readable commandline, so that people can understand what
+         dnl it does without going to look for what the heck -z defs does.
+-   	for possible_flags in "-Wl,--no-undefined" "-Wl,-z,defs"; do
+-          CC_CHECK_LDFLAGS([$possible_flags], [LDFLAGS_NOUNDEFINED="$possible_flags"])
+-	  break
+-        done
+ 	;;
+   esac
+ 

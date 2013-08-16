@@ -1,5 +1,5 @@
---- ../../rules.mk.orig
-+++ ../../rules.mk
+--- ../../openwrt_trunk/rules.mk.orig
++++ ../../openwrt_trunk/rules.mk
 @@ -131,8 +131,8 @@
  TARGET_CFLAGS:=$(TARGET_OPTIMIZATION)$(if $(CONFIG_DEBUG), -g3) $(EXTRA_OPTIMIZATION)
  TARGET_CXXFLAGS = $(TARGET_CFLAGS)

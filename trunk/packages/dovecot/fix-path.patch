@@ -1,17 +1,22 @@
---- ../../../openwrt_trunk/feeds/packages/mail/dovecot/Makefile.orig	2013-08-09 12:56:11.000000000 +0400
-+++ ../../../openwrt_trunk/feeds/packages/mail/dovecot/Makefile	2013-08-14 14:24:00.418835907 +0400
-@@ -36,7 +36,7 @@
+--- ../../../downloads/openwrt_trunk-r37769/feeds/packages/mail/dovecot/Makefile	2013-08-15 09:37:03.013572156 +0400
++++ ../../../openwrt_trunk/feeds/packages/mail/dovecot/Makefile	2013-08-15 15:50:26.089163888 +0400
+@@ -36,8 +36,8 @@
  CONFIGURE_ARGS += \
  	--without-gssapi \
  	--without-pam \
 -	--with-moduledir=/usr/lib/dovecot/modules \
+-	--with-notify=dnotify
 +	--with-moduledir=/opt/lib/dovecot/modules \
- 	--with-notify=dnotify
++	--with-notify=dnotify \
  
  CONFIGURE_VARS += \
-@@ -53,20 +53,20 @@
+ 	RPCGEN= \
+@@ -52,21 +52,23 @@
+ 	lib_cv___va_copy=yes \
  	lib_cv_va_val_copy=yes
  
++TARGET_LDFLAGS += -Wl,--allow-multiple-definition
++
  define Package/dovecot/install
 -	$(INSTALL_DIR)  $(1)/etc/init.d \
 -			$(1)/etc/dovecot \
