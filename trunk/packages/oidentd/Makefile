@@ -8,7 +8,7 @@
 all: ./.done
 
 ./.done:
-	patch -p0 -i ./fix-path.patch
+	patch -d $(TOP) -p3 -i $(CURDIR)/fix-path.patch
 	cp -f ./S39oidentd ../../../openwrt_trunk/feeds/packages/net/oidentd/files/
 	mkdir -p ../../../openwrt_trunk/feeds/packages/net/oidentd/patches/
 	cp -f ./010-config-path.patch ../../../openwrt_trunk/feeds/packages/net/oidentd/patches/

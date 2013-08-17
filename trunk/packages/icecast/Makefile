@@ -8,7 +8,7 @@
 all: ./.done
 
 ./.done:
-	patch -p0 -i ./fix-path.patch
+	patch -d $(TOP) -p3 -i $(CURDIR)/fix-path.patch
 	cp -f ./020-paths.patch ../../../openwrt_trunk/feeds/packages/multimedia/icecast/patches/
 	cp -f ./030-enable-nobody-user.patch ../../../openwrt_trunk/feeds/packages/multimedia/icecast/patches/
 	mkdir ../../../openwrt_trunk/feeds/packages/multimedia/icecast/files

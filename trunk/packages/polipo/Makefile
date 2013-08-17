@@ -9,7 +9,7 @@
 all: ./.done
 
 ./.done:
-	patch -p0 -i ./fix-path.patch
+	patch -d $(TOP) -p3 -i $(CURDIR)/fix-path.patch
 	cp ./S28polipo ../../../openwrt_trunk/feeds/packages/net/polipo/files/
 	touch $@
 

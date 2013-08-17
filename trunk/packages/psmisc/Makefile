@@ -8,7 +8,7 @@
 all: ./.done
 
 ./.done:
-	patch -p0 -i ./fix-path.patch
+	patch -d $(TOP) -p3 -i $(CURDIR)/fix-path.patch
 	mkdir ../../../openwrt_trunk/feeds/packages/utils/psmisc/patches/
 	cp ./010-enable-peekfd.patch ../../../openwrt_trunk/feeds/packages/utils/psmisc/patches
 	touch $@

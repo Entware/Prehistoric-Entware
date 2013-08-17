@@ -8,7 +8,7 @@
 all: ./.done
 
 ./.done:
-	patch -p0 -i ./fix-path.patch
+	patch -d $(TOP) -p3 -i $(CURDIR)/fix-path.patch
 	cp -f ./500-disable-insmod-flags.patch ../../../openwrt_trunk/feeds/packages/net/strongswan/patches/
 	cp -f ./S90strongswan ../../../openwrt_trunk/feeds/packages/net/strongswan/files/
 	touch $@

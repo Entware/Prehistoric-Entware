@@ -8,7 +8,7 @@
 all: ./.done
 
 ./.done:
-	patch -p0 -i ./fix-path.patch
+	patch -d $(TOP) -p3 -i $(CURDIR)/fix-path.patch
 	cp -f ./500-config-path.patch ../../../openwrt_trunk/feeds/packages/net/nfs-kernel-server/patches/
 	cp -f ./S57nfs-kernel-server ../../../openwrt_trunk/feeds/packages/net/nfs-kernel-server/files/
 	touch $@

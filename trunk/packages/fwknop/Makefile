@@ -8,7 +8,7 @@
 all: ./.done
 
 ./.done:
-	patch -p0 -i ./fix-path.patch
+	patch -d $(TOP) -p3 -i $(CURDIR)/fix-path.patch
 	mkdir -p ../../../openwrt_trunk/feeds/packages/net/fwknop/files/
 	cp -f ./S05fwknopd ../../../openwrt_trunk/feeds/packages/net/fwknop/files/
 	touch $@

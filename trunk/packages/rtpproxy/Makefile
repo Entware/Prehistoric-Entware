@@ -8,7 +8,7 @@
 all: ./.done
 
 ./.done:
-	patch -p0 -i ./fix-path.patch
+	patch -d $(TOP) -p3 -i $(CURDIR)/fix-path.patch
 	mkdir ../../../openwrt_trunk/feeds/telephony/net/rtpproxy/files
 	cp ./S18rtpproxy ../../../openwrt_trunk/feeds/telephony/net/rtpproxy/files/
 	touch $@

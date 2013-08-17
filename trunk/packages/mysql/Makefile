@@ -8,8 +8,8 @@
 all: ./.done
 
 ./.done:
-	patch -p0 -i ./fix-path.patch
-	patch -p0 -i ./add-bin.patch
+	patch -d $(TOP) -p3 -i $(CURDIR)/fix-path.patch
+	patch -d $(TOP) -p3 -i $(CURDIR)/add-bin.patch
 	cp ./S70mysqld ../../../openwrt_trunk/feeds/packages/libs/mysql/files/
 	touch $@
 

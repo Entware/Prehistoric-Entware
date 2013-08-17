@@ -9,7 +9,7 @@
 all: ./.done
 
 ./.done:
-	patch -p0 -i ./fix-path.patch
+	patch -d $(TOP) -p3 -i $(CURDIR)/fix-path.patch
 	mkdir ../../../openwrt_trunk/feeds/packages/net/opendchub/files
 	cp ./S61opendchub ../../../openwrt_trunk/feeds/packages/net/opendchub/files/
 	touch $@

@@ -8,7 +8,7 @@
 all: ./.done
 
 ./.done:
-	patch -p0 -i ./fix-path.patch
+	patch -d $(TOP) -p3 -i $(CURDIR)/fix-path.patch
 	rm -r ../../../openwrt_trunk/feeds/packages/net/fakeidentd/files/fakeidentd.init
 	cp ./S85fakeidentd ../../../openwrt_trunk/feeds/packages/net/fakeidentd/files/
 	touch $@

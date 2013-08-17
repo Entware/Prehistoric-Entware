@@ -8,8 +8,8 @@
 all: ./.done
 
 ./.done:
-	patch -p0 -i ./fix-path.patch
-	patch -p0 -i ./ipv6enable.patch
+	patch -d $(TOP) -p3 -i $(CURDIR)/fix-path.patch
+	patch -d $(TOP) -p3 -i $(CURDIR)/ipv6enable.patch
 	touch $@
 
 clean:

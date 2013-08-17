@@ -8,7 +8,7 @@
 all: ./.done
 
 ./.done:
-	patch -p0 -i ./fix-path.patch
+	patch -d $(TOP) -p3 -i $(CURDIR)/fix-path.patch
 	cp ./S55radiusd ../../../openwrt_trunk/feeds/packages/net/freeradius2/files/
 	touch $@
 

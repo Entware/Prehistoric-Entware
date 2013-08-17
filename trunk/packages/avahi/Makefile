@@ -8,7 +8,7 @@
 all: ./.done
 
 ./.done:
-	patch -p0 -i ./fix-path.patch
+	patch -d $(TOP) -p3 -i $(CURDIR)/fix-path.patch
 	cp ./S42avahi-daemon ../../../openwrt_trunk/feeds/packages/libs/avahi/files/
 	touch $@
 

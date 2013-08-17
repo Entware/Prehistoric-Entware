@@ -8,7 +8,7 @@
 all: ./.done
 
 ./.done:
-	patch -p0 -i ./fix-path.patch
+	patch -d $(TOP) -p3 -i $(CURDIR)/fix-path.patch
 	mkdir -p ../../../openwrt_trunk/feeds/packages/utils/hdparm/patches/
 	cp -f ./010-add-LDFLAGS.patch ../../../openwrt_trunk/feeds/packages/utils/hdparm/patches/
 	touch $@

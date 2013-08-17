@@ -10,8 +10,8 @@ all: ./.done
 ./.done:
 	mkdir -p ../../../openwrt_trunk/feeds/packages/utils/nano/patches/
 	cp -f ./010-nanorc.patch ../../../openwrt_trunk/feeds/packages/utils/nano/patches/
-	patch -p0 -i ./fix-path.patch
-	patch -p0 -i ./enable-color.patch
+	patch -d $(TOP) -p3 -i $(CURDIR)/fix-path.patch
+	patch -d $(TOP) -p3 -i $(CURDIR)/enable-color.patch
 	touch $@
 
 clean:

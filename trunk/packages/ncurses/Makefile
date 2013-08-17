@@ -8,7 +8,7 @@
 all: ./.done
 
 ./.done:
-	patch -p0 -i ./fix-path.patch
+	patch -d $(TOP) -p3 -i $(CURDIR)/fix-path.patch
 	rm -f ../../../openwrt_trunk/package/libs/ncurses/patches/100-ncurses-5.6-20080112-urxvt.patch
 	rm -f ../../../openwrt_trunk/package/libs/ncurses/patches/101-ncurses-5.6-20080628-kbs.patch
 	rm -f ../../../openwrt_trunk/package/libs/ncurses/patches/200-fix_missing_include.patch

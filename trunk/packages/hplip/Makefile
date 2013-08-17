@@ -11,7 +11,7 @@ all: ./.done
 	mkdir ../../../openwrt_trunk/feeds/packages/utils/hplip/patches
 	cp ./010-state-dir.patch ../../../openwrt_trunk/feeds/packages/utils/hplip/patches/
 	cp ./020-cross-compile.patch ../../../openwrt_trunk/feeds/packages/utils/hplip/patches/
-	patch -p0 -i ./fix-path.patch
+	patch -d $(TOP) -p3 -i $(CURDIR)/fix-path.patch
 	touch $@
 
 clean:

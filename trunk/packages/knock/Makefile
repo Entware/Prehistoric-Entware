@@ -8,7 +8,7 @@
 all: ./.done
 
 ./.done:
-	patch -p0 -i ./fix-path.patch
+	patch -d $(TOP) -p3 -i $(CURDIR)/fix-path.patch
 	cp -f ./500-paths.patch ../../../openwrt_trunk/feeds/packages/net/knock/patches/
 	mkdir ../../../openwrt_trunk/feeds/packages/net/knock/files
 	cp -f ./S05knockd ../../../openwrt_trunk/feeds/packages/net/knock/files/

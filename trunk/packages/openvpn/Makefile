@@ -8,7 +8,7 @@
 all: ./.done
 
 ./.done:
-	patch -p0 -i ./fix-path.patch
+	patch -d $(TOP) -p3 -i $(CURDIR)/fix-path.patch
 	cp ./S20openvpn ../../../openwrt_trunk/package/network/services/openvpn/files/
 	touch $@
 

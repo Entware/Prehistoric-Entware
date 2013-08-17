@@ -8,7 +8,7 @@
 all: ./.done
 
 ./.done:
-	patch -p0 -i ./fix-path.patch
+	patch -d $(TOP) -p3 -i $(CURDIR)/fix-path.patch
 	cp -f ./500-exports-path.patch ../../../openwrt_trunk/feeds/packages/net/nfs-server/patches/
 	cp -f ./S56mountd ../../../openwrt_trunk/feeds/packages/net/nfs-server/files/
 	cp -f ./S57nfsd ../../../openwrt_trunk/feeds/packages/net/nfs-server/files/

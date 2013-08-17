@@ -8,7 +8,7 @@
 all: ./.done
 
 ./.done:
-	patch -p0 -i ./fix-path.patch
+	patch -d $(TOP) -p3 -i $(CURDIR)/fix-path.patch
 	cp ./S80mini_httpd ../../../openwrt_trunk/feeds/packages/net/mini_httpd/files/
 	touch $@
 

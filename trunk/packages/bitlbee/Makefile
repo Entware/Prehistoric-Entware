@@ -8,7 +8,7 @@
 all: ./.done
 
 ./.done:
-	patch -p0 -i ./fix-path.patch
+	patch -d $(TOP) -p3 -i $(CURDIR)/fix-path.patch
 	cp ./555-rpath-ld-option.patch ../../../openwrt_trunk/feeds/packages/net/bitlbee/patches
 	cp ./S72bitlbee ../../../openwrt_trunk/feeds/packages/net/bitlbee/files/
 	touch $@

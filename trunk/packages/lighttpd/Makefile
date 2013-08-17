@@ -8,7 +8,7 @@
 all: ./.done
 
 ./.done:
-	patch -p0 -i ./fix-path.patch
+	patch -d $(TOP) -p3 -i $(CURDIR)/fix-path.patch
 	cp ./S80lighttpd ../../../openwrt_trunk/feeds/packages/net/lighttpd/files/
 	touch $@
 

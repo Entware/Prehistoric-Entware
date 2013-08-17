@@ -8,9 +8,9 @@
 all: ./.done
 
 ./.done:
-	patch -p0 -i ./fix-path.patch
-	patch -p0 -i ./nslookup.patch
-	patch -p0 -i ./fix-path-conf.patch
+	patch -d $(TOP) -p3 -i $(CURDIR)/fix-path.patch
+	patch -d $(TOP) -p3 -i $(CURDIR)/nslookup.patch
+	patch -d $(TOP) -p3 -i $(CURDIR)/fix-path-conf.patch
 	cp ./S09named ../../../openwrt_trunk/feeds/packages/net/bind/files/
 	touch $@
 

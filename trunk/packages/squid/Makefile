@@ -8,7 +8,7 @@
 all: ./.done
 
 ./.done:
-	patch -p0 -i ./fix-path.patch
+	patch -d $(TOP) -p3 -i $(CURDIR)/fix-path.patch
 	mkdir ../../../openwrt_trunk/feeds/packages/net/squid/files
 	cp ./S22squid ../../../openwrt_trunk/feeds/packages/net/squid/files/
 	touch $@

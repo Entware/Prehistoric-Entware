@@ -8,7 +8,7 @@
 all: ./.done
 
 ./.done:
-	patch -p0 -i ./fix-path.patch
+	patch -d $(TOP) -p3 -i $(CURDIR)/fix-path.patch
 	cp ./010-change-default-interface.patch ../../../openwrt_trunk/package/network/utils/iftop/patches/
 	touch $@
 

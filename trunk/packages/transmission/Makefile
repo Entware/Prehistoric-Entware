@@ -8,7 +8,7 @@
 all: ./.done
 
 ./.done:
-	patch -p0 -i ./fix-path.patch
+	patch -d $(TOP) -p3 -i $(CURDIR)/fix-path.patch
 	rm ../../../openwrt_trunk/feeds/packages/net/transmission/files/transmission.*
 	cp ./settings.json ../../../openwrt_trunk/feeds/packages/net/transmission/files/
 	cp ./S88transmission ../../../openwrt_trunk/feeds/packages/net/transmission/files/

@@ -8,8 +8,8 @@
 all: ./.done
 
 ./.done:
-	@for php_patch in `ls -1 ./fix-path-*.patch`; do ( \
-		patch -p0 -i $$php_patch; \
+	@for php_patch in `ls -1 $(CURDIR)/fix-path-*.patch`; do ( \
+		patch -d $(TOP) -p3 -i $$php_patch; \
 	); done
 	touch $@
 

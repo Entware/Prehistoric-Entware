@@ -8,7 +8,7 @@
 all: ./.done
 
 ./.done:
-	patch -p0 -i ./fix-path.patch
+	patch -d $(TOP) -p3 -i $(CURDIR)/fix-path.patch
 	cp -f ./500-NEED_USB_GET_BUSSES-undef.patch ../../../openwrt_trunk/feeds/packages/utils/bluez-utils/patches/
 	touch $@
 

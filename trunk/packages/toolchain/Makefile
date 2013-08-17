@@ -8,7 +8,7 @@
 all: ./.done
 
 ./.done:
-	patch -p0 -i ./fix-path.patch
+	patch -d $(TOP) -p3 -i $(CURDIR)/fix-path.patch
 	@echo Check uClibc/GCC versions at ./openwrt_trunk/package/libs/toolchain/Makefile.
 	touch $@
 

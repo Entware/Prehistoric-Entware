@@ -8,8 +8,8 @@
 all: ./.done
 
 ./.done:
-	patch -p0 -i ./downgrade_from_last_to_0.1.7.patch
-	patch -p0 -i ./fix-path.patch
+	patch -d $(TOP) -p3 -i $(CURDIR)/downgrade_from_last_to_0.1.7.patch
+	patch -d $(TOP) -p3 -i $(CURDIR)/fix-path.patch
 	mkdir ../../../openwrt_trunk/feeds/packages/net/usbip/files
 	cp ./S74usbipd ../../../openwrt_trunk/feeds/packages/net/usbip/files/
 	touch $@

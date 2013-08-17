@@ -8,8 +8,8 @@
 all: ./.done
 
 ./.done:
-	patch -p0 -i ./downgrade-to-r33657.patch
-	patch -p0 -i ./fix-path.patch
+	patch -d $(TOP) -p3 -i $(CURDIR)/downgrade-to-r33657.patch
+	patch -d $(TOP) -p3 -i $(CURDIR)/fix-path.patch
 	touch $@
 
 clean:
