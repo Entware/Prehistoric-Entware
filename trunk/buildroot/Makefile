@@ -11,19 +11,19 @@ all: .done
 
 .done:
 	tar -C $(TOP)/openwrt_trunk -xvf ./entware-target.tgz
-	patch -p0 -i ./package-ipkg.patch
-	patch -p0 -i ./nls.patch
-	patch -p0 -i ./cmake.patch
+	patch -d $(TOP) -p2 -i $(CURDIR)/package-ipkg.patch
+	patch -d $(TOP) -p2 -i $(CURDIR)/nls.patch
+	patch -d $(TOP) -p2 -i $(CURDIR)/cmake.patch
 	@echo Warning: See ./include/package-defaults.mk for absolute path to linux kernel
-	patch -p0 -i ./package-defaults.patch
+	patch -d $(TOP) -p2 -i $(CURDIR)/package-defaults.patch
 	sed -i 's,__LINUX_DIR_PATH__,$(TOP)/linux-2.6.22.19,g' $(TOP)/openwrt_trunk/include/package-defaults.mk
-	patch -p0 -i ./rules.patch
-	patch -p0 -i ./autotools.patch
-	patch -p0 -i ./sdk-rules.patch
-	patch -p0 -i ./package.patch
-	patch -p0 -i ./include-package.patch
-	patch -p0 -i ./ipkg-make-index.patch
-	patch -p0 -i ./add-mirror.patch
+	patch -d $(TOP) -p2 -i $(CURDIR)/rules.patch
+	patch -d $(TOP) -p2 -i $(CURDIR)/autotools.patch
+	patch -d $(TOP) -p2 -i $(CURDIR)/sdk-rules.patch
+	patch -d $(TOP) -p2 -i $(CURDIR)/package.patch
+	patch -d $(TOP) -p2 -i $(CURDIR)/include-package.patch
+	patch -d $(TOP) -p2 -i $(CURDIR)/ipkg-make-index.patch
+	patch -d $(TOP) -p2 -i $(CURDIR)/add-mirror.patch
 	echo CONFIG_TARGET_rtn=y > $(TOP)/openwrt_trunk/.config
 	make -C $(TOP)/openwrt_trunk defconfig
 	cp -f .config $(TOP)/openwrt_trunk/.config

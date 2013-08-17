@@ -47,9 +47,9 @@ toolchain_compile: .toolchain_compiled
 	    sed -i -e 's|^\(CONFIG_EXTERNAL_KERNEL_TREE\)=.*|\1=\"$(TOP)/linux-2.6.22.19\"|g' $(TOP)/toolchain-1.9.2.7-rtn/src/.config; \
 	    sed -i -e 's|^\(CONFIG_DOWNLOAD_FOLDER\)=.*|\1=\"$(TOP)/downloads\"|g' $(TOP)/toolchain-1.9.2.7-rtn/src/.config; \
 	    cp -f ./*-uclibc-*.patch  $(TOP)/toolchain-1.9.2.7-rtn/src/toolchain/uClibc/patches/0.9.32/; \
-	    patch -p0 -i ./0.9.32-config.patch; \
-	    patch -p0 -i ./add-mirror.patch; \
-	    patch -p0 -i ./define-toolchain-path.patch; \
+	    patch -d $(TOP) -p2 -i $(CURDIR)/0.9.32-config.patch; \
+	    patch -d $(TOP) -p2 -i $(CURDIR)/add-mirror.patch; \
+	    patch -d $(TOP) -p2 -i $(CURDIR)/define-toolchain-path.patch; \
 	    echo Compiling toolchain...; \
 	    (cd $(TOP)/toolchain-1.9.2.7-rtn/src; make V=99); \
 	    rm -fr $(TOP)/toolchain-1.9.2.7-rtn; \
