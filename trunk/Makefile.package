@@ -5,20 +5,22 @@
 # See /LICENSE for more information.
 #
 
+ifneq ($(MAKECMDGOALS),clean)
 include ../../.packages_path.mk
 PK_PATH=$(PK_NAME_$(PK_NAME))
+endif
 
 all: ./.done
 
 ./.done:
-	@if [[ ! -d "$(PK_PATH)" ]]; then echo 'Error: "$(PK_NAME)" is absent in feeds!'; exit 1; fi
+	@if [ ! -d "$(PK_PATH)" ]; then echo 'Error: "$(PK_NAME)" is absent in feeds!'; exit 1; fi
 	@for patch in `ls *.patch | sort`; do ( \
 		echo $$patch; \
 		patch -d $(PK_PATH) -p8 -i $(CURDIR)/$$patch || exit 1; \
 	); done
-	@[[ -d 'openwrt/files/' ]] && cp -rf openwrt/files/ $(PK_PATH)/files ; exit 0
-	@[[ -d 'openwrt/patches/' ]] && cp -rf openwrt/patches/ $(PK_PATH)/files ; exit 0
-	@[[ -f postmake.sh ]] && bash ./postmake.sh $(PK_NAME) $(PK_PATH) ; exit 0
+	@if [ -d 'openwrt/files/' ]; then   cp -rf openwrt/files/ $(PK_PATH)/files ; fi
+	@if [ -d 'openwrt/patches/' ]; then cp -rf openwrt/patches/ $(PK_PATH)/files ; fi
+	@if [ -f postmake.sh ]; then        bash ./postmake.sh $(PK_NAME) $(PK_PATH) ; fi
 	@touch $@
 
 clean:

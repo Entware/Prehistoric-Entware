@@ -72,7 +72,11 @@ toolchain: .toolchain_installed
 
 distclean clean:
 	@for dir in `ls ./packages`; do ( \
-	    make -C "./packages/$$dir" clean; \
+	    if [ -e ./packages/$$dir/Makefile ]; then \
+		make -C "./packages/$$dir" clean; \
+	    else \
+		make -C "./packages/$$dir" -f ../../Makefile.package PK_NAME="$$dir" clean; \
+	    fi; \
 	); done
 	rm -f .packages_prepared
 	make -C "./buildroot" distclean
