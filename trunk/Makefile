@@ -26,7 +26,7 @@ packages: .packages_prepared
 
 .packages_prepared: .packages_path.mk
 	@echo Processing OpenWRT packages...
-	@for dir in `ls ./packages | sort`; do ( \
+	@set -e; for dir in `ls ./packages | sort`; do ( \
 	    echo Processing "$$dir"; \
 	    if [ -e ./packages/$$dir/Makefile ]; then \
 		make -C "./packages/$$dir" ; \
