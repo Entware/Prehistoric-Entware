@@ -23,13 +23,23 @@ packages_compile: .packages_compiled
 	touch $@
 
 packages: .packages_prepared
-.packages_prepared:
+
+.packages_prepared: .packages_path.mk
 	@echo Processing OpenWRT packages...
-	@for dir in `ls ./packages`; do ( \
-	    make -C "./packages/$$dir" ; \
+	@for dir in `ls ./packages | sort`; do ( \
+	    echo Processing "$$dir"; \
+	    if [ -e ./packages/$$dir/Makefile ]; then \
+		make -C "./packages/$$dir" ; \
+	    else \
+		make -C "./packages/$$dir" -f ../../Makefile.package PK_NAME="$$dir"; \
+	    fi; \
 	); done
 	@echo Done!
 	touch $@
+
+.packages_path.mk:
+	@ruby ./index_scan.rb
+	@echo "Feeds index processed!"
 
 buildroot: .buildroot_installed
 .buildroot_installed:
@@ -60,7 +70,7 @@ toolchain: .toolchain_installed
 	make -C "./toolchain"
 	touch $@
 
-distclean:
+distclean clean:
 	@for dir in `ls ./packages`; do ( \
 	    make -C "./packages/$$dir" clean; \
 	); done
@@ -70,16 +80,6 @@ distclean:
 	make -C "./toolchain" distclean
 	rm -f .toolchain_installed
 	rm -f .packages_compiled
-
-clean:
-	@for dir in `ls ./packages`; do ( \
-	    make -C "./packages/$$dir" clean; \
-	); done
-	rm -f .packages_prepared
-	make -C "./buildroot" clean
-	rm -f .buildroot_installed
-	make -C "./toolchain" clean
-	rm -f .toolchain_installed
-	rm -f .packages_compiled
+	rm -f .packages_path.mk
 
 .PHONY : distclean clean
