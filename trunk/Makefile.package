@@ -7,16 +7,22 @@
 
 ifneq ($(MAKECMDGOALS),clean)
 include ../../.packages_path.mk
-PK_PATH=$(PK_NAME_$(PK_NAME))
+endif
+
+ifdef $(PK_NAME_$(PK_NAME))
+    PK_PATH=$(PK_NAME_$(PK_NAME))
+    PK_LEVEL=8
+else
+    PK_PATH=$(TOP)
+    PK_LEVEL=3
 endif
 
 all: ./.done
 
 ./.done:
-	@if [ ! -d "$(PK_PATH)" ]; then echo 'Error: "$(PK_NAME)" is absent in feeds!'; exit 1; fi
 	@for patch in `ls *.patch | sort`; do ( \
 		echo $$patch; \
-		patch -d $(PK_PATH) -p8 -i $(CURDIR)/$$patch || exit 1; \
+		patch -d $(PK_PATH) -p$(PK_LEVEL) -i $(CURDIR)/$$patch || exit 1; \
 	); done
 	@if [ -d 'openwrt/files/' ]; then   cp -rf openwrt/files/ $(PK_PATH)/files ; fi
 	@if [ -d 'openwrt/patches/' ]; then cp -rf openwrt/patches/ $(PK_PATH)/files ; fi
