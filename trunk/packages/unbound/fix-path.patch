@@ -1,0 +1,113 @@
+Только в ../../../openwrt_trunk/feeds/packages/net/unbound/files: S61unbound
+diff -urx .svn ../../../downloads/openwrt_trunk-r37769/feeds/packages/net/unbound/Makefile ../../../openwrt_trunk/feeds/packages/net/unbound/Makefile
+--- ../../../downloads/openwrt_trunk-r37769/feeds/packages/net/unbound/Makefile	2013-08-15 09:37:02.993572159 +0400
++++ ../../../openwrt_trunk/feeds/packages/net/unbound/Makefile	2013-08-21 09:33:07.264131505 +0400
+@@ -108,61 +108,61 @@
+ 	--disable-ecdsa \
+ 	--disable-gost \
+ 	--enable-allsymbols \
+-	--with-ldns="$(STAGING_DIR)/usr" \
+-	--with-libexpat="$(STAGING_DIR)/usr" \
+-	--with-ssl="$(STAGING_DIR)/usr" \
++	--with-ldns="$(STAGING_DIR)/opt" \
++	--with-libexpat="$(STAGING_DIR)/opt" \
++	--with-ssl="$(STAGING_DIR)/opt" \
+ 	--without-pthreads
+ 
+ define Package/unbound/conffiles
+-/etc/unbound/unbound.conf
++/opt/etc/unbound/unbound.conf
+ endef
+ 
+ define Build/InstallDev
+-	$(INSTALL_DIR) $(1)/usr/include
+-	$(CP) $(PKG_INSTALL_DIR)/usr/include/unbound.h $(1)/usr/include/
+-	$(INSTALL_DIR) $(1)/usr/lib
+-	$(CP) $(PKG_INSTALL_DIR)/usr/lib/libunbound.{so*,a,la} $(1)/usr/lib/
++	$(INSTALL_DIR) $(1)/opt/include
++	$(CP) $(PKG_INSTALL_DIR)/opt/include/unbound.h $(1)/opt/include/
++	$(INSTALL_DIR) $(1)/opt/lib
++	$(CP) $(PKG_INSTALL_DIR)/opt/lib/libunbound.{so*,a,la} $(1)/opt/lib/
+ endef
+ 
+ define Package/unbound/install
+-	$(INSTALL_DIR) $(1)/usr/sbin
++	$(INSTALL_DIR) $(1)/opt/sbin
+ 	$(CP) \
+-		$(PKG_INSTALL_DIR)/usr/sbin/unbound \
+-		$(PKG_INSTALL_DIR)/usr/sbin/unbound-checkconf \
+-		$(1)/usr/sbin/
+-	$(INSTALL_DIR) $(1)/etc/unbound
++		$(PKG_INSTALL_DIR)/opt/sbin/unbound \
++		$(PKG_INSTALL_DIR)/opt/sbin/unbound-checkconf \
++		$(1)/opt/sbin/
++	$(INSTALL_DIR) $(1)/opt/etc/unbound
+ 	$(INSTALL_CONF) \
+-		$(PKG_INSTALL_DIR)/etc/unbound/unbound.conf \
+-		$(1)/etc/unbound/
+-	$(INSTALL_CONF) ./files/root.key $(1)/etc/unbound/
+-	$(INSTALL_CONF) ./files/named.cache $(1)/etc/unbound/
+-	$(INSTALL_DIR) $(1)/etc/init.d
+-	$(INSTALL_BIN) ./files/unbound.init $(1)/etc/init.d/unbound
++		$(PKG_INSTALL_DIR)/opt/etc/unbound/unbound.conf \
++		$(1)/opt/etc/unbound/
++	$(INSTALL_CONF) ./files/root.key $(1)/opt/etc/unbound/
++	$(INSTALL_CONF) ./files/named.cache $(1)/opt/etc/unbound/
++	$(INSTALL_DIR) $(1)/opt/etc/init.d
++	$(INSTALL_BIN) ./files/S61unbound $(1)/opt/etc/init.d/
+ endef
+ 
+ define Package/unbound-anchor/install
+-	$(INSTALL_DIR) $(1)/usr/sbin
+-	$(CP) $(PKG_INSTALL_DIR)/usr/sbin/unbound-anchor $(1)/usr/sbin/
++	$(INSTALL_DIR) $(1)/opt/sbin
++	$(CP) $(PKG_INSTALL_DIR)/opt/sbin/unbound-anchor $(1)/opt/sbin/
+ endef
+ 
+ define Package/unbound-control/install
+-	$(INSTALL_DIR) $(1)/usr/sbin
+-	$(CP) $(PKG_INSTALL_DIR)/usr/sbin/unbound-control $(1)/usr/sbin/
++	$(INSTALL_DIR) $(1)/opt/sbin
++	$(CP) $(PKG_INSTALL_DIR)/opt/sbin/unbound-control $(1)/opt/sbin/
+ endef
+ 
+ define Package/unbound-control-setup/install
+-	$(INSTALL_DIR) $(1)/usr/sbin
+-	$(CP) $(PKG_INSTALL_DIR)/usr/sbin/unbound-control-setup $(1)/usr/sbin/
++	$(INSTALL_DIR) $(1)/opt/sbin
++	$(CP) $(PKG_INSTALL_DIR)/opt/sbin/unbound-control-setup $(1)/opt/sbin/
+ endef
+ 
+ define Package/unbound-host/install
+-	$(INSTALL_DIR) $(1)/usr/sbin
+-	$(CP) $(PKG_INSTALL_DIR)/usr/sbin/unbound-host $(1)/usr/sbin/
++	$(INSTALL_DIR) $(1)/opt/sbin
++	$(CP) $(PKG_INSTALL_DIR)/opt/sbin/unbound-host $(1)/opt/sbin/
+ endef
+ 
+ define Package/libunbound/install
+-	$(INSTALL_DIR) $(1)/usr/lib
+-	$(CP) $(PKG_INSTALL_DIR)/usr/lib/libunbound.so.* $(1)/usr/lib/
++	$(INSTALL_DIR) $(1)/opt/lib
++	$(CP) $(PKG_INSTALL_DIR)/opt/lib/libunbound.so.* $(1)/opt/lib/
+ endef
+ 
+ $(eval $(call BuildPackage,unbound))
+diff -urx .svn ../../../downloads/openwrt_trunk-r37769/feeds/packages/net/unbound/patches/001-conf.patch ../../../openwrt_trunk/feeds/packages/net/unbound/patches/001-conf.patch
+--- ../../../downloads/openwrt_trunk-r37769/feeds/packages/net/unbound/patches/001-conf.patch	2013-08-15 09:37:02.993572159 +0400
++++ ../../../openwrt_trunk/feeds/packages/net/unbound/patches/001-conf.patch	2013-08-21 09:26:34.480140911 +0400
+@@ -99,12 +99,12 @@
+  
+  	# the pid file. Can be an absolute path outside of chroot/work dir.
+  	# pidfile: "@UNBOUND_PIDFILE@"
+-+	pidfile: "/var/run/unbound.pid"
+++	pidfile: "/opt/var/run/unbound.pid"
+  
+  	# file to read root hints from.
+  	# get one from ftp://FTP.INTERNIC.NET/domain/named.cache
+  	# root-hints: ""
+-+	root-hints: "/etc/unbound/named.cache"
+++	root-hints: "/opt/etc/unbound/named.cache"
+  
+  	# enable to not answer id.server and hostname.bind queries.
+  	# hide-identity: no
