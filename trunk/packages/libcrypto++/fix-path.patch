@@ -1,8 +1,21 @@
---- ../../../downloads/openwrt_trunk-r34568/feeds/packages/libs/libcrypto++/Makefile	2012-12-07 16:49:57.431447508 +0400
-+++ ../../../openwrt_trunk/feeds/packages/libs/libcrypto++/Makefile	2012-12-27 09:42:08.459260487 +0400
-@@ -43,15 +43,15 @@
+--- ../../../downloads/openwrt_trunk-r37769/feeds/packages/libs/libcrypto++/Makefile	2013-08-15 09:37:02.721572162 +0400
++++ ../../../openwrt_trunk/feeds/packages/libs/libcrypto++/Makefile	2013-08-20 16:01:53.405281176 +0400
+@@ -17,7 +17,7 @@
+ 
+ PKG_FIXUP:=autoreconf
+ PKG_REMOVE_FILES:=aclocal.m4 GNUmakefile
+-PKG_INSTALL:=1
++PKG_INSTALL:=1a
+ 
+ include $(INCLUDE_DIR)/package.mk
+ 
+@@ -42,16 +42,19 @@
+ TARGET_LDFLAGS += \
  	-lpthread
  
++TARGET_CFLAGS += \
++	-O1
++
  define Build/InstallDev
 -	$(INSTALL_DIR) $(1)/usr/include/crypto++
 -	$(CP) $(PKG_INSTALL_DIR)/usr/include/crypto--/* $(1)/usr/include/crypto++/
