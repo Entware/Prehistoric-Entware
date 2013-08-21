@@ -1,14 +1,14 @@
 --- ../../../downloads/openwrt_trunk-r37769/feeds/packages/libs/libcrypto++/Makefile	2013-08-15 09:37:02.721572162 +0400
-+++ ../../../openwrt_trunk/feeds/packages/libs/libcrypto++/Makefile	2013-08-20 16:01:53.405281176 +0400
-@@ -17,7 +17,7 @@
++++ ../../../openwrt_trunk/feeds/packages/libs/libcrypto++/Makefile	2013-08-21 12:33:35.871936066 +0400
+@@ -9,7 +9,7 @@
  
- PKG_FIXUP:=autoreconf
- PKG_REMOVE_FILES:=aclocal.m4 GNUmakefile
--PKG_INSTALL:=1
-+PKG_INSTALL:=1a
+ PKG_NAME:=libcrypto++
+ PKG_VERSION:=5.6.0
+-PKG_RELEASE:=3
++PKG_RELEASE:=3a
  
- include $(INCLUDE_DIR)/package.mk
- 
+ PKG_SOURCE:=$(PKG_NAME)_$(PKG_VERSION).orig.tar.gz
+ PKG_SOURCE_URL:=http://ftp.de.debian.org/debian/pool/main/libc/libcrypto++/
 @@ -42,16 +42,19 @@
  TARGET_LDFLAGS += \
  	-lpthread
