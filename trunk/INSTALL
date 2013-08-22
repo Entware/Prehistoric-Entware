@@ -6,7 +6,7 @@ Requirements
 - A generic Linux compilation environment, tested on Debian 6, Debian 7, Ubuntu 11.х, Ubuntu 12.04:
    $ sudo apt-get install autoconf automake bash bison bzip2 \
    diffutils file flex g++ gawk groff-base libncurses-dev libtool \
-   libslang2 make patch perl sed shtool subversion tar texinfo \
+   libslang2 make patch perl ruby1.8 sed shtool subversion tar texinfo \
    zlib1g zlib1g-dev git-core gettext libexpat1-dev libssl-dev \
    cvs gperf unzip python libxml-parser-perl
 

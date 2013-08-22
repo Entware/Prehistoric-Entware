@@ -1,5 +1,21 @@
---- ../../../downloads/openwrt_trunk-r35474/feeds/packages/multimedia/mjpg-streamer/Makefile	2013-02-05 10:42:11.474946402 +0400
-+++ ../../../openwrt_trunk/feeds/packages/multimedia/mjpg-streamer/Makefile	2013-02-06 16:58:20.524961971 +0400
+--- ../../../downloads/openwrt_trunk-r37769/feeds/packages/multimedia/mjpg-streamer/Makefile	2013-08-15 09:37:02.737572162 +0400
++++ ../../../openwrt_trunk/feeds/packages/multimedia/mjpg-streamer/Makefile	2013-08-22 09:14:25.682580618 +0400
+@@ -8,12 +8,12 @@
+ include $(TOPDIR)/rules.mk
+ 
+ PKG_NAME:=mjpg-streamer
+-PKG_REV:=148
++PKG_REV:=181
+ PKG_VERSION:=r$(PKG_REV)
+-PKG_RELEASE:=4
++PKG_RELEASE:=1
+ 
+ PKG_SOURCE:=$(PKG_NAME)-$(PKG_VERSION).tar.bz2
+-PKG_SOURCE_URL:=https://mjpg-streamer.svn.sourceforge.net/svnroot/mjpg-streamer/mjpg-streamer/
++PKG_SOURCE_URL:=https://svn.code.sf.net/p/$(PKG_NAME)/code/$(PKG_NAME)/
+ PKG_SOURCE_SUBDIR:=$(PKG_NAME)-$(PKG_VERSION)
+ PKG_SOURCE_VERSION:=$(PKG_REV)
+ PKG_SOURCE_PROTO:=svn
 @@ -35,23 +35,15 @@
  EXTRA_CFLAGS += $(TARGET_CPPFLAGS) $(TARGET_LDFLAGS)
  
