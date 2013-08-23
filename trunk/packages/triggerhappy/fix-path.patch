@@ -1,0 +1,34 @@
+--- ../../../downloads/openwrt_trunk-r37769/feeds/packages/utils/triggerhappy/Makefile	2013-08-15 09:37:02.749572162 +0400
++++ ../../../openwrt_trunk/feeds/packages/utils/triggerhappy/Makefile	2013-08-23 15:41:32.980571210 +0400
+@@ -27,8 +27,6 @@
+ 
+ define Package/triggerhappy/description
+ 	triggerhappy - handle input events and run configured programs
+-	The daemon thd can handle hotplugged input devices and is configured through
+-	simple configuration files in /etc/triggerhappy/triggers.d/.
+ endef
+ 
+ MAKE_FLAGS += \
+@@ -36,17 +34,11 @@
+ 	$(1)
+ 
+ define Package/triggerhappy/install
+-	$(INSTALL_DIR) $(1)/usr/sbin
+-	$(INSTALL_DIR) $(1)/etc
+-	$(INSTALL_DIR) $(1)/etc/init.d
+-	$(INSTALL_DIR) $(1)/etc/triggerhappy
+-	$(INSTALL_DIR) $(1)/etc/triggerhappy/triggers.d/
+-	$(INSTALL_DIR) $(1)/etc/hotplug.d/input/
+-	$(INSTALL_BIN) $(PKG_BUILD_DIR)/thd $(1)/usr/sbin
+-	$(INSTALL_BIN) $(PKG_BUILD_DIR)/th-cmd $(1)/usr/sbin
+-	$(INSTALL_BIN) ./files/triggerhappy.init $(1)/etc/init.d/triggerhappy
+-	$(INSTALL_BIN) ./files/triggerhappy.hotplug $(1)/etc/hotplug.d/input/10-triggerhappy
+-	$(INSTALL_BIN) ./files/triggerhappy-example.conf $(1)/etc/triggerhappy/triggers.d/example.conf
++	$(INSTALL_DIR) $(1)/opt/sbin
++	$(INSTALL_DIR) $(1)/opt/etc/triggerhappy
++	$(INSTALL_BIN) $(PKG_BUILD_DIR)/thd $(1)/opt/sbin
++	$(INSTALL_BIN) $(PKG_BUILD_DIR)/th-cmd $(1)/opt/sbin
++	$(INSTALL_BIN) ./files/triggerhappy-example.conf $(1)/opt/etc/triggerhappy
+ endef
+ 
+ $(eval $(call BuildPackage,triggerhappy))
