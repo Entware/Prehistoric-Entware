@@ -1,0 +1,33 @@
+--- ../../../downloads/openwrt_trunk-r37769/feeds/packages/ipv6/tayga/Makefile	2013-08-15 09:37:02.637572165 +0400
++++ ../../../openwrt_trunk/feeds/packages/ipv6/tayga/Makefile	2013-08-26 13:46:58.543999336 +0400
+@@ -18,7 +18,6 @@
+ define Package/tayga
+   SECTION:=net
+   CATEGORY:=Network
+-  DEPENDS:=+ip +kmod-ipv6 +kmod-tun
+   TITLE:=Out-of-kernel stateless NAT64 implementation for Linux
+   URL:=http://www.litech.org/tayga/
+ endef
+@@ -30,18 +29,9 @@
+ endef
+ 
+ # TODO: port scripts to netifd
+-ifdef CONFIG_PACAKGE_netifd
+-  define Package/tayga/install
+-	$(INSTALL_DIR) $(1)/usr/sbin
+-	$(INSTALL_BIN) $(PKG_BUILD_DIR)/tayga $(1)/usr/sbin/
+-  endef
+-else
+-  define Package/tayga/install
+-	$(INSTALL_DIR) $(1)/usr/sbin $(1)/lib/network $(1)/etc/hotplug.d/iface
+-	$(INSTALL_BIN) $(PKG_BUILD_DIR)/tayga $(1)/usr/sbin/
+-	$(INSTALL_DATA) ./files/tayga.sh $(1)/lib/network/tayga.sh
+-	$(INSTALL_DATA) ./files/tayga.hotplug $(1)/etc/hotplug.d/iface/95-tayga
+-  endef
+-endif
++define Package/tayga/install
++	$(INSTALL_DIR) $(1)/opt/sbin
++	$(INSTALL_BIN) $(PKG_BUILD_DIR)/tayga $(1)/opt/sbin/
++endef
+ 
+ $(eval $(call BuildPackage,tayga))
