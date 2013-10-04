@@ -1,4 +1,4 @@
---- ../../../openwrt_trunk.orig/package/system/opkg/Makefile
+--- ../../../downloads/openwrt_trunk-r37769/package/system/opkg/Makefile
 +++ ../../../openwrt_trunk/package/system/opkg/Makefile
 @@ -5,7 +5,6 @@
  # See /LICENSE for more information.
@@ -8,16 +8,37 @@
  include $(INCLUDE_DIR)/version.mk
  
  PKG_NAME:=opkg
-@@ -50,7 +49,7 @@
+@@ -31,15 +30,16 @@
+ include $(INCLUDE_DIR)/package.mk
+ include $(INCLUDE_DIR)/host-build.mk
+ 
+-define Package/opkg
++define Package/opkg-opt
+   SECTION:=base
+   CATEGORY:=Base system
++  DEPENDS:=+uclibc-opt
+   TITLE:=opkg package management system
+   MAINTAINER:=Jo-Philipp Wich <xm@subsignal.org>
+   URL:=http://wiki.openmoko.org/wiki/Opkg
  endef
  
- define Package/opkg/conffiles
+-define Package/opkg/description
++define Package/opkg-opt/description
+   Lightweight package management system
+   opkg is the opkg Package Management System, for handling
+   installation and removal of packages on a system. It can
+@@ -49,8 +49,8 @@
+   opkg knows how to install both .ipk and .deb packages.
+ endef
+ 
+-define Package/opkg/conffiles
 -/etc/opkg.conf
++define Package/opkg-opt/conffiles
 +/opt/etc/opkg.conf
  endef
  
  TARGET_CFLAGS += $(if $(CONFIG_GCC_VERSION_4_3)$(CONFIG_GCC_VERSION_4_4),-Wno-array-bounds)
-@@ -60,27 +59,29 @@
+@@ -60,27 +60,27 @@
  CONFIGURE_ARGS += \
  	--disable-curl \
  	--disable-gpg \
@@ -34,18 +55,17 @@
 -		LDFLAGS="-Wl,--gc-sections" \
 +		LDFLAGS="-Wl,--gc-sections --static" \
  
- define Package/opkg/install
+-define Package/opkg/install
 -	$(INSTALL_DIR) $(1)/usr/lib/opkg
 -	$(INSTALL_DIR) $(1)/bin
 -	$(INSTALL_DIR) $(1)/etc
 -	$(INSTALL_DATA) ./files/opkg.conf $(1)/etc/
 -	$(VERSION_SED) $(1)/etc/opkg.conf
 -	$(INSTALL_BIN) $(PKG_INSTALL_DIR)/usr/bin/opkg-cl $(1)/bin/opkg
++define Package/opkg-opt/install
 +	$(INSTALL_DIR) $(1)/opt/lib/opkg
-+	$(INSTALL_DIR) $(1)/opt/bin
-+	$(INSTALL_DIR) $(1)/opt/etc
-+	$(INSTALL_DIR) $(1)/opt/var/lock
-+	$(INSTALL_DIR) $(1)/opt/tmp
++	$(INSTALL_DIR) $(1)/opt/{bin,etc,tmp}
++	$(INSTALL_DIR) $(1)/opt/var/{lock,log,run}
 +	$(INSTALL_DATA) ./files/opkg.conf $(1)/opt/etc/
 +	$(INSTALL_BIN) $(PKG_INSTALL_DIR)/opt/bin/opkg-cl $(1)/opt/bin/opkg
  endef
@@ -58,3 +78,10 @@
  endef
  
  
+@@ -98,5 +98,5 @@
+ 	$(INSTALL_BIN) $(HOST_BUILD_DIR)/src/opkg-cl $(STAGING_DIR_HOST)/bin/opkg
+ endef
+ 
+-$(eval $(call BuildPackage,opkg))
++$(eval $(call BuildPackage,opkg-opt))
+ $(eval $(call HostBuild))
