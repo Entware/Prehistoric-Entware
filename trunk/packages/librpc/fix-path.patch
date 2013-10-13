@@ -1,15 +1,14 @@
---- ../../../openwrt_trunk/package/libs/librpc/Makefile.orig	2012-11-08 16:20:49.950935741 +0400
-+++ ../../../openwrt_trunk/package/libs/librpc/Makefile	2012-11-08 16:22:18.090925250 +0400
-@@ -9,7 +9,7 @@
+--- ../../../openwrt_trunk/package/libs/librpc/Makefile.orig	2013-10-12 19:14:22.419358497 +0400
++++ ../../../openwrt_trunk/package/libs/librpc/Makefile	2013-10-12 21:19:52.251224852 +0400
+@@ -9,7 +9,6 @@
  PKG_SOURCE_SUBDIR:=$(PKG_NAME)-$(PKG_VERSION)
  PKG_SOURCE_VERSION:=0a2179bbc0844928f2a0ec01dba93d9b5d6d41a7
  PKG_SOURCE:=$(PKG_NAME)-$(PKG_VERSION)-$(PKG_SOURCE_VERSION).tar.gz
 -CMAKE_INSTALL:=1
-+#CMAKE_INSTALL:=1
+ PKG_USE_MIPS16:=0
  
  PKG_LICENSE:=GPLv2 LGPLv2.1
- PKG_LICENSE_FILES:=
-@@ -25,9 +25,26 @@
+@@ -26,9 +25,26 @@
    TITLE:=uClibc RPC library
  endef
  

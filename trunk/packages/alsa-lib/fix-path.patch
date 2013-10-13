@@ -1,6 +1,6 @@
---- ../../../openwrt_trunk/feeds/packages/libs/alsa-lib/Makefile.orig	2013-08-09 12:56:11.254797756 +0400
-+++ ../../../openwrt_trunk/feeds/packages/libs/alsa-lib/Makefile	2013-08-14 13:53:48.274866156 +0400
-@@ -29,7 +29,7 @@
+--- ../../../openwrt_trunk/feeds/packages/libs/alsa-lib/Makefile.orig
++++ ../../../openwrt_trunk/feeds/packages/libs/alsa-lib/Makefile
+@@ -30,7 +30,7 @@
    CATEGORY:=Libraries
    TITLE:=ALSA (Advanced Linux Sound Architecture) library
    URL:=http://www.alsa-project.org/
@@ -9,7 +9,7 @@
  endef
  
  define Package/alsa-lib/description
-@@ -50,41 +50,41 @@
+@@ -51,41 +51,41 @@
  endef
  
  define Build/InstallDev

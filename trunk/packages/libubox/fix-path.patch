@@ -1,7 +1,7 @@
---- ../../../downloads/openwrt_trunk-r36151/package/libs/libubox/Makefile	2013-04-02 14:27:50.309540045 +0400
-+++ ../../../openwrt_trunk/package/libs/libubox/Makefile	2013-04-12 11:09:48.499048129 +0400
-@@ -54,29 +54,29 @@
-   TITLE:=Minimalistic JSON based scripting engine
+--- ../../../openwrt_trunk/package/libs/libubox/Makefile.orig	2013-10-12 19:14:43.319359781 +0400
++++ ../../../openwrt_trunk/package/libs/libubox/Makefile	2013-10-12 21:31:17.371211635 +0400
+@@ -61,34 +61,34 @@
+   TITLE:=Lua binding for the OpenWrt Basic utility library
  endef
  
 -TARGET_CFLAGS += -I$(STAGING_DIR)/usr/include
@@ -38,6 +38,13 @@
 -	$(INSTALL_DATA) $(PKG_INSTALL_DIR)/usr/lib/libjson_script.so $(1)/lib/
 +	$(INSTALL_DIR) $(1)/opt/lib/
 +	$(INSTALL_DATA) $(PKG_INSTALL_DIR)/opt/lib/libjson_script.so $(1)/opt/lib/
+ endef
+ 
+ define Package/libubox-lua/install
+-	$(INSTALL_DIR) $(1)/usr/lib/lua
+-	$(CP) $(PKG_BUILD_DIR)/lua/uloop.so $(1)/usr/lib/lua/
++	$(INSTALL_DIR) $(1)/opt/lib/lua
++	$(CP) $(PKG_BUILD_DIR)/lua/uloop.so $(1)/opt/lib/lua/
  endef
  
  $(eval $(call BuildPackage,libubox))

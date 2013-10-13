@@ -1,25 +1,5 @@
---- ../../../downloads/openwrt_trunk-r37769/feeds/packages/net/udpxy/Makefile	2013-08-15 09:37:02.797572162 +0400
-+++ ../../../openwrt_trunk/feeds/packages/net/udpxy/Makefile	2013-08-30 14:13:46.205659385 +0400
-@@ -8,14 +8,14 @@
- include $(TOPDIR)/rules.mk
- 
- PKG_NAME:=udpxy
--PKG_REV:=1.0.21
--PKG_TAG:=2
-+PKG_REV:=1.0.23
-+PKG_TAG:=9
- PKG_VERSION:=$(PKG_REV)-$(PKG_TAG)
- PKG_RELEASE:=1
- 
--PKG_SOURCE:=$(PKG_NAME).$(PKG_REV)-$(patsubst %,%-prod,$(PKG_TAG)).tgz
--PKG_SOURCE_URL:=@SF/udpxy
--PKG_MD5SUM:=d969fc34604b3abcc8ef62510967f2b0
-+PKG_SOURCE:=$(PKG_NAME).$(PKG_REV)-$(patsubst %,%-prod,$(PKG_TAG)).tar.gz
-+PKG_SOURCE_URL:=http://www.udpxy.com/download/1_23
-+PKG_MD5SUM:=0c953f7dd80329c1a062997afb9b6744
- 
- PKG_INSTALL:=1
- 
+--- ../../../downloads/openwrt_trunk-r37769/feeds/packages/net/udpxy/Makefile
++++ ../../../openwrt_trunk/feeds/packages/net/udpxy/Makefile
 @@ -39,14 +39,14 @@
  endef
  

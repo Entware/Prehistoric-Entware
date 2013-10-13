@@ -8,8 +8,8 @@
 all: ./.done
 
 ./.done:
-	cp ./500-change-install-path.patch ../../../openwrt_trunk/package/libs/librpc/patches/
 	patch -d $(TOP) -p3 -i $(CURDIR)/fix-path.patch
+	cp ./500-change-install-path.patch ../../../openwrt_trunk/package/libs/librpc/patches/
 	touch $@
 
 clean:

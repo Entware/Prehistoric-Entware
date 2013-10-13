@@ -8,7 +8,7 @@
 all: ./.done
 
 ./.done:
-	patch -d $(TOP) -p3 -i $(CURDIR)/downgrade_from_2.34.3_to_2.26.1.patch
+	patch -d $(TOP) -p3 -i $(CURDIR)/downgrade_to_2.26.1.patch
 	patch -d $(TOP) -p3 -i $(CURDIR)/fix-path.patch
 	touch $@
 

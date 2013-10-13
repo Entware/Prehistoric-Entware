@@ -1,16 +1,15 @@
---- ../../../openwrt_trunk.orig/feeds/packages/utils/lirc/Makefile	2012-07-21 23:09:59.618539916 +0400
-+++ ../../../openwrt_trunk/feeds/packages/utils/lirc/Makefile	2012-07-27 12:28:06.152291436 +0400
-@@ -6,8 +6,6 @@
+--- ../../../openwrt_trunk/feeds/packages/utils/lirc/Makefile.orig	2013-10-12 19:12:46.971363134 +0400
++++ ../../../openwrt_trunk/feeds/packages/utils/lirc/Makefile	2013-10-12 21:37:23.335203400 +0400
+@@ -6,7 +6,6 @@
  #
  
  include $(TOPDIR)/rules.mk
--# we use the $LINUX_DIR variable, which is defined in kernel.mk
 -include $(INCLUDE_DIR)/kernel.mk
  
  PKG_NAME:=lirc
  PKG_VERSION:=0.8.7
-@@ -107,7 +105,7 @@
- 	--enable-sandboxed
+@@ -68,7 +67,7 @@
+ 	--disable-static
  
  define Package/lirc/conffiles
 -/etc/lircd.conf
@@ -18,33 +17,34 @@
  endef
  
  MAKE_FLAGS += \
-@@ -115,26 +113,25 @@
+@@ -76,10 +75,10 @@
  	SUBDIRS="daemons tools"
  
- define  Package/lirc/install
+ define Package/lirc/install
 -	$(INSTALL_DIR) $(1)/usr/sbin/
 -	$(INSTALL_BIN) $(PKG_BUILD_DIR)/daemons/lircd $(1)/usr/sbin/
 -	$(INSTALL_DIR) $(1)/etc
 -	$(INSTALL_CONF) $(PKG_BUILD_DIR)/contrib/lircd.conf $(1)/etc/
--endef
--#todo:
--#	$(CP) $(PKG_BUILD_DIR)/drivers/lirc_dev/lirc_dev.ko
--#	$(CP) $(PKG_BUILD_DIR)/drivers/lirc_mceusb2/lirc_mceusb2.ko
--#depends on the selected module
 +	$(INSTALL_DIR) $(1)/opt/sbin/
 +	$(INSTALL_BIN) $(PKG_BUILD_DIR)/daemons/lircd $(1)/opt/sbin/
 +	$(INSTALL_DIR) $(1)/opt/etc
 +	$(INSTALL_CONF) $(PKG_BUILD_DIR)/contrib/lircd.conf $(1)/opt/etc/
-+endef
+ endef
+ #todo:
+ #	$(CP) $(PKG_BUILD_DIR)/drivers/lirc_dev/lirc_dev.ko
+@@ -87,16 +86,19 @@
+ #depends on the selected module
  
- define  Package/lircdaemonadd/install
+ define Package/lircdaemonadd/install
 -	$(INSTALL_DIR) $(1)/usr/sbin/
--	$(INSTALL_BIN) $(PKG_BUILD_DIR)/daemons/{irrecord,lircmd} $(1)/usr/sbin/
+-	$(INSTALL_BIN) $(PKG_BUILD_DIR)/daemons/irrecord $(1)/usr/sbin/
+-	$(INSTALL_BIN) $(PKG_BUILD_DIR)/daemons/lircmd $(1)/usr/sbin/
 +	$(INSTALL_DIR) $(1)/opt/sbin/
-+	$(INSTALL_BIN) $(PKG_BUILD_DIR)/daemons/{irrecord,lircmd} $(1)/opt/sbin/
++	$(INSTALL_BIN) $(PKG_BUILD_DIR)/daemons/irrecord $(1)/opt/sbin/
++	$(INSTALL_BIN) $(PKG_BUILD_DIR)/daemons/lircmd $(1)/opt/sbin/
  endef
  
- define  Package/lirctools/install
+ define Package/lirctools/install
 -	$(INSTALL_DIR) $(1)/usr/sbin/
 -	$(INSTALL_BIN) $(PKG_BUILD_DIR)/tools/irsend $(1)/usr/sbin/
 -	$(INSTALL_BIN) $(PKG_BUILD_DIR)/tools/irw $(1)/usr/sbin/

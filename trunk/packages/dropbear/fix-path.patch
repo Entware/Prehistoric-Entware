@@ -1,16 +1,7 @@
 diff -urx .svn ../../../downloads/openwrt_trunk-r36151/package/network/services/dropbear/Makefile ../../../openwrt_trunk/package/network/services/dropbear/Makefile
 --- ../../../downloads/openwrt_trunk-r36151/package/network/services/dropbear/Makefile	2013-04-02 14:27:52.693540002 +0400
 +++ ../../../openwrt_trunk/package/network/services/dropbear/Makefile	2013-04-26 23:43:00.190393583 +0400
-@@ -9,7 +9,7 @@
- 
- PKG_NAME:=dropbear
- PKG_VERSION:=2012.55
--PKG_RELEASE:=2
-+PKG_RELEASE:=2a
- 
- PKG_SOURCE:=$(PKG_NAME)-$(PKG_VERSION).tar.bz2
- PKG_SOURCE_URL:= \
-@@ -40,9 +40,9 @@
+@@ -39,9 +39,9 @@
  endef
  
  define Package/dropbear/conffiles
@@ -23,7 +14,7 @@ diff -urx .svn ../../../downloads/openwrt_trunk-r36151/package/network/services/
  endef
  
  define Package/dropbearconvert
-@@ -69,9 +69,6 @@
+@@ -68,9 +68,6 @@
  	--disable-zlib \
  	--enable-bundled-libtom
  
@@ -33,7 +24,7 @@ diff -urx .svn ../../../downloads/openwrt_trunk-r36151/package/network/services/
  define Build/Compile
  	+$(MAKE) $(PKG_JOBS) -C $(PKG_BUILD_DIR) \
  		$(TARGET_CONFIGURE_OPTS) \
-@@ -83,26 +80,32 @@
+@@ -82,26 +79,32 @@
  endef
  
  define Package/dropbear/install

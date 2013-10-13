@@ -1,5 +1,5 @@
---- ../../../downloads/openwrt_trunk-r37769/package/utils/e2fsprogs/Makefile	2013-08-15 09:37:03.293572153 +0400
-+++ ../../../openwrt_trunk/package//utils/e2fsprogs/Makefile	2013-08-16 11:23:00.507886949 +0400
+--- ../../../openwrt_trunk/package/utils/e2fsprogs/Makefile.orig	2013-10-12 19:17:05.827364159 +0400
++++ ../../../openwrt_trunk/package/utils/e2fsprogs/Makefile	2013-10-12 20:20:52.023286541 +0400
 @@ -44,6 +44,7 @@
    SECTION:=libs
    CATEGORY:=Libraries
@@ -8,7 +8,7 @@
  endef
  
  define Package/libext2fs/description
-@@ -102,7 +103,7 @@
+@@ -96,7 +97,7 @@
  		LDFLAGS="" \
  		subst
  	$(MAKE) -C $(PKG_BUILD_DIR) \
@@ -17,7 +17,7 @@
  		BUILDCC="$(HOSTCC)" \
  		DESTDIR="$(PKG_INSTALL_DIR)" \
  		LIBBLKID="$(PKG_BUILD_DIR)/lib/libblkid.a -luuid" \
-@@ -110,54 +111,58 @@
+@@ -104,49 +105,51 @@
  endef
  
  define Package/e2fsprogs/install
@@ -45,9 +45,7 @@
 +	ln -sf mke2fs $(1)/opt/sbin/mkfs.ext4
 +	$(INSTALL_DIR) $(1)/opt/lib
 +	$(CP) $(PKG_INSTALL_DIR)/opt/lib/libe2p.so.* $(1)/opt/lib/
-+	$(INSTALL_DIR) $(1)/opt/etc/init.d
-+	$(INSTALL_DIR) $(1)/opt/lib/functions/fsck
-+	$(INSTALL_DATA) ./files/e2fsck.sh $(1)/opt/lib/functions/fsck/
++	$(INSTALL_DIR) $(1)/opt/etc
 +	$(INSTALL_DATA) ./files/e2fsck.conf $(1)/opt/etc/e2fsck.conf
  endef
  
@@ -78,13 +76,6 @@
 -	$(INSTALL_BIN) $(PKG_INSTALL_DIR)/usr/sbin/tune2fs $(1)/usr/sbin/
 +	$(INSTALL_DIR) $(1)/opt/sbin
 +	$(INSTALL_BIN) $(PKG_INSTALL_DIR)/opt/sbin/tune2fs $(1)/opt/sbin/
- endef
- 
- define Package/e4defrag/install
--	$(INSTALL_DIR) $(1)/usr/sbin
--	$(INSTALL_BIN) $(PKG_INSTALL_DIR)/usr/sbin/e4defrag $(1)/usr/sbin/
-+	$(INSTALL_DIR) $(1)/opt/sbin
-+	$(INSTALL_BIN) $(PKG_INSTALL_DIR)/opt/sbin/e4defrag $(1)/opt/sbin/
  endef
  
  define Package/resize2fs/install

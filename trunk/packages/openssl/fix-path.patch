@@ -1,6 +1,6 @@
 --- ../../../openwrt_trunk.orig/package/libs/openssl/Makefile
 +++ ../../../openwrt_trunk/package/libs/openssl/Makefile
-@@ -65,7 +65,7 @@
+@@ -68,7 +68,7 @@
  endef
  
  define Package/openssl-util/conffiles
@@ -9,7 +9,7 @@
  endef
  
  define Package/openssl-util/description
-@@ -110,8 +110,8 @@
+@@ -113,8 +113,8 @@
  define Build/Configure
  	(cd $(PKG_BUILD_DIR); \
  		./Configure $(OPENSSL_TARGET) \
@@ -20,7 +20,7 @@
  			$(TARGET_CPPFLAGS) \
  			$(TARGET_LDFLAGS) -ldl \
  			-DOPENSSL_SMALL_FOOTPRINT \
-@@ -162,29 +162,32 @@
+@@ -165,29 +165,32 @@
  endef
  
  define Build/InstallDev

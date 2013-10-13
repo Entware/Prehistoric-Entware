@@ -5,7 +5,7 @@
  include $(TOPDIR)/rules.mk
  PKG_NAME:=toolchain
 -PKG_RELEASE:=1
-+PKG_RELEASE:=4
++PKG_RELEASE:=5
  
  PKG_MAINTAINER:=Felix Fietkau <nbd@openwrt.org>
  
@@ -18,7 +18,7 @@
 -  LIBGCC_VERSION:=<LIBGCC_VERSION>
 -endif
 +LIBC_VERSION:=0.9.32
-+LIBGCC_VERSION:=4.6.3
++LIBGCC_VERSION:=4.6.4
  
  define Package/gcc/Default
    SECTION:=libs

@@ -1,5 +1,5 @@
---- ../../../openwrt_trunk.orig/feeds/packages/net/portmap/Makefile
-+++ ../../../openwrt_trunk/feeds/packages/net/portmap/Makefile
+--- ../../../openwrt_trunk/feeds/packages/net/portmap/Makefile.orig	2013-10-12 19:12:51.059362719 +0400
++++ ../../../openwrt_trunk/feeds/packages/net/portmap/Makefile	2013-10-13 09:55:20.510398048 +0400
 @@ -25,7 +25,7 @@
  define Package/portmap
    SECTION:=net
@@ -12,7 +12,7 @@
 @@ -38,14 +38,14 @@
  MAKE_FLAGS += \
  	CFLAGS="$(TARGET_CFLAGS) $(TARGET_CPPFLAGS) -DHOSTS_ACCESS -DFACILITY=LOG_DAEMON -DIGNORE_SIGCHLD" \
- 	RPCUSER="nobody" \
+ 	RPCUSER="rpc" \
 -	LDLIBS="$(TARGET_LDFLAGS) -lwrap $(LIBRPC)" \
 +	LDLIBS="$(TARGET_LDFLAGS) -lwrap" \
  	all

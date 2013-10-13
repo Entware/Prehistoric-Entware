@@ -1,21 +1,22 @@
---- ../../../downloads/openwrt_trunk-r35953/feeds/packages/libs/elfutils/Makefile	2013-03-11 09:29:39.094073821 +0400
-+++ ../../../openwrt_trunk/feeds/packages/libs/elfutils/Makefile	2013-03-11 10:31:00.646005892 +0400
-@@ -14,8 +14,6 @@
- PKG_SOURCE_URL:=http://fedorahosted.org/releases/e/l/$(PKG_NAME)/$(PKG_VERSION)
- PKG_MD5SUM:=163a5712b86f6bdfebdf233cc6e2192d
+--- ../../../openwrt_trunk/feeds/packages/libs/elfutils/Makefile.orig	2013-10-12 19:12:45.543363163 +0400
++++ ../../../openwrt_trunk/feeds/packages/libs/elfutils/Makefile	2013-10-12 20:28:39.723280169 +0400
+@@ -17,6 +17,8 @@
+ PKG_INSTALL:=1
+ PKG_USE_MIPS16:=0
  
--PKG_INSTALL:=1
--
++PKG_INSTALL:=1
++
  PKG_BUILD_DEPENDS:=USE_UCLIBC:argp-standalone
  
  include $(INCLUDE_DIR)/package.mk
-@@ -24,14 +22,13 @@
+@@ -25,14 +27,13 @@
  define Package/elfutils/Default
    SECTION:=libs
    CATEGORY:=Libraries
 -  DEPENDS:=$(INTL_DEPENDS)
+-  TITLE:=ELF manipulation libraries
 +  DEPENDS:=+libelf
-   TITLE:=ELF manipulation libraries
++  TITLE:=ELF manipulation libraries, dummy package
    URL:=https://fedorahosted.org/elfutils/
  endef
  
@@ -25,7 +26,7 @@
    TITLE+= (libdw)
  endef
  
-@@ -52,22 +49,23 @@
+@@ -53,22 +54,23 @@
  CONFIGURE_ARGS += \
  	--disable-werror
  

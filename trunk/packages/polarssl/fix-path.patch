@@ -1,6 +1,6 @@
---- ../../../downloads/openwrt_trunk-r35953/package/libs/polarssl/Makefile	2013-03-11 09:29:49.558073632 +0400
-+++ ../../../openwrt_trunk/package/libs/polarssl/Makefile	2013-03-12 21:24:35.971719532 +0400
-@@ -61,20 +61,20 @@
+--- ../../../downloads/openwrt_trunk-r35953/package/libs/polarssl/Makefile
++++ ../../../openwrt_trunk/package/libs/polarssl/Makefile
+@@ -62,20 +62,20 @@
  	-DUSE_SHARED_POLARSSL_LIBRARY:Bool=ON \
  
  define Build/InstallDev

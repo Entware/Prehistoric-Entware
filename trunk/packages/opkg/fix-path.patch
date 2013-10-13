@@ -1,5 +1,5 @@
---- ../../../downloads/openwrt_trunk-r37769/package/system/opkg/Makefile	2013-08-15 09:37:04.725572131 +0400
-+++ ../../../openwrt_trunk/package/system/opkg/Makefile	2013-10-04 14:15:14.372756758 +0400
+--- ../../../openwrt_trunk/package/system/opkg/Makefile.orig	2013-10-12 19:18:28.903356904 +0400
++++ ../../../openwrt_trunk/package/system/opkg/Makefile	2013-10-12 22:15:56.879161476 +0400
 @@ -5,7 +5,6 @@
  # See /LICENSE for more information.
  
@@ -8,35 +8,28 @@
  include $(INCLUDE_DIR)/version.mk
  
  PKG_NAME:=opkg
-@@ -31,15 +30,25 @@
- include $(INCLUDE_DIR)/package.mk
- include $(INCLUDE_DIR)/host-build.mk
+@@ -50,8 +49,19 @@
+   opkg knows how to install both .ipk and .deb packages.
+ endef
  
 +define Package/opkg-opt
-+  SECTION:=base
-+  CATEGORY:=Base system
++  $(call Package/opkg/Default)
 +  DEPENDS:=+uclibc-opt
-+  TITLE:=opkg package management system
-+  MAINTAINER:=Jo-Philipp Wich <xm@subsignal.org>
-+  URL:=http://wiki.openmoko.org/wiki/Opkg
++  VARIANT:=unsigned
++endef
++
++define Package/opkg-opt/description
++  $(call Package/opkg/Default/description)
 +endef
 +
  define Package/opkg
-   SECTION:=base
-   CATEGORY:=Base system
+   $(call Package/opkg/Default)
 +  DEPENDS:=+opkg-opt
-   TITLE:=opkg package management system
-   MAINTAINER:=Jo-Philipp Wich <xm@subsignal.org>
-   URL:=http://wiki.openmoko.org/wiki/Opkg
+   VARIANT:=unsigned
  endef
  
--define Package/opkg/description
-+define Package/opkg-opt/description
-   Lightweight package management system
-   opkg is the opkg Package Management System, for handling
-   installation and removal of packages on a system. It can
-@@ -49,8 +58,8 @@
-   opkg knows how to install both .ipk and .deb packages.
+@@ -59,8 +69,8 @@
+   $(call Package/opkg/Default/description)
  endef
  
 -define Package/opkg/conffiles
@@ -45,8 +38,8 @@
 +/opt/etc/opkg.conf
  endef
  
- TARGET_CFLAGS += $(if $(CONFIG_GCC_VERSION_4_3)$(CONFIG_GCC_VERSION_4_4),-Wno-array-bounds)
-@@ -60,27 +69,32 @@
+ 
+@@ -86,8 +96,9 @@
  CONFIGURE_ARGS += \
  	--disable-curl \
  	--disable-gpg \
@@ -56,28 +49,41 @@
 +	--with-opkglibdir=/opt/lib \
 +	--with-opkglockfile=/opt/var/lock/opkg.lock
  
- MAKE_FLAGS = \
+ ifeq ($(BUILD_VARIANT),smime)
+ 	CONFIGURE_ARGS += --enable-openssl --enable-sha256
+@@ -97,28 +108,32 @@
  		CC="$(TARGET_CC)" \
  		DESTDIR="$(PKG_INSTALL_DIR)" \
  		HOST_CPU="$(PKGARCH)" \
 -		LDFLAGS="-Wl,--gc-sections" \
 +		LDFLAGS="-Wl,--gc-sections --static" \
-+
-+define Package/opkg-opt/install
+ 
+ define Package/opkg/Default/install
+-	$(INSTALL_DIR) $(1)/usr/lib/opkg
+-	$(INSTALL_DIR) $(1)/bin
+-	$(INSTALL_DIR) $(1)/etc
+-	$(INSTALL_DATA) ./files/opkg$(2).conf $(1)/etc/opkg.conf
+-	$(VERSION_SED) $(1)/etc/opkg.conf
+-	$(INSTALL_BIN) $(PKG_INSTALL_DIR)/usr/bin/opkg-cl $(1)/bin/opkg
 +	$(INSTALL_DIR) $(1)/opt/lib/opkg
 +	$(INSTALL_DIR) $(1)/opt/{bin,etc,tmp}
 +	$(INSTALL_DIR) $(1)/opt/var/{lock,log,run}
 +	$(INSTALL_DATA) ./files/opkg.conf $(1)/opt/etc/
-+	$(INSTALL_BIN) $(PKG_INSTALL_DIR)/opt/bin/opkg-cl $(1)/opt/bin/opkg
-+endef
++	$(INSTALL_BIN) $(PKG_INSTALL_DIR)/opt/bin/opkg-cl $(1)/bin/opkg
+ endef
  
- define Package/opkg/install
--	$(INSTALL_DIR) $(1)/usr/lib/opkg
--	$(INSTALL_DIR) $(1)/bin
--	$(INSTALL_DIR) $(1)/etc
--	$(INSTALL_DATA) ./files/opkg.conf $(1)/etc/
--	$(VERSION_SED) $(1)/etc/opkg.conf
--	$(INSTALL_BIN) $(PKG_INSTALL_DIR)/usr/bin/opkg-cl $(1)/bin/opkg
+-Package/opkg/install = $(call Package/opkg/Default/install,$(1),)
++Package/opkg-opt/install = $(call Package/opkg/Default/install,$(1),)
+ 
+ define Package/opkg-smime/install
+ 	$(call Package/opkg/Default/install,$(1),-smime)
+-	$(INSTALL_DIR) $(1)/etc/ssl/certs
+-	$(if $(CONFIG_OPKGSMIME_CERT),$(INSTALL_DATA) $(call qstrip,$(CONFIG_OPKGSMIME_CERT)) $(1)/etc/ssl/certs/opkg.pem,)
++	$(INSTALL_DIR) $(1)/opt/etc/ssl/certs
++	$(if $(CONFIG_OPKGSMIME_CERT),$(INSTALL_DATA) $(call qstrip,$(CONFIG_OPKGSMIME_CERT)) $(1)/opt/etc/ssl/certs/opkg.pem,)
++endef
++
++define Package/opkg/install
 +	$(INSTALL_DIR) $(1)/opt/tmp
 +	touch $(1)/opt/tmp/.opkg-placeholder
  endef
@@ -90,9 +96,10 @@
  endef
  
  
-@@ -99,4 +113,5 @@
+@@ -137,5 +152,6 @@
  endef
  
  $(eval $(call BuildPackage,opkg))
 +$(eval $(call BuildPackage,opkg-opt))
+ $(eval $(call BuildPackage,opkg-smime))
  $(eval $(call HostBuild))

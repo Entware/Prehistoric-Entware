@@ -9,7 +9,7 @@
  
  PKG_SOURCE:=$(PKG_NAME)-$(PKG_VERSION).tar.gz
  PKG_SOURCE_URL:=http://www.tcpdump.org/release/
-@@ -74,16 +74,16 @@
+@@ -78,16 +78,16 @@
  endef
  
  define Build/InstallDev
