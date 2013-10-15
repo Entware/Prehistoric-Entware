@@ -1,11 +1,11 @@
---- ../../../downloads/openwrt_trunk-r36151/feeds/packages/mail/xmail/Makefile	2013-04-02 14:27:44.953540141 +0400
-+++ ../../../openwrt_trunk/feeds/packages/mail/xmail/Makefile	2013-04-30 13:29:59.604773890 +0400
+--- ../../../downloads/openwrt_trunk-r38381/feeds/packages/mail/xmail/Makefile	2013-10-13 10:25:10.278365921 +0400
++++ ../../../openwrt_trunk/feeds/packages/mail/xmail/Makefile	2013-10-14 10:45:40.087122452 +0400
 @@ -36,24 +36,18 @@
  	CFLAGS="$(TARGET_CFLAGS)" \
  	$(MAKE) -C $(PKG_BUILD_DIR) -f Makefile.lnx \
  		$(TARGET_CONFIGURE_OPTS) \
 +		CPPFLAGS="$(TARGET_CPPFLAGS)" \
-+		LDFLAGS="$(TARGET_LDFLAGS) -lpthread -lssl" \
++		LDFLAGS="$(TARGET_LDFLAGS) -lpthread -lssl -ldl -lcrypto" \
  		LD="$(TARGET_CXX)" \
  		all
  	tar -cjf $(PKG_BUILD_DIR)/MailRoot.tar.bz2 -C $(PKG_BUILD_DIR)/MailRoot --exclude bin .

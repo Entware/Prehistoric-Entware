@@ -4,7 +4,31 @@ ARM feed is coming?
 
 sshd: syslogin_perform_logout: logout() returned an error, /var/... or /etc/... somewhere in sources
 bash_completion: /etc/bashcompletion in optware is newer
-gdb downgraded from 7.5 to 7.3.1 due to gnu_v3_object_ctor_group() absence https://dev.openwrt.org/changeset?sfp_email=&sfph_mail=&reponame=&new=34007%40trunk%2Fpackage%2Fdevel%2Fgdb&old=33523%40trunk%2Fpackage%2Fgdb
-usbip downgraded due to dropping earlier k2.6 support in OpenWRT
 freeswitch: spandsp marked as broken for now.
 elfutils: is a fake package for now, still old libelf package used due to our 2.6 kernel
+
+OpenWRT packages with updagraded version:
+amule		2.3.1
+elinks		0.12pre6
+gw6c		6.0.1
+hplip		3.13.4 3.13.9!
+imapfilter	2.5.5
+mpd		0.17.5
+msmtp		1.4.31
+n2n		2.1.0-r6108 2.1.0-r6864!
+nzbget		11.0
+pyload		0.4.9
+smartmontools	6.2
+tvheadend	3.5-20130328 3.5-20130328 - latest!
+umurmur		0.2.13
+Wview		5.20.2
+wxbase		2.8.12
+
+OpenWRT packages with downgraded version, mainly due to old kernel:
+gdb		7.3.1 due to gnu_v3_object_ctor_group() absence
+glib2		2.26.1
+libsoup		2.28.2
+i2c-tools	3.1.0
+libnl		2.0 (r33657)
+usbip		0.1.7
+zabbix		1.6 (r28892)

@@ -1,5 +1,5 @@
---- ../../../openwrt_trunk/package/system/opkg/Makefile.orig	2013-10-12 19:18:28.903356904 +0400
-+++ ../../../openwrt_trunk/package/system/opkg/Makefile	2013-10-12 22:15:56.879161476 +0400
+--- ../../../openwrt_trunk/package/system/opkg/Makefile.orig
++++ ../../../openwrt_trunk/package/system/opkg/Makefile
 @@ -5,7 +5,6 @@
  # See /LICENSE for more information.
  
@@ -69,7 +69,7 @@
 +	$(INSTALL_DIR) $(1)/opt/{bin,etc,tmp}
 +	$(INSTALL_DIR) $(1)/opt/var/{lock,log,run}
 +	$(INSTALL_DATA) ./files/opkg.conf $(1)/opt/etc/
-+	$(INSTALL_BIN) $(PKG_INSTALL_DIR)/opt/bin/opkg-cl $(1)/bin/opkg
++	$(INSTALL_BIN) $(PKG_INSTALL_DIR)/opt/bin/opkg-cl $(1)/opt/bin/opkg
  endef
  
 -Package/opkg/install = $(call Package/opkg/Default/install,$(1),)

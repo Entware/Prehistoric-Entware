@@ -48,7 +48,7 @@ toolchain_compile: .toolchain_compiled
 	    sed -i -e 's|^\(CONFIG_DOWNLOAD_FOLDER\)=.*|\1=\"$(TOP)/downloads\"|g' $(TOP)/toolchain-1.9.2.7-rtn/src/.config; \
 	    cp -f ./*-uclibc-*.patch  $(TOP)/toolchain-1.9.2.7-rtn/src/toolchain/uClibc/patches/0.9.32/; \
 	    patch -d $(TOP) -p2 -i $(CURDIR)/0.9.32-config.patch; \
-	    patch -d $(TOP) -p2 -i $(CURDIR)/add-mirror.patch; \
+	    patch -d $(TOP) -p2 -i $(CURDIR)/add-mirrors.patch; \
 	    patch -d $(TOP) -p2 -i $(CURDIR)/define-toolchain-path.patch; \
 	    echo Compiling toolchain...; \
 	    (cd $(TOP)/toolchain-1.9.2.7-rtn/src; make V=99); \

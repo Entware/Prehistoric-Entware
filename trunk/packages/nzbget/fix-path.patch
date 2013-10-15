@@ -1,5 +1,5 @@
---- ../../../downloads/openwrt_trunk-r37769/feeds/packages/net/nzbget/Makefile	2013-08-15 09:37:02.837572161 +0400
-+++ ../../../openwrt_trunk/feeds/packages/net/nzbget/Makefile	2013-08-16 11:57:27.103847049 +0400
+--- ../../../downloads/openwrt_trunk-r38381/feeds/packages/net/nzbget/Makefile	2013-10-13 10:25:10.070365925 +0400
++++ ../../../openwrt_trunk/feeds/packages/net/nzbget/Makefile	2013-10-14 09:42:44.191191131 +0400
 @@ -8,26 +8,22 @@
  include $(TOPDIR)/rules.mk
  
@@ -30,10 +30,12 @@
    URL:=http://nzbget.sourceforge.net/
    TITLE:=Binary newsgrabber for nzb-files
    MAINTAINER:=Artur Wronowski <arteqw@gmail.com>
-@@ -37,33 +33,40 @@
+@@ -37,33 +33,42 @@
  A command-line client/server based binary newsgrabber for nzb-files.
  endef
  
++TARGET_LDFLAGS += \
++	-lsigc-2.0 \
 +
  CONFIGURE_ARGS += \
 -	--disable-nls \

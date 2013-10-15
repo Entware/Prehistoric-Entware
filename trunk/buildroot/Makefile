@@ -23,7 +23,7 @@ all: .done
 	patch -d $(TOP) -p2 -i $(CURDIR)/package.patch
 	patch -d $(TOP) -p2 -i $(CURDIR)/include-package.patch
 	patch -d $(TOP) -p2 -i $(CURDIR)/ipkg-make-index.patch
-	patch -d $(TOP) -p2 -i $(CURDIR)/add-mirror.patch
+	patch -d $(TOP) -p2 -i $(CURDIR)/add-mirrors.patch
 	echo CONFIG_TARGET_rtn=y > $(TOP)/openwrt_trunk/.config
 	make -C $(TOP)/openwrt_trunk defconfig
 	cp -f .config $(TOP)/openwrt_trunk/.config

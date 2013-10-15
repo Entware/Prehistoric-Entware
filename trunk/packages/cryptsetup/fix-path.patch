@@ -1,5 +1,5 @@
---- ../../../openwrt_trunk/feeds/packages/utils/cryptsetup/Makefile.orig	2013-10-12 19:12:46.891363133 +0400
-+++ ../../../openwrt_trunk/feeds/packages/utils/cryptsetup/Makefile	2013-10-12 20:08:41.995302374 +0400
+--- ../../../downloads/openwrt_trunk-r38381/feeds/packages/utils/cryptsetup/Makefile	2013-10-13 10:25:09.878365929 +0400
++++ ../../../openwrt_trunk/feeds/packages/utils/cryptsetup/Makefile	2013-10-13 20:21:25.976066448 +0400
 @@ -19,13 +19,13 @@
  
  include $(INCLUDE_DIR)/package.mk
@@ -16,7 +16,16 @@
    URL:=http://code.google.com/p/cryptsetup/
  endef
  
-@@ -63,10 +63,10 @@
+@@ -57,16 +57,19 @@
+ linked against openssl
+ endef
+ 
++CONFIGURE_ARGS+= \
++	--disable-kernel_crypto
++
+ ifeq ($(BUILD_VARIANT),openssl)
+ CONFIGURE_ARGS+= \
+         --with-crypto_backend=openssl
  endif
  
  define Package/cryptsetup/install

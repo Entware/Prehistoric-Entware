@@ -1,15 +1,14 @@
---- ../../../openwrt_trunk/feeds/packages/libs/elfutils/Makefile.orig	2013-10-12 19:12:45.543363163 +0400
-+++ ../../../openwrt_trunk/feeds/packages/libs/elfutils/Makefile	2013-10-12 20:28:39.723280169 +0400
-@@ -17,6 +17,8 @@
- PKG_INSTALL:=1
+--- ../../../downloads/openwrt_trunk-r38381/feeds/packages/libs/elfutils/Makefile	2013-10-13 10:25:09.826365930 +0400
++++ ../../../openwrt_trunk/feeds/packages/libs/elfutils/Makefile	2013-10-13 20:04:45.220084003 +0400
+@@ -14,7 +14,6 @@
+ PKG_SOURCE_URL:=http://fedorahosted.org/releases/e/l/$(PKG_NAME)/$(PKG_VERSION)
+ PKG_MD5SUM:=163a5712b86f6bdfebdf233cc6e2192d
+ 
+-PKG_INSTALL:=1
  PKG_USE_MIPS16:=0
  
-+PKG_INSTALL:=1
-+
  PKG_BUILD_DEPENDS:=USE_UCLIBC:argp-standalone
- 
- include $(INCLUDE_DIR)/package.mk
-@@ -25,14 +27,13 @@
+@@ -25,14 +24,13 @@
  define Package/elfutils/Default
    SECTION:=libs
    CATEGORY:=Libraries
@@ -26,7 +25,7 @@
    TITLE+= (libdw)
  endef
  
-@@ -53,22 +54,23 @@
+@@ -53,22 +51,23 @@
  CONFIGURE_ARGS += \
  	--disable-werror
  
