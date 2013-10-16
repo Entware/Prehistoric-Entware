@@ -1,6 +1,6 @@
---- ./Makefile.am.orig	2013-03-08 11:15:32.000000000 +0400
-+++ ./Makefile.am	2013-04-03 08:49:37.132336077 +0400
-@@ -74,7 +74,7 @@
+--- ./Makefile.am.orig	2013-10-11 13:40:14.000000000 +0400
++++ ./Makefile.am	2013-10-16 11:39:48.259914739 +0400
+@@ -75,7 +75,7 @@
  	  io/hpmud/dot4.h io/hpmud/jd.c io/hpmud/jd.h io/hpmud/pp.c io/hpmud/pp.h io/hpmud/musb.h io/hpmud/musb_libusb01.c \
  	  common/utils.c common/utils.h
  else
@@ -9,19 +9,18 @@
  libhpmud_la_SOURCES = io/hpmud/hpmud.c io/hpmud/mlc.c io/hpmud/model.c io/hpmud/pml.c \
  	  io/hpmud/hpmud.h io/hpmud/hpmudi.h io/hpmud/list.h io/hpmud/mlc.h io/hpmud/pml.h io/hpmud/dot4.c \
  	  io/hpmud/dot4.h io/hpmud/jd.c io/hpmud/jd.h io/hpmud/pp.c io/hpmud/pp.h io/hpmud/musb.h io/hpmud/musb.c \
-@@ -114,7 +114,7 @@
- dist_cron_DATA = data/rules/hplip_cron
+@@ -109,18 +109,18 @@
+ dist_rulessystem_DATA =data/rules/hplip-printer@.service
  
  # hpmud.rules
 -rulesdir = /etc/udev/rules.d
 +rulesdir = /opt/etc/udev/rules.d
  if UDEV_SYSFS_RULES
- dist_rules_DATA = data/rules/56-hpmud_support_sysfs.rules
- dist_rules_DATA += data/rules/86-hpmud_plugin_sysfs.rules
-@@ -134,11 +134,11 @@
- dist_rules_DATA += data/rules/55-hpmud.rules
+ dist_rules_DATA = data/rules/56-hpmud_sysfs.rules
+ else
+ dist_rules_DATA = data/rules/56-hpmud.rules
  endif
- endif
+ 
 -halpredir = /usr/share/hal/fdi/preprobe/10osvendor
 +halpredir = /opt/share/hal/fdi/preprobe/10osvendor
  dist_halpre_DATA = data/rules/20-hplip-devices.fdi
@@ -32,24 +31,16 @@
  hplip_conf_DATA = hplip.conf
  
  #pstotiff filter
-@@ -146,13 +146,13 @@
+@@ -128,7 +128,7 @@
  pstotiff_SCRIPTS = fax/filters/pstotiff
  
  # hplip.state
 -hplip_statedir = /var/lib/hp
 +hplip_statedir = /opt/var/lib/hp
  dist_hplip_state_DATA =
- #dist_hplip_state_DATA = hplip.state
- 
- # Log Files
--hplip_Logdir=/var/log/hp
--hplip_tmpdir=/var/log/hp/tmp
-+hplip_Logdir=/opt/var/log/hp
-+hplip_tmpdir=/opt/var/log/hp/tmp
  
  if FULL_BUILD
- 
-@@ -299,7 +299,7 @@
+@@ -275,7 +275,7 @@
  if LIBUSB01_BUILD
  hpmudext_la_CFLAGS = -I$(PYTHONINCLUDEDIR)
  else
@@ -58,7 +49,7 @@
  endif
  
  # ui (qt3)
-@@ -372,9 +372,9 @@
+@@ -344,9 +344,9 @@
  
  # PolicyKit
  if POLICYKIT_INSTALL
@@ -70,38 +61,7 @@
  dist_policykit_dbus_share_DATA = data/policykit/com.hp.hplip.service
  policykit_policydir = $(policykit_dir)
  dist_policykit_policy_DATA = data/policykit/com.hp.hplip.policy
-@@ -562,26 +562,18 @@
- 
- install-dist_hplip_LogDATA:
- if FULL_BUILD
--	test -z "$(DESTDIR)$(hplip_Logdir)" || mkdir -p $(DESTDIR)$(hplip_Logdir)
--	chgrp "lp" -R $(DESTDIR)$(hplip_Logdir)
--	chmod 775 $(DESTDIR)$(hplip_Logdir)
-+	mkdir -p $(DESTDIR)$(hplip_Logdir)
- endif	#FULL_BUILD
- if HPLIP_BUILD
--	test -z "$(DESTDIR)$(hplip_Logdir)" || mkdir -p $(DESTDIR)$(hplip_Logdir)
--	chgrp "lp" -R $(DESTDIR)$(hplip_Logdir)
--	chmod 775 $(DESTDIR)$(hplip_Logdir)
-+	mkdir -p $(DESTDIR)$(hplip_Logdir)
- endif	#FULL_BUILD
- 
- install-dist_hplip_tmpDATA:
- if FULL_BUILD
--	test -z "$(DESTDIR)$(hplip_tmpdir)" || mkdir -p $(DESTDIR)$(hplip_tmpdir)
--	chgrp "lp" -R $(DESTDIR)$(hplip_tmpdir)
--	chmod 1775 $(DESTDIR)$(hplip_tmpdir)
-+	mkdir -p $(DESTDIR)$(hplip_Logdir)
- endif	#FULL_BUILD
- if HPLIP_BUILD
--	test -z "$(DESTDIR)$(hplip_tmpdir)" || mkdir -p $(DESTDIR)$(hplip_tmpdir)
--	chgrp "lp" -R $(DESTDIR)$(hplip_tmpdir)
--	chmod 1775 $(DESTDIR)$(hplip_tmpdir)
-+	mkdir -p $(DESTDIR)$(hplip_Logdir)
- endif	#FULL_BUILD
- 
- install-dist_cronDATA:$(dist_cron_DATA)
-@@ -600,13 +592,13 @@
+@@ -525,13 +525,13 @@
  if HPLIP_BUILD
  #	   If scanner build, add hpaio entry to sane dll.conf.
  	if [ "$(scan_build)" = "yes" ]; then \

@@ -1,18 +1,18 @@
---- ../../../downloads/openwrt_trunk-r36151/feeds/packages/utils/hplip/Makefile	2013-04-02 14:27:28.657540438 +0400
-+++ ../../../openwrt_trunk/feeds/packages/utils/hplip/Makefile	2013-04-29 15:51:05.990194901 +0400
+--- ../../../downloads/openwrt_trunk-r38381/feeds/packages/utils/hplip/Makefile	2013-10-14 14:47:50.610857596 +0400
++++ ../../../openwrt_trunk/feeds/packages/utils/hplip/Makefile	2013-10-16 12:02:26.103892890 +0400
 @@ -8,15 +8,15 @@
  include $(TOPDIR)/rules.mk
  
  PKG_NAME:=hplip
 -PKG_VERSION:=3.9.12
 -PKG_RELEASE:=4
-+PKG_VERSION:=3.13.4
++PKG_VERSION:=3.13.10
 +PKG_RELEASE:=1
  
  PKG_SOURCE:=$(PKG_NAME)-$(PKG_VERSION).tar.gz
  PKG_SOURCE_URL:=@SF/hplip
 -PKG_MD5SUM:=2b0906b4a57b437988829557ca62adfd
-+PKG_MD5SUM:=e5c247161e2fd7685e0520e968393d19
++PKG_MD5SUM:=ba729c514a2dc95390b99e9a9d452999
  
 -PKG_BUILD_DEPENDS := python
  PKG_FIXUP:=autoreconf
@@ -44,7 +44,7 @@
  
  define Build/Configure
  	$(call Build/Configure/Default,\
-@@ -50,31 +56,60 @@
+@@ -50,31 +56,61 @@
  endef
  
  define Package/hplip/install
@@ -53,8 +53,8 @@
 -	$(CP) $(PKG_BUILD_DIR)/.libs/libhpmud.so* $(1)/usr/lib/
 +	find $(PKG_INSTALL_DIR)/opt/share/hplip -name *.py | xargs $(SED) 's|/usr/bin/env python|/opt/bin/python|;s|/usr/bin/python|/opt/bin/python|'
 +	find $(PKG_INSTALL_DIR)/opt -name *.py | xargs $(SED) 's|/usr/|/opt/|g'
-+	$(SED) 's|/usr/bin/env python|/opt/bin/python|' $(PKG_INSTALL_DIR)/opt/lib/cups/filter/pstotiff
-+	$(SED) 's|/usr/bin/perl|/opt/bin/perl|' $(PKG_INSTALL_DIR)/opt/lib/cups/filter/hpcac
++	$(SED) 's|/usr/|/opt/|g' $(PKG_INSTALL_DIR)/opt/lib/cups/filter/{pstotiff,hpps}
++	$(SED) 's|/bin/env python|/bin/python|' $(PKG_INSTALL_DIR)/opt/lib/cups/filter/pstotiff
 +	find $(PKG_INSTALL_DIR)/opt/etc/udev/rules.d -name *.rules | xargs $(SED) 's|/usr/bin/|/opt/bin/|g'
 +
 +	$(INSTALL_DIR) $(1)/opt/bin
@@ -65,7 +65,7 @@
 +
 +	$(INSTALL_DIR) $(1)/opt/lib/cups/{backend,filter}
 +	$(INSTALL_BIN) $(PKG_INSTALL_DIR)/opt/lib/cups/backend/hp $(1)/opt/lib/cups/backend
-+	$(INSTALL_BIN) $(PKG_INSTALL_DIR)/opt/lib/cups/filter/{hpcac,hpcups,hplipjs,hpps,pstotiff} $(1)/opt/lib/cups/filter
++	$(INSTALL_BIN) $(PKG_INSTALL_DIR)/opt/lib/cups/filter/{hpcups,hpps,pstotiff} $(1)/opt/lib/cups/filter
 +
 +	$(INSTALL_DIR) $(1)/opt/lib/sane
 +	$(CP) $(PKG_INSTALL_DIR)/opt/lib/sane/libsane-hpaio.so* $(1)/opt/lib/sane
@@ -74,10 +74,11 @@
 +	$(INSTALL_BIN) $(PKG_INSTALL_DIR)/opt/lib/python2.7/site-packages/{cups,hpmud,pcard,scan}ext.so $(1)/opt/lib/python2.7/site-packages
 +
 +	$(INSTALL_DIR) $(1)/opt/etc/hp
++	$(SED) 's|/usr/|/opt/|g' $(PKG_INSTALL_DIR)/opt/etc/hp/hplip.conf
 +	$(INSTALL_CONF) $(PKG_INSTALL_DIR)/opt/etc/hp/hplip.conf $(1)/opt/etc/hp
 +
 +	$(INSTALL_DIR) $(1)/opt/etc/sane.d/
-+	$(INSTALL_CONF) $(PKG_INSTALL_DIR)/opt/etc/hp/hplip.conf $(1)/opt/etc/hp
++	$(INSTALL_CONF) $(PKG_INSTALL_DIR)/opt/etc/sane.d/dll.conf $(1)/opt/etc/sane.d
 +
 +	$(INSTALL_DIR) $(1)/opt/share/hal/fdi/preprobe/10osvendor
 +	$(INSTALL_DATA) $(PKG_INSTALL_DIR)/opt/share/hal/fdi/preprobe/10osvendor/20-hplip-devices.fdi $(1)/opt/share/hal/fdi/preprobe/10osvendor
