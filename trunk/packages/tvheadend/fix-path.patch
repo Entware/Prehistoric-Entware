@@ -1,15 +1,15 @@
---- ../../../downloads/openwrt_trunk-r36151/feeds/packages/multimedia/tvheadend/Makefile	2013-04-02 14:27:27.681540457 +0400
-+++ ../../../openwrt_trunk/feeds/packages/multimedia/tvheadend/Makefile	2013-04-29 17:02:56.254112820 +0400
+--- ../../../downloads/openwrt_trunk-r38381/feeds/packages/multimedia/tvheadend/Makefile	2013-10-14 14:47:50.594857596 +0400
++++ ../../../openwrt_trunk/feeds/packages/multimedia/tvheadend/Makefile	2013-10-16 12:12:34.319878555 +0400
 @@ -8,12 +8,17 @@
  include $(TOPDIR)/rules.mk
  
  PKG_NAME:=tvheadend
 -PKG_VERSION:=3.2
 -PKG_RELEASE:=0.1
-+PKG_VERSION:=3.5-20130423
++PKG_VERSION:=3.5-20131011
 +PKG_RELEASE:=1
  
-+PKG_REV:=a2ccbb2de6eb50f7506f6da018625778cc6b4f8f
++PKG_REV:=f5c5ffd779ce6dbd233b8f98927d57244fcaeac5
  PKG_SOURCE:=$(PKG_NAME)-$(PKG_VERSION).tar.gz
 -PKG_SOURCE_URL:=https://github.com/downloads/tvheadend/tvheadend/
 -PKG_MD5SUM:=4f7faa75c4ea24942c5a12a77ebdcdf0
