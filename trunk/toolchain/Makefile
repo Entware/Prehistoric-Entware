@@ -22,6 +22,11 @@ kernel_prepare: .kernel_prepared
 	    [ -f $(TOP)/downloads/linux-2.6.22.19.tar.bz2 ] || wget http://wl500g.googlecode.com/files/linux-2.6.22.19.tar.bz2 -O $(TOP)/downloads/linux-2.6.22.19.tar.bz2; \
 	    tar -C $(TOP)/kernel-1.9.2.7-rtn/src/linux -jxf $(TOP)/downloads/linux-2.6.22.19.tar.bz2; \
 	    ln -sf linux-2.6.22.19 $(TOP)/kernel-1.9.2.7-rtn/src/linux/linux-2.6; \
+	    sed -i -e 's|^\(TOOLCHAINDIR\)=.*|\1=/opt/entware-toolchain|g' $(TOP)/kernel-1.9.2.7-rtn/src/1.9.2.7-rtn/config/defconfig; \
+	    echo Making /opt/entware-toolchain directory, root password needed...; \
+	    sudo mkdir -p /opt/entware-toolchain/bin; \
+	    echo chmod /opt/entware-toolchain directory for all users access, root password needed...; \
+	    sudo chmod -R 777 /opt/entware-toolchain; \
 	    (cd $(TOP)/kernel-1.9.2.7-rtn/src/1.9.2.7-rtn; make kernel; make); \
 	    mv $(TOP)/kernel-1.9.2.7-rtn/src/linux/linux-2.6.22.19 $(TOP)/; \
 	    rm -fr $(TOP)/kernel-1.9.2.7-rtn; \
@@ -32,10 +37,6 @@ kernel_prepare: .kernel_prepared
 
 toolchain_compile: .toolchain_compiled
 .toolchain_compiled:
-	@echo Making /opt/entware-toolchain directory, root password needed...
-	sudo mkdir -p /opt/entware-toolchain
-	@echo chmod /opt/entware-toolchain directory for all users access, root password needed...
-	sudo chmod 777 /opt/entware-toolchain
 	@echo Making toolchain, $(TOOLCHAIN_REVISION)...
 	if [ -f $(TOP)/downloads/entware-toolchain-r$(TOOLCHAIN_REVISION).tgz ]; then \
 	    sudo tar -C / -xf $(TOP)/downloads/entware-toolchain-r$(TOOLCHAIN_REVISION).tgz; \
