@@ -1,5 +1,5 @@
---- ../../../downloads/openwrt_trunk-r38381/feeds/packages/net/nzbget/Makefile	2013-10-13 10:25:10.070365925 +0400
-+++ ../../../openwrt_trunk/feeds/packages/net/nzbget/Makefile	2013-10-14 09:42:44.191191131 +0400
+--- ../../../downloads/openwrt_trunk-r38381/feeds/packages/net/nzbget/Makefile	2013-10-22 14:07:08.647116534 +0400
++++ ../../../openwrt_trunk/feeds/packages/net/nzbget/Makefile	2013-10-22 21:05:25.354660085 +0400
 @@ -8,26 +8,22 @@
  include $(TOPDIR)/rules.mk
  
@@ -30,7 +30,7 @@
    URL:=http://nzbget.sourceforge.net/
    TITLE:=Binary newsgrabber for nzb-files
    MAINTAINER:=Artur Wronowski <arteqw@gmail.com>
-@@ -37,33 +33,42 @@
+@@ -37,33 +33,44 @@
  A command-line client/server based binary newsgrabber for nzb-files.
  endef
  
@@ -63,6 +63,8 @@
 +	--with-openssl-libraries=$(STAGING_DIR)/opt/lib \
 +	--with-libcurses-includes=$(STAGING_DIR)/opt/include \
 +	--with-libcurses-libraries=$(STAGING_DIR)/opt/lib \
++	--with-zlib-includes=$(STAGING_DIR)/opt/include \
++	--with-zlib-libraries=$(STAGING_DIR)/opt/lib \
 +
 +define Build/Configure
 +	$(call Build/Configure/Default)
