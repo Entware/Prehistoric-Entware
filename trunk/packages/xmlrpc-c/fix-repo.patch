@@ -1,0 +1,7 @@
+--- ../../../openwrt_trunk/feeds/packages/libs/xmlrpc-c/Makefile.prev	2013-10-24 00:23:03.000000000 +0400
++++ ../../../openwrt_trunk/feeds/packages/libs/xmlrpc-c/Makefile	2013-10-24 00:53:16.812440912 +0400
+@@ -15,3 +15,3 @@
+ PKG_SOURCE:=$(PKG_NAME)-$(PKG_VERSION).tar.gz
+-PKG_SOURCE_URL:=http://xmlrpc-c.svn.sourceforge.net/svnroot/xmlrpc-c/advanced
++PKG_SOURCE_URL:=http://svn.code.sf.net/p/xmlrpc-c/code/advanced/
+ PKG_SOURCE_SUBDIR:=$(PKG_NAME)-$(PKG_VERSION)
