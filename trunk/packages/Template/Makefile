@@ -5,12 +5,12 @@
 # See /LICENSE for more information.
 #
 
-all: ./.done
+all: .done
 
-./.done:
-	touch $@
+.done:
+	@touch $@
 
 clean:
-	rm -f ./.done
+	@rm -f .done
 
-.PHONY : clean
+.PHONY: clean

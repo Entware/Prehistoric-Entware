@@ -5,14 +5,14 @@
 # See /LICENSE for more information.
 #
 
-all: ./.done
+all: .done
 
-./.done:
+.done:
 	patch -d $(TOP) -p3 -i $(CURDIR)/fix-path.patch
 	rm -f ../../../openwrt_trunk/package/libs/libiconv-full/patches/100-strip_charsets.patch
-	touch $@
+	@touch $@
 
 clean:
-	rm -f ./.done
+	@rm -f .done
 
-.PHONY : clean
+.PHONY: clean

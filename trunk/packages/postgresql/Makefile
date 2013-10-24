@@ -5,14 +5,14 @@
 # See /LICENSE for more information.
 #
 
-all: ./.done
+all: .done
 
-./.done:
+.done:
 	patch -d $(TOP) -p3 -i $(CURDIR)/fix-path.patch
-	cp ./S98postgresql ../../../openwrt_trunk/feeds/packages/libs/postgresql/files/
-	touch $@
+	cp -f ./S98postgresql ../../../openwrt_trunk/feeds/packages/libs/postgresql/files/
+	@touch $@
 
 clean:
-	rm -f ./.done
+	@rm -f .done
 
-.PHONY : clean
+.PHONY: clean

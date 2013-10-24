@@ -5,15 +5,15 @@
 # See /LICENSE for more information.
 #
 
-all: ./.done
+all: .done
 
-./.done:
+.done:
 	patch -d $(TOP) -p3 -i $(CURDIR)/fix-path.patch
-	mkdir ../../../openwrt_trunk/feeds/packages/libs/ossp-js/patches
-	cp ./000-configure-ac.patch ../../../openwrt_trunk/feeds/packages/libs/ossp-js/patches/
-	touch $@
+	mkdir -p ../../../openwrt_trunk/feeds/packages/libs/ossp-js/patches
+	cp -f ./000-configure-ac.patch ../../../openwrt_trunk/feeds/packages/libs/ossp-js/patches/
+	@touch $@
 
 clean:
-	rm -f ./.done
+	@rm -f .done
 
-.PHONY : clean
+.PHONY: clean

@@ -5,16 +5,16 @@
 # See /LICENSE for more information.
 #
 
-all: ./.done
+all: .done
 
-./.done:
-	mkdir -p ../../../openwrt_trunk/feeds/packages/utils/nano/patches/
-	cp -f ./010-nanorc.patch ../../../openwrt_trunk/feeds/packages/utils/nano/patches/
+.done:
 	patch -d $(TOP) -p3 -i $(CURDIR)/fix-path.patch
 	patch -d $(TOP) -p3 -i $(CURDIR)/enable-color.patch
-	touch $@
+	mkdir -p ../../../openwrt_trunk/feeds/packages/utils/nano/patches/
+	cp -f ./010-nanorc.patch ../../../openwrt_trunk/feeds/packages/utils/nano/patches/
+	@touch $@
 
 clean:
-	rm -f ./.done
+	@rm -f .done
 
-.PHONY : clean
+.PHONY: clean

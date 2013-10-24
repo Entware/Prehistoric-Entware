@@ -5,14 +5,14 @@
 # See /LICENSE for more information.
 #
 
-all: ./.done
+all: .done
 
-./.done:
+.done:
 	patch -d $(TOP) -p3 -i $(CURDIR)/fix-path.patch
-	cp ./S17apcupsd ../../../openwrt_trunk/feeds/packages/net/apcupsd/files/
-	touch $@
+	cp -f ./S17apcupsd ../../../openwrt_trunk/feeds/packages/net/apcupsd/files/
+	@touch $@
 
 clean:
-	rm -f ./.done
+	@rm -f .done
 
-.PHONY : clean
+.PHONY: clean

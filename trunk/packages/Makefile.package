@@ -1,0 +1,45 @@
+#
+# Copyright (C) 2011-2013 Entware
+#
+# This is free software, licensed under the GNU General Public License v2.
+# See /LICENSE for more information.
+#
+
+ifneq ($(MAKECMDGOALS),clean)
+include ../.packages_path.mk
+endif
+
+ifdef $(PK_NAME_$(PK_NAME))
+    PK_PATH=$(PK_NAME_$(PK_NAME))
+    PK_LEVEL=8
+else
+    PK_PATH=$(TOP)
+    PK_LEVEL=3
+endif
+
+all: .done
+
+.done:
+	@for patch in `ls *.patch | sort`; do ( \
+		echo $$patch; \
+		patch -d $(PK_PATH) -p$(PK_LEVEL) -i $(CURDIR)/$$patch; \
+	); done
+ifeq (0,1)
+	@if [ -d 'files' ]; then \
+	    [ -d '$(PK_PATH)/files' ] || mkdir $(PK_PATH)/files; \
+	    cp -rf files/ $(PK_PATH)/files; \
+	fi
+	@if [ -d 'patches/' ]; then \
+	    [ -d '$(PK_PATH)/patches' ] || mkdir $(PK_PATH)/patches; \
+	    cp -rf patches/ $(PK_PATH)/pathces; \
+	fi
+	@if [ -f postmake.sh ]; then \
+	    $(SHELL) ./postmake.sh $(PK_NAME) $(PK_PATH); \
+	fi
+endif
+	@touch $@
+
+clean:
+	@rm -f .done
+
+.PHONY: clean

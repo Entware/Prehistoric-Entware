@@ -10,8 +10,8 @@ Requirements
    zlib1g zlib1g-dev git-core gettext libexpat1-dev libssl-dev \
    cvs gperf unzip python libxml-parser-perl
 
-Note: 64 bit distro requires also gcc-multilib
-Note: Ubuntu 13.x is not recommended now (may 2013)
+Note: 64 bit distro requires also gcc-multilib package.
+Note: Ubuntu 13.x is not recommended now (may 2013).
 
 - At least 20Gb of disk space,
 - Approx. 5 hours to compile all stuff.
@@ -34,4 +34,4 @@ $ make
 
     If building fails, see whats wrong in a current target from Makefile.
 
-    ipk-packages can be found at ~/openwrt/trunk/bin/entware/packages directory.
+    ipk-packages can be found at openwrt_trunk/bin/<target>/packages directory.

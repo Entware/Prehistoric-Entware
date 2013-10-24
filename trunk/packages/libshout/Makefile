@@ -5,15 +5,15 @@
 # See /LICENSE for more information.
 #
 
-all: ./.done
+all: .done
 
-./.done:
+.done:
 	patch -d $(TOP) -p3 -i $(CURDIR)/fix-path.patch
 	rm -f ../../../openwrt_trunk/feeds/packages/libs/libshout/patches/100-ogg-c.patch
 	rm -f ../../../openwrt_trunk/feeds/packages/libs/libshout/patches/110-shout-ogg-c.patch
-	touch $@
+	@touch $@
 
 clean:
-	rm -f ./.done
+	@rm -f .done
 
-.PHONY : clean
+.PHONY: clean

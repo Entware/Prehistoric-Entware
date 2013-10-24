@@ -5,15 +5,15 @@
 # See /LICENSE for more information.
 #
 
-all: ./.done
+all: .done
 
-./.done:
+.done:
 	patch -d $(TOP) -p3 -i $(CURDIR)/fix-path.patch
 	patch -d $(TOP) -p3 -i $(CURDIR)/add-bin.patch
-	cp ./S70mysqld ../../../openwrt_trunk/feeds/packages/libs/mysql/files/
-	touch $@
+	cp -f ./S70mysqld ../../../openwrt_trunk/feeds/packages/libs/mysql/files/
+	@touch $@
 
 clean:
-	rm -f ./.done
+	@rm -f .done
 
-.PHONY : clean
+.PHONY: clean

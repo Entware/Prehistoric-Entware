@@ -5,15 +5,15 @@
 # See /LICENSE for more information.
 #
 
-all: ./.done
+all: .done
 
-./.done:
+.done:
 	patch -d $(TOP) -p3 -i $(CURDIR)/fix-path.patch
 	cp -f ./500-config-path.patch ../../../openwrt_trunk/feeds/packages/net/nfs-kernel-server/patches/
 	cp -f ./S57nfs-kernel-server ../../../openwrt_trunk/feeds/packages/net/nfs-kernel-server/files/
-	touch $@
+	@touch $@
 
 clean:
-	rm -f ./.done
+	@rm -f .done
 
-.PHONY : clean
+.PHONY: clean

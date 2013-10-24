@@ -5,15 +5,15 @@
 # See /LICENSE for more information.
 #
 
-all: ./.done
+all: .done
 
-./.done:
+.done:
 	patch -d $(TOP) -p3 -i $(CURDIR)/fix-path.patch
-	cp ./005-dont-flood-with-dropped-o-messages.patch ../../../openwrt_trunk/feeds/packages/admin/syslog-ng/patches/
-	cp ./S01syslog-ng ../../../openwrt_trunk/feeds/packages/admin/syslog-ng/files/
-	touch $@
+	cp -f ./005-dont-flood-with-dropped-o-messages.patch ../../../openwrt_trunk/feeds/packages/admin/syslog-ng/patches/
+	cp -f ./S01syslog-ng ../../../openwrt_trunk/feeds/packages/admin/syslog-ng/files/
+	@touch $@
 
 clean:
-	rm -f ./.done
+	@rm -f .done
 
-.PHONY : clean
+.PHONY: clean

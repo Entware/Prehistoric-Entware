@@ -5,16 +5,16 @@
 # See /LICENSE for more information.
 #
 
-all: ./.done
+all: .done
 
-./.done:
+.done:
 	patch -d $(TOP) -p3 -i $(CURDIR)/fix-path.patch
 	cp -f ./500-paths.patch ../../../openwrt_trunk/feeds/packages/net/knock/patches/
-	mkdir ../../../openwrt_trunk/feeds/packages/net/knock/files
+	mkdir -p ../../../openwrt_trunk/feeds/packages/net/knock/files
 	cp -f ./S05knockd ../../../openwrt_trunk/feeds/packages/net/knock/files/
-	touch $@
+	@touch $@
 
 clean:
-	rm -f ./.done
+	@rm -f .done
 
-.PHONY : clean
+.PHONY: clean

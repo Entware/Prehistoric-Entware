@@ -5,15 +5,15 @@
 # See /LICENSE for more information.
 #
 
-all: ./.done
+all: .done
 
-./.done:
+.done:
 	patch -d $(TOP) -p3 -i $(CURDIR)/fix-path.patch
 	patch -d $(TOP) -p3 -i $(CURDIR)/fix-path-conf.patch
-	cp ./S09named ../../../openwrt_trunk/feeds/packages/net/bind/files/
-	touch $@
+	cp -f ./S09named ../../../openwrt_trunk/feeds/packages/net/bind/files/
+	@touch $@
 
 clean:
-	rm -f ./.done
+	@rm -f .done
 
-.PHONY : clean
+.PHONY: clean

@@ -8,5 +8,6 @@
 # Nothing should ever be touched by mere mortals. Unless you hang out
 # with the gods, you should probably leave all this stuff alone.
 
-TOOLCHAIN_REVISION:=5310
-OPENWRT_REVISION:=38381
+export TOOLCHAIN_REVISION=5310
+export OPENWRT_REVISION=38381
+export TARGET=mipsel-hardfloat

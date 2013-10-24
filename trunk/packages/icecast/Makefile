@@ -5,17 +5,17 @@
 # See /LICENSE for more information.
 #
 
-all: ./.done
+all: .done
 
-./.done:
+.done:
 	patch -d $(TOP) -p3 -i $(CURDIR)/fix-path.patch
 	cp -f ./020-paths.patch ../../../openwrt_trunk/feeds/packages/multimedia/icecast/patches/
 	cp -f ./030-enable-nobody-user.patch ../../../openwrt_trunk/feeds/packages/multimedia/icecast/patches/
-	mkdir ../../../openwrt_trunk/feeds/packages/multimedia/icecast/files
+	mkdir -p ../../../openwrt_trunk/feeds/packages/multimedia/icecast/files
 	cp -f ./S78icecast ../../../openwrt_trunk/feeds/packages/multimedia/icecast/files/
-	touch $@
+	@touch $@
 
 clean:
-	rm -f ./.done
+	@rm -f .done
 
-.PHONY : clean
+.PHONY: clean

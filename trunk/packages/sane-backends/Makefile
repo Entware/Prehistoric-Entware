@@ -5,15 +5,15 @@
 # See /LICENSE for more information.
 #
 
-all: ./.done
+all: .done
 
-./.done:
+.done:
 	patch -d $(TOP) -p3 -i $(CURDIR)/fix-path.patch
-	mkdir ../../../openwrt_trunk/feeds/packages/utils/sane-backends/files
-	 cp ./S01sane-backends ../../../openwrt_trunk/feeds/packages/utils/sane-backends/files/
-	touch $@
+	mkdir -p ../../../openwrt_trunk/feeds/packages/utils/sane-backends/files
+	cp -f ./S01sane-backends ../../../openwrt_trunk/feeds/packages/utils/sane-backends/files/
+	@touch $@
 
 clean:
-	rm -f ./.done
+	@rm -f .done
 
-.PHONY : clean
+.PHONY: clean

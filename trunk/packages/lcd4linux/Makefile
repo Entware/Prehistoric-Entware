@@ -6,14 +6,14 @@
 #
 
 
-all: ./.done
+all: .done
 
-./.done:
+.done:
 	patch -d $(TOP) -p3 -i $(CURDIR)/fix-path.patch
-	cp ./S91lcd4linux ../../../openwrt_trunk/feeds/packages/utils/lcd4linux/files/
-	touch $@
+	cp -f ./S91lcd4linux ../../../openwrt_trunk/feeds/packages/utils/lcd4linux/files/
+	@touch $@
 
 clean:
-	rm -f ./.done
+	@rm -f .done
 
-.PHONY : clean
+.PHONY: clean

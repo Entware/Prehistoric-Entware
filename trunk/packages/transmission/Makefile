@@ -5,16 +5,15 @@
 # See /LICENSE for more information.
 #
 
-all: ./.done
+all: .done
 
-./.done:
+.done:
 	patch -d $(TOP) -p3 -i $(CURDIR)/fix-path.patch
-	rm ../../../openwrt_trunk/feeds/packages/net/transmission/files/transmission.*
-	cp ./settings.json ../../../openwrt_trunk/feeds/packages/net/transmission/files/
-	cp ./S88transmission ../../../openwrt_trunk/feeds/packages/net/transmission/files/
-	touch $@
+	cp -f ./settings.json ../../../openwrt_trunk/feeds/packages/net/transmission/files/
+	cp -f ./S88transmission ../../../openwrt_trunk/feeds/packages/net/transmission/files/
+	@touch $@
 
 clean:
-	rm -f ./.done
+	@rm -f .done
 
-.PHONY : clean
+.PHONY: clean

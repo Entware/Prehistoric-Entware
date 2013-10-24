@@ -5,15 +5,15 @@
 # See /LICENSE for more information.
 #
 
-all: ./.done
+all: .done
 
-./.done:
+.done:
 	patch -d $(TOP) -p3 -i $(CURDIR)/fix-path.patch
 	cp -f ./900-entware-options.patch ../../../openwrt_trunk/package/network/services/dropbear/patches/
 	cp -f ./S51dropbear ../../../openwrt_trunk/package/network/services/dropbear/files/
-	touch $@
+	@touch $@
 
 clean:
-	rm -f ./.done
+	@rm -f .done
 
-.PHONY : clean
+.PHONY: clean

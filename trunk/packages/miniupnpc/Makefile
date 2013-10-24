@@ -5,14 +5,14 @@
 # See /LICENSE for more information.
 #
 
-all: ./.done
+all: .done
 
-./.done:
-	cp ./555-install-prefix.patch ../../../openwrt_trunk/feeds/packages/net/miniupnpc/patches/
+.done:
+	cp -f ./555-install-prefix.patch ../../../openwrt_trunk/feeds/packages/net/miniupnpc/patches/
 	patch -d $(TOP) -p3 -i $(CURDIR)/fix-path.patch
-	touch $@
+	@touch $@
 
 clean:
-	rm -f ./.done
+	@rm -f .done
 
-.PHONY : clean
+.PHONY: clean

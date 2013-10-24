@@ -5,9 +5,9 @@
 # See /LICENSE for more information.
 #
 
-all: ./.done
+all: .done
 
-./.done:
+.done:
 	patch -d $(TOP) -p3 -i $(CURDIR)/fix-path.patch
 	rm -f ../../../openwrt_trunk/package/libs/ncurses/patches/100-ncurses-5.6-20080112-urxvt.patch
 	rm -f ../../../openwrt_trunk/package/libs/ncurses/patches/101-ncurses-5.6-20080628-kbs.patch
@@ -15,9 +15,9 @@ all: ./.done
 	rm -f ../../../openwrt_trunk/package/libs/ncurses/patches/500-cross.patch
 	rm -f ../../../openwrt_trunk/package/libs/ncurses/patches/900-terminfo.patch
 	cp -f ./100-20130202.patch ../../../openwrt_trunk/package/libs/ncurses/patches/
-	touch $@
+	@touch $@
 
 clean:
-	rm -f ./.done
+	@rm -f .done
 
-.PHONY : clean
+.PHONY: clean

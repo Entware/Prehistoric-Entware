@@ -5,16 +5,16 @@
 # See /LICENSE for more information.
 #
 
-all: ./.done
+all: .done
 
-./.done:
+.done:
 	patch -d $(TOP) -p3 -i $(CURDIR)/fix-path.patch
-	mkdir ../../../openwrt_trunk/feeds/packages/net/aria2/files
-	cp ./aria2.conf ../../../openwrt_trunk/feeds/packages/net/aria2/files/
-	cp ./S81aria2 ../../../openwrt_trunk/feeds/packages/net/aria2/files/
-	touch $@
+	mkdir -p ../../../openwrt_trunk/feeds/packages/net/aria2/files
+	cp -f ./aria2.conf ../../../openwrt_trunk/feeds/packages/net/aria2/files/
+	cp -f ./S81aria2 ../../../openwrt_trunk/feeds/packages/net/aria2/files/
+	@touch $@
 
 clean:
-	rm -f ./.done
+	@rm -f .done
 
-.PHONY : clean
+.PHONY: clean

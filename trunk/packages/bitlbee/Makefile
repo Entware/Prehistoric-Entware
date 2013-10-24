@@ -5,15 +5,15 @@
 # See /LICENSE for more information.
 #
 
-all: ./.done
+all: .done
 
-./.done:
+.done:
 	patch -d $(TOP) -p3 -i $(CURDIR)/fix-path.patch
-	cp ./555-rpath-ld-option.patch ../../../openwrt_trunk/feeds/packages/net/bitlbee/patches
-	cp ./S72bitlbee ../../../openwrt_trunk/feeds/packages/net/bitlbee/files/
-	touch $@
+	cp -f ./555-rpath-ld-option.patch ../../../openwrt_trunk/feeds/packages/net/bitlbee/patches
+	cp -f ./S72bitlbee ../../../openwrt_trunk/feeds/packages/net/bitlbee/files/
+	@touch $@
 
 clean:
-	rm -f ./.done
+	@rm -f .done
 
-.PHONY : clean
+.PHONY: clean

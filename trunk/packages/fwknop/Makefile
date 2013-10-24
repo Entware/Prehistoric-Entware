@@ -5,15 +5,15 @@
 # See /LICENSE for more information.
 #
 
-all: ./.done
+all: .done
 
-./.done:
+.done:
 	patch -d $(TOP) -p3 -i $(CURDIR)/fix-path.patch
 	mkdir -p ../../../openwrt_trunk/feeds/packages/net/fwknop/files/
 	cp -f ./S05fwknopd ../../../openwrt_trunk/feeds/packages/net/fwknop/files/
-	touch $@
+	@touch $@
 
 clean:
-	rm -f ./.done
+	@rm -f .done
 
-.PHONY : clean
+.PHONY: clean

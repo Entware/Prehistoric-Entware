@@ -5,14 +5,14 @@
 # See /LICENSE for more information.
 #
 
-all: ./.done
+all: .done
 
-./.done:
+.done:
 	patch -d $(TOP) -p3 -i $(CURDIR)/fix-path.patch
-	cp ./010-system-profile.patch ../../../openwrt_trunk/feeds/packages/utils/bash/patches/
-	touch $@
+	cp -f ./010-system-profile.patch ../../../openwrt_trunk/feeds/packages/utils/bash/patches/
+	@touch $@
 
 clean:
-	rm -f ./.done
+	@rm -f .done
 
-.PHONY : clean
+.PHONY: clean

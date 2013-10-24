@@ -11,34 +11,21 @@
 include ./config.mk
 export TOP:=$(shell (cd .. && pwd -P))
 
-all: .toolchain_installed .buildroot_installed .packages_prepared .packages_compiled
+all: .toolchain_installed .buildroot_installed .packages_compiled
 
 packages_compile: .packages_compiled
 .packages_compiled:
-	make -C "$(TOP)/openwrt_trunk" tools/compile
-	make -C "$(TOP)/openwrt_trunk" tools/install
+	$(MAKE) -C "$(TOP)/openwrt_trunk" tools/compile
+	$(MAKE) -C "$(TOP)/openwrt_trunk" tools/install
 	@echo Press \"Ctrl + c\" if you don\'t need to compile whole repository...
-	make -C "$(TOP)/openwrt_trunk" package/compile
-	make -C "$(TOP)/openwrt_trunk" package/index
-	touch $@
+	$(MAKE) -C "$(TOP)/openwrt_trunk" package/compile
+	$(MAKE) -C "$(TOP)/openwrt_trunk" package/index
+	@touch $@
 
-packages: .packages_prepared
+packages: packages/.packages_prepared
 
-.packages_prepared: .packages_path.mk
-	@echo Processing OpenWRT packages...
-	@for dir in `ls ./packages | sort`; do ( \
-	    if [ -e ./packages/$$dir/Makefile ]; then \
-		make -C "./packages/$$dir" ; \
-	    else \
-		make -C "./packages/$$dir" -f ../../Makefile.package PK_NAME="$$dir"; \
-	    fi; \
-	); done
-	@echo Done!
-	touch $@
-
-.packages_path.mk:
-	@ruby ./index_scan.rb
-	@echo "Feeds index processed!"
+packages/.packages_prepared:
+	$(MAKE) -C packages
 
 buildroot: .buildroot_installed
 .buildroot_installed:
@@ -60,29 +47,44 @@ buildroot: .buildroot_installed
 		cp --recursive --update --force $(TOP)/openwrt_trunk/* $(TOP)/downloads/openwrt_trunk-r$(OPENWRT_REVISION) ; \
 	fi
 	ln -sf $(TOP)/downloads $(TOP)/openwrt_trunk/dl
-	make -C "./buildroot"
-	touch $@
+	$(MAKE) -C buildroot
+	@touch $@
 
 toolchain: .toolchain_installed
 .toolchain_installed:
-	[ -d $(TOP)/downloads ] || mkdir -p $(TOP)/downloads
-	make -C "./toolchain"
-	touch $@
+	[ -d "$(TOP)/downloads" ] || mkdir -p "$(TOP)/downloads"
+	$(MAKE) -C toolchain
+	@touch $@
 
-distclean clean:
-	@for dir in `ls ./packages`; do ( \
-	    if [ -e ./packages/$$dir/Makefile ]; then \
-		make -C "./packages/$$dir" clean; \
-	    else \
-		make -C "./packages/$$dir" -f ../../Makefile.package PK_NAME="$$dir" clean; \
-	    fi; \
-	); done
-	rm -f .packages_prepared
-	make -C "./buildroot" distclean
-	rm -f .buildroot_installed
-	make -C "./toolchain" distclean
-	rm -f .toolchain_installed
-	rm -f .packages_compiled
-	rm -f .packages_path.mk
+define update_git_mirror
+	[ -d "$(TOP)/tmp" ] || mkdir "$(TOP)/tmp"
+	(cd "$(TOP)/tmp"; \
+	    [ -d "$(2)" ] && rm -rf $(2); \
+	    git clone $(1); \
+	    cd $(2); \
+	    git remote add upstream $(3); \
+	    git fetch upstream; \
+	    git merge upstream/master; \
+	    git push origin master; \
+	    cd ..; \
+	    rm -rf $(2))
+endef
 
-.PHONY : distclean clean
+update_git_mirrors: .git_mirrors_updated
+.git_mirrors_updated:
+	$(call update_git_mirror,https://github.com/ryzhovau/openwrt-telephony.git,openwrt-telephony,http://feeds.openwrt.nanl.de/openwrt/telephony.git)
+	$(call update_git_mirror,https://github.com/ryzhovau/openwrt-packages.git,openwrt-packages,git://git.openwrt.org/packages.git)
+	$(call update_git_mirror,https://github.com/ryzhovau/packages.git,packages,https://github.com/openwrt-routing/packages.git)
+	@touch $@
+
+clean:
+	$(MAKE) -C packages clean
+	$(MAKE) -C buildroot distclean
+	$(MAKE) -C toolchain distclean
+	@rm -f .buildroot_installed
+	@rm -f .toolchain_installed
+	@rm -f .packages_compiled
+	@rm -f .git_mirrors_updated
+
+.PHONY: clean
+

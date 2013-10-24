@@ -5,15 +5,15 @@
 # See /LICENSE for more information.
 #
 
-all: ./.done
+all: .done
 
-./.done:
+.done:
 	patch -d $(TOP) -p3 -i $(CURDIR)/fix-path.patch
-	cp ./110-remove-accep4-support.patch ../../../openwrt_trunk/feeds/packages/net/nginx/patches/
-	cp ./S80nginx ../../../openwrt_trunk/feeds/packages/net/nginx/files/
-	touch $@
+	cp -f ./110-remove-accep4-support.patch ../../../openwrt_trunk/feeds/packages/net/nginx/patches/
+	cp -f ./S80nginx ../../../openwrt_trunk/feeds/packages/net/nginx/files/
+	@touch $@
 
 clean:
-	rm -f ./.done
+	@rm -f .done
 
-.PHONY : clean
+.PHONY: clean

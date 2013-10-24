@@ -5,16 +5,16 @@
 # See /LICENSE for more information.
 #
 
-all: ./.done
+all: .done
 
-./.done:
+.done:
 	patch -d $(TOP) -p3 -i $(CURDIR)/fix-path.patch
 	cp -f ./050-inotify_fix.patch ../../../openwrt_trunk/feeds/packages/multimedia/minidlna/patches/
 	cp -f ./060-file-streaming.patch ../../../openwrt_trunk/feeds/packages/multimedia/minidlna/patches/
-	cp ./S90minidlna ../../../openwrt_trunk/feeds/packages/multimedia/minidlna/files/
-	touch $@
+	cp -f ./S90minidlna ../../../openwrt_trunk/feeds/packages/multimedia/minidlna/files/
+	@touch $@
 
 clean:
-	rm -f ./.done
+	@rm -f .done
 
-.PHONY : clean
+.PHONY: clean

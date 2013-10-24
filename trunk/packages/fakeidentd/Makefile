@@ -5,15 +5,14 @@
 # See /LICENSE for more information.
 #
 
-all: ./.done
+all: .done
 
-./.done:
+.done:
 	patch -d $(TOP) -p3 -i $(CURDIR)/fix-path.patch
-	rm -r ../../../openwrt_trunk/feeds/packages/net/fakeidentd/files/fakeidentd.init
-	cp ./S85fakeidentd ../../../openwrt_trunk/feeds/packages/net/fakeidentd/files/
-	touch $@
+	cp -f ./S85fakeidentd ../../../openwrt_trunk/feeds/packages/net/fakeidentd/files/
+	@touch $@
 
 clean:
-	rm -f ./.done
+	@rm -f .done
 
-.PHONY : clean
+.PHONY: clean

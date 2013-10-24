@@ -5,15 +5,15 @@
 # See /LICENSE for more information.
 #
 
-all: ./.done
+all: .done
 
-./.done:
+.done:
 	patch -d $(TOP) -p3 -i $(CURDIR)/fix-path.patch
 	cp -f ./500-disable-insmod-flags.patch ../../../openwrt_trunk/feeds/packages/net/strongswan/patches/
 	cp -f ./S90strongswan ../../../openwrt_trunk/feeds/packages/net/strongswan/files/
-	touch $@
+	@touch $@
 
 clean:
-	rm -f ./.done
+	@rm -f .done
 
-.PHONY : clean
+.PHONY: clean

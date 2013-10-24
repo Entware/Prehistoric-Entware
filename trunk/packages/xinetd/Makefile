@@ -5,14 +5,14 @@
 # See /LICENSE for more information.
 #
 
-all: ./.done
+all: .done
 
-./.done:
+.done:
 	patch -d $(TOP) -p3 -i $(CURDIR)/fix-path.patch
-	cp ./S10xinetd ../../../openwrt_trunk/feeds/packages/net/xinetd/files/
-	touch $@
+	cp -f ./S10xinetd ../../../openwrt_trunk/feeds/packages/net/xinetd/files/
+	@touch $@
 
 clean:
-	rm -f ./.done
+	@rm -f .done
 
-.PHONY : clean
+.PHONY: clean

@@ -5,14 +5,14 @@
 # See /LICENSE for more information.
 #
 
-all: ./.done
+all: .done
 
-./.done:
+.done:
 	patch -d $(TOP) -p3 -i $(CURDIR)/fix-path.patch
-	cp ./S89mpd ../../../openwrt_trunk/feeds/packages/sound/mpd/files/
-	touch $@
+	cp -f ./S89mpd ../../../openwrt_trunk/feeds/packages/sound/mpd/files/
+	@touch $@
 
 clean:
-	rm -f ./.done
+	@rm -f .done
 
-.PHONY : clean
+.PHONY: clean

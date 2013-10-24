@@ -5,15 +5,15 @@
 # See /LICENSE for more information.
 #
 
-all: ./.done
+all: .done
 
-./.done:
+.done:
 	patch -d $(TOP) -p3 -i $(CURDIR)/fix-path.patch
-	mkdir ../../../openwrt_trunk/feeds/packages/net/squid/files
-	cp ./S22squid ../../../openwrt_trunk/feeds/packages/net/squid/files/
-	touch $@
+	mkdir -p ../../../openwrt_trunk/feeds/packages/net/squid/files
+	cp -f ./S22squid ../../../openwrt_trunk/feeds/packages/net/squid/files/
+	@touch $@
 
 clean:
-	rm -f ./.done
+	@rm -f .done
 
-.PHONY : clean
+.PHONY: clean

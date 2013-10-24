@@ -4,7 +4,7 @@ FILE_ENCODING = (RUBY_VERSION.include? '1.8') ? "\n" : {:encoding => 'iso-8859-1
 
 result = {}
 
-  Dir['../openwrt_trunk/feeds/*.index'].each do |fn|
+  Dir['../../openwrt_trunk/feeds/*.index'].each do |fn|
     puts 'Processing: ' + fn
 
     fpath = File.expand_path(fn[0..fn.rindex('/feeds/')]) + '/'

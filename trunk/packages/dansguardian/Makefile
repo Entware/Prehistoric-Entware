@@ -5,15 +5,15 @@
 # See /LICENSE for more information.
 #
 
-all: ./.done
+all: .done
 
-./.done:
+.done:
 	patch -d $(TOP) -p3 -i $(CURDIR)/fix-path.patch
-	mkdir ../../../openwrt_trunk/feeds/packages/net/dansguardian/files
-	cp ./S24dansguardian ../../../openwrt_trunk/feeds/packages/net/dansguardian/files/
-	touch $@
+	mkdir -p ../../../openwrt_trunk/feeds/packages/net/dansguardian/files
+	cp -f ./S24dansguardian ../../../openwrt_trunk/feeds/packages/net/dansguardian/files/
+	@touch $@
 
 clean:
-	rm -f ./.done
+	@rm -f .done
 
-.PHONY : clean
+.PHONY: clean

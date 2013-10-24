@@ -5,16 +5,16 @@
 # See /LICENSE for more information.
 #
 
-all: ./.done
+all: .done
 
-./.done:
+.done:
 	patch -d $(TOP) -p3 -i $(CURDIR)/fix-path.patch
-	rm ../../../openwrt_trunk/feeds/packages/multimedia/ushare/files/ushare.*
+	rm -f ../../../openwrt_trunk/feeds/packages/multimedia/ushare/files/ushare.*
 	cp -f ./555-flv-support.patch ../../../openwrt_trunk/feeds/packages/multimedia/ushare/patches/
-	cp ./S99ushare ../../../openwrt_trunk/feeds/packages/multimedia/ushare/files/
-	touch $@
+	cp -f ./S99ushare ../../../openwrt_trunk/feeds/packages/multimedia/ushare/files/
+	@touch $@
 
 clean:
-	rm -f ./.done
+	@rm -f .done
 
-.PHONY : clean
+.PHONY: clean

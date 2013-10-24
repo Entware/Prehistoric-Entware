@@ -5,15 +5,15 @@
 # See /LICENSE for more information.
 #
 
-all: ./.done
+all: .done
 
-./.done:
+.done:
 	patch -d $(TOP) -p3 -i $(CURDIR)/fix-path.patch
-	mkdir ../../../openwrt_trunk/feeds/packages/utils/gnupg/patches/
-	cp ./100-home.patch ../../../openwrt_trunk/feeds/packages/utils/gnupg/patches/
-	touch $@
+	mkdir -p ../../../openwrt_trunk/feeds/packages/utils/gnupg/patches/
+	cp -f ./100-home.patch ../../../openwrt_trunk/feeds/packages/utils/gnupg/patches/
+	@touch $@
 
 clean:
-	rm -f ./.done
+	@rm -f .done
 
-.PHONY : clean
+.PHONY: clean

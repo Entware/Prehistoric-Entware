@@ -5,17 +5,17 @@
 # See /LICENSE for more information.
 #
 
-all: ./.done
+all: .done
 
-./.done:
+.done:
 	patch -d $(TOP) -p3 -i $(CURDIR)/fix-path.patch
-	mkdir ../../../openwrt_trunk/feeds/packages/net/umurmur/files
-	cp ./S73umurmurd ../../../openwrt_trunk/feeds/packages/net/umurmur/files/
+	mkdir -p ../../../openwrt_trunk/feeds/packages/net/umurmur/files
+	cp -f ./S73umurmurd ../../../openwrt_trunk/feeds/packages/net/umurmur/files/
 	rm -f ../../../openwrt_trunk/feeds/packages/net/umurmur/patches/100-polarssl_backport.patch
 	rm -f ../../../openwrt_trunk/feeds/packages/net/umurmur/patches/110-reduced_polarssl_support.patch
-	touch $@
+	@touch $@
 
 clean:
-	rm -f ./.done
+	@rm -f .done
 
-.PHONY : clean
+.PHONY: clean

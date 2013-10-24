@@ -5,16 +5,16 @@
 # See /LICENSE for more information.
 #
 
-all: ./.done
+all: .done
 
-./.done:
-	mkdir ../../../openwrt_trunk/feeds/packages/utils/hplip/patches
-	cp ./010-state-dir.patch ../../../openwrt_trunk/feeds/packages/utils/hplip/patches/
-	cp ./020-cross-compile.patch ../../../openwrt_trunk/feeds/packages/utils/hplip/patches/
+.done:
 	patch -d $(TOP) -p3 -i $(CURDIR)/fix-path.patch
-	touch $@
+	mkdir -p ../../../openwrt_trunk/feeds/packages/utils/hplip/patches
+	cp -f ./010-state-dir.patch ../../../openwrt_trunk/feeds/packages/utils/hplip/patches/
+	cp -f  ./020-cross-compile.patch ../../../openwrt_trunk/feeds/packages/utils/hplip/patches/
+	@touch $@
 
 clean:
-	rm -f ./.done
+	@rm -f .done
 
-.PHONY : clean
+.PHONY: clean

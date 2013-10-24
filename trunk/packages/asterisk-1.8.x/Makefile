@@ -5,14 +5,14 @@
 # See /LICENSE for more information.
 #
 
-all: ./.done
+all: .done
 
-./.done:
+.done:
 	patch -d $(TOP) -p3 -i $(CURDIR)/fix-path.patch
-	cp ./S31asterisk ../../../openwrt_trunk/feeds/telephony/net/asterisk-1.8.x/files/
-	touch $@
+	cp -f ./S31asterisk ../../../openwrt_trunk/feeds/telephony/net/asterisk-1.8.x/files/
+	@touch $@
 
 clean:
-	rm -f ./.done
+	@rm -f .done
 
-.PHONY : clean
+.PHONY: clean

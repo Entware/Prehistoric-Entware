@@ -5,15 +5,15 @@
 # See /LICENSE for more information.
 #
 
-all: ./.done
+all: .done
 
-./.done:
+.done:
 	patch -d $(TOP) -p3 -i $(CURDIR)/fix-path.patch
-	cp ./005-disable-ssp-suport.patch ../../../openwrt_trunk/feeds/packages/net/proftpd/patches/
-	cp ./S66proftpd ../../../openwrt_trunk/feeds/packages/net/proftpd/files/
-	touch $@
+	cp -f ./005-disable-ssp-suport.patch ../../../openwrt_trunk/feeds/packages/net/proftpd/patches/
+	cp -f ./S66proftpd ../../../openwrt_trunk/feeds/packages/net/proftpd/files/
+	@touch $@
 
 clean:
-	rm -f ./.done
+	@rm -f .done
 
-.PHONY : clean
+.PHONY: clean
