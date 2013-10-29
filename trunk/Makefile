@@ -11,7 +11,8 @@ export TOP:=$(shell (cd .. && pwd -P))
 all: .packages_compiled
 
 .packages_compiled: toolchain/$(TARGET)/.toolchain_prepared \
-	    buildroot/$(TARGET)/.buildroot_prepared packages/.package_prepared
+	    buildroot/$(TARGET)/.buildroot_prepared \
+	    packages/.package_prepared
 	$(MAKE) -C "$(TOP)/openwrt_trunk" tools/compile
 	$(MAKE) -C "$(TOP)/openwrt_trunk" tools/install
 	@echo Press \"Ctrl + c\" if you don\'t need to compile whole repository...
@@ -22,11 +23,11 @@ all: .packages_compiled
 toolchain/$(TARGET)/.toolchain_prepared:
 	$(MAKE) -C "toolchain/$(TARGET)"
 
-packages/.package_prepared:
-	$(MAKE) -C "packages"
-
 buildroot/$(TARGET)/.buildroot_prepared:
 	$(MAKE) -C "buildroot/$(TARGET)"
+
+packages/.package_prepared:
+	$(MAKE) -C "packages"
 
 define update_git_mirror
 	[ -d "$(TOP)/tmp" ] || mkdir "$(TOP)/tmp"
@@ -57,6 +58,7 @@ clean:
 	@rm -f .git_mirrors_updated
 
 cleanall:
+	$(MAKE) -C packages clean
 	$(MAKE) -C buildroot/$(TARGET) cleanall
 	$(MAKE) -C toolchain/$(TARGET) cleanall
 	@rm -f .packages_compiled
