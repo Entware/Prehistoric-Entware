@@ -25,7 +25,8 @@ all: .toolchain_prepared
 
 $(TOP)/downloads/$(TARGET)/entware-toolchain-r$(TOOLCHAIN_REVISION).tgz: \
 	    $(TOP)/downloads/$(TARGET)/entware-kernel-r$(TOOLCHAIN_REVISION).tgz \
-	    $(TOP)/downloads/toolchain-src-r$(TOOLCHAIN_REVISION)
+	    $(TOP)/downloads/toolchain-src-r$(TOOLCHAIN_REVISION) \
+	    $(TOP)/downloads/$(TARGET)
 	mkdir -p $(TOP)/toolchain-1.9.2.7-rtn/src
 	cp --recursive --update --force $(TOP)/downloads/toolchain-src-r$(TOOLCHAIN_REVISION)/* $(TOP)/toolchain-1.9.2.7-rtn/src
 	cp -f $(TOP)/toolchain-1.9.2.7-rtn/src/defconfig $(TOP)/toolchain-1.9.2.7-rtn/src/.config
@@ -44,6 +45,7 @@ $(TOP)/downloads/$(TARGET)/entware-toolchain-r$(TOOLCHAIN_REVISION).tgz: \
 $(TOP)/downloads/$(TARGET)/entware-kernel-r$(TOOLCHAIN_REVISION).tgz: \
 	    $(TOP)/downloads/kernel-src-r$(TOOLCHAIN_REVISION) \
 	    $(TOP)/downloads/linux-2.6.22.19.tar.bz2 \
+	    $(TOP)/downloads/$(TARGET) \
 	    /opt/entware-toolchain
 	mkdir -p $(TOP)/kernel-1.9.2.7-rtn/src/1.9.2.7-rtn
 	cp --recursive --update --force $(TOP)/downloads/kernel-src-r$(TOOLCHAIN_REVISION)/* $(TOP)/kernel-1.9.2.7-rtn/src/1.9.2.7-rtn
@@ -58,14 +60,14 @@ $(TOP)/downloads/$(TARGET)/entware-kernel-r$(TOOLCHAIN_REVISION).tgz: \
 	(cd $(TOP); tar -czf $(TOP)/downloads/$(TARGET)/entware-kernel-r$(TOOLCHAIN_REVISION).tgz ./linux-2.6.22.19)
 	@echo Kernel files ready.
 
-$(TOP)/downloads/linux-2.6.22.19.tar.bz2: $(TOP)/downloads
+$(TOP)/downloads/linux-2.6.22.19.tar.bz2: $(TOP)/downloads/$(TARGET)
 	wget http://wl500g.googlecode.com/files/linux-2.6.22.19.tar.bz2 -O $(TOP)/downloads/linux-2.6.22.19.tar.bz2
-
-$(TOP)/downloads/kernel-src-r$(TOOLCHAIN_REVISION): $(TOP)/downloads
-	svn checkout --revision $(TOOLCHAIN_REVISION) http://wl500g.googlecode.com/svn/trunk/ $(TOP)/downloads/kernel-src-r$(TOOLCHAIN_REVISION)
 	@touch $@
 
-$(TOP)/downloads/toolchain-src-r$(TOOLCHAIN_REVISION): $(TOP)/downloads
+$(TOP)/downloads/kernel-src-r$(TOOLCHAIN_REVISION): $(TOP)/downloads/$(TARGET)
+	svn checkout --revision $(TOOLCHAIN_REVISION) http://wl500g.googlecode.com/svn/trunk/ $(TOP)/downloads/kernel-src-r$(TOOLCHAIN_REVISION)
+
+$(TOP)/downloads/toolchain-src-r$(TOOLCHAIN_REVISION): $(TOP)/downloads/$(TARGET)
 	svn checkout --revision $(TOOLCHAIN_REVISION) http://wl500g.googlecode.com/svn/toolchain $(TOP)/downloads/toolchain-src-r$(TOOLCHAIN_REVISION)
 
 /opt/entware-toolchain:
@@ -74,8 +76,8 @@ $(TOP)/downloads/toolchain-src-r$(TOOLCHAIN_REVISION): $(TOP)/downloads
 	@echo chmod /opt/entware-toolchain directory for all users access, root password needed...
 	sudo chmod -R 777 /opt/entware-toolchain
 
-$(TOP)/downloads:
-	[ -d "$(TOP)/downloads" ] || mkdir -p "$(TOP)/downloads"
+$(TOP)/downloads/$(TARGET):
+	[ -d "$(TOP)/downloads/$(TARGET)" ] || mkdir -p "$(TOP)/downloads/$(TARGET)"
 
 clean:
 	@rm -f .toolchain_prepared
