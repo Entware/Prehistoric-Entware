@@ -1,5 +1,5 @@
---- ../../openwrt_trunk.orig/scripts/ipkg-make-index.sh	2012-07-15 21:54:24.189949613 +0400
-+++ ../../openwrt_trunk/scripts/ipkg-make-index.sh	2012-07-17 08:33:38.017648182 +0400
+--- ../../../openwrt_trunk.orig/scripts/ipkg-make-index.sh	2012-07-15 21:54:24.189949613 +0400
++++ ../../../openwrt_trunk/scripts/ipkg-make-index.sh	2012-07-17 08:33:38.017648182 +0400
 @@ -14,7 +14,6 @@
  	name="${pkg##*/}"
  	name="${name%%_*}"

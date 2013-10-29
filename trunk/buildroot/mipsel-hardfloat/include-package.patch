@@ -1,5 +1,5 @@
---- ../../openwrt_trunk/include/package.mk.orig	2013-10-12 10:34:16.871930324 +0400
-+++ ../../openwrt_trunk/include/package.mk	2013-10-12 10:41:20.139922128 +0400
+--- ../../../openwrt_trunk/include/package.mk.orig	2013-10-12 10:34:16.871930324 +0400
++++ ../../../openwrt_trunk/include/package.mk	2013-10-12 10:41:20.139922128 +0400
 @@ -73,7 +73,7 @@
  CONFIG_SITE:=$(INCLUDE_DIR)/site/$(REAL_GNU_TARGET_NAME)
  CUR_MAKEFILE:=$(filter-out Makefile,$(firstword $(MAKEFILE_LIST)))

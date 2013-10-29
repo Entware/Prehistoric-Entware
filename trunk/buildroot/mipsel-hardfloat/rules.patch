@@ -1,5 +1,5 @@
---- ../../openwrt_trunk/rules.mk.orig	2013-10-11 15:20:25.000000000 +0400
-+++ ../../openwrt_trunk/rules.mk	2013-10-11 15:31:12.209180489 +0400
+--- ../../../openwrt_trunk/rules.mk.orig	2013-10-11 15:20:25.000000000 +0400
++++ ../../../openwrt_trunk/rules.mk	2013-10-11 15:31:12.209180489 +0400
 @@ -118,8 +118,8 @@
  TARGET_CXXFLAGS = $(TARGET_CFLAGS)
  TARGET_ASFLAGS_DEFAULT = $(TARGET_CFLAGS)

@@ -10,7 +10,7 @@ Requirements
    zlib1g zlib1g-dev git-core gettext libexpat1-dev libssl-dev \
    cvs gperf unzip python libxml-parser-perl
 
-Note: 64 bit distro requires also gcc-multilib package.
+Note: 64 bit distro requires also gcc-multilib and libc6-dev-i386 package.
 Note: Ubuntu 13.x is not recommended now (may 2013).
 
 - At least 20Gb of disk space,
@@ -19,8 +19,8 @@ Note: Ubuntu 13.x is not recommended now (may 2013).
 Building
 ========
 
-$ mkdir ~/openwrt
-$ cd ~/openwrt
+$ mkdir ~/Entware
+$ cd ~/Entware
 $ svn co http://wl500g-repo.googlecode.com/svn/trunk/ ./rtn
 $ cd ./rtn
 $ make

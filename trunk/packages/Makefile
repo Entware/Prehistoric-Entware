@@ -9,10 +9,7 @@
 #
 
 DIR_LIST=$(shell (find -maxdepth 1 -type d ! -name .svn ! -name . | sort))
-
-ifndef TOP
-export TOP=$(shell (cd ../.. && pwd -P))
-endif
+export TOP?=$(shell (cd ../.. && pwd -P))
 
 define process_folders
 	@for dir in $(1); do ( \
@@ -36,14 +33,9 @@ all: .packages_prepared
 	@ruby ./index_scan.rb
 	@echo "Feeds index processed!"
 
-clean:
-	$(call process_folders,$(DIR_LIST),clean)
-	@rm -f .packages_path.mk
-	@rm -f .packages_prepared
-
 ifdef MAKECMDGOALS
+ifneq ($(strip $(filter-out clean,$(MAKECMDGOALS)))),)
 PACKAGE=$(strip $(filter-out clean,$(MAKECMDGOALS)))
-ifneq ($(PACKAGE),)
 $(PACKAGE): .packages_path.mk $(PACKAGE)/.done
 
 $(PACKAGE)/.done:
@@ -51,4 +43,9 @@ $(PACKAGE)/.done:
 endif
 endif
 
-.PHONY: clean
+clean:
+	$(call process_folders,$(DIR_LIST),clean)
+	@rm -f .packages_path.mk
+	@rm -f .packages_prepared
+
+.PHONY: clean all

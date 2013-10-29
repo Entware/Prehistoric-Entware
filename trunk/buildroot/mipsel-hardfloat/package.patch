@@ -1,5 +1,5 @@
---- ../../openwrt_trunk/package/Makefile.orig	2013-10-12 10:34:21.443929751 +0400
-+++ ../../openwrt_trunk/package/Makefile	2013-10-12 10:41:20.131922128 +0400
+--- ../../../openwrt_trunk/package/Makefile.orig	2013-10-12 10:34:21.443929751 +0400
++++ ../../../openwrt_trunk/package/Makefile	2013-10-12 10:41:20.131922128 +0400
 @@ -49,7 +49,7 @@
  	$(RSTRIP) $(TMP_DIR)/mklibs-out
  	for lib in `ls $(TMP_DIR)/mklibs-out/*.so.* 2>/dev/null`; do \

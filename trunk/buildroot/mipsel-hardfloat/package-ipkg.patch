@@ -1,5 +1,5 @@
---- ../../openwrt_trunk.orig/include/package-ipkg.mk
-+++ ../../openwrt_trunk/include/package-ipkg.mk
+--- ../../../openwrt_trunk.orig/include/package-ipkg.mk
++++ ../../../openwrt_trunk/include/package-ipkg.mk
 @@ -9,7 +9,7 @@
  IPKG_BUILD:= \
    ipkg-build -c -o 0 -g 0

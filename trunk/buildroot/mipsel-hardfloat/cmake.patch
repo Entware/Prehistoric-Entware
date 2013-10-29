@@ -1,5 +1,5 @@
---- ../../openwrt_trunk/include/cmake.mk.orig	2013-01-28 14:40:32.659276888 +0400
-+++ ../../openwrt_trunk/include/cmake.mk	2013-01-28 14:42:51.747274356 +0400
+--- ../../../openwrt_trunk/include/cmake.mk.orig	2013-01-28 14:40:32.659276888 +0400
++++ ../../../openwrt_trunk/include/cmake.mk	2013-01-28 14:42:51.747274356 +0400
 @@ -53,7 +53,7 @@
  			-DCMAKE_FIND_ROOT_PATH_MODE_LIBRARY=ONLY \
  			-DCMAKE_FIND_ROOT_PATH_MODE_INCLUDE=ONLY \

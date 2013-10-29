@@ -1,5 +1,5 @@
---- ../../toolchain-1.9.2.7-rtn/src/scripts/download.pl.orig
-+++ ../../toolchain-1.9.2.7-rtn/src/scripts/download.pl
+--- ../../../toolchain-1.9.2.7-rtn/src/scripts/download.pl.orig
++++ ../../../toolchain-1.9.2.7-rtn/src/scripts/download.pl
 @@ -139,6 +139,9 @@
  	}
  }

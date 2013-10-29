@@ -1,5 +1,5 @@
---- ../../openwrt_trunk.orig/include/package-defaults.mk
-+++ ../../openwrt_trunk/include/package-defaults.mk
+--- ../../../openwrt_trunk.orig/include/package-defaults.mk
++++ ../../../openwrt_trunk/include/package-defaults.mk
 @@ -64,7 +64,8 @@
  
  EXTRA_CXXFLAGS = $(EXTRA_CFLAGS)
