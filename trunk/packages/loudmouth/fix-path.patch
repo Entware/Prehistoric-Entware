@@ -1,0 +1,28 @@
+--- ../../../downloads/mipsel-hardfloat/openwrt_trunk-r38784/feeds/packages/libs/loudmouth/Makefile	2013-11-13 15:33:49.920396530 +0400
++++ ../../../openwrt_trunk/feeds/packages/libs/loudmouth/Makefile	2013-11-14 09:45:53.859205861 +0400
+@@ -47,17 +47,17 @@
+ 	--with-ssl=openssl
+ 
+ define Build/InstallDev
+-	$(INSTALL_DIR) $(1)/usr/include/loudmouth-1.0/loudmouth
+-	$(CP) $(PKG_INSTALL_DIR)/usr/include/loudmouth-1.0/loudmouth/*.h $(1)/usr/include/loudmouth-1.0/loudmouth
+-	$(INSTALL_DIR) $(1)/usr/lib
+-	$(CP) $(PKG_INSTALL_DIR)/usr/lib/libloudmouth-1.{a,la,so*} $(1)/usr/lib/
+-	$(INSTALL_DIR) $(1)/usr/lib/pkgconfig
+-	$(CP) $(PKG_INSTALL_DIR)/usr/lib/pkgconfig/loudmouth-1.0.pc $(1)/usr/lib/pkgconfig/
++	$(INSTALL_DIR) $(1)/opt/include/loudmouth-1.0/loudmouth
++	$(CP) $(PKG_INSTALL_DIR)/opt/include/loudmouth-1.0/loudmouth/*.h $(1)/opt/include/loudmouth-1.0/loudmouth
++	$(INSTALL_DIR) $(1)/opt/lib
++	$(CP) $(PKG_INSTALL_DIR)/opt/lib/libloudmouth-1.{a,la,so*} $(1)/opt/lib/
++	$(INSTALL_DIR) $(1)/opt/lib/pkgconfig
++	$(CP) $(PKG_INSTALL_DIR)/opt/lib/pkgconfig/loudmouth-1.0.pc $(1)/opt/lib/pkgconfig/
+ endef
+ 
+ define Package/libloudmouth1/install
+-	$(INSTALL_DIR) $(1)/usr/lib
+-	$(CP) $(PKG_BUILD_DIR)/loudmouth/.libs/libloudmouth-1.so* $(1)/usr/lib
++	$(INSTALL_DIR) $(1)/opt/lib
++	$(CP) $(PKG_BUILD_DIR)/loudmouth/.libs/libloudmouth-1.so* $(1)/opt/lib
+ endef
+ 
+ $(eval $(call BuildPackage,libloudmouth1))

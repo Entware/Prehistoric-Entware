@@ -9,5 +9,6 @@
 # with the gods, you should probably leave all this stuff alone.
 
 export TOOLCHAIN_REVISION=5310
-export OPENWRT_REVISION=38381
+export OPENWRT_REVISION=38800
 export TARGET=mipsel-hardfloat
+#export TARGET=mipsel-softfloat

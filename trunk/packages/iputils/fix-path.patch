@@ -9,7 +9,7 @@
  endef
  
  define Package/iputils-ping6/description
-@@ -131,43 +131,43 @@
+@@ -127,43 +127,43 @@
  	CONFIG_USE_UCLIBC="$(CONFIG_USE_UCLIBC)" \
  
  define Package/iputils-arping/install

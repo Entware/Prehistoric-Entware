@@ -1,10 +1,10 @@
---- ../../../openwrt_trunk.orig/feeds/packages/net/dsniff/Makefile	2012-09-03 15:54:56.907674154 +0400
-+++ ../../../openwrt_trunk/feeds/packages/net/dsniff/Makefile	2012-09-03 16:16:53.491650339 +0400
+--- ../../../downloads/mipsel-hardfloat/openwrt_trunk-r38784/feeds/packages/net/dsniff/Makefile	2013-11-13 15:33:49.700396534 +0400
++++ ../../../openwrt_trunk/feeds/packages/net/dsniff/Makefile	2013-11-13 16:32:42.456327271 +0400
 @@ -22,7 +22,7 @@
  define Package/dsniff
    SECTION:=net
    CATEGORY:=Network
--  DEPENDS:=+libpcap +libnids +libnet0 +libopenssl +libgdbm $(LIBRPC_DEPENDS) @BROKEN
+-  DEPENDS:=+libpcap +libnids +libnet0 +libopenssl +libgdbm $(LIBRPC_DEPENDS)
 +  DEPENDS:=+libpcap +libnids +libnet0 +libopenssl +libgdbm
    TITLE:=A collection of tools for network auditing and penetration testing
    URL:=http://www.monkey.org/~dugsong/dsniff/

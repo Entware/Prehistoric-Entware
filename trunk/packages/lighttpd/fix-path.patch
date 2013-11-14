@@ -1,78 +1,47 @@
-diff -urx .svn ../../../openwrt_trunk.orig/feeds/packages/net/lighttpd/files/lighttpd.conf ../../../openwrt_trunk/feeds/packages/net/lighttpd/files/lighttpd.conf
---- ../../../openwrt_trunk.orig/feeds/packages/net/lighttpd/files/lighttpd.conf	2012-06-01 10:50:36.492245404 +0400
-+++ ../../../openwrt_trunk/feeds/packages/net/lighttpd/files/lighttpd.conf	2012-06-01 10:51:34.183531437 +0400
-@@ -26,10 +26,10 @@
+diff -urx .svn ../../../downloads/mipsel-hardfloat/openwrt_trunk-r38784/feeds/packages/net/lighttpd/files/lighttpd.conf ../../../openwrt_trunk/feeds/packages/net/lighttpd/files/lighttpd.conf
+--- ../../../downloads/mipsel-hardfloat/openwrt_trunk-r38784/feeds/packages/net/lighttpd/files/lighttpd.conf	2013-11-13 15:33:49.744396534 +0400
++++ ../../../openwrt_trunk/feeds/packages/net/lighttpd/files/lighttpd.conf	2013-11-13 16:47:10.328316208 +0400
+@@ -9,10 +9,10 @@
+ ######### Options that are good to be but not neccesary to be changed #######
+ #server.port                 = 81
+ #server.bind                 = "localhost"
+-server.document-root        = "/www"
++server.document-root        = "/opt/share/www"
+ server.upload-dirs          = ( "/tmp" )
+-server.errorlog             = "/var/log/lighttpd/error.log"
+-server.pid-file             = "/var/run/lighttpd.pid"
++server.errorlog             = "/opt/var/log/lighttpd/error.log"
++server.pid-file             = "/opt/var/run/lighttpd.pid"
+ #server.username             = "www-data"
+ #server.groupname            = "www-data"
+ #server.tag                  = "lighttpd"
+@@ -26,13 +26,13 @@
+ static-file.exclude-extensions = ( ".php", ".pl", ".fcgi" )
  
- ## a static document-root, for virtual-hosting take look at the 
- ## server.virtual-* options
--server.document-root = "/www/"
-+server.document-root = "/opt/share/www/"
+ ## Use ipv6 if available
+-#include_shell "/usr/share/lighttpd/use-ipv6.pl"
++#include_shell "/opt/share/lighttpd/use-ipv6.pl"
  
- ## where to send error-messages to
--#server.errorlog = "/var/log/lighttpd/error.log"
-+#server.errorlog = "/opt/var/log/lighttpd/error.log"
+ #dir-listing.encoding        = "utf-8"
+ #server.dir-listing          = "enable"
  
- ## files to check for if .../ is requested
- index-file.names = ( "index.html", "default.html", "index.htm", "default.htm" )
-@@ -121,7 +121,7 @@
- ## change uid to <uid> (default: don't care)
- #server.username = "nobody"
+-include       "/etc/lighttpd/mime.conf"
+-include_shell "cat /etc/lighttpd/conf.d/*.conf"
++include       "/opt/etc/lighttpd/mime.conf"
++include_shell "cat /opt/etc/lighttpd/conf.d/*.conf"
+ 
+ 
+ 
+diff -urx .svn ../../../downloads/mipsel-hardfloat/openwrt_trunk-r38784/feeds/packages/net/lighttpd/Makefile ../../../openwrt_trunk/feeds/packages/net/lighttpd/Makefile
+--- ../../../downloads/mipsel-hardfloat/openwrt_trunk-r38784/feeds/packages/net/lighttpd/Makefile	2013-11-13 15:33:49.744396534 +0400
++++ ../../../openwrt_trunk/feeds/packages/net/lighttpd/Makefile	2013-11-13 16:52:18.944309488 +0400
+@@ -1,4 +1,4 @@
+-	#
++#
+ # Copyright (C) 2006-2013 OpenWrt.org
  #
--server.upload-dirs = ( "/tmp" )
-+server.upload-dirs = ( "/opt/tmp" )
- 
- ## change uid to <uid> (default: don't care)
- #server.groupname = "nobody"
-@@ -146,14 +146,14 @@
- #fastcgi.server = (
- #	".php" => (
- #		"localhost" => (
--#			"socket" => "/tmp/php-fastcgi.socket",
--#			"bin-path" => "/usr/local/bin/php"
-+#			"socket" => "/opt/tmp/php-fastcgi.socket",
-+#			"bin-path" => "/opt/bin/php"
- #		)
- #	)
- #)
- 
- #### CGI module
--#cgi.assign = ( ".pl"  => "/usr/bin/perl", ".cgi" => "/usr/bin/perl" )
-+#cgi.assign = ( ".pl"  => "/opt/bin/perl", ".cgi" => "/opt/bin/perl" )
- 
- #### SSL engine
- #ssl.engine = "enable"
-@@ -214,8 +214,8 @@
- #index-file.names += (foo + ".php")
- 
- #### include
--#include /etc/lighttpd/lighttpd-inc.conf
--## same as above if you run: "lighttpd -f /etc/lighttpd/lighttpd.conf"
-+#include /opt/etc/lighttpd/lighttpd-inc.conf
-+## same as above if you run: "lighttpd -f /opt/etc/lighttpd/lighttpd.conf"
- #include "lighttpd-inc.conf"
- 
- #### include_shell
-@@ -227,5 +227,5 @@
- #$HTTP["url"] =~ "^/webdav($|/)" {
- # webdav.activate = "enable"
- # webdav.is-readonly = "enable"
--# webdav.sqlite-db-name = "/var/run/lighttpd-webdav-lock.db"
-+# webdav.sqlite-db-name = "/opt/var/run/lighttpd-webdav-lock.db"
- #}
-
- 
---- ../../../openwrt_trunk.orig/feeds/packages/net/lighttpd/Makefile
-+++ ../../../openwrt_trunk/feeds/packages/net/lighttpd/Makefile
-@@ -9,7 +9,7 @@
- 
- PKG_NAME:=lighttpd
- PKG_VERSION:=1.4.30
--PKG_RELEASE:=2
-+PKG_RELEASE:=3
- 
- PKG_SOURCE:=$(PKG_NAME)-$(PKG_VERSION).tar.xz
- PKG_SOURCE_URL:=http://download.lighttpd.net/lighttpd/releases-1.4.x
-@@ -223,8 +223,8 @@
+ # This is free software, licensed under the GNU General Public License v2.
+@@ -49,8 +49,8 @@
  endef
  
  CONFIGURE_ARGS+= \
@@ -83,7 +52,7 @@ diff -urx .svn ../../../openwrt_trunk.orig/feeds/packages/net/lighttpd/files/lig
  	--enable-shared \
  	--enable-static \
  	--disable-rpath \
-@@ -245,7 +245,7 @@
+@@ -70,7 +70,7 @@
  
  ifneq ($(strip $(CONFIG_LIGHTTPD_SSL)),)
    CONFIGURE_ARGS+= \
@@ -92,7 +61,7 @@ diff -urx .svn ../../../openwrt_trunk.orig/feeds/packages/net/lighttpd/files/lig
  else
    CONFIGURE_ARGS+= \
  	--without-openssl
-@@ -272,27 +272,29 @@
+@@ -105,22 +105,23 @@
  endef
  
  define Package/lighttpd/conffiles
@@ -103,11 +72,17 @@ diff -urx .svn ../../../openwrt_trunk.orig/feeds/packages/net/lighttpd/files/lig
  define Package/lighttpd/install
 -	$(INSTALL_DIR) $(1)/etc/lighttpd
 -	$(INSTALL_DATA) ./files/lighttpd.conf $(1)/etc/lighttpd/
+-	$(INSTALL_DATA) $(PKG_BUILD_DIR)/doc/config/conf.d/mime.conf $(1)/etc/lighttpd/
+-	$(INSTALL_DIR) $(1)/etc/lighttpd/conf.d
 -	$(INSTALL_DIR) $(1)/etc/init.d
 -	$(INSTALL_BIN) ./files/lighttpd.init $(1)/etc/init.d/lighttpd
 -	$(INSTALL_DIR) $(1)/usr/lib/lighttpd
 +	$(INSTALL_DIR) $(1)/opt/etc/lighttpd
 +	$(INSTALL_DATA) ./files/lighttpd.conf $(1)/opt/etc/lighttpd/
++	$(INSTALL_DATA) $(PKG_BUILD_DIR)/doc/config/conf.d/mime.conf $(1)/opt/etc/lighttpd/
++	$(INSTALL_DIR) $(1)/opt/etc/lighttpd/conf.d
++	$(INSTALL_DIR) $(1)/opt/etc/init.d
++	$(INSTALL_BIN) ./files/S80lighttpd $(1)/opt/etc/init.d/
 +	$(INSTALL_DIR) $(1)/opt/lib/lighttpd
  	for m in dirlisting indexfile staticfile; do \
 -		$(CP) $(PKG_INSTALL_DIR)/usr/lib/lighttpd/mod_$$$${m}.so $(1)/usr/lib/lighttpd/ ; \
@@ -115,21 +90,28 @@ diff -urx .svn ../../../openwrt_trunk.orig/feeds/packages/net/lighttpd/files/lig
  	done
 -	$(INSTALL_DIR) $(1)/usr/sbin
 -	$(INSTALL_BIN) $(PKG_INSTALL_DIR)/usr/sbin/lighttpd $(1)/usr/sbin/
-+	$(INSTALL_DIR) $(1)/opt/bin
-+	$(INSTALL_BIN) $(PKG_INSTALL_DIR)/opt/sbin/lighttpd $(1)/opt/bin/
-+	$(INSTALL_DIR) $(1)/opt/etc/init.d
-+	$(INSTALL_BIN) ./files/S80lighttpd $(1)/opt/etc/init.d
-+	$(INSTALL_DIR) $(1)/opt/share/www
-+	$(INSTALL_DIR) $(1)/opt/var/log/lighttpd
++	$(INSTALL_DIR) $(1)/opt/sbin
++	$(INSTALL_BIN) $(PKG_INSTALL_DIR)/opt/sbin/lighttpd $(1)/opt/sbin/
++	$(INSTALL_DIR) $(1)/opt/share/www $(1)/opt/var/log/lighttpd
  endef
  
  define BuildPlugin
-   define Package/$(1)/install
--	[ -z "$(2)" ] || $(INSTALL_DIR) $$(1)/usr/lib/lighttpd
-+	[ -z "$(2)" ] || $(INSTALL_DIR) $$(1)/opt/lib/lighttpd
- 	for m in $(2); do \
--		$(CP) $(PKG_INSTALL_DIR)/usr/lib/lighttpd/mod_$$$$$$$${m}.so $$(1)/usr/lib/lighttpd/ ; \
-+		$(CP) $(PKG_INSTALL_DIR)/opt/lib/lighttpd/mod_$$$$$$$${m}.so $$(1)/opt/lib/lighttpd/ ; \
- 	done
+@@ -134,13 +135,13 @@
+   endef
+ 
+   define Package/lighttpd-mod-$(1)/install
+-	$(INSTALL_DIR) $$(1)/usr/lib/lighttpd
+-	$(CP) $(PKG_INSTALL_DIR)/usr/lib/lighttpd/mod_$(1).so $$(1)/usr/lib/lighttpd
+-	$(INSTALL_DIR) $$(1)/etc/lighttpd/conf.d
++	$(INSTALL_DIR) $$(1)/opt/lib/lighttpd
++	$(CP) $(PKG_INSTALL_DIR)/opt/lib/lighttpd/mod_$(1).so $$(1)/opt/lib/lighttpd
++	$(INSTALL_DIR) $$(1)/opt/etc/lighttpd/conf.d
+ 	if [ -f $(PKG_BUILD_DIR)/doc/config/conf.d/$(1).conf ]; then \
+-		$(CP) $(PKG_BUILD_DIR)/doc/config/conf.d/$(1).conf $$(1)/etc/lighttpd/conf.d/$(4)-$(1).conf ; \
++		$(CP) $(PKG_BUILD_DIR)/doc/config/conf.d/$(1).conf $$(1)/opt/etc/lighttpd/conf.d/$(4)-$(1).conf ; \
+ 	else \
+-		echo 'server.modules += ( "mod_$(1)" )' > $$(1)/etc/lighttpd/conf.d/$(4)-$(1).conf ; \
++		echo 'server.modules += ( "mod_$(1)" )' > $$(1)/opt/etc/lighttpd/conf.d/$(4)-$(1).conf ; \
+ 	fi
    endef
  

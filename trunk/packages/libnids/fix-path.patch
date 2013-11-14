@@ -1,5 +1,5 @@
---- ../../../openwrt_trunk.orig/feeds/packages/libs/libnids/Makefile	2012-08-06 14:41:05.226698225 +0400
-+++ ../../../openwrt_trunk/feeds/packages/libs/libnids/Makefile	2012-08-13 15:47:07.502388430 +0400
+--- ../../../downloads/mipsel-hardfloat/openwrt_trunk-r38784/feeds/packages/libs/libnids/Makefile	2013-11-13 15:33:49.920396530 +0400
++++ ../../../openwrt_trunk/feeds/packages/libs/libnids/Makefile	2013-11-13 16:40:49.716322212 +0400
 @@ -34,8 +34,8 @@
  	$(call Build/Configure/Default, \
  		--enable-shared \
@@ -8,10 +8,10 @@
 -		--with-libpcap="$(STAGING_DIR)/usr" \
 +		--with-libnet="$(STAGING_DIR)/opt/lib/libnet-1.0.x" \
 +		--with-libpcap="$(STAGING_DIR)/opt" \
+ 		--disable-libglib \
  		, \
  		CFLAGS="$$$$CFLAGS $$$$CPPFLAGS" \
- 	)
-@@ -45,22 +45,22 @@
+@@ -46,22 +46,22 @@
  
  define Build/Compile
  	$(MAKE) -C $(PKG_BUILD_DIR) \

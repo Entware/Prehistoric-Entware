@@ -1,9 +1,9 @@
---- ../../../openwrt_trunk.orig/feeds/routing/ndppd/Makefile
-+++ ../../../openwrt_trunk/feeds/routing/ndppd/Makefile
+--- ../../../openwrt_trunk/feeds/routing/ndppd/Makefile.orig	2013-11-13 15:33:19.188397049 +0400
++++ ../../../openwrt_trunk/feeds/routing/ndppd/Makefile	2013-11-13 16:56:57.276310117 +0400
 @@ -31,7 +31,7 @@
    TITLE:=NDP Proxy Daemon
    URL:=http://www.priv.nu/projects/ndppd/
-   MAINTAINER:=Gabriel Kerneis <kerneis@pps.jussieu.fr>
+   MAINTAINER:=Gabriel Kerneis <gabriel@kerneis.info>
 -  DEPENDS:=+kmod-ipv6 $(CXX_DEPENDS)
 +  DEPENDS:=$(CXX_DEPENDS)
  endef

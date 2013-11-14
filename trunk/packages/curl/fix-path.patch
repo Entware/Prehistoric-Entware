@@ -1,48 +1,43 @@
---- ../../../downloads/openwrt_trunk-r35953/feeds/packages/libs/curl/Makefile	2013-03-11 09:29:39.194073817 +0400
-+++ ../../../openwrt_trunk/feeds/packages/libs/curl/Makefile	2013-03-14 12:14:39.609175007 +0400
-@@ -9,7 +9,7 @@
- 
- PKG_NAME:=curl
- PKG_VERSION:=7.29.0
--PKG_RELEASE:=1
-+PKG_RELEASE:=1a
- 
- PKG_SOURCE:=$(PKG_NAME)-$(PKG_VERSION).tar.bz2
- PKG_SOURCE_URL:=http://curl.haxx.se/download/ \
-@@ -46,7 +46,7 @@
-   $(call Package/curl/Default)
-   SECTION:=libs
-   CATEGORY:=Libraries
--  DEPENDS:=+libopenssl +zlib
-+  DEPENDS:=+libopenssl +zlib +librtmp +libidn
-   TITLE:=A client-side URL transfer library
- endef
- 
-@@ -73,18 +73,19 @@
- 	--enable-tftp \
- 	--disable-verbose \
- 	--with-random="/dev/urandom" \
--	--with-ssl="$(STAGING_DIR)/usr" \
-+	--with-ssl="$(STAGING_DIR)/opt" \
- 	--without-ca-bundle \
- 	--without-gnutls \
- 	--without-krb4 \
--	--without-libidn \
-+	--with-libidn="$(STAGING_DIR)/opt" \
-+	--with-librtmp="$(STAGING_DIR)/opt" \
+--- ../../../downloads/mipsel-hardfloat/openwrt_trunk-r38784/feeds/packages/libs/curl/Makefile	2013-11-13 15:33:49.952396530 +0400
++++ ../../../openwrt_trunk/feeds/packages/libs/curl/Makefile	2013-11-13 16:23:05.032350433 +0400
+@@ -102,22 +102,22 @@
  	--without-nss \
  	--without-libssh2 \
--	--with-zlib="$(STAGING_DIR)/usr" \
-+	--with-zlib="$(STAGING_DIR)/opt" \
  	$(call autoconf_bool,CONFIG_IPV6,ipv6) \
- 
- CONFIGURE_VARS += \
--	LIBS="-lcrypto -lssl -lz" \
-+	LIBS="-lcrypto -lssl -lz -lrtmp" \
- 	CC="$(filter-out ccache,$(TARGET_CC))"
+-	$(if $(CONFIG_LIBCURL_AXTLS),--with-axtls="$(STAGING_DIR)/usr",--without-axtls) \
++	$(if $(CONFIG_LIBCURL_AXTLS),--with-axtls="$(STAGING_DIR)/opt",--without-axtls) \
+ 	$(if $(CONFIG_LIBCURL_COOKIES),--enable,--disable)-cookies \
+ 	$(if $(CONFIG_LIBCURL_CRYPTO-AUTH),--enable,--disable)-crypto-auth \
+-	$(if $(CONFIG_LIBCURL_CYASSL),--with-cyassl="$(STAGING_DIR)/usr",--without-cyassl) \
++	$(if $(CONFIG_LIBCURL_CYASSL),--with-cyassl="$(STAGING_DIR)/opt",--without-cyassl) \
+ 	$(if $(CONFIG_LIBCURL_DICT),--enable,--disable)-dict \
+ 	$(if $(CONFIG_LIBCURL_FILE),--enable,--disable)-file \
+ 	$(if $(CONFIG_LIBCURL_FTP),--enable,--disable)-ftp \
+ 	$(if $(CONFIG_LIBCURL_GOPHER),--enable,--disable)-gopher \
+-	$(if $(CONFIG_LIBCURL_GNUTLS),--with-gnutls="$(STAGING_DIR)/usr",--without-gnutls) \
++	$(if $(CONFIG_LIBCURL_GNUTLS),--with-gnutls="$(STAGING_DIR)/opt",--without-gnutls) \
+ 	$(if $(CONFIG_LIBCURL_HTTP),--enable,--disable)-http \
+ 	$(if $(CONFIG_LIBCURL_IMAP),--enable,--disable)-imap \
+ 	$(if $(CONFIG_LIBCURL_LDAP),--enable,--disable)-ldap \
+ 	$(if $(CONFIG_LIBCURL_LDAPS),--enable,--disable)-ldaps \
+ 	$(if $(CONFIG_LIBCURL_LIBCURL-OPTION),--enable,--disable)-libcurl-option \
+-	$(if $(CONFIG_LIBCURL_OPENSSL),--with-ssl="$(STAGING_DIR)/usr",--without-ssl) \
+-	$(if $(CONFIG_LIBCURL_POLARSSL),--with-polarssl="$(STAGING_DIR)/usr",--without-polarssl) \
++	$(if $(CONFIG_LIBCURL_OPENSSL),--with-ssl="$(STAGING_DIR)/opt",--without-ssl) \
++	$(if $(CONFIG_LIBCURL_POLARSSL),--with-polarssl="$(STAGING_DIR)/opt",--without-polarssl) \
+ 	$(if $(CONFIG_LIBCURL_POP3),--enable,--disable)-pop3 \
+ 	$(if $(CONFIG_LIBCURL_PROXY),--enable,--disable)-proxy \
+ 	$(if $(CONFIG_LIBCURL_RTSP),--enable,--disable)-rtsp \
+@@ -127,7 +127,7 @@
+ 	$(if $(CONFIG_LIBCURL_SSPI),--enable,--disable)-sspi \
+ 	$(if $(CONFIG_LIBCURL_THREADED_RESOLVER),--enable,--disable)-threaded-resolver \
+ 	$(if $(CONFIG_LIBCURL_TLS-SRP),--enable,--disable)-tls-srp \
+-	$(if $(CONFIG_LIBCURL_ZLIB),--with-zlib="$(STAGING_DIR)/usr",--without-zlib) \
++	$(if $(CONFIG_LIBCURL_ZLIB),--with-zlib="$(STAGING_DIR)/opt",--without-zlib) \
  
  define Build/Compile
-@@ -95,24 +96,24 @@
+ 	+$(MAKE) $(PKG_JOBS) -C $(PKG_BUILD_DIR) \
+@@ -137,24 +137,24 @@
  endef
  
  define Build/InstallDev

@@ -7,6 +7,11 @@ bash_completion: /etc/bashcompletion in optware is newer
 freeswitch: spandsp marked as broken for now.
 elfutils: is a fake package for now, still old libelf package used due to our 2.6 kernel
 
+Can't be upgraded:
+rtndev feed:
+castget		1.1.0		new glib2 needed
+OpenWRT packages:
+
 OpenWRT packages with updagraded version:
 amule		2.3.1
 elinks		0.12pre6

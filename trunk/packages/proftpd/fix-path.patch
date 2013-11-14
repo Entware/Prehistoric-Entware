@@ -9,7 +9,7 @@
  endef
  
  TARGET_CPPFLAGS += \
-@@ -47,16 +47,15 @@
+@@ -48,16 +48,15 @@
  	ac_cv_header_ncurses_h=no
  
  define Package/proftpd/install
