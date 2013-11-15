@@ -9,7 +9,9 @@ all: .done
 
 .done:
 	patch -d $(TOP) -p3 -i $(CURDIR)/fix-path.patch
-	patch -d $(TOP) -p3 -i $(CURDIR)/ipv6enable.patch
+	rm -f ../../../openwrt_trunk/feeds/packages/multimedia/xupnpd/patches/100-default_config.patch
+	cp -f ./S94xupnpd ../../../openwrt_trunk/feeds/packages/multimedia/xupnpd/files/
+	cp -f ./5*.patch ../../../openwrt_trunk/feeds/packages/multimedia/xupnpd/patches/
 	@touch $@
 
 clean:

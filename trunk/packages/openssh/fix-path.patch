@@ -1,5 +1,5 @@
---- ../../../openwrt_trunk/feeds/packages/net/openssh/Makefile.orig	2013-11-13 15:32:50.456397612 +0400
-+++ ../../../openwrt_trunk/feeds/packages/net/openssh/Makefile	2013-11-13 17:04:17.656296982 +0400
+--- ../../../downloads/mipsel-hardfloat/openwrt_trunk-r38800/feeds/packages/net/openssh/Makefile	2013-11-14 10:01:15.855186159 +0400
++++ ../../../openwrt_trunk/feeds/packages/net/openssh/Makefile	2013-11-14 16:35:44.134755576 +0400
 @@ -56,7 +56,7 @@
  endef
  
@@ -134,3 +134,11 @@
  endef
  
  $(eval $(call BuildPackage,openssh-client))
+@@ -242,6 +242,6 @@
+ $(eval $(call BuildPackage,openssh-client-utils))
+ $(eval $(call BuildPackage,openssh-keygen))
+ $(eval $(call BuildPackage,openssh-server))
+-$(eval $(call BuildPackage,openssh-server-pam))
++#$(eval $(call BuildPackage,openssh-server-pam))
+ $(eval $(call BuildPackage,openssh-sftp-client))
+ $(eval $(call BuildPackage,openssh-sftp-server))

@@ -1,5 +1,5 @@
---- ../../../downloads/openwrt_trunk-r36889/feeds/packages/net/git/Makefile	2013-06-10 09:25:14.725864163 +0400
-+++ ../../../openwrt_trunk/feeds/packages/net/git/Makefile	2013-06-19 17:21:11.726223850 +0400
+--- ../../../downloads/mipsel-hardfloat/openwrt_trunk-r38800/feeds/packages/net/git/Makefile	2013-11-14 10:01:15.871186159 +0400
++++ ../../../openwrt_trunk/feeds/packages/net/git/Makefile	2013-11-14 13:35:06.242953012 +0400
 @@ -24,7 +24,7 @@
    SECTION:=net
    CATEGORY:=Network

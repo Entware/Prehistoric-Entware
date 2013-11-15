@@ -1,4 +1,3 @@
-Только в ../../../openwrt_trunk/feeds/packages/net/unbound/files: S61unbound
 diff -urx .svn ../../../downloads/openwrt_trunk-r37769/feeds/packages/net/unbound/Makefile ../../../openwrt_trunk/feeds/packages/net/unbound/Makefile
 --- ../../../downloads/openwrt_trunk-r37769/feeds/packages/net/unbound/Makefile	2013-08-15 09:37:02.993572159 +0400
 +++ ../../../openwrt_trunk/feeds/packages/net/unbound/Makefile	2013-08-21 09:33:07.264131505 +0400

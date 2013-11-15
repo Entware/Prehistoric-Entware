@@ -1,65 +1,146 @@
---- ../../../openwrt_trunk.orig/feeds/packages/admin/zabbix/Makefile	2012-05-02 16:17:33.854294504 +0400
-+++ ../../../openwrt_trunk/feeds/packages/admin/zabbix/Makefile	2012-06-01 09:59:55.077082694 +0400
-@@ -51,45 +51,45 @@
- endif
- 
- CONFIGURE_ARGS+= \
--	--bindir="/usr/sbin" \
-+	--bindir="/opt/sbin" \
- 	--enable-agent
- 
- ifneq ($(CONFIG_PACKAGE_zabbix-server),)
-   CONFIGURE_ARGS+= \
+diff -urx .svn ../../../downloads/mipsel-hardfloat/openwrt_trunk-r38800/feeds/packages/admin/zabbix/Makefile ../../../openwrt_trunk/feeds/packages/admin/zabbix/Makefile
+--- ../../../downloads/mipsel-hardfloat/openwrt_trunk-r38800/feeds/packages/admin/zabbix/Makefile	2013-11-14 10:01:15.919186156 +0400
++++ ../../../openwrt_trunk/feeds/packages/admin/zabbix/Makefile	2013-11-15 09:24:00.677652832 +0400
+@@ -26,6 +26,7 @@
+   SECTION:=admin
+   CATEGORY:=Administration
+   TITLE:=Zabbix
++  DEPENDS:=$(ICONV_DEPENDS)
+   URL:=http://www.zabbix.com/
+   SUBMENU:=zabbix
+   MAINTAINER:=Mirko Vogt <mirko@openwrt.org>
+@@ -110,66 +111,66 @@
  	--enable-server \
+ 	--enable-proxy \
+ 	--disable-java \
 -	--with-sqlite3="$(STAGING_DIR)/usr"
 +	--with-sqlite3="$(STAGING_DIR)/opt"
- endif
  
  MAKE_FLAGS += ARCH="linux"
  
+ define Package/zabbix/install/sbin
+ 	$(INSTALL_DIR) \
+-		$(1)/usr/sbin
++		$(1)/opt/sbin
+ 
+ 	$(INSTALL_BIN) \
+-		$(PKG_INSTALL_DIR)/usr/sbin/zabbix_$(2) \
+-		$(1)/usr/sbin/
++		$(PKG_INSTALL_DIR)/opt/sbin/zabbix_$(2) \
++		$(1)/opt/sbin/
+ endef
+ 
+ define Package/zabbix/install/bin
+ 	$(INSTALL_DIR) \
+-		$(1)/usr/bin
++		$(1)/opt/bin
+ 
+ 	$(INSTALL_BIN) \
+-		$(PKG_INSTALL_DIR)/usr/bin/zabbix_$(2) \
+-		$(1)/usr/bin/
++		$(PKG_INSTALL_DIR)/opt/bin/zabbix_$(2) \
++		$(1)/opt/bin/
+ endef
+ 
+ define Package/zabbix/install/etc
+ 	$(INSTALL_DIR) \
+-		$(1)/etc
++		$(1)/opt/etc
+ 
+ 	$(INSTALL_CONF) \
+-		$(PKG_INSTALL_DIR)/etc/zabbix_$(2).conf \
+-		$(1)/etc/
++		$(PKG_INSTALL_DIR)/opt/etc/zabbix_$(2).conf \
++		$(1)/opt/etc/
+ endef
+ 
+ define Package/zabbix/install/init.d
+ 	$(INSTALL_DIR) \
+-		$(1)/etc/init.d
++		$(1)/opt/etc/init.d
+ 
+ 	$(INSTALL_BIN) \
+-		./files/zabbix_$(2).init \
+-		$(1)/etc/init.d/zabbix_$(2)
++		./files/S07zabbix_$(2) \
++		$(1)/opt/etc/init.d
+ endef
+ 
+ define Package/zabbix/install/zabbix.conf.d
+ 	$(INSTALL_DIR) \
+-		$(1)/etc/zabbix_$(2).conf.d
++		$(1)/opt/etc/zabbix_$(2).conf.d
+ 
+ 	$(INSTALL_BIN) \
+ 		./files/$(3) \
+-		$(1)/etc/zabbix_$(2).conf.d/$(3)
++		$(1)/opt/etc/zabbix_$(2).conf.d/$(3)
+ endef
+ 
  define Package/zabbix-agent/conffiles
--/etc/zabbix/zabbix_agentd.conf
-+/opt/etc/zabbix/zabbix_agentd.conf
+-/etc/zabbix_agent.conf
++/opt/etc/zabbix_agent.conf
  endef
- 
- define Package/zabbix-agent/install
--	$(INSTALL_DIR) $(1)/usr/sbin
--	$(INSTALL_BIN) $(PKG_INSTALL_DIR)/usr/sbin/zabbix_agentd $(1)/usr/sbin/
--	$(INSTALL_DIR) $(1)/etc/zabbix
--	$(INSTALL_CONF) ./files/zabbix_agentd.conf $(1)/etc/zabbix/
--	$(INSTALL_DIR) $(1)/etc/init.d
--	$(INSTALL_BIN) ./files/zabbix_agentd.init $(1)/etc/init.d/zabbix_agentd
-+	$(INSTALL_DIR) $(1)/opt/sbin
-+	$(INSTALL_BIN) $(PKG_INSTALL_DIR)/opt/sbin/zabbix_agentd $(1)/opt/sbin/
-+	$(INSTALL_DIR) $(1)/opt/etc/zabbix
-+	$(INSTALL_CONF) ./files/zabbix_agentd.conf $(1)/opt/etc/zabbix/
-+	$(INSTALL_DIR) $(1)/opt/etc/init.d
-+	$(INSTALL_BIN) ./files/S07zabbix_agentd $(1)/opt/etc/init.d
+ define Package/zabbix-agentd/conffiles
+-/etc/zabbix_agentd.conf
++/opt/etc/zabbix_agentd.conf
  endef
- 
- define Package/zabbix-sender/install
--	$(INSTALL_DIR) $(1)/usr/sbin
--	$(INSTALL_BIN) $(PKG_INSTALL_DIR)/usr/sbin/zabbix_sender $(1)/usr/sbin/
--	$(INSTALL_DIR) $(1)/etc/zabbix
-+	$(INSTALL_DIR) $(1)/opt/sbin
-+	$(INSTALL_BIN) $(PKG_INSTALL_DIR)/opt/sbin/zabbix_sender $(1)/opt/sbin/
-+	$(INSTALL_DIR) $(1)/opt/etc/zabbix
- endef
- 
  define Package/zabbix-server/conffiles
--/etc/zabbix/zabbix_server.conf
-+/opt/etc/zabbix/zabbix_server.conf
+-/etc/zabbix_server.conf
++/opt/etc/zabbix_server.conf
+ endef
+ define Package/zabbix-proxy/conffiles
+-/etc/zabbix_proxy.conf
++/opt/etc/zabbix_proxy.conf
  endef
  
- define Package/zabbix-server/install
--	$(INSTALL_DIR) $(1)/usr/sbin
--	$(INSTALL_BIN) $(PKG_INSTALL_DIR)/usr/sbin/zabbix_server $(1)/usr/sbin/
--	$(INSTALL_DIR) $(1)/etc/zabbix
--	$(INSTALL_CONF) $(PKG_BUILD_DIR)/misc/conf/zabbix_server.conf $(1)/etc/zabbix/
-+	$(INSTALL_DIR) $(1)/opt/sbin
-+	$(INSTALL_BIN) $(PKG_INSTALL_DIR)/opt/sbin/zabbix_server $(1)/opt/sbin/
-+	$(INSTALL_DIR) $(1)/opt/etc/zabbix
-+	$(INSTALL_CONF) $(PKG_BUILD_DIR)/misc/conf/zabbix_server.conf $(1)/opt/etc/zabbix/
+ ifdef CONFIG_PACKAGE_zabbix-extra-mac80211
+@@ -206,9 +207,9 @@
+ 
+ define Package/zabbix-extra-mac80211/install
+ 	$(call Package/zabbix/install/zabbix.conf.d,$(1),agentd,mac80211)
+-	$(INSTALL_DIR) $(1)/usr/bin
+-	$(INSTALL_BIN) $(PKG_BUILD_DIR)/zabbix-extra-mac80211/zabbix_helper_mac80211 $(1)/usr/bin/
+-	chmod 4755 $(1)/usr/bin/zabbix_helper_mac80211
++	$(INSTALL_DIR) $(1)/opt/bin
++	$(INSTALL_BIN) $(PKG_BUILD_DIR)/zabbix-extra-mac80211/zabbix_helper_mac80211 $(1)/opt/bin/
++	chmod 4755 $(1)/opt/bin/zabbix_helper_mac80211
  endef
+ 
+ define Package/zabbix-extra-network/install
+@@ -239,9 +240,9 @@
  
  $(eval $(call BuildPackage,zabbix-agent))
+ $(eval $(call BuildPackage,zabbix-agentd))
+-$(eval $(call BuildPackage,zabbix-extra-mac80211))
+-$(eval $(call BuildPackage,zabbix-extra-network))
+-$(eval $(call BuildPackage,zabbix-extra-wifi))
++#$(eval $(call BuildPackage,zabbix-extra-mac80211))
++#$(eval $(call BuildPackage,zabbix-extra-network))
++#$(eval $(call BuildPackage,zabbix-extra-wifi))
+ $(eval $(call BuildPackage,zabbix-sender))
+ $(eval $(call BuildPackage,zabbix-server))
+ $(eval $(call BuildPackage,zabbix-proxy))
+diff -urx .svn ../../../downloads/mipsel-hardfloat/openwrt_trunk-r38800/feeds/packages/admin/zabbix/patches/010-change-agentd-config.patch ../../../openwrt_trunk/feeds/packages/admin/zabbix/patches/010-change-agentd-config.patch
+--- ../../../downloads/mipsel-hardfloat/openwrt_trunk-r38800/feeds/packages/admin/zabbix/patches/010-change-agentd-config.patch	2013-11-14 10:01:15.919186156 +0400
++++ ../../../openwrt_trunk/feeds/packages/admin/zabbix/patches/010-change-agentd-config.patch	2013-11-14 10:56:09.671126613 +0400
+@@ -10,8 +10,8 @@
+ -# Mandatory: no
+ -# Default:
+ -# PidFile=/tmp/zabbix_agentd.pid
+-+# Only /var/run/zabbix_agentd.pid supported
+-+PidFile=/var/run/zabbix_agentd.pid
+++# Only /opt/var/run/zabbix_agentd.pid supported
+++PidFile=/opt/var/run/zabbix_agentd.pid
+  
+  ### Option: LogFile
+  #	Name of log file.
+@@ -55,7 +55,7 @@
+  
+  # Include=/usr/local/etc/zabbix_agentd.userparams.conf
+ -# Include=/usr/local/etc/zabbix_agentd.conf.d/
+-+Include=/etc/zabbix_agentd.conf.d/
+++Include=/opt/etc/zabbix_agentd.conf.d/
+  
+  ####### USER-DEFINED MONITORED PARAMETERS #######
+  

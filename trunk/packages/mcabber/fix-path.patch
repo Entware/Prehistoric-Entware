@@ -1,5 +1,5 @@
---- ../../../downloads/mipsel-hardfloat/openwrt_trunk-r38784/feeds/packages/net/mcabber/Makefile	2013-11-13 15:33:49.700396534 +0400
-+++ ../../../openwrt_trunk/feeds/packages/net/mcabber/Makefile	2013-11-14 09:37:47.595211052 +0400
+--- ../../../downloads/mipsel-hardfloat/openwrt_trunk-r38800/feeds/packages/net/mcabber/Makefile	2013-11-14 10:01:15.831186158 +0400
++++ ../../../openwrt_trunk/feeds/packages/net/mcabber/Makefile	2013-11-14 15:07:38.550851570 +0400
 @@ -18,7 +18,7 @@
  PKG_BUILD_DIR:=$(BUILD_DIR)/$(PKG_NAME)-$(PKG_VERSION)
  
@@ -20,7 +20,7 @@
  	--enable-otr
  		
  define Package/mcabber/install
- 	$(INSTALL_DIR) $(1)/bin
+-	$(INSTALL_DIR) $(1)/bin
 -	$(INSTALL_BIN) $(PKG_BUILD_DIR)/mcabber/mcabber $(1)/bin
 -	$(INSTALL_DIR) $(1)/usr/lib/mcabber
 -	$(INSTALL_BIN) $(PKG_BUILD_DIR)/modules/beep/.libs/libbeep.so $(1)/usr/lib/mcabber
@@ -29,6 +29,7 @@
 -	$(INSTALL_DATA) $(PKG_BUILD_DIR)/mcabberrc.example $(1)/usr/share/mcabber/
 -	$(INSTALL_BIN) $(PKG_BUILD_DIR)/contrib/events/eventcmd $(1)/usr/share/mcabber/eventcmd.example
 -	$(INSTALL_BIN) $(PKG_BUILD_DIR)/doc/help/en/*.txt $(1)/usr/share/mcabber/help/en/
++	$(INSTALL_DIR) $(1)/opt/bin
 +	$(INSTALL_BIN) $(PKG_BUILD_DIR)/mcabber/mcabber $(1)/opt/bin
 +	$(INSTALL_DIR) $(1)/opt/lib/mcabber
 +	$(INSTALL_BIN) $(PKG_BUILD_DIR)/modules/beep/.libs/libbeep.so $(1)/opt/lib/mcabber

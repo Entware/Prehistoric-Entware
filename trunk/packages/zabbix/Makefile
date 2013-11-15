@@ -8,9 +8,8 @@
 all: .done
 
 .done:
-	patch -d $(TOP) -p3 -i $(CURDIR)/downgrade-to-r28892.patch
 	patch -d $(TOP) -p3 -i $(CURDIR)/fix-path.patch
-	rm -f ../../../openwrt_trunk/feeds/packages/admin/zabbix/patches/002-fix-res_send-on-uclibc.patch
+	cp -f ./5*.patch ../../../openwrt_trunk/feeds/packages/admin/zabbix/patches/
 	cp -f ./S07zabbix_agentd ../../../openwrt_trunk/feeds/packages/admin/zabbix/files/
 	@touch $@
 

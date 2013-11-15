@@ -1,4 +1,3 @@
-Только в ../../../openwrt_trunk/feeds/packages/net/tinyproxy/files: S21tinyproxy
 diff -urx .svn ../../../downloads/openwrt_trunk-r37769/feeds/packages/net/tinyproxy/files/tinyproxy.config ../../../openwrt_trunk/feeds/packages/net/tinyproxy/files/tinyproxy.config
 --- ../../../downloads/openwrt_trunk-r37769/feeds/packages/net/tinyproxy/files/tinyproxy.config	2013-08-15 09:37:02.961572159 +0400
 +++ ../../../openwrt_trunk/feeds/packages/net/tinyproxy/files/tinyproxy.config	2013-08-15 09:37:33.789571598 +0400

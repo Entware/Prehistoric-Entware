@@ -1,6 +1,14 @@
---- ../../../downloads/mipsel-hardfloat/openwrt_trunk-r38784/feeds/packages/libs/loudmouth/Makefile	2013-11-13 15:33:49.920396530 +0400
-+++ ../../../openwrt_trunk/feeds/packages/libs/loudmouth/Makefile	2013-11-14 09:45:53.859205861 +0400
-@@ -47,17 +47,17 @@
+--- ../../../downloads/mipsel-hardfloat/openwrt_trunk-r38800/feeds/packages/libs/loudmouth/Makefile	2013-11-14 10:01:15.971186157 +0400
++++ ../../../openwrt_trunk/feeds/packages/libs/loudmouth/Makefile	2013-11-14 14:56:22.990863296 +0400
+@@ -40,24 +40,24 @@
+ 
+ CONFIGURE_VARS += \
+ 	ac_cv_path_KRB5CONFIG=no \
+-	LIBS="-liconv -lgobject-2.0"
++	LIBS="-liconv -lgobject-2.0 -lintl"
+ 
+ CONFIGURE_ARGS += \
+ 	--with-compile-warnings=no \
  	--with-ssl=openssl
  
  define Build/InstallDev

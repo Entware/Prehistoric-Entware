@@ -6,11 +6,7 @@ sshd: syslogin_perform_logout: logout() returned an error, /var/... or /etc/... 
 bash_completion: /etc/bashcompletion in optware is newer
 freeswitch: spandsp marked as broken for now.
 elfutils: is a fake package for now, still old libelf package used due to our 2.6 kernel
-
-Can't be upgraded:
-rtndev feed:
-castget		1.1.0		new glib2 needed
-OpenWRT packages:
+libpam: market as @BROKEN, too many packages will fail to build otherwise 
 
 OpenWRT packages with updagraded version:
 amule		2.3.1
@@ -26,14 +22,16 @@ pyload		0.4.9
 smartmontools	6.2
 tvheadend	3.5-20131011
 umurmur		0.2.13
-Wview		5.20.2
+wview		5.20.2
 wxbase		2.8.12
 
-OpenWRT packages with downgraded version, mainly due to old kernel:
-gdb		7.3.1 due to gnu_v3_object_ctor_group() absence
-glib2		2.26.1
+
+Can't be upgraded (mostly due to old 2.6.22.19 kernel):
+castget @rtndev	1.1.0		new glib2 needed
+glib2		2.26.1		because of old kernel
+gdb		7.3.1		due to gnu_v3_object_ctor_group() absence
 libsoup		2.28.2
 i2c-tools	3.1.0
 libnl		2.0 (r33657)
-usbip		0.1.7
-zabbix		1.6 (r28892)
+usbip		0.1.7		kernel specific
+zabbix		1.6 (r28892)	due to old kernel, see https://support.zabbix.com/browse/ZBX-3395

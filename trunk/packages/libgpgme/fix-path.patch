@@ -1,6 +1,14 @@
---- ../../../openwrt_trunk.orig/feeds/packages/libs/gpgme/Makefile	2012-07-18 00:48:35.000000000 +0400
-+++ ../../../openwrt_trunk/feeds/packages/libs/gpgme/Makefile	2012-07-24 04:33:35.000000000 +0400
-@@ -43,25 +43,28 @@
+--- ../../../downloads/mipsel-hardfloat/openwrt_trunk-r38800/feeds/packages/libs/gpgme/Makefile	2013-11-14 10:01:15.971186157 +0400
++++ ../../../openwrt_trunk/feeds/packages/libs/gpgme/Makefile	2013-11-14 13:52:20.858936673 +0400
+@@ -35,33 +35,34 @@
+   for CMS (S/MIME).
+ endef
+ 
+-ifdef CONFIG_USE_UCLIBC
+ CONFIGURE_VARS += \
+     LIBS="-largp"
+-endif
+ 
  CONFIGURE_ARGS += \
  	--enable-shared \
  	--enable-static \
