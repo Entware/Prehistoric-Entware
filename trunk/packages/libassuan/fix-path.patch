@@ -1,45 +1,40 @@
---- ../../../downloads/mipsel-hardfloat/openwrt_trunk-r38800/feeds/packages/libs/loudmouth/Makefile	2013-11-14 10:01:15.971186157 +0400
-+++ ../../../openwrt_trunk/feeds/packages/libs/loudmouth/Makefile	2013-11-14 14:58:24.050860140 +0400
-@@ -26,7 +26,7 @@
- define Package/libloudmouth1
- 	SECTION:=libs
- 	CATEGORY:=Libraries
--	DEPENDS:=+libopenssl +glib2
-+	DEPENDS:=+libopenssl +glib2 +libidn
- 	TITLE:=Lightweight C Jabber library
- 	URL:=http://mcabber.com
- 	MAINTAINER:=Peter Wagner <tripolar@gmx.at>
-@@ -40,24 +40,24 @@
- 
- CONFIGURE_VARS += \
- 	ac_cv_path_KRB5CONFIG=no \
--	LIBS="-liconv -lgobject-2.0"
-+	LIBS="-liconv -lgobject-2.0 -lintl"
- 
+--- ../../../openwrt_trunk.orig/feeds/packages/libs/libassuan/Makefile	2012-07-18 00:48:35.000000000 +0400
++++ ../../../openwrt_trunk/feeds/packages/libs/libassuan/Makefile	2012-07-24 03:28:13.000000000 +0400
+@@ -40,25 +40,25 @@
  CONFIGURE_ARGS += \
- 	--with-compile-warnings=no \
- 	--with-ssl=openssl
+ 	--enable-shared \
+ 	--enable-static \
+-	--with-gpg-error-prefix="$(STAGING_DIR)/usr" \
++	--with-gpg-error-prefix="$(STAGING_DIR)/opt" \
+ 	--without-pth-test \
  
  define Build/InstallDev
--	$(INSTALL_DIR) $(1)/usr/include/loudmouth-1.0/loudmouth
--	$(CP) $(PKG_INSTALL_DIR)/usr/include/loudmouth-1.0/loudmouth/*.h $(1)/usr/include/loudmouth-1.0/loudmouth
+-	$(INSTALL_DIR) $(1)/usr/include
+-	$(CP) $(PKG_INSTALL_DIR)/usr/include/assuan.h $(1)/usr/include/
 -	$(INSTALL_DIR) $(1)/usr/lib
--	$(CP) $(PKG_INSTALL_DIR)/usr/lib/libloudmouth-1.{a,la,so*} $(1)/usr/lib/
--	$(INSTALL_DIR) $(1)/usr/lib/pkgconfig
--	$(CP) $(PKG_INSTALL_DIR)/usr/lib/pkgconfig/loudmouth-1.0.pc $(1)/usr/lib/pkgconfig/
-+	$(INSTALL_DIR) $(1)/opt/include/loudmouth-1.0/loudmouth
-+	$(CP) $(PKG_INSTALL_DIR)/opt/include/loudmouth-1.0/loudmouth/*.h $(1)/opt/include/loudmouth-1.0/loudmouth
+-	$(CP) $(PKG_INSTALL_DIR)/usr/lib/libassuan.{a,so*} $(1)/usr/lib/
+-	$(INSTALL_DIR) $(1)/usr/share/aclocal
+-	$(CP) $(PKG_INSTALL_DIR)/usr/share/aclocal/libassuan.m4 $(1)/usr/share/aclocal/
+-	$(INSTALL_DIR) $(1)/usr/bin
+-	$(CP) $(PKG_INSTALL_DIR)/usr/bin/libassuan-config $(1)/usr/bin/
++	$(INSTALL_DIR) $(1)/opt/include
++	$(CP) $(PKG_INSTALL_DIR)/opt/include/assuan.h $(1)/opt/include/
 +	$(INSTALL_DIR) $(1)/opt/lib
-+	$(CP) $(PKG_INSTALL_DIR)/opt/lib/libloudmouth-1.{a,la,so*} $(1)/opt/lib/
-+	$(INSTALL_DIR) $(1)/opt/lib/pkgconfig
-+	$(CP) $(PKG_INSTALL_DIR)/opt/lib/pkgconfig/loudmouth-1.0.pc $(1)/opt/lib/pkgconfig/
++	$(CP) $(PKG_INSTALL_DIR)/opt/lib/libassuan.{a,so*} $(1)/opt/lib/
++	$(INSTALL_DIR) $(1)/opt/share/aclocal
++	$(CP) $(PKG_INSTALL_DIR)/opt/share/aclocal/libassuan.m4 $(1)/opt/share/aclocal/
++	$(INSTALL_DIR) $(1)/opt/bin
++	$(CP) $(PKG_INSTALL_DIR)/opt/bin/libassuan-config $(1)/opt/bin/
+ 	$(INSTALL_DIR) $(2)/bin
+-	$(LN) -nsf ../../usr/bin/libassuan-config $(2)/bin/
++	$(LN) -nsf ../../opt/bin/libassuan-config $(2)/bin/
  endef
  
- define Package/libloudmouth1/install
+ define Package/libassuan/install
 -	$(INSTALL_DIR) $(1)/usr/lib
--	$(CP) $(PKG_BUILD_DIR)/loudmouth/.libs/libloudmouth-1.so* $(1)/usr/lib
+-	$(CP) $(PKG_INSTALL_DIR)/usr/lib/libassuan*.so.* $(1)/usr/lib/
 +	$(INSTALL_DIR) $(1)/opt/lib
-+	$(CP) $(PKG_BUILD_DIR)/loudmouth/.libs/libloudmouth-1.so* $(1)/opt/lib
++	$(CP) $(PKG_INSTALL_DIR)/opt/lib/libassuan*.so.* $(1)/opt/lib/
  endef
  
- $(eval $(call BuildPackage,libloudmouth1))
+ $(eval $(call BuildPackage,libassuan))
