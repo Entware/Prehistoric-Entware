@@ -1,6 +1,6 @@
---- a/config.c	2012-02-23 10:27:18.780348479 +0400
-+++ b/config.c	2012-02-23 10:29:02.203311020 +0400
-@@ -173,12 +173,12 @@
+--- ./config.c.orig	2008-11-19 23:36:12.000000000 +0300
++++ ./config.c	2013-12-10 16:55:59.250844673 +0400
+@@ -173,7 +173,7 @@
  
  static const char *config_def_script(void)
  {
@@ -9,12 +9,6 @@
  }
  
  static const char *config_def_pid_file(void)
- {
--	return "/var/run/vpnc/pid";
-+	return "/var/run/vpnc.pid";
- }
- 
- static const char *config_def_vendor(void)
 @@ -456,7 +456,7 @@
  {
  	char *realname;
