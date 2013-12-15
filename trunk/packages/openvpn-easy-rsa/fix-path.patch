@@ -1,5 +1,14 @@
---- ../../../downloads/openwrt_trunk-r36151/package/network/services/openvpn-easy-rsa/Makefile	2013-04-02 14:27:53.001539996 +0400
-+++ ../../../openwrt_trunk/package/network/services/openvpn-easy-rsa/Makefile	2013-04-02 15:20:17.489477643 +0400
+--- ../../../openwrt_trunk.orig/package/network/services/openvpn-easy-rsa/Makefile	2013-11-20 21:41:47.773440823 +0400
++++ ../../../openwrt_trunk/package/network/services/openvpn-easy-rsa/Makefile	2013-12-15 03:34:01.659441981 +0400
+@@ -11,7 +11,7 @@
+ 
+ PKG_REV:=ff5bfd1dd8e548cb24d302742af3894f893ef92f
+ PKG_VERSION:=2013-01-30
+-PKG_RELEASE=2
++PKG_RELEASE=2a
+ 
+ PKG_SOURCE_PROTO:=git
+ PKG_SOURCE_URL:=https://github.com/OpenVPN/easy-rsa.git
 @@ -33,9 +33,9 @@
  endef
  
@@ -36,3 +45,56 @@
  endef
  
  $(eval $(call BuildPackage,openvpn-easy-rsa))
+--- ../../../openwrt_trunk.orig/package/network/services/openvpn-easy-rsa/patches/100-run-ootb.patch	2013-11-20 21:41:47.774441278 +0400
++++ ../../../openwrt_trunk/package/network/services/openvpn-easy-rsa/patches/100-run-ootb.patch	2013-12-15 03:33:16.417440787 +0400
+@@ -8 +8 @@
+-+"/usr/sbin/pkitool" --interact --initca $*
+++"/opt/sbin/pkitool" --interact --initca $*
+@@ -14 +14 @@
+-+. /etc/easy-rsa/vars
+++. /opt/etc/easy-rsa/vars
+@@ -26 +26 @@
+-+"/usr/sbin/pkitool" --interact --inter $*
+++"/opt/sbin/pkitool" --interact --inter $*
+@@ -34 +34 @@
+-+"/usr/sbin/pkitool" --interact $*
+++"/opt/sbin/pkitool" --interact $*
+@@ -42 +42 @@
+-+"/usr/sbin/pkitool" --interact --pass $*
+++"/opt/sbin/pkitool" --interact --pass $*
+@@ -50 +50 @@
+-+"/usr/sbin/pkitool" --interact --pkcs12 $*
+++"/opt/sbin/pkitool" --interact --pkcs12 $*
+@@ -58 +58 @@
+-+"/usr/sbin/pkitool" --interact --server $*
+++"/opt/sbin/pkitool" --interact --server $*
+@@ -66 +66 @@
+-+"/usr/sbin/pkitool" --interact --csr $*
+++"/opt/sbin/pkitool" --interact --csr $*
+@@ -74 +74 @@
+-+"/usr/sbin/pkitool" --interact --csr --pass $*
+++"/opt/sbin/pkitool" --interact --csr --pass $*
+@@ -80 +80 @@
+-+. /etc/easy-rsa/vars
+++. /opt/etc/easy-rsa/vars
+@@ -90 +90 @@
+-+. /etc/easy-rsa/vars
+++. /opt/etc/easy-rsa/vars
+@@ -100 +100 @@
+-+. /etc/easy-rsa/vars
+++. /opt/etc/easy-rsa/vars
+@@ -110 +110 @@
+-+. /etc/easy-rsa/vars
+++. /opt/etc/easy-rsa/vars
+@@ -120 +120 @@
+-+. /etc/easy-rsa/vars
+++. /opt/etc/easy-rsa/vars
+@@ -132 +132 @@
+-+"/usr/sbin/pkitool" --interact --sign $*
+++"/opt/sbin/pkitool" --interact --sign $*
+@@ -140 +140 @@
+-+export EASY_RSA="/etc/easy-rsa"
+++export EASY_RSA="/opt/etc/easy-rsa"
+@@ -149 +149 @@
+-+export KEY_CONFIG=`/usr/sbin/whichopensslcnf $EASY_RSA`
+++export KEY_CONFIG=`/opt/sbin/whichopensslcnf $EASY_RSA`
