@@ -17,7 +17,7 @@ fi
 
 # Make sure the tunnel driver is loaded
 if ( !(lsmod | grep -q "^tun") ); then
-	insmod /opt/lib/modules/tun.o
+	insmod /opt/lib/modules/tun.ko
 fi
 
 ENABLED=yes
