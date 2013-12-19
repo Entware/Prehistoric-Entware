@@ -1,0 +1,13 @@
+--- ../../../openwrt_trunk/feeds/packages/libs/curl/Makefile.prev	2013-11-20 21:42:42.000000000 +0400
++++ ../../../openwrt_trunk/feeds/packages/libs/curl/Makefile	2013-12-20 01:22:19.203441262 +0400
+@@ -11,2 +11,2 @@
+-PKG_VERSION:=7.33.0
+-PKG_RELEASE:=4
++PKG_VERSION:=7.34.0
++PKG_RELEASE:=1
+@@ -21 +21 @@
+-PKG_MD5SUM:=57409d6bf0bd97053b8378dbe0cadcef
++PKG_MD5SUM:=88491df2bb32e9146e776ae6ac2f8327
+@@ -78 +78 @@
+-  DEPENDS:=+LIBCURL_POLARSSL:libpolarssl +LIBCURL_CYASSL:libcyassl +LIBCURL_AXTLS:libaxtls +LIBCURL_OPENSSL:libopenssl +LIBCURL_GNUTLS:libgnutls +LIBCURL_ZLIB:zlib +LIBCURL_THREADED_RESOLVER:libpthread
++  DEPENDS:=+LIBCURL_POLARSSL:libpolarssl +LIBCURL_CYASSL:libcyassl +LIBCURL_AXTLS:libaxtls +LIBCURL_OPENSSL:libopenssl +LIBCURL_GNUTLS:libgnutls +LIBCURL_ZLIB:zlib +LIBCURL_THREADED_RESOLVER:libpthread +librtmp
