@@ -45,3 +45,14 @@
   state1:
  		state = 2;
  		read_profile(".profile");
+--- a/loginutils/adduser.c
++++ b/loginutils/adduser.c
+@@ -181,7 +181,7 @@
+ 	die_if_bad_username(pw.pw_name);
+ 	if (!pw.pw_dir) {
+ 		/* create string for $HOME if not specified already */
+-		pw.pw_dir = xasprintf("/home/%s", argv[0]);
++		pw.pw_dir = xasprintf("/opt/home/%s", argv[0]);
+ 	}
+ 	pw.pw_passwd = (char *)"x";
+ 	if (opts & OPT_SYSTEM_ACCOUNT) {
