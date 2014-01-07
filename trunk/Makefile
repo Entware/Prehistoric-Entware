@@ -45,9 +45,9 @@ endef
 
 update_git_mirrors: .git_mirrors_updated
 .git_mirrors_updated:
-	$(call update_git_mirror,https://github.com/ryzhovau/openwrt-telephony.git,openwrt-telephony,http://feeds.openwrt.nanl.de/openwrt/telephony.git)
-	$(call update_git_mirror,https://github.com/ryzhovau/openwrt-packages.git,openwrt-packages,git://git.openwrt.org/packages.git)
-	$(call update_git_mirror,https://github.com/ryzhovau/packages.git,packages,https://github.com/openwrt-routing/packages.git)
+	$(call update_git_mirror,https://github.com/Entware/openwrt-telephony.git,openwrt-telephony,http://feeds.openwrt.nanl.de/openwrt/telephony.git)
+	$(call update_git_mirror,https://github.com/Entware/openwrt-packages.git,openwrt-packages,git://git.openwrt.org/packages.git)
+	$(call update_git_mirror,https://github.com/Entware/packages.git,packages,https://github.com/openwrt-routing/packages.git)
 	@touch $@
 
 clean:
