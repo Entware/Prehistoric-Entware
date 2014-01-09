@@ -1,7 +1,16 @@
-diff -urx .svn ../../../downloads/openwrt_trunk-r36151/package/utils/busybox/Makefile ../../../openwrt_trunk/package/utils/busybox/Makefile
---- ../../../downloads/openwrt_trunk-r36151/package/utils/busybox/Makefile	2013-04-27 00:01:38.994379041 +0400
-+++ ../../../openwrt_trunk/package/utils/busybox/Makefile	2013-04-27 00:02:08.870377079 +0400
-@@ -99,20 +98,53 @@
+diff -urx .svn ../../../downloads/mipsel-hardfloat/openwrt_trunk-r38800/package/utils/busybox/Makefile ../../../openwrt_trunk/package/utils/busybox/Makefile
+--- ../../../downloads/mipsel-hardfloat/openwrt_trunk-r38800/package/utils/busybox/Makefile	2013-11-15 11:16:41.897529837 +0400
++++ ../../../openwrt_trunk/package/utils/busybox/Makefile	2014-01-09 03:25:23.544514156 +0400
+@@ -9,7 +9,7 @@
+ 
+ PKG_NAME:=busybox
+ PKG_VERSION:=1.19.4
+-PKG_RELEASE:=7
++PKG_RELEASE:=7a
+ PKG_FLAGS:=essential
+ 
+ PKG_SOURCE:=$(PKG_NAME)-$(PKG_VERSION).tar.bz2
+@@ -99,20 +99,53 @@
  		CC="$(TARGET_CC)" \
  		CROSS_COMPILE="$(TARGET_CROSS)" \
  		EXTRA_CFLAGS="$(TARGET_CFLAGS)" \
@@ -62,9 +71,9 @@ diff -urx .svn ../../../downloads/openwrt_trunk-r36151/package/utils/busybox/Mak
  endef
  
  $(eval $(call BuildPackage,busybox))
-diff -urx .svn ../../../downloads/openwrt_trunk-r36151/package/utils/busybox/patches/200-etc_crontabs.patch ../../../openwrt_trunk/package/utils/busybox/patches/200-etc_crontabs.patch
---- ../../../downloads/openwrt_trunk-r36151/package/utils/busybox/patches/200-etc_crontabs.patch	2013-04-02 14:27:54.577539966 +0400
-+++ ../../../openwrt_trunk/package/utils/busybox/patches/200-etc_crontabs.patch	2013-04-25 12:03:22.496731959 +0400
+diff -urx .svn ../../../downloads/mipsel-hardfloat/openwrt_trunk-r38800/package/utils/busybox/patches/200-etc_crontabs.patch ../../../openwrt_trunk/package/utils/busybox/patches/200-etc_crontabs.patch
+--- ../../../downloads/mipsel-hardfloat/openwrt_trunk-r38800/package/utils/busybox/patches/200-etc_crontabs.patch	2013-11-15 11:16:41.897529837 +0400
++++ ../../../openwrt_trunk/package/utils/busybox/patches/200-etc_crontabs.patch	2013-11-15 11:17:03.337529446 +0400
 @@ -5,7 +5,7 @@
   
   #define TMPDIR          CONFIG_FEATURE_CROND_DIR
