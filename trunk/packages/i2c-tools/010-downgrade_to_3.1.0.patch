@@ -1,27 +1,28 @@
-git diff 4689dc8e067fba61086bd9ad3b61392ceddae766..7a775d62911a20b9f7f6dd2b63818f11baf7591a -- ./utils/i2c-tools > ../fix-path.patch
-diff --git a/utils/i2c-tools/Makefile ../../../openwrt_trunk/feeds/packages/utils/i2c-tools/Makefile
-index 7085dd5..9ef752b 100644
---- a/utils/i2c-tools/Makefile
+diff --git ../../../openwrt_trunk.orig/feeds/packages/utils/i2c-tools/Makefile ../../../openwrt_trunk/feeds/packages/utils/i2c-tools/Makefile
+index b298530..9ef752b 100644
+--- ../../../openwrt_trunk.orig/feeds/packages/utils/i2c-tools/Makefile
 +++ ../../../openwrt_trunk/feeds/packages/utils/i2c-tools/Makefile
-@@ -1,5 +1,5 @@
+@@ -1,67 +1,59 @@
  #
 -# Copyright (C) 2007-2013 OpenWrt.org
 +# Copyright (C) 2007-2011 OpenWrt.org
  #
  # This is free software, licensed under the GNU General Public License v2.
  # See /LICENSE for more information.
-@@ -9,56 +9,47 @@ include $(TOPDIR)/rules.mk
- include $(INCLUDE_DIR)/kernel.mk
+ #
+ 
+ include $(TOPDIR)/rules.mk
++include $(INCLUDE_DIR)/kernel.mk
  
  PKG_NAME:=i2c-tools
--PKG_VERSION:=2013-09-19
+-PKG_VERSION:=2013-12-15
 +PKG_VERSION:=3.1.0
  PKG_RELEASE:=1
  
 -PKG_SOURCE_PROTO:=svn
 -PKG_SOURCE_URL:=http://lm-sensors.org/svn/i2c-tools/trunk
 -PKG_SOURCE_SUBDIR:=$(PKG_NAME)-$(PKG_VERSION)
--PKG_SOURCE_VERSION:=r6199
+-PKG_SOURCE_VERSION:=r6204
 -PKG_SOURCE:=$(PKG_NAME)-$(PKG_VERSION)-$(PKG_SOURCE_VERSION).tar.gz
 +PKG_SOURCE:=$(PKG_NAME)-$(PKG_VERSION).tar.bz2
 +PKG_SOURCE_URL:=http://dl.lm-sensors.org/i2c-tools/releases
@@ -82,7 +83,12 @@ index 7085dd5..9ef752b 100644
   This package contain the python bindings for Linux SMBus access through i2c-dev.
  endef
  
-@@ -82,16 +73,6 @@ define Build/Compile
+-TARGET_CPPFLAGS += -I$(PKG_BUILD_DIR)/include
++TARGET_CPPFLAGS += -I$(LINUX_DIR)/include
+ 
+ ifdef CONFIG_PACKAGE_python-smbus
+   define Build/Compile/python-smbus
+@@ -81,16 +73,6 @@ define Build/Compile
  	$(Build/Compile/python-smbus)
  endef
  
@@ -99,7 +105,7 @@ index 7085dd5..9ef752b 100644
  define Package/i2c-tools/install
  	$(INSTALL_DIR) $(1)/usr/sbin
  	$(INSTALL_BIN) $(PKG_BUILD_DIR)/tools/i2cdetect $(1)/usr/sbin/
-@@ -104,7 +85,6 @@ define PyPackage/python-smbus/filespec
+@@ -103,7 +85,6 @@ define PyPackage/python-smbus/filespec
  +|$(PYTHON_PKG_DIR)/smbus.so
  endef
  
@@ -107,7 +113,7 @@ index 7085dd5..9ef752b 100644
  $(eval $(call BuildPackage,i2c-tools))
  $(eval $(call PyPackage,python-smbus))
  $(eval $(call BuildPackage,python-smbus))
-diff --git a/utils/i2c-tools/patches/100-linux_include.patch ../../../openwrt_trunk/feeds/packages/utils/i2c-tools/patches/100-linux_include.patch
+diff --git ../../../openwrt_trunk.orig/feeds/packages/utils/i2c-tools/patches/100-linux_include.patch ../../../openwrt_trunk/feeds/packages/utils/i2c-tools/patches/100-linux_include.patch
 new file mode 100644
 index 0000000..addfc5b
 --- /dev/null

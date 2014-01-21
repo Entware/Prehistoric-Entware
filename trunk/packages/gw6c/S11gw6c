@@ -27,3 +27,6 @@ case "$1" in
 
     restart)
         $0 stop
+esac
+
+exit 0

@@ -1,6 +1,6 @@
 --- ../../../openwrt_trunk.orig/package/devel/binutils/Makefile
 +++ ../../../openwrt_trunk/package/devel/binutils/Makefile
-@@ -51,7 +51,7 @@
+@@ -60,7 +60,7 @@
  		--target=$(REAL_GNU_TARGET_NAME) \
  		--host=$(REAL_GNU_TARGET_NAME) \
  		--build=$(GNU_HOST_NAME) \
@@ -9,7 +9,7 @@
  		--disable-multilib \
  		--disable-werror \
  		--disable-nls \
-@@ -79,17 +79,17 @@
+@@ -88,17 +88,17 @@
  endef
  
  define Build/InstallDev
@@ -34,7 +34,7 @@
  endef
  
  define Build/Compile
-@@ -98,17 +98,16 @@
+@@ -107,17 +107,16 @@
  endef
  
  define Package/objdump/install

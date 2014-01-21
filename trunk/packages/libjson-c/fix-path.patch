@@ -1,6 +1,6 @@
---- ../../../openwrt_trunk/package/libs/libjson-c/Makefile.orig	2013-08-15 09:35:51.000000000 +0400
-+++ ../../../openwrt_trunk/package/libs/libjson-c/Makefile	2013-08-15 09:45:37.237561502 +0400
-@@ -53,24 +53,24 @@
+--- ../../../openwrt_trunk/package/libs/libjson-c/Makefile.orig	2014-01-20 16:35:23.000000000 +0400
++++ ../../../openwrt_trunk/package/libs/libjson-c/Makefile	2014-01-20 23:53:32.337838337 +0400
+@@ -53,25 +53,25 @@
  
  
  define Build/InstallDev
@@ -12,6 +12,7 @@
 -	$(CP) $(PKG_INSTALL_DIR)/usr/lib/libjson-c.{a,so*} $(1)/usr/lib/
 -	$(INSTALL_DIR) $(1)/usr/lib/pkgconfig
 -	$(CP) $(PKG_INSTALL_DIR)/usr/lib/pkgconfig/json-c.pc $(1)/usr/lib/pkgconfig/
+-	$(CP) $(PKG_INSTALL_DIR)/usr/lib/pkgconfig/json.pc $(1)/usr/lib/pkgconfig/
 +	$(INSTALL_DIR) $(1)/opt/include
 +	$(CP) $(PKG_INSTALL_DIR)/opt/include/json $(1)/opt/include/
 +	$(CP) $(PKG_INSTALL_DIR)/opt/include/json-c $(1)/opt/include/
@@ -20,6 +21,7 @@
 +	$(CP) $(PKG_INSTALL_DIR)/opt/lib/libjson-c.{a,so*} $(1)/opt/lib/
 +	$(INSTALL_DIR) $(1)/opt/lib/pkgconfig
 +	$(CP) $(PKG_INSTALL_DIR)/opt/lib/pkgconfig/json-c.pc $(1)/opt/lib/pkgconfig/
++	$(CP) $(PKG_INSTALL_DIR)/opt/lib/pkgconfig/json.pc $(1)/opt/lib/pkgconfig/
  endef
  
  define Package/libjson-c/install

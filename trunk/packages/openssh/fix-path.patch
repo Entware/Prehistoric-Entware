@@ -1,5 +1,5 @@
---- ../../../downloads/mipsel-hardfloat/openwrt_trunk-r38800/feeds/packages/net/openssh/Makefile	2013-11-14 10:01:15.855186159 +0400
-+++ ../../../openwrt_trunk/feeds/packages/net/openssh/Makefile	2013-11-14 16:35:44.134755576 +0400
+--- ../../../openwrt_trunk/feeds/packages/net/openssh/Makefile.orig	2014-01-20 16:35:30.494314463 +0400
++++ ../../../openwrt_trunk/feeds/packages/net/openssh/Makefile	2014-01-20 22:36:33.417918732 +0400
 @@ -56,7 +56,7 @@
  endef
  
@@ -43,9 +43,28 @@
  	--enable-shared \
  	--disable-static \
  	--disable-debug \
-@@ -182,59 +182,59 @@
+@@ -181,78 +181,60 @@
+ 		all install
  endef
  
+-define Package/openssh-client/preinst
+-#!/bin/sh
+-if [ -L $${IPKG_INSTROOT}/usr/bin/ssh ] && [ -L $${IPKG_INSTROOT}/usr/bin/scp ]; then
+-  rm -f $${IPKG_INSTROOT}/usr/bin/ssh $${IPKG_INSTROOT}/usr/bin/scp;
+-fi
+-exit 0
+-endef
+-
+-define Package/openssh-client/postrm
+-#!/bin/sh
+-rm -f $${IPKG_INSTROOT}/usr/bin/ssh $${IPKG_INSTROOT}/usr/bin/scp;
+-if [ -x $${IPKG_INSTROOT}/usr/sbin/dropbear ] ; then
+-  ln -s /usr/sbin/dropbear $${IPKG_INSTROOT}/usr/bin/ssh;
+-  ln -s /usr/sbin/dropbear $${IPKG_INSTROOT}/usr/bin/scp;
+-fi
+-exit 0
+-endef
+-
  define Package/openssh-moduli/install
 -	$(INSTALL_DIR) $(1)/etc/ssh
 -	$(INSTALL_DATA) $(PKG_INSTALL_DIR)/etc/ssh/moduli $(1)/etc/ssh/
@@ -134,7 +153,7 @@
  endef
  
  $(eval $(call BuildPackage,openssh-client))
-@@ -242,6 +242,6 @@
+@@ -260,6 +242,6 @@
  $(eval $(call BuildPackage,openssh-client-utils))
  $(eval $(call BuildPackage,openssh-keygen))
  $(eval $(call BuildPackage,openssh-server))

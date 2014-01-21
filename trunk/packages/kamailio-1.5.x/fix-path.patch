@@ -1,5 +1,5 @@
---- ../../../openwrt_trunk/feeds/telephony/net/kamailio-1.5.x/Makefile.orig	2013-10-12 19:13:03.855362805 +0400
-+++ ../../../openwrt_trunk/feeds/telephony/net/kamailio-1.5.x/Makefile	2013-10-12 19:21:40.583353412 +0400
+--- ../../../openwrt_trunk/feeds/telephony/net/kamailio-1.5.x/Makefile.orig	2014-01-20 16:36:16.006313693 +0400
++++ ../../../openwrt_trunk/feeds/telephony/net/kamailio-1.5.x/Makefile	2014-01-20 23:49:21.525835666 +0400
 @@ -57,8 +57,8 @@
  endef
  
@@ -37,11 +37,9 @@
  	exclude_modules="$(PKG_EXCL_MODULES)" \
  
  define Build/Compile
-@@ -100,9 +100,10 @@
- 		CC="$(TARGET_CC)" \
- 		ARCH="$(ARCH)"  \
+@@ -102,8 +102,8 @@
  		CFLAGS="$(TARGET_CFLAGS)" \
-+		LD_EXTRA_OPTS="$(TARGET_LDFLAGS)" \
+ 		LD_EXTRA_OPTS="$(TARGET_LDFLAGS)" \
  		ISSMP="no" \
 -		LOCALBASE="$(STAGING_DIR)/usr" \
 -		SYSBASE="$(STAGING_DIR)/usr" \
@@ -50,7 +48,7 @@
  		PCREDEFS:="$(TARGET_CPPFLAGS)" \
  		PCRELIBS:="$(TARGET_LDFLAGS)" \
  		CROSS_COMPILE=1 \
-@@ -113,42 +114,42 @@
+@@ -114,42 +114,42 @@
  endef
  
  define Package/kamailio/install
@@ -115,7 +113,7 @@
  endef
  
  define BuildPlugin
-@@ -159,9 +160,9 @@
+@@ -160,9 +160,9 @@
    endef
  
    define Package/kamailio-mod-$(1)/install

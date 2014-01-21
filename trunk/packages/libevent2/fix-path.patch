@@ -1,6 +1,6 @@
 --- ../../../openwrt_trunk.orig/package/libs/libevent2/Makefile
 +++ ../../../openwrt_trunk/package/libs/libevent2/Makefile
-@@ -115,38 +115,38 @@
+@@ -116,38 +116,38 @@
  	CFLAGS="$(TARGET_CFLAGS)"
  
  define Build/InstallDev

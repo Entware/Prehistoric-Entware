@@ -1,6 +1,6 @@
-diff -urx .svn ../../../downloads/mipsel-hardfloat/openwrt_trunk-r38800/package/utils/busybox/Makefile ../../../openwrt_trunk/package/utils/busybox/Makefile
---- ../../../downloads/mipsel-hardfloat/openwrt_trunk-r38800/package/utils/busybox/Makefile	2013-11-15 11:16:41.897529837 +0400
-+++ ../../../openwrt_trunk/package/utils/busybox/Makefile	2014-01-09 03:25:23.544514156 +0400
+diff -urx .svn ../../../downloads/mipsel-hardfloat/openwrt_trunk-r39354/package/utils/busybox/Makefile ../../../openwrt_trunk/package/utils/busybox/Makefile
+--- ../../../downloads/mipsel-hardfloat/openwrt_trunk-r39354/package/utils/busybox/Makefile	2014-01-20 16:36:36.614313258 +0400
++++ ../../../openwrt_trunk/package/utils/busybox/Makefile	2014-01-20 23:11:07.225887179 +0400
 @@ -9,7 +9,7 @@
  
  PKG_NAME:=busybox
@@ -10,25 +10,40 @@ diff -urx .svn ../../../downloads/mipsel-hardfloat/openwrt_trunk-r38800/package/
  PKG_FLAGS:=essential
  
  PKG_SOURCE:=$(PKG_NAME)-$(PKG_VERSION).tar.bz2
-@@ -99,20 +99,53 @@
+@@ -54,7 +54,7 @@
+ 
+ LDLIBS:=m crypt
+ ifdef CONFIG_BUSYBOX_CONFIG_FEATURE_MOUNT_NFS
+-  TARGET_CFLAGS += -I$(STAGING_DIR)/usr/include
++  TARGET_CFLAGS += -I$(STAGING_DIR)/opt/include
+   export LDFLAGS=$(TARGET_LDFLAGS)
+   LDLIBS += rpc
+ endif
+@@ -90,6 +90,7 @@
+ 		CROSS_COMPILE="$(TARGET_CROSS)" \
+ 		KBUILD_HAVE_NLS=no \
+ 		EXTRA_CFLAGS="$(TARGET_CFLAGS)" \
++		EXTRA_LDFLAGS="$(TARGET_LDFLAGS)" \
+ 		ARCH="$(ARCH)" \
+ 		SKIP_STRIP=y \
+ 		LDLIBS="$(LDLIBS)" \
+@@ -101,6 +102,7 @@
  		CC="$(TARGET_CC)" \
  		CROSS_COMPILE="$(TARGET_CROSS)" \
  		EXTRA_CFLAGS="$(TARGET_CFLAGS)" \
 +		EXTRA_LDFLAGS="$(TARGET_LDFLAGS)" \
  		ARCH="$(ARCH)" \
--		CONFIG_PREFIX="$(PKG_INSTALL_DIR)" \
-+		CONFIG_PREFIX="$(PKG_INSTALL_DIR)/opt" \
+ 		CONFIG_PREFIX="$(PKG_INSTALL_DIR)" \
  		LDLIBS="$(LDLIBS)" \
- 		$(BB_MAKE_VERBOSE) \
- 		install
+@@ -109,12 +111,44 @@
  endef
  
  define Package/busybox/install
 -	$(INSTALL_DIR) $(1)/etc/init.d
 -	$(CP) $(PKG_INSTALL_DIR)/* $(1)/
--	for tmp in $(init-y); do \
--		$(INSTALL_BIN) ./files/$$$$tmp $(1)/etc/init.d/$$$$tmp; \
--	done
+-	$(INSTALL_BIN) ./files/cron $(1)/etc/init.d/cron
+-	$(INSTALL_BIN) ./files/telnet $(1)/etc/init.d/telnet
+-	$(INSTALL_BIN) ./files/sysntpd $(1)/etc/init.d/sysntpd
 -	-rm -rf $(1)/lib64
 +	$(INSTALL_DIR) $(1)/opt/{bin,sbin}
 +	$(INSTALL_BIN) $(PKG_INSTALL_DIR)/opt/bin/busybox $(1)/opt/bin/
@@ -71,9 +86,9 @@ diff -urx .svn ../../../downloads/mipsel-hardfloat/openwrt_trunk-r38800/package/
  endef
  
  $(eval $(call BuildPackage,busybox))
-diff -urx .svn ../../../downloads/mipsel-hardfloat/openwrt_trunk-r38800/package/utils/busybox/patches/200-etc_crontabs.patch ../../../openwrt_trunk/package/utils/busybox/patches/200-etc_crontabs.patch
---- ../../../downloads/mipsel-hardfloat/openwrt_trunk-r38800/package/utils/busybox/patches/200-etc_crontabs.patch	2013-11-15 11:16:41.897529837 +0400
-+++ ../../../openwrt_trunk/package/utils/busybox/patches/200-etc_crontabs.patch	2013-11-15 11:17:03.337529446 +0400
+diff -urx .svn ../../../downloads/mipsel-hardfloat/openwrt_trunk-r39354/package/utils/busybox/patches/200-etc_crontabs.patch ../../../openwrt_trunk/package/utils/busybox/patches/200-etc_crontabs.patch
+--- ../../../downloads/mipsel-hardfloat/openwrt_trunk-r39354/package/utils/busybox/patches/200-etc_crontabs.patch	2014-01-20 16:36:36.610313259 +0400
++++ ../../../openwrt_trunk/package/utils/busybox/patches/200-etc_crontabs.patch	2014-01-20 16:36:57.998312867 +0400
 @@ -5,7 +5,7 @@
   
   #define TMPDIR          CONFIG_FEATURE_CROND_DIR

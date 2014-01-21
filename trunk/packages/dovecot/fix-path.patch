@@ -1,6 +1,6 @@
 --- ../../../downloads/openwrt_trunk-r37769/feeds/packages/mail/dovecot/Makefile	2013-08-15 09:37:03.013572156 +0400
 +++ ../../../openwrt_trunk/feeds/packages/mail/dovecot/Makefile	2013-08-15 15:50:26.089163888 +0400
-@@ -36,8 +36,8 @@
+@@ -38,8 +38,8 @@
  CONFIGURE_ARGS += \
  	--without-gssapi \
  	--without-pam \
@@ -11,7 +11,7 @@
  
  CONFIGURE_VARS += \
  	RPCGEN= \
-@@ -52,21 +52,23 @@
+@@ -54,21 +54,23 @@
  	lib_cv___va_copy=yes \
  	lib_cv_va_val_copy=yes
  
