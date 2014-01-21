@@ -28,6 +28,7 @@ xupnpd		r389
 
 Can't be upgraded (mostly due to old 2.6.22.19 kernel):
 castget @rtndev	1.1.0		new glib2 needed
+cjdns		0.5-20131009	node.js required
 glib2		2.26.1		because of old kernel
 gdb		7.3.1		due to gnu_v3_object_ctor_group() absence
 i2c-tools	3.1.0
@@ -35,4 +36,3 @@ libsoup		2.28.2
 libnl		2.0 (r33657)
 mpd		0.17.5		requires glib 2.28
 usbip		0.1.7		kernel specific
-zabbix (?)	1.6 (r28892)	due to old kernel, see https://support.zabbix.com/browse/ZBX-3395
