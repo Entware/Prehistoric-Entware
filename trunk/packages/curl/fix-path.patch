@@ -1,5 +1,5 @@
---- ../../../downloads/mipsel-hardfloat/openwrt_trunk-r39354/feeds/packages/libs/curl/Makefile	2014-01-20 16:36:36.554313260 +0400
-+++ ../../../openwrt_trunk/feeds/packages/libs/curl/Makefile	2014-01-21 23:22:32.136295741 +0400
+--- ../../../downloads/mipsel-hardfloat/openwrt_trunk-r39357/feeds/packages/libs/curl/Makefile	2014-01-23 09:52:40.384429236 +0400
++++ ../../../openwrt_trunk/feeds/packages/libs/curl/Makefile	2014-01-23 12:54:21.924232405 +0400
 @@ -8,8 +8,8 @@
  include $(TOPDIR)/rules.mk
  
@@ -7,7 +7,7 @@
 -PKG_VERSION:=7.33.0
 -PKG_RELEASE:=4
 +PKG_VERSION:=7.34.0
-+PKG_RELEASE:=1a
++PKG_RELEASE:=1b
  
  PKG_SOURCE:=$(PKG_NAME)-$(PKG_VERSION).tar.bz2
  PKG_SOURCE_URL:=http://curl.haxx.se/download/ \
