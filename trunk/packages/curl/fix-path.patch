@@ -1,5 +1,34 @@
---- ../../../downloads/mipsel-hardfloat/openwrt_trunk-r38784/feeds/packages/libs/curl/Makefile	2013-11-13 15:33:49.952396530 +0400
-+++ ../../../openwrt_trunk/feeds/packages/libs/curl/Makefile	2013-11-13 16:23:05.032350433 +0400
+--- ../../../downloads/mipsel-hardfloat/openwrt_trunk-r39354/feeds/packages/libs/curl/Makefile	2014-01-20 16:36:36.554313260 +0400
++++ ../../../openwrt_trunk/feeds/packages/libs/curl/Makefile	2014-01-21 23:22:32.136295741 +0400
+@@ -8,8 +8,8 @@
+ include $(TOPDIR)/rules.mk
+ 
+ PKG_NAME:=curl
+-PKG_VERSION:=7.33.0
+-PKG_RELEASE:=4
++PKG_VERSION:=7.34.0
++PKG_RELEASE:=1a
+ 
+ PKG_SOURCE:=$(PKG_NAME)-$(PKG_VERSION).tar.bz2
+ PKG_SOURCE_URL:=http://curl.haxx.se/download/ \
+@@ -18,7 +18,7 @@
+ 	ftp://ftp.planetmirror.com/pub/curl/ \
+ 	http://www.mirrormonster.com/curl/download/ \
+ 	http://curl.mirrors.cyberservers.net/download/
+-PKG_MD5SUM:=57409d6bf0bd97053b8378dbe0cadcef
++PKG_MD5SUM:=88491df2bb32e9146e776ae6ac2f8327
+ 
+ PKG_LICENSE:=MIT
+ PKG_LICENSE_FILES:=COPYING
+@@ -75,7 +75,7 @@
+   $(call Package/curl/Default)
+   SECTION:=libs
+   CATEGORY:=Libraries
+-  DEPENDS:=+LIBCURL_POLARSSL:libpolarssl +LIBCURL_CYASSL:libcyassl +LIBCURL_AXTLS:libaxtls +LIBCURL_OPENSSL:libopenssl +LIBCURL_GNUTLS:libgnutls +LIBCURL_ZLIB:zlib +LIBCURL_THREADED_RESOLVER:libpthread
++  DEPENDS:=+LIBCURL_POLARSSL:libpolarssl +LIBCURL_CYASSL:libcyassl +LIBCURL_AXTLS:libaxtls +LIBCURL_OPENSSL:libopenssl +LIBCURL_GNUTLS:libgnutls +LIBCURL_ZLIB:zlib +LIBCURL_THREADED_RESOLVER:libpthread +librtmp
+   TITLE:=A client-side URL transfer library using $(if $(CONFIG_LIBCURL_POLARSSL),PolarSSL)$(if $(CONFIG_LIBCURL_OPENSSL),OpenSSL)$(if $(CONFIG_LIBCURL_GNUTLS),GNUTLS)$(if $(CONFIG_LIBCURL_NOSSL),no SSL)
+   MENU:=1
+ endef
 @@ -102,22 +102,22 @@
  	--without-nss \
  	--without-libssh2 \
@@ -7,8 +36,9 @@
 -	$(if $(CONFIG_LIBCURL_AXTLS),--with-axtls="$(STAGING_DIR)/usr",--without-axtls) \
 +	$(if $(CONFIG_LIBCURL_AXTLS),--with-axtls="$(STAGING_DIR)/opt",--without-axtls) \
  	$(if $(CONFIG_LIBCURL_COOKIES),--enable,--disable)-cookies \
- 	$(if $(CONFIG_LIBCURL_CRYPTO-AUTH),--enable,--disable)-crypto-auth \
+-	$(if $(CONFIG_LIBCURL_CRYPTO-AUTH),--enable,--disable)-crypto-auth \
 -	$(if $(CONFIG_LIBCURL_CYASSL),--with-cyassl="$(STAGING_DIR)/usr",--without-cyassl) \
++	$(if $(CONFIG_LIBCURL_CRYPTO_AUTH),--enable,--disable)-crypto-auth \
 +	$(if $(CONFIG_LIBCURL_CYASSL),--with-cyassl="$(STAGING_DIR)/opt",--without-cyassl) \
  	$(if $(CONFIG_LIBCURL_DICT),--enable,--disable)-dict \
  	$(if $(CONFIG_LIBCURL_FILE),--enable,--disable)-file \
@@ -20,9 +50,10 @@
  	$(if $(CONFIG_LIBCURL_IMAP),--enable,--disable)-imap \
  	$(if $(CONFIG_LIBCURL_LDAP),--enable,--disable)-ldap \
  	$(if $(CONFIG_LIBCURL_LDAPS),--enable,--disable)-ldaps \
- 	$(if $(CONFIG_LIBCURL_LIBCURL-OPTION),--enable,--disable)-libcurl-option \
+-	$(if $(CONFIG_LIBCURL_LIBCURL-OPTION),--enable,--disable)-libcurl-option \
 -	$(if $(CONFIG_LIBCURL_OPENSSL),--with-ssl="$(STAGING_DIR)/usr",--without-ssl) \
 -	$(if $(CONFIG_LIBCURL_POLARSSL),--with-polarssl="$(STAGING_DIR)/usr",--without-polarssl) \
++	$(if $(CONFIG_LIBCURL_LIBCURL_OPTION),--enable,--disable)-libcurl-option \
 +	$(if $(CONFIG_LIBCURL_OPENSSL),--with-ssl="$(STAGING_DIR)/opt",--without-ssl) \
 +	$(if $(CONFIG_LIBCURL_POLARSSL),--with-polarssl="$(STAGING_DIR)/opt",--without-polarssl) \
  	$(if $(CONFIG_LIBCURL_POP3),--enable,--disable)-pop3 \

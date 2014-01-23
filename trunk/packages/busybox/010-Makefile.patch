@@ -1,16 +1,16 @@
-diff -urx .svn ../../../downloads/mipsel-hardfloat/openwrt_trunk-r39354/package/utils/busybox/Makefile ../../../openwrt_trunk/package/utils/busybox/Makefile
 --- ../../../downloads/mipsel-hardfloat/openwrt_trunk-r39354/package/utils/busybox/Makefile	2014-01-20 16:36:36.614313258 +0400
-+++ ../../../openwrt_trunk/package/utils/busybox/Makefile	2014-01-20 23:11:07.225887179 +0400
-@@ -9,7 +9,7 @@
++++ ../../../openwrt_trunk/package/utils/busybox/Makefile	2014-01-21 22:05:32.412376023 +0400
+@@ -9,8 +9,7 @@
  
  PKG_NAME:=busybox
  PKG_VERSION:=1.19.4
 -PKG_RELEASE:=7
+-PKG_FLAGS:=essential
 +PKG_RELEASE:=7a
- PKG_FLAGS:=essential
  
  PKG_SOURCE:=$(PKG_NAME)-$(PKG_VERSION).tar.bz2
-@@ -54,7 +54,7 @@
+ PKG_SOURCE_URL:=http://www.busybox.net/downloads \
+@@ -54,7 +53,7 @@
  
  LDLIBS:=m crypt
  ifdef CONFIG_BUSYBOX_CONFIG_FEATURE_MOUNT_NFS
@@ -19,7 +19,7 @@ diff -urx .svn ../../../downloads/mipsel-hardfloat/openwrt_trunk-r39354/package/
    export LDFLAGS=$(TARGET_LDFLAGS)
    LDLIBS += rpc
  endif
-@@ -90,6 +90,7 @@
+@@ -90,6 +89,7 @@
  		CROSS_COMPILE="$(TARGET_CROSS)" \
  		KBUILD_HAVE_NLS=no \
  		EXTRA_CFLAGS="$(TARGET_CFLAGS)" \
@@ -27,15 +27,17 @@ diff -urx .svn ../../../downloads/mipsel-hardfloat/openwrt_trunk-r39354/package/
  		ARCH="$(ARCH)" \
  		SKIP_STRIP=y \
  		LDLIBS="$(LDLIBS)" \
-@@ -101,6 +102,7 @@
+@@ -101,20 +101,53 @@
  		CC="$(TARGET_CC)" \
  		CROSS_COMPILE="$(TARGET_CROSS)" \
  		EXTRA_CFLAGS="$(TARGET_CFLAGS)" \
 +		EXTRA_LDFLAGS="$(TARGET_LDFLAGS)" \
  		ARCH="$(ARCH)" \
- 		CONFIG_PREFIX="$(PKG_INSTALL_DIR)" \
+-		CONFIG_PREFIX="$(PKG_INSTALL_DIR)" \
++		CONFIG_PREFIX="$(PKG_INSTALL_DIR)/opt" \
  		LDLIBS="$(LDLIBS)" \
-@@ -109,12 +111,44 @@
+ 		$(BB_MAKE_VERBOSE) \
+ 		install
  endef
  
  define Package/busybox/install
@@ -86,24 +88,3 @@ diff -urx .svn ../../../downloads/mipsel-hardfloat/openwrt_trunk-r39354/package/
  endef
  
  $(eval $(call BuildPackage,busybox))
-diff -urx .svn ../../../downloads/mipsel-hardfloat/openwrt_trunk-r39354/package/utils/busybox/patches/200-etc_crontabs.patch ../../../openwrt_trunk/package/utils/busybox/patches/200-etc_crontabs.patch
---- ../../../downloads/mipsel-hardfloat/openwrt_trunk-r39354/package/utils/busybox/patches/200-etc_crontabs.patch	2014-01-20 16:36:36.610313259 +0400
-+++ ../../../openwrt_trunk/package/utils/busybox/patches/200-etc_crontabs.patch	2014-01-20 16:36:57.998312867 +0400
-@@ -5,7 +5,7 @@
-  
-  #define TMPDIR          CONFIG_FEATURE_CROND_DIR
- -#define CRONTABS        CONFIG_FEATURE_CROND_DIR "/crontabs"
--+#define CRONTABS        "/etc/crontabs"
-++#define CRONTABS        "/opt/etc/crontabs"
-  #ifndef SENDMAIL
-  # define SENDMAIL       "sendmail"
-  #endif
-@@ -16,7 +16,7 @@
-  #include "libbb.h"
-  
- -#define CRONTABS        CONFIG_FEATURE_CROND_DIR "/crontabs"
--+#define CRONTABS        "/etc/crontabs"
-++#define CRONTABS        "/opt/etc/crontabs"
-  #ifndef CRONUPDATE
-  #define CRONUPDATE      "cron.update"
-  #endif

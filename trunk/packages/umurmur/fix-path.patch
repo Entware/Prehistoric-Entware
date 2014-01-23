@@ -1,17 +1,17 @@
---- ../../../downloads/openwrt_trunk-r37769/feeds/packages/net/umurmur/Makefile	2013-08-15 09:37:02.973572159 +0400
-+++ ../../../openwrt_trunk/feeds/packages/net/umurmur/Makefile	2013-08-21 09:18:23.300144908 +0400
+--- ../../../downloads/mipsel-hardfloat/openwrt_trunk-r39354/feeds/packages/net/umurmur/Makefile	2014-01-20 16:36:36.442313262 +0400
++++ ../../../openwrt_trunk/feeds/packages/net/umurmur/Makefile	2014-01-23 09:40:10.784442958 +0400
 @@ -7,12 +7,12 @@
  include $(TOPDIR)/rules.mk
  
  PKG_NAME:=umurmur
 -PKG_VERSION:=0.2.10
-+PKG_VERSION:=0.2.13
++PKG_VERSION:=0.2.14
  PKG_RELEASE:=1
  
  PKG_SOURCE:=$(PKG_NAME)-$(PKG_VERSION).tar.gz
  PKG_SOURCE_URL:=http://umurmur.googlecode.com/files
 -PKG_MD5SUM:=4d71a699bddce3df0996b5dd0a279b47
-+PKG_MD5SUM:=04d0ea7a90b7858c16df26317b318bf4
++PKG_MD5SUM:=e22121b4b91f4c9de43f858f6defa0b0
  
  PKG_BUILD_DIR:=$(BUILD_DIR)/$(PKG_NAME)-$(BUILD_VARIANT)/$(PKG_NAME)-$(PKG_VERSION)
  

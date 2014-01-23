@@ -1,5 +1,5 @@
---- ../../../downloads/openwrt_trunk-r37769/feeds/packages/multimedia/imagemagick/Makefile	2013-08-15 09:37:02.733572162 +0400
-+++ ../../../openwrt_trunk/feeds/packages/multimedia/imagemagick/Makefile	2013-08-17 20:52:23.249684770 +0400
+--- ../../../downloads/mipsel-hardfloat/openwrt_trunk-r39354/feeds/packages/multimedia/imagemagick/Makefile	2014-01-20 16:36:36.558313259 +0400
++++ ../../../openwrt_trunk/feeds/packages/multimedia/imagemagick/Makefile	2014-01-22 20:23:13.169315044 +0400
 @@ -34,7 +34,7 @@
  
  define Package/imagemagick
@@ -16,7 +16,7 @@
 -	--without-magick-plus-plus
 +	--without-magick-plus-plus \
 +	--without-lcms2 \
-+
++	--without-jbig \
  
  define Build/Compile
  	$(MAKE) -C $(PKG_BUILD_DIR) \
