@@ -1,0 +1,43 @@
+--- ../../../downloads/mipsel-hardfloat/openwrt_trunk-r39357/feeds/packages/libs/libpam/Makefile	2014-01-23 09:52:40.380429236 +0400
++++ ../../../openwrt_trunk/feeds/packages/libs/libpam/Makefile	2014-01-24 17:06:37.106380402 +0400
+@@ -45,26 +45,27 @@
+ 		--disable-nls \
+ 		--disable-rpath \
+ 		--enable-db=no \
++		--enable-read-both-confs \
+ 	)
+ endef
+ 
+ define Build/InstallDev
+-	$(INSTALL_DIR) $(1)/lib
+-	$(INSTALL_DIR) $(1)/usr/include
+-	$(CP) $(PKG_INSTALL_DIR)/lib/* $(1)/lib/
+-	$(CP) $(PKG_INSTALL_DIR)/usr/include/* $(1)/usr/include
++	$(INSTALL_DIR) $(1)/opt/lib
++	$(INSTALL_DIR) $(1)/opt/include
++	$(CP) $(PKG_INSTALL_DIR)/opt/lib/* $(1)/opt/lib/
++	$(CP) $(PKG_INSTALL_DIR)/opt/include/* $(1)/opt/include
+ endef
+ 
+ define Package/libpam/install
+-	$(INSTALL_DIR) $(1)/lib $(1)/lib/security $(1)/lib/security/pam_filter 
+-	$(INSTALL_DIR) $(1)/etc $(1)/etc/pam.d
+-	$(INSTALL_DIR) $(1)/usr/sbin
+-	$(CP) $(PKG_INSTALL_DIR)/lib/*.so* $(1)/lib/
+-	$(CP) $(PKG_INSTALL_DIR)/lib/security/*.so* $(1)/lib/security/
+-	$(CP) $(PKG_INSTALL_DIR)/lib/security/pam_filter/* $(1)/lib/security/pam_filter/
+-	$(CP) $(PKG_INSTALL_DIR)/etc/* $(1)/etc/
+-	$(CP) ./files/* $(1)/etc/
+-	$(INSTALL_BIN) $(PKG_INSTALL_DIR)/usr/sbin/* $(1)/usr/sbin/
++	$(INSTALL_DIR) $(1)/opt/lib $(1)/opt/lib/security $(1)/opt/lib/security/pam_filter 
++	$(INSTALL_DIR) $(1)/opt/etc $(1)/opt/etc/pam.d
++	$(INSTALL_DIR) $(1)/opt/sbin
++	$(CP) $(PKG_INSTALL_DIR)/opt/lib/*.so* $(1)/opt/lib/
++	$(CP) $(PKG_INSTALL_DIR)/opt/lib/security/*.so* $(1)/opt/lib/security/
++	$(CP) $(PKG_INSTALL_DIR)/opt/lib/security/pam_filter/* $(1)/opt/lib/security/pam_filter/
++	$(CP) $(PKG_INSTALL_DIR)/opt/etc/* $(1)/opt/etc/
++	$(CP) ./files/* $(1)/opt/etc/
++	$(INSTALL_BIN) $(PKG_INSTALL_DIR)/opt/sbin/* $(1)/opt/sbin/
+ endef
+ 
+ $(eval $(call BuildPackage,libpam))
