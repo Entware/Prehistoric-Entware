@@ -1,0 +1,19 @@
+--- ../../../openwrt_trunk/feeds/packages/net/mini_snmpd/Makefile	2014-01-26 13:47:38.199886438 +0400
++++ ../../../openwrt_trunk/feeds/packages/net/mini_snmpd/Makefile	2014-01-26 19:50:18.806719807 +0400
+@@ -46,12 +46,10 @@
+ endef
+ 
+ define Package/mini-snmpd/install
+-	$(INSTALL_DIR) $(1)/usr/bin
+-	$(CP) $(PKG_INSTALL_DIR)/sbin/mini_snmpd $(1)/usr/bin/
+-	$(INSTALL_DIR) $(1)/etc/config
+-	$(INSTALL_CONF) ./files/mini_snmpd.config $(1)/etc/config/mini_snmpd
+-	$(INSTALL_DIR) $(1)/etc/init.d
+-	$(INSTALL_BIN) ./files/mini_snmpd.init $(1)/etc/init.d/mini_snmpd
++	$(INSTALL_DIR) $(1)/opt/bin
++	$(CP) $(PKG_INSTALL_DIR)/sbin/mini_snmpd $(1)/opt/bin/
++	$(INSTALL_DIR) $(1)/opt/etc/init.d
++	$(INSTALL_BIN) ./files/S50mini_snmpd $(1)/opt/etc/init.d/S50mini_snmpd
+ endef
+ 
+ define Package/mini-snmpd/conffiles

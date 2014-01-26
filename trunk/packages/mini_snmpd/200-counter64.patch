@@ -1,0 +1,994 @@
+--- a/linux.c	2008-10-08 19:48:24.000000000 +0200
++++ b/linux.c	2013-05-28 15:43:14.000000000 +0200
+@@ -41,11 +41,11 @@
+ 
+ 
+ 
+-unsigned int get_process_uptime(void)
++uint64_t get_process_uptime(void)
+ {
+ 	/* We need the uptime in 1/100 seconds, so we can't use sysinfo() */
+-	static unsigned int uptime_start = 0;
+-	unsigned int uptime_now;
++	static uint64_t uptime_start = 0;
++	uint64_t uptime_now;
+ 
+ 	uptime_now = get_system_uptime();
+ 	if (uptime_start == 0) {
+@@ -54,13 +54,13 @@
+ 	return uptime_now - uptime_start;
+ }
+ 
+-unsigned int get_system_uptime(void)
++uint64_t get_system_uptime(void)
+ {
+ 	/* We need the uptime in 1/100 seconds, so we can't use sysinfo() */
+ 	char buffer[128];
+ 
+ 	if (read_file("/proc/uptime", buffer, sizeof (buffer)) != -1) {
+-		return (unsigned int)(atof(buffer) * 100);
++		return (uint64_t)(atof(buffer) * 100);
+ 	} else {
+ 		return -1;
+ 	}
+@@ -105,7 +105,7 @@
+ void get_cpuinfo(cpuinfo_t *cpuinfo)
+ {
+ 	char buffer[BUFSIZ];
+-	unsigned int values[4];
++	uint64_t values[4];
+ 
+ 	if (read_file("/proc/stat", buffer, sizeof (buffer)) != -1) {
+ 		read_values(buffer, "cpu", values, 4);
+@@ -153,7 +153,7 @@
+ 	struct ifreq ifreq;
+ 	char buffer[BUFSIZ];
+ 	char name[16];
+-	unsigned int values[16];
++	uint64_t values[16];
+ 	int fd;
+ 	int i;
+ 
+--- a/mib.c	2013-05-28 18:01:04.000000000 +0200
++++ b/mib.c	2013-05-28 19:44:07.000000000 +0200
+@@ -43,8 +43,8 @@
+  */
+ 
+ static const oid_t m_system_oid		= { { 1, 3, 6, 1, 2, 1, 1			}, 7, 8  };
+-static const oid_t m_if_1_oid		= { { 1, 3, 6, 1, 2, 1, 2			}, 7, 8  };
+-static const oid_t m_if_2_oid		= { { 1, 3, 6, 1, 2, 1, 2, 2, 1		}, 9, 10 };
++static const oid_t m_if_1_oid		= { { 1, 3, 6, 1, 2, 1, 31,	1,1,1		}, 6, 7  };
++static const oid_t m_if_2_oid		= { { 1, 3, 6, 1, 2, 1, 31, 1,1,1		}, 10, 11 };
+ static const oid_t m_host_oid		= { { 1, 3, 6, 1, 2, 1, 25, 1		}, 8, 9  };
+ static const oid_t m_memory_oid		= { { 1, 3, 6, 1, 4, 1, 2021, 4,	}, 8, 10 };
+ static const oid_t m_disk_oid		= { { 1, 3, 6, 1, 4, 1, 2021, 9, 1	}, 9, 11 };
+@@ -62,12 +62,18 @@
+  * Helper functions for encoding values
+  */
+ 
+-static int encode_snmp_element_integer(value_t *value, int integer_value)
++static int encode_snmp_element_integer(value_t *value, int64_t integer_value)
+ {
+ 	unsigned char *buffer;
+-	int length;
+-
++	int length = 8;
++    /*int64_t m;
++    
++    for(m = 0xFFLL << 56; m; m >>= 8, length--)
++        if(integer_value & m)
++            break;
++      */      
+ 	buffer = value->data.buffer;
++    /*
+ 	if (integer_value < -8388608 || integer_value > 8388607) {
+ 		length = 4;
+ 	} else if (integer_value < -32768 || integer_value > 32767) {
+@@ -77,10 +83,12 @@
+ 	} else {
+ 		length = 1;
+ 	}
++    */
++    
+ 	*buffer++ = BER_TYPE_INTEGER;
+ 	*buffer++ = length;
+ 	while (length--) {
+-		*buffer++ = ((unsigned int)integer_value >> (8 * length)) & 0xFF;
++		*buffer++ = ((uint64_t)integer_value >> (8 * length)) & 0xFF;
+ 	}
+ 	value->data.encoded_length = buffer - value->data.buffer;
+ 	return 0;
+@@ -177,25 +185,23 @@
+ 	return 0;
+ }
+ 
+-static int encode_snmp_element_unsigned(value_t *value, int type, unsigned int ticks_value)
++static int encode_snmp_element_unsigned(value_t *value, int type, uint64_t ticks_value)
+ {
++   
+ 	unsigned char *buffer;
+-	int length;
+-
++	int length = 8;
++    
++    uint64_t m;
++    for(m = 0xFFULL << 56; m; m >>= 8, length--)
++        if(ticks_value & m)
++            break;
++   
+ 	buffer = value->data.buffer;
+-	if (ticks_value & 0xFF000000) {
+-		length = 4;
+-	} else if (ticks_value & 0x00FF0000) {
+-		length = 3;
+-	} else if (ticks_value & 0x0000FF00) {
+-		length = 2;
+-	} else {
+-		length = 1;
+-	}
++
+ 	*buffer++ = type;
+ 	*buffer++ = length;
+ 	while (length--) {
+-		*buffer++ = (ticks_value >> (8 * length)) & 0xFF;
++		*buffer++ = (ticks_value >> (8 * length)) & 0xFFULL;
+ 	}
+ 	value->data.encoded_length = buffer - value->data.buffer;
+ 	return 0;
+@@ -289,6 +295,7 @@
+ 	 * - integers are assumed to be dynamic and don't have more than 32 bits
+ 	 */
+ 	switch (type) {
++        /*
+ 		case BER_TYPE_INTEGER:
+ 			value->data.max_length = sizeof (int) + 2;
+ 			value->data.encoded_length = 0;
+@@ -298,6 +305,7 @@
+ 				return -1;
+ 			}
+ 			break;
++            */
+ 		case BER_TYPE_OCTET_STRING:
+ 			value->data.max_length = strlen((const char *)default_value) + 4;
+ 			value->data.encoded_length = 0;
+@@ -318,17 +326,19 @@
+ 				return -1;
+ 			}
+ 			break;
++/*
+ 		case BER_TYPE_COUNTER:
+ 		case BER_TYPE_GAUGE:
+ 		case BER_TYPE_TIME_TICKS:
+-			value->data.max_length = sizeof (unsigned int) + 2;
++			value->data.max_length = sizeof (uint64_t) + 2;
+ 			value->data.encoded_length = 0;
+ 			value->data.buffer = malloc(value->data.max_length);
+ 			memset(value->data.buffer, 0, value->data.max_length);
+-			if (encode_snmp_element_unsigned(value, type, (unsigned int)default_value) == -1) {
++			if (encode_snmp_element_unsigned(value, type, (uint64_t)default_value) == -1) {
+ 				return -1;
+ 			}
+ 			break;
++*/
+ 		default:
+ 			lprintf(LOG_ERR, "could not create MIB entry '%s.%d.%d': unsupported type %d\n",
+ 				oid_ntoa(prefix), column, row, type);
+@@ -338,6 +348,126 @@
+ 	return 0;
+ }
+ 
++
++
++
++static int mib_build_entry_integer(const oid_t *prefix, int column, int row, int type,
++	const int64_t default_value)
++{
++	value_t *value;
++	int length;
++	int i;
++
++	/* Create a new entry in the MIB table */
++	if (g_mib_length < MAX_NR_VALUES) {
++		value = &g_mib[g_mib_length++];
++	} else {
++		lprintf(LOG_ERR, "could not create MIB entry '%s.%d.%d': table overflow\n",
++			oid_ntoa(prefix), column, row);
++		return -1;
++	}
++
++	/* Create the OID from the prefix, the column and the row */
++	memcpy(&value->oid, prefix, sizeof (value->oid));
++	if (value->oid.subid_list_length < MAX_NR_SUBIDS) {
++		value->oid.subid_list[value->oid.subid_list_length++] = column;
++	} else {
++		lprintf(LOG_ERR, "could not create MIB entry '%s.%d.%d': oid overflow\n",
++			oid_ntoa(prefix), column, row);
++		return -1;
++	}
++	if (value->oid.subid_list_length < MAX_NR_SUBIDS) {
++		value->oid.subid_list[value->oid.subid_list_length++] = row;
++	} else {
++		lprintf(LOG_ERR, "could not create MIB entry '%s.%d.%d': oid overflow\n",
++			oid_ntoa(prefix), column, row);
++		return -1;
++	}
++
++	/* Calculate the encoded length of the created OID (note: first the length
++	 * of the subid list, then the length of the length/type header!)
++	 */
++	length = 1;
++	for (i = 2; i < value->oid.subid_list_length; i++) {
++		if (value->oid.subid_list[i] >= (1 << 28)) {
++			length += 5;
++		} else if (value->oid.subid_list[i] >= (1 << 21)) {
++			length += 4;
++		} else if (value->oid.subid_list[i] >= (1 << 14)) {
++			length += 3;
++		} else if (value->oid.subid_list[i] >= (1 << 7)) {
++			length += 2;
++		} else {
++			length += 1;
++		}
++	}
++	if (length > 0xFFFF) {
++		lprintf(LOG_ERR, "could not encode '%s': oid overflow\n", oid_ntoa(&value->oid));
++		return -1;
++	} else if (length > 0xFF) {
++		length += 4;
++	} else if (length > 0x7F) {
++		length += 3;
++	} else {
++		length += 2;
++	}
++	value->oid.encoded_length = length;
++
++	/* Paranoia check against invalid default parameter (null pointer) */
++	switch (type) {
++		case BER_TYPE_OCTET_STRING:
++		case BER_TYPE_OID:
++            /*
++			if (default_value == NULL) {
++				lprintf(LOG_ERR, "could not create MIB entry '%s.%d.%d': invalid default value\n",
++					oid_ntoa(prefix), column, row);
++				return -1;
++			}*/
++            return -1;
++			break;
++		default:
++			break;
++	}
++
++	/* Create a data buffer for the value depending on the type:
++	 *
++	 * - strings and oids are assumed to be static or have the maximum allowed length
++	 * - integers are assumed to be dynamic and don't have more than 32 bits
++	 */
++	switch (type) {
++        
++		case BER_TYPE_INTEGER:
++			value->data.max_length = sizeof (int64_t) + 2;
++			value->data.encoded_length = 0;
++			value->data.buffer = malloc(value->data.max_length);
++			memset(value->data.buffer, 0, value->data.max_length);
++			if (encode_snmp_element_integer(value, (int64_t)default_value) == -1) {
++				return -1;
++			}
++			break;
++        
++		case BER_TYPE_COUNTER:
++		case BER_TYPE_GAUGE:
++		case BER_TYPE_TIME_TICKS:
++			value->data.max_length = sizeof (uint64_t) + 2;
++			value->data.encoded_length = 0;
++			value->data.buffer = malloc(value->data.max_length);
++			memset(value->data.buffer, 0, value->data.max_length);
++			if (encode_snmp_element_unsigned(value, type, (uint64_t)default_value) == -1) {
++				return -1;
++			}
++			break;
++
++		default:
++			lprintf(LOG_ERR, "could not create MIB entry '%s.%d.%d': unsupported type %d\n",
++				oid_ntoa(prefix), column, row, type);
++			return -1;
++	}
++
++	return 0;
++}
++
++
+ static int mib_build_entries(const oid_t *prefix, int column, int row_from,
+ 	int row_to, int type, const void *default_value)
+ {
+@@ -351,6 +481,21 @@
+ 	return 0;
+ }
+ 
++
++static int mib_build_entries_integer(const oid_t *prefix, int column, int row_from,
++	int row_to, int type, const int64_t default_value)
++{
++	int row;
++
++	for (row = row_from; row <= row_to; row++) {
++		if (mib_build_entry_integer(prefix, column, row, type, default_value) == -1) {
++			return -1;
++		}
++	}
++	return 0;
++}
++
++
+ static int mib_update_entry(const oid_t *prefix, int column, int row,
+ 	int *pos, int type, const void *new_value)
+ {
+@@ -407,11 +552,108 @@
+ 	 * the MIB was built!
+ 	 */
+ 	switch (type) {
++    /*
+ 		case BER_TYPE_INTEGER:
+-			if (encode_snmp_element_integer(&g_mib[*pos], (int)new_value) == -1) {
++			if (encode_snmp_element_integer(&g_mib[*pos], (int64_t)new_value) == -1) {
++				return -1;
++			}*/
++            
++			break;
++		case BER_TYPE_OCTET_STRING:
++			if (encode_snmp_element_string(&g_mib[*pos], (const char *)new_value) == -1) {
++				return -1;
++			}
++			break;
++		case BER_TYPE_OID:
++			if (encode_snmp_element_oid(&g_mib[*pos], oid_aton((const char *)new_value)) == -1) {
+ 				return -1;
+ 			}
+ 			break;
++        /*
++		case BER_TYPE_COUNTER:
++		case BER_TYPE_GAUGE:
++		case BER_TYPE_TIME_TICKS:
++			if (encode_snmp_element_unsigned(&g_mib[*pos], type, (uint64_t)new_value) == -1) {
++				return -1;
++			}
++			break;
++        */
++		default:
++			lprintf(LOG_ERR, "could not update MIB entry '%s.%d.%d': unsupported type %d\n",
++				oid_ntoa(prefix), column, row, type);
++			return -1;
++	}
++
++	return 0;
++}
++
++
++static int mib_update_entry_integer(const oid_t *prefix, int column, int row,
++	int *pos, int type, const int64_t new_value)
++{
++	oid_t oid;
++
++	/* Create the OID from the prefix, the column and the row */
++	memcpy(&oid, prefix, sizeof (oid));
++	if (oid.subid_list_length < MAX_NR_SUBIDS) {
++		oid.subid_list[oid.subid_list_length++] = column;
++	} else {
++		lprintf(LOG_ERR, "could not update MIB entry '%s.%d.%d': oid overflow\n",
++			oid_ntoa(prefix), column, row);
++		return -1;
++	}
++	if (oid.subid_list_length < MAX_NR_SUBIDS) {
++		oid.subid_list[oid.subid_list_length++] = row;
++	} else {
++		lprintf(LOG_ERR, "could not update MIB entry '%s.%d.%d': oid overflow\n",
++			oid_ntoa(prefix), column, row);
++		return -1;
++	}
++
++	/* Search the the MIB for the given OID beginning at the given position */
++	while (*pos < g_mib_length) {
++		if (g_mib[*pos].oid.subid_list_length == oid.subid_list_length
++			&& !memcmp(g_mib[*pos].oid.subid_list, oid.subid_list,
++				oid.subid_list_length * sizeof (oid.subid_list[0]))) {
++			break;
++		}
++		*pos = *pos + 1;
++	}
++	if (*pos >= g_mib_length) {
++		lprintf(LOG_ERR, "could not update MIB entry '%s.%d.%d': oid not found\n",
++			oid_ntoa(prefix), column, row);
++		return -1;
++	}
++
++	/* Paranoia check against invalid value parameter (null pointer) */
++	switch (type) {
++		case BER_TYPE_OCTET_STRING:
++		case BER_TYPE_OID:
++        /*
++			if (new_value == NULL) {
++				lprintf(LOG_ERR, "could not update MIB entry '%s.%d.%d': invalid default value\n",
++					oid_ntoa(prefix), column, row);
++				return -1;
++			}
++            */
++            return -1;
++			break;
++		default:
++			break;
++	}
++
++	/* Update the data buffer for the value depending on the type. Note that we
++	 * assume the buffer was allocated to hold the maximum possible value when
++	 * the MIB was built!
++	 */
++	switch (type) {
++        
++		case BER_TYPE_INTEGER:
++			if (encode_snmp_element_integer(&g_mib[*pos], (int64_t)new_value) == -1) {
++				return -1;
++			}
++			break;
++            /*
+ 		case BER_TYPE_OCTET_STRING:
+ 			if (encode_snmp_element_string(&g_mib[*pos], (const char *)new_value) == -1) {
+ 				return -1;
+@@ -422,10 +664,11 @@
+ 				return -1;
+ 			}
+ 			break;
++        */
+ 		case BER_TYPE_COUNTER:
+ 		case BER_TYPE_GAUGE:
+ 		case BER_TYPE_TIME_TICKS:
+-			if (encode_snmp_element_unsigned(&g_mib[*pos], type, (unsigned int)new_value) == -1) {
++			if (encode_snmp_element_unsigned(&g_mib[*pos], type, (uint64_t)new_value) == -1) {
+ 				return -1;
+ 			}
+ 			break;
+@@ -483,7 +726,7 @@
+ 	 */
+ 	if (mib_build_entry(&m_system_oid, 1, 0, BER_TYPE_OCTET_STRING, g_description) == -1
+ 		|| mib_build_entry(&m_system_oid, 2, 0, BER_TYPE_OID, g_vendor) == -1
+-		|| mib_build_entry(&m_system_oid, 3, 0, BER_TYPE_TIME_TICKS, (const void *)0) == -1
++		|| mib_build_entry_integer(&m_system_oid, 3, 0, BER_TYPE_TIME_TICKS, 0) == -1
+ 		|| mib_build_entry(&m_system_oid, 4, 0, BER_TYPE_OCTET_STRING, g_contact) == -1
+ 		|| mib_build_entry(&m_system_oid, 5, 0, BER_TYPE_OCTET_STRING, hostname) == -1
+ 		|| mib_build_entry(&m_system_oid, 6, 0, BER_TYPE_OCTET_STRING, g_location) == -1) {
+@@ -494,11 +737,35 @@
+ 	 * Caution: on changes, adapt the corresponding mib_update() section too!
+ 	 */
+ 	if (g_interface_list_length > 0) {
+-		if (mib_build_entry(&m_if_1_oid, 1, 0, BER_TYPE_INTEGER, (const void *)g_interface_list_length) == -1) {
++        
++		if (mib_build_entry_integer(&m_if_1_oid, 1, 0, BER_TYPE_INTEGER, g_interface_list_length) == -1) {
++			return -1;
++		}
++        /*/
++        
++        for (i = 0; i < g_interface_list_length; i++) {
++            if (mib_build_entry(&m_if_2_oid, 1, i + 1, BER_TYPE_INTEGER, (const void *)(i + 1)) == -1) {
++                    return -1;
++            }
++        }
++        */
++		for (i = 0; i < g_interface_list_length; i++) {
++			if (mib_build_entry(&m_if_2_oid, 1, i + 1, BER_TYPE_OCTET_STRING, g_interface_list[i]) == -1) {
++				return -1;
++			}
++		}
++        
++        if (mib_build_entries_integer(&m_if_2_oid, 6, 1, g_interface_list_length, BER_TYPE_COUNTER, 0) == -1
++			|| mib_build_entries_integer(&m_if_2_oid, 7, 1, g_interface_list_length, BER_TYPE_COUNTER, 0) == -1
++			|| mib_build_entries_integer(&m_if_2_oid, 10, 1, g_interface_list_length, BER_TYPE_COUNTER, 0) == -1
++			|| mib_build_entries_integer(&m_if_2_oid, 11, 1, g_interface_list_length, BER_TYPE_COUNTER, 0) == -1
++            ) {
+ 			return -1;
+ 		}
++        
++        /*
+ 		for (i = 0; i < g_interface_list_length; i++) {
+-			if (mib_build_entry(&m_if_2_oid, 1, i + 1, BER_TYPE_INTEGER, (const void *)(i + 1)) == -1) {
++			if (mib_build_entry_integer(&m_if_2_oid, 1, i + 1, BER_TYPE_INTEGER, (i + 1)) == -1) {
+ 				return -1;
+ 			}
+ 		}
+@@ -507,34 +774,44 @@
+ 				return -1;
+ 			}
+ 		}
+-		if (mib_build_entries(&m_if_2_oid, 8, 1, g_interface_list_length, BER_TYPE_INTEGER, (const void *)4) == -1
+-			|| mib_build_entries(&m_if_2_oid, 10, 1, g_interface_list_length, BER_TYPE_COUNTER, (const void *)0) == -1
+-			|| mib_build_entries(&m_if_2_oid, 11, 1, g_interface_list_length, BER_TYPE_COUNTER, (const void *)0) == -1
+-			|| mib_build_entries(&m_if_2_oid, 13, 1, g_interface_list_length, BER_TYPE_COUNTER, (const void *)0) == -1
+-			|| mib_build_entries(&m_if_2_oid, 14, 1, g_interface_list_length, BER_TYPE_COUNTER, (const void *)0) == -1
+-			|| mib_build_entries(&m_if_2_oid, 16, 1, g_interface_list_length, BER_TYPE_COUNTER, (const void *)0) == -1
+-			|| mib_build_entries(&m_if_2_oid, 17, 1, g_interface_list_length, BER_TYPE_COUNTER, (const void *)0) == -1
+-			|| mib_build_entries(&m_if_2_oid, 19, 1, g_interface_list_length, BER_TYPE_COUNTER, (const void *)0) == -1
+-			|| mib_build_entries(&m_if_2_oid, 20, 1, g_interface_list_length, BER_TYPE_COUNTER, (const void *)0) == -1) {
++		if (mib_build_entries_integer(&m_if_2_oid, 8, 1, g_interface_list_length, BER_TYPE_INTEGER, 4) == -1
++			|| mib_build_entries_integer(&m_if_2_oid, 10, 1, g_interface_list_length, BER_TYPE_COUNTER, 0) == -1
++			|| mib_build_entries_integer(&m_if_2_oid, 11, 1, g_interface_list_length, BER_TYPE_COUNTER, 0) == -1
++			|| mib_build_entries_integer(&m_if_2_oid, 13, 1, g_interface_list_length, BER_TYPE_COUNTER, 0) == -1
++			|| mib_build_entries_integer(&m_if_2_oid, 14, 1, g_interface_list_length, BER_TYPE_COUNTER, 0) == -1
++			|| mib_build_entries_integer(&m_if_2_oid, 16, 1, g_interface_list_length, BER_TYPE_COUNTER, 0) == -1
++			|| mib_build_entries_integer(&m_if_2_oid, 17, 1, g_interface_list_length, BER_TYPE_COUNTER, 0) == -1
++			|| mib_build_entries_integer(&m_if_2_oid, 19, 1, g_interface_list_length, BER_TYPE_COUNTER, 0) == -1
++			|| mib_build_entries_integer(&m_if_2_oid, 20, 1, g_interface_list_length, BER_TYPE_COUNTER, 0) == -1
++            
++            || mib_build_entries_integer(&m_if_2_oid, 6, 1, g_interface_list_length, BER_TYPE_COUNTER, 0) == -1
++			|| mib_build_entries_integer(&m_if_2_oid, 7, 1, g_interface_list_length, BER_TYPE_COUNTER, 0) == -1
++			|| mib_build_entries_integer(&m_if_2_oid, 10, 1, g_interface_list_length, BER_TYPE_COUNTER, 0) == -1
++			|| mib_build_entries_integer(&m_if_2_oid, 11, 1, g_interface_list_length, BER_TYPE_COUNTER, 0) == -1
++            
++            ) {
+ 			return -1;
+ 		}
++        
++        */
++        
+ 	}
+ 
+ 	/* The host MIB: additional host info (HOST-RESOURCES-MIB.txt)
+ 	 * Caution: on changes, adapt the corresponding mib_update() section too!
+ 	 */
+-	if (mib_build_entry(&m_host_oid, 1, 0, BER_TYPE_TIME_TICKS, (const void *)0) == -1) {
++	if (mib_build_entry_integer(&m_host_oid, 1, 0, BER_TYPE_TIME_TICKS, 0) == -1) {
+ 		return -1;
+ 	}
+ 
+ 	/* The memory MIB: total/free memory (UCD-SNMP-MIB.txt)
+ 	 * Caution: on changes, adapt the corresponding mib_update() section too!
+ 	 */
+-	if (mib_build_entry(&m_memory_oid, 5, 0, BER_TYPE_INTEGER, (const void *)0) == -1
+-		|| mib_build_entry(&m_memory_oid, 6, 0, BER_TYPE_INTEGER, (const void *)0) == -1
+-		|| mib_build_entry(&m_memory_oid, 13, 0, BER_TYPE_INTEGER, (const void *)0) == -1
+-		|| mib_build_entry(&m_memory_oid, 14, 0, BER_TYPE_INTEGER, (const void *)0) == -1
+-		|| mib_build_entry(&m_memory_oid, 15, 0, BER_TYPE_INTEGER, (const void *)0) == -1) {
++	if (mib_build_entry_integer(&m_memory_oid, 5, 0, BER_TYPE_INTEGER, 0) == -1
++		|| mib_build_entry_integer(&m_memory_oid, 6, 0, BER_TYPE_INTEGER, 0) == -1
++		|| mib_build_entry_integer(&m_memory_oid, 13, 0, BER_TYPE_INTEGER, 0) == -1
++		|| mib_build_entry_integer(&m_memory_oid, 14, 0, BER_TYPE_INTEGER, 0) == -1
++		|| mib_build_entry_integer(&m_memory_oid, 15, 0, BER_TYPE_INTEGER, 0) == -1) {
+ 		return -1;
+ 	}
+ 
+@@ -543,7 +820,7 @@
+ 	 */
+ 	if (g_disk_list_length > 0) {
+ 		for (i = 0; i < g_disk_list_length; i++) {
+-			if (mib_build_entry(&m_disk_oid, 1, i + 1, BER_TYPE_INTEGER, (const void *)(i + 1)) == -1) {
++			if (mib_build_entry_integer(&m_disk_oid, 1, i + 1, BER_TYPE_INTEGER, (i + 1)) == -1) {
+ 				return -1;
+ 			}
+ 		}
+@@ -552,11 +829,11 @@
+ 				return -1;
+ 			}
+ 		}
+-		if (mib_build_entries(&m_disk_oid, 6, 1, g_disk_list_length, BER_TYPE_INTEGER, (const void *)0) == -1
+-			|| mib_build_entries(&m_disk_oid, 7, 1, g_disk_list_length, BER_TYPE_INTEGER, (const void *)0) == -1
+-			|| mib_build_entries(&m_disk_oid, 8, 1, g_disk_list_length, BER_TYPE_INTEGER, (const void *)0) == -1
+-			|| mib_build_entries(&m_disk_oid, 9, 1, g_disk_list_length, BER_TYPE_INTEGER, (const void *)0) == -1
+-			|| mib_build_entries(&m_disk_oid, 10, 1, g_disk_list_length, BER_TYPE_INTEGER, (const void *)0) == -1) {
++		if (mib_build_entries_integer(&m_disk_oid, 6, 1, g_disk_list_length, BER_TYPE_INTEGER, 0) == -1
++			|| mib_build_entries_integer(&m_disk_oid, 7, 1, g_disk_list_length, BER_TYPE_INTEGER, 0) == -1
++			|| mib_build_entries_integer(&m_disk_oid, 8, 1, g_disk_list_length, BER_TYPE_INTEGER, 0) == -1
++			|| mib_build_entries_integer(&m_disk_oid, 9, 1, g_disk_list_length, BER_TYPE_INTEGER, 0) == -1
++			|| mib_build_entries_integer(&m_disk_oid, 10, 1, g_disk_list_length, BER_TYPE_INTEGER, 0) == -1) {
+ 			return -1;
+ 		}
+ 	}
+@@ -565,7 +842,7 @@
+ 	 * Caution: on changes, adapt the corresponding mib_update() section too!
+ 	 */
+ 	for (i = 0; i < 3; i++) {
+-		if (mib_build_entry(&m_load_oid, 1, i + 1, BER_TYPE_INTEGER, (const void *)(i + 1)) == -1) {
++		if (mib_build_entry_integer(&m_load_oid, 1, i + 1, BER_TYPE_INTEGER, (i + 1)) == -1) {
+ 			return -1;
+ 		}
+ 	}
+@@ -584,19 +861,19 @@
+ 			return -1;
+ 		}
+ 	}
+-	if (mib_build_entries(&m_load_oid, 5, 1, 3, BER_TYPE_INTEGER, (const void *)0) == -1) {
++	if (mib_build_entries_integer(&m_load_oid, 5, 1, 3, BER_TYPE_INTEGER, 0) == -1) {
+ 		return -1;
+ 	}
+ 
+ 	/* The cpu MIB: CPU statistics (UCD-SNMP-MIB.txt)
+ 	 * Caution: on changes, adapt the corresponding mib_update() section too!
+ 	 */
+-	if (mib_build_entry(&m_cpu_oid, 50, 0, BER_TYPE_COUNTER, (const void *)0) == -1	
+-		|| mib_build_entry(&m_cpu_oid, 51, 0, BER_TYPE_COUNTER, (const void *)0) == -1
+-		|| mib_build_entry(&m_cpu_oid, 52, 0, BER_TYPE_COUNTER, (const void *)0) == -1
+-		|| mib_build_entry(&m_cpu_oid, 53, 0, BER_TYPE_COUNTER, (const void *)0) == -1
+-		|| mib_build_entry(&m_cpu_oid, 59, 0, BER_TYPE_COUNTER, (const void *)0) == -1
+-		|| mib_build_entry(&m_cpu_oid, 60, 0, BER_TYPE_COUNTER, (const void *)0) == -1) {
++	if (mib_build_entry_integer(&m_cpu_oid, 50, 0, BER_TYPE_COUNTER, 0) == -1	
++		|| mib_build_entry_integer(&m_cpu_oid, 51, 0, BER_TYPE_COUNTER, 0) == -1
++		|| mib_build_entry_integer(&m_cpu_oid, 52, 0, BER_TYPE_COUNTER, 0) == -1
++		|| mib_build_entry_integer(&m_cpu_oid, 53, 0, BER_TYPE_COUNTER, 0) == -1
++		|| mib_build_entry_integer(&m_cpu_oid, 59, 0, BER_TYPE_COUNTER, 0) == -1
++		|| mib_build_entry_integer(&m_cpu_oid, 60, 0, BER_TYPE_COUNTER, 0) == -1) {
+ 		return -1;
+ 	}
+ 
+@@ -604,8 +881,8 @@
+ 	 * Caution: on changes, adapt the corresponding mib_update() section too!
+ 	 */
+ #ifdef __DEMO__
+-	if (mib_build_entry(&m_demo_oid, 1, 0, BER_TYPE_INTEGER, (const void *)0) == -1	
+-		|| mib_build_entry(&m_demo_oid, 2, 0, BER_TYPE_INTEGER, (const void *)0) == -1) {
++	if (mib_build_entry_integer(&m_demo_oid, 1, 0, BER_TYPE_INTEGER, 0) == -1	
++		|| mib_build_entry_integer(&m_demo_oid, 2, 0, BER_TYPE_INTEGER, 0) == -1) {
+ 		return -1;
+ 	}
+ #endif
+@@ -635,7 +912,7 @@
+ 	/* The system MIB: basic info about the host (SNMPv2-MIB.txt)
+ 	 * Caution: on changes, adapt the corresponding mib_build() section too!
+ 	 */
+-	if (mib_update_entry(&m_system_oid, 3, 0, &pos, BER_TYPE_TIME_TICKS, (const void *)get_process_uptime()) == -1) {
++	if (mib_update_entry_integer(&m_system_oid, 3, 0, &pos, BER_TYPE_TIME_TICKS, get_process_uptime()) == -1) {
+ 		return -1;
+ 	}
+ 
+@@ -645,58 +922,83 @@
+ 	if (full) {
+ 		if (g_interface_list_length > 0) {
+ 			get_netinfo(&u.netinfo);
++            
++            for (i = 0; i < g_interface_list_length; i++) {
++				if (mib_update_entry_integer(&m_if_2_oid, 6, i + 1, &pos, BER_TYPE_COUNTER, (int64_t)u.netinfo.rx_bytes[i]) == -1) {
++					return -1;
++				}
++			}
++			for (i = 0; i < g_interface_list_length; i++) {
++				if (mib_update_entry_integer(&m_if_2_oid, 7, i + 1, &pos, BER_TYPE_COUNTER, (int64_t)u.netinfo.rx_packets[i]) == -1) {
++					return -1;
++				}
++			}
++            
++            for (i = 0; i < g_interface_list_length; i++) {
++				if (mib_update_entry_integer(&m_if_2_oid, 10, i + 1, &pos, BER_TYPE_COUNTER, (int64_t)u.netinfo.tx_bytes[i]) == -1) {
++					return -1;
++				}
++			}
++			for (i = 0; i < g_interface_list_length; i++) {
++				if (mib_update_entry_integer(&m_if_2_oid, 11, i + 1, &pos, BER_TYPE_COUNTER, (int64_t)u.netinfo.tx_packets[i]) == -1) {
++					return -1;
++				}
++			}
++            
++            /*
+ 			for (i = 0; i < g_interface_list_length; i++) {
+-				if (mib_update_entry(&m_if_2_oid, 8, i + 1, &pos, BER_TYPE_INTEGER, (const void *)u.netinfo.status[i]) == -1) {
++				if (mib_update_entry_integer(&m_if_2_oid, 8, i + 1, &pos, BER_TYPE_INTEGER, (int64_t)u.netinfo.status[i]) == -1) {
+ 					return -1;
+ 				}
+ 			}
+ 			for (i = 0; i < g_interface_list_length; i++) {
+-				if (mib_update_entry(&m_if_2_oid, 10, i + 1, &pos, BER_TYPE_COUNTER, (const void *)u.netinfo.rx_bytes[i]) == -1) {
++				if (mib_update_entry_integer(&m_if_2_oid, 6, i + 1, &pos, BER_TYPE_COUNTER, (int64_t)u.netinfo.rx_bytes[i]) == -1) {
+ 					return -1;
+ 				}
+ 			}
+ 			for (i = 0; i < g_interface_list_length; i++) {
+-				if (mib_update_entry(&m_if_2_oid, 11, i + 1, &pos, BER_TYPE_COUNTER, (const void *)u.netinfo.rx_packets[i]) == -1) {
++				if (mib_update_entry_integer(&m_if_2_oid, 7, i + 1, &pos, BER_TYPE_COUNTER, (int64_t)u.netinfo.rx_packets[i]) == -1) {
+ 					return -1;
+ 				}
+ 			}
+ 			for (i = 0; i < g_interface_list_length; i++) {
+-				if (mib_update_entry(&m_if_2_oid, 13, i + 1, &pos, BER_TYPE_COUNTER, (const void *)u.netinfo.rx_drops[i]) == -1) {
++				if (mib_update_entry_integer(&m_if_2_oid, 13, i + 1, &pos, BER_TYPE_COUNTER, (int64_t)u.netinfo.rx_drops[i]) == -1) {
+ 					return -1;
+ 				}
+ 			}
+ 			for (i = 0; i < g_interface_list_length; i++) {
+-				if (mib_update_entry(&m_if_2_oid, 14, i + 1, &pos, BER_TYPE_COUNTER, (const void *)u.netinfo.rx_errors[i]) == -1) {
++				if (mib_update_entry_integer(&m_if_2_oid, 14, i + 1, &pos, BER_TYPE_COUNTER, (int64_t)u.netinfo.rx_errors[i]) == -1) {
+ 					return -1;
+ 				}
+ 			}
+ 			for (i = 0; i < g_interface_list_length; i++) {
+-				if (mib_update_entry(&m_if_2_oid, 16, i + 1, &pos, BER_TYPE_COUNTER, (const void *)u.netinfo.tx_bytes[i]) == -1) {
++				if (mib_update_entry_integer(&m_if_2_oid, 10, i + 1, &pos, BER_TYPE_COUNTER, (int64_t)u.netinfo.tx_bytes[i]) == -1) {
+ 					return -1;
+ 				}
+ 			}
+ 			for (i = 0; i < g_interface_list_length; i++) {
+-				if (mib_update_entry(&m_if_2_oid, 17, i + 1, &pos, BER_TYPE_COUNTER, (const void *)u.netinfo.tx_packets[i]) == -1) {
++				if (mib_update_entry_integer(&m_if_2_oid, 11, i + 1, &pos, BER_TYPE_COUNTER, (int64_t)u.netinfo.tx_packets[i]) == -1) {
+ 					return -1;
+ 				}
+ 			}
+ 			for (i = 0; i < g_interface_list_length; i++) {
+-				if (mib_update_entry(&m_if_2_oid, 19, i + 1, &pos, BER_TYPE_COUNTER, (const void *)u.netinfo.tx_drops[i]) == -1) {
++				if (mib_update_entry_integer(&m_if_2_oid, 19, i + 1, &pos, BER_TYPE_COUNTER, (int64_t)u.netinfo.tx_drops[i]) == -1) {
+ 					return -1;
+ 				}
+ 			}
+ 			for (i = 0; i < g_interface_list_length; i++) {
+-				if (mib_update_entry(&m_if_2_oid, 20, i + 1, &pos, BER_TYPE_COUNTER, (const void *)u.netinfo.tx_errors[i]) == -1) {
++				if (mib_update_entry_integer(&m_if_2_oid, 20, i + 1, &pos, BER_TYPE_COUNTER, (int64_t)u.netinfo.tx_errors[i]) == -1) {
+ 					return -1;
+ 				}
+ 			}
++            */
+ 		}
+ 	}
+ 
+ 	/* The host MIB: additional host info (HOST-RESOURCES-MIB.txt)
+ 	 * Caution: on changes, adapt the corresponding mib_build() section too!
+ 	 */
+-	if (mib_update_entry(&m_host_oid, 1, 0, &pos, BER_TYPE_TIME_TICKS, (const void *)get_system_uptime()) == -1) {
++	if (mib_update_entry_integer(&m_host_oid, 1, 0, &pos, BER_TYPE_TIME_TICKS, get_system_uptime()) == -1) {
+ 		return -1;
+ 	}
+ 
+@@ -705,11 +1007,11 @@
+ 	 */
+ 	if (full) {
+ 		get_meminfo(&u.meminfo);
+-		if (mib_update_entry(&m_memory_oid, 5, 0, &pos, BER_TYPE_INTEGER, (const void *)u.meminfo.total) == -1
+-			|| mib_update_entry(&m_memory_oid, 6, 0, &pos, BER_TYPE_INTEGER, (const void *)u.meminfo.free) == -1
+-			|| mib_update_entry(&m_memory_oid, 13, 0, &pos, BER_TYPE_INTEGER, (const void *)u.meminfo.shared) == -1
+-			|| mib_update_entry(&m_memory_oid, 14, 0, &pos, BER_TYPE_INTEGER, (const void *)u.meminfo.buffers) == -1
+-			|| mib_update_entry(&m_memory_oid, 15, 0, &pos, BER_TYPE_INTEGER, (const void *)u.meminfo.cached) == -1) {
++		if (mib_update_entry_integer(&m_memory_oid, 5, 0, &pos, BER_TYPE_INTEGER, u.meminfo.total) == -1
++			|| mib_update_entry_integer(&m_memory_oid, 6, 0, &pos, BER_TYPE_INTEGER, u.meminfo.free) == -1
++			|| mib_update_entry_integer(&m_memory_oid, 13, 0, &pos, BER_TYPE_INTEGER, u.meminfo.shared) == -1
++			|| mib_update_entry_integer(&m_memory_oid, 14, 0, &pos, BER_TYPE_INTEGER, u.meminfo.buffers) == -1
++			|| mib_update_entry_integer(&m_memory_oid, 15, 0, &pos, BER_TYPE_INTEGER, u.meminfo.cached) == -1) {
+ 			return -1;
+ 		}
+ 	}
+@@ -721,27 +1023,27 @@
+ 		if (g_disk_list_length > 0) {
+ 			get_diskinfo(&u.diskinfo);
+ 			for (i = 0; i < g_disk_list_length; i++) {
+-				if (mib_update_entry(&m_disk_oid, 6, i + 1, &pos, BER_TYPE_INTEGER, (const void *)u.diskinfo.total[i]) == -1) {
++				if (mib_update_entry_integer(&m_disk_oid, 6, i + 1, &pos, BER_TYPE_INTEGER, u.diskinfo.total[i]) == -1) {
+ 					return -1;
+ 				}
+ 			}
+ 			for (i = 0; i < g_disk_list_length; i++) {
+-				if (mib_update_entry(&m_disk_oid, 7, i + 1, &pos, BER_TYPE_INTEGER, (const void *)u.diskinfo.free[i]) == -1) {
++				if (mib_update_entry_integer(&m_disk_oid, 7, i + 1, &pos, BER_TYPE_INTEGER, u.diskinfo.free[i]) == -1) {
+ 					return -1;
+ 				}
+ 			}
+ 			for (i = 0; i < g_disk_list_length; i++) {
+-				if (mib_update_entry(&m_disk_oid, 8, i + 1, &pos, BER_TYPE_INTEGER, (const void *)u.diskinfo.used[i]) == -1) {
++				if (mib_update_entry_integer(&m_disk_oid, 8, i + 1, &pos, BER_TYPE_INTEGER, u.diskinfo.used[i]) == -1) {
+ 					return -1;
+ 				}
+ 			}
+ 			for (i = 0; i < g_disk_list_length; i++) {
+-				if (mib_update_entry(&m_disk_oid, 9, i + 1, &pos, BER_TYPE_INTEGER, (const void *)u.diskinfo.blocks_used_percent[i]) == -1) {
++				if (mib_update_entry_integer(&m_disk_oid, 9, i + 1, &pos, BER_TYPE_INTEGER, u.diskinfo.blocks_used_percent[i]) == -1) {
+ 					return -1;
+ 				}
+ 			}
+ 			for (i = 0; i < g_disk_list_length; i++) {
+-				if (mib_update_entry(&m_disk_oid, 10, i + 1, &pos, BER_TYPE_INTEGER, (const void *)u.diskinfo.inodes_used_percent[i]) == -1) {
++				if (mib_update_entry_integer(&m_disk_oid, 10, i + 1, &pos, BER_TYPE_INTEGER, u.diskinfo.inodes_used_percent[i]) == -1) {
+ 					return -1;
+ 				}
+ 			}
+@@ -760,7 +1062,7 @@
+ 			}
+ 		}
+ 		for (i = 0; i < 3; i++) {
+-			if (mib_update_entry(&m_load_oid, 5, i + 1, &pos, BER_TYPE_INTEGER, (const void *)u.loadinfo.avg[i]) == -1) {
++			if (mib_update_entry_integer(&m_load_oid, 5, i + 1, &pos, BER_TYPE_INTEGER, u.loadinfo.avg[i]) == -1) {
+ 				return -1;
+ 			}
+ 		}
+@@ -771,12 +1073,12 @@
+ 	 */
+ 	if (full) {
+ 		get_cpuinfo(&u.cpuinfo);
+-		if (mib_update_entry(&m_cpu_oid, 50, 0, &pos, BER_TYPE_COUNTER, (const void *)u.cpuinfo.user) == -1
+-			|| mib_update_entry(&m_cpu_oid, 51, 0, &pos, BER_TYPE_COUNTER, (const void *)u.cpuinfo.nice) == -1
+-			|| mib_update_entry(&m_cpu_oid, 52, 0, &pos, BER_TYPE_COUNTER, (const void *)u.cpuinfo.system) == -1
+-			|| mib_update_entry(&m_cpu_oid, 53, 0, &pos, BER_TYPE_COUNTER, (const void *)u.cpuinfo.idle) == -1
+-			|| mib_update_entry(&m_cpu_oid, 59, 0, &pos, BER_TYPE_COUNTER, (const void *)u.cpuinfo.irqs) == -1
+-			|| mib_update_entry(&m_cpu_oid, 60, 0, &pos, BER_TYPE_COUNTER, (const void *)u.cpuinfo.cntxts) == -1) {
++		if (mib_update_entry_integer(&m_cpu_oid, 50, 0, &pos, BER_TYPE_COUNTER, u.cpuinfo.user) == -1
++			|| mib_update_entry_integer(&m_cpu_oid, 51, 0, &pos, BER_TYPE_COUNTER, u.cpuinfo.nice) == -1
++			|| mib_update_entry_integer(&m_cpu_oid, 52, 0, &pos, BER_TYPE_COUNTER, u.cpuinfo.system) == -1
++			|| mib_update_entry_integer(&m_cpu_oid, 53, 0, &pos, BER_TYPE_COUNTER, u.cpuinfo.idle) == -1
++			|| mib_update_entry_integer(&m_cpu_oid, 59, 0, &pos, BER_TYPE_COUNTER, u.cpuinfo.irqs) == -1
++			|| mib_update_entry_integer(&m_cpu_oid, 60, 0, &pos, BER_TYPE_COUNTER, u.cpuinfo.cntxts) == -1) {
+ 			return -1;
+ 		}
+ 	}
+@@ -789,8 +1091,8 @@
+ #ifdef __DEMO__
+ 	if (full) {
+ 		get_demoinfo(&u.demoinfo);
+-		if (mib_update_entry(&m_demo_oid, 1, 0, &pos, BER_TYPE_INTEGER, (const void *)u.demoinfo.random_value_1) == -1
+-			|| mib_update_entry(&m_demo_oid, 2, 0, &pos, BER_TYPE_INTEGER, (const void *)u.demoinfo.random_value_2) == -1) {
++		if (mib_update_entry_integer(&m_demo_oid, 1, 0, &pos, BER_TYPE_INTEGER, u.demoinfo.random_value_1) == -1
++			|| mib_update_entry_integer(&m_demo_oid, 2, 0, &pos, BER_TYPE_INTEGER, u.demoinfo.random_value_2) == -1) {
+ 			return -1;
+ 		}
+ 	}
+--- a/mini_snmpd.h	2013-05-28 18:01:04.000000000 +0200
++++ b/mini_snmpd.h	2013-05-28 16:21:39.000000000 +0200
+@@ -59,9 +59,14 @@
+ #define BER_TYPE_NULL						0x05
+ #define BER_TYPE_OID						0x06
+ #define BER_TYPE_SEQUENCE					0x30
+-#define BER_TYPE_COUNTER					0x41
++//#define BER_TYPE_COUNTER					0x41
+ #define BER_TYPE_GAUGE						0x42
+ #define BER_TYPE_TIME_TICKS					0x43
++#define BER_TYPE_OPAQUE                     0x44
++#define BER_TYPE_NASAPADDRESS               0x45
++#define BER_TYPE_COUNTER64                  0x46
++#define BER_TYPE_UINTEGER32                 0x47
++#define BER_TYPE_COUNTER                    BER_TYPE_COUNTER64
+ #define BER_TYPE_NO_SUCH_OBJECT				0x80
+ #define BER_TYPE_NO_SUCH_INSTANCE			0x81
+ #define BER_TYPE_END_OF_MIB_VIEW			0x82
+@@ -204,11 +209,11 @@
+ } loadinfo_t;
+ 
+ typedef struct meminfo_s {
+-	unsigned int total;
+-	unsigned int free;
+-	unsigned int shared;
+-	unsigned int buffers;
+-	unsigned int cached;
++	uint64_t total;
++	uint64_t free;
++	uint64_t shared;
++	uint64_t buffers;
++	uint64_t cached;
+ } meminfo_t;
+ 
+ typedef struct cpuinfo_s {
+@@ -221,29 +226,29 @@
+ } cpuinfo_t;
+ 
+ typedef struct diskinfo_s {
+-	unsigned int total[MAX_NR_DISKS];
+-	unsigned int free[MAX_NR_DISKS];
+-	unsigned int used[MAX_NR_DISKS];
+-	unsigned int blocks_used_percent[MAX_NR_DISKS];
+-	unsigned int inodes_used_percent[MAX_NR_DISKS];
++	uint64_t total[MAX_NR_DISKS];
++	uint64_t free[MAX_NR_DISKS];
++	uint64_t used[MAX_NR_DISKS];
++	uint64_t blocks_used_percent[MAX_NR_DISKS];
++	uint64_t inodes_used_percent[MAX_NR_DISKS];
+ } diskinfo_t;
+ 
+ typedef struct netinfo_s {
+-	unsigned int status[MAX_NR_INTERFACES];
+-	unsigned int rx_bytes[MAX_NR_INTERFACES];
+-	unsigned int rx_packets[MAX_NR_INTERFACES];
+-	unsigned int rx_errors[MAX_NR_INTERFACES];
+-	unsigned int rx_drops[MAX_NR_INTERFACES];
+-	unsigned int tx_bytes[MAX_NR_INTERFACES];
+-	unsigned int tx_packets[MAX_NR_INTERFACES];
+-	unsigned int tx_errors[MAX_NR_INTERFACES];
+-	unsigned int tx_drops[MAX_NR_INTERFACES];
++	uint64_t status[MAX_NR_INTERFACES];
++	uint64_t rx_bytes[MAX_NR_INTERFACES];
++	uint64_t rx_packets[MAX_NR_INTERFACES];
++	uint64_t rx_errors[MAX_NR_INTERFACES];
++	uint64_t rx_drops[MAX_NR_INTERFACES];
++	uint64_t tx_bytes[MAX_NR_INTERFACES];
++	uint64_t tx_packets[MAX_NR_INTERFACES];
++	uint64_t tx_errors[MAX_NR_INTERFACES];
++	uint64_t tx_drops[MAX_NR_INTERFACES];
+ } netinfo_t;
+ 
+ #ifdef __DEMO__
+ typedef struct demoinfo_s {
+-	unsigned int random_value_1;
+-	unsigned int random_value_2;
++	uint64_t random_value_1;
++	uint64_t random_value_2;
+ } demoinfo_t;
+ #endif
+ 
+@@ -298,12 +303,12 @@
+ int split(const char *str, char *delim, char **list, int max_list_length);
+ client_t *find_oldest_client(void);
+ int read_file(const char *filename, char *buffer, size_t size);
+-unsigned int read_value(const char *buffer, const char *prefix);
+-void read_values(const char *buffer, const char *prefix, unsigned int *values, int count);
++uint64_t read_value(const char *buffer, const char *prefix);
++void read_values(const char *buffer, const char *prefix, uint64_t *values, int count);
+ int ticks_since(const struct timeval *tv_last, struct timeval *tv_now);
+ 
+-unsigned int get_process_uptime(void);
+-unsigned int get_system_uptime(void);
++uint64_t get_process_uptime(void);
++uint64_t get_system_uptime(void);
+ void get_loadinfo(loadinfo_t *loadinfo);
+ void get_meminfo(meminfo_t *meminfo);
+ void get_cpuinfo(cpuinfo_t *cpuinfo);
+--- a/protocol.c	2010-03-28 10:52:33.000000000 +0200
++++ b/protocol.c	2013-05-28 16:36:23.000000000 +0200
+@@ -118,7 +118,7 @@
+ static int decode_snmp_element_value_integer(const unsigned char *packet,
+ 	size_t size, size_t *pos, int length, int *value)
+ {
+-	unsigned int tmp_value;
++	uint64_t tmp_value;
+ 
+ 	/* Fetch the value as unsigned integer (copy sign bit into all bytes first) */
+ 	if (*pos < (size - length + 1)) {
+@@ -137,8 +137,8 @@
+ 	return 0;
+ }
+ 
+-static int decode_snmp_element_value_unsigned(const unsigned char *packet,
+-	size_t size, size_t *pos, int length, unsigned int *value)
++static int64_t decode_snmp_element_value_unsigned(const unsigned char *packet,
++	size_t size, size_t *pos, int length, uint64_t *value)
+ {
+ 	/* Fetch the value as unsigned integer (copy sign bit into all bytes first) */
+ 	if (*pos < (size - length + 1)) {
+@@ -1080,7 +1080,7 @@
+ int snmp_element_as_string(const data_t *data, char *buffer, size_t size)
+ {
+ 	size_t pos = 0;
+-	unsigned int unsigned_value;
++	uint64_t unsigned_value;
+ 	int integer_value;
+ 	oid_t oid_value;
+ 	int length;
+@@ -1119,7 +1119,7 @@
+ 				&pos, length, &unsigned_value) == -1) {
+ 				return -1;
+ 			}
+-			snprintf(buffer, size, "%u", unsigned_value);
++			snprintf(buffer, size, "%llu", unsigned_value);
+ 			break;
+ 		case BER_TYPE_NO_SUCH_OBJECT:
+ 			snprintf(buffer, size, "noSuchObject");
+--- a/utils.c	2010-03-28 10:53:20.000000000 +0200
++++ b/utils.c	2013-05-28 15:46:12.000000000 +0200
+@@ -53,7 +53,7 @@
+ 	return 0;
+ }
+ 
+-unsigned int read_value(const char *buffer, const char *prefix)
++uint64_t read_value(const char *buffer, const char *prefix)
+ {
+ 	buffer = strstr(buffer, prefix);
+ 	if (buffer != NULL) {
+@@ -61,13 +61,13 @@
+ 		while (isspace(*buffer)) {
+ 			buffer++;
+ 		}
+-		return (*buffer != '\0') ? strtoul(buffer, NULL, 0) : 0;
++		return (*buffer != '\0') ? strtoull(buffer, NULL, 0) : 0;
+ 	} else {
+ 		return 0;
+ 	}
+ }
+ 
+-void read_values(const char *buffer, const char *prefix, unsigned int *values, int count)
++void read_values(const char *buffer, const char *prefix, uint64_t *values, int count)
+ {
+ 	int i;
+ 
+@@ -79,7 +79,7 @@
+ 				buffer++;
+ 			}
+ 			if (*buffer != '\0') {
+-				values[i] = strtoul(buffer, (char **)&buffer, 0);
++				values[i] = strtoull(buffer, (char **)&buffer, 0);
+ 			} else {
+ 				values[i] = 0;
+ 			}
+Files /home/asturel/openwrt/mini_snmpd/utils.o and ./utils.o differ
