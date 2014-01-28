@@ -1,0 +1,7 @@
+--- ../../../openwrt_trunk/feeds/packages/libs/curl/Makefile.prev	2014-01-27 02:17:09.000000000 +0400
++++ ../../../openwrt_trunk/feeds/packages/libs/curl/Makefile	2014-01-29 02:36:54.524692206 +0400
+@@ -12 +12 @@
+-PKG_RELEASE:=1b
++PKG_RELEASE:=1c
+@@ -99,0 +100 @@
++	--with-ca-path=/opt/etc/ssl/certs \
