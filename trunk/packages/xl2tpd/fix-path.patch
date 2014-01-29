@@ -1,0 +1,135 @@
+--- ../../../downloads/mipsel-hardfloat/openwrt_trunk-r39357/feeds/packages/net/xl2tpd//files/options.xl2tpd	2014-01-27 14:05:17.424304635 +0400
++++ ../../../openwrt_trunk/feeds/packages/net/xl2tpd//files/options.xl2tpd	2014-01-29 15:04:56.638302535 +0400
+@@ -1,13 +1,12 @@
+-#
+-
+-lock
+-noauth
+-debug
+-dump
+-logfd 2
+-logfile /var/log/xl2tpd.log
+-noccp
++lcp-echo-interval 3
++lcp-echo-failure 8
++nodeflate
++noproxyarp
++mtu 1410
++mru 1410
+++chap
++nobsdcomp
+ novj
+ novjccomp
+-nopcomp
+-noaccomp
++ip-up-script /opt/etc/ppp/ip-up.sh
++ip-down-script /opt/etc/ppp/ip-down.sh
+--- ../../../downloads/mipsel-hardfloat/openwrt_trunk-r39357/feeds/packages/net/xl2tpd//files/xl2tpd.conf	2014-01-27 14:05:17.424304635 +0400
++++ ../../../openwrt_trunk/feeds/packages/net/xl2tpd//files/xl2tpd.conf	2014-01-29 15:06:47.330352799 +0400
+@@ -1,23 +1,20 @@
+ [global]
+ port = 1701
+-auth file = /etc/xl2tpd/xl2tp-secrets
++auth file = /opt/etc/xl2tpd/xl2tp-secrets
+ access control = no
+-
+-;[lns default]
+-;exclusive = yes
+-;ip range = 192.168.254.202-192.168.254.210
+-;lac = 10.0.1.2
+-;hidden bit = no
+-;local ip = 192.168.254.200
+-;length bit = yes
+-;refuse authentication = yes
+-;name = VersaLink
+-;ppp debug = yes
+-;pppoptfile = /etc/ppp/options.xl2tpd
+-
+-;[lac left]
+-;lns = 10.0.1.2
+-;refuse authentication = yes
+-;name = VersaLink
+-;ppp debug = yes
+-;pppoptfile = /etc/ppp/options.xl2tpd
++force userspace = yes
++[lns Serv]
++exclusive = no
++ip range = 192.168.11.2 - 192.168.11.195
++lac = 0.0.0.0 - 255.255.255.254
++hidden bit = no
++local ip = 192.168.11.1
++length bit = yes
++require chap = yes
++refuse pap = yes
++refuse authentication = no
++require authentication = no
++name = Serv
++ppp debug = no
++pppoptfile = /opt/etc/ppp/options.xl2tpd
++flow bit = yes
+--- ../../../downloads/mipsel-hardfloat/openwrt_trunk-r39357/feeds/packages/net/xl2tpd//Makefile	2014-01-27 14:05:17.428305423 +0400
++++ ../../../openwrt_trunk/feeds/packages/net/xl2tpd//Makefile	2014-01-29 14:56:23.610302718 +0400
+@@ -24,10 +24,10 @@
+ define Package/xl2tpd
+   SECTION:=net
+   CATEGORY:=Network
++  DEPENDS:=+ppp
+   TITLE:=An L2TP (Layer 2 Tunneling Protocol) daemon
+   URL:=http://www.xelerance.com/software/xl2tpd/
+   SUBMENU:=VPN
+-  DEPENDS:=+ppp-mod-pppol2tp +ip +resolveip
+ endef
+ 
+ define Package/xl2tpd/description
+@@ -41,28 +41,32 @@
+ 	OFLAGS=""
+ 
+ define Package/xl2tpd/conffiles
+-/etc/xl2tpd/xl2tpd.conf
+-/etc/xl2tpd/xl2tp-secrets
+-/etc/ppp/options.xl2tpd
++/opt/etc/xl2tpd/xl2tpd.conf
++/opt/etc/xl2tpd/xl2tp-secrets
++/opt/etc/ppp/options.xl2tpd
++/opt/etc/ppp/chap-secrets
++/opt/etc/ppp/ip-up.sh
++/opt/etc/ppp/ip-down.sh
+ endef
+ 
+ define Package/xl2tpd/install
+-	$(INSTALL_DIR) $(1)/usr/sbin
+-	$(INSTALL_BIN) $(PKG_INSTALL_DIR)/usr/local/sbin/xl2tpd $(1)/usr/sbin/
+-	$(INSTALL_BIN) $(PKG_INSTALL_DIR)/usr/local/sbin/xl2tpd-control $(1)/usr/sbin/
+-
+-	$(INSTALL_DIR) $(1)/etc/init.d
+-	$(INSTALL_BIN) ./files/xl2tpd.init $(1)/etc/init.d/xl2tpd
+-
+-	$(INSTALL_DIR) $(1)/etc/xl2tpd
+-	$(INSTALL_DATA) ./files/xl2tpd.conf $(1)/etc/xl2tpd/
+-	$(INSTALL_CONF) ./files/xl2tp-secrets $(1)/etc/xl2tpd/
+-
+-	$(INSTALL_DIR) $(1)/etc/ppp
+-	$(INSTALL_DATA) ./files/options.xl2tpd $(1)/etc/ppp/
+-
+-	$(INSTALL_DIR) $(1)/lib/netifd/proto
+-	$(INSTALL_BIN) ./files/l2tp.sh $(1)/lib/netifd/proto
++	$(INSTALL_DIR) $(1)/opt/sbin
++	$(INSTALL_BIN) $(PKG_INSTALL_DIR)/usr/local/sbin/xl2tpd $(1)/opt/sbin/
++	$(INSTALL_BIN) $(PKG_INSTALL_DIR)/usr/local/sbin/xl2tpd-control $(1)/opt/sbin/
++
++	$(INSTALL_DIR) $(1)/opt/etc/init.d
++	$(INSTALL_BIN) ./files/S20xl2tpd $(1)/opt/etc/init.d/
++
++	$(INSTALL_DIR) $(1)/opt/etc/xl2tpd
++	$(INSTALL_DATA) ./files/xl2tpd.conf $(1)/opt/etc/xl2tpd/
++	$(INSTALL_CONF) ./files/xl2tp-secrets $(1)/opt/etc/xl2tpd/
++
++	$(INSTALL_DIR) $(1)/opt/etc/ppp
++	$(INSTALL_CONF) ./files/chap-secrets $(1)/opt/etc/ppp/chap-secrets
++	$(INSTALL_DATA) ./files/options.xl2tpd $(1)/opt/etc/ppp/options.xl2tpd
++	$(INSTALL_BIN) ./files/ip-up.sh $(1)/opt/etc/ppp/
++	$(INSTALL_BIN) ./files/ip-down.sh $(1)/opt/etc/ppp/
++	$(INSTALL_DIR) $(1)/opt/var/run
+ endef
+ 
+ $(eval $(call BuildPackage,xl2tpd))

@@ -1,0 +1,19 @@
+--- a/l2tp.h.orig	2011-10-06 23:22:05.000000000 +0400
++++ b/l2tp.h	2013-12-01 12:21:04.646166761 +0400
+@@ -37,14 +37,14 @@
+ #include "common.h"
+ #include "ipsecmast.h"
+ 
+-#define CONTROL_PIPE "/var/run/xl2tpd/l2tp-control"
++#define CONTROL_PIPE "/tmp/l2tp-control"
+ #define CONTROL_PIPE_MESSAGE_SIZE 1024
+ 
+ #define BINARY "xl2tpd"
+ #define SERVER_VERSION "xl2tpd-1.3.1"
+ #define VENDOR_NAME "xelerance.com"
+ #ifndef PPPD
+-#define PPPD		"/usr/sbin/pppd"
++#define PPPD		"/opt/sbin/pppd"
+ #endif
+ #define CALL_PPP_OPTS "defaultroute"
+ #define FIRMWARE_REV	0x0690  /* Revision of our firmware (software, in this case) */
