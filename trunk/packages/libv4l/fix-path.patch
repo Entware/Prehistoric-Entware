@@ -1,5 +1,5 @@
---- ../../../openwrt_trunk.orig/feeds/packages/libs/libv4l/Makefile	2012-07-11 13:33:34.679423693 +0400
-+++ ../../../openwrt_trunk/feeds/packages/libs/libv4l/Makefile	2012-07-11 14:15:27.283849337 +0400
+--- ../../../downloads/mipsel-hardfloat/openwrt_trunk-r39357/feeds/packages/libs/libv4l/Makefile	2014-01-23 09:52:40.384429236 +0400
++++ ../../../openwrt_trunk/feeds/packages/libs/libv4l/Makefile	2014-01-29 16:14:56.178568166 +0400
 @@ -70,12 +70,12 @@
  
  define Build/Compile
@@ -54,8 +54,8 @@
 -	$(CP) $(PKG_INSTALL_DIR)/usr/bin/ir-keytable $(1)/usr/bin/
 -	$(CP) $(PKG_INSTALL_DIR)/usr/bin/v4l2-{compliance,ctl,sysfs-path} $(1)/usr/bin/
 +	$(INSTALL_DIR) $(1)/opt/etc
-+	$(CP) $(PKG_INSTALL_DIR)/opt/etc/rc_maps.cfg $(1)/opt/etc/
-+	$(CP) $(PKG_INSTALL_DIR)/opt/etc/rc_keymaps $(1)/opt/etc/
++	$(CP) $(PKG_INSTALL_DIR)/etc/rc_maps.cfg $(1)/opt/etc/
++	$(CP) $(PKG_INSTALL_DIR)/etc/rc_keymaps $(1)/opt/etc/
 +	$(INSTALL_DIR) $(1)/opt/bin
 +	$(CP) $(PKG_INSTALL_DIR)/opt/bin/{cx18,ivtv}-ctl $(1)/opt/bin/
 +	$(CP) $(PKG_INSTALL_DIR)/opt/bin/decode_tm6000 $(1)/opt/bin/
