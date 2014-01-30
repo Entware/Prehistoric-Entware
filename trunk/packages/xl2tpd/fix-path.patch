@@ -133,3 +133,26 @@
  endef
  
  $(eval $(call BuildPackage,xl2tpd))
+--- ../../../downloads/mipsel-hardfloat/openwrt_trunk-r39357/feeds/packages/net/xl2tpd//patches/100-makefile_opt_flags.patch	2014-01-27 14:05:17.428305423 +0400
++++ ../../../openwrt_trunk/feeds/packages/net/xl2tpd//patches/100-makefile_opt_flags.patch	2014-01-30 12:38:46.104230856 +0400
+@@ -1,6 +1,6 @@
+ --- a/Makefile
+ +++ b/Makefile
+-@@ -90,7 +90,8 @@ OSFLAGS?= -DLINUX -I$(KERNELSRC)/include
++@@ -90,7 +90,8 @@
+  
+  IPFLAGS?= -DIP_ALLOCATION
+  
+@@ -10,3 +10,12 @@
+  HDRS=l2tp.h avp.h misc.h control.h call.h scheduler.h file.h aaa.h md5.h
+  OBJS=xl2tpd.o pty.o misc.o control.o avp.o call.o network.o avpsend.o scheduler.o file.o aaa.o md5.o
+  SRCS=${OBJS:.o=.c} ${HDRS}
++@@ -114,7 +115,7 @@
++ 	$(CC) $(LDFLAGS) -o $@ $(OBJS) $(LDLIBS)
++ 
++ $(CONTROL_EXEC): $(CONTROL_SRCS)
++-	$(CC) $(CONTROL_SRCS) -o $@
+++	$(CC) $(LDFLAGS) $(CONTROL_SRCS) -o $@
++ 
++ pfc:
++ 	$(CC) $(CFLAGS) -c contrib/pfc.c
