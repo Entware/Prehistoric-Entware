@@ -1,0 +1,48 @@
+--- ../../../downloads/mipsel-hardfloat/openwrt_trunk-r39357/feeds/packages/utils/sysstat/Makefile	2014-01-23 09:52:40.320429237 +0400
++++ ../../../openwrt_trunk/feeds/packages/utils/sysstat/Makefile	2014-01-30 11:21:55.801310895 +0400
+@@ -32,28 +32,31 @@
+ endef
+ 
+ define Package/sysstat/conffiles
+-/etc/sysstat/sysstat.ioconf
+-/etc/sysstat/config
++/opt/etc/sysstat/sysstat.ioconf
++/opt/etc/sysstat/config
+ endef
+ 
+ CONFIGURE_VARS+= \
+-	sa_lib_dir="/usr/lib/sysstat" \
+-	sa_dir="/var/log/sysstat" \
+-	conf_dir="/etc/sysstat" \
++	sa_lib_dir="/opt/lib/sysstat" \
++	sa_dir="/opt/var/log/sysstat" \
++	conf_dir="/opt/etc/sysstat" \
+ 
+ CONFIGURE_ARGS+= \
+ 	--disable-documentation \
+ 
++TARGET_CFLAGS += $(TARGET_LDFLAGS)
++
+ define Package/sysstat/install
+-	$(INSTALL_DIR) $(1)/usr/lib/sysstat
+-	$(INSTALL_BIN) $(PKG_INSTALL_DIR)/usr/lib/sysstat/{sadc,sa1,sa2} $(1)/usr/lib/sysstat/
+-	$(INSTALL_DIR) $(1)/usr/bin
+-	$(INSTALL_BIN) $(PKG_INSTALL_DIR)/usr/bin/{sar,sadf,iostat,mpstat,pidstat} $(1)/usr/bin/
+-	$(INSTALL_DIR) $(1)/etc/sysstat
+-	$(INSTALL_CONF) $(PKG_INSTALL_DIR)/etc/sysstat/sysstat.ioconf $(1)/etc/sysstat/
+-	$(INSTALL_CONF) ./files/config $(1)/etc/sysstat/config
+-	$(INSTALL_DIR) $(1)/etc/init.d
+-	$(INSTALL_BIN) ./files/sysstat.init $(1)/etc/init.d/sysstat
++	$(INSTALL_DIR) $(1)/opt/lib/sysstat
++	$(INSTALL_BIN) $(PKG_INSTALL_DIR)/opt/lib/sysstat/{sadc,sa1,sa2} $(1)/opt/lib/sysstat/
++	$(INSTALL_DIR) $(1)/opt/bin
++	$(INSTALL_BIN) $(PKG_INSTALL_DIR)/opt/bin/{sar,sadf,iostat,mpstat,pidstat} $(1)/opt/bin/
++	$(INSTALL_DIR) $(1)/opt/etc/sysstat
++	$(INSTALL_CONF) $(PKG_INSTALL_DIR)/opt/etc/sysstat/sysstat.ioconf $(1)/opt/etc/sysstat/
++	$(INSTALL_CONF) ./files/config $(1)/opt/etc/sysstat/config
++	$(INSTALL_DIR) $(1)/opt/var/log/sysstat
++	$(INSTALL_DIR) $(1)/opt/etc/init.d
++	$(INSTALL_BIN) ./files/S99sysstat $(1)/opt/etc/init.d/
+ endef
+ 
+ $(eval $(call BuildPackage,sysstat))
