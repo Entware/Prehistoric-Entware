@@ -1,0 +1,56 @@
+--- ../../../openwrt_trunk.orig/feeds/packages/utils/avrdude/Makefile	2014-01-27 02:16:51.919860997 +0400
++++ ../../../openwrt_trunk/feeds/packages/utils/avrdude/Makefile	2014-01-31 17:27:13.312564794 +0400
+@@ -8,12 +8,12 @@
+ include $(TOPDIR)/rules.mk
+ 
+ PKG_NAME:=avrdude
+-PKG_VERSION:=5.8
++PKG_VERSION:=6.0.1
+ PKG_RELEASE:=1
+ 
+ PKG_SOURCE:=$(PKG_NAME)-$(PKG_VERSION).tar.gz
+ PKG_SOURCE_URL:=http://download.savannah.gnu.org/releases/avrdude
+-PKG_MD5SUM:=d459dcf47fa7fc2a29a70d68ebff4886
++PKG_MD5SUM:=346ec2e46393a54ac152b95abf1d9850
+ 
+ include $(INCLUDE_DIR)/package.mk
+ 
+@@ -22,7 +22,7 @@
+   CATEGORY:=Utilities
+   TITLE:=AVR Downloader/UploaDEr
+   URL:=http://www.bsdhome.com/avrdude/
+-  DEPENDS:=+libncurses +libreadline +libusb-compat
++  DEPENDS:=+libncurses +libreadline +libusb-compat +libelf
+ endef
+ 
+ define Package/avrdude/description
+@@ -35,8 +35,7 @@
+ endef
+ 
+ CONFIGURE_ARGS+= \
+-	--enable-shared \
+-	--disable-static \
++	--disable-doc \
+ 	--disable-parport \
+ 
+ define Build/Compile
+@@ -46,14 +45,14 @@
+ endef
+ 
+ define Package/avrdude/conffiles
+-/etc/avrdude.conf
++/opt/etc/avrdude.conf
+ endef
+ 
+ define Package/avrdude/install
+-	$(INSTALL_DIR) $(1)/etc
+-	$(INSTALL_CONF) $(PKG_INSTALL_DIR)/etc/avrdude.conf $(1)/etc/
+-	$(INSTALL_DIR) $(1)/usr/bin
+-	$(INSTALL_BIN) $(PKG_INSTALL_DIR)/usr/bin/avrdude $(1)/usr/bin/
++	$(INSTALL_DIR) $(1)/opt/etc
++	$(INSTALL_CONF) $(PKG_INSTALL_DIR)/opt/etc/avrdude.conf $(1)/opt/etc/
++	$(INSTALL_DIR) $(1)/opt/bin
++	$(INSTALL_BIN) $(PKG_INSTALL_DIR)/opt/bin/avrdude $(1)/opt/bin/
+ endef
+ 
+ $(eval $(call BuildPackage,avrdude))
