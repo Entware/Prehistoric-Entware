@@ -1,6 +1,6 @@
-diff -urx .svn ../../../downloads/mipsel-hardfloat/openwrt_trunk-r38784/feeds/packages/net/lighttpd/files/lighttpd.conf ../../../openwrt_trunk/feeds/packages/net/lighttpd/files/lighttpd.conf
---- ../../../downloads/mipsel-hardfloat/openwrt_trunk-r38784/feeds/packages/net/lighttpd/files/lighttpd.conf	2013-11-13 15:33:49.744396534 +0400
-+++ ../../../openwrt_trunk/feeds/packages/net/lighttpd/files/lighttpd.conf	2013-11-13 16:47:10.328316208 +0400
+diff -urx .svn ../../../downloads/mipsel-hardfloat/openwrt_trunk-r39357/feeds/packages/net/lighttpd/files/lighttpd.conf ../../../openwrt_trunk/feeds/packages/net/lighttpd/files/lighttpd.conf
+--- ../../../downloads/mipsel-hardfloat/openwrt_trunk-r39357/feeds/packages/net/lighttpd/files/lighttpd.conf	2014-01-23 09:52:40.304429237 +0400
++++ ../../../openwrt_trunk/feeds/packages/net/lighttpd/files/lighttpd.conf	2014-01-23 09:53:21.960428477 +0400
 @@ -9,10 +9,10 @@
  ######### Options that are good to be but not neccesary to be changed #######
  #server.port                 = 81
@@ -32,15 +32,24 @@ diff -urx .svn ../../../downloads/mipsel-hardfloat/openwrt_trunk-r38784/feeds/pa
  
  
  
-diff -urx .svn ../../../downloads/mipsel-hardfloat/openwrt_trunk-r38784/feeds/packages/net/lighttpd/Makefile ../../../openwrt_trunk/feeds/packages/net/lighttpd/Makefile
---- ../../../downloads/mipsel-hardfloat/openwrt_trunk-r38784/feeds/packages/net/lighttpd/Makefile	2013-11-13 15:33:49.744396534 +0400
-+++ ../../../openwrt_trunk/feeds/packages/net/lighttpd/Makefile	2013-11-13 16:52:18.944309488 +0400
+diff -urx .svn ../../../downloads/mipsel-hardfloat/openwrt_trunk-r39357/feeds/packages/net/lighttpd/Makefile ../../../openwrt_trunk/feeds/packages/net/lighttpd/Makefile
+--- ../../../downloads/mipsel-hardfloat/openwrt_trunk-r39357/feeds/packages/net/lighttpd/Makefile	2014-01-23 09:52:40.304429237 +0400
++++ ../../../openwrt_trunk/feeds/packages/net/lighttpd/Makefile	2014-02-23 10:16:22.031615254 +0400
 @@ -1,4 +1,4 @@
 -	#
 +#
  # Copyright (C) 2006-2013 OpenWrt.org
  #
  # This is free software, licensed under the GNU General Public License v2.
+@@ -9,7 +9,7 @@
+ 
+ PKG_NAME:=lighttpd
+ PKG_VERSION:=1.4.32
+-PKG_RELEASE:=1
++PKG_RELEASE:=1a
+ 
+ PKG_SOURCE:=$(PKG_NAME)-$(PKG_VERSION).tar.xz
+ PKG_SOURCE_URL:=http://download.lighttpd.net/lighttpd/releases-1.4.x
 @@ -49,8 +49,8 @@
  endef
  
@@ -52,7 +61,16 @@ diff -urx .svn ../../../downloads/mipsel-hardfloat/openwrt_trunk-r38784/feeds/pa
  	--enable-shared \
  	--enable-static \
  	--disable-rpath \
-@@ -70,7 +70,7 @@
+@@ -59,7 +59,7 @@
+ 	--without-fam \
+ 	--without-gdbm \
+ 	--without-ldap \
+-	--without-lua \
++	--with-lua \
+ 	--without-memcache \
+ 	--with-pcre \
+ 	--without-valgrind \
+@@ -70,13 +70,13 @@
  
  ifneq ($(strip $(CONFIG_LIGHTTPD_SSL)),)
    CONFIGURE_ARGS+= \
@@ -61,6 +79,13 @@ diff -urx .svn ../../../downloads/mipsel-hardfloat/openwrt_trunk-r38784/feeds/pa
  else
    CONFIGURE_ARGS+= \
  	--without-openssl
+ endif
+ 
+-ifneq ($(SDK)$(CONFIG_PACKAGE_lighttpd-mod-mysql-vhost),)
++ifneq ($(SDK)$(CONFIG_PACKAGE_lighttpd-mod-mysql_vhost),)
+   CONFIGURE_ARGS+= \
+ 	--with-mysql
+ else
 @@ -105,22 +105,23 @@
  endef
  
@@ -115,3 +140,21 @@ diff -urx .svn ../../../downloads/mipsel-hardfloat/openwrt_trunk-r38784/feeds/pa
  	fi
    endef
  
+@@ -153,7 +154,7 @@
+ $(eval $(call BuildPlugin,alias,Directory alias,,10))
+ $(eval $(call BuildPlugin,auth,Authentication,,05))
+ $(eval $(call BuildPlugin,cgi,CGI,,10))
+-$(eval $(call BuildPlugin,cml,Cache Meta Language,,10))
++$(eval $(call BuildPlugin,cml,Cache Meta Language,+liblua,10))
+ $(eval $(call BuildPlugin,compress,Compress output,+zlib,10))
+ $(eval $(call BuildPlugin,evasive,Evasive,,10))
+ $(eval $(call BuildPlugin,evhost,Exnhanced Virtual-Hosting,,10))
+@@ -161,7 +162,7 @@
+ $(eval $(call BuildPlugin,extforward,Extract client,,10))
+ $(eval $(call BuildPlugin,fastcgi,FastCGI,,10))
+ $(eval $(call BuildPlugin,flv_streaming,FLV streaming,,10))
+-$(eval $(call BuildPlugin,magnet,Magnet,,10))
++$(eval $(call BuildPlugin,magnet,Magnet,+liblua,10))
+ $(eval $(call BuildPlugin,mysql_vhost,Mysql virtual hosting,+libmysqlclient,10))
+ $(eval $(call BuildPlugin,proxy,Proxy,,10))
+ $(eval $(call BuildPlugin,redirect,URL redirection,+libpcre,10))
