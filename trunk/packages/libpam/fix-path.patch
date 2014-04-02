@@ -1,5 +1,5 @@
---- ../../../downloads/mipsel-hardfloat/openwrt_trunk-r39357/feeds/packages/libs/libpam/Makefile	2014-01-23 09:52:40.380429236 +0400
-+++ ../../../openwrt_trunk/feeds/packages/libs/libpam/Makefile	2014-01-24 17:06:37.106380402 +0400
+--- ../../../downloads/mipsel-hardfloat/openwrt_trunk-r39357/feeds/packages/libs/libpam/Makefile
++++ ../../../openwrt_trunk/feeds/packages/libs/libpam/Makefile
 @@ -45,26 +45,27 @@
  		--disable-nls \
  		--disable-rpath \
@@ -14,9 +14,9 @@
 -	$(CP) $(PKG_INSTALL_DIR)/lib/* $(1)/lib/
 -	$(CP) $(PKG_INSTALL_DIR)/usr/include/* $(1)/usr/include
 +	$(INSTALL_DIR) $(1)/opt/lib
-+	$(INSTALL_DIR) $(1)/opt/include
++	$(INSTALL_DIR) $(1)/opt/include/security
 +	$(CP) $(PKG_INSTALL_DIR)/opt/lib/* $(1)/opt/lib/
-+	$(CP) $(PKG_INSTALL_DIR)/opt/include/* $(1)/opt/include
++	$(CP) $(PKG_INSTALL_DIR)/opt/include/* $(1)/opt/include/security
  endef
  
  define Package/libpam/install
