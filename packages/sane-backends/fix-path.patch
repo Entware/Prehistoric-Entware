@@ -1,11 +1,11 @@
---- ../../../downloads/openwrt_trunk-r35474/feeds/packages/utils/sane-backends/Makefile	2013-02-05 09:10:57.539046123 +0400
-+++ ../../../openwrt_trunk/feeds/packages/utils/sane-backends/Makefile	2013-02-05 10:33:59.090954664 +0400
+--- ../../../downloads/mipsel-hardfloat/openwrt_trunk-r39357/feeds/packages/utils/sane-backends/Makefile	2014-04-05 17:21:39.490413917 +0400
++++ ../../../openwrt_trunk/feeds/packages/utils/sane-backends/Makefile	2014-04-05 20:08:16.298231124 +0400
 @@ -48,7 +48,7 @@
    $(call Package/sane-backends/Default)
    SECTION:=libs
    CATEGORY:=Libraries
 -  DEPENDS:=+libjpeg +libtiff +libusb-compat +libv4l +cups
-+  DEPENDS:=+libjpeg +libtiff +libusb-compat +cups
++  DEPENDS:=+libjpeg +libtiff +libusb-compat +cups +libv4l
    TITLE+= (libraries)
  endef
  
