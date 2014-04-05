@@ -1,2 +1,4 @@
 # Flags for Make jobs
 .done
+/packages/.packages_path.mk
+/packages/.packages_prepared
