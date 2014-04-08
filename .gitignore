@@ -1,4 +1,5 @@
 # Flags for Make jobs
 .done
+/.git_mirrors_updated
 /packages/.packages_path.mk
 /packages/.packages_prepared
