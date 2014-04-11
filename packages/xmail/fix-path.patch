@@ -1,5 +1,5 @@
---- ../../../downloads/openwrt_trunk-r38381/feeds/packages/mail/xmail/Makefile	2013-10-13 10:25:10.278365921 +0400
-+++ ../../../openwrt_trunk/feeds/packages/mail/xmail/Makefile	2013-10-14 10:45:40.087122452 +0400
+--- ../../../downloads/mipsel-hardfloat/openwrt_trunk-r40423/feeds/packages/mail/xmail/Makefile	2014-04-09 16:17:24.314286478 +0400
++++ ../../../openwrt_trunk/feeds/packages/mail/xmail/Makefile	2014-04-11 16:05:18.331140581 +0400
 @@ -36,24 +36,18 @@
  	CFLAGS="$(TARGET_CFLAGS)" \
  	$(MAKE) -C $(PKG_BUILD_DIR) -f Makefile.lnx \
@@ -13,7 +13,7 @@
  
  define Package/xmail/install
 -	$(INSTALL_DIR) $(1)/usr/bin/
--	$(INSTALL_BIN) $(PKG_BUILD_DIR)/bin/* $(1)/usr/bin/
+-	$(INSTALL_BIN) $(PKG_BUILD_DIR)/bin/{CtrlClnt,MkUsers,XMCrypt,XMail,sendmail} $(1)/usr/bin/
 -	$(INSTALL_DIR) $(1)/etc
 -	$(INSTALL_DATA) $(PKG_BUILD_DIR)/MailRoot.tar.bz2 $(1)/etc/
 -	$(INSTALL_DIR) $(1)/etc/config

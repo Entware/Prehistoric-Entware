@@ -1,11 +1,17 @@
---- ../../../downloads/openwrt_trunk-r34568/feeds/packages/ipv6/gw6c/Makefile
-+++ ../../../openwrt_trunk/feeds/packages/ipv6/gw6c/Makefile
-@@ -5,21 +5,20 @@
+--- ../../../downloads/mipsel-hardfloat/openwrt_trunk-r40423/feeds/packages/ipv6/gw6c/Makefile	2014-04-09 16:17:24.282286481 +0400
++++ ../../../openwrt_trunk/feeds/packages/ipv6/gw6c/Makefile	2014-04-11 12:33:18.019383797 +0400
+@@ -1,25 +1,24 @@
+-#
+-# Copyright (C) 2008-2014 OpenWrt.org
++# 
++# Copyright (C) 2008-2011 OpenWrt.org
+ #
+ 
  include $(TOPDIR)/rules.mk
  
  PKG_NAME:=gw6c
 -PKG_VERSION:=5.1
--PKG_RELEASE:=4
+-PKG_RELEASE:=5
 +PKG_VERSION:=6.0.1
 +PKG_RELEASE:=1
  
@@ -29,7 +35,7 @@
    TITLE:=IPv6 tunnel client software
    URL:=http://www.go6.net
  endef
-@@ -29,52 +28,30 @@
+@@ -29,53 +28,30 @@
    Hexago/freenet6/go6.net's migration broker.
  endef
  
@@ -37,6 +43,7 @@
 -	C_COMPILER="$(TARGET_CC) -c -DNO_STDLIBCXX" \
 -	COMPILER="$(TARGET_CXX) -c -DNO_STDLIBCXX" \
 -	CPP_FLAGS="$(TARGET_CFLAGS) -I. -Wall -DNDEBUG  $(TARGET_CPPFLAGS)" \
+-	C_FLAGS="$(TARGET_CFLAGS) -I. -Wall -DNDEBUG $(TARGET_CPPFLAGS)" \
 -	RANLIB="$(TARGET_CROSS)ranlib" \
 -	ARCHIVER="$(TARGET_CROSS)ar" \
 -	C_LINKER="$(TARGET_CC)" \

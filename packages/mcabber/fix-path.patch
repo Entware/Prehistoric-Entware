@@ -1,5 +1,5 @@
---- ../../../downloads/mipsel-hardfloat/openwrt_trunk-r38800/feeds/packages/net/mcabber/Makefile	2013-11-14 10:01:15.831186158 +0400
-+++ ../../../openwrt_trunk/feeds/packages/net/mcabber/Makefile	2013-11-14 15:07:38.550851570 +0400
+--- ../../../downloads/mipsel-hardfloat/openwrt_trunk-r40423/feeds/packages/net/mcabber/Makefile	2014-04-09 16:17:24.146286482 +0400
++++ ../../../openwrt_trunk/feeds/packages/net/mcabber/Makefile	2014-04-11 14:05:27.487284623 +0400
 @@ -18,7 +18,7 @@
  PKG_BUILD_DIR:=$(BUILD_DIR)/$(PKG_NAME)-$(PKG_VERSION)
  
@@ -18,7 +18,7 @@
 +	--with-libidn=$(STAGING_DIR)/opt/lib \
 +	--with-gpgme-prefix=$(STAGING_DIR)/opt \
  	--enable-otr
- 		
+ 
  define Package/mcabber/install
 -	$(INSTALL_DIR) $(1)/bin
 -	$(INSTALL_BIN) $(PKG_BUILD_DIR)/mcabber/mcabber $(1)/bin

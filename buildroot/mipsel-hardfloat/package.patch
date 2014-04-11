@@ -1,6 +1,6 @@
---- ../../../openwrt_trunk/package/Makefile.orig	2013-10-12 10:34:21.443929751 +0400
-+++ ../../../openwrt_trunk/package/Makefile	2013-10-12 10:41:20.131922128 +0400
-@@ -49,7 +49,7 @@
+--- ../../../openwrt_trunk/package/Makefile.orig
++++ ../../../openwrt_trunk/package/Makefile
+@@ -46,7 +46,7 @@
  	$(RSTRIP) $(TMP_DIR)/mklibs-out
  	for lib in `ls $(TMP_DIR)/mklibs-out/*.so.* 2>/dev/null`; do \
  		LIB="$${lib##*/}"; \
@@ -9,7 +9,7 @@
  		[ -n "$$DEST" ] || continue; \
  		echo "Copying stripped library $$lib to $$DEST"; \
  		cp "$$lib" "$$DEST" || exit 1; \
-@@ -61,7 +61,7 @@
+@@ -58,7 +58,7 @@
  OPKG:= \
    IPKG_TMP=$(TMP_DIR)/ipkg \
    IPKG_INSTROOT=$(TARGET_DIR) \
@@ -18,7 +18,7 @@
    IPKG_OFFLINE_ROOT=$(TARGET_DIR) \
    $(XARGS) $(STAGING_DIR_HOST)/bin/opkg \
  	--offline-root $(TARGET_DIR) \
-@@ -116,8 +116,8 @@
+@@ -113,8 +113,8 @@
  	@-find $(TARGET_DIR) -name CVS   | $(XARGS) rm -rf
  	@-find $(TARGET_DIR) -name .svn  | $(XARGS) rm -rf
  	@-find $(TARGET_DIR) -name '.#*' | $(XARGS) rm -f

@@ -1,5 +1,5 @@
---- ../../../openwrt_trunk/feeds/packages/utils/zsh/Makefile.orig	2013-04-02 14:26:47.645541186 +0400
-+++ ../../../openwrt_trunk/feeds/packages/utils/zsh/Makefile	2013-04-02 15:06:48.241499573 +0400
+--- ../../../downloads/mipsel-hardfloat/openwrt_trunk-r40423/feeds/packages/utils/zsh/Makefile	2014-04-09 16:17:24.230286480 +0400
++++ ../../../openwrt_trunk/feeds/packages/utils/zsh/Makefile	2014-04-11 16:14:49.227139471 +0400
 @@ -23,7 +23,7 @@
    SECTION:=utils
    CATEGORY:=Utilities
@@ -9,14 +9,8 @@
    URL:=http://www.zsh.org/
  endef
  
-@@ -36,10 +36,15 @@
-         mechanism, and a host of other features.
- endef
+@@ -38,8 +38,9 @@
  
-+CONFIGURE_VARS += \
-+	zsh_cv_sys_nis=no \
-+	zsh_cv_sys_nis_plus=no
-+
  define Build/Configure
  	$(call Build/Configure/Default, \
 -		--bindir=/bin \
@@ -25,9 +19,9 @@
 +		--enable-etcdir=/opt/etc \
 +		--enable-multibyte \
  		--disable-gdbm \
- 		--with-term-lib="ncurses" \
- 	)
-@@ -58,17 +63,11 @@
+ 		--with-term-lib="ncurses", \
+ 		zsh_cv_sys_nis=no \
+@@ -60,17 +61,11 @@
  	$(MAKE) -C $(PKG_BUILD_DIR) DESTDIR="$(PKG_INSTALL_DIR)" prep
  endef
  

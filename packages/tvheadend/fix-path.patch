@@ -1,5 +1,5 @@
---- ../../../downloads/openwrt_trunk-r38381/feeds/packages/multimedia/tvheadend/Makefile	2013-10-14 14:47:50.594857596 +0400
-+++ ../../../openwrt_trunk/feeds/packages/multimedia/tvheadend/Makefile	2013-10-16 12:12:34.319878555 +0400
+--- ../../../downloads/mipsel-hardfloat/openwrt_trunk-r40423/feeds/packages/multimedia/tvheadend/Makefile	2014-04-09 16:17:24.318286480 +0400
++++ ../../../openwrt_trunk/feeds/packages/multimedia/tvheadend/Makefile	2014-04-09 16:53:37.394246894 +0400
 @@ -8,12 +8,17 @@
  include $(TOPDIR)/rules.mk
  
@@ -20,9 +20,9 @@
 +
 +PKG_INSTALL:=1
  
- include $(INCLUDE_DIR)/package.mk
+ PKG_USE_MIPS16:=0
  
-@@ -62,17 +67,24 @@
+@@ -64,17 +69,24 @@
  
  CONFIGURE_ARGS += \
  	--release \

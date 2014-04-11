@@ -1,6 +1,6 @@
---- ../../../downloads/openwrt_trunk-r35953/package/libs/polarssl/Makefile
-+++ ../../../openwrt_trunk/package/libs/polarssl/Makefile
-@@ -62,20 +62,20 @@
+--- ../../../downloads/mipsel-hardfloat/openwrt_trunk-r40423/package/libs/polarssl/Makefile	2014-04-09 16:17:25.322286461 +0400
++++ ../../../openwrt_trunk/package/libs/polarssl/Makefile	2014-04-09 16:53:33.070246974 +0400
+@@ -63,20 +63,20 @@
  	-DUSE_SHARED_POLARSSL_LIBRARY:Bool=ON \
  
  define Build/InstallDev

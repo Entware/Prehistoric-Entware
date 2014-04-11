@@ -1,6 +1,6 @@
---- ../../../openwrt_trunk/package/libs/libubox/Makefile.orig	2013-10-12 19:14:43.319359781 +0400
-+++ ../../../openwrt_trunk/package/libs/libubox/Makefile	2013-10-12 21:31:17.371211635 +0400
-@@ -61,34 +61,34 @@
+--- ../../../downloads/mipsel-hardfloat/openwrt_trunk-r40423/package/libs/libubox/Makefile	2014-04-09 16:17:25.330286462 +0400
++++ ../../../openwrt_trunk/package/libs/libubox/Makefile	2014-04-09 16:53:28.698247052 +0400
+@@ -62,34 +62,34 @@
    TITLE:=Lua binding for the OpenWrt Basic utility library
  endef
  

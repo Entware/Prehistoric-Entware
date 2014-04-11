@@ -1,5 +1,5 @@
---- ../../../openwrt_trunk.orig/feeds/packages/net/bitlbee/Makefile	2012-07-12 09:38:56.058165525 +0400
-+++ ../../../openwrt_trunk/feeds/packages/net/bitlbee/Makefile	2012-07-12 12:00:05.047695908 +0400
+--- ../../../openwrt_trunk.orig/feeds/packages/net/bitlbee/Makefile
++++ ../../../openwrt_trunk/feeds/packages/net/bitlbee/Makefile
 @@ -33,8 +33,8 @@
  endef
  
@@ -56,9 +56,9 @@
  
  define Build/Compile
 @@ -81,8 +88,8 @@
- 		DESTDIR="$(1)" install-etc install-bin 
+ 		DESTDIR="$(1)" install-etc install-bin
  	$(MAKE) -C $(PKG_BUILD_DIR)/doc/user-guide \
- 		DESTDIR="$(1)" install 
+ 		DESTDIR="$(1)" install
 -	$(INSTALL_DIR) $(1)/etc/init.d
 -	$(INSTALL_BIN) ./files/bitlbee.init $(1)/etc/init.d/bitlbee
 +	$(INSTALL_DIR) $(1)/opt/etc/init.d

@@ -1,6 +1,6 @@
---- ../../../downloads/openwrt_trunk-r35474/package/libs/libusb-compat/Makefile	2013-02-05 09:11:10.911045870 +0400
-+++ ../../../openwrt_trunk/package/libs/libusb-compat/Makefile	2013-02-05 09:50:56.379003634 +0400
-@@ -42,8 +42,8 @@
+--- ../../../downloads/openwrt_trunk-r35474/package/libs/libusb-compat/Makefile
++++ ../../../openwrt_trunk/package/libs/libusb-compat/Makefile
+@@ -43,8 +43,8 @@
  endef
  
  define Package/libusb-compat/install

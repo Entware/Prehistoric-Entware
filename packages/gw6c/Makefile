@@ -9,7 +9,7 @@ all: .done
 
 .done:
 	patch -d $(TOP) -p3 -i $(CURDIR)/fix-path.patch
-	mkdir -p ../../../openwrt_trunk/feeds/packages/ipv6/gw6c/patches
+	rm -f ../../../openwrt_trunk/feeds/packages/ipv6/gw6c/patches/001-sed-separator.patch
 	cp -f 0*.patch ../../../openwrt_trunk/feeds/packages/ipv6/gw6c/patches/
 	cp -f ./S11gw6c ../../../openwrt_trunk/feeds/packages/ipv6/gw6c/files/
 	cp -f ./gw6c.conf ../../../openwrt_trunk/feeds/packages/ipv6/gw6c/files/

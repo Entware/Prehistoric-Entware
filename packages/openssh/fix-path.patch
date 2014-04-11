@@ -1,11 +1,11 @@
---- ../../../openwrt_trunk/feeds/packages/net/openssh/Makefile.orig	2014-01-20 16:35:30.494314463 +0400
-+++ ../../../openwrt_trunk/feeds/packages/net/openssh/Makefile	2014-01-20 22:36:33.417918732 +0400
+--- ../../../downloads/mipsel-hardfloat/openwrt_trunk-r40423/feeds/packages/net/openssh/Makefile	2014-04-09 16:17:24.170286483 +0400
++++ ../../../openwrt_trunk/feeds/packages/net/openssh/Makefile	2014-04-11 14:34:45.155257646 +0400
 @@ -56,7 +56,7 @@
  endef
  
  define Package/openssh-client/conffiles
 -/etc/ssh/ssh_config
-+/opt/opt/etc/ssh/ssh_config
++/opt/etc/ssh/ssh_config
  endef
  
  define Package/openssh-client-utils
@@ -14,7 +14,7 @@
  
  define Package/openssh-server/conffiles
 -/etc/ssh/sshd_config
-+/opt/opt/etc/ssh/sshd_config
++/opt/etc/ssh/sshd_config
  endef
  
  define Package/openssh-server-pam
@@ -50,7 +50,7 @@
 -define Package/openssh-client/preinst
 -#!/bin/sh
 -if [ -L $${IPKG_INSTROOT}/usr/bin/ssh ] && [ -L $${IPKG_INSTROOT}/usr/bin/scp ]; then
--  rm -f $${IPKG_INSTROOT}/usr/bin/ssh $${IPKG_INSTROOT}/usr/bin/scp;
+-	rm -f $${IPKG_INSTROOT}/usr/bin/ssh $${IPKG_INSTROOT}/usr/bin/scp;
 -fi
 -exit 0
 -endef
@@ -59,8 +59,8 @@
 -#!/bin/sh
 -rm -f $${IPKG_INSTROOT}/usr/bin/ssh $${IPKG_INSTROOT}/usr/bin/scp;
 -if [ -x $${IPKG_INSTROOT}/usr/sbin/dropbear ] ; then
--  ln -s /usr/sbin/dropbear $${IPKG_INSTROOT}/usr/bin/ssh;
--  ln -s /usr/sbin/dropbear $${IPKG_INSTROOT}/usr/bin/scp;
+-	ln -s /usr/sbin/dropbear $${IPKG_INSTROOT}/usr/bin/ssh;
+-	ln -s /usr/sbin/dropbear $${IPKG_INSTROOT}/usr/bin/scp;
 -fi
 -exit 0
 -endef
@@ -153,11 +153,3 @@
  endef
  
  $(eval $(call BuildPackage,openssh-client))
-@@ -260,6 +242,6 @@
- $(eval $(call BuildPackage,openssh-client-utils))
- $(eval $(call BuildPackage,openssh-keygen))
- $(eval $(call BuildPackage,openssh-server))
--$(eval $(call BuildPackage,openssh-server-pam))
-+#$(eval $(call BuildPackage,openssh-server-pam))
- $(eval $(call BuildPackage,openssh-sftp-client))
- $(eval $(call BuildPackage,openssh-sftp-server))

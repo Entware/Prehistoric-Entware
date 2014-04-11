@@ -1,6 +1,6 @@
-diff -urx .svn ../../../downloads/openwrt_trunk-r35953/feeds/packages/libs/mysql/conf/my.cnf ../../../openwrt_trunk/feeds/packages/libs/mysql/conf/my.cnf
---- ../../../downloads/openwrt_trunk-r35953/feeds/packages/libs/mysql/conf/my.cnf	2013-03-11 09:29:39.198073817 +0400
-+++ ../../../openwrt_trunk/feeds/packages/libs/mysql/conf/my.cnf	2013-03-11 11:06:12.721968637 +0400
+diff -urx .svn ../../../downloads/mipsel-hardfloat/openwrt_trunk-r40423/feeds/packages/libs/mysql/conf/my.cnf ../../../openwrt_trunk/feeds/packages/libs/mysql/conf/my.cnf
+--- ../../../downloads/mipsel-hardfloat/openwrt_trunk-r40423/feeds/packages/libs/mysql/conf/my.cnf	2014-04-09 16:17:24.282286481 +0400
++++ ../../../openwrt_trunk/feeds/packages/libs/mysql/conf/my.cnf	2014-04-09 16:53:29.166247045 +0400
 @@ -1,20 +1,20 @@
  [client]
  port		= 3306
@@ -43,28 +43,28 @@ diff -urx .svn ../../../downloads/openwrt_trunk-r35953/feeds/packages/libs/mysql
  #expire_logs_days	= 10
  #max_binlog_size         = 100M
  #binlog_do_db		= include_database_name
-diff -urx .svn ../../../downloads/openwrt_trunk-r35953/feeds/packages/libs/mysql/Makefile ../../../openwrt_trunk/feeds/packages/libs/mysql/Makefile
---- ../../../downloads/openwrt_trunk-r35953/feeds/packages/libs/mysql/Makefile	2013-03-11 09:29:39.194073817 +0400
-+++ ../../../openwrt_trunk/feeds/packages/libs/mysql/Makefile	2013-03-11 11:09:04.385964552 +0400
+diff -urx .svn ../../../downloads/mipsel-hardfloat/openwrt_trunk-r40423/feeds/packages/libs/mysql/Makefile ../../../openwrt_trunk/feeds/packages/libs/mysql/Makefile
+--- ../../../downloads/mipsel-hardfloat/openwrt_trunk-r40423/feeds/packages/libs/mysql/Makefile	2014-04-09 16:17:24.282286481 +0400
++++ ../../../openwrt_trunk/feeds/packages/libs/mysql/Makefile	2014-04-11 14:16:05.331271282 +0400
 @@ -70,7 +70,7 @@
+ 	--with-server \
  	--without-mysqlmanager \
- 	--without-raid \
  	--with-mysqld-user=root \
 -	--with-unix-socket-path=/tmp \
 +	--with-unix-socket-path=/opt/tmp \
  	--without-libwrap \
- 	--without-pstack \
  	--with-low-memory \
-@@ -82,7 +82,7 @@
+ 	--without-embedded-server \
+@@ -78,7 +78,7 @@
+ 	--without-ssl \
  	--without-docs \
  	--without-man \
- 	--without-bench \
 -	--without-readline \
 +	--with-readline \
  	--without-debug \
  	--with-named-thread-libs=-lpthread
  
-@@ -142,47 +142,49 @@
+@@ -138,47 +138,52 @@
  
  
  define Build/InstallDev
@@ -124,6 +124,9 @@ diff -urx .svn ../../../downloads/openwrt_trunk-r35953/feeds/packages/libs/mysql
 +	$(INSTALL_BIN) $(PKG_INSTALL_DIR)/opt/bin/mysqldump $(1)/opt/bin/
 +	$(INSTALL_BIN) $(PKG_INSTALL_DIR)/opt/bin/mysql_install_db $(1)/opt/bin/
 +	$(INSTALL_BIN) $(PKG_INSTALL_DIR)/opt/bin/my_print_defaults $(1)/opt/bin/
++	$(INSTALL_BIN) $(PKG_INSTALL_DIR)/opt/bin/mysql_upgrade $(1)/opt/bin/
++	$(INSTALL_BIN) $(PKG_INSTALL_DIR)/opt/bin/resolveip $(1)/opt/bin/
++	$(INSTALL_BIN) $(PKG_INSTALL_DIR)/opt/bin/mysqlcheck $(1)/opt/bin/
 +	$(INSTALL_DIR) $(1)/opt/etc/init.d/
 +	$(INSTALL_BIN) ./files/S70mysqld $(1)/opt/etc/init.d
 +	$(INSTALL_CONF) conf/my.cnf $(1)/opt/etc/

@@ -1,26 +1,18 @@
---- ../../../openwrt_trunk.orig/feeds/packages/net/cutter/Makefile	2012-09-03 12:35:50.939891762 +0400
-+++ ../../../openwrt_trunk/feeds/packages/net/cutter/Makefile	2012-09-03 13:35:53.579826021 +0400
-@@ -22,7 +22,6 @@
-   CATEGORY:=Network
-   TITLE:=allows an user to abort TCP/IP connections
-   URL:=http://www.lowth.com/cutter/
--  DEPENDS:=@BROKEN
+--- ../../../downloads/mipsel-hardfloat/openwrt_trunk-r40423/feeds/packages/net/cutter/Makefile	2014-04-09 16:17:24.178286483 +0400
++++ ../../../openwrt_trunk/feeds/packages/net/cutter/Makefile	2014-04-11 11:51:11.395432300 +0400
+@@ -31,12 +31,12 @@
  endef
  
- define Package/cutter/description
-@@ -32,12 +31,12 @@
- endef
- 	
  define Build/Compile
--	$(TARGET_CC) $(PKG_BUILD_DIR)/cutter.c -o $(PKG_BUILD_DIR)/cutter
+-	$(TARGET_CC) $(TARGET_CFLAGS) $(PKG_BUILD_DIR)/cutter.c -o $(PKG_BUILD_DIR)/cutter
 +	$(TARGET_CC) $(TARGET_CFLAGS) $(TARGET_LDFLAGS) $(PKG_BUILD_DIR)/cutter.c -o $(PKG_BUILD_DIR)/cutter
  endef
- 	
+ 
  define Package/cutter/install
 -	$(INSTALL_DIR) $(1)/usr/sbin
 -	$(INSTALL_BIN) $(PKG_BUILD_DIR)/cutter $(1)/usr/sbin/
-+	$(INSTALL_DIR) $(1)/opt/bin
-+	$(INSTALL_BIN) $(PKG_BUILD_DIR)/cutter $(1)/opt/bin/
++	$(INSTALL_DIR) $(1)/opt/sbin
++	$(INSTALL_BIN) $(PKG_BUILD_DIR)/cutter $(1)/opt/sbin/
  endef
  
  $(eval $(call BuildPackage,cutter))

@@ -1,14 +1,5 @@
---- ../../../downloads/mipsel-hardfloat/openwrt_trunk-r38800/feeds/packages/libs/xmlrpc-c/Makefile	2013-11-14 10:01:15.967186157 +0400
-+++ ../../../openwrt_trunk/feeds/packages/libs/xmlrpc-c/Makefile	2013-11-14 10:01:36.683185779 +0400
-@@ -13,7 +13,7 @@
- PKG_RELEASE:=1
- 
- PKG_SOURCE:=$(PKG_NAME)-$(PKG_VERSION).tar.gz
--PKG_SOURCE_URL:=http://xmlrpc-c.svn.sourceforge.net/svnroot/xmlrpc-c/advanced
-+PKG_SOURCE_URL:=http://svn.code.sf.net/p/xmlrpc-c/code/advanced/
- PKG_SOURCE_SUBDIR:=$(PKG_NAME)-$(PKG_VERSION)
- PKG_SOURCE_VERSION:=$(PKG_REV)
- PKG_SOURCE_PROTO:=svn
+--- ../../../downloads/mipsel-hardfloat/openwrt_trunk-r40423/feeds/packages/libs/xmlrpc-c/Makefile	2014-04-09 16:17:24.290286481 +0400
++++ ../../../openwrt_trunk/feeds/packages/libs/xmlrpc-c/Makefile	2014-04-09 16:53:39.014246864 +0400
 @@ -121,87 +121,87 @@
  
  define Build/InstallDev

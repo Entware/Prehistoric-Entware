@@ -1,6 +1,6 @@
---- ../../../downloads/mipsel-hardfloat/openwrt_trunk-r39357/feeds/packages/utils/at/Makefile	2014-04-05 17:21:39.482413915 +0400
-+++ ../../../openwrt_trunk/feeds/packages/utils/at/Makefile	2014-04-05 19:18:37.142280718 +0400
-@@ -35,19 +35,32 @@
+--- ../../../downloads/mipsel-hardfloat/openwrt_trunk-r40423/feeds/packages/utils/at/Makefile	2014-04-09 16:17:24.222286483 +0400
++++ ../../../openwrt_trunk/feeds/packages/utils/at/Makefile	2014-04-11 11:08:14.851480266 +0400
+@@ -35,22 +35,33 @@
  EXTRA_CFLAGS:=-DNEED_YYWRAP -I$(PKG_BUILD_DIR) \
  	$(TARGET_LDFLAGS)
  
@@ -13,8 +13,9 @@
 +		--with-jobdir=/opt/var/spool/cron/atjobs \
 +		--with-atspool=/opt/var/spool/cron/atspool \
 +		--with-loadavg_mx=0.5
-+
-+CONFIGURE_VARS+=ac_cv_header_security_pam_appl_h=no
+ 
+ CONFIGURE_VARS += \
+ 	ac_cv_header_security_pam_appl_h=no
  
  define Package/at/install
 -	$(INSTALL_DIR) $(1)/usr/bin $(1)/usr/sbin $(1)/etc/init.d/
@@ -24,7 +25,7 @@
 -	ln -sf at $(1)/usr/bin/atrm
 -	$(INSTALL_BIN) $(PKG_BUILD_DIR)/atd $(1)/usr/sbin
 +	$(INSTALL_DIR) $(1)/opt/bin $(1)/opt/sbin $(1)/opt/etc/init.d/
-+	$(INSTALL_BIN) ./files/S50atd $(1)/opt/etc/init.d
++	$(INSTALL_BIN) ./files/S50atd $(1)/etc/init.d
 +	$(INSTALL_BIN) $(PKG_BUILD_DIR)/at $(1)/opt/bin
 +	ln -sf at $(1)/opt/bin/atq
 +	ln -sf at $(1)/opt/bin/atrm

@@ -1,6 +1,6 @@
 --- ../../../openwrt_trunk.orig/feeds/packages/libs/libxml2/Makefile
 +++ ../../../openwrt_trunk/feeds/packages/libs/libxml2/Makefile
-@@ -73,35 +73,35 @@
+@@ -74,35 +74,35 @@
  
  define Build/InstallDev
  	$(INSTALL_DIR) $(2)/bin

@@ -1,25 +1,5 @@
---- ../../../downloads/mipsel-hardfloat/openwrt_trunk-r39357/feeds/packages/libs/curl/Makefile	2014-01-23 09:52:40.384429236 +0400
-+++ ../../../openwrt_trunk/feeds/packages/libs/curl/Makefile	2014-01-23 12:54:21.924232405 +0400
-@@ -8,8 +8,8 @@
- include $(TOPDIR)/rules.mk
- 
- PKG_NAME:=curl
--PKG_VERSION:=7.33.0
--PKG_RELEASE:=4
-+PKG_VERSION:=7.34.0
-+PKG_RELEASE:=1b
- 
- PKG_SOURCE:=$(PKG_NAME)-$(PKG_VERSION).tar.bz2
- PKG_SOURCE_URL:=http://curl.haxx.se/download/ \
-@@ -18,7 +18,7 @@
- 	ftp://ftp.planetmirror.com/pub/curl/ \
- 	http://www.mirrormonster.com/curl/download/ \
- 	http://curl.mirrors.cyberservers.net/download/
--PKG_MD5SUM:=57409d6bf0bd97053b8378dbe0cadcef
-+PKG_MD5SUM:=88491df2bb32e9146e776ae6ac2f8327
- 
- PKG_LICENSE:=MIT
- PKG_LICENSE_FILES:=COPYING
+--- ../../../downloads/mipsel-hardfloat/openwrt_trunk-r40423/feeds/packages/libs/curl/Makefile	2014-04-09 16:17:24.314286478 +0400
++++ ../../../openwrt_trunk/feeds/packages/libs/curl/Makefile	2014-04-11 11:45:09.575435970 +0400
 @@ -75,7 +75,7 @@
    $(call Package/curl/Default)
    SECTION:=libs
@@ -29,7 +9,13 @@
    TITLE:=A client-side URL transfer library using $(if $(CONFIG_LIBCURL_POLARSSL),PolarSSL)$(if $(CONFIG_LIBCURL_OPENSSL),OpenSSL)$(if $(CONFIG_LIBCURL_GNUTLS),GNUTLS)$(if $(CONFIG_LIBCURL_NOSSL),no SSL)
    MENU:=1
  endef
-@@ -102,22 +102,22 @@
+@@ -97,27 +97,28 @@
+ 	--disable-manual \
+ 	--disable-verbose \
+ 	--without-ca-bundle \
++	--with-ca-path=/opt/etc/ssl/certs \
+ 	--without-krb4 \
+ 	--without-libidn \
  	--without-nss \
  	--without-libssh2 \
  	$(call autoconf_bool,CONFIG_IPV6,ipv6) \
@@ -59,7 +45,7 @@
  	$(if $(CONFIG_LIBCURL_POP3),--enable,--disable)-pop3 \
  	$(if $(CONFIG_LIBCURL_PROXY),--enable,--disable)-proxy \
  	$(if $(CONFIG_LIBCURL_RTSP),--enable,--disable)-rtsp \
-@@ -127,7 +127,7 @@
+@@ -127,7 +128,7 @@
  	$(if $(CONFIG_LIBCURL_SSPI),--enable,--disable)-sspi \
  	$(if $(CONFIG_LIBCURL_THREADED_RESOLVER),--enable,--disable)-threaded-resolver \
  	$(if $(CONFIG_LIBCURL_TLS-SRP),--enable,--disable)-tls-srp \
@@ -68,7 +54,7 @@
  
  define Build/Compile
  	+$(MAKE) $(PKG_JOBS) -C $(PKG_BUILD_DIR) \
-@@ -137,24 +137,24 @@
+@@ -137,24 +138,24 @@
  endef
  
  define Build/InstallDev

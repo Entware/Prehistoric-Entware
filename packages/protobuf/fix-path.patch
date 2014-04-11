@@ -1,5 +1,5 @@
---- ../../../openwrt_trunk.orig/feeds/packages/libs/protobuf/Makefile	2011-11-25 09:50:00.052823516 +0400
-+++ ../../../openwrt_trunk/feeds/packages/libs/protobuf/Makefile	2011-11-26 23:11:42.676608261 +0400
+--- ../../../downloads/mipsel-hardfloat/openwrt_trunk-r40423/feeds/packages/libs/protobuf/Makefile	2014-04-09 16:17:24.302286481 +0400
++++ ../../../openwrt_trunk/feeds/packages/libs/protobuf/Makefile	2014-04-11 14:55:22.055224648 +0400
 @@ -41,33 +41,33 @@
  
  define Build/InstallDev
@@ -38,7 +38,7 @@
 -		$(1)/usr/lib/
 +		$(PKG_INSTALL_DIR)/opt/lib/libprotobuf-lite.so* \
 +		$(1)/opt/lib/
- 	
+ 
  	$(CP) \
 -		$(PKG_INSTALL_DIR)/usr/lib/libprotobuf.so* \
 -		$(1)/usr/lib/

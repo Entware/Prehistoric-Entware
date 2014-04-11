@@ -10,7 +10,6 @@ all: .done
 .done:
 	patch -d $(TOP) -p3 -i $(CURDIR)/010-Makefile.patch
 	patch -d $(TOP) -p3 -i $(CURDIR)/020-etc_crontabs.patch
-	patch -d $(TOP) -p3 -i $(CURDIR)/030-config.patch
 	cp -f ./999-entware-path.patch ../../../openwrt_trunk/package/utils/busybox/patches/
 	@touch $@
 

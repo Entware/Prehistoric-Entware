@@ -20,7 +20,7 @@
  endef
  
  define Package/libpam/install
--	$(INSTALL_DIR) $(1)/lib $(1)/lib/security $(1)/lib/security/pam_filter 
+-	$(INSTALL_DIR) $(1)/lib $(1)/lib/security $(1)/lib/security/pam_filter
 -	$(INSTALL_DIR) $(1)/etc $(1)/etc/pam.d
 -	$(INSTALL_DIR) $(1)/usr/sbin
 -	$(CP) $(PKG_INSTALL_DIR)/lib/*.so* $(1)/lib/
@@ -29,7 +29,7 @@
 -	$(CP) $(PKG_INSTALL_DIR)/etc/* $(1)/etc/
 -	$(CP) ./files/* $(1)/etc/
 -	$(INSTALL_BIN) $(PKG_INSTALL_DIR)/usr/sbin/* $(1)/usr/sbin/
-+	$(INSTALL_DIR) $(1)/opt/lib $(1)/opt/lib/security $(1)/opt/lib/security/pam_filter 
++	$(INSTALL_DIR) $(1)/opt/lib $(1)/opt/lib/security $(1)/opt/lib/security/pam_filter
 +	$(INSTALL_DIR) $(1)/opt/etc $(1)/opt/etc/pam.d
 +	$(INSTALL_DIR) $(1)/opt/sbin
 +	$(CP) $(PKG_INSTALL_DIR)/opt/lib/*.so* $(1)/opt/lib/

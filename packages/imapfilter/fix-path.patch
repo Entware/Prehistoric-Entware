@@ -1,6 +1,6 @@
 diff -urx .svn ../../../downloads/mipsel-hardfloat/openwrt_trunk-r39354/feeds/packages/mail/imapfilter/Makefile ../../../openwrt_trunk/feeds/packages/mail/imapfilter/Makefile
---- ../../../downloads/mipsel-hardfloat/openwrt_trunk-r39354/feeds/packages/mail/imapfilter/Makefile	2014-01-20 16:36:36.554313260 +0400
-+++ ../../../openwrt_trunk/feeds/packages/mail/imapfilter/Makefile	2014-01-23 09:31:20.388451928 +0400
+--- ../../../downloads/mipsel-hardfloat/openwrt_trunk-r39354/feeds/packages/mail/imapfilter/Makefile
++++ ../../../openwrt_trunk/feeds/packages/mail/imapfilter/Makefile
 @@ -8,12 +8,15 @@
  include $(TOPDIR)/rules.mk
  
@@ -46,7 +46,7 @@ diff -urx .svn ../../../downloads/mipsel-hardfloat/openwrt_trunk-r39354/feeds/pa
  		INCDIRS="$(TARGET_CPPFLAGS)" \
  		LIBDIRS="$(TARGET_LDFLAGS)" \
  		MYCFLAGS="$(TARGET_CFLAGS) -std=gnu99" \
--		MYLDFLAGS="-lcrypt" 
+-		MYLDFLAGS="-lcrypt"
 +		PREFIX="/opt"
  endef
  
@@ -73,8 +73,8 @@ diff -urx .svn ../../../downloads/mipsel-hardfloat/openwrt_trunk-r39354/feeds/pa
  
  $(eval $(call BuildPackage,imapfilter))
 diff -urx .svn ../../../downloads/mipsel-hardfloat/openwrt_trunk-r39354/feeds/packages/mail/imapfilter/patches/010-pathnames.patch ../../../openwrt_trunk/feeds/packages/mail/imapfilter/patches/010-pathnames.patch
---- ../../../downloads/mipsel-hardfloat/openwrt_trunk-r39354/feeds/packages/mail/imapfilter/patches/010-pathnames.patch	2014-01-20 16:36:36.554313260 +0400
-+++ ../../../openwrt_trunk/feeds/packages/mail/imapfilter/patches/010-pathnames.patch	2014-01-20 16:37:04.902312742 +0400
+--- ../../../downloads/mipsel-hardfloat/openwrt_trunk-r39354/feeds/packages/mail/imapfilter/patches/010-pathnames.patch
++++ ../../../openwrt_trunk/feeds/packages/mail/imapfilter/patches/010-pathnames.patch
 @@ -1,31 +1,11 @@
 ---- a/pathnames.h
 -+++ b/pathnames.h

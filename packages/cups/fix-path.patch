@@ -1,6 +1,6 @@
-diff -urx .svn ../../../downloads/openwrt_trunk-r35474/feeds/packages/net/cups/files/etc/cups/cupsd.conf ../../../openwrt_trunk/feeds/packages/net/cups/files/etc/cups/cupsd.conf
---- ../../../downloads/openwrt_trunk-r35474/feeds/packages/net/cups/files/etc/cups/cupsd.conf	2013-02-05 10:42:29.614946070 +0400
-+++ ../../../openwrt_trunk/feeds/packages/net/cups/files/etc/cups/cupsd.conf	2013-02-05 10:43:45.882944682 +0400
+diff -urx .svn ../../../downloads/mipsel-hardfloat/openwrt_trunk-r40423/feeds/packages/net/cups/files/etc/cups/cupsd.conf ../../../openwrt_trunk/feeds/packages/net/cups/files/etc/cups/cupsd.conf
+--- ../../../downloads/mipsel-hardfloat/openwrt_trunk-r40423/feeds/packages/net/cups/files/etc/cups/cupsd.conf	2014-04-09 16:17:24.178286483 +0400
++++ ../../../openwrt_trunk/feeds/packages/net/cups/files/etc/cups/cupsd.conf	2014-04-09 16:53:25.978247102 +0400
 @@ -21,12 +21,12 @@
  MaxPrinterHistory 10
  #Printcap /etc/printcap
@@ -16,11 +16,11 @@ diff -urx .svn ../../../downloads/openwrt_trunk-r35474/feeds/packages/net/cups/f
  Port 631
  HostNameLookups Off
  KeepAlive On
-diff -urx .svn ../../../downloads/openwrt_trunk-r35474/feeds/packages/net/cups/Makefile ../../../openwrt_trunk/feeds/packages/net/cups/Makefile
---- ../../../downloads/openwrt_trunk-r35474/feeds/packages/net/cups/Makefile	2013-02-05 10:42:29.474946071 +0400
-+++ ../../../openwrt_trunk/feeds/packages/net/cups/Makefile	2013-02-06 11:35:55.109312870 +0400
-@@ -18,7 +18,7 @@
- 	ftp://ftp3.easysw.com/pub/cups/$(PKG_VERSION)
+diff -urx .svn ../../../downloads/mipsel-hardfloat/openwrt_trunk-r40423/feeds/packages/net/cups/Makefile ../../../openwrt_trunk/feeds/packages/net/cups/Makefile
+--- ../../../downloads/mipsel-hardfloat/openwrt_trunk-r40423/feeds/packages/net/cups/Makefile	2014-04-09 16:17:24.178286483 +0400
++++ ../../../openwrt_trunk/feeds/packages/net/cups/Makefile	2014-04-09 16:53:25.978247102 +0400
+@@ -15,7 +15,7 @@
+ PKG_SOURCE_URL:= http://www.cups.org/software/$(PKG_VERSION)
  PKG_MD5SUM:=de3006e5cf1ee78a9c6145ce62c4e982
  
 -TARGET_LDFLAGS+=-Wl,-rpath-link=$(STAGING_DIR)/usr/lib
@@ -28,7 +28,7 @@ diff -urx .svn ../../../downloads/openwrt_trunk-r35474/feeds/packages/net/cups/M
  
  include $(INCLUDE_DIR)/package.mk
  
-@@ -40,9 +40,9 @@
+@@ -37,9 +37,9 @@
  endef
  
  define Package/cups/conffiles
@@ -41,7 +41,7 @@ diff -urx .svn ../../../downloads/openwrt_trunk-r35474/feeds/packages/net/cups/M
  endef
  
  define Package/cups-bsd
-@@ -66,7 +66,7 @@
+@@ -63,7 +63,7 @@
  endef
  
  define Package/cups-client/conffiles
@@ -50,7 +50,7 @@ diff -urx .svn ../../../downloads/openwrt_trunk-r35474/feeds/packages/net/cups/M
  endef
  
  define Package/cups-client/description
-@@ -101,7 +101,7 @@
+@@ -98,7 +98,7 @@
  $(call Package/cups/Default)
    SECTION:=libs
    CATEGORY:=Libraries
@@ -59,7 +59,7 @@ diff -urx .svn ../../../downloads/openwrt_trunk-r35474/feeds/packages/net/cups/M
    TITLE:=Common UNIX Printing System - Core library
  endef
  
-@@ -427,247 +427,247 @@
+@@ -424,247 +424,247 @@
  endef
  
  define Package/cups/install

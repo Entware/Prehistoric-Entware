@@ -1,18 +1,17 @@
---- ../../../downloads/openwrt_trunk-r37769/feeds/packages/sound/mpd/Makefile	2013-08-15 09:37:02.617572165 +0400
-+++ ../../../openwrt_trunk/feeds/packages/sound/mpd/Makefile	2013-08-16 11:53:41.411848938 +0400
+--- ../../../downloads/mipsel-hardfloat/openwrt_trunk-r40423/feeds/packages/sound/mpd/Makefile	2014-04-09 16:17:24.274286480 +0400
++++ ../../../openwrt_trunk/feeds/packages/sound/mpd/Makefile	2014-04-11 14:10:08.827276270 +0400
 @@ -8,12 +8,12 @@
  include $(TOPDIR)/rules.mk
  
  PKG_NAME:=mpd
--PKG_VERSION:=0.16.5
+-PKG_VERSION:=0.16.8
 -PKG_RELEASE:=2
 +PKG_VERSION:=0.17.5
 +PKG_RELEASE:=1
  
  PKG_SOURCE:=$(PKG_NAME)-$(PKG_VERSION).tar.bz2
--PKG_SOURCE_URL:=@SF/musicpd
--PKG_MD5SUM:=f7564cff12035f6a1112cce770655df7
-+PKG_SOURCE_URL:=http://www.musicpd.org/download/mpd/stable
+ PKG_SOURCE_URL:=http://www.musicpd.org/download/mpd/0.16/
+-PKG_MD5SUM:=b412a9d0b3457bea1bb87904a8f80c04
 +PKG_MD5SUM:=d7fd82237c0d90fb4247037f8ada41e4
  
  PKG_BUILD_DIR:=$(BUILD_DIR)/$(PKG_NAME)-$(BUILD_VARIANT)/$(PKG_NAME)-$(PKG_VERSION)

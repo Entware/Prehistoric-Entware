@@ -1,8 +1,8 @@
---- ../../../openwrt_trunk.orig/include/package-defaults.mk
-+++ ../../../openwrt_trunk/include/package-defaults.mk
-@@ -64,7 +64,8 @@
- 
+--- ../../../downloads/mipsel-hardfloat/openwrt_trunk-r40423/include/package-defaults.mk	2014-04-09 16:17:24.442286480 +0400
++++ ../../../openwrt_trunk/include/package-defaults.mk	2014-04-09 16:17:40.714286180 +0400
+@@ -66,7 +66,8 @@
  EXTRA_CXXFLAGS = $(EXTRA_CFLAGS)
+ DISABLE_NLS:=--disable-nls
  
 -CONFIGURE_PREFIX:=/usr
 +LINUX_DIR:=__LINUX_DIR_PATH__
@@ -10,7 +10,7 @@
  CONFIGURE_ARGS = \
  		--target=$(GNU_TARGET_NAME) \
  		--host=$(GNU_TARGET_NAME) \
-@@ -76,9 +77,9 @@
+@@ -78,9 +79,9 @@
  		--bindir=$(CONFIGURE_PREFIX)/bin \
  		--sbindir=$(CONFIGURE_PREFIX)/sbin \
  		--libexecdir=$(CONFIGURE_PREFIX)/lib \

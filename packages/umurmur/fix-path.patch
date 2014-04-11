@@ -1,21 +1,6 @@
---- ../../../downloads/mipsel-hardfloat/openwrt_trunk-r39354/feeds/packages/net/umurmur/Makefile	2014-01-20 16:36:36.442313262 +0400
-+++ ../../../openwrt_trunk/feeds/packages/net/umurmur/Makefile	2014-01-23 09:40:10.784442958 +0400
-@@ -7,12 +7,12 @@
- include $(TOPDIR)/rules.mk
- 
- PKG_NAME:=umurmur
--PKG_VERSION:=0.2.10
-+PKG_VERSION:=0.2.14
- PKG_RELEASE:=1
- 
- PKG_SOURCE:=$(PKG_NAME)-$(PKG_VERSION).tar.gz
- PKG_SOURCE_URL:=http://umurmur.googlecode.com/files
--PKG_MD5SUM:=4d71a699bddce3df0996b5dd0a279b47
-+PKG_MD5SUM:=e22121b4b91f4c9de43f858f6defa0b0
- 
- PKG_BUILD_DIR:=$(BUILD_DIR)/$(PKG_NAME)-$(BUILD_VARIANT)/$(PKG_NAME)-$(PKG_VERSION)
- 
-@@ -64,19 +64,18 @@
+--- ../../../downloads/mipsel-hardfloat/openwrt_trunk-r40423/feeds/packages/net/umurmur/Makefile	2014-04-09 16:17:24.158286482 +0400
++++ ../../../openwrt_trunk/feeds/packages/net/umurmur/Makefile	2014-04-11 15:45:32.955172584 +0400
+@@ -64,19 +64,19 @@
  endef
  
  define Package/umurmur-openssl/conffiles
@@ -35,10 +20,11 @@
 -	$(INSTALL_DIR) $(1)/etc/umurmur
 +	$(INSTALL_DIR) $(1)/opt/bin
 +	$(INSTALL_BIN) $(PKG_BUILD_DIR)/src/umurmurd $(1)/opt/bin/
-+	$(INSTALL_DIR) $(1)/opt/etc/umurmur
++	$(INSTALL_DIR) $(1)/opt/etc
 +	$(INSTALL_CONF) $(PKG_BUILD_DIR)/openwrt/files/umurmur.conf $(1)/opt/etc/
 +	$(INSTALL_DIR) $(1)/opt/etc/init.d
-+	$(INSTALL_BIN) ./files/S73umurmurd $(1)/opt/etc/init.d
++	$(INSTALL_BIN) ./files/S73umurmurd $(1)/opt/etc/init.d/umurmur
++	$(INSTALL_DIR) $(1)/opt/etc/umurmur
  endef
  
  Package/umurmur-polarssl/install = $(Package/umurmur-openssl/install)

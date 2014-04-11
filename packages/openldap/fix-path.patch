@@ -1,5 +1,5 @@
---- ../../../openwrt_trunk.orig/feeds/packages/libs/openldap/Makefile	2012-05-02 16:17:23.546424081 +0400
-+++ ../../../openwrt_trunk/feeds/packages/libs/openldap/Makefile	2012-05-31 21:31:50.467676201 +0400
+--- ../../../downloads/mipsel-hardfloat/openwrt_trunk-r40423/feeds/packages/libs/openldap/Makefile	2014-04-09 16:17:24.294286481 +0400
++++ ../../../openwrt_trunk/feeds/packages/libs/openldap/Makefile	2014-04-09 16:53:29.462247038 +0400
 @@ -47,7 +47,7 @@
  endef
  
@@ -17,7 +17,7 @@
 +/opt/etc/openldap/slapd.conf
  endef
  
- TARGET_CFLAGS += $(FPIC)
+ TARGET_CFLAGS += $(FPIC) -lpthread
 @@ -102,7 +102,8 @@
  	--disable-bdb \
  	--disable-hdb \

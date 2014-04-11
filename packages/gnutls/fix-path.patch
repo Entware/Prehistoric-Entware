@@ -1,19 +1,6 @@
---- ../../../openwrt_trunk.orig/feeds/packages/libs/gnutls/Makefile	2012-07-11 14:54:00.646753069 +0400
-+++ ../../../openwrt_trunk/feeds/packages/libs/gnutls/Makefile	2012-07-11 21:12:45.437064856 +0400
-@@ -108,9 +108,9 @@
- 	--disable-guile \
- 	--with-included-libcfg \
- 	--with-included-libtasn1 \
--	--with-libgcrypt-prefix="$(STAGING_DIR)/usr" \
--	--with-libreadline-prefix="$(STAGING_DIR)/usr" \
--	--with-libz-prefix="$(STAGING_DIR)/usr" \
-+	--with-libgcrypt-prefix="$(STAGING_DIR)/opt" \
-+	--with-libreadline-prefix="$(STAGING_DIR)/opt" \
-+	--with-libz-prefix="$(STAGING_DIR)/opt" \
- 	--without-lzo \
- 
- # XXX: AM_CFLAGS duplicates with CFLAGS
-@@ -118,7 +118,6 @@
+--- ../../../downloads/mipsel-hardfloat/openwrt_trunk-r40423/feeds/packages/libs/gnutls/Makefile	2014-04-09 16:17:24.282286481 +0400
++++ ../../../openwrt_trunk/feeds/packages/libs/gnutls/Makefile	2014-04-11 12:25:38.947395857 +0400
+@@ -112,7 +112,6 @@
  	AM_CFLAGS="" \
  
  TARGET_CFLAGS += $(FPIC)
@@ -21,7 +8,7 @@
  
  define Build/Configure
  	$(SED) 's,-I$$$${includedir},,g' $(PKG_BUILD_DIR)/configure
-@@ -127,55 +126,55 @@
+@@ -121,50 +120,50 @@
  endef
  
  define Build/InstallDev
@@ -33,14 +20,14 @@
 +		$(PKG_INSTALL_DIR)/opt/include/gnutls \
 +		$(1)/opt/include/
  	$(CP) \
--		$(PKG_INSTALL_DIR)/usr/lib/libgnutls{,-extra,-openssl}.{a,so*} \
+-		$(PKG_INSTALL_DIR)/usr/lib/libgnutls{,-openssl}.{a,so*} \
 -		$(1)/usr/lib/
-+		$(PKG_INSTALL_DIR)/opt/lib/libgnutls{,-extra,-openssl}.{a,so*} \
++		$(PKG_INSTALL_DIR)/opt/lib/libgnutls{,-openssl}.{a,so*} \
 +		$(1)/opt/lib/
  	$(CP) \
--		$(PKG_INSTALL_DIR)/usr/lib/pkgconfig/gnutls{,-extra}.pc \
+-		$(PKG_INSTALL_DIR)/usr/lib/pkgconfig/gnutls.pc \
 -		$(1)/usr/lib/pkgconfig/
-+		$(PKG_INSTALL_DIR)/opt/lib/pkgconfig/gnutls{,-extra}.pc \
++		$(PKG_INSTALL_DIR)/opt/lib/pkgconfig/gnutls.pc \
 +		$(1)/opt/lib/pkgconfig/
  endef
  
@@ -67,10 +54,12 @@
  	$(CP) \
 -		$(PKG_INSTALL_DIR)/usr/bin/gnutls-{cli,serv} \
 -		$(PKG_INSTALL_DIR)/usr/bin/psktool \
+-		$(PKG_INSTALL_DIR)/usr/bin/ocsptool \
 -		$(PKG_INSTALL_DIR)/usr/bin/srptool \
 -		$(1)/usr/bin/
 +		$(PKG_INSTALL_DIR)/opt/bin/gnutls-{cli,serv} \
 +		$(PKG_INSTALL_DIR)/opt/bin/psktool \
++		$(PKG_INSTALL_DIR)/opt/bin/ocsptool \
 +		$(PKG_INSTALL_DIR)/opt/bin/srptool \
 +		$(1)/opt/bin/
  endef
@@ -81,14 +70,6 @@
 -	$(CP) $(PKG_INSTALL_DIR)/usr/lib/libgnutls.so.* $(1)/usr/lib/
 +	$(INSTALL_DIR) $(1)/opt/lib
 +	$(CP) $(PKG_INSTALL_DIR)/opt/lib/libgnutls.so.* $(1)/opt/lib/
- endef
- 
- 
- define Package/libgnutls-extra/install
--	$(INSTALL_DIR) $(1)/usr/lib
--	$(CP) $(PKG_INSTALL_DIR)/usr/lib/libgnutls-extra.so.* $(1)/usr/lib/
-+	$(INSTALL_DIR) $(1)/opt/lib
-+	$(CP) $(PKG_INSTALL_DIR)/opt/lib/libgnutls-extra.so.* $(1)/opt/lib/
  endef
  
  

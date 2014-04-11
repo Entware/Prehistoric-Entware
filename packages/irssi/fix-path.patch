@@ -1,5 +1,5 @@
---- ../../../openwrt_trunk.orig/feeds/packages/net/irssi/Makefile	2012-05-02 16:17:27.174378406 +0400
-+++ ../../../openwrt_trunk/feeds/packages/net/irssi/Makefile	2012-05-28 22:59:09.985258404 +0400
+--- ../../../openwrt_trunk.orig/feeds/packages/net/irssi/Makefile
++++ ../../../openwrt_trunk/feeds/packages/net/irssi/Makefile
 @@ -62,10 +62,10 @@
  
  CONFIGURE_ARGS += \
@@ -13,7 +13,7 @@
 +	--with-bot \
  	--disable-proxy
  
- EXTRA_CFLAGS+=$(TARGET_CPPFLAGS) 
+ EXTRA_CFLAGS+=$(TARGET_CPPFLAGS)
 @@ -73,7 +73,7 @@
  
  ifeq ($(BUILD_VARIANT),ssl)

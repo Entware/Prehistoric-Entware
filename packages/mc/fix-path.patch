@@ -1,5 +1,5 @@
---- ../../../openwrt_trunk/feeds/packages/utils/mc/Makefile.orig	2013-10-12 19:12:46.815363123 +0400
-+++ ../../../openwrt_trunk/feeds/packages/utils/mc/Makefile	2013-10-12 21:41:51.139198555 +0400
+--- ../../../downloads/mipsel-hardfloat/openwrt_trunk-r40423/feeds/packages/utils/mc/Makefile	2014-04-09 16:17:24.238286480 +0400
++++ ../../../openwrt_trunk/feeds/packages/utils/mc/Makefile	2014-04-11 14:00:36.475290911 +0400
 @@ -17,6 +17,7 @@
  
  PKG_BUILD_PARALLEL:=1
@@ -17,29 +17,30 @@
    TITLE:=midnight commander - a powerful file manager
    URL:=http://www.midnight-commander.org/
    SUBMENU:=filemanager
-@@ -43,13 +44,17 @@
+@@ -43,14 +44,19 @@
   subshell.
  endef
  
 +CONFIGURE_VARS += \
 +	fu_cv_sys_stat_statfs2_bsize=yes \
 +
++
  CONFIGURE_ARGS += \
 -	--enable-utf8 \
  	--disable-doxygen-doc \
+ 	--disable-vfs-sftp \
 -	--with-screen=ncurses \
--	--without-gpm-mouse \
+ 	--without-gpm-mouse \
+ 	--without-x \
+-	ac_cv_search_addwstr=no
 +	--with-screen=slang \
 +	--with-slang-includes="$(STAGING_DIR)/opt/include" \
 +	--with-slang-libs="$(STAGING_DIR)/opt/lib" \
 +	--with-search-engine=glib \
- 	--without-x \
--	ac_cv_search_addwstr=no
-+	--without-gpm-mouse \
  
  ifeq ($(CONFIG_MC_DIFF_VIEWER),n)
  CONFIGURE_ARGS += \
-@@ -72,24 +77,25 @@
+@@ -73,24 +79,25 @@
  endif
  
  define Package/mc/install

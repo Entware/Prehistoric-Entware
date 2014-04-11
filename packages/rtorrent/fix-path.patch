@@ -1,7 +1,7 @@
---- ../../../openwrt_trunk/feeds/packages/net/rtorrent/Makefile.orig	2013-08-09 12:56:11.370797755 +0400
-+++ ../../../openwrt_trunk/feeds/packages/net/rtorrent/Makefile	2013-08-14 16:05:29.098717227 +0400
+--- ../../../openwrt_trunk/feeds/packages/net/rtorrent/Makefile.orig
++++ ../../../openwrt_trunk/feeds/packages/net/rtorrent/Makefile
 @@ -40,7 +40,7 @@
-  clients in an ncurses client. 
+  clients in an ncurses client.
  endef
  
 -TARGET_LDFLAGS += -lpthread -Wl,-rpath-link=$(STAGING_DIR)/usr/lib

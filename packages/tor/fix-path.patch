@@ -1,14 +1,5 @@
---- ../../../openwrt_trunk.orig/feeds/packages/net/tor/Makefile	2013-11-20 21:41:44.854441434 +0400
-+++ ../../../openwrt_trunk/feeds/packages/net/tor/Makefile	2013-12-29 05:18:14.988441024 +0400
-@@ -9,7 +9,7 @@
- 
- PKG_NAME:=tor
- PKG_VERSION:=0.2.3.25
--PKG_RELEASE:=1
-+PKG_RELEASE:=1a
- 
- PKG_SOURCE:=$(PKG_NAME)-$(PKG_VERSION).tar.gz
- PKG_SOURCE_URL:=https://www.torproject.org/dist \
+--- ../../../downloads/mipsel-hardfloat/openwrt_trunk-r40423/feeds/packages/net/tor/Makefile	2014-04-09 16:17:24.154286482 +0400
++++ ../../../openwrt_trunk/feeds/packages/net/tor/Makefile	2014-04-09 16:53:37.374246894 +0400
 @@ -69,16 +69,16 @@
  endef
  

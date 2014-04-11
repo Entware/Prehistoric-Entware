@@ -1,6 +1,6 @@
-diff --git ../../../openwrt_trunk.orig/feeds/packages/utils/i2c-tools/Makefile ../../../openwrt_trunk/feeds/packages/utils/i2c-tools/Makefile
-index b298530..9ef752b 100644
---- ../../../openwrt_trunk.orig/feeds/packages/utils/i2c-tools/Makefile
+diff --git a/utils/i2c-tools/Makefile ../../../openwrt_trunk/feeds/packages/utils/i2c-tools/Makefile
+index 9721700..16feedb 100644
+--- a/utils/i2c-tools/Makefile
 +++ ../../../openwrt_trunk/feeds/packages/utils/i2c-tools/Makefile
 @@ -1,67 +1,59 @@
  #
@@ -88,7 +88,14 @@ index b298530..9ef752b 100644
  
  ifdef CONFIG_PACKAGE_python-smbus
    define Build/Compile/python-smbus
-@@ -81,16 +73,6 @@ define Build/Compile
+@@ -76,22 +68,10 @@ define Build/Compile
+ 	$(MAKE) -C $(PKG_BUILD_DIR) \
+ 		LINUX="$(LINUX_DIR)" \
+ 		CC="$(TARGET_CC)" \
+-		STAGING_DIR="$(STAGING_DIR)" \
+-		LDFLAGS="$(TARGET_LDFLAGS)" \
+-		CFLAGS="$(TARGET_CFLAGS)"
++		STAGING_DIR="$(STAGING_DIR)"
  	$(Build/Compile/python-smbus)
  endef
  
@@ -105,7 +112,7 @@ index b298530..9ef752b 100644
  define Package/i2c-tools/install
  	$(INSTALL_DIR) $(1)/usr/sbin
  	$(INSTALL_BIN) $(PKG_BUILD_DIR)/tools/i2cdetect $(1)/usr/sbin/
-@@ -103,7 +85,6 @@ define PyPackage/python-smbus/filespec
+@@ -104,7 +84,6 @@ define PyPackage/python-smbus/filespec
  +|$(PYTHON_PKG_DIR)/smbus.so
  endef
  
@@ -113,7 +120,7 @@ index b298530..9ef752b 100644
  $(eval $(call BuildPackage,i2c-tools))
  $(eval $(call PyPackage,python-smbus))
  $(eval $(call BuildPackage,python-smbus))
-diff --git ../../../openwrt_trunk.orig/feeds/packages/utils/i2c-tools/patches/100-linux_include.patch ../../../openwrt_trunk/feeds/packages/utils/i2c-tools/patches/100-linux_include.patch
+diff --git a/utils/i2c-tools/patches/100-linux_include.patch ../../../openwrt_trunk/feeds/packages/utils/i2c-tools/patches/100-linux_include.patch
 new file mode 100644
 index 0000000..addfc5b
 --- /dev/null

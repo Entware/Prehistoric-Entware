@@ -1,6 +1,6 @@
---- ../../../openwrt_trunk.orig/feeds/packages/lang/ruby/Makefile	2012-07-12 09:38:56.134164567 +0400
-+++ ../../../openwrt_trunk/feeds/packages/lang/ruby/Makefile	2012-07-12 19:57:25.447637209 +0400
-@@ -72,7 +72,7 @@
+--- ../../../downloads/mipsel-hardfloat/openwrt_trunk-r40423/feeds/packages/lang/ruby/Makefile	2014-04-09 16:17:24.254286480 +0400
++++ ../../../openwrt_trunk/feeds/packages/lang/ruby/Makefile	2014-04-11 15:04:06.151221471 +0400
+@@ -73,7 +73,7 @@
  define Package/ruby-core
  $(call Package/ruby/Default)
    TITLE:=Ruby standard libraries
@@ -9,18 +9,13 @@
  endef
  
  define Package/ruby-cgi
-@@ -215,7 +215,8 @@
+@@ -220,234 +220,235 @@
  
  MAKE_FLAGS += \
  	DESTDIR="$(PKG_INSTALL_DIR)" \
 -	SHELL="/bin/bash"
 +	SHELL="/bin/bash" \
 +	EXTLDFLAGS="$(TARGET_LDFLAGS)"
- 
- define Build/Prepare
- $(call Build/Prepare/Default)
-@@ -225,231 +226,231 @@
- endef
  
  define Package/ruby/install
 -	$(INSTALL_DIR) $(1)/usr/bin
@@ -148,7 +143,7 @@
 +		$(1)/opt/lib/ruby/$(PKG_LIBVER)/yaml \
 +		$(1)/opt/lib/ruby/$(PKG_LIBVER)/yaml.rb \
 +		$(1)/opt/lib/ruby/$(PKG_LIBVER)/*/syck.so \
- 	
+ 
  	find $(1) -name '*.h' | xargs rm -f
  endef
  

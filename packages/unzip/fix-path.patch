@@ -1,5 +1,5 @@
---- ../../../openwrt_trunk.orig/feeds/packages/utils/unzip/Makefile	2011-11-25 09:49:47.400982571 +0400
-+++ ../../../openwrt_trunk/feeds/packages/utils/unzip/Makefile	2011-11-27 18:47:55.203699400 +0400
+--- ../../../downloads/mipsel-hardfloat/openwrt_trunk-r40423/feeds/packages/utils/unzip/Makefile	2014-04-09 16:17:24.222286483 +0400
++++ ../../../openwrt_trunk/feeds/packages/utils/unzip/Makefile	2014-04-11 15:48:19.635173379 +0400
 @@ -41,7 +41,7 @@
  define Build/Compile
  	$(MAKE) -C $(PKG_BUILD_DIR) -f unix/Makefile generic \
@@ -12,7 +12,7 @@
 @@ -49,8 +49,8 @@
  endef
  
- define Package/unzip/install	
+ define Package/unzip/install
 -	$(INSTALL_DIR) $(1)/usr/bin/
 -	$(INSTALL_BIN) $(PKG_INSTALL_DIR)/usr/bin/* $(1)/usr/bin/
 +	$(INSTALL_DIR) $(1)/opt/bin/

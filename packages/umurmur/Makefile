@@ -11,8 +11,6 @@ all: .done
 	patch -d $(TOP) -p3 -i $(CURDIR)/fix-path.patch
 	mkdir -p ../../../openwrt_trunk/feeds/packages/net/umurmur/files
 	cp -f ./S73umurmurd ../../../openwrt_trunk/feeds/packages/net/umurmur/files/
-	rm -f ../../../openwrt_trunk/feeds/packages/net/umurmur/patches/100-polarssl_backport.patch
-	rm -f ../../../openwrt_trunk/feeds/packages/net/umurmur/patches/110-reduced_polarssl_support.patch
 	@touch $@
 
 clean:

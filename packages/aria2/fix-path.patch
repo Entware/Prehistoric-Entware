@@ -1,13 +1,7 @@
---- ../../../openwrt_trunk/feeds/packages/net/aria2/Makefile.orig	2013-08-14 14:05:17.778852863 +0400
-+++ ../../../openwrt_trunk/feeds/packages/net/aria2/Makefile	2013-08-14 14:04:18.514854092 +0400
-@@ -46,12 +46,15 @@
+--- ../../../downloads/mipsel-hardfloat/openwrt_trunk-r40423/feeds/packages/net/aria2/Makefile	2014-04-09 16:17:24.150286482 +0400
++++ ../../../openwrt_trunk/feeds/packages/net/aria2/Makefile	2014-04-11 10:59:29.823498152 +0400
+@@ -63,8 +63,11 @@
  	--with-libz
- 
- CONFIGURE_VARS += \
--	ZLIB_CFLAGS="-I$(STAGING_DIR)/usr/include" \
--	ZLIB_LIBS="-L$(STAGING_DIR)/usr/lib"
-+	ZLIB_CFLAGS="-I$(STAGING_DIR)/opt/include" \
-+	ZLIB_LIBS="-L$(STAGING_DIR)/opt/lib"
  
  define Package/aria2/install
 -	$(INSTALL_DIR) $(1)/usr/bin
@@ -15,8 +9,8 @@
 +	$(INSTALL_DIR) $(1)/opt/bin
 +	$(INSTALL_BIN) $(PKG_INSTALL_DIR)/opt/bin/aria2c $(1)/opt/bin
 +	$(INSTALL_DIR) $(1)/opt/var/{log,run} $(1)/opt/etc/init.d
-+	$(INSTALL_CONF) ./files/aria2.conf $(1)/opt/etc/
-+	$(INSTALL_BIN) ./files/S81aria2 $(1)/opt/etc/init.d/
++	$(INSTALL_CONF) ./files/aria2.conf $(1)/opt/etc
++	$(INSTALL_BIN) ./files/S81aria2 $(1)/opt/etc/init.d
  endef
  
  $(eval $(call BuildPackage,aria2))

@@ -1,5 +1,5 @@
---- ../../../downloads/openwrt_trunk-r35474/feeds/packages/utils/nut/Makefile	2013-02-05 10:42:13.510946371 +0400
-+++ ../../../openwrt_trunk/feeds/packages/utils/nut/Makefile	2013-02-07 10:54:05.695784720 +0400
+--- ../../../downloads/mipsel-hardfloat/openwrt_trunk-r40423/feeds/packages/utils/nut/Makefile	2014-04-09 16:17:24.230286480 +0400
++++ ../../../openwrt_trunk/feeds/packages/utils/nut/Makefile	2014-04-09 16:53:29.422247038 +0400
 @@ -24,7 +24,7 @@
  define Package/nut/Default
    URL:=http://www.networkupstools.org/
@@ -118,7 +118,7 @@
  
  define DriverPackage
 @@ -153,11 +152,11 @@
-   
+ 
    endef
    define Package/nut-driver-$(1)/install
 -	$(INSTALL_DIR) $$(1)/lib/nut/

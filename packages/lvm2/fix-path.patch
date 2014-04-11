@@ -1,14 +1,15 @@
---- ../../../openwrt_trunk.orig/feeds/packages/utils/lvm2/Makefile	2012-08-06 14:41:06.106698212 +0400
-+++ ../../../openwrt_trunk/feeds/packages/utils/lvm2/Makefile	2012-08-21 15:43:04.113868439 +0400
-@@ -24,7 +24,6 @@
+--- ../../../downloads/mipsel-hardfloat/openwrt_trunk-r40423/feeds/packages/utils/lvm2/Makefile	2014-04-09 16:17:24.202286480 +0400
++++ ../../../openwrt_trunk/feeds/packages/utils/lvm2/Makefile	2014-04-11 13:53:17.263296756 +0400
+@@ -24,7 +24,7 @@
    CATEGORY:=Libraries
    TITLE:=The Linux Kernel Device Mapper userspace library
    URL:=http://sourceware.org/dm/
--  DEPENDS:=+kmod-dm
+-  DEPENDS:=+kmod-dm +libpthread
++  DEPENDS:=+libpthread
  endef
  
  define Package/libdevmapper/description
-@@ -57,30 +56,30 @@
+@@ -57,30 +57,30 @@
  endef
  
  define Build/InstallDev
@@ -37,15 +38,15 @@
 -	$(INSTALL_DIR) $(1)/sbin
 -	$(INSTALL_BIN) $(PKG_BUILD_DIR)/tools/lvm $(1)/sbin
 -	$(INSTALL_DIR) $(1)/etc/lvm
--	$(INSTALL_CONF) $(PKG_BUILD_DIR)/doc/example.conf $(1)/etc/lvm/lvm.conf
+-	$(INSTALL_CONF) $(PKG_BUILD_DIR)/conf/example.conf $(1)/etc/lvm/lvm.conf
 -	$(INSTALL_DIR) $(1)/etc/init.d
 -	$(INSTALL_BIN) ./files/lvm2.init $(1)/etc/init.d/lvm2
 +	$(INSTALL_DIR) $(1)/opt/sbin
 +	$(INSTALL_BIN) $(PKG_BUILD_DIR)/tools/lvm $(1)/opt/sbin
 +	$(INSTALL_DIR) $(1)/opt/etc/lvm
-+	$(INSTALL_CONF) $(PKG_BUILD_DIR)/doc/example.conf $(1)/opt/etc/lvm/lvm.conf
++	$(INSTALL_CONF) $(PKG_BUILD_DIR)/conf/example.conf $(1)/opt/etc/lvm/lvm.conf
 +	$(INSTALL_DIR) $(1)/opt/etc/init.d
-+	$(INSTALL_BIN) ./files/S06lvm2 $(1)/opt/etc/init.d
++	$(INSTALL_BIN) ./files/S06lvm2 $(1)/etc/init.d
  endef
  
  define Package/lvm2/conffiles

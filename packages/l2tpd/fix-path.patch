@@ -1,5 +1,5 @@
---- ../../../openwrt_trunk.orig/feeds/packages/net/l2tpd/Makefile	2012-07-21 23:09:59.722539914 +0400
-+++ ../../../openwrt_trunk/feeds/packages/net/l2tpd/Makefile	2012-07-24 11:41:01.099810959 +0400
+--- ../../../openwrt_trunk.orig/feeds/packages/net/l2tpd/Makefile
++++ ../../../openwrt_trunk/feeds/packages/net/l2tpd/Makefile
 @@ -36,25 +36,24 @@
  endef
  
@@ -17,7 +17,7 @@
  	)
  endef
  
- define Package/l2tpd/install	
+ define Package/l2tpd/install
 -	$(INSTALL_DIR) $(1)/usr/sbin
 -	$(INSTALL_BIN) $(PKG_BUILD_DIR)/$(PKG_NAME) $(1)/usr/sbin/
 -	$(INSTALL_DIR) $(1)/etc/l2tpd

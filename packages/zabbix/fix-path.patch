@@ -1,6 +1,6 @@
-diff -urx .svn ../../../downloads/mipsel-hardfloat/openwrt_trunk-r38800/feeds/packages/admin/zabbix/Makefile ../../../openwrt_trunk/feeds/packages/admin/zabbix/Makefile
---- ../../../downloads/mipsel-hardfloat/openwrt_trunk-r38800/feeds/packages/admin/zabbix/Makefile	2013-11-14 10:01:15.919186156 +0400
-+++ ../../../openwrt_trunk/feeds/packages/admin/zabbix/Makefile	2013-11-15 09:24:00.677652832 +0400
+diff -urx .svn ../../../downloads/mipsel-hardfloat/openwrt_trunk-r40423/feeds/packages/admin/zabbix/Makefile ../../../openwrt_trunk/feeds/packages/admin/zabbix/Makefile
+--- ../../../downloads/mipsel-hardfloat/openwrt_trunk-r40423/feeds/packages/admin/zabbix/Makefile	2014-04-09 16:17:24.242286480 +0400
++++ ../../../openwrt_trunk/feeds/packages/admin/zabbix/Makefile	2014-04-09 16:53:39.038246864 +0400
 @@ -26,6 +26,7 @@
    SECTION:=admin
    CATEGORY:=Administration
@@ -9,7 +9,7 @@ diff -urx .svn ../../../downloads/mipsel-hardfloat/openwrt_trunk-r38800/feeds/pa
    URL:=http://www.zabbix.com/
    SUBMENU:=zabbix
    MAINTAINER:=Mirko Vogt <mirko@openwrt.org>
-@@ -110,66 +111,66 @@
+@@ -104,66 +105,66 @@
  	--enable-server \
  	--enable-proxy \
  	--disable-java \
@@ -95,7 +95,7 @@ diff -urx .svn ../../../downloads/mipsel-hardfloat/openwrt_trunk-r38800/feeds/pa
  endef
  
  ifdef CONFIG_PACKAGE_zabbix-extra-mac80211
-@@ -206,9 +207,9 @@
+@@ -200,9 +201,9 @@
  
  define Package/zabbix-extra-mac80211/install
  	$(call Package/zabbix/install/zabbix.conf.d,$(1),agentd,mac80211)
@@ -108,7 +108,7 @@ diff -urx .svn ../../../downloads/mipsel-hardfloat/openwrt_trunk-r38800/feeds/pa
  endef
  
  define Package/zabbix-extra-network/install
-@@ -239,9 +240,9 @@
+@@ -233,9 +234,9 @@
  
  $(eval $(call BuildPackage,zabbix-agent))
  $(eval $(call BuildPackage,zabbix-agentd))
@@ -121,9 +121,9 @@ diff -urx .svn ../../../downloads/mipsel-hardfloat/openwrt_trunk-r38800/feeds/pa
  $(eval $(call BuildPackage,zabbix-sender))
  $(eval $(call BuildPackage,zabbix-server))
  $(eval $(call BuildPackage,zabbix-proxy))
-diff -urx .svn ../../../downloads/mipsel-hardfloat/openwrt_trunk-r38800/feeds/packages/admin/zabbix/patches/010-change-agentd-config.patch ../../../openwrt_trunk/feeds/packages/admin/zabbix/patches/010-change-agentd-config.patch
---- ../../../downloads/mipsel-hardfloat/openwrt_trunk-r38800/feeds/packages/admin/zabbix/patches/010-change-agentd-config.patch	2013-11-14 10:01:15.919186156 +0400
-+++ ../../../openwrt_trunk/feeds/packages/admin/zabbix/patches/010-change-agentd-config.patch	2013-11-14 10:56:09.671126613 +0400
+diff -urx .svn ../../../downloads/mipsel-hardfloat/openwrt_trunk-r40423/feeds/packages/admin/zabbix/patches/010-change-agentd-config.patch ../../../openwrt_trunk/feeds/packages/admin/zabbix/patches/010-change-agentd-config.patch
+--- ../../../downloads/mipsel-hardfloat/openwrt_trunk-r40423/feeds/packages/admin/zabbix/patches/010-change-agentd-config.patch	2014-04-09 16:17:24.242286480 +0400
++++ ../../../openwrt_trunk/feeds/packages/admin/zabbix/patches/010-change-agentd-config.patch	2014-04-09 16:53:39.038246864 +0400
 @@ -10,8 +10,8 @@
  -# Mandatory: no
  -# Default:

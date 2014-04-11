@@ -1,6 +1,6 @@
---- ../../../openwrt_trunk.orig/feeds/packages/libs/postgresql/Makefile	2012-05-02 16:17:23.706422071 +0400
-+++ ../../../openwrt_trunk/feeds/packages/libs/postgresql/Makefile	2012-05-31 22:26:55.664446304 +0400
-@@ -64,18 +64,18 @@
+--- ../../../downloads/mipsel-hardfloat/openwrt_trunk-r40423/feeds/packages/libs/postgresql/Makefile	2014-04-09 16:17:24.290286481 +0400
++++ ../../../openwrt_trunk/feeds/packages/libs/postgresql/Makefile	2014-04-09 16:53:33.114246974 +0400
+@@ -66,18 +66,18 @@
  define Build/Configure
  	(cd $(PKG_BUILD_DIR); rm -f config.cache; \
  		./configure \
@@ -31,7 +31,7 @@
  			$(DISABLE_NLS) \
  			--enable-shared \
  			--enable-static \
-@@ -94,7 +94,7 @@
+@@ -96,7 +96,7 @@
  			--without-tk \
  			--with-zlib="yes" \
  			--enable-depend \
@@ -40,7 +40,7 @@
  	);
  	$(MAKE) -C $(PKG_BUILD_DIR)/src/interfaces/ecpg/preproc CC="$(HOSTCC)" CFLAGS+="-I../../libpq"
  	mv $(PKG_BUILD_DIR)/src/interfaces/ecpg/preproc/ecpg \
-@@ -119,18 +119,18 @@
+@@ -121,18 +121,18 @@
  			--build=$(GNU_HOST_NAME) \
  			--program-prefix="" \
  			--program-suffix="" \
@@ -71,7 +71,7 @@
  			$(DISABLE_NLS) \
  			$(DISABLE_LARGEFILE) \
  			--enable-shared \
-@@ -169,80 +169,74 @@
+@@ -171,80 +171,74 @@
  endef
  
  define Package/libpq/install

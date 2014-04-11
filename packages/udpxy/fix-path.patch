@@ -1,11 +1,12 @@
---- ../../../downloads/openwrt_trunk-r37769/feeds/packages/net/udpxy/Makefile
-+++ ../../../openwrt_trunk/feeds/packages/net/udpxy/Makefile
-@@ -39,14 +39,14 @@
+--- ../../../downloads/mipsel-hardfloat/openwrt_trunk-r40423/feeds/packages/net/udpxy/Makefile	2014-04-09 16:17:24.178286483 +0400
++++ ../../../openwrt_trunk/feeds/packages/net/udpxy/Makefile	2014-04-11 15:42:14.775183823 +0400
+@@ -39,15 +39,15 @@
  endef
  
  MAKE_FLAGS += \
--	INSTALLROOT="$(PKG_INSTALL_DIR)/usr"
-+	INSTALLROOT="$(PKG_INSTALL_DIR)/opt"
+-	INSTALLROOT="$(PKG_INSTALL_DIR)/usr" \
++	INSTALLROOT="$(PKG_INSTALL_DIR)/opt" \
+ 	ALL_CFLAGS="$(TARGET_CFLAGS) $(TARGET_CPPFLAGS)"
  
  define Package/udpxy/install
 -	$(INSTALL_DIR) $(1)/etc/init.d

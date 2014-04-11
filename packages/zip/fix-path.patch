@@ -1,19 +1,16 @@
---- ../../../openwrt_trunk.orig/feeds/packages/utils/zip/Makefile	2012-05-02 16:17:35.298276342 +0400
-+++ ../../../openwrt_trunk/feeds/packages/utils/zip/Makefile	2012-05-28 08:41:18.250104334 +0400
-@@ -41,16 +41,17 @@
- define Build/Compile
+--- ../../../downloads/mipsel-hardfloat/openwrt_trunk-r40423/feeds/packages/utils/zip/Makefile	2014-04-09 16:17:24.234286480 +0400
++++ ../../../openwrt_trunk/feeds/packages/utils/zip/Makefile	2014-04-11 16:13:02.843143846 +0400
+@@ -42,14 +42,15 @@
  	$(MAKE) -C $(PKG_BUILD_DIR) -f unix/Makefile generic \
- 		$(TARGET_CONFIGURE_OPTS) \
--		prefix="$(PKG_INSTALL_DIR)/usr" \
-+		prefix="$(PKG_INSTALL_DIR)/opt" \
+ 		prefix="$(PKG_INSTALL_DIR)/usr" \
  		CFLAGS="$(TARGET_CFLAGS)" \
 +		LFLAGS2="$(TARGET_LDFLAGS)" \
- 		CF="$(TARGET_CFLAGS) -O $(TARGET_CPPFLAGS) -I. -DUNIX" \
+ 		CC="$(TARGET_CC) $(TARGET_CFLAGS) -O $(TARGET_CPPFLAGS) -I. -DUNIX" \
  		LD="$(TARGET_CC) $(TARGET_LDFLAGS)" \
  		install
  endef
  
- define Package/zip/install	
+ define Package/zip/install
 -	$(INSTALL_DIR) $(1)/usr/bin/
 -	$(INSTALL_BIN) $(PKG_INSTALL_DIR)/usr/bin/* $(1)/usr/bin/
 +	$(INSTALL_DIR) $(1)/opt/bin/

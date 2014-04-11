@@ -25,7 +25,6 @@ all: .buildroot_prepared
 	sed -i 's,__LINUX_DIR_PATH__,$(TOP)/linux-2.6.22.19,g' $(TOP)/openwrt_trunk/include/package-defaults.mk
 	patch -d $(TOP) -p3 -i $(CURDIR)/rules.patch
 	patch -d $(TOP) -p3 -i $(CURDIR)/autotools.patch
-	patch -d $(TOP) -p3 -i $(CURDIR)/sdk-rules.patch
 	patch -d $(TOP) -p3 -i $(CURDIR)/package.patch
 	patch -d $(TOP) -p3 -i $(CURDIR)/include-package.patch
 	patch -d $(TOP) -p3 -i $(CURDIR)/ipkg-make-index.patch
