@@ -1,6 +1,6 @@
---- ../../../downloads/mipsel-hardfloat/openwrt_trunk-r38800/feeds/packages/libs/gpgme/Makefile	2013-11-14 10:01:15.971186157 +0400
-+++ ../../../openwrt_trunk/feeds/packages/libs/gpgme/Makefile	2013-11-14 13:52:20.858936673 +0400
-@@ -35,33 +35,34 @@
+--- ../../../downloads/mipsel-hardfloat/openwrt_trunk-r38800/feeds/packages/libs/gpgme/Makefile
++++ ../../../openwrt_trunk/feeds/packages/libs/gpgme/Makefile
+@@ -37,33 +37,34 @@
    for CMS (S/MIME).
  endef
  
