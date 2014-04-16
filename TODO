@@ -12,26 +12,25 @@ amule		2.3.1
 dialog		1.2-20140112
 elinks		0.12pre6
 gw6c		6.0.1
-hplip		3.13.10
-imapfilter	2.5.5
-mpd		0.17.5
-msmtp		1.4.31
-n2n		2.1.0-r6973
-nzbget		11.0
+hplip		3.14.4
+imapfilter	2.5.6
+libaudiofile	0.3.6		for MPD
+libmms		0.6.4		for MPD
+libxslt		1.1.28		old one is incompatible with modern libxml2
+mpd		0.18.10
+msmtp		1.4.32
+n2n		2.1.0-r7223
+nzbget		12.0
 pyload		0.4.9
 smartmontools	6.2
+snort		2.9.5.5		EOL of previous version
 tvheadend	3.5-20131011
-wview		5.20.2
+wview		5.21.5
 wxbase		2.8.12
-xupnpd		r389
+xupnpd		r398
 
 Can't be upgraded (mostly due to old 2.6.22.19 kernel):
-castget @rtndev	1.1.0		new glib2 needed
 cjdns		0.5-20131009	node.js required
-glib2		2.26.1		because of old kernel
 gdb		7.3.1		due to gnu_v3_object_ctor_group() absence
-i2c-tools	3.1.0
-libsoup		2.28.2
 libnl		2.0 (r33657)
-mpd		0.17.5		requires glib 2.28
-usbip		0.1.7		kernel specific
+usbip		0.1.7

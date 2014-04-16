@@ -22,4 +22,4 @@ See other OPKG commands [here](http://wiki.openwrt.org/doc/techref/opkg).
 
 * See (and fill) [Wiki pages](https://github.com/Entware/entware/wiki/_pages),
 * Ask new packages or report about bugs on [Issues](https://github.com/Entware/entware/issues),
-* Discuss Entware on http://wl500g.info.
+* Discuss Entware on http://wl500g.info/forum.php.

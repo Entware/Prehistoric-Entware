@@ -1,17 +1,17 @@
---- ../../../downloads/openwrt_trunk-r36151/feeds/packages/mail/msmtp/Makefile	2013-04-02 14:27:45.133540139 +0400
-+++ ../../../openwrt_trunk/feeds/packages/mail/msmtp/Makefile	2013-04-29 16:22:35.314157193 +0400
+--- ../../../downloads/mipsel-hardfloat/openwrt_trunk-r40423/feeds/packages/mail/msmtp/Makefile	2014-04-15 16:11:47.624849362 +0400
++++ ../../../openwrt_trunk/feeds/packages/mail/msmtp/Makefile	2014-04-16 09:59:27.203687676 +0400
 @@ -9,12 +9,12 @@
  include $(TOPDIR)/rules.mk
  
  PKG_NAME:=msmtp
 -PKG_VERSION:=1.4.27
-+PKG_VERSION:=1.4.31
++PKG_VERSION:=1.4.32
  PKG_RELEASE:=1
  
  PKG_SOURCE:=$(PKG_NAME)-$(PKG_VERSION).tar.bz2
  PKG_SOURCE_URL:=@SF/msmtp
 -PKG_MD5SUM:=2d6d10d9c59ed2b2635554ed35fb9226
-+PKG_MD5SUM:=792ac0ffa30dc95ea1889a548128186d
++PKG_MD5SUM:=aa60e22211118f222470439cea60f795
  
  PKG_FIXUP:=autoreconf
  PKG_INSTALL:=1

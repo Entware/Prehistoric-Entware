@@ -1,5 +1,5 @@
 --- ../../../downloads/mipsel-hardfloat/openwrt_trunk-r40423/package/utils/util-linux/Makefile	2014-04-09 16:17:24.546286476 +0400
-+++ ../../../openwrt_trunk/package/utils/util-linux/Makefile	2014-04-11 16:01:21.523148379 +0400
++++ ../../../openwrt_trunk/package/utils/util-linux/Makefile	2014-04-15 12:40:27.229081463 +0400
 @@ -44,22 +44,22 @@
  		DESTDIR="$(1)" \
  		installdirs install-data
@@ -39,6 +39,15 @@
  endef
  
  define Package/libblkid
+@@ -335,7 +335,7 @@
+ define Package/swap-utils
+ $(call Package/util-linux/Default)
+   TITLE:=swap space management utilities
+-  DEPENDS+= +libblkid
++  DEPENDS+= +libblkid +libmount
+   SUBMENU:=disc
+ endef
+ 
 @@ -403,159 +403,161 @@
  endef
  
@@ -227,7 +236,7 @@
 +	$(INSTALL_DIR) $(1)/opt/sbin
 +	$(INSTALL_BIN) $(PKG_BUILD_DIR)/.libs/mkswap $(1)/opt/sbin/
 +	$(INSTALL_BIN) $(PKG_BUILD_DIR)/.libs/swaplabel $(1)/opt/sbin/
-+	$(INSTALL_BIN) $(PKG_BUILD_DIR)/sys-utils/.libs/swapon $(1)/opt/sbin/
++	$(INSTALL_BIN) $(PKG_BUILD_DIR)/.libs/swapon $(1)/opt/sbin/
 +	$(LN) swapon $(1)/opt/sbin/swapoff
  endef
  

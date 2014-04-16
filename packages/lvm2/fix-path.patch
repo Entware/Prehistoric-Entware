@@ -1,5 +1,5 @@
 --- ../../../downloads/mipsel-hardfloat/openwrt_trunk-r40423/feeds/packages/utils/lvm2/Makefile	2014-04-09 16:17:24.202286480 +0400
-+++ ../../../openwrt_trunk/feeds/packages/utils/lvm2/Makefile	2014-04-11 13:53:17.263296756 +0400
++++ ../../../openwrt_trunk/feeds/packages/utils/lvm2/Makefile	2014-04-15 14:16:36.324974830 +0400
 @@ -24,7 +24,7 @@
    CATEGORY:=Libraries
    TITLE:=The Linux Kernel Device Mapper userspace library
@@ -46,7 +46,7 @@
 +	$(INSTALL_DIR) $(1)/opt/etc/lvm
 +	$(INSTALL_CONF) $(PKG_BUILD_DIR)/conf/example.conf $(1)/opt/etc/lvm/lvm.conf
 +	$(INSTALL_DIR) $(1)/opt/etc/init.d
-+	$(INSTALL_BIN) ./files/S06lvm2 $(1)/etc/init.d
++	$(INSTALL_BIN) ./files/S06lvm2 $(1)/opt/etc/init.d
  endef
  
  define Package/lvm2/conffiles

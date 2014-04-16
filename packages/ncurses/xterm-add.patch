@@ -1,8 +1,0 @@
---- ../../../openwrt_trunk/package/libs/ncurses/Makefile.prev	2014-01-27 02:17:13.000000000 +0400
-+++ ../../../openwrt_trunk/package/libs/ncurses/Makefile	2014-01-30 03:07:29.535083560 +0400
-@@ -12 +12 @@
--PKG_RELEASE:=1
-+PKG_RELEASE:=1a
-@@ -120 +120 @@
--	for file in a/ansi d/dumb l/linux r/rxvt r/rxvt-unicode s/screen v/vt100 v/vt102 x/xterm x/xterm-color; do \
-+	for file in a/ansi d/dumb l/linux r/rxvt r/rxvt-unicode s/screen v/vt100 v/vt102 x/xterm x/xterm-color x/xterm-utf8; do \

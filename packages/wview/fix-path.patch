@@ -1,5 +1,5 @@
---- ../../../downloads/openwrt_trunk-r37769/feeds/packages/utils/wview/Makefile	2013-08-15 09:37:02.745572162 +0400
-+++ ../../../openwrt_trunk/feeds/packages/utils/wview/Makefile	2013-08-21 12:18:24.295952977 +0400
+--- ../../../downloads/mipsel-hardfloat/openwrt_trunk-r40423/feeds/packages/utils/wview/Makefile	2014-04-15 16:11:47.568849363 +0400
++++ ../../../openwrt_trunk/feeds/packages/utils/wview/Makefile	2014-04-16 10:05:57.987675357 +0400
 @@ -8,15 +8,13 @@
  include $(TOPDIR)/rules.mk
  
@@ -10,10 +10,10 @@
 -PKG_SOURCE_VERSION:=7bfac6c11e756290c38e7b5862a4c51b6bc6c51e
 -PKG_SOURCE_SUBDIR:=$(PKG_NAME)-$(PKG_VERSION)
 -PKG_SOURCE:=$(PKG_NAME)-$(PKG_VERSION)-$(PKG_SOURCE_VERSION).tar.gz
-+PKG_VERSION:=5.20.2
++PKG_VERSION:=5.21.5
 +PKG_SOURCE:=$(PKG_NAME)-$(PKG_VERSION).tar.gz
 +PKG_SOURCE_URL:=@SF/$(PKG_NAME)
-+PKG_MD5SUM:=7be3cd77bc1b6b0c542561481250f49f
++PKG_MD5SUM:=7e615df10e2a52a84572ac82a32ae146
  
  PKG_FIXUP:=autoreconf
 -

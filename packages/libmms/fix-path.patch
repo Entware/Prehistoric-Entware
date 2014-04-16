@@ -1,5 +1,20 @@
---- ../../../openwrt_trunk.orig/feeds/packages/libs/libmms/Makefile
-+++ ../../../openwrt_trunk/feeds/packages/libs/libmms/Makefile
+--- ../../../downloads/mipsel-hardfloat/openwrt_trunk-r40423/feeds/packages/libs/libmms/Makefile	2014-04-15 16:11:47.624849362 +0400
++++ ../../../openwrt_trunk/feeds/packages/libs/libmms/Makefile	2014-04-16 10:01:16.831682348 +0400
+@@ -8,12 +8,12 @@
+ include $(TOPDIR)/rules.mk
+ 
+ PKG_NAME:=libmms
+-PKG_VERSION:=0.6
++PKG_VERSION:=0.6.4
+ PKG_RELEASE:=1
+ 
+ PKG_SOURCE:=$(PKG_NAME)-$(PKG_VERSION).tar.gz
+ PKG_SOURCE_URL:=@SF/libmms
+-PKG_MD5SUM:=650ad04a4c8bd79246390b81b29680b6
++PKG_MD5SUM:=d6b665b335a6360e000976e770da7691
+ 
+ PKG_LICENSE:=LGPLv2.1
+ PKG_LICENSE_FILES:=COPYING.LIB
 @@ -47,19 +47,19 @@
  endef
  

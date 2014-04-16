@@ -5,7 +5,7 @@
  }
  
 +push @mirrors, 'http://x.vm0.ru/wl500g-repo/sources-mirror/toolchain';
-+push @mirrors, 'http://entware.wl500g.ru/downloads/sources';
++push @mirrors, 'http://entware.wl500g.info/sources';
 +
  while (!$ok) {
  	my $mirror = shift @mirrors;

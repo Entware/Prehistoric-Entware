@@ -1,5 +1,5 @@
---- ../../../openwrt_trunk.orig/include/nls.mk	2011-11-10 14:44:28.000000000 +0400
-+++ ../../../openwrt_trunk/include/nls.mk	2011-11-15 12:37:38.407691913 +0400
+--- ../../../downloads/mipsel-hardfloat/openwrt_trunk-r40423/include/nls.mk	2014-04-15 16:11:47.668849361 +0400
++++ ../../../openwrt_trunk/include/nls.mk	2014-04-15 20:20:55.124576640 +0400
 @@ -7,18 +7,18 @@
  
  # iconv full
@@ -23,3 +23,13 @@
  	INTL_FULL:=
  endif
  
+@@ -28,7 +28,8 @@
+ ICONV_DEPENDS:=+BUILD_NLS:libiconv-full
+ ICONV_CFLAGS:=-I$(ICONV_PREFIX)/include
+ ICONV_CPPFLAGS:=-I$(ICONV_PREFIX)/include
+-ICONV_LDFLAGS:=-L$(ICONV_PREFIX)/lib
++ICONV_LDFLAGS:=-L$(ICONV_PREFIX)/lib \
++	-Wl,-rpath-link=$(ICONV_PREFIX)/lib
+ 
+ INTL_DEPENDS:=+BUILD_NLS:libintl-full
+ INTL_CFLAGS:=-I$(INTL_PREFIX)/include
