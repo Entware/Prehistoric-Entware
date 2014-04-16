@@ -17,6 +17,7 @@ imapfilter	2.5.6
 libaudiofile	0.3.6		for MPD
 libmms		0.6.4		for MPD
 libxslt		1.1.28		old one is incompatible with modern libxml2
+mosh		1.2.4a-20140108
 mpd		0.18.10
 msmtp		1.4.32
 n2n		2.1.0-r7223
