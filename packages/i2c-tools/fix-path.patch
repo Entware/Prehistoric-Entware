@@ -1,0 +1,42 @@
+--- ../../../downloads/mipsel-hardfloat/openwrt_trunk-r40423/feeds/packages/utils/i2c-tools/Makefile	2014-04-15 16:11:47.564849363 +0400
++++ ../../../openwrt_trunk/feeds/packages/utils/i2c-tools/Makefile	2014-04-15 18:57:45.700670436 +0400
+@@ -67,7 +67,7 @@
+   define Build/Compile/python-smbus
+ 	$(if $(Build/Compile/PyMod),,@echo Python packaging code not found.; false)
+ 	$(call Build/Compile/PyMod,./py-smbus/, \
+-		install --prefix="$(PKG_INSTALL_DIR)/usr", \
++		install --prefix="$(PKG_INSTALL_DIR)/opt", \
+ 	)
+   endef
+ endif
+@@ -83,21 +83,21 @@
+ endef
+ 
+ define Build/InstallDev
+-	$(INSTALL_DIR) $(1)/usr/lib
+-	$(CP) $(PKG_BUILD_DIR)/lib/libi2c.so* $(1)/usr/lib/
++	$(INSTALL_DIR) $(1)/opt/lib
++	$(CP) $(PKG_BUILD_DIR)/lib/libi2c.so* $(1)/opt/lib/
+ endef
+ 
+ define Package/libi2c/install
+-	$(INSTALL_DIR) $(1)/usr/lib
+-	$(CP) $(PKG_BUILD_DIR)/lib/libi2c.so* $(1)/usr/lib/
++	$(INSTALL_DIR) $(1)/opt/lib
++	$(CP) $(PKG_BUILD_DIR)/lib/libi2c.so* $(1)/opt/lib/
+ endef
+ 
+ define Package/i2c-tools/install
+-	$(INSTALL_DIR) $(1)/usr/sbin
+-	$(INSTALL_BIN) $(PKG_BUILD_DIR)/tools/i2cdetect $(1)/usr/sbin/
+-	$(INSTALL_BIN) $(PKG_BUILD_DIR)/tools/i2cdump $(1)/usr/sbin/
+-	$(INSTALL_BIN) $(PKG_BUILD_DIR)/tools/i2cset $(1)/usr/sbin/
+-	$(INSTALL_BIN) $(PKG_BUILD_DIR)/tools/i2cget $(1)/usr/sbin/
++	$(INSTALL_DIR) $(1)/opt/sbin
++	$(INSTALL_BIN) $(PKG_BUILD_DIR)/tools/i2cdetect $(1)/opt/sbin/
++	$(INSTALL_BIN) $(PKG_BUILD_DIR)/tools/i2cdump $(1)/opt/sbin/
++	$(INSTALL_BIN) $(PKG_BUILD_DIR)/tools/i2cset $(1)/opt/sbin/
++	$(INSTALL_BIN) $(PKG_BUILD_DIR)/tools/i2cget $(1)/opt/sbin/
+ endef
+ 
+ define PyPackage/python-smbus/filespec

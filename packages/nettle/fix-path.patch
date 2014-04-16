@@ -1,0 +1,37 @@
+--- ../../../downloads/mipsel-hardfloat/openwrt_trunk-r40423/feeds/packages/libs/nettle/Makefile	2014-04-09 16:17:24.310286478 +0400
++++ ../../../openwrt_trunk/feeds/packages/libs/nettle/Makefile	2014-04-15 08:55:15.805326194 +0400
+@@ -54,22 +54,22 @@
+ endef
+ 
+ define Build/InstallDev
+-	$(INSTALL_DIR) $(1)/usr/include/nettle
+-	$(CP) $(PKG_INSTALL_DIR)/usr/include/nettle/*.h $(1)/usr/include/nettle/
+-	$(INSTALL_DIR) $(1)/usr/lib
+-	$(CP) $(PKG_INSTALL_DIR)/usr/lib/libnettle.{a,so*} $(1)/usr/lib/
+-	$(CP) $(PKG_INSTALL_DIR)/usr/lib/libhogweed.{a,so*} $(1)/usr/lib/
+-	$(INSTALL_DIR) $(1)/usr/lib/pkgconfig
++	$(INSTALL_DIR) $(1)/opt/include/nettle
++	$(CP) $(PKG_INSTALL_DIR)/opt/include/nettle/*.h $(1)/opt/include/nettle/
++	$(INSTALL_DIR) $(1)/opt/lib
++	$(CP) $(PKG_INSTALL_DIR)/opt/lib/libnettle.{a,so*} $(1)/opt/lib/
++	$(CP) $(PKG_INSTALL_DIR)/opt/lib/libhogweed.{a,so*} $(1)/opt/lib/
++	$(INSTALL_DIR) $(1)/opt/lib/pkgconfig
+ 	$(CP) \
+-		$(PKG_INSTALL_DIR)/usr/lib/pkgconfig/nettle.pc \
+-		$(PKG_INSTALL_DIR)/usr/lib/pkgconfig/hogweed.pc \
+-		$(1)/usr/lib/pkgconfig/
++		$(PKG_INSTALL_DIR)/opt/lib/pkgconfig/nettle.pc \
++		$(PKG_INSTALL_DIR)/opt/lib/pkgconfig/hogweed.pc \
++		$(1)/opt/lib/pkgconfig/
+ endef
+ 
+ define Package/libnettle/install
+-	$(INSTALL_DIR) $(1)/usr/lib
+-	$(CP) $(PKG_INSTALL_DIR)/usr/lib/libnettle.so.* $(1)/usr/lib/
+-	$(CP) $(PKG_INSTALL_DIR)/usr/lib/libhogweed.so.* $(1)/usr/lib/
++	$(INSTALL_DIR) $(1)/opt/lib
++	$(CP) $(PKG_INSTALL_DIR)/opt/lib/libnettle.so.* $(1)/opt/lib/
++	$(CP) $(PKG_INSTALL_DIR)/opt/lib/libhogweed.so.* $(1)/opt/lib/
+ endef
+ 
+ $(eval $(call BuildPackage,libnettle))

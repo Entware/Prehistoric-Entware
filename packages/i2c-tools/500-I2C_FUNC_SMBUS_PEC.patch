@@ -1,0 +1,52 @@
+--- ./tools/i2cdetect.c.orig	2014-04-15 19:20:45.884642503 +0400
++++ ./tools/i2cdetect.c	2014-04-15 19:20:53.280639606 +0400
+@@ -37,6 +37,10 @@
+ #define MODE_READ	2
+ #define MODE_FUNC	3
+ 
++#ifndef I2C_FUNC_SMBUS_PEC
++#define I2C_FUNC_SMBUS_PEC I2C_FUNC_SMBUS_HWPEC_CALC
++#endif
++
+ static void help(void)
+ {
+ 	fprintf(stderr,
+--- ./tools/i2cget.c.orig	2014-04-15 19:20:15.572641865 +0400
++++ ./tools/i2cget.c	2014-04-15 19:20:23.004643534 +0400
+@@ -36,6 +36,10 @@
+ #include "util.h"
+ #include "../version.h"
+ 
++#ifndef I2C_FUNC_SMBUS_PEC
++#define I2C_FUNC_SMBUS_PEC I2C_FUNC_SMBUS_HWPEC_CALC
++#endif
++
+ static void help(void) __attribute__ ((noreturn));
+ 
+ static void help(void)
+--- ./tools/i2cdump.c.orig	2014-04-15 19:19:48.360644614 +0400
++++ ./tools/i2cdump.c	2014-04-15 19:19:53.668644353 +0400
+@@ -33,6 +33,10 @@
+ #include "util.h"
+ #include "../version.h"
+ 
++#ifndef I2C_FUNC_SMBUS_PEC
++#define I2C_FUNC_SMBUS_PEC I2C_FUNC_SMBUS_HWPEC_CALC
++#endif
++
+ static void help(void)
+ {
+ 	fprintf(stderr,
+--- ./tools/i2cset.c.orig	2014-04-15 19:19:25.948644828 +0400
++++ ./tools/i2cset.c	2014-04-15 19:19:33.088643990 +0400
+@@ -33,6 +33,10 @@
+ #include "util.h"
+ #include "../version.h"
+ 
++#ifndef I2C_FUNC_SMBUS_PEC
++#define I2C_FUNC_SMBUS_PEC I2C_FUNC_SMBUS_HWPEC_CALC
++#endif
++
+ static void help(void) __attribute__ ((noreturn));
+ 
+ static void help(void)

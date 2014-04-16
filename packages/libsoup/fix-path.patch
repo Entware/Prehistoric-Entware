@@ -1,0 +1,39 @@
+--- ../../../downloads/mipsel-hardfloat/openwrt_trunk-r40423/feeds/packages/libs/libsoup/Makefile	2014-04-15 16:11:47.616849362 +0400
++++ ../../../openwrt_trunk/feeds/packages/libs/libsoup/Makefile	2014-04-15 20:00:31.520606106 +0400
+@@ -39,26 +39,26 @@
+ endef
+ 
+ define Build/InstallDev
+-	$(INSTALL_DIR) $(1)/usr/{lib/pkgconfig,include/libsoup-2.4/libsoup}
++	$(INSTALL_DIR) $(1)/opt/{lib/pkgconfig,include/libsoup-2.4/libsoup}
+ 
+ 	$(CP) \
+-		$(PKG_INSTALL_DIR)/usr/lib/libsoup-2.4.{so*,la,a} \
+-		$(1)/usr/lib/
++		$(PKG_INSTALL_DIR)/opt/lib/libsoup-2.4.{so*,la,a} \
++		$(1)/opt/lib/
+ 
+ 	$(INSTALL_DATA) \
+-		$(PKG_INSTALL_DIR)/usr/lib/pkgconfig/* \
+-		$(1)/usr/lib/pkgconfig/
++		$(PKG_INSTALL_DIR)/opt/lib/pkgconfig/* \
++		$(1)/opt/lib/pkgconfig/
+ 
+ 	$(INSTALL_DATA) \
+-		$(PKG_INSTALL_DIR)/usr/include/libsoup-2.4/libsoup/*.h \
+-		$(1)/usr/include/libsoup-2.4/libsoup/
++		$(PKG_INSTALL_DIR)/opt/include/libsoup-2.4/libsoup/*.h \
++		$(1)/opt/include/libsoup-2.4/libsoup/
+ endef
+ 
+ define Package/libsoup/install
+-	$(INSTALL_DIR) $(1)/usr/lib
++	$(INSTALL_DIR) $(1)/opt/lib
+ 	$(CP) \
+-		$(PKG_INSTALL_DIR)/usr/lib/libsoup-2.4.so* \
+-		$(1)/usr/lib/
++		$(PKG_INSTALL_DIR)/opt/lib/libsoup-2.4.so* \
++		$(1)/opt/lib/
+ endef
+ 
+ $(eval $(call BuildPackage,libsoup))
