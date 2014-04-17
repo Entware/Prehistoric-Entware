@@ -1,11 +1,12 @@
---- ../../../toolchain-1.9.2.7-rtn/src/scripts/download.pl.orig
-+++ ../../../toolchain-1.9.2.7-rtn/src/scripts/download.pl
-@@ -139,6 +139,9 @@
+--- ../../../toolchain-1.9.2.7-rtn/src/scripts/download.pl.orig	2014-04-17 20:43:46.749311141 +0400
++++ ../../../toolchain-1.9.2.7-rtn/src/scripts/download.pl	2014-04-17 20:45:45.789308973 +0400
+@@ -139,6 +139,10 @@
  	}
  }
  
-+push @mirrors, 'http://x.vm0.ru/wl500g-repo/sources-mirror/toolchain';
++push @mirrors, 'http://x.vm0.ru/wl500g-repo/sources-mirror';
 +push @mirrors, 'http://entware.wl500g.info/sources';
++push @mirrors, 'http://entware.dyndns.info/sources';
 +
  while (!$ok) {
  	my $mirror = shift @mirrors;
