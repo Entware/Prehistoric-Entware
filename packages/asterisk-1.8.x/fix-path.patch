@@ -1,5 +1,5 @@
---- ../../../openwrt_trunk/feeds/telephony/net/asterisk-1.8.x/Makefile.orig	2014-01-20 16:36:16.002313640 +0400
-+++ ../../../openwrt_trunk/feeds/telephony/net/asterisk-1.8.x/Makefile	2014-01-20 22:54:37.553896860 +0400
+--- ../../../downloads/mipsel-hardfloat/openwrt_trunk-r40423/feeds/telephony/net/asterisk-1.8.x/Makefile	2014-04-16 20:19:00.422912093 +0400
++++ ../../../openwrt_trunk/feeds/telephony/net/asterisk-1.8.x/Makefile	2014-04-16 20:19:19.462911745 +0400
 @@ -70,7 +70,7 @@
  define Package/asterisk18-app-meetme
  $(call Package/asterisk18/Default)
