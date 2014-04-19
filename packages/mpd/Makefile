@@ -9,7 +9,6 @@ all: .done
 
 .done:
 	patch -d $(TOP) -p3 -i $(CURDIR)/fix-path.patch
-	rm -f ../../../openwrt_trunk/feeds/packages/sound/mpd/patches/100-compile-fixes.patch
 	cp -f ./S89mpd ../../../openwrt_trunk/feeds/packages/sound/mpd/files/
 	@touch $@
 
