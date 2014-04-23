@@ -1,5 +1,5 @@
---- uClibc-0.9.32.orig/ldso/ldso/dl-elf.c	2011-06-08 23:35:20.000000000 +0400
-+++ uClibc-0.9.32/ldso/ldso/dl-elf.c	2012-03-17 23:11:54.303963580 +0400
+--- uClibc-0.9.32.orig/ldso/ldso/dl-elf.c
++++ uClibc-0.9.32/ldso/ldso/dl-elf.c
 @@ -295,10 +295,9 @@
  	   This list must exactly match the list in uClibc/ldso/util/ldd.c */
  	_dl_if_debug_dprint("\tsearching full lib path list\n");

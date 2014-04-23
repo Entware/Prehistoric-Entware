@@ -5,9 +5,17 @@
 # See /LICENSE for more information.
 #
 
-# Nothing should ever be touched by mere mortals. Unless you hang out
-# with the gods, you should probably leave all this stuff alone.
-
 export TOOLCHAIN_REVISION=5310
 export OPENWRT_REVISION=40423
-export TARGET=mipsel-hardfloat
+
+# Download or compile toolchain\kernel?
+#FORCE_COMPILE=y
+
+# Target architecture for repo
+export TARGET=entware
+#export TARGET=mipselsf
+
+# Mirror for compiled toolchains and kernels
+SRC_MIRROR=http://entware.wl500g.info/sources
+#SRC_MIRROR=http://x.vm0.ru/wl500g-repo/sources-mirror
+#SRC_MIRROR=http://entware.dyndns.info/sources

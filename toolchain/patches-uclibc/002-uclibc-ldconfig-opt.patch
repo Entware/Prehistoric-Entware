@@ -1,5 +1,5 @@
---- uClibc-0.9.32.orig/utils/ldconfig.c	2011-06-08 23:35:20.000000000 +0400
-+++ uClibc-0.9.32/utils/ldconfig.c	2012-03-18 08:48:01.230444740 +0400
+--- uClibc-0.9.32.orig/utils/ldconfig.c
++++ uClibc-0.9.32/utils/ldconfig.c
 @@ -949,10 +949,10 @@
  
  		/* look ma, no defaults */

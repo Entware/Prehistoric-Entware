@@ -3,3 +3,6 @@
 /.git_mirrors_updated
 /packages/.packages_path.mk
 /packages/.packages_prepared
+/toolchain/.toolchain_prepared
+/buildroot/.buildroot_prepared
+/kernel-2.6.22.19/.kernel_prepared

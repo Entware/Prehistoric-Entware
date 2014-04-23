@@ -1,5 +1,5 @@
---- ../../../downloads/mipsel-hardfloat/openwrt_trunk-r40423/include/nls.mk	2014-04-15 16:11:47.668849361 +0400
-+++ ../../../openwrt_trunk/include/nls.mk	2014-04-15 20:20:55.124576640 +0400
+--- ../../../openwrt_trunk-r40423/include/nls.mk
++++ ../../../openwrt_trunk/include/nls.mk
 @@ -7,18 +7,18 @@
  
  # iconv full

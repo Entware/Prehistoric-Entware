@@ -1,6 +1,16 @@
---- ../../../openwrt_trunk/rules.mk.orig	2013-10-11 15:20:25.000000000 +0400
-+++ ../../../openwrt_trunk/rules.mk	2013-10-11 15:31:12.209180489 +0400
-@@ -115,8 +115,8 @@
+--- ../../../downloads/openwrt_trunk-r40423/rules.mk
++++ ../../../openwrt_trunk/rules.mk
+@@ -63,6 +63,9 @@
+ ifdef CONFIG_HAS_SPE_FPU
+   TARGET_SUFFIX:=$(TARGET_SUFFIX)spe
+ endif
++ifdef CONFIG_SOFT_FLOAT
++  BUILD_SUFFIX:=$(TARGET_SUFFIX)sf
++endif
+ ifdef CONFIG_MIPS64_ABI
+   ifneq ($(CONFIG_MIPS64_ABI_O32),y)
+      ARCH_SUFFIX:=$(ARCH_SUFFIX)_$(call qstrip,$(CONFIG_MIPS64_ABI))
+@@ -115,8 +118,8 @@
  TARGET_CXXFLAGS = $(TARGET_CFLAGS)
  TARGET_ASFLAGS_DEFAULT = $(TARGET_CFLAGS)
  TARGET_ASFLAGS = $(TARGET_ASFLAGS_DEFAULT)

@@ -1,5 +1,5 @@
---- uClibc-0.9.32.orig/utils/ldd.c	2011-06-08 23:35:20.000000000 +0400
-+++ uClibc-0.9.32/utils/ldd.c	2012-03-18 09:07:07.412141099 +0400
+--- uClibc-0.9.32.orig/utils/ldd.c
++++ uClibc-0.9.32/utils/ldd.c
 @@ -452,9 +452,9 @@
  
  	/* Lastly, search the standard list of paths for the library.

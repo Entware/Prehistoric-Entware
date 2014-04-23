@@ -1,0 +1,15 @@
+CONFIG_TARGET_mipselsf=y
+CONFIG_TARGET_BOARD="mipselsf"
+CONFIG_TARGET_mipselsf_Default=y
+CONFIG_TARGET_ARCH_PACKAGES="mipselsf"
+CONFIG_TARGET_OPTIMIZATION="-O2 -pipe -mips32 -mtune=mips32 -msoft-float"
+CONFIG_SOFT_FLOAT=y
+CONFIG_TOOLCHAIN_ROOT="/opt/entware/toolchain-mipselsf"
+CONFIG_LIBC_ROOT_DIR="/opt/entware/toolchain-mipselsf"
+CONFIG_LIBGCC_ROOT_DIR="/opt/entware/toolchain-mipselsf"
+CONFIG_LIBPTHREAD_ROOT_DIR="/opt/entware/toolchain-mipselsf"
+CONFIG_LIBRT_ROOT_DIR="/opt/entware/toolchain-mipselsf"
+CONFIG_LIBSTDCPP_ROOT_DIR="/opt/entware/toolchain-mipselsf"
+CONFIG_LDCONFIG_ROOT_DIR="/opt/entware/toolchain-mipselsf/target-utils"
+CONFIG_LDD_ROOT_DIR="/opt/entware/toolchain-mipselsf/target-utils"
+CONFIG_LIBSSP_ROOT_DIR="/opt/entware/toolchain-mipselsf"

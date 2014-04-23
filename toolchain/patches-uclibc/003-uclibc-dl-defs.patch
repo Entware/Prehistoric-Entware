@@ -1,5 +1,5 @@
---- uClibc-0.9.32.orig/ldso/include/dl-defs.h	2011-06-08 23:35:20.000000000 +0400
-+++ uClibc-0.9.32/ldso/include/dl-defs.h	2012-03-18 09:02:21.911708216 +0400
+--- uClibc-0.9.32.orig/ldso/include/dl-defs.h
++++ uClibc-0.9.32/ldso/include/dl-defs.h
 @@ -36,7 +36,7 @@
  #ifndef __LDSO_BASE_FILENAME__
  #define __LDSO_BASE_FILENAME__ "ld.so"

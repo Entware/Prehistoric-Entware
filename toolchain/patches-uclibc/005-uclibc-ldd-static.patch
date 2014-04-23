@@ -1,5 +1,5 @@
---- uClibc-0.9.32.orig/utils/Makefile.in.orig	2012-05-26 20:39:14.102085488 +0400
-+++ uClibc-0.9.32/utils/Makefile.in	2012-05-26 20:39:56.332135415 +0400
+--- uClibc-0.9.32.orig/utils/Makefile.in.orig
++++ uClibc-0.9.32/utils/Makefile.in
 @@ -31,7 +31,7 @@ else
  CFLAGS-ldconfig += $(CFLAGS-utils-shared)
  endif

@@ -1,0 +1,13 @@
+--- ../../../toolchain-1.9.2.7-rtn/src/defconfig
++++ ../../../toolchain-1.9.2.7-rtn/src/.config
+@@ -40,8 +40,8 @@
+ # CONFIG_GDB is not set
+ CONFIG_LARGEFILE=y
+ CONFIG_SHADOW_PASSWORDS=y
+-# CONFIG_SOFT_FLOAT is not set
+-CONFIG_TARGET_OPTIMIZATION="-Os -pipe -mips32 -mtune=mips32 -funit-at-a-time"
++CONFIG_SOFT_FLOAT=y
++CONFIG_TARGET_OPTIMIZATION="-O2 -pipe -mips32 -mtune=mips32 -funit-at-a-time -msoft-float"
+ CONFIG_GCC_VERSION="4.6.4"
+ CONFIG_GCC_VERSION_4_6=y
+ CONFIG_UCLIBC_VERSION="0.9.32"

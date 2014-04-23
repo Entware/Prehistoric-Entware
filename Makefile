@@ -10,21 +10,32 @@ export TOP:=$(shell (cd .. && pwd -P))
 
 all: .packages_compiled
 
-.packages_compiled: toolchain/$(TARGET)/.toolchain_prepared \
-	    buildroot/$(TARGET)/.buildroot_prepared \
+.packages_compiled: \
+	    kernel-2.6.22.19/.kernel_prepared \
+	    toolchain/.toolchain_prepared \
+	    buildroot/.buildroot_prepared \
 	    packages/.package_prepared
+ifeq ($(ARCH),entware)
+	$(MAKE) -C switch-arch entware
+else ifeq ($(ARCH),mipselsf)
+	$(MAKE) -C switch-arch mipselsf
+endif
 	$(MAKE) -C "$(TOP)/openwrt_trunk" tools/compile
 	$(MAKE) -C "$(TOP)/openwrt_trunk" tools/install
-	@echo Press \"Ctrl + c\" if you don\'t need to compile whole repository...
-	$(MAKE) -C "$(TOP)/openwrt_trunk" package/compile
-	$(MAKE) -C "$(TOP)/openwrt_trunk" package/index
+	@echo "Buildroot is ready! To recompile the whole repo type:"
+	@echo "cd ../openwrt_trunk"
+	@echo "make package/compile"
+	@echo "See Buildroot Wiki at http://wiki.openwrt.org/about/toolchain for details."
 	@touch $@
 
-toolchain/$(TARGET)/.toolchain_prepared:
-	$(MAKE) -C "toolchain/$(TARGET)"
+kernel-2.6.22.19/.kernel_prepared:
+	$(MAKE) -C "kernel-2.6.22.19"
 
-buildroot/$(TARGET)/.buildroot_prepared:
-	$(MAKE) -C "buildroot/$(TARGET)"
+toolchain/.toolchain_prepared:
+	$(MAKE) -C "toolchain"
+
+buildroot/.buildroot_prepared:
+	$(MAKE) -C "buildroot"
 
 packages/.package_prepared:
 	$(MAKE) -C "packages"
@@ -45,23 +56,22 @@ endef
 
 update_git_mirrors: .git_mirrors_updated
 .git_mirrors_updated:
-	$(call update_git_mirror,https://github.com/Entware/openwrt-telephony.git,openwrt-telephony,http://feeds.openwrt.nanl.de/openwrt/telephony.git)
-	$(call update_git_mirror,https://github.com/Entware/openwrt-packages.git,openwrt-packages,git://git.openwrt.org/packages.git)
+	$(call update_git_mirror,https://github.com/Entware/openwrt-telephony.git,openwrt-telephony,http://git.openwrt.org/feed/telephony.git)
+	$(call update_git_mirror,https://github.com/Entware/openwrt-packages.git,openwrt-packages,http://git.openwrt.org/packages.git)
 	$(call update_git_mirror,https://github.com/Entware/packages.git,packages,https://github.com/openwrt-routing/packages.git)
 	@touch $@
 
 clean:
+	$(MAKE) -C kernel-2.6.22.19 clean
+	$(MAKE) -C toolchain clean
+	$(MAKE) -C buildroot clean
 	$(MAKE) -C packages clean
-	$(MAKE) -C buildroot/$(TARGET) clean
-	$(MAKE) -C toolchain/$(TARGET) clean
 	@rm -f .packages_compiled
 	@rm -f .git_mirrors_updated
 
-cleanall:
-	$(MAKE) -C packages clean
-	$(MAKE) -C buildroot/$(TARGET) cleanall
-	$(MAKE) -C toolchain/$(TARGET) cleanall
-	@rm -f .packages_compiled
-	@rm -f .git_mirrors_updated
+cleanall: clean
+	$(MAKE) -C kernel-2.6.22.19 cleanall
+	$(MAKE) -C toolchain cleanall
+	$(MAKE) -C buildroot cleanall
 
 .PHONY: clean cleanall all
