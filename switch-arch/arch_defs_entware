@@ -11,5 +11,5 @@ CONFIG_LIBRT_ROOT_DIR="/opt/entware/toolchain-entware"
 CONFIG_LIBSTDCPP_ROOT_DIR="/opt/entware/toolchain-entware"
 CONFIG_LDCONFIG_ROOT_DIR="/opt/entware/toolchain-entware/target-utils"
 CONFIG_LDD_ROOT_DIR="/opt/entware/toolchain-entware/target-utils"
-CONFIG_LIBSSP_ROOT_DIR="/opt/entware-toolchain"
+CONFIG_LIBSSP_ROOT_DIR="/opt/entware/toolchain-entware"
 # CONFIG_SOFT_FLOAT is not set
