@@ -1,0 +1,11 @@
+#!/bin/sh
+
+ENABLED=yes
+PROCS=iodined
+#ARGS="-u user -P p@ssw0rd -l 0.0.0.0 -p 53"
+ARGS=""
+PREARGS=""
+DESC=$PROCS
+PATH=/opt/sbin:/opt/bin:/opt/usr/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin
+
+. /opt/etc/init.d/rc.func
