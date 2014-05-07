@@ -1,0 +1,32 @@
+--- ../../../downloads/openwrt_trunk-r40423/feeds/packages/lang/eggdrop/Makefile	2014-04-23 12:00:31.946046969 +0400
++++ ../../../openwrt_trunk/feeds/packages/lang/eggdrop/Makefile	2014-05-07 15:45:06.423767981 +0400
+@@ -34,10 +34,10 @@
+ endef
+ 
+ CONFIGURE_ARGS+=\
+-	--prefix="$(PKG_INSTALL_DIR)/eggdrop" \
++	--prefix="$(PKG_INSTALL_DIR)/opt/eggdrop" \
+ 	--enable-threads \
+-	--with-tcllib="$(STAGING_DIR)/usr/lib/libtcl8.5.so" \
+-	--with-tclinc="$(STAGING_DIR)/usr/include/tcl.h"
++	--with-tcllib="$(STAGING_DIR)/opt/lib/libtcl8.5.so" \
++	--with-tclinc="$(STAGING_DIR)/opt/include/tcl.h"
+ 
+ define Build/Compile
+ 	$(MAKE) config -C $(PKG_BUILD_DIR)
+@@ -46,12 +46,12 @@
+ 
+ define Build/Install
+ 	$(call Build/Install/Default)
+-	rm -Rvf $(PKG_INSTALL_DIR)/eggdrop/doc
++	rm -Rvf $(PKG_INSTALL_DIR)/opt/eggdrop/doc
+ endef
+ 
+ define Package/eggdrop/install
+-	$(INSTALL_DIR) $(1)/eggdrop
+-	$(CP) $(PKG_INSTALL_DIR)/* $(1)/eggdrop
++	$(INSTALL_DIR) $(1)/opt/eggdrop
++	$(CP) $(PKG_INSTALL_DIR)/opt/eggdrop/* $(1)/opt/eggdrop
+ endef
+ 
+ $(eval $(call BuildPackage,eggdrop))
