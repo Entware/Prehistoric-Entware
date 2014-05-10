@@ -10,6 +10,7 @@ elfutils: is a fake package for now, still old libelf package used due to our 2.
 OpenWRT packages with updagraded version:
 amule		2.3.1
 dialog		1.2-20140112
+dump1090	2014-04-29
 elinks		0.12pre6
 gw6c		6.0.1
 hplip		3.14.4

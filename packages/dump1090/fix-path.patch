@@ -1,0 +1,39 @@
+--- ../../../downloads/openwrt_trunk-r40423/feeds/packages/utils/dump1090/Makefile	2014-04-23 12:00:31.922046969 +0400
++++ ../../../openwrt_trunk/feeds/packages/utils/dump1090/Makefile	2014-05-10 21:47:27.514651654 +0400
+@@ -7,13 +7,13 @@
+ include $(TOPDIR)/rules.mk
+ 
+ PKG_NAME:=dump1090
+-PKG_VERSION:=2013-02-04
++PKG_VERSION:=2014-04-29
+ PKG_RELEASE:=$(PKG_SOURCE_VERSION)
+ 
+ PKG_SOURCE_PROTO:=git
+ PKG_SOURCE_URL:=git://github.com/antirez/dump1090.git
+ PKG_SOURCE_SUBDIR:=$(PKG_NAME)-$(PKG_VERSION)
+-PKG_SOURCE_VERSION:=ff0fe38722c768c7269afa733790a2b968ea3099
++PKG_SOURCE_VERSION:=53cca39ed5da8e8aa33d6df975a0738cd1c9dc9b
+ PKG_SOURCE:=$(PKG_NAME)-$(PKG_VERSION).tar.gz
+ 
+ PKG_LICENSE:=BSD-3c
+@@ -38,14 +38,15 @@
+ endef
+ 
+ MAKE_FLAGS += \
+-	CFLAGS="$(TARGET_CFLAGS)"
++	LIBS="$(TARGET_LDFLAGS) -lrtlsdr -lm -lpthread" \
++	CFLAGS="$(TARGET_CPPFLAGS)"
+ 
+ define Package/dump1090/install
+-	$(INSTALL_DIR) $(1)/usr/bin
+-	$(CP) $(PKG_BUILD_DIR)/dump1090 $(1)/usr/bin
++	$(INSTALL_DIR) $(1)/opt/bin
++	$(CP) $(PKG_BUILD_DIR)/dump1090 $(1)/opt/bin
+ 
+-	$(INSTALL_DIR) $(1)/usr/share/dump1090
+-	$(CP) $(PKG_BUILD_DIR)/gmap.html $(1)/usr/share/dump1090
++	$(INSTALL_DIR) $(1)/opt/share/dump1090
++	$(CP) $(PKG_BUILD_DIR)/gmap.html $(1)/opt/share/dump1090
+ endef
+ 
+ $(eval $(call BuildPackage,dump1090))
