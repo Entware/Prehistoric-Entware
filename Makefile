@@ -8,9 +8,7 @@
 include config.mk
 export TOP:=$(shell (cd .. && pwd -P))
 
-all: .packages_compiled
-
-.packages_compiled: \
+all: \
 	    kernel-2.6.22.19/.kernel_prepared \
 	    toolchain/.toolchain_prepared \
 	    buildroot/.buildroot_prepared \
@@ -26,7 +24,6 @@ endif
 	@echo "cd ../openwrt_trunk"
 	@echo "make package/compile"
 	@echo "See Buildroot Wiki at http://wiki.openwrt.org/about/toolchain for details."
-	@touch $@
 
 kernel-2.6.22.19/.kernel_prepared:
 	$(MAKE) -C "kernel-2.6.22.19"
@@ -66,7 +63,6 @@ clean:
 	$(MAKE) -C toolchain clean
 	$(MAKE) -C buildroot clean
 	$(MAKE) -C packages clean
-	@rm -f .packages_compiled
 	@rm -f .git_mirrors_updated
 
 cleanall: clean

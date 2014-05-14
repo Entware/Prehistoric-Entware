@@ -5,7 +5,7 @@
 # See /LICENSE for more information.
 #
 
-export TOOLCHAIN_REVISION=5310
+export TOOLCHAIN_REVISION=5447
 export OPENWRT_REVISION=40423
 
 # Download or compile toolchain\kernel?

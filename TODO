@@ -36,5 +36,4 @@ Can't be upgraded (mostly due to old 2.6.22.19 kernel):
 cjdns		0.5-20131009	node.js required
 gdb		7.3.1		due to gnu_v3_object_ctor_group() absence
 libnl		2.0 (r33657)
-mpd		0.17.6		0.18.x causes "eventfd() failed"
 usbip		0.1.7
