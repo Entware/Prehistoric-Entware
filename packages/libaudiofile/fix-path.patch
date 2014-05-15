@@ -1,5 +1,5 @@
---- ../../../downloads/mipsel-hardfloat/openwrt_trunk-r40423/feeds/packages/libs/libaudiofile/Makefile	2014-04-15 16:11:47.608849363 +0400
-+++ ../../../openwrt_trunk/feeds/packages/libs/libaudiofile/Makefile	2014-04-15 21:08:21.456525258 +0400
+--- ../../../downloads/openwrt_trunk-r40423/feeds/packages/libs/libaudiofile/Makefile	2014-05-15 15:17:03.339017674 +0400
++++ ../../../openwrt_trunk/feeds/packages/libs/libaudiofile/Makefile	2014-05-15 15:50:41.366980744 +0400
 @@ -8,14 +8,12 @@
  include $(TOPDIR)/rules.mk
  
@@ -22,7 +22,7 @@
  define Package/libaudiofile
    SECTION:=libs
    CATEGORY:=Libraries
-+  DEPENDS:=+libflac +libstdcpp
++  DEPENDS:=+libflac +libstdcpp +alsa-lib
    TITLE:=Audio File library
    URL:=http://www.68k.org/~michael/audiofile/
  endef
