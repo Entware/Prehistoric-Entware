@@ -1,6 +1,6 @@
---- ../../../openwrt_trunk/feeds/telephony/net/asterisk-1.8.x-chan-sccp-b/Makefile.orig
-+++ ../../../openwrt_trunk/feeds/telephony/net/asterisk-1.8.x-chan-sccp-b/Makefile
-@@ -38,7 +38,7 @@
+--- ../../../downloads/openwrt_trunk-r40423/feeds/telephony/net/asterisk-1.8.x-chan-sccp-b/Makefile	2014-05-15 15:17:03.203017679 +0400
++++ ../../../openwrt_trunk/feeds/telephony/net/asterisk-1.8.x-chan-sccp-b/Makefile	2014-05-15 20:21:40.814684490 +0400
+@@ -38,25 +38,26 @@
  endef
  
  define Build/Configure
@@ -9,7 +9,13 @@
  endef
  
  define Build/Compile
-@@ -49,14 +49,14 @@
+-	$(MAKE) -C "$(PKG_BUILD_DIR)" \
++	(export echo=echo; \
++		$(MAKE) -C "$(PKG_BUILD_DIR)" \
+ 		CFLAGS="$(CFLAGS) -I$(PKG_BUILD_DIR)/src -DLOW_MEMORY" \
+ 		DESTDIR="$(PKG_INSTALL_DIR)" \
+-		all install
++		all install)
  endef
  
  define Package/asterisk18-chan-sccp-b/conffiles
