@@ -99,7 +99,7 @@ diff -ur ../../../downloads/openwrt_trunk-r40423/feeds/packages/net/isc-dhcp/fil
    # Tear down softwire tunnel
 diff -ur ../../../downloads/openwrt_trunk-r40423/feeds/packages/net/isc-dhcp/Makefile ../../../openwrt_trunk/feeds/packages/net/isc-dhcp/Makefile
 --- ../../../downloads/openwrt_trunk-r40423/feeds/packages/net/isc-dhcp/Makefile	2014-05-17 10:46:06.141735902 +0400
-+++ ../../../openwrt_trunk/feeds/packages/net/isc-dhcp/Makefile	2014-05-18 20:45:11.055509548 +0400
++++ ../../../openwrt_trunk/feeds/packages/net/isc-dhcp/Makefile	2014-05-18 20:57:44.387497443 +0400
 @@ -56,7 +56,7 @@
  endef
  
@@ -126,7 +126,7 @@ diff -ur ../../../downloads/openwrt_trunk-r40423/feeds/packages/net/isc-dhcp/Mak
  		host_alias="$(GNU_TARGET_NAME)"		\
  		target_alias="$(GNU_TARGET_NAME)"	\
  		build_alias="$(GNU_HOST_NAME)"		\
-@@ -179,42 +180,32 @@
+@@ -179,42 +180,31 @@
  endef
  
  define Package/isc-dhcp-relay-$(BUILD_VARIANT)/install
@@ -141,7 +141,6 @@ diff -ur ../../../downloads/openwrt_trunk-r40423/feeds/packages/net/isc-dhcp/Mak
 -endif
 +	$(INSTALL_DIR) $(1)/opt/sbin
 +	$(INSTALL_BIN) $(PKG_INSTALL_DIR)/opt/sbin/dhcrelay $(1)/opt/sbin
-+	$(INSTALL_DIR) $(1)/opt/etc/init.d
  endef
  
  define Package/isc-dhcp-server-$(BUILD_VARIANT)/install
@@ -149,7 +148,7 @@ diff -ur ../../../downloads/openwrt_trunk-r40423/feeds/packages/net/isc-dhcp/Mak
 -	$(INSTALL_BIN) $(PKG_INSTALL_DIR)/usr/sbin/dhcpd $(1)/usr/sbin
 -	$(INSTALL_BIN) ./files/dhcpd.init $(1)/etc/init.d/dhcpd
 -	$(INSTALL_BIN) ./files/dhcpd.conf $(1)/etc
-+	$(INSTALL_DIR) $(1)/opt/sbin
++	$(INSTALL_DIR) $(1)/opt/sbin $(1)/opt/etc
 +	$(INSTALL_BIN) $(PKG_INSTALL_DIR)/opt/sbin/dhcpd $(1)/opt/sbin
 +	$(INSTALL_BIN) ./files/dhcpd.conf $(1)/opt/etc
  ifeq ($(BUILD_VARIANT),ipv6)
@@ -164,7 +163,7 @@ diff -ur ../../../downloads/openwrt_trunk-r40423/feeds/packages/net/isc-dhcp/Mak
 -	$(INSTALL_BIN) $(PKG_INSTALL_DIR)/usr/sbin/dhclient $(1)/usr/sbin
 -	$(INSTALL_BIN) ./files/dhclient-script $(1)/usr/sbin/
 -	$(INSTALL_BIN) ./files/dhclient.init $(1)/etc/init.d/dhclient
-+	$(INSTALL_DIR) $(1)/opt/sbin
++	$(INSTALL_DIR) $(1)/opt/sbin $(1)/opt/etc
 +	$(INSTALL_BIN) $(PKG_INSTALL_DIR)/opt/sbin/dhclient $(1)/opt/sbin
 +	$(INSTALL_BIN) ./files/dhclient-script $(1)/opt/sbin/
  ifeq ($(BUILD_VARIANT),ipv6)
