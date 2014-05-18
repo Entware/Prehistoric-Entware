@@ -1,0 +1,13 @@
+--- ../../../downloads/openwrt_trunk-r40423/feeds/packages/utils/sispmctl/Makefile	2014-05-17 10:46:06.161735902 +0400
++++ ../../../openwrt_trunk/feeds/packages/utils/sispmctl/Makefile	2014-05-18 11:20:40.060128454 +0400
+@@ -43,8 +43,8 @@
+ 	--disable-dependency-tracking
+ 
+ define Package/sispmctl/install
+-	$(INSTALL_DIR) $(1)/usr/bin
+-	$(INSTALL_BIN) $(PKG_INSTALL_DIR)/usr/bin/$(PKG_NAME) $(1)/usr/bin/
++	$(INSTALL_DIR) $(1)/opt/bin
++	$(INSTALL_BIN) $(PKG_INSTALL_DIR)/opt/bin/$(PKG_NAME) $(1)/opt/bin/
+ endef
+ 
+ $(eval $(call BuildPackage,sispmctl))
