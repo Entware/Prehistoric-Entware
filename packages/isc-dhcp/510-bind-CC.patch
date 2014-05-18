@@ -1,0 +1,11 @@
+--- ./bind/Makefile.orig	2014-05-18 20:16:48.835537846 +0400
++++ ./bind/Makefile	2014-05-18 20:17:13.575537735 +0400
+@@ -52,7 +52,7 @@
+ 	else                                                       \
+ 		echo Configuring BIND Export libraries for DHCP. ; \
+ 		rm -rf ./lib ./include ./configure.log ./build.log ./install.log ; \
+-		(cd ${bindsrcdir} && ./configure --disable-kqueue --disable-epoll --disable-devpoll --without-openssl --without-libxml2 --enable-exportlib --enable-threads=no --with-export-includedir=${binddir}/include --with-export-libdir=${binddir}/lib --with-gssapi=no > ${binddir}/configure.log); \
++		(cd ${bindsrcdir} && export CC=${CROSS_CC} && ./configure  --disable-atomic --disable-kqueue --disable-epoll --disable-devpoll --without-openssl --without-libxml2 --enable-exportlib --enable-threads=no --with-export-includedir=${binddir}/include --with-export-libdir=${binddir}/lib --with-gssapi=no > ${binddir}/configure.log); \
+ 	fi
+ 
+ # Build and install the export libraries
