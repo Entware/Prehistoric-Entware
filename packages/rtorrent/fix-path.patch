@@ -1,6 +1,27 @@
---- ../../../openwrt_trunk/feeds/packages/net/rtorrent/Makefile.orig
-+++ ../../../openwrt_trunk/feeds/packages/net/rtorrent/Makefile
-@@ -40,7 +40,7 @@
+--- ../../../downloads/openwrt_trunk-r40423/feeds/packages/net/rtorrent/Makefile	2014-05-17 10:46:06.145735902 +0400
++++ ../../../openwrt_trunk/feeds/packages/net/rtorrent/Makefile	2014-05-17 20:37:09.793089251 +0400
+@@ -8,15 +8,12 @@
+ include $(TOPDIR)/rules.mk
+ 
+ PKG_NAME:=rtorrent
+-PKG_VERSION:=0.9.3-git
++PKG_VERSION:=0.9.4
+ 
+-PKG_RELEASE:=$(PKG_SOURCE_VERSION)-1
+-
+-PKG_SOURCE_PROTO:=git
+-PKG_SOURCE_URL:=https://github.com/rakshasa/rtorrent.git
+-PKG_SOURCE_SUBDIR:=$(PKG_NAME)-$(PKG_VERSION)
+-PKG_SOURCE_VERSION:=7689059dbc1ee05f855eb28883cbe59d162d4431
+-PKG_SOURCE:=$(PKG_NAME)-$(PKG_VERSION)-$(PKG_SOURCE_VERSION).tar.gz
++PKG_RELEASE:=1
++PKG_SOURCE:=$(PKG_NAME)-$(PKG_VERSION).tar.gz
++PKG_SOURCE_URL:=http://libtorrent.rakshasa.no/downloads
++PKG_MD5SUM:=fd9490a2ac67d0fa2a567c6267845876
+ 
+ PKG_FIXUP:=autoreconf
+ PKG_BUILD_PARALLEL:=1
+@@ -40,12 +37,13 @@
   clients in an ncurses client.
  endef
  
@@ -9,7 +30,13 @@
  
  CONFIGURE_ARGS+= \
  	--enable-shared \
-@@ -54,8 +54,8 @@
+ 	--disable-static \
+ 	--disable-debug \
++	--enable-ipv6 \
+ 	--with-xmlrpc-c
+ 
+ define Build/Configure
+@@ -54,8 +52,8 @@
  endef
  
  define Package/rtorrent/install
