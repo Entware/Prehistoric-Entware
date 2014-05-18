@@ -19,6 +19,7 @@ libaudiofile	0.3.6		for MPD
 libmms		0.6.4		for MPD
 libtorrent	0.13.4
 libxslt		1.1.28		old one is incompatible with modern libxml2
+minicom		2.7
 mosh		1.2.4a-20140108
 mpd		0.18.11
 msmtp		1.4.32
