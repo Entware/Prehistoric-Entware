@@ -1,0 +1,34 @@
+--- a/ncftp/util.c.orig	2014-05-19 12:59:30.454002248 +0400
++++ b/ncftp/util.c	2014-05-19 13:01:50.149972855 +0400
+@@ -419,22 +419,8 @@
+ 	cp = getenv("NCFTPDIR");
+ 	if (cp != NULL) {
+ 		(void) STRNCPY(gOurDirectoryPath, cp);
+-	} else if (STREQ(gHome, "/")) {
+-		/* Don't create it if you're root and your home directory
+-		 * is the root directory.
+-		 *
+-		 * If you are root and you want to store your ncftp
+-		 * config files, move your home directory somewhere else,
+-		 * such as /root or /home/root.
+-		 */
+-		gOurDirectoryPath[0] = '\0';
+-		return;
+ 	} else {
+-		(void) Path(gOurDirectoryPath,
+-			sizeof(gOurDirectoryPath),
+-			gHome,
+-			kOurDirectoryName
+-		);
++		(void) STRNCPY(gOurDirectoryPath, "/opt/etc/ncftp/");
+ 	}
+ 
+ 	if (stat(gOurDirectoryPath, &st) < 0) {
+@@ -442,6 +428,7 @@
+ 			gOurDirectoryPath[0] = '\0';
+ 		}
+ 	}
++
+ #endif
+ }	/* InitOurDirectory */
+ 
