@@ -2,7 +2,7 @@
 
 Entware is package repository for embedded devices. [This packages](http://entware.wl500g.info/binaries/entware/Packages.html) allows you to add new functionality to your device, most of them taken from OpenWRT, but others are unique. It's usable by router firmwares such as DD-WRT/Tomato/AsusWRT, by Realtek RTD1073/1283/1185/1186 based players and so on. 
 
-# Getting starting
+# Getting started
 
 [Prepare USB drive](https://github.com/Entware/entware/wiki/USB-Storage-setup) or other storage and type:
 ```
