@@ -1,5 +1,5 @@
---- ../../../openwrt_trunk/package/system/opkg/Makefile.orig
-+++ ../../../openwrt_trunk/package/system/opkg/Makefile
+--- ../../../downloads/openwrt_trunk-r40859/package/system/opkg/Makefile	2014-05-27 14:18:46.857780074 +0400
++++ ../../../openwrt_trunk/package/system/opkg/Makefile	2014-05-27 20:52:47.629510332 +0400
 @@ -5,7 +5,6 @@
  # See /LICENSE for more information.
  
@@ -28,17 +28,19 @@
    VARIANT:=unsigned
  endef
  
-@@ -59,8 +69,8 @@
+@@ -59,9 +69,9 @@
    $(call Package/opkg/Default/description)
  endef
  
 -define Package/opkg/conffiles
 -/etc/opkg.conf
-+define Package/opkg-opt/conffiles
-+/opt/etc/opkg.conf
- endef
+-endef
++#define Package/opkg-opt/conffiles
++#/opt/etc/opkg.conf
++#endef
  
  
+ define Package/opkg-smime
 @@ -86,8 +96,9 @@
  CONFIGURE_ARGS += \
  	--disable-curl \
@@ -68,7 +70,7 @@
 +	$(INSTALL_DIR) $(1)/opt/lib/opkg
 +	$(INSTALL_DIR) $(1)/opt/{bin,etc,tmp}
 +	$(INSTALL_DIR) $(1)/opt/var/{lock,log,run}
-+	$(INSTALL_DATA) ./files/opkg.conf $(1)/opt/etc/
++#	$(INSTALL_DATA) ./files/opkg.conf $(1)/opt/etc/
 +	$(INSTALL_BIN) $(PKG_INSTALL_DIR)/opt/bin/opkg-cl $(1)/opt/bin/opkg
  endef
  
