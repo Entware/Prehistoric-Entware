@@ -1,20 +1,5 @@
---- ../../../openwrt_trunk.orig/feeds/packages/net/pyload/Makefile	2012-06-01 10:50:40.612204919 +0400
-+++ ../../../openwrt_trunk/feeds/packages/net/pyload/Makefile	2012-06-06 11:36:29.991681591 +0400
-@@ -8,12 +8,12 @@
- include $(TOPDIR)/rules.mk
- 
- PKG_NAME:=pyload
--PKG_VERSION:=0.4.8
-+PKG_VERSION:=0.4.9
- PKG_RELEASE:=1
- 
- PKG_SOURCE:=$(PKG_NAME)-src-v$(PKG_VERSION).zip
- PKG_SOURCE_URL:=http://download.pyload.org/
--PKG_MD5SUM:=5bcf8411ef9e48ef6e9ade55bc697900
-+PKG_MD5SUM:=9b2e5a7c884871a5489cb5141d5c704b
- 
- PKG_BUILD_DIR:=$(BUILD_DIR)/$(PKG_NAME)-$(PKG_VERSION)/
- 
+--- ../../../openwrt_trunk.orig/feeds/packages/net/pyload/Makefile
++++ ../../../openwrt_trunk/feeds/packages/net/pyload/Makefile
 @@ -38,12 +38,12 @@
  endef
  

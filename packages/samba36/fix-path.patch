@@ -33,7 +33,7 @@ diff -urx .svn ../../../openwrt_trunk.orig/package/network/services/samba36/Make
  	--with-sendfile-support \
  	--without-cluster-support \
  	--without-ads \
-@@ -120,26 +120,27 @@
+@@ -121,26 +121,27 @@
  MAKE_FLAGS += DYNEXP= PICFLAG= MODULES=
  
  define Package/samba36-server/install

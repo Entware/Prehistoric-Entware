@@ -1,15 +1,5 @@
 --- ../../../downloads/mipsel-hardfloat/openwrt_trunk-r40423/package/utils/busybox/Makefile	2014-04-09 16:17:24.506286476 +0400
 +++ ../../../openwrt_trunk/package/utils/busybox/Makefile	2014-04-11 11:22:52.823459754 +0400
-@@ -9,8 +9,7 @@
- 
- PKG_NAME:=busybox
- PKG_VERSION:=1.19.4
--PKG_RELEASE:=7
--PKG_FLAGS:=essential
-+PKG_RELEASE:=7a
- 
- PKG_SOURCE:=$(PKG_NAME)-$(PKG_VERSION).tar.bz2
- PKG_SOURCE_URL:=http://www.busybox.net/downloads \
 @@ -74,7 +73,7 @@
  
  LDLIBS:=m crypt

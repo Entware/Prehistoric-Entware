@@ -1,58 +1,40 @@
---- ../../../downloads/mipsel-hardfloat/openwrt_trunk-r40423/feeds/packages/multimedia/tvheadend/Makefile	2014-04-09 16:17:24.318286480 +0400
-+++ ../../../openwrt_trunk/feeds/packages/multimedia/tvheadend/Makefile	2014-04-09 16:53:37.394246894 +0400
-@@ -8,12 +8,17 @@
- include $(TOPDIR)/rules.mk
+--- ../../../downloads/openwrt_trunk-r40859/feeds/packages/multimedia/tvheadend/Makefile	2014-05-26 13:26:44.211410832 +0400
++++ ../../../openwrt_trunk/feeds/packages/multimedia/tvheadend/Makefile	2014-05-26 16:38:45.747196310 +0400
+@@ -15,6 +15,8 @@
+ PKG_SOURCE_URL:=https://github.com/tvheadend/tvheadend/archive/
+ PKG_MD5SUM:=86d1be0ad6e02bd2aecd3d529a026797
  
- PKG_NAME:=tvheadend
--PKG_VERSION:=3.2
--PKG_RELEASE:=0.1
-+PKG_VERSION:=3.5-20131011
-+PKG_RELEASE:=1
- 
-+PKG_REV:=f5c5ffd779ce6dbd233b8f98927d57244fcaeac5
- PKG_SOURCE:=$(PKG_NAME)-$(PKG_VERSION).tar.gz
--PKG_SOURCE_URL:=https://github.com/downloads/tvheadend/tvheadend/
--PKG_MD5SUM:=4f7faa75c4ea24942c5a12a77ebdcdf0
-+PKG_SOURCE_SUBDIR:=$(PKG_NAME)-$(PKG_VERSION)
-+PKG_SOURCE_PROTO:=git
-+PKG_SOURCE_URL:=git://github.com/tvheadend/tvheadend.git
-+PKG_SOURCE_VERSION:=$(PKG_REV)
-+
 +PKG_INSTALL:=1
- 
++
  PKG_USE_MIPS16:=0
  
-@@ -64,17 +69,24 @@
- 
- CONFIGURE_ARGS += \
+ include $(INCLUDE_DIR)/package.mk
+@@ -66,14 +68,21 @@
  	--release \
--	--enable-bundle
-+	--disable-imagecache \
-+	--disable-libav \
-+	--disable-zlib \
-+
+ 	--enable-bundle
+ 
 +define Build/Prepare
 +	$(call Build/Prepare/Default)
 +	$(SED) "s|0.0.0~unknown|$(PKG_VERSION)|g" $(PKG_BUILD_DIR)/support/version
 +endef
- 
++
  define Package/tvheadend/install
 -	$(INSTALL_DIR) $(1)/etc/tvheadend
 -	$(INSTALL_DIR) $(1)/etc/init.d
 -	$(INSTALL_BIN) ./files/tvheadend.init $(1)/etc/init.d/tvheadend
 -	$(INSTALL_DIR) $(1)/lib/upgrade/keep.d
 -	$(INSTALL_DATA) ./files/tvheadend.upgrade $(1)/lib/upgrade/keep.d/tvheadend
--	
 -	$(INSTALL_DIR) $(1)/usr/bin
 -	$(INSTALL_BIN) $(PKG_BUILD_DIR)/build.linux/tvheadend $(1)/usr/bin/
-+	$(INSTALL_DIR) $(1)/opt/etc/{init.d,tvheadend}
++	$(INSTALL_DIR) $(1)/opt/etc/tvheadend
++	$(INSTALL_DIR) $(1)/opt/etc/init.d
 +	$(INSTALL_BIN) ./files/S71tvheadend $(1)/opt/etc/init.d/
 +	$(INSTALL_CONF) ./files/tv_grab_wl500g_info.{cfg,offset} $(1)/opt/etc/
 +	$(INSTALL_DIR) $(1)/opt/bin
 +	$(INSTALL_BIN) $(PKG_INSTALL_DIR)/opt/bin/tvheadend $(1)/opt/bin/
 +	$(INSTALL_BIN) ./files/tv_grab_wl500g_info{,_toffset} $(1)/opt/bin/
 +	$(INSTALL_DIR) $(1)/opt/share/tvheadend
-+	$(CP) -r $(PKG_INSTALL_DIR)/opt/share/tvheadend/* $(1)/opt/share/tvheadend/
++	$(CP) -r $(PKG_INSTALL_DIR)/opt/share/tvheadend/* $(1)/opt/share/tvheadend
  endef
  
  $(eval $(call BuildPackage,tvheadend))

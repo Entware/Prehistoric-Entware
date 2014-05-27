@@ -8,9 +8,8 @@
 all: .done
 
 .done:
-	patch -d $(TOP) -p3 -i $(CURDIR)/010-Makefile.patch
-	patch -d $(TOP) -p3 -i $(CURDIR)/020-Config-defaults.patch
-	cp -f ./999-entware-path.patch ../../../openwrt_trunk/package/utils/busybox/patches/
+	patch -d $(TOP) -p3 -i $(CURDIR)/fix-path.patch
+	cp -f ./500-no-stropts.patch ../../../openwrt_trunk/feeds/packages/utils/screen/patches/
 	@touch $@
 
 clean:

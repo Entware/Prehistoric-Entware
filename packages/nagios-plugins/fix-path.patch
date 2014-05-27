@@ -1,5 +1,5 @@
---- ../../../downloads/openwrt_trunk-r35474/feeds/packages/admin/nagios-plugins/Makefile	2013-02-05 10:42:35.442945960 +0400
-+++ ../../../openwrt_trunk/feeds/packages/admin/nagios-plugins/Makefile	2013-02-15 15:19:00.046902664 +0400
+--- ../../../downloads/openwrt_trunk-r40859/feeds/packages/admin/nagios-plugins/Makefile	2014-05-26 13:26:44.299410830 +0400
++++ ../../../openwrt_trunk/feeds/packages/admin/nagios-plugins/Makefile	2014-05-26 13:27:05.739410440 +0400
 @@ -33,7 +33,7 @@
  
  CONFIGURE_ARGS += \
@@ -8,7 +8,7 @@
 +	--with-openssl="$(STAGING_DIR)/opt" \
  	--with-ping-command="/bin/ping -w %d -c %d %s" \
  	--with-ping6-command="/bin/ping6 -w %d -c %d %s" \
- 	--with-ps-command="/bin/ps -Aopid" \
+ 	--with-ps-command="/bin/ps w" \
 @@ -45,8 +45,8 @@
  	--with-nslookup-command="/usr/bin/nslookup"
  

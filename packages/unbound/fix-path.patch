@@ -1,14 +1,12 @@
-diff -urx .svn ../../../downloads/openwrt_trunk-r37769/feeds/packages/net/unbound/Makefile ../../../openwrt_trunk/feeds/packages/net/unbound/Makefile
---- ../../../downloads/openwrt_trunk-r37769/feeds/packages/net/unbound/Makefile	2013-08-15 09:37:02.993572159 +0400
-+++ ../../../openwrt_trunk/feeds/packages/net/unbound/Makefile	2013-08-21 09:33:07.264131505 +0400
-@@ -108,61 +108,61 @@
+diff -ur ../../../downloads/openwrt_trunk-r40859/feeds/packages/net/unbound/Makefile ../../../openwrt_trunk/feeds/packages/net/unbound/Makefile
+--- ../../../downloads/openwrt_trunk-r40859/feeds/packages/net/unbound/Makefile	2014-05-26 13:26:44.239410832 +0400
++++ ../../../openwrt_trunk/feeds/packages/net/unbound/Makefile	2014-05-26 16:15:21.815227777 +0400
+@@ -108,60 +108,60 @@
  	--disable-ecdsa \
  	--disable-gost \
  	--enable-allsymbols \
--	--with-ldns="$(STAGING_DIR)/usr" \
 -	--with-libexpat="$(STAGING_DIR)/usr" \
 -	--with-ssl="$(STAGING_DIR)/usr" \
-+	--with-ldns="$(STAGING_DIR)/opt" \
 +	--with-libexpat="$(STAGING_DIR)/opt" \
 +	--with-ssl="$(STAGING_DIR)/opt" \
  	--without-pthreads
@@ -92,9 +90,9 @@ diff -urx .svn ../../../downloads/openwrt_trunk-r37769/feeds/packages/net/unboun
  endef
  
  $(eval $(call BuildPackage,unbound))
-diff -urx .svn ../../../downloads/openwrt_trunk-r37769/feeds/packages/net/unbound/patches/001-conf.patch ../../../openwrt_trunk/feeds/packages/net/unbound/patches/001-conf.patch
---- ../../../downloads/openwrt_trunk-r37769/feeds/packages/net/unbound/patches/001-conf.patch	2013-08-15 09:37:02.993572159 +0400
-+++ ../../../openwrt_trunk/feeds/packages/net/unbound/patches/001-conf.patch	2013-08-21 09:26:34.480140911 +0400
+diff -ur ../../../downloads/openwrt_trunk-r40859/feeds/packages/net/unbound/patches/001-conf.patch ../../../openwrt_trunk/feeds/packages/net/unbound/patches/001-conf.patch
+--- ../../../downloads/openwrt_trunk-r40859/feeds/packages/net/unbound/patches/001-conf.patch	2014-05-26 13:26:44.239410832 +0400
++++ ../../../openwrt_trunk/feeds/packages/net/unbound/patches/001-conf.patch	2014-05-26 13:27:07.123410415 +0400
 @@ -99,12 +99,12 @@
   
   	# the pid file. Can be an absolute path outside of chroot/work dir.

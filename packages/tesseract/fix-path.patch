@@ -1,6 +1,6 @@
---- ../../../openwrt_trunk.orig/feeds/packages/utils/tesseract/Makefile	2012-07-11 14:54:02.122734513 +0400
-+++ ../../../openwrt_trunk/feeds/packages/utils/tesseract/Makefile	2012-07-11 21:33:31.829395721 +0400
-@@ -29,9 +29,7 @@
+--- ../../../downloads/openwrt_trunk-r40859/feeds/packages/utils/tesseract/Makefile	2014-05-26 16:48:25.219190397 +0400
++++ ../../../openwrt_trunk/feeds/packages/utils/tesseract/Makefile	2014-05-26 16:48:34.567190228 +0400
+@@ -30,9 +30,7 @@
  endef
  
  CONFIGURE_ARGS += \
@@ -11,7 +11,7 @@
  
  define Build/Prepare
  	$(call Build/Prepare/Default)
-@@ -39,19 +37,19 @@
+@@ -40,19 +38,19 @@
  endef
  
  define Build/InstallDev

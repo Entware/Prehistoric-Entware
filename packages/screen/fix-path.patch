@@ -1,14 +1,14 @@
---- ../../../openwrt_trunk.orig/feeds/packages/utils/screen/Makefile	2011-12-28 08:43:22.000000000 +0400
-+++ ../../../openwrt_trunk/feeds/packages/utils/screen/Makefile	2011-12-28 11:24:18.430692418 +0400
-@@ -33,20 +33,21 @@
- 
+--- ../../../downloads/openwrt_trunk-r40859/feeds/packages/utils/screen/Makefile	2014-05-26 13:26:44.319410830 +0400
++++ ../../../openwrt_trunk/feeds/packages/utils/screen/Makefile	2014-05-26 16:02:33.527241119 +0400
+@@ -33,20 +33,22 @@
  define Build/Configure
  	$(call Build/Configure/Default,\
--		--with-sys-screenrc=/etc/screenrc,\
-+		--with-sys-screenrc=/opt/etc/screenrc\
+ 		--with-sys-screenrc=/etc/screenrc \
++		--with-sys-screenrc=/opt/etc/screenrc \
 +		--with-socket-dir=/opt/tmp/screens \
- 		LIBS="-lcrypt" \
  	)
+ 	# XXX: memmove() works well with overlapped memory areas
+ 	echo "#define USEMEMMOVE 1" >>$(PKG_BUILD_DIR)/config.h
  endef
  
  define Package/screen/install
@@ -16,8 +16,8 @@
 -	$(INSTALL_BIN) $(PKG_BUILD_DIR)/screen $(1)/usr/sbin/
 -	$(INSTALL_DIR) $(1)/etc
 -	$(INSTALL_DATA) ./files/etc/screenrc $(1)/etc/screenrc
-+	$(INSTALL_DIR) $(1)/opt/bin
-+	$(INSTALL_BIN) $(PKG_BUILD_DIR)/screen $(1)/opt/bin/
++	$(INSTALL_DIR) $(1)/opt/sbin
++	$(INSTALL_BIN) $(PKG_BUILD_DIR)/screen $(1)/opt/sbin/
 +	$(INSTALL_DIR) $(1)/opt/etc
 +	$(INSTALL_DATA) ./files/etc/screenrc $(1)/opt/etc/screenrc
  endef

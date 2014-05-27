@@ -1,6 +1,6 @@
---- ../../../downloads/openwrt_trunk-r40423/feeds/packages/net/httping/Makefile	2014-05-16 21:53:21.951143141 +0400
-+++ ../../../openwrt_trunk/feeds/packages/net/httping/Makefile	2014-05-18 14:42:44.046521683 +0400
-@@ -64,8 +64,8 @@
+--- ../../../downloads/openwrt_trunk-r40423/feeds/packages/net/httping/Makefile
++++ ../../../openwrt_trunk/feeds/packages/net/httping/Makefile
+@@ -74,8 +74,8 @@
  endif
  
  define Package/httping/install

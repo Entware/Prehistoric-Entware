@@ -1,6 +1,6 @@
---- ../../../downloads/mipsel-hardfloat/openwrt_trunk-r40423/feeds/packages/libs/gnutls/Makefile	2014-04-09 16:17:24.282286481 +0400
-+++ ../../../openwrt_trunk/feeds/packages/libs/gnutls/Makefile	2014-04-11 12:25:38.947395857 +0400
-@@ -112,7 +112,6 @@
+--- ../../../downloads/openwrt_trunk-r40859/feeds/packages/libs/gnutls/Makefile	2014-05-26 13:26:44.215410832 +0400
++++ ../../../openwrt_trunk/feeds/packages/libs/gnutls/Makefile	2014-05-26 15:29:43.903278123 +0400
+@@ -155,7 +155,6 @@
  	AM_CFLAGS="" \
  
  TARGET_CFLAGS += $(FPIC)
@@ -8,7 +8,7 @@
  
  define Build/Configure
  	$(SED) 's,-I$$$${includedir},,g' $(PKG_BUILD_DIR)/configure
-@@ -121,50 +120,50 @@
+@@ -164,64 +163,64 @@
  endef
  
  define Build/InstallDev
@@ -51,17 +51,34 @@
  define Package/gnutls-utils/install
 -	$(INSTALL_DIR) $(1)/usr/bin
 +	$(INSTALL_DIR) $(1)/opt/bin
+ ifeq ($(CONFIG_GNUTLS_OCSP),y)
+ ifeq ($(CONFIG_GNUTLS_ANON),y)
  	$(CP) \
 -		$(PKG_INSTALL_DIR)/usr/bin/gnutls-{cli,serv} \
--		$(PKG_INSTALL_DIR)/usr/bin/psktool \
--		$(PKG_INSTALL_DIR)/usr/bin/ocsptool \
--		$(PKG_INSTALL_DIR)/usr/bin/srptool \
 -		$(1)/usr/bin/
 +		$(PKG_INSTALL_DIR)/opt/bin/gnutls-{cli,serv} \
-+		$(PKG_INSTALL_DIR)/opt/bin/psktool \
++		$(1)/opt/bin/
+ endif
+ 	$(CP) \
+-		$(PKG_INSTALL_DIR)/usr/bin/ocsptool \
+-		$(1)/usr/bin/
 +		$(PKG_INSTALL_DIR)/opt/bin/ocsptool \
++		$(1)/opt/bin/
+ endif
+ ifeq ($(CONFIG_GNUTLS_SRP),y)
+ 	$(CP) \
+-		$(PKG_INSTALL_DIR)/usr/bin/srptool \
+-		$(1)/usr/bin/
 +		$(PKG_INSTALL_DIR)/opt/bin/srptool \
 +		$(1)/opt/bin/
+ endif
+ ifeq ($(CONFIG_GNUTLS_PSK),y)
+ 	$(CP) \
+-		$(PKG_INSTALL_DIR)/usr/bin/psktool \
+-		$(1)/usr/bin/
++		$(PKG_INSTALL_DIR)/opt/bin/psktool \
++		$(1)/opt/bin/
+ endif
  endef
  
  

@@ -1,6 +1,6 @@
-diff -urx .svn ../../../downloads/mipsel-hardfloat/openwrt_trunk-r40423/feeds/packages/admin/zabbix/Makefile ../../../openwrt_trunk/feeds/packages/admin/zabbix/Makefile
---- ../../../downloads/mipsel-hardfloat/openwrt_trunk-r40423/feeds/packages/admin/zabbix/Makefile	2014-04-09 16:17:24.242286480 +0400
-+++ ../../../openwrt_trunk/feeds/packages/admin/zabbix/Makefile	2014-04-09 16:53:39.038246864 +0400
+diff -ur ../../../downloads/openwrt_trunk-r40859/feeds/packages/admin/zabbix/Makefile ../../../openwrt_trunk/feeds/packages/admin/zabbix/Makefile
+--- ../../../downloads/openwrt_trunk-r40859/feeds/packages/admin/zabbix/Makefile	2014-05-26 13:26:44.295410831 +0400
++++ ../../../openwrt_trunk/feeds/packages/admin/zabbix/Makefile	2014-05-26 16:44:54.015196978 +0400
 @@ -26,6 +26,7 @@
    SECTION:=admin
    CATEGORY:=Administration
@@ -9,6 +9,15 @@ diff -urx .svn ../../../downloads/mipsel-hardfloat/openwrt_trunk-r40423/feeds/pa
    URL:=http://www.zabbix.com/
    SUBMENU:=zabbix
    MAINTAINER:=Mirko Vogt <mirko@openwrt.org>
+@@ -89,7 +90,7 @@
+ 
+ define Package/zabbix-extra-network/description
+ An extra package for zabbix-agentd that adds a discovery rule for openwrt network interfaces.
+-The idea here is to discover only interfaces listed in /etc/config/network (discover br-lan and not eth0.1 and wlan0)
++The idea here is to discover only interfaces listed in /opt/etc/config/network (discover br-lan and not eth0.1 and wlan0)
+ See http://wiki.openwrt.org/doc/howto/zabbix for ready to use zabbix templates.
+ endef
+ 
 @@ -104,66 +105,66 @@
  	--enable-server \
  	--enable-proxy \
@@ -68,13 +77,13 @@ diff -urx .svn ../../../downloads/mipsel-hardfloat/openwrt_trunk-r40423/feeds/pa
  
  define Package/zabbix/install/zabbix.conf.d
  	$(INSTALL_DIR) \
--		$(1)/etc/zabbix_$(2).conf.d
-+		$(1)/opt/etc/zabbix_$(2).conf.d
+-		$(1)/etc/zabbix_agentd.conf.d
++		$(1)/opt/etc/zabbix_agentd.conf.d
  
  	$(INSTALL_BIN) \
- 		./files/$(3) \
--		$(1)/etc/zabbix_$(2).conf.d/$(3)
-+		$(1)/opt/etc/zabbix_$(2).conf.d/$(3)
+ 		./files/$(2) \
+-		$(1)/etc/zabbix_agentd.conf.d/$(2)
++		$(1)/opt/etc/zabbix_agentd.conf.d/$(2)
  endef
  
  define Package/zabbix-agent/conffiles
@@ -95,10 +104,19 @@ diff -urx .svn ../../../downloads/mipsel-hardfloat/openwrt_trunk-r40423/feeds/pa
  endef
  
  ifdef CONFIG_PACKAGE_zabbix-extra-mac80211
-@@ -200,9 +201,9 @@
+@@ -193,7 +194,7 @@
+ endef
+ 
+ define Package/zabbix-agentd/install
+-	$(INSTALL_DIR) $(1)/etc/zabbix_agentd.conf.d
++	$(INSTALL_DIR) $(1)/opt/etc/zabbix_agentd.conf.d
+ 	$(call Package/zabbix/install/sbin,$(1),agentd)
+ 	$(call Package/zabbix/install/etc,$(1),agentd)
+ 	$(call Package/zabbix/install/init.d,$(1),agentd)
+@@ -201,9 +202,9 @@
  
  define Package/zabbix-extra-mac80211/install
- 	$(call Package/zabbix/install/zabbix.conf.d,$(1),agentd,mac80211)
+ 	$(call Package/zabbix/install/zabbix.conf.d,$(1),mac80211)
 -	$(INSTALL_DIR) $(1)/usr/bin
 -	$(INSTALL_BIN) $(PKG_BUILD_DIR)/zabbix-extra-mac80211/zabbix_helper_mac80211 $(1)/usr/bin/
 -	chmod 4755 $(1)/usr/bin/zabbix_helper_mac80211
@@ -108,7 +126,7 @@ diff -urx .svn ../../../downloads/mipsel-hardfloat/openwrt_trunk-r40423/feeds/pa
  endef
  
  define Package/zabbix-extra-network/install
-@@ -233,9 +234,9 @@
+@@ -234,9 +235,9 @@
  
  $(eval $(call BuildPackage,zabbix-agent))
  $(eval $(call BuildPackage,zabbix-agentd))
@@ -121,9 +139,9 @@ diff -urx .svn ../../../downloads/mipsel-hardfloat/openwrt_trunk-r40423/feeds/pa
  $(eval $(call BuildPackage,zabbix-sender))
  $(eval $(call BuildPackage,zabbix-server))
  $(eval $(call BuildPackage,zabbix-proxy))
-diff -urx .svn ../../../downloads/mipsel-hardfloat/openwrt_trunk-r40423/feeds/packages/admin/zabbix/patches/010-change-agentd-config.patch ../../../openwrt_trunk/feeds/packages/admin/zabbix/patches/010-change-agentd-config.patch
---- ../../../downloads/mipsel-hardfloat/openwrt_trunk-r40423/feeds/packages/admin/zabbix/patches/010-change-agentd-config.patch	2014-04-09 16:17:24.242286480 +0400
-+++ ../../../openwrt_trunk/feeds/packages/admin/zabbix/patches/010-change-agentd-config.patch	2014-04-09 16:53:39.038246864 +0400
+diff -ur ../../../downloads/openwrt_trunk-r40859/feeds/packages/admin/zabbix/patches/010-change-agentd-config.patch ../../../openwrt_trunk/feeds/packages/admin/zabbix/patches/010-change-agentd-config.patch
+--- ../../../downloads/openwrt_trunk-r40859/feeds/packages/admin/zabbix/patches/010-change-agentd-config.patch	2014-05-26 13:26:44.295410831 +0400
++++ ../../../openwrt_trunk/feeds/packages/admin/zabbix/patches/010-change-agentd-config.patch	2014-05-26 13:27:10.031409104 +0400
 @@ -10,8 +10,8 @@
  -# Mandatory: no
  -# Default:

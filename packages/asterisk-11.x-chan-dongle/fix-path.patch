@@ -1,5 +1,14 @@
---- ../../../downloads/openwrt_trunk-r40423/feeds/telephony/net/asterisk-11.x-chan-dongle/Makefile	2014-05-17 10:46:06.217735900 +0400
-+++ ../../../openwrt_trunk/feeds/telephony/net/asterisk-11.x-chan-dongle/Makefile	2014-05-18 13:20:26.023995697 +0400
+--- ../../../downloads/openwrt_trunk-r40859/feeds/telephony/net/asterisk-11.x-chan-dongle/Makefile	2014-05-26 16:48:25.247190398 +0400
++++ ../../../openwrt_trunk/feeds/telephony/net/asterisk-11.x-chan-dongle/Makefile	2014-05-27 14:12:32.529786817 +0400
+@@ -29,7 +29,7 @@
+   SECTION:=net
+   CATEGORY:=Network
+   URL:=https://code.google.com/p/asterisk-chan-dongle/
+-  DEPENDS:= asterisk11 +libiconv-full +kmod-usb-acm +kmod-usb-serial +kmod-usb-serial-option +libusb-1.0 +usb-modeswitch
++  DEPENDS:= asterisk11 +libiconv-full +libusb-1.0
+   TITLE:=Huawei UMTS 3G dongle support
+   MAINTAINER:=Jiri Slachta <slachta@cesnet.cz>
+ endef
 @@ -41,9 +41,9 @@
  MAKE_ARGS:= \
  	CC="$(TARGET_CC)" \
@@ -40,7 +49,7 @@
 -	$(INSTALL_DIR) $(1)/usr/lib/asterisk/modules
 -	$(INSTALL_BIN) $(PKG_INSTALL_DIR)/usr/lib/asterisk/modules/chan_dongle.so $(1)/usr/lib/asterisk/modules/
 +	$(INSTALL_DIR) $(1)/opt/etc/asterisk
-+	$(INSTALL_DATA) $(PKG_BUILD_DIR)/opt/etc/dongle.conf $(1)/opt/etc/asterisk/
++	$(INSTALL_DATA) $(PKG_BUILD_DIR)/etc/dongle.conf $(1)/opt/etc/asterisk/
 +	$(INSTALL_DIR) $(1)/opt/lib/asterisk/modules
 +	$(INSTALL_BIN) $(PKG_INSTALL_DIR)/opt/lib/asterisk/modules/chan_dongle.so $(1)/opt/lib/asterisk/modules/
  endef

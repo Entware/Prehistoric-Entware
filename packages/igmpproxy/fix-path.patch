@@ -1,6 +1,6 @@
---- ../../../openwrt_trunk.orig/feeds/packages/net/igmpproxy/Makefile	2012-10-09 13:58:19.297900842 +0400
-+++ ../../../openwrt_trunk/feeds/packages/net/igmpproxy/Makefile	2012-10-25 14:44:41.249679324 +0400
-@@ -34,7 +34,7 @@
+--- ../../../openwrt_trunk/package/network/services/igmpproxy/Makefile.orig
++++ ../../../openwrt_trunk/package/network/services/igmpproxy/Makefile
+@@ -35,7 +35,7 @@
  endef
  
  define Package/igmpproxy/conffiles
@@ -9,7 +9,7 @@
  endef
  
  TARGET_CFLAGS += -Dlog=igmpproxy_log
-@@ -46,12 +46,12 @@
+@@ -47,12 +47,12 @@
  endef
  
  define Package/igmpproxy/install

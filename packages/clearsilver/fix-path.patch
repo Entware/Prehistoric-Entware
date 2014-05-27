@@ -18,7 +18,7 @@
  
  ifeq ($(SDK)$(CONFIG_CLEARSILVER_ENABLE_COMPRESSION),y)
  	CONFIGURE_ARGS+= \
-@@ -95,7 +95,7 @@
+@@ -96,7 +96,7 @@
  endef
  
  define Package/clearsilver/install

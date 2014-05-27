@@ -9,7 +9,7 @@
  endif
  
  ifeq ($(BUILD_VARIANT),nossl)
-@@ -80,50 +80,51 @@
+@@ -81,50 +81,51 @@
  endif
  
  define Package/wget/install

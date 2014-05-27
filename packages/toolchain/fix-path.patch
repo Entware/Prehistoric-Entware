@@ -1,4 +1,4 @@
---- ../../../openwrt_trunk/package/libs/toolchain/Makefile.orig
+--- ../../../downloads/openwrt_trunk-r40859/package/libs/toolchain/Makefile
 +++ ../../../openwrt_trunk/package/libs/toolchain/Makefile
 @@ -7,18 +7,14 @@
  
@@ -38,7 +38,7 @@
  endef
  
  
-@@ -504,8 +498,8 @@
+@@ -507,8 +501,8 @@
    define Package/libgcc/install
  	for file in $(call qstrip,$(CONFIG_LIBGCC_FILE_SPEC)); do \
  		dir=`dirname $$$$file` ; \
@@ -49,7 +49,7 @@
  	done ; \
  	exit 0
    endef
-@@ -513,16 +507,16 @@
+@@ -516,16 +510,16 @@
    define Package/libgfortran/install
  	for file in $(call qstrip,$(CONFIG_LIBGFORTRAN_FILE_SPEC)); do \
  		dir=`dirname $$$$file` ; \
@@ -70,7 +70,7 @@
  	done ; \
  	exit 0
    endef
-@@ -530,17 +524,18 @@
+@@ -533,17 +527,18 @@
    define Package/libstdcpp/install
  	for file in $(call qstrip,$(CONFIG_LIBSTDCPP_FILE_SPEC)); do \
  		dir=`dirname $$$$file` ; \
@@ -93,7 +93,7 @@
  	done ; \
  	exit 0
    endef
-@@ -548,17 +543,22 @@
+@@ -551,17 +546,22 @@
    define Package/libpthread/install
  	for file in $(call qstrip,$(CONFIG_LIBPTHREAD_FILE_SPEC)); do \
  		dir=`dirname $$$$file` ; \
@@ -120,7 +120,7 @@
  	done ; \
  	exit 0
    endef
-@@ -566,8 +566,8 @@
+@@ -569,8 +569,8 @@
    define Package/ldd/install
  	for file in $(call qstrip,$(CONFIG_LDD_FILE_SPEC)); do \
  		dir=`dirname $$$$file` ; \
@@ -131,7 +131,7 @@
  	done ; \
  	exit 0
    endef
-@@ -575,8 +575,8 @@
+@@ -578,8 +578,8 @@
    define Package/ldconfig/install
  	for file in $(call qstrip,$(CONFIG_LDCONFIG_FILE_SPEC)); do \
  		dir=`dirname $$$$file` ; \

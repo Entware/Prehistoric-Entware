@@ -9,7 +9,7 @@ all: .done
 
 .done:
 	patch -d $(TOP) -p3 -i $(CURDIR)/fix-path.patch
-	cp -f ./S69igmpproxy ../../../openwrt_trunk/feeds/packages/net/igmpproxy/files/
+	cp -f ./S69igmpproxy ../../../openwrt_trunk/package/network/services/igmpproxy/files/
 	@touch $@
 
 clean:

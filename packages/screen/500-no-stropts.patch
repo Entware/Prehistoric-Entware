@@ -1,0 +1,11 @@
+--- a/configure
++++ b/configure
+@@ -4194,7 +4194,7 @@
+ fi
+ rm -f core conftest.err conftest.$ac_objext \
+     conftest$ac_exeext conftest.$ac_ext
+-for ac_header in stropts.h string.h strings.h
++for ac_header in string.h strings.h
+ do :
+   as_ac_Header=`$as_echo "ac_cv_header_$ac_header" | $as_tr_sh`
+ ac_fn_c_check_header_mongrel "$LINENO" "$ac_header" "$as_ac_Header" "$ac_includes_default"

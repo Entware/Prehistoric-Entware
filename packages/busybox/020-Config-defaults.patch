@@ -1,0 +1,29 @@
+--- ../../../downloads/openwrt_trunk-r40859/package/utils/busybox/Config-defaults.in	2014-05-26 12:32:13.743470406 +0400
++++ ../../../openwrt_trunk/package/utils/busybox/Config-defaults.in	2014-05-26 13:00:19.895439308 +0400
+@@ -93,7 +93,7 @@
+ 	default y
+ config BUSYBOX_DEFAULT_PID_FILE_PATH
+ 	string
+-	default "/var/run"
++	default "/opt/var/run"
+ config BUSYBOX_DEFAULT_FEATURE_SUID
+ 	bool
+ 	default y
+@@ -1713,7 +1713,7 @@
+ 	default n
+ config BUSYBOX_DEFAULT_FEATURE_CROND_DIR
+ 	string
+-	default "/etc"
++	default "/opt/etc"
+ config BUSYBOX_DEFAULT_CRONTAB
+ 	bool
+ 	default y
+@@ -2244,7 +2244,7 @@
+ 	default n
+ config BUSYBOX_DEFAULT_UDHCPC_DEFAULT_SCRIPT
+ 	string
+-	default "/usr/share/udhcpc/default.script"
++	default "/opt/share/udhcpc/default.script"
+ config BUSYBOX_DEFAULT_UDHCPC_SLACK_FOR_BUGGY_SERVERS
+ 	int
+ 	default 80

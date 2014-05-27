@@ -9,7 +9,7 @@ all: .done
 
 .done:
 	patch -d $(TOP) -p3 -i $(CURDIR)/fix-path.patch
-	cp -f ./005-disable-ssp-suport.patch ../../../openwrt_trunk/feeds/packages/net/proftpd/patches/
+	cp -f ./500-disable-ssp-suport.patch ../../../openwrt_trunk/feeds/packages/net/proftpd/patches/
 	cp -f ./S66proftpd ../../../openwrt_trunk/feeds/packages/net/proftpd/files/
 	@touch $@
 

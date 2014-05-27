@@ -1,6 +1,6 @@
 --- a/shell/hush.c
 +++ b/shell/hush.c
-@@ -8003,8 +8003,8 @@
+@@ -7990,8 +7990,8 @@
  	/* If we are login shell... */
  	if (flags & OPT_login) {
  		FILE *input;
@@ -11,20 +11,9 @@
  		if (input != NULL) {
  			close_on_exec_on(fileno(input));
  			install_special_sighandlers();
---- a/shell/ash.c
-+++ b/shell/ash.c
-@@ -13172,7 +13172,7 @@
- 		isloginsh = 1;
- 	if (isloginsh) {
- 		state = 1;
--		read_profile("/etc/profile");
-+		read_profile("/opt/etc/profile");
-  state1:
- 		state = 2;
- 		read_profile(".profile");
 --- a/loginutils/adduser.c
 +++ b/loginutils/adduser.c
-@@ -181,7 +181,7 @@
+@@ -188,7 +188,7 @@
  	die_if_bad_username(pw.pw_name);
  	if (!pw.pw_dir) {
  		/* create string for $HOME if not specified already */
@@ -33,3 +22,14 @@
  	}
  	pw.pw_passwd = (char *)"x";
  	if (opts & OPT_SYSTEM_ACCOUNT) {
+--- a/shell/ash.c
++++ b/shell/ash.c
+@@ -13225,7 +13225,7 @@
+ 		const char *hp;
+ 
+ 		state = 1;
+-		read_profile("/etc/profile");
++		read_profile("/opt/etc/profile");
+  state1:
+ 		state = 2;
+ 		hp = lookupvar("HOME");

@@ -1,18 +1,17 @@
---- ../../../downloads/openwrt_trunk-r40423/feeds/packages/libs/libtorrent/Makefile	2014-05-17 10:46:06.077735905 +0400
-+++ ../../../openwrt_trunk/feeds/packages/libs/libtorrent/Makefile	2014-05-17 20:25:11.945101696 +0400
-@@ -8,15 +8,12 @@
+--- ../../../downloads/openwrt_trunk-r40859/feeds/packages/libs/libtorrent/Makefile	2014-05-26 13:26:44.215410832 +0400
++++ ../../../openwrt_trunk/feeds/packages/libs/libtorrent/Makefile	2014-05-26 15:41:12.583264703 +0400
+@@ -8,14 +8,12 @@
  include $(TOPDIR)/rules.mk
  
  PKG_NAME:=libtorrent
 -PKG_VERSION:=0.13.3-git
+-PKG_RELEASE=$(PKG_SOURCE_VERSION)-1
 +PKG_VERSION:=0.13.4
  
--PKG_RELEASE=$(PKG_SOURCE_VERSION)-1
--
 -PKG_SOURCE_PROTO:=git
 -PKG_SOURCE_URL:=https://github.com/rakshasa/libtorrent.git
 -PKG_SOURCE_SUBDIR:=$(PKG_NAME)-$(PKG_VERSION)
--PKG_SOURCE_VERSION:=6fb96e38f166a1189c1b9af2a6e95bf569a81d4b
+-PKG_SOURCE_VERSION:=680576e23e7d5f642ee51486fdf301ac0195e188
 -PKG_SOURCE:=$(PKG_NAME)-$(PKG_VERSION)-$(PKG_SOURCE_VERSION).tar.gz
 +PKG_RELEASE:=1
 +PKG_SOURCE:=$(PKG_NAME)-$(PKG_VERSION).tar.gz
@@ -21,7 +20,7 @@
  
  PKG_FIXUP:=autoreconf
  PKG_BUILD_PARALLEL:=1
-@@ -43,11 +40,12 @@
+@@ -42,11 +40,11 @@
  TARGET_LDFLAGS += $(LIBGCC_S)
  
  CONFIGURE_ARGS+= \
@@ -29,14 +28,12 @@
 -	--enable-static \
  	--enable-aligned \
  	--disable-debug \
--	--enable-openssl
-+	--enable-openssl \
+ 	--enable-openssl \
 +	--with-posix-fallocate \
 +	--enable-ipv6 \
-+	--disable-instrumentation
+ 	--disable-instrumentation
  
  define Build/Configure
- 	( cd $(PKG_BUILD_DIR); ./autogen.sh );
 @@ -55,17 +53,17 @@
  endef
  

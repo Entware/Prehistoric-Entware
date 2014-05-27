@@ -1,5 +1,5 @@
---- ../../../downloads/mipsel-hardfloat/openwrt_trunk-r40423/feeds/packages/lang/ruby/Makefile	2014-04-09 16:17:24.254286480 +0400
-+++ ../../../openwrt_trunk/feeds/packages/lang/ruby/Makefile	2014-04-11 15:04:06.151221471 +0400
+--- ../../../downloads/mipsel-hardfloat/openwrt_trunk-r40423/feeds/packages/lang/ruby/Makefile
++++ ../../../openwrt_trunk/feeds/packages/lang/ruby/Makefile
 @@ -73,7 +73,7 @@
  define Package/ruby-core
  $(call Package/ruby/Default)
@@ -9,7 +9,7 @@
  endef
  
  define Package/ruby-cgi
-@@ -220,234 +220,235 @@
+@@ -219,234 +219,235 @@
  
  MAKE_FLAGS += \
  	DESTDIR="$(PKG_INSTALL_DIR)" \

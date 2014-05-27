@@ -1,40 +1,6 @@
---- ../../../downloads/mipsel-hardfloat/openwrt_trunk-r40423/feeds/packages/multimedia/shairport/Makefile	2014-04-16 20:19:00.598912090 +0400
-+++ ../../../openwrt_trunk/feeds/packages/multimedia/shairport/Makefile	2014-04-17 13:00:11.757820649 +0400
-@@ -8,13 +8,13 @@
- include $(TOPDIR)/rules.mk
- 
- PKG_NAME:=shairport
--PKG_VERSION:=2012-10-20
-+PKG_VERSION:=2014-03-23
- PKG_RELEASE:=$(PKG_SOURCE_VERSION)
- 
- PKG_SOURCE_PROTO:=git
--PKG_SOURCE_URL:=git://github.com/albertz/shairport.git
-+PKG_SOURCE_URL:=https://github.com/abrasive/shairport
- PKG_SOURCE_SUBDIR:=$(PKG_NAME)-$(PKG_VERSION)
--PKG_SOURCE_VERSION:=4746bb11395d171ee800f074f489c42020a84932
-+PKG_SOURCE_VERSION:=078b21043cdcef6ffad7452db27f036770b23b0c
- PKG_SOURCE:=$(PKG_NAME)-$(PKG_VERSION)-$(PKG_SOURCE_VERSION).tar.gz
- 
- include $(INCLUDE_DIR)/package.mk
-@@ -22,7 +22,7 @@
- define Package/shairport
-   SECTION:=multimedia
-   CATEGORY:=Multimedia
--  DEPENDS:=+libpthread +avahi-utils +libopenssl +libao
-+  DEPENDS:=+avahi-utils +libopenssl +libao
-   TITLE:=ShairPort AirPort Express emulator
- endef
- 
-@@ -38,19 +38,15 @@
- 
- TARGET_CFLAGS += $(FPIC)
- 
--LIBS:=-lao -lm -lcrypto -lpthread
-+LIBS:=-lao -lm -lcrypto -lpthread -lavahi-common -lavahi-client -lasound
- 
- MAKE_FLAGS += \
- 	CFLAGS="$(TARGET_CFLAGS) $(TARGET_CPPFLAGS)" \
+--- ../../../downloads/openwrt_trunk-r40859/feeds/packages/multimedia/shairport/Makefile	2014-05-26 13:26:44.211410832 +0400
++++ ../../../openwrt_trunk/feeds/packages/multimedia/shairport/Makefile	2014-05-26 16:22:23.375217331 +0400
+@@ -46,12 +46,8 @@
  	LDFLAGS="$(TARGET_LDFLAGS) $(LIBS)"
  
  define Package/shairport/install
@@ -43,7 +9,7 @@
 -	$(INSTALL_DIR) $(1)/etc/init.d/
 -	$(INSTALL_BIN) files/shairport.init $(1)/etc/init.d/shairport
 -	$(INSTALL_DIR) $(1)/etc/config
--	$(INSTALL_DATA) files/shairport.config $(1)/etc/config/shairport
+-	$(INSTALL_CONF) files/shairport.config $(1)/etc/config/shairport
 +	$(INSTALL_DIR) $(1)/opt/sbin
 +	$(INSTALL_BIN) $(PKG_BUILD_DIR)/shairport $(1)/opt/sbin/
  endef

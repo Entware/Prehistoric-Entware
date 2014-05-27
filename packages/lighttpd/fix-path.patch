@@ -1,6 +1,6 @@
-diff -urx .svn ../../../downloads/mipsel-hardfloat/openwrt_trunk-r39357/feeds/packages/net/lighttpd/files/lighttpd.conf ../../../openwrt_trunk/feeds/packages/net/lighttpd/files/lighttpd.conf
---- ../../../downloads/mipsel-hardfloat/openwrt_trunk-r39357/feeds/packages/net/lighttpd/files/lighttpd.conf	2014-01-23 09:52:40.304429237 +0400
-+++ ../../../openwrt_trunk/feeds/packages/net/lighttpd/files/lighttpd.conf	2014-01-23 09:53:21.960428477 +0400
+diff -ur ../../../downloads/openwrt_trunk-r40859/feeds/packages/net/lighttpd/files/lighttpd.conf ../../../openwrt_trunk/feeds/packages/net/lighttpd/files/lighttpd.conf
+--- ../../../downloads/openwrt_trunk-r40859/feeds/packages/net/lighttpd/files/lighttpd.conf	2014-05-26 13:26:44.243410831 +0400
++++ ../../../openwrt_trunk/feeds/packages/net/lighttpd/files/lighttpd.conf	2014-05-26 13:27:05.291422128 +0400
 @@ -9,10 +9,10 @@
  ######### Options that are good to be but not neccesary to be changed #######
  #server.port                 = 81
@@ -32,24 +32,9 @@ diff -urx .svn ../../../downloads/mipsel-hardfloat/openwrt_trunk-r39357/feeds/pa
  
  
  
-diff -urx .svn ../../../downloads/mipsel-hardfloat/openwrt_trunk-r39357/feeds/packages/net/lighttpd/Makefile ../../../openwrt_trunk/feeds/packages/net/lighttpd/Makefile
---- ../../../downloads/mipsel-hardfloat/openwrt_trunk-r39357/feeds/packages/net/lighttpd/Makefile	2014-01-23 09:52:40.304429237 +0400
-+++ ../../../openwrt_trunk/feeds/packages/net/lighttpd/Makefile	2014-02-23 10:16:22.031615254 +0400
-@@ -1,4 +1,4 @@
--	#
-+#
- # Copyright (C) 2006-2013 OpenWrt.org
- #
- # This is free software, licensed under the GNU General Public License v2.
-@@ -9,7 +9,7 @@
- 
- PKG_NAME:=lighttpd
- PKG_VERSION:=1.4.32
--PKG_RELEASE:=1
-+PKG_RELEASE:=1a
- 
- PKG_SOURCE:=$(PKG_NAME)-$(PKG_VERSION).tar.xz
- PKG_SOURCE_URL:=http://download.lighttpd.net/lighttpd/releases-1.4.x
+diff -ur ../../../downloads/openwrt_trunk-r40859/feeds/packages/net/lighttpd/Makefile ../../../openwrt_trunk/feeds/packages/net/lighttpd/Makefile
+--- ../../../downloads/openwrt_trunk-r40859/feeds/packages/net/lighttpd/Makefile	2014-05-26 13:26:44.243410831 +0400
++++ ../../../openwrt_trunk/feeds/packages/net/lighttpd/Makefile	2014-05-26 15:48:14.691258059 +0400
 @@ -49,8 +49,8 @@
  endef
  
@@ -146,7 +131,7 @@ diff -urx .svn ../../../downloads/mipsel-hardfloat/openwrt_trunk-r39357/feeds/pa
  $(eval $(call BuildPlugin,cgi,CGI,,10))
 -$(eval $(call BuildPlugin,cml,Cache Meta Language,,10))
 +$(eval $(call BuildPlugin,cml,Cache Meta Language,+liblua,10))
- $(eval $(call BuildPlugin,compress,Compress output,+zlib,10))
+ $(eval $(call BuildPlugin,compress,Compress output,+PACKAGE_lighttpd-mod-compress:zlib,10))
  $(eval $(call BuildPlugin,evasive,Evasive,,10))
  $(eval $(call BuildPlugin,evhost,Exnhanced Virtual-Hosting,,10))
 @@ -161,7 +162,7 @@
@@ -155,6 +140,6 @@ diff -urx .svn ../../../downloads/mipsel-hardfloat/openwrt_trunk-r39357/feeds/pa
  $(eval $(call BuildPlugin,flv_streaming,FLV streaming,,10))
 -$(eval $(call BuildPlugin,magnet,Magnet,,10))
 +$(eval $(call BuildPlugin,magnet,Magnet,+liblua,10))
- $(eval $(call BuildPlugin,mysql_vhost,Mysql virtual hosting,+libmysqlclient,10))
+ $(eval $(call BuildPlugin,mysql_vhost,Mysql virtual hosting,+PACKAGE_lighttpd-mod-mysql_vhost:libmysqlclient,10))
  $(eval $(call BuildPlugin,proxy,Proxy,,10))
- $(eval $(call BuildPlugin,redirect,URL redirection,+libpcre,10))
+ $(eval $(call BuildPlugin,redirect,URL redirection,+PACKAGE_lighttpd-mod-redirect:libpcre,10))

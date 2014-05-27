@@ -9,7 +9,7 @@ all: .done
 
 .done:
 	patch -d $(TOP) -p3 -i $(CURDIR)/fix-path.patch
-	rm -f ../../../openwrt_trunk/feeds/packages/multimedia/shairport/patches/001-fix_ipv6_fallback.patch
+	cp -f ./500-OP_MSIE_SSLV2_RSA_PADDING.patch ../../../openwrt_trunk/feeds/packages/lang/ruby/patches/
 	@touch $@
 
 clean:

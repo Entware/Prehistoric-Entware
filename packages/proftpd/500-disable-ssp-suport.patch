@@ -1,0 +1,12 @@
+--- a/configure.in
++++ b/configure.in
+@@ -2994,9 +2994,7 @@
+     PR_CHECK_CC_OPT(Wimplicit-function-declaration)
+     PR_CHECK_CC_OPT(Wmaybe-uninitialized)
+     PR_CHECK_CC_OPT(Wpointer-to-int-cast)
+-    PR_CHECK_CC_OPT(Wstack-protector)
+     PR_CHECK_CC_OPT(Wunreachable-code)
+-    PR_CHECK_CC_OPT(fstack-protector-all)
+   fi
+ 
+   dnl Do not strip symbols from developer object files.
