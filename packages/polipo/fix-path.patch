@@ -1,5 +1,5 @@
---- ../../../downloads/openwrt_trunk-r40423/feeds/packages/net/polipo/Makefile	2014-05-17 10:46:06.133735902 +0400
-+++ ../../../openwrt_trunk/feeds/packages/net/polipo/Makefile	2014-05-22 10:31:01.157885256 +0400
+--- ../../../downloads/openwrt_trunk-r40859/feeds/packages/net/polipo/Makefile	2014-05-27 14:18:46.741780074 +0400
++++ ../../../openwrt_trunk/feeds/packages/net/polipo/Makefile	2014-05-29 10:38:39.075033133 +0400
 @@ -8,12 +8,12 @@
  include $(TOPDIR)/rules.mk
  
@@ -7,7 +7,7 @@
 -PKG_VERSION:=1.0.4.1
 -PKG_RELEASE:=3
 +PKG_VERSION:=1.1.1
-+PKG_RELEASE:=1
++PKG_RELEASE:=2
  
  PKG_SOURCE:=$(PKG_NAME)-$(PKG_VERSION).tar.gz
 -PKG_SOURCE_URL:=http://freehaven.net/~chrisd/polipo/
@@ -17,11 +17,13 @@
  
  include $(INCLUDE_DIR)/package.mk
  
-@@ -37,23 +37,21 @@
+@@ -37,23 +37,24 @@
  	$(MAKE) -C $(PKG_BUILD_DIR) \
  		CC="$(TARGET_CC)" \
  		CFLAGS="$(TARGET_CFLAGS)" \
 +		LDFLAGS="$(TARGET_LDFLAGS)" \
++		LOCAL_ROOT="/opt/share/polipo/www" \
++		DISK_CACHE_ROOT="/opt/var/cache/polipo" \
  		polipo
  endef
  
@@ -46,6 +48,7 @@
 +	$(INSTALL_CONF) $(PKG_BUILD_DIR)/config.sample $(1)/opt/etc/polipo/config
 +	$(INSTALL_DIR) $(1)/opt/etc/init.d
 +	$(INSTALL_BIN) ./files/S28polipo $(1)/opt/etc/init.d
++	$(INSTALL_DIR) $(1)/opt/share/polipo/www $(1)/opt/var/cache/polipo
  endef
  
  $(eval $(call BuildPackage,polipo))

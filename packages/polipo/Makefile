@@ -11,6 +11,8 @@ all: .done
 .done:
 	patch -d $(TOP) -p3 -i $(CURDIR)/fix-path.patch
 	cp -f ./S28polipo ../../../openwrt_trunk/feeds/packages/net/polipo/files/
+	mkdir -p ../../../openwrt_trunk/feeds/packages/net/polipo/patches
+	cp -f ./500-pid-file.patch ../../../openwrt_trunk/feeds/packages/net/polipo/patches/
 	@touch $@
 
 clean:

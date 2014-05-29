@@ -1,0 +1,28 @@
+--- a/util.c
++++ b/util.c
+@@ -600,12 +600,24 @@
+     int fd, n, rc;
+     char buf[16];
+ 
+-    fd = open(pidfile, O_WRONLY | O_CREAT | O_EXCL, 0666);
++    fd = open(pidfile, O_WRONLY | O_CREAT, 0644);
+     if(fd < 0) {
+         do_log_error(L_ERROR, errno, 
+                      "Couldn't create pid file %s", pidfile);
+         exit(1);
+     }
++    rc = lockf(fd, F_TLOCK, 0);
++        if(rc) {
++               n = errno;
++               if(EACCES == n || EAGAIN == n) {
++                       do_log_error(L_ERROR, 0,"Another instance is alredy running");
++                       exit(1);
++               } else {
++                       do_log_error(L_ERROR, n,"Couldn't create pid file %s", pidfile);
++                       exit(1);
++               }
++    }
++
+     n = snprintf(buf, 16, "%ld\n", (long)getpid());
+     if(n < 0 || n >= 16) {
+         close(fd);
