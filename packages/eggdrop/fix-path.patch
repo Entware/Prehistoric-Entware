@@ -1,5 +1,14 @@
---- ../../../downloads/openwrt_trunk-r40423/feeds/packages/lang/eggdrop/Makefile	2014-04-23 12:00:31.946046969 +0400
-+++ ../../../openwrt_trunk/feeds/packages/lang/eggdrop/Makefile	2014-05-07 15:45:06.423767981 +0400
+--- ../../../downloads/openwrt_trunk-r40859/feeds/packages/lang/eggdrop/Makefile	2014-05-27 14:18:46.673780076 +0400
++++ ../../../openwrt_trunk/feeds/packages/lang/eggdrop/Makefile	2014-05-31 10:35:17.147891695 +0400
+@@ -9,7 +9,7 @@
+ 
+ PKG_NAME:=eggdrop
+ PKG_VERSION:=1.6.17
+-PKG_RELEASE:=1
++PKG_RELEASE:=1a
+ 
+ PKG_SOURCE:=eggdrop$(PKG_VERSION).tar.bz2
+ PKG_SOURCE_URL:=ftp://ftp.eggheads.org/pub/eggdrop/source/1.6
 @@ -34,10 +34,10 @@
  endef
  
