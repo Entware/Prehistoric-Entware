@@ -14,6 +14,7 @@ elinks		0.12pre6
 gw6c		6.0.1
 hplip		3.14.4
 imapfilter	2.5.6
+lftp		4.5.0
 libaudiofile	0.3.6		for MPD
 libmms		0.6.4		for MPD
 libtorrent	0.13.4
