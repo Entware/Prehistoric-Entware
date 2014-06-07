@@ -1,5 +1,5 @@
---- a/main.cpp	2012-05-24 15:45:33.000000000 +0400
-+++ b/main.cpp	2012-08-03 21:56:40.076068903 +0400
+--- a/main.cpp
++++ b/main.cpp
 @@ -16,23 +16,7 @@
  
  int main(int argc,char** argv)

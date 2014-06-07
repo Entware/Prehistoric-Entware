@@ -1,0 +1,11 @@
+--- a/ui/xupnpd_ui.lua
++++ b/ui/xupnpd_ui.lua
+@@ -531,7 +531,7 @@
+ end
+ 
+ function ui_restart()
+-    if core.restart(cfg.pid_file,"./xupnpd") then http.send('<h3>Attempt to restart...</h3>') else http.send('<h3>Unable to restart.</h3>') end
++    if core.restart(cfg.pid_file,"/opt/bin/xupnpd") then http.send('<h3>Attempt to restart...</h3>') else http.send('<h3>Unable to restart.</h3>') end
+ 
+     http.send('<br/><form method=get action="/ui"><input class="btn btn-primary" type=submit value=OK></form>')
+ 

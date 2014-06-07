@@ -29,6 +29,7 @@ rtorrent	0.9.4
 smartmontools	6.2
 snort		2.9.5.5		EOL of previous version
 wview		5.21.5
+xupnpd		r399
 
 Can't be upgraded (mostly due to old 2.6.22.19 kernel):
 cjdns		0.5-20131009	node.js required
