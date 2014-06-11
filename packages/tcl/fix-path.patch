@@ -1,6 +1,21 @@
---- ../../../openwrt_trunk.orig/feeds/packages/lang/tcl/Makefile	2012-07-10 18:59:23.137220516 +0400
-+++ ../../../openwrt_trunk/feeds/packages/lang/tcl/Makefile	2012-07-10 19:00:16.984543564 +0400
-@@ -49,19 +49,19 @@
+--- ../../../downloads/openwrt_trunk-r40859/feeds/packages/lang/tcl/Makefile	2014-05-27 14:18:46.677780076 +0400
++++ ../../../openwrt_trunk/feeds/packages/lang/tcl/Makefile	2014-06-11 09:53:49.573024837 +0400
+@@ -9,7 +9,7 @@
+ 
+ PKG_NAME:=tcl
+ PKG_VERSION:=8.5.8
+-PKG_RELEASE:=1
++PKG_RELEASE:=1a
+ 
+ PKG_SOURCE:=$(PKG_NAME)$(PKG_VERSION)-src.tar.gz
+ PKG_SOURCE_URL:=@SF/tcl
+@@ -43,25 +43,22 @@
+ CONFIGURE_VARS += \
+ 	tcl_cv_strtod_unbroken=ok
+ 
+-CONFIGURE_ARGS += \
+-	--enable-threads
+-
  MAKE_PATH := unix
  
  define Build/InstallDev
