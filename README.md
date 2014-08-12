@@ -5,6 +5,12 @@ Entware is package repository for embedded devices. [These packages](http://entw
 # Getting started
 
 [Prepare USB drive](https://github.com/Entware/entware/wiki/USB-Storage-setup), or other storage, and type:
+
+Soft-float ( Works with both soft-float & hard-float firmwares. )
+```
+wget -O - http://entware.wl500g.info/binaries/mipselsf/installer/entware_install.sh | sh
+```
+Hard-float ( Works only with hard-float firmwares. )
 ```
 wget -O - http://entware.wl500g.info/binaries/entware/installer/entware_install.sh | sh
 ```
@@ -14,7 +20,7 @@ opkg list
 ```
 Install desired ones:
 ```
-opkg install mc 
+opkg install mc
 ```
 See other OPKG commands [here](http://wiki.openwrt.org/doc/techref/opkg).
 
