@@ -1,7 +1,5 @@
 === Known bugs and odds, to do list ===
 
-ARM feed is coming?
-
 sshd: syslogin_perform_logout: logout() returned an error, /var/... or /etc/... somewhere in sources
 bash_completion: /etc/bashcompletion in optware is newer
 freeswitch: spandsp marked as broken for now.
