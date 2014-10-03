@@ -53,9 +53,11 @@ endef
 
 update_git_mirrors: .git_mirrors_updated
 .git_mirrors_updated:
+	$(call update_git_mirror,https://github.com/Entware/openwrt-packages.git,openwrt-packages,https://github.com/openwrt/packages.git)
+	$(call update_git_mirror,https://github.com/Entware/openwrt-routing.git,openwrt-routing,https://github.com/openwrt-routing/packages.git)
 	$(call update_git_mirror,https://github.com/Entware/openwrt-telephony.git,openwrt-telephony,http://git.openwrt.org/feed/telephony.git)
-	$(call update_git_mirror,https://github.com/Entware/openwrt-packages.git,openwrt-packages,http://git.openwrt.org/packages.git)
-	$(call update_git_mirror,https://github.com/Entware/packages.git,packages,https://github.com/openwrt-routing/packages.git)
+	$(call update_git_mirror,https://github.com/Entware/openwrt-management.git,openwrt-management,https://github.com/openwrt-management/packages.git)
+	$(call update_git_mirror,https://github.com/Entware/openwrt-oldpackages.git,openwrt-oldpackages,http://git.openwrt.org/packages.git)
 	@touch $@
 
 clean:
