@@ -1,5 +1,5 @@
---- ../../../openwrt_trunk.orig/feeds/packages/utils/bluez-hcidump/Makefile	2011-12-05 10:45:54.000000000 +0400
-+++ ../../../openwrt_trunk/feeds/packages/utils/bluez-hcidump/Makefile	2011-12-20 14:43:55.876745184 +0400
+--- ../../../openwrt_trunk.orig/feeds/oldpackages/utils/bluez-hcidump/Makefile	2011-12-05 10:45:54.000000000 +0400
++++ ../../../openwrt_trunk/feeds/oldpackages/utils/bluez-hcidump/Makefile	2011-12-20 14:43:55.876745184 +0400
 @@ -29,13 +29,13 @@
  
  define Build/Configure

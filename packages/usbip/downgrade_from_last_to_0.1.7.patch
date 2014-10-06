@@ -1,7 +1,7 @@
-diff --git a/net/usbip/Makefile ../../../openwrt_trunk/feeds/packages/net/usbip/Makefile
+diff --git a/net/usbip/Makefile ../../../openwrt_trunk/feeds/oldpackages/net/usbip/Makefile
 index e09c1a1..9af0be3 100644
 --- a/net/usbip/Makefile
-+++ ../../../openwrt_trunk/feeds/packages/net/usbip/Makefile
++++ ../../../openwrt_trunk/feeds/oldpackages/net/usbip/Makefile
 @@ -1,33 +1,19 @@
  #
 -# Copyright (C) 2010-2012 OpenWrt.org

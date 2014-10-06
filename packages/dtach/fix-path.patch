@@ -1,5 +1,5 @@
---- ../../../downloads/mipsel-hardfloat/openwrt_trunk-r40423/feeds/packages/utils/dtach/Makefile	2014-04-09 16:17:24.218286483 +0400
-+++ ../../../openwrt_trunk/feeds/packages/utils/dtach/Makefile	2014-04-11 12:06:03.403415327 +0400
+--- ../../../downloads/mipsel-hardfloat/openwrt_trunk-r40423/feeds/oldpackages/utils/dtach/Makefile	2014-04-09 16:17:24.218286483 +0400
++++ ../../../openwrt_trunk/feeds/oldpackages/utils/dtach/Makefile	2014-04-11 12:06:03.403415327 +0400
 @@ -41,8 +41,8 @@
  endef
  

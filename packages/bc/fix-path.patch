@@ -1,5 +1,5 @@
---- ../../../downloads/openwrt_trunk-r34120/feeds/packages/utils/bc/Makefile	2012-11-09 11:32:20.665677175 +0400
-+++ ../../../openwrt_trunk/feeds/packages/utils/bc/Makefile	2012-11-30 13:49:06.552929997 +0400
+--- ../../../downloads/openwrt_trunk-r34120/feeds/oldpackages/utils/bc/Makefile	2012-11-09 11:32:20.665677175 +0400
++++ ../../../openwrt_trunk/feeds/oldpackages/utils/bc/Makefile	2012-11-30 13:49:06.552929997 +0400
 @@ -48,13 +48,13 @@
  CONFIGURE_ARGS += --with-readline
  

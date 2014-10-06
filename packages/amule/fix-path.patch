@@ -1,5 +1,5 @@
---- ../../../downloads/openwrt_trunk-r40859/feeds/packages/net/amule/Makefile	2014-05-26 16:48:25.151190400 +0400
-+++ ../../../openwrt_trunk/feeds/packages/net/amule/Makefile	2014-05-26 21:13:12.554901999 +0400
+--- ../../../openwrt_trunk-r40859/feeds/oldpackages/net/amule/Makefile
++++ ../../../openwrt_trunk/feeds/oldpackages/net/amule/Makefile
 @@ -26,7 +26,7 @@
    CATEGORY:=Network
    TITLE:=A multi-platform eMule-like ed2k client

@@ -1,5 +1,5 @@
---- ../../../openwrt_trunk.orig/feeds/packages/libs/radiusclient-ng/Makefile	2012-04-02 11:00:50.696008842 +0400
-+++ ../../../openwrt_trunk/feeds/packages/libs/radiusclient-ng/Makefile	2012-04-03 10:58:27.663913772 +0400
+--- ../../../openwrt_trunk.orig/feeds/oldpackages/libs/radiusclient-ng/Makefile	2012-04-02 11:00:50.696008842 +0400
++++ ../../../openwrt_trunk/feeds/oldpackages/libs/radiusclient-ng/Makefile	2012-04-03 10:58:27.663913772 +0400
 @@ -42,10 +42,10 @@
  endef
  

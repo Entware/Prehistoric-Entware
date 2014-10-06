@@ -1,5 +1,5 @@
---- ../../../downloads/mipsel-hardfloat/openwrt_trunk-r39354/feeds/packages/net/nzbget/Makefile	2014-01-20 16:36:36.462313261 +0400
-+++ ../../../openwrt_trunk/feeds/packages/net/nzbget/Makefile	2014-01-23 09:38:01.932442534 +0400
+--- ../../../downloads/mipsel-hardfloat/openwrt_trunk-r39354/feeds/oldpackages/net/nzbget/Makefile	2014-01-20 16:36:36.462313261 +0400
++++ ../../../openwrt_trunk/feeds/oldpackages/net/nzbget/Makefile	2014-01-23 09:38:01.932442534 +0400
 @@ -8,26 +8,22 @@
  include $(TOPDIR)/rules.mk
  

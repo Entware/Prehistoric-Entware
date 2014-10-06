@@ -1,5 +1,5 @@
---- ../../../downloads/openwrt_trunk-r36151/feeds/packages/net/arpwatch/Makefile	2013-04-02 14:27:39.597540240 +0400
-+++ ../../../openwrt_trunk/feeds/packages/net/arpwatch/Makefile	2013-04-28 13:07:25.971942774 +0400
+--- ../../../downloads/openwrt_trunk-r36151/feeds/oldpackages/net/arpwatch/Makefile	2013-04-02 14:27:39.597540240 +0400
++++ ../../../openwrt_trunk/feeds/oldpackages/net/arpwatch/Makefile	2013-04-28 13:07:25.971942774 +0400
 @@ -34,7 +34,7 @@
  endef
  

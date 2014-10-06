@@ -1,15 +1,15 @@
-diff -ur ../../../downloads/openwrt_trunk-r40859/feeds/packages/net/pptpd/files/options.pptpd ../../../openwrt_trunk/feeds/packages/net/pptpd/files/options.pptpd
---- ../../../downloads/openwrt_trunk-r40859/feeds/packages/net/pptpd/files/options.pptpd	2014-05-26 16:48:25.135190400 +0400
-+++ ../../../openwrt_trunk/feeds/packages/net/pptpd/files/options.pptpd	2014-05-26 16:48:32.559190265 +0400
+diff -ur ../../../downloads/openwrt_trunk-r40859/feeds/oldpackages/net/pptpd/files/options.pptpd ../../../openwrt_trunk/feeds/oldpackages/net/pptpd/files/options.pptpd
+--- ../../../downloads/openwrt_trunk-r40859/feeds/oldpackages/net/pptpd/files/options.pptpd	2014-05-26 16:48:25.135190400 +0400
++++ ../../../openwrt_trunk/feeds/oldpackages/net/pptpd/files/options.pptpd	2014-05-26 16:48:32.559190265 +0400
 @@ -19,4 +19,4 @@
  refuse-pap
  #ms-dns 172.16.1.1
  #plugin radius.so
 -#radius-config-file /etc/radius.conf
 +#radius-config-file /opt/etc/radius.conf
-diff -ur ../../../downloads/openwrt_trunk-r40859/feeds/packages/net/pptpd/files/pptpd.conf ../../../openwrt_trunk/feeds/packages/net/pptpd/files/pptpd.conf
---- ../../../downloads/openwrt_trunk-r40859/feeds/packages/net/pptpd/files/pptpd.conf	2014-05-26 16:48:25.135190400 +0400
-+++ ../../../openwrt_trunk/feeds/packages/net/pptpd/files/pptpd.conf	2014-05-26 16:48:32.559190265 +0400
+diff -ur ../../../downloads/openwrt_trunk-r40859/feeds/oldpackages/net/pptpd/files/pptpd.conf ../../../openwrt_trunk/feeds/oldpackages/net/pptpd/files/pptpd.conf
+--- ../../../downloads/openwrt_trunk-r40859/feeds/oldpackages/net/pptpd/files/pptpd.conf	2014-05-26 16:48:25.135190400 +0400
++++ ../../../openwrt_trunk/feeds/oldpackages/net/pptpd/files/pptpd.conf	2014-05-26 16:48:32.559190265 +0400
 @@ -1,5 +1,5 @@
  #debug
 -option /etc/ppp/options.pptpd
@@ -17,10 +17,10 @@ diff -ur ../../../downloads/openwrt_trunk-r40859/feeds/packages/net/pptpd/files/
  speed 115200
  stimeout 10
  #localip & remoteip are not needed, ip management is done by pppd
-Only in ../../../openwrt_trunk/feeds/packages/net/pptpd/files: S20poptop
-diff -ur ../../../downloads/openwrt_trunk-r40859/feeds/packages/net/pptpd/Makefile ../../../openwrt_trunk/feeds/packages/net/pptpd/Makefile
---- ../../../downloads/openwrt_trunk-r40859/feeds/packages/net/pptpd/Makefile	2014-05-26 16:48:25.135190400 +0400
-+++ ../../../openwrt_trunk/feeds/packages/net/pptpd/Makefile	2014-05-27 10:32:40.198025515 +0400
+Only in ../../../openwrt_trunk/feeds/oldpackages/net/pptpd/files: S20poptop
+diff -ur ../../../downloads/openwrt_trunk-r40859/feeds/oldpackages/net/pptpd/Makefile ../../../openwrt_trunk/feeds/oldpackages/net/pptpd/Makefile
+--- ../../../downloads/openwrt_trunk-r40859/feeds/oldpackages/net/pptpd/Makefile	2014-05-26 16:48:25.135190400 +0400
++++ ../../../openwrt_trunk/feeds/oldpackages/net/pptpd/Makefile	2014-05-27 10:32:40.198025515 +0400
 @@ -15,6 +15,8 @@
  PKG_SOURCE_URL:=@SF/poptop
  PKG_MD5SUM:=36f9f45c6ffa92bc3b6e24ae2d053505

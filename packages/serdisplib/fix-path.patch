@@ -1,5 +1,5 @@
---- ../../../openwrt_trunk.orig/feeds/packages/libs/serdisplib/Makefile	2012-07-11 14:54:00.690752516 +0400
-+++ ../../../openwrt_trunk/feeds/packages/libs/serdisplib/Makefile	2012-07-11 21:21:29.970472360 +0400
+--- ../../../openwrt_trunk.orig/feeds/oldpackages/libs/serdisplib/Makefile	2012-07-11 14:54:00.690752516 +0400
++++ ../../../openwrt_trunk/feeds/oldpackages/libs/serdisplib/Makefile	2012-07-11 21:21:29.970472360 +0400
 @@ -38,20 +38,20 @@
  
  define Build/Compile

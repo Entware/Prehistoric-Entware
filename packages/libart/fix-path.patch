@@ -1,5 +1,5 @@
---- ../../../openwrt_trunk.orig/feeds/packages/libs/libart/Makefile	2011-11-28 10:57:22.000000000 +0400
-+++ ../../../openwrt_trunk/feeds/packages/libs/libart/Makefile	2011-11-28 16:24:04.447529961 +0400
+--- ../../../openwrt_trunk.orig/feeds/oldpackages/libs/libart/Makefile	2011-11-28 10:57:22.000000000 +0400
++++ ../../../openwrt_trunk/feeds/oldpackages/libs/libart/Makefile	2011-11-28 16:24:04.447529961 +0400
 @@ -45,30 +45,30 @@
  TARGET_CFLAGS += $(FPIC)
  

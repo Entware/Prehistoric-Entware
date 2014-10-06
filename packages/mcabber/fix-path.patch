@@ -1,5 +1,5 @@
---- ../../../downloads/mipsel-hardfloat/openwrt_trunk-r40423/feeds/packages/net/mcabber/Makefile	2014-04-09 16:17:24.146286482 +0400
-+++ ../../../openwrt_trunk/feeds/packages/net/mcabber/Makefile	2014-04-11 14:05:27.487284623 +0400
+--- ../../../downloads/mipsel-hardfloat/openwrt_trunk-r40423/feeds/oldpackages/net/mcabber/Makefile	2014-04-09 16:17:24.146286482 +0400
++++ ../../../openwrt_trunk/feeds/oldpackages/net/mcabber/Makefile	2014-04-11 14:05:27.487284623 +0400
 @@ -18,7 +18,7 @@
  PKG_BUILD_DIR:=$(BUILD_DIR)/$(PKG_NAME)-$(PKG_VERSION)
  

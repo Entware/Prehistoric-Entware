@@ -1,5 +1,5 @@
---- ../../../openwrt_trunk.orig/feeds/packages/libs/jpeg/Makefile
-+++ ../../../openwrt_trunk/feeds/packages/libs/jpeg/Makefile
+--- ../../../openwrt_trunk.orig/feeds/packages/libs/libjpeg/Makefile
++++ ../../../openwrt_trunk/feeds/packages/libs/libjpeg/Makefile
 @@ -65,35 +65,35 @@
  endef
  

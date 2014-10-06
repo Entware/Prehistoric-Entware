@@ -1,6 +1,6 @@
-diff -urx .svn ../../../downloads/mipsel-hardfloat/openwrt_trunk-r39354/feeds/packages/mail/imapfilter/Makefile ../../../openwrt_trunk/feeds/packages/mail/imapfilter/Makefile
---- ../../../downloads/mipsel-hardfloat/openwrt_trunk-r39354/feeds/packages/mail/imapfilter/Makefile
-+++ ../../../openwrt_trunk/feeds/packages/mail/imapfilter/Makefile
+diff -urx .svn ../../../downloads/mipsel-hardfloat/openwrt_trunk-r39354/feeds/oldpackages/mail/imapfilter/Makefile ../../../openwrt_trunk/feeds/oldpackages/mail/imapfilter/Makefile
+--- ../../../downloads/mipsel-hardfloat/openwrt_trunk-r39354/feeds/oldpackages/mail/imapfilter/Makefile
++++ ../../../openwrt_trunk/feeds/oldpackages/mail/imapfilter/Makefile
 @@ -8,12 +8,15 @@
  include $(TOPDIR)/rules.mk
  
@@ -72,9 +72,9 @@ diff -urx .svn ../../../downloads/mipsel-hardfloat/openwrt_trunk-r39354/feeds/pa
  endef
  
  $(eval $(call BuildPackage,imapfilter))
-diff -urx .svn ../../../downloads/mipsel-hardfloat/openwrt_trunk-r39354/feeds/packages/mail/imapfilter/patches/010-pathnames.patch ../../../openwrt_trunk/feeds/packages/mail/imapfilter/patches/010-pathnames.patch
---- ../../../downloads/mipsel-hardfloat/openwrt_trunk-r39354/feeds/packages/mail/imapfilter/patches/010-pathnames.patch
-+++ ../../../openwrt_trunk/feeds/packages/mail/imapfilter/patches/010-pathnames.patch
+diff -urx .svn ../../../downloads/mipsel-hardfloat/openwrt_trunk-r39354/feeds/oldpackages/mail/imapfilter/patches/010-pathnames.patch ../../../openwrt_trunk/feeds/oldpackages/mail/imapfilter/patches/010-pathnames.patch
+--- ../../../downloads/mipsel-hardfloat/openwrt_trunk-r39354/feeds/oldpackages/mail/imapfilter/patches/010-pathnames.patch
++++ ../../../openwrt_trunk/feeds/oldpackages/mail/imapfilter/patches/010-pathnames.patch
 @@ -1,31 +1,11 @@
 ---- a/pathnames.h
 -+++ b/pathnames.h

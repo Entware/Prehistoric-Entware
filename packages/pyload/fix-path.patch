@@ -1,5 +1,5 @@
---- ../../../openwrt_trunk.orig/feeds/packages/net/pyload/Makefile
-+++ ../../../openwrt_trunk/feeds/packages/net/pyload/Makefile
+--- ../../../openwrt_trunk.orig/feeds/oldpackages/net/pyload/Makefile
++++ ../../../openwrt_trunk/feeds/oldpackages/net/pyload/Makefile
 @@ -38,12 +38,12 @@
  endef
  

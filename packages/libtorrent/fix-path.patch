@@ -1,5 +1,5 @@
---- ../../../downloads/openwrt_trunk-r40859/feeds/packages/libs/libtorrent/Makefile	2014-05-26 13:26:44.215410832 +0400
-+++ ../../../openwrt_trunk/feeds/packages/libs/libtorrent/Makefile	2014-05-26 15:41:12.583264703 +0400
+--- ../../../downloads/openwrt_trunk-r40859/feeds/oldpackages/libs/libtorrent/Makefile	2014-05-26 13:26:44.215410832 +0400
++++ ../../../openwrt_trunk/feeds/oldpackages/libs/libtorrent/Makefile	2014-05-26 15:41:12.583264703 +0400
 @@ -8,14 +8,12 @@
  include $(TOPDIR)/rules.mk
  

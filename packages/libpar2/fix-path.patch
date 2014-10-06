@@ -1,5 +1,5 @@
---- ../../../downloads/openwrt_trunk-r35474/feeds/packages/libs/libpar2/Makefile	2013-02-05 10:42:11.390946404 +0400
-+++ ../../../openwrt_trunk/feeds/packages/libs/libpar2/Makefile	2013-02-15 14:35:29.914951887 +0400
+--- ../../../downloads/openwrt_trunk-r35474/feeds/oldpackages/libs/libpar2/Makefile	2013-02-05 10:42:11.390946404 +0400
++++ ../../../openwrt_trunk/feeds/oldpackages/libs/libpar2/Makefile	2013-02-15 14:35:29.914951887 +0400
 @@ -37,22 +37,22 @@
  	--disable-nls \
  

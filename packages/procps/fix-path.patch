@@ -1,5 +1,5 @@
---- ../../../downloads/mipsel-hardfloat/openwrt_trunk-r40423/feeds/packages/utils/procps/Makefile	2014-04-09 16:17:24.222286483 +0400
-+++ ../../../openwrt_trunk/feeds/packages/utils/procps/Makefile	2014-04-11 14:53:26.607237002 +0400
+--- ../../../downloads/mipsel-hardfloat/openwrt_trunk-r40423/feeds/oldpackages/utils/procps/Makefile	2014-04-09 16:17:24.222286483 +0400
++++ ../../../openwrt_trunk/feeds/oldpackages/utils/procps/Makefile	2014-04-11 14:53:26.607237002 +0400
 @@ -63,17 +63,17 @@
  	LDFLAGS="$(TARGET_LDFLAGS)" \
  

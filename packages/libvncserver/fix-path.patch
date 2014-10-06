@@ -1,5 +1,5 @@
---- ../../../downloads/openwrt_trunk-r35474/feeds/packages/libs/libvncserver/Makefile	2013-02-05 10:42:11.382946403 +0400
-+++ ../../../openwrt_trunk/feeds/packages/libs/libvncserver/Makefile	2013-02-06 16:39:21.572983492 +0400
+--- ../../../downloads/openwrt_trunk-r35474/feeds/oldpackages/libs/libvncserver/Makefile	2013-02-05 10:42:11.382946403 +0400
++++ ../../../openwrt_trunk/feeds/oldpackages/libs/libvncserver/Makefile	2013-02-06 16:39:21.572983492 +0400
 @@ -45,15 +45,15 @@
  	--without-avahi
  

@@ -1,5 +1,5 @@
---- ../../../openwrt_trunk.orig/feeds/packages/net/l2tpd/Makefile
-+++ ../../../openwrt_trunk/feeds/packages/net/l2tpd/Makefile
+--- ../../../openwrt_trunk.orig/feeds/oldpackages/net/l2tpd/Makefile
++++ ../../../openwrt_trunk/feeds/oldpackages/net/l2tpd/Makefile
 @@ -36,25 +36,24 @@
  endef
  

@@ -1,5 +1,5 @@
---- ../../../downloads/openwrt_trunk-r40859/feeds/packages/lang/eggdrop/Makefile	2014-05-27 14:18:46.673780076 +0400
-+++ ../../../openwrt_trunk/feeds/packages/lang/eggdrop/Makefile	2014-06-11 09:55:57.469028811 +0400
+--- ../../../downloads/openwrt_trunk-r40859/feeds/oldpackages/lang/eggdrop/Makefile	2014-05-27 14:18:46.673780076 +0400
++++ ../../../openwrt_trunk/feeds/oldpackages/lang/eggdrop/Makefile	2014-06-11 09:55:57.469028811 +0400
 @@ -9,7 +9,7 @@
  
  PKG_NAME:=eggdrop

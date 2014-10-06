@@ -1,5 +1,5 @@
---- ../../../openwrt_trunk.orig/feeds/packages/libs/iksemel/Makefile	2012-07-11 14:54:00.742751862 +0400
-+++ ../../../openwrt_trunk/feeds/packages/libs/iksemel/Makefile	2012-07-11 22:48:04.229163661 +0400
+--- ../../../openwrt_trunk.orig/feeds/telephony/libs/iksemel/Makefile	2012-07-11 14:54:00.742751862 +0400
++++ ../../../openwrt_trunk/feeds/telephony/libs/iksemel/Makefile	2012-07-11 22:48:04.229163661 +0400
 @@ -38,31 +38,30 @@
  
  TARGET_CFLAGS += $(FPIC)

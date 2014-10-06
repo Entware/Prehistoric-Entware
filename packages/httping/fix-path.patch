@@ -1,5 +1,5 @@
---- ../../../downloads/openwrt_trunk-r40423/feeds/packages/net/httping/Makefile
-+++ ../../../openwrt_trunk/feeds/packages/net/httping/Makefile
+--- ../../../downloads/openwrt_trunk-r40423/feeds/oldpackages/net/httping/Makefile
++++ ../../../openwrt_trunk/feeds/oldpackages/net/httping/Makefile
 @@ -74,8 +74,8 @@
  endif
  

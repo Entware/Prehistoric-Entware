@@ -1,5 +1,5 @@
---- ../../../downloads/mipsel-hardfloat/openwrt_trunk-r38784/feeds/packages/libs/libnids/Makefile	2013-11-13 15:33:49.920396530 +0400
-+++ ../../../openwrt_trunk/feeds/packages/libs/libnids/Makefile	2013-11-13 16:40:49.716322212 +0400
+--- ../../../downloads/mipsel-hardfloat/openwrt_trunk-r38784/feeds/oldpackages/libs/libnids/Makefile	2013-11-13 15:33:49.920396530 +0400
++++ ../../../openwrt_trunk/feeds/oldpackages/libs/libnids/Makefile	2013-11-13 16:40:49.716322212 +0400
 @@ -34,8 +34,8 @@
  	$(call Build/Configure/Default, \
  		--enable-shared \

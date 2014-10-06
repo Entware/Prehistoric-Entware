@@ -1,5 +1,5 @@
---- ../../../downloads/openwrt_trunk-r38381/feeds/packages/utils/cksfv/Makefile	2013-10-14 14:47:50.598857596 +0400
-+++ ../../../openwrt_trunk/feeds/packages/utils/cksfv/Makefile	2013-10-16 15:19:23.627676239 +0400
+--- ../../../downloads/openwrt_trunk-r38381/feeds/oldpackages/utils/cksfv/Makefile	2013-10-14 14:47:50.598857596 +0400
++++ ../../../openwrt_trunk/feeds/oldpackages/utils/cksfv/Makefile	2013-10-16 15:19:23.627676239 +0400
 @@ -29,8 +29,8 @@
  endef
  

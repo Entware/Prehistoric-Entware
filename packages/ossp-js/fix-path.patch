@@ -1,5 +1,5 @@
---- ../../../openwrt_trunk.orig/feeds/packages/libs/ossp-js/Makefile	2011-11-28 10:57:22.000000000 +0400
-+++ ../../../openwrt_trunk/feeds/packages/libs/ossp-js/Makefile	2011-12-02 14:35:20.209997624 +0400
+--- ../../../openwrt_trunk.orig/feeds/oldpackages/libs/ossp-js/Makefile	2011-11-28 10:57:22.000000000 +0400
++++ ../../../openwrt_trunk/feeds/oldpackages/libs/ossp-js/Makefile	2011-12-02 14:35:20.209997624 +0400
 @@ -56,21 +56,22 @@
  define Build/Configure
  	(cd $(PKG_BUILD_DIR); rm -f config.cache; \

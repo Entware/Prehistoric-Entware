@@ -1,5 +1,5 @@
---- ../../../openwrt_trunk.orig/feeds/packages/net/unfs3/Makefile
-+++ ../../../openwrt_trunk/feeds/packages/net/unfs3/Makefile
+--- ../../../openwrt_trunk.orig/feeds/oldpackages/net/unfs3/Makefile
++++ ../../../openwrt_trunk/feeds/oldpackages/net/unfs3/Makefile
 @@ -26,7 +26,7 @@
    SECTION:=net
    CATEGORY:=Network

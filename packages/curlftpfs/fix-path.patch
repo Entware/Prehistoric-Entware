@@ -1,5 +1,5 @@
---- ../../../openwrt_trunk.orig/feeds/packages/net/curlftpfs/Makefile	2012-08-06 14:41:10.234698134 +0400
-+++ ../../../openwrt_trunk/feeds/packages/net/curlftpfs/Makefile	2012-08-06 14:42:41.686696466 +0400
+--- ../../../openwrt_trunk.orig/feeds/oldpackages/net/curlftpfs/Makefile	2012-08-06 14:41:10.234698134 +0400
++++ ../../../openwrt_trunk/feeds/oldpackages/net/curlftpfs/Makefile	2012-08-06 14:42:41.686696466 +0400
 @@ -33,7 +33,7 @@
  
  EXTRA_CFLAGS += \

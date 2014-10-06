@@ -1,5 +1,5 @@
---- ../../../downloads/openwrt_trunk-r35953/feeds/packages/libs/gd/Makefile	2013-03-11 09:29:39.222073818 +0400
-+++ ../../../openwrt_trunk/feeds/packages/libs/gd/Makefile	2013-03-11 14:24:34.849750390 +0400
+--- ../../../downloads/openwrt_trunk-r35953/feeds/packages/libs/libgd/Makefile	2013-03-11 09:29:39.222073818 +0400
++++ ../../../openwrt_trunk/feeds/packages/libs/libgd/Makefile	2013-03-11 14:24:34.849750390 +0400
 @@ -25,7 +25,7 @@
  define Package/libgd
    SECTION:=libs

@@ -1,5 +1,5 @@
---- ../../../openwrt_trunk.orig/feeds/packages/net/squid/Makefile	2012-05-02 16:17:23.974418701 +0400
-+++ ../../../openwrt_trunk/feeds/packages/net/squid/Makefile	2012-06-01 08:56:47.379749433 +0400
+--- ../../../openwrt_trunk.orig/feeds/oldpackages/net/squid/Makefile	2012-05-02 16:17:23.974418701 +0400
++++ ../../../openwrt_trunk/feeds/oldpackages/net/squid/Makefile	2012-06-01 08:56:47.379749433 +0400
 @@ -39,8 +39,8 @@
  endef
  

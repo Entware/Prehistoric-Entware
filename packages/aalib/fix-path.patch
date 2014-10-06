@@ -1,5 +1,5 @@
---- ../../../downloads/mipsel-hardfloat/openwrt_trunk-r40423/feeds/packages/libs/aalib/Makefile	2014-04-09 16:17:24.286286481 +0400
-+++ ../../../openwrt_trunk/feeds/packages/libs/aalib/Makefile	2014-04-11 10:53:57.651488183 +0400
+--- ../../../openwrt_trunk-r40423/feeds/oldpackages/libs/aalib/Makefile
++++ ../../../openwrt_trunk/feeds/oldpackages/libs/aalib/Makefile
 @@ -38,26 +38,26 @@
  		--without-x \
  		--with-x11-driver=no \

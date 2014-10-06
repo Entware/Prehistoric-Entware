@@ -1,5 +1,5 @@
---- ../../../openwrt_trunk.orig/feeds/packages/ipv6/ipv6calc/Makefile	2012-09-03 15:54:44.059674388 +0400
-+++ ../../../openwrt_trunk/feeds/packages/ipv6/ipv6calc/Makefile	2012-09-05 16:00:30.836517645 +0400
+--- ../../../openwrt_trunk.orig/feeds/oldpackages/ipv6/ipv6calc/Makefile	2012-09-03 15:54:44.059674388 +0400
++++ ../../../openwrt_trunk/feeds/oldpackages/ipv6/ipv6calc/Makefile	2012-09-05 16:00:30.836517645 +0400
 @@ -100,15 +100,15 @@
  	COPTS="$(TARGET_CFLAGS) -I$(PKG_BUILD_DIR)"
  

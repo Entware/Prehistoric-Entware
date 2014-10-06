@@ -1,5 +1,5 @@
---- ../../../openwrt_trunk.orig/feeds/packages/libs/gmp/Makefile
-+++ ../../../openwrt_trunk/feeds/packages/libs/gmp/Makefile
+--- ../../../openwrt_trunk.orig/package/libs/gmp/Makefile
++++ ../../../openwrt_trunk/package/libs/gmp/Makefile
 @@ -50,15 +50,15 @@
  endef
  

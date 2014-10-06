@@ -1,5 +1,5 @@
---- ../../../openwrt_trunk.orig/feeds/packages/utils/strace/Makefile
-+++ ../../../openwrt_trunk/feeds/packages/utils/strace/Makefile
+--- ../../../openwrt_trunk.orig/package/devel/strace/Makefile
++++ ../../../openwrt_trunk/package/devel/strace/Makefile
 @@ -6,7 +6,6 @@
  #
  

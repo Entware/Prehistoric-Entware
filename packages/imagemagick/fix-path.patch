@@ -1,5 +1,5 @@
---- ../../../downloads/mipsel-hardfloat/openwrt_trunk-r40423/feeds/packages/multimedia/imagemagick/Makefile	2014-04-09 16:17:24.314286478 +0400
-+++ ../../../openwrt_trunk/feeds/packages/multimedia/imagemagick/Makefile	2014-04-11 13:06:58.623345384 +0400
+--- ../../../downloads/mipsel-hardfloat/openwrt_trunk-r40423/feeds/oldpackages/multimedia/imagemagick/Makefile	2014-04-09 16:17:24.314286478 +0400
++++ ../../../openwrt_trunk/feeds/oldpackages/multimedia/imagemagick/Makefile	2014-04-11 13:06:58.623345384 +0400
 @@ -96,7 +96,9 @@
  	--without-xml \
  	--without-x \

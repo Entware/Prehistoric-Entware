@@ -1,5 +1,5 @@
---- ../../../downloads/mipsel-hardfloat/openwrt_trunk-r40423/feeds/packages/utils/mc/Makefile	2014-04-09 16:17:24.238286480 +0400
-+++ ../../../openwrt_trunk/feeds/packages/utils/mc/Makefile	2014-04-11 14:00:36.475290911 +0400
+--- ../../../downloads/mipsel-hardfloat/openwrt_trunk-r40423/feeds/oldpackages/utils/mc/Makefile	2014-04-09 16:17:24.238286480 +0400
++++ ../../../openwrt_trunk/feeds/oldpackages/utils/mc/Makefile	2014-04-11 14:00:36.475290911 +0400
 @@ -17,6 +17,7 @@
  
  PKG_BUILD_PARALLEL:=1

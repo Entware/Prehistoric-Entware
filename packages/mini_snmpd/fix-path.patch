@@ -1,5 +1,5 @@
---- ../../../openwrt_trunk/feeds/packages/net/mini_snmpd/Makefile	2014-01-26 13:47:38.199886438 +0400
-+++ ../../../openwrt_trunk/feeds/packages/net/mini_snmpd/Makefile	2014-01-26 21:33:47.694668397 +0400
+--- ../../../openwrt_trunk/feeds/oldpackages/net/mini_snmpd/Makefile	2014-01-26 13:47:38.199886438 +0400
++++ ../../../openwrt_trunk/feeds/oldpackages/net/mini_snmpd/Makefile	2014-01-26 21:33:47.694668397 +0400
 @@ -37,7 +37,7 @@
  TARGET_CFLAGS+= -DSYSLOG
  

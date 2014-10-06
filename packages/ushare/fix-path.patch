@@ -1,5 +1,5 @@
---- ../../../openwrt_trunk.orig/feeds/packages/multimedia/ushare/Makefile	2012-07-11 14:54:02.170733910 +0400
-+++ ../../../openwrt_trunk/feeds/packages/multimedia/ushare/Makefile	2012-07-11 21:09:48.567287431 +0400
+--- ../../../openwrt_trunk.orig/feeds/oldpackages/multimedia/ushare/Makefile	2012-07-11 14:54:02.170733910 +0400
++++ ../../../openwrt_trunk/feeds/oldpackages/multimedia/ushare/Makefile	2012-07-11 21:09:48.567287431 +0400
 @@ -40,14 +40,14 @@
  	# this is *NOT* GNU configure
  	( cd $(PKG_BUILD_DIR); \

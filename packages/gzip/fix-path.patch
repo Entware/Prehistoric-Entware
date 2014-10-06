@@ -1,5 +1,5 @@
---- ../../../openwrt_trunk.orig/feeds/packages/utils/gzip/Makefile	2012-07-10 18:59:23.645214129 +0400
-+++ ../../../openwrt_trunk/feeds/packages/utils/gzip/Makefile	2012-07-11 12:03:49.827121553 +0400
+--- ../../../openwrt_trunk.orig/feeds/oldpackages/utils/gzip/Makefile	2012-07-10 18:59:23.645214129 +0400
++++ ../../../openwrt_trunk/feeds/oldpackages/utils/gzip/Makefile	2012-07-11 12:03:49.827121553 +0400
 @@ -36,25 +36,9 @@
  	ac_cv_search_clock_gettime=no
  

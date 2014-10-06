@@ -1,6 +1,6 @@
-diff -ur ../../../downloads/openwrt_trunk-r40423/feeds/packages/net/isc-dhcp/files/dhclient-script ../../../openwrt_trunk/feeds/packages/net/isc-dhcp/files/dhclient-script
---- ../../../downloads/openwrt_trunk-r40423/feeds/packages/net/isc-dhcp/files/dhclient-script	2014-05-17 10:46:06.141735902 +0400
-+++ ../../../openwrt_trunk/feeds/packages/net/isc-dhcp/files/dhclient-script	2014-05-18 19:43:37.511575825 +0400
+diff -ur ../../../downloads/openwrt_trunk-r40423/feeds/oldpackages/net/isc-dhcp/files/dhclient-script ../../../openwrt_trunk/feeds/oldpackages/net/isc-dhcp/files/dhclient-script
+--- ../../../downloads/openwrt_trunk-r40423/feeds/oldpackages/net/isc-dhcp/files/dhclient-script	2014-05-17 10:46:06.141735902 +0400
++++ ../../../openwrt_trunk/feeds/oldpackages/net/isc-dhcp/files/dhclient-script	2014-05-18 19:43:37.511575825 +0400
 @@ -2,50 +2,50 @@
  
  make_resolv_conf() {
@@ -97,9 +97,9 @@ diff -ur ../../../downloads/openwrt_trunk-r40423/feeds/packages/net/isc-dhcp/fil
  
  ### <<
    # Tear down softwire tunnel
-diff -ur ../../../downloads/openwrt_trunk-r40423/feeds/packages/net/isc-dhcp/Makefile ../../../openwrt_trunk/feeds/packages/net/isc-dhcp/Makefile
---- ../../../downloads/openwrt_trunk-r40423/feeds/packages/net/isc-dhcp/Makefile	2014-05-17 10:46:06.141735902 +0400
-+++ ../../../openwrt_trunk/feeds/packages/net/isc-dhcp/Makefile	2014-05-18 20:57:44.387497443 +0400
+diff -ur ../../../downloads/openwrt_trunk-r40423/feeds/oldpackages/net/isc-dhcp/Makefile ../../../openwrt_trunk/feeds/oldpackages/net/isc-dhcp/Makefile
+--- ../../../downloads/openwrt_trunk-r40423/feeds/oldpackages/net/isc-dhcp/Makefile	2014-05-17 10:46:06.141735902 +0400
++++ ../../../openwrt_trunk/feeds/oldpackages/net/isc-dhcp/Makefile	2014-05-18 20:57:44.387497443 +0400
 @@ -56,7 +56,7 @@
  endef
  

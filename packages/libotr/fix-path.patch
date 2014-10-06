@@ -1,5 +1,5 @@
---- ../../../downloads/mipsel-hardfloat/openwrt_trunk-r38784/feeds/packages/libs/libotr/Makefile	2013-11-13 15:33:49.944396529 +0400
-+++ ../../../openwrt_trunk/feeds/packages/libs/libotr/Makefile	2013-11-14 09:49:21.219187924 +0400
+--- ../../../downloads/mipsel-hardfloat/openwrt_trunk-r38784/feeds/oldpackages/libs/libotr/Makefile	2013-11-13 15:33:49.944396529 +0400
++++ ../../../openwrt_trunk/feeds/oldpackages/libs/libotr/Makefile	2013-11-14 09:49:21.219187924 +0400
 @@ -36,16 +36,16 @@
  endef
  

@@ -1,5 +1,5 @@
---- ../../../downloads/mipsel-hardfloat/openwrt_trunk-r40423/feeds/packages/utils/hplip/Makefile	2014-04-15 16:11:47.556849363 +0400
-+++ ../../../openwrt_trunk/feeds/packages/utils/hplip/Makefile	2014-04-16 09:54:18.911686210 +0400
+--- ../../../downloads/mipsel-hardfloat/openwrt_trunk-r40423/feeds/oldpackages/utils/hplip/Makefile	2014-04-15 16:11:47.556849363 +0400
++++ ../../../openwrt_trunk/feeds/oldpackages/utils/hplip/Makefile	2014-04-16 09:54:18.911686210 +0400
 @@ -8,15 +8,15 @@
  include $(TOPDIR)/rules.mk
  

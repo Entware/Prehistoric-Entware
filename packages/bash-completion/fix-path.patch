@@ -1,5 +1,5 @@
---- ../../../openwrt_trunk.orig/feeds/packages/utils/bash-completion/Makefile	2011-11-28 10:56:52.000000000 +0400
-+++ ../../../openwrt_trunk/feeds/packages/utils/bash-completion/Makefile	2011-11-28 12:52:34.073485675 +0400
+--- ../../../openwrt_trunk.orig/feeds/oldpackages/utils/bash-completion/Makefile	2011-11-28 10:56:52.000000000 +0400
++++ ../../../openwrt_trunk/feeds/oldpackages/utils/bash-completion/Makefile	2011-11-28 12:52:34.073485675 +0400
 @@ -42,12 +42,12 @@
  endef
  

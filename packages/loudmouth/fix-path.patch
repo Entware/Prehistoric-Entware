@@ -1,5 +1,5 @@
---- ../../../downloads/mipsel-hardfloat/openwrt_trunk-r38800/feeds/packages/libs/loudmouth/Makefile	2013-11-15 11:16:41.673529841 +0400
-+++ ../../../openwrt_trunk/feeds/packages/libs/loudmouth/Makefile	2013-11-15 11:17:04.901529418 +0400
+--- ../../../downloads/mipsel-hardfloat/openwrt_trunk-r38800/feeds/oldpackages/libs/loudmouth/Makefile	2013-11-15 11:16:41.673529841 +0400
++++ ../../../openwrt_trunk/feeds/oldpackages/libs/loudmouth/Makefile	2013-11-15 11:17:04.901529418 +0400
 @@ -26,7 +26,7 @@
  define Package/libloudmouth1
  	SECTION:=libs

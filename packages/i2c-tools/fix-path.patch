@@ -1,5 +1,5 @@
---- ../../../downloads/mipsel-hardfloat/openwrt_trunk-r40423/feeds/packages/utils/i2c-tools/Makefile	2014-04-15 16:11:47.564849363 +0400
-+++ ../../../openwrt_trunk/feeds/packages/utils/i2c-tools/Makefile	2014-04-15 18:57:45.700670436 +0400
+--- ../../../downloads/mipsel-hardfloat/openwrt_trunk-r40423/feeds/oldpackages/utils/i2c-tools/Makefile	2014-04-15 16:11:47.564849363 +0400
++++ ../../../openwrt_trunk/feeds/oldpackages/utils/i2c-tools/Makefile	2014-04-15 18:57:45.700670436 +0400
 @@ -67,7 +67,7 @@
    define Build/Compile/python-smbus
  	$(if $(Build/Compile/PyMod),,@echo Python packaging code not found.; false)

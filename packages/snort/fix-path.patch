@@ -1,14 +1,14 @@
-diff -urNx .svn ../../../downloads/openwrt_trunk-r38381/feeds/packages/net/snort/files/snort.bin ../../../openwrt_trunk/feeds/packages/net/snort/files/snort.bin
---- ../../../downloads/openwrt_trunk-r38381/feeds/packages/net/snort/files/snort.bin	2013-10-14 14:47:50.634857597 +0400
-+++ ../../../openwrt_trunk/feeds/packages/net/snort/files/snort.bin	2013-10-14 14:48:27.702856922 +0400
+diff -urNx .svn ../../../downloads/openwrt_trunk-r38381/feeds/oldpackages/net/snort/files/snort.bin ../../../openwrt_trunk/feeds/oldpackages/net/snort/files/snort.bin
+--- ../../../downloads/openwrt_trunk-r38381/feeds/oldpackages/net/snort/files/snort.bin	2013-10-14 14:47:50.634857597 +0400
++++ ../../../openwrt_trunk/feeds/oldpackages/net/snort/files/snort.bin	2013-10-14 14:48:27.702856922 +0400
 @@ -1,3 +1,3 @@
  #!/bin/sh
  
 -exec snort.bin --daq-dir /usr/lib/daq/ $*
 +exec snort.bin --daq-dir /opt/lib/daq/ $*
-diff -urNx .svn ../../../downloads/openwrt_trunk-r38381/feeds/packages/net/snort/Makefile ../../../openwrt_trunk/feeds/packages/net/snort/Makefile
---- ../../../downloads/openwrt_trunk-r38381/feeds/packages/net/snort/Makefile	2013-10-14 14:47:50.634857597 +0400
-+++ ../../../openwrt_trunk/feeds/packages/net/snort/Makefile	2013-10-16 14:21:43.379738332 +0400
+diff -urNx .svn ../../../downloads/openwrt_trunk-r38381/feeds/oldpackages/net/snort/Makefile ../../../openwrt_trunk/feeds/oldpackages/net/snort/Makefile
+--- ../../../downloads/openwrt_trunk-r38381/feeds/oldpackages/net/snort/Makefile	2013-10-14 14:47:50.634857597 +0400
++++ ../../../openwrt_trunk/feeds/oldpackages/net/snort/Makefile	2013-10-16 14:21:43.379738332 +0400
 @@ -8,12 +8,12 @@
  include $(TOPDIR)/rules.mk
  
@@ -174,9 +174,9 @@ diff -urNx .svn ../../../downloads/openwrt_trunk-r38381/feeds/packages/net/snort
  endef
  
  Package/snort-mysql/conffiles = $(Package/snort/conffiles)
-diff -urNx .svn ../../../downloads/openwrt_trunk-r38381/feeds/packages/net/snort/patches/100-INADDR_NONE.patch ../../../openwrt_trunk/feeds/packages/net/snort/patches/100-INADDR_NONE.patch
---- ../../../downloads/openwrt_trunk-r38381/feeds/packages/net/snort/patches/100-INADDR_NONE.patch	2013-10-14 14:47:50.634857597 +0400
-+++ ../../../openwrt_trunk/feeds/packages/net/snort/patches/100-INADDR_NONE.patch	2013-10-16 13:22:09.123802853 +0400
+diff -urNx .svn ../../../downloads/openwrt_trunk-r38381/feeds/oldpackages/net/snort/patches/100-INADDR_NONE.patch ../../../openwrt_trunk/feeds/oldpackages/net/snort/patches/100-INADDR_NONE.patch
+--- ../../../downloads/openwrt_trunk-r38381/feeds/oldpackages/net/snort/patches/100-INADDR_NONE.patch	2013-10-14 14:47:50.634857597 +0400
++++ ../../../openwrt_trunk/feeds/oldpackages/net/snort/patches/100-INADDR_NONE.patch	2013-10-16 13:22:09.123802853 +0400
 @@ -1,6 +1,6 @@
  --- a/configure.in
  +++ b/configure.in
@@ -185,9 +185,9 @@ diff -urNx .svn ../../../downloads/openwrt_trunk-r38381/feeds/packages/net/snort
   AC_CHECK_TYPES([boolean])
   
   # In case INADDR_NONE is not defined (like on Solaris)
-diff -urNx .svn ../../../downloads/openwrt_trunk-r38381/feeds/packages/net/snort/patches/101-PCAP.patch ../../../openwrt_trunk/feeds/packages/net/snort/patches/101-PCAP.patch
---- ../../../downloads/openwrt_trunk-r38381/feeds/packages/net/snort/patches/101-PCAP.patch	2013-10-14 14:47:50.634857597 +0400
-+++ ../../../openwrt_trunk/feeds/packages/net/snort/patches/101-PCAP.patch	2013-10-16 13:22:32.331803867 +0400
+diff -urNx .svn ../../../downloads/openwrt_trunk-r38381/feeds/oldpackages/net/snort/patches/101-PCAP.patch ../../../openwrt_trunk/feeds/oldpackages/net/snort/patches/101-PCAP.patch
+--- ../../../downloads/openwrt_trunk-r38381/feeds/oldpackages/net/snort/patches/101-PCAP.patch	2013-10-14 14:47:50.634857597 +0400
++++ ../../../openwrt_trunk/feeds/oldpackages/net/snort/patches/101-PCAP.patch	2013-10-16 13:22:32.331803867 +0400
 @@ -1,6 +1,6 @@
  --- a/configure.in
  +++ b/configure.in
@@ -196,9 +196,9 @@ diff -urNx .svn ../../../downloads/openwrt_trunk-r38381/feeds/packages/net/snort
   fi
   
   AC_MSG_CHECKING([for pcap_lex_destroy])
-diff -urNx .svn ../../../downloads/openwrt_trunk-r38381/feeds/packages/net/snort/patches/150-config-preprocessors-disable.patch ../../../openwrt_trunk/feeds/packages/net/snort/patches/150-config-preprocessors-disable.patch
---- ../../../downloads/openwrt_trunk-r38381/feeds/packages/net/snort/patches/150-config-preprocessors-disable.patch	2013-10-14 14:47:50.634857597 +0400
-+++ ../../../openwrt_trunk/feeds/packages/net/snort/patches/150-config-preprocessors-disable.patch	2013-10-16 13:21:35.471803360 +0400
+diff -urNx .svn ../../../downloads/openwrt_trunk-r38381/feeds/oldpackages/net/snort/patches/150-config-preprocessors-disable.patch ../../../openwrt_trunk/feeds/oldpackages/net/snort/patches/150-config-preprocessors-disable.patch
+--- ../../../downloads/openwrt_trunk-r38381/feeds/oldpackages/net/snort/patches/150-config-preprocessors-disable.patch	2013-10-14 14:47:50.634857597 +0400
++++ ../../../openwrt_trunk/feeds/oldpackages/net/snort/patches/150-config-preprocessors-disable.patch	2013-10-16 13:21:35.471803360 +0400
 @@ -1,5 +1,5 @@
 ---- a/etc/snort.conf
 -+++ b/etc/snort.conf
@@ -825,9 +825,9 @@ diff -urNx .svn ../../../downloads/openwrt_trunk-r38381/feeds/packages/net/snort
   
   ###################################################
   # Step #8: Customize your preprocessor and decoder alerts
-diff -urNx .svn ../../../downloads/openwrt_trunk-r38381/feeds/packages/net/snort/patches/160-mysql_cross_compiling_checks.patch ../../../openwrt_trunk/feeds/packages/net/snort/patches/160-mysql_cross_compiling_checks.patch
---- ../../../downloads/openwrt_trunk-r38381/feeds/packages/net/snort/patches/160-mysql_cross_compiling_checks.patch	2013-10-14 14:47:50.634857597 +0400
-+++ ../../../openwrt_trunk/feeds/packages/net/snort/patches/160-mysql_cross_compiling_checks.patch	2013-10-16 13:23:39.351801924 +0400
+diff -urNx .svn ../../../downloads/openwrt_trunk-r38381/feeds/oldpackages/net/snort/patches/160-mysql_cross_compiling_checks.patch ../../../openwrt_trunk/feeds/oldpackages/net/snort/patches/160-mysql_cross_compiling_checks.patch
+--- ../../../downloads/openwrt_trunk-r38381/feeds/oldpackages/net/snort/patches/160-mysql_cross_compiling_checks.patch	2013-10-14 14:47:50.634857597 +0400
++++ ../../../openwrt_trunk/feeds/oldpackages/net/snort/patches/160-mysql_cross_compiling_checks.patch	2013-10-16 13:23:39.351801924 +0400
 @@ -1,66 +0,0 @@
 ---- a/configure.in
 -+++ b/configure.in
@@ -895,9 +895,9 @@ diff -urNx .svn ../../../downloads/openwrt_trunk-r38381/feeds/packages/net/snort
 - fi
 - 
 - AC_ARG_WITH(odbc,
-diff -urNx .svn ../../../downloads/openwrt_trunk-r38381/feeds/packages/net/snort/patches/200-snortsam.patch ../../../openwrt_trunk/feeds/packages/net/snort/patches/200-snortsam.patch
---- ../../../downloads/openwrt_trunk-r38381/feeds/packages/net/snort/patches/200-snortsam.patch	2013-10-14 14:47:50.634857597 +0400
-+++ ../../../openwrt_trunk/feeds/packages/net/snort/patches/200-snortsam.patch	2013-10-16 14:16:58.243747741 +0400
+diff -urNx .svn ../../../downloads/openwrt_trunk-r38381/feeds/oldpackages/net/snort/patches/200-snortsam.patch ../../../openwrt_trunk/feeds/oldpackages/net/snort/patches/200-snortsam.patch
+--- ../../../downloads/openwrt_trunk-r38381/feeds/oldpackages/net/snort/patches/200-snortsam.patch	2013-10-14 14:47:50.634857597 +0400
++++ ../../../openwrt_trunk/feeds/oldpackages/net/snort/patches/200-snortsam.patch	2013-10-16 14:16:58.243747741 +0400
 @@ -1,3016 +0,0 @@
 -diff -ruN snort-2.9.2.2/autojunk.sh snort-2.9.2.2_bkup/autojunk.sh
 ---- snort-2.9.2.2/autojunk.sh	1969-12-31 16:00:00.000000000 -0800
@@ -3915,9 +3915,9 @@ diff -urNx .svn ../../../downloads/openwrt_trunk-r38381/feeds/packages/net/snort
 -+
 -+
 -+#endif
-diff -urNx .svn ../../../downloads/openwrt_trunk-r38381/feeds/packages/net/snort/patches/210-daq-cross-compile.patch ../../../openwrt_trunk/feeds/packages/net/snort/patches/210-daq-cross-compile.patch
---- ../../../downloads/openwrt_trunk-r38381/feeds/packages/net/snort/patches/210-daq-cross-compile.patch	1970-01-01 03:00:00.000000000 +0300
-+++ ../../../openwrt_trunk/feeds/packages/net/snort/patches/210-daq-cross-compile.patch	2013-10-16 13:49:13.951774004 +0400
+diff -urNx .svn ../../../downloads/openwrt_trunk-r38381/feeds/oldpackages/net/snort/patches/210-daq-cross-compile.patch ../../../openwrt_trunk/feeds/oldpackages/net/snort/patches/210-daq-cross-compile.patch
+--- ../../../downloads/openwrt_trunk-r38381/feeds/oldpackages/net/snort/patches/210-daq-cross-compile.patch	1970-01-01 03:00:00.000000000 +0300
++++ ../../../openwrt_trunk/feeds/oldpackages/net/snort/patches/210-daq-cross-compile.patch	2013-10-16 13:49:13.951774004 +0400
 @@ -0,0 +1,21 @@
 +--- ./configure.in.orig	2013-10-16 13:45:14.683775769 +0400
 ++++ ./configure.in	2013-10-16 13:46:52.927777332 +0400

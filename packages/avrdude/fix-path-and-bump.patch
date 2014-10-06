@@ -1,5 +1,5 @@
---- ../../../downloads/mipsel-hardfloat/openwrt_trunk-r40423/feeds/packages/utils/avrdude/Makefile	2014-04-09 16:17:24.234286480 +0400
-+++ ../../../openwrt_trunk/feeds/packages/utils/avrdude/Makefile	2014-04-11 11:11:45.811472008 +0400
+--- ../../../downloads/mipsel-hardfloat/openwrt_trunk-r40423/feeds/oldpackages/utils/avrdude/Makefile	2014-04-09 16:17:24.234286480 +0400
++++ ../../../openwrt_trunk/feeds/oldpackages/utils/avrdude/Makefile	2014-04-11 11:11:45.811472008 +0400
 @@ -48,14 +48,14 @@
  endef
  

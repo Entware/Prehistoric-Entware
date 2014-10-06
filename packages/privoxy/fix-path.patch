@@ -1,6 +1,6 @@
-diff -urx .svn ../../../downloads/openwrt_trunk-r36556/feeds/packages/net/privoxy/files/privoxy.config ../../../openwrt_trunk/feeds/packages/net/privoxy/files/privoxy.config
---- ../../../downloads/openwrt_trunk-r36556/feeds/packages/net/privoxy/files/privoxy.config	2013-05-06 15:25:41.763204416 +0400
-+++ ../../../openwrt_trunk/feeds/packages/net/privoxy/files/privoxy.config	2013-05-06 15:36:22.059192743 +0400
+diff -urx .svn ../../../downloads/openwrt_trunk-r36556/feeds/oldpackages/net/privoxy/files/privoxy.config ../../../openwrt_trunk/feeds/oldpackages/net/privoxy/files/privoxy.config
+--- ../../../downloads/openwrt_trunk-r36556/feeds/oldpackages/net/privoxy/files/privoxy.config	2013-05-06 15:25:41.763204416 +0400
++++ ../../../openwrt_trunk/feeds/oldpackages/net/privoxy/files/privoxy.config	2013-05-06 15:36:22.059192743 +0400
 @@ -1,5 +1,5 @@
 -confdir /etc/privoxy
 -logdir /var/log
@@ -9,9 +9,9 @@ diff -urx .svn ../../../downloads/openwrt_trunk-r36556/feeds/packages/net/privox
  filterfile default.filter
  logfile privoxy
  actionsfile match-all.action # Actions that are applied to all sites and maybe overruled later on.
-diff -urx .svn ../../../downloads/openwrt_trunk-r36556/feeds/packages/net/privoxy/Makefile ../../../openwrt_trunk/feeds/packages/net/privoxy/Makefile
---- ../../../downloads/openwrt_trunk-r36556/feeds/packages/net/privoxy/Makefile	2013-05-06 15:25:41.763204416 +0400
-+++ ../../../openwrt_trunk/feeds/packages/net/privoxy/Makefile	2013-05-06 15:36:22.059192743 +0400
+diff -urx .svn ../../../downloads/openwrt_trunk-r36556/feeds/oldpackages/net/privoxy/Makefile ../../../openwrt_trunk/feeds/oldpackages/net/privoxy/Makefile
+--- ../../../downloads/openwrt_trunk-r36556/feeds/oldpackages/net/privoxy/Makefile	2013-05-06 15:25:41.763204416 +0400
++++ ../../../openwrt_trunk/feeds/oldpackages/net/privoxy/Makefile	2013-05-06 15:36:22.059192743 +0400
 @@ -43,22 +43,22 @@
  endef
  

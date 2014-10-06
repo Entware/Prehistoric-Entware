@@ -1,6 +1,6 @@
---- ../../../openwrt_trunk/package/Makefile.orig
-+++ ../../../openwrt_trunk/package/Makefile
-@@ -47,7 +47,7 @@
+--- ../../../downloads/openwrt_trunk-r42753/package/Makefile	2014-10-03 14:24:22.442061917 +0400
++++ ../../../openwrt_trunk/package/Makefile	2014-10-03 14:51:32.846036717 +0400
+@@ -49,7 +49,7 @@
  	$(RSTRIP) $(TMP_DIR)/mklibs-out
  	for lib in `ls $(TMP_DIR)/mklibs-out/*.so.* 2>/dev/null`; do \
  		LIB="$${lib##*/}"; \
@@ -9,8 +9,8 @@
  		[ -n "$$DEST" ] || continue; \
  		echo "Copying stripped library $$lib to $$DEST"; \
  		cp "$$lib" "$$DEST" || exit 1; \
-@@ -59,7 +59,7 @@
- OPKG:= \
+@@ -62,7 +62,7 @@
+   IPKG_NO_SCRIPT=1 \
    IPKG_TMP=$(TMP_DIR)/ipkg \
    IPKG_INSTROOT=$(TARGET_DIR) \
 -  IPKG_CONF_DIR=$(STAGING_DIR)/etc \
@@ -18,13 +18,27 @@
    IPKG_OFFLINE_ROOT=$(TARGET_DIR) \
    $(XARGS) $(STAGING_DIR_HOST)/bin/opkg \
  	--offline-root $(TARGET_DIR) \
-@@ -114,8 +114,8 @@
+@@ -106,19 +106,19 @@
+ 	@if [ -d $(TOPDIR)/files ]; then \
+ 		$(call file_copy,$(TOPDIR)/files/.,$(TARGET_DIR)); \
+ 	fi
+-	@mkdir -p $(TARGET_DIR)/etc/rc.d
++	@mkdir -p $(TARGET_DIR)/opt/etc/rc.d
+ 	@( \
+ 		cd $(TARGET_DIR); \
+-		for script in ./usr/lib/opkg/info/*.postinst; do \
++		for script in ./opt/lib/opkg/info/*.postinst; do \
+ 			IPKG_INSTROOT=$(TARGET_DIR) $$(which bash) $$script; \
+ 		done || true \
+ 	)
  	@-find $(TARGET_DIR) -name CVS   | $(XARGS) rm -rf
  	@-find $(TARGET_DIR) -name .svn  | $(XARGS) rm -rf
  	@-find $(TARGET_DIR) -name '.#*' | $(XARGS) rm -f
--	rm -f $(TARGET_DIR)/usr/lib/opkg/info/*.postinst
+-	rm -f $(TARGET_DIR)/usr/lib/opkg/info/*.postinst*
+-	rm -f $(TARGET_DIR)/usr/lib/opkg/info/*.prerm*
 -	$(if $(CONFIG_CLEAN_IPKG),rm -rf $(TARGET_DIR)/usr/lib/opkg)
-+	rm -f $(TARGET_DIR)/opt/lib/opkg/info/*.postinst
++	rm -f $(TARGET_DIR)/opt/lib/opkg/info/*.postinst*
++	rm -f $(TARGET_DIR)/opt/lib/opkg/info/*.prerm*
 +	$(if $(CONFIG_CLEAN_IPKG),rm -rf $(TARGET_DIR)/opt/lib/opkg)
  	$(call mklibs)
  

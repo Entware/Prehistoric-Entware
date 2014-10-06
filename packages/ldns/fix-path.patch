@@ -1,5 +1,5 @@
---- ../../../openwrt_trunk.orig/feeds/packages/libs/ldns/Makefile	2012-06-01 10:50:33.820290304 +0400
-+++ ../../../openwrt_trunk/feeds/packages/libs/ldns/Makefile	2012-06-01 10:51:33.291542651 +0400
+--- ../../../openwrt_trunk.orig/feeds/oldpackages/libs/ldns/Makefile	2012-06-01 10:50:33.820290304 +0400
++++ ../../../openwrt_trunk/feeds/oldpackages/libs/ldns/Makefile	2012-06-01 10:51:33.291542651 +0400
 @@ -57,23 +57,23 @@
  	--disable-ecdsa \
  	--disable-gost \

@@ -1,5 +1,5 @@
---- ../../../downloads/openwrt_trunk-r40859/feeds/packages/lang/tcl/Makefile	2014-05-27 14:18:46.677780076 +0400
-+++ ../../../openwrt_trunk/feeds/packages/lang/tcl/Makefile	2014-06-11 09:53:49.573024837 +0400
+--- ../../../downloads/openwrt_trunk-r40859/feeds/oldpackages/lang/tcl/Makefile	2014-05-27 14:18:46.677780076 +0400
++++ ../../../openwrt_trunk/feeds/oldpackages/lang/tcl/Makefile	2014-06-11 09:53:49.573024837 +0400
 @@ -9,7 +9,7 @@
  
  PKG_NAME:=tcl

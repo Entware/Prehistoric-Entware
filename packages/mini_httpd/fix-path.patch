@@ -1,6 +1,6 @@
-diff -urx .svn ../../../openwrt_trunk.orig/feeds/packages/net/mini_httpd/files/mini_httpd.conf ../../../openwrt_trunk/feeds/packages/net/mini_httpd/files/mini_httpd.conf
---- ../../../openwrt_trunk.orig/feeds/packages/net/mini_httpd/files/mini_httpd.conf	2012-05-02 16:17:23.890419757 +0400
-+++ ../../../openwrt_trunk/feeds/packages/net/mini_httpd/files/mini_httpd.conf	2012-05-02 16:22:04.553626438 +0400
+diff -urx .svn ../../../openwrt_trunk.orig/feeds/oldpackages/net/mini_httpd/files/mini_httpd.conf ../../../openwrt_trunk/feeds/oldpackages/net/mini_httpd/files/mini_httpd.conf
+--- ../../../openwrt_trunk.orig/feeds/oldpackages/net/mini_httpd/files/mini_httpd.conf	2012-05-02 16:17:23.890419757 +0400
++++ ../../../openwrt_trunk/feeds/oldpackages/net/mini_httpd/files/mini_httpd.conf	2012-05-02 16:22:04.553626438 +0400
 @@ -1,5 +1,5 @@
  cgipat=cgi-bin/**|**.sh
 -dir=/www
@@ -9,9 +9,9 @@ diff -urx .svn ../../../openwrt_trunk.orig/feeds/packages/net/mini_httpd/files/m
 -pidfile=/var/run/mini_httpd.pid
 +pidfile=/opt/var/run/mini_httpd.pid
  user=root
-diff -urx .svn ../../../openwrt_trunk.orig/feeds/packages/net/mini_httpd/files/mini_httpd-ssl.conf ../../../openwrt_trunk/feeds/packages/net/mini_httpd/files/mini_httpd-ssl.conf
---- ../../../openwrt_trunk.orig/feeds/packages/net/mini_httpd/files/mini_httpd-ssl.conf	2012-05-02 16:17:23.890419757 +0400
-+++ ../../../openwrt_trunk/feeds/packages/net/mini_httpd/files/mini_httpd-ssl.conf	2012-05-02 16:22:04.553626438 +0400
+diff -urx .svn ../../../openwrt_trunk.orig/feeds/oldpackages/net/mini_httpd/files/mini_httpd-ssl.conf ../../../openwrt_trunk/feeds/oldpackages/net/mini_httpd/files/mini_httpd-ssl.conf
+--- ../../../openwrt_trunk.orig/feeds/oldpackages/net/mini_httpd/files/mini_httpd-ssl.conf	2012-05-02 16:17:23.890419757 +0400
++++ ../../../openwrt_trunk/feeds/oldpackages/net/mini_httpd/files/mini_httpd-ssl.conf	2012-05-02 16:22:04.553626438 +0400
 @@ -1,7 +1,7 @@
  cgipat=cgi-bin/**|**.sh
 -dir=/www
@@ -23,9 +23,9 @@ diff -urx .svn ../../../openwrt_trunk.orig/feeds/packages/net/mini_httpd/files/m
  ssl
 -certfile=/etc/mini_httpd.pem
 +certfile=/opt/etc/mini_httpd.pem
-diff -urx .svn ../../../openwrt_trunk.orig/feeds/packages/net/mini_httpd/Makefile ../../../openwrt_trunk/feeds/packages/net/mini_httpd/Makefile
---- ../../../openwrt_trunk.orig/feeds/packages/net/mini_httpd/Makefile	2012-05-02 16:17:23.886419808 +0400
-+++ ../../../openwrt_trunk/feeds/packages/net/mini_httpd/Makefile	2012-05-31 17:25:01.582780509 +0400
+diff -urx .svn ../../../openwrt_trunk.orig/feeds/oldpackages/net/mini_httpd/Makefile ../../../openwrt_trunk/feeds/oldpackages/net/mini_httpd/Makefile
+--- ../../../openwrt_trunk.orig/feeds/oldpackages/net/mini_httpd/Makefile	2012-05-02 16:17:23.886419808 +0400
++++ ../../../openwrt_trunk/feeds/oldpackages/net/mini_httpd/Makefile	2012-05-31 17:25:01.582780509 +0400
 @@ -28,8 +28,8 @@
  endef
  
@@ -102,9 +102,9 @@ diff -urx .svn ../../../openwrt_trunk.orig/feeds/packages/net/mini_httpd/Makefil
  endef
  
  $(eval $(call BuildPackage,mini-httpd))
-diff -urx .svn ../../../openwrt_trunk.orig/feeds/packages/net/mini_httpd/patches/001-cgi_path.patch ../../../openwrt_trunk/feeds/packages/net/mini_httpd/patches/001-cgi_path.patch
---- ../../../openwrt_trunk.orig/feeds/packages/net/mini_httpd/patches/001-cgi_path.patch	2012-05-02 16:17:23.886419808 +0400
-+++ ../../../openwrt_trunk/feeds/packages/net/mini_httpd/patches/001-cgi_path.patch	2012-05-02 16:22:04.557628498 +0400
+diff -urx .svn ../../../openwrt_trunk.orig/feeds/oldpackages/net/mini_httpd/patches/001-cgi_path.patch ../../../openwrt_trunk/feeds/oldpackages/net/mini_httpd/patches/001-cgi_path.patch
+--- ../../../openwrt_trunk.orig/feeds/oldpackages/net/mini_httpd/patches/001-cgi_path.patch	2012-05-02 16:17:23.886419808 +0400
++++ ../../../openwrt_trunk/feeds/oldpackages/net/mini_httpd/patches/001-cgi_path.patch	2012-05-02 16:22:04.557628498 +0400
 @@ -6,11 +6,11 @@
   #endif /* CGI_NICE */
   #ifndef CGI_PATH
@@ -119,9 +119,9 @@ diff -urx .svn ../../../openwrt_trunk.orig/feeds/packages/net/mini_httpd/patches
   #endif /* CGI_LD_LIBRARY_PATH */
   #ifndef AUTH_FILE
   #define AUTH_FILE ".htpasswd"
-diff -urx .svn ../../../openwrt_trunk.orig/feeds/packages/net/mini_httpd/patches/500-matrixssl.patch ../../../openwrt_trunk/feeds/packages/net/mini_httpd/patches/500-matrixssl.patch
---- ../../../openwrt_trunk.orig/feeds/packages/net/mini_httpd/patches/500-matrixssl.patch	2012-05-02 16:17:23.886419808 +0400
-+++ ../../../openwrt_trunk/feeds/packages/net/mini_httpd/patches/500-matrixssl.patch	2012-05-02 16:22:04.561630501 +0400
+diff -urx .svn ../../../openwrt_trunk.orig/feeds/oldpackages/net/mini_httpd/patches/500-matrixssl.patch ../../../openwrt_trunk/feeds/oldpackages/net/mini_httpd/patches/500-matrixssl.patch
+--- ../../../openwrt_trunk.orig/feeds/oldpackages/net/mini_httpd/patches/500-matrixssl.patch	2012-05-02 16:17:23.886419808 +0400
++++ ../../../openwrt_trunk/feeds/oldpackages/net/mini_httpd/patches/500-matrixssl.patch	2012-05-02 16:22:04.561630501 +0400
 @@ -25,8 +25,8 @@
  -MANDIR =	/usr/local/man
  +DESTDIR =

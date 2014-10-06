@@ -1,5 +1,5 @@
---- ../../../downloads/openwrt_trunk-r35474/feeds/packages/utils/lcd4linux/Makefile	2013-02-05 10:42:11.730946397 +0400
-+++ ../../../openwrt_trunk/feeds/packages/utils/lcd4linux/Makefile	2013-02-25 08:43:48.674566413 +0400
+--- ../../../downloads/openwrt_trunk-r35474/feeds/oldpackages/utils/lcd4linux/Makefile	2013-02-05 10:42:11.730946397 +0400
++++ ../../../openwrt_trunk/feeds/oldpackages/utils/lcd4linux/Makefile	2013-02-25 08:43:48.674566413 +0400
 @@ -129,9 +129,10 @@
  	libnmeap \
  	libsqlite3 \

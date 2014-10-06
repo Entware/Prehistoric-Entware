@@ -1,5 +1,5 @@
---- ../../../downloads/mipsel-hardfloat/openwrt_trunk-r40423/feeds/packages/mail/mutt/Makefile	2014-04-15 16:11:47.624849362 +0400
-+++ ../../../openwrt_trunk/feeds/packages/mail/mutt/Makefile	2014-04-15 16:12:13.344848894 +0400
+--- ../../../downloads/mipsel-hardfloat/openwrt_trunk-r40423/feeds/oldpackages/mail/mutt/Makefile	2014-04-15 16:11:47.624849362 +0400
++++ ../../../openwrt_trunk/feeds/oldpackages/mail/mutt/Makefile	2014-04-15 16:12:13.344848894 +0400
 @@ -9,7 +9,7 @@
  
  PKG_NAME:=mutt

@@ -1,5 +1,5 @@
---- ../../../downloads/openwrt_trunk-r40423/feeds/packages/net/srelay/Makefile	2014-05-17 10:46:06.105735902 +0400
-+++ ../../../openwrt_trunk/feeds/packages/net/srelay/Makefile	2014-05-19 11:10:01.258571596 +0400
+--- ../../../downloads/openwrt_trunk-r40423/feeds/oldpackages/net/srelay/Makefile	2014-05-17 10:46:06.105735902 +0400
++++ ../../../openwrt_trunk/feeds/oldpackages/net/srelay/Makefile	2014-05-19 11:10:01.258571596 +0400
 @@ -27,23 +27,23 @@
  endef
  

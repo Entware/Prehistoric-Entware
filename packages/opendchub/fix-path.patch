@@ -1,5 +1,5 @@
---- ../../../openwrt_trunk.orig/feeds/packages/net/opendchub/Makefile	2012-05-02 16:17:27.894369420 +0400
-+++ ../../../openwrt_trunk/feeds/packages/net/opendchub/Makefile	2012-05-31 21:25:32.868404839 +0400
+--- ../../../openwrt_trunk.orig/feeds/oldpackages/net/opendchub/Makefile	2012-05-02 16:17:27.894369420 +0400
++++ ../../../openwrt_trunk/feeds/oldpackages/net/opendchub/Makefile	2012-05-31 21:25:32.868404839 +0400
 @@ -37,8 +37,10 @@
  	--disable-perl \
  

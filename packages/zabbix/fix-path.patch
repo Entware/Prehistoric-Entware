@@ -1,6 +1,6 @@
-diff -ur ../../../downloads/openwrt_trunk-r40859/feeds/packages/admin/zabbix/Makefile ../../../openwrt_trunk/feeds/packages/admin/zabbix/Makefile
---- ../../../downloads/openwrt_trunk-r40859/feeds/packages/admin/zabbix/Makefile	2014-05-26 13:26:44.295410831 +0400
-+++ ../../../openwrt_trunk/feeds/packages/admin/zabbix/Makefile	2014-05-26 16:44:54.015196978 +0400
+diff -ur ../../../downloads/openwrt_trunk-r40859/feeds/oldpackages/admin/zabbix/Makefile ../../../openwrt_trunk/feeds/oldpackages/admin/zabbix/Makefile
+--- ../../../downloads/openwrt_trunk-r40859/feeds/oldpackages/admin/zabbix/Makefile	2014-05-26 13:26:44.295410831 +0400
++++ ../../../openwrt_trunk/feeds/oldpackages/admin/zabbix/Makefile	2014-05-26 16:44:54.015196978 +0400
 @@ -26,6 +26,7 @@
    SECTION:=admin
    CATEGORY:=Administration
@@ -139,9 +139,9 @@ diff -ur ../../../downloads/openwrt_trunk-r40859/feeds/packages/admin/zabbix/Mak
  $(eval $(call BuildPackage,zabbix-sender))
  $(eval $(call BuildPackage,zabbix-server))
  $(eval $(call BuildPackage,zabbix-proxy))
-diff -ur ../../../downloads/openwrt_trunk-r40859/feeds/packages/admin/zabbix/patches/010-change-agentd-config.patch ../../../openwrt_trunk/feeds/packages/admin/zabbix/patches/010-change-agentd-config.patch
---- ../../../downloads/openwrt_trunk-r40859/feeds/packages/admin/zabbix/patches/010-change-agentd-config.patch	2014-05-26 13:26:44.295410831 +0400
-+++ ../../../openwrt_trunk/feeds/packages/admin/zabbix/patches/010-change-agentd-config.patch	2014-05-26 13:27:10.031409104 +0400
+diff -ur ../../../downloads/openwrt_trunk-r40859/feeds/oldpackages/admin/zabbix/patches/010-change-agentd-config.patch ../../../openwrt_trunk/feeds/oldpackages/admin/zabbix/patches/010-change-agentd-config.patch
+--- ../../../downloads/openwrt_trunk-r40859/feeds/oldpackages/admin/zabbix/patches/010-change-agentd-config.patch	2014-05-26 13:26:44.295410831 +0400
++++ ../../../openwrt_trunk/feeds/oldpackages/admin/zabbix/patches/010-change-agentd-config.patch	2014-05-26 13:27:10.031409104 +0400
 @@ -10,8 +10,8 @@
  -# Mandatory: no
  -# Default:

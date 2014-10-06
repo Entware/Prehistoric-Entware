@@ -1,6 +1,6 @@
-diff -urx .svn ../../../openwrt_trunk.orig/feeds/packages/net/apcupsd/files/apccontrol ../../../openwrt_trunk/feeds/packages/net/apcupsd/files/apccontrol
---- ../../../openwrt_trunk.orig/feeds/packages/net/apcupsd/files/apccontrol	2012-05-02 16:17:28.210365448 +0400
-+++ ../../../openwrt_trunk/feeds/packages/net/apcupsd/files/apccontrol	2012-05-02 16:18:17.813741849 +0400
+diff -urx .svn ../../../openwrt_trunk.orig/feeds/oldpackages/net/apcupsd/files/apccontrol ../../../openwrt_trunk/feeds/oldpackages/net/apcupsd/files/apccontrol
+--- ../../../openwrt_trunk.orig/feeds/oldpackages/net/apcupsd/files/apccontrol	2012-05-02 16:17:28.210365448 +0400
++++ ../../../openwrt_trunk/feeds/oldpackages/net/apcupsd/files/apccontrol	2012-05-02 16:18:17.813741849 +0400
 @@ -15,14 +15,14 @@
  #
  # These variables are needed for set up the autoconf other variables.
@@ -42,9 +42,9 @@ diff -urx .svn ../../../openwrt_trunk.orig/feeds/packages/net/apcupsd/files/apcc
  	sleep 5
  	`${APCUPSD}`
  	echo "apcupsd"
-diff -urx .svn ../../../openwrt_trunk.orig/feeds/packages/net/apcupsd/files/apcupsd.conf ../../../openwrt_trunk/feeds/packages/net/apcupsd/files/apcupsd.conf
---- ../../../openwrt_trunk.orig/feeds/packages/net/apcupsd/files/apcupsd.conf	2012-05-02 16:17:28.210365448 +0400
-+++ ../../../openwrt_trunk/feeds/packages/net/apcupsd/files/apcupsd.conf	2012-05-02 16:18:17.813741849 +0400
+diff -urx .svn ../../../openwrt_trunk.orig/feeds/oldpackages/net/apcupsd/files/apcupsd.conf ../../../openwrt_trunk/feeds/oldpackages/net/apcupsd/files/apcupsd.conf
+--- ../../../openwrt_trunk.orig/feeds/oldpackages/net/apcupsd/files/apcupsd.conf	2012-05-02 16:17:28.210365448 +0400
++++ ../../../openwrt_trunk/feeds/oldpackages/net/apcupsd/files/apcupsd.conf	2012-05-02 16:18:17.813741849 +0400
 @@ -78,23 +78,23 @@
  
  # LOCKFILE <path to lockfile>
@@ -91,9 +91,9 @@ diff -urx .svn ../../../openwrt_trunk.orig/feeds/packages/net/apcupsd/files/apcu
  
  # LOGSTATS [ on | off ] on enables, off disables
  # Note! This generates a lot of output, so if         
-diff -urx .svn ../../../openwrt_trunk.orig/feeds/packages/net/apcupsd/files/apcupsd_mail.conf ../../../openwrt_trunk/feeds/packages/net/apcupsd/files/apcupsd_mail.conf
---- ../../../openwrt_trunk.orig/feeds/packages/net/apcupsd/files/apcupsd_mail.conf	2012-05-02 16:17:28.210365448 +0400
-+++ ../../../openwrt_trunk/feeds/packages/net/apcupsd/files/apcupsd_mail.conf	2012-05-02 16:18:17.817741799 +0400
+diff -urx .svn ../../../openwrt_trunk.orig/feeds/oldpackages/net/apcupsd/files/apcupsd_mail.conf ../../../openwrt_trunk/feeds/oldpackages/net/apcupsd/files/apcupsd_mail.conf
+--- ../../../openwrt_trunk.orig/feeds/oldpackages/net/apcupsd/files/apcupsd_mail.conf	2012-05-02 16:17:28.210365448 +0400
++++ ../../../openwrt_trunk/feeds/oldpackages/net/apcupsd/files/apcupsd_mail.conf	2012-05-02 16:18:17.817741799 +0400
 @@ -1,6 +1,6 @@
  #!/bin/sh
  
@@ -102,9 +102,9 @@ diff -urx .svn ../../../openwrt_trunk.orig/feeds/packages/net/apcupsd/files/apcu
  MAILHOST="mail:25"
  FROM="OpenWrt"
  TO="apcups@example.com"
-diff -urx .svn ../../../openwrt_trunk.orig/feeds/packages/net/apcupsd/files/changeme ../../../openwrt_trunk/feeds/packages/net/apcupsd/files/changeme
---- ../../../openwrt_trunk.orig/feeds/packages/net/apcupsd/files/changeme	2012-05-02 16:17:28.210365448 +0400
-+++ ../../../openwrt_trunk/feeds/packages/net/apcupsd/files/changeme	2012-05-02 16:18:17.817741799 +0400
+diff -urx .svn ../../../openwrt_trunk.orig/feeds/oldpackages/net/apcupsd/files/changeme ../../../openwrt_trunk/feeds/oldpackages/net/apcupsd/files/changeme
+--- ../../../openwrt_trunk.orig/feeds/oldpackages/net/apcupsd/files/changeme	2012-05-02 16:17:28.210365448 +0400
++++ ../../../openwrt_trunk/feeds/oldpackages/net/apcupsd/files/changeme	2012-05-02 16:18:17.817741799 +0400
 @@ -5,13 +5,13 @@
  # detects that the battery should be replaced.
  # We send an email message to root to notify him.
@@ -121,9 +121,9 @@ diff -urx .svn ../../../openwrt_trunk.orig/feeds/packages/net/apcupsd/files/chan
 +   /opt/sbin/apcaccess status
  ) | $MAILPROG -h $MAILHOST -f $FROM -s "$MSG" $TO
  exit 0
-diff -urx .svn ../../../openwrt_trunk.orig/feeds/packages/net/apcupsd/files/commfailure ../../../openwrt_trunk/feeds/packages/net/apcupsd/files/commfailure
---- ../../../openwrt_trunk.orig/feeds/packages/net/apcupsd/files/commfailure	2012-05-02 16:17:28.214365397 +0400
-+++ ../../../openwrt_trunk/feeds/packages/net/apcupsd/files/commfailure	2012-05-02 16:18:17.817741799 +0400
+diff -urx .svn ../../../openwrt_trunk.orig/feeds/oldpackages/net/apcupsd/files/commfailure ../../../openwrt_trunk/feeds/oldpackages/net/apcupsd/files/commfailure
+--- ../../../openwrt_trunk.orig/feeds/oldpackages/net/apcupsd/files/commfailure	2012-05-02 16:17:28.214365397 +0400
++++ ../../../openwrt_trunk/feeds/oldpackages/net/apcupsd/files/commfailure	2012-05-02 16:18:17.817741799 +0400
 @@ -5,13 +5,13 @@
  # loses contact with the UPS (i.e. the serial connection is not responding).
  # We send an email message to root to notify him.
@@ -140,9 +140,9 @@ diff -urx .svn ../../../openwrt_trunk.orig/feeds/packages/net/apcupsd/files/comm
 +   /opt/sbin/apcaccess status
  ) | $MAILPROG -h $MAILHOST -f $FROM -s "$MSG" $TO
  exit 0
-diff -urx .svn ../../../openwrt_trunk.orig/feeds/packages/net/apcupsd/files/commok ../../../openwrt_trunk/feeds/packages/net/apcupsd/files/commok
---- ../../../openwrt_trunk.orig/feeds/packages/net/apcupsd/files/commok	2012-05-02 16:17:28.210365448 +0400
-+++ ../../../openwrt_trunk/feeds/packages/net/apcupsd/files/commok	2012-05-02 16:18:17.817741799 +0400
+diff -urx .svn ../../../openwrt_trunk.orig/feeds/oldpackages/net/apcupsd/files/commok ../../../openwrt_trunk/feeds/oldpackages/net/apcupsd/files/commok
+--- ../../../openwrt_trunk.orig/feeds/oldpackages/net/apcupsd/files/commok	2012-05-02 16:17:28.210365448 +0400
++++ ../../../openwrt_trunk/feeds/oldpackages/net/apcupsd/files/commok	2012-05-02 16:18:17.817741799 +0400
 @@ -5,13 +5,13 @@
  # restores contact with the UPS (i.e. the serial connection is restored).
  # We send an email message to root to notify him.
@@ -159,9 +159,9 @@ diff -urx .svn ../../../openwrt_trunk.orig/feeds/packages/net/apcupsd/files/comm
 +   /opt/sbin/apcaccess status
  ) | $MAILPROG -h $MAILHOST -f $FROM -s "$MSG" $TO
  exit 0
-diff -urx .svn ../../../openwrt_trunk.orig/feeds/packages/net/apcupsd/files/offbattery ../../../openwrt_trunk/feeds/packages/net/apcupsd/files/offbattery
---- ../../../openwrt_trunk.orig/feeds/packages/net/apcupsd/files/offbattery	2012-05-02 16:17:28.210365448 +0400
-+++ ../../../openwrt_trunk/feeds/packages/net/apcupsd/files/offbattery	2012-05-02 16:18:17.817741799 +0400
+diff -urx .svn ../../../openwrt_trunk.orig/feeds/oldpackages/net/apcupsd/files/offbattery ../../../openwrt_trunk/feeds/oldpackages/net/apcupsd/files/offbattery
+--- ../../../openwrt_trunk.orig/feeds/oldpackages/net/apcupsd/files/offbattery	2012-05-02 16:17:28.210365448 +0400
++++ ../../../openwrt_trunk/feeds/oldpackages/net/apcupsd/files/offbattery	2012-05-02 16:18:17.817741799 +0400
 @@ -5,13 +5,13 @@
  # UPS goes back on to the mains after a power failure.
  # We send an email message to root to notify him.
@@ -178,9 +178,9 @@ diff -urx .svn ../../../openwrt_trunk.orig/feeds/packages/net/apcupsd/files/offb
 +   /opt/sbin/apcaccess status
  ) | $MAILPROG -h $MAILHOST -f $FROM -s "$MSG" $TO
  exit 0
-diff -urx .svn ../../../openwrt_trunk.orig/feeds/packages/net/apcupsd/files/onbattery ../../../openwrt_trunk/feeds/packages/net/apcupsd/files/onbattery
---- ../../../openwrt_trunk.orig/feeds/packages/net/apcupsd/files/onbattery	2012-05-02 16:17:28.210365448 +0400
-+++ ../../../openwrt_trunk/feeds/packages/net/apcupsd/files/onbattery	2012-05-02 16:18:17.817741799 +0400
+diff -urx .svn ../../../openwrt_trunk.orig/feeds/oldpackages/net/apcupsd/files/onbattery ../../../openwrt_trunk/feeds/oldpackages/net/apcupsd/files/onbattery
+--- ../../../openwrt_trunk.orig/feeds/oldpackages/net/apcupsd/files/onbattery	2012-05-02 16:17:28.210365448 +0400
++++ ../../../openwrt_trunk/feeds/oldpackages/net/apcupsd/files/onbattery	2012-05-02 16:18:17.817741799 +0400
 @@ -5,13 +5,13 @@
  # goes on batteries.
  # We send an email message to root to notify him.
@@ -197,9 +197,9 @@ diff -urx .svn ../../../openwrt_trunk.orig/feeds/packages/net/apcupsd/files/onba
 +   /opt/sbin/apcaccess status
  ) | $MAILPROG -h $MAILHOST -f $FROM -s "$MSG" $TO
  exit 0
-diff -urx .svn ../../../openwrt_trunk.orig/feeds/packages/net/apcupsd/Makefile ../../../openwrt_trunk/feeds/packages/net/apcupsd/Makefile
---- ../../../openwrt_trunk.orig/feeds/packages/net/apcupsd/Makefile	2012-05-02 16:17:28.210365448 +0400
-+++ ../../../openwrt_trunk/feeds/packages/net/apcupsd/Makefile	2012-05-31 14:15:46.759572579 +0400
+diff -urx .svn ../../../openwrt_trunk.orig/feeds/oldpackages/net/apcupsd/Makefile ../../../openwrt_trunk/feeds/oldpackages/net/apcupsd/Makefile
+--- ../../../openwrt_trunk.orig/feeds/oldpackages/net/apcupsd/Makefile	2012-05-02 16:17:28.210365448 +0400
++++ ../../../openwrt_trunk/feeds/oldpackages/net/apcupsd/Makefile	2012-05-31 14:15:46.759572579 +0400
 @@ -29,7 +29,7 @@
  	$(CP) $(SCRIPT_DIR)/config.* $(PKG_BUILD_DIR)/autoconf/
  	$(call Build/Configure/Default, \

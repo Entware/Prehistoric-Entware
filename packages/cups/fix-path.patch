@@ -1,6 +1,6 @@
-diff -urx .svn ../../../downloads/mipsel-hardfloat/openwrt_trunk-r40423/feeds/packages/net/cups/files/etc/cups/cupsd.conf ../../../openwrt_trunk/feeds/packages/net/cups/files/etc/cups/cupsd.conf
---- ../../../downloads/mipsel-hardfloat/openwrt_trunk-r40423/feeds/packages/net/cups/files/etc/cups/cupsd.conf	2014-04-09 16:17:24.178286483 +0400
-+++ ../../../openwrt_trunk/feeds/packages/net/cups/files/etc/cups/cupsd.conf	2014-04-09 16:53:25.978247102 +0400
+diff -urx .svn ../../../downloads/mipsel-hardfloat/openwrt_trunk-r40423/feeds/oldpackages/net/cups/files/etc/cups/cupsd.conf ../../../openwrt_trunk/feeds/oldpackages/net/cups/files/etc/cups/cupsd.conf
+--- ../../../downloads/mipsel-hardfloat/openwrt_trunk-r40423/feeds/oldpackages/net/cups/files/etc/cups/cupsd.conf	2014-04-09 16:17:24.178286483 +0400
++++ ../../../openwrt_trunk/feeds/oldpackages/net/cups/files/etc/cups/cupsd.conf	2014-04-09 16:53:25.978247102 +0400
 @@ -21,12 +21,12 @@
  MaxPrinterHistory 10
  #Printcap /etc/printcap
@@ -16,9 +16,9 @@ diff -urx .svn ../../../downloads/mipsel-hardfloat/openwrt_trunk-r40423/feeds/pa
  Port 631
  HostNameLookups Off
  KeepAlive On
-diff -urx .svn ../../../downloads/mipsel-hardfloat/openwrt_trunk-r40423/feeds/packages/net/cups/Makefile ../../../openwrt_trunk/feeds/packages/net/cups/Makefile
---- ../../../downloads/mipsel-hardfloat/openwrt_trunk-r40423/feeds/packages/net/cups/Makefile	2014-04-09 16:17:24.178286483 +0400
-+++ ../../../openwrt_trunk/feeds/packages/net/cups/Makefile	2014-04-09 16:53:25.978247102 +0400
+diff -urx .svn ../../../downloads/mipsel-hardfloat/openwrt_trunk-r40423/feeds/oldpackages/net/cups/Makefile ../../../openwrt_trunk/feeds/oldpackages/net/cups/Makefile
+--- ../../../downloads/mipsel-hardfloat/openwrt_trunk-r40423/feeds/oldpackages/net/cups/Makefile	2014-04-09 16:17:24.178286483 +0400
++++ ../../../openwrt_trunk/feeds/oldpackages/net/cups/Makefile	2014-04-09 16:53:25.978247102 +0400
 @@ -15,7 +15,7 @@
  PKG_SOURCE_URL:= http://www.cups.org/software/$(PKG_VERSION)
  PKG_MD5SUM:=de3006e5cf1ee78a9c6145ce62c4e982

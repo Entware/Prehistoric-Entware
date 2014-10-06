@@ -1,5 +1,5 @@
---- ../../../downloads/openwrt_trunk-r36569/feeds/packages/utils/xz/Makefile	2013-05-07 10:43:08.397939356 +0400
-+++ ../../../openwrt_trunk/feeds/packages/utils/xz/Makefile	2013-05-07 11:15:22.189904132 +0400
+--- ../../../downloads/openwrt_trunk-r36569/feeds/oldpackages/utils/xz/Makefile	2013-05-07 10:43:08.397939356 +0400
++++ ../../../openwrt_trunk/feeds/oldpackages/utils/xz/Makefile	2013-05-07 11:15:22.189904132 +0400
 @@ -85,20 +85,20 @@
  	--disable-werror
  

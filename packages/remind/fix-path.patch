@@ -1,5 +1,5 @@
---- ../../../downloads/openwrt_trunk-r35953/feeds/packages/utils/remind/Makefile	2013-03-11 09:29:39.774073807 +0400
-+++ ../../../openwrt_trunk/feeds/packages/utils/remind/Makefile	2013-03-11 11:24:48.509947687 +0400
+--- ../../../downloads/openwrt_trunk-r35953/feeds/oldpackages/utils/remind/Makefile	2013-03-11 09:29:39.774073807 +0400
++++ ../../../openwrt_trunk/feeds/oldpackages/utils/remind/Makefile	2013-03-11 11:24:48.509947687 +0400
 @@ -31,15 +31,15 @@
  
  define Build/Configure

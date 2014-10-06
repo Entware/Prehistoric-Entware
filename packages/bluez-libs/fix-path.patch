@@ -1,5 +1,5 @@
---- ../../../openwrt_trunk.orig/feeds/packages/libs/bluez-libs/Makefile	2011-12-05 10:46:43.000000000 +0400
-+++ ../../../openwrt_trunk/feeds/packages/libs/bluez-libs/Makefile	2011-12-20 14:00:11.793854660 +0400
+--- ../../../openwrt_trunk.orig/feeds/oldpackages/libs/bluez-libs/Makefile	2011-12-05 10:46:43.000000000 +0400
++++ ../../../openwrt_trunk/feeds/oldpackages/libs/bluez-libs/Makefile	2011-12-20 14:00:11.793854660 +0400
 @@ -34,17 +34,17 @@
  TARGET_CFLAGS += $(FPIC)
  

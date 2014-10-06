@@ -1,5 +1,5 @@
---- ../../../downloads/openwrt_trunk-r36151/feeds/packages/net/n2n/Makefile
-+++ ../../../openwrt_trunk/feeds/packages/net/n2n/Makefile
+--- ../../../downloads/openwrt_trunk-r36151/feeds/oldpackages/net/n2n/Makefile
++++ ../../../openwrt_trunk/feeds/oldpackages/net/n2n/Makefile
 @@ -7,14 +7,12 @@
  
  include $(TOPDIR)/rules.mk

@@ -1,5 +1,5 @@
---- ../../../downloads/mipsel-hardfloat/openwrt_trunk-r40423/feeds/packages/ipv6/gw6c/Makefile	2014-04-09 16:17:24.282286481 +0400
-+++ ../../../openwrt_trunk/feeds/packages/ipv6/gw6c/Makefile	2014-04-11 12:33:18.019383797 +0400
+--- ../../../downloads/mipsel-hardfloat/openwrt_trunk-r40423/feeds/oldpackages/ipv6/gw6c/Makefile	2014-04-09 16:17:24.282286481 +0400
++++ ../../../openwrt_trunk/feeds/oldpackages/ipv6/gw6c/Makefile	2014-04-11 12:33:18.019383797 +0400
 @@ -1,25 +1,24 @@
 -#
 -# Copyright (C) 2008-2014 OpenWrt.org

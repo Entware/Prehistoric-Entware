@@ -1,5 +1,5 @@
---- ../../../downloads/mipsel-hardfloat/openwrt_trunk-r40423/feeds/packages/libs/elfutils/Makefile	2014-04-09 16:17:24.302286481 +0400
-+++ ../../../openwrt_trunk/feeds/packages/libs/elfutils/Makefile	2014-04-09 16:53:27.466247075 +0400
+--- ../../../downloads/mipsel-hardfloat/openwrt_trunk-r40423/feeds/oldpackages/libs/elfutils/Makefile	2014-04-09 16:17:24.302286481 +0400
++++ ../../../openwrt_trunk/feeds/oldpackages/libs/elfutils/Makefile	2014-04-09 16:53:27.466247075 +0400
 @@ -14,7 +14,6 @@
  PKG_SOURCE_URL:=http://fedorahosted.org/releases/e/l/$(PKG_NAME)/$(PKG_VERSION)
  PKG_MD5SUM:=163a5712b86f6bdfebdf233cc6e2192d

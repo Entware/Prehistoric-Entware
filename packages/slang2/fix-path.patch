@@ -1,6 +1,6 @@
-diff -urx .svn ../../../downloads/mipsel-hardfloat/openwrt_trunk-r40423/feeds/packages/libs/slang2/files/ncurses5-config ../../../openwrt_trunk/feeds/packages/libs/slang2/files/ncurses5-config
---- ../../../downloads/mipsel-hardfloat/openwrt_trunk-r40423/feeds/packages/libs/slang2/files/ncurses5-config	2014-04-09 16:17:24.302286481 +0400
-+++ ../../../openwrt_trunk/feeds/packages/libs/slang2/files/ncurses5-config	2014-04-09 16:53:33.770246961 +0400
+diff -urx .svn ../../../downloads/mipsel-hardfloat/openwrt_trunk-r40423/feeds/oldpackages/libs/slang2/files/ncurses5-config ../../../openwrt_trunk/feeds/oldpackages/libs/slang2/files/ncurses5-config
+--- ../../../downloads/mipsel-hardfloat/openwrt_trunk-r40423/feeds/oldpackages/libs/slang2/files/ncurses5-config	2014-04-09 16:17:24.302286481 +0400
++++ ../../../openwrt_trunk/feeds/oldpackages/libs/slang2/files/ncurses5-config	2014-04-09 16:53:33.770246961 +0400
 @@ -1,6 +1,6 @@
  #!/bin/sh
  
@@ -9,9 +9,9 @@ diff -urx .svn ../../../downloads/mipsel-hardfloat/openwrt_trunk-r40423/feeds/pa
 +	echo "/opt/share/terminfo"
  fi
  
-diff -urx .svn ../../../downloads/mipsel-hardfloat/openwrt_trunk-r40423/feeds/packages/libs/slang2/Makefile ../../../openwrt_trunk/feeds/packages/libs/slang2/Makefile
---- ../../../downloads/mipsel-hardfloat/openwrt_trunk-r40423/feeds/packages/libs/slang2/Makefile	2014-04-09 16:17:24.302286481 +0400
-+++ ../../../openwrt_trunk/feeds/packages/libs/slang2/Makefile	2014-04-11 15:14:06.007208548 +0400
+diff -urx .svn ../../../downloads/mipsel-hardfloat/openwrt_trunk-r40423/feeds/oldpackages/libs/slang2/Makefile ../../../openwrt_trunk/feeds/oldpackages/libs/slang2/Makefile
+--- ../../../downloads/mipsel-hardfloat/openwrt_trunk-r40423/feeds/oldpackages/libs/slang2/Makefile	2014-04-09 16:17:24.302286481 +0400
++++ ../../../openwrt_trunk/feeds/oldpackages/libs/slang2/Makefile	2014-04-11 15:14:06.007208548 +0400
 @@ -73,24 +73,24 @@
  endef
  
