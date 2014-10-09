@@ -1,0 +1,14 @@
+--- a/ev_epoll.c
++++ b/ev_epoll.c
+@@ -238,11 +238,6 @@
+ int inline_size
+ epoll_init (EV_P_ int flags)
+ {
+-#ifdef EPOLL_CLOEXEC
+-  backend_fd = epoll_create1 (EPOLL_CLOEXEC);
+-
+-  if (backend_fd < 0 && (errno == EINVAL || errno == ENOSYS))
+-#endif
+     backend_fd = epoll_create (256);
+ 
+   if (backend_fd < 0)

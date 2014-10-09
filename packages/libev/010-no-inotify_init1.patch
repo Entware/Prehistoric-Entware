@@ -1,0 +1,14 @@
+--- a/ev.c
++++ b/ev.c
+@@ -4158,11 +4158,6 @@
+ inline_size int
+ infy_newfd (void)
+ {
+-#if defined IN_CLOEXEC && defined IN_NONBLOCK
+-  int fd = inotify_init1 (IN_CLOEXEC | IN_NONBLOCK);
+-  if (fd >= 0)
+-    return fd;
+-#endif
+   return inotify_init ();
+ }
+ 
