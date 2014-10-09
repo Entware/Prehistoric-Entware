@@ -1,0 +1,46 @@
+--- a/configure.ac
++++ b/configure.ac
+@@ -1,7 +1,6 @@
+ AC_PREREQ([2.65])
+ AC_INIT([dnscrypt-proxy],[1.4.1],[http://dnscrypt.org])
+ AC_CONFIG_MACRO_DIR([m4])
+-AC_CONFIG_AUX_DIR([libltdl/config])
+ AC_CONFIG_SRCDIR([src/proxy/app.c])
+ AC_CONFIG_HEADER([config.h])
+ AC_CONFIG_SUBDIRS([src/libevent-modified])
+@@ -105,7 +104,6 @@
+ 
+ AC_PROG_CC_C99
+ AC_USE_SYSTEM_EXTENSIONS
+-CPPFLAGS="$CPPFLAGS -D_FORTIFY_SOURCE=2"
+ 
+ AX_CHECK_COMPILE_FLAG([-fPIC], [
+   AX_CHECK_LINK_FLAG([-fPIC],
+@@ -229,14 +227,6 @@
+ 
+ AC_SUBST([PROBES_SOURCE])
+ 
+-AS_IF([test -d /usr/local/include], [
+-  CPPFLAGS="$CPPFLAGS -I/usr/local/include"
+-])
+-
+-AS_IF([test -d /usr/local/lib], [
+-  LDFLAGS="$LDFLAGS -L/usr/local/lib"
+-])
+-
+ dnl Checks for header files.
+ 
+ AC_SYS_LARGEFILE
+@@ -413,12 +403,6 @@
+ AC_CHECK_FUNCS([getpwnam sandbox_init setrlimit putc_unlocked gmtime_r])
+ AC_CHECK_FUNCS([sodium_mlock])
+ 
+-dnl Libtool.
+-
+-LT_INIT([dlopen])
+-LT_CONFIG_LTDL_DIR([libltdl])
+-LTDL_INIT
+-
+ dnl Subconfig.
+ 
+ case $host_os in

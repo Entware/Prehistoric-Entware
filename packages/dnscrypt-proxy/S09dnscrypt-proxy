@@ -1,0 +1,10 @@
+#!/bin/sh
+
+ENABLED=yes
+PROCS=dnscrypt-proxy
+ARGS="--local-address=127.0.0.1:65053 --daemonize -R opendns"
+PREARGS=""
+DESC=$PROCS
+PATH=/opt/sbin:/opt/bin:/opt/usr/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin
+
+. /opt/etc/init.d/rc.func

@@ -1,0 +1,107 @@
+--- ../../../downloads/openwrt_trunk-r42803/feeds/packages/net/dnscrypt-proxy/Makefile	2014-10-09 13:29:46.601178698 +0400
++++ ../../../openwrt_trunk/feeds/packages/net/dnscrypt-proxy/Makefile	2014-10-09 15:46:17.977030296 +0400
+@@ -60,7 +60,7 @@
+ 
+ define Build/Configure
+ 	$(call Build/Configure/Default, \
+-	--prefix=/usr \
++	--prefix=/opt \
+ 	--disable-ssp \
+ 	)
+ endef
+@@ -78,43 +78,68 @@
+ 	LDFLAGS="$(TARGET_LDFLAGS)"
+ 
+ define Package/dnscrypt-proxy/install
+-	$(INSTALL_DIR) $(1)/usr/sbin
+-	$(CP) $(PKG_INSTALL_DIR)/usr/sbin/dnscrypt-proxy $(1)/usr/sbin/
+-	$(INSTALL_DIR) $(1)/usr/share/dnscrypt-proxy
+-	$(CP) $(PKG_INSTALL_DIR)/usr/share/dnscrypt-proxy/dnscrypt-resolvers.csv $(1)/usr/share/dnscrypt-proxy/
+-	$(INSTALL_DIR) $(1)/etc/init.d
+-	$(INSTALL_BIN) ./files/dnscrypt-proxy.init $(1)/etc/init.d/dnscrypt-proxy
+-	$(INSTALL_DIR) $(1)/etc/config
+-	$(INSTALL_CONF) ./files/dnscrypt-proxy.config $(1)/etc/config/dnscrypt-proxy
++	$(INSTALL_DIR) $(1)/opt/sbin
++	$(CP) $(PKG_INSTALL_DIR)/opt/sbin/dnscrypt-proxy $(1)/opt/sbin/
++	$(INSTALL_DIR) $(1)/opt/share/dnscrypt-proxy
++	$(CP) $(PKG_INSTALL_DIR)/opt/share/dnscrypt-proxy/dnscrypt-resolvers.csv $(1)/opt/share/dnscrypt-proxy/
++	$(INSTALL_DIR) $(1)/opt/etc/init.d
++	$(INSTALL_BIN) ./files/S09dnscrypt-proxy $(1)/etc/init.d/
+ endef
+ 
+ define Package/dnscrypt-proxy/postinst
+ #!/bin/sh
+-# check if we are on real system
+-if [ -z "$${IPKG_INSTROOT}" ]; then
+-        echo "Enabling rc.d symlink for dnscrypt-proxy"
+-        /etc/init.d/dnscrypt-proxy enable
+-fi
+-exit 0
+-endef
+ 
+-define Package/dnscrypt-proxy/prerm
++[ -z "$$(which grep)" ] && exit 0
++[ -z "$$(which awk)" ] && exit 0
++
++echo "By default, dnscrypt-proxy will use the OpenDNS dnscrypt server."
++echo "You may choose another one if you wish:"
++
++SRVLIST=/opt/share/dnscrypt-proxy/dnscrypt-resolvers.csv
++i=0
++for serv in $$(cat $$SRVLIST | awk -F "," "{print \$$1}")
++do
++    fullname=$$(grep "^$$serv," $$SRVLIST | awk -F "," "{print \$$2}" )
++    if [ ! $$i -eq 0 ]
++    then
++        echo "$$i) $$serv ($$fullname)"
++    fi
++    i=`expr $$i + 1`
++done
++read -p "Choose server from list or hit Enter to continue [1-`expr $$i - 1`]: " OPTION
++[ -z "$$OPTION" ] && exit 0
++srv=none
++i=0
++for serv in $$(cat $$SRVLIST | awk -F "," "{print \$$1}")
++do
++    if [ ! $$i -eq 0 ] && [ $$i -eq $$OPTION ]
++    then
++        srv=$$serv
++        break
++    fi
++    i=`expr $$i + 1`
++done
++[ "$$srv" == "none" ] && exit 0
++SCRIPT=/opt/etc/init.d/S09dnscrypt-proxy
++cat > $$SCRIPT << EOF
+ #!/bin/sh
+-# check if we are on real system
+-if [ -z "$${IPKG_INSTROOT}" ]; then
+-        echo "Removing rc.d symlink for dnscrypt-proxy"
+-        /etc/init.d/dnscrypt-proxy disable
+-fi
+-exit 0
+-endef
+ 
+-define Package/dnscrypt-proxy/conffiles
+-  /etc/config/dnscrypt-proxy
++ENABLED=yes
++PROCS=dnscrypt-proxy
++ARGS="--local-address=127.0.0.1:65053 --daemonize -R $$srv"
++PREARGS=""
++DESC=$$PROCS
++PATH=/opt/sbin:/opt/bin:/opt/usr/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin
++
++. /opt/etc/init.d/rc.func
++
++EOF
++chmod +x $$SCRIPT
+ endef
+ 
+ define Package/hostip/install
+-	$(INSTALL_DIR) $(1)/usr/bin
+-	$(CP) $(PKG_INSTALL_DIR)/usr/bin/hostip $(1)/usr/bin/
++	$(INSTALL_DIR) $(1)/opt/bin
++	$(CP) $(PKG_INSTALL_DIR)/opt/bin/hostip $(1)/opt/bin/
+ endef
+ 
+ $(eval $(call BuildPackage,dnscrypt-proxy))
