@@ -1,0 +1,28 @@
+--- ../../../downloads/openwrt_trunk-r42803/feeds/packages/ipv6/aiccu/Makefile	2014-10-09 13:29:46.613178699 +0400
++++ ../../../openwrt_trunk/feeds/packages/ipv6/aiccu/Makefile	2014-10-09 13:57:35.469147722 +0400
+@@ -24,7 +24,7 @@
+ define Package/aiccu
+   SECTION:=net
+   CATEGORY:=Network
+-  DEPENDS:=+libpthread +ip +kmod-sit +kmod-tun
++  DEPENDS:=+libpthread
+   TITLE:=SixXS Automatic IPv6 Connectivity Client Utility
+   URL:=http://www.sixxs.net/tools/aiccu/
+   MAINTAINER:=Ondrej Caletka <ondrej@caletka.cz>
+@@ -42,14 +42,9 @@
+ 		DEBUG=0
+ endef
+ 
+-define Package/aiccu/conffiles
+-/etc/config/aiccu
+-endef
+-
+ define Package/aiccu/install
+-	$(INSTALL_DIR) $(1)/usr/sbin $(1)/lib/netifd/proto
+-	$(INSTALL_BIN) $(PKG_BUILD_DIR)/unix-console/$(PKG_NAME) $(1)/usr/sbin/
+-	$(INSTALL_BIN) ./files/aiccu.sh $(1)/lib/netifd/proto/aiccu.sh
++	$(INSTALL_DIR) $(1)/opt/sbin
++	$(INSTALL_BIN) $(PKG_BUILD_DIR)/unix-console/$(PKG_NAME) $(1)/opt/sbin/
+ endef
+ 
+ $(eval $(call BuildPackage,aiccu))

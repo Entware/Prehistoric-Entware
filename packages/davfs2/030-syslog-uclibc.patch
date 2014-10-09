@@ -1,0 +1,75 @@
+--- a/src/webdav.c
++++ b/src/webdav.c
+@@ -41,9 +41,7 @@
+ #include <stdint.h>
+ #endif
+ #include <stdio.h>
+-#ifdef HAVE_STDLIB_H
+ #include <stdlib.h>
+-#endif
+ #include <string.h>
+ #ifdef HAVE_SYSLOG_H
+ #include <syslog.h>
+@@ -163,7 +161,11 @@
+     {NULL, NULL}
+ };
+ 
+-static size_t log_bufsize = 512;
++typedef struct {
++  char *buffer;
++  size_t size;
++} log_buffer_t;
++static const size_t log_bufsize = 1024;
+ 
+ static char *none_match_header = "If-None-Match: *\r\n";
+ 
+@@ -368,7 +370,8 @@
+         error(EXIT_FAILURE, errno, _("socket library initialization failed"));
+ 
+     if (args->neon_debug & ~NE_DBG_HTTPPLAIN) {
+-        char *buf = malloc(log_bufsize);
++        log_buffer_t *buf = malloc(sizeof(log_buffer_t));
++        buf->buffer = malloc(log_bufsize);
+         cookie_io_functions_t *log_func = malloc(sizeof(cookie_io_functions_t));
+         if (!log_func) abort();
+         log_func->read = NULL;
+@@ -1544,21 +1547,27 @@
+ 
+     size_t written = 0;
+     const char *bpos = buffer;
++    log_buffer_t *log_buf = (log_buffer_t *)cookie;
++    char *spos = log_buf->buffer;
++    char *cpos = &spos[log_buf->size];
+     while (written < size) {
+-        size_t n = 2;
+-        char *cpos = (char *) cookie;
+-        while (n < log_bufsize && written < size) {
+-            if (*bpos == '%') {
+-                *cpos++ = '%';
+-                n++;
+-            }
+-            *cpos++ = *bpos++;
+-            n++;
+-            written++;
++        /* if there is no buffering we have to take care of printing
++           as syslog treats each call as a new line. Take care not to
++           overflow buffer if text is too long */
++        if (*bpos == '\n' || cpos - spos >= log_bufsize) {
++            *cpos = '\0';
++            syslog(LOG_MAKEPRI(LOG_DAEMON, LOG_DEBUG), "%s", log_buf->buffer);
++            /* restart filling our output buffer */
++            cpos = log_buf->buffer;
++        } else {
++            *cpos++ = *bpos;
+         }
+-        *cpos = '\0';
+-        syslog(LOG_MAKEPRI(LOG_DAEMON, LOG_DEBUG), "%s", (char *) cookie);
++        bpos++;
++        written++;
+     }
++
++    /* subtract ending address from starting address to current get buffer size */
++    log_buf->size = cpos - spos;
+     return written;
+ }
+ 

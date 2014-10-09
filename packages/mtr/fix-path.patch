@@ -1,6 +1,6 @@
---- ../../../openwrt_trunk.orig/feeds/oldpackages/net/mtr/Makefile
-+++ ../../../openwrt_trunk/feeds/oldpackages/net/mtr/Makefile
-@@ -60,8 +60,8 @@
+--- ../../../openwrt_trunk.orig/feeds/packages/net/mtr/Makefile
++++ ../../../openwrt_trunk/feeds/packages/net/mtr/Makefile
+@@ -61,8 +61,8 @@
  endef
  
  define Package/mtr/install

@@ -1,0 +1,11 @@
+--- a/etc/davfs2.conf
++++ b/etc/davfs2.conf
+@@ -67,7 +67,7 @@
+ # file_refresh    1                 # second
+ # delay_upload    10
+ # gui_optimize    0
+-# minimize_mem    0
++minimize_mem    1
+ 
+ # Debugging Options
+ # -----------------

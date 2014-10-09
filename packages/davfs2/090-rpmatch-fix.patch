@@ -1,0 +1,22 @@
+--- a/src/webdav.c
++++ b/src/webdav.c
+@@ -2036,15 +2036,12 @@ ssl_verify(void *userdata, int failures,
+                      "verify the fingerprint! The server might be faked\n"
+                      "or there might be a man-in-the-middle-attack.\n"));
+             printf(_("Accept certificate for this session? [y,N] "));
+-            char *s = NULL;
+-            size_t n = 0;
+-            ssize_t len = 0;
+-            len = getline(&s, &n, stdin);
+-            if (len < 0)
++            char yesno[3];
++            fflush(stdout);
++            if (fgets(yesno, sizeof(yesno), stdin) == NULL)
+                 abort();
+-            if (rpmatch(s) > 0)
++            if (yesno[0] == 'y' || yesno[0] == 'Y')
+                 ret = 0;
+-            free(s);
+     } 
+ 
+     if (failures & NE_SSL_NOTYETVALID)
