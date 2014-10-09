@@ -1,5 +1,5 @@
---- ../../../openwrt_trunk.orig/feeds/oldpackages/libs/libyaml/Makefile	2013-05-10 18:57:39.515281094 +0400
-+++ ../../../openwrt_trunk/feeds/oldpackages/libs/libyaml/Makefile	2013-06-06 10:06:25.970993251 +0400
+--- ../../../openwrt_trunk.orig/feeds/oldpackages/libs/libyaml/Makefile
++++ ../../../openwrt_trunk/feeds/oldpackages/libs/libyaml/Makefile
 @@ -35,14 +35,14 @@
  endef
  

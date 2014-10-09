@@ -1,5 +1,5 @@
---- a/src/mime.c	2011-12-05 13:10:55.000000000 +0400
-+++ b/src/mime.c	2011-12-09 11:08:58.528681854 +0400
+--- a/src/mime.c
++++ b/src/mime.c
 @@ -64,6 +64,7 @@
    { "qt",    UPNP_VIDEO, "http-get:*:video/quicktime:"},
    { "bin",   UPNP_VIDEO, "http-get:*:video/mpeg2:"},

@@ -1,5 +1,5 @@
---- ../../../openwrt_trunk.orig/feeds/oldpackages/net/quicktun/Makefile	2012-06-11 17:15:52.624735534 +0400
-+++ ../../../openwrt_trunk/feeds/oldpackages/net/quicktun/Makefile	2012-06-15 21:55:54.091867866 +0400
+--- ../../../openwrt_trunk.orig/feeds/oldpackages/net/quicktun/Makefile
++++ ../../../openwrt_trunk/feeds/oldpackages/net/quicktun/Makefile
 @@ -22,7 +22,6 @@
  define Package/quicktun
    SECTION:=net

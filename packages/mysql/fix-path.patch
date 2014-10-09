@@ -1,6 +1,6 @@
-diff -urx .svn ../../../downloads/mipsel-hardfloat/openwrt_trunk-r40423/feeds/packages/libs/mysql/conf/my.cnf ../../../openwrt_trunk/feeds/packages/libs/mysql/conf/my.cnf
---- ../../../downloads/mipsel-hardfloat/openwrt_trunk-r40423/feeds/packages/libs/mysql/conf/my.cnf	2014-04-09 16:17:24.282286481 +0400
-+++ ../../../openwrt_trunk/feeds/packages/libs/mysql/conf/my.cnf	2014-04-09 16:53:29.166247045 +0400
+diff -ur ../../../downloads/openwrt_trunk-r42803/feeds/packages/utils/mysql/conf/my.cnf ../../../openwrt_trunk/feeds/packages/utils/mysql/conf/my.cnf
+--- ../../../downloads/openwrt_trunk-r42803/feeds/packages/utils/mysql/conf/my.cnf	2014-10-06 15:46:23.777250645 +0400
++++ ../../../openwrt_trunk/feeds/packages/utils/mysql/conf/my.cnf	2014-10-08 13:57:24.342723449 +0400
 @@ -1,20 +1,20 @@
  [client]
  port		= 3306
@@ -43,10 +43,10 @@ diff -urx .svn ../../../downloads/mipsel-hardfloat/openwrt_trunk-r40423/feeds/pa
  #expire_logs_days	= 10
  #max_binlog_size         = 100M
  #binlog_do_db		= include_database_name
-diff -urx .svn ../../../downloads/mipsel-hardfloat/openwrt_trunk-r40423/feeds/packages/libs/mysql/Makefile ../../../openwrt_trunk/feeds/packages/libs/mysql/Makefile
---- ../../../downloads/mipsel-hardfloat/openwrt_trunk-r40423/feeds/packages/libs/mysql/Makefile	2014-04-09 16:17:24.282286481 +0400
-+++ ../../../openwrt_trunk/feeds/packages/libs/mysql/Makefile	2014-04-11 14:16:05.331271282 +0400
-@@ -70,7 +70,7 @@
+diff -ur ../../../downloads/openwrt_trunk-r42803/feeds/packages/utils/mysql/Makefile ../../../openwrt_trunk/feeds/packages/utils/mysql/Makefile
+--- ../../../downloads/openwrt_trunk-r42803/feeds/packages/utils/mysql/Makefile	2014-10-06 15:46:23.777250645 +0400
++++ ../../../openwrt_trunk/feeds/packages/utils/mysql/Makefile	2014-10-08 13:57:24.346723238 +0400
+@@ -71,7 +71,7 @@
  	--with-server \
  	--without-mysqlmanager \
  	--with-mysqld-user=root \
@@ -55,7 +55,7 @@ diff -urx .svn ../../../downloads/mipsel-hardfloat/openwrt_trunk-r40423/feeds/pa
  	--without-libwrap \
  	--with-low-memory \
  	--without-embedded-server \
-@@ -78,7 +78,7 @@
+@@ -79,7 +79,7 @@
  	--without-ssl \
  	--without-docs \
  	--without-man \
@@ -64,7 +64,7 @@ diff -urx .svn ../../../downloads/mipsel-hardfloat/openwrt_trunk-r40423/feeds/pa
  	--without-debug \
  	--with-named-thread-libs=-lpthread
  
-@@ -138,47 +138,52 @@
+@@ -139,47 +139,52 @@
  
  
  define Build/InstallDev

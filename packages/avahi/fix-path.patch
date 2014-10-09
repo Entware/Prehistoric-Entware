@@ -1,6 +1,6 @@
---- ../../../openwrt_trunk.orig/feeds/packages/libs/avahi/Makefile	2012-10-09 11:59:35.162030615 +0400
-+++ ../../../openwrt_trunk/feeds/packages/libs/avahi/Makefile	2012-10-09 13:31:32.477928889 +0400
-@@ -111,9 +111,9 @@
+--- ../../../openwrt_trunk.orig/feeds/packages/libs/avahi/Makefile
++++ ../../../openwrt_trunk/feeds/packages/libs/avahi/Makefile
+@@ -112,9 +112,9 @@
  endef
  
  define Package/avahi-daemon/conffiles
@@ -13,7 +13,7 @@
  endef
  
  define Package/avahi-dnsconfd
-@@ -242,17 +242,17 @@
+@@ -243,17 +243,17 @@
  	ac_cv_header_sys_capability_h=no \
  
  define Build/InstallDev
@@ -39,7 +39,7 @@
  endef
  
  define Package/libavahi/install
-@@ -263,44 +263,44 @@
+@@ -264,44 +264,44 @@
  	# "Other" means this: if the current build is "dbus", the other is "nodebus",
  	# and if the current build is "nodbus", the other is "dbus".
  	$(RM) -f $(PKG_ALT_DIR)/.built

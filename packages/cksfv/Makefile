@@ -9,8 +9,8 @@ all: .done
 
 .done:
 	patch -d $(TOP) -p3 -i $(CURDIR)/fix-path.patch
-	mkdir -p ../../../openwrt_trunk/feeds/packages/utils/cksfv/patches
-	cp -f ./010-debian-612741.patch ../../../openwrt_trunk/feeds/packages/utils/cksfv/
+	mkdir -p ../../../openwrt_trunk/feeds/oldpackages/utils/cksfv/patches
+	cp -f ./010-debian-612741.patch ../../../openwrt_trunk/feeds/oldpackages/utils/cksfv/
 	@touch $@
 
 clean:

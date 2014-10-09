@@ -1,12 +1,18 @@
---- ../../../openwrt_trunk/feeds/packages/multimedia/mjpg-streamer/Makefile.orig	2013-10-12 19:12:46.000000000 +0400
-+++ ../../../openwrt_trunk/feeds/packages/multimedia/mjpg-streamer/Makefile	2013-10-12 21:47:15.003192918 +0400
-@@ -40,34 +40,30 @@
+--- ../../../downloads/openwrt_trunk-r42803/feeds/packages/multimedia/mjpg-streamer/Makefile	2014-10-06 15:46:23.733250644 +0400
++++ ../../../openwrt_trunk/feeds/packages/multimedia/mjpg-streamer/Makefile	2014-10-08 13:40:57.274738215 +0400
+@@ -46,10 +46,6 @@
+ 
  EXTRA_CFLAGS += $(TARGET_CPPFLAGS) $(TARGET_LDFLAGS)
  
- define Package/mjpg-streamer/conffiles
+-define Package/mjpg-streamer/conffiles
 -/etc/config/mjpg-streamer
-+/opt/etc/config/mjpg-streamer
- endef
+-endef
+-
+ CAMBOZOLA:=cambozola-latest.tar.gz
+ 
+ define Download/cambozola
+@@ -75,34 +71,30 @@
+ endif
  
  define Package/mjpg-streamer/install
 -	$(INSTALL_DIR) $(1)/usr/bin
@@ -31,19 +37,25 @@
 -	$(CP) $(PKG_BUILD_DIR)/input_uvc.so $(1)/usr/lib
 +	$(CP) $(PKG_BUILD_DIR)/input_uvc.so $(1)/opt/lib
  endif
+ ifeq ($(CONFIG_MJPG_STREAMER_INPUT_TESTPICTURE),y)
+-	$(CP) $(PKG_BUILD_DIR)/input_testpicture.so $(1)/usr/lib
++	$(CP) $(PKG_BUILD_DIR)/input_testpicture.so $(1)/opt/lib
+ endif
  ifeq ($(CONFIG_MJPG_STREAMER_OUTPUT_FILE),y)
 -	$(CP) $(PKG_BUILD_DIR)/output_file.so $(1)/usr/lib
 +	$(CP) $(PKG_BUILD_DIR)/output_file.so $(1)/opt/lib
  endif
  ifeq ($(CONFIG_MJPG_STREAMER_OUTPUT_HTTP),y)
 -	$(CP) $(PKG_BUILD_DIR)/output_http.so $(1)/usr/lib
-+	$(CP) $(PKG_BUILD_DIR)/output_http.so $(1)/opt/lib
- endif
- ifeq ($(CONFIG_MJPG_STREAMER_WWW),y)
 -	$(INSTALL_DIR) $(1)/www/webcam
--	$(INSTALL_DATA) $(PKG_BUILD_DIR)/www/* $(1)/www/webcam
++	$(CP) $(PKG_BUILD_DIR)/output_http.so $(1)/opt/lib
 +	$(INSTALL_DIR) $(1)/opt/share/www/webcam
+     ifeq ($(CONFIG_MJPG_STREAMER_WWW),y)
+-	$(INSTALL_DATA) $(PKG_BUILD_DIR)/www/* $(1)/www/webcam
 +	$(INSTALL_DATA) $(PKG_BUILD_DIR)/www/* $(1)/opt/share/www/webcam
+     else
+-	$(INSTALL_DATA) $(PKG_BUILD_DIR)/www/stream_simple.html $(1)/www/webcam/index.html
++	$(INSTALL_DATA) $(PKG_BUILD_DIR)/www/stream_simple.html $(1)/opt/share/www/webcam/index.html
+     endif
  endif
  endef
- 

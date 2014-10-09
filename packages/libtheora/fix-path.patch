@@ -1,6 +1,6 @@
---- ../../../openwrt_trunk.orig/feeds/packages/libs/libtheora/Makefile	2011-12-05 10:46:44.000000000 +0400
-+++ ../../../openwrt_trunk/feeds/packages/libs/libtheora/Makefile	2011-12-09 14:18:11.401005102 +0400
-@@ -48,17 +48,17 @@
+--- ../../../openwrt_trunk.orig/feeds/packages/libs/libtheora/Makefile
++++ ../../../openwrt_trunk/feeds/packages/libs/libtheora/Makefile
+@@ -49,17 +49,17 @@
  endef
  
  define Build/InstallDev

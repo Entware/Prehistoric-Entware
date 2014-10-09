@@ -9,9 +9,9 @@ all: .done
 
 .done:
 	patch -d $(TOP) -p3 -i $(CURDIR)/fix-path.patch
-	rm -f ../../../openwrt_trunk/feeds/packages/multimedia/tvheadend/patches/*.patch
-	cp -f ./S71tvheadend ../../../openwrt_trunk/feeds/packages/multimedia/tvheadend/files/
-	cp -f ./tv_grab_wl500g_info* ../../../openwrt_trunk/feeds/packages/multimedia/tvheadend/files/
+	rm -f ../../../openwrt_trunk/feeds/oldpackages/multimedia/tvheadend/patches/*.patch
+	cp -f ./S71tvheadend ../../../openwrt_trunk/feeds/oldpackages/multimedia/tvheadend/files/
+	cp -f ./tv_grab_wl500g_info* ../../../openwrt_trunk/feeds/oldpackages/multimedia/tvheadend/files/
 	@touch $@
 
 clean:

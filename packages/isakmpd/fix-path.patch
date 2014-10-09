@@ -1,5 +1,5 @@
---- ../../../openwrt_trunk.orig/feeds/oldpackages/net/isakmpd/Makefile	2012-09-03 15:55:03.811674027 +0400
-+++ ../../../openwrt_trunk/feeds/oldpackages/net/isakmpd/Makefile	2012-09-07 16:51:02.181319274 +0400
+--- ../../../openwrt_trunk.orig/feeds/oldpackages/net/isakmpd/Makefile
++++ ../../../openwrt_trunk/feeds/oldpackages/net/isakmpd/Makefile
 @@ -18,7 +18,6 @@
  PKG_BUILD_DIR:=$(BUILD_DIR)/$(PKG_NAME)-$(PKG_VERSION).orig
  

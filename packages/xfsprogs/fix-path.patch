@@ -1,6 +1,6 @@
---- ../../../openwrt_trunk/package/utils/xfsprogs/Makefile.orig
-+++ ../../../openwrt_trunk/package/utils/xfsprogs/Makefile
-@@ -49,7 +49,7 @@
+--- ../../../downloads/openwrt_trunk-r42803/package/utils/xfsprogs/Makefile	2014-10-06 15:46:24.417250631 +0400
++++ ../../../openwrt_trunk/package/utils/xfsprogs/Makefile	2014-10-07 11:59:36.627924640 +0400
+@@ -50,7 +50,7 @@
  	--enable-blkid=no
  
  TARGET_CFLAGS += \
@@ -9,7 +9,7 @@
  	-D_LARGEFILE64_SOURCE \
  	-D_FILE_OFFSET_BITS=64 \
  	-D_GNU_SOURCE
-@@ -59,29 +59,29 @@
+@@ -60,29 +60,29 @@
  	PCFLAGS="-Wall" \
  	PKG_PLATFORM=linux \
  	ENABLE_GETTEXT=no \

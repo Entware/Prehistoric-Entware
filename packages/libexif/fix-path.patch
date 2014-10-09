@@ -1,6 +1,6 @@
 --- ../../../openwrt_trunk.orig/feeds/packages/libs/libexif/Makefile
 +++ ../../../openwrt_trunk/feeds/packages/libs/libexif/Makefile
-@@ -46,17 +46,17 @@
+@@ -47,17 +47,17 @@
  TARGET_CFLAGS += $(FPIC)
  
  define Build/InstallDev

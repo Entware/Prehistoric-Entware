@@ -1,6 +1,6 @@
 --- ../../../openwrt_trunk-r40423/include/package-defaults.mk
 +++ ../../../openwrt_trunk/include/package-defaults.mk
-@@ -68,7 +68,8 @@
+@@ -69,7 +69,8 @@
  EXTRA_CXXFLAGS = $(EXTRA_CFLAGS)
  DISABLE_NLS:=--disable-nls
  
@@ -10,7 +10,7 @@
  CONFIGURE_ARGS = \
  		--target=$(GNU_TARGET_NAME) \
  		--host=$(GNU_TARGET_NAME) \
-@@ -80,9 +81,9 @@
+@@ -81,9 +82,9 @@
  		--bindir=$(CONFIGURE_PREFIX)/bin \
  		--sbindir=$(CONFIGURE_PREFIX)/sbin \
  		--libexecdir=$(CONFIGURE_PREFIX)/lib \

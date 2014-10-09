@@ -1,5 +1,5 @@
---- ../../../openwrt_trunk.orig/feeds/oldpackages/net/oidentd/Makefile	2012-08-06 14:41:13.866698066 +0400
-+++ ../../../openwrt_trunk/feeds/oldpackages/net/oidentd/Makefile	2012-08-28 10:30:37.445396424 +0400
+--- ../../../openwrt_trunk.orig/feeds/oldpackages/net/oidentd/Makefile
++++ ../../../openwrt_trunk/feeds/oldpackages/net/oidentd/Makefile
 @@ -35,10 +35,10 @@
  endef
  

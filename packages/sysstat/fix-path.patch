@@ -1,5 +1,5 @@
---- ../../../downloads/mipsel-hardfloat/openwrt_trunk-r39357/feeds/oldpackages/utils/sysstat/Makefile	2014-01-23 09:52:40.320429237 +0400
-+++ ../../../openwrt_trunk/feeds/oldpackages/utils/sysstat/Makefile	2014-01-30 11:21:55.801310895 +0400
+--- ../../../downloads/mipsel-hardfloat/openwrt_trunk-r39357/feeds/oldpackages/utils/sysstat/Makefile
++++ ../../../openwrt_trunk/feeds/oldpackages/utils/sysstat/Makefile
 @@ -32,28 +32,31 @@
  endef
  

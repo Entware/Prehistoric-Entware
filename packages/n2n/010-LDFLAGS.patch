@@ -1,5 +1,5 @@
---- a/Makefile	2012-09-21 13:48:21.492918971 +0400
-+++ b/Makefile	2012-09-21 13:59:08.708902892 +0400
+--- a/Makefile
++++ b/Makefile
 @@ -61,16 +61,16 @@
  
  DOCS=edge.8.gz supernode.1.gz n2n_v2.7.gz

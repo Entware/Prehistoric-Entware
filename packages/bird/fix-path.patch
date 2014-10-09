@@ -1,5 +1,5 @@
---- ../../../openwrt_trunk/feeds/routing/bird/Makefile.orig	2014-01-20 16:36:05.000000000 +0400
-+++ ../../../openwrt_trunk/feeds/routing/bird/Makefile	2014-01-20 23:00:03.909893609 +0400
+--- ../../../openwrt_trunk/feeds/routing/bird/Makefile.orig
++++ ../../../openwrt_trunk/feeds/routing/bird/Makefile
 @@ -131,22 +131,20 @@
  $(STAMP_BUILT): $(STAMP_BUILT)-$(2)
  

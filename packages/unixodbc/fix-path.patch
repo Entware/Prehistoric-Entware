@@ -1,6 +1,6 @@
---- ../../../openwrt_trunk.orig/feeds/packages/libs/unixodbc/Makefile	2012-07-11 14:54:00.694752466 +0400
-+++ ../../../openwrt_trunk/feeds/packages/libs/unixodbc/Makefile	2012-07-11 21:30:05.251992048 +0400
-@@ -79,35 +79,35 @@
+--- ../../../downloads/openwrt_trunk-r42803/feeds/packages/libs/unixodbc/Makefile	2014-10-06 15:46:23.745250644 +0400
++++ ../../../openwrt_trunk/feeds/packages/libs/unixodbc/Makefile	2014-10-07 11:59:36.339924645 +0400
+@@ -81,35 +81,35 @@
  endef
  
  define Build/InstallDev

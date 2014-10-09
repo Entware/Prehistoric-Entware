@@ -1,5 +1,5 @@
---- ./config.c.orig	2008-11-19 23:36:12.000000000 +0300
-+++ ./config.c	2013-12-10 16:55:59.250844673 +0400
+--- a/config.c
++++ b/config.c
 @@ -173,7 +173,7 @@
  
  static const char *config_def_script(void)

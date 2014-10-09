@@ -1,5 +1,5 @@
---- ../../../openwrt_trunk.orig/feeds/oldpackages/libs/libdaq/Makefile	2012-10-09 13:58:16.201900894 +0400
-+++ ../../../openwrt_trunk/feeds/oldpackages/libs/libdaq/Makefile	2012-10-23 15:19:58.836785069 +0400
+--- ../../../openwrt_trunk.orig/feeds/oldpackages/libs/libdaq/Makefile
++++ ../../../openwrt_trunk/feeds/oldpackages/libs/libdaq/Makefile
 @@ -34,10 +34,10 @@
  CONFIGURE_ARGS+= \
  	--disable-static \

@@ -1,6 +1,6 @@
 --- ../../../openwrt_trunk.orig/feeds/packages/libs/libpng/Makefile
 +++ ../../../openwrt_trunk/feeds/packages/libs/libpng/Makefile
-@@ -40,27 +40,27 @@
+@@ -41,27 +41,27 @@
  	--enable-static \
  
  define Build/InstallDev

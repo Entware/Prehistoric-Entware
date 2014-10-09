@@ -1,5 +1,5 @@
---- ../../../openwrt_trunk.orig/feeds/oldpackages/sound/madplay/Makefile	2011-12-05 10:46:41.000000000 +0400
-+++ ../../../openwrt_trunk/feeds/oldpackages/sound/madplay/Makefile	2011-12-09 13:27:19.792038903 +0400
+--- ../../../openwrt_trunk.orig/feeds/oldpackages/sound/madplay/Makefile
++++ ../../../openwrt_trunk/feeds/oldpackages/sound/madplay/Makefile
 @@ -53,8 +53,8 @@
  endef
  

@@ -1,6 +1,6 @@
---- ../../../openwrt_trunk/feeds/packages/lang/erlang/Makefile.orig	2014-01-20 16:35:30.358314464 +0400
-+++ ../../../openwrt_trunk/feeds/packages/lang/erlang/Makefile	2014-01-20 22:30:25.941921122 +0400
-@@ -264,50 +264,50 @@
+--- ../../../openwrt_trunk/feeds/packages/lang/erlang/Makefile.orig
++++ ../../../openwrt_trunk/feeds/packages/lang/erlang/Makefile
+@@ -268,50 +268,50 @@
  endef
  
  define Package/erlang/install

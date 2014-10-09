@@ -1,6 +1,6 @@
---- ../../../downloads/mipsel-hardfloat/openwrt_trunk-r40423/feeds/packages/mail/dovecot/Makefile	2014-04-09 16:17:24.314286478 +0400
-+++ ../../../openwrt_trunk/feeds/packages/mail/dovecot/Makefile	2014-04-11 11:58:03.639420785 +0400
-@@ -38,7 +38,7 @@
+--- ../../../downloads/openwrt_trunk-r42803/feeds/packages/mail/dovecot/Makefile	2014-10-06 15:46:23.749250644 +0400
++++ ../../../openwrt_trunk/feeds/packages/mail/dovecot/Makefile	2014-10-07 11:59:09.435925135 +0400
+@@ -51,7 +51,7 @@
  CONFIGURE_ARGS += \
  	--without-gssapi \
  	--without-pam \
@@ -9,7 +9,7 @@
  	--with-notify=dnotify \
  	--without-lzma \
  	--without-lz4
-@@ -56,21 +56,23 @@
+@@ -77,21 +77,23 @@
  	lib_cv___va_copy=yes \
  	lib_cv_va_val_copy=yes
  

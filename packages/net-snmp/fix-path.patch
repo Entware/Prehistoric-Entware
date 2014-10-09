@@ -1,12 +1,12 @@
-diff -urx .svn ../../../downloads/openwrt_trunk-r37769/feeds/packages/net/net-snmp/files/snmpd.default ../../../openwrt_trunk/feeds/packages/net/net-snmp/files/snmpd.default
---- ../../../downloads/openwrt_trunk-r37769/feeds/packages/net/net-snmp/files/snmpd.default	2013-08-15 09:37:02.989572159 +0400
-+++ ../../../openwrt_trunk/feeds/packages/net/net-snmp/files/snmpd.default	2013-08-17 18:36:24.721834903 +0400
+diff -ur ../../../downloads/openwrt_trunk-r42803/feeds/packages/net/net-snmp/files/snmpd.default ../../../openwrt_trunk/feeds/packages/net/net-snmp/files/snmpd.default
+--- ../../../downloads/openwrt_trunk-r42803/feeds/packages/net/net-snmp/files/snmpd.default	2014-10-06 15:46:23.753250644 +0400
++++ ../../../openwrt_trunk/feeds/packages/net/net-snmp/files/snmpd.default	2014-10-07 11:59:31.647924729 +0400
 @@ -1 +1 @@
 -OPTIONS="-Lf /dev/null -p /var/run/snmpd.pid"
 +OPTIONS="-Lf /dev/null -p /opt/var/run/snmpd.pid"
-diff -urx .svn ../../../downloads/openwrt_trunk-r37769/feeds/packages/net/net-snmp/files/snmpd.init ../../../openwrt_trunk/feeds/packages/net/net-snmp/files/snmpd.init
---- ../../../downloads/openwrt_trunk-r37769/feeds/packages/net/net-snmp/files/snmpd.init	2013-08-15 09:37:02.989572159 +0400
-+++ ../../../openwrt_trunk/feeds/packages/net/net-snmp/files/snmpd.init	2013-08-17 18:36:24.733834900 +0400
+diff -ur ../../../downloads/openwrt_trunk-r42803/feeds/packages/net/net-snmp/files/snmpd.init ../../../openwrt_trunk/feeds/packages/net/net-snmp/files/snmpd.init
+--- ../../../downloads/openwrt_trunk-r42803/feeds/packages/net/net-snmp/files/snmpd.init	2014-10-06 15:46:23.753250644 +0400
++++ ../../../openwrt_trunk/feeds/packages/net/net-snmp/files/snmpd.init	2014-10-07 11:59:31.647924729 +0400
 @@ -2,10 +2,10 @@
  # Copyright (C) 2008 OpenWrt.org
  START=50
@@ -31,18 +31,9 @@ diff -urx .svn ../../../downloads/openwrt_trunk-r37769/feeds/packages/net/net-sn
  }
  stop() {
  	[ -f $PID_F ] && kill $(cat $PID_F)
-diff -urx .svn ../../../downloads/openwrt_trunk-r37769/feeds/packages/net/net-snmp/Makefile ../../../openwrt_trunk/feeds/packages/net/net-snmp/Makefile
---- ../../../downloads/openwrt_trunk-r37769/feeds/packages/net/net-snmp/Makefile	2013-08-15 09:37:02.989572159 +0400
-+++ ../../../openwrt_trunk/feeds/packages/net/net-snmp/Makefile	2013-08-20 15:38:58.389307212 +0400
-@@ -9,7 +9,7 @@
- 
- PKG_NAME:=net-snmp
- PKG_VERSION:=5.4.2.1
--PKG_RELEASE:=5
-+PKG_RELEASE:=5a
- 
- PKG_SOURCE:=$(PKG_NAME)-$(PKG_VERSION).tar.gz
- PKG_SOURCE_URL:=@SF/net-snmp
+diff -ur ../../../downloads/openwrt_trunk-r42803/feeds/packages/net/net-snmp/Makefile ../../../openwrt_trunk/feeds/packages/net/net-snmp/Makefile
+--- ../../../downloads/openwrt_trunk-r42803/feeds/packages/net/net-snmp/Makefile	2014-10-06 15:46:23.753250644 +0400
++++ ../../../openwrt_trunk/feeds/packages/net/net-snmp/Makefile	2014-10-07 11:59:31.651924729 +0400
 @@ -156,31 +156,32 @@
  	--enable-shared \
  	--enable-static \
@@ -164,9 +155,9 @@ diff -urx .svn ../../../downloads/openwrt_trunk-r37769/feeds/packages/net/net-sn
  endef
  
  $(eval $(call BuildPackage,libnetsnmp))
-diff -urx .svn ../../../downloads/openwrt_trunk-r37769/feeds/packages/net/net-snmp/patches/120-debian-searchdirs.patch ../../../openwrt_trunk/feeds/packages/net/net-snmp/patches/120-debian-searchdirs.patch
---- ../../../downloads/openwrt_trunk-r37769/feeds/packages/net/net-snmp/patches/120-debian-searchdirs.patch	2013-08-15 09:37:02.989572159 +0400
-+++ ../../../openwrt_trunk/feeds/packages/net/net-snmp/patches/120-debian-searchdirs.patch	2013-08-17 18:36:24.733834901 +0400
+diff -ur ../../../downloads/openwrt_trunk-r42803/feeds/packages/net/net-snmp/patches/120-debian-searchdirs.patch ../../../openwrt_trunk/feeds/packages/net/net-snmp/patches/120-debian-searchdirs.patch
+--- ../../../downloads/openwrt_trunk-r42803/feeds/packages/net/net-snmp/patches/120-debian-searchdirs.patch	2014-10-06 15:46:23.753250644 +0400
++++ ../../../openwrt_trunk/feeds/packages/net/net-snmp/patches/120-debian-searchdirs.patch	2014-10-07 11:59:31.659924729 +0400
 @@ -6,9 +6,9 @@
   }
  -push @def_search_dirs, "/usr/local/share/snmp/";
@@ -180,132 +171,3 @@ diff -urx .svn ../../../downloads/openwrt_trunk-r37769/feeds/packages/net/net-sn
   push @def_search_dirs, "./mib2c-conf.d";
   
   sub usage {
-diff -urx .svn ../../../downloads/openwrt_trunk-r37769/feeds/packages/net/net-snmp/patches/140-debian-docfiles.patch ../../../openwrt_trunk/feeds/packages/net/net-snmp/patches/140-debian-docfiles.patch
---- ../../../downloads/openwrt_trunk-r37769/feeds/packages/net/net-snmp/patches/140-debian-docfiles.patch	2013-08-15 09:37:02.989572159 +0400
-+++ ../../../openwrt_trunk/feeds/packages/net/net-snmp/patches/140-debian-docfiles.patch	2013-08-17 18:36:24.741834901 +0400
-@@ -5,7 +5,7 @@
-     How do I configure SNMPv3 users?
-     The 'createUser' line disappears when I start the agent.  Why?
- -   What's the difference between /var/net-snmp and /usr/local/share/snmp?
--+   What's the difference between /var/lib/snmp and /usr/share/snmp?
-++   What's the difference between /opt/var/lib/snmp and /opt/share/snmp?
-     My new agent is ignoring the old snmpd.conf file. Why?
-     Why am I getting "Connection refused"?
-     Why can't I see values in the UCDavis 'extensible' or 'disk' trees?
-@@ -14,7 +14,7 @@
-    Firstly, copy the MIB file into the appropiate location:
-  
- -	cp MY-MIB.txt /usr/local/share/snmp/mibs
--+	cp MY-MIB.txt /usr/share/snmp/mibs
-++	cp MY-MIB.txt /opt/share/snmp/mibs
-              (which makes it available to everyone on the system)
-  
-            or
-@@ -23,7 +23,7 @@
-    explicitly as part of the trap handle directive:
-  
- -	traphandle default /usr/bin/perl /usr/local/bin/log_it
--+	traphandle default /usr/bin/perl /usr/bin/log_it
-++	traphandle default /opt/bin/perl /opt/bin/log_it
-  
-      In this case, it's almost certain that you'll also
-    need to give the full path to the traphandle script (as shown)
-@@ -32,7 +32,7 @@
-  
-      Some of these (such as the MIB file location), might be best put in
- -  a shared snmp.conf file (typically /usr/local/share/snmp/snmp.conf or
--+  a shared snmp.conf file (typically /usr/share/snmp/snmp.conf or
-++  a shared snmp.conf file (typically /opt/share/snmp/snmp.conf or
-    /etc/snmp/snmp.conf) to apply to all users of the system.  Others
-    (particularly the SNMPv3 security settings), are more likely to refer
-    to a particular user, and should go in a personal snmp.conf file
-@@ -41,7 +41,7 @@
-  
-      Alternatively, the tools may be looking in the wrong place.
- -  The default location for the mib files is /usr/local/share/snmp/mibs.
--+  The default location for the mib files is /usr/share/snmp/mibs.
-++  The default location for the mib files is /opt/share/snmp/mibs.
-    Again, this is set when the suite is first configured and compiled.
-    This can be changed using the environmental variable 'MIBDIRS'
-    or the snmp.conf directive 'mibdirs'.
-@@ -50,7 +50,7 @@
-    There are three ways to configure SNMPv3 users:
-  
- -  1) Stop the agent, and create a file /var/net-snmp/snmpd.conf,
--+  1) Stop the agent, and create a file /var/lib/snmp/snmpd.conf,
-++  1) Stop the agent, and create a file /opt/lib/snmp/snmpd.conf,
-       containing the line
-  
-  	createUser {myUser} MD5 {myPassword} DES
-@@ -59,7 +59,7 @@
-  
-       and follow the instructions.  This will create an entry
- -     in the /var/net-snmp/snmpd.conf file similar to the above.
--+     in the /var/lib/snmp/snmpd.conf file similar to the above.
-++     in the /opt/var/lib/snmp/snmpd.conf file similar to the above.
-       Then re-start the snmpd agent.
-  
-    3) Make sure the agent is running, and will respond to a suitable
-@@ -69,18 +69,18 @@
-  
- -What's the difference between /var/net-snmp and /usr/local/share/snmp?
- ----------------------------------------------------------------------
--+What's the difference between /var/lib/snmp and /usr/share/snmp?
-++What's the difference between /opt/var/lib/snmp and /opt/share/snmp?
- +----------------------------------------------------------------
-  
- -    The /var/net-snmp location is primarily used for information set
--+    The /var/lib/snmp location is primarily used for information set
-++    The /opt/var/lib/snmp location is primarily used for information set
-    during the running of the agent, which needs to be persistent between
-    one run of the agent and the next.   Apart from "createUser" (see
-    the previous entry), you shouldn't need to touch this file.
-  
-    All other user-provided configuration should go in the traditional
- -  location (typically /usr/local/share/snmp/snmpd.conf or /etc/snmp).
--+  location (typically /usr/share/snmp or /etc/snmp).
-++  location (typically /opt/share/snmp or /opt/etc/snmp).
-  
-  
-  
-@@ -89,7 +89,7 @@
-  
-      The default location for this file with the basic distribution is
- -  /usr/local/share/snmp/snmpd.conf (or PREFIX/share/snmp/snmpd.conf).
--+  /usr/share/snmp/snmpd.conf (or PREFIX/share/snmp/snmpd.conf).
-++  /opt/share/snmp/snmpd.conf (or PREFIX/share/snmp/snmpd.conf).
-    Ready-installed versions often look for the file as /etc/snmpd.conf,
-    or /etc/snmp/snmpd.conf.  Try moving the old config file to the new
-    location, and restart the agent.
-diff -urx .svn ../../../downloads/openwrt_trunk-r37769/feeds/packages/net/net-snmp/patches/150-debian-defaultconfig.patch ../../../openwrt_trunk/feeds/packages/net/net-snmp/patches/150-debian-defaultconfig.patch
---- ../../../downloads/openwrt_trunk-r37769/feeds/packages/net/net-snmp/patches/150-debian-defaultconfig.patch	2013-08-15 09:37:02.989572159 +0400
-+++ ../../../openwrt_trunk/feeds/packages/net/net-snmp/patches/150-debian-defaultconfig.patch	2013-08-17 18:36:24.741834901 +0400
-@@ -5,7 +5,7 @@
-  #
-  # This file is intended to only be an example.  If, however, you want
- -# to use it, it should be placed in SYSCONFDIR/snmp/snmpd.conf.
--+# to use it, it should be placed in /etc/snmp/snmpd.conf.
-++# to use it, it should be placed in /opt/etc/snmp/snmpd.conf.
-  # When the snmpd agent starts up, this is where it will look for it.
-  #
-  # You might be interested in generating your own snmpd.conf file using
-@@ -61,8 +61,8 @@
-  
- -syslocation Right here, right now.
- -syscontact Me <me@somewhere.org>
--+syslocation Unknown (configure /etc/snmp/snmpd.local.conf)
--+syscontact Root <root@localhost> (configure /etc/snmp/snmpd.local.conf)
-++syslocation Unknown (configure /opt/etc/snmp/snmpd.local.conf)
-++syscontact Root <root@localhost> (configure /opt/etc/snmp/snmpd.local.conf)
-  
-  # Example output of snmpwalk:
-  #   % snmpwalk -v 1 -c public localhost system
-@@ -115,7 +115,7 @@
-  #           script in the right location. (its not installed by default))
-  
- -# pass .EXTENSIBLEDOTMIB.255 /bin/sh PREFIX/local/passtest
--+# pass .EXTENSIBLEDOTMIB.255 /bin/sh /usr/local/passtest
-++# pass .EXTENSIBLEDOTMIB.255 /bin/sh /opt/local/passtest
-  
-  # % snmpwalk -v 1 -c public localhost .EXTENSIBLEDOTMIB.255
-  # enterprises.ucdavis.255.1 = "life the universe and everything"

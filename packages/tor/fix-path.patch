@@ -1,6 +1,6 @@
---- ../../../downloads/mipsel-hardfloat/openwrt_trunk-r40423/feeds/packages/net/tor/Makefile	2014-04-09 16:17:24.154286482 +0400
-+++ ../../../openwrt_trunk/feeds/packages/net/tor/Makefile	2014-04-09 16:53:37.374246894 +0400
-@@ -69,16 +69,16 @@
+--- ../../../downloads/openwrt_trunk-r42803/feeds/packages/net/tor/Makefile	2014-10-06 15:46:23.757250644 +0400
++++ ../../../openwrt_trunk/feeds/packages/net/tor/Makefile	2014-10-07 11:59:36.119924649 +0400
+@@ -71,16 +71,16 @@
  endef
  
  define Package/tor/conffiles
@@ -22,7 +22,7 @@
  	--disable-asciidoc
  
  ifneq ($(CONFIG_SSP_SUPPORT),y)
-@@ -95,22 +95,20 @@
+@@ -97,22 +97,20 @@
  	CROSS_COMPILE="yes"
  
  define Package/tor/install

@@ -1,5 +1,5 @@
---- ../../../downloads/openwrt_trunk-r40423/feeds/packages/utils/rtl-sdr/Makefile	2014-04-23 12:00:31.914046971 +0400
-+++ ../../../openwrt_trunk/feeds/packages/utils/rtl-sdr/Makefile	2014-05-10 21:25:04.538673439 +0400
+--- ../../../downloads/openwrt_trunk-r40423/feeds/packages/utils/rtl-sdr/Makefile
++++ ../../../openwrt_trunk/feeds/packages/utils/rtl-sdr/Makefile
 @@ -66,22 +66,22 @@
  TARGET_CFLAGS += $(FPIC)
  

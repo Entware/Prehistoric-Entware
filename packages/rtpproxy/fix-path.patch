@@ -1,6 +1,6 @@
---- ../../../openwrt_trunk.orig/feeds/telephony/net/rtpproxy/Makefile	2012-05-02 16:17:27.522374074 +0400
-+++ ../../../openwrt_trunk/feeds/telephony/net/rtpproxy/Makefile	2012-05-31 23:10:01.238648734 +0400
-@@ -31,8 +31,10 @@
+--- ../../../downloads/openwrt_trunk-r42803/feeds/telephony/net/rtpproxy/Makefile	2014-10-06 15:46:23.917250641 +0400
++++ ../../../openwrt_trunk/feeds/telephony/net/rtpproxy/Makefile	2014-10-07 11:59:34.707924675 +0400
+@@ -32,8 +32,10 @@
  # uses GNU configure
  
  define Package/rtpproxy/install

@@ -1,6 +1,6 @@
---- ../../../openwrt_trunk.orig/feeds/packages/libs/libcap/Makefile	2012-07-21 23:09:59.206539923 +0400
-+++ ../../../openwrt_trunk/feeds/packages/libs/libcap/Makefile	2012-07-25 22:03:20.274809493 +0400
-@@ -18,7 +18,7 @@
+--- ../../../openwrt_trunk.orig/feeds/packages/libs/libcap/Makefile
++++ ../../../openwrt_trunk/feeds/packages/libs/libcap/Makefile
+@@ -19,7 +19,7 @@
  PKG_INSTALL:=1
  
  include $(INCLUDE_DIR)/package.mk
@@ -9,7 +9,7 @@
  
  define Package/libcap
    TITLE:=Linux capabilities library
-@@ -41,15 +41,15 @@
+@@ -42,15 +42,15 @@
      lib="lib"
  
  define Build/InstallDev

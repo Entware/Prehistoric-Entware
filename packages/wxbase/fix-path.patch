@@ -1,5 +1,5 @@
---- ../../../downloads/openwrt_trunk-r40859/feeds/oldpackages/libs/wxbase/Makefile	2014-05-26 13:26:44.223410832 +0400
-+++ ../../../openwrt_trunk/feeds/oldpackages/libs/wxbase/Makefile	2014-05-26 15:08:54.127300760 +0400
+--- ../../../downloads/openwrt_trunk-r40859/feeds/oldpackages/libs/wxbase/Makefile
++++ ../../../openwrt_trunk/feeds/oldpackages/libs/wxbase/Makefile
 @@ -116,18 +116,18 @@
  endif
  

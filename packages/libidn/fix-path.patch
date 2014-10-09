@@ -1,6 +1,6 @@
---- ../../../openwrt_trunk.orig/feeds/packages/libs/libidn/Makefile	2012-07-18 00:48:35.000000000 +0400
-+++ ../../../openwrt_trunk/feeds/packages/libs/libidn/Makefile	2012-07-24 12:33:02.000000000 +0400
-@@ -45,15 +45,21 @@
+--- ../../../openwrt_trunk.orig/feeds/packages/libs/libidn/Makefile
++++ ../../../openwrt_trunk/feeds/packages/libs/libidn/Makefile
+@@ -48,15 +48,21 @@
  	CC="$(TARGET_CC)" \
  
  define Build/InstallDev

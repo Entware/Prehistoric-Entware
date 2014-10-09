@@ -1,5 +1,5 @@
---- ../../../openwrt_trunk.orig/feeds/oldpackages/lang/mako/Makefile	2012-01-13 12:14:28.000000000 +0400
-+++ ../../../openwrt_trunk/feeds/oldpackages/lang/mako/Makefile	2012-01-16 17:07:37.497266933 +0400
+--- ../../../openwrt_trunk.orig/feeds/oldpackages/lang/mako/Makefile
++++ ../../../openwrt_trunk/feeds/oldpackages/lang/mako/Makefile
 @@ -43,7 +43,7 @@
  endef
  

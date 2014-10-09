@@ -1,5 +1,5 @@
---- ../../../openwrt_trunk.orig/feeds/oldpackages/libs/jansson/Makefile	2013-05-10 18:57:39.578041004 +0400
-+++ ../../../openwrt_trunk/feeds/oldpackages/libs/jansson/Makefile	2013-06-02 18:49:22.907908693 +0400
+--- ../../../openwrt_trunk.orig/feeds/oldpackages/libs/jansson/Makefile
++++ ../../../openwrt_trunk/feeds/oldpackages/libs/jansson/Makefile
 @@ -30,14 +30,14 @@
  TARGET_CFLAGS += $(FPIC)
  

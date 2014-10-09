@@ -1,5 +1,5 @@
---- ../../../openwrt_trunk.orig/feeds/oldpackages/utils/bluez-utils/Makefile	2012-07-10 18:59:23.633214281 +0400
-+++ ../../../openwrt_trunk/feeds/oldpackages/utils/bluez-utils/Makefile	2012-07-10 18:59:45.216942930 +0400
+--- ../../../openwrt_trunk.orig/feeds/oldpackages/utils/bluez-utils/Makefile
++++ ../../../openwrt_trunk/feeds/oldpackages/utils/bluez-utils/Makefile
 @@ -29,9 +29,9 @@
  endef
  

@@ -1,5 +1,5 @@
---- a/src/main.c	2012-03-22 15:15:08.270742640 +0400
-+++ b/src/main.c	2012-03-22 15:15:54.898157676 +0400
+--- a/src/main.c
++++ b/src/main.c
 @@ -136,7 +136,8 @@
  {
  	CAST(report_stats, self, c);

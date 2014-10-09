@@ -1,6 +1,6 @@
-diff -urx .svn ../../../downloads/mipsel-hardfloat/openwrt_trunk-r40423/package/network/services/ppp/Makefile ../../../openwrt_trunk/package/network/services/ppp/Makefile
---- ../../../downloads/mipsel-hardfloat/openwrt_trunk-r40423/package/network/services/ppp/Makefile	2014-04-09 16:17:24.682286474 +0400
-+++ ../../../openwrt_trunk/package/network/services/ppp/Makefile	2014-04-09 16:53:33.214246969 +0400
+diff -urx .svn ../../../downloads/openwrt_trunk-r42803/package/network/services/ppp/Makefile ../../../openwrt_trunk/package/network/services/ppp/Makefile
+--- ../../../downloads/openwrt_trunk-r42803/package/network/services/ppp/Makefile	2014-10-06 15:46:24.069250638 +0400
++++ ../../../openwrt_trunk/package/network/services/ppp/Makefile	2014-10-07 11:59:34.187924684 +0400
 @@ -6,7 +6,6 @@
  #
  
@@ -8,7 +8,7 @@ diff -urx .svn ../../../downloads/mipsel-hardfloat/openwrt_trunk-r40423/package/
 -include $(INCLUDE_DIR)/kernel.mk
  
  PKG_NAME:=ppp
- PKG_VERSION:=2.4.5
+ PKG_VERSION:=2.4.7
 @@ -35,14 +34,12 @@
  
  define Package/ppp
@@ -87,8 +87,8 @@ diff -urx .svn ../../../downloads/mipsel-hardfloat/openwrt_trunk-r40423/package/
  		PRECOMPILED_FILTER=1 \
  		STAGING_DIR="$(STAGING_DIR)"
  
-@@ -173,45 +170,49 @@
- 
+@@ -176,45 +173,49 @@
+ endif
  
  define Build/InstallDev
 -	$(INSTALL_DIR) $(1)/usr/include
@@ -157,7 +157,7 @@ diff -urx .svn ../../../downloads/mipsel-hardfloat/openwrt_trunk-r40423/package/
  	$(INSTALL_DIR) $(1)/etc/ppp
  	$(INSTALL_DATA) ./files/etc/ppp/radius.conf $(1)/etc/ppp/
  	$(INSTALL_DIR) $(1)/etc/ppp/radius
-@@ -222,32 +223,32 @@
+@@ -225,32 +226,32 @@
  endef
  
  define Package/ppp-mod-pppol2tp/install
@@ -200,9 +200,9 @@ diff -urx .svn ../../../downloads/mipsel-hardfloat/openwrt_trunk-r40423/package/
  endef
  
  $(eval $(call BuildPackage,ppp))
-diff -urx .svn ../../../downloads/mipsel-hardfloat/openwrt_trunk-r40423/package/network/services/ppp/patches/310-precompile_filter.patch ../../../openwrt_trunk/package/network/services/ppp/patches/310-precompile_filter.patch
---- ../../../downloads/mipsel-hardfloat/openwrt_trunk-r40423/package/network/services/ppp/patches/310-precompile_filter.patch	2014-04-09 16:17:24.678286474 +0400
-+++ ../../../openwrt_trunk/package/network/services/ppp/patches/310-precompile_filter.patch	2014-04-09 16:53:33.214246969 +0400
+diff -urx .svn ../../../downloads/openwrt_trunk-r42803/package/network/services/ppp/patches/310-precompile_filter.patch ../../../openwrt_trunk/package/network/services/ppp/patches/310-precompile_filter.patch
+--- ../../../downloads/openwrt_trunk-r42803/package/network/services/ppp/patches/310-precompile_filter.patch	2014-10-06 15:46:24.065250638 +0400
++++ ../../../openwrt_trunk/package/network/services/ppp/patches/310-precompile_filter.patch	2014-10-07 11:59:34.195924684 +0400
 @@ -31,7 +31,7 @@
  +PPPDSRCS += pcap_pcc.c
  +HEADERS  += pcap_pcc.h

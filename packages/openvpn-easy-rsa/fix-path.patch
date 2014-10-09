@@ -1,5 +1,5 @@
---- ../../../openwrt_trunk.orig/package/network/services/openvpn-easy-rsa/Makefile	2013-11-20 21:41:47.773440823 +0400
-+++ ../../../openwrt_trunk/package/network/services/openvpn-easy-rsa/Makefile	2013-12-15 03:34:01.659441981 +0400
+--- ../../../openwrt_trunk.orig/package/network/services/openvpn-easy-rsa/Makefile
++++ ../../../openwrt_trunk/package/network/services/openvpn-easy-rsa/Makefile
 @@ -11,7 +11,7 @@
  
  PKG_REV:=ff5bfd1dd8e548cb24d302742af3894f893ef92f

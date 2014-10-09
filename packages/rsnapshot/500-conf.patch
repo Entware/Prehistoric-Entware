@@ -1,5 +1,5 @@
---- a/rsnapshot.conf.default.in.orig	2008-04-27 14:26:16.000000000 +0400
-+++ b/rsnapshot.conf.default.in	2012-06-29 16:47:12.000000000 +0400
+--- a/rsnapshot.conf.default.in
++++ b/rsnapshot.conf.default.in
 @@ -26,3 +26,3 @@
  #
 -snapshot_root	/.snapshots/

@@ -9,8 +9,8 @@ all: .done
 
 .done:
 	patch -d $(TOP) -p3 -i $(CURDIR)/fix-path.patch
-	rm -f ../../../openwrt_trunk/feeds/packages/utils/wview/patches/020-use-standard-awk.patch
-	rm -f ../../../openwrt_trunk/feeds/packages/utils/wview/patches/050-WMRUSB-fix-segfault-buffer-overflow.patch
+	rm -f ../../../openwrt_trunk/feeds/oldpackages/utils/wview/patches/020-use-standard-awk.patch
+	rm -f ../../../openwrt_trunk/feeds/oldpackages/utils/wview/patches/050-WMRUSB-fix-segfault-buffer-overflow.patch
 	@touch $@
 
 clean:

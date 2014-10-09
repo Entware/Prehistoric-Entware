@@ -1,5 +1,5 @@
---- ../../../downloads/mipsel-hardfloat/openwrt_trunk-r40423/feeds/packages/libs/curl/Makefile	2014-04-09 16:17:24.314286478 +0400
-+++ ../../../openwrt_trunk/feeds/packages/libs/curl/Makefile	2014-04-11 11:45:09.575435970 +0400
+--- ../../../downloads/openwrt_trunk-r42803/package/network/utils/curl/Makefile	2014-10-06 15:46:24.105250639 +0400
++++ ../../../openwrt_trunk/package/network/utils/curl/Makefile	2014-10-07 16:23:18.679652051 +0400
 @@ -75,7 +75,7 @@
    $(call Package/curl/Default)
    SECTION:=libs
@@ -9,11 +9,12 @@
    TITLE:=A client-side URL transfer library using $(if $(CONFIG_LIBCURL_POLARSSL),PolarSSL)$(if $(CONFIG_LIBCURL_OPENSSL),OpenSSL)$(if $(CONFIG_LIBCURL_GNUTLS),GNUTLS)$(if $(CONFIG_LIBCURL_NOSSL),no SSL)
    MENU:=1
  endef
-@@ -97,27 +97,28 @@
+@@ -97,28 +97,28 @@
  	--disable-manual \
  	--disable-verbose \
  	--without-ca-bundle \
-+	--with-ca-path=/opt/etc/ssl/certs \
+-	$(if $(CONFIG_LIBCURL_OPENSSL),--with-ca-path=/etc/ssl/certs/) \
++	$(if $(CONFIG_LIBCURL_OPENSSL),--with-ca-path=/opt/etc/ssl/certs/) \
  	--without-krb4 \
  	--without-libidn \
  	--without-nss \
@@ -22,9 +23,8 @@
 -	$(if $(CONFIG_LIBCURL_AXTLS),--with-axtls="$(STAGING_DIR)/usr",--without-axtls) \
 +	$(if $(CONFIG_LIBCURL_AXTLS),--with-axtls="$(STAGING_DIR)/opt",--without-axtls) \
  	$(if $(CONFIG_LIBCURL_COOKIES),--enable,--disable)-cookies \
--	$(if $(CONFIG_LIBCURL_CRYPTO-AUTH),--enable,--disable)-crypto-auth \
+ 	$(if $(CONFIG_LIBCURL_CRYPTO-AUTH),--enable,--disable)-crypto-auth \
 -	$(if $(CONFIG_LIBCURL_CYASSL),--with-cyassl="$(STAGING_DIR)/usr",--without-cyassl) \
-+	$(if $(CONFIG_LIBCURL_CRYPTO_AUTH),--enable,--disable)-crypto-auth \
 +	$(if $(CONFIG_LIBCURL_CYASSL),--with-cyassl="$(STAGING_DIR)/opt",--without-cyassl) \
  	$(if $(CONFIG_LIBCURL_DICT),--enable,--disable)-dict \
  	$(if $(CONFIG_LIBCURL_FILE),--enable,--disable)-file \
@@ -36,16 +36,15 @@
  	$(if $(CONFIG_LIBCURL_IMAP),--enable,--disable)-imap \
  	$(if $(CONFIG_LIBCURL_LDAP),--enable,--disable)-ldap \
  	$(if $(CONFIG_LIBCURL_LDAPS),--enable,--disable)-ldaps \
--	$(if $(CONFIG_LIBCURL_LIBCURL-OPTION),--enable,--disable)-libcurl-option \
+ 	$(if $(CONFIG_LIBCURL_LIBCURL-OPTION),--enable,--disable)-libcurl-option \
 -	$(if $(CONFIG_LIBCURL_OPENSSL),--with-ssl="$(STAGING_DIR)/usr",--without-ssl) \
 -	$(if $(CONFIG_LIBCURL_POLARSSL),--with-polarssl="$(STAGING_DIR)/usr",--without-polarssl) \
-+	$(if $(CONFIG_LIBCURL_LIBCURL_OPTION),--enable,--disable)-libcurl-option \
 +	$(if $(CONFIG_LIBCURL_OPENSSL),--with-ssl="$(STAGING_DIR)/opt",--without-ssl) \
 +	$(if $(CONFIG_LIBCURL_POLARSSL),--with-polarssl="$(STAGING_DIR)/opt",--without-polarssl) \
  	$(if $(CONFIG_LIBCURL_POP3),--enable,--disable)-pop3 \
  	$(if $(CONFIG_LIBCURL_PROXY),--enable,--disable)-proxy \
  	$(if $(CONFIG_LIBCURL_RTSP),--enable,--disable)-rtsp \
-@@ -127,7 +128,7 @@
+@@ -128,7 +128,7 @@
  	$(if $(CONFIG_LIBCURL_SSPI),--enable,--disable)-sspi \
  	$(if $(CONFIG_LIBCURL_THREADED_RESOLVER),--enable,--disable)-threaded-resolver \
  	$(if $(CONFIG_LIBCURL_TLS-SRP),--enable,--disable)-tls-srp \
@@ -54,7 +53,7 @@
  
  define Build/Compile
  	+$(MAKE) $(PKG_JOBS) -C $(PKG_BUILD_DIR) \
-@@ -137,24 +138,24 @@
+@@ -138,24 +138,24 @@
  endef
  
  define Build/InstallDev

@@ -1,5 +1,5 @@
---- a/src/oidentd_options.c	2012-08-28 10:23:10.229408993 +0400
-+++ b/src/oidentd_options.c	2012-08-28 10:23:15.613399926 +0400
+--- a/src/oidentd_options.c
++++ b/src/oidentd_options.c
 @@ -381,7 +381,7 @@
  "\nUsage: oidentd [options]\n"
  "-a or --address <address>    Bind to <address>\n"

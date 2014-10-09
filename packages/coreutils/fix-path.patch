@@ -1,6 +1,6 @@
---- ../../../openwrt_trunk.orig/feeds/packages/utils/coreutils/Makefile	2012-07-10 18:59:23.673213779 +0400
-+++ ../../../openwrt_trunk/feeds/packages/utils/coreutils/Makefile	2012-07-10 22:06:48.751857294 +0400
-@@ -22,7 +22,7 @@
+--- ../../../openwrt_trunk.orig/feeds/packages/utils/coreutils/Makefile
++++ ../../../openwrt_trunk/feeds/packages/utils/coreutils/Makefile
+@@ -23,7 +23,7 @@
  
  COREUTILS_APPLETS := \
  	base64 basename cat chcon chgrp chmod chown chroot cksum comm cp csplit \
@@ -19,7 +19,7 @@
  
  ifneq ($(CONFIG_USE_UCLIBC),)
    CONFIGURE_VARS += \
-@@ -97,8 +98,8 @@
+@@ -98,8 +99,8 @@
  
  define BuildPlugin
    define Package/$(1)/install

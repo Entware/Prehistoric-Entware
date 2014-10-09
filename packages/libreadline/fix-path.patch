@@ -1,24 +1,24 @@
---- ../../../openwrt_trunk/package/libs/libreadline/Makefile.orig	2012-11-08 16:20:49.000000000 +0400
-+++ ../../../openwrt_trunk/package/libs/libreadline/Makefile	2012-11-09 11:03:32.521710824 +0400
-@@ -58,15 +58,15 @@
+--- ../../../downloads/openwrt_trunk-r42803/package/libs/libreadline/Makefile	2014-10-06 15:46:23.957250640 +0400
++++ ../../../openwrt_trunk/package/libs/libreadline/Makefile	2014-10-08 12:15:11.946834510 +0400
+@@ -60,15 +60,15 @@
  endef
  
  define Build/InstallDev
 -	$(INSTALL_DIR) $(1)/usr/include
 -	$(CP) $(PKG_INSTALL_DIR)/usr/include/readline $(1)/usr/include/
 -	$(INSTALL_DIR) $(1)/usr/lib
--	$(CP) $(PKG_INSTALL_DIR)/usr/lib/lib{history,readline}.{a,so,so.6,so.6.2} $(1)/usr/lib/
+-	$(CP) $(PKG_INSTALL_DIR)/usr/lib/lib{history,readline}.{a,so,so.6,so.6.3} $(1)/usr/lib/
 +	$(INSTALL_DIR) $(1)/opt/include
 +	$(CP) $(PKG_INSTALL_DIR)/opt/include/readline $(1)/opt/include/
 +	$(INSTALL_DIR) $(1)/opt/lib
-+	$(CP) $(PKG_INSTALL_DIR)/opt/lib/lib{history,readline}.{a,so,so.6,so.6.2} $(1)/opt/lib/
++	$(CP) $(PKG_INSTALL_DIR)/opt/lib/lib{history,readline}.{a,so,so.6,so.6.3} $(1)/opt/lib/
  endef
  
  define Package/libreadline/install
 -	$(INSTALL_DIR) $(1)/usr/lib
--	$(CP) $(PKG_INSTALL_DIR)/usr/lib/lib{history,readline}.{so,so.6,so.6.2} $(1)/usr/lib/
+-	$(CP) $(PKG_INSTALL_DIR)/usr/lib/lib{history,readline}.{so,so.6,so.6.3} $(1)/usr/lib/
 +	$(INSTALL_DIR) $(1)/opt/lib
-+	$(CP) $(PKG_INSTALL_DIR)/opt/lib/lib{history,readline}.{so,so.6,so.6.2} $(1)/opt/lib/
++	$(CP) $(PKG_INSTALL_DIR)/opt/lib/lib{history,readline}.{so,so.6,so.6.3} $(1)/opt/lib/
  endef
  
  $(eval $(call BuildPackage,libreadline))

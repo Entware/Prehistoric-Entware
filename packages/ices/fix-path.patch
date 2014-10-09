@@ -1,5 +1,5 @@
---- ../../../openwrt_trunk.orig/feeds/oldpackages/sound/ices/Makefile	2012-08-06 14:41:05.082698226 +0400
-+++ ../../../openwrt_trunk/feeds/oldpackages/sound/ices/Makefile	2012-08-20 15:09:58.011482341 +0400
+--- ../../../openwrt_trunk.orig/feeds/oldpackages/sound/ices/Makefile
++++ ../../../openwrt_trunk/feeds/oldpackages/sound/ices/Makefile
 @@ -35,13 +35,13 @@
  endef
  

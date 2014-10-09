@@ -9,7 +9,7 @@ all: .done
 
 .done:
 	patch -d $(TOP) -p3 -i $(CURDIR)/fix-path.patch
-	cp -f ./S50atd ../../../openwrt_trunk/feeds/packages/utils/at/files/
+	cp -f ./S50atd ../../../openwrt_trunk/feeds/oldpackages/utils/at/files/
 	@touch $@
 
 clean:

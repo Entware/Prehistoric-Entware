@@ -7,27 +7,16 @@ elfutils: is a fake package for now, still old libelf package used due to our 2.
 
 OpenWRT packages with updagraded version:
 dialog		1.2-20140112
-dump1090	2014-04-29
 elinks		0.12pre6
 gw6c		6.0.1
 hplip		3.14.4
 imapfilter	2.5.6
-lftp		4.4.16
-libaudiofile	0.3.6		for MPD
-libmms		0.6.4		for MPD
-libtorrent	0.13.4
-minicom		2.7
 mosh		1.2.4a-20140108
-mpd		0.18.11
 msmtp		1.4.32
 n2n		2.1.0-r7223
 nzbget		12.0
-polipo		1.1.1
-rtorrent	0.9.4
-smartmontools	6.2
 snort		2.9.5.5		EOL of previous version
 wview		5.21.5
-xupnpd		r399
 
 Can't be upgraded (mostly due to old 2.6.22.19 kernel):
 cjdns		0.5-20131009	node.js required

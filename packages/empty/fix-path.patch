@@ -1,5 +1,5 @@
---- ../../../openwrt_trunk.orig/feeds/oldpackages/utils/empty/Makefile	2012-09-21 10:59:55.953103763 +0400
-+++ ../../../openwrt_trunk/feeds/oldpackages/utils/empty/Makefile	2012-09-21 15:57:45.444776479 +0400
+--- ../../../openwrt_trunk.orig/feeds/oldpackages/utils/empty/Makefile
++++ ../../../openwrt_trunk/feeds/oldpackages/utils/empty/Makefile
 @@ -33,9 +33,12 @@
   programming tools.
  endef

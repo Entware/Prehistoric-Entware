@@ -1,40 +1,6 @@
---- ../../../openwrt_trunk.orig/package/devel/binutils/Makefile
-+++ ../../../openwrt_trunk/package/devel/binutils/Makefile
-@@ -60,7 +60,7 @@
- 		--target=$(REAL_GNU_TARGET_NAME) \
- 		--host=$(REAL_GNU_TARGET_NAME) \
- 		--build=$(GNU_HOST_NAME) \
--		--prefix=/usr \
-+		--prefix=/opt \
- 		--disable-multilib \
- 		--disable-werror \
- 		--disable-nls \
-@@ -88,17 +88,17 @@
- endef
- 
- define Build/InstallDev
--	$(INSTALL_DIR) $(1)/usr/{lib,include}
-+	$(INSTALL_DIR) $(1)/opt/{lib,include}
- 	$(CP) \
--		$(PKG_INSTALL_DIR)/usr/lib/* \
--		$(1)/usr/lib/
-+		$(PKG_INSTALL_DIR)/opt/lib/* \
-+		$(1)/opt/lib/
- 	$(CP) \
- 		$(PKG_BUILD_DIR)/include/*.h \
--		$(1)/usr/include/
-+		$(1)/opt/include/
- 	$(CP) \
--		$(PKG_INSTALL_DIR)/usr/include/* \
--		$(1)/usr/include/
--	rm -f $(1)/usr/include/gdbm.h
-+		$(PKG_INSTALL_DIR)/opt/include/* \
-+		$(1)/opt/include/
-+	rm -f $(1)/opt/include/gdbm.h
- endef
- 
- define Build/Compile
-@@ -107,17 +107,16 @@
+--- ../../../downloads/openwrt_trunk-r42803/package/devel/binutils/Makefile	2014-10-06 15:46:23.985250640 +0400
++++ ../../../openwrt_trunk/package/devel/binutils/Makefile	2014-10-07 11:59:08.931925143 +0400
+@@ -66,17 +66,16 @@
  endef
  
  define Package/objdump/install

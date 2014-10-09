@@ -1,5 +1,5 @@
---- ../../../openwrt_trunk.orig/feeds/oldpackages/net/autossh/Makefile	2012-05-02 16:17:27.882369571 +0400
-+++ ../../../openwrt_trunk/feeds/oldpackages/net/autossh/Makefile	2012-05-31 15:36:10.409152961 +0400
+--- ../../../openwrt_trunk.orig/feeds/oldpackages/net/autossh/Makefile
++++ ../../../openwrt_trunk/feeds/oldpackages/net/autossh/Makefile
 @@ -27,24 +27,17 @@
  
  define Build/Compile

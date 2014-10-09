@@ -9,7 +9,7 @@ all: .done
 
 .done:
 	patch -d $(TOP) -p3 -i $(CURDIR)/fix-path.patch
-	cp -f ./5*.patch ../../../openwrt_trunk/feeds/packages/net/isc-dhcp/patches/
+	cp -f ./5*.patch ../../../openwrt_trunk/feeds/oldpackages/net/isc-dhcp/patches/
 	@touch $@
 
 clean:

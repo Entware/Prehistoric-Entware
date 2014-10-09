@@ -1,5 +1,5 @@
---- a/pppd/pathnames.h.orig	2014-01-29 12:38:44.018353031 +0400
-+++ b/pppd/pathnames.h	2014-01-29 12:39:38.522304795 +0400
+--- a/pppd/pathnames.h
++++ b/pppd/pathnames.h
 @@ -9,7 +9,7 @@
  
  #else /* HAVE_PATHS_H */

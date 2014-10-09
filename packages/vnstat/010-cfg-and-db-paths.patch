@@ -1,5 +1,5 @@
---- a/src/cfg.c	2011-05-30 00:41:34.000000000 +0400
-+++ b/src/cfg.c	2012-05-25 17:25:18.112323900 +0400
+--- a/src/cfg.c
++++ b/src/cfg.c
 @@ -212,7 +212,7 @@
  	/* load default config */
  	defaultcfg();

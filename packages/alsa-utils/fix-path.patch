@@ -1,6 +1,6 @@
---- ../../../downloads/openwrt_trunk-r35474/feeds/packages/utils/alsa-utils/Makefile	2013-02-05 10:42:13.582946366 +0400
-+++ ../../../openwrt_trunk/feeds/packages/utils/alsa-utils/Makefile	2013-02-25 09:10:39.594539585 +0400
-@@ -55,36 +55,36 @@
+--- ../../../downloads/openwrt_trunk-r35474/feeds/packages/utils/alsa-utils/Makefile
++++ ../../../openwrt_trunk/feeds/packages/utils/alsa-utils/Makefile
+@@ -56,36 +56,36 @@
  endef
  
  define Package/alsa-utils/install

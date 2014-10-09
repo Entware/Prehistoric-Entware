@@ -1,6 +1,6 @@
---- ../../../openwrt_trunk.orig/feeds/packages/libs/libsamplerate/Makefile	2012-05-02 16:17:23.674422473 +0400
-+++ ../../../openwrt_trunk/feeds/packages/libs/libsamplerate/Makefile	2012-05-16 15:52:03.834441749 +0400
-@@ -46,8 +46,8 @@
+--- ../../../openwrt_trunk.orig/feeds/packages/libs/libsamplerate/Makefile
++++ ../../../openwrt_trunk/feeds/packages/libs/libsamplerate/Makefile
+@@ -48,8 +48,8 @@
  endef
  
  define Package/libsamplerate/install

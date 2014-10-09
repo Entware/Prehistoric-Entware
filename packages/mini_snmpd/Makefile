@@ -9,8 +9,8 @@ all: .done
 
 .done:
 	patch -d $(TOP) -p3 -i $(CURDIR)/fix-path.patch
-	cp -f ./S50mini_snmpd ../../../openwrt_trunk/feeds/packages/net/mini_snmpd/files/
-	cp -f ./200-counter64.patch ../../../openwrt_trunk/feeds/packages/net/mini_snmpd/patches/
+	cp -f ./S50mini_snmpd ../../../openwrt_trunk/feeds/oldpackages/net/mini_snmpd/files/
+	cp -f ./200-counter64.patch ../../../openwrt_trunk/feeds/oldpackages/net/mini_snmpd/patches/
 	@touch $@
 
 clean:

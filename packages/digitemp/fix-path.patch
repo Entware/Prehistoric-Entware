@@ -1,5 +1,5 @@
---- ../../../openwrt_trunk.orig/feeds/oldpackages/utils/digitemp/Makefile	2012-08-06 14:41:06.038698211 +0400
-+++ ../../../openwrt_trunk/feeds/oldpackages/utils/digitemp/Makefile	2012-08-20 14:20:57.783532778 +0400
+--- ../../../openwrt_trunk.orig/feeds/oldpackages/utils/digitemp/Makefile
++++ ../../../openwrt_trunk/feeds/oldpackages/utils/digitemp/Makefile
 @@ -70,13 +70,13 @@
  endef
  

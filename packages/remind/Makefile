@@ -9,8 +9,8 @@ all: .done
 
 .done:
 	patch -d $(TOP) -p3 -i $(CURDIR)/fix-path.patch
-	mkdir -p ../../../openwrt_trunk/feeds/packages/utils/remind/patches
-	cp -f ./500-perl-path.patch ../../../openwrt_trunk/feeds/packages/utils/remind/patches/
+	mkdir -p ../../../openwrt_trunk/feeds/oldpackages/utils/remind/patches
+	cp -f ./500-perl-path.patch ../../../openwrt_trunk/feeds/oldpackages/utils/remind/patches/
 	@touch $@
 
 clean:

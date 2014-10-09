@@ -9,7 +9,7 @@ all: .done
 
 .done:
 	patch -d $(TOP) -p3 -i $(CURDIR)/fix-path.patch
-	cp -f ./S06lvm2 ../../../openwrt_trunk/feeds/packages/utils/lvm2/files/
+	cp -f ./S06lvm2 ../../../openwrt_trunk/feeds/oldpackages/utils/lvm2/files/
 	@touch $@
 
 clean:

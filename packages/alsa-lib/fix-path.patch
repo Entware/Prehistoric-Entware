@@ -1,15 +1,15 @@
---- ../../../openwrt_trunk/feeds/packages/libs/alsa-lib/Makefile.orig
-+++ ../../../openwrt_trunk/feeds/packages/libs/alsa-lib/Makefile
-@@ -30,7 +30,7 @@
-   CATEGORY:=Libraries
+--- ../../../downloads/openwrt_trunk-r42803/feeds/packages/libs/alsa-lib/Makefile	2014-10-06 15:46:23.737250644 +0400
++++ ../../../openwrt_trunk/feeds/packages/libs/alsa-lib/Makefile	2014-10-07 15:02:24.711719626 +0400
+@@ -33,7 +33,7 @@
    TITLE:=ALSA (Advanced Linux Sound Architecture) library
    URL:=http://www.alsa-project.org/
+   MAINTAINER:=Peter Wagner <tripolar@gmx.at>
 -  DEPENDS:=@AUDIO_SUPPORT +kmod-sound-core +libpthread +librt
 +  DEPENDS:=@AUDIO_SUPPORT +libpthread +librt
  endef
  
  define Package/alsa-lib/description
-@@ -51,41 +51,41 @@
+@@ -54,41 +54,41 @@
  endef
  
  define Build/InstallDev

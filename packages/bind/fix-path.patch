@@ -1,6 +1,15 @@
---- ../../../downloads/openwrt_trunk-r38362/feeds/packages/net/bind/Makefile	2013-10-11 15:24:34.325186436 +0400
-+++ ../../../openwrt_trunk/feeds/packages/net/bind/Makefile	2013-10-12 10:42:09.611921227 +0400
-@@ -81,6 +81,11 @@
+--- ../../../downloads/openwrt_trunk-r42803/feeds/packages/net/bind/Makefile	2014-10-06 15:46:23.753250644 +0400
++++ ../../../openwrt_trunk/feeds/packages/net/bind/Makefile	2014-10-07 15:54:05.331673741 +0400
+@@ -40,7 +40,7 @@
+ define Package/bind-libs
+   SECTION:=libs
+   CATEGORY:=Libraries
+-  DEPENDS:=+libopenssl
++  DEPENDS:=+libopenssl +libxml2
+   TITLE:=bind shared libraries
+   URL:=https://www.isc.org/software/bind
+ endef
+@@ -85,6 +85,11 @@
    TITLE+= DNS excavation tool
  endef
  
@@ -12,16 +21,19 @@
  export BUILD_CC="$(TARGET_CC)"
  
  CONFIGURE_ARGS += \
-@@ -89,7 +94,7 @@
+@@ -93,9 +98,9 @@
  	--with-randomdev="/dev/urandom" \
  	--disable-threads \
  	--disable-linux-caps \
 -	--with-openssl="$(STAGING_DIR)/usr" \
 +	--with-openssl="$(STAGING_DIR)/opt" \
  	--with-libtool \
- 	--with-libxml2=no \
+-	--with-libxml2=no \
++	--with-libxml2=yes \
  	--enable-epoll=yes \
-@@ -112,80 +117,85 @@
+ 	--with-gost=no \
+ 	--with-gssapi=no \
+@@ -116,80 +121,85 @@
  endef
  
  define Package/bind-libs/install
@@ -148,7 +160,7 @@
  endef
  
  $(eval $(call BuildPackage,bind-libs))
-@@ -197,3 +207,4 @@
+@@ -201,3 +211,4 @@
  $(eval $(call BuildPackage,bind-dnssec))
  $(eval $(call BuildPackage,bind-host))
  $(eval $(call BuildPackage,bind-dig))

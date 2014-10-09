@@ -1,5 +1,5 @@
---- a/libopkg/opkg_install.c	2011-11-17 09:48:30.000000000 +0400
-+++ b/libopkg/opkg_install.c	2011-11-17 09:56:27.171609303 +0400
+--- a/libopkg/opkg_install.c
++++ b/libopkg/opkg_install.c
 @@ -208,8 +208,7 @@
  			root_dir = pkg->dest->root_dir;
  	}

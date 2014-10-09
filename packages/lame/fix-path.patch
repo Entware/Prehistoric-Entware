@@ -1,6 +1,6 @@
 --- ../../../openwrt_trunk.orig/feeds/packages/sound/lame/Makefile
 +++ ../../../openwrt_trunk/feeds/packages/sound/lame/Makefile
-@@ -58,24 +58,24 @@
+@@ -61,24 +61,24 @@
  
  
  define Package/lame/install

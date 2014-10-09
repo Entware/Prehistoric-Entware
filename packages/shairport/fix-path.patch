@@ -1,17 +1,17 @@
---- ../../../downloads/openwrt_trunk-r40859/feeds/packages/multimedia/shairport/Makefile	2014-05-26 13:26:44.211410832 +0400
-+++ ../../../openwrt_trunk/feeds/packages/multimedia/shairport/Makefile	2014-05-26 16:22:23.375217331 +0400
-@@ -46,12 +46,8 @@
+--- ../../../downloads/openwrt_trunk-r42803/feeds/packages/multimedia/shairport/Makefile	2014-10-06 15:46:23.733250644 +0400
++++ ../../../openwrt_trunk/feeds/packages/multimedia/shairport/Makefile	2014-10-09 12:10:13.737266260 +0400
+@@ -49,12 +49,8 @@
  	LDFLAGS="$(TARGET_LDFLAGS) $(LIBS)"
  
  define Package/shairport/install
--	$(INSTALL_DIR) $(1)/usr/sbin
--	$(INSTALL_BIN) $(PKG_BUILD_DIR)/shairport $(1)/usr/sbin/
+-	$(INSTALL_DIR) $(1)/usr/bin
+-	$(INSTALL_BIN) $(PKG_BUILD_DIR)/shairport $(1)/usr/bin/
 -	$(INSTALL_DIR) $(1)/etc/init.d/
 -	$(INSTALL_BIN) files/shairport.init $(1)/etc/init.d/shairport
 -	$(INSTALL_DIR) $(1)/etc/config
 -	$(INSTALL_CONF) files/shairport.config $(1)/etc/config/shairport
-+	$(INSTALL_DIR) $(1)/opt/sbin
-+	$(INSTALL_BIN) $(PKG_BUILD_DIR)/shairport $(1)/opt/sbin/
++	$(INSTALL_DIR) $(1)/opt/bin
++	$(INSTALL_BIN) $(PKG_BUILD_DIR)/shairport $(1)/opt/bin/
  endef
  
  $(eval $(call BuildPackage,shairport))

@@ -9,8 +9,8 @@ all: .done
 
 .done:
 	patch -d $(TOP) -p3 -i $(CURDIR)/fix-path.patch
-	mkdir -p ../../../openwrt_trunk/feeds/packages/utils/i2c-tools/patches/
-	cp -f ./500-I2C_FUNC_SMBUS_PEC.patch ../../../openwrt_trunk/feeds/packages/utils/i2c-tools/patches/
+	mkdir -p ../../../openwrt_trunk/feeds/oldpackages/utils/i2c-tools/patches/
+	cp -f ./500-I2C_FUNC_SMBUS_PEC.patch ../../../openwrt_trunk/feeds/oldpackages/utils/i2c-tools/patches/
 	@touch $@
 
 clean:

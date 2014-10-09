@@ -1,5 +1,5 @@
---- ../../../downloads/openwrt_trunk-r35474/feeds/oldpackages/libs/st2205tool/Makefile	2013-02-05 10:42:11.354946404 +0400
-+++ ../../../openwrt_trunk/feeds/oldpackages/libs/st2205tool/Makefile	2013-02-06 21:24:22.648670560 +0400
+--- ../../../downloads/openwrt_trunk-r35474/feeds/oldpackages/libs/st2205tool/Makefile
++++ ../../../openwrt_trunk/feeds/oldpackages/libs/st2205tool/Makefile
 @@ -24,7 +24,7 @@
    SECTION:=libs
    CATEGORY:=Libraries

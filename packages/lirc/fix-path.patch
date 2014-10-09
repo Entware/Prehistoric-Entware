@@ -1,5 +1,5 @@
---- ../../../openwrt_trunk/feeds/oldpackages/utils/lirc/Makefile.orig	2013-10-12 19:12:46.971363134 +0400
-+++ ../../../openwrt_trunk/feeds/oldpackages/utils/lirc/Makefile	2013-10-12 21:37:23.335203400 +0400
+--- ../../../openwrt_trunk/feeds/oldpackages/utils/lirc/Makefile.orig
++++ ../../../openwrt_trunk/feeds/oldpackages/utils/lirc/Makefile
 @@ -6,7 +6,6 @@
  #
  

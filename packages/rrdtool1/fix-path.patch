@@ -1,6 +1,6 @@
---- ../../../openwrt_trunk.orig/feeds/packages/utils/rrdtool1/Makefile	2011-11-28 10:57:21.000000000 +0400
-+++ ../../../openwrt_trunk/feeds/packages/utils/rrdtool1/Makefile	2011-11-29 11:29:25.049389522 +0400
-@@ -105,25 +105,25 @@
+--- ../../../downloads/openwrt_trunk-r42803/feeds/packages/utils/rrdtool1/Makefile	2014-10-06 15:46:23.773250645 +0400
++++ ../../../openwrt_trunk/feeds/packages/utils/rrdtool1/Makefile	2014-10-07 11:59:34.615924675 +0400
+@@ -106,25 +106,25 @@
  endef
  
  define Package/rrdtool1/install

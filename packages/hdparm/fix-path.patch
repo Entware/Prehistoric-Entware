@@ -1,5 +1,5 @@
---- ../../../openwrt_trunk.orig/feeds/oldpackages/utils/hdparm/Makefile	2012-10-09 13:58:18.145900861 +0400
-+++ ../../../openwrt_trunk/feeds/oldpackages/utils/hdparm/Makefile	2012-10-17 13:54:34.706337660 +0400
+--- ../../../openwrt_trunk.orig/feeds/oldpackages/utils/hdparm/Makefile
++++ ../../../openwrt_trunk/feeds/oldpackages/utils/hdparm/Makefile
 @@ -30,8 +30,8 @@
  endef
  

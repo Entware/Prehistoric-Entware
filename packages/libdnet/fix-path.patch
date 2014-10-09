@@ -1,5 +1,5 @@
---- ../../../openwrt_trunk.orig/feeds/oldpackages/libs/libdnet/Makefile	2012-10-09 13:58:16.145900898 +0400
-+++ ../../../openwrt_trunk/feeds/oldpackages/libs/libdnet/Makefile	2012-10-23 15:05:55.808820376 +0400
+--- ../../../openwrt_trunk.orig/feeds/oldpackages/libs/libdnet/Makefile
++++ ../../../openwrt_trunk/feeds/oldpackages/libs/libdnet/Makefile
 @@ -94,7 +94,7 @@
  	$(if $(CONFIG_PACKAGE_pydnet), \
  		$(call Build/Compile/PyMod, \

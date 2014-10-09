@@ -1,5 +1,5 @@
---- ../../../downloads/mipsel-hardfloat/openwrt_trunk-r40423/feeds/packages/utils/nut/Makefile	2014-04-09 16:17:24.230286480 +0400
-+++ ../../../openwrt_trunk/feeds/packages/utils/nut/Makefile	2014-04-09 16:53:29.422247038 +0400
+--- ../../../downloads/mipsel-hardfloat/openwrt_trunk-r40423/feeds/oldpackages/utils/nut/Makefile
++++ ../../../openwrt_trunk/feeds/oldpackages/utils/nut/Makefile
 @@ -24,7 +24,7 @@
  define Package/nut/Default
    URL:=http://www.networkupstools.org/

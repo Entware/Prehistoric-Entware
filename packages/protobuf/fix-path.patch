@@ -1,6 +1,6 @@
---- ../../../downloads/mipsel-hardfloat/openwrt_trunk-r40423/feeds/packages/libs/protobuf/Makefile	2014-04-09 16:17:24.302286481 +0400
-+++ ../../../openwrt_trunk/feeds/packages/libs/protobuf/Makefile	2014-04-11 14:55:22.055224648 +0400
-@@ -41,33 +41,33 @@
+--- ../../../downloads/openwrt_trunk-r42803/feeds/packages/libs/protobuf/Makefile	2014-10-06 15:46:23.741250644 +0400
++++ ../../../openwrt_trunk/feeds/packages/libs/protobuf/Makefile	2014-10-07 11:59:34.311924682 +0400
+@@ -49,33 +49,33 @@
  
  define Build/InstallDev
  	$(INSTALL_DIR) \

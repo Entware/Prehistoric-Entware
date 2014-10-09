@@ -1,6 +1,6 @@
 --- ../../../openwrt_trunk.orig/feeds/packages/libs/flac/Makefile
 +++ ../../../openwrt_trunk/feeds/packages/libs/flac/Makefile
-@@ -49,27 +49,27 @@
+@@ -51,27 +51,27 @@
  TARGET_CFLAGS += $(FPIC)
  
  define Build/InstallDev

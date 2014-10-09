@@ -1,6 +1,6 @@
---- ../../../openwrt_trunk.orig/feeds/packages/libs/argp-standalone/Makefile	2012-07-11 14:54:00.726752064 +0400
-+++ ../../../openwrt_trunk/feeds/packages/libs/argp-standalone/Makefile	2012-07-11 22:52:21.669930997 +0400
-@@ -26,12 +26,12 @@
+--- ../../../downloads/openwrt_trunk-r42803/feeds/packages/libs/argp-standalone/Makefile	2014-10-06 15:46:23.741250644 +0400
++++ ../../../openwrt_trunk/feeds/packages/libs/argp-standalone/Makefile	2014-10-07 11:59:08.627925150 +0400
+@@ -37,12 +37,12 @@
  
  
  define Build/InstallDev

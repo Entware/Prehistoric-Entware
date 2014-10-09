@@ -1,6 +1,6 @@
---- ../../../openwrt_trunk.orig/feeds/packages/net/wget/Makefile
-+++ ../../../openwrt_trunk/feeds/packages/net/wget/Makefile
-@@ -71,7 +71,7 @@
+--- ../../../downloads/openwrt_trunk-r42803/feeds/packages/net/wget/Makefile	2014-10-06 15:46:23.749250644 +0400
++++ ../../../openwrt_trunk/feeds/packages/net/wget/Makefile	2014-10-09 13:05:51.113205770 +0400
+@@ -73,7 +73,7 @@
  ifeq ($(BUILD_VARIANT),ssl)
  	CONFIGURE_ARGS+= \
  		--with-ssl=openssl \
@@ -9,7 +9,7 @@
  endif
  
  ifeq ($(BUILD_VARIANT),nossl)
-@@ -81,50 +81,51 @@
+@@ -83,49 +83,14 @@
  endif
  
  define Package/wget/install
@@ -23,27 +23,18 @@
  define Package/wget-nossl/install
 -	$(INSTALL_DIR) $(1)/usr/bin
 -	$(INSTALL_BIN) $(PKG_BUILD_DIR)/src/wget $(1)/usr/bin/wget-nossl
-+	$(INSTALL_DIR) $(1)/opt/bin
-+	$(INSTALL_BIN) $(PKG_BUILD_DIR)/src/wget $(1)/opt/bin/wget-nossl
- endef
- 
+-endef
+-
 -define Package/wget/postinst
-+#define Package/wget/postinst
- #!/bin/sh
+-#!/bin/sh
 -if [ -e $${IPKG_INSTROOT}/usr/bin/wget ]; then
 -  rm -rf $${IPKG_INSTROOT}/usr/bin/wget;
 -fi
 -ln -sf ./wget-ssl $${IPKG_INSTROOT}/usr/bin/wget
 -endef
-+#if [ -e $${IPKG_INSTROOT}/opt/bin/wget ]; then
-+#  rm -rf $${IPKG_INSTROOT}/opt/bin/wget;
-+#fi
-+#ln -sf ./wget-ssl $${IPKG_INSTROOT}/opt/bin/wget
-+#endef
- 
+-
 -define Package/wget/postrm
-+#define Package/wget/postrm
- #!/bin/sh
+-#!/bin/sh
 -rm $${IPKG_INSTROOT}/usr/bin/wget
 -[ -x $${IPKG_INSTROOT}/usr/bin/wget-nossl ] && ln -s ./wget-nossl $${IPKG_INSTROOT}/usr/bin/wget || {
 -  ln -s ../../bin/busybox $${IPKG_INSTROOT}/usr/bin/wget
@@ -51,45 +42,25 @@
 -}
 -exit 0
 -endef
-+#rm $${IPKG_INSTROOT}/opt/bin/wget
-+#[ -x $${IPKG_INSTROOT}/opt/bin/wget-nossl ] && ln -s ./wget-nossl $${IPKG_INSTROOT}/opt/bin/wget || {
-+#  ln -s ../../bin/busybox $${IPKG_INSTROOT}/opt/bin/wget
-+#  $${IPKG_INSTROOT}/opt/bin/wget 2>&1 | grep 'applet not found' > /dev/null 2>&1 && rm $${IPKG_INSTROOT}/opt/bin/wget
-+#}
-+#exit 0
-+#endef
- 
+-
 -define Package/wget-nossl/postinst
-+#define Package/wget-nossl/postinst
- #!/bin/sh
+-#!/bin/sh
 -if [ -e $${IPKG_INSTROOT}/usr/bin/wget ]; then
 -  rm -rf $${IPKG_INSTROOT}/usr/bin/wget;
 -fi
 -ln -s ./wget-nossl $${IPKG_INSTROOT}/usr/bin/wget
 -endef
-+#if [ -e $${IPKG_INSTROOT}/opt/bin/wget ]; then
-+#  rm -rf $${IPKG_INSTROOT}/opt/bin/wget;
-+#fi
-+#ln -s ./wget-nossl $${IPKG_INSTROOT}/opt/bin/wget
-+#endef
- 
+-
 -define Package/wget-nossl/postrm
-+#define Package/wget-nossl/postrm
- #!/bin/sh
+-#!/bin/sh
 -rm $${IPKG_INSTROOT}/usr/bin/wget
 -[ -x $${IPKG_INSTROOT}/usr/bin/wget-ssl ] && ln -s ./wget-ssl $${IPKG_INSTROOT}/usr/bin/wget || {
 -  ln -s ../../bin/busybox $${IPKG_INSTROOT}/usr/bin/wget
 -  $${IPKG_INSTROOT}/usr/bin/wget 2>&1 | grep 'applet not found' > /dev/null 2>&1 && rm $${IPKG_INSTROOT}/usr/bin/wget
 -}
 -exit 0
--endef
-+#rm $${IPKG_INSTROOT}/opt/bin/wget
-+#[ -x $${IPKG_INSTROOT}/opt/bin/wget-ssl ] && ln -s ./wget-ssl $${IPKG_INSTROOT}/opt/bin/wget || {
-+#  ln -s ../../bin/busybox $${IPKG_INSTROOT}/opt/bin/wget
-+#  $${IPKG_INSTROOT}/opt/bin/wget 2>&1 | grep 'applet not found' > /dev/null 2>&1 && rm $${IPKG_INSTROOT}/opt/bin/wget
-+#}
-+#exit 0
-+#endef
++	$(INSTALL_DIR) $(1)/opt/bin
++	$(INSTALL_BIN) $(PKG_BUILD_DIR)/src/wget $(1)/opt/bin/wget-nossl
+ endef
  
  $(eval $(call BuildPackage,wget))
- $(eval $(call BuildPackage,wget-nossl))

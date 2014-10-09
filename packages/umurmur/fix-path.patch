@@ -1,6 +1,6 @@
---- ../../../downloads/mipsel-hardfloat/openwrt_trunk-r40423/feeds/packages/net/umurmur/Makefile	2014-04-09 16:17:24.158286482 +0400
-+++ ../../../openwrt_trunk/feeds/packages/net/umurmur/Makefile	2014-04-11 15:45:32.955172584 +0400
-@@ -64,19 +64,19 @@
+--- ../../../downloads/openwrt_trunk-r42803/feeds/packages/net/umurmur/Makefile	2014-10-06 15:46:23.757250644 +0400
++++ ../../../openwrt_trunk/feeds/packages/net/umurmur/Makefile	2014-10-07 11:59:36.267924645 +0400
+@@ -76,19 +76,19 @@
  endef
  
  define Package/umurmur-openssl/conffiles

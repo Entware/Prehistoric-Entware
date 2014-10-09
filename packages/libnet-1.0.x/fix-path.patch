@@ -1,5 +1,5 @@
---- ../../../openwrt_trunk.orig/feeds/oldpackages/libs/libnet-1.0.x/Makefile	2012-08-06 14:41:05.342698223 +0400
-+++ ../../../openwrt_trunk/feeds/oldpackages/libs/libnet-1.0.x/Makefile	2012-08-13 15:45:27.074393349 +0400
+--- ../../../openwrt_trunk.orig/feeds/oldpackages/libs/libnet-1.0.x/Makefile
++++ ../../../openwrt_trunk/feeds/oldpackages/libs/libnet-1.0.x/Makefile
 @@ -58,17 +58,17 @@
  endef
  

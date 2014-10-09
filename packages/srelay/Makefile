@@ -9,7 +9,7 @@ all: .done
 
 .done:
 	patch -d $(TOP) -p3 -i $(CURDIR)/fix-path.patch
-	cp -f ./S26srelay ../../../openwrt_trunk/feeds/packages/net/srelay/files/
+	cp -f ./S26srelay ../../../openwrt_trunk/feeds/oldpackages/net/srelay/files/
 	@touch $@
 
 clean:

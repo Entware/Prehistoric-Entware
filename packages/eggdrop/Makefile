@@ -9,7 +9,7 @@ all: .done
 
 .done:
 	patch -d $(TOP) -p3 -i $(CURDIR)/fix-path.patch
-	cp -f ./500-LDFLAGS.patch ../../../openwrt_trunk/feeds/packages/lang/eggdrop/patches/
+	cp -f ./500-LDFLAGS.patch ../../../openwrt_trunk/feeds/oldpackages/lang/eggdrop/patches/
 	@touch $@
 
 clean:

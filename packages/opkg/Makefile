@@ -9,7 +9,6 @@ all: .done
 
 .done:
 	patch -d $(TOP) -p3 -i $(CURDIR)/fix-path.patch
-	patch -d $(TOP) -p3 -i $(CURDIR)/opkg-conf.patch
 	cp -f ./999-change-default-config-path.patch ../../../openwrt_trunk/package/system/opkg/patches
 	cp -f ./999-free-space-calc.patch ../../../openwrt_trunk/package/system/opkg/patches
 	rm -f ../../../openwrt_trunk/package/system/opkg/patches/009-remove-upgrade-all.patch

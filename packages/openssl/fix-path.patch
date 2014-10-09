@@ -1,5 +1,5 @@
---- ../../../downloads/mipsel-hardfloat/openwrt_trunk-r40423/package/libs/openssl/Makefile	2014-04-09 16:17:25.246286464 +0400
-+++ ../../../openwrt_trunk/package/libs/openssl/Makefile	2014-04-09 16:53:32.898246996 +0400
+--- ../../../downloads/mipsel-hardfloat/openwrt_trunk-r40423/package/libs/openssl/Makefile
++++ ../../../openwrt_trunk/package/libs/openssl/Makefile
 @@ -68,7 +68,7 @@
  endef
  

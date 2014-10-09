@@ -1,5 +1,5 @@
---- ../../../openwrt_trunk.orig/feeds/oldpackages/utils/lmbench/Makefile	2012-06-11 17:16:07.936543039 +0400
-+++ ../../../openwrt_trunk/feeds/oldpackages/utils/lmbench/Makefile	2012-06-13 17:32:06.893346541 +0400
+--- ../../../openwrt_trunk.orig/feeds/oldpackages/utils/lmbench/Makefile
++++ ../../../openwrt_trunk/feeds/oldpackages/utils/lmbench/Makefile
 @@ -15,8 +15,6 @@
  PKG_SOURCE_URL:=@SF/lmbench/
  PKG_MD5SUM:=b3351a3294db66a72e2864a199d37cbf

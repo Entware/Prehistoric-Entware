@@ -1,5 +1,5 @@
---- ../../../openwrt_trunk.orig/feeds/oldpackages/net/subversion/Makefile	2012-07-10 18:59:22.969222628 +0400
-+++ ../../../openwrt_trunk/feeds/oldpackages/net/subversion/Makefile	2012-07-10 19:00:16.944544067 +0400
+--- ../../../openwrt_trunk.orig/feeds/oldpackages/net/subversion/Makefile
++++ ../../../openwrt_trunk/feeds/oldpackages/net/subversion/Makefile
 @@ -71,16 +71,16 @@
  endef
  

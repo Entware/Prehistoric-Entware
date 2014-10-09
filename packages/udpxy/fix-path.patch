@@ -1,15 +1,21 @@
---- ../../../downloads/mipsel-hardfloat/openwrt_trunk-r40423/feeds/packages/net/udpxy/Makefile	2014-04-09 16:17:24.178286483 +0400
-+++ ../../../openwrt_trunk/feeds/packages/net/udpxy/Makefile	2014-04-11 15:42:14.775183823 +0400
-@@ -39,15 +39,15 @@
+--- ../../../downloads/openwrt_trunk-r42803/feeds/packages/net/udpxy/Makefile	2014-10-06 15:46:23.761250644 +0400
++++ ../../../openwrt_trunk/feeds/packages/net/udpxy/Makefile	2014-10-09 12:36:59.537236194 +0400
+@@ -44,21 +44,16 @@
+ 	popcornhour/mediatomb/vlc).
  endef
  
+-define Package/udpxy/conffiles
+-/etc/config/udpxy
+-endef
+-
  MAKE_FLAGS += \
 -	INSTALLROOT="$(PKG_INSTALL_DIR)/usr" \
 +	INSTALLROOT="$(PKG_INSTALL_DIR)/opt" \
  	ALL_CFLAGS="$(TARGET_CFLAGS) $(TARGET_CPPFLAGS)"
  
  define Package/udpxy/install
--	$(INSTALL_DIR) $(1)/etc/init.d
+-	$(INSTALL_DIR) $(1)/etc/init.d $(1)/etc/config
+-	$(INSTALL_CONF) ./files/udpxy.conf $(1)/etc/config/udpxy
 -	$(INSTALL_BIN) ./files/udpxy.init $(1)/etc/init.d/udpxy
 -	$(INSTALL_DIR) $(1)/usr/bin
 -	$(INSTALL_BIN) $(PKG_INSTALL_DIR)/usr/bin/udpxy $(1)/usr/bin/

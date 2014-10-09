@@ -1,6 +1,6 @@
---- ../../../openwrt_trunk.orig/feeds/packages/utils/unrar/Makefile	2012-08-06 09:54:13.407011761 +0400
-+++ ../../../openwrt_trunk/feeds/packages/utils/unrar/Makefile	2012-08-06 09:56:44.059009012 +0400
-@@ -41,8 +41,8 @@
+--- ../../../openwrt_trunk.orig/feeds/packages/utils/unrar/Makefile
++++ ../../../openwrt_trunk/feeds/packages/utils/unrar/Makefile
+@@ -43,8 +43,8 @@
  endef
  
  define Package/unrar/install

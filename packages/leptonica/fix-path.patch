@@ -1,5 +1,5 @@
---- ../../../downloads/openwrt_trunk-r35474/feeds/oldpackages/libs/leptonica/Makefile	2013-02-05 10:42:11.346946404 +0400
-+++ ../../../openwrt_trunk/feeds/oldpackages/libs/leptonica/Makefile	2013-02-06 17:07:22.820951527 +0400
+--- ../../../downloads/openwrt_trunk-r35474/feeds/oldpackages/libs/leptonica/Makefile
++++ ../../../openwrt_trunk/feeds/oldpackages/libs/leptonica/Makefile
 @@ -25,22 +25,21 @@
    CATEGORY:=Libraries
    TITLE:=A library for efficient image processing and image analysis operations

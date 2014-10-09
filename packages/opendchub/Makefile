@@ -10,8 +10,8 @@ all: .done
 
 .done:
 	patch -d $(TOP) -p3 -i $(CURDIR)/fix-path.patch
-	mkdir -p ../../../openwrt_trunk/feeds/packages/net/opendchub/files
-	cp -f ./S61opendchub ../../../openwrt_trunk/feeds/packages/net/opendchub/files/
+	mkdir -p ../../../openwrt_trunk/feeds/oldpackages/net/opendchub/files
+	cp -f ./S61opendchub ../../../openwrt_trunk/feeds/oldpackages/net/opendchub/files/
 	@touch $@
 
 clean:

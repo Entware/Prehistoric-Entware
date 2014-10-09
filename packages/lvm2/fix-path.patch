@@ -1,5 +1,5 @@
---- ../../../downloads/mipsel-hardfloat/openwrt_trunk-r40423/feeds/oldpackages/utils/lvm2/Makefile	2014-04-09 16:17:24.202286480 +0400
-+++ ../../../openwrt_trunk/feeds/oldpackages/utils/lvm2/Makefile	2014-04-15 14:16:36.324974830 +0400
+--- ../../../downloads/mipsel-hardfloat/openwrt_trunk-r40423/feeds/oldpackages/utils/lvm2/Makefile
++++ ../../../openwrt_trunk/feeds/oldpackages/utils/lvm2/Makefile
 @@ -24,7 +24,7 @@
    CATEGORY:=Libraries
    TITLE:=The Linux Kernel Device Mapper userspace library

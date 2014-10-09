@@ -1,5 +1,5 @@
---- ./src/Makefile.orig	2010-02-14 01:32:28.000000000 +0300
-+++ ./src/Makefile	2012-05-28 09:04:20.275782395 +0400
+--- a/src/Makefile
++++ b/src/Makefile
 @@ -164,7 +164,7 @@
  	$(CC) $(CFLAGS) $(OBJS_IV) -o $(@) $(LIBSSL)
  

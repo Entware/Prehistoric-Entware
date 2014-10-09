@@ -1,15 +1,33 @@
---- ../../../openwrt_trunk.orig/feeds/telephony/libs/spandsp/Makefile	2012-07-11 14:54:00.690752516 +0400
-+++ ../../../openwrt_trunk/feeds/telephony/libs/spandsp/Makefile	2012-07-11 21:27:58.545584546 +0400
-@@ -33,14 +33,14 @@
+--- ../../../downloads/openwrt_trunk-r42803/feeds/telephony/libs/spandsp/Makefile	2014-10-06 15:46:23.913250643 +0400
++++ ../../../openwrt_trunk/feeds/telephony/libs/spandsp/Makefile	2014-10-09 12:13:57.713256692 +0400
+@@ -32,25 +32,25 @@
  TARGET_CFLAGS += $(FPIC)
  
  define Build/InstallDev
--	$(INSTALL_DIR) $(1)/usr/{lib,include}
--	$(CP) $(PKG_INSTALL_DIR)/usr/lib/libspandsp* $(1)/usr/lib
--	$(CP) $(PKG_INSTALL_DIR)/usr/include/* $(1)/usr/include/
-+	$(INSTALL_DIR) $(1)/opt/{lib,include}
-+	$(CP) $(PKG_INSTALL_DIR)/opt/lib/libspandsp* $(1)/opt/lib
-+	$(CP) $(PKG_INSTALL_DIR)/opt/include/* $(1)/opt/include/
+-	$(INSTALL_DIR) $(1)/usr/lib
+-	$(CP) $(PKG_INSTALL_DIR)/usr/lib/libspandsp* $(1)/usr/lib/
++	$(INSTALL_DIR) $(1)/opt/lib
++	$(CP) $(PKG_INSTALL_DIR)/opt/lib/libspandsp* $(1)/opt/lib/
+ 
+-	$(INSTALL_DIR) $(1)/usr/include
+-	$(CP) $(PKG_INSTALL_DIR)/usr/include/spandsp.h $(1)/usr/include/
++	$(INSTALL_DIR) $(1)/opt/include
++	$(CP) $(PKG_INSTALL_DIR)/opt/include/spandsp.h $(1)/opt/include/
+ 
+-	$(INSTALL_DIR) $(1)/usr/include/spandsp
+-	$(CP) $(PKG_INSTALL_DIR)/usr/include/spandsp/*.h $(1)/usr/include/spandsp/
++	$(INSTALL_DIR) $(1)/opt/include/spandsp
++	$(CP) $(PKG_INSTALL_DIR)/opt/include/spandsp/*.h $(1)/opt/include/spandsp/
+ 
+-	$(INSTALL_DIR) $(1)/usr/include/spandsp/private
+-	$(CP) $(PKG_INSTALL_DIR)/usr/include/spandsp/private/*.h $(1)/usr/include/spandsp/private/
++	$(INSTALL_DIR) $(1)/opt/include/spandsp/private
++	$(CP) $(PKG_INSTALL_DIR)/opt/include/spandsp/private/*.h $(1)/opt/include/spandsp/private/
+ 
+-	$(INSTALL_DIR) $(1)/usr/lib/pkgconfig
+-	$(CP) $(PKG_INSTALL_DIR)/usr/lib/pkgconfig/spandsp.pc $(1)/usr/lib/pkgconfig/
++	$(INSTALL_DIR) $(1)/opt/lib/pkgconfig
++	$(CP) $(PKG_INSTALL_DIR)/opt/lib/pkgconfig/spandsp.pc $(1)/opt/lib/pkgconfig/
  endef
  
  define Package/libspandsp/install

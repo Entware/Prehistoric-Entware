@@ -1,6 +1,6 @@
---- ../../../openwrt_trunk.orig/feeds/packages/libs/apr/Makefile	2011-11-15 14:03:59.000000000 +0400
-+++ ../../../openwrt_trunk/feeds/packages/libs/apr/Makefile	2011-11-22 17:12:17.292629807 +0400
-@@ -40,6 +40,8 @@
+--- ../../../openwrt_trunk.orig/feeds/packages/libs/apr/Makefile
++++ ../../../openwrt_trunk/feeds/packages/libs/apr/Makefile
+@@ -42,6 +42,8 @@
  
  # XXX: ac_cv_sizeof_struct_iovec=1 is just to trick configure
  CONFIGURE_VARS += \
@@ -9,7 +9,7 @@
  	ac_cv_sizeof_struct_iovec=1 \
  	ac_cv_struct_rlimit=yes \
  	apr_cv_process_shared_works=no \
-@@ -49,29 +51,29 @@
+@@ -51,29 +53,29 @@
  	LDFLAGS="$$$$LDFLAGS -lpthread" \
  
  define Build/InstallDev

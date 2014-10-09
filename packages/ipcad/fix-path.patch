@@ -1,5 +1,5 @@
---- ../../../downloads/openwrt_trunk-r35474/feeds/oldpackages/net/ipcad/Makefile	2013-02-05 10:42:27.198946118 +0400
-+++ ../../../openwrt_trunk/feeds/oldpackages/net/ipcad/Makefile	2013-03-10 19:35:52.656193130 +0400
+--- ../../../downloads/openwrt_trunk-r35474/feeds/oldpackages/net/ipcad/Makefile
++++ ../../../openwrt_trunk/feeds/oldpackages/net/ipcad/Makefile
 @@ -22,7 +22,7 @@
  define Package/ipcad
    SECTION:=net

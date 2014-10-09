@@ -1,5 +1,5 @@
---- ../../../downloads/openwrt_trunk-r40423/feeds/oldpackages/mail/xmail/Makefile	2014-04-23 12:00:31.974046968 +0400
-+++ ../../../openwrt_trunk/feeds/oldpackages/mail/xmail/Makefile	2014-05-06 08:56:24.557787402 +0400
+--- ../../../downloads/openwrt_trunk-r40423/feeds/oldpackages/mail/xmail/Makefile
++++ ../../../openwrt_trunk/feeds/oldpackages/mail/xmail/Makefile
 @@ -36,24 +36,18 @@
  	CFLAGS="$(TARGET_CFLAGS)" \
  	$(MAKE) -C $(PKG_BUILD_DIR) -f Makefile.lnx \

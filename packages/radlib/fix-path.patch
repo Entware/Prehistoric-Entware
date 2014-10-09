@@ -1,5 +1,5 @@
---- ../../../downloads/openwrt_trunk-r37769/feeds/oldpackages/libs/radlib/Makefile	2013-08-15 09:37:02.693572165 +0400
-+++ ../../../openwrt_trunk/feeds/oldpackages/libs/radlib/Makefile	2013-08-21 12:03:15.687968721 +0400
+--- ../../../downloads/openwrt_trunk-r37769/feeds/oldpackages/libs/radlib/Makefile
++++ ../../../openwrt_trunk/feeds/oldpackages/libs/radlib/Makefile
 @@ -38,21 +38,21 @@
  
  EXTRA_LDFLAGS=-lsqlite3

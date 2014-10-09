@@ -1,6 +1,6 @@
---- ../../../downloads/openwrt_trunk-r35474/feeds/packages/utils/owfs/Makefile	2013-02-05 10:42:12.442946382 +0400
-+++ ../../../openwrt_trunk/feeds/packages/utils/owfs/Makefile	2013-02-06 17:35:54.436921445 +0400
-@@ -19,6 +19,7 @@
+--- ../../../downloads/openwrt_trunk-r42803/feeds/packages/utils/owfs/Makefile	2014-10-06 15:46:23.777250645 +0400
++++ ../../../openwrt_trunk/feeds/packages/utils/owfs/Makefile	2014-10-07 11:59:32.931924707 +0400
+@@ -21,6 +21,7 @@
  PKG_INSTALL:=1
  
  include $(INCLUDE_DIR)/package.mk
@@ -8,7 +8,7 @@
  
  #
  # templates
-@@ -72,7 +73,7 @@
+@@ -74,7 +75,7 @@
  
  define Package/libow
    $(call Package/owfs/Library)
@@ -17,7 +17,7 @@
    TITLE:=OWFS - common shared library
  endef
  
-@@ -113,7 +114,7 @@
+@@ -115,7 +116,7 @@
  define Package/owfs
    $(call Package/owfs/Utility)
    # libfuse depends on kmod-fuse, no need to declare dependency
@@ -26,7 +26,7 @@
    TITLE:=OWFS - fuse file system
  endef
  
-@@ -165,8 +166,6 @@
+@@ -167,8 +168,6 @@
  	--enable-owserver \
  	--enable-owhttpd \
  	--enable-owfs \
@@ -35,7 +35,7 @@
  	--enable-shared \
  	--enable-zero \
  	--disable-parport \
-@@ -175,11 +174,21 @@
+@@ -177,11 +176,21 @@
  	--disable-owphp \
  	--disable-owtcl \
  	--disable-swig \
@@ -60,7 +60,7 @@
  	shrext_cmds=".so" \
  
  MAKE_FLAGS += \
-@@ -187,51 +196,51 @@
+@@ -189,51 +198,51 @@
  	HOST_CPU="$(PKGARCH)"
  
  define Build/InstallDev

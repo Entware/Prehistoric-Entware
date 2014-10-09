@@ -1,5 +1,5 @@
---- ../../../downloads/openwrt_trunk-r40859/feeds/telephony/net/asterisk-11.x-chan-dongle/Makefile	2014-05-26 16:48:25.247190398 +0400
-+++ ../../../openwrt_trunk/feeds/telephony/net/asterisk-11.x-chan-dongle/Makefile	2014-05-27 14:12:32.529786817 +0400
+--- ../../../downloads/openwrt_trunk-r40859/feeds/telephony/net/asterisk-11.x-chan-dongle/Makefile
++++ ../../../openwrt_trunk/feeds/telephony/net/asterisk-11.x-chan-dongle/Makefile
 @@ -29,7 +29,7 @@
    SECTION:=net
    CATEGORY:=Network

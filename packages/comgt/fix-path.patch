@@ -1,6 +1,6 @@
---- ../../../openwrt_trunk.orig/package/network/utils/comgt/Makefile
-+++ ../../../openwrt_trunk/package/network/utils/comgt/Makefile
-@@ -25,7 +25,6 @@
+--- ../../../downloads/openwrt_trunk-r42803/package/network/utils/comgt/Makefile	2014-10-06 15:46:24.397250634 +0400
++++ ../../../openwrt_trunk/package/network/utils/comgt/Makefile	2014-10-07 16:16:31.511643174 +0400
+@@ -26,7 +26,6 @@
    SECTION:=utils
    CATEGORY:=Utilities
    TITLE:=Option/Vodafone 3G/GPRS control tool
@@ -8,12 +8,12 @@
    URL:=http://www.pharscape.org/comgt.html
  endef
  
-@@ -39,29 +38,22 @@
+@@ -40,32 +39,27 @@
  	$(MAKE) -C $(PKG_BUILD_DIR) \
  		$(TARGET_CONFIGURE_OPTS) \
  		CFLAGS="$(TARGET_CFLAGS)" \
 -		LDFLAGS="" \
-+		LDFLAGS="$(TARGET_LDFLAGS)" \
++		LDFLAGS=$(TARGET_LDFLAGS)"" \
  		comgt
  endef
  
@@ -32,13 +32,19 @@
 -	$(INSTALL_DATA) ./files/getcarrier.gcom $(1)/etc/gcom/getcarrier.gcom
 -	$(INSTALL_DATA) ./files/getcnum.gcom $(1)/etc/gcom/getcnum.gcom
 -	$(INSTALL_DATA) ./files/getimsi.gcom $(1)/etc/gcom/getimsi.gcom
+-	$(INSTALL_DATA) ./files/directip.gcom $(1)/etc/gcom/directip.gcom
+-	$(INSTALL_DATA) ./files/directip-stop.gcom $(1)/etc/gcom/directip-stop.gcom
 -	$(INSTALL_DIR) $(1)/etc/hotplug.d/tty
 -	$(INSTALL_DATA) ./files/3g.usb $(1)/etc/hotplug.d/tty/30-3g
 -	$(INSTALL_DIR) $(1)/lib/netifd/proto
 -	$(INSTALL_BIN) ./files/3g.sh $(1)/lib/netifd/proto/3g.sh
+-	$(INSTALL_BIN) ./files/directip.sh $(1)/lib/netifd/proto/directip.sh
 +	$(INSTALL_DIR) $(1)/opt/bin
 +	$(INSTALL_BIN) $(PKG_BUILD_DIR)/comgt $(1)/opt/bin/
 +	ln -s comgt $(1)/opt/bin/gcom
++	$(INSTALL_DIR) $(1)/opt/etc/chatscripts
++	$(INSTALL_DATA) ./files/3g.chat $(1)/opt/etc/chatscripts/3g.chat
++	$(INSTALL_DATA) ./files/evdo.chat $(1)/opt/etc/chatscripts/evdo.chat
 +	$(INSTALL_DIR) $(1)/opt/etc/gcom
 +	$(INSTALL_DATA) ./files/setpin.gcom $(1)/opt/etc/gcom/setpin.gcom
 +	$(INSTALL_DATA) ./files/setmode.gcom $(1)/opt/etc/gcom/setmode.gcom
@@ -47,6 +53,8 @@
 +	$(INSTALL_DATA) ./files/getcarrier.gcom $(1)/opt/etc/gcom/getcarrier.gcom
 +	$(INSTALL_DATA) ./files/getcnum.gcom $(1)/opt/etc/gcom/getcnum.gcom
 +	$(INSTALL_DATA) ./files/getimsi.gcom $(1)/opt/etc/gcom/getimsi.gcom
++	$(INSTALL_DATA) ./files/directip.gcom $(1)/opt/etc/gcom/directip.gcom
++	$(INSTALL_DATA) ./files/directip-stop.gcom $(1)/opt/etc/gcom/directip-stop.gcom
  endef
  
  $(eval $(call BuildPackage,comgt))

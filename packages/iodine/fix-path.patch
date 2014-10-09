@@ -1,6 +1,6 @@
---- ../../../downloads/openwrt_trunk-r40423/feeds/packages/net/iodine/Makefile	2014-04-23 12:00:31.862046970 +0400
-+++ ../../../openwrt_trunk/feeds/packages/net/iodine/Makefile	2014-05-06 11:02:09.465648163 +0400
-@@ -21,7 +21,7 @@
+--- ../../../downloads/openwrt_trunk-r40423/feeds/packages/net/iodine/Makefile
++++ ../../../openwrt_trunk/feeds/packages/net/iodine/Makefile
+@@ -25,7 +25,7 @@
    SECTION:=net
    CATEGORY:=Network
    SUBMENU:=Firewall Tunnel
@@ -9,7 +9,7 @@
    TITLE:=IP over DNS tunneling
    URL:=http://code.kryo.se/iodine/
  endef
-@@ -48,21 +48,15 @@
+@@ -52,21 +52,15 @@
  endef
  
  define Package/iodine/install

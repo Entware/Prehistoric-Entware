@@ -1,6 +1,6 @@
---- ../../../downloads/openwrt_trunk-r36151/feeds/packages/utils/ccid/Makefile	2013-04-02 14:27:29.625540422 +0400
-+++ ../../../openwrt_trunk/feeds/packages/utils/ccid/Makefile	2013-04-04 13:35:08.402449970 +0400
-@@ -37,11 +37,11 @@
+--- ../../../downloads/openwrt_trunk-r36151/feeds/packages/utils/ccid/Makefile
++++ ../../../openwrt_trunk/feeds/packages/utils/ccid/Makefile
+@@ -42,11 +42,11 @@
  
  CONFIGURE_ARGS += \
  	--enable-embedded \

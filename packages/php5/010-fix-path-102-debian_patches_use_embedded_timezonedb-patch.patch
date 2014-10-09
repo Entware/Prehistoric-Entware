@@ -1,5 +1,5 @@
---- ../../../openwrt_trunk.orig/feeds/packages/lang/php5/patches/102-debian_patches_use_embedded_timezonedb.patch	2012-08-06 09:54:11.983011784 +0400
-+++ ../../../openwrt_trunk/feeds/packages/lang/php5/patches/102-debian_patches_use_embedded_timezonedb.patch	2012-08-06 13:52:08.906751666 +0400
+--- ../../../openwrt_trunk.orig/feeds/packages/lang/php5/patches/102-debian_patches_use_embedded_timezonedb.patch
++++ ../../../openwrt_trunk/feeds/packages/lang/php5/patches/102-debian_patches_use_embedded_timezonedb.patch
 @@ -77,7 +77,7 @@
  +#ifdef HAVE_SYSTEM_TZDATA_PREFIX
  +#define ZONEINFO_PREFIX HAVE_SYSTEM_TZDATA_PREFIX

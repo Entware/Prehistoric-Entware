@@ -9,8 +9,8 @@ all: .done
 
 .done:
 	patch -d $(TOP) -p3 -i $(CURDIR)/fix-path.patch
-	mkdir -p ../../../openwrt_trunk/feeds/packages/net/sshfs/patches
-	cp -f ./001-hardlinks.patch ../../../openwrt_trunk/feeds/packages/net/sshfs/patches/
+	mkdir -p ../../../openwrt_trunk/feeds/oldpackages/net/sshfs/patches
+	cp -f ./001-hardlinks.patch ../../../openwrt_trunk/feeds/oldpackages/net/sshfs/patches/
 	@touch $@
 
 clean:

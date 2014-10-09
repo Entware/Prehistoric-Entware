@@ -1,5 +1,5 @@
---- ../../../downloads/mipsel-hardfloat/openwrt_trunk-r40423/feeds/oldpackages/net/cutter/Makefile	2014-04-09 16:17:24.178286483 +0400
-+++ ../../../openwrt_trunk/feeds/oldpackages/net/cutter/Makefile	2014-04-11 11:51:11.395432300 +0400
+--- ../../../downloads/mipsel-hardfloat/openwrt_trunk-r40423/feeds/oldpackages/net/cutter/Makefile
++++ ../../../openwrt_trunk/feeds/oldpackages/net/cutter/Makefile
 @@ -31,12 +31,12 @@
  endef
  

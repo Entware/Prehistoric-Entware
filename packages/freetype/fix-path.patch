@@ -1,21 +1,17 @@
---- ../../../openwrt_trunk.orig/feeds/packages/libs/freetype/Makefile
-+++ ../../../openwrt_trunk/feeds/packages/libs/freetype/Makefile
-@@ -51,24 +51,24 @@
- 
+--- ../../../downloads/openwrt_trunk-r42803/feeds/packages/libs/freetype/Makefile	2014-10-06 15:46:23.741250644 +0400
++++ ../../../openwrt_trunk/feeds/packages/libs/freetype/Makefile	2014-10-08 10:00:27.170478668 +0400
+@@ -56,22 +56,22 @@
  define Build/InstallDev
  	$(INSTALL_DIR) $(2)/bin
--	$(INSTALL_BIN) $(PKG_INSTALL_DIR)/usr/bin/freetype-config $(2)/bin/
+ 	$(INSTALL_BIN) $(PKG_INSTALL_DIR)/usr/bin/freetype-config $(2)/bin/
 -	$(INSTALL_DIR) $(1)/usr/include
 -	$(CP) $(PKG_INSTALL_DIR)/usr/include/freetype2 $(1)/usr/include/
--	$(CP) $(PKG_INSTALL_DIR)/usr/include/ft2build.h $(1)/usr/include/
 -	$(INSTALL_DIR) $(1)/usr/lib
 -	$(CP) $(PKG_INSTALL_DIR)/usr/lib/libfreetype.{a,so*} $(1)/usr/lib/
 -	$(INSTALL_DIR) $(1)/usr/lib/pkgconfig
 -	$(CP) $(PKG_INSTALL_DIR)/usr/lib/pkgconfig/freetype2.pc $(1)/usr/lib/pkgconfig/
-+	$(INSTALL_BIN) $(PKG_INSTALL_DIR)/opt/bin/freetype-config $(2)/bin/
 +	$(INSTALL_DIR) $(1)/opt/include
 +	$(CP) $(PKG_INSTALL_DIR)/opt/include/freetype2 $(1)/opt/include/
-+	$(CP) $(PKG_INSTALL_DIR)/opt/include/ft2build.h $(1)/opt/include/
 +	$(INSTALL_DIR) $(1)/opt/lib
 +	$(CP) $(PKG_INSTALL_DIR)/opt/lib/libfreetype.{a,so*} $(1)/opt/lib/
 +	$(INSTALL_DIR) $(1)/opt/lib/pkgconfig

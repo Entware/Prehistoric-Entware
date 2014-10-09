@@ -1,5 +1,5 @@
---- ../../../openwrt_trunk.orig/feeds/oldpackages/libs/keynote/Makefile	2012-09-03 15:54:44.275674384 +0400
-+++ ../../../openwrt_trunk/feeds/oldpackages/libs/keynote/Makefile	2012-09-07 16:36:43.361332532 +0400
+--- ../../../openwrt_trunk.orig/feeds/oldpackages/libs/keynote/Makefile
++++ ../../../openwrt_trunk/feeds/oldpackages/libs/keynote/Makefile
 @@ -42,15 +42,15 @@
  	CFLAGS="$(TARGET_CFLAGS)"
  

@@ -9,8 +9,8 @@ all: .done
 
 .done:
 	patch -d $(TOP) -p3 -i $(CURDIR)/fix-path.patch
-	mkdir -p ../../../openwrt_trunk/feeds/packages/libs/ossp-js/patches
-	cp -f ./000-configure-ac.patch ../../../openwrt_trunk/feeds/packages/libs/ossp-js/patches/
+	mkdir -p ../../../openwrt_trunk/feeds/oldpackages/libs/ossp-js/patches
+	cp -f ./000-configure-ac.patch ../../../openwrt_trunk/feeds/oldpackages/libs/ossp-js/patches/
 	@touch $@
 
 clean:

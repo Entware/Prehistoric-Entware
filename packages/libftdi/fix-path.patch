@@ -1,18 +1,18 @@
---- ../../../downloads/mipsel-hardfloat/openwrt_trunk-r40423/feeds/packages/libs/libftdi/Makefile	2014-04-09 16:17:24.310286478 +0400
-+++ ../../../openwrt_trunk/feeds/packages/libs/libftdi/Makefile	2014-04-15 08:53:10.753327997 +0400
-@@ -35,18 +35,18 @@
+--- ../../../downloads/openwrt_trunk-r42803/feeds/packages/libs/libftdi/Makefile	2014-10-06 15:46:23.745250644 +0400
++++ ../../../openwrt_trunk/feeds/packages/libs/libftdi/Makefile	2014-10-08 11:39:13.374369458 +0400
+@@ -40,18 +40,18 @@
  endef
  
  define Build/InstallDev
 -	$(INSTALL_DIR) $(1)/usr/include/
--	$(CP) $(PKG_INSTALL_DIR)/usr/include/libftdi/ftdi.h $(1)/usr/include/
+-	$(CP) $(PKG_INSTALL_DIR)/usr/include/ftdi.h $(1)/usr/include/
 -	$(INSTALL_DIR) $(1)/usr/lib
 -	$(CP) $(PKG_INSTALL_DIR)/usr/lib/libftdi.{a,so} $(1)/usr/lib/
 -	$(CP) $(PKG_INSTALL_DIR)/usr/lib/libftdi.so* $(1)/usr/lib/
 -	$(INSTALL_DIR) $(1)/usr/lib/pkgconfig/
 -	$(CP) $(PKG_INSTALL_DIR)/usr/lib/pkgconfig/libftdi.pc $(1)/usr/lib/pkgconfig/libftdi.pc
 +	$(INSTALL_DIR) $(1)/opt/include/
-+	$(CP) $(PKG_INSTALL_DIR)/opt/include/libftdi/ftdi.h $(1)/opt/include/
++	$(CP) $(PKG_INSTALL_DIR)/opt/include/ftdi.h $(1)/opt/include/
 +	$(INSTALL_DIR) $(1)/opt/lib
 +	$(CP) $(PKG_INSTALL_DIR)/opt/lib/libftdi.{a,so} $(1)/opt/lib/
 +	$(CP) $(PKG_INSTALL_DIR)/opt/lib/libftdi.so* $(1)/opt/lib/

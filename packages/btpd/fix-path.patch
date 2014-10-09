@@ -1,5 +1,5 @@
---- ../../../openwrt_trunk.orig/feeds/oldpackages/net/btpd/Makefile	2012-05-02 16:17:23.938419155 +0400
-+++ ../../../openwrt_trunk/feeds/oldpackages/net/btpd/Makefile	2012-05-31 16:23:08.508308664 +0400
+--- ../../../openwrt_trunk.orig/feeds/oldpackages/net/btpd/Makefile
++++ ../../../openwrt_trunk/feeds/oldpackages/net/btpd/Makefile
 @@ -40,19 +40,13 @@
  	the casual user as well.
  endef

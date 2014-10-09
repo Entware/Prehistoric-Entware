@@ -9,7 +9,7 @@ all: .done
 
 .done:
 	patch -d $(TOP) -p3 -i $(CURDIR)/fix-path.patch
-	cp -f ./S20poptop ../../../openwrt_trunk/feeds/packages/net/pptpd/files/
+	cp -f ./S20poptop ../../../openwrt_trunk/feeds/oldpackages/net/pptpd/files/
 	@touch $@
 
 clean:

@@ -10,6 +10,8 @@ all: .done
 .done:
 	patch -d $(TOP) -p3 -i $(CURDIR)/fix-path.patch
 	rm -f ../../../openwrt_trunk/feeds/packages/libs/libtorrent/patches/120-fix-ipv6_socket_datagram.patch
+	echo "Killing duplicate package from oldpackage feed"
+	rm -fr ../../../openwrt_trunk/feeds/packages/libs/libtorrent
 	@touch $@
 
 clean:

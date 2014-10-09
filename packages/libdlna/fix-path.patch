@@ -1,5 +1,5 @@
---- ../../../openwrt_trunk.orig/feeds/oldpackages/libs/libdlna/Makefile	2012-07-11 14:54:00.690752516 +0400
-+++ ../../../openwrt_trunk/feeds/oldpackages/libs/libdlna/Makefile	2012-07-11 21:29:04.908758878 +0400
+--- ../../../openwrt_trunk.orig/feeds/oldpackages/libs/libdlna/Makefile
++++ ../../../openwrt_trunk/feeds/oldpackages/libs/libdlna/Makefile
 @@ -43,12 +43,12 @@
  	# this is *NOT* GNU configure
  	( cd $(PKG_BUILD_DIR); \

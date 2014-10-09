@@ -1,5 +1,5 @@
---- ./www/rem2html.orig	2013-02-15 14:53:39.086933365 +0400
-+++ ./www/rem2html	2013-02-15 14:53:43.918931493 +0400
+--- a/www/rem2html
++++ b/www/rem2html
 @@ -1,4 +1,4 @@
 -#!/usr/bin/perl
 +#!/opt/bin/perl

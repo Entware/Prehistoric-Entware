@@ -1,5 +1,5 @@
---- a/src/ndppd.cc	2012-09-05 12:32:51.392747952 +0400
-+++ b/src/ndppd.cc	2012-09-05 12:33:03.556746806 +0400
+--- a/src/ndppd.cc
++++ b/src/ndppd.cc
 @@ -155,7 +155,7 @@
      signal(SIGINT, exit_ndppd);
      signal(SIGTERM, exit_ndppd);

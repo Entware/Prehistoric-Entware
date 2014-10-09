@@ -1,5 +1,5 @@
---- ../../../downloads/openwrt_trunk-r40859/feeds/oldpackages/utils/tesseract/Makefile	2014-05-26 16:48:25.219190397 +0400
-+++ ../../../openwrt_trunk/feeds/oldpackages/utils/tesseract/Makefile	2014-05-26 16:48:34.567190228 +0400
+--- ../../../downloads/openwrt_trunk-r40859/feeds/oldpackages/utils/tesseract/Makefile
++++ ../../../openwrt_trunk/feeds/oldpackages/utils/tesseract/Makefile
 @@ -30,9 +30,7 @@
  endef
  

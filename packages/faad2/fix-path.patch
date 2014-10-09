@@ -1,6 +1,6 @@
---- ../../../openwrt_trunk.orig/feeds/packages/libs/faad2/Makefile	2011-12-05 10:46:46.000000000 +0400
-+++ ../../../openwrt_trunk/feeds/packages/libs/faad2/Makefile	2011-12-09 13:50:05.108782221 +0400
-@@ -91,20 +91,20 @@
+--- ../../../openwrt_trunk.orig/feeds/packages/libs/faad2/Makefile
++++ ../../../openwrt_trunk/feeds/packages/libs/faad2/Makefile
+@@ -94,20 +94,20 @@
  endef
  
  define Build/InstallDev

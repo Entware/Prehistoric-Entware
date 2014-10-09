@@ -1,5 +1,5 @@
---- ../../../downloads/openwrt_trunk-r34120/package/devel/gdb/Makefile	2012-11-09 11:32:38.113676855 +0400
-+++ ../../../openwrt_trunk/package/devel/gdb/Makefile	2012-11-09 13:07:33.529572937 +0400
+--- ../../../downloads/openwrt_trunk-r34120/package/devel/gdb/Makefile
++++ ../../../openwrt_trunk/package/devel/gdb/Makefile
 @@ -8,12 +8,12 @@
  include $(TOPDIR)/rules.mk
  

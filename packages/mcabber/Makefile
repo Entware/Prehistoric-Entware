@@ -9,8 +9,8 @@ all: .done
 
 .done:
 	patch -d $(TOP) -p3 -i $(CURDIR)/fix-path.patch
-	mkdir -p ../../../openwrt_trunk/feeds/packages/net/mcabber/patches
-	cp -f 00*.patch ../../../openwrt_trunk/feeds/packages/net/mcabber/patches/
+	mkdir -p ../../../openwrt_trunk/feeds/oldpackages/net/mcabber/patches
+	cp -f 00*.patch ../../../openwrt_trunk/feeds/oldpackages/net/mcabber/patches/
 	@touch $@
 
 clean:

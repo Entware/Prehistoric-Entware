@@ -9,7 +9,7 @@ all: .done
 
 .done:
 	patch -d $(TOP) -p3 -i $(CURDIR)/fix-path.patch
-	cp -f ./S99sysstat ../../../openwrt_trunk/feeds/packages/utils/sysstat/files/
+	cp -f ./S99sysstat ../../../openwrt_trunk/feeds/oldpackages/utils/sysstat/files/
 	@touch $@
 
 clean:

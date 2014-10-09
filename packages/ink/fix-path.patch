@@ -1,5 +1,5 @@
---- ../../../openwrt_trunk.orig/feeds/oldpackages/utils/ink/Makefile	2013-06-14 04:07:50.143011348 +0400
-+++ ../../../openwrt_trunk/feeds/oldpackages/utils/ink/Makefile	2013-06-21 04:08:50.733970665 +0400
+--- ../../../openwrt_trunk.orig/feeds/oldpackages/utils/ink/Makefile
++++ ../../../openwrt_trunk/feeds/oldpackages/utils/ink/Makefile
 @@ -28,4 +28,4 @@
  define Package/ink/install
 -	$(INSTALL_DIR) $(1)/usr/bin

@@ -1,6 +1,6 @@
 --- ../../../openwrt_trunk.orig/feeds/packages/net/nmap/Makefile
 +++ ../../../openwrt_trunk/feeds/packages/net/nmap/Makefile
-@@ -83,51 +83,52 @@
+@@ -86,51 +86,52 @@
  CONFIGURE_ARGS += \
  	--with-libdnet=included \
  	--with-libpcre=included \

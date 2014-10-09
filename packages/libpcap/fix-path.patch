@@ -1,5 +1,5 @@
---- ../../../downloads/mipsel-hardfloat/openwrt_trunk-r40423/package/libs/libpcap/Makefile	2014-04-09 16:17:24.986286466 +0400
-+++ ../../../openwrt_trunk/package/libs/libpcap/Makefile	2014-04-09 16:53:28.562247057 +0400
+--- ../../../downloads/mipsel-hardfloat/openwrt_trunk-r40423/package/libs/libpcap/Makefile
++++ ../../../openwrt_trunk/package/libs/libpcap/Makefile
 @@ -82,16 +82,16 @@
  endef
  

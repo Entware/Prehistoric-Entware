@@ -1,21 +1,17 @@
---- ../../../downloads/mipsel-hardfloat/openwrt_trunk-r39357/feeds/packages/libs/libv4l/Makefile	2014-01-23 09:52:40.384429236 +0400
-+++ ../../../openwrt_trunk/feeds/packages/libs/libv4l/Makefile	2014-01-29 16:14:56.178568166 +0400
-@@ -70,12 +70,12 @@
+--- ../../../downloads/openwrt_trunk-r42803/feeds/packages/libs/libv4l/Makefile	2014-10-06 15:46:23.737250644 +0400
++++ ../../../openwrt_trunk/feeds/packages/libs/libv4l/Makefile	2014-10-08 12:35:24.446812131 +0400
+@@ -82,39 +82,39 @@
  
  define Build/Compile
  	$(MAKE) -C $(PKG_BUILD_DIR) \
--		DESTDIR="$(PKG_INSTALL_DIR)" PREFIX="/usr" \
+-		DESTDIR="$(PKG_INSTALL_DIR)" \
 +		DESTDIR="$(PKG_INSTALL_DIR)" PREFIX="/opt" \
- 		DISABLE_LIBJPEG="1" \
- 		$(CONFIGURE_VARS) \
  		all install
  	$(MAKE) -C $(PKG_BUILD_DIR) \
--		DESTDIR="$(PKG_INSTALL_DIR)" PREFIX="/usr" \
+-		DESTDIR="$(PKG_INSTALL_DIR)" \
 +		DESTDIR="$(PKG_INSTALL_DIR)" PREFIX="/opt" \
- 		DISABLE_LIBJPEG="1" \
- 		$(CONFIGURE_VARS) \
  		LINKTYPE="static" \
-@@ -83,30 +83,30 @@
+ 		all install
  endef
  
  define Build/InstallDev

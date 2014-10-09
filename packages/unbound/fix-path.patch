@@ -1,7 +1,7 @@
-diff -ur ../../../downloads/openwrt_trunk-r40859/feeds/packages/net/unbound/Makefile ../../../openwrt_trunk/feeds/packages/net/unbound/Makefile
---- ../../../downloads/openwrt_trunk-r40859/feeds/packages/net/unbound/Makefile	2014-05-26 13:26:44.239410832 +0400
-+++ ../../../openwrt_trunk/feeds/packages/net/unbound/Makefile	2014-05-26 16:15:21.815227777 +0400
-@@ -108,60 +108,60 @@
+diff -urx .svn ../../../downloads/openwrt_trunk-r42803/feeds/packages/net/unbound/Makefile ../../../openwrt_trunk/feeds/packages/net/unbound/Makefile
+--- ../../../downloads/openwrt_trunk-r42803/feeds/packages/net/unbound/Makefile	2014-10-06 15:46:23.749250644 +0400
++++ ../../../openwrt_trunk/feeds/packages/net/unbound/Makefile	2014-10-07 11:59:36.275924646 +0400
+@@ -112,60 +112,60 @@
  	--disable-ecdsa \
  	--disable-gost \
  	--enable-allsymbols \
@@ -90,9 +90,9 @@ diff -ur ../../../downloads/openwrt_trunk-r40859/feeds/packages/net/unbound/Make
  endef
  
  $(eval $(call BuildPackage,unbound))
-diff -ur ../../../downloads/openwrt_trunk-r40859/feeds/packages/net/unbound/patches/001-conf.patch ../../../openwrt_trunk/feeds/packages/net/unbound/patches/001-conf.patch
---- ../../../downloads/openwrt_trunk-r40859/feeds/packages/net/unbound/patches/001-conf.patch	2014-05-26 13:26:44.239410832 +0400
-+++ ../../../openwrt_trunk/feeds/packages/net/unbound/patches/001-conf.patch	2014-05-26 13:27:07.123410415 +0400
+diff -urx .svn ../../../downloads/openwrt_trunk-r42803/feeds/packages/net/unbound/patches/001-conf.patch ../../../openwrt_trunk/feeds/packages/net/unbound/patches/001-conf.patch
+--- ../../../downloads/openwrt_trunk-r42803/feeds/packages/net/unbound/patches/001-conf.patch	2014-10-06 15:46:23.749250644 +0400
++++ ../../../openwrt_trunk/feeds/packages/net/unbound/patches/001-conf.patch	2014-10-07 11:59:36.279924646 +0400
 @@ -99,12 +99,12 @@
   
   	# the pid file. Can be an absolute path outside of chroot/work dir.

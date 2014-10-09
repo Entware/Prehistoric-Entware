@@ -9,7 +9,7 @@ all: .done
 
 .done:
 	patch -d $(TOP) -p3 -i $(CURDIR)/fix-path.patch
-	cp -f ./S04arpwatch ../../../openwrt_trunk/feeds/packages/net/arpwatch/files/
+	cp -f ./S04arpwatch ../../../openwrt_trunk/feeds/oldpackages/net/arpwatch/files/
 	@touch $@
 
 clean:

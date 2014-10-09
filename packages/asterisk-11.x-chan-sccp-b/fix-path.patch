@@ -1,5 +1,5 @@
---- ../../../downloads/openwrt_trunk-r40423/feeds/telephony/net/asterisk-11.x-chan-sccp-b/Makefile	2014-05-17 10:46:06.217735900 +0400
-+++ ../../../openwrt_trunk/feeds/telephony/net/asterisk-11.x-chan-sccp-b/Makefile	2014-05-18 13:19:49.727994162 +0400
+--- ../../../downloads/openwrt_trunk-r42803/feeds/telephony/net/asterisk-11.x-chan-sccp-b/Makefile	2014-10-06 15:46:23.913250643 +0400
++++ ../../../openwrt_trunk/feeds/telephony/net/asterisk-11.x-chan-sccp-b/Makefile	2014-10-07 15:42:07.071681202 +0400
 @@ -38,7 +38,7 @@
  endef
  
@@ -19,11 +19,11 @@
  
  define Package/asterisk11-chan-sccp-b/install
 -	$(INSTALL_DIR) $(1)/etc/asterisk
--	$(CP)  ./files/sccp.openwrt.conf $(1)/etc/asterisk/sccp.conf
+-	$(CP) ./files/sccp.openwrt.conf $(1)/etc/asterisk/sccp.conf
 -	$(INSTALL_DIR) $(1)/usr/lib/asterisk/modules
 -	$(CP) $(PKG_INSTALL_DIR)/usr/lib/asterisk/modules/chan_sccp.so $(1)/usr/lib/asterisk/modules/
 +	$(INSTALL_DIR) $(1)/opt/etc/asterisk
-+	$(CP)  ./files/sccp.openwrt.conf $(1)/opt/etc/asterisk/sccp.conf
++	$(CP) ./files/sccp.openwrt.conf $(1)/opt/etc/asterisk/sccp.conf
 +	$(INSTALL_DIR) $(1)/opt/lib/asterisk/modules
 +	$(CP) $(PKG_INSTALL_DIR)/opt/lib/asterisk/modules/chan_sccp.so $(1)/opt/lib/asterisk/modules/
  endef

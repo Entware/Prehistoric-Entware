@@ -1,5 +1,5 @@
---- a/support/include/nfslib.h	2012-08-31 11:54:37.220582288 +0400
-+++ b/support/include/nfslib.h	2012-08-31 11:55:13.656582956 +0400
+--- a/support/include/nfslib.orig
++++ b/support/include/nfslib.h
 @@ -23,16 +23,16 @@
  #include "xlog.h"
  

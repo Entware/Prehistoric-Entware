@@ -1,6 +1,6 @@
---- ../../../downloads/mipsel-hardfloat/openwrt_trunk-r40423/feeds/packages/libs/xmlrpc-c/Makefile	2014-04-09 16:17:24.290286481 +0400
-+++ ../../../openwrt_trunk/feeds/packages/libs/xmlrpc-c/Makefile	2014-04-09 16:53:39.014246864 +0400
-@@ -121,87 +121,87 @@
+--- ../../../downloads/openwrt_trunk-r42803/feeds/packages/libs/xmlrpc-c/Makefile	2014-10-06 15:46:23.741250644 +0400
++++ ../../../openwrt_trunk/feeds/packages/libs/xmlrpc-c/Makefile	2014-10-07 11:59:36.659924639 +0400
+@@ -129,87 +129,87 @@
  
  define Build/InstallDev
  	$(INSTALL_DIR) \

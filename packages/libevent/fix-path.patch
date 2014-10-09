@@ -1,6 +1,6 @@
---- ../../../openwrt_trunk.orig/feeds/packages/libs/libevent/Makefile	2012-08-06 09:54:12.599011771 +0400
-+++ ../../../openwrt_trunk/feeds/packages/libs/libevent/Makefile	2012-08-06 10:50:53.358948825 +0400
-@@ -52,15 +52,15 @@
+--- ../../../openwrt_trunk.orig/feeds/packages/libs/libevent/Makefile
++++ ../../../openwrt_trunk/feeds/packages/libs/libevent/Makefile
+@@ -53,15 +53,15 @@
  	CFLAGS="$(TARGET_CFLAGS)" \
  
  define Build/InstallDev

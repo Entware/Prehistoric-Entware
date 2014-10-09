@@ -1,5 +1,5 @@
---- ../../../downloads/openwrt_trunk-r38381/feeds/oldpackages/utils/cryptsetup/Makefile	2013-10-13 10:25:09.878365929 +0400
-+++ ../../../openwrt_trunk/feeds/oldpackages/utils/cryptsetup/Makefile	2013-10-13 20:21:25.976066448 +0400
+--- ../../../downloads/openwrt_trunk-r38381/feeds/oldpackages/utils/cryptsetup/Makefile
++++ ../../../openwrt_trunk/feeds/oldpackages/utils/cryptsetup/Makefile
 @@ -19,13 +19,13 @@
  
  include $(INCLUDE_DIR)/package.mk

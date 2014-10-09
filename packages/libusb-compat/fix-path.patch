@@ -1,8 +1,8 @@
---- ../../../downloads/mipsel-hardfloat/openwrt_trunk-r40423/package/libs/libusb-compat/Makefile	2014-04-09 16:17:25.278286461 +0400
-+++ ../../../openwrt_trunk/package/libs/libusb-compat/Makefile	2014-04-15 13:15:33.009042082 +0400
-@@ -39,12 +39,12 @@
+--- ../../../downloads/openwrt_trunk-r42803/package/libs/libusb-compat/Makefile	2014-10-06 15:46:23.945250640 +0400
++++ ../../../openwrt_trunk/package/libs/libusb-compat/Makefile	2014-10-07 11:59:11.695925094 +0400
+@@ -41,12 +41,12 @@
+ 	$(INSTALL_DIR) $(STAGING_DIR)/host/bin
  
- define Build/InstallDev
  	$(CP) $(PKG_INSTALL_DIR)/* $(1)/
 -	$(CP) $(PKG_INSTALL_DIR)/usr/bin/libusb-config $(STAGING_DIR)/host/bin
 +	$(CP) $(PKG_INSTALL_DIR)/opt/bin/libusb-config $(STAGING_DIR)/host/bin

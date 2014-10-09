@@ -1,7 +1,7 @@
-diff -urx .svn ../../../downloads/mipsel-hardfloat/openwrt_trunk-r40423/package/network/services/dropbear/Makefile ../../../openwrt_trunk/package/network/services/dropbear/Makefile
---- ../../../downloads/mipsel-hardfloat/openwrt_trunk-r40423/package/network/services/dropbear/Makefile	2014-04-09 16:17:24.658286474 +0400
-+++ ../../../openwrt_trunk/package/network/services/dropbear/Makefile	2014-04-11 12:02:43.771416790 +0400
-@@ -46,9 +46,9 @@
+diff -urx .svn ../../../downloads/openwrt_trunk-r42803/package/network/services/dropbear/Makefile ../../../openwrt_trunk/package/network/services/dropbear/Makefile
+--- ../../../downloads/openwrt_trunk-r42803/package/network/services/dropbear/Makefile	2014-10-06 15:46:24.061250638 +0400
++++ ../../../openwrt_trunk/package/network/services/dropbear/Makefile	2014-10-07 11:59:09.455925135 +0400
+@@ -47,9 +47,9 @@
  endef
  
  define Package/dropbear/conffiles
@@ -14,7 +14,7 @@ diff -urx .svn ../../../downloads/mipsel-hardfloat/openwrt_trunk-r40423/package/
  endef
  
  define Package/dropbearconvert
-@@ -74,9 +74,6 @@
+@@ -75,9 +75,6 @@
  	--disable-zlib \
  	--enable-bundled-libtom
  
@@ -24,7 +24,7 @@ diff -urx .svn ../../../downloads/mipsel-hardfloat/openwrt_trunk-r40423/package/
  define Build/Configure
  	$(Build/Configure/Default)
  
-@@ -103,26 +100,32 @@
+@@ -104,26 +101,32 @@
  endef
  
  define Package/dropbear/install
@@ -74,9 +74,9 @@ diff -urx .svn ../../../downloads/mipsel-hardfloat/openwrt_trunk-r40423/package/
  endef
  
  $(eval $(call BuildPackage,dropbear))
-diff -urx .svn ../../../downloads/mipsel-hardfloat/openwrt_trunk-r40423/package/network/services/dropbear/patches/100-pubkey_path.patch ../../../openwrt_trunk/package/network/services/dropbear/patches/100-pubkey_path.patch
---- ../../../downloads/mipsel-hardfloat/openwrt_trunk-r40423/package/network/services/dropbear/patches/100-pubkey_path.patch	2014-04-09 16:17:24.654286473 +0400
-+++ ../../../openwrt_trunk/package/network/services/dropbear/patches/100-pubkey_path.patch	2014-04-09 16:53:27.414247071 +0400
+diff -urx .svn ../../../downloads/openwrt_trunk-r42803/package/network/services/dropbear/patches/100-pubkey_path.patch ../../../openwrt_trunk/package/network/services/dropbear/patches/100-pubkey_path.patch
+--- ../../../downloads/openwrt_trunk-r42803/package/network/services/dropbear/patches/100-pubkey_path.patch	2014-10-06 15:46:24.061250638 +0400
++++ ../../../openwrt_trunk/package/network/services/dropbear/patches/100-pubkey_path.patch	2014-10-07 11:59:09.463925134 +0400
 @@ -28,7 +28,7 @@
  +		/* open the file */
  +		authfile = fopen(filename, "r");

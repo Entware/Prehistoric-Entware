@@ -1,6 +1,6 @@
---- ../../../downloads/openwrt_trunk-r35953/feeds/packages/libs/libgd/Makefile	2013-03-11 09:29:39.222073818 +0400
-+++ ../../../openwrt_trunk/feeds/packages/libs/libgd/Makefile	2013-03-11 14:24:34.849750390 +0400
-@@ -25,7 +25,7 @@
+--- ../../../downloads/openwrt_trunk-r42803/feeds/packages/libs/libgd/Makefile	2014-10-06 15:46:23.745250644 +0400
++++ ../../../openwrt_trunk/feeds/packages/libs/libgd/Makefile	2014-10-07 11:59:11.199925103 +0400
+@@ -27,7 +27,7 @@
  define Package/libgd
    SECTION:=libs
    CATEGORY:=Libraries
@@ -9,7 +9,7 @@
    TITLE:=The GD graphics library
    URL:=http://www.libgd.org/
  endef
-@@ -43,9 +43,9 @@
+@@ -45,9 +45,9 @@
  	--disable-rpath \
  	--without-x \
  	--without-fontconfig \
@@ -22,7 +22,7 @@
  	--without-xpm \
  	--without-iconv
  
-@@ -54,24 +54,24 @@
+@@ -56,24 +56,24 @@
  	ac_cv_header_iconv_h=no
  
  define Build/InstallDev

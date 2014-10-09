@@ -1,5 +1,5 @@
---- ../../../downloads/mipsel-hardfloat/openwrt_trunk-r40423/feeds/packages/net/aria2/Makefile	2014-04-09 16:17:24.150286482 +0400
-+++ ../../../openwrt_trunk/feeds/packages/net/aria2/Makefile	2014-04-11 10:59:29.823498152 +0400
+--- ../../../downloads/mipsel-hardfloat/openwrt_trunk-r40423/feeds/packages/net/aria2/Makefile
++++ ../../../openwrt_trunk/feeds/packages/net/aria2/Makefile
 @@ -63,8 +63,11 @@
  	--with-libz
  

@@ -1,5 +1,5 @@
---- a/configure.ac	2012-01-19 13:57:06.893955956 +0400
-+++ b/configure.ac	2012-01-19 13:57:19.193804144 +0400
+--- a/configure.ac
++++ b/configure.ac
 @@ -98,7 +98,6 @@
  AM_CONDITIONAL(WANT_PEEKFD_ARM,
     test $ac_cv_member_struct_pt_regs_uregs = yes)

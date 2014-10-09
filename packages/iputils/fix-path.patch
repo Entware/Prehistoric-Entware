@@ -1,16 +1,16 @@
---- ../../../downloads/openwrt_trunk-r36151/package/network/utils/iputils/Makefile	2013-04-02 14:27:53.593539984 +0400
-+++ ../../../openwrt_trunk/package/network/utils/iputils/Makefile	2013-04-04 11:38:40.886579002 +0400
+--- ../../../downloads/openwrt_trunk-r42803/package/network/utils/iputils/Makefile	2014-10-06 15:46:24.397250634 +0400
++++ ../../../openwrt_trunk/package/network/utils/iputils/Makefile	2014-10-08 11:18:09.486392310 +0400
 @@ -67,7 +67,7 @@
  define Package/iputils-ping6
  $(call Package/iputils/Default)
    TITLE:=iputils - ping6
--  DEPENDS+= @IPV6
-+  DEPENDS+=+libopenssl @IPV6
+-  DEPENDS+= @IPV6 +USE_EGLIBC:libopenssl
++  DEPENDS+= @IPV6 +libopenssl
  endef
  
  define Package/iputils-ping6/description
-@@ -127,43 +127,43 @@
- 	CONFIG_USE_UCLIBC="$(CONFIG_USE_UCLIBC)" \
+@@ -131,43 +131,43 @@
+ 	CONFIG_USE_UCLIBC="$(CONFIG_USE_UCLIBC)$(CONFIG_USE_MUSL)" \
  
  define Package/iputils-arping/install
 -	$(INSTALL_DIR) $(1)/usr/bin

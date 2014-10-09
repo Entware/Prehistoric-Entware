@@ -1,5 +1,5 @@
---- ../../../openwrt_trunk.orig/feeds/oldpackages/libs/libinklevel/Makefile	2013-06-14 04:07:50.303050466 +0400
-+++ ../../../openwrt_trunk/feeds/oldpackages/libs/libinklevel/Makefile	2013-06-21 04:07:38.023907785 +0400
+--- ../../../openwrt_trunk.orig/feeds/oldpackages/libs/libinklevel/Makefile
++++ ../../../openwrt_trunk/feeds/oldpackages/libs/libinklevel/Makefile
 @@ -39,11 +39,11 @@
  define Build/InstallDev
 -	$(INSTALL_DIR) $(1)/usr/include

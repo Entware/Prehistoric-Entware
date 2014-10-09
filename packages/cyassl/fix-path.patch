@@ -1,5 +1,5 @@
---- ../../../downloads/mipsel-hardfloat/openwrt_trunk-r38784/package/libs/cyassl/Makefile	2013-11-13 15:33:50.496396522 +0400
-+++ ../../../openwrt_trunk/package/libs/cyassl/Makefile	2013-11-13 16:28:01.192335974 +0400
+--- ../../../downloads/mipsel-hardfloat/openwrt_trunk-r38784/package/libs/cyassl/Makefile
++++ ../../../openwrt_trunk/package/libs/cyassl/Makefile
 @@ -42,16 +42,16 @@
  	--disable-examples
  

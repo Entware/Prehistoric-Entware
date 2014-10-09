@@ -9,7 +9,7 @@ all: .done
 
 .done:
 	patch -d $(TOP) -p3 -i $(CURDIR)/fix-path.patch
-	cp -f ./100-brcm.patch ../../../openwrt_trunk/feeds/packages/net/net-tools/patches/
+	cp -f ./100-brcm.patch ../../../openwrt_trunk/feeds/oldpackages/net/net-tools/patches/
 	@touch $@
 
 clean:

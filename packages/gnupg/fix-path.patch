@@ -1,6 +1,6 @@
---- ../../../openwrt_trunk.orig/feeds/packages/utils/gnupg/Makefile	2012-07-18 00:48:35.000000000 +0400
-+++ ../../../openwrt_trunk/feeds/packages/utils/gnupg/Makefile	2012-07-24 13:06:59.000000000 +0400
-@@ -23,7 +23,7 @@
+--- ../../../downloads/openwrt_trunk-r42803/feeds/packages/utils/gnupg/Makefile	2014-10-06 15:46:23.777250645 +0400
++++ ../../../openwrt_trunk/feeds/packages/utils/gnupg/Makefile	2014-10-07 11:59:10.219925121 +0400
+@@ -27,7 +27,7 @@
  define Package/gnupg
    SECTION:=utils
    CATEGORY:=Utilities
@@ -9,7 +9,7 @@
    TITLE:=GNU privacy guard - a free PGP replacement
    URL:=http://www.gnupg.org/
  endef
-@@ -44,12 +44,10 @@
+@@ -48,12 +48,10 @@
  	--disable-gnupg-iconv \
  	--disable-card-support \
  	--disable-agent-support \
@@ -22,7 +22,7 @@
  	--disable-dns-srv \
  	--enable-fake-curl \
  	--disable-regex \
-@@ -58,8 +56,8 @@
+@@ -62,8 +60,8 @@
  	SUBDIRS="m4 intl zlib util mpi cipher tools g10 keyserver ${checks}" \
  
  define Package/gnupg/install

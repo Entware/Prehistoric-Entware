@@ -1,5 +1,5 @@
---- ../../../downloads/openwrt_trunk-r40859/package/utils/busybox/Config-defaults.in	2014-05-26 12:32:13.743470406 +0400
-+++ ../../../openwrt_trunk/package/utils/busybox/Config-defaults.in	2014-05-26 13:00:19.895439308 +0400
+--- ../../../downloads/openwrt_trunk-r40859/package/utils/busybox/Config-defaults.in
++++ ../../../openwrt_trunk/package/utils/busybox/Config-defaults.in
 @@ -93,7 +93,7 @@
  	default y
  config BUSYBOX_DEFAULT_PID_FILE_PATH

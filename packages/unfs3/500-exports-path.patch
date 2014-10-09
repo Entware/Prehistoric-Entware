@@ -1,5 +1,5 @@
---- a/daemon.c	2012-08-24 16:28:41.991298367 +0400
-+++ b/daemon.c	2012-08-24 16:28:57.227301545 +0400
+--- a/daemon.c
++++ b/daemon.c
 @@ -63,7 +63,7 @@
  
  /* options and default values */

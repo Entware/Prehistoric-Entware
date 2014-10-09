@@ -1,5 +1,5 @@
---- ../../../downloads/mipsel-hardfloat/openwrt_trunk-r40423/package/libs/ncurses/Makefile	2014-04-15 16:11:48.020849355 +0400
-+++ ../../../openwrt_trunk/package/libs/ncurses/Makefile	2014-04-15 16:12:13.424848892 +0400
+--- ../../../downloads/openwrt_trunk-r42803/package/libs/ncurses/Makefile	2014-10-06 15:46:23.949250640 +0400
++++ ../../../openwrt_trunk/package/libs/ncurses/Makefile	2014-10-08 14:14:58.158703113 +0400
 @@ -9,7 +9,7 @@
  
  PKG_NAME:=ncurses
@@ -65,7 +65,7 @@
  	$(MAKE) -C $(PKG_BUILD_DIR)/$(MAKE_PATH) \
  		$(MAKE_INSTALL_FLAGS) \
 -		$(1) install.libs install.data;
-+		$(1) install.libs install.progs install.data;
++		$(1) install.libs install.data install.progs;
 +endef
 +
 +define Package/ncurses-bin/install
@@ -85,11 +85,11 @@
  			mv $$$$dir $$$$(echo -ne "\x$$$$dir"); \
  		done \
  	)
--	for file in a/ansi d/dumb l/linux r/rxvt r/rxvt-unicode s/screen v/vt100 v/vt102 x/xterm x/xterm-color; do \
+-	for file in a/ansi d/dumb l/linux r/rxvt r/rxvt-unicode s/screen v/vt100 v/vt102 x/xterm x/xterm-color x/xterm-256color; do \
 -		$(INSTALL_DIR) $(1)/usr/share/terminfo/`dirname $$$$file`; \
 -		$(CP) $(PKG_INSTALL_DIR)/usr/share/terminfo/$$$$file \
 -			$(1)/usr/share/terminfo/$$$$file; \
-+	for file in a/ansi d/dumb l/linux r/rxvt r/rxvt-unicode s/screen v/vt100 v/vt102 x/xterm x/xterm-color x/xterm-utf8; do \
++	for file in a/ansi d/dumb l/linux r/rxvt r/rxvt-unicode s/screen v/vt100 v/vt102 x/xterm x/xterm-color x/xterm-256color x/xterm-utf8; do \
 +		$(INSTALL_DIR) $(1)/opt/share/terminfo/`dirname $$$$file`; \
 +		$(CP) $(PKG_INSTALL_DIR)/opt/share/terminfo/$$$$file \
 +			$(1)/opt/share/terminfo/$$$$file; \

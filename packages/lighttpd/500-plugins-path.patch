@@ -1,5 +1,5 @@
---- ./doc/config/conf.d/cgi.conf.orig	2013-11-14 17:07:34.502720214 +0400
-+++ ./doc/config/conf.d/cgi.conf	2013-11-14 17:07:42.882720062 +0400
+--- ./doc/config/conf.d/cgi.conf.orig
++++ ./doc/config/conf.d/cgi.conf
 @@ -12,11 +12,11 @@
  ##
  ## For PHP don't forget to set cgi.fix_pathinfo = 1 in the php.ini.

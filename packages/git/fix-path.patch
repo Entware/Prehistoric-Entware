@@ -1,15 +1,6 @@
---- ../../../downloads/mipsel-hardfloat/openwrt_trunk-r38800/feeds/packages/net/git/Makefile	2013-11-14 10:01:15.871186159 +0400
-+++ ../../../openwrt_trunk/feeds/packages/net/git/Makefile	2013-11-14 13:35:06.242953012 +0400
-@@ -24,7 +24,7 @@
-   SECTION:=net
-   CATEGORY:=Network
-   SUBMENU:=Version Control Systems
--  DEPENDS:=+libopenssl +libpthread
-+  DEPENDS:=+libcurl +libpthread +libexpat
-   TITLE:=The fast version control system
-   URL:=http://git-scm.com
- endef
-@@ -35,35 +35,27 @@
+--- ../../../downloads/openwrt_trunk-r42803/feeds/packages/net/git/Makefile	2014-10-06 15:46:23.757250644 +0400
++++ ../../../openwrt_trunk/feeds/packages/net/git/Makefile	2014-10-07 11:59:10.135925121 +0400
+@@ -36,35 +36,27 @@
   with speed and efficiency.
  endef
  
@@ -29,26 +20,24 @@
 -	NO_PERL="YesPlease" \
 -	NO_PYTHON="YesPlease" \
 -	NO_TCLTK="YesPlease"
--
--define Build/Configure
--	$(MAKE) -C $(PKG_BUILD_DIR) \
--		configure
--
--	( cd $(PKG_BUILD_DIR); \
--		./configure --prefix=/usr \
--	);
--endef
 +CONFIGURE_ARGS += \
 +	--without-iconv \
 +	--with-gitconfig=/opt/etc/gitconfig \
 +	--with-gitattributes=/opt/etc/gitattributes \
 +	--without-python \
 +	--without-tcltk \
-+
+ 
+-define Build/Configure
+-	$(MAKE) -C $(PKG_BUILD_DIR) \
+-		configure
 +CONFIGURE_VARS += \
 +	ac_cv_fread_reads_directories=no \
 +	ac_cv_snprintf_returns_bogus=no
-+
+ 
+-	( cd $(PKG_BUILD_DIR); \
+-		./configure --prefix=/usr \
+-	);
+-endef
 +MAKE_FLAGS += \
 +	NO_INSTALL_HARDLINKS="Yes" \
 +	NO_PERL="Yes"

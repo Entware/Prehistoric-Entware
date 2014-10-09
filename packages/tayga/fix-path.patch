@@ -1,21 +1,22 @@
---- ../../../downloads/openwrt_trunk-r40859/feeds/packages/ipv6/tayga/Makefile	2014-05-26 16:48:25.223190397 +0400
-+++ ../../../openwrt_trunk/feeds/packages/ipv6/tayga/Makefile	2014-05-26 16:48:34.511190229 +0400
-@@ -19,7 +19,6 @@
+--- ../../../downloads/openwrt_trunk-r42803/feeds/packages/ipv6/tayga/Makefile	2014-10-06 15:46:23.777250645 +0400
++++ ../../../openwrt_trunk/feeds/packages/ipv6/tayga/Makefile	2014-10-09 12:22:28.537250736 +0400
+@@ -21,7 +21,6 @@
  define Package/tayga
    SECTION:=net
    CATEGORY:=Network
 -  DEPENDS:=+ip +kmod-ipv6 +kmod-tun
    TITLE:=Out-of-kernel stateless NAT64 implementation for Linux
    URL:=http://www.litech.org/tayga/
- endef
-@@ -31,18 +30,9 @@
+   MAINTAINER:=Ondrej Caletka <ondrej@caletka.cz>
+@@ -33,19 +32,9 @@
+   kernel, which is the same driver used by OpenVPN and QEMU/KVM.
  endef
  
- # TODO: port scripts to netifd
--ifdef CONFIG_PACAKGE_netifd
+-ifdef CONFIG_PACKAGE_netifd
 -  define Package/tayga/install
--	$(INSTALL_DIR) $(1)/usr/sbin
+-	$(INSTALL_DIR) $(1)/usr/sbin $(1)/lib/netifd/proto
 -	$(INSTALL_BIN) $(PKG_BUILD_DIR)/tayga $(1)/usr/sbin/
+-	$(INSTALL_BIN) ./files/tayga-proto.sh $(1)/lib/netifd/proto/tayga.sh
 -  endef
 -else
 -  define Package/tayga/install

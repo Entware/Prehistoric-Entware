@@ -1,14 +1,14 @@
---- ../../../downloads/openwrt_trunk-r35953/feeds/packages/net/ipsec-tools/Makefile	2013-03-11 09:29:42.414073762 +0400
-+++ ../../../openwrt_trunk/feeds/packages/net/ipsec-tools/Makefile	2013-03-11 11:46:21.697924399 +0400
-@@ -6,7 +6,6 @@
+--- ../../../downloads/openwrt_trunk-r42803/feeds/packages/net/ipsec-tools/Makefile	2014-10-06 15:46:23.749250644 +0400
++++ ../../../openwrt_trunk/feeds/packages/net/ipsec-tools/Makefile	2014-10-07 11:59:10.583925114 +0400
+@@ -7,7 +7,6 @@
  #
  
  include $(TOPDIR)/rules.mk
 -include $(INCLUDE_DIR)/kernel.mk
  
  PKG_NAME:=ipsec-tools
- PKG_VERSION:=0.8.1
-@@ -27,7 +26,7 @@
+ PKG_VERSION:=0.8.2
+@@ -30,7 +29,7 @@
    SECTION:=net
    CATEGORY:=Network
    SUBMENU:=VPN
@@ -16,8 +16,8 @@
 +  DEPENDS:=+libopenssl
    TITLE:=IPsec management tools
    URL:=http://ipsec-tools.sourceforge.net/
- endef
-@@ -37,7 +36,7 @@
+   MAINTAINER:=Noah Meyerhans <frodo@morgul.net>
+@@ -41,7 +40,7 @@
  	--enable-static \
  	--with-kernel-headers="$(LINUX_DIR)/include" \
  	--without-readline \
@@ -26,7 +26,7 @@
  	--without-libradius \
  	--without-libpam \
  	--enable-dpd \
-@@ -70,26 +69,26 @@
+@@ -76,26 +75,26 @@
  endef
  
  define Package/ipsec-tools/install

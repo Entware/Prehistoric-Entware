@@ -9,9 +9,9 @@ all: .done
 
 .done:
 	patch -d $(TOP) -p3 -i $(CURDIR)/fix-path.patch
-	mkdir -p ../../../openwrt_trunk/feeds/packages/net/nzbget/files
-	cp -f ./S75nzbget ../../../openwrt_trunk/feeds/packages/net/nzbget/files/
-	rm -f ../../../openwrt_trunk/feeds/packages/net/nzbget/patches/001-openssl-1.0.0-compat.patch
+	mkdir -p ../../../openwrt_trunk/feeds/oldpackages/net/nzbget/files
+	cp -f ./S75nzbget ../../../openwrt_trunk/feeds/oldpackages/net/nzbget/files/
+	rm -f ../../../openwrt_trunk/feeds/oldpackages/net/nzbget/patches/001-openssl-1.0.0-compat.patch
 	@touch $@
 
 clean:

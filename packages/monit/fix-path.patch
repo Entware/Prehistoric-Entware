@@ -1,6 +1,7 @@
---- ../../../openwrt_trunk.orig/feeds/packages/admin/monit/Makefile	2012-08-06 09:54:23.719011569 +0400
-+++ ../../../openwrt_trunk/feeds/packages/admin/monit/Makefile	2012-08-06 09:55:42.255010138 +0400
-@@ -63,7 +63,7 @@
+diff -ur ../../../downloads/openwrt_trunk-r42803/feeds/packages/admin/monit/Makefile ../../../openwrt_trunk/feeds/packages/admin/monit/Makefile
+--- ../../../downloads/openwrt_trunk-r42803/feeds/packages/admin/monit/Makefile	2014-10-06 15:46:23.769250644 +0400
++++ ../../../openwrt_trunk/feeds/packages/admin/monit/Makefile	2014-10-07 11:59:30.747924747 +0400
+@@ -67,7 +67,7 @@
  ifeq ($(BUILD_VARIANT),ssl)
  	CONFIGURE_ARGS += \
  		--with-ssl \
@@ -9,7 +10,7 @@
  endif
  
  ifeq ($(BUILD_VARIANT),nossl)
-@@ -72,16 +72,15 @@
+@@ -76,16 +76,15 @@
  endif
  
  define Package/monit/conffiles
@@ -32,3 +33,15 @@
  endef
  
  Package/monit-nossl/conffiles = $(Package/monit/conffiles)
+diff -ur ../../../downloads/openwrt_trunk-r42803/feeds/packages/admin/monit/patches/001-fix-default-piddir.patch ../../../openwrt_trunk/feeds/packages/admin/monit/patches/001-fix-default-piddir.patch
+--- ../../../downloads/openwrt_trunk-r42803/feeds/packages/admin/monit/patches/001-fix-default-piddir.patch	2014-10-06 15:46:23.769250644 +0400
++++ ../../../openwrt_trunk/feeds/packages/admin/monit/patches/001-fix-default-piddir.patch	2014-10-08 13:41:47.162739855 +0400
+@@ -12,7 +12,7 @@
+ -elif test -d "/etc"; then
+ -        piddir="/etc"
+ -fi
+-+piddir="/var/run"
+++piddir="/opt/var/run"
+  
+  
+  cat >>confdefs.h <<_ACEOF

@@ -1,5 +1,5 @@
---- ../../../downloads/openwrt_trunk-r40859/feeds/telephony/admin/asterisk11-gui/Makefile	2014-05-26 13:26:44.351410830 +0400
-+++ ../../../openwrt_trunk/feeds/telephony/admin/asterisk11-gui/Makefile	2014-05-26 15:20:56.751286760 +0400
+--- ../../../downloads/openwrt_trunk-r42803/feeds/telephony/admin/asterisk11-gui/Makefile	2014-10-06 15:46:23.917250641 +0400
++++ ../../../openwrt_trunk/feeds/telephony/admin/asterisk11-gui/Makefile	2014-10-07 15:19:16.431706926 +0400
 @@ -47,11 +47,11 @@
  			--build=$(GNU_HOST_NAME) \
  			--host=$(GNU_TARGET_NAME) \
@@ -15,7 +15,7 @@
  		)
  endef
  
-@@ -61,15 +61,13 @@
+@@ -61,13 +61,13 @@
  endef
  
  define Package/asterisk11-gui/install
@@ -26,8 +26,6 @@
 -	$(INSTALL_DIR) $(1)/usr/lib/asterisk/scripts
 -	$(CP) $(PKG_INSTALL_DIR)/usr/lib/asterisk/scripts/* $(1)/usr/lib/asterisk/scripts
 -	$(INSTALL_DIR) $(1)/usr/lib/asterisk/gui_backups
--	$(INSTALL_DIR) $(1)/etc/uci-defaults
--	$(CP)	./files/agui-postinst $(1)/etc/uci-defaults/
 +	$(INSTALL_DIR) $(1)/opt/etc/asterisk/
 +	$(CP) ./files/gui_* $(1)/opt/etc/asterisk/
 +	$(INSTALL_DIR) $(1)/opt/lib/asterisk/static-http

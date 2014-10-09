@@ -1,6 +1,6 @@
---- ../../../openwrt_trunk.orig/package/devel/valgrind/Makefile
-+++ ../../../openwrt_trunk/package/devel/valgrind/Makefile
-@@ -93,68 +93,68 @@
+--- ../../../downloads/openwrt_trunk-r42803/package/devel/valgrind/Makefile	2014-10-06 15:46:23.981250640 +0400
++++ ../../../openwrt_trunk/package/devel/valgrind/Makefile	2014-10-09 13:03:45.617212737 +0400
+@@ -103,68 +103,68 @@
  	--without-included-gettext
  
  define Package/valgrind/install	
@@ -15,16 +15,16 @@
 -		$(PKG_INSTALL_DIR)/usr/lib/valgrind/none-* \
 -		$(PKG_INSTALL_DIR)/usr/lib/valgrind/vgpreload_core*.so \
 -		$(PKG_INSTALL_DIR)/usr/lib/valgrind/$(CPU)-*.xml \
--		$(PKG_INSTALL_DIR)/usr/lib/valgrind/32bit-core*.xml \
--		$(PKG_INSTALL_DIR)/usr/lib/valgrind/32bit-linux*.xml \
+-		$(PKG_INSTALL_DIR)/usr/lib/valgrind/$(BITS)-core*.xml \
+-		$(PKG_INSTALL_DIR)/usr/lib/valgrind/$(BITS)-linux*.xml \
 -		$(PKG_INSTALL_DIR)/usr/lib/valgrind/memcheck-* \
 -		$(PKG_INSTALL_DIR)/usr/lib/valgrind/vgpreload_memcheck*.so \
 -		$(1)/usr/lib/valgrind/
 +		$(PKG_INSTALL_DIR)/opt/lib/valgrind/none-* \
 +		$(PKG_INSTALL_DIR)/opt/lib/valgrind/vgpreload_core*.so \
 +		$(PKG_INSTALL_DIR)/opt/lib/valgrind/$(CPU)-*.xml \
-+		$(PKG_INSTALL_DIR)/opt/lib/valgrind/32bit-core*.xml \
-+		$(PKG_INSTALL_DIR)/opt/lib/valgrind/32bit-linux*.xml \
++		$(PKG_INSTALL_DIR)/opt/lib/valgrind/$(BITS)-core*.xml \
++		$(PKG_INSTALL_DIR)/opt/lib/valgrind/$(BITS)-linux*.xml \
 +		$(PKG_INSTALL_DIR)/opt/lib/valgrind/memcheck-* \
 +		$(PKG_INSTALL_DIR)/opt/lib/valgrind/vgpreload_memcheck*.so \
 +		$(1)/opt/lib/valgrind/

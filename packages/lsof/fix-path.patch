@@ -1,5 +1,5 @@
---- ../../../downloads/mipsel-hardfloat/openwrt_trunk-r40423/feeds/packages/utils/lsof/Makefile	2014-04-15 16:11:47.568849363 +0400
-+++ ../../../openwrt_trunk/feeds/packages/utils/lsof/Makefile	2014-04-16 12:40:56.135516140 +0400
+--- ../../../downloads/mipsel-hardfloat/openwrt_trunk-r40423/feeds/packages/utils/lsof/Makefile
++++ ../../../openwrt_trunk/feeds/packages/utils/lsof/Makefile
 @@ -20,8 +20,6 @@
  
  include $(INCLUDE_DIR)/package.mk

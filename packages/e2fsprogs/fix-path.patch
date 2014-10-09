@@ -1,5 +1,5 @@
---- ../../../openwrt_trunk/package/utils/e2fsprogs/Makefile.orig	2013-10-12 19:17:05.827364159 +0400
-+++ ../../../openwrt_trunk/package/utils/e2fsprogs/Makefile	2013-10-12 20:20:52.023286541 +0400
+--- ../../../openwrt_trunk/package/utils/e2fsprogs/Makefile.orig
++++ ../../../openwrt_trunk/package/utils/e2fsprogs/Makefile
 @@ -44,6 +44,7 @@
    SECTION:=libs
    CATEGORY:=Libraries

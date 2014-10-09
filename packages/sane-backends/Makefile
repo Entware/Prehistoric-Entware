@@ -9,8 +9,8 @@ all: .done
 
 .done:
 	patch -d $(TOP) -p3 -i $(CURDIR)/fix-path.patch
-	mkdir -p ../../../openwrt_trunk/feeds/packages/utils/sane-backends/files
-	cp -f ./S01sane-backends ../../../openwrt_trunk/feeds/packages/utils/sane-backends/files/
+	mkdir -p ../../../openwrt_trunk/feeds/oldpackages/utils/sane-backends/files
+	cp -f ./S01sane-backends ../../../openwrt_trunk/feeds/oldpackages/utils/sane-backends/files/
 	@touch $@
 
 clean:

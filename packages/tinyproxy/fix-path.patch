@@ -1,6 +1,6 @@
-diff -urx .svn ../../../downloads/openwrt_trunk-r37769/feeds/packages/net/tinyproxy/files/tinyproxy.config ../../../openwrt_trunk/feeds/packages/net/tinyproxy/files/tinyproxy.config
---- ../../../downloads/openwrt_trunk-r37769/feeds/packages/net/tinyproxy/files/tinyproxy.config	2013-08-15 09:37:02.961572159 +0400
-+++ ../../../openwrt_trunk/feeds/packages/net/tinyproxy/files/tinyproxy.config	2013-08-15 09:37:33.789571598 +0400
+diff -urx .svn ../../../downloads/openwrt_trunk-r42803/feeds/packages/net/tinyproxy/files/tinyproxy.config ../../../openwrt_trunk/feeds/packages/net/tinyproxy/files/tinyproxy.config
+--- ../../../downloads/openwrt_trunk-r42803/feeds/packages/net/tinyproxy/files/tinyproxy.config	2014-10-06 15:46:23.761250644 +0400
++++ ../../../openwrt_trunk/feeds/packages/net/tinyproxy/files/tinyproxy.config	2014-10-07 11:59:36.031924651 +0400
 @@ -1,39 +1,39 @@
 -config tinyproxy
 +#config tinyproxy
@@ -283,20 +283,20 @@ diff -urx .svn ../../../downloads/openwrt_trunk-r37769/feeds/packages/net/tinypr
  #
  # The LAST matching rule wins the route decision.  As you can see, you
  # can use a host, or a domain:
-diff -urx .svn ../../../downloads/openwrt_trunk-r37769/feeds/packages/net/tinyproxy/Makefile ../../../openwrt_trunk/feeds/packages/net/tinyproxy/Makefile
---- ../../../downloads/openwrt_trunk-r37769/feeds/packages/net/tinyproxy/Makefile	2013-08-15 09:37:02.961572159 +0400
-+++ ../../../openwrt_trunk/feeds/packages/net/tinyproxy/Makefile	2013-08-16 09:33:56.216001704 +0400
+diff -urx .svn ../../../downloads/openwrt_trunk-r42803/feeds/packages/net/tinyproxy/Makefile ../../../openwrt_trunk/feeds/packages/net/tinyproxy/Makefile
+--- ../../../downloads/openwrt_trunk-r42803/feeds/packages/net/tinyproxy/Makefile	2014-10-06 15:46:23.761250644 +0400
++++ ../../../openwrt_trunk/feeds/packages/net/tinyproxy/Makefile	2014-10-07 11:59:36.039924649 +0400
 @@ -12,7 +12,8 @@
- PKG_RELEASE:=1
+ PKG_RELEASE:=2
  
  PKG_SOURCE:=$(PKG_NAME)-$(PKG_VERSION).tar.bz2
 -PKG_SOURCE_URL:=http://www.banu.com/pub/tinyproxy/1.8/
 +PKG_SOURCE_URL:=http://www.banu.com/pub/tinyproxy/1.8/ \
 +	ftp://ftp.uwsg.indiana.edu/linux/gentoo/distfiles
  PKG_MD5SUM:=292ac51da8ad6ae883d4ebf56908400d
+ PKG_MAINTAINER:=Jo-Philipp Wich <jow@openwrt.org>
  
- PKG_INSTALL:=1
-@@ -28,7 +29,7 @@
+@@ -29,7 +30,7 @@
  endef
  
  define Package/tinyproxy/conffiles
@@ -305,7 +305,7 @@ diff -urx .svn ../../../downloads/openwrt_trunk-r37769/feeds/packages/net/tinypr
  endef
  
  CONFIGURE_ARGS+= \
-@@ -36,15 +37,19 @@
+@@ -37,15 +38,19 @@
  	--enable-transparent \
  	--disable-regexcheck \
  

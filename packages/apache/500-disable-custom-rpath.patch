@@ -1,5 +1,5 @@
---- ./support/envvars-std.in.orig	2013-02-15 14:02:31.206988556 +0400
-+++ ./support/envvars-std.in	2013-02-15 14:02:51.674980825 +0400
+--- a/support/envvars-std.in
++++ b/support/envvars-std.in
 @@ -18,7 +18,7 @@
  #
  # This file is generated from envvars-std.in

@@ -9,9 +9,9 @@ all: .done
 
 .done:
 	patch -d $(TOP) -p3 -i $(CURDIR)/fix-path.patch
-	cp -f ./500-paths.patch ../../../openwrt_trunk/feeds/packages/net/knock/patches/
-	mkdir -p ../../../openwrt_trunk/feeds/packages/net/knock/files
-	cp -f ./S05knockd ../../../openwrt_trunk/feeds/packages/net/knock/files/
+	cp -f ./500-paths.patch ../../../openwrt_trunk/feeds/oldpackages/net/knock/patches/
+	mkdir -p ../../../openwrt_trunk/feeds/oldpackages/net/knock/files
+	cp -f ./S05knockd ../../../openwrt_trunk/feeds/oldpackages/net/knock/files/
 	@touch $@
 
 clean:

@@ -1,5 +1,5 @@
---- ../../../openwrt_trunk.orig/feeds/packages/lang/php5/files/php.ini	2012-08-06 09:54:12.003011784 +0400
-+++ ../../../openwrt_trunk/feeds/packages/lang/php5/files/php.ini	2012-08-06 09:56:38.191010890 +0400
+--- ../../../openwrt_trunk.orig/feeds/packages/lang/php5/files/php.ini
++++ ../../../openwrt_trunk/feeds/packages/lang/php5/files/php.ini
 @@ -96,7 +96,7 @@
  ;error_prepend_string = "<font color=#ff0000>"
  ;error_append_string = "</font>"

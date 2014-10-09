@@ -1,6 +1,6 @@
---- ../../../downloads/mipsel-hardfloat/openwrt_trunk-r40423/feeds/packages/utils/zip/Makefile	2014-04-09 16:17:24.234286480 +0400
-+++ ../../../openwrt_trunk/feeds/packages/utils/zip/Makefile	2014-04-15 12:44:18.081076193 +0400
-@@ -40,16 +40,17 @@
+--- ../../../downloads/openwrt_trunk-r42803/feeds/packages/utils/zip/Makefile	2014-10-06 15:46:23.777250645 +0400
++++ ../../../openwrt_trunk/feeds/packages/utils/zip/Makefile	2014-10-09 13:17:48.501190297 +0400
+@@ -46,8 +46,9 @@
  
  define Build/Compile
  	$(MAKE) -C $(PKG_BUILD_DIR) -f unix/Makefile generic \
@@ -10,7 +10,8 @@
 +		LFLAGS2="$(TARGET_LDFLAGS)" \
  		CC="$(TARGET_CC) $(TARGET_CFLAGS) -O $(TARGET_CPPFLAGS) -I. -DUNIX" \
  		LD="$(TARGET_CC) $(TARGET_LDFLAGS)" \
- 		install
+ 		IZ_BZIP2="no" \
+@@ -55,8 +56,8 @@
  endef
  
  define Package/zip/install

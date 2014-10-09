@@ -1,14 +1,23 @@
---- ../../../downloads/openwrt_trunk-r40859/feeds/packages/libs/gnutls/Makefile	2014-05-26 13:26:44.215410832 +0400
-+++ ../../../openwrt_trunk/feeds/packages/libs/gnutls/Makefile	2014-05-26 15:29:43.903278123 +0400
-@@ -155,7 +155,6 @@
- 	AM_CFLAGS="" \
+--- ../../../downloads/openwrt_trunk-r42803/feeds/packages/libs/gnutls/Makefile	2014-10-06 15:46:23.737250644 +0400
++++ ../../../openwrt_trunk/feeds/packages/libs/gnutls/Makefile	2014-10-08 10:16:51.434461770 +0400
+@@ -108,7 +108,7 @@
+ 	--disable-doc \
+ 	--disable-tests \
+ 	--disable-rsa-export \
+-	--with-default-trust-store-dir=/etc/ssl/certs/ \
++	--with-default-trust-store-dir=/opt/etc/ssl/certs/ \
+ 	--disable-crywrap
+ 
+ ifneq ($(CONFIG_GNUTLS_EXT_LIBTASN1),y)
+@@ -160,7 +160,6 @@
+ endif
  
  TARGET_CFLAGS += $(FPIC)
 -TARGET_LDFLAGS += -Wl,-rpath-link=$(STAGING_DIR)/usr/lib
  
  define Build/Configure
  	$(SED) 's,-I$$$${includedir},,g' $(PKG_BUILD_DIR)/configure
-@@ -164,64 +163,64 @@
+@@ -169,69 +168,69 @@
  endef
  
  define Build/InstallDev
@@ -77,6 +86,13 @@
 -		$(PKG_INSTALL_DIR)/usr/bin/psktool \
 -		$(1)/usr/bin/
 +		$(PKG_INSTALL_DIR)/opt/bin/psktool \
++		$(1)/opt/bin/
+ endif
+ ifeq ($(CONFIG_GNUTLS_PKCS11),y)
+ 	$(CP) \
+-		$(PKG_INSTALL_DIR)/usr/bin/p11tool \
+-		$(1)/usr/bin/
++		$(PKG_INSTALL_DIR)/opt/bin/p11tool \
 +		$(1)/opt/bin/
  endif
  endef

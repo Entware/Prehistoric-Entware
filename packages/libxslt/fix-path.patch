@@ -1,6 +1,6 @@
---- ../../../downloads/mipsel-hardfloat/openwrt_trunk-r40423/feeds/packages/libs/libxslt/Makefile	2014-04-09 16:17:24.282286481 +0400
-+++ ../../../openwrt_trunk/feeds/packages/libs/libxslt/Makefile	2014-04-15 15:20:59.408910377 +0400
-@@ -69,50 +69,50 @@
+--- ../../../downloads/openwrt_trunk-r42803/feeds/packages/libs/libxslt/Makefile	2014-10-06 15:46:23.741250644 +0400
++++ ../../../openwrt_trunk/feeds/packages/libs/libxslt/Makefile	2014-10-08 12:40:27.502811963 +0400
+@@ -75,50 +75,50 @@
  TARGET_CFLAGS += $(FPIC)
  
  define Build/InstallDev/Xslt
@@ -71,7 +71,7 @@
  endef
  
  define Build/InstallDev
-@@ -121,24 +121,24 @@
+@@ -127,24 +127,24 @@
  endef
  
  define Package/libxslt/install

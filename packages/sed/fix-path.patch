@@ -1,5 +1,5 @@
---- ../../../openwrt_trunk.orig/feeds/oldpackages/utils/sed/Makefile	2011-11-28 10:56:52.000000000 +0400
-+++ ../../../openwrt_trunk/feeds/oldpackages/utils/sed/Makefile	2011-11-28 14:39:00.335555992 +0400
+--- ../../../openwrt_trunk.orig/feeds/oldpackages/utils/sed/Makefile
++++ ../../../openwrt_trunk/feeds/oldpackages/utils/sed/Makefile
 @@ -32,13 +32,13 @@
  endef
  

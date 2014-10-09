@@ -1,22 +1,6 @@
---- ../../../downloads/openwrt_trunk-r40423/feeds/packages/utils/minicom/Makefile	2014-05-17 10:46:06.165735902 +0400
-+++ ../../../openwrt_trunk/feeds/packages/utils/minicom/Makefile	2014-05-18 10:05:46.712205543 +0400
-@@ -8,12 +8,12 @@
- include $(TOPDIR)/rules.mk
- 
- PKG_NAME:=minicom
--PKG_VERSION:=2.3
-+PKG_VERSION:=2.7
- PKG_RELEASE:=1
- 
- PKG_SOURCE:=$(PKG_NAME)-$(PKG_VERSION).tar.gz
--PKG_SOURCE_URL:=http://alioth.debian.org/download.php/2332/
--PKG_MD5SUM:=0ebe7a91898384ca906787cc4e2c3f25
-+PKG_SOURCE_URL:=https://alioth.debian.org/frs/download.php/file/3977
-+PKG_MD5SUM:=7044ca3e291268c33294f171d426dc2d
- 
- PKG_FIXUP:=autoreconf
- 
-@@ -29,9 +29,9 @@
+--- ../../../downloads/openwrt_trunk-r42803/feeds/packages/utils/minicom/Makefile	2014-10-06 15:46:23.773250645 +0400
++++ ../../../openwrt_trunk/feeds/packages/utils/minicom/Makefile	2014-10-07 11:59:12.243925084 +0400
+@@ -37,9 +37,9 @@
  endef
  
  define Package/minicom/install

@@ -1,5 +1,5 @@
---- ../../../downloads/openwrt_trunk-r40423/feeds/oldpackages/net/ncftp/Makefile	2014-05-16 21:53:21.958947206 +0400
-+++ ../../../openwrt_trunk/feeds/oldpackages/net/ncftp/Makefile	2014-05-19 12:52:45.634049569 +0400
+--- ../../../downloads/openwrt_trunk-r40423/feeds/oldpackages/net/ncftp/Makefile
++++ ../../../openwrt_trunk/feeds/oldpackages/net/ncftp/Makefile
 @@ -53,15 +53,15 @@
  endef
  

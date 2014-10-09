@@ -1,6 +1,6 @@
---- ../../../openwrt_trunk.orig/feeds/packages/libs/fcgi/Makefile	2012-07-10 18:59:22.269231428 +0400
-+++ ../../../openwrt_trunk/feeds/packages/libs/fcgi/Makefile	2012-07-11 11:52:30.815656903 +0400
-@@ -57,23 +57,23 @@
+--- ../../../openwrt_trunk.orig/feeds/packages/libs/fcgi/Makefile
++++ ../../../openwrt_trunk/feeds/packages/libs/fcgi/Makefile
+@@ -59,23 +59,23 @@
  	LIBS="-lm" \
  
  define Build/InstallDev

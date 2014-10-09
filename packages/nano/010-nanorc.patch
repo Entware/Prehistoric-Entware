@@ -1,5 +1,5 @@
---- a/doc/nanorc.sample.in	2010-08-11 06:43:14.000000000 +0400
-+++ b/doc/nanorc.sample.in	2013-03-20 04:23:13.000000000 +0400
+--- a/doc/nanorc.sample.in
++++ b/doc/nanorc.sample.in
 @@ -42,7 +42,7 @@
  
  ## Constantly display the cursor position in the statusbar.  Note that

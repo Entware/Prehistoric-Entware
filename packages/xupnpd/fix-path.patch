@@ -1,15 +1,6 @@
---- ../../../downloads/openwrt_trunk-r40859/feeds/packages/multimedia/xupnpd/Makefile	2014-05-27 14:18:46.681780076 +0400
-+++ ../../../openwrt_trunk/feeds/packages/multimedia/xupnpd/Makefile	2014-06-07 16:15:42.175657814 +0400
-@@ -8,7 +8,7 @@
- include $(TOPDIR)/rules.mk
- 
- PKG_NAME:=xupnpd
--PKG_REV:=398
-+PKG_REV:=399
- PKG_VERSION:=$(PKG_REV)
- PKG_RELEASE:=1
- 
-@@ -35,9 +35,9 @@
+--- ../../../downloads/openwrt_trunk-r40859/feeds/packages/multimedia/xupnpd/Makefile
++++ ../../../openwrt_trunk/feeds/packages/multimedia/xupnpd/Makefile
+@@ -36,9 +36,9 @@
  endef
  
  define Package/xupnpd/conffiles
@@ -22,7 +13,7 @@
  endef
  
  define Package/xupnpd/description
-@@ -48,23 +48,24 @@
+@@ -49,23 +49,24 @@
  endef
  
  define Package/xupnpd/install

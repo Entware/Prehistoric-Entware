@@ -1,5 +1,5 @@
---- ../../../downloads/mipsel-hardfloat/openwrt_trunk-r40423/package/boot/kexec-tools/Makefile	2014-04-09 16:17:24.974286469 +0400
-+++ ../../../openwrt_trunk/package/boot/kexec-tools/Makefile	2014-04-11 13:12:43.467339995 +0400
+--- ../../../downloads/mipsel-hardfloat/openwrt_trunk-r40423/package/boot/kexec-tools/Makefile
++++ ../../../openwrt_trunk/package/boot/kexec-tools/Makefile
 @@ -24,7 +24,7 @@
  define Package/kexec-tools
    SECTION:=utils

@@ -1,5 +1,5 @@
---- a/auth_init.c	2012-08-24 16:54:27.023273130 +0400
-+++ b/auth_init.c	2012-08-24 16:54:34.931277217 +0400
+--- a/auth_init.c.orig
++++ b/auth_init.c
 @@ -20,7 +20,7 @@
  #define CHUNK_SIZE	1024	/* the 'typical' maximum line length	*/
  

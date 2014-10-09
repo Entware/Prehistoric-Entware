@@ -9,7 +9,7 @@ all: .done
 
 .done:
 	patch -d $(TOP) -p3 -i $(CURDIR)/fix-path.patch
-	cp -f ./S17apcupsd ../../../openwrt_trunk/feeds/packages/net/apcupsd/files/
+	cp -f ./S17apcupsd ../../../openwrt_trunk/feeds/oldpackages/net/apcupsd/files/
 	@touch $@
 
 clean:

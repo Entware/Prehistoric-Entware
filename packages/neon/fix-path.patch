@@ -1,6 +1,6 @@
---- ../../../openwrt_trunk.orig/feeds/packages/libs/neon/Makefile	2012-03-21 16:34:48.490727528 +0400
-+++ ../../../openwrt_trunk/feeds/packages/libs/neon/Makefile	2012-03-23 10:45:20.068804234 +0400
-@@ -43,21 +43,21 @@
+--- ../../../downloads/openwrt_trunk-r42803/feeds/packages/libs/neon/Makefile	2014-10-06 15:46:23.737250644 +0400
++++ ../../../openwrt_trunk/feeds/packages/libs/neon/Makefile	2014-10-07 11:59:31.587924731 +0400
+@@ -58,21 +58,21 @@
  	LDFLAGS="$$$$LDFLAGS -lcrypto -lssl"
  
  define Build/InstallDev

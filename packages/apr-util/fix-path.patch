@@ -1,6 +1,6 @@
---- ../../../openwrt_trunk.orig/feeds/packages/libs/apr-util/Makefile	2012-04-02 11:00:50.460011808 +0400
-+++ ../../../openwrt_trunk/feeds/packages/libs/apr-util/Makefile	2012-04-10 12:27:24.141839203 +0400
-@@ -36,40 +36,40 @@
+--- ../../../openwrt_trunk.orig/feeds/packages/libs/apr-util/Makefile
++++ ../../../openwrt_trunk/feeds/packages/libs/apr-util/Makefile
+@@ -38,40 +38,40 @@
  
  CONFIGURE_ARGS += \
  	--with-pgsql=no \

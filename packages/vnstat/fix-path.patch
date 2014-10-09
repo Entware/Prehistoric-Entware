@@ -1,6 +1,6 @@
---- ../../../openwrt_trunk.orig/feeds/packages/net/vnstat/Makefile	2012-10-08 18:50:50.639155000 +0400
-+++ ../../../openwrt_trunk/feeds/packages/net/vnstat/Makefile	2012-10-09 10:30:54.962125267 +0400
-@@ -55,21 +55,21 @@
+--- ../../../downloads/openwrt_trunk-r42803/feeds/packages/net/vnstat/Makefile	2014-10-06 15:46:23.757250644 +0400
++++ ../../../openwrt_trunk/feeds/packages/net/vnstat/Makefile	2014-10-07 11:59:36.491924641 +0400
+@@ -56,21 +56,21 @@
  endef
  
  define Package/vnstat/conffiles
@@ -27,7 +27,7 @@
  		all
  endef
  
-@@ -79,29 +79,17 @@
+@@ -80,29 +80,17 @@
  endef
  
  define Package/vnstat/install

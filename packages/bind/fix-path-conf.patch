@@ -1,5 +1,5 @@
---- ../../../openwrt_trunk.orig/feeds/packages/net/bind/files/bind/named.conf.example	2013-04-03 12:11:08.410487396 +0400
-+++ ../../../openwrt_trunk/feeds/packages/net/bind/files/bind/named.conf.example	2013-05-04 12:02:12.744910577 +0400
+--- ../../../openwrt_trunk.orig/feeds/packages/net/bind/files/bind/named.conf.example
++++ ../../../openwrt_trunk/feeds/packages/net/bind/files/bind/named.conf.example
 @@ -1,7 +1,7 @@
  // This is the primary configuration file for the BIND DNS server named.
  

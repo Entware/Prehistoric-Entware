@@ -1,5 +1,5 @@
---- ../../../downloads/mipsel-hardfloat/openwrt_trunk-r40423/feeds/packages/utils/sane-backends/Makefile	2014-04-09 16:17:24.230286480 +0400
-+++ ../../../openwrt_trunk/feeds/packages/utils/sane-backends/Makefile	2014-04-09 16:53:33.654246961 +0400
+--- ../../../downloads/mipsel-hardfloat/openwrt_trunk-r40423/feeds/oldpackages/utils/sane-backends/Makefile
++++ ../../../openwrt_trunk/feeds/oldpackages/utils/sane-backends/Makefile
 @@ -49,7 +49,7 @@
    $(call Package/sane-backends/Default)
    SECTION:=libs

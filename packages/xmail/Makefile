@@ -9,7 +9,7 @@ all: .done
 
 .done:
 	patch -d $(TOP) -p3 -i $(CURDIR)/fix-path.patch
-	cp -f ./500-no-host-eventfd.patch ../../../openwrt_trunk/feeds/packages/mail/xmail/patches/
+	cp -f ./500-no-host-eventfd.patch ../../../openwrt_trunk/feeds/oldpackages/mail/xmail/patches/
 	@touch $@
 
 clean:

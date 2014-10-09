@@ -1,5 +1,5 @@
---- ../../../downloads/openwrt_trunk-r35474/feeds/oldpackages/admin/nagios/Makefile	2013-02-05 10:42:35.758945957 +0400
-+++ ../../../openwrt_trunk/feeds/oldpackages/admin/nagios/Makefile	2013-02-15 15:12:38.098912123 +0400
+--- ../../../downloads/openwrt_trunk-r35474/feeds/oldpackages/admin/nagios/Makefile
++++ ../../../openwrt_trunk/feeds/oldpackages/admin/nagios/Makefile
 @@ -40,7 +40,7 @@
  CONFIGURE_ARGS += \
  	--with-nagios-user="root" \

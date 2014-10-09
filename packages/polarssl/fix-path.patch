@@ -1,7 +1,7 @@
---- ../../../downloads/mipsel-hardfloat/openwrt_trunk-r40423/package/libs/polarssl/Makefile	2014-04-09 16:17:25.322286461 +0400
-+++ ../../../openwrt_trunk/package/libs/polarssl/Makefile	2014-04-09 16:53:33.070246974 +0400
-@@ -63,20 +63,20 @@
- 	-DUSE_SHARED_POLARSSL_LIBRARY:Bool=ON \
+--- ../../../downloads/openwrt_trunk-r42803/package/libs/polarssl/Makefile	2014-10-06 15:46:23.957250640 +0400
++++ ../../../openwrt_trunk/package/libs/polarssl/Makefile	2014-10-08 17:17:32.658501389 +0400
+@@ -53,15 +53,15 @@
+ 	-DENABLE_TESTING:Bool=OFF \
  
  define Build/InstallDev
 -	$(INSTALL_DIR) $(1)/usr/include
@@ -19,13 +19,6 @@
 -	$(CP) $(PKG_INSTALL_DIR)/usr/lib/libpolarssl.so* $(1)/usr/lib/
 +	$(INSTALL_DIR) $(1)/opt/lib
 +	$(CP) $(PKG_INSTALL_DIR)/opt/lib/libpolarssl.so* $(1)/opt/lib/
- endef
- 
- define Package/polarssl-progs/install
--	$(INSTALL_DIR) $(1)/usr/bin
--	$(INSTALL_BIN) $(PKG_INSTALL_DIR)/usr/bin/* $(1)/usr/bin/
-+	$(INSTALL_DIR) $(1)/opt/bin
-+	$(INSTALL_BIN) $(PKG_INSTALL_DIR)/opt/bin/* $(1)/opt/bin/
  endef
  
  $(eval $(call BuildPackage,libpolarssl))

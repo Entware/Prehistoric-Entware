@@ -1,6 +1,6 @@
---- ../../../downloads/openwrt_trunk-r40859/feeds/packages/utils/screen/Makefile	2014-05-26 13:26:44.319410830 +0400
-+++ ../../../openwrt_trunk/feeds/packages/utils/screen/Makefile	2014-05-26 16:02:33.527241119 +0400
-@@ -33,20 +33,22 @@
+--- ../../../downloads/openwrt_trunk-r40859/feeds/packages/utils/screen/Makefile
++++ ../../../openwrt_trunk/feeds/packages/utils/screen/Makefile
+@@ -37,20 +37,22 @@
  define Build/Configure
  	$(call Build/Configure/Default,\
  		--with-sys-screenrc=/etc/screenrc \

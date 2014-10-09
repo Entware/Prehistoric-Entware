@@ -1,5 +1,5 @@
---- ./src/libs/zbxcomms/comms.c.orig	2013-11-14 10:40:28.735143496 +0400
-+++ ./src/libs/zbxcomms/comms.c	2013-11-14 10:52:25.795131946 +0400
+--- a/src/libs/zbxcomms/comms.c
++++ b/src/libs/zbxcomms/comms.c
 @@ -31,9 +31,7 @@
  #	define ZBX_SOCKLEN_T socklen_t
  #endif

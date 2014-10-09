@@ -1,24 +1,11 @@
---- ../../../downloads/mipsel-hardfloat/openwrt_trunk-r40423/feeds/packages/utils/smartmontools/Makefile	2014-04-15 16:11:47.568849363 +0400
-+++ ../../../openwrt_trunk/feeds/packages/utils/smartmontools/Makefile	2014-04-16 10:02:45.815678703 +0400
-@@ -6,22 +6,23 @@
- #
+--- ../../../downloads/openwrt_trunk-r42803/feeds/packages/utils/smartmontools/Makefile	2014-10-06 15:46:23.773250645 +0400
++++ ../../../openwrt_trunk/feeds/packages/utils/smartmontools/Makefile	2014-10-09 12:12:46.221261703 +0400
+@@ -18,12 +18,14 @@
+ PKG_MAINTAINER:=Maxim Storchak <m.storchak@gmail.com>
+ PKG_LICENSE:=GPL-2.0+
  
- include $(TOPDIR)/rules.mk
--include $(INCLUDE_DIR)/uclibc++.mk
- 
- PKG_NAME:=smartmontools
--PKG_VERSION:=5.40
--PKG_RELEASE:=4
-+PKG_VERSION:=6.2
-+PKG_RELEASE:=1
- 
- PKG_SOURCE:=$(PKG_NAME)-$(PKG_VERSION).tar.gz
- PKG_SOURCE_URL:=@SF/smartmontools
--PKG_MD5SUM:=0f0be0239914ad87830a4fff594bda5b
-+PKG_MD5SUM:=d44f84081a12cef79cd17f78044351fc
-+
 +PKG_INSTALL:=1
- 
++
  include $(INCLUDE_DIR)/package.mk
  
  define Package/smartmontools/Default
@@ -29,7 +16,7 @@
    TITLE:=S.M.A.R.T Monitoring
    URL:=http://smartmontools.sourceforge.net/
  endef
-@@ -55,7 +56,7 @@
+@@ -56,7 +58,7 @@
  
  CONFIGURE_VARS += \
  	CXXFLAGS="$$$$CXXFLAGS -fno-builtin -fno-rtti -nostdinc++" \
@@ -38,7 +25,7 @@
  	LDFLAGS="$$$$LDFLAGS" \
  	LIBS="-nodefaultlibs -lc -luClibc++ -lm $(LIBGCC_S) -lc" \
  
-@@ -73,21 +74,23 @@
+@@ -74,21 +76,23 @@
  endef
  
  define Package/smartmontools/install

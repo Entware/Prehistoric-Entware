@@ -1,21 +1,12 @@
-diff -urx .svn ../../../downloads/mipsel-hardfloat/openwrt_trunk-r39354/feeds/packages/net/netatalk/files/afpd.conf ../../../openwrt_trunk/feeds/packages/net/netatalk/files/afpd.conf
---- ../../../downloads/mipsel-hardfloat/openwrt_trunk-r39354/feeds/packages/net/netatalk/files/afpd.conf	2014-01-20 16:36:36.470313261 +0400
-+++ ../../../openwrt_trunk/feeds/packages/net/netatalk/files/afpd.conf	2014-01-20 16:37:07.698312691 +0400
+diff -ur ../../../downloads/openwrt_trunk-r42803/feeds/packages/net/netatalk/files/afpd.conf ../../../openwrt_trunk/feeds/packages/net/netatalk/files/afpd.conf
+--- ../../../downloads/openwrt_trunk-r42803/feeds/packages/net/netatalk/files/afpd.conf	2014-10-06 15:46:23.753250644 +0400
++++ ../../../openwrt_trunk/feeds/packages/net/netatalk/files/afpd.conf	2014-10-07 11:59:31.599924730 +0400
 @@ -1 +1 @@
 -- -noddp -uampath /usr/lib/uams -uamlist uams_guest.so,uams_passwd.so,uams_dhx_passwd.so,uams_randnum.so,uams_dhx2.so -passwdfile /etc/netatalk/afppasswd -savepassword -passwdminlen 0 -nosetpassword -defaultvol /etc/netatalk/AppleVolumes.default -systemvol /etc/netatalk/AppleVolumes.system -nouservol -guestname "nobody" -sleep 1 -icon
 +- -noddp -uampath /opt/lib/uams -uamlist uams_guest.so,uams_passwd.so,uams_dhx_passwd.so,uams_randnum.so,uams_dhx2.so -passwdfile /etc/netatalk/afppasswd -savepassword -passwdminlen 0 -nosetpassword -defaultvol /etc/netatalk/AppleVolumes.default -systemvol /etc/netatalk/AppleVolumes.system -nouservol -guestname "nobody" -sleep 1 -icon
-diff -urx .svn ../../../downloads/mipsel-hardfloat/openwrt_trunk-r39354/feeds/packages/net/netatalk/Makefile ../../../openwrt_trunk/feeds/packages/net/netatalk/Makefile
---- ../../../downloads/mipsel-hardfloat/openwrt_trunk-r39354/feeds/packages/net/netatalk/Makefile	2014-01-20 16:36:36.470313261 +0400
-+++ ../../../openwrt_trunk/feeds/packages/net/netatalk/Makefile	2014-01-20 23:58:27.645835726 +0400
-@@ -25,7 +25,7 @@
-   SECTION:=net
-   CATEGORY:=Network
-   SUBMENU:=Filesystem
--  DEPENDS:=+libdb47 +libgcrypt +libopenssl $(LIBRPC_DEPENDS)
-+  DEPENDS:=+libdb47 +libgcrypt +libopenssl 
-   TITLE:=netatalk
-   URL:=http://netatalk.sourceforge.net
-   MAINTAINER:=W. Michael Petullo <mike@flyn.org>
+diff -ur ../../../downloads/openwrt_trunk-r42803/feeds/packages/net/netatalk/Makefile ../../../openwrt_trunk/feeds/packages/net/netatalk/Makefile
+--- ../../../downloads/openwrt_trunk-r42803/feeds/packages/net/netatalk/Makefile	2014-10-06 15:46:23.753250644 +0400
++++ ../../../openwrt_trunk/feeds/packages/net/netatalk/Makefile	2014-10-08 14:18:15.934707235 +0400
 @@ -38,11 +38,11 @@
  endef
  
@@ -42,10 +33,10 @@ diff -urx .svn ../../../downloads/mipsel-hardfloat/openwrt_trunk-r39354/feeds/pa
 +	--with-libgcrypt-dir="$(STAGING_DIR)/opt" \
 +	--with-ssl-dir="$(STAGING_DIR)/opt" \
 +	--with-uams-path="/opt/lib/uams" \
+ 	--without-acls \
  	--without-pam \
  	--disable-admin-group \
- 	--disable-srvloc \
-@@ -66,20 +66,20 @@
+@@ -67,20 +67,20 @@
  	--without-ldap
  
  define Package/netatalk/install

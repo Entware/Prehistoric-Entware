@@ -1,40 +1,22 @@
---- ../../../downloads/openwrt_trunk-r40859/feeds/packages/net/rtorrent/Makefile	2014-05-26 13:26:44.283410831 +0400
-+++ ../../../openwrt_trunk/feeds/packages/net/rtorrent/Makefile	2014-05-26 15:57:50.091247741 +0400
-@@ -8,14 +8,12 @@
- include $(TOPDIR)/rules.mk
- 
- PKG_NAME:=rtorrent
--PKG_VERSION:=0.9.3-git
--PKG_RELEASE:=$(PKG_SOURCE_VERSION)-1
-+PKG_VERSION:=0.9.4
- 
--PKG_SOURCE_PROTO:=git
--PKG_SOURCE_URL:=https://github.com/rakshasa/rtorrent.git
--PKG_SOURCE_SUBDIR:=$(PKG_NAME)-$(PKG_VERSION)
--PKG_SOURCE_VERSION:=82a68420f4d90098e00cc92f082f10a8079e9800
--PKG_SOURCE:=$(PKG_NAME)-$(PKG_VERSION)-$(PKG_SOURCE_VERSION).tar.gz
-+PKG_RELEASE:=1
-+PKG_SOURCE:=$(PKG_NAME)-$(PKG_VERSION).tar.gz
-+PKG_SOURCE_URL:=http://libtorrent.rakshasa.no/downloads
-+PKG_MD5SUM:=fd9490a2ac67d0fa2a567c6267845876
- 
- PKG_FIXUP:=autoreconf
- PKG_BUILD_PARALLEL:=1
-@@ -63,11 +61,12 @@
+--- ../../../downloads/openwrt_trunk-r42803/feeds/packages/net/rtorrent/Makefile	2014-10-06 15:46:23.765250644 +0400
++++ ../../../openwrt_trunk/feeds/packages/net/rtorrent/Makefile	2014-10-09 11:57:55.697281707 +0400
+@@ -67,12 +67,13 @@
   This package is built with xmlrpc support
  endef
  
--TARGET_LDFLAGS += -lpthread -Wl,-rpath-link=$(STAGING_DIR)/usr/lib
-+TARGET_LDFLAGS += -lpthread
+-TARGET_LDFLAGS += -lz -lpthread -Wl,-rpath-link=$(STAGING_DIR)/usr/lib
++TARGET_LDFLAGS += -lz -lpthread
  
  CONFIGURE_ARGS+= \
  	--enable-shared \
  	--disable-static \
-+	--enable-ipv6 \
- 	--disable-debug
+-	--disable-debug
++	--disable-debug \
++	--enable-ipv6
  
  ifeq ($(BUILD_VARIANT),rpc)
-@@ -82,8 +81,8 @@
+ 	CONFIGURE_ARGS += \
+@@ -86,8 +87,8 @@
  endef
  
  define Package/rtorrent/install

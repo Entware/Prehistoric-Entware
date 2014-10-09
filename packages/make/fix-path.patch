@@ -1,5 +1,5 @@
---- ../../../downloads/openwrt_trunk-r36151/feeds/oldpackages/devel/make/Makefile	2013-04-02 14:27:24.701540511 +0400
-+++ ../../../openwrt_trunk/feeds/oldpackages/devel/make/Makefile	2013-04-25 17:09:17.660405934 +0400
+--- ../../../downloads/openwrt_trunk-r36151/feeds/oldpackages/devel/make/Makefile
++++ ../../../openwrt_trunk/feeds/oldpackages/devel/make/Makefile
 @@ -30,8 +30,8 @@
  endef
  

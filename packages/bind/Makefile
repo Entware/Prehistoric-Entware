@@ -10,7 +10,6 @@ all: .done
 .done:
 	patch -d $(TOP) -p3 -i $(CURDIR)/fix-path.patch
 	patch -d $(TOP) -p3 -i $(CURDIR)/fix-path-conf.patch
-	patch -d $(TOP) -p3 -i $(CURDIR)/libxml2.patch
 	cp -f ./S09named ../../../openwrt_trunk/feeds/packages/net/bind/files/
 	@touch $@
 

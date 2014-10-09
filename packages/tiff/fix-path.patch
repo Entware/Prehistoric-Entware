@@ -1,6 +1,6 @@
---- ../../../downloads/openwrt_trunk-r35474/feeds/packages/libs/tiff/Makefile	2013-02-05 10:42:11.390946404 +0400
-+++ ../../../openwrt_trunk/feeds/packages/libs/tiff/Makefile	2013-02-05 14:05:47.810724032 +0400
-@@ -36,7 +36,7 @@
+--- ../../../downloads/openwrt_trunk-r42803/feeds/packages/libs/tiff/Makefile	2014-10-06 15:46:23.741250644 +0400
++++ ../../../openwrt_trunk/feeds/packages/libs/tiff/Makefile	2014-10-07 11:59:35.999924651 +0400
+@@ -39,7 +39,7 @@
    SECTION:=libs
    CATEGORY:=Libraries
    TITLE+= library
@@ -9,7 +9,7 @@
  endef
  
  define Package/libtiffxx
-@@ -80,24 +80,24 @@
+@@ -83,24 +83,24 @@
  endef
  
  define Build/InstallDev

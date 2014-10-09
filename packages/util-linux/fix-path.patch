@@ -1,6 +1,6 @@
---- ../../../downloads/mipsel-hardfloat/openwrt_trunk-r40423/package/utils/util-linux/Makefile	2014-04-09 16:17:24.546286476 +0400
-+++ ../../../openwrt_trunk/package/utils/util-linux/Makefile	2014-04-15 12:40:27.229081463 +0400
-@@ -44,22 +44,22 @@
+--- ../../../downloads/openwrt_trunk-r42803/package/utils/util-linux/Makefile	2014-10-06 15:46:24.437250632 +0400
++++ ../../../openwrt_trunk/package/utils/util-linux/Makefile	2014-10-07 11:59:36.435924642 +0400
+@@ -45,22 +45,22 @@
  		DESTDIR="$(1)" \
  		installdirs install-data
  
@@ -39,7 +39,7 @@
  endef
  
  define Package/libblkid
-@@ -335,7 +335,7 @@
+@@ -336,7 +336,7 @@
  define Package/swap-utils
  $(call Package/util-linux/Default)
    TITLE:=swap space management utilities
@@ -48,7 +48,7 @@
    SUBMENU:=disc
  endef
  
-@@ -403,159 +403,161 @@
+@@ -404,159 +404,161 @@
  endef
  
  define Package/libblkid/install

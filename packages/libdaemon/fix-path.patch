@@ -1,6 +1,6 @@
---- ../../../openwrt_trunk.orig/feeds/packages/libs/libdaemon/Makefile	2012-03-21 16:34:50.351635559 +0400
-+++ ../../../openwrt_trunk/feeds/packages/libs/libdaemon/Makefile	2012-03-28 11:32:23.605565748 +0400
-@@ -53,18 +53,18 @@
+--- ../../../openwrt_trunk.orig/feeds/packages/libs/libdaemon/Makefile
++++ ../../../openwrt_trunk/feeds/packages/libs/libdaemon/Makefile
+@@ -54,18 +54,18 @@
  TARGET_CFLAGS += $(FPIC)
  
  define Build/InstallDev

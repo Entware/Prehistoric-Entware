@@ -1,5 +1,5 @@
---- ../../../downloads/openwrt_trunk-r37769/feeds/oldpackages/libs/libcrypto++/Makefile	2013-08-15 09:37:02.721572162 +0400
-+++ ../../../openwrt_trunk/feeds/oldpackages/libs/libcrypto++/Makefile	2013-08-21 12:33:35.871936066 +0400
+--- ../../../downloads/openwrt_trunk-r37769/feeds/oldpackages/libs/libcrypto++/Makefile
++++ ../../../openwrt_trunk/feeds/oldpackages/libs/libcrypto++/Makefile
 @@ -9,7 +9,7 @@
  
  PKG_NAME:=libcrypto++

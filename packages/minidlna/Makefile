@@ -10,7 +10,6 @@ all: .done
 .done:
 	patch -d $(TOP) -p3 -i $(CURDIR)/fix-path.patch
 	cp -f ./050-inotify_fix.patch ../../../openwrt_trunk/feeds/packages/multimedia/minidlna/patches/
-	cp -f ./060-file-streaming.patch ../../../openwrt_trunk/feeds/packages/multimedia/minidlna/patches/
 	cp -f ./S90minidlna ../../../openwrt_trunk/feeds/packages/multimedia/minidlna/files/
 	@touch $@
 

@@ -1,15 +1,15 @@
---- ../../../downloads/mipsel-hardfloat/openwrt_trunk-r40423/feeds/packages/multimedia/ffmpeg/Makefile
-+++ ../../../openwrt_trunk/feeds/packages/multimedia/ffmpeg/Makefile
-@@ -278,7 +278,7 @@
+--- ../../../downloads/openwrt_trunk-r42803/feeds/packages/multimedia/ffmpeg/Makefile	2014-10-06 15:46:23.733250644 +0400
++++ ../../../openwrt_trunk/feeds/packages/multimedia/ffmpeg/Makefile	2014-10-08 09:53:21.706494639 +0400
+@@ -355,7 +355,7 @@
  	--cross-prefix="$(TARGET_CROSS)" \
  	--arch="$(ARCH)" \
  	--target-os=linux \
 -	--prefix="/usr" \
 +	--prefix="/opt" \
+ 	--pkg-config="pkg-config" \
  	--enable-shared \
  	--enable-static \
- 	--disable-debug \
-@@ -364,21 +364,21 @@
+@@ -496,21 +496,21 @@
  endef
  
  define Build/InstallDev/custom
@@ -42,8 +42,8 @@
 +	$(CP) $(PKG_INSTALL_DIR)/opt/lib/pkgconfig/lib{avcodec,avdevice,avfilter,avformat,avutil,postproc,swresample,swscale}.pc $(1)/opt/lib/pkgconfig/
  endef
  
- Build/InstallDev/mini = $(Build/InstallDev/custom)
-@@ -402,28 +402,28 @@
+ define Build/InstallDev/mini
+@@ -549,28 +549,28 @@
  endif
  
  define Package/ffmpeg/install
@@ -81,4 +81,4 @@
 +	$(CP) $(PKG_INSTALL_DIR)/opt/lib/lib{avcodec,avdevice,avfilter,avformat,avutil,postproc,swresample,swscale}.so.* $(1)/opt/lib/
  endef
  
- Package/libffmpeg-mini/install = $(Package/libffmpeg-custom/install)
+ define Package/libffmpeg-mini/install

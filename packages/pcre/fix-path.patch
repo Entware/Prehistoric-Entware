@@ -1,7 +1,6 @@
-diff -r -u -x .svn ../../../openwrt_trunk.orig/feeds/packages/libs/pcre/Makefile ../../../openwrt_trunk/feeds/packages/libs/pcre/Makefile
---- ../../../openwrt_trunk.orig/feeds/packages/libs/pcre/Makefile	2011-11-15 14:03:59.000000000 +0400
-+++ ../../../openwrt_trunk/feeds/packages/libs/pcre/Makefile	2011-11-24 11:46:26.696791881 +0400
-@@ -58,31 +58,31 @@
+--- ../../../downloads/openwrt_trunk-r42803/feeds/packages/libs/pcre/Makefile	2014-10-06 15:46:23.737250644 +0400
++++ ../../../openwrt_trunk/feeds/packages/libs/pcre/Makefile	2014-10-08 16:50:00.734535018 +0400
+@@ -58,30 +58,30 @@
  	CFLAGS="$(TARGET_CFLAGS)"
  
  define Build/InstallDev
@@ -28,7 +27,6 @@ diff -r -u -x .svn ../../../openwrt_trunk.orig/feeds/packages/libs/pcre/Makefile
 -	$(CP) $(PKG_INSTALL_DIR)/usr/lib/pkgconfig/libpcre*.pc $(1)/usr/lib/pkgconfig/
 +	$(INSTALL_DIR) $(1)/opt/lib/pkgconfig
 +	$(CP) $(PKG_INSTALL_DIR)/opt/lib/pkgconfig/libpcre*.pc $(1)/opt/lib/pkgconfig/
- 
  endef
  
  define Package/libpcre/install
@@ -46,15 +44,3 @@ diff -r -u -x .svn ../../../openwrt_trunk.orig/feeds/packages/libs/pcre/Makefile
  endef
  
  $(eval $(call BuildPackage,libpcre))
-diff -r -u -x .svn ../../../openwrt_trunk.orig/feeds/packages/libs/pcre/patches/750-pcre_config_cross.patch ../../../openwrt_trunk/feeds/packages/libs/pcre/patches/750-pcre_config_cross.patch
---- ../../../openwrt_trunk.orig/feeds/packages/libs/pcre/patches/750-pcre_config_cross.patch	2011-11-15 14:03:59.000000000 +0400
-+++ ../../../openwrt_trunk/feeds/packages/libs/pcre/patches/750-pcre_config_cross.patch	2011-11-24 09:41:25.993921791 +0400
-@@ -5,7 +5,7 @@
-    ;;
-  esac
- +libS=
--+if test @libdir@ != /usr/lib ; then
-++if test @libdir@ != /opt/lib ; then
- +  libS=-L@libdir@
- +fi
-  

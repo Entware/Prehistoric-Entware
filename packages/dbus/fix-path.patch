@@ -1,6 +1,6 @@
-diff -urx .svn ../../../openwrt_trunk.orig/feeds/packages/utils/dbus/files/dbus-launch ../../../openwrt_trunk/feeds/packages/utils/dbus/files/dbus-launch
---- ../../../openwrt_trunk.orig/feeds/packages/utils/dbus/files/dbus-launch	2012-08-06 14:41:05.378698220 +0400
-+++ ../../../openwrt_trunk/feeds/packages/utils/dbus/files/dbus-launch	2012-08-06 14:42:41.858696465 +0400
+diff -ur ../../../downloads/openwrt_trunk-r42803/feeds/packages/utils/dbus/files/dbus-launch ../../../openwrt_trunk/feeds/packages/utils/dbus/files/dbus-launch
+--- ../../../downloads/openwrt_trunk-r42803/feeds/packages/utils/dbus/files/dbus-launch	2014-10-06 15:46:23.769250644 +0400
++++ ../../../openwrt_trunk/feeds/packages/utils/dbus/files/dbus-launch	2014-10-07 11:59:09.327925137 +0400
 @@ -5,8 +5,8 @@
  # dbus-launch-x package. The script is used to prefer dbus-launch with x over
  # the dbus-lauch without x.
@@ -13,10 +13,10 @@ diff -urx .svn ../../../openwrt_trunk.orig/feeds/packages/utils/dbus/files/dbus-
 -	exec /usr/bin/dbus-launch.real $@
 +	exec /opt/bin/dbus-launch.real $@
  fi
-diff -urx .svn ../../../openwrt_trunk.orig/feeds/packages/utils/dbus/Makefile ../../../openwrt_trunk/feeds/packages/utils/dbus/Makefile
---- ../../../openwrt_trunk.orig/feeds/packages/utils/dbus/Makefile	2012-08-06 14:41:05.378698220 +0400
-+++ ../../../openwrt_trunk/feeds/packages/utils/dbus/Makefile	2012-08-13 17:28:12.490277830 +0400
-@@ -22,8 +22,7 @@
+diff -ur ../../../downloads/openwrt_trunk-r42803/feeds/packages/utils/dbus/Makefile ../../../openwrt_trunk/feeds/packages/utils/dbus/Makefile
+--- ../../../downloads/openwrt_trunk-r42803/feeds/packages/utils/dbus/Makefile	2014-10-06 15:46:23.773250645 +0400
++++ ../../../openwrt_trunk/feeds/packages/utils/dbus/Makefile	2014-10-07 11:59:09.327925137 +0400
+@@ -24,8 +24,7 @@
  include $(INCLUDE_DIR)/package.mk
  
  TARGET_LDFLAGS+= \
@@ -26,7 +26,7 @@ diff -urx .svn ../../../openwrt_trunk.orig/feeds/packages/utils/dbus/Makefile ..
  
  define Package/dbus/Default
    SECTION:=utils
-@@ -95,11 +94,11 @@
+@@ -97,11 +96,11 @@
  	--disable-xml-docs \
  	--with-xml="expat" \
  	--with-dbus-user=root \
@@ -42,7 +42,7 @@ diff -urx .svn ../../../openwrt_trunk.orig/feeds/packages/utils/dbus/Makefile ..
  
  CONFIGURE_VARS+= \
  	ac_cv_have_abstract_sockets="yes" \
-@@ -107,79 +106,81 @@
+@@ -109,79 +108,81 @@
  
  
  define Build/InstallDev

@@ -1,26 +1,6 @@
---- ../../../downloads/openwrt_trunk-r40859/feeds/oldpackages/libs/libtorrent/Makefile	2014-05-26 13:26:44.215410832 +0400
-+++ ../../../openwrt_trunk/feeds/oldpackages/libs/libtorrent/Makefile	2014-05-26 15:41:12.583264703 +0400
-@@ -8,14 +8,12 @@
- include $(TOPDIR)/rules.mk
- 
- PKG_NAME:=libtorrent
--PKG_VERSION:=0.13.3-git
--PKG_RELEASE=$(PKG_SOURCE_VERSION)-1
-+PKG_VERSION:=0.13.4
- 
--PKG_SOURCE_PROTO:=git
--PKG_SOURCE_URL:=https://github.com/rakshasa/libtorrent.git
--PKG_SOURCE_SUBDIR:=$(PKG_NAME)-$(PKG_VERSION)
--PKG_SOURCE_VERSION:=680576e23e7d5f642ee51486fdf301ac0195e188
--PKG_SOURCE:=$(PKG_NAME)-$(PKG_VERSION)-$(PKG_SOURCE_VERSION).tar.gz
-+PKG_RELEASE:=1
-+PKG_SOURCE:=$(PKG_NAME)-$(PKG_VERSION).tar.gz
-+PKG_SOURCE_URL:=http://libtorrent.rakshasa.no/downloads
-+PKG_MD5SUM:=e82f380a9d4b55b379e0e73339c73895
- 
- PKG_FIXUP:=autoreconf
- PKG_BUILD_PARALLEL:=1
-@@ -42,11 +40,11 @@
+--- ../../../downloads/openwrt_trunk-r42803/feeds/packages/libs/libtorrent/Makefile	2014-10-06 15:46:23.737250644 +0400
++++ ../../../openwrt_trunk/feeds/packages/libs/libtorrent/Makefile	2014-10-09 11:51:39.081288688 +0400
+@@ -43,11 +43,11 @@
  TARGET_LDFLAGS += $(LIBGCC_S)
  
  CONFIGURE_ARGS+= \
@@ -34,7 +14,7 @@
  	--disable-instrumentation
  
  define Build/Configure
-@@ -55,17 +53,17 @@
+@@ -56,17 +56,17 @@
  endef
  
  define Build/InstallDev

@@ -1,6 +1,6 @@
 --- ../../../openwrt_trunk.orig/feeds/packages/libs/libogg/Makefile
 +++ ../../../openwrt_trunk/feeds/packages/libs/libogg/Makefile
-@@ -40,19 +40,19 @@
+@@ -41,19 +41,19 @@
  endef
  
  define Build/InstallDev

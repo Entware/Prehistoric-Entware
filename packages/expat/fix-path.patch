@@ -1,15 +1,21 @@
---- ../../../openwrt_trunk.orig/feeds/packages/libs/expat/Makefile
-+++ ../../../openwrt_trunk/feeds/packages/libs/expat/Makefile
-@@ -53,15 +53,15 @@
+--- ../../../downloads/openwrt_trunk-r42803/feeds/packages/libs/expat/Makefile	2014-10-06 15:46:23.737250644 +0400
++++ ../../../openwrt_trunk/feeds/packages/libs/expat/Makefile	2014-10-07 17:01:18.883594867 +0400
+@@ -50,19 +50,19 @@
  endef
  
  define Build/InstallDev
 -	$(INSTALL_DIR) $(1)/usr/include
 -	$(CP) $(PKG_INSTALL_DIR)/usr/include/expat{,_external}.h $(1)/usr/include/
--	$(INSTALL_DIR) $(1)/usr/lib
--	$(CP) $(PKG_INSTALL_DIR)/usr/lib/libexpat.{a,so*} $(1)/usr/lib/
 +	$(INSTALL_DIR) $(1)/opt/include
 +	$(CP) $(PKG_INSTALL_DIR)/opt/include/expat{,_external}.h $(1)/opt/include/
+ 
+-	$(INSTALL_DIR) $(1)/usr/lib/pkgconfig
+-	$(INSTALL_DATA) $(PKG_INSTALL_DIR)/usr/lib/pkgconfig/expat.pc $(1)/usr/lib/pkgconfig/
++	$(INSTALL_DIR) $(1)/opt/lib/pkgconfig
++	$(INSTALL_DATA) $(PKG_INSTALL_DIR)/opt/lib/pkgconfig/expat.pc $(1)/opt/lib/pkgconfig/
+ 
+-	$(INSTALL_DIR) $(1)/usr/lib
+-	$(CP) $(PKG_INSTALL_DIR)/usr/lib/libexpat.{a,so*} $(1)/usr/lib/
 +	$(INSTALL_DIR) $(1)/opt/lib
 +	$(CP) $(PKG_INSTALL_DIR)/opt/lib/libexpat.{a,so*} $(1)/opt/lib/
  endef

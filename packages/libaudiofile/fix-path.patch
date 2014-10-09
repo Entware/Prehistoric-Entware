@@ -1,62 +1,39 @@
---- ../../../downloads/openwrt_trunk-r40423/feeds/packages/libs/libaudiofile/Makefile	2014-05-15 15:17:03.339017674 +0400
-+++ ../../../openwrt_trunk/feeds/packages/libs/libaudiofile/Makefile	2014-05-15 15:50:41.366980744 +0400
-@@ -8,14 +8,12 @@
- include $(TOPDIR)/rules.mk
- 
- PKG_NAME:=audiofile
--PKG_VERSION:=0.2.7
-+PKG_VERSION:=0.3.6
- PKG_RELEASE:=1
- 
- PKG_SOURCE:=$(PKG_NAME)-$(PKG_VERSION).tar.gz
--PKG_SOURCE_URL:= \
--	http://github.com/downloads/mpruett/audiofile/ \
--	http://www.68k.org/~michael/audiofile/
--PKG_MD5SUM:=a39be317a7b1971b408805dc5e371862
-+PKG_SOURCE_URL:=http://audiofile.68k.org
-+PKG_MD5SUM:=2731d79bec0acef3d30d2fc86b0b72fd
- 
- PKG_FIXUP:=autoreconf
- PKG_INSTALL=1
-@@ -25,6 +23,7 @@
+--- ../../../downloads/openwrt_trunk-r42803/feeds/packages/libs/libaudiofile/Makefile	2014-10-06 15:46:23.741250644 +0400
++++ ../../../openwrt_trunk/feeds/packages/libs/libaudiofile/Makefile	2014-10-08 11:35:03.802377912 +0400
+@@ -26,9 +26,9 @@
  define Package/libaudiofile
    SECTION:=libs
    CATEGORY:=Libraries
 +  DEPENDS:=+libflac +libstdcpp +alsa-lib
    TITLE:=Audio File library
    URL:=http://www.68k.org/~michael/audiofile/
+-  DEPENDS:=+libflac +libstdcpp
  endef
-@@ -43,35 +42,27 @@
- TARGET_CFLAGS+= $(FPIC) -std=c99
+ 
+ define Package/libaudiofile/description
+@@ -46,27 +46,27 @@
+ TARGET_CFLAGS+= $(FPIC)
  
  define Build/InstallDev
--	$(INSTALL_DIR) $(2)/bin
-+	$(INSTALL_DIR) $(1)/opt/include
- 	$(CP) \
--		$(PKG_INSTALL_DIR)/usr/bin/audiofile-config \
--		$(2)/bin/
--	$(SED) \
--		's,^\(prefix\|exec_prefix\)=.*,\1=$(STAGING_DIR)/usr,g' \
--		$(2)/bin/audiofile-config
-+		$(PKG_INSTALL_DIR)/opt/include/{af_vfs,audiofile,aupvlist}.h \
-+		$(1)/opt/include/
- 
 -	$(INSTALL_DIR) $(1)/usr/include
-+	$(INSTALL_DIR) $(1)/opt/lib
++	$(INSTALL_DIR) $(1)/opt/include
  	$(CP) \
 -		$(PKG_INSTALL_DIR)/usr/include/{af_vfs,audiofile,aupvlist}.h \
 -		$(1)/usr/include/
-+		$(PKG_INSTALL_DIR)/opt/lib/libaudiofile.{la,a,so*} \
-+		$(1)/opt/lib/
++		$(PKG_INSTALL_DIR)/opt/include/{af_vfs,audiofile,aupvlist}.h \
++		$(1)/opt/include/
  
 -	$(INSTALL_DIR) $(1)/usr/lib
-+	$(INSTALL_DIR) $(1)/opt/lib/pkgconfig
++	$(INSTALL_DIR) $(1)/opt/lib
  	$(CP) \
 -		$(PKG_INSTALL_DIR)/usr/lib/libaudiofile.{la,a,so*} \
 -		$(1)/usr/lib/
--
++		$(PKG_INSTALL_DIR)/opt/lib/libaudiofile.{la,a,so*} \
++		$(1)/opt/lib/
+ 
 -	$(INSTALL_DIR) $(1)/usr/lib/pkgconfig
--	$(CP) \
++	$(INSTALL_DIR) $(1)/opt/lib/pkgconfig
+ 	$(CP) \
 -		$(PKG_INSTALL_DIR)/usr/lib/pkgconfig/audiofile.pc \
 -		$(1)/usr/lib/pkgconfig/
 +		$(PKG_INSTALL_DIR)/opt/lib/pkgconfig/audiofile.pc \

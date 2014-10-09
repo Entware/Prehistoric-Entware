@@ -9,8 +9,8 @@ all: .done
 
 .done:
 	patch -d $(TOP) -p3 -i $(CURDIR)/fix-path.patch
-	mkdir -p ../../../openwrt_trunk/feeds/packages/net/amule/files/
-	cp -f ./S57amuled ../../../openwrt_trunk/feeds/packages/net/amule/files/
+	mkdir -p ../../../openwrt_trunk/feeds/oldpackages/net/amule/files/
+	cp -f ./S57amuled ../../../openwrt_trunk/feeds/oldpackages/net/amule/files/
 	@touch $@
 
 clean:

@@ -1,5 +1,5 @@
---- ../../../downloads/mipsel-hardfloat/openwrt_trunk-r40423/feeds/telephony/admin/asterisk18-gui/Makefile	2014-04-16 20:19:00.422912093 +0400
-+++ ../../../openwrt_trunk/feeds/telephony/admin/asterisk18-gui/Makefile	2014-04-17 08:27:14.914116620 +0400
+--- ../../../downloads/mipsel-hardfloat/openwrt_trunk-r40423/feeds/telephony/admin/asterisk18-gui/Makefile
++++ ../../../openwrt_trunk/feeds/telephony/admin/asterisk18-gui/Makefile
 @@ -47,11 +47,11 @@
  			--build=$(GNU_HOST_NAME) \
  			--host=$(GNU_TARGET_NAME) \

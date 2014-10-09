@@ -1,5 +1,5 @@
---- ../../../downloads/openwrt_trunk-r35474/package/libs/libusb/Makefile	2013-02-05 09:11:10.371045878 +0400
-+++ ../../../openwrt_trunk/package/libs/libusb/Makefile	2013-02-05 09:48:13.679006164 +0400
+--- ../../../downloads/openwrt_trunk-r35474/package/libs/libusb/Makefile
++++ ../../../openwrt_trunk/package/libs/libusb/Makefile
 @@ -42,8 +42,8 @@
  endef
  

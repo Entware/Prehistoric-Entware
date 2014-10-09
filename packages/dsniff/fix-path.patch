@@ -1,5 +1,5 @@
---- ../../../downloads/mipsel-hardfloat/openwrt_trunk-r38784/feeds/oldpackages/net/dsniff/Makefile	2013-11-13 15:33:49.700396534 +0400
-+++ ../../../openwrt_trunk/feeds/oldpackages/net/dsniff/Makefile	2013-11-13 16:32:42.456327271 +0400
+--- ../../../downloads/mipsel-hardfloat/openwrt_trunk-r38784/feeds/oldpackages/net/dsniff/Makefile
++++ ../../../openwrt_trunk/feeds/oldpackages/net/dsniff/Makefile
 @@ -22,7 +22,7 @@
  define Package/dsniff
    SECTION:=net

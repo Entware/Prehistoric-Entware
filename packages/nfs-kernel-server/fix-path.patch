@@ -1,23 +1,24 @@
---- ../../../openwrt_trunk.orig/feeds/packages/net/nfs-kernel-server/Makefile	2012-08-06 14:41:08.818698162 +0400
-+++ ../../../openwrt_trunk/feeds/packages/net/nfs-kernel-server/Makefile	2012-08-31 14:23:59.336424072 +0400
-@@ -27,14 +27,14 @@
+--- ../../../downloads/openwrt_trunk-r42803/feeds/packages/net/nfs-kernel-server/Makefile	2014-10-06 15:46:23.761250644 +0400
++++ ../../../openwrt_trunk/feeds/packages/net/nfs-kernel-server/Makefile	2014-10-08 14:45:16.146671295 +0400
+@@ -27,7 +27,7 @@
    SECTION:=net
    CATEGORY:=Network
    SUBMENU:=Filesystem
 -  DEPENDS:=+libwrap +libblkid +libuuid $(LIBRPC_DEPENDS)
 +  DEPENDS:=+libwrap +libblkid +libuuid
    URL:=http://nfs.sourceforge.net/
+   MAINTAINER:=Peter Wagner <tripolar@gmx.at>
  endef
- 
+@@ -35,7 +35,7 @@
  define Package/nfs-kernel-server
    $(call Package/nfs-kernel-server/Default)
    TITLE:=Kernel NFS server support
 -  DEPENDS+= +kmod-fs-nfsd +kmod-fs-nfs +portmap
-+  DEPENDS+=+portmap
++  DEPENDS+= +portmap
  endef
  
  define Package/nfs-kernel-server/description
-@@ -52,14 +52,14 @@
+@@ -53,14 +53,14 @@
  endef
  
  define Package/nfs-kernel-server/conffiles
@@ -34,7 +35,7 @@
    TITLE:=updated mount utility (includes nfs4)
  endef
  
-@@ -67,10 +67,10 @@
+@@ -68,10 +68,10 @@
    Updated mount.nfs command - allows mounting nfs4 volumes
  endef
  
@@ -49,7 +50,7 @@
  
  CONFIGURE_ARGS += \
  	--disable-gss \
-@@ -80,7 +80,9 @@
+@@ -81,7 +81,9 @@
  	--enable-shared \
  	--disable-caps \
  	--disable-tirpc \
@@ -60,7 +61,7 @@
  
  CONFIGURE_VARS += \
  	CONFIG_SQLITE3_TRUE="\#" \
-@@ -124,26 +126,26 @@
+@@ -125,26 +127,26 @@
  endef
  
  define Package/nfs-kernel-server/install

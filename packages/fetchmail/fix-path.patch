@@ -1,5 +1,5 @@
---- ../../../downloads/openwrt_trunk-r37769/feeds/oldpackages/mail/fetchmail/Makefile	2013-08-15 09:37:03.013572156 +0400
-+++ ../../../openwrt_trunk/feeds/oldpackages/mail/fetchmail/Makefile	2013-08-22 15:58:40.630138482 +0400
+--- ../../../downloads/openwrt_trunk-r37769/feeds/oldpackages/mail/fetchmail/Makefile
++++ ../../../openwrt_trunk/feeds/oldpackages/mail/fetchmail/Makefile
 @@ -62,7 +62,7 @@
  
  ifeq ($(BUILD_VARIANT),ssl)

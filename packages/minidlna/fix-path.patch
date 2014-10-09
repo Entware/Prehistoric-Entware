@@ -1,24 +1,6 @@
-diff -urx .svn ../../../downloads/openwrt_trunk-r36151/feeds/packages/multimedia/minidlna/Makefile ../../../openwrt_trunk/feeds/packages/multimedia/minidlna/Makefile
---- ../../../downloads/openwrt_trunk-r36151/feeds/packages/multimedia/minidlna/Makefile	2013-04-02 14:27:27.573540458 +0400
-+++ ../../../openwrt_trunk/feeds/packages/multimedia/minidlna/Makefile	2013-04-30 13:32:51.720773273 +0400
-@@ -9,7 +9,7 @@
- 
- PKG_NAME:=minidlna
- PKG_VERSION:=1.0.25
--PKG_RELEASE:=1
-+PKG_RELEASE:=1a
- 
- PKG_SOURCE:=$(PKG_NAME)_$(PKG_VERSION)_src.tar.gz
- PKG_SOURCE_URL:=@SF/minidlna
-@@ -18,7 +18,6 @@
- PKG_BUILD_PARALLEL:=0
- PKG_BUILD_DEPENDS:=util-linux
- 
--include $(INCLUDE_DIR)/kernel.mk
- include $(INCLUDE_DIR)/package.mk
- include $(INCLUDE_DIR)/nls.mk
- 
-@@ -28,7 +27,7 @@
+--- ../../../downloads/openwrt_trunk-r42803/feeds/packages/multimedia/minidlna/Makefile	2014-10-06 15:46:23.733250644 +0400
++++ ../../../openwrt_trunk/feeds/packages/multimedia/minidlna/Makefile	2014-10-08 13:08:31.298779509 +0400
+@@ -31,7 +31,7 @@
    TITLE:=UPnP A/V & DLNA Media Server
    URL:=http://minidlna.sourceforge.net/
    DEPENDS:= +libpthread +libexif +libjpeg +libsqlite3 +libffmpeg \
@@ -27,35 +9,29 @@ diff -urx .svn ../../../downloads/openwrt_trunk-r36151/feeds/packages/multimedia
    	$(ICONV_DEPENDS) $(INTL_DEPENDS)
  endef
  
-@@ -38,18 +37,18 @@
+@@ -41,15 +41,15 @@
  endef
  
  define Package/minidlna/conffiles
--/etc/minidlna.conf
-+/opt/etc/minidlna.conf
+-/etc/config/minidlna
++/opt/etc/config/minidlna
  endef
  
  TARGET_CPPFLAGS += \
 -	-I$(STAGING_DIR)/usr/include \
 -	-I$(STAGING_DIR)/usr/include/FLAC \
--	-I$(STAGING_DIR)/usr/include/libavcodec \
--	-I$(STAGING_DIR)/usr/include/libavformat \
--	-I$(STAGING_DIR)/usr/include/libavutil \
 -	-I$(STAGING_DIR)/usr/include/libexif \
 -	-I$(STAGING_DIR)/usr/include/uuid \
 -	-I$(STAGING_DIR)/usr/include/vorbis \
 +	-I$(STAGING_DIR)/opt/include \
 +	-I$(STAGING_DIR)/opt/include/FLAC \
-+	-I$(STAGING_DIR)/opt/include/libavcodec \
-+	-I$(STAGING_DIR)/opt/include/libavformat \
-+	-I$(STAGING_DIR)/opt/include/libavutil \
 +	-I$(STAGING_DIR)/opt/include/libexif \
 +	-I$(STAGING_DIR)/opt/include/uuid \
 +	-I$(STAGING_DIR)/opt/include/vorbis \
  	-I$(ICONV_PREFIX)/include \
  	-I$(INTL_PREFIX)/include \
  	-D_GNU_SOURCE -D_FILE_OFFSET_BITS=64 \
-@@ -57,7 +56,6 @@
+@@ -57,7 +57,6 @@
  TARGET_LDFLAGS += \
  	-L$(ICONV_PREFIX)/lib \
  	-L$(INTL_PREFIX)/lib \
@@ -63,22 +39,14 @@ diff -urx .svn ../../../downloads/openwrt_trunk-r36151/feeds/packages/multimedia
  
  MAKE_FLAGS +=\
  	CFLAGS="$(TARGET_CFLAGS) $(TARGET_CPPFLAGS)" \
-@@ -65,23 +63,23 @@
- 	ICONV_LIBS="-liconv $(if $(INTL_FULL),-lintl)" \
- 
- MAKE_VARS +=\
--	PREFIX="$(STAGING_DIR)/usr" \
-+	PREFIX="$(STAGING_DIR)/opt" \
- 	ICONV_PREFIX="$(ICONV_PREFIX)" \
- 	INTL_PREFIX="$(INTL_PREFIX)" \
- 	OS_NAME="OpenWrt Linux" \
- 	OS_VERSION="$(LINUX_VERSION)" \
- 	OS_URL="http://openwrt.org/" \
--	DB_PATH="/var/run/minidlna" \
--	LOG_PATH="/var/log" \
-+	DB_PATH="/opt/var/run/minidlna" \
-+	LOG_PATH="/opt/var/log" \
- 
+@@ -70,16 +69,15 @@
+ 	--with-os-name="OpenWrt Linux" \
+ 	--with-os-version="$(LINUX_VERSION)" \
+ 	--with-os-url="http://openwrt.org/" \
+-	--with-db-path="/var/run/minidlna" \
+-	--with-log-path="/var/log" \
++	--with-db-path="/opt/var/run" \
++	--with-log-path="/opt/var/log" \
  
  define Package/minidlna/install
 -	$(INSTALL_DIR) $(1)/usr/bin
@@ -89,51 +57,9 @@ diff -urx .svn ../../../downloads/openwrt_trunk-r36151/feeds/packages/multimedia
 -	$(INSTALL_CONF) ./files/minidlna.config $(1)/etc/config/minidlna
 +	$(INSTALL_DIR) $(1)/opt/bin
 +	$(INSTALL_BIN) $(PKG_BUILD_DIR)/minidlna $(1)/opt/bin/
-+	$(INSTALL_DIR) $(1)/opt/etc
-+	$(INSTALL_CONF) $(PKG_BUILD_DIR)/minidlna.conf $(1)/opt/etc
 +	$(INSTALL_DIR) $(1)/opt/etc/init.d
-+	$(INSTALL_BIN) ./files/S90minidlna $(1)/opt/etc/init.d
++	$(INSTALL_BIN) ./files/S90minidlna $(1)/opt/etc/init.d/minidlna
++	$(INSTALL_CONF) $(PKG_BUILD_DIR)/minidlna.conf $(1)/opt/etc
  endef
  
- define Package/minidlna/conffiles
-diff -urx .svn ../../../downloads/openwrt_trunk-r36151/feeds/packages/multimedia/minidlna/patches/010-genconfig-checks.patch ../../../openwrt_trunk/feeds/packages/multimedia/minidlna/patches/010-genconfig-checks.patch
---- ../../../downloads/openwrt_trunk-r36151/feeds/packages/multimedia/minidlna/patches/010-genconfig-checks.patch	2013-04-02 14:27:27.573540458 +0400
-+++ ../../../openwrt_trunk/feeds/packages/multimedia/minidlna/patches/010-genconfig-checks.patch	2013-04-02 15:54:16.469445573 +0400
-@@ -4,13 +4,13 @@
-  CONFIGFILE="config.h"
-  CONFIGMACRO="__CONFIG_H__"
-  
--+PREFIX="${PREFIX:-/usr}"
-++PREFIX="${PREFIX:-/opt}"
- +ICONV_PREFIX="${ICONV_PREFIX:-$PREFIX}"
- +INTL_PREFIX="${INTL_PREFIX:-$PREFIX}"
- +
-  # Database path
- -DB_PATH="/tmp/minidlna"
--+DB_PATH="${DB_PATH:-/tmp/minidlna}"
-++DB_PATH="${DB_PATH:-/opt/tmp/minidlna}"
-  # Log path
- -LOG_PATH="${DB_PATH}"
- +LOG_PATH="${LOG_PATH:-$DB_PATH}"
-diff -urx .svn ../../../downloads/openwrt_trunk-r36151/feeds/packages/multimedia/minidlna/patches/020-makefile-tweaks.patch ../../../openwrt_trunk/feeds/packages/multimedia/minidlna/patches/020-makefile-tweaks.patch
---- ../../../downloads/openwrt_trunk-r36151/feeds/packages/multimedia/minidlna/patches/020-makefile-tweaks.patch	2013-04-02 14:27:27.577540458 +0400
-+++ ../../../openwrt_trunk/feeds/packages/multimedia/minidlna/patches/020-makefile-tweaks.patch	2013-04-30 13:35:12.344767886 +0400
-@@ -4,15 +4,16 @@
-  # or :
-  # $ make install
-  #
--+PREFIX ?= /usr
-++PREFIX ?= /opt
- +ICONV_PREFIX ?= $(PREFIX)
- +INTL_PREFIX ?= $(PREFIX)
-  #CFLAGS = -Wall -O -D_GNU_SOURCE -g -DDEBUG
-  #CFLAGS = -Wall -g -Os -D_GNU_SOURCE
-- CFLAGS = -Wall -g -O3 -D_GNU_SOURCE -D_FILE_OFFSET_BITS=64 \
-+-CFLAGS = -Wall -g -O3 -D_GNU_SOURCE -D_FILE_OFFSET_BITS=64 \
- -	 -I/usr/include/ffmpeg \
- -	 -I/usr/include/libavutil -I/usr/include/libavcodec -I/usr/include/libavformat \
- -	 -I/usr/include/ffmpeg/libavutil -I/usr/include/ffmpeg/libavcodec -I/usr/include/ffmpeg/libavformat
-++CFLAGS = -Wall -g -O2 -D_GNU_SOURCE -D_FILE_OFFSET_BITS=64 \
- +	 -I$(PREFIX)/include/ffmpeg \
- +	 -I$(PREFIX)/include/libavutil -I$(PREFIX)/include/libavcodec -I$(PREFIX)/include/libavformat \
- +	 -I$(PREFIX)/include/ffmpeg/libavutil -I$(PREFIX)/include/ffmpeg/libavcodec -I$(PREFIX)/include/ffmpeg/libavformat
+ $(eval $(call BuildPackage,minidlna))

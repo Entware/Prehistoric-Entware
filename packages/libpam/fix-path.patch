@@ -1,6 +1,6 @@
 --- ../../../downloads/mipsel-hardfloat/openwrt_trunk-r39357/feeds/packages/libs/libpam/Makefile
 +++ ../../../openwrt_trunk/feeds/packages/libs/libpam/Makefile
-@@ -45,26 +45,27 @@
+@@ -46,26 +46,27 @@
  		--disable-nls \
  		--disable-rpath \
  		--enable-db=no \

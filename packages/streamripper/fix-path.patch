@@ -1,5 +1,5 @@
---- ../../../openwrt_trunk.orig/feeds/oldpackages/sound/streamripper/Makefile	2012-07-12 09:38:56.638158232 +0400
-+++ ../../../openwrt_trunk/feeds/oldpackages/sound/streamripper/Makefile	2012-07-12 20:17:03.732825267 +0400
+--- ../../../openwrt_trunk.orig/feeds/oldpackages/sound/streamripper/Makefile
++++ ../../../openwrt_trunk/feeds/oldpackages/sound/streamripper/Makefile
 @@ -24,7 +24,7 @@
  define Package/streamripper
    SECTION:=multimedia

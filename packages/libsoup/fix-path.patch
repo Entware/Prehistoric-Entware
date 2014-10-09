@@ -1,6 +1,15 @@
---- ../../../downloads/mipsel-hardfloat/openwrt_trunk-r40423/feeds/packages/libs/libsoup/Makefile	2014-04-15 16:11:47.616849362 +0400
-+++ ../../../openwrt_trunk/feeds/packages/libs/libsoup/Makefile	2014-04-15 20:00:31.520606106 +0400
-@@ -39,26 +39,26 @@
+--- ../../../downloads/openwrt_trunk-r42803/feeds/packages/libs/libsoup/Makefile	2014-10-06 15:46:23.745250644 +0400
++++ ../../../openwrt_trunk/feeds/packages/libs/libsoup/Makefile	2014-10-08 12:28:32.438821115 +0400
+@@ -25,7 +25,7 @@
+ include $(INCLUDE_DIR)/nls.mk
+ 
+ TARGET_LDFLAGS+=\
+-	-Wl,-rpath-link=$(STAGING_DIR)/usr/lib $(if $(ICONV_FULL),-liconv)
++	-Wl,-rpath-link=$(STAGING_DIR)/opt/lib $(if $(ICONV_FULL),-liconv)
+ 
+ define Package/libsoup
+   SECTION:=libs
+@@ -50,26 +50,26 @@
  endef
  
  define Build/InstallDev

@@ -1,6 +1,6 @@
---- ../../../downloads/mipsel-hardfloat/openwrt_trunk-r40423/feeds/packages/net/openssh/Makefile	2014-04-09 16:17:24.170286483 +0400
-+++ ../../../openwrt_trunk/feeds/packages/net/openssh/Makefile	2014-04-11 14:34:45.155257646 +0400
-@@ -56,7 +56,7 @@
+--- ../../../downloads/openwrt_trunk-r42803/feeds/packages/net/openssh/Makefile	2014-10-06 15:46:23.753250644 +0400
++++ ../../../openwrt_trunk/feeds/packages/net/openssh/Makefile	2014-10-07 11:59:32.767924710 +0400
+@@ -57,7 +57,7 @@
  endef
  
  define Package/openssh-client/conffiles
@@ -9,7 +9,7 @@
  endef
  
  define Package/openssh-client-utils
-@@ -89,7 +89,7 @@
+@@ -90,7 +90,7 @@
  endef
  
  define Package/openssh-server/conffiles
@@ -18,7 +18,7 @@
  endef
  
  define Package/openssh-server-pam
-@@ -104,9 +104,9 @@
+@@ -105,9 +105,9 @@
  endef
  
  define Package/openssh-server-pam/conffiles
@@ -31,7 +31,7 @@
  endef
  
  define Package/openssh-sftp-client
-@@ -129,9 +129,9 @@
+@@ -131,9 +131,9 @@
  
  CONFIGURE_ARGS+= \
  	$(DISABLE_NLS) \
@@ -43,7 +43,7 @@
  	--enable-shared \
  	--disable-static \
  	--disable-debug \
-@@ -181,78 +181,60 @@
+@@ -183,78 +183,60 @@
  		all install
  endef
  

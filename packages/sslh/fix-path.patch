@@ -1,6 +1,6 @@
---- ../../../downloads/openwrt_trunk-r36151/feeds/packages/net/sslh/Makefile	2013-04-02 14:27:41.561540203 +0400
-+++ ../../../openwrt_trunk/feeds/packages/net/sslh/Makefile	2013-04-28 13:36:50.991914292 +0400
-@@ -27,25 +27,24 @@
+--- ../../../downloads/openwrt_trunk-r36151/feeds/packages/net/sslh/Makefile
++++ ../../../openwrt_trunk/feeds/packages/net/sslh/Makefile
+@@ -29,25 +29,24 @@
  endef
  
  define Package/sslh/conffiles

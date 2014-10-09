@@ -1,6 +1,6 @@
---- ../../../openwrt_trunk.orig/feeds/packages/libs/libsigc++/Makefile	2011-11-15 14:03:59.000000000 +0400
-+++ ../../../openwrt_trunk/feeds/packages/libs/libsigc++/Makefile	2011-11-24 16:19:01.526715124 +0400
-@@ -44,18 +44,18 @@
+--- ../../../openwrt_trunk.orig/feeds/packages/libs/libsigc++/Makefile
++++ ../../../openwrt_trunk/feeds/packages/libs/libsigc++/Makefile
+@@ -46,18 +46,18 @@
  	--enable-static \
  
  define Build/InstallDev

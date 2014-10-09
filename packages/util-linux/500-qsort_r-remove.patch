@@ -1,5 +1,5 @@
---- ./libfdisk/src/sun.c.orig	2014-04-15 12:22:19.789099018 +0400
-+++ ./libfdisk/src/sun.c	2014-04-15 12:24:00.081096783 +0400
+--- a/libfdisk/src/sun.c
++++ b/libfdisk/src/sun.c
 @@ -361,10 +361,10 @@
  	}
  }

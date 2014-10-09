@@ -1,6 +1,6 @@
---- ../../../openwrt_trunk.orig/feeds/telephony/libs/iksemel/Makefile	2012-07-11 14:54:00.742751862 +0400
-+++ ../../../openwrt_trunk/feeds/telephony/libs/iksemel/Makefile	2012-07-11 22:48:04.229163661 +0400
-@@ -38,31 +38,30 @@
+--- ../../../downloads/openwrt_trunk-r42803/feeds/telephony/libs/iksemel/Makefile	2014-10-06 15:46:23.913250643 +0400
++++ ../../../openwrt_trunk/feeds/telephony/libs/iksemel/Makefile	2014-10-08 10:23:22.166457906 +0400
+@@ -39,33 +39,32 @@
  
  TARGET_CFLAGS += $(FPIC)
  TARGET_LDFLAGS += \
@@ -21,23 +21,25 @@
  define Build/InstallDev
 -	$(INSTALL_DIR) $(1)/usr/include/
 -	$(CP) $(PKG_INSTALL_DIR)/usr/include/iksemel.h $(1)/usr/include/
--	$(INSTALL_DIR) $(1)/usr/lib
--	$(CP) $(PKG_INSTALL_DIR)/usr/lib/libiksemel.{a,so*} $(1)/usr/lib/
--	$(INSTALL_DIR) $(1)/usr/lib/pkgconfig
--	$(CP) $(PKG_INSTALL_DIR)/usr/lib/pkgconfig/iksemel.pc $(1)/usr/lib/pkgconfig/
 +	$(INSTALL_DIR) $(1)/opt/include/
 +	$(CP) $(PKG_INSTALL_DIR)/opt/include/iksemel.h $(1)/opt/include/
+ 	
+-	$(INSTALL_DIR) $(1)/usr/lib
+-	$(CP) $(PKG_INSTALL_DIR)/usr/lib/libiksemel.{a,so*} $(1)/usr/lib/
 +	$(INSTALL_DIR) $(1)/opt/lib
 +	$(CP) $(PKG_INSTALL_DIR)/opt/lib/libiksemel.{a,so*} $(1)/opt/lib/
+ 	
+-	$(INSTALL_DIR) $(1)/usr/lib/pkgconfig
+-	$(CP) $(PKG_INSTALL_DIR)/usr/lib/pkgconfig/iksemel.pc $(1)/usr/lib/pkgconfig/
 +	$(INSTALL_DIR) $(1)/opt/lib/pkgconfig
 +	$(CP) $(PKG_INSTALL_DIR)/opt/lib/pkgconfig/iksemel.pc $(1)/opt/lib/pkgconfig/
  endef
  
  define Package/libiksemel/install
 -	$(INSTALL_DIR) $(1)/usr/lib
--	$(CP) $(PKG_INSTALL_DIR)/usr/lib/libiksemel.so.* $(1)/usr/lib/
+-	$(CP) $(PKG_INSTALL_DIR)/usr/lib/libiksemel.so* $(1)/usr/lib/
 +	$(INSTALL_DIR) $(1)/opt/lib
-+	$(CP) $(PKG_INSTALL_DIR)/opt/lib/libiksemel.so.* $(1)/opt/lib/
++	$(CP) $(PKG_INSTALL_DIR)/opt/lib/libiksemel.so* $(1)/opt/lib/
  endef
  
  $(eval $(call BuildPackage,libiksemel))

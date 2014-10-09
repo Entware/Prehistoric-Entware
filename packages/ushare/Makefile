@@ -9,9 +9,9 @@ all: .done
 
 .done:
 	patch -d $(TOP) -p3 -i $(CURDIR)/fix-path.patch
-	rm -f ../../../openwrt_trunk/feeds/packages/multimedia/ushare/files/ushare.*
-	cp -f ./555-flv-support.patch ../../../openwrt_trunk/feeds/packages/multimedia/ushare/patches/
-	cp -f ./S99ushare ../../../openwrt_trunk/feeds/packages/multimedia/ushare/files/
+	rm -f ../../../openwrt_trunk/feeds/oldpackages/multimedia/ushare/files/ushare.*
+	cp -f ./555-flv-support.patch ../../../openwrt_trunk/feeds/oldpackages/multimedia/ushare/patches/
+	cp -f ./S99ushare ../../../openwrt_trunk/feeds/oldpackages/multimedia/ushare/files/
 	@touch $@
 
 clean:

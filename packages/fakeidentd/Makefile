@@ -9,7 +9,7 @@ all: .done
 
 .done:
 	patch -d $(TOP) -p3 -i $(CURDIR)/fix-path.patch
-	cp -f ./S85fakeidentd ../../../openwrt_trunk/feeds/packages/net/fakeidentd/files/
+	cp -f ./S85fakeidentd ../../../openwrt_trunk/feeds/oldpackages/net/fakeidentd/files/
 	@touch $@
 
 clean:

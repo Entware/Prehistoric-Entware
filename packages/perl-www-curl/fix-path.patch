@@ -1,6 +1,6 @@
---- ../../../openwrt_trunk.orig/feeds/packages/lang/perl-www-curl/Makefile	2011-11-28 10:56:55.000000000 +0400
-+++ ../../../openwrt_trunk/feeds/packages/lang/perl-www-curl/Makefile	2011-11-30 14:06:41.526575420 +0400
-@@ -24,7 +24,7 @@
+--- ../../../downloads/openwrt_trunk-r42803/feeds/packages/lang/perl-www-curl/Makefile	2014-10-06 15:46:23.733250644 +0400
++++ ../../../openwrt_trunk/feeds/packages/lang/perl-www-curl/Makefile	2014-10-07 11:59:34.011924243 +0400
+@@ -34,7 +34,7 @@
  endef
  
  define Build/Configure

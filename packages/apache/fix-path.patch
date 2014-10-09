@@ -1,15 +1,6 @@
---- ../../../downloads/openwrt_trunk-r35474/feeds/packages/net/apache/Makefile	2013-02-05 10:42:25.814946140 +0400
-+++ ../../../openwrt_trunk/feeds/packages/net/apache/Makefile	2013-02-15 14:05:13.410985352 +0400
-@@ -9,7 +9,7 @@
- 
- PKG_NAME:=apache
- PKG_VERSION:=2.2.15
--PKG_RELEASE:=3
-+PKG_RELEASE:=3a
- PKG_SOURCE_NAME:=httpd
- 
- PKG_SOURCE:=$(PKG_SOURCE_NAME)-$(PKG_VERSION).tar.bz2
-@@ -46,33 +46,23 @@
+--- ../../../downloads/openwrt_trunk-r42803/feeds/packages/net/apache/Makefile	2014-10-06 15:46:23.749250644 +0400
++++ ../../../openwrt_trunk/feeds/packages/net/apache/Makefile	2014-10-07 11:59:08.527925152 +0400
+@@ -48,33 +48,23 @@
  $(call Package/apache/Default/description)
   .
   This package contains the Apache web server and utility programs.
@@ -57,7 +48,7 @@
  endef
  
  define Package/apache-icons
-@@ -92,9 +82,9 @@
+@@ -94,9 +84,9 @@
  
  define Build/Configure
  	$(call Build/Configure/Default, \
@@ -70,7 +61,7 @@
  		--enable-http \
  		--enable-ssl \
  		--enable-proxy \
-@@ -102,62 +92,51 @@
+@@ -104,62 +94,51 @@
  		--enable-maintainer-mode \
  		--enable-mime-magic \
  		--without-suexec-bin \

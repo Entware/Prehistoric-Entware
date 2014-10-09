@@ -9,7 +9,7 @@ all: .done
 
 .done:
 	patch -d $(TOP) -p3 -i $(CURDIR)/fix-path.patch
-	cp -f ./555-config-paths.patch ../../../openwrt_trunk/feeds/packages/net/vpnc/patches/
+	cp -f ./555-config-paths.patch ../../../openwrt_trunk/feeds/oldpackages/net/vpnc/patches/
 	@touch $@
 
 clean:

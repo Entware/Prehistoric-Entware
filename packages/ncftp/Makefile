@@ -9,8 +9,8 @@ all: .done
 
 .done:
 	patch -d $(TOP) -p3 -i $(CURDIR)/fix-path.patch
-	mkdir -p ../../../openwrt_trunk/feeds/packages/net/ncftp/patches
-	cp -f ./030-homepath.patch ../../../openwrt_trunk/feeds/packages/net/ncftp/patches/
+	mkdir -p ../../../openwrt_trunk/feeds/oldpackages/net/ncftp/patches
+	cp -f ./030-homepath.patch ../../../openwrt_trunk/feeds/oldpackages/net/ncftp/patches/
 	@touch $@
 
 clean:

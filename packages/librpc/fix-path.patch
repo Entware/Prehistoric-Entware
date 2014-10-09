@@ -1,5 +1,5 @@
---- ../../../openwrt_trunk/package/libs/librpc/Makefile.orig	2013-10-12 19:14:22.419358497 +0400
-+++ ../../../openwrt_trunk/package/libs/librpc/Makefile	2013-10-12 21:19:52.251224852 +0400
+--- ../../../openwrt_trunk/package/libs/librpc/Makefile.orig
++++ ../../../openwrt_trunk/package/libs/librpc/Makefile
 @@ -9,7 +9,6 @@
  PKG_SOURCE_SUBDIR:=$(PKG_NAME)-$(PKG_VERSION)
  PKG_SOURCE_VERSION:=0a2179bbc0844928f2a0ec01dba93d9b5d6d41a7

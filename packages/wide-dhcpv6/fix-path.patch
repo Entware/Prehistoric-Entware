@@ -1,5 +1,5 @@
---- ../../../openwrt_trunk/feeds/oldpackages/ipv6/wide-dhcpv6/Makefile.orig	2013-06-10 09:24:19.141865176 +0400
-+++ ../../../openwrt_trunk/feeds/oldpackages/ipv6/wide-dhcpv6/Makefile	2013-06-10 09:26:39.809862612 +0400
+--- ../../../openwrt_trunk/feeds/oldpackages/ipv6/wide-dhcpv6/Makefile.orig
++++ ../../../openwrt_trunk/feeds/oldpackages/ipv6/wide-dhcpv6/Makefile
 @@ -22,7 +22,6 @@
    CATEGORY:=Network
    TITLE:=WIDE-DHCPv6

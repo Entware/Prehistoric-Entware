@@ -1,20 +1,17 @@
---- ../../../openwrt_trunk.orig/feeds/packages/libs/protobuf-c/Makefile	2011-11-25 09:50:10.692689754 +0400
-+++ ../../../openwrt_trunk/feeds/packages/libs/protobuf-c/Makefile	2011-11-26 23:12:27.204044240 +0400
-@@ -39,19 +39,19 @@
- 	--disable-protoc
+--- ../../../downloads/openwrt_trunk-r42803/feeds/packages/libs/protobuf-c/Makefile	2014-10-06 15:46:23.741250644 +0400
++++ ../../../openwrt_trunk/feeds/packages/libs/protobuf-c/Makefile	2014-10-09 11:45:58.885294580 +0400
+@@ -50,17 +50,17 @@
+ endef
  
  define Build/InstallDev
--	$(INSTALL_DIR) $(1)/usr/include/google/protobuf-c
-+	$(INSTALL_DIR) $(1)/opt/include/google/protobuf-c
- 	$(CP) \
--		$(PKG_INSTALL_DIR)/usr/include/google/protobuf-c/* \
--		$(1)/usr/include/google/protobuf-c/
+-	$(INSTALL_DIR) $(1)/usr/include/
+-	$(CP) $(PKG_INSTALL_DIR)/usr/include/* $(1)/usr/include/
 -	$(INSTALL_DIR) $(1)/usr/lib
 -	$(CP) $(PKG_INSTALL_DIR)/usr/lib/libprotobuf-c.{a,la,so*} $(1)/usr/lib/
 -	$(INSTALL_DIR) $(1)/usr/lib/pkgconfig
 -	$(CP) $(PKG_INSTALL_DIR)/usr/lib/pkgconfig/* $(1)/usr/lib/pkgconfig/
-+		$(PKG_INSTALL_DIR)/opt/include/google/protobuf-c/* \
-+		$(1)/opt/include/google/protobuf-c/
++	$(INSTALL_DIR) $(1)/opt/include/
++	$(CP) $(PKG_INSTALL_DIR)/opt/include/* $(1)/opt/include/
 +	$(INSTALL_DIR) $(1)/opt/lib
 +	$(CP) $(PKG_INSTALL_DIR)/opt/lib/libprotobuf-c.{a,la,so*} $(1)/opt/lib/
 +	$(INSTALL_DIR) $(1)/opt/lib/pkgconfig

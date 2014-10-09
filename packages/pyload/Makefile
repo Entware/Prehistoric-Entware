@@ -9,7 +9,7 @@ all: .done
 
 .done:
 	patch -d $(TOP) -p3 -i $(CURDIR)/fix-path.patch
-	cp -f ./S51pyload ../../../openwrt_trunk/feeds/packages/net/pyload/files/
+	cp -f ./S51pyload ../../../openwrt_trunk/feeds/oldpackages/net/pyload/files/
 	@touch $@
 
 clean:

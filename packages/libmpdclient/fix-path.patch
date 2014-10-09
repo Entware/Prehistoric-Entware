@@ -1,5 +1,5 @@
---- ../../../openwrt_trunk.orig/feeds/packages/libs/libmpdclient/Makefile	2011-12-05 10:46:43.000000000 +0400
-+++ ../../../openwrt_trunk/feeds/packages/libs/libmpdclient/Makefile	2011-12-09 13:38:34.231562429 +0400
+--- ../../../openwrt_trunk.orig/feeds/packages/libs/libmpdclient/Makefile
++++ ../../../openwrt_trunk/feeds/packages/libs/libmpdclient/Makefile
 @@ -42,26 +42,26 @@
  
  define Build/InstallDev

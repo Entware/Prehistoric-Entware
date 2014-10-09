@@ -9,7 +9,7 @@ all: .done
 
 .done:
 	patch -d $(TOP) -p3 -i $(CURDIR)/fix-path.patch
-	cp -f ./S19quicktun ../../../openwrt_trunk/feeds/packages/net/quicktun/files/
+	cp -f ./S19quicktun ../../../openwrt_trunk/feeds/oldpackages/net/quicktun/files/
 	@touch $@
 
 clean:

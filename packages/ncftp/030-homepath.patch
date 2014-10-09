@@ -1,5 +1,5 @@
---- a/ncftp/util.c.orig	2014-05-19 12:59:30.454002248 +0400
-+++ b/ncftp/util.c	2014-05-19 13:01:50.149972855 +0400
+--- a/ncftp/util.c
++++ b/ncftp/util.c
 @@ -419,22 +419,8 @@
  	cp = getenv("NCFTPDIR");
  	if (cp != NULL) {

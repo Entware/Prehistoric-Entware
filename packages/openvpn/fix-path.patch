@@ -1,5 +1,5 @@
---- ../../../downloads/openwrt_trunk-r35953/package/network/services/openvpn/Makefile	2013-03-11 09:29:52.130073579 +0400
-+++ ../../../openwrt_trunk/package/network/services/openvpn/Makefile	2013-03-11 11:22:23.301950220 +0400
+--- ../../../downloads/openwrt_trunk-r35953/package/network/services/openvpn/Makefile
++++ ../../../openwrt_trunk/package/network/services/openvpn/Makefile
 @@ -31,7 +31,7 @@
    URL:=http://openvpn.net
    SUBMENU:=VPN

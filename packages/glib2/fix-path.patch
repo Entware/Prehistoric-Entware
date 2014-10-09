@@ -1,7 +1,7 @@
---- ../../../downloads/mipsel-hardfloat/openwrt_trunk-r40423/feeds/packages/libs/glib2/Makefile	2014-04-15 16:11:47.616849362 +0400
-+++ ../../../openwrt_trunk/feeds/packages/libs/glib2/Makefile	2014-04-15 16:12:11.776848923 +0400
-@@ -58,42 +58,42 @@
- endef
+--- ../../../downloads/openwrt_trunk-r42803/feeds/packages/libs/glib2/Makefile	2014-10-06 15:46:23.737250644 +0400
++++ ../../../openwrt_trunk/feeds/packages/libs/glib2/Makefile	2014-10-07 11:59:10.179925121 +0400
+@@ -60,42 +60,42 @@
+ 	ac_cv_func_posix_getgrgid_r=yes
  
  define Build/InstallDev
 -	$(INSTALL_DIR) $(1)/usr/include

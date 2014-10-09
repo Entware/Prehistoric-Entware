@@ -1,5 +1,5 @@
---- ../../../openwrt_trunk.orig/feeds/oldpackages/net/spawn-fcgi/Makefile	2012-01-30 14:19:59.000000000 +0400
-+++ ../../../openwrt_trunk/feeds/oldpackages/net/spawn-fcgi/Makefile	2012-01-30 14:57:27.935216142 +0400
+--- ../../../openwrt_trunk.orig/feeds/oldpackages/net/spawn-fcgi/Makefile
++++ ../../../openwrt_trunk/feeds/oldpackages/net/spawn-fcgi/Makefile
 @@ -32,8 +32,8 @@
  endef
  

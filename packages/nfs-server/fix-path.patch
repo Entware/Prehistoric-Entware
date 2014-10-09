@@ -1,5 +1,5 @@
---- ../../../openwrt_trunk.orig/feeds/oldpackages/net/nfs-server/Makefile	2012-08-06 14:41:06.910698195 +0400
-+++ ../../../openwrt_trunk/feeds/oldpackages/net/nfs-server/Makefile	2012-08-24 16:52:25.391270220 +0400
+--- ../../../openwrt_trunk.orig/feeds/oldpackages/net/nfs-server/Makefile
++++ ../../../openwrt_trunk/feeds/oldpackages/net/nfs-server/Makefile
 @@ -21,7 +21,7 @@
    SECTION:=net
    CATEGORY:=Network

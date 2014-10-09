@@ -1,22 +1,5 @@
---- ../../../downloads/openwrt_trunk-r40859/feeds/packages/net/polipo/Makefile	2014-05-27 14:18:46.741780074 +0400
-+++ ../../../openwrt_trunk/feeds/packages/net/polipo/Makefile	2014-05-29 10:38:39.075033133 +0400
-@@ -8,12 +8,12 @@
- include $(TOPDIR)/rules.mk
- 
- PKG_NAME:=polipo
--PKG_VERSION:=1.0.4.1
--PKG_RELEASE:=3
-+PKG_VERSION:=1.1.1
-+PKG_RELEASE:=2
- 
- PKG_SOURCE:=$(PKG_NAME)-$(PKG_VERSION).tar.gz
--PKG_SOURCE_URL:=http://freehaven.net/~chrisd/polipo/
--PKG_MD5SUM:=bfc5c85289519658280e093a270d6703
-+PKG_SOURCE_URL:=http://www.pps.univ-paris-diderot.fr/~jch/software/files/polipo/
-+PKG_MD5SUM:=86939e331e656f638271f578b6e3f893
- 
- include $(INCLUDE_DIR)/package.mk
- 
+--- ../../../downloads/openwrt_trunk-r42803/feeds/packages/net/polipo/Makefile	2014-10-06 15:46:23.761250644 +0400
++++ ../../../openwrt_trunk/feeds/packages/net/polipo/Makefile	2014-10-07 11:59:34.123924685 +0400
 @@ -37,23 +37,24 @@
  	$(MAKE) -C $(PKG_BUILD_DIR) \
  		CC="$(TARGET_CC)" \

@@ -9,7 +9,7 @@ all: .done
 
 .done:
 	patch -d $(TOP) -p3 -i $(CURDIR)/fix-path.patch
-	cp -f ./S70mysqld ../../../openwrt_trunk/feeds/packages/libs/mysql/files/
+	cp -f ./S70mysqld ../../../openwrt_trunk/feeds/packages/utils/mysql/files/
 	@touch $@
 
 clean:

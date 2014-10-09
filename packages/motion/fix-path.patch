@@ -1,13 +1,6 @@
---- ../../../downloads/openwrt_trunk-r35474/feeds/packages/multimedia/motion/Makefile	2013-02-05 10:42:11.470946402 +0400
-+++ ../../../openwrt_trunk/feeds/packages/multimedia/motion/Makefile	2013-02-06 17:04:05.360956990 +0400
-@@ -23,13 +23,13 @@
- define Package/motion
-   SECTION:=multimedia
-   CATEGORY:=Multimedia
--  DEPENDS:=+libjpeg +libpthread
-+  DEPENDS:=+libjpeg +libpthread
-   TITLE:=webcam motion sensing and logging
-   URL:=http://www.lavrsen.dk/twiki/bin/view/Motion/WebHome
+--- ../../../downloads/openwrt_trunk-r42803/feeds/packages/multimedia/motion/Makefile	2014-10-06 15:46:23.733250644 +0400
++++ ../../../openwrt_trunk/feeds/packages/multimedia/motion/Makefile	2014-10-07 11:59:30.771924745 +0400
+@@ -30,7 +30,7 @@
  endef
  
  define Package/motion/conffiles
@@ -16,7 +9,7 @@
  endef
  
  CONFIGURE_ARGS+= \
-@@ -42,11 +42,11 @@
+@@ -43,11 +43,11 @@
  	--without-sqlite3 \
  
  define Package/motion/install

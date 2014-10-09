@@ -1,6 +1,6 @@
 --- ../../../openwrt_trunk.orig/feeds/packages/libs/libvorbisidec/Makefile
 +++ ../../../openwrt_trunk/feeds/packages/libs/libvorbisidec/Makefile
-@@ -42,15 +42,15 @@
+@@ -43,15 +43,15 @@
  CONFIGURE_ARGS += --enable-shared --enable-static
  
  define Build/InstallDev

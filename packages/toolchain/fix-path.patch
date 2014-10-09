@@ -1,11 +1,11 @@
---- ../../../downloads/openwrt_trunk-r40859/package/libs/toolchain/Makefile
-+++ ../../../openwrt_trunk/package/libs/toolchain/Makefile
+--- ../../../downloads/openwrt_trunk-r42803/package/libs/toolchain/Makefile	2014-10-06 15:46:23.949250640 +0400
++++ ../../../openwrt_trunk/package/libs/toolchain/Makefile	2014-10-09 12:32:15.573235798 +0400
 @@ -7,18 +7,14 @@
  
  include $(TOPDIR)/rules.mk
  PKG_NAME:=toolchain
 -PKG_RELEASE:=1
-+PKG_RELEASE:=7
++PKG_RELEASE:=8
  
  PKG_MAINTAINER:=Felix Fietkau <nbd@openwrt.org>
  
@@ -22,7 +22,7 @@
  
  define Package/gcc/Default
    SECTION:=libs
-@@ -55,7 +51,6 @@
+@@ -80,7 +76,6 @@
  
  define Package/libssp
  $(call Package/gcc/Default)
@@ -30,7 +30,7 @@
    TITLE:=GCC support library
  endef
  
-@@ -113,7 +108,6 @@
+@@ -138,7 +133,6 @@
    VERSION:=$(LIBC_VERSION)-$(PKG_RELEASE)
    DEPENDS:=+libgcc
    URL:=$(LIBC_URL)
@@ -38,7 +38,7 @@
  endef
  
  
-@@ -507,8 +501,8 @@
+@@ -544,8 +538,8 @@
    define Package/libgcc/install
  	for file in $(call qstrip,$(CONFIG_LIBGCC_FILE_SPEC)); do \
  		dir=`dirname $$$$file` ; \
@@ -49,7 +49,7 @@
  	done ; \
  	exit 0
    endef
-@@ -516,16 +510,16 @@
+@@ -553,16 +547,16 @@
    define Package/libgfortran/install
  	for file in $(call qstrip,$(CONFIG_LIBGFORTRAN_FILE_SPEC)); do \
  		dir=`dirname $$$$file` ; \
@@ -70,7 +70,7 @@
  	done ; \
  	exit 0
    endef
-@@ -533,17 +527,18 @@
+@@ -570,17 +564,18 @@
    define Package/libstdcpp/install
  	for file in $(call qstrip,$(CONFIG_LIBSTDCPP_FILE_SPEC)); do \
  		dir=`dirname $$$$file` ; \
@@ -93,7 +93,7 @@
  	done ; \
  	exit 0
    endef
-@@ -551,17 +546,22 @@
+@@ -588,17 +583,22 @@
    define Package/libpthread/install
  	for file in $(call qstrip,$(CONFIG_LIBPTHREAD_FILE_SPEC)); do \
  		dir=`dirname $$$$file` ; \
@@ -120,7 +120,7 @@
  	done ; \
  	exit 0
    endef
-@@ -569,8 +569,8 @@
+@@ -606,8 +606,8 @@
    define Package/ldd/install
  	for file in $(call qstrip,$(CONFIG_LDD_FILE_SPEC)); do \
  		dir=`dirname $$$$file` ; \
@@ -131,7 +131,7 @@
  	done ; \
  	exit 0
    endef
-@@ -578,8 +578,8 @@
+@@ -615,8 +615,8 @@
    define Package/ldconfig/install
  	for file in $(call qstrip,$(CONFIG_LDCONFIG_FILE_SPEC)); do \
  		dir=`dirname $$$$file` ; \

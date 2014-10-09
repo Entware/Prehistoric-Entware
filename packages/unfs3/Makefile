@@ -9,8 +9,8 @@ all: .done
 
 .done:
 	patch -d $(TOP) -p3 -i $(CURDIR)/fix-path.patch
-	cp -f ./S56unfsd ../../../openwrt_trunk/feeds/packages/net/unfs3/files/
-	cp -f ./500-exports-path.patch ../../../openwrt_trunk/feeds/packages/net/unfs3/patches/
+	cp -f ./S56unfsd ../../../openwrt_trunk/feeds/oldpackages/net/unfs3/files/
+	cp -f ./500-exports-path.patch ../../../openwrt_trunk/feeds/oldpackages/net/unfs3/patches/
 	@touch $@
 
 clean:

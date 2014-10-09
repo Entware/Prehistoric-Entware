@@ -1,5 +1,5 @@
---- ../../../downloads/mipsel-hardfloat/openwrt_trunk-r39357/feeds/oldpackages/libs/qrencode/Makefile	2014-01-23 09:52:40.372429236 +0400
-+++ ../../../openwrt_trunk/feeds/oldpackages/libs/qrencode/Makefile	2014-01-24 09:54:52.726852930 +0400
+--- ../../../downloads/mipsel-hardfloat/openwrt_trunk-r39357/feeds/oldpackages/libs/qrencode/Makefile
++++ ../../../openwrt_trunk/feeds/oldpackages/libs/qrencode/Makefile
 @@ -53,15 +53,15 @@
  endef
  

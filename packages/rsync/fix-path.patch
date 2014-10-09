@@ -1,39 +1,17 @@
-diff -urx .svn ../../../downloads/mipsel-hardfloat/openwrt_trunk-r40423/feeds/packages/net/rsync/files/rsyncd.conf ../../../openwrt_trunk/feeds/packages/net/rsync/files/rsyncd.conf
---- ../../../downloads/mipsel-hardfloat/openwrt_trunk-r40423/feeds/packages/net/rsync/files/rsyncd.conf	2014-04-09 16:17:24.142286482 +0400
-+++ ../../../openwrt_trunk/feeds/packages/net/rsync/files/rsyncd.conf	2014-04-09 16:53:33.518246966 +0400
-@@ -1,15 +1,16 @@
--# /etc/rsyncd.conf
-+# /opt/etc/rsyncd.conf
- # Minimal configuration for rsync daemon
- 
- # Next line required for init script
--pid file = /var/run/rsyncd.pid
-+#pid file = /opt/var/run/rsyncd.pid
-+log file = /opt/var/log/rsyncd.log
- use chroot = yes
- uid = nobody
--gid = nogroup
-+gid = nobody
- read only = yes
- 
- # Simple example to configure server
--#[openwrt-etc]
--#path = /etc
--#comment = OpenWrt Configuration Files
--#exclude = /init.d
-+[test]
-+path = /opt/etc
-+comment = Test backup (/opt/etc)
-+#exclude = /opt/etc/init.d
-diff -urx .svn ../../../downloads/mipsel-hardfloat/openwrt_trunk-r40423/feeds/packages/net/rsync/Makefile ../../../openwrt_trunk/feeds/packages/net/rsync/Makefile
---- ../../../downloads/mipsel-hardfloat/openwrt_trunk-r40423/feeds/packages/net/rsync/Makefile	2014-04-09 16:17:24.142286482 +0400
-+++ ../../../openwrt_trunk/feeds/packages/net/rsync/Makefile	2014-04-09 16:53:33.518246966 +0400
-@@ -55,10 +55,12 @@
+diff -urx .svn ../../../downloads/openwrt_trunk-r42803/feeds/packages/net/rsync/Makefile ../../../openwrt_trunk/feeds/packages/net/rsync/Makefile
+--- ../../../downloads/openwrt_trunk-r42803/feeds/packages/net/rsync/Makefile	2014-10-06 15:46:23.757250644 +0400
++++ ../../../openwrt_trunk/feeds/packages/net/rsync/Makefile	2014-10-09 11:48:51.321290595 +0400
+@@ -42,6 +42,8 @@
+ 	--with-included-popt=no \
+ 	--disable-debug \
  	--disable-locale \
- 	--disable-xattr-support \
- 	--disable-acl-support \
 +	--with-rsyncd-conf=/opt/etc/rsyncd.conf \
 +	--with-nobody-group=nobody \
+ 
+ ifeq ($(CONFIG_RSYNC_xattr),y)
+ 	CONFIGURE_ARGS+= --enable-xattr-support
+@@ -81,8 +83,8 @@
+ endef
  
  define Package/rsync/install
 -	$(INSTALL_DIR) $(1)/usr/bin
@@ -43,7 +21,7 @@ diff -urx .svn ../../../downloads/mipsel-hardfloat/openwrt_trunk-r40423/feeds/pa
  endef
  
  define Package/rsyncd/description
-@@ -67,14 +69,17 @@
+@@ -91,14 +93,17 @@
  endef
  
  define Package/rsyncd/conffiles

@@ -1,5 +1,5 @@
---- ../../../openwrt_trunk/package/libs/libconfig/Makefile.orig	2013-08-09 12:56:05.000000000 +0400
-+++ ../../../openwrt_trunk/package/libs/libconfig/Makefile	2013-08-14 15:39:00.314747429 +0400
+--- ../../../openwrt_trunk/package/libs/libconfig/Makefile.orig
++++ ../../../openwrt_trunk/package/libs/libconfig/Makefile
 @@ -51,8 +51,8 @@
  endef
  

@@ -1,6 +1,6 @@
---- ../../../openwrt_trunk.orig/package/libs/lzo/Makefile	2012-08-06 09:54:12.031011782 +0400
-+++ ../../../openwrt_trunk/package/libs/lzo/Makefile	2012-08-06 10:54:53.182947308 +0400
-@@ -43,14 +43,14 @@
+--- ../../../openwrt_trunk.orig/package/libs/lzo/Makefile
++++ ../../../openwrt_trunk/package/libs/lzo/Makefile
+@@ -45,14 +45,14 @@
  MAKE_FLAGS += CFLAGS_O="$(TARGET_CFLAGS)"
  
  define Build/InstallDev

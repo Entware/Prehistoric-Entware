@@ -1,6 +1,6 @@
 --- ../../../openwrt_trunk.orig/feeds/packages/libs/libmad/Makefile
 +++ ../../../openwrt_trunk/feeds/packages/libs/libmad/Makefile
-@@ -64,15 +64,15 @@
+@@ -65,15 +65,15 @@
  	CFLAGS="$(TARGET_CFLAGS)" \
  
  define Build/InstallDev

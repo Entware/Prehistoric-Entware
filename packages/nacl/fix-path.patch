@@ -1,6 +1,6 @@
---- ../../../openwrt_trunk.orig/feeds/packages/libs/nacl/Makefile	2012-06-11 17:15:51.404750872 +0400
-+++ ../../../openwrt_trunk/feeds/packages/libs/nacl/Makefile	2012-06-14 09:42:52.717712380 +0400
-@@ -38,10 +38,10 @@
+--- ../../../openwrt_trunk.orig/feeds/packages/libs/nacl/Makefile
++++ ../../../openwrt_trunk/feeds/packages/libs/nacl/Makefile
+@@ -40,10 +40,10 @@
  endef
  
  define Build/InstallDev

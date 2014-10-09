@@ -1,4 +1,4 @@
---- a/file.h.orig
+--- a/file.h
 +++ b/file.h
 @@ -50,13 +50,13 @@
  #define SENSE_DENY 0

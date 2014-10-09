@@ -1,5 +1,5 @@
---- ../../../openwrt_trunk.orig/feeds/oldpackages/lang/php-pear-db/Makefile	2012-01-30 15:02:12.000000000 +0400
-+++ ../../../openwrt_trunk/feeds/oldpackages/lang/php-pear-db/Makefile	2012-02-02 12:51:01.691636254 +0400
+--- ../../../openwrt_trunk.orig/feeds/oldpackages/lang/php-pear-db/Makefile
++++ ../../../openwrt_trunk/feeds/oldpackages/lang/php-pear-db/Makefile
 @@ -35,9 +35,9 @@
  endef
  

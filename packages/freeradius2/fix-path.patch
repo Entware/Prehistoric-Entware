@@ -1,6 +1,6 @@
---- ../../../downloads/mipsel-hardfloat/openwrt_trunk-r40423/feeds/packages/net/freeradius2/Makefile	2014-04-09 16:17:24.166286483 +0400
-+++ ../../../openwrt_trunk/feeds/packages/net/freeradius2/Makefile	2014-04-11 12:19:50.379396340 +0400
-@@ -42,9 +42,9 @@
+--- ../../../downloads/openwrt_trunk-r42803/feeds/packages/net/freeradius2/Makefile	2014-10-06 15:46:23.757250644 +0400
++++ ../../../openwrt_trunk/feeds/packages/net/freeradius2/Makefile	2014-10-07 11:59:09.923925126 +0400
+@@ -46,9 +46,9 @@
  endef
  
  define Package/freeradius2/conffiles
@@ -13,7 +13,7 @@
  endef
  
  define Package/freeradius2-democerts
-@@ -66,7 +66,7 @@
+@@ -70,7 +70,7 @@
  endef
  
  define Package/freeradius2-mod-chap/conffiles
@@ -22,7 +22,7 @@
  endef
  
  define Package/freeradius2-mod-detail
-@@ -76,7 +76,7 @@
+@@ -80,7 +80,7 @@
  endef
  
  define Package/freeradius2-mod-detail/conffiles
@@ -31,7 +31,7 @@
  endef
  
  define Package/freeradius2-mod-eap
-@@ -86,7 +86,7 @@
+@@ -90,7 +90,7 @@
  endef
  
  define Package/freeradius2-mod-eap/conffiles
@@ -40,7 +40,7 @@
  endef
  
  define Package/freeradius2-mod-eap-gtc
-@@ -132,7 +132,7 @@
+@@ -136,7 +136,7 @@
  endef
  
  define Package/freeradius2-mod-exec/conffiles
@@ -49,7 +49,7 @@
  endef
  
  define Package/freeradius2-mod-expiration
-@@ -142,7 +142,7 @@
+@@ -146,7 +146,7 @@
  endef
  
  define Package/freeradius2-mod-expiration/conffiles
@@ -58,7 +58,7 @@
  endef
  
  define Package/freeradius2-mod-always
-@@ -152,7 +152,7 @@
+@@ -156,7 +156,7 @@
  endef
  
  define Package/freeradius2-mod-always/conffiles
@@ -67,7 +67,7 @@
  endef
  
  define Package/freeradius2-mod-expr
-@@ -162,7 +162,7 @@
+@@ -166,7 +166,7 @@
  endef
  
  define Package/freeradius2-mod-expr/conffiles
@@ -76,7 +76,7 @@
  endef
  
  define Package/freeradius2-mod-attr-filter
-@@ -172,11 +172,11 @@
+@@ -176,11 +176,11 @@
  endef
  
  define Package/freeradius2-mod-attr-filter/conffiles
@@ -93,7 +93,7 @@
  endef
  
  define Package/freeradius2-mod-attr-rewrite
-@@ -186,7 +186,7 @@
+@@ -190,7 +190,7 @@
  endef
  
  define Package/freeradius2-mod-attr-rewrite/conffiles
@@ -102,7 +102,7 @@
  endef
  
  define Package/freeradius2-mod-files
-@@ -196,10 +196,10 @@
+@@ -200,10 +200,10 @@
  endef
  
  define Package/freeradius2-mod-files/conffiles
@@ -117,7 +117,7 @@
  endef
  
  define Package/freeradius2-mod-passwd
-@@ -209,7 +209,7 @@
+@@ -213,7 +213,7 @@
  endef
  
  define Package/freeradius2-mod-passwd/conffiles
@@ -126,7 +126,7 @@
  endef
  
  define Package/freeradius2-mod-ldap
-@@ -219,8 +219,8 @@
+@@ -223,8 +223,8 @@
  endef
  
  define Package/freeradius2-mod-ldap/conffiles
@@ -137,7 +137,7 @@
  endef
  
  define Package/freeradius2-mod-logintime
-@@ -230,7 +230,7 @@
+@@ -234,7 +234,7 @@
  endef
  
  define Package/freeradius2-mod-logintime/conffiles
@@ -146,7 +146,7 @@
  endef
  
  define Package/freeradius2-mod-mschap
-@@ -240,7 +240,7 @@
+@@ -244,7 +244,7 @@
  endef
  
  define Package/freeradius2-mod-mschap/conffiles
@@ -155,7 +155,7 @@
  endef
  
  define Package/freeradius2-mod-pap
-@@ -250,7 +250,7 @@
+@@ -254,7 +254,7 @@
  endef
  
  define Package/freeradius2-mod-pap/conffiles
@@ -164,7 +164,7 @@
  endef
  
  define Package/freeradius2-mod-preprocess
-@@ -260,9 +260,9 @@
+@@ -264,9 +264,9 @@
  endef
  
  define Package/freeradius2-mod-preprocess/conffiles
@@ -177,7 +177,7 @@
  endef
  
  define Package/freeradius2-mod-realm
-@@ -272,8 +272,8 @@
+@@ -276,8 +276,8 @@
  endef
  
  define Package/freeradius2-mod-realm/conffiles
@@ -188,7 +188,7 @@
  endef
  
  define Package/freeradius2-mod-sql
-@@ -283,7 +283,7 @@
+@@ -287,7 +287,7 @@
  endef
  
  define Package/freeradius2-mod-sql/conffiles
@@ -197,7 +197,7 @@
  endef
  
  define Package/freeradius2-mod-sql-mysql
-@@ -320,8 +320,8 @@
+@@ -321,8 +321,8 @@
  endef
  
  define Package/freeradius2-mod-radutmp/conffiles
@@ -208,7 +208,7 @@
  endef
  
  define Package/freeradius2-utils
-@@ -337,21 +337,21 @@
+@@ -338,21 +338,21 @@
  endef
  
  CONFIGURE_ARGS+= \
@@ -237,7 +237,7 @@
  	--without-edir \
  	--without-snmp \
  	--without-rlm_checkval \
-@@ -416,8 +416,8 @@
+@@ -417,8 +417,8 @@
  
  ifneq ($(SDK)$(CONFIG_PACKAGE_freeradius2-mod-ldap),)
    CONFIGURE_ARGS+= \
@@ -248,7 +248,7 @@
    CONFIGURE_LIBS+= -lcrypto -lssl
  else
    CONFIGURE_ARGS+= --without-rlm_ldap
-@@ -425,8 +425,8 @@
+@@ -426,8 +426,8 @@
  
  ifneq ($(SDK)$(CONFIG_PACKAGE_freeradius2-mod-sql-mysql),)
    CONFIGURE_ARGS+= \
@@ -259,7 +259,7 @@
    CONFIGURE_LIBS+= -lz
    CONFIGURE_VARS+= ac_cv_lib_mysqlclient_r_mysql_init=yes
  else
-@@ -435,8 +435,8 @@
+@@ -436,8 +436,8 @@
  
  ifneq ($(SDK)$(CONFIG_PACKAGE_freeradius2-mod-sql-pgsql),)
    CONFIGURE_ARGS+= \
@@ -270,7 +270,7 @@
  else
    CONFIGURE_ARGS+= --without-rlm_sql_postgresql
  endif
-@@ -454,8 +454,8 @@
+@@ -455,8 +455,8 @@
    CONFIGURE_ARGS+= \
  	--with-rlm_sql_sqlite \
  	--with-experimental-modules \
@@ -281,7 +281,7 @@
  else
    CONFIGURE_ARGS+= --without-rlm_sql_sqlite
  endif
-@@ -463,8 +463,8 @@
+@@ -464,8 +464,8 @@
  ifneq ($(SDK)$(CONFIG_PACKAGE_freeradius2-mod-eap-peap),)
    CONFIGURE_ARGS+= \
    		--with-rlm_eap_peap \
@@ -292,7 +292,7 @@
    CONFIGURE_LIBS+= -lcrypto -lssl
  else
    CONFIGURE_ARGS+= --without-rlm_eap_peap
-@@ -473,8 +473,8 @@
+@@ -474,8 +474,8 @@
  ifneq ($(SDK)$(CONFIG_PACKAGE_freeradius2-mod-eap-tls),)
    CONFIGURE_ARGS+= \
    		--with-rlm_eap_tls \
@@ -303,7 +303,7 @@
    CONFIGURE_LIBS+= -lcrypto -lssl
  else
    CONFIGURE_ARGS+= --without-rlm_eap_tls
-@@ -483,8 +483,8 @@
+@@ -484,8 +484,8 @@
  ifneq ($(SDK)$(CONFIG_PACKAGE_freeradius2-mod-eap-ttls),)
    CONFIGURE_ARGS+= \
    		--with-rlm_eap_ttls \
@@ -314,7 +314,7 @@
    CONFIGURE_LIBS+= -lcrypto -lssl
  else
    CONFIGURE_ARGS+= --without-rlm_eap_ttls
-@@ -534,61 +534,62 @@
+@@ -535,61 +535,62 @@
  endef
  
  define Package/freeradius2-common/install

@@ -1,6 +1,6 @@
 --- ../../../openwrt_trunk.orig/feeds/packages/libs/libvorbis/Makefile
 +++ ../../../openwrt_trunk/feeds/packages/libs/libvorbis/Makefile
-@@ -46,19 +46,19 @@
+@@ -47,19 +47,19 @@
  	--disable-oggtest \
  
  define Build/InstallDev

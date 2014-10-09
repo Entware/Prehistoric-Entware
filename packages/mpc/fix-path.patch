@@ -10,7 +10,7 @@ diff -r -u -x .svn ../../../openwrt_trunk.orig/feeds/packages/sound/mpc/files/pl
 diff -r -u -x .svn ../../../openwrt_trunk.orig/feeds/packages/sound/mpc/Makefile ../../../openwrt_trunk/feeds/packages/sound/mpc/Makefile
 --- ../../../openwrt_trunk.orig/feeds/packages/sound/mpc/Makefile	2011-12-05 10:46:40.000000000 +0400
 +++ ../../../openwrt_trunk/feeds/packages/sound/mpc/Makefile	2011-12-09 14:30:55.328553086 +0400
-@@ -41,15 +41,15 @@
+@@ -44,15 +44,15 @@
  define Build/Compile
  $(call Build/Compile/Default,\
  		CFLAGS="$(TARGET_CFLAGS) -std=gnu99" \
