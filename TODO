@@ -12,6 +12,7 @@ gw6c		6.0.1
 hplip		3.14.4
 imapfilter	2.5.6
 libev		4.19
+libsodium	1.0.0
 mosh		1.2.4a-20140108
 msmtp		1.4.32
 n2n		2.1.0-r7223
