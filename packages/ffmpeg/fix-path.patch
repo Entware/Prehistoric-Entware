@@ -1,5 +1,5 @@
---- ../../../downloads/openwrt_trunk-r42803/feeds/packages/multimedia/ffmpeg/Makefile	2014-10-06 15:46:23.733250644 +0400
-+++ ../../../openwrt_trunk/feeds/packages/multimedia/ffmpeg/Makefile	2014-10-08 09:53:21.706494639 +0400
+--- ../../../downloads/openwrt_trunk-r42803/feeds/packages/multimedia/ffmpeg/Makefile
++++ ../../../openwrt_trunk/feeds/packages/multimedia/ffmpeg/Makefile
 @@ -355,7 +355,7 @@
  	--cross-prefix="$(TARGET_CROSS)" \
  	--arch="$(ARCH)" \

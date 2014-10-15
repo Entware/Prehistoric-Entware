@@ -1,5 +1,5 @@
---- ./gw6c-messaging/src/servermsgsender.cc.orig	2012-10-09 20:49:19.857453550 +0400
-+++ ./gw6c-messaging/src/servermsgsender.cc	2012-10-09 20:49:37.785442562 +0400
+--- a/gw6c-messaging/src/servermsgsender.cc
++++ b/gw6c-messaging/src/servermsgsender.cc
 @@ -15,6 +15,7 @@
  // **************************************************************************
  #include <gw6cmessaging/servermsgsender.h>
@@ -8,8 +8,8 @@
  
  
  namespace gw6cmessaging
---- ./gw6c-messaging/src/clientmsgsender.cc.orig	2012-10-09 20:46:46.161454346 +0400
-+++ ./gw6c-messaging/src/clientmsgsender.cc	2012-10-09 20:47:02.421453947 +0400
+--- a/gw6c-messaging/src/clientmsgsender.cc
++++ b/gw6c-messaging/src/clientmsgsender.cc
 @@ -15,6 +15,7 @@
  // **************************************************************************
  #include <gw6cmessaging/clientmsgsender.h>

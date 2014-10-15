@@ -6,8 +6,10 @@
 # Package name, taken as current folder name
 PKG_NAME="${PWD##*/}"
 
-# String with path to package, taken from .package_path.mk. Make sure
-# package index is exists! It will be something like
+#Make sure package index is exists!
+[ -f ../.packages_path.mk ] || $(cd .. && ./index_scan.rb > /dev/null)
+
+# Path to package, taken from .package_path.mk.  It will be something like
 # PK_NAME_25volt="/home/ryzhovau/Entware/openwrt_trunk/feeds/rtndev/25volt/"
 PK_NAME_STR=$(grep ^PK_NAME_${PKG_NAME}= ../.packages_path.mk)
 

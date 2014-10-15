@@ -1,5 +1,5 @@
---- ../../../downloads/openwrt_trunk-r42803/feeds/packages/utils/tmux/Makefile	2014-10-06 15:46:23.773250645 +0400
-+++ ../../../openwrt_trunk/feeds/packages/utils/tmux/Makefile	2014-10-07 11:59:36.071924650 +0400
+--- ../../../downloads/openwrt_trunk-r42803/feeds/packages/utils/tmux/Makefile
++++ ../../../openwrt_trunk/feeds/packages/utils/tmux/Makefile
 @@ -34,12 +34,12 @@
  endef
  

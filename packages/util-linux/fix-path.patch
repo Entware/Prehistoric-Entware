@@ -1,5 +1,5 @@
---- ../../../downloads/openwrt_trunk-r42803/package/utils/util-linux/Makefile	2014-10-06 15:46:24.437250632 +0400
-+++ ../../../openwrt_trunk/package/utils/util-linux/Makefile	2014-10-07 11:59:36.435924642 +0400
+--- ../../../downloads/openwrt_trunk-r42803/package/utils/util-linux/Makefile
++++ ../../../openwrt_trunk/package/utils/util-linux/Makefile
 @@ -45,22 +45,22 @@
  		DESTDIR="$(1)" \
  		installdirs install-data

@@ -1,5 +1,5 @@
---- ./Makefile.am.orig	2013-10-11 13:40:14.000000000 +0400
-+++ ./Makefile.am	2013-10-16 11:39:48.259914739 +0400
+--- a/Makefile.am
++++ b/Makefile.am
 @@ -75,7 +75,7 @@
  	  io/hpmud/dot4.h io/hpmud/jd.c io/hpmud/jd.h io/hpmud/pp.c io/hpmud/pp.h io/hpmud/musb.h io/hpmud/musb_libusb01.c \
  	  common/utils.c common/utils.h

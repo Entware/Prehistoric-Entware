@@ -1,5 +1,5 @@
---- ../../../downloads/openwrt_trunk-r42803/package/libs/polarssl/Makefile	2014-10-06 15:46:23.957250640 +0400
-+++ ../../../openwrt_trunk/package/libs/polarssl/Makefile	2014-10-08 17:17:32.658501389 +0400
+--- ../../../downloads/openwrt_trunk-r42803/package/libs/polarssl/Makefile
++++ ../../../openwrt_trunk/package/libs/polarssl/Makefile
 @@ -53,15 +53,15 @@
  	-DENABLE_TESTING:Bool=OFF \
  

@@ -1,5 +1,5 @@
---- ../../../downloads/openwrt_trunk-r42803/package/libs/ncurses/Makefile	2014-10-06 15:46:23.949250640 +0400
-+++ ../../../openwrt_trunk/package/libs/ncurses/Makefile	2014-10-08 14:14:58.158703113 +0400
+--- ../../../downloads/openwrt_trunk-r42803/package/libs/ncurses/Makefile
++++ ../../../openwrt_trunk/package/libs/ncurses/Makefile
 @@ -9,7 +9,7 @@
  
  PKG_NAME:=ncurses

@@ -1,5 +1,5 @@
---- ./ppdc/Makefile.orig	2013-02-06 11:11:59.985340206 +0400
-+++ ./ppdc/Makefile	2013-02-06 11:13:03.685338863 +0400
+--- a/ppdc/Makefile
++++ b/ppdc/Makefile
 @@ -332,7 +332,7 @@
  
  libcupsppdc.so.1 libcupsppdc.sl.1:	$(LIBOBJS) ../cups/$(LIBCUPS)

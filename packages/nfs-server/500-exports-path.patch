@@ -1,4 +1,4 @@
---- a/auth_init.c.orig
+--- a/auth_init.c
 +++ b/auth_init.c
 @@ -20,7 +20,7 @@
  #define CHUNK_SIZE	1024	/* the 'typical' maximum line length	*/

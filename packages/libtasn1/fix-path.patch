@@ -1,5 +1,5 @@
---- ../../../downloads/openwrt_trunk-r42803/feeds/packages/libs/libtasn1/Makefile	2014-10-06 15:46:23.741250644 +0400
-+++ ../../../openwrt_trunk/feeds/packages/libs/libtasn1/Makefile	2014-10-08 12:29:48.158828488 +0400
+--- ../../../downloads/openwrt_trunk-r42803/feeds/packages/libs/libtasn1/Makefile
++++ ../../../openwrt_trunk/feeds/packages/libs/libtasn1/Makefile
 @@ -40,18 +40,18 @@
  		--enable-static
  

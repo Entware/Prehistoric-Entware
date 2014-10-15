@@ -1,5 +1,5 @@
---- ../../../downloads/openwrt_trunk-r42803/feeds/management/libev/Makefile	2014-10-09 13:29:46.549178699 +0400
-+++ ../../../openwrt_trunk/feeds/management/libev/Makefile	2014-10-09 15:25:31.385051519 +0400
+--- ../../../downloads/openwrt_trunk-r42803/feeds/management/libev/Makefile
++++ ../../../openwrt_trunk/feeds/management/libev/Makefile
 @@ -8,12 +8,12 @@
  include $(TOPDIR)/rules.mk
  

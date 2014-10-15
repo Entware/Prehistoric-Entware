@@ -1,5 +1,5 @@
---- ../../../downloads/openwrt_trunk-r42803/package/devel/valgrind/Makefile	2014-10-06 15:46:23.981250640 +0400
-+++ ../../../openwrt_trunk/package/devel/valgrind/Makefile	2014-10-09 13:03:45.617212737 +0400
+--- ../../../downloads/openwrt_trunk-r42803/package/devel/valgrind/Makefile
++++ ../../../openwrt_trunk/package/devel/valgrind/Makefile
 @@ -103,68 +103,68 @@
  	--without-included-gettext
  

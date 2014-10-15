@@ -1,5 +1,5 @@
---- ../../../downloads/openwrt_trunk-r42803/feeds/packages/libs/expat/Makefile	2014-10-06 15:46:23.737250644 +0400
-+++ ../../../openwrt_trunk/feeds/packages/libs/expat/Makefile	2014-10-07 17:01:18.883594867 +0400
+--- ../../../downloads/openwrt_trunk-r42803/feeds/packages/libs/expat/Makefile
++++ ../../../openwrt_trunk/feeds/packages/libs/expat/Makefile
 @@ -50,19 +50,19 @@
  endef
  

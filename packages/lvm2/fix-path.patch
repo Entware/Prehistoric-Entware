@@ -1,5 +1,20 @@
---- ../../../downloads/mipsel-hardfloat/openwrt_trunk-r40423/feeds/oldpackages/utils/lvm2/Makefile
+--- ../../../downloads/openwrt_trunk-r42803/feeds/oldpackages/utils/lvm2/Makefile
 +++ ../../../openwrt_trunk/feeds/oldpackages/utils/lvm2/Makefile
+@@ -9,12 +9,12 @@
+ include $(TOPDIR)/rules.mk
+ 
+ PKG_NAME:=LVM2
+-PKG_VERSION:=2.02.105
++PKG_VERSION:=2.02.111
+ PKG_RELEASE:=1
+ 
+ PKG_SOURCE:=$(PKG_NAME).$(PKG_VERSION).tgz
+ PKG_SOURCE_URL:=ftp://sources.redhat.com/pub/lvm2
+-PKG_MD5SUM:=b5b3540661fc70bf329b526c1cfbcf3a
++PKG_MD5SUM:=02487ab2a9e02d1ee76fe217183df28a
+ PKG_BUILD_DIR:=$(BUILD_DIR)/$(PKG_NAME).$(PKG_VERSION)
+ 
+ include $(INCLUDE_DIR)/package.mk
 @@ -24,7 +24,7 @@
    CATEGORY:=Libraries
    TITLE:=The Linux Kernel Device Mapper userspace library

@@ -1,0 +1,10 @@
+--- a/net.c
++++ b/net.c
+@@ -50,6 +50,7 @@
+ #include <arpa/inet.h>
+ #include <net/if.h>
+ #include <asm/types.h>
++#include <linux/types.h>
+ #include <linux/ipx.h>
+ 
+ #if defined(__GLIBC__) && defined(HAVE_SIN6_SCOPE_ID_LINUX)

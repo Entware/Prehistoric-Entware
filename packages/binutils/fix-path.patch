@@ -1,5 +1,5 @@
---- ../../../downloads/openwrt_trunk-r42803/package/devel/binutils/Makefile	2014-10-06 15:46:23.985250640 +0400
-+++ ../../../openwrt_trunk/package/devel/binutils/Makefile	2014-10-07 11:59:08.931925143 +0400
+--- ../../../downloads/openwrt_trunk-r42803/package/devel/binutils/Makefile
++++ ../../../openwrt_trunk/package/devel/binutils/Makefile
 @@ -66,17 +66,16 @@
  endef
  

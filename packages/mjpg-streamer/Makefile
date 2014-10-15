@@ -9,6 +9,7 @@ all: .done
 
 .done:
 	patch -d $(TOP) -p3 -i $(CURDIR)/fix-path.patch
+	rm -f ../../../openwrt_trunk/feeds/packages/multimedia/mjpg-streamer/patches/0*.patch
 	cp -f ./S96mjpg-streamer ../../../openwrt_trunk/feeds/packages/multimedia/mjpg-streamer/files/
 	@touch $@
 

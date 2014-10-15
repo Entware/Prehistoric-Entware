@@ -1,5 +1,5 @@
---- ../../../downloads/openwrt_trunk-r42803/feeds/packages/libs/libtorrent/Makefile	2014-10-06 15:46:23.737250644 +0400
-+++ ../../../openwrt_trunk/feeds/packages/libs/libtorrent/Makefile	2014-10-09 11:51:39.081288688 +0400
+--- ../../../downloads/openwrt_trunk-r42803/feeds/packages/libs/libtorrent/Makefile
++++ ../../../openwrt_trunk/feeds/packages/libs/libtorrent/Makefile
 @@ -43,11 +43,11 @@
  TARGET_LDFLAGS += $(LIBGCC_S)
  

@@ -1,4 +1,4 @@
---- a/support/include/nfslib.orig
+--- a/support/include/nfslib.h
 +++ b/support/include/nfslib.h
 @@ -23,16 +23,16 @@
  #include "xlog.h"

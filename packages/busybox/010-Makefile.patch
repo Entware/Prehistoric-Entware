@@ -1,5 +1,5 @@
---- ../../../downloads/openwrt_trunk-r42803/package/utils/busybox/Makefile	2014-10-06 15:46:24.421250631 +0400
-+++ ../../../openwrt_trunk/package/utils/busybox/Makefile	2014-10-07 16:09:21.719653515 +0400
+--- ../../../downloads/openwrt_trunk-r42803/package/utils/busybox/Makefile
++++ ../../../openwrt_trunk/package/utils/busybox/Makefile
 @@ -75,13 +75,13 @@
  
  LDLIBS:=m crypt

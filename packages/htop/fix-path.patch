@@ -1,5 +1,5 @@
---- ../../../downloads/openwrt_trunk-r42803/feeds/packages/admin/htop/Makefile	2014-10-06 15:46:23.769250644 +0400
-+++ ../../../openwrt_trunk/feeds/packages/admin/htop/Makefile	2014-10-07 11:59:10.327925119 +0400
+--- ../../../downloads/openwrt_trunk-r42803/feeds/packages/admin/htop/Makefile
++++ ../../../openwrt_trunk/feeds/packages/admin/htop/Makefile
 @@ -27,7 +27,7 @@
    SECTION:=admin
    CATEGORY:=Administration

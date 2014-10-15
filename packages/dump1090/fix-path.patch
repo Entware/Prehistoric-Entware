@@ -1,8 +1,12 @@
-diff -ur ../../../downloads/openwrt_trunk-r42803/feeds/packages/utils/dump1090/Makefile ../../../openwrt_trunk/feeds/packages/utils/dump1090/Makefile
---- ../../../downloads/openwrt_trunk-r42803/feeds/packages/utils/dump1090/Makefile	2014-10-06 15:46:23.777250645 +0400
-+++ ../../../openwrt_trunk/feeds/packages/utils/dump1090/Makefile	2014-10-07 16:47:27.667609727 +0400
-@@ -44,17 +44,17 @@
- 	CFLAGS="$(TARGET_CFLAGS)"
+diff -urx .svn ../../../downloads/openwrt_trunk-r42803/feeds/packages/utils/dump1090/Makefile ../../../openwrt_trunk/feeds/packages/utils/dump1090/Makefile
+--- ../../../downloads/openwrt_trunk-r42803/feeds/packages/utils/dump1090/Makefile	2014-10-09 19:10:17.752806521 +0400
++++ ../../../openwrt_trunk/feeds/packages/utils/dump1090/Makefile	2014-10-13 16:27:36.814689194 +0400
+@@ -41,20 +41,20 @@
+ endef
+ 
+ MAKE_FLAGS += \
+-	CFLAGS="$(TARGET_CFLAGS)"
++	CFLAGS="$(TARGET_CPPFLAGS)"
  
  define Package/dump1090/install
 -	$(INSTALL_DIR) $(1)/usr/bin
@@ -24,9 +28,9 @@ diff -ur ../../../downloads/openwrt_trunk-r42803/feeds/packages/utils/dump1090/M
  endif
  endef
  
-diff -ur ../../../downloads/openwrt_trunk-r42803/feeds/packages/utils/dump1090/patches/100-html_dir.patch ../../../openwrt_trunk/feeds/packages/utils/dump1090/patches/100-html_dir.patch
---- ../../../downloads/openwrt_trunk-r42803/feeds/packages/utils/dump1090/patches/100-html_dir.patch	2014-10-06 15:46:23.777250645 +0400
-+++ ../../../openwrt_trunk/feeds/packages/utils/dump1090/patches/100-html_dir.patch	2014-10-07 16:44:34.451613406 +0400
+diff -urx .svn ../../../downloads/openwrt_trunk-r42803/feeds/packages/utils/dump1090/patches/100-html_dir.patch ../../../openwrt_trunk/feeds/packages/utils/dump1090/patches/100-html_dir.patch
+--- ../../../downloads/openwrt_trunk-r42803/feeds/packages/utils/dump1090/patches/100-html_dir.patch	2014-10-09 19:10:17.752806521 +0400
++++ ../../../openwrt_trunk/feeds/packages/utils/dump1090/patches/100-html_dir.patch	2014-10-09 19:10:24.012806407 +0400
 @@ -5,7 +5,7 @@
   
   #ifndef HTMLPATH

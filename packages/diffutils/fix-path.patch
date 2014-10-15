@@ -1,5 +1,5 @@
---- ../../../downloads/openwrt_trunk-r42803/feeds/packages/devel/diffutils/Makefile	2014-10-06 15:46:23.765250644 +0400
-+++ ../../../openwrt_trunk/feeds/packages/devel/diffutils/Makefile	2014-10-07 11:59:09.375925136 +0400
+--- ../../../downloads/openwrt_trunk-r42803/feeds/packages/devel/diffutils/Makefile
++++ ../../../openwrt_trunk/feeds/packages/devel/diffutils/Makefile
 @@ -39,24 +39,8 @@
  TARGET_CFLAGS += --std=c99
  

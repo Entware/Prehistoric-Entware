@@ -1,5 +1,5 @@
---- ../../../downloads/openwrt_trunk-r42803/feeds/packages/utils/smartmontools/Makefile	2014-10-06 15:46:23.773250645 +0400
-+++ ../../../openwrt_trunk/feeds/packages/utils/smartmontools/Makefile	2014-10-09 12:12:46.221261703 +0400
+--- ../../../downloads/openwrt_trunk-r42803/feeds/packages/utils/smartmontools/Makefile
++++ ../../../openwrt_trunk/feeds/packages/utils/smartmontools/Makefile
 @@ -18,12 +18,14 @@
  PKG_MAINTAINER:=Maxim Storchak <m.storchak@gmail.com>
  PKG_LICENSE:=GPL-2.0+

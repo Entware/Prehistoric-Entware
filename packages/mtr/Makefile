@@ -9,7 +9,7 @@ all: .done
 
 .done:
 	patch -d $(TOP) -p3 -i $(CURDIR)/fix-path.patch
-	cp -f ./500-qsort_r-remove.patch ../../../openwrt_trunk/package/utils/util-linux/patches/
+	cp -f ./600-libresolv.patch ../../../openwrt_trunk/feeds/packages/net/mtr/patches/
 	@touch $@
 
 clean:

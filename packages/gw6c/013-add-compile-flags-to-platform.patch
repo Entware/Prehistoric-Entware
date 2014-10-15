@@ -1,5 +1,5 @@
---- a/tspc-advanced/platform/linux/Makefile	2012-02-01 10:48:26.677620875 +0400
-+++ b/tspc-advanced/platform/linux/Makefile	2012-02-01 10:48:40.953430920 +0400
+--- a/tspc-advanced/platform/linux/Makefile
++++ b/tspc-advanced/platform/linux/Makefile
 @@ -13,11 +13,11 @@
  -include platform.mak
  

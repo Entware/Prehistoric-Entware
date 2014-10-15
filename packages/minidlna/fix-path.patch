@@ -1,5 +1,5 @@
---- ../../../downloads/openwrt_trunk-r42803/feeds/packages/multimedia/minidlna/Makefile	2014-10-06 15:46:23.733250644 +0400
-+++ ../../../openwrt_trunk/feeds/packages/multimedia/minidlna/Makefile	2014-10-08 13:08:31.298779509 +0400
+--- ../../../downloads/openwrt_trunk-r42803/feeds/packages/multimedia/minidlna/Makefile
++++ ../../../openwrt_trunk/feeds/packages/multimedia/minidlna/Makefile
 @@ -31,7 +31,7 @@
    TITLE:=UPnP A/V & DLNA Media Server
    URL:=http://minidlna.sourceforge.net/

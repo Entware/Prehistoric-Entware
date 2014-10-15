@@ -48,14 +48,14 @@
 -	$(INSTALL_DIR) $(1)/usr/lib
 -	$(CP) $(PKG_BUILD_DIR)/libdw/libdw.so* $(1)/usr/lib/
 +	$(INSTALL_DIR) $(1)/opt/tmp
-+	touch $(1)/opt/tmp/libdw.placeholder
++	touch $(1)/opt/tmp/.libdw.placeholder
  endef
  
  define Package/libelf1/install
 -	$(INSTALL_DIR) $(1)/usr/lib
 -	$(CP) $(PKG_BUILD_DIR)/libelf/libelf.so* $(1)/usr/lib/
 +	$(INSTALL_DIR) $(1)/opt/tmp
-+	touch $(1)/opt/tmp/libelf1.placeholder
++	touch $(1)/opt/tmp/.libelf1.placeholder
  endef
  
  $(eval $(call BuildPackage,libdw))

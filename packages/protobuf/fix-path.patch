@@ -1,6 +1,13 @@
---- ../../../downloads/openwrt_trunk-r42803/feeds/packages/libs/protobuf/Makefile	2014-10-06 15:46:23.741250644 +0400
-+++ ../../../openwrt_trunk/feeds/packages/libs/protobuf/Makefile	2014-10-07 11:59:34.311924682 +0400
-@@ -49,33 +49,33 @@
+--- ../../../downloads/openwrt_trunk-r42803/feeds/packages/libs/protobuf/Makefile
++++ ../../../openwrt_trunk/feeds/packages/libs/protobuf/Makefile
+@@ -43,39 +43,40 @@
+ endef
+ 
+ define Host/Install
++	$(INSTALL_BIN) $(HOST_BUILD_DIR)/src/protoc $(STAGING_DIR_HOST)/bin
+ endef
+ 
+ CONFIGURE_ARGS += --with-protoc=$(HOST_BUILD_DIR)/src/protoc
  
  define Build/InstallDev
  	$(INSTALL_DIR) \

@@ -1,6 +1,23 @@
---- ../../../downloads/openwrt_trunk-r42803/feeds/packages/multimedia/mjpg-streamer/Makefile	2014-10-06 15:46:23.733250644 +0400
-+++ ../../../openwrt_trunk/feeds/packages/multimedia/mjpg-streamer/Makefile	2014-10-08 13:40:57.274738215 +0400
-@@ -46,10 +46,6 @@
+--- ../../../downloads/openwrt_trunk-r42803/feeds/packages/multimedia/mjpg-streamer/Makefile
++++ ../../../openwrt_trunk/feeds/packages/multimedia/mjpg-streamer/Makefile
+@@ -8,13 +8,13 @@
+ include $(TOPDIR)/rules.mk
+ 
+ PKG_NAME:=mjpg-streamer
+-PKG_REV:=182
++PKG_REV:=181
+ PKG_VERSION:=r$(PKG_REV)
+ PKG_RELEASE:=2
+ PKG_MAINTAINER:=Roger D <rogerdammit@gmail.com>
+ 
+-PKG_SOURCE:=$(PKG_NAME)-$(PKG_VERSION).1.tar.bz2
+-PKG_SOURCE_URL:=https://svn.code.sf.net/p/mjpg-streamer/code/mjpg-streamer-experimental
++PKG_SOURCE:=$(PKG_NAME)-$(PKG_VERSION).tar.bz2
++PKG_SOURCE_URL:=https://svn.code.sf.net/p/mjpg-streamer/code/mjpg-streamer
+ PKG_SOURCE_SUBDIR:=$(PKG_NAME)-$(PKG_VERSION)
+ PKG_SOURCE_VERSION:=$(PKG_REV)
+ PKG_SOURCE_PROTO:=svn
+@@ -46,63 +46,36 @@
  
  EXTRA_CFLAGS += $(TARGET_CPPFLAGS) $(TARGET_LDFLAGS)
  
@@ -8,10 +25,28 @@
 -/etc/config/mjpg-streamer
 -endef
 -
- CAMBOZOLA:=cambozola-latest.tar.gz
- 
- define Download/cambozola
-@@ -75,34 +71,30 @@
+-CAMBOZOLA:=cambozola-latest.tar.gz
+-
+-define Download/cambozola
+-  URL:=http://www.andywilcock.com/code/cambozola
+-  FILE:=$(CAMBOZOLA)
+-  MD5SUM:=6c48fd994685d4d72668850eeb613e24
+-endef
+-
+-# Fetch latest cambozola that works with latest Java(s)
+-# Yes, I know this is ugly
+-define Build/Prepare
+-    $(call Build/Prepare/Default)
+-    ifeq ($(CONFIG_MJPG_STREAMER_WWW),y)
+-	$(eval $(call Download,cambozola))
+-	$(TAR) -xvf $(DL_DIR)/$(CAMBOZOLA) --strip=2 --wildcards \
+-		-C $(PKG_BUILD_DIR)/www */dist/cambozola.jar
+-    endif
+-endef
+-
+ ifeq ($(CONFIG_MJPG_STREAMER_V4L2),y)
+     TARGET_CFLAGS+= -DUSE_LIBV4L2
+     TARGET_LDFLAGS+= -lv4l2
  endif
  
  define Package/mjpg-streamer/install

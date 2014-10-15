@@ -1,5 +1,5 @@
---- ../../../downloads/openwrt_trunk-r42803/package/devel/strace/Makefile	2014-10-06 15:46:23.985250640 +0400
-+++ ../../../openwrt_trunk/package/devel/strace/Makefile	2014-10-07 11:59:35.739924656 +0400
+--- ../../../downloads/openwrt_trunk-r42803/package/devel/strace/Makefile
++++ ../../../openwrt_trunk/package/devel/strace/Makefile
 @@ -6,7 +6,6 @@
  #
  
@@ -8,7 +8,14 @@
  
  PKG_NAME:=strace
  
-@@ -43,8 +42,8 @@
+@@ -39,12 +38,15 @@
+ system calls a program makes while it is running.
+ endef
+ 
++TARGET_CFLAGS += \
++	-I$(LINUX_DIR)/include
++
+ MAKE_FLAGS := \
  	CCOPT="$(TARGET_CFLAGS)"
  
  define Package/strace/install

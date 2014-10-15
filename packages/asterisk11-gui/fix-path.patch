@@ -1,5 +1,5 @@
---- ../../../downloads/openwrt_trunk-r42803/feeds/telephony/admin/asterisk11-gui/Makefile	2014-10-06 15:46:23.917250641 +0400
-+++ ../../../openwrt_trunk/feeds/telephony/admin/asterisk11-gui/Makefile	2014-10-07 15:19:16.431706926 +0400
+--- ../../../downloads/openwrt_trunk-r42803/feeds/telephony/admin/asterisk11-gui/Makefile
++++ ../../../openwrt_trunk/feeds/telephony/admin/asterisk11-gui/Makefile
 @@ -47,11 +47,11 @@
  			--build=$(GNU_HOST_NAME) \
  			--host=$(GNU_TARGET_NAME) \

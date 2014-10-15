@@ -1,5 +1,5 @@
---- ./tools/dfubabel.c.orig	2013-05-08 09:43:24.995055539 +0400
-+++ ./tools/dfubabel.c	2013-05-08 09:44:05.131051616 +0400
+--- a/tools/dfubabel.c
++++ b/tools/dfubabel.c
 @@ -34,7 +34,7 @@
  
  #include <usb.h>

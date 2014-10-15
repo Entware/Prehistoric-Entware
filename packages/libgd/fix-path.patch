@@ -1,5 +1,5 @@
---- ../../../downloads/openwrt_trunk-r42803/feeds/packages/libs/libgd/Makefile	2014-10-06 15:46:23.745250644 +0400
-+++ ../../../openwrt_trunk/feeds/packages/libs/libgd/Makefile	2014-10-07 11:59:11.199925103 +0400
+--- ../../../downloads/openwrt_trunk-r42803/feeds/packages/libs/libgd/Makefile
++++ ../../../openwrt_trunk/feeds/packages/libs/libgd/Makefile
 @@ -27,7 +27,7 @@
  define Package/libgd
    SECTION:=libs
@@ -9,7 +9,7 @@
    TITLE:=The GD graphics library
    URL:=http://www.libgd.org/
  endef
-@@ -45,9 +45,9 @@
+@@ -45,35 +45,34 @@
  	--disable-rpath \
  	--without-x \
  	--without-fontconfig \
@@ -22,7 +22,8 @@
  	--without-xpm \
  	--without-iconv
  
-@@ -56,24 +56,24 @@
+ CONFIGURE_VARS += \
+-	LIBPNG12_CONFIG="$(STAGING_DIR)/host/bin/libpng12-config" \
  	ac_cv_header_iconv_h=no
  
  define Build/InstallDev

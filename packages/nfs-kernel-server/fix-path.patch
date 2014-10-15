@@ -1,5 +1,5 @@
---- ../../../downloads/openwrt_trunk-r42803/feeds/packages/net/nfs-kernel-server/Makefile	2014-10-06 15:46:23.761250644 +0400
-+++ ../../../openwrt_trunk/feeds/packages/net/nfs-kernel-server/Makefile	2014-10-08 14:45:16.146671295 +0400
+--- ../../../downloads/openwrt_trunk-r42803/feeds/packages/net/nfs-kernel-server/Makefile
++++ ../../../openwrt_trunk/feeds/packages/net/nfs-kernel-server/Makefile
 @@ -27,7 +27,7 @@
    SECTION:=net
    CATEGORY:=Network

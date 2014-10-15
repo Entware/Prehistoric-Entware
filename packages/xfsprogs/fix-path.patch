@@ -1,5 +1,5 @@
---- ../../../downloads/openwrt_trunk-r42803/package/utils/xfsprogs/Makefile	2014-10-06 15:46:24.417250631 +0400
-+++ ../../../openwrt_trunk/package/utils/xfsprogs/Makefile	2014-10-07 11:59:36.627924640 +0400
+--- ../../../downloads/openwrt_trunk-r42803/package/utils/xfsprogs/Makefile
++++ ../../../openwrt_trunk/package/utils/xfsprogs/Makefile
 @@ -50,7 +50,7 @@
  	--enable-blkid=no
  

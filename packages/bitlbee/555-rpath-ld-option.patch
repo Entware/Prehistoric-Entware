@@ -1,5 +1,5 @@
---- a/Makefile	2012-02-01 15:12:59.021036276 +0400
-+++ b/Makefile	2012-02-01 15:13:32.668614159 +0400
+--- a/Makefile
++++ b/Makefile
 @@ -83,7 +83,7 @@
  
  $(OUTFILE): $(objects) $(subdirs)

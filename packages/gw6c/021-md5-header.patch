@@ -1,5 +1,5 @@
---- a/tspc-advanced/src/lib/md5c.c	2012-04-12 14:07:30.549406618 +0400
-+++ b/tspc-advanced/src/lib/md5c.c	2012-04-12 14:08:04.168986667 +0400
+--- a/tspc-advanced/src/lib/md5c.c
++++ b/tspc-advanced/src/lib/md5c.c
 @@ -44,7 +44,7 @@
  
  #include "platform.h"

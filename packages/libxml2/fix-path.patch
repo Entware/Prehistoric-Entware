@@ -1,5 +1,5 @@
---- ../../../downloads/openwrt_trunk-r42803/feeds/packages/libs/libxml2/Makefile	2014-10-06 15:46:23.737250644 +0400
-+++ ../../../openwrt_trunk/feeds/packages/libs/libxml2/Makefile	2014-10-08 12:38:48.174808101 +0400
+--- ../../../downloads/openwrt_trunk-r42803/feeds/packages/libs/libxml2/Makefile
++++ ../../../openwrt_trunk/feeds/packages/libs/libxml2/Makefile
 @@ -76,25 +76,25 @@
  
  define Build/InstallDev

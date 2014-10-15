@@ -1,5 +1,5 @@
---- a/hplip.conf.in	2012-08-13 20:58:42.062049837 +0400
-+++ b/hplip.conf.in	2012-08-13 20:59:22.646053221 +0400
+--- a/hplip.conf.in
++++ b/hplip.conf.in
 @@ -5,7 +5,7 @@
  
  [dirs]

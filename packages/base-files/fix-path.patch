@@ -1,5 +1,5 @@
---- ../../../downloads/openwrt_trunk-r42803/package/base-files/Makefile	2014-10-06 15:46:24.045250641 +0400
-+++ ../../../openwrt_trunk/package/base-files/Makefile	2014-10-07 15:48:41.999678539 +0400
+--- ../../../downloads/openwrt_trunk-r42803/package/base-files/Makefile
++++ ../../../openwrt_trunk/package/base-files/Makefile
 @@ -28,7 +28,7 @@
  define Package/base-files
    SECTION:=base

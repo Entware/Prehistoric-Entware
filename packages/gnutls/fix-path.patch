@@ -1,5 +1,5 @@
---- ../../../downloads/openwrt_trunk-r42803/feeds/packages/libs/gnutls/Makefile	2014-10-06 15:46:23.737250644 +0400
-+++ ../../../openwrt_trunk/feeds/packages/libs/gnutls/Makefile	2014-10-08 10:16:51.434461770 +0400
+--- ../../../downloads/openwrt_trunk-r42803/feeds/packages/libs/gnutls/Makefile
++++ ../../../openwrt_trunk/feeds/packages/libs/gnutls/Makefile
 @@ -108,7 +108,7 @@
  	--disable-doc \
  	--disable-tests \

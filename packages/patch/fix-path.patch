@@ -1,5 +1,5 @@
---- ../../../downloads/openwrt_trunk-r42803/feeds/packages/devel/patch/Makefile	2014-10-06 15:46:23.765250644 +0400
-+++ ../../../openwrt_trunk/feeds/packages/devel/patch/Makefile	2014-10-08 15:32:59.974616912 +0400
+--- ../../../downloads/openwrt_trunk-r42803/feeds/packages/devel/patch/Makefile
++++ ../../../openwrt_trunk/feeds/packages/devel/patch/Makefile
 @@ -41,8 +41,8 @@
  endef
  

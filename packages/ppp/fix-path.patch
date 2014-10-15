@@ -1,6 +1,30 @@
+diff -urx .svn ../../../downloads/openwrt_trunk-r42803/package/network/services/ppp/files/etc/ppp/radius/dictionary ../../../openwrt_trunk/package/network/services/ppp/files/etc/ppp/radius/dictionary
+--- ../../../downloads/openwrt_trunk-r42803/package/network/services/ppp/files/etc/ppp/radius/dictionary	2014-10-09 19:10:18.036806516 +0400
++++ ../../../openwrt_trunk/package/network/services/ppp/files/etc/ppp/radius/dictionary	2014-10-15 09:30:44.743993761 +0400
+@@ -250,4 +250,4 @@
+ VALUE		Octets-Direction        MaxOveral		3
+ VALUE		Octets-Direction        MaxSession		4
+ 
+-INCLUDE /etc/ppp/radius/dictionary.microsoft
++INCLUDE /opt/etc/ppp/radius/dictionary.microsoft
+diff -urx .svn ../../../downloads/openwrt_trunk-r42803/package/network/services/ppp/files/etc/ppp/radius.conf ../../../openwrt_trunk/package/network/services/ppp/files/etc/ppp/radius.conf
+--- ../../../downloads/openwrt_trunk-r42803/package/network/services/ppp/files/etc/ppp/radius.conf	2014-10-09 19:10:18.036806516 +0400
++++ ../../../openwrt_trunk/package/network/services/ppp/files/etc/ppp/radius.conf	2014-10-15 09:30:31.695996283 +0400
+@@ -1,8 +1,8 @@
+ authserver localhost:1812
+ acctserver localhost:1813
+-dictionary /etc/ppp/radius/dictionary
+-servers /etc/ppp/radius/servers
++dictionary /opt/etc/ppp/radius/dictionary
++servers /opt/etc/ppp/radius/servers
+ mapfile /dev/null
+-seqfile /tmp/radius.seq
++seqfile /opt/tmp/radius.seq
+ radius_timeout 5
+ radius_retries 3
 diff -urx .svn ../../../downloads/openwrt_trunk-r42803/package/network/services/ppp/Makefile ../../../openwrt_trunk/package/network/services/ppp/Makefile
---- ../../../downloads/openwrt_trunk-r42803/package/network/services/ppp/Makefile	2014-10-06 15:46:24.069250638 +0400
-+++ ../../../openwrt_trunk/package/network/services/ppp/Makefile	2014-10-07 11:59:34.187924684 +0400
+--- ../../../downloads/openwrt_trunk-r42803/package/network/services/ppp/Makefile	2014-10-09 19:10:18.036806516 +0400
++++ ../../../openwrt_trunk/package/network/services/ppp/Makefile	2014-10-15 09:29:57.231999955 +0400
 @@ -6,7 +6,6 @@
  #
  
@@ -60,7 +84,15 @@ diff -urx .svn ../../../downloads/openwrt_trunk-r42803/package/network/services/
    TITLE:=PPPoE plugin
  endef
  
-@@ -99,7 +96,7 @@
+@@ -93,13 +90,13 @@
+ endef
+ 
+ define Package/ppp-mod-radius/conffiles
+-/etc/ppp/radius.conf
+-/etc/ppp/radius/
++/opt/etc/ppp/radius.conf
++/opt/etc/ppp/radius/
+ endef
  
  define Package/ppp-mod-pppol2tp
  $(call Package/ppp/Default)
@@ -87,7 +119,7 @@ diff -urx .svn ../../../downloads/openwrt_trunk-r42803/package/network/services/
  		PRECOMPILED_FILTER=1 \
  		STAGING_DIR="$(STAGING_DIR)"
  
-@@ -176,45 +173,49 @@
+@@ -176,81 +173,85 @@
  endif
  
  define Build/InstallDev
@@ -153,11 +185,19 @@ diff -urx .svn ../../../downloads/openwrt_trunk-r42803/package/network/services/
 +	$(INSTALL_DIR) $(1)/opt/lib/pppd/$(PKG_VERSION)
  	$(INSTALL_BIN) $(PKG_INSTALL_DIR)/lib/pppd/$(PKG_VERSION)/radius.so \
 -		$(1)/usr/lib/pppd/$(PKG_VERSION)/
+-	$(INSTALL_DIR) $(1)/etc/ppp
+-	$(INSTALL_DATA) ./files/etc/ppp/radius.conf $(1)/etc/ppp/
+-	$(INSTALL_DIR) $(1)/etc/ppp/radius
 +		$(1)/opt/lib/pppd/$(PKG_VERSION)/
- 	$(INSTALL_DIR) $(1)/etc/ppp
- 	$(INSTALL_DATA) ./files/etc/ppp/radius.conf $(1)/etc/ppp/
- 	$(INSTALL_DIR) $(1)/etc/ppp/radius
-@@ -225,32 +226,32 @@
++	$(INSTALL_DIR) $(1)/opt/etc/ppp
++	$(INSTALL_DATA) ./files/etc/ppp/radius.conf $(1)/opt/etc/ppp/
++	$(INSTALL_DIR) $(1)/opt/etc/ppp/radius
+ 	$(INSTALL_DATA) ./files/etc/ppp/radius/dictionary* \
+-		$(1)/etc/ppp/radius/
++		$(1)/opt/etc/ppp/radius/
+ 	$(INSTALL_CONF) ./files/etc/ppp/radius/servers \
+-		$(1)/etc/ppp/radius/
++		$(1)/opt/etc/ppp/radius/
  endef
  
  define Package/ppp-mod-pppol2tp/install
@@ -173,9 +213,11 @@ diff -urx .svn ../../../downloads/openwrt_trunk-r42803/package/network/services/
 +	$(INSTALL_DIR) $(1)/opt/lib/pppd/$(PKG_VERSION)
  	$(INSTALL_BIN) $(PKG_INSTALL_DIR)/lib/pppd/$(PKG_VERSION)/pptp.so \
 -		$(1)/usr/lib/pppd/$(PKG_VERSION)/
+-	$(INSTALL_DIR) $(1)/etc/ppp
+-	$(INSTALL_DATA) ./files/etc/ppp/options.pptp $(1)/etc/ppp/
 +		$(1)/opt/lib/pppd/$(PKG_VERSION)/
- 	$(INSTALL_DIR) $(1)/etc/ppp
- 	$(INSTALL_DATA) ./files/etc/ppp/options.pptp $(1)/etc/ppp/
++	$(INSTALL_DIR) $(1)/opt/etc/ppp
++	$(INSTALL_DATA) ./files/etc/ppp/options.pptp $(1)/opt/etc/ppp/
  endef
  
  define Package/chat/install
@@ -201,8 +243,8 @@ diff -urx .svn ../../../downloads/openwrt_trunk-r42803/package/network/services/
  
  $(eval $(call BuildPackage,ppp))
 diff -urx .svn ../../../downloads/openwrt_trunk-r42803/package/network/services/ppp/patches/310-precompile_filter.patch ../../../openwrt_trunk/package/network/services/ppp/patches/310-precompile_filter.patch
---- ../../../downloads/openwrt_trunk-r42803/package/network/services/ppp/patches/310-precompile_filter.patch	2014-10-06 15:46:24.065250638 +0400
-+++ ../../../openwrt_trunk/package/network/services/ppp/patches/310-precompile_filter.patch	2014-10-07 11:59:34.195924684 +0400
+--- ../../../downloads/openwrt_trunk-r42803/package/network/services/ppp/patches/310-precompile_filter.patch	2014-10-09 19:10:18.036806516 +0400
++++ ../../../openwrt_trunk/package/network/services/ppp/patches/310-precompile_filter.patch	2014-10-09 19:10:27.504806343 +0400
 @@ -31,7 +31,7 @@
  +PPPDSRCS += pcap_pcc.c
  +HEADERS  += pcap_pcc.h
@@ -212,3 +254,4 @@ diff -urx .svn ../../../downloads/openwrt_trunk-r42803/package/network/services/
  +CFLAGS	+= -DPPP_FILTER -DPPP_PRECOMPILED_FILTER -I$(STAGING_DIR)/usr/include
  +endif
  +
+Only in ../../../openwrt_trunk/package/network/services/ppp/patches: 600-entware-path.patch

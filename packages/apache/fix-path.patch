@@ -1,5 +1,5 @@
---- ../../../downloads/openwrt_trunk-r42803/feeds/packages/net/apache/Makefile	2014-10-06 15:46:23.749250644 +0400
-+++ ../../../openwrt_trunk/feeds/packages/net/apache/Makefile	2014-10-07 11:59:08.527925152 +0400
+--- ../../../downloads/openwrt_trunk-r42803/feeds/packages/net/apache/Makefile
++++ ../../../openwrt_trunk/feeds/packages/net/apache/Makefile
 @@ -48,33 +48,23 @@
  $(call Package/apache/Default/description)
   .

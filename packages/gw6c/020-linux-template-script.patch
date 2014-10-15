@@ -1,5 +1,5 @@
---- a/tspc-advanced/template/linux.sh	2009-05-22 17:50:38.000000000 +0400
-+++ b/tspc-advanced/template/linux.sh	2012-02-17 12:54:40.863701561 +0400
+--- a/tspc-advanced/template/linux.sh
++++ b/tspc-advanced/template/linux.sh
 @@ -74,10 +74,9 @@
  
  ifconfig=/sbin/ifconfig

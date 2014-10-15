@@ -1,5 +1,5 @@
---- ../../../downloads/openwrt_trunk-r42803/feeds/packages/net/udpxy/Makefile	2014-10-06 15:46:23.761250644 +0400
-+++ ../../../openwrt_trunk/feeds/packages/net/udpxy/Makefile	2014-10-09 12:36:59.537236194 +0400
+--- ../../../downloads/openwrt_trunk-r42803/feeds/packages/net/udpxy/Makefile
++++ ../../../openwrt_trunk/feeds/packages/net/udpxy/Makefile
 @@ -44,21 +44,16 @@
  	popcornhour/mediatomb/vlc).
  endef

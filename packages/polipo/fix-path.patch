@@ -1,5 +1,5 @@
---- ../../../downloads/openwrt_trunk-r42803/feeds/packages/net/polipo/Makefile	2014-10-06 15:46:23.761250644 +0400
-+++ ../../../openwrt_trunk/feeds/packages/net/polipo/Makefile	2014-10-07 11:59:34.123924685 +0400
+--- ../../../downloads/openwrt_trunk-r42803/feeds/packages/net/polipo/Makefile
++++ ../../../openwrt_trunk/feeds/packages/net/polipo/Makefile
 @@ -37,23 +37,24 @@
  	$(MAKE) -C $(PKG_BUILD_DIR) \
  		CC="$(TARGET_CC)" \

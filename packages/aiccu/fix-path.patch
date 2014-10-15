@@ -1,5 +1,5 @@
---- ../../../downloads/openwrt_trunk-r42803/feeds/packages/ipv6/aiccu/Makefile	2014-10-09 13:29:46.613178699 +0400
-+++ ../../../openwrt_trunk/feeds/packages/ipv6/aiccu/Makefile	2014-10-09 13:57:35.469147722 +0400
+--- ../../../downloads/openwrt_trunk-r42803/feeds/packages/ipv6/aiccu/Makefile
++++ ../../../openwrt_trunk/feeds/packages/ipv6/aiccu/Makefile
 @@ -24,7 +24,7 @@
  define Package/aiccu
    SECTION:=net

@@ -1,5 +1,5 @@
---- ../../../downloads/openwrt_trunk-r42803/feeds/packages/libs/pcre/Makefile	2014-10-06 15:46:23.737250644 +0400
-+++ ../../../openwrt_trunk/feeds/packages/libs/pcre/Makefile	2014-10-08 16:50:00.734535018 +0400
+--- ../../../downloads/openwrt_trunk-r42803/feeds/packages/libs/pcre/Makefile
++++ ../../../openwrt_trunk/feeds/packages/libs/pcre/Makefile
 @@ -58,30 +58,30 @@
  	CFLAGS="$(TARGET_CFLAGS)"
  

@@ -1,6 +1,6 @@
-diff -ur ../../../downloads/openwrt_trunk-r42803/feeds/packages/net/nginx/Makefile ../../../openwrt_trunk/feeds/packages/net/nginx/Makefile
---- ../../../downloads/openwrt_trunk-r42803/feeds/packages/net/nginx/Makefile	2014-10-06 15:46:23.757250644 +0400
-+++ ../../../openwrt_trunk/feeds/packages/net/nginx/Makefile	2014-10-08 15:06:32.614646625 +0400
+diff -urx .svn ../../../downloads/openwrt_trunk-r42803/feeds/packages/net/nginx/Makefile ../../../openwrt_trunk/feeds/packages/net/nginx/Makefile
+--- ../../../downloads/openwrt_trunk-r42803/feeds/packages/net/nginx/Makefile	2014-10-09 19:10:17.736806523 +0400
++++ ../../../openwrt_trunk/feeds/packages/net/nginx/Makefile	2014-10-14 16:47:07.049088948 +0400
 @@ -75,7 +75,7 @@
  config_files=nginx.conf mime.types fastcgi_params koi-utf koi-win win-utf
  
@@ -50,22 +50,57 @@ diff -ur ../../../downloads/openwrt_trunk-r42803/feeds/packages/net/nginx/Makefi
 -	$(INSTALL_DIR) $(1)/etc/init.d
 -	$(INSTALL_BIN) ./files/nginx.init $(1)/etc/init.d/nginx
 +	$(INSTALL_DIR) $(1)/opt/sbin
-+	$(INSTALL_BIN) $(PKG_INSTALL_DIR)/opt/share/nginx/sbin/nginx $(1)/opt/sbin/
++	$(INSTALL_BIN) $(PKG_INSTALL_DIR)/opt/sbin/nginx $(1)/opt/sbin/
 +	$(INSTALL_DIR) $(1)/opt/etc/nginx
 +	$(INSTALL_DATA) $(addprefix $(PKG_INSTALL_DIR)/opt/etc/nginx/,$(config_files)) $(1)/opt/etc/nginx/
 +	$(INSTALL_DIR) $(1)/opt/etc/init.d
 +	$(INSTALL_BIN) ./files/S80nginx $(1)/opt/etc/init.d
 +	$(INSTALL_DIR) $(1)/opt/share/nginx/html
-+	$(INSTALL_DATA) $(PKG_INSTALL_DIR)/opt/share/nginx/html/{index,50x}.html $(1)/opt/share/nginx/html
++	$(INSTALL_DATA) $(PKG_INSTALL_DIR)/opt/html/{index,50x}.html $(1)/opt/share/nginx/html
 +	$(INSTALL_DIR) $(1)/opt/var/{run,lock}
 +	$(INSTALL_DIR) $(1)/opt/var/log/nginx
 +	$(INSTALL_DIR) $(1)/opt/var/lib/nginx/{body,proxy,fastcgi}
  endef
  
  define Build/Prepare
-diff -ur ../../../downloads/openwrt_trunk-r42803/feeds/packages/net/nginx/patches/200-config.patch ../../../openwrt_trunk/feeds/packages/net/nginx/patches/200-config.patch
---- ../../../downloads/openwrt_trunk-r42803/feeds/packages/net/nginx/patches/200-config.patch	2014-10-06 15:46:23.757250644 +0400
-+++ ../../../openwrt_trunk/feeds/packages/net/nginx/patches/200-config.patch	2014-10-07 11:59:32.159924726 +0400
+@@ -296,9 +301,9 @@
+ endef
+ 
+ define Package/nginx-naxsi/install
+-	$(INSTALL_DIR) $(1)/etc/nginx
+-	$(INSTALL_BIN) $(PKG_BUILD_DIR)/nginx-naxsi/naxsi_config/naxsi_core.rules $(1)/etc/nginx
+-	chmod 0640 $(1)/etc/nginx/naxsi_core.rules
++	$(INSTALL_DIR) $(1)/opt/etc/nginx
++	$(INSTALL_BIN) $(PKG_BUILD_DIR)/nginx-naxsi/naxsi_config/naxsi_core.rules $(1)/opt/etc/nginx
++	chmod 0640 $(1)/opt/etc/nginx/naxsi_core.rules
+ endef
+ 
+ define Download/nginx-syslog
+@@ -315,15 +320,15 @@
+ endef
+ 
+ define Package/nginx-proxyprotocol/install
+-	$(INSTALL_DIR) $(1)/etc/nginx
+-	$(INSTALL_BIN) ./files/nginx.proxyprotocol.example $(1)/etc/nginx/nginx.conf.proxyprotocol
+-	chmod 0640 $(1)/etc/nginx/nginx.conf.proxyprotocol
++	$(INSTALL_DIR) $(1)/opt/etc/nginx
++	$(INSTALL_BIN) ./files/nginx.proxyprotocol.example $(1)/opt/etc/nginx/nginx.conf.proxyprotocol
++	chmod 0640 $(1)/opt/etc/nginx/nginx.conf.proxyprotocol
+ endef
+ 
+ define Package/nginx-syslog/install
+-	$(INSTALL_DIR) $(1)/etc/nginx
+-	$(INSTALL_BIN) ./files/nginx.syslog.example $(1)/etc/nginx/nginx.conf.syslog
+-	chmod 0640 $(1)/etc/nginx/nginx.conf.syslog
++	$(INSTALL_DIR) $(1)/opt/etc/nginx
++	$(INSTALL_BIN) ./files/nginx.syslog.example $(1)/opt/etc/nginx/nginx.conf.syslog
++	chmod 0640 $(1)/opt/etc/nginx/nginx.conf.syslog
+ endef
+ 
+ 
+diff -urx .svn ../../../downloads/openwrt_trunk-r42803/feeds/packages/net/nginx/patches/200-config.patch ../../../openwrt_trunk/feeds/packages/net/nginx/patches/200-config.patch
+--- ../../../downloads/openwrt_trunk-r42803/feeds/packages/net/nginx/patches/200-config.patch	2014-10-09 19:10:17.736806523 +0400
++++ ../../../openwrt_trunk/feeds/packages/net/nginx/patches/200-config.patch	2014-10-09 19:10:26.376806364 +0400
 @@ -1,18 +1,43 @@
 ---- a/conf/nginx.conf
 -+++ b/conf/nginx.conf

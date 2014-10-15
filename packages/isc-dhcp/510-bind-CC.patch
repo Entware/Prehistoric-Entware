@@ -1,5 +1,5 @@
---- ./bind/Makefile.orig	2014-05-18 20:16:48.835537846 +0400
-+++ ./bind/Makefile	2014-05-18 20:17:13.575537735 +0400
+--- a/bind/Makefile
++++ b/bind/Makefile
 @@ -52,7 +52,7 @@
  	else                                                       \
  		echo Configuring BIND Export libraries for DHCP. ; \

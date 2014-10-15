@@ -1,6 +1,14 @@
---- ../../../openwrt_trunk.orig/feeds/packages/net/mtr/Makefile
+--- ../../../downloads/openwrt_trunk-r42803/feeds/packages/net/mtr/Makefile
 +++ ../../../openwrt_trunk/feeds/packages/net/mtr/Makefile
-@@ -61,8 +61,8 @@
+@@ -46,6 +46,7 @@
+ CONFIGURE_ARGS += \
+ 	--without-gtk \
+ 	--without-glib \
++	--disable-ipv6 \
+ 
+ define Build/Configure
+ 	(cd $(PKG_BUILD_DIR); touch \
+@@ -61,8 +62,8 @@
  endef
  
  define Package/mtr/install

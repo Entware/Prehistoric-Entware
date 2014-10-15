@@ -1,5 +1,5 @@
---- ../../../downloads/openwrt_trunk-r42803/feeds/packages/libs/unixodbc/Makefile	2014-10-06 15:46:23.745250644 +0400
-+++ ../../../openwrt_trunk/feeds/packages/libs/unixodbc/Makefile	2014-10-07 11:59:36.339924645 +0400
+--- ../../../downloads/openwrt_trunk-r42803/feeds/packages/libs/unixodbc/Makefile
++++ ../../../openwrt_trunk/feeds/packages/libs/unixodbc/Makefile
 @@ -81,35 +81,35 @@
  endef
  

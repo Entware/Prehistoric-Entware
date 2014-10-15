@@ -1,0 +1,23 @@
+--- ../../../downloads/openwrt_trunk-r42803/package/network/utils/uqmi/Makefile
++++ ../../../openwrt_trunk/package/network/utils/uqmi/Makefile
+@@ -34,7 +34,7 @@
+ endef
+ 
+ TARGET_CFLAGS += \
+-	-I$(STAGING_DIR)/usr/include -ffunction-sections -fdata-sections
++	-I$(STAGING_DIR)/opt/include -ffunction-sections -fdata-sections
+ 
+ TARGET_LDFLAGS += -Wl,--gc-sections
+ 
+@@ -42,9 +42,8 @@
+ 	-DDEBUG=1
+ 
+ define Package/uqmi/install
+-	$(INSTALL_DIR) $(1)/sbin
+-	$(INSTALL_BIN) $(PKG_BUILD_DIR)/uqmi $(1)/sbin/
+-	$(CP) ./files/* $(1)/
++	$(INSTALL_DIR) $(1)/opt/sbin
++	$(INSTALL_BIN) $(PKG_BUILD_DIR)/uqmi $(1)/opt/sbin/
+ endef
+ 
+ $(eval $(call BuildPackage,uqmi))

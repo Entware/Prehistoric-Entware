@@ -1,5 +1,5 @@
---- ../../../downloads/openwrt_trunk-r42803/feeds/telephony/libs/spandsp/Makefile	2014-10-06 15:46:23.913250643 +0400
-+++ ../../../openwrt_trunk/feeds/telephony/libs/spandsp/Makefile	2014-10-09 12:13:57.713256692 +0400
+--- ../../../downloads/openwrt_trunk-r42803/feeds/telephony/libs/spandsp/Makefile
++++ ../../../openwrt_trunk/feeds/telephony/libs/spandsp/Makefile
 @@ -32,25 +32,25 @@
  TARGET_CFLAGS += $(FPIC)
  

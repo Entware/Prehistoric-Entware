@@ -1,5 +1,5 @@
---- ../../../downloads/openwrt_trunk-r42803/feeds/packages/lang/php5/Makefile	2014-10-06 15:46:23.729250644 +0400
-+++ ../../../openwrt_trunk/feeds/packages/lang/php5/Makefile	2014-10-07 11:59:34.039924713 +0400
+--- ../../../downloads/openwrt_trunk-r42803/feeds/packages/lang/php5/Makefile
++++ ../../../openwrt_trunk/feeds/packages/lang/php5/Makefile
 @@ -136,13 +136,13 @@
  	--disable-debug \
  	--without-pear \

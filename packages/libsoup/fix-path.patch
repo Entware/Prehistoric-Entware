@@ -1,5 +1,5 @@
---- ../../../downloads/openwrt_trunk-r42803/feeds/packages/libs/libsoup/Makefile	2014-10-06 15:46:23.745250644 +0400
-+++ ../../../openwrt_trunk/feeds/packages/libs/libsoup/Makefile	2014-10-08 12:28:32.438821115 +0400
+--- ../../../downloads/openwrt_trunk-r42803/feeds/packages/libs/libsoup/Makefile
++++ ../../../openwrt_trunk/feeds/packages/libs/libsoup/Makefile
 @@ -25,7 +25,7 @@
  include $(INCLUDE_DIR)/nls.mk
  

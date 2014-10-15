@@ -1,5 +1,5 @@
---- a/tspc-advanced/src/tsp/Makefile	2012-02-01 10:07:00.462666961 +0400
-+++ b/tspc-advanced/src/tsp/Makefile	2012-02-01 10:07:15.290482635 +0400
+--- a/tspc-advanced/src/tsp/Makefile
++++ b/tspc-advanced/src/tsp/Makefile
 @@ -14,9 +14,9 @@
  
  

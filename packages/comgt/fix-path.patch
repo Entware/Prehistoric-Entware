@@ -1,5 +1,5 @@
---- ../../../downloads/openwrt_trunk-r42803/package/network/utils/comgt/Makefile	2014-10-06 15:46:24.397250634 +0400
-+++ ../../../openwrt_trunk/package/network/utils/comgt/Makefile	2014-10-07 16:16:31.511643174 +0400
+--- ../../../downloads/openwrt_trunk-r42803/package/network/utils/comgt/Makefile
++++ ../../../openwrt_trunk/package/network/utils/comgt/Makefile
 @@ -26,7 +26,6 @@
    SECTION:=utils
    CATEGORY:=Utilities
@@ -13,7 +13,7 @@
  		$(TARGET_CONFIGURE_OPTS) \
  		CFLAGS="$(TARGET_CFLAGS)" \
 -		LDFLAGS="" \
-+		LDFLAGS=$(TARGET_LDFLAGS)"" \
++		LDFLAGS="$(TARGET_LDFLAGS)" \
  		comgt
  endef
  

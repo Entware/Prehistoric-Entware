@@ -1,5 +1,5 @@
---- ../../../downloads/openwrt_trunk-r42803/feeds/packages/utils/gnupg/Makefile	2014-10-06 15:46:23.777250645 +0400
-+++ ../../../openwrt_trunk/feeds/packages/utils/gnupg/Makefile	2014-10-07 11:59:10.219925121 +0400
+--- ../../../downloads/openwrt_trunk-r42803/feeds/packages/utils/gnupg/Makefile
++++ ../../../openwrt_trunk/feeds/packages/utils/gnupg/Makefile
 @@ -27,7 +27,7 @@
  define Package/gnupg
    SECTION:=utils

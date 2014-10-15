@@ -1,5 +1,14 @@
---- ../../../downloads/openwrt_trunk-r35474/feeds/oldpackages/admin/nagios/Makefile
+--- ../../../downloads/openwrt_trunk-r42803/feeds/oldpackages/admin/nagios/Makefile
 +++ ../../../openwrt_trunk/feeds/oldpackages/admin/nagios/Makefile
+@@ -20,7 +20,7 @@
+ define Package/nagios
+   SECTION:=admin
+   CATEGORY:=Administration
+-  DEPENDS:=+libpthread +microperl +libltdl
++  DEPENDS:=+libpthread +perl +libltdl
+   TITLE:=service and network monitoring program
+   URL:=http://www.nagios.org/
+ endef
 @@ -40,7 +40,7 @@
  CONFIGURE_ARGS += \
  	--with-nagios-user="root" \

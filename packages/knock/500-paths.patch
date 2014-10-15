@@ -1,5 +1,5 @@
---- a/src/knockd.c	2005-06-27 09:11:34.000000000 +0400
-+++ b/src/knockd.c	2012-06-16 20:39:55.898751463 +0400
+--- a/src/knockd.c
++++ b/src/knockd.c
 @@ -131,8 +131,8 @@
  int  o_daemon    = 0;
  int  o_lookup    = 0;

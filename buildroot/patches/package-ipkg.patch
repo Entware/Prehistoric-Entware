@@ -1,4 +1,4 @@
---- ../../../openwrt_trunk.orig/include/package-ipkg.mk
+--- ../../../downloads/openwrt_trunk-r42803/include/package-ipkg.mk
 +++ ../../../openwrt_trunk/include/package-ipkg.mk
 @@ -11,7 +11,7 @@
  IPKG_BUILD:= \
@@ -9,7 +9,26 @@
  
  define BuildIPKGVariable
  ifdef Package/$(1)/$(2)
-@@ -202,8 +202,8 @@
+@@ -179,18 +179,6 @@
+ 		echo -n "Description: "; $(SH_FUNC) getvar $(call shvar,Package/$(1)/description) | sed -e 's,^[[:space:]]*, ,g'; \
+  	) > $$(IDIR_$(1))/CONTROL/control
+ 	chmod 644 $$(IDIR_$(1))/CONTROL/control
+-	( \
+-		echo "#!/bin/sh"; \
+-		echo "[ \"\$$$${IPKG_NO_SCRIPT}\" = \"1\" ] && exit 0"; \
+-		echo ". \$$$${IPKG_INSTROOT}/lib/functions.sh"; \
+-		echo "default_postinst \$$$$0 \$$$$@"; \
+-	) > $$(IDIR_$(1))/CONTROL/postinst
+-	( \
+-		echo "#!/bin/sh"; \
+-		echo ". \$$$${IPKG_INSTROOT}/lib/functions.sh"; \
+-		echo "default_prerm \$$$$0 \$$$$@"; \
+-	) > $$(IDIR_$(1))/CONTROL/prerm
+-	chmod 0755 $$(IDIR_$(1))/CONTROL/prerm
+ 	$(SH_FUNC) (cd $$(IDIR_$(1))/CONTROL; \
+ 		$($(1)_COMMANDS) \
+ 	)
+@@ -202,8 +190,8 @@
  				[ -f "$$(IDIR_$(1))/$$$$x" ] || keepfiles="$$$${keepfiles:+$$$$keepfiles }$$$$x"; \
  			done; \
  			[ -z "$$$$keepfiles" ] || { \

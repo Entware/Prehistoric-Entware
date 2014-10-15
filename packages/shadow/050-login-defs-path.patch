@@ -1,6 +1,6 @@
---- a/lib/getdef.c	2012-08-22 11:35:14.156565440 +0400
-+++ b/lib/getdef.c	2012-08-22 11:35:33.660564012 +0400
-@@ -133,7 +133,7 @@
+--- a/lib/getdef.c
++++ b/lib/getdef.c
+@@ -139,7 +139,7 @@
  };
  
  #ifndef LOGINDEFS
@@ -9,36 +9,34 @@
  #endif
  
  static char def_fname[] = LOGINDEFS;	/* login config defs file       */
---- a/etc/login.defs	2012-08-22 11:17:35.528592632 +0400
-+++ b/etc/login.defs	2012-08-22 11:21:39.836579108 +0400
+--- a/etc/login.defs
++++ b/etc/login.defs
 @@ -1,5 +1,5 @@
  #
 -# /etc/login.defs - Configuration control definitions for the shadow package.
 +# /opt/etc/login.defs - Configuration control definitions for the shadow package.
  #
- #	$Id: login.defs 3189 2010-03-26 11:53:06Z nekral-guest $
+ #	$Id$
  #
-@@ -12,7 +12,7 @@
- FAIL_DELAY		3
- 
- #
--# Enable logging and display of /var/log/faillog login failure info.
-+# Enable logging and display of /opt/var/log/faillog login failure info.
- #
- FAILLOG_ENAB		yes
- 
 @@ -27,7 +27,7 @@
  LOG_OK_LOGINS		no
  
  #
--# Enable logging and display of /var/log/lastlog login time info.
-+# Enable logging and display of /opt/var/log/lastlog login time info.
+-# Enable logging and display of /var/log/lastlog login(1) time info.
++# Enable logging and display of /opt/var/log/lastlog login(1) time info.
  #
  LASTLOG_ENAB		yes
  
-@@ -72,13 +72,13 @@
+@@ -66,44 +66,44 @@
+ # a ":" delimited list of device names.  Root logins will be allowed only
+ # from these devices.
  #
- # If defined, all su activity is logged to this file.
+-CONSOLE		/etc/securetty
++CONSOLE		/opt/etc/securetty
+ #CONSOLE	console:tty01:tty02:tty03:tty04
+ 
+ #
+ # If defined, all su(1) activity is logged to this file.
  #
 -#SULOG_FILE	/var/log/sulog
 +SULOG_FILE	/opt/var/log/sulog
@@ -48,20 +46,33 @@
  # be displayed upon login.
  #
 -MOTD_FILE	/etc/motd
+-#MOTD_FILE	/etc/motd:/usr/lib/news/news-motd
 +#MOTD_FILE	/opt/etc/motd
- #MOTD_FILE	/etc/motd:/usr/lib/news/news-motd
++#MOTD_FILE	/opt/etc/motd:/opt/lib/news/news-motd
  
  #
-@@ -96,14 +96,14 @@
- # If defined, login failures will be logged here in a utmp format.
- # last, when invoked as lastb, will read /var/log/btmp, so...
+ # If defined, this file will be output before each login(1) prompt.
+ #
+-#ISSUE_FILE	/etc/issue
++#ISSUE_FILE	/opt/etc/issue
+ 
+ #
+ # If defined, file which maps tty line to TERM environment parameter.
+ # Each line of the file is in a format similar to "vt100  tty01".
+ #
+-#TTYTYPE_FILE	/etc/ttytype
++#TTYTYPE_FILE	/opt/etc/ttytype
+ 
+ #
+ # If defined, login(1) failures will be logged here in a utmp format.
+ # last(1), when invoked as lastb(1), will read /var/log/btmp, so...
  #
 -FTMP_FILE	/var/log/btmp
 +FTMP_FILE	/opt/var/log/btmp
  
  #
- # If defined, name of file whose presence which will inhibit non-root
- # logins.  The contents of this file should be a message indicating
+ # If defined, name of file whose presence will inhibit non-root
+ # logins.  The content of this file should be a message indicating
  # why logins are inhibited.
  #
 -NOLOGINS_FILE	/etc/nologin
@@ -78,16 +89,36 @@
  #MAIL_FILE	.mail
  
  #
-@@ -127,7 +127,7 @@
+@@ -127,8 +127,8 @@
  # user's name or shell are found in the file.  If not a full pathname, then
  # hushed mode will be enabled if the file exists in the user's home directory.
  #
 -HUSHLOGIN_FILE	.hushlogin
+-#HUSHLOGIN_FILE	/etc/hushlogins
 +#HUSHLOGIN_FILE	.hushlogin
- #HUSHLOGIN_FILE	/etc/hushlogins
++#HUSHLOGIN_FILE	/opt/etc/hushlogins
  
  #
-@@ -348,7 +348,7 @@
+ # If defined, either a TZ environment parameter spec or the
+@@ -149,7 +149,7 @@
+ # *REQUIRED*  The default PATH settings, for superuser and normal users.
+ #
+ # (they are minimal, add the rest in the shell startup files)
+-ENV_SUPATH	PATH=/sbin:/bin:/usr/sbin:/usr/bin
++ENV_SUPATH	PATH=/sbin:/bin:/usr/sbin:/usr/bin:/opt/bin:/opt/sbin
+ ENV_PATH	PATH=/bin:/usr/bin
+ 
+ #
+@@ -216,7 +216,7 @@
+ #
+ # If compiled with cracklib support, sets the path to the dictionaries
+ #
+-CRACKLIB_DICTPATH	/var/cache/cracklib/cracklib_dict
++CRACKLIB_DICTPATH	/opt/var/cache/cracklib/cracklib_dict
+ 
+ #
+ # Min/max values for automatic uid selection in useradd(8)
+@@ -356,14 +356,14 @@
  # If this file exists and is readable, login environment will be
  # read from it.  Every line should be in the form name=value.
  #
@@ -96,3 +127,11 @@
  
  #
  # If defined, this command is run when removing a user.
+ # It should remove any at/cron/print jobs etc. owned by
+ # the user to be removed (passed as the first argument).
+ #
+-#USERDEL_CMD	/usr/sbin/userdel_local
++#USERDEL_CMD	/opt/sbin/userdel_local
+ 
+ #
+ # Enable setting of the umask group bits to be the same as owner bits

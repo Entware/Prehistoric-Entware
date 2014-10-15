@@ -1,5 +1,5 @@
---- a/Makefile	2012-10-17 13:57:03.962324932 +0400
-+++ b/Makefile	2012-10-17 13:57:12.818323352 +0400
+--- a/Makefile
++++ b/Makefile
 @@ -15,7 +15,7 @@
  
  CFLAGS := -O2 -W -Wall -Wbad-function-cast -Wcast-align -Wpointer-arith -Wcast-qual -Wshadow -Wstrict-prototypes -Wmissing-prototypes -Wmissing-declarations -fkeep-inline-functions -Wwrite-strings -Waggregate-return -Wnested-externs -Wtrigraphs $(CFLAGS)

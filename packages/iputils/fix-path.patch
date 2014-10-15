@@ -1,5 +1,5 @@
---- ../../../downloads/openwrt_trunk-r42803/package/network/utils/iputils/Makefile	2014-10-06 15:46:24.397250634 +0400
-+++ ../../../openwrt_trunk/package/network/utils/iputils/Makefile	2014-10-08 11:18:09.486392310 +0400
+--- ../../../downloads/openwrt_trunk-r42803/package/network/utils/iputils/Makefile
++++ ../../../openwrt_trunk/package/network/utils/iputils/Makefile
 @@ -67,7 +67,7 @@
  define Package/iputils-ping6
  $(call Package/iputils/Default)

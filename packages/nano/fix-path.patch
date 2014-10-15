@@ -1,26 +1,28 @@
---- ../../../downloads/openwrt_trunk-r42803/feeds/packages/utils/nano/Makefile	2014-10-06 15:46:23.777250645 +0400
-+++ ../../../openwrt_trunk/feeds/packages/utils/nano/Makefile	2014-10-08 14:03:44.482715001 +0400
-@@ -36,18 +36,22 @@
+--- ../../../downloads/openwrt_trunk-r42803/feeds/packages/utils/nano/Makefile
++++ ../../../openwrt_trunk/feeds/packages/utils/nano/Makefile
+@@ -36,18 +36,23 @@
  endef
  
  CONFIGURE_ARGS += \
 -	--enable-tiny \
  	--disable-glibtest \
  	--disable-utf8 \
-         --without-slang \
+-        --without-slang \
 -        --disable-color \
 -
 -CONFIGURE_VARS += \
 -	ac_cv_header_regex_h=no \
-+        --enable-wrapping \
-+        --disable-help \
-+        --disable-justify \
-+        --disable-mouse \
-+        --disable-operatingdir \
-+        --disable-speller \
-+        --disable-tabcomp \
-+        --disable-browser \
-+        --enable-color \
++	--without-slang \
++	--enable-wrapping \
++	--disable-help \
++	--disable-justify \
++	--disable-mouse \
++	--disable-operatingdir \
++	--disable-speller \
++	--disable-tabcomp \
++	--disable-browser \
++	--enable-color \
++	--disable-libmagic \
  
  define Package/nano/install
 -	$(INSTALL_DIR) $(1)/usr/bin

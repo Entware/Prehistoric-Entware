@@ -1,13 +1,13 @@
---- ../../../downloads/openwrt_trunk-r42803/feeds/packages/utils/ncdu/Makefile	2014-10-09 14:58:05.441082178 +0400
-+++ ../../../openwrt_trunk/feeds/packages/utils/ncdu/Makefile	2014-10-09 13:27:29.389181199 +0400
+--- ../../../downloads/openwrt_trunk-r42803/feeds/packages/utils/ncdu/Makefile
++++ ../../../openwrt_trunk/feeds/packages/utils/ncdu/Makefile
 @@ -39,8 +39,8 @@
  endef
  
  define Package/ncdu/install
--	$(INSTALL_DIR) $(1)/opt/bin
--	$(INSTALL_BIN) $(PKG_INSTALL_DIR)/opt/bin/ncdu $(1)/opt/bin/
-+	$(INSTALL_DIR) $(1)/usr/bin
-+	$(INSTALL_BIN) $(PKG_INSTALL_DIR)/usr/bin/ncdu $(1)/usr/bin/
+-	$(INSTALL_DIR) $(1)/usr/bin
+-	$(INSTALL_BIN) $(PKG_INSTALL_DIR)/usr/bin/ncdu $(1)/usr/bin/
++	$(INSTALL_DIR) $(1)/opt/bin
++	$(INSTALL_BIN) $(PKG_INSTALL_DIR)/opt/bin/ncdu $(1)/opt/bin/
  endef
  
  $(eval $(call BuildPackage,ncdu))

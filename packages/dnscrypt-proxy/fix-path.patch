@@ -1,5 +1,5 @@
---- ../../../downloads/openwrt_trunk-r42803/feeds/packages/net/dnscrypt-proxy/Makefile	2014-10-09 13:29:46.601178698 +0400
-+++ ../../../openwrt_trunk/feeds/packages/net/dnscrypt-proxy/Makefile	2014-10-09 15:46:17.977030296 +0400
+--- ../../../downloads/openwrt_trunk-r42803/feeds/packages/net/dnscrypt-proxy/Makefile
++++ ../../../openwrt_trunk/feeds/packages/net/dnscrypt-proxy/Makefile
 @@ -60,7 +60,7 @@
  
  define Build/Configure
@@ -26,7 +26,7 @@
 +	$(INSTALL_DIR) $(1)/opt/share/dnscrypt-proxy
 +	$(CP) $(PKG_INSTALL_DIR)/opt/share/dnscrypt-proxy/dnscrypt-resolvers.csv $(1)/opt/share/dnscrypt-proxy/
 +	$(INSTALL_DIR) $(1)/opt/etc/init.d
-+	$(INSTALL_BIN) ./files/S09dnscrypt-proxy $(1)/etc/init.d/
++	$(INSTALL_BIN) ./files/S09dnscrypt-proxy $(1)/opt/etc/init.d/
  endef
  
  define Package/dnscrypt-proxy/postinst

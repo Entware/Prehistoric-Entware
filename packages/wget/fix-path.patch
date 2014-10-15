@@ -1,5 +1,5 @@
---- ../../../downloads/openwrt_trunk-r42803/feeds/packages/net/wget/Makefile	2014-10-06 15:46:23.749250644 +0400
-+++ ../../../openwrt_trunk/feeds/packages/net/wget/Makefile	2014-10-09 13:05:51.113205770 +0400
+--- ../../../downloads/openwrt_trunk-r42803/feeds/packages/net/wget/Makefile
++++ ../../../openwrt_trunk/feeds/packages/net/wget/Makefile
 @@ -73,7 +73,7 @@
  ifeq ($(BUILD_VARIANT),ssl)
  	CONFIGURE_ARGS+= \

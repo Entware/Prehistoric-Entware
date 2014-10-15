@@ -1,5 +1,5 @@
---- ../../../downloads/openwrt_trunk-r42803/feeds/packages/net/ipsec-tools/Makefile	2014-10-06 15:46:23.749250644 +0400
-+++ ../../../openwrt_trunk/feeds/packages/net/ipsec-tools/Makefile	2014-10-07 11:59:10.583925114 +0400
+--- ../../../downloads/openwrt_trunk-r42803/feeds/packages/net/ipsec-tools/Makefile
++++ ../../../openwrt_trunk/feeds/packages/net/ipsec-tools/Makefile
 @@ -7,7 +7,6 @@
  #
  

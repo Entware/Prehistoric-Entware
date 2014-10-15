@@ -1,6 +1,6 @@
 --- a/options.h
 +++ b/options.h
-@@ -26,10 +26,10 @@
+@@ -26,13 +26,13 @@
  
  /* Default hostkey paths - these can be specified on the command line */
  #ifndef DSS_PRIV_FILENAME
@@ -11,9 +11,13 @@
 -#define RSA_PRIV_FILENAME "/etc/dropbear/dropbear_rsa_host_key"
 +#define RSA_PRIV_FILENAME "/opt/etc/dropbear/dropbear_rsa_host_key"
  #endif
+ #ifndef ECDSA_PRIV_FILENAME
+-#define ECDSA_PRIV_FILENAME "/etc/dropbear/dropbear_ecdsa_host_key"
++#define ECDSA_PRIV_FILENAME "/opt/etc/dropbear/dropbear_ecdsa_host_key"
+ #endif
  
  /* Set NON_INETD_MODE if you require daemon functionality (ie Dropbear listens
-@@ -157,7 +157,7 @@
+@@ -184,7 +184,7 @@
  
  /* The MOTD file path */
  #ifndef MOTD_FILENAME
@@ -22,7 +26,7 @@
  #endif
  
  /* Authentication Types - at least one required.
-@@ -242,25 +242,25 @@
+@@ -263,25 +263,25 @@
  /* The default file to store the daemon's process ID, for shutdown
     scripts etc. This can be overridden with the -P flag */
  #ifndef DROPBEAR_PIDFILE
@@ -33,8 +37,8 @@
  /* The command to invoke for xauth when using X11 forwarding.
   * "-q" for quiet */
  #ifndef XAUTH_COMMAND
--#define XAUTH_COMMAND "/usr/bin/X11/xauth -q"
-+#define XAUTH_COMMAND "/opt/bin/X11/xauth -q"
+-#define XAUTH_COMMAND "/usr/bin/xauth -q"
++#define XAUTH_COMMAND "/opt/bin/xauth -q"
  #endif
  
  /* if you want to enable running an sftp server (such as the one included with
@@ -52,12 +56,12 @@
  
  /* Whether to log commands executed by a client. This only logs the 
   * (single) command sent to the server, not what a user did in a 
-@@ -297,7 +297,7 @@
+@@ -323,7 +323,7 @@
  #define DEFAULT_IDLE_TIMEOUT 0
  
  /* The default path. This will often get replaced by the shell */
 -#define DEFAULT_PATH "/bin:/sbin:/usr/bin:/usr/sbin"
-+#define DEFAULT_PATH "/opt/bin:/opt/sbin:/opt/usr/bin:/opt/usr/sbin:/bin:/sbin:/usr/bin:/usr/sbin"
++#define DEFAULT_PATH "/bin:/sbin:/usr/bin:/usr/sbin:/opt/bin:/opt/sbin"
  
  /* Some other defines (that mostly should be left alone) are defined
   * in sysoptions.h */

@@ -1,5 +1,5 @@
---- ../../../downloads/openwrt_trunk-r42803/package/network/utils/curl/Makefile	2014-10-06 15:46:24.105250639 +0400
-+++ ../../../openwrt_trunk/package/network/utils/curl/Makefile	2014-10-07 16:23:18.679652051 +0400
+--- ../../../downloads/openwrt_trunk-r42803/package/network/utils/curl/Makefile
++++ ../../../openwrt_trunk/package/network/utils/curl/Makefile
 @@ -75,7 +75,7 @@
    $(call Package/curl/Default)
    SECTION:=libs

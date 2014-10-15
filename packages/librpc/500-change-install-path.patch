@@ -1,5 +1,5 @@
---- a/CMakeLists.txt	2012-07-12 14:08:48.274604920 +0400
-+++ b/CMakeLists.txt	2012-07-12 14:09:03.914404150 +0400
+--- a/CMakeLists.txt
++++ b/CMakeLists.txt
 @@ -7,7 +7,7 @@
  
  ADD_LIBRARY(rpc SHARED ${SOURCES})

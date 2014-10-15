@@ -1,5 +1,5 @@
---- ../../../downloads/openwrt_trunk-r42803/feeds/packages/net/vnstat/Makefile	2014-10-06 15:46:23.757250644 +0400
-+++ ../../../openwrt_trunk/feeds/packages/net/vnstat/Makefile	2014-10-07 11:59:36.491924641 +0400
+--- ../../../downloads/openwrt_trunk-r42803/feeds/packages/net/vnstat/Makefile
++++ ../../../openwrt_trunk/feeds/packages/net/vnstat/Makefile
 @@ -56,21 +56,21 @@
  endef
  

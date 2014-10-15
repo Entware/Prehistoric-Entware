@@ -1,5 +1,5 @@
---- ../../../downloads/openwrt_trunk-r42803/feeds/packages/libs/libjpeg/Makefile	2014-10-06 15:46:23.741250644 +0400
-+++ ../../../openwrt_trunk/feeds/packages/libs/libjpeg/Makefile	2014-10-08 12:06:50.934846090 +0400
+--- ../../../downloads/openwrt_trunk-r42803/feeds/packages/libs/libjpeg/Makefile
++++ ../../../openwrt_trunk/feeds/packages/libs/libjpeg/Makefile
 @@ -58,8 +58,8 @@
  define Build/Compile
  	+$(MAKE) $(PKG_JOBS) -C $(PKG_BUILD_DIR) \

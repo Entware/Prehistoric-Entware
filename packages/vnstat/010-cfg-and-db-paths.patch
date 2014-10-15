@@ -1,6 +1,6 @@
 --- a/src/cfg.c
 +++ b/src/cfg.c
-@@ -212,7 +212,7 @@
+@@ -228,7 +228,7 @@
  	/* load default config */
  	defaultcfg();
  
@@ -9,7 +9,7 @@
  
  	if (cfgfile[0]!='\0') {
  
-@@ -240,9 +240,9 @@
+@@ -256,9 +256,9 @@
  		if (tryhome && (fd=fopen(buffer, "r"))!=NULL) {
  			if (debug)
  				printf("Config file: $HOME/.vnstatrc\n");
@@ -21,11 +21,11 @@
  		} else {
  			if (debug)
  				printf("Config file: none\n");
---- a/src/common.h	2011-06-01 23:50:32.000000000 +0400
-+++ b/src/common.h	2012-05-25 17:23:34.405627438 +0400
-@@ -39,9 +39,9 @@
- 
+--- a/src/common.h
++++ b/src/common.h
+@@ -50,9 +50,9 @@
  /* location of the database directory */
+ #ifndef DATABASEDIR
  #if defined(__FreeBSD__) || defined(__NetBSD__) || defined(__OpenBSD__) || defined(__APPLE__)
 -#define DATABASEDIR "/var/db/vnstat"
 +#define DATABASEDIR "/opt/var/db/vnstat"
@@ -33,16 +33,16 @@
 -#define DATABASEDIR "/var/lib/vnstat"
 +#define DATABASEDIR "/opt/var/lib/vnstat"
  #endif
- 
- /* on which day should months change */
-@@ -156,8 +156,8 @@
- #define OFFSAVEINTERVAL 30
- #define SAVESTATUS 1
+ #endif
+ #define DATABASEFILE "vnstat.db"
+@@ -180,8 +180,8 @@
  #define USELOGGING 2
--#define LOGFILE "/var/log/vnstat.log"
--#define PIDFILE "/var/run/vnstat.pid"
-+#define LOGFILE "/opt/var/log/vnstat.log"
-+#define PIDFILE "/opt/var/run/vnstat.pid"
+ #define CREATEDIRS 1
+ #define UPDATEFILEOWNER 1
+-#define LOGFILE "/var/log/vnstat/vnstat.log"
+-#define PIDFILE "/var/run/vnstat/vnstat.pid"
++#define LOGFILE "/opt/var/log/vnstat/vnstat.log"
++#define PIDFILE "/opt/var/run/vnstat/vnstat.pid"
  
  /* no transparency by default */
  #define TRANSBG 0

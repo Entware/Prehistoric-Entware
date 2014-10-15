@@ -1,5 +1,14 @@
---- ../../../downloads/openwrt_trunk-r42803/feeds/packages/net/lftp/Makefile	2014-10-06 15:46:23.753250644 +0400
-+++ ../../../openwrt_trunk/feeds/packages/net/lftp/Makefile	2014-10-08 11:30:43.474384670 +0400
+--- ../../../downloads/openwrt_trunk-r42803/feeds/packages/net/lftp/Makefile
++++ ../../../openwrt_trunk/feeds/packages/net/lftp/Makefile
+@@ -21,7 +21,7 @@
+   SUBMENU:=File Transfer
+   SECTION:=net
+   CATEGORY:=Network
+-  DEPENDS:=+libncurses +libopenssl +libreadline $(CXX_DEPENDS) +libexpat
++  DEPENDS:=+libncurses +libopenssl +libreadline $(CXX_DEPENDS) +libexpat +libidn
+   TITLE:=a sophisticated file transfer program with command line interface.
+   MAINTAINER:=Federico Di Marco <fededim@gmail.com>
+   URL:=http://lftp.yar.ru/
 @@ -51,7 +51,7 @@
  	--without-libintl-prefix \
  	--without-gnutls \

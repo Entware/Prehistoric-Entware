@@ -1,5 +1,5 @@
---- ../../../downloads/openwrt_trunk-r42803/feeds/packages/libs/libftdi/Makefile	2014-10-06 15:46:23.745250644 +0400
-+++ ../../../openwrt_trunk/feeds/packages/libs/libftdi/Makefile	2014-10-08 11:39:13.374369458 +0400
+--- ../../../downloads/openwrt_trunk-r42803/feeds/packages/libs/libftdi/Makefile
++++ ../../../openwrt_trunk/feeds/packages/libs/libftdi/Makefile
 @@ -40,18 +40,18 @@
  endef
  

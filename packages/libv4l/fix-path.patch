@@ -1,15 +1,80 @@
---- ../../../downloads/openwrt_trunk-r42803/feeds/packages/libs/libv4l/Makefile	2014-10-06 15:46:23.737250644 +0400
-+++ ../../../openwrt_trunk/feeds/packages/libs/libv4l/Makefile	2014-10-08 12:35:24.446812131 +0400
-@@ -82,39 +82,39 @@
+diff -BurN ../../../downloads/openwrt_trunk-r42803/feeds/packages/libs/libv4l/Makefile ../../../openwrt_trunk/feeds/packages/libs/libv4l/Makefile
+--- ../../../downloads/openwrt_trunk-r42803/feeds/packages/libs/libv4l/Makefile	2014-10-09 19:10:17.720806523 +0400
++++ ../../../openwrt_trunk/feeds/packages/libs/libv4l/Makefile	2014-05-27 14:18:57.097779893 +0400
+@@ -1,5 +1,5 @@
+ #
+-# Copyright (C) 2009-2014 OpenWrt.org
++# Copyright (C) 2009-2012 OpenWrt.org
+ # Copyright (C) 2009 David Cooper <dave@kupesoft.com>
+ #
+ # This is free software, licensed under the GNU General Public License v2.
+@@ -9,23 +9,17 @@
+ include $(TOPDIR)/rules.mk
+ 
+ PKG_NAME:=v4l-utils
+-PKG_VERSION:=1.2.1
++PKG_VERSION:=0.8.6
+ PKG_RELEASE:=2
+ 
+ PKG_SOURCE:=$(PKG_NAME)-$(PKG_VERSION).tar.bz2
+ PKG_SOURCE_URL:=http://www.linuxtv.org/downloads/v4l-utils
+-PKG_MD5SUM:=4cc0fb4ded302ea9e89e5e1b56a7252b
+-
+-PKG_MAINTAINER:=Ted Hess <thess@kitschensync.net>
+-
+-PKG_LICENSE:=GPL-2.0 LGPL-2.1
+-PKG_LICENSE_FILE:=COPYING COPYING.libv4l
++PKG_MD5SUM:=80062780ae90e5955473b09b31e9828a
+ 
+ PKG_BUILD_DEPENDS:=argp-standalone
+ 
+ include $(INCLUDE_DIR)/uclibc++.mk
+ include $(INCLUDE_DIR)/package.mk
+-include $(INCLUDE_DIR)/nls.mk
+ 
+ define Package/libv4l/Default
+   TITLE:=Video 4 Linux
+@@ -52,7 +46,7 @@
+   SECTION:=libs
+   CATEGORY:=Libraries
+   TITLE+= wrapper libraries
+-  DEPENDS := +libpthread +librt $(ICONV_DEPENDS)
++  DEPENDS := +libpthread +librt
+ endef
+ 
+ define Package/libv4l/description
+@@ -64,7 +58,7 @@
+   SECTION:=utils
+   CATEGORY:=Utilities
+   TITLE+= utilities
+-  DEPENDS := +libv4l $(CXX_DEPENDS) $(ICONV_DEPENDS)
++  DEPENDS := +libv4l $(CXX_DEPENDS)
+ endef
+ 
+ define Package/v4l-utils/description
+@@ -73,48 +67,46 @@
+ endef
+ 
+ TARGET_CFLAGS += $(FPIC)
+-TARGET_LDFLAGS += -largp
+-
+-CONFIGURE_ARGS+= \
+-	--disable-libdvbv5 \
+-	--disable-qv4l2 \
+-	--without-jpeg \
  
  define Build/Compile
  	$(MAKE) -C $(PKG_BUILD_DIR) \
 -		DESTDIR="$(PKG_INSTALL_DIR)" \
 +		DESTDIR="$(PKG_INSTALL_DIR)" PREFIX="/opt" \
++		DISABLE_LIBJPEG="1" \
++		$(CONFIGURE_VARS) \
  		all install
  	$(MAKE) -C $(PKG_BUILD_DIR) \
 -		DESTDIR="$(PKG_INSTALL_DIR)" \
 +		DESTDIR="$(PKG_INSTALL_DIR)" PREFIX="/opt" \
++		DISABLE_LIBJPEG="1" \
++		$(CONFIGURE_VARS) \
  		LINKTYPE="static" \
  		all install
  endef
@@ -60,3 +125,317 @@
  endef
  
  $(eval $(call BuildPackage,libv4l))
+diff -BurN ../../../downloads/openwrt_trunk-r42803/feeds/packages/libs/libv4l/patches/001-no-shm_open-fix.patch ../../../openwrt_trunk/feeds/packages/libs/libv4l/patches/001-no-shm_open-fix.patch
+--- ../../../downloads/openwrt_trunk-r42803/feeds/packages/libs/libv4l/patches/001-no-shm_open-fix.patch	2014-10-09 19:10:17.720806523 +0400
++++ ../../../openwrt_trunk/feeds/packages/libs/libv4l/patches/001-no-shm_open-fix.patch	2014-05-27 14:17:51.425781084 +0400
+@@ -1,15 +1,15 @@
+ --- a/lib/libv4lconvert/control/libv4lcontrol.c
+ +++ b/lib/libv4lconvert/control/libv4lcontrol.c
+-@@ -570,7 +570,7 @@ static void v4lcontrol_get_flags_from_db
+- struct v4lcontrol_data *v4lcontrol_create(int fd, void *dev_ops_priv,
+- 	const struct libv4l_dev_ops *dev_ops, int always_needs_conversion)
++@@ -525,7 +525,7 @@ static void v4lcontrol_get_flags_from_db
++ 
++ struct v4lcontrol_data *v4lcontrol_create(int fd, int always_needs_conversion)
+  {
+ -	int shm_fd;
+ +	int shm_fd, fdflags;
+  	int i, rc, got_usb_info, speed, init = 0;
+  	char *s, shm_name[256], pwd_buf[1024];
+  	struct v4l2_capability cap;
+-@@ -695,33 +695,38 @@ struct v4lcontrol_data *v4lcontrol_creat
++@@ -638,33 +638,38 @@ struct v4lcontrol_data *v4lcontrol_creat
+  
+  	if (getpwuid_r(geteuid(), &pwd, pwd_buf, sizeof(pwd_buf), &pwd_p) == 0) {
+  		if (got_usb_info)
+diff -BurN ../../../downloads/openwrt_trunk-r42803/feeds/packages/libs/libv4l/patches/002-allow-disabling-libjpeg.patch ../../../openwrt_trunk/feeds/packages/libs/libv4l/patches/002-allow-disabling-libjpeg.patch
+--- ../../../downloads/openwrt_trunk-r42803/feeds/packages/libs/libv4l/patches/002-allow-disabling-libjpeg.patch	1970-01-01 03:00:00.000000000 +0300
++++ ../../../openwrt_trunk/feeds/packages/libs/libv4l/patches/002-allow-disabling-libjpeg.patch	2014-05-27 14:17:51.425781084 +0400
+@@ -0,0 +1,160 @@
++--- a/lib/libv4lconvert/Makefile
+++++ b/lib/libv4lconvert/Makefile
++@@ -1,6 +1,6 @@
++ override CPPFLAGS += -I../include -fvisibility=hidden
++ 
++-LIBS_libv4lconvert = -lrt -lm -ljpeg
+++LIBS_libv4lconvert = -lrt -lm
++ 
++ ifeq ($(LINKTYPE),static)
++ CONVERT_LIB   = libv4lconvert.a
++@@ -10,16 +10,22 @@ override CPPFLAGS += -fPIC
++ endif
++ 
++ CONVERT_OBJS  = libv4lconvert.o tinyjpeg.o sn9c10x.o sn9c20x.o pac207.o \
++-		jl2005bcd.o \
++ 		mr97310a.o flip.o crop.o jidctflt.o spca561-decompress.o \
++ 		rgbyuv.o sn9c2028-decomp.o spca501.o sq905c.o bayer.o hm12.o \
++-		stv0680.o cpia1.o se401.o jpgl.o jpeg.o jpeg_memsrcdest.o \
+++		stv0680.o cpia1.o se401.o jpgl.o jpeg.o \
++ 		control/libv4lcontrol.o processing/libv4lprocessing.o \
++ 		processing/whitebalance.o processing/autogain.o \
++ 		processing/gamma.o helper.o
++ TARGETS       = $(CONVERT_LIB) libv4lconvert.pc ov511-decomp ov518-decomp
++ INCLUDES      = ../include/libv4lconvert.h
++ 
+++ifeq ($(DISABLE_LIBJPEG),1)
+++override CFLAGS += -DDISABLE_LIBJPEG
+++else
+++LIBS_libv4lconvert += -ljpeg
+++CONVERT_OBJS += jl2005bcd.o jpeg_memsrcdest.o
+++endif
+++
++ override CPPFLAGS += -DLIBDIR=\"$(LIBDIR)\" -DLIBSUBDIR=\"$(LIBSUBDIR)\"
++ 
++ all: $(TARGETS)
++--- a/lib/libv4lconvert/jpeg.c
+++++ b/lib/libv4lconvert/jpeg.c
++@@ -19,7 +19,9 @@
++ #include <errno.h>
++ #include <stdlib.h>
++ #include "libv4lconvert-priv.h"
+++#ifndef DISABLE_LIBJPEG
++ #include "jpeg_memsrcdest.h"
+++#endif
++ 
++ int v4lconvert_decode_jpeg_tinyjpeg(struct v4lconvert_data *data,
++ 	unsigned char *src, int src_size, unsigned char *dest,
++@@ -107,6 +109,8 @@ int v4lconvert_decode_jpeg_tinyjpeg(stru
++ 	return 0;
++ }
++ 
+++#ifndef DISABLE_LIBJPEG
+++
++ static void jerr_error_exit(j_common_ptr cinfo)
++ {
++ 	struct v4lconvert_data *data = cinfo->client_data;
++@@ -405,3 +409,6 @@ int v4lconvert_decode_jpeg_libjpeg(struc
++ 
++ 	return result;
++ }
+++
+++#endif
+++
++--- a/lib/libv4lconvert/libv4lconvert-priv.h
+++++ b/lib/libv4lconvert/libv4lconvert-priv.h
++@@ -22,7 +22,9 @@
++ #include <stdio.h>
++ #include <stdint.h>
++ #include <sys/types.h>
+++#ifndef DISABLE_LIBJPEG
++ #include <jpeglib.h>
+++#endif
++ #include <setjmp.h>
++ #include "libv4lconvert.h"
++ #include "control/libv4lcontrol.h"
++@@ -50,11 +52,13 @@ struct v4lconvert_data {
++ 	int64_t supported_src_formats; /* bitfield */
++ 	char error_msg[V4LCONVERT_ERROR_MSG_SIZE];
++ 	struct jdec_private *tinyjpeg;
+++#ifndef DISABLE_LIBJPEG
++ 	struct jpeg_error_mgr jerr;
++ 	int jerr_errno;
++ 	jmp_buf jerr_jmp_state;
++ 	struct jpeg_decompress_struct cinfo;
++ 	int cinfo_initialized;
+++#endif
++ 	struct v4l2_frmsizeenum framesizes[V4LCONVERT_MAX_FRAMESIZES];
++ 	unsigned int no_framesizes;
++ 	int bandwidth;
++--- a/lib/libv4lconvert/libv4lconvert.c
+++++ b/lib/libv4lconvert/libv4lconvert.c
++@@ -78,7 +78,9 @@ static const struct v4lconvert_pixfmt su
++ 	{ V4L2_PIX_FMT_SN9C2028,	 0,	 9,	 9,	1 },
++ 	{ V4L2_PIX_FMT_PAC207,		 0,	 9,	 9,	1 },
++ 	{ V4L2_PIX_FMT_MR97310A,	 0,	 9,	 9,	1 },
+++#ifndef DISABLE_LIBJPEG
++ 	{ V4L2_PIX_FMT_JL2005BCD,	 0,	 9,	 9,	1 },
+++#endif
++ 	{ V4L2_PIX_FMT_SQ905C,		 0,	 9,	 9,	1 },
++ 	/* special */
++ 	{ V4L2_PIX_FMT_SE401,		 0,	 8,	 9,	1 },
++@@ -186,8 +188,10 @@ void v4lconvert_destroy(struct v4lconver
++ 		tinyjpeg_set_components(data->tinyjpeg, comps, 3);
++ 		tinyjpeg_free(data->tinyjpeg);
++ 	}
+++#ifndef DISABLE_LIBJPEG
++ 	if (data->cinfo_initialized)
++ 		jpeg_destroy_decompress(&data->cinfo);
+++#endif
++ 	v4lconvert_helper_cleanup(data);
++ 	free(data->convert1_buf);
++ 	free(data->convert2_buf);
++@@ -634,10 +638,13 @@ static int v4lconvert_convert_pixfmt(str
++ 	/* JPG and variants */
++ 	case V4L2_PIX_FMT_MJPEG:
++ 	case V4L2_PIX_FMT_JPEG:
+++#ifndef DISABLE_LIBJPEG
++ 		if (data->flags & V4LCONVERT_USE_TINYJPEG) {
+++#endif
++ 			result = v4lconvert_decode_jpeg_tinyjpeg(data,
++ 							src, src_size, dest,
++ 							fmt, dest_pix_fmt, 0);
+++#ifndef DISABLE_LIBJPEG
++ 		} else {
++ 			result = v4lconvert_decode_jpeg_libjpeg(data,
++ 							src, src_size, dest,
++@@ -652,6 +659,7 @@ static int v4lconvert_convert_pixfmt(str
++ 							fmt, dest_pix_fmt, 0);
++ 			}
++ 		}
+++#endif
++ 		break;
++ 	case V4L2_PIX_FMT_PJPG:
++ 		result = v4lconvert_decode_jpeg_tinyjpeg(data, src, src_size,
++@@ -777,7 +785,9 @@ static int v4lconvert_convert_pixfmt(str
++ 	case V4L2_PIX_FMT_SN9C10X:
++ 	case V4L2_PIX_FMT_PAC207:
++ 	case V4L2_PIX_FMT_MR97310A:
+++#ifndef DISABLE_LIBJPEG
++ 	case V4L2_PIX_FMT_JL2005BCD:
+++#endif
++ 	case V4L2_PIX_FMT_SN9C2028:
++ 	case V4L2_PIX_FMT_SQ905C:
++ 	case V4L2_PIX_FMT_STV0680: { /* Not compressed but needs some shuffling */
++@@ -816,6 +826,7 @@ static int v4lconvert_convert_pixfmt(str
++ 			}
++ 			tmpfmt.fmt.pix.pixelformat = V4L2_PIX_FMT_SBGGR8;
++ 			break;
+++#ifndef DISABLE_LIBJPEG
++ 		case V4L2_PIX_FMT_JL2005BCD:
++ 			if (v4lconvert_decode_jl2005bcd(data, src, src_size,
++ 							tmpbuf,
++@@ -826,6 +837,7 @@ static int v4lconvert_convert_pixfmt(str
++ 			}
++ 			tmpfmt.fmt.pix.pixelformat = V4L2_PIX_FMT_SRGGB8;
++ 			break;
+++#endif
++ 		case V4L2_PIX_FMT_SN9C2028:
++ 			v4lconvert_decode_sn9c2028(src, tmpbuf, width, height);
++ 			tmpfmt.fmt.pix.pixelformat = V4L2_PIX_FMT_SBGGR8;
+diff -BurN ../../../downloads/openwrt_trunk-r42803/feeds/packages/libs/libv4l/patches/003-add-missing-libs.patch ../../../openwrt_trunk/feeds/packages/libs/libv4l/patches/003-add-missing-libs.patch
+--- ../../../downloads/openwrt_trunk-r42803/feeds/packages/libs/libv4l/patches/003-add-missing-libs.patch	1970-01-01 03:00:00.000000000 +0300
++++ ../../../openwrt_trunk/feeds/packages/libs/libv4l/patches/003-add-missing-libs.patch	2014-05-27 14:17:51.425781084 +0400
+@@ -0,0 +1,66 @@
++--- a/contrib/test/Makefile
+++++ b/contrib/test/Makefile
++@@ -28,7 +28,7 @@ pixfmt-test: pixfmt-test.o
++ 	$(CC) $(LDFLAGS) -o $@ $^ -lX11
++ 
++ v4l2grab: v4l2grab.o ../../lib/libv4l2/libv4l2.so
++-	$(CC) $(LDFLAGS) -o $@ $^ -L../../lib/libv4l2 -L../../lib/libv4lconvert -lv4l2 -lv4lconvert
+++	$(CC) $(LDFLAGS) -o $@ $^ -L../../lib/libv4l2 -L../../lib/libv4lconvert -lv4l2 -lv4lconvert -largp
++ 
++ ioctl-test: ioctl-test.o
++ 	$(CC) $(LDFLAGS) -o $@ $^
++--- a/utils/decode_tm6000/Makefile
+++++ b/utils/decode_tm6000/Makefile
++@@ -5,7 +5,7 @@ all: $(TARGETS)
++ -include *.d
++ 
++ decode_tm6000: decode_tm6000.o ../libv4l2util/libv4l2util.a
++-	$(CC) $(LDFLAGS) -o $@ $^
+++	$(CC) $(LDFLAGS) -o $@ $^ -largp
++ 
++ install: $(TARGETS)
++ 	mkdir -p $(DESTDIR)$(PREFIX)/bin
++--- a/utils/keytable/Makefile
+++++ b/utils/keytable/Makefile
++@@ -5,7 +5,7 @@ all: $(TARGETS)
++ -include *.d
++ 
++ ir-keytable: keytable.o
++-	$(CC) $(LDFLAGS) -o $@ $^
+++	$(CC) $(LDFLAGS) -o $@ $^ -largp
++ 
++ keytable.o: keytable.c parse.h
++ 
++--- a/utils/v4l2-compliance/Makefile
+++++ b/utils/v4l2-compliance/Makefile
++@@ -6,7 +6,7 @@ all: $(TARGETS)
++ 
++ v4l2-compliance: v4l2-compliance.o v4l2-test-debug.o v4l2-test-input-output.o \
++ 	v4l2-test-controls.o v4l2-test-io-config.o v4l2-test-formats.o
++-	$(CXX) $(LDFLAGS) -o $@ $^ -lv4l2 -lv4lconvert -lrt
+++	$(CXX) $(LDFLAGS) -o $@ $^ -lv4l2 -lv4lconvert -lrt -lpthread
++ 
++ install: $(TARGETS)
++ 	mkdir -p $(DESTDIR)$(PREFIX)/bin
++--- a/utils/v4l2-ctl/Makefile
+++++ b/utils/v4l2-ctl/Makefile
++@@ -13,7 +13,7 @@ ivtv-ctl: ivtv-ctl.o
++ 	$(CC) $(LDFLAGS) -o $@ $^ -lm
++ 
++ v4l2-ctl: v4l2-ctl.o
++-	$(CXX) $(LDFLAGS) -o $@ $^ -lv4l2 -lv4lconvert -lrt
+++	$(CXX) $(LDFLAGS) -o $@ $^ -lv4l2 -lv4lconvert -lrt -lpthread
++ 
++ install: $(TARGETS)
++ 	mkdir -p $(DESTDIR)$(PREFIX)/bin
++--- a/utils/v4l2-sysfs-path/Makefile
+++++ b/utils/v4l2-sysfs-path/Makefile
++@@ -5,7 +5,7 @@ all: $(TARGETS)
++ -include *.d
++ 
++ v4l2-sysfs-path: v4l2-sysfs-path.o ../libmedia_dev/libmedia_dev.a
++-	$(CC) $(LDFLAGS) -o $@ $^
+++	$(CC) $(LDFLAGS) -o $@ $^ -largp
++ 
++ install: $(TARGETS)
++ 	mkdir -p $(DESTDIR)$(PREFIX)/bin
+diff -BurN ../../../downloads/openwrt_trunk-r42803/feeds/packages/libs/libv4l/patches/004-disable-qv4l2.patch ../../../openwrt_trunk/feeds/packages/libs/libv4l/patches/004-disable-qv4l2.patch
+--- ../../../downloads/openwrt_trunk-r42803/feeds/packages/libs/libv4l/patches/004-disable-qv4l2.patch	1970-01-01 03:00:00.000000000 +0300
++++ ../../../openwrt_trunk/feeds/packages/libs/libv4l/patches/004-disable-qv4l2.patch	2014-05-27 14:17:51.425781084 +0400
+@@ -0,0 +1,24 @@
++--- a/utils/Makefile
+++++ b/utils/Makefile
++@@ -5,21 +5,6 @@ all install: 
++ 		$(MAKE) -C $$i $@ || exit 1; \
++ 	done
++ 
++-	# Test whether qmake is installed, and whether it is for qt4.
++-	@if which qmake-qt4 >/dev/null 2>&1; then \
++-		QMAKE=qmake-qt4; \
++-	else \
++-		QMAKE=qmake; \
++-	fi; \
++-	if which $$QMAKE >/dev/null 2>&1; then \
++-		if $$QMAKE --version 2>&1 | grep '4\.[0-9][0-9]*\.[0-9][0-9]*' >/dev/null; then \
++-			if [ ! -f qv4l2/Makefile ]; then \
++-				(cd qv4l2 && $$QMAKE) || exit 1; \
++-			fi; \
++-			$(MAKE) -C qv4l2 -f Makefile.install $@; \
++-		fi \
++-	fi
++-
++ sync-with-kernel:
++ 	$(MAKE) -C keytable $@
++ 	$(MAKE) -C v4l2-dbg $@
+diff -BurN ../../../downloads/openwrt_trunk-r42803/feeds/packages/libs/libv4l/patches/020-add-missing-includes.patch ../../../openwrt_trunk/feeds/packages/libs/libv4l/patches/020-add-missing-includes.patch
+--- ../../../downloads/openwrt_trunk-r42803/feeds/packages/libs/libv4l/patches/020-add-missing-includes.patch	2014-10-09 19:10:17.720806523 +0400
++++ ../../../openwrt_trunk/feeds/packages/libs/libv4l/patches/020-add-missing-includes.patch	1970-01-01 03:00:00.000000000 +0300
+@@ -1,10 +0,0 @@
+---- a/utils/rds-ctl/rds-ctl.cpp
+-+++ b/utils/rds-ctl/rds-ctl.cpp
+-@@ -29,6 +29,7 @@
+- #include <inttypes.h>
+- #include <getopt.h>
+- #include <sys/types.h>
+-+#include <ctype.h>
+- #include <fcntl.h>
+- #include <errno.h>
+- #include <sys/ioctl.h>
+diff -BurN ../../../downloads/openwrt_trunk-r42803/feeds/packages/libs/libv4l/patches/500-keymaps-dir.patch ../../../openwrt_trunk/feeds/packages/libs/libv4l/patches/500-keymaps-dir.patch
+--- ../../../downloads/openwrt_trunk-r42803/feeds/packages/libs/libv4l/patches/500-keymaps-dir.patch	1970-01-01 03:00:00.000000000 +0300
++++ ../../../openwrt_trunk/feeds/packages/libs/libv4l/patches/500-keymaps-dir.patch	2014-05-27 14:18:57.101779893 +0400
+@@ -0,0 +1,11 @@
++--- a/utils/keytable/keytable.c
+++++ b/utils/keytable/keytable.c
++@@ -28,7 +28,7 @@
++ #include "parse.h"
++ 
++ /* Default place where the keymaps will be stored */
++-#define CFGDIR "/etc/rc_keymaps"
+++#define CFGDIR "/opt/etc/rc_keymaps"
++ 
++ struct input_keymap_entry_v2 {
++ #define KEYMAP_BY_INDEX	(1 << 0)

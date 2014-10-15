@@ -1,0 +1,46 @@
+--- a/configure.ac
++++ b/configure.ac
+@@ -92,43 +92,6 @@
+ #   AC_CHECK_LIB(resolv, res_mkquery, ,
+ #     AC_CHECK_LIB(resolv, __res_mkquery, , AC_MSG_ERROR(No resolver library found)))))
+ 
+-# See if a library is needed for res_mkquery and if so put it in RESOLV_LIBS
+-RESOLV_LIBS=
+-AC_SUBST(RESOLV_LIBS)
+-AC_DEFUN([LIBRESOLVTEST_SRC], [
+-AC_LANG_PROGRAM([[
+-#include <netinet/in.h>
+-#include <resolv.h>
+-]], [[
+-int (*res_mkquery_func)(int,...) = (int (*)(int,...))res_mkquery;
+-(void)(*res_mkquery_func)(0);
+-]])])
+-AC_MSG_CHECKING([whether library required for res_mkquery])
+-RESOLV_LIB_NONE=
+-AC_LINK_IFELSE([LIBRESOLVTEST_SRC],
+-	[AC_MSG_RESULT([no])
+-	RESOLV_LIB_NONE=yes],
+-	[AC_MSG_RESULT([yes])])
+-if test "x$RESOLV_LIB_NONE" = "x"; then
+-	AC_MSG_CHECKING([for res_mkquery in -lbind])
+-	STASH_LIBS="$LIBS"
+-	LIBS="$STASH_LIBS -lbind"
+-	AC_LINK_IFELSE([LIBRESOLVTEST_SRC],
+-		[AC_MSG_RESULT([yes])
+-		RESOLV_LIBS=-lbind],
+-		[AC_MSG_RESULT([no])])
+-	if test "x$RESOLV_LIBS" = "x"; then
+-		AC_MSG_CHECKING([for res_mkquery in -lresolv])
+-		LIBS="$STASH_LIBS -lresolv"
+-		AC_LINK_IFELSE([LIBRESOLVTEST_SRC],
+-			[AC_MSG_RESULT([yes])
+-			RESOLV_LIBS=-lresolv],
+-			[AC_MSG_RESULT([no])
+-                        AC_MSG_ERROR(No resolver library found)])
+-	fi
+-	LIBS="$STASH_LIBS"
+-fi
+-
+ AC_CHECK_FUNC(herror, , AC_DEFINE(NO_HERROR, 1, [Define if you don't have the herror() function available.]))
+ AC_CHECK_FUNC(strerror, , AC_DEFINE(NO_STRERROR, 1, [Define if you don't have the strerror() function available.]))
+ 

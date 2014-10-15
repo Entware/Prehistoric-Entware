@@ -1,5 +1,5 @@
---- ../../../downloads/openwrt_trunk-r42803/feeds/packages/libs/alsa-lib/Makefile	2014-10-06 15:46:23.737250644 +0400
-+++ ../../../openwrt_trunk/feeds/packages/libs/alsa-lib/Makefile	2014-10-07 15:02:24.711719626 +0400
+--- ../../../downloads/openwrt_trunk-r42803/feeds/packages/libs/alsa-lib/Makefile
++++ ../../../openwrt_trunk/feeds/packages/libs/alsa-lib/Makefile
 @@ -33,7 +33,7 @@
    TITLE:=ALSA (Advanced Linux Sound Architecture) library
    URL:=http://www.alsa-project.org/

@@ -1,5 +1,5 @@
---- ../../../downloads/openwrt_trunk-r42803/feeds/packages/libs/libsodium/Makefile	2014-10-09 13:29:46.569178700 +0400
-+++ ../../../openwrt_trunk/feeds/packages/libs/libsodium/Makefile	2014-10-09 15:34:12.157040728 +0400
+--- ../../../downloads/openwrt_trunk-r42803/feeds/packages/libs/libsodium/Makefile
++++ ../../../openwrt_trunk/feeds/packages/libs/libsodium/Makefile
 @@ -8,13 +8,12 @@
  include $(TOPDIR)/rules.mk
  

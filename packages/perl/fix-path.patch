@@ -1,6 +1,6 @@
 diff -urx .svn ../../../downloads/openwrt_trunk-r42803/feeds/packages/lang/perl/files/config.sh-mipsel.in ../../../openwrt_trunk/feeds/packages/lang/perl/files/config.sh-mipsel.in
---- ../../../downloads/openwrt_trunk-r42803/feeds/packages/lang/perl/files/config.sh-mipsel.in	2014-10-06 15:46:23.733250644 +0400
-+++ ../../../openwrt_trunk/feeds/packages/lang/perl/files/config.sh-mipsel.in	2014-10-08 17:02:19.930518534 +0400
+--- ../../../downloads/openwrt_trunk-r42803/feeds/packages/lang/perl/files/config.sh-mipsel.in	2014-10-09 19:10:17.712806523 +0400
++++ ../../../openwrt_trunk/feeds/packages/lang/perl/files/config.sh-mipsel.in	2014-10-09 19:10:27.056806351 +0400
 @@ -691,21 +691,21 @@
  inc_version_list_init='0'
  incpath=''
@@ -146,8 +146,8 @@ diff -urx .svn ../../../downloads/openwrt_trunk-r42803/feeds/packages/lang/perl/
  version_patchlevel_string='version 20 subversion 0'
  PERL_VERSION=20
 diff -urx .svn ../../../downloads/openwrt_trunk-r42803/feeds/packages/lang/perl/Makefile ../../../openwrt_trunk/feeds/packages/lang/perl/Makefile
---- ../../../downloads/openwrt_trunk-r42803/feeds/packages/lang/perl/Makefile	2014-10-06 15:46:23.733250644 +0400
-+++ ../../../openwrt_trunk/feeds/packages/lang/perl/Makefile	2014-10-08 17:08:24.350514044 +0400
+--- ../../../downloads/openwrt_trunk-r42803/feeds/packages/lang/perl/Makefile	2014-10-09 19:10:17.712806523 +0400
++++ ../../../openwrt_trunk/feeds/packages/lang/perl/Makefile	2014-10-09 19:10:27.056806351 +0400
 @@ -38,7 +38,7 @@
  HOST_PERL_PREFIX:=$(STAGING_DIR_HOST)/usr
  ifneq ($(CONFIG_USE_EGLIBC),)
@@ -194,8 +194,8 @@ diff -urx .svn ../../../downloads/openwrt_trunk-r42803/feeds/packages/lang/perl/
  
  
 diff -urx .svn ../../../downloads/openwrt_trunk-r42803/feeds/packages/lang/perl/perlbase.mk ../../../openwrt_trunk/feeds/packages/lang/perl/perlbase.mk
---- ../../../downloads/openwrt_trunk-r42803/feeds/packages/lang/perl/perlbase.mk	2014-10-06 15:46:23.733250644 +0400
-+++ ../../../openwrt_trunk/feeds/packages/lang/perl/perlbase.mk	2014-10-08 17:12:32.746517243 +0400
+--- ../../../downloads/openwrt_trunk-r42803/feeds/packages/lang/perl/perlbase.mk	2014-10-09 19:10:17.712806523 +0400
++++ ../../../openwrt_trunk/feeds/packages/lang/perl/perlbase.mk	2014-10-09 19:10:27.056806351 +0400
 @@ -1187,8 +1187,8 @@
  
  define Package/perlbase-test/install
@@ -208,8 +208,8 @@ diff -urx .svn ../../../downloads/openwrt_trunk-r42803/feeds/packages/lang/perl/
  
  $(eval $(call BuildPackage,perlbase-test))
 diff -urx .svn ../../../downloads/openwrt_trunk-r42803/feeds/packages/lang/perl/perlmod.mk ../../../openwrt_trunk/feeds/packages/lang/perl/perlmod.mk
---- ../../../downloads/openwrt_trunk-r42803/feeds/packages/lang/perl/perlmod.mk	2014-10-06 15:46:23.733250644 +0400
-+++ ../../../openwrt_trunk/feeds/packages/lang/perl/perlmod.mk	2014-10-08 17:11:31.990508465 +0400
+--- ../../../downloads/openwrt_trunk-r42803/feeds/packages/lang/perl/perlmod.mk	2014-10-09 19:10:17.712806523 +0400
++++ ../../../openwrt_trunk/feeds/packages/lang/perl/perlmod.mk	2014-10-14 14:54:28.733230259 +0400
 @@ -5,12 +5,12 @@
  HOST_PERL_PREFIX:=$(STAGING_DIR_HOST)/usr
  ifneq ($(CONFIG_USE_EGLIBC),)
@@ -225,6 +225,25 @@ diff -urx .svn ../../../downloads/openwrt_trunk-r42803/feeds/packages/lang/perl/
  
  define perlmod/host/relink
  	rm -f $(1)/Makefile.aperl
+@@ -50,15 +50,15 @@
+ 	$(PERL_CMD) Makefile.PL \
+ 		$(1) \
+ 		AR=ar \
+-		CC=$(GNU_TARGET_NAME)-gcc \
++		CC=$(TARGET_CROSS)gcc \
+ 		CCFLAGS="$(TARGET_CFLAGS) $(TARGET_CPPFLAGS)" \
+ 		CCCDLFLAGS=-fPIC \
+ 		CCDLFLAGS=-Wl,-E \
+ 		DLEXT=so \
+ 		DLSRC=dl_dlopen.xs \
+ 		EXE_EXT=" " \
+-		FULL_AR=$(GNU_TARGET_NAME)-ar \
+-		LD=$(GNU_TARGET_NAME)-gcc \
++		FULL_AR=$(TARGET_CROSS)ar \
++		LD=$(TARGET_CROSS)gcc \
+ 		LDDLFLAGS="-shared $(TARGET_LDFLAGS)"  \
+ 		LDFLAGS="$(EXTRA_LIBDIRS:%=-L%) $(EXTRA_LIBS:%=-l%) " \
+ 		LIBC=" " \
 @@ -72,29 +72,29 @@
  		SO=so  \
  		VENDORARCHEXP=" " \

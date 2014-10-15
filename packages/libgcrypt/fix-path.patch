@@ -1,5 +1,5 @@
---- ../../../downloads/openwrt_trunk-r42803/feeds/packages/libs/libgcrypt/Makefile	2014-10-06 15:46:23.737250644 +0400
-+++ ../../../openwrt_trunk/feeds/packages/libs/libgcrypt/Makefile	2014-10-08 11:41:04.490370999 +0400
+--- ../../../downloads/openwrt_trunk-r42803/feeds/packages/libs/libgcrypt/Makefile
++++ ../../../openwrt_trunk/feeds/packages/libs/libgcrypt/Makefile
 @@ -45,24 +45,24 @@
  	--enable-shared \
  	--enable-static \
