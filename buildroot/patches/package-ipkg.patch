@@ -9,6 +9,17 @@
  
  define BuildIPKGVariable
  ifdef Package/$(1)/$(2)
+@@ -117,8 +117,8 @@
+ 
+     $(eval $(call BuildIPKGVariable,$(1),conffiles))
+     $(eval $(call BuildIPKGVariable,$(1),preinst))
+-    $(eval $(call BuildIPKGVariable,$(1),postinst,-pkg))
+-    $(eval $(call BuildIPKGVariable,$(1),prerm,-pkg))
++    $(eval $(call BuildIPKGVariable,$(1),postinst))
++    $(eval $(call BuildIPKGVariable,$(1),prerm))
+     $(eval $(call BuildIPKGVariable,$(1),postrm))
+ 
+     $(STAGING_DIR_ROOT)/stamp/.$(1)_installed: $(STAMP_BUILT)
 @@ -179,18 +179,6 @@
  		echo -n "Description: "; $(SH_FUNC) getvar $(call shvar,Package/$(1)/description) | sed -e 's,^[[:space:]]*, ,g'; \
   	) > $$(IDIR_$(1))/CONTROL/control
