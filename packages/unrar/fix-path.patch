@@ -1,5 +1,23 @@
---- ../../../openwrt_trunk.orig/feeds/packages/utils/unrar/Makefile
+--- ../../../downloads/openwrt_trunk-r42803/feeds/packages/utils/unrar/Makefile
 +++ ../../../openwrt_trunk/feeds/packages/utils/unrar/Makefile
+@@ -9,7 +9,7 @@
+ 
+ PKG_NAME:=unrar
+ PKG_VERSION:=5.1.7
+-PKG_RELEASE:=1
++PKG_RELEASE:=1a
+ 
+ PKG_SOURCE:=unrarsrc-$(PKG_VERSION).tar.gz
+ PKG_SOURCE_URL:=http://www.rarlab.com/rar
+@@ -31,7 +31,7 @@
+   SUBMENU:=Compression
+   TITLE:=UnRAR application
+   URL:=http://www.rarlab.com/
+-  DEPENDS:=$(CXX_DEPENDS) +libpthread
++  DEPENDS:=+uclibcxx +libpthread
+ endef
+ 
+ define Package/unrar/description
 @@ -43,8 +43,8 @@
  endef
  
