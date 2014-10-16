@@ -1,6 +1,6 @@
 --- a/Makefile.lnx
 +++ b/Makefile.lnx
-@@ -44,13 +44,8 @@
+@@ -44,13 +44,7 @@
  MAINSRC = MainLinux.cpp
  SYSSRCS = SysDepLinux.cpp SysDepUnix.cpp
  
@@ -11,8 +11,7 @@
 -    CFLAGS := $(CFLAGS) -DHAS_EVENTFD
 -endif
 -
-+SYSSRCS := $(SYSSRCS) SysOsEventfd_eventfd.cpp
-+CFLAGS := $(CFLAGS) -DHAS_EVENTFD
++SYSSRCS := $(SYSSRCS) SysOsEventfd_pipe.cpp
  
  CFLAGS := $(CFLAGS) -I. -D__UNIX__ -D__LINUX__ -D_REENTRANT=1 -D_THREAD_SAFE=1 -DHAS_SYSMACHINE \
  	-D_GNU_SOURCE -D_LARGEFILE64_SOURCE -D_POSIX_PTHREAD_SEMANTICS -DSYS_HAS_SENDFILE

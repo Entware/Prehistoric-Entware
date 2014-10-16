@@ -1,5 +1,14 @@
---- ../../../downloads/openwrt_trunk-r40423/feeds/oldpackages/mail/xmail/Makefile
-+++ ../../../openwrt_trunk/feeds/oldpackages/mail/xmail/Makefile
+--- ../../../downloads/openwrt_trunk-r42803/feeds/oldpackages/mail/xmail/Makefile	2014-10-15 10:43:09.903917917 +0400
++++ ../../../openwrt_trunk/feeds/oldpackages/mail/xmail/Makefile	2014-10-16 16:23:03.509971083 +0400
+@@ -9,7 +9,7 @@
+ 
+ PKG_NAME:=xmail
+ PKG_VERSION:=1.27
+-PKG_RELEASE:=1
++PKG_RELEASE:=1a
+ 
+ PKG_SOURCE:=$(PKG_NAME)-$(PKG_VERSION).tar.gz
+ PKG_SOURCE_URL:=http://www.xmailserver.org/
 @@ -36,24 +36,18 @@
  	CFLAGS="$(TARGET_CFLAGS)" \
  	$(MAKE) -C $(PKG_BUILD_DIR) -f Makefile.lnx \
