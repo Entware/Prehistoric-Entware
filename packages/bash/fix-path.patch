@@ -1,5 +1,14 @@
 --- ../../../downloads/openwrt_trunk-r42803/feeds/packages/utils/bash/Makefile
 +++ ../../../openwrt_trunk/feeds/packages/utils/bash/Makefile
+@@ -10,7 +10,7 @@
+ BASE_VERSION:=4.3
+ 
+ PKG_NAME:=bash
+-PKG_VERSION:=$(BASE_VERSION).26
++PKG_VERSION:=$(BASE_VERSION).30
+ PKG_RELEASE:=1
+ 
+ PKG_SOURCE:=$(PKG_NAME)-$(BASE_VERSION).tar.gz
 @@ -42,7 +42,7 @@
  define Build/Configure
  	$(call Build/Configure/Default, \
