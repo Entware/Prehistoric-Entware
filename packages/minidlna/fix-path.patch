@@ -1,5 +1,14 @@
---- ../../../downloads/openwrt_trunk-r42803/feeds/packages/multimedia/minidlna/Makefile
-+++ ../../../openwrt_trunk/feeds/packages/multimedia/minidlna/Makefile
+--- ../../../downloads/openwrt_trunk-r42803/feeds/packages/multimedia/minidlna/Makefile	2014-10-15 10:43:09.811917916 +0400
++++ ../../../openwrt_trunk/feeds/packages/multimedia/minidlna/Makefile	2014-10-16 21:26:49.833639850 +0400
+@@ -9,7 +9,7 @@
+ 
+ PKG_NAME:=minidlna
+ PKG_VERSION:=1.1.3
+-PKG_RELEASE:=1
++PKG_RELEASE:=1a
+ 
+ PKG_SOURCE:=$(PKG_NAME)-$(PKG_VERSION).tar.gz
+ PKG_SOURCE_URL:=@SF/minidlna
 @@ -31,7 +31,7 @@
    TITLE:=UPnP A/V & DLNA Media Server
    URL:=http://minidlna.sourceforge.net/
@@ -58,7 +67,7 @@
 +	$(INSTALL_DIR) $(1)/opt/bin
 +	$(INSTALL_BIN) $(PKG_BUILD_DIR)/minidlna $(1)/opt/bin/
 +	$(INSTALL_DIR) $(1)/opt/etc/init.d
-+	$(INSTALL_BIN) ./files/S90minidlna $(1)/opt/etc/init.d/minidlna
++	$(INSTALL_BIN) ./files/S90minidlna $(1)/opt/etc/init.d/
 +	$(INSTALL_CONF) $(PKG_BUILD_DIR)/minidlna.conf $(1)/opt/etc
  endef
  
