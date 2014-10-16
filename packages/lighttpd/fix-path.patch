@@ -1,7 +1,7 @@
 diff -urx .svn ../../../downloads/openwrt_trunk-r42803/feeds/packages/net/lighttpd/files/lighttpd.conf ../../../openwrt_trunk/feeds/packages/net/lighttpd/files/lighttpd.conf
---- ../../../downloads/openwrt_trunk-r42803/feeds/packages/net/lighttpd/files/lighttpd.conf	2014-10-06 15:46:23.749250644 +0400
-+++ ../../../openwrt_trunk/feeds/packages/net/lighttpd/files/lighttpd.conf	2014-10-08 12:45:00.094805771 +0400
-@@ -1,10 +1,10 @@
+--- ../../../downloads/openwrt_trunk-r42803/feeds/packages/net/lighttpd/files/lighttpd.conf	2014-10-15 10:43:09.827917919 +0400
++++ ../../../openwrt_trunk/feeds/packages/net/lighttpd/files/lighttpd.conf	2014-10-16 09:00:17.362456611 +0400
+@@ -1,12 +1,12 @@
  server.modules = (
  )
  
@@ -10,11 +10,15 @@ diff -urx .svn ../../../downloads/openwrt_trunk-r42803/feeds/packages/net/lightt
  server.upload-dirs          = ( "/tmp" )
 -server.errorlog             = "/var/log/lighttpd/error.log"
 -server.pid-file             = "/var/run/lighttpd.pid"
+-server.username             = "http"
+-server.groupname            = "www-data"
 +server.errorlog             = "/opt/var/log/lighttpd/error.log"
 +server.pid-file             = "/opt/var/run/lighttpd.pid"
- server.username             = "http"
- server.groupname            = "www-data"
++#server.username             = "http"
++#server.groupname            = "www-data"
  
+ index-file.names            = ( "index.php", "index.html",
+                                 "index.htm", "default.htm",
 @@ -23,10 +23,10 @@
  #server.network-backend      = "write"
  
@@ -29,9 +33,10 @@ diff -urx .svn ../../../downloads/openwrt_trunk-r42803/feeds/packages/net/lightt
 -include_shell "cat /etc/lighttpd/conf.d/*.conf"
 +include       "/opt/etc/lighttpd/mime.conf"
 +include_shell "cat /opt/etc/lighttpd/conf.d/*.conf"
+Only in ../../../openwrt_trunk/feeds/packages/net/lighttpd/files: S80lighttpd
 diff -urx .svn ../../../downloads/openwrt_trunk-r42803/feeds/packages/net/lighttpd/Makefile ../../../openwrt_trunk/feeds/packages/net/lighttpd/Makefile
---- ../../../downloads/openwrt_trunk-r42803/feeds/packages/net/lighttpd/Makefile	2014-10-06 15:46:23.749250644 +0400
-+++ ../../../openwrt_trunk/feeds/packages/net/lighttpd/Makefile	2014-10-07 11:59:11.791925092 +0400
+--- ../../../downloads/openwrt_trunk-r42803/feeds/packages/net/lighttpd/Makefile	2014-10-15 10:43:09.827917919 +0400
++++ ../../../openwrt_trunk/feeds/packages/net/lighttpd/Makefile	2014-10-15 10:43:18.371917761 +0400
 @@ -50,8 +50,8 @@
  endef
  
@@ -140,3 +145,4 @@ diff -urx .svn ../../../downloads/openwrt_trunk-r42803/feeds/packages/net/lightt
  $(eval $(call BuildPlugin,mysql_vhost,Mysql virtual hosting,+PACKAGE_lighttpd-mod-mysql_vhost:libmysqlclient,10))
  $(eval $(call BuildPlugin,proxy,Proxy,,10))
  $(eval $(call BuildPlugin,redirect,URL redirection,+PACKAGE_lighttpd-mod-redirect:libpcre,10))
+Only in ../../../openwrt_trunk/feeds/packages/net/lighttpd: patches
