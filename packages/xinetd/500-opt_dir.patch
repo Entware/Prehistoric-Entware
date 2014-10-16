@@ -1,0 +1,11 @@
+--- a/xinetd/xconfig.h
++++ b/xinetd/xconfig.h
+@@ -29,7 +29,7 @@
+ #endif
+ 
+ 
+-#define DEFAULT_CONFIG_FILE			"/etc/xinetd.conf"
++#define DEFAULT_CONFIG_FILE			"/opt/etc/xinetd.conf"
+ 
+ /*
+  * This is the facility used by xinetd to log syslog messages

@@ -10,6 +10,7 @@ all: .done
 .done:
 	patch -d $(TOP) -p3 -i $(CURDIR)/fix-path.patch
 	cp -f ./S10xinetd ../../../openwrt_trunk/feeds/packages/net/xinetd/files/
+	cp -f ./500-opt_dir.patch ../../../openwrt_trunk/feeds/packages/net/xinetd/patches/
 	@touch $@
 
 clean:
