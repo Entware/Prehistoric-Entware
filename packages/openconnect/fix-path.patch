@@ -1,0 +1,62 @@
+diff -urx .svn ../../../downloads/openwrt_trunk-r42803/feeds/packages/net/openconnect/files/openconnect-wrapper ../../../openwrt_trunk/feeds/packages/net/openconnect/files/openconnect-wrapper
+--- ../../../downloads/openwrt_trunk-r42803/feeds/packages/net/openconnect/files/openconnect-wrapper	2014-10-15 10:43:09.835917916 +0400
++++ ../../../openwrt_trunk/feeds/packages/net/openconnect/files/openconnect-wrapper	2014-10-19 12:18:46.985518152 +0400
+@@ -11,7 +11,7 @@
+ pwfile=$1
+ shift
+ 
+-pidfile=/var/run/ocwrap-$$.pid
++pidfile=/opt/var/run/ocwrap-$$.pid
+ 
+ cleanup()
+ {
+@@ -25,7 +25,7 @@
+ trap cleanup 1 2 3 6 15
+ 
+ rm -f "$pidfile"
+-/usr/sbin/openconnect $* <$pwfile &
++/opt/sbin/openconnect $* <$pwfile &
+ pid=$!
+ 
+ wait $pid
+diff -urx .svn ../../../downloads/openwrt_trunk-r42803/feeds/packages/net/openconnect/Makefile ../../../openwrt_trunk/feeds/packages/net/openconnect/Makefile
+--- ../../../downloads/openwrt_trunk-r42803/feeds/packages/net/openconnect/Makefile	2014-10-15 10:43:09.835917916 +0400
++++ ../../../openwrt_trunk/feeds/packages/net/openconnect/Makefile	2014-10-19 12:19:39.825515457 +0400
+@@ -24,7 +24,7 @@
+ define Package/openconnect
+   SECTION:=net
+   CATEGORY:=Network
+-  DEPENDS:=+libxml2 +kmod-tun +resolveip +OPENCONNECT_OPENSSL:libopenssl +OPENCONNECT_GNUTLS:libgnutls
++  DEPENDS:=+libxml2 +resolveip +OPENCONNECT_OPENSSL:libopenssl +OPENCONNECT_GNUTLS:libgnutls
+   TITLE:=OpenConnect VPN client (Cisco AnyConnect compatible)
+   MAINTAINER:=Nikos Mavrogiannopoulos <n.mavrogiannopoulos@gmail.com>
+   URL:=http://www.infradead.org/openconnect/
+@@ -42,7 +42,7 @@
+ 
+ CONFIGURE_ARGS += \
+ 	--disable-shared \
+-	--with-vpnc-script=/lib/netifd/vpnc-script
++	--with-vpnc-script=/opt/lib/netifd/vpnc-script
+ 
+ ifeq ($(CONFIG_OPENCONNECT_OPENSSL),y)
+ CONFIGURE_ARGS += \
+@@ -50,13 +50,12 @@
+ endif
+ 
+ define Package/openconnect/install
+-	$(INSTALL_DIR) $(1)/etc/openconnect/
+-	$(INSTALL_DIR) $(1)/lib/netifd/proto
+-	$(INSTALL_BIN) ./files/openconnect.sh $(1)/lib/netifd/proto/
+-	$(INSTALL_BIN) ./files/vpnc-script $(1)/lib/netifd/
+-	$(INSTALL_DIR) $(1)/usr/sbin
+-	$(INSTALL_BIN) $(PKG_BUILD_DIR)/openconnect $(1)/usr/sbin/
+-	$(INSTALL_BIN) ./files/openconnect-wrapper $(1)/usr/sbin/
++	$(INSTALL_DIR) $(1)/opt/etc/openconnect/
++	$(INSTALL_DIR) $(1)/opt/lib/netifd/
++	$(INSTALL_BIN) ./files/vpnc-script $(1)/opt/lib/netifd/
++	$(INSTALL_DIR) $(1)/opt/sbin
++	$(INSTALL_BIN) $(PKG_BUILD_DIR)/openconnect $(1)/opt/sbin/
++	$(INSTALL_BIN) ./files/openconnect-wrapper $(1)/opt/sbin/
+ endef
+ 
+ $(eval $(call BuildPackage,openconnect))
