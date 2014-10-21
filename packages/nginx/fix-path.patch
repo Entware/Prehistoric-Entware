@@ -1,6 +1,15 @@
 diff -urx .svn ../../../downloads/openwrt_trunk-r42803/feeds/packages/net/nginx/Makefile ../../../openwrt_trunk/feeds/packages/net/nginx/Makefile
---- ../../../downloads/openwrt_trunk-r42803/feeds/packages/net/nginx/Makefile	2014-10-09 19:10:17.736806523 +0400
-+++ ../../../openwrt_trunk/feeds/packages/net/nginx/Makefile	2014-10-14 16:47:07.049088948 +0400
+--- ../../../downloads/openwrt_trunk-r42803/feeds/packages/net/nginx/Makefile	2014-10-15 10:43:09.839917916 +0400
++++ ../../../openwrt_trunk/feeds/packages/net/nginx/Makefile	2014-10-20 12:28:50.855926679 +0400
+@@ -9,7 +9,7 @@
+ 
+ PKG_NAME:=nginx
+ PKG_VERSION:=1.4.7
+-PKG_RELEASE:=2
++PKG_RELEASE:=2a
+ 
+ PKG_SOURCE:=$(PKG_NAME)-$(PKG_VERSION).tar.gz
+ PKG_SOURCE_URL:=http://nginx.org/download/
 @@ -75,7 +75,7 @@
  config_files=nginx.conf mime.types fastcgi_params koi-utf koi-win win-utf
  
@@ -10,7 +19,7 @@ diff -urx .svn ../../../downloads/openwrt_trunk-r42803/feeds/packages/net/nginx/
  endef
  
  ADDITIONAL_MODULES:=
-@@ -185,31 +185,36 @@
+@@ -185,31 +185,38 @@
  define Build/Configure
  	# TODO: fix --crossbuild
  	(cd $(PKG_BUILD_DIR) ;\
@@ -37,6 +46,8 @@ diff -urx .svn ../../../downloads/openwrt_trunk-r42803/feeds/packages/net/nginx/
 +			--http-client-body-temp-path=/opt/var/lib/nginx/body \
 +			--http-proxy-temp-path=/opt/var/lib/nginx/proxy \
 +			--http-fastcgi-temp-path=/opt/var/lib/nginx/fastcgi \
++			--http-uwsgi-temp-path=/opt/var/lib/nginx/uwsgi \
++			--http-scgi-temp-path=/opt/var/lib/nginx/scgi \
  			--with-cc="$(TARGET_CC)" \
  			--with-cc-opt="$(TARGET_CPPFLAGS) $(TARGET_CFLAGS)" \
  			--with-ld-opt="$(TARGET_LDFLAGS)" )
@@ -63,7 +74,7 @@ diff -urx .svn ../../../downloads/openwrt_trunk-r42803/feeds/packages/net/nginx/
  endef
  
  define Build/Prepare
-@@ -296,9 +301,9 @@
+@@ -296,9 +303,9 @@
  endef
  
  define Package/nginx-naxsi/install
@@ -76,7 +87,7 @@ diff -urx .svn ../../../downloads/openwrt_trunk-r42803/feeds/packages/net/nginx/
  endef
  
  define Download/nginx-syslog
-@@ -315,15 +320,15 @@
+@@ -315,15 +322,15 @@
  endef
  
  define Package/nginx-proxyprotocol/install
@@ -99,8 +110,8 @@ diff -urx .svn ../../../downloads/openwrt_trunk-r42803/feeds/packages/net/nginx/
  
  
 diff -urx .svn ../../../downloads/openwrt_trunk-r42803/feeds/packages/net/nginx/patches/200-config.patch ../../../openwrt_trunk/feeds/packages/net/nginx/patches/200-config.patch
---- ../../../downloads/openwrt_trunk-r42803/feeds/packages/net/nginx/patches/200-config.patch	2014-10-09 19:10:17.736806523 +0400
-+++ ../../../openwrt_trunk/feeds/packages/net/nginx/patches/200-config.patch	2014-10-09 19:10:26.376806364 +0400
+--- ../../../downloads/openwrt_trunk-r42803/feeds/packages/net/nginx/patches/200-config.patch	2014-10-15 10:43:09.839917916 +0400
++++ ../../../openwrt_trunk/feeds/packages/net/nginx/patches/200-config.patch	2014-10-15 10:43:20.003917731 +0400
 @@ -1,18 +1,43 @@
 ---- a/conf/nginx.conf
 -+++ b/conf/nginx.conf
