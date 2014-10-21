@@ -2,7 +2,7 @@
 
 ENABLED=yes
 PROCS=zabbix_agentd
-ARGS="-c /opt/etc/zabbix/$PROCS.conf"
+ARGS="-c /opt/etc/$PROCS.conf"
 PREARGS=""
 DESC=$PROCS
 PATH=/opt/sbin:/opt/bin:/opt/usr/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin
