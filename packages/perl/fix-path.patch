@@ -1,6 +1,6 @@
 diff -urx .svn ../../../downloads/openwrt_trunk-r42803/feeds/packages/lang/perl/files/config.sh-mipsel.in ../../../openwrt_trunk/feeds/packages/lang/perl/files/config.sh-mipsel.in
---- ../../../downloads/openwrt_trunk-r42803/feeds/packages/lang/perl/files/config.sh-mipsel.in	2014-10-09 19:10:17.712806523 +0400
-+++ ../../../openwrt_trunk/feeds/packages/lang/perl/files/config.sh-mipsel.in	2014-10-09 19:10:27.056806351 +0400
+--- ../../../downloads/openwrt_trunk-r42803/feeds/packages/lang/perl/files/config.sh-mipsel.in	2014-10-15 10:43:09.807917917 +0400
++++ ../../../openwrt_trunk/feeds/packages/lang/perl/files/config.sh-mipsel.in	2014-10-15 10:43:20.311917728 +0400
 @@ -691,21 +691,21 @@
  inc_version_list_init='0'
  incpath=''
@@ -146,8 +146,17 @@ diff -urx .svn ../../../downloads/openwrt_trunk-r42803/feeds/packages/lang/perl/
  version_patchlevel_string='version 20 subversion 0'
  PERL_VERSION=20
 diff -urx .svn ../../../downloads/openwrt_trunk-r42803/feeds/packages/lang/perl/Makefile ../../../openwrt_trunk/feeds/packages/lang/perl/Makefile
---- ../../../downloads/openwrt_trunk-r42803/feeds/packages/lang/perl/Makefile	2014-10-09 19:10:17.712806523 +0400
-+++ ../../../openwrt_trunk/feeds/packages/lang/perl/Makefile	2014-10-09 19:10:27.056806351 +0400
+--- ../../../downloads/openwrt_trunk-r42803/feeds/packages/lang/perl/Makefile	2014-10-15 10:43:09.807917917 +0400
++++ ../../../openwrt_trunk/feeds/packages/lang/perl/Makefile	2014-10-21 10:10:29.735363271 +0400
+@@ -9,7 +9,7 @@
+ 
+ PKG_NAME:=perl
+ PKG_VERSION:=5.20.0
+-PKG_RELEASE:=5
++PKG_RELEASE:=5a
+ 
+ PKG_SOURCE_URL:=ftp://ftp.cpan.org/pub/CPAN/src/5.0 \
+ 		http://www.cpan.org/src/5.0/perl-5.20.0.tar.gz \
 @@ -38,7 +38,7 @@
  HOST_PERL_PREFIX:=$(STAGING_DIR_HOST)/usr
  ifneq ($(CONFIG_USE_EGLIBC),)
@@ -168,7 +177,7 @@ diff -urx .svn ../../../downloads/openwrt_trunk-r42803/feeds/packages/lang/perl/
  		-e 's!%%EXTRA_PERLLIBS%%!$(EXTRA_LIBS:%=-l%)!g' \
  		-e 's!%%EXTRA_PERLLIBDIRS%%!$(EXTRA_LIBDIRS:%=-L%)!g' \
  		-e 's!%%IPV6%%!$(if $($(CONFIG_IPV6)),define,undef)!g' \
-@@ -106,17 +106,17 @@
+@@ -106,17 +106,18 @@
  endef
  
  define Build/InstallDev
@@ -190,12 +199,13 @@ diff -urx .svn ../../../downloads/openwrt_trunk-r42803/feeds/packages/lang/perl/
 -	$(CP) $(PKG_INSTALL_DIR)/usr/lib/perl5/5.20/CORE/libperl.so $(1)/usr/lib/perl5/5.20/CORE/
 +	$(INSTALL_DIR) $(1)/opt/lib/perl5/5.20/CORE
 +	$(CP) $(PKG_INSTALL_DIR)/opt/lib/perl5/5.20/CORE/libperl.so $(1)/opt/lib/perl5/5.20/CORE/
++	$(LN) ./perl5/5.20/CORE/libperl.so $(1)/opt/lib/libperl.so
  endef
  
  
 diff -urx .svn ../../../downloads/openwrt_trunk-r42803/feeds/packages/lang/perl/perlbase.mk ../../../openwrt_trunk/feeds/packages/lang/perl/perlbase.mk
---- ../../../downloads/openwrt_trunk-r42803/feeds/packages/lang/perl/perlbase.mk	2014-10-09 19:10:17.712806523 +0400
-+++ ../../../openwrt_trunk/feeds/packages/lang/perl/perlbase.mk	2014-10-09 19:10:27.056806351 +0400
+--- ../../../downloads/openwrt_trunk-r42803/feeds/packages/lang/perl/perlbase.mk	2014-10-15 10:43:09.807917917 +0400
++++ ../../../openwrt_trunk/feeds/packages/lang/perl/perlbase.mk	2014-10-15 10:43:20.311917728 +0400
 @@ -1187,8 +1187,8 @@
  
  define Package/perlbase-test/install
@@ -208,8 +218,8 @@ diff -urx .svn ../../../downloads/openwrt_trunk-r42803/feeds/packages/lang/perl/
  
  $(eval $(call BuildPackage,perlbase-test))
 diff -urx .svn ../../../downloads/openwrt_trunk-r42803/feeds/packages/lang/perl/perlmod.mk ../../../openwrt_trunk/feeds/packages/lang/perl/perlmod.mk
---- ../../../downloads/openwrt_trunk-r42803/feeds/packages/lang/perl/perlmod.mk	2014-10-09 19:10:17.712806523 +0400
-+++ ../../../openwrt_trunk/feeds/packages/lang/perl/perlmod.mk	2014-10-14 14:54:28.733230259 +0400
+--- ../../../downloads/openwrt_trunk-r42803/feeds/packages/lang/perl/perlmod.mk	2014-10-15 10:43:09.807917917 +0400
++++ ../../../openwrt_trunk/feeds/packages/lang/perl/perlmod.mk	2014-10-15 10:43:20.315917726 +0400
 @@ -5,12 +5,12 @@
  HOST_PERL_PREFIX:=$(STAGING_DIR_HOST)/usr
  ifneq ($(CONFIG_USE_EGLIBC),)
