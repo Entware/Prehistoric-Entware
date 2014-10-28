@@ -1,5 +1,14 @@
---- ../../../downloads/openwrt_trunk-r42803/feeds/packages/net/apache/Makefile
-+++ ../../../openwrt_trunk/feeds/packages/net/apache/Makefile
+--- ../../../downloads/openwrt_trunk-r42803/feeds/packages/net/apache/Makefile	2014-10-15 10:43:09.823917919 +0400
++++ ../../../openwrt_trunk/feeds/packages/net/apache/Makefile	2014-10-28 14:46:12.231974846 +0300
+@@ -9,7 +9,7 @@
+ 
+ PKG_NAME:=apache
+ PKG_VERSION:=2.2.29
+-PKG_RELEASE:=1
++PKG_RELEASE:=1a
+ PKG_SOURCE_NAME:=httpd
+ PKG_MAINTAINER:=Thomas Heil <heil@terminal-consulting.de>
+ PKG_LICENSE:=Apache License
 @@ -48,33 +48,23 @@
  $(call Package/apache/Default/description)
   .
@@ -61,12 +70,13 @@
  		--enable-http \
  		--enable-ssl \
  		--enable-proxy \
-@@ -104,62 +94,51 @@
+@@ -104,62 +94,52 @@
  		--enable-maintainer-mode \
  		--enable-mime-magic \
  		--without-suexec-bin \
 -		--sysconfdir=/etc/apache \
 +		--sysconfdir=/opt/etc/apache \
++		--enable-modules=all \
  		ap_cv_void_ptr_lt_long=no \
 -		logfiledir="/var/log" \
 -		runtimedir="/var/run" \
