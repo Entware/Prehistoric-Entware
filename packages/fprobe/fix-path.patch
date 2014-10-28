@@ -1,0 +1,26 @@
+--- ../../../downloads/openwrt_trunk-r42803/feeds/oldpackages/net/fprobe/Makefile
++++ ../../../openwrt_trunk/feeds/oldpackages/net/fprobe/Makefile
+@@ -27,9 +27,9 @@
+ 
+ define Build/Configure
+ 	$(call Build/Configure/Default, \
+-		--with-piddir=/var \
+-		--with-pcap="$(STAGING_DIR)/usr/include" \
+-		--with-libpcap="$(STAGING_DIR)/usr/lib" \
++		--with-piddir=/opt/var \
++		--with-pcap="$(STAGING_DIR)/opt/include" \
++		--with-libpcap="$(STAGING_DIR)/opt/lib" \
+ 		--with-membulk=index8 \
+ 		--with-hash=xor8 \
+ 	)
+@@ -40,8 +40,8 @@
+ endef
+ 
+ define Package/fprobe/install
+-	$(INSTALL_DIR) $(1)/usr/bin
+-	$(INSTALL_BIN) $(PKG_BUILD_DIR)/src/fprobe $(1)/usr/bin/
++	$(INSTALL_DIR) $(1)/opt/bin
++	$(INSTALL_BIN) $(PKG_BUILD_DIR)/src/fprobe $(1)/opt/bin/
+ endef
+ 
+ $(eval $(call BuildPackage,fprobe))
