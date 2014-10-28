@@ -1,0 +1,76 @@
+--- a/xmail
++++ b/xmail
+@@ -9,17 +9,17 @@
+ # Version:	@(#)skeleton  1.8  03-Mar-1998  miquels@cistron.nl
+ #
+ 
+-XMAIL_ROOT=/var/MailRoot
+-XMAIL_CMD_LINE=""
++XMAIL_ROOT=/opt/var/MailRoot
++XMAIL_CMD_LINE="-SX 1 -Qn 1 -Yt 1 -Ln 1 -PX 1 -CX 1"
+ PATH=$XMAIL_ROOT/bin:/usr/local/sbin:/usr/local/bin:/sbin:/bin:/usr/sbin:/usr/bin
+-DAEMON=$XMAIL_ROOT/bin/XMail
++DAEMON=/opt/bin/XMail
+ NAME=XMail
+ DESC="XMail Server"
+ 
+ test -f $DAEMON || exit 0
+ 
+ set -e
+-ulimit -c 20000
++ulimit -c 10000
+ ulimit -s 128
+ 
+ start_xmail()
+@@ -28,9 +28,9 @@
+     export MAIL_ROOT
+     MAIL_CMD_LINE=$XMAIL_CMD_LINE
+     export MAIL_CMD_LINE
+-    rm -f /var/run/$NAME.pid
++    rm -f /opt/var/run/$NAME.pid
+     $DAEMON
+-    while [ ! -f /var/run/$NAME.pid ]
++    while [ ! -f /opt/var/run/$NAME.pid ]
+     do
+         sleep 1
+     done
+@@ -38,10 +38,10 @@
+ 
+ stop_xmail()
+ {
+-    if [ -f /var/run/$NAME.pid ]
++    if [ -f /opt/var/run/$NAME.pid ]
+     then
+         echo `date` > $XMAIL_ROOT/.shutdown
+-        kill -INT `cat /var/run/$NAME.pid`
++        kill -INT `cat /opt/var/run/$NAME.pid`
+         while [ -f $XMAIL_ROOT/.shutdown ]
+         do
+             sleep 1
+@@ -54,7 +54,7 @@
+   start)
+       echo -n "Starting $DESC: "
+       start_xmail
+-      echo "$NAME.[" `cat /var/run/$NAME.pid` "]"
++      echo "$NAME.[" `cat /opt/var/run/$NAME.pid` "]"
+ 	;;
+   stop)
+       echo -n "Stopping $DESC: "
+@@ -71,7 +71,7 @@
+ 	#
+ 	# echo "Reloading $DESC configuration files."
+ 	# start-stop-daemon --stop --signal 1 --quiet --pidfile \
+-	#	/var/run/$NAME.pid --exec $DAEMON
++	#	/opt/var/run/$NAME.pid --exec $DAEMON
+   #;;
+   restart|force-reload)
+ 	#
+@@ -83,7 +83,7 @@
+ 	stop_xmail
+ 	sleep 1
+ 	start_xmail
+-        echo "$NAME.[" `cat /var/run/$NAME.pid` "]"	
++        echo "$NAME.[" `cat /opt/var/run/$NAME.pid` "]"	
+ 	;;
+   *)
+ 	N=/etc/init.d/$NAME
