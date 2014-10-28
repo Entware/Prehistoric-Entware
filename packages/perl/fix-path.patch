@@ -1,6 +1,6 @@
 diff -urx .svn ../../../downloads/openwrt_trunk-r42803/feeds/packages/lang/perl/files/config.sh-mipsel.in ../../../openwrt_trunk/feeds/packages/lang/perl/files/config.sh-mipsel.in
 --- ../../../downloads/openwrt_trunk-r42803/feeds/packages/lang/perl/files/config.sh-mipsel.in	2014-10-15 10:43:09.807917917 +0400
-+++ ../../../openwrt_trunk/feeds/packages/lang/perl/files/config.sh-mipsel.in	2014-10-15 10:43:20.311917728 +0400
++++ ../../../openwrt_trunk/feeds/packages/lang/perl/files/config.sh-mipsel.in	2014-10-28 11:17:35.048202448 +0300
 @@ -691,21 +691,21 @@
  inc_version_list_init='0'
  incpath=''
@@ -30,6 +30,15 @@ diff -urx .svn ../../../downloads/openwrt_trunk-r42803/feeds/packages/lang/perl/
  installstyle='lib/perl5'
  installusrbinperl='define'
  installvendorarch=''
+@@ -725,7 +725,7 @@
+ ksh=''
+ ld='%%LD%%'
+ lddlflags='-shared %%LDFLAGS%%'
+-ldflags='%%EXTRA_PERLLIBDIRS%%'
++ldflags='%%LDFLAGS%%'
+ ldflags_uselargefiles=''
+ ldlibpthname='LD_LIBRARY_PATH'
+ less='less'
 @@ -821,15 +821,15 @@
  perl_patchlevel=''
  perladmin='root@merope.dev.null'
@@ -121,7 +130,7 @@ diff -urx .svn ../../../downloads/openwrt_trunk-r42803/feeds/packages/lang/perl/
  timetype='time_t'
  tmpnam_r_proto='0'
  to=':'
-@@ -1126,15 +1126,15 @@
+@@ -1126,21 +1126,21 @@
  api_version='20'
  api_versionstring='5.20.0'
  dynamic_ext='B Compress/Raw/Bzip2 Compress/Raw/Zlib Cwd DB_File Data/Dumper Devel/PPPort Devel/Peek Digest/MD5 Digest/SHA Encode Fcntl File/DosGlob File/Glob Filter/Util/Call GDBM_File Hash/Util Hash/Util/FieldHash I18N/Langinfo IO IPC/SysV List/Util MIME/Base64 Math/BigInt/FastCalc Opcode POSIX PerlIO/encoding PerlIO/mmap PerlIO/scalar PerlIO/via SDBM_File Socket Storable Sys/Hostname Sys/Syslog Tie/Hash/NamedCapture Time/HiRes Time/Piece Unicode/Collate Unicode/Normalize XS/APItest XS/Typemap arybase attributes mro re threads threads/shared'
@@ -145,15 +154,22 @@ diff -urx .svn ../../../downloads/openwrt_trunk-r42803/feeds/packages/lang/perl/
  version='5.20.0'
  version_patchlevel_string='version 20 subversion 0'
  PERL_VERSION=20
+ PERL_API_VERSION=20
+ patchlevel='20'
+-ccdlflags='-fPIC -Wl,-rpath,/usr/lib/perl5/5.20/CORE'
++ccdlflags='-fPIC -Wl,-rpath,/opt/lib/perl5/5.20/CORE:/opt/lib'
+ 
+ # Make perl use these tools instead of the target binaries during build.
+ hostgenerate='%%HOSTGENERATE%%'
 diff -urx .svn ../../../downloads/openwrt_trunk-r42803/feeds/packages/lang/perl/Makefile ../../../openwrt_trunk/feeds/packages/lang/perl/Makefile
 --- ../../../downloads/openwrt_trunk-r42803/feeds/packages/lang/perl/Makefile	2014-10-15 10:43:09.807917917 +0400
-+++ ../../../openwrt_trunk/feeds/packages/lang/perl/Makefile	2014-10-21 10:10:29.735363271 +0400
++++ ../../../openwrt_trunk/feeds/packages/lang/perl/Makefile	2014-10-28 11:03:02.172219008 +0300
 @@ -9,7 +9,7 @@
  
  PKG_NAME:=perl
  PKG_VERSION:=5.20.0
 -PKG_RELEASE:=5
-+PKG_RELEASE:=5a
++PKG_RELEASE:=5b
  
  PKG_SOURCE_URL:=ftp://ftp.cpan.org/pub/CPAN/src/5.0 \
  		http://www.cpan.org/src/5.0/perl-5.20.0.tar.gz \
@@ -172,12 +188,12 @@ diff -urx .svn ../../../downloads/openwrt_trunk-r42803/feeds/packages/lang/perl/
  		-e 's!%%LDFLAGS%%!-rdynamic $(TARGET_LDFLAGS)!g' \
 -		-e 's!%%LIBDIRS%%!$(STAGING_DIR)/lib $(STAGING_DIR)/usr/lib!g' \
 -		-e 's!%%INCDIRS%%!$(STAGING_DIR)/include $(STAGING_DIR)/usr/include!g' \
-+		-e 's!%%LIBDIRS%%!$(STAGING_DIR)/lib $(STAGING_DIR)/opt/lib!g' \
-+		-e 's!%%INCDIRS%%!$(STAGING_DIR)/include $(STAGING_DIR)/opt/include!g' \
++		-e 's!%%LIBDIRS%%!$(STAGING_DIR)/opt/lib!g' \
++		-e 's!%%INCDIRS%%!$(STAGING_DIR)/opt/include!g' \
  		-e 's!%%EXTRA_PERLLIBS%%!$(EXTRA_LIBS:%=-l%)!g' \
  		-e 's!%%EXTRA_PERLLIBDIRS%%!$(EXTRA_LIBDIRS:%=-L%)!g' \
  		-e 's!%%IPV6%%!$(if $($(CONFIG_IPV6)),define,undef)!g' \
-@@ -106,17 +106,18 @@
+@@ -106,17 +106,17 @@
  endef
  
  define Build/InstallDev
@@ -199,7 +215,6 @@ diff -urx .svn ../../../downloads/openwrt_trunk-r42803/feeds/packages/lang/perl/
 -	$(CP) $(PKG_INSTALL_DIR)/usr/lib/perl5/5.20/CORE/libperl.so $(1)/usr/lib/perl5/5.20/CORE/
 +	$(INSTALL_DIR) $(1)/opt/lib/perl5/5.20/CORE
 +	$(CP) $(PKG_INSTALL_DIR)/opt/lib/perl5/5.20/CORE/libperl.so $(1)/opt/lib/perl5/5.20/CORE/
-+	$(LN) ./perl5/5.20/CORE/libperl.so $(1)/opt/lib/libperl.so
  endef
  
  
