@@ -1,0 +1,152 @@
+--- ../../../downloads/openwrt_trunk-r42803/feeds/packages/sound/pulseaudio/Makefile	2014-10-15 10:43:09.851917916 +0400
++++ ../../../openwrt_trunk/feeds/packages/sound/pulseaudio/Makefile	2014-10-29 11:31:22.526626823 +0300
+@@ -53,10 +53,10 @@
+ endef
+ 
+ define Package/pulseaudio-daemon/conffiles
+-/etc/pulse/client.conf
+-/etc/pulse/daemon.conf
+-/etc/pulse/default.pa
+-/etc/pulse/system.pa
++/opt/etc/pulse/client.conf
++/opt/etc/pulse/daemon.conf
++/opt/etc/pulse/default.pa
++/opt/etc/pulse/system.pa
+ endef
+ 
+ define Package/pulseaudio-tools
+@@ -102,92 +102,88 @@
+ 	--disable-dbus
+ 
+ CONFIGURE_VARS += \
+-	PKG_CONFIG_LIBDIR="$(STAGING_DIR)/usr/lib/pkgconfig"
++	PKG_CONFIG_LIBDIR="$(STAGING_DIR)/opt/lib/pkgconfig"
+ 
+ #SUPP_LIBS:=-L$(INTL_PREFIX)/lib -L$(ICONV_PREFIX)/lib
+ TARGET_CFLAGS += -std=gnu99
+ 
+ define Build/InstallDev
+ 	$(INSTALL_DIR) \
+-		$(1)/usr/lib/pkgconfig \
+-		$(1)/usr/include/pulse \
+-		$(1)/usr/lib \
+-		$(1)/usr/lib/pulseaudio
+-	$(CP) \
+-		$(PKG_INSTALL_DIR)/usr/include/pulse/* \
+-		$(1)/usr/include/pulse
++		$(1)/opt/lib/pkgconfig \
++		$(1)/opt/include/pulse \
++		$(1)/opt/lib \
++		$(1)/opt/lib/pulseaudio
++	$(CP) \
++		$(PKG_INSTALL_DIR)/opt/include/pulse/* \
++		$(1)/opt/include/pulse
+ 	$(CP) \
+-		$(PKG_INSTALL_DIR)/usr/lib/pkgconfig/*.pc \
+-		$(1)/usr/lib/pkgconfig
++		$(PKG_INSTALL_DIR)/opt/lib/pkgconfig/*.pc \
++		$(1)/opt/lib/pkgconfig
+ 	$(CP) \
+-		$(PKG_INSTALL_DIR)/usr/lib/*.so* \
+-		$(1)/usr/lib/
++		$(PKG_INSTALL_DIR)/opt/lib/*.so* \
++		$(1)/opt/lib/
+ 	$(CP) \
+-		$(PKG_INSTALL_DIR)/usr/lib/pulseaudio/* \
+-		$(1)/usr/lib/pulseaudio/
++		$(PKG_INSTALL_DIR)/opt/lib/pulseaudio/* \
++		$(1)/opt/lib/pulseaudio/
+ endef
+ 
+ define Package/pulseaudio-daemon/install
+ 	$(INSTALL_DIR) \
+-		$(1)/etc/pulse \
+-		$(1)/etc/init.d \
+-		$(1)/usr/bin \
+-		$(1)/usr/lib \
+-		$(1)/usr/lib/pulseaudio \
+-		$(1)/usr/lib/pulse-$(PKG_VERSION)/modules
++		$(1)/opt/etc/pulse \
++		$(1)/opt/etc/init.d \
++		$(1)/opt/bin \
++		$(1)/opt/lib \
++		$(1)/opt/lib/pulseaudio \
++		$(1)/opt/lib/pulse-$(PKG_VERSION)/modules
+ 
+ 	$(INSTALL_BIN) \
+-		$(PKG_INSTALL_DIR)/usr/bin/pulseaudio \
+-		$(1)/usr/bin/pulseaudio
+-
+-	$(INSTALL_BIN) \
+-		./files/pulseaudio.init \
+-		$(1)/etc/init.d/pulseaudio
++		$(PKG_INSTALL_DIR)/opt/bin/pulseaudio \
++		$(1)/opt/bin/pulseaudio
+ 
+ 	$(INSTALL_CONF) \
+-		$(PKG_INSTALL_DIR)/etc/pulse/* \
+-		$(1)/etc/pulse
++		$(PKG_INSTALL_DIR)/opt/etc/pulse/* \
++		$(1)/opt/etc/pulse
+ 
+ 	$(CP) \
+-		$(PKG_INSTALL_DIR)/usr/lib/*.so* \
+-		$(1)/usr/lib/
++		$(PKG_INSTALL_DIR)/opt/lib/*.so* \
++		$(1)/opt/lib/
+ 
+ 	$(CP) \
+-		$(PKG_INSTALL_DIR)/usr/lib/pulseaudio/* \
+-		$(1)/usr/lib/pulseaudio/
++		$(PKG_INSTALL_DIR)/opt/lib/pulseaudio/* \
++		$(1)/opt/lib/pulseaudio/
+ 
+ 	$(CP) \
+-		$(PKG_INSTALL_DIR)/usr/lib/pulse-$(PKG_VERSION)/modules/lib*.so \
+-		$(1)/usr/lib/
++		$(PKG_INSTALL_DIR)/opt/lib/pulse-$(PKG_VERSION)/modules/lib*.so \
++		$(1)/opt/lib/
+ 
+ 	$(CP) \
+-		$(PKG_INSTALL_DIR)/usr/lib/pulse-$(PKG_VERSION)/modules/module*.so \
+-		$(1)/usr/lib/pulse-$(PKG_VERSION)/modules/
++		$(PKG_INSTALL_DIR)/opt/lib/pulse-$(PKG_VERSION)/modules/module*.so \
++		$(1)/opt/lib/pulse-$(PKG_VERSION)/modules/
+ 
+-	chmod -R 0644 $(1)/etc/pulse/*
++	chmod -R 0644 $(1)/opt/etc/pulse/*
+ endef
+ 
+ define Package/pulseaudio-tools/install
+ 	$(INSTALL_DIR) \
+-		$(1)/usr/bin
++		$(1)/opt/bin
+ 
+ 	$(INSTALL_BIN) \
+-		$(PKG_INSTALL_DIR)/usr/bin/pa* \
+-		$(1)/usr/bin/
++		$(PKG_INSTALL_DIR)/opt/bin/pa* \
++		$(1)/opt/bin/
+ endef
+ 
+ define Package/pulseaudio-profiles/install
+ 	$(INSTALL_DIR) \
+-		$(1)/usr/share/pulseaudio/alsa-mixer/paths \
+-		$(1)/usr/share/pulseaudio/alsa-mixer/profile-sets
++		$(1)/opt/share/pulseaudio/alsa-mixer/paths \
++		$(1)/opt/share/pulseaudio/alsa-mixer/profile-sets
+ 
+ 	$(INSTALL_CONF) \
+-		$(PKG_INSTALL_DIR)/usr/share/pulseaudio/alsa-mixer/paths/* \
+-		$(1)/usr/share/pulseaudio/alsa-mixer/paths
++		$(PKG_INSTALL_DIR)/opt/share/pulseaudio/alsa-mixer/paths/* \
++		$(1)/opt/share/pulseaudio/alsa-mixer/paths
+ 
+ 	$(INSTALL_CONF) \
+-		$(PKG_INSTALL_DIR)/usr/share/pulseaudio/alsa-mixer/profile-sets/* \
+-		$(1)/usr/share/pulseaudio/alsa-mixer/profile-sets
++		$(PKG_INSTALL_DIR)/opt/share/pulseaudio/alsa-mixer/profile-sets/* \
++		$(1)/opt/share/pulseaudio/alsa-mixer/profile-sets
+ endef
+ 
+ $(eval $(call BuildPackage,pulseaudio-daemon))
