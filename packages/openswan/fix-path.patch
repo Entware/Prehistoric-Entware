@@ -1,0 +1,75 @@
+--- ../../../downloads/openwrt_trunk-r42803/feeds/oldpackages/net/openswan/Makefile
++++ ../../../openwrt_trunk/feeds/oldpackages/net/openswan/Makefile
+@@ -6,7 +6,7 @@
+ #
+ 
+ include $(TOPDIR)/rules.mk
+-include $(INCLUDE_DIR)/kernel.mk
++#include $(INCLUDE_DIR)/kernel.mk
+ 
+ PKG_NAME:=openswan
+ PKG_VERSION:=2.6.41
+@@ -36,7 +36,7 @@
+   SECTION:=net
+   CATEGORY:=Network
+   TITLE+= (daemon)
+-  DEPENDS+= +libgmp +ip
++  DEPENDS+= +libgmp
+ endef
+ 
+ define Package/openswan/description
+@@ -68,43 +68,32 @@
+ 	ARCH="$(LINUX_KARCH)" \
+ 	CROSS_COMPILE="$(TARGET_CROSS)" \
+ 	USERCOMPILE="$(TARGET_CFLAGS) -I$(PKG_BUILD_DIR)/ports/linux/include -I$(PKG_BUILD_DIR)/linux/include -I$(PKG_BUILD_DIR)/include $(TARGET_CPPFLAGS) $(TARGET_LDFLAGS)" \
+-	IPSECDIR="/usr/lib/ipsec" \
+-	INC_USRLOCAL="/usr" \
+-	INC_RCDEFAULT="/etc/init.d" \
++	USERLINK="$(TARGET_LDFLAGS)" \
++	IPSECDIR="/opt/lib/ipsec" \
++	INC_USRLOCAL="/opt" \
++	FINALCONFDIR="/opt/etc" \
++	INC_RCDEFAULT="/opt/etc/init.d" \
+ 	MODPROBE="/sbin/insmod" \
+ 	DESTDIR="$(PKG_INSTALL_DIR)"
+ 
+ define Build/Compile
+ 	+$(MAKE) $(PKG_JOBS) $(OPENSWAN_MAKEFLAGS) programs
+-	+$(MAKE) $(PKG_JOBS) $(OPENSWAN_MAKEFLAGS) module
++#	+$(MAKE) $(PKG_JOBS) $(OPENSWAN_MAKEFLAGS) module
+ endef
+ 
+ define Build/Install
+ 	$(MAKE) $(OPENSWAN_MAKEFLAGS) install
+ endef
+ 
+-define Package/openswan/conffiles
+-/etc/ipsec.conf
+-/etc/ipsec.secrets
+-/etc/config/ipsec
+-endef
+-
+ define Package/openswan/install
+ 	$(CP) $(PKG_INSTALL_DIR)/* $(1)
+-	$(INSTALL_DIR) $(1)/etc/init.d
+-	$(CP) ./files/ipsec.init $(1)/etc/init.d/ipsec
+-	$(CP) ./files/ipsec.conf $(1)/etc/ipsec.conf
+-	$(CP) ./files/ipsec.secrets $(1)/etc/ipsec.secrets
+-	$(INSTALL_DIR) $(1)/etc/config
+-	$(INSTALL_CONF) ./files/ipsec.config $(1)/etc/config/ipsec
+-	rm -rf $(1)/usr/share
+-	rm -rf $(1)/usr/man
++	rm -rf $(1)/opt/share
++	rm -rf $(1)/opt/man
+ 	rm -rf $(1)/var
+-	rm -rf $(1)/etc/rc.d
++	rm -rf $(1)/opt/etc/rc.d
++	rm -rf $(1)/opt/etc/init.d
+ 	find $(1) -name \*.old | xargs rm -rf
+-	$(INSTALL_DIR) $(1)/lib/upgrade/keep.d
+-	$(INSTALL_DATA) files/ipsec.upgrade $(1)/lib/upgrade/keep.d/ipsec
+ endef
+ 
+ $(eval $(call BuildPackage,openswan))
+-$(eval $(call KernelPackage,openswan))
++#$(eval $(call KernelPackage,openswan))
