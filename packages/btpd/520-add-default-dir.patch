@@ -1,0 +1,58 @@
+From 84c7045b22c4dda69d01b2765c278fb98ec22c1c Mon Sep 17 00:00:00 2001
+From: Samantha Baldwin <recursive.forest@gmail.com>
+Date: Sat, 19 Jan 2013 16:08:18 -0500
+Subject: [PATCH] Add default -d = dir of torrent to btcli add.
+
+---
+ cli/add.c   | 11 +++++++++--
+ cli/btcli.h |  1 +
+ 2 files changed, 10 insertions(+), 2 deletions(-)
+
+diff --git a/cli/add.c b/cli/add.c
+index 938989e..fb03e00 100644
+--- a/cli/add.c
++++ b/cli/add.c
+@@ -6,7 +6,7 @@ usage_add(void)
+     printf(
+         "Add torrents to btpd.\n"
+         "\n"
+-        "Usage: add [-n name] [-T] [-N] -d dir file(s)\n"
++        "Usage: add [-n name] [-T] [-N] [-d dir] file(s)\n"
+         "\n"
+         "Arguments:\n"
+         "file\n"
+@@ -66,7 +66,7 @@ cmd_add(int argc, char **argv)
+     argc -= optind;
+     argv += optind;
+ 
+-    if (argc < 1 || dir == NULL)
++    if (argc < 1)
+         usage_add();
+ 
+     btpd_connect();
+@@ -81,6 +81,13 @@ cmd_add(int argc, char **argv)
+            fprintf(stderr, "error loading '%s' (%s).\n", argv[nfile], strerror(errno));
+            continue;
+        }
++       if (dir == NULL) {
++           dir = dirname(argv[nfile]);
++           if ((dirlen = strlen(dir)) == 0) {
++                fprintf(stderr, "error obtaining dirname for '%s'.\n", argv[nfile]);
++                continue;
++           }
++       }
+        iob = iobuf_init(PATH_MAX);
+        iobuf_write(&iob, dir, dirlen);
+        if (topdir && !mi_simple(mi)) {
+diff --git a/cli/btcli.h b/cli/btcli.h
+index d0e0a28..1ad04b1 100644
+--- a/cli/btcli.h
++++ b/cli/btcli.h
+@@ -4,6 +4,7 @@
+ #include <errno.h>
+ #include <getopt.h>
+ #include <inttypes.h>
++#include <libgen.h>
+ #include <limits.h>
+ #include <math.h>
+ #include <stdio.h>

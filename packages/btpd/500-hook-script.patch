@@ -1,0 +1,285 @@
+diff -urN a/btpd/btpd.c b/btpd/btpd.c
+--- a/btpd/btpd.c	2010-07-15 06:51:43.000000000 +0400
++++ b/btpd/btpd.c	2014-11-09 12:24:33.781255138 +0300
+@@ -30,6 +30,7 @@
+         btpd_exit(0);
+     if (!m_ghost && torrent_count() == torrent_ghosts()) {
+         btpd_log(BTPD_L_BTPD, "Entering pre exit mode. Bye!\n");
++        hook_shutdown();
+         fclose(stderr);
+         fclose(stdout);
+         net_shutdown();
+@@ -129,6 +130,7 @@
+     cm_init();
+     tr_init();
+     tlib_init();
++    hook_init();
+ 
+     evtimer_init(&m_heartbeat, heartbeat_cb, NULL);
+     btpd_timer_add(&m_heartbeat, (& (struct timespec) { 1, 0 }));
+diff -urN a/btpd/btpd.h b/btpd/btpd.h
+--- a/btpd/btpd.h	2010-07-15 06:51:43.000000000 +0400
++++ b/btpd/btpd.h	2014-11-09 12:24:33.777255671 +0300
+@@ -48,6 +48,7 @@
+ #include "content.h"
+ #include "opts.h"
+ #include "tracker_req.h"
++#include "hook.h"
+ 
+ #define BTPD_VERSION PACKAGE_NAME "/" PACKAGE_VERSION
+ 
+diff -urN a/btpd/hook.c b/btpd/hook.c
+--- a/btpd/hook.c	1970-01-01 03:00:00.000000000 +0300
++++ b/btpd/hook.c	2014-11-09 12:24:33.781255138 +0300
+@@ -0,0 +1,106 @@
++#include <sys/types.h>
++#include <sys/wait.h>
++#include <unistd.h>
++#include <pthread.h>
++
++#include "btpd.h"
++#include "hook.h"
++
++struct hook_item_s {
++    pid_t pid;
++    char st;
++    const char *tr_name;
++    BTPDQ_ENTRY(hook_item_s) entry;
++};
++
++struct hook_list_s {
++    int count;
++    BTPDQ_HEAD(item_tq, hook_item_s) head;
++};
++
++static struct hook_list_s hook_list;
++static pthread_mutex_t hook_lock;
++
++void
++hook_handler(int __attribute__((unused)) signal)
++{
++    pid_t pid;
++    int status;
++    struct hook_item_s *p;
++
++    while ((pid = waitpid (-1, &status, WNOHANG)) > 0)
++    {
++        pthread_mutex_lock(&hook_lock);
++        BTPDQ_FOREACH(p, &hook_list.head, entry)
++            if (p->pid == pid) {
++                BTPDQ_REMOVE(&hook_list.head, p, entry);
++                btpd_log(BTPD_L_BTPD, "Hook script '%s' for status '%c' "
++                        "and torrent '%s' finished with status '%d'.\n",
++                        hook_script, p->st, p->tr_name, status);
++            }
++        pthread_mutex_unlock(&hook_lock);
++
++    } /* while (waitpid) */
++}
++
++void
++hook_shutdown(void)
++{
++    struct hook_item_s *p;
++
++    pthread_mutex_lock(&hook_lock);
++
++    BTPDQ_FOREACH(p, &hook_list.head, entry)
++    {
++        btpd_log(BTPD_L_BTPD, "Sending INT signal to hook process %d...\n", p->pid);
++        kill(p->pid, SIGINT);
++    }
++    pthread_mutex_unlock(&hook_lock);
++}
++
++void
++hook_init(void)
++{
++    struct sigaction sa;
++    bzero(&sa, sizeof(sa));
++    sa.sa_handler = hook_handler;
++    sigaction (SIGCHLD, &sa, NULL);
++    BTPDQ_INIT(&hook_list.head);
++}
++
++void
++hook_exec(hook_t type, const char *tr_name)
++{
++    char st[2] = "U\0";
++    char *args[4] = { (char *)hook_script, st, (char *)tr_name, NULL };
++    pid_t pid;
++    struct hook_item_s *p;
++
++    *st = (char) type;
++
++    if (!hook_script || btpd_is_stopping())
++        return;
++
++    pid = fork();
++
++    switch (pid) {
++        case -1: btpd_log(BTPD_L_BTPD, "Failed to fork to run hook"); break;
++        case 0:
++                 /* Parent execution */
++                 (void) execv(hook_script, args);
++                 btpd_log(BTPD_L_BTPD, "Failed to starting hook: '%s' '%c' '%s'.\n",
++                         hook_script, *st, tr_name);
++                 break;
++        default:
++                 /* Child execution */
++                 p = calloc(1, sizeof(struct hook_item_s));
++                 p->pid = pid;
++                 p->st  = *st;
++                 p->tr_name = tr_name;
++                 pthread_mutex_lock(&hook_lock);
++                 hook_list.count++;
++                 BTPDQ_INSERT_TAIL(&hook_list.head, p, entry);
++                 pthread_mutex_unlock(&hook_lock);
++    }
++}
++
+diff -urN a/btpd/hook.h b/btpd/hook.h
+--- a/btpd/hook.h	1970-01-01 03:00:00.000000000 +0300
++++ b/btpd/hook.h	2014-11-09 12:24:33.781255138 +0300
+@@ -0,0 +1,19 @@
++#ifndef HOOK_H
++#define HOOK_H
++
++#define HOOK_STARTED 'S'
++#define HOOK_STOPPED 'T'
++#define HOOK_FINISHED 'F'
++
++typedef char hook_t;
++
++void
++hook_shutdown(void);
++
++void
++hook_init(void);
++
++void
++hook_exec(hook_t type, const char *tr_name);
++
++#endif
+diff -urN a/btpd/main.c b/btpd/main.c
+--- a/btpd/main.c	2010-07-15 06:51:43.000000000 +0400
++++ b/btpd/main.c	2014-11-09 12:51:31.677209869 +0300
+@@ -126,6 +126,9 @@
+         "--help\n"
+         "\tShow this text.\n"
+         "\n"
++        "--hook-script file\n"
++        "\tRun the specified file when certain actions happened.\n"
++        "\n"
+         "--ip addr\n"
+         "\tLet the tracker distribute the given address instead of the one\n"
+         "\tit sees btpd connect from.\n"
+@@ -178,6 +181,7 @@
+     { "empty-start", no_argument,       &longval,       9 },
+     { "ip", required_argument,          &longval,       10 },
+     { "logmask", required_argument,     &longval,       11 },
++    { "hook-script", required_argument, &longval,       13 },
+     { "help",   no_argument,            &longval,       128 },
+     { NULL,     0,                      NULL,           0 }
+ };
+@@ -239,6 +243,9 @@
+             case 11:
+                 btpd_logmask = atoi(optarg);
+                 break;
++            case 13:
++                hook_script = strdup(optarg);
++                break;
+             default:
+                 usage();
+             }
+diff -urN a/btpd/opts.c b/btpd/opts.c
+--- a/btpd/opts.c	2010-07-15 06:51:43.000000000 +0400
++++ b/btpd/opts.c	2014-11-09 12:51:58.313214789 +0300
+@@ -13,3 +13,4 @@
+ const char *tr_ip_arg;
+ int net_ipv4 = 1;
+ int net_ipv6 = 0;
++const char *hook_script;
+diff -urN a/btpd/opts.h b/btpd/opts.h
+--- a/btpd/opts.h	2010-07-15 06:51:43.000000000 +0400
++++ b/btpd/opts.h	2014-11-09 12:52:25.429217203 +0300
+@@ -13,5 +13,6 @@
+ extern int empty_start;
+ extern const char *tr_ip_arg;
+ extern int net_ipv4, net_ipv6;
++extern const char *hook_script;
+ 
+ #endif
+diff -urN a/btpd/torrent.c b/btpd/torrent.c
+--- a/btpd/torrent.c	2010-07-15 06:51:43.000000000 +0400
++++ b/btpd/torrent.c	2014-11-09 12:24:33.781255138 +0300
+@@ -130,6 +130,7 @@
+         benc_dget_mem(benc_dget_dct(mi, "info"), "pieces", NULL) - mi;
+ 
+     btpd_log(BTPD_L_BTPD, "Starting torrent '%s'.\n", torrent_name(tp));
++    hook_exec(HOOK_STARTED, torrent_name(tp));
+     tr_create(tp, mi);
+     tl->tp = tp;
+     net_create(tp);
+@@ -149,6 +150,7 @@
+ void become_ghost(struct torrent *tp)
+ {
+     btpd_log(BTPD_L_BTPD, "Stopped torrent '%s'.\n", torrent_name(tp));
++    hook_exec(HOOK_STOPPED, torrent_name(tp));
+     tp->state = T_GHOST;
+     if (tp->delete)
+         tlib_del(tp->tl);
+@@ -206,6 +208,7 @@
+             tp->state = T_SEED;
+             btpd_log(BTPD_L_BTPD, "Finished downloading '%s'.\n",
+                 torrent_name(tp));
++            hook_exec(HOOK_FINISHED, torrent_name(tp));
+             tr_complete(tp);
+             BTPDQ_FOREACH_MUTABLE(p, &tp->net->peers, p_entry, next) {
+                 assert(p->nwant == 0);
+diff -urN a/doc/btpd.1 b/doc/btpd.1
+--- a/doc/btpd.1	2010-08-01 02:55:59.000000000 +0400
++++ b/doc/btpd.1	2014-11-09 12:24:33.781255138 +0300
+@@ -54,6 +54,9 @@
+ .B \-\-empty\-start
+ Start btpd without any active torrents.
+ .TP
++.B \-\-hook\-script \fIfile\fR
++Run an specified script on certain actions, which finished download.
++.TP
+ .B \-\-ip \fIaddr\fR
+ Let the tracker distribute the given address instead of the one it sees btpd connect from.
+ .TP
+@@ -92,6 +95,21 @@
+ .PP
+ .B Note: 
+ You should only need one instance of btpd regardless of how many torrents you want to share.
++.SH "HOOKING BTPD"
++Using parameter \fI--hook-script\fR in command line, we can set a path to
++script to be executed when certain actions, for example when starting
++a download, when stopping one or when it's finished.
++.PP
++The script will be received two arguments, the first one is a character
++which indicates the status, and could be one of the following:
++.TP
++\fBS\fR \- Start a new leech.
++.TP
++\fBT\fR \- Stop a leech.
++.TP
++\fBF\fR \- Download finished.
++.PP
++The second argument is the torrent name, without .torrent extension.
+ .SH "EXAMPLES"
+ Start btpd with all options set to their default values.
+ .RS 4
+diff -urN a/Makefile.am b/Makefile.am
+--- a/Makefile.am	2010-07-18 10:56:24.000000000 +0400
++++ b/Makefile.am	2014-11-09 12:24:33.777255671 +0300
+@@ -20,6 +20,7 @@
+ 	btpd/net_buf.c btpd/net_buf.h\
+ 	btpd/opts.c btpd/opts.h\
+ 	btpd/peer.c btpd/peer.h\
++	btpd/hook.c btpd/hook.h \
+ 	btpd/thread_cb.c btpd/tlib.c btpd/tlib.h btpd/torrent.c btpd/torrent.h\
+ 	btpd/tracker_req.c btpd/tracker_req.h\
+ 	btpd/upload.c btpd/upload.h\

@@ -9,6 +9,7 @@ all: .done
 
 .done:
 	patch -d $(TOP) -p3 -i $(CURDIR)/fix-path.patch
+	cp -f ./5*.patch ../../../openwrt_trunk/feeds/oldpackages/net/btpd/patches/
 	cp -f ./S93btpd ../../../openwrt_trunk/feeds/oldpackages/net/btpd/files/
 	@touch $@
 
