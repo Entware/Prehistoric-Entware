@@ -14,7 +14,7 @@ Hard-float ( Works only with hard-float firmwares. )
 ```
 wget -O - http://entware.wl500g.info/binaries/entware/installer/entware_install.sh | sh
 ```
-A basic packages will be deployed. See available packages:
+A basic packages will be deployed. See [available packages](http://entware.wl500g.info/binaries/entware/Packages.html):
 ```
 opkg list
 ```
