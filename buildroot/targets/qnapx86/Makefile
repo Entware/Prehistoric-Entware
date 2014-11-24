@@ -6,11 +6,11 @@
 #
 include $(TOPDIR)/rules.mk
 
-ARCH:=mipsel
-BOARD:=mipselsf
-BOARDNAME:=Entware repository (mipsel, soft float)
+ARCH:=i386
+BOARD:=qnapx86
+BOARDNAME:=QNAP x86
 FEATURES:=
-LINUX_VERSION:=2.6.22
+LINUX_VERSION:=2.6.31
 
 include $(INCLUDE_DIR)/target.mk
 

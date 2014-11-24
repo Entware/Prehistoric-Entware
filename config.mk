@@ -5,17 +5,11 @@
 # See /LICENSE for more information.
 #
 
-export TOOLCHAIN_REVISION=5621
 export OPENWRT_REVISION=42803
 
-# Download or compile toolchain\kernel?
-#FORCE_COMPILE=y
+# Target architecture for repo (now only x86 is supported)
+export TARGET=qnapx86
+#export TARGET=qnaparm
 
-# Target architecture for repo
-export TARGET=entware
-#export TARGET=mipselsf
-
-# Mirror for compiled toolchains and kernels
-SRC_MIRROR=http://entware.wl500g.info/sources
-#SRC_MIRROR=http://x.vm0.ru/wl500g-repo/sources-mirror
-#SRC_MIRROR=http://entware.dyndns.info/sources
+# Mirror for sources
+SRC_MIRROR=http://qnapware.zyxmon.org/sources

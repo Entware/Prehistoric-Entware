@@ -9,24 +9,15 @@ include config.mk
 export TOP:=$(shell (cd .. && pwd -P))
 
 all: \
-	    kernel-2.6.22.19/.kernel_prepared \
 	    toolchain/.toolchain_prepared \
 	    buildroot/.buildroot_prepared \
 	    packages/.package_prepared
-ifeq ($(ARCH),entware)
-	$(MAKE) -C switch-arch entware
-else ifeq ($(ARCH),mipselsf)
-	$(MAKE) -C switch-arch mipselsf
-endif
 	$(MAKE) -C "$(TOP)/openwrt_trunk" tools/compile
 	$(MAKE) -C "$(TOP)/openwrt_trunk" tools/install
 	@echo "Buildroot is ready! To recompile the whole repo type:"
 	@echo "cd ../openwrt_trunk"
 	@echo "make package/compile"
 	@echo "See Buildroot Wiki at http://wiki.openwrt.org/about/toolchain for details."
-
-kernel-2.6.22.19/.kernel_prepared:
-	$(MAKE) -C "kernel-2.6.22.19"
 
 toolchain/.toolchain_prepared:
 	$(MAKE) -C "toolchain"
@@ -61,14 +52,12 @@ update_git_mirrors: .git_mirrors_updated
 	@touch $@
 
 clean:
-	$(MAKE) -C kernel-2.6.22.19 clean
 	$(MAKE) -C toolchain clean
 	$(MAKE) -C buildroot clean
 	$(MAKE) -C packages clean
 	@rm -f .git_mirrors_updated
 
 cleanall: clean
-	$(MAKE) -C kernel-2.6.22.19 cleanall
 	$(MAKE) -C toolchain cleanall
 	$(MAKE) -C buildroot cleanall
 
