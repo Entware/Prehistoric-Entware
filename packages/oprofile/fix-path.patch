@@ -24,9 +24,9 @@
 -		$(PKG_INSTALL_DIR)/usr/bin/oparchive \
 -		$(PKG_INSTALL_DIR)/usr/bin/opgprof \
 -		$(1)/usr/bin
-+		$(PKG_INSTALL_DIR)/opt/bin/opannotate \
-+		$(PKG_INSTALL_DIR)/opt/bin/oparchive \
-+		$(PKG_INSTALL_DIR)/opt/bin/opgprof \
++		$(PKG_INSTALL_DIR)/Apps/opt/bin/opannotate \
++		$(PKG_INSTALL_DIR)/Apps/opt/bin/oparchive \
++		$(PKG_INSTALL_DIR)/Apps/opt/bin/opgprof \
 +		$(1)/opt/bin
  endef
  
@@ -36,7 +36,7 @@
  	$(INSTALL_BIN) \
 -		$(PKG_INSTALL_DIR)/usr/bin/* \
 -		$(1)/usr/bin
-+		$(PKG_INSTALL_DIR)/opt/bin/* \
++		$(PKG_INSTALL_DIR)/Apps/opt/bin/* \
 +		$(1)/opt/bin
  
  	rm -f \
@@ -52,7 +52,7 @@
  	$(CP) \
 -		$(PKG_INSTALL_DIR)/usr/lib/oprofile/*.so* \
 -		$(1)/usr/lib/oprofile/
-+		$(PKG_INSTALL_DIR)/opt/lib/oprofile/*.so* \
++		$(PKG_INSTALL_DIR)/Apps/opt/lib/oprofile/*.so* \
 +		$(1)/opt/lib/oprofile/
  
 -	$(INSTALL_DIR) $(1)/usr/share/oprofile
@@ -61,8 +61,8 @@
 -		$(PKG_INSTALL_DIR)/usr/share/oprofile/stl.pat \
 -		$(PKG_INSTALL_DIR)/usr/share/oprofile/$(patsubst x86,i386,$(LINUX_KARCH)) \
 -		$(1)/usr/share/oprofile/
-+		$(PKG_INSTALL_DIR)/opt/share/oprofile/stl.pat \
-+		$(PKG_INSTALL_DIR)/opt/share/oprofile/$(patsubst x86,i386,$(LINUX_KARCH)) \
++		$(PKG_INSTALL_DIR)/Apps/opt/share/oprofile/stl.pat \
++		$(PKG_INSTALL_DIR)/Apps/opt/share/oprofile/$(patsubst x86,i386,$(LINUX_KARCH)) \
 +		$(1)/opt/share/oprofile/
  endef
  

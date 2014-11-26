@@ -94,27 +94,27 @@ diff -urNx .svn ../../../downloads/openwrt_trunk-r38381/feeds/oldpackages/net/sn
 -		$(PKG_INSTALL_DIR)/usr/include/snort/dynamic_preproc/* \
 -		$(STAGING_DIR)/usr/include/snort/dynamic_preproc/
 -	$(INSTALL_DIR) $(STAGING_DIR)/usr/lib/snort/dynamic_preproc
-+		$(PKG_INSTALL_DIR)/opt/include/snort/dynamic_preproc/* \
++		$(PKG_INSTALL_DIR)/Apps/opt/include/snort/dynamic_preproc/* \
 +		$(STAGING_DIR)/opt/include/snort/dynamic_preproc/
 +	$(INSTALL_DIR) $(STAGING_DIR)/opt/lib/snort/dynamic_preproc
  	$(CP) \
 -		$(PKG_INSTALL_DIR)/usr/lib/snort/dynamic_preproc/* \
 -		$(STAGING_DIR)/usr/lib/snort/dynamic_preproc/
 -	$(INSTALL_DIR) $(STAGING_DIR)/usr/lib/snort_dynamicengine
-+		$(PKG_INSTALL_DIR)/opt/lib/snort/dynamic_preproc/* \
++		$(PKG_INSTALL_DIR)/Apps/opt/lib/snort/dynamic_preproc/* \
 +		$(STAGING_DIR)/opt/lib/snort/dynamic_preproc/
 +	$(INSTALL_DIR) $(STAGING_DIR)/opt/lib/snort_dynamicengine
  	$(CP) \
 -		$(PKG_INSTALL_DIR)/usr/lib/snort_dynamicengine/* \
 -		$(STAGING_DIR)/usr/lib/snort_dynamicengine/
 -	$(INSTALL_DIR) $(STAGING_DIR)/usr/lib/snort_dynamicpreprocessor
-+		$(PKG_INSTALL_DIR)/opt/lib/snort_dynamicengine/* \
++		$(PKG_INSTALL_DIR)/Apps/opt/lib/snort_dynamicengine/* \
 +		$(STAGING_DIR)/opt/lib/snort_dynamicengine/
 +	$(INSTALL_DIR) $(STAGING_DIR)/opt/lib/snort_dynamicpreprocessor
  	$(CP) \
 -		$(PKG_INSTALL_DIR)/usr/lib/snort_dynamicpreprocessor/* \
 -		$(STAGING_DIR)/usr/lib/snort_dynamicpreprocessor/
-+		$(PKG_INSTALL_DIR)/opt/lib/snort_dynamicpreprocessor/* \
++		$(PKG_INSTALL_DIR)/Apps/opt/lib/snort_dynamicpreprocessor/* \
 +		$(STAGING_DIR)/opt/lib/snort_dynamicpreprocessor/
  endef
  
@@ -152,13 +152,13 @@ diff -urNx .svn ../../../downloads/openwrt_trunk-r38381/feeds/oldpackages/net/sn
 -	$(INSTALL_DIR) $(1)/etc/init.d
 -	$(INSTALL_BIN) ./files/snort.init $(1)/etc/init.d/snort
 +	$(INSTALL_DIR) $(1)/opt/bin
-+	$(CP) $(PKG_INSTALL_DIR)/opt/bin/snort $(1)/opt/bin/snort.bin
-+	$(CP) $(PKG_INSTALL_DIR)/opt/bin/u2{boat,spewfoo} $(1)/opt/bin
++	$(CP) $(PKG_INSTALL_DIR)/Apps/opt/bin/snort $(1)/opt/bin/snort.bin
++	$(CP) $(PKG_INSTALL_DIR)/Apps/opt/bin/u2{boat,spewfoo} $(1)/opt/bin
 +	$(INSTALL_BIN) ./files/snort.bin $(1)/opt/bin/snort
 +	$(INSTALL_DIR) $(1)/opt/lib/snort_dynamicengine
-+	$(CP) $(PKG_INSTALL_DIR)/opt/lib/snort_dynamicengine/libsf_engine.so* $(1)/opt/lib/snort_dynamicengine/
++	$(CP) $(PKG_INSTALL_DIR)/Apps/opt/lib/snort_dynamicengine/libsf_engine.so* $(1)/opt/lib/snort_dynamicengine/
 +	$(INSTALL_DIR) $(1)/opt/lib/snort_dynamicpreprocessor
-+	$(CP) $(PKG_INSTALL_DIR)/opt/lib/snort_dynamicpreprocessor/libsf*.so* $(1)/opt/lib/snort_dynamicpreprocessor/
++	$(CP) $(PKG_INSTALL_DIR)/Apps/opt/lib/snort_dynamicpreprocessor/libsf*.so* $(1)/opt/lib/snort_dynamicpreprocessor/
 +	$(INSTALL_DIR) $(1)/opt/etc/snort
 +	$(INSTALL_DATA) $(PKG_BUILD_DIR)/etc/snort.conf $(1)/opt/etc/snort/
 +	$(INSTALL_DATA) $(PKG_BUILD_DIR)/etc/attribute_table.dtd $(1)/opt/etc/snort/

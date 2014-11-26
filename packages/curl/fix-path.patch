@@ -66,9 +66,9 @@
 -	[ -n "$(TARGET_LDFLAGS)" ] && $(SED) 's#$(TARGET_LDFLAGS)##g' $(1)/usr/lib/pkgconfig/libcurl.pc || true
 -	ln -sf $(STAGING_DIR)/usr/bin/curl-config $(2)/bin/
 +	$(INSTALL_DIR) $(2)/bin $(1)/opt/bin $(1)/opt/include $(1)/opt/lib $(1)/opt/lib/pkgconfig
-+	$(INSTALL_BIN) $(PKG_INSTALL_DIR)/opt/bin/curl-config $(1)/opt/bin/
-+	$(CP) $(PKG_INSTALL_DIR)/opt/include/curl $(1)/opt/include/
-+	$(CP) $(PKG_INSTALL_DIR)/opt/lib/libcurl.{a,so*} $(1)/opt/lib/
++	$(INSTALL_BIN) $(PKG_INSTALL_DIR)/Apps/opt/bin/curl-config $(1)/opt/bin/
++	$(CP) $(PKG_INSTALL_DIR)/Apps/opt/include/curl $(1)/opt/include/
++	$(CP) $(PKG_INSTALL_DIR)/Apps/opt/lib/libcurl.{a,so*} $(1)/opt/lib/
 +	$(CP) $(PKG_BUILD_DIR)/libcurl.pc $(1)/opt/lib/pkgconfig/
 +	$(SED) 's,-L$$$${exec_prefix}/lib,,g' $(1)/opt/bin/curl-config
 +	[ -n "$(TARGET_LDFLAGS)" ] && $(SED) 's#$(TARGET_LDFLAGS)##g' $(1)/opt/lib/pkgconfig/libcurl.pc || true
@@ -79,14 +79,14 @@
 -	$(INSTALL_DIR) $(1)/usr/bin
 -	$(INSTALL_BIN) $(PKG_INSTALL_DIR)/usr/bin/curl $(1)/usr/bin/
 +	$(INSTALL_DIR) $(1)/opt/bin
-+	$(INSTALL_BIN) $(PKG_INSTALL_DIR)/opt/bin/curl $(1)/opt/bin/
++	$(INSTALL_BIN) $(PKG_INSTALL_DIR)/Apps/opt/bin/curl $(1)/opt/bin/
  endef
  
  define Package/libcurl/install
 -	$(INSTALL_DIR) $(1)/usr/lib
 -	$(CP) $(PKG_INSTALL_DIR)/usr/lib/libcurl.so.* $(1)/usr/lib/
 +	$(INSTALL_DIR) $(1)/opt/lib
-+	$(CP) $(PKG_INSTALL_DIR)/opt/lib/libcurl.so.* $(1)/opt/lib/
++	$(CP) $(PKG_INSTALL_DIR)/Apps/opt/lib/libcurl.so.* $(1)/opt/lib/
  endef
  
  $(eval $(call BuildPackage,curl))

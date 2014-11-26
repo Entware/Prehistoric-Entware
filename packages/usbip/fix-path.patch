@@ -109,11 +109,11 @@ diff -urx .svn ../../../downloads/openwrt_trunk-r42803/feeds/oldpackages/net/usb
 -	$(CP) $(DL_DIR)/usb.ids $(1)/usr/share/hwdata/
 +	$(INSTALL_DIR) $(1)/opt/lib
 +	$(CP) \
-+		$(PKG_INSTALL_DIR)/opt/lib/libusbip.so.* \
++		$(PKG_INSTALL_DIR)/Apps/opt/lib/libusbip.so.* \
 +		$(1)/opt/lib/
 +	$(INSTALL_DIR) $(1)/opt/share/usbip
 +	$(CP) \
-+		$(PKG_INSTALL_DIR)/opt/share/usbip/usb.ids \
++		$(PKG_INSTALL_DIR)/Apps/opt/share/usbip/usb.ids \
 +		$(1)/opt/share/usbip/
  endef
  
@@ -122,7 +122,7 @@ diff -urx .svn ../../../downloads/openwrt_trunk-r42803/feeds/oldpackages/net/usb
 -	$(CP) $(PKG_INSTALL_DIR)/usr/sbin/usbip $(1)/usr/sbin/
 +	$(INSTALL_DIR) $(1)/opt/bin
 +	$(CP) \
-+		$(PKG_INSTALL_DIR)/opt/bin/usbip \
++		$(PKG_INSTALL_DIR)/Apps/opt/bin/usbip \
 +		$(1)/opt/bin/
  endef
  
@@ -131,10 +131,10 @@ diff -urx .svn ../../../downloads/openwrt_trunk-r42803/feeds/oldpackages/net/usb
 -	$(CP) $(PKG_INSTALL_DIR)/usr/sbin/usbipd $(1)/usr/sbin/
 +	$(INSTALL_DIR) $(1)/opt/bin
 +	$(CP) \
-+		$(PKG_INSTALL_DIR)/opt/bin/usbipd \
++		$(PKG_INSTALL_DIR)/Apps/opt/bin/usbipd \
 +		$(1)/opt/bin/
 +	$(CP) \
-+		$(PKG_INSTALL_DIR)/opt/bin/bind_driver \
++		$(PKG_INSTALL_DIR)/Apps/opt/bin/bind_driver \
 +		$(1)/opt/bin/usbip_bind_driver
 +	$(INSTALL_DIR) $(1)/opt/etc/init.d
 +	$(CP) \

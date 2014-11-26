@@ -6,7 +6,7 @@
  
 -CONFIGURE_PREFIX:=/usr
 +LINUX_DIR:=__LINUX_DIR_PATH__
-+CONFIGURE_PREFIX:=/opt
++CONFIGURE_PREFIX:=/Apps/opt
  CONFIGURE_ARGS = \
  		--target=$(GNU_TARGET_NAME) \
  		--host=$(GNU_TARGET_NAME) \

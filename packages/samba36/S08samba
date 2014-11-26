@@ -2,7 +2,7 @@
 #
 # startfile for entware-samba, written by linux.tinkerer at gmail.com
 # For Ily's FW of Asus Routers
-# store this script in /opt/etc/init.d if you've installed entware
+# store this script i. /Apps/opt/etc/init.d if you've installed entware
 
 # Prgmname=/full_path/Prgmname
 prgmname1="/opt/sbin/nmbd"

@@ -35,19 +35,19 @@
 -	$(INSTALL_DIR) $(1)/usr/lib
 -	$(CP) $(PKG_INSTALL_DIR)/usr/lib/libsodium.{a,so*} $(1)/usr/lib
 +	$(INSTALL_DIR) $(1)/opt/include/sodium
-+	$(CP) $(PKG_INSTALL_DIR)/opt/include/sodium.h $(1)/opt/include
-+	$(CP) $(PKG_INSTALL_DIR)/opt/include/sodium/*.h $(1)/opt/include/sodium
++	$(CP) $(PKG_INSTALL_DIR)/Apps/opt/include/sodium.h $(1)/opt/include
++	$(CP) $(PKG_INSTALL_DIR)/Apps/opt/include/sodium/*.h $(1)/opt/include/sodium
 +	$(INSTALL_DIR) $(1)/opt/lib/pkgconfig
-+	$(CP) $(PKG_INSTALL_DIR)/opt/lib/pkgconfig/libsodium.pc $(1)/opt/lib/pkgconfig
++	$(CP) $(PKG_INSTALL_DIR)/Apps/opt/lib/pkgconfig/libsodium.pc $(1)/opt/lib/pkgconfig
 +	$(INSTALL_DIR) $(1)/opt/lib
-+	$(CP) $(PKG_INSTALL_DIR)/opt/lib/libsodium.{a,so*} $(1)/opt/lib
++	$(CP) $(PKG_INSTALL_DIR)/Apps/opt/lib/libsodium.{a,so*} $(1)/opt/lib
  endef
  
  define Package/libsodium/install
 -	$(INSTALL_DIR) $(1)/usr/lib
 -	$(CP) $(PKG_INSTALL_DIR)/usr/lib/libsodium.so.* $(1)/usr/lib/
 +	$(INSTALL_DIR) $(1)/opt/lib
-+	$(CP) $(PKG_INSTALL_DIR)/opt/lib/libsodium.so.* $(1)/opt/lib/
++	$(CP) $(PKG_INSTALL_DIR)/Apps/opt/lib/libsodium.so.* $(1)/opt/lib/
  endef
  
  $(eval $(call BuildPackage,libsodium))

@@ -7,14 +7,14 @@
 -	$(INSTALL_DIR) $(1)/usr/lib
 -	$(CP) $(PKG_INSTALL_DIR)/usr/lib/libdb-*.so $(1)/usr/lib/
 +	$(INSTALL_DIR) $(1)/opt/lib
-+	$(CP) $(PKG_INSTALL_DIR)/opt/lib/libdb-*.so $(1)/opt/lib/
++	$(CP) $(PKG_INSTALL_DIR)/Apps/opt/lib/libdb-*.so $(1)/opt/lib/
  endef
  
  define Package/libdb47xx/install
 -	$(INSTALL_DIR) $(1)/usr/lib
 -	$(CP) $(PKG_INSTALL_DIR)/usr/lib/libdb_cxx-*.so $(1)/usr/lib/
 +	$(INSTALL_DIR) $(1)/opt/lib
-+	$(CP) $(PKG_INSTALL_DIR)/opt/lib/libdb_cxx-*.so $(1)/opt/lib/
++	$(CP) $(PKG_INSTALL_DIR)/Apps/opt/lib/libdb_cxx-*.so $(1)/opt/lib/
  endef
  
  define Build/InstallDev
@@ -24,10 +24,10 @@
 -	$(INSTALL_DIR) $(1)/usr/lib/
 -	$(CP) $(PKG_INSTALL_DIR)/usr/lib/libdb*.{a,so} $(1)/usr/lib
 +	$(INSTALL_DIR) $(1)/opt/include
-+	$(CP) $(PKG_INSTALL_DIR)/opt/include/db.h $(1)/opt/include/
-+	$(CP) $(PKG_INSTALL_DIR)/opt/include/db_cxx.h $(1)/opt/include/
++	$(CP) $(PKG_INSTALL_DIR)/Apps/opt/include/db.h $(1)/opt/include/
++	$(CP) $(PKG_INSTALL_DIR)/Apps/opt/include/db_cxx.h $(1)/opt/include/
 +	$(INSTALL_DIR) $(1)/opt/lib/
-+	$(CP) $(PKG_INSTALL_DIR)/opt/lib/libdb*.{a,so} $(1)/opt/lib
++	$(CP) $(PKG_INSTALL_DIR)/Apps/opt/lib/libdb*.{a,so} $(1)/opt/lib
  endef
  
  $(eval $(call BuildPackage,libdb47))

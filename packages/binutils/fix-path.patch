@@ -9,9 +9,9 @@
 -	$(CP) $(PKG_INSTALL_DIR)/usr/lib/libopcodes*.so $(1)/usr/lib/
 -	$(CP) $(PKG_INSTALL_DIR)/usr/lib/libbfd*.so $(1)/usr/lib/
 +	$(INSTALL_DIR) $(1)/opt/bin $(1)/opt/lib
-+	$(CP) $(PKG_INSTALL_DIR)/opt/bin/objdump $(1)/opt/bin/
-+	$(CP) $(PKG_INSTALL_DIR)/opt/lib/libopcodes*.so $(1)/opt/lib/
-+	$(CP) $(PKG_INSTALL_DIR)/opt/lib/libbfd*.so $(1)/opt/lib/
++	$(CP) $(PKG_INSTALL_DIR)/Apps/opt/bin/objdump $(1)/opt/bin/
++	$(CP) $(PKG_INSTALL_DIR)/Apps/opt/lib/libopcodes*.so $(1)/opt/lib/
++	$(CP) $(PKG_INSTALL_DIR)/Apps/opt/lib/libbfd*.so $(1)/opt/lib/
  endef
  
  define Package/binutils/install
@@ -20,7 +20,7 @@
 -	mv $(1)/usr/bin/strings $(1)/bin/strings
 -	rm -f $(1)/usr/bin/objdump
 +	$(INSTALL_DIR) $(1)/opt/bin
-+	$(CP) $(PKG_INSTALL_DIR)/opt/bin/ $(1)/opt
++	$(CP) $(PKG_INSTALL_DIR)/Apps/opt/bin/ $(1)/opt
 +	rm -f $(1)/opt/bin/objdump
  endef
  

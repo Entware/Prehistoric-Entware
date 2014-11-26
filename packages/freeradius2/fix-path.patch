@@ -329,17 +329,17 @@
 -	$(SED) "s,^\(\$$$$INCLUDE\),#\1,g" $(1)/usr/share/freeradius2/dictionary
 +	$(INSTALL_DIR) $(1)/opt/etc/freeradius2
 +	chmod 771 $(1)/opt/etc/freeradius2
-+	$(CP) $(PKG_INSTALL_DIR)/opt/etc/freeradius2/dictionary $(1)/opt/etc/freeradius2/ ; \
++	$(CP) $(PKG_INSTALL_DIR)/Apps/opt/etc/freeradius2/dictionary $(1)/opt/etc/freeradius2/ ; \
 +	$(INSTALL_DIR) $(1)/opt/lib/freeradius2
-+	$(CP) $(PKG_INSTALL_DIR)/opt/lib/freeradius2/libfreeradius-radius{,-*}.so $(1)/opt/lib/freeradius2
-+	$(CP) $(PKG_INSTALL_DIR)/opt/lib/freeradius2/libfreeradius-eap{,-*}.so $(1)/opt/lib/freeradius2
++	$(CP) $(PKG_INSTALL_DIR)/Apps/opt/lib/freeradius2/libfreeradius-radius{,-*}.so $(1)/opt/lib/freeradius2
++	$(CP) $(PKG_INSTALL_DIR)/Apps/opt/lib/freeradius2/libfreeradius-eap{,-*}.so $(1)/opt/lib/freeradius2
 +	$(INSTALL_DIR) $(1)/opt/share/freeradius2
-+	$(CP) $(PKG_INSTALL_DIR)/opt/share/freeradius/dictionary $(1)/opt/share/freeradius2/
++	$(CP) $(PKG_INSTALL_DIR)/Apps/opt/share/freeradius/dictionary $(1)/opt/share/freeradius2/
 +	$(SED) "s,^\(\$$$$INCLUDE\),#\1,g" $(1)/opt/share/freeradius2/dictionary
  	for f in $(PKG_DICTIONARIES); do \
 -		$(CP) $(PKG_INSTALL_DIR)/usr/share/freeradius/dictionary.$$$${f} $(1)/usr/share/freeradius2/ ; \
 -		$(SED) "s,^#\(\$$$$INCLUDE dictionary\.$$$${f}\),\1,g" $(1)/usr/share/freeradius2/dictionary ; \
-+		$(CP) $(PKG_INSTALL_DIR)/opt/share/freeradius/dictionary.$$$${f} $(1)/opt/share/freeradius2/ ; \
++		$(CP) $(PKG_INSTALL_DIR)/Apps/opt/share/freeradius/dictionary.$$$${f} $(1)/opt/share/freeradius2/ ; \
 +		$(SED) "s,^#\(\$$$$INCLUDE dictionary\.$$$${f}\),\1,g" $(1)/opt/share/freeradius2/dictionary ; \
  	done
  endef
@@ -351,16 +351,16 @@
 +	$(INSTALL_DIR) $(1)/opt/etc/freeradius2/sites
  	for f in clients.conf radiusd.conf policy.conf; do \
 -		$(CP) $(PKG_INSTALL_DIR)/etc/freeradius2/$$$${f} $(1)/etc/freeradius2/ ; \
-+		$(CP) $(PKG_INSTALL_DIR)/opt/etc/freeradius2/$$$${f} $(1)/opt/etc/freeradius2/ ; \
++		$(CP) $(PKG_INSTALL_DIR)/Apps/opt/etc/freeradius2/$$$${f} $(1)/opt/etc/freeradius2/ ; \
  	done
 -	$(CP) $(PKG_INSTALL_DIR)/etc/freeradius2/sites-available/default $(1)/etc/freeradius2/sites/default
 -	$(INSTALL_DIR) $(1)/usr/sbin
 -	$(INSTALL_BIN) $(PKG_INSTALL_DIR)/usr/sbin/radiusd $(1)/usr/sbin/
 -	$(INSTALL_DIR) $(1)/etc/init.d
 -	$(INSTALL_BIN) ./files/radiusd.init $(1)/etc/init.d/radiusd
-+	$(CP) $(PKG_INSTALL_DIR)/opt/etc/freeradius2/sites-available/default $(1)/opt/etc/freeradius2/sites/default
++	$(CP) $(PKG_INSTALL_DIR)/Apps/opt/etc/freeradius2/sites-available/default $(1)/opt/etc/freeradius2/sites/default
 +	$(INSTALL_DIR) $(1)/opt/sbin
-+	$(INSTALL_BIN) $(PKG_INSTALL_DIR)/opt/sbin/radiusd $(1)/opt/sbin/
++	$(INSTALL_BIN) $(PKG_INSTALL_DIR)/Apps/opt/sbin/radiusd $(1)/opt/sbin/
 +	$(INSTALL_DIR) $(1)/opt/etc/init.d
 +	$(INSTALL_BIN) ./files/S55radiusd $(1)/opt/etc/init.d
 +	$(INSTALL_DIR) $(1)/opt/var/{log,run}  $(1)/opt/var/db/radacct
@@ -383,7 +383,7 @@
 +	$(INSTALL_DIR) $(1)/opt/bin
  	for f in radclient radeapclient radwho; do \
 -		$(INSTALL_BIN) $(PKG_INSTALL_DIR)/usr/bin/$$$${f} $(1)/usr/bin/ ; \
-+		$(INSTALL_BIN) $(PKG_INSTALL_DIR)/opt/bin/$$$${f} $(1)/opt/bin/ ; \
++		$(INSTALL_BIN) $(PKG_INSTALL_DIR)/Apps/opt/bin/$$$${f} $(1)/opt/bin/ ; \
  	done
  endef
  
@@ -393,7 +393,7 @@
 +	[ -z "$(2)" ] || $(INSTALL_DIR) $$(1)/opt/lib/freeradius2
  	for m in $(2); do \
 -		$(CP) $(PKG_INSTALL_DIR)/usr/lib/freeradius2/$$$$$$$${m}{,-*}.so $$(1)/usr/lib/freeradius2 ; \
-+		$(CP) $(PKG_INSTALL_DIR)/opt/lib/freeradius2/$$$$$$$${m}{,-*}.so $$(1)/opt/lib/freeradius2 ; \
++		$(CP) $(PKG_INSTALL_DIR)/Apps/opt/lib/freeradius2/$$$$$$$${m}{,-*}.so $$(1)/opt/lib/freeradius2 ; \
  	done
 -	[ -z "$(3)" ] || $(INSTALL_DIR) $$(1)/etc/freeradius2
 -	[ -z "$(4)" ] || $(INSTALL_DIR) $$(1)/etc/freeradius2/$(4)
@@ -401,7 +401,7 @@
 +	[ -z "$(4)" ] || $(INSTALL_DIR) $$(1)/opt/etc/freeradius2/$(4)
  	for f in $(3); do \
 -		$(CP) $(PKG_INSTALL_DIR)/etc/freeradius2/$$$$$$$${f} $$(1)/etc/freeradius2/$$$$$$$${f} ; \
-+		$(CP) $(PKG_INSTALL_DIR)/opt/etc/freeradius2/$$$$$$$${f} $$(1)/opt/etc/freeradius2/$$$$$$$${f} ; \
++		$(CP) $(PKG_INSTALL_DIR)/Apps/opt/etc/freeradius2/$$$$$$$${f} $$(1)/opt/etc/freeradius2/$$$$$$$${f} ; \
  	done
    endef
  

@@ -7,35 +7,35 @@
 -	$(INSTALL_DIR) $(1)/usr/lib/libiconv-full/include
 -	$(CP) $(PKG_INSTALL_DIR)/usr/include/iconv.h $(1)/usr/lib/libiconv-full/include/
 +	$(INSTALL_DIR) $(1)/opt/lib/libiconv-full/include
-+	$(CP) $(PKG_INSTALL_DIR)/opt/include/iconv.h $(1)/opt/lib/libiconv-full/include/
++	$(CP) $(PKG_INSTALL_DIR)/Apps/opt/include/iconv.h $(1)/opt/lib/libiconv-full/include/
  
 -	$(INSTALL_DIR) $(1)/usr/lib/libiconv-full/lib
 -	$(CP) $(PKG_INSTALL_DIR)/usr/lib/libcharset.{a,so*} $(1)/usr/lib/libiconv-full/lib/
 -	$(CP) $(PKG_INSTALL_DIR)/usr/lib/libiconv.{a,so*} $(1)/usr/lib/libiconv-full/lib/
 +	$(INSTALL_DIR) $(1)/opt/lib/libiconv-full/lib
-+	$(CP) $(PKG_INSTALL_DIR)/opt/lib/libcharset.{a,so*} $(1)/opt/lib/libiconv-full/lib/
-+	$(CP) $(PKG_INSTALL_DIR)/opt/lib/libiconv.{a,so*} $(1)/opt/lib/libiconv-full/lib/
++	$(CP) $(PKG_INSTALL_DIR)/Apps/opt/lib/libcharset.{a,so*} $(1)/opt/lib/libiconv-full/lib/
++	$(CP) $(PKG_INSTALL_DIR)/Apps/opt/lib/libiconv.{a,so*} $(1)/opt/lib/libiconv-full/lib/
  endef
  
  define Package/libcharset/install
 -	$(INSTALL_DIR) $(1)/usr/lib
 -	$(CP) $(PKG_INSTALL_DIR)/usr/lib/libcharset.so* $(1)/usr/lib/
 +	$(INSTALL_DIR) $(1)/opt/lib
-+	$(CP) $(PKG_INSTALL_DIR)/opt/lib/libcharset.so* $(1)/opt/lib/
++	$(CP) $(PKG_INSTALL_DIR)/Apps/opt/lib/libcharset.so* $(1)/opt/lib/
  endef
  
  define Package/libiconv-full/install
 -	$(INSTALL_DIR) $(1)/usr/lib
 -	$(CP) $(PKG_INSTALL_DIR)/usr/lib/libiconv.so* $(1)/usr/lib/
 +	$(INSTALL_DIR) $(1)/opt/lib
-+	$(CP) $(PKG_INSTALL_DIR)/opt/lib/libiconv.so* $(1)/opt/lib/
++	$(CP) $(PKG_INSTALL_DIR)/Apps/opt/lib/libiconv.so* $(1)/opt/lib/
  endef
  
  define Package/iconv/install
 -	$(INSTALL_DIR) $(1)/usr/bin
 -	$(CP) $(PKG_INSTALL_DIR)/usr/bin/iconv $(1)/usr/bin/
 +	$(INSTALL_DIR) $(1)/opt/bin
-+	$(CP) $(PKG_INSTALL_DIR)/opt/bin/iconv $(1)/opt/bin/
++	$(CP) $(PKG_INSTALL_DIR)/Apps/opt/bin/iconv $(1)/opt/bin/
  endef
  
  $(eval $(call BuildPackage,libcharset))

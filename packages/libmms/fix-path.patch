@@ -10,14 +10,14 @@
 -	$(CP) $(PKG_INSTALL_DIR)/usr/lib/libmms.{a,so*} $(1)/usr/lib/
 -	$(INSTALL_DIR) $(1)/usr/lib/pkgconfig
 +	$(INSTALL_DIR) $(1)/opt/include
-+	$(CP) $(PKG_INSTALL_DIR)/opt/include/libmms $(1)/opt/include/
++	$(CP) $(PKG_INSTALL_DIR)/Apps/opt/include/libmms $(1)/opt/include/
 +	$(INSTALL_DIR) $(1)/opt/lib
-+	$(CP) $(PKG_INSTALL_DIR)/opt/lib/libmms.{a,so*} $(1)/opt/lib/
++	$(CP) $(PKG_INSTALL_DIR)/Apps/opt/lib/libmms.{a,so*} $(1)/opt/lib/
 +	$(INSTALL_DIR) $(1)/opt/lib/pkgconfig
  	$(INSTALL_DATA) \
 -		$(PKG_INSTALL_DIR)/usr/lib/pkgconfig/*.pc \
 -		$(1)/usr/lib/pkgconfig
-+		$(PKG_INSTALL_DIR)/opt/lib/pkgconfig/*.pc \
++		$(PKG_INSTALL_DIR)/Apps/opt/lib/pkgconfig/*.pc \
 +		$(1)/opt/lib/pkgconfig
  endef
  
@@ -25,7 +25,7 @@
 -	$(INSTALL_DIR) $(1)/usr/lib
 -	$(CP) $(PKG_INSTALL_DIR)/usr/lib/libmms.so.* $(1)/usr/lib/
 +	$(INSTALL_DIR) $(1)/opt/lib
-+	$(CP) $(PKG_INSTALL_DIR)/opt/lib/libmms.so.* $(1)/opt/lib/
++	$(CP) $(PKG_INSTALL_DIR)/Apps/opt/lib/libmms.so.* $(1)/opt/lib/
  endef
  
  $(eval $(call BuildPackage,libmms))

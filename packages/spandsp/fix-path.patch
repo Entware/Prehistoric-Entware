@@ -7,34 +7,34 @@
 -	$(INSTALL_DIR) $(1)/usr/lib
 -	$(CP) $(PKG_INSTALL_DIR)/usr/lib/libspandsp* $(1)/usr/lib/
 +	$(INSTALL_DIR) $(1)/opt/lib
-+	$(CP) $(PKG_INSTALL_DIR)/opt/lib/libspandsp* $(1)/opt/lib/
++	$(CP) $(PKG_INSTALL_DIR)/Apps/opt/lib/libspandsp* $(1)/opt/lib/
  
 -	$(INSTALL_DIR) $(1)/usr/include
 -	$(CP) $(PKG_INSTALL_DIR)/usr/include/spandsp.h $(1)/usr/include/
 +	$(INSTALL_DIR) $(1)/opt/include
-+	$(CP) $(PKG_INSTALL_DIR)/opt/include/spandsp.h $(1)/opt/include/
++	$(CP) $(PKG_INSTALL_DIR)/Apps/opt/include/spandsp.h $(1)/opt/include/
  
 -	$(INSTALL_DIR) $(1)/usr/include/spandsp
 -	$(CP) $(PKG_INSTALL_DIR)/usr/include/spandsp/*.h $(1)/usr/include/spandsp/
 +	$(INSTALL_DIR) $(1)/opt/include/spandsp
-+	$(CP) $(PKG_INSTALL_DIR)/opt/include/spandsp/*.h $(1)/opt/include/spandsp/
++	$(CP) $(PKG_INSTALL_DIR)/Apps/opt/include/spandsp/*.h $(1)/opt/include/spandsp/
  
 -	$(INSTALL_DIR) $(1)/usr/include/spandsp/private
 -	$(CP) $(PKG_INSTALL_DIR)/usr/include/spandsp/private/*.h $(1)/usr/include/spandsp/private/
 +	$(INSTALL_DIR) $(1)/opt/include/spandsp/private
-+	$(CP) $(PKG_INSTALL_DIR)/opt/include/spandsp/private/*.h $(1)/opt/include/spandsp/private/
++	$(CP) $(PKG_INSTALL_DIR)/Apps/opt/include/spandsp/private/*.h $(1)/opt/include/spandsp/private/
  
 -	$(INSTALL_DIR) $(1)/usr/lib/pkgconfig
 -	$(CP) $(PKG_INSTALL_DIR)/usr/lib/pkgconfig/spandsp.pc $(1)/usr/lib/pkgconfig/
 +	$(INSTALL_DIR) $(1)/opt/lib/pkgconfig
-+	$(CP) $(PKG_INSTALL_DIR)/opt/lib/pkgconfig/spandsp.pc $(1)/opt/lib/pkgconfig/
++	$(CP) $(PKG_INSTALL_DIR)/Apps/opt/lib/pkgconfig/spandsp.pc $(1)/opt/lib/pkgconfig/
  endef
  
  define Package/libspandsp/install
 -	$(INSTALL_DIR) $(1)/usr/lib
 -	$(CP) $(PKG_INSTALL_DIR)/usr/lib/libspandsp*so* $(1)/usr/lib/
 +	$(INSTALL_DIR) $(1)/opt/lib
-+	$(CP) $(PKG_INSTALL_DIR)/opt/lib/libspandsp*so* $(1)/opt/lib/
++	$(CP) $(PKG_INSTALL_DIR)/Apps/opt/lib/libspandsp*so* $(1)/opt/lib/
  endef
  
  $(eval $(call BuildPackage,libspandsp))

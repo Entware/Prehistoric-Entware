@@ -23,7 +23,7 @@
 -done
 -exit 0
 +	$(INSTALL_DIR) $(1)/opt/bin
-+	$(INSTALL_BIN) $(PKG_INSTALL_DIR)/opt/bin/{sdiff,diff3,diff,cmp} $(1)/opt/bin/
++	$(INSTALL_BIN) $(PKG_INSTALL_DIR)/Apps/opt/bin/{sdiff,diff3,diff,cmp} $(1)/opt/bin/
  endef
  
  $(eval $(call BuildPackage,diffutils))

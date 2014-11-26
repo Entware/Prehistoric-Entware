@@ -7,14 +7,14 @@
 -	$(INSTALL_DIR) $(1)/usr/bin
 -	$(INSTALL_BIN) $(PKG_INSTALL_DIR)/usr/bin/lame $(1)/usr/bin/
 +	$(INSTALL_DIR) $(1)/opt/bin
-+	$(INSTALL_BIN) $(PKG_INSTALL_DIR)/opt/bin/lame $(1)/opt/bin/
++	$(INSTALL_BIN) $(PKG_INSTALL_DIR)/Apps/opt/bin/lame $(1)/opt/bin/
  endef
  
  define Package/lame-lib/install
 -	$(INSTALL_DIR) $(1)/usr/lib
 -	$(CP) $(PKG_INSTALL_DIR)/usr/lib/lib*so* $(1)/usr/lib/
 +	$(INSTALL_DIR) $(1)/opt/lib
-+	$(CP) $(PKG_INSTALL_DIR)/opt/lib/lib*so* $(1)/opt/lib/
++	$(CP) $(PKG_INSTALL_DIR)/Apps/opt/lib/lib*so* $(1)/opt/lib/
  endef
  
  define Build/InstallDev
@@ -24,13 +24,13 @@
 -		$(PKG_INSTALL_DIR)/usr/include/lame/*.h \
 -		$(1)/usr/include/lame/
 -	$(INSTALL_DIR) $(1)/usr/lib
-+		$(PKG_INSTALL_DIR)/opt/include/lame/*.h \
++		$(PKG_INSTALL_DIR)/Apps/opt/include/lame/*.h \
 +		$(1)/opt/include/lame/
 +	$(INSTALL_DIR) $(1)/opt/lib
  	$(CP) \
 -		$(PKG_INSTALL_DIR)/usr/lib/*.{la,so*} \
 -		$(1)/usr/lib/
-+		$(PKG_INSTALL_DIR)/opt/lib/*.{la,so*} \
++		$(PKG_INSTALL_DIR)/Apps/opt/lib/*.{la,so*} \
 +		$(1)/opt/lib/
  endef
  

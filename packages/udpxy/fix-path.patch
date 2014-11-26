@@ -10,7 +10,7 @@
 -
  MAKE_FLAGS += \
 -	INSTALLROOT="$(PKG_INSTALL_DIR)/usr" \
-+	INSTALLROOT="$(PKG_INSTALL_DIR)/opt" \
++	INSTALLROOT="$(PKG_INSTALL_DIR)/Apps/opt" \
  	ALL_CFLAGS="$(TARGET_CFLAGS) $(TARGET_CPPFLAGS)"
  
  define Package/udpxy/install
@@ -23,7 +23,7 @@
 +	$(INSTALL_DIR) $(1)/opt/etc/init.d
 +	$(INSTALL_BIN) ./files/S29udpxy $(1)/opt/etc/init.d/
 +	$(INSTALL_DIR) $(1)/opt/bin
-+	$(INSTALL_BIN) $(PKG_INSTALL_DIR)/opt/bin/udpxy $(1)/opt/bin/
++	$(INSTALL_BIN) $(PKG_INSTALL_DIR)/Apps/opt/bin/udpxy $(1)/opt/bin/
 +	ln -sf udpxy $(1)/opt/bin/udpxrec
  endef
  

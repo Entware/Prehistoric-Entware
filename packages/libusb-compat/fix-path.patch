@@ -5,14 +5,14 @@
  
  	$(CP) $(PKG_INSTALL_DIR)/* $(1)/
 -	$(CP) $(PKG_INSTALL_DIR)/usr/bin/libusb-config $(STAGING_DIR)/host/bin
-+	$(CP) $(PKG_INSTALL_DIR)/opt/bin/libusb-config $(STAGING_DIR)/host/bin
++	$(CP) $(PKG_INSTALL_DIR)/Apps/opt/bin/libusb-config $(STAGING_DIR)/host/bin
  endef
  
  define Package/libusb-compat/install
 -	$(INSTALL_DIR) $(1)/usr/lib
 -	$(CP) $(PKG_INSTALL_DIR)/usr/lib/libusb-0.1.so* $(1)/usr/lib/
 +	$(INSTALL_DIR) $(1)/opt/lib
-+	$(CP) $(PKG_INSTALL_DIR)/opt/lib/libusb-0.1.so* $(1)/opt/lib/
++	$(CP) $(PKG_INSTALL_DIR)/Apps/opt/lib/libusb-0.1.so* $(1)/opt/lib/
  endef
  
  $(eval $(call BuildPackage,libusb-compat))

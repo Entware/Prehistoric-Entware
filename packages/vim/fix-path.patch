@@ -22,8 +22,8 @@
 -	rm -rf $(PKG_INSTALL_DIR)/usr/share/vim/vim$(VIMVER)/doc
 -	rm -rf $(PKG_INSTALL_DIR)/usr/man
 +	(cd $(PKG_INSTALL_DIR) && tar -cf $(PKG_BUILD_DIR)/docs.tar ./opt/share/vim/vim$(VIMVER)/doc)
-+	rm -rf $(PKG_INSTALL_DIR)/opt/share/vim/vim$(VIMVER)/doc
-+	rm -rf $(PKG_INSTALL_DIR)/opt/man
++	rm -rf $(PKG_INSTALL_DIR)/Apps/opt/share/vim/vim$(VIMVER)/doc
++	rm -rf $(PKG_INSTALL_DIR)/Apps/opt/man
  endef
  
  define Build/Compile

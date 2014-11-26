@@ -42,12 +42,12 @@
 -	$(CP) $(PKG_INSTALL_DIR)/usr/share/icecast/admin $(1)/usr/share/icecast/
 -	$(CP) $(PKG_INSTALL_DIR)/usr/share/icecast/web $(1)/usr/share/icecast/
 +	$(INSTALL_DIR) $(1)/opt/etc
-+	$(CP) $(PKG_INSTALL_DIR)/opt/etc/icecast.xml $(1)/opt/etc/
++	$(CP) $(PKG_INSTALL_DIR)/Apps/opt/etc/icecast.xml $(1)/opt/etc/
 +	$(INSTALL_DIR) $(1)/opt/bin
-+	$(INSTALL_BIN) $(PKG_INSTALL_DIR)/opt/bin/icecast $(1)/opt/bin/
++	$(INSTALL_BIN) $(PKG_INSTALL_DIR)/Apps/opt/bin/icecast $(1)/opt/bin/
 +	$(INSTALL_DIR) $(1)/opt/share/icecast
-+	$(CP) $(PKG_INSTALL_DIR)/opt/share/icecast/admin $(1)/opt/share/icecast/
-+	$(CP) $(PKG_INSTALL_DIR)/opt/share/icecast/web $(1)/opt/share/icecast/
++	$(CP) $(PKG_INSTALL_DIR)/Apps/opt/share/icecast/admin $(1)/opt/share/icecast/
++	$(CP) $(PKG_INSTALL_DIR)/Apps/opt/share/icecast/web $(1)/opt/share/icecast/
  endef
  
  define Package/icecast/conffiles

@@ -7,35 +7,35 @@
 -	$(INSTALL_DIR) $(1)/usr/lib/asterisk/modules
 -	$(INSTALL_BIN) $(PKG_INSTALL_DIR)/usr/lib/asterisk/modules/*$(2).so* $(1)/usr/lib/asterisk/modules/
 +	$(INSTALL_DIR) $(1)/opt/lib/asterisk/modules
-+	$(INSTALL_BIN) $(PKG_INSTALL_DIR)/opt/lib/asterisk/modules/*$(2).so* $(1)/opt/lib/asterisk/modules/
++	$(INSTALL_BIN) $(PKG_INSTALL_DIR)/Apps/opt/lib/asterisk/modules/*$(2).so* $(1)/opt/lib/asterisk/modules/
  endef
  
  define Package/asterisk11/install/conffile
 -	$(INSTALL_DIR) $(1)/etc/asterisk
 -	$(CP) $(PKG_INSTALL_DIR)/etc/asterisk/*$(2)* $(1)/etc/asterisk/
 +	$(INSTALL_DIR) $(1)/opt/etc/asterisk
-+	$(CP) $(PKG_INSTALL_DIR)/opt/etc/asterisk/*$(2)* $(1)/opt/etc/asterisk/
++	$(CP) $(PKG_INSTALL_DIR)/Apps/opt/etc/asterisk/*$(2)* $(1)/opt/etc/asterisk/
  endef
  
  define Package/asterisk11/install/lib
 -	$(INSTALL_DIR) $(1)/usr/lib
 -	$(INSTALL_BIN) $(PKG_INSTALL_DIR)/usr/lib/$(2).so* $(1)/usr/lib/
 +	$(INSTALL_DIR) $(1)/opt/lib
-+	$(INSTALL_BIN) $(PKG_INSTALL_DIR)/opt/lib/$(2).so* $(1)/opt/lib/
++	$(INSTALL_BIN) $(PKG_INSTALL_DIR)/Apps/opt/lib/$(2).so* $(1)/opt/lib/
  endef
  
  define Package/asterisk11/install/sbin
 -	$(INSTALL_DIR) $(1)/usr/sbin
 -	$(INSTALL_BIN) $(PKG_INSTALL_DIR)/usr/sbin/$(2) $(1)/usr/sbin/
 +	$(INSTALL_DIR) $(1)/opt/sbin
-+	$(INSTALL_BIN) $(PKG_INSTALL_DIR)/opt/sbin/$(2) $(1)/opt/sbin/
++	$(INSTALL_BIN) $(PKG_INSTALL_DIR)/Apps/opt/sbin/$(2) $(1)/opt/sbin/
  endef
  
  define Package/asterisk11/install/sounds
 -	$(INSTALL_DIR) $(1)/usr/lib/asterisk/sounds/
 -	$(CP) $(PKG_INSTALL_DIR)/usr/lib/asterisk/sounds/en/$(2) $(1)/usr/lib/asterisk/sounds/
 +	$(INSTALL_DIR) $(1)/opt/lib/asterisk/sounds/
-+	$(CP) $(PKG_INSTALL_DIR)/opt/lib/asterisk/sounds/en/$(2) $(1)/opt/lib/asterisk/sounds/
++	$(CP) $(PKG_INSTALL_DIR)/Apps/opt/lib/asterisk/sounds/en/$(2) $(1)/opt/lib/asterisk/sounds/
  endef
  
  define BuildAsterisk11Module
@@ -106,7 +106,7 @@
 -	rm -f $(1)/usr/lib/asterisk/sounds/vm-*
 -	rm -f $(1)/usr/lib/asterisk/sounds/conf-*
 +	$(INSTALL_DIR) $(1)/opt/lib/asterisk/sounds/
-+	$(CP) $(PKG_INSTALL_DIR)/opt/lib/asterisk/sounds/en/* $(1)/opt/lib/asterisk/sounds/
++	$(CP) $(PKG_INSTALL_DIR)/Apps/opt/lib/asterisk/sounds/en/* $(1)/opt/lib/asterisk/sounds/
 +	rm -f $(1)/opt/lib/asterisk/sounds/vm-*
 +	rm -f $(1)/opt/lib/asterisk/sounds/conf-*
  endef
@@ -228,8 +228,8 @@
 -	$(CP) $(PKG_INSTALL_DIR)/usr/include/asterisk/*.h $(1)/usr/include/asterisk-11/include/asterisk/
 -	$(CP) $(PKG_INSTALL_DIR)/usr/include/asterisk.h $(1)/usr/include/asterisk-11/include/
 +	$(INSTALL_DIR) $(1)/opt/include/asterisk-11/include/asterisk/
-+	$(CP) $(PKG_INSTALL_DIR)/opt/include/asterisk/*.h $(1)/opt/include/asterisk-11/include/asterisk/
-+	$(CP) $(PKG_INSTALL_DIR)/opt/include/asterisk.h $(1)/opt/include/asterisk-11/include/
++	$(CP) $(PKG_INSTALL_DIR)/Apps/opt/include/asterisk/*.h $(1)/opt/include/asterisk-11/include/asterisk/
++	$(CP) $(PKG_INSTALL_DIR)/Apps/opt/include/asterisk.h $(1)/opt/include/asterisk-11/include/
  endef
  
  $(eval $(call BuildPackage,asterisk11))

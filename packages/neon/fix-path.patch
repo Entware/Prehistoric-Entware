@@ -15,13 +15,13 @@
 -	$(SED) 's,-I$$$${includedir}/,-I$(STAGING_DIR)/usr/include/,g' $(1)/usr/bin/neon-config
 -	$(SED) 's,-L$$$${libdir},,g' $(1)/usr/bin/neon-config
 +	$(INSTALL_DIR) $(1)/opt/bin
-+	$(INSTALL_BIN) $(PKG_INSTALL_DIR)/opt/bin/neon-config $(1)/opt/bin/
++	$(INSTALL_BIN) $(PKG_INSTALL_DIR)/Apps/opt/bin/neon-config $(1)/opt/bin/
 +	$(INSTALL_DIR) $(1)/opt/include
-+	$(CP) $(PKG_INSTALL_DIR)/opt/include/neon $(1)/opt/include/
++	$(CP) $(PKG_INSTALL_DIR)/Apps/opt/include/neon $(1)/opt/include/
 +	$(INSTALL_DIR) $(1)/opt/lib
-+	$(CP) $(PKG_INSTALL_DIR)/opt/lib/libneon.{a,so*} $(1)/opt/lib/
++	$(CP) $(PKG_INSTALL_DIR)/Apps/opt/lib/libneon.{a,so*} $(1)/opt/lib/
 +	$(INSTALL_DIR) $(1)/opt/lib/pkgconfig
-+	$(CP) $(PKG_INSTALL_DIR)/opt/lib/pkgconfig/neon.pc $(1)/opt/lib/pkgconfig/
++	$(CP) $(PKG_INSTALL_DIR)/Apps/opt/lib/pkgconfig/neon.pc $(1)/opt/lib/pkgconfig/
 +	$(SED) 's,-I$$$${includedir}/,-I$(STAGING_DIR)/opt/include/,g' $(1)/opt/bin/neon-config
 +	$(SED) 's,-L$$$${libdir},,g' $(1)/opt/bin/neon-config
  endef
@@ -30,7 +30,7 @@
 -	$(INSTALL_DIR) $(1)/usr/lib
 -	$(CP) $(PKG_INSTALL_DIR)/usr/lib/libneon.so.* $(1)/usr/lib/
 +	$(INSTALL_DIR) $(1)/opt/lib
-+	$(CP) $(PKG_INSTALL_DIR)/opt/lib/libneon.so.* $(1)/opt/lib/
++	$(CP) $(PKG_INSTALL_DIR)/Apps/opt/lib/libneon.so.* $(1)/opt/lib/
  endef
  
  $(eval $(call BuildPackage,libneon))

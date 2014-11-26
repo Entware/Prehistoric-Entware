@@ -40,7 +40,7 @@
 -	$(INSTALL_DIR) $(1)/usr/lib
 -	$(CP) $(PKG_INSTALL_DIR)/usr/lib/*.so* $(1)/usr/lib
 +	$(INSTALL_DIR) $(1)/opt/lib
-+	$(CP) $(PKG_INSTALL_DIR)/opt/lib/*.so* $(1)/opt/lib
++	$(CP) $(PKG_INSTALL_DIR)/Apps/opt/lib/*.so* $(1)/opt/lib
  endef
  
  define Package/bind-server/install
@@ -48,7 +48,7 @@
 -	$(INSTALL_BIN) $(PKG_INSTALL_DIR)/usr/sbin/named $(1)/usr/sbin/
 -	$(INSTALL_DIR) $(1)/etc/bind
 +	$(INSTALL_DIR) $(1)/opt/sbin
-+	$(INSTALL_BIN) $(PKG_INSTALL_DIR)/opt/sbin/named $(1)/opt/sbin/
++	$(INSTALL_BIN) $(PKG_INSTALL_DIR)/Apps/opt/sbin/named $(1)/opt/sbin/
 +	$(INSTALL_DIR) $(1)/opt/etc/bind
  	$(CP) \
  		./files/bind/db.0 \
@@ -87,7 +87,7 @@
 -	$(INSTALL_DIR) $(1)/usr/bin
 -	$(INSTALL_BIN) $(PKG_INSTALL_DIR)/usr/bin/nsupdate $(1)/usr/bin/
 +	$(INSTALL_DIR) $(1)/opt/bin
-+	$(INSTALL_BIN) $(PKG_INSTALL_DIR)/opt/bin/nsupdate $(1)/opt/bin/
++	$(INSTALL_BIN) $(PKG_INSTALL_DIR)/Apps/opt/bin/nsupdate $(1)/opt/bin/
  endef
  
  define Package/bind-tools/install
@@ -102,15 +102,15 @@
 -	$(INSTALL_BIN) $(PKG_INSTALL_DIR)/usr/sbin/rndc $(1)/usr/sbin/
 -	$(INSTALL_BIN) $(PKG_INSTALL_DIR)/usr/sbin/rndc-confgen $(1)/usr/sbin/
 +	$(INSTALL_DIR) $(1)/opt/bin
-+	$(INSTALL_BIN) $(PKG_INSTALL_DIR)/opt/bin/dig $(1)/opt/bin/
-+	$(INSTALL_BIN) $(PKG_INSTALL_DIR)/opt/bin/host $(1)/opt/bin/
++	$(INSTALL_BIN) $(PKG_INSTALL_DIR)/Apps/opt/bin/dig $(1)/opt/bin/
++	$(INSTALL_BIN) $(PKG_INSTALL_DIR)/Apps/opt/bin/host $(1)/opt/bin/
 +	$(INSTALL_DIR) $(1)/opt/sbin
-+	$(INSTALL_BIN) $(PKG_INSTALL_DIR)/opt/sbin/dnssec-keygen $(1)/opt/sbin/
-+	$(INSTALL_BIN) $(PKG_INSTALL_DIR)/opt/sbin/dnssec-signzone $(1)/opt/sbin/
-+	$(INSTALL_BIN) $(PKG_INSTALL_DIR)/opt/sbin/named-checkconf $(1)/opt/sbin/
-+	$(INSTALL_BIN) $(PKG_INSTALL_DIR)/opt/sbin/named-checkzone $(1)/opt/sbin/
-+	$(INSTALL_BIN) $(PKG_INSTALL_DIR)/opt/sbin/rndc $(1)/opt/sbin/
-+	$(INSTALL_BIN) $(PKG_INSTALL_DIR)/opt/sbin/rndc-confgen $(1)/opt/sbin/
++	$(INSTALL_BIN) $(PKG_INSTALL_DIR)/Apps/opt/sbin/dnssec-keygen $(1)/opt/sbin/
++	$(INSTALL_BIN) $(PKG_INSTALL_DIR)/Apps/opt/sbin/dnssec-signzone $(1)/opt/sbin/
++	$(INSTALL_BIN) $(PKG_INSTALL_DIR)/Apps/opt/sbin/named-checkconf $(1)/opt/sbin/
++	$(INSTALL_BIN) $(PKG_INSTALL_DIR)/Apps/opt/sbin/named-checkzone $(1)/opt/sbin/
++	$(INSTALL_BIN) $(PKG_INSTALL_DIR)/Apps/opt/sbin/rndc $(1)/opt/sbin/
++	$(INSTALL_BIN) $(PKG_INSTALL_DIR)/Apps/opt/sbin/rndc-confgen $(1)/opt/sbin/
  endef
  
  define Package/bind-rndc/install
@@ -118,8 +118,8 @@
 -	$(INSTALL_BIN) $(PKG_INSTALL_DIR)/usr/sbin/rndc $(1)/usr/sbin/
 -	$(INSTALL_BIN) $(PKG_INSTALL_DIR)/usr/sbin/rndc-confgen $(1)/usr/sbin/
 +	$(INSTALL_DIR) $(1)/opt/sbin
-+	$(INSTALL_BIN) $(PKG_INSTALL_DIR)/opt/sbin/rndc $(1)/opt/sbin/
-+	$(INSTALL_BIN) $(PKG_INSTALL_DIR)/opt/sbin/rndc-confgen $(1)/opt/sbin/
++	$(INSTALL_BIN) $(PKG_INSTALL_DIR)/Apps/opt/sbin/rndc $(1)/opt/sbin/
++	$(INSTALL_BIN) $(PKG_INSTALL_DIR)/Apps/opt/sbin/rndc-confgen $(1)/opt/sbin/
  endef
  
  define Package/bind-check/install
@@ -127,8 +127,8 @@
 -	$(INSTALL_BIN) $(PKG_INSTALL_DIR)/usr/sbin/named-checkconf $(1)/usr/sbin/
 -	$(INSTALL_BIN) $(PKG_INSTALL_DIR)/usr/sbin/named-checkzone $(1)/usr/sbin/
 +	$(INSTALL_DIR) $(1)/opt/sbin
-+	$(INSTALL_BIN) $(PKG_INSTALL_DIR)/opt/sbin/named-checkconf $(1)/opt/sbin/
-+	$(INSTALL_BIN) $(PKG_INSTALL_DIR)/opt/sbin/named-checkzone $(1)/opt/sbin/
++	$(INSTALL_BIN) $(PKG_INSTALL_DIR)/Apps/opt/sbin/named-checkconf $(1)/opt/sbin/
++	$(INSTALL_BIN) $(PKG_INSTALL_DIR)/Apps/opt/sbin/named-checkzone $(1)/opt/sbin/
  endef
  
  define Package/bind-dnssec/install
@@ -136,27 +136,27 @@
 -	$(INSTALL_BIN) $(PKG_INSTALL_DIR)/usr/sbin/dnssec-keygen $(1)/usr/sbin/
 -	$(INSTALL_BIN) $(PKG_INSTALL_DIR)/usr/sbin/dnssec-signzone $(1)/usr/sbin/
 +	$(INSTALL_DIR) $(1)/opt/sbin
-+	$(INSTALL_BIN) $(PKG_INSTALL_DIR)/opt/sbin/dnssec-keygen $(1)/opt/sbin/
-+	$(INSTALL_BIN) $(PKG_INSTALL_DIR)/opt/sbin/dnssec-signzone $(1)/opt/sbin/
++	$(INSTALL_BIN) $(PKG_INSTALL_DIR)/Apps/opt/sbin/dnssec-keygen $(1)/opt/sbin/
++	$(INSTALL_BIN) $(PKG_INSTALL_DIR)/Apps/opt/sbin/dnssec-signzone $(1)/opt/sbin/
  endef
  
  define Package/bind-host/install
 -	$(INSTALL_DIR) $(1)/usr/bin
 -	$(INSTALL_BIN) $(PKG_INSTALL_DIR)/usr/bin/host $(1)/usr/bin/
 +	$(INSTALL_DIR) $(1)/opt/bin
-+	$(INSTALL_BIN) $(PKG_INSTALL_DIR)/opt/bin/host $(1)/opt/bin/
++	$(INSTALL_BIN) $(PKG_INSTALL_DIR)/Apps/opt/bin/host $(1)/opt/bin/
  endef
  
  define Package/bind-dig/install
 -	$(INSTALL_DIR) $(1)/usr/bin
 -	$(INSTALL_BIN) $(PKG_INSTALL_DIR)/usr/bin/dig $(1)/usr/bin/
 +	$(INSTALL_DIR) $(1)/opt/bin
-+	$(INSTALL_BIN) $(PKG_INSTALL_DIR)/opt/bin/dig $(1)/opt/bin/
++	$(INSTALL_BIN) $(PKG_INSTALL_DIR)/Apps/opt/bin/dig $(1)/opt/bin/
 +endef
 +
 +define Package/bind-nslookup/install
 +	$(INSTALL_DIR) $(1)/opt/bin
-+	$(INSTALL_BIN) $(PKG_INSTALL_DIR)/opt/bin/nslookup $(1)/opt/bin/
++	$(INSTALL_BIN) $(PKG_INSTALL_DIR)/Apps/opt/bin/nslookup $(1)/opt/bin/
  endef
  
  $(eval $(call BuildPackage,bind-libs))

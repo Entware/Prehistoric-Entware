@@ -30,14 +30,14 @@
 -	$(INSTALL_DIR) $(1)/usr/include/irssi
 -	$(CP) $(PKG_INSTALL_DIR)/usr/include/irssi/* $(1)/usr/include/irssi/
 +	$(INSTALL_DIR) $(1)/opt/include/irssi
-+	$(CP) $(PKG_INSTALL_DIR)/opt/include/irssi/* $(1)/opt/include/irssi/
++	$(CP) $(PKG_INSTALL_DIR)/Apps/opt/include/irssi/* $(1)/opt/include/irssi/
  endef
  
  define Package/irssi/install
 -	$(INSTALL_DIR) $(1)/usr/bin
 -	$(INSTALL_BIN) $(PKG_INSTALL_DIR)/usr/bin/$(PKG_NAME) $(1)/usr/bin/$(PKG_NAME)
 +	$(INSTALL_DIR) $(1)/opt/bin
-+	$(INSTALL_BIN) $(PKG_INSTALL_DIR)/opt/bin/$(PKG_NAME) $(1)/opt/bin/$(PKG_NAME)
++	$(INSTALL_BIN) $(PKG_INSTALL_DIR)/Apps/opt/bin/$(PKG_NAME) $(1)/opt/bin/$(PKG_NAME)
  endef
  
  Package/irssi-nossl/install = $(Package/irssi/install)

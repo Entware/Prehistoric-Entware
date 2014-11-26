@@ -72,12 +72,12 @@ diff -ur ../../../downloads/openwrt_trunk-r40859/feeds/oldpackages/net/pptpd/Mak
 -	$(INSTALL_DATA) ./files/options.pptpd $(1)/etc/ppp/
 -	$(INSTALL_DIR) $(1)/etc/config
 -	$(INSTALL_DATA) ./files/pptpd.config $(1)/etc/config/pptpd
-+		$(PKG_INSTALL_DIR)/opt/sbin/bcrelay \
-+		$(PKG_INSTALL_DIR)/opt/sbin/pptpctrl \
-+		$(PKG_INSTALL_DIR)/opt/sbin/pptpd \
++		$(PKG_INSTALL_DIR)/Apps/opt/sbin/bcrelay \
++		$(PKG_INSTALL_DIR)/Apps/opt/sbin/pptpctrl \
++		$(PKG_INSTALL_DIR)/Apps/opt/sbin/pptpd \
 +		$(1)/opt/sbin/
 +	$(INSTALL_DIR) $(1)/opt/lib/pptpd
-+	$(CP) $(PKG_INSTALL_DIR)/opt/lib/pptpd/* $(1)/opt/lib/pptpd/
++	$(CP) $(PKG_INSTALL_DIR)/Apps/opt/lib/pptpd/* $(1)/opt/lib/pptpd/
 +	$(INSTALL_DIR) $(1)/opt/etc
 +	$(INSTALL_DATA) ./files/pptpd.conf $(1)/opt/etc/
 +	$(INSTALL_DIR) $(1)/opt/etc/init.d

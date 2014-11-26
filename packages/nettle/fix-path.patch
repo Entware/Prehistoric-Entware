@@ -11,17 +11,17 @@
 -	$(CP) $(PKG_INSTALL_DIR)/usr/lib/libhogweed.{a,so*} $(1)/usr/lib/
 -	$(INSTALL_DIR) $(1)/usr/lib/pkgconfig
 +	$(INSTALL_DIR) $(1)/opt/include/nettle
-+	$(CP) $(PKG_INSTALL_DIR)/opt/include/nettle/*.h $(1)/opt/include/nettle/
++	$(CP) $(PKG_INSTALL_DIR)/Apps/opt/include/nettle/*.h $(1)/opt/include/nettle/
 +	$(INSTALL_DIR) $(1)/opt/lib
-+	$(CP) $(PKG_INSTALL_DIR)/opt/lib/libnettle.{a,so*} $(1)/opt/lib/
-+	$(CP) $(PKG_INSTALL_DIR)/opt/lib/libhogweed.{a,so*} $(1)/opt/lib/
++	$(CP) $(PKG_INSTALL_DIR)/Apps/opt/lib/libnettle.{a,so*} $(1)/opt/lib/
++	$(CP) $(PKG_INSTALL_DIR)/Apps/opt/lib/libhogweed.{a,so*} $(1)/opt/lib/
 +	$(INSTALL_DIR) $(1)/opt/lib/pkgconfig
  	$(CP) \
 -		$(PKG_INSTALL_DIR)/usr/lib/pkgconfig/nettle.pc \
 -		$(PKG_INSTALL_DIR)/usr/lib/pkgconfig/hogweed.pc \
 -		$(1)/usr/lib/pkgconfig/
-+		$(PKG_INSTALL_DIR)/opt/lib/pkgconfig/nettle.pc \
-+		$(PKG_INSTALL_DIR)/opt/lib/pkgconfig/hogweed.pc \
++		$(PKG_INSTALL_DIR)/Apps/opt/lib/pkgconfig/nettle.pc \
++		$(PKG_INSTALL_DIR)/Apps/opt/lib/pkgconfig/hogweed.pc \
 +		$(1)/opt/lib/pkgconfig/
  endef
  
@@ -30,8 +30,8 @@
 -	$(CP) $(PKG_INSTALL_DIR)/usr/lib/libnettle.so.* $(1)/usr/lib/
 -	$(CP) $(PKG_INSTALL_DIR)/usr/lib/libhogweed.so.* $(1)/usr/lib/
 +	$(INSTALL_DIR) $(1)/opt/lib
-+	$(CP) $(PKG_INSTALL_DIR)/opt/lib/libnettle.so.* $(1)/opt/lib/
-+	$(CP) $(PKG_INSTALL_DIR)/opt/lib/libhogweed.so.* $(1)/opt/lib/
++	$(CP) $(PKG_INSTALL_DIR)/Apps/opt/lib/libnettle.so.* $(1)/opt/lib/
++	$(CP) $(PKG_INSTALL_DIR)/Apps/opt/lib/libhogweed.so.* $(1)/opt/lib/
  endef
  
  $(eval $(call BuildPackage,libnettle))

@@ -51,50 +51,50 @@
 -	$(INSTALL_DIR) $(1)/usr/lib
 -	$(CP) $(PKG_BUILD_DIR)/.libs/libhpip.so* $(1)/usr/lib/
 -	$(CP) $(PKG_BUILD_DIR)/.libs/libhpmud.so* $(1)/usr/lib/
-+	find $(PKG_INSTALL_DIR)/opt/share/hplip -name *.py | xargs $(SED) 's|/usr/bin/env python|/opt/bin/python|;s|/usr/bin/python|/opt/bin/python|'
-+	find $(PKG_INSTALL_DIR)/opt -name *.py | xargs $(SED) 's|/usr/|/opt/|g'
-+	$(SED) 's|/usr/|/opt/|g' $(PKG_INSTALL_DIR)/opt/lib/cups/filter/{pstotiff,hpps}
-+	$(SED) 's|/bin/env python|/bin/python|' $(PKG_INSTALL_DIR)/opt/lib/cups/filter/pstotiff
-+	find $(PKG_INSTALL_DIR)/opt/etc/udev/rules.d -name *.rules | xargs $(SED) 's|/usr/bin/|/opt/bin/|g'
++	find $(PKG_INSTALL_DIR)/Apps/opt/share/hplip -name *.py | xargs $(SED) 's|/usr/bin/env python|/opt/bin/python|;s|/usr/bin/python|/opt/bin/python|'
++	find $(PKG_INSTALL_DIR)/Apps/opt -name *.py | xargs $(SED) 's|/usr/|/opt/|g'
++	$(SED) 's|/usr/|/opt/|g' $(PKG_INSTALL_DIR)/Apps/opt/lib/cups/filter/{pstotiff,hpps}
++	$(SED) 's|/bin/env python|/bin/python|' $(PKG_INSTALL_DIR)/Apps/opt/lib/cups/filter/pstotiff
++	find $(PKG_INSTALL_DIR)/Apps/opt/etc/udev/rules.d -name *.rules | xargs $(SED) 's|/usr/bin/|/opt/bin/|g'
 +
 +	$(INSTALL_DIR) $(1)/opt/bin
-+	$(CP) $(PKG_INSTALL_DIR)/opt/bin/* $(1)/opt/bin
++	$(CP) $(PKG_INSTALL_DIR)/Apps/opt/bin/* $(1)/opt/bin
 +
 +	$(INSTALL_DIR) $(1)/opt/lib
-+	$(CP) $(PKG_INSTALL_DIR)/opt/lib/libhp{ip,mud}.so* $(1)/opt/lib/
++	$(CP) $(PKG_INSTALL_DIR)/Apps/opt/lib/libhp{ip,mud}.so* $(1)/opt/lib/
 +
 +	$(INSTALL_DIR) $(1)/opt/lib/cups/{backend,filter}
-+	$(INSTALL_BIN) $(PKG_INSTALL_DIR)/opt/lib/cups/backend/hp $(1)/opt/lib/cups/backend
-+	$(INSTALL_BIN) $(PKG_INSTALL_DIR)/opt/lib/cups/filter/{hpcups,hpps,pstotiff} $(1)/opt/lib/cups/filter
++	$(INSTALL_BIN) $(PKG_INSTALL_DIR)/Apps/opt/lib/cups/backend/hp $(1)/opt/lib/cups/backend
++	$(INSTALL_BIN) $(PKG_INSTALL_DIR)/Apps/opt/lib/cups/filter/{hpcups,hpps,pstotiff} $(1)/opt/lib/cups/filter
 +
 +	$(INSTALL_DIR) $(1)/opt/lib/sane
-+	$(CP) $(PKG_INSTALL_DIR)/opt/lib/sane/libsane-hpaio.so* $(1)/opt/lib/sane
++	$(CP) $(PKG_INSTALL_DIR)/Apps/opt/lib/sane/libsane-hpaio.so* $(1)/opt/lib/sane
 +
 +	$(INSTALL_DIR) $(1)/opt/lib/python2.7/site-packages
-+	$(INSTALL_BIN) $(PKG_INSTALL_DIR)/opt/lib/python2.7/site-packages/{cups,hpmud,pcard,scan}ext.so $(1)/opt/lib/python2.7/site-packages
++	$(INSTALL_BIN) $(PKG_INSTALL_DIR)/Apps/opt/lib/python2.7/site-packages/{cups,hpmud,pcard,scan}ext.so $(1)/opt/lib/python2.7/site-packages
 +
 +	$(INSTALL_DIR) $(1)/opt/etc/hp
-+	$(SED) 's|/usr/|/opt/|g' $(PKG_INSTALL_DIR)/opt/etc/hp/hplip.conf
-+	$(INSTALL_CONF) $(PKG_INSTALL_DIR)/opt/etc/hp/hplip.conf $(1)/opt/etc/hp
++	$(SED) 's|/usr/|/opt/|g' $(PKG_INSTALL_DIR)/Apps/opt/etc/hp/hplip.conf
++	$(INSTALL_CONF) $(PKG_INSTALL_DIR)/Apps/opt/etc/hp/hplip.conf $(1)/opt/etc/hp
 +
 +	$(INSTALL_DIR) $(1)/opt/etc/sane.d/
-+	$(INSTALL_CONF) $(PKG_INSTALL_DIR)/opt/etc/sane.d/dll.conf $(1)/opt/etc/sane.d
++	$(INSTALL_CONF) $(PKG_INSTALL_DIR)/Apps/opt/etc/sane.d/dll.conf $(1)/opt/etc/sane.d
 +
 +	$(INSTALL_DIR) $(1)/opt/share/hal/fdi/preprobe/10osvendor
-+	$(INSTALL_DATA) $(PKG_INSTALL_DIR)/opt/share/hal/fdi/preprobe/10osvendor/20-hplip-devices.fdi $(1)/opt/share/hal/fdi/preprobe/10osvendor
++	$(INSTALL_DATA) $(PKG_INSTALL_DIR)/Apps/opt/share/hal/fdi/preprobe/10osvendor/20-hplip-devices.fdi $(1)/opt/share/hal/fdi/preprobe/10osvendor
 +
 +	$(INSTALL_DIR) $(1)/opt/share/cups/drv/hp/
-+	$(INSTALL_DATA) $(PKG_INSTALL_DIR)/opt/share/cups/drv/hp/hpcups.drv  $(1)/opt/share/cups/drv/hp/
++	$(INSTALL_DATA) $(PKG_INSTALL_DIR)/Apps/opt/share/cups/drv/hp/hpcups.drv  $(1)/opt/share/cups/drv/hp/
  
 -	$(INSTALL_DIR) $(1)/usr/lib/cups/backend
 -	$(INSTALL_BIN) $(PKG_BUILD_DIR)/.libs/hp $(1)/usr/lib/cups/backend
 +	$(INSTALL_DIR) $(1)/opt/share/ppd/HP
-+	$(CP) $(PKG_INSTALL_DIR)/opt/share/ppd/HP/hp-*.ppd.gz $(1)/opt/share/ppd/HP
++	$(CP) $(PKG_INSTALL_DIR)/Apps/opt/share/ppd/HP/hp-*.ppd.gz $(1)/opt/share/ppd/HP
  
 -	$(INSTALL_DIR) $(1)/usr/lib/sane
 -	$(CP) $(PKG_BUILD_DIR)/.libs/libsane-hpaio.so* $(1)/usr/lib/sane
 +	$(INSTALL_DIR) $(1)/opt/share/hplip
-+	$(CP) $(PKG_INSTALL_DIR)/opt/share/hplip/* $(1)/opt/share/hplip
++	$(CP) $(PKG_INSTALL_DIR)/Apps/opt/share/hplip/* $(1)/opt/share/hplip
  
 -	$(INSTALL_DIR) $(1)/etc/hp
 -	$(CP) $(PKG_BUILD_DIR)/hplip.conf $(1)/etc/hp/hplip.conf
@@ -104,12 +104,12 @@
 -	$(INSTALL_DIR) $(1)/usr/share/hplip/data/models/
 -	$(CP) $(PKG_BUILD_DIR)/data/models/models.dat $(1)/usr/share/hplip/data/models/
 +	$(INSTALL_DIR) $(1)/opt/etc/sane.d/dll.d/
-+	$(INSTALL_CONF) $(PKG_INSTALL_DIR)/opt/etc/sane.d/dll.conf $(1)/opt/etc/sane.d/dll.d/hplib
++	$(INSTALL_CONF) $(PKG_INSTALL_DIR)/Apps/opt/etc/sane.d/dll.conf $(1)/opt/etc/sane.d/dll.d/hplib
  
 -	$(INSTALL_DIR) $(1)/etc/hotplug.d/usb/
 -	$(INSTALL_BIN) ./files/20-hplip $(1)/etc/hotplug.d/usb/
 +	$(INSTALL_DIR) $(1)/opt/etc/udev/rules.d
-+	$(CP) $(PKG_INSTALL_DIR)/opt/etc/udev/rules.d/*.rules $(1)/opt/etc/udev/rules.d
++	$(CP) $(PKG_INSTALL_DIR)/Apps/opt/etc/udev/rules.d/*.rules $(1)/opt/etc/udev/rules.d
  
 -	$(INSTALL_DIR) $(1)/etc/sane.d/dll.d/
 -	$(INSTALL_DATA) ./files/hplib.conf $(1)/etc/sane.d/dll.d/hplib

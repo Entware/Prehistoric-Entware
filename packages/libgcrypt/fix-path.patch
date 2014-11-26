@@ -19,10 +19,10 @@
 -	$(SED) 's,^includedir=\"$$$${prefix}/include/,includedir=\"$(STAGING_DIR)/usr/include/,g' $(1)/usr/bin/libgcrypt-config
 -	ln -sf $(STAGING_DIR)/usr/bin/libgcrypt-config $(2)/bin/
 +	$(INSTALL_DIR) $(1)/opt/bin $(2)/bin $(1)/opt/include $(1)/opt/lib $(1)/opt/share/aclocal
-+	$(INSTALL_BIN) $(PKG_INSTALL_DIR)/opt/bin/libgcrypt-config $(1)/opt/bin/
-+	$(CP) $(PKG_INSTALL_DIR)/opt/include/gcrypt*.h $(1)/opt/include/
-+	$(CP) $(PKG_INSTALL_DIR)/opt/lib/libgcrypt.{la,a,so*} $(1)/opt/lib/
-+	$(CP) $(PKG_INSTALL_DIR)/opt/share/aclocal/libgcrypt.m4 $(1)/opt/share/aclocal/
++	$(INSTALL_BIN) $(PKG_INSTALL_DIR)/Apps/opt/bin/libgcrypt-config $(1)/opt/bin/
++	$(CP) $(PKG_INSTALL_DIR)/Apps/opt/include/gcrypt*.h $(1)/opt/include/
++	$(CP) $(PKG_INSTALL_DIR)/Apps/opt/lib/libgcrypt.{la,a,so*} $(1)/opt/lib/
++	$(CP) $(PKG_INSTALL_DIR)/Apps/opt/share/aclocal/libgcrypt.m4 $(1)/opt/share/aclocal/
 +	$(SED) 's,^libdir=\"$$$${exec_prefix}/lib,libdir=\"$(STAGING_DIR)/opt/lib,g' $(1)/opt/bin/libgcrypt-config
 +	$(SED) 's,^includedir=\"$$$${prefix}/include/,includedir=\"$(STAGING_DIR)/opt/include/,g' $(1)/opt/bin/libgcrypt-config
 +	ln -sf $(STAGING_DIR)/opt/bin/libgcrypt-config $(2)/bin/
@@ -32,7 +32,7 @@
 -	$(INSTALL_DIR) $(1)/usr/lib
 -	$(CP) $(PKG_INSTALL_DIR)/usr/lib/libgcrypt.so.* $(1)/usr/lib/
 +	$(INSTALL_DIR) $(1)/opt/lib
-+	$(CP) $(PKG_INSTALL_DIR)/opt/lib/libgcrypt.so.* $(1)/opt/lib/
++	$(CP) $(PKG_INSTALL_DIR)/Apps/opt/lib/libgcrypt.so.* $(1)/opt/lib/
  endef
  
  $(eval $(call BuildPackage,libgcrypt))

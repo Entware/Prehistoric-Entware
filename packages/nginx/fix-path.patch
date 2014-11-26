@@ -61,13 +61,13 @@ diff -urx .svn ../../../downloads/openwrt_trunk-r42803/feeds/packages/net/nginx/
 -	$(INSTALL_DIR) $(1)/etc/init.d
 -	$(INSTALL_BIN) ./files/nginx.init $(1)/etc/init.d/nginx
 +	$(INSTALL_DIR) $(1)/opt/sbin
-+	$(INSTALL_BIN) $(PKG_INSTALL_DIR)/opt/sbin/nginx $(1)/opt/sbin/
++	$(INSTALL_BIN) $(PKG_INSTALL_DIR)/Apps/opt/sbin/nginx $(1)/opt/sbin/
 +	$(INSTALL_DIR) $(1)/opt/etc/nginx
-+	$(INSTALL_DATA) $(addprefix $(PKG_INSTALL_DIR)/opt/etc/nginx/,$(config_files)) $(1)/opt/etc/nginx/
++	$(INSTALL_DATA) $(addprefix $(PKG_INSTALL_DIR)/Apps/opt/etc/nginx/,$(config_files)) $(1)/opt/etc/nginx/
 +	$(INSTALL_DIR) $(1)/opt/etc/init.d
 +	$(INSTALL_BIN) ./files/S80nginx $(1)/opt/etc/init.d
 +	$(INSTALL_DIR) $(1)/opt/share/nginx/html
-+	$(INSTALL_DATA) $(PKG_INSTALL_DIR)/opt/html/{index,50x}.html $(1)/opt/share/nginx/html
++	$(INSTALL_DATA) $(PKG_INSTALL_DIR)/Apps/opt/html/{index,50x}.html $(1)/opt/share/nginx/html
 +	$(INSTALL_DIR) $(1)/opt/var/{run,lock}
 +	$(INSTALL_DIR) $(1)/opt/var/log/nginx
 +	$(INSTALL_DIR) $(1)/opt/var/lib/nginx/{body,proxy,fastcgi}

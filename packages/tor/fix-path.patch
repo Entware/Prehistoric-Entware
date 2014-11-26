@@ -33,23 +33,23 @@
 -	$(INSTALL_DIR) $(1)/etc/tor
 -	$(INSTALL_CONF) $(PKG_INSTALL_DIR)/etc/tor/torrc.sample $(1)/etc/tor/torrc
 +	$(INSTALL_DIR) $(1)/opt/sbin $(1)/opt/var/lib/tor
-+	$(INSTALL_BIN) $(PKG_INSTALL_DIR)/opt/bin/tor $(1)/opt/sbin/
++	$(INSTALL_BIN) $(PKG_INSTALL_DIR)/Apps/opt/bin/tor $(1)/opt/sbin/
 +	$(INSTALL_DIR) $(1)/opt/etc/tor
-+	$(INSTALL_CONF) $(PKG_INSTALL_DIR)/opt/etc/tor/torrc.sample $(1)/opt/etc/tor/torrc
++	$(INSTALL_CONF) $(PKG_INSTALL_DIR)/Apps/opt/etc/tor/torrc.sample $(1)/opt/etc/tor/torrc
  endef
  
  define Package/tor-fw-helper/install
 -	$(INSTALL_DIR) $(1)/usr/bin
 -	$(INSTALL_BIN) $(PKG_INSTALL_DIR)/usr/bin/tor-fw-helper $(1)/usr/bin/
 +	$(INSTALL_DIR) $(1)/opt/bin
-+	$(INSTALL_BIN) $(PKG_INSTALL_DIR)/opt/bin/tor-fw-helper $(1)/opt/bin/
++	$(INSTALL_BIN) $(PKG_INSTALL_DIR)/Apps/opt/bin/tor-fw-helper $(1)/opt/bin/
  endef
  
  define Package/tor-geoip/install
 -	$(INSTALL_DIR) $(1)/usr/share/tor
 -	$(CP) $(PKG_INSTALL_DIR)/usr/share/tor/geoip $(1)/usr/share/tor/
 +	$(INSTALL_DIR) $(1)/opt/share/tor
-+	$(CP) $(PKG_INSTALL_DIR)/opt/share/tor/geoip $(1)/opt/share/tor/
++	$(CP) $(PKG_INSTALL_DIR)/Apps/opt/share/tor/geoip $(1)/opt/share/tor/
  endef
  
  $(eval $(call BuildPackage,tor))

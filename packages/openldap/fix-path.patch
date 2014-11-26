@@ -37,9 +37,9 @@
 -	$(INSTALL_DIR) $(1)/usr/lib/
 -	$(CP) $(PKG_INSTALL_DIR)/usr/lib/lib{lber,ldap}*.{a,so*} $(1)/usr/lib/
 +	$(INSTALL_DIR) $(1)/opt/include
-+	$(INSTALL_DATA) $(PKG_INSTALL_DIR)/opt/include/{lber,ldap}*.h $(1)/opt/include/
++	$(INSTALL_DATA) $(PKG_INSTALL_DIR)/Apps/opt/include/{lber,ldap}*.h $(1)/opt/include/
 +	$(INSTALL_DIR) $(1)/opt/lib/
-+	$(CP) $(PKG_INSTALL_DIR)/opt/lib/lib{lber,ldap}*.{a,so*} $(1)/opt/lib/
++	$(CP) $(PKG_INSTALL_DIR)/Apps/opt/lib/lib{lber,ldap}*.{a,so*} $(1)/opt/lib/
  endef
  
  define Package/libopenldap/install
@@ -49,16 +49,16 @@
 -	$(CP) $(PKG_INSTALL_DIR)/usr/lib/lib{lber,ldap}*.so.* $(1)/usr/lib/
 +	$(INSTALL_DIR) $(1)/opt/etc
 +	$(INSTALL_DIR) $(1)/opt/etc/openldap
-+	$(INSTALL_CONF) $(PKG_INSTALL_DIR)/opt/etc/openldap/ldap.conf $(1)/opt/etc/openldap/
++	$(INSTALL_CONF) $(PKG_INSTALL_DIR)/Apps/opt/etc/openldap/ldap.conf $(1)/opt/etc/openldap/
 +	$(INSTALL_DIR) $(1)/opt/lib
-+	$(CP) $(PKG_INSTALL_DIR)/opt/lib/lib{lber,ldap}*.so.* $(1)/opt/lib/
++	$(CP) $(PKG_INSTALL_DIR)/Apps/opt/lib/lib{lber,ldap}*.so.* $(1)/opt/lib/
  endef
  
  define Package/openldap-utils/install
 -	$(INSTALL_DIR) $(1)/usr/bin
 -	$(CP) $(PKG_INSTALL_DIR)/usr/bin/ldap* $(1)/usr/bin/
 +	$(INSTALL_DIR) $(1)/opt/bin
-+	$(CP) $(PKG_INSTALL_DIR)/opt/bin/ldap* $(1)/opt/bin/
++	$(CP) $(PKG_INSTALL_DIR)/Apps/opt/bin/ldap* $(1)/opt/bin/
  endef
  
  define Package/openldap-server/install
@@ -69,12 +69,12 @@
 -	$(INSTALL_CONF) $(PKG_INSTALL_DIR)/etc/openldap/slapd.conf $(1)/etc/openldap/
 -	$(INSTALL_DIR) $(1)/usr/sbin
 +	$(INSTALL_DIR) $(1)/opt/etc/openldap/schema
-+	$(INSTALL_CONF) $(PKG_INSTALL_DIR)/opt/etc/openldap/schema/* $(1)/opt/etc/openldap/schema/
-+	$(INSTALL_CONF) $(PKG_INSTALL_DIR)/opt/etc/openldap/slapd.conf $(1)/opt/etc/openldap/
++	$(INSTALL_CONF) $(PKG_INSTALL_DIR)/Apps/opt/etc/openldap/schema/* $(1)/opt/etc/openldap/schema/
++	$(INSTALL_CONF) $(PKG_INSTALL_DIR)/Apps/opt/etc/openldap/slapd.conf $(1)/opt/etc/openldap/
 +	$(INSTALL_DIR) $(1)/opt/sbin
  	# XXX: OpenLDAP installs slapd into libexecdir, not sbindir:
 -	$(INSTALL_BIN) $(PKG_INSTALL_DIR)/usr/lib/slapd $(1)/usr/sbin/
-+	$(INSTALL_BIN) $(PKG_INSTALL_DIR)/opt/lib/slapd $(1)/opt/sbin/
++	$(INSTALL_BIN) $(PKG_INSTALL_DIR)/Apps/opt/lib/slapd $(1)/opt/sbin/
  	# XXX: switch default backend to ldif, since bdb is disabled
  	$(SED) 's|^\(database\)\([ \t]\+\)bdb|\1\2ldif|g' \
  	    -e 's|^\(index\)|#\1|g' \

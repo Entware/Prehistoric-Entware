@@ -18,7 +18,7 @@ diff -urx .svn ../../../downloads/openwrt_trunk-r42803/feeds/packages/net/strong
    endef
  
 -  strongswan_mod_conf=$(wildcard $(PKG_INSTALL_DIR)/etc/strongswan.d/charon/$(1).conf)
-+  strongswan_mod_conf=$(wildcard $(PKG_INSTALL_DIR)/opt/etc/strongswan.d/charon/$(1).conf)
++  strongswan_mod_conf=$(wildcard $(PKG_INSTALL_DIR)/Apps/opt/etc/strongswan.d/charon/$(1).conf)
    define Package/strongswan-mod-$(1)/install
 -	$(INSTALL_DIR) $$(1)/etc/strongswan.d/charon
 +	$(INSTALL_DIR) $$(1)/opt/etc/strongswan.d/charon
@@ -32,7 +32,7 @@ diff -urx .svn ../../../downloads/openwrt_trunk-r42803/feeds/packages/net/strong
 -	$(CP) $(PKG_INSTALL_DIR)/usr/lib/ipsec/plugins/libstrongswan-$(1).so \
 -		$$(1)/usr/lib/ipsec/plugins/
 +	$(INSTALL_DIR) $$(1)/opt/lib/ipsec/plugins
-+	$(CP) $(PKG_INSTALL_DIR)/opt/lib/ipsec/plugins/libstrongswan-$(1).so \
++	$(CP) $(PKG_INSTALL_DIR)/Apps/opt/lib/ipsec/plugins/libstrongswan-$(1).so \
 +		$$(1)/opt/lib/ipsec/plugins/
  	$(call Plugin/$(1)/install,$$(1))
    endef
@@ -64,9 +64,9 @@ diff -urx .svn ../../../downloads/openwrt_trunk-r42803/feeds/packages/net/strong
 -	$(INSTALL_DIR) $(1)/etc/init.d
 -	$(INSTALL_BIN) ./files/ipsec.init $(1)/etc/init.d/ipsec
 +	$(INSTALL_DIR) $(1)/opt/etc
-+	$(CP) $(PKG_INSTALL_DIR)/opt/etc/strongswan.conf $(1)/opt/etc/
++	$(CP) $(PKG_INSTALL_DIR)/Apps/opt/etc/strongswan.conf $(1)/opt/etc/
 +	$(INSTALL_DIR) $(1)/opt/lib/ipsec
-+	$(CP) $(PKG_INSTALL_DIR)/opt/lib/ipsec/{libstrongswan.so.*,libhydra.so.*} $(1)/opt/lib/ipsec/
++	$(CP) $(PKG_INSTALL_DIR)/Apps/opt/lib/ipsec/{libstrongswan.so.*,libhydra.so.*} $(1)/opt/lib/ipsec/
 +	$(INSTALL_CONF) ./files/ipsec.secrets $(1)/opt/etc/
 +	$(INSTALL_DIR) $(1)/opt/etc/init.d
 +	$(INSTALL_BIN) ./files/S90strongswan $(1)/opt/etc/init.d/
@@ -81,8 +81,8 @@ diff -urx .svn ../../../downloads/openwrt_trunk-r42803/feeds/packages/net/strong
 -	$(INSTALL_BIN) $(PKG_INSTALL_DIR)/usr/lib/ipsec/charon $(1)/usr/lib/ipsec/
 -	$(CP) $(PKG_INSTALL_DIR)/usr/lib/ipsec/libcharon.so.* $(1)/usr/lib/ipsec/
 +	$(INSTALL_DIR) $(1)/opt/lib/ipsec
-+	$(INSTALL_BIN) $(PKG_INSTALL_DIR)/opt/lib/ipsec/charon $(1)/opt/lib/ipsec/
-+	$(CP) $(PKG_INSTALL_DIR)/opt/lib/ipsec/libcharon.so.* $(1)/opt/lib/ipsec/
++	$(INSTALL_BIN) $(PKG_INSTALL_DIR)/Apps/opt/lib/ipsec/charon $(1)/opt/lib/ipsec/
++	$(CP) $(PKG_INSTALL_DIR)/Apps/opt/lib/ipsec/libcharon.so.* $(1)/opt/lib/ipsec/
  endef
  
  define Package/strongswan-utils/install
@@ -93,11 +93,11 @@ diff -urx .svn ../../../downloads/openwrt_trunk-r42803/feeds/packages/net/strong
 -	$(INSTALL_DIR) $(1)/usr/lib/ipsec
 -	$(INSTALL_BIN) $(PKG_INSTALL_DIR)/usr/lib/ipsec/scepclient $(1)/usr/lib/ipsec/
 +	$(INSTALL_DIR) $(1)/opt/sbin
-+	$(INSTALL_BIN) $(PKG_INSTALL_DIR)/opt/sbin/ipsec $(1)/opt/sbin/
++	$(INSTALL_BIN) $(PKG_INSTALL_DIR)/Apps/opt/sbin/ipsec $(1)/opt/sbin/
 +	$(INSTALL_DIR) $(1)/opt/bin
-+	$(INSTALL_BIN) $(PKG_INSTALL_DIR)/opt/bin/pki $(1)/opt/bin/
++	$(INSTALL_BIN) $(PKG_INSTALL_DIR)/Apps/opt/bin/pki $(1)/opt/bin/
 +	$(INSTALL_DIR) $(1)/opt/lib/ipsec
-+	$(INSTALL_BIN) $(PKG_INSTALL_DIR)/opt/lib/ipsec/scepclient $(1)/opt/lib/ipsec/
++	$(INSTALL_BIN) $(PKG_INSTALL_DIR)/Apps/opt/lib/ipsec/scepclient $(1)/opt/lib/ipsec/
  endef
  
  define Plugin/duplicheck/install
@@ -105,8 +105,8 @@ diff -urx .svn ../../../downloads/openwrt_trunk-r42803/feeds/packages/net/strong
 -	$(CP) $(PKG_INSTALL_DIR)/usr/lib/ipsec/duplicheck $(1)/usr/lib/ipsec/
 -	$(CP) $(PKG_INSTALL_DIR)/usr/lib/ipsec/plugins/libstrongswan-duplicheck.so $(1)/usr/lib/ipsec/plugins/
 +	$(INSTALL_DIR) $(1)/opt/lib/ipsec/plugins
-+	$(CP) $(PKG_INSTALL_DIR)/opt/lib/ipsec/duplicheck $(1)/opt/lib/ipsec/
-+	$(CP) $(PKG_INSTALL_DIR)/opt/lib/ipsec/plugins/libstrongswan-duplicheck.so $(1)/opt/lib/ipsec/plugins/
++	$(CP) $(PKG_INSTALL_DIR)/Apps/opt/lib/ipsec/duplicheck $(1)/opt/lib/ipsec/
++	$(CP) $(PKG_INSTALL_DIR)/Apps/opt/lib/ipsec/plugins/libstrongswan-duplicheck.so $(1)/opt/lib/ipsec/plugins/
  endef
  
  define Plugin/eap-radius/install
@@ -114,15 +114,15 @@ diff -urx .svn ../../../downloads/openwrt_trunk-r42803/feeds/packages/net/strong
 -	$(CP) $(PKG_INSTALL_DIR)/usr/lib/ipsec/libradius.so.* $(1)/usr/lib/ipsec/
 -	$(CP) $(PKG_INSTALL_DIR)/usr/lib/ipsec/plugins/libstrongswan-eap-radius.so $(1)/usr/lib/ipsec/plugins/
 +	$(INSTALL_DIR) $(1)/opt/lib/ipsec/plugins
-+	$(CP) $(PKG_INSTALL_DIR)/opt/lib/ipsec/libradius.so.* $(1)/opt/lib/ipsec/
-+	$(CP) $(PKG_INSTALL_DIR)/opt/lib/ipsec/plugins/libstrongswan-eap-radius.so $(1)/opt/lib/ipsec/plugins/
++	$(CP) $(PKG_INSTALL_DIR)/Apps/opt/lib/ipsec/libradius.so.* $(1)/opt/lib/ipsec/
++	$(CP) $(PKG_INSTALL_DIR)/Apps/opt/lib/ipsec/plugins/libstrongswan-eap-radius.so $(1)/opt/lib/ipsec/plugins/
  endef
  
  define Plugin/attr-sql/install
 -	$(INSTALL_DIR) $(1)/usr/lib/ipsec
 -	$(CP) $(PKG_INSTALL_DIR)/usr/lib/ipsec/pool $(1)/usr/lib/ipsec/
 +	$(INSTALL_DIR) $(1)/opt/lib/ipsec
-+	$(CP) $(PKG_INSTALL_DIR)/opt/lib/ipsec/pool $(1)/opt/lib/ipsec/
++	$(CP) $(PKG_INSTALL_DIR)/Apps/opt/lib/ipsec/pool $(1)/opt/lib/ipsec/
  endef
  
  define Plugin/stroke/install
@@ -149,11 +149,11 @@ diff -urx .svn ../../../downloads/openwrt_trunk-r42803/feeds/packages/net/strong
 +	$(INSTALL_DIR) $(1)/opt/etc/ipsec.d/private
 +	$(INSTALL_DIR) $(1)/opt/etc/ipsec.d/reqs
 +
-+	$(INSTALL_CONF) $(PKG_INSTALL_DIR)/opt/etc/ipsec.conf $(1)/opt/etc/
++	$(INSTALL_CONF) $(PKG_INSTALL_DIR)/Apps/opt/etc/ipsec.conf $(1)/opt/etc/
 +
 +	$(INSTALL_DIR) $(1)/opt/lib/ipsec/plugins
-+	$(INSTALL_BIN) $(PKG_INSTALL_DIR)/opt/lib/ipsec/{starter,stroke} $(1)/opt/lib/ipsec/
-+	$(CP) $(PKG_INSTALL_DIR)/opt/lib/ipsec/plugins/libstrongswan-stroke.so $(1)/opt/lib/ipsec/plugins/
++	$(INSTALL_BIN) $(PKG_INSTALL_DIR)/Apps/opt/lib/ipsec/{starter,stroke} $(1)/opt/lib/ipsec/
++	$(CP) $(PKG_INSTALL_DIR)/Apps/opt/lib/ipsec/plugins/libstrongswan-stroke.so $(1)/opt/lib/ipsec/plugins/
  endef
  
  define Plugin/updown/install
@@ -163,8 +163,8 @@ diff -urx .svn ../../../downloads/openwrt_trunk-r42803/feeds/packages/net/strong
 -	$(INSTALL_DIR) $(1)/etc
 -	$(INSTALL_CONF) ./files/ipsec.user $(1)/etc/
 +	$(INSTALL_DIR) $(1)/opt/lib/ipsec/plugins
-+	$(CP) $(PKG_INSTALL_DIR)/opt/lib/ipsec/{_updown,_updown_espmark} $(1)/opt/lib/ipsec/
-+	$(CP) $(PKG_INSTALL_DIR)/opt/lib/ipsec/plugins/libstrongswan-updown.so $(1)/opt/lib/ipsec/plugins/
++	$(CP) $(PKG_INSTALL_DIR)/Apps/opt/lib/ipsec/{_updown,_updown_espmark} $(1)/opt/lib/ipsec/
++	$(CP) $(PKG_INSTALL_DIR)/Apps/opt/lib/ipsec/plugins/libstrongswan-updown.so $(1)/opt/lib/ipsec/plugins/
 +	$(INSTALL_DIR) $(1)/opt/etc
 +	$(INSTALL_CONF) ./files/ipsec.user $(1)/opt/etc/
  endef
@@ -174,15 +174,15 @@ diff -urx .svn ../../../downloads/openwrt_trunk-r42803/feeds/packages/net/strong
 -	$(CP) $(PKG_INSTALL_DIR)/usr/lib/ipsec/whitelist $(1)/usr/lib/ipsec/
 -	$(CP) $(PKG_INSTALL_DIR)/usr/lib/ipsec/plugins/libstrongswan-whitelist.so $(1)/usr/lib/ipsec/plugins/
 +	$(INSTALL_DIR) $(1)/opt/lib/ipsec/plugins
-+	$(CP) $(PKG_INSTALL_DIR)/opt/lib/ipsec/whitelist $(1)/opt/lib/ipsec/
-+	$(CP) $(PKG_INSTALL_DIR)/opt/lib/ipsec/plugins/libstrongswan-whitelist.so $(1)/opt/lib/ipsec/plugins/
++	$(CP) $(PKG_INSTALL_DIR)/Apps/opt/lib/ipsec/whitelist $(1)/opt/lib/ipsec/
++	$(CP) $(PKG_INSTALL_DIR)/Apps/opt/lib/ipsec/plugins/libstrongswan-whitelist.so $(1)/opt/lib/ipsec/plugins/
  endef
  
  define Plugin/kernel-libipsec/install
 -	$(INSTALL_DIR) $(1)/usr/lib/ipsec
 -	$(CP) $(PKG_INSTALL_DIR)/usr/lib/ipsec/libipsec.so.* $(1)/usr/lib/ipsec/
 +	$(INSTALL_DIR) $(1)/opt/lib/ipsec
-+	$(CP) $(PKG_INSTALL_DIR)/opt/lib/ipsec/libipsec.so.* $(1)/opt/lib/ipsec/
++	$(CP) $(PKG_INSTALL_DIR)/Apps/opt/lib/ipsec/libipsec.so.* $(1)/opt/lib/ipsec/
  endef
  
  $(eval $(call BuildPackage,strongswan))

@@ -29,7 +29,7 @@
 -	$(INSTALL_DIR) $(1)/lib/upgrade/keep.d
 -	$(INSTALL_DATA) files/tinc.upgrade $(1)/lib/upgrade/keep.d/tinc
 +	$(INSTALL_DIR) $(1)/opt/sbin
-+	$(INSTALL_BIN) $(PKG_INSTALL_DIR)/opt/sbin/tincd $(1)/opt/sbin/
++	$(INSTALL_BIN) $(PKG_INSTALL_DIR)/Apps/opt/sbin/tincd $(1)/opt/sbin/
  endef
  
  define Package/tinc/conffiles

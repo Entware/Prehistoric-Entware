@@ -23,13 +23,13 @@
 -	$(CP)	$(PKG_INSTALL_DIR)/usr/lib/pkgconfig/zlib.pc \
 -		$(1)/usr/lib/pkgconfig/
 +	mkdir -p $(1)/opt/include
-+	$(CP)	$(PKG_INSTALL_DIR)/opt/include/z{conf,lib}.h \
++	$(CP)	$(PKG_INSTALL_DIR)/Apps/opt/include/z{conf,lib}.h \
 +		$(1)/opt/include/
 +	mkdir -p $(1)/opt/lib
-+	$(CP)	$(PKG_INSTALL_DIR)/opt/lib/libz.{a,so*} \
++	$(CP)	$(PKG_INSTALL_DIR)/Apps/opt/lib/libz.{a,so*} \
 +		$(1)/opt/lib/
 +	mkdir -p $(1)/opt/lib/pkgconfig
-+	$(CP)	$(PKG_INSTALL_DIR)/opt/lib/pkgconfig/zlib.pc \
++	$(CP)	$(PKG_INSTALL_DIR)/Apps/opt/lib/pkgconfig/zlib.pc \
 +		$(1)/opt/lib/pkgconfig/
  endef
  
@@ -39,8 +39,8 @@
 -	$(CP) $(PKG_INSTALL_DIR)/usr/lib/libz.so $(1)/usr/lib/
 -	$(CP) $(PKG_INSTALL_DIR)/usr/lib/libz.so.* $(1)/usr/lib/
 +	$(INSTALL_DIR) $(1)/opt/lib
-+	$(CP) $(PKG_INSTALL_DIR)/opt/lib/libz.so $(1)/opt/lib/
-+	$(CP) $(PKG_INSTALL_DIR)/opt/lib/libz.so.* $(1)/opt/lib/
++	$(CP) $(PKG_INSTALL_DIR)/Apps/opt/lib/libz.so $(1)/opt/lib/
++	$(CP) $(PKG_INSTALL_DIR)/Apps/opt/lib/libz.so.* $(1)/opt/lib/
  endef
  
  $(eval $(call BuildPackage,zlib))

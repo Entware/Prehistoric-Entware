@@ -22,9 +22,9 @@
 -	$(INSTALL_DIR) $(1)/etc/config
 -	$(INSTALL_CONF) ./files/dnscrypt-proxy.config $(1)/etc/config/dnscrypt-proxy
 +	$(INSTALL_DIR) $(1)/opt/sbin
-+	$(CP) $(PKG_INSTALL_DIR)/opt/sbin/dnscrypt-proxy $(1)/opt/sbin/
++	$(CP) $(PKG_INSTALL_DIR)/Apps/opt/sbin/dnscrypt-proxy $(1)/opt/sbin/
 +	$(INSTALL_DIR) $(1)/opt/share/dnscrypt-proxy
-+	$(CP) $(PKG_INSTALL_DIR)/opt/share/dnscrypt-proxy/dnscrypt-resolvers.csv $(1)/opt/share/dnscrypt-proxy/
++	$(CP) $(PKG_INSTALL_DIR)/Apps/opt/share/dnscrypt-proxy/dnscrypt-resolvers.csv $(1)/opt/share/dnscrypt-proxy/
 +	$(INSTALL_DIR) $(1)/opt/etc/init.d
 +	$(INSTALL_BIN) ./files/S09dnscrypt-proxy $(1)/opt/etc/init.d/
  endef
@@ -101,7 +101,7 @@
 -	$(INSTALL_DIR) $(1)/usr/bin
 -	$(CP) $(PKG_INSTALL_DIR)/usr/bin/hostip $(1)/usr/bin/
 +	$(INSTALL_DIR) $(1)/opt/bin
-+	$(CP) $(PKG_INSTALL_DIR)/opt/bin/hostip $(1)/opt/bin/
++	$(CP) $(PKG_INSTALL_DIR)/Apps/opt/bin/hostip $(1)/opt/bin/
  endef
  
  $(eval $(call BuildPackage,dnscrypt-proxy))

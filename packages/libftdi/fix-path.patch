@@ -12,19 +12,19 @@
 -	$(INSTALL_DIR) $(1)/usr/lib/pkgconfig/
 -	$(CP) $(PKG_INSTALL_DIR)/usr/lib/pkgconfig/libftdi.pc $(1)/usr/lib/pkgconfig/libftdi.pc
 +	$(INSTALL_DIR) $(1)/opt/include/
-+	$(CP) $(PKG_INSTALL_DIR)/opt/include/ftdi.h $(1)/opt/include/
++	$(CP) $(PKG_INSTALL_DIR)/Apps/opt/include/ftdi.h $(1)/opt/include/
 +	$(INSTALL_DIR) $(1)/opt/lib
-+	$(CP) $(PKG_INSTALL_DIR)/opt/lib/libftdi.{a,so} $(1)/opt/lib/
-+	$(CP) $(PKG_INSTALL_DIR)/opt/lib/libftdi.so* $(1)/opt/lib/
++	$(CP) $(PKG_INSTALL_DIR)/Apps/opt/lib/libftdi.{a,so} $(1)/opt/lib/
++	$(CP) $(PKG_INSTALL_DIR)/Apps/opt/lib/libftdi.so* $(1)/opt/lib/
 +	$(INSTALL_DIR) $(1)/opt/lib/pkgconfig/
-+	$(CP) $(PKG_INSTALL_DIR)/opt/lib/pkgconfig/libftdi.pc $(1)/opt/lib/pkgconfig/libftdi.pc
++	$(CP) $(PKG_INSTALL_DIR)/Apps/opt/lib/pkgconfig/libftdi.pc $(1)/opt/lib/pkgconfig/libftdi.pc
  endef
  
  define Package/libftdi/install
 -	$(INSTALL_DIR) $(1)/usr/lib
 -	$(CP) $(PKG_INSTALL_DIR)/usr/lib/libftdi.so.* $(1)/usr/lib/
 +	$(INSTALL_DIR) $(1)/opt/lib
-+	$(CP) $(PKG_INSTALL_DIR)/opt/lib/libftdi.so.* $(1)/opt/lib/
++	$(CP) $(PKG_INSTALL_DIR)/Apps/opt/lib/libftdi.so.* $(1)/opt/lib/
  endef
  
  $(eval $(call BuildPackage,libftdi))

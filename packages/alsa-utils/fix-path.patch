@@ -11,18 +11,18 @@
 -	$(INSTALL_BIN) $(PKG_INSTALL_DIR)/usr/bin/arecord $(1)/usr/bin/
 -	$(INSTALL_BIN) $(PKG_INSTALL_DIR)/usr/sbin/alsactl $(1)/usr/sbin/
 +	$(INSTALL_DIR) $(1)/opt/{s,}bin
-+	$(INSTALL_BIN) $(PKG_INSTALL_DIR)/opt/bin/amixer $(1)/opt/bin/
-+	$(INSTALL_BIN) $(PKG_INSTALL_DIR)/opt/bin/alsamixer $(1)/opt/bin/
-+	$(INSTALL_BIN) $(PKG_INSTALL_DIR)/opt/bin/aplay $(1)/opt/bin/
-+	$(INSTALL_BIN) $(PKG_INSTALL_DIR)/opt/bin/arecord $(1)/opt/bin/
-+	$(INSTALL_BIN) $(PKG_INSTALL_DIR)/opt/sbin/alsactl $(1)/opt/sbin/
++	$(INSTALL_BIN) $(PKG_INSTALL_DIR)/Apps/opt/bin/amixer $(1)/opt/bin/
++	$(INSTALL_BIN) $(PKG_INSTALL_DIR)/Apps/opt/bin/alsamixer $(1)/opt/bin/
++	$(INSTALL_BIN) $(PKG_INSTALL_DIR)/Apps/opt/bin/aplay $(1)/opt/bin/
++	$(INSTALL_BIN) $(PKG_INSTALL_DIR)/Apps/opt/bin/arecord $(1)/opt/bin/
++	$(INSTALL_BIN) $(PKG_INSTALL_DIR)/Apps/opt/sbin/alsactl $(1)/opt/sbin/
  
 -	$(INSTALL_DIR) $(1)/usr/share/alsa/init
 +	$(INSTALL_DIR) $(1)/opt/share/alsa/init
  	$(INSTALL_DATA) \
 -	    $(PKG_INSTALL_DIR)/usr/share/alsa/init/* \
 -	    $(1)/usr/share/alsa/init/
-+	    $(PKG_INSTALL_DIR)/opt/share/alsa/init/* \
++	    $(PKG_INSTALL_DIR)/Apps/opt/share/alsa/init/* \
 +	    $(1)/opt/share/alsa/init/
  endef
  
@@ -35,12 +35,12 @@
 -	$(INSTALL_BIN) $(PKG_INSTALL_DIR)/usr/bin/aseqdump $(1)/usr/bin/
 -	$(INSTALL_BIN) $(PKG_INSTALL_DIR)/usr/bin/aseqnet $(1)/usr/bin/
 +	$(INSTALL_DIR) $(1)/opt/bin
-+	$(INSTALL_BIN) $(PKG_INSTALL_DIR)/opt/bin/aconnect $(1)/opt/bin/
-+	$(INSTALL_BIN) $(PKG_INSTALL_DIR)/opt/bin/amidi $(1)/opt/bin/
-+	$(INSTALL_BIN) $(PKG_INSTALL_DIR)/opt/bin/aplaymidi $(1)/opt/bin/
-+	$(INSTALL_BIN) $(PKG_INSTALL_DIR)/opt/bin/arecordmidi $(1)/opt/bin/
-+	$(INSTALL_BIN) $(PKG_INSTALL_DIR)/opt/bin/aseqdump $(1)/opt/bin/
-+	$(INSTALL_BIN) $(PKG_INSTALL_DIR)/opt/bin/aseqnet $(1)/opt/bin/
++	$(INSTALL_BIN) $(PKG_INSTALL_DIR)/Apps/opt/bin/aconnect $(1)/opt/bin/
++	$(INSTALL_BIN) $(PKG_INSTALL_DIR)/Apps/opt/bin/amidi $(1)/opt/bin/
++	$(INSTALL_BIN) $(PKG_INSTALL_DIR)/Apps/opt/bin/aplaymidi $(1)/opt/bin/
++	$(INSTALL_BIN) $(PKG_INSTALL_DIR)/Apps/opt/bin/arecordmidi $(1)/opt/bin/
++	$(INSTALL_BIN) $(PKG_INSTALL_DIR)/Apps/opt/bin/aseqdump $(1)/opt/bin/
++	$(INSTALL_BIN) $(PKG_INSTALL_DIR)/Apps/opt/bin/aseqnet $(1)/opt/bin/
  endef
  
  define Package/alsa-utils-tests/install
@@ -48,12 +48,12 @@
 -	$(INSTALL_BIN) $(PKG_INSTALL_DIR)/usr/bin/speaker-test $(1)/usr/bin/
 -	$(INSTALL_DIR) $(1)/usr/share/sounds/alsa
 +	$(INSTALL_DIR) $(1)/opt/{s,}bin
-+	$(INSTALL_BIN) $(PKG_INSTALL_DIR)/opt/bin/speaker-test $(1)/opt/bin/
++	$(INSTALL_BIN) $(PKG_INSTALL_DIR)/Apps/opt/bin/speaker-test $(1)/opt/bin/
 +	$(INSTALL_DIR) $(1)/opt/share/sounds/alsa
  	$(INSTALL_DATA) \
 -	    $(PKG_INSTALL_DIR)/usr/share/sounds/alsa/* \
 -	    $(1)/usr/share/sounds/alsa/
-+	    $(PKG_INSTALL_DIR)/opt/share/sounds/alsa/* \
++	    $(PKG_INSTALL_DIR)/Apps/opt/share/sounds/alsa/* \
 +	    $(1)/opt/share/sounds/alsa/
  endef
  

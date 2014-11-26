@@ -69,16 +69,16 @@
 -	$(INSTALL_DIR) $(STAGING_DIR)/usr/lib
 -	$(CP)	$(PKG_INSTALL_DIR)/usr/lib/libow{,capi}*.so* $(STAGING_DIR)/usr/lib/
 +	$(INSTALL_DIR) $(STAGING_DIR)/opt/include
-+	$(CP)	$(PKG_INSTALL_DIR)/opt/include/ow{capi,fs_config}.h $(STAGING_DIR)/opt/include/
++	$(CP)	$(PKG_INSTALL_DIR)/Apps/opt/include/ow{capi,fs_config}.h $(STAGING_DIR)/opt/include/
 +	$(INSTALL_DIR) $(STAGING_DIR)/opt/lib
-+	$(CP)	$(PKG_INSTALL_DIR)/opt/lib/libow{,capi}*.so* $(STAGING_DIR)/opt/lib/
++	$(CP)	$(PKG_INSTALL_DIR)/Apps/opt/lib/libow{,capi}*.so* $(STAGING_DIR)/opt/lib/
  endef
  
  define Package/owfs/install
 -	$(INSTALL_DIR) $(1)/usr/bin
 -	$(INSTALL_BIN) $(PKG_INSTALL_DIR)/usr/bin/owfs $(1)/usr/bin/
 +	$(INSTALL_DIR) $(1)/opt/bin
-+	$(INSTALL_BIN) $(PKG_INSTALL_DIR)/opt/bin/owfs $(1)/opt/bin/
++	$(INSTALL_BIN) $(PKG_INSTALL_DIR)/Apps/opt/bin/owfs $(1)/opt/bin/
  endef
  
  define Package/owshell/install
@@ -89,11 +89,11 @@
 -	$(INSTALL_BIN) $(PKG_INSTALL_DIR)/usr/bin/owdir $(1)/usr/bin/
 -	$(INSTALL_BIN) $(PKG_INSTALL_DIR)/usr/bin/owpresent $(1)/usr/bin/
 +	$(INSTALL_DIR) $(1)/opt/bin
-+	$(INSTALL_BIN) $(PKG_INSTALL_DIR)/opt/bin/owget $(1)/opt/bin/
-+	$(INSTALL_BIN) $(PKG_INSTALL_DIR)/opt/bin/owread $(1)/opt/bin/
-+	$(INSTALL_BIN) $(PKG_INSTALL_DIR)/opt/bin/owwrite $(1)/opt/bin/
-+	$(INSTALL_BIN) $(PKG_INSTALL_DIR)/opt/bin/owdir $(1)/opt/bin/
-+	$(INSTALL_BIN) $(PKG_INSTALL_DIR)/opt/bin/owpresent $(1)/opt/bin/
++	$(INSTALL_BIN) $(PKG_INSTALL_DIR)/Apps/opt/bin/owget $(1)/opt/bin/
++	$(INSTALL_BIN) $(PKG_INSTALL_DIR)/Apps/opt/bin/owread $(1)/opt/bin/
++	$(INSTALL_BIN) $(PKG_INSTALL_DIR)/Apps/opt/bin/owwrite $(1)/opt/bin/
++	$(INSTALL_BIN) $(PKG_INSTALL_DIR)/Apps/opt/bin/owdir $(1)/opt/bin/
++	$(INSTALL_BIN) $(PKG_INSTALL_DIR)/Apps/opt/bin/owpresent $(1)/opt/bin/
  endef
  
  
@@ -101,21 +101,21 @@
 -	$(INSTALL_DIR) $(1)/usr/bin
 -	$(INSTALL_BIN) $(PKG_INSTALL_DIR)/usr/bin/owserver $(1)/usr/bin/
 +	$(INSTALL_DIR) $(1)/opt/bin
-+	$(INSTALL_BIN) $(PKG_INSTALL_DIR)/opt/bin/owserver $(1)/opt/bin/
++	$(INSTALL_BIN) $(PKG_INSTALL_DIR)/Apps/opt/bin/owserver $(1)/opt/bin/
  endef
  
  define Package/owhttpd/install
 -	$(INSTALL_DIR) $(1)/usr/bin
 -	$(INSTALL_BIN) $(PKG_INSTALL_DIR)/usr/bin/owhttpd $(1)/usr/bin/
 +	$(INSTALL_DIR) $(1)/opt/bin
-+	$(INSTALL_BIN) $(PKG_INSTALL_DIR)/opt/bin/owhttpd $(1)/opt/bin/
++	$(INSTALL_BIN) $(PKG_INSTALL_DIR)/Apps/opt/bin/owhttpd $(1)/opt/bin/
  endef
  
  define Package/owftpd/install
 -	$(INSTALL_DIR) $(1)/usr/bin
 -	$(INSTALL_BIN) $(PKG_INSTALL_DIR)/usr/bin/owftpd $(1)/usr/bin/
 +	$(INSTALL_DIR) $(1)/opt/bin
-+	$(INSTALL_BIN) $(PKG_INSTALL_DIR)/opt/bin/owftpd $(1)/opt/bin/
++	$(INSTALL_BIN) $(PKG_INSTALL_DIR)/Apps/opt/bin/owftpd $(1)/opt/bin/
  endef
  
  
@@ -123,14 +123,14 @@
 -	$(INSTALL_DIR) $(1)/usr/lib
 -	$(CP) $(PKG_INSTALL_DIR)/usr/lib/libow-*.so.* $(1)/usr/lib/
 +	$(INSTALL_DIR) $(1)/opt/lib
-+	$(CP) $(PKG_INSTALL_DIR)/opt/lib/libow-*.so.* $(1)/opt/lib/
++	$(CP) $(PKG_INSTALL_DIR)/Apps/opt/lib/libow-*.so.* $(1)/opt/lib/
  endef
  
  define Package/libow-capi/install
 -	$(INSTALL_DIR) $(1)/usr/lib
 -	$(CP) $(PKG_INSTALL_DIR)/usr/lib/libowcapi-*.so.* $(1)/usr/lib/
 +	$(INSTALL_DIR) $(1)/opt/lib
-+	$(CP) $(PKG_INSTALL_DIR)/opt/lib/libowcapi-*.so.* $(1)/opt/lib/
++	$(CP) $(PKG_INSTALL_DIR)/Apps/opt/lib/libowcapi-*.so.* $(1)/opt/lib/
  endef
  
  

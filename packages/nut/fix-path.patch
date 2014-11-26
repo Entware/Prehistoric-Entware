@@ -20,8 +20,8 @@
 -	ln -sf /var/run/ups.conf $(1)/etc/nut/ups.conf
 +	$(INSTALL_DIR) $(1)/opt/lib
 +	$(INSTALL_DIR) $(1)/opt/etc/nut
-+	$(CP) $(PKG_INSTALL_DIR)/opt/lib/libupsclient.so* $(1)/opt/lib/
-+	$(INSTALL_CONF) $(PKG_INSTALL_DIR)/opt/etc/nut/nut.conf.sample $(1)/opt/etc/nut/nut.conf
++	$(CP) $(PKG_INSTALL_DIR)/Apps/opt/lib/libupsclient.so* $(1)/opt/lib/
++	$(INSTALL_CONF) $(PKG_INSTALL_DIR)/Apps/opt/etc/nut/nut.conf.sample $(1)/opt/etc/nut/nut.conf
 +	ln -sf /opt/var/run/ups.conf $(1)/opt/etc/nut/ups.conf
  endef
  
@@ -32,10 +32,10 @@
 -	$(CP) $(PKG_INSTALL_DIR)/usr/lib/pkgconfig/*.pc $(1)/usr/lib/pkgconfig
 -	$(CP) $(PKG_INSTALL_DIR)/usr/lib/lib* $(1)/usr/lib
 +	$(INSTALL_DIR) $(1)/opt/include
-+	$(CP) $(PKG_INSTALL_DIR)/opt/include/*.h $(1)/opt/include
++	$(CP) $(PKG_INSTALL_DIR)/Apps/opt/include/*.h $(1)/opt/include
 +	$(INSTALL_DIR) $(1)/opt/lib/pkgconfig
-+	$(CP) $(PKG_INSTALL_DIR)/opt/lib/pkgconfig/*.pc $(1)/opt/lib/pkgconfig
-+	$(CP) $(PKG_INSTALL_DIR)/opt/lib/lib* $(1)/opt/lib
++	$(CP) $(PKG_INSTALL_DIR)/Apps/opt/lib/pkgconfig/*.pc $(1)/opt/lib/pkgconfig
++	$(CP) $(PKG_INSTALL_DIR)/Apps/opt/lib/lib* $(1)/opt/lib
  endef
  
  define Package/nut/conffiles
@@ -49,9 +49,9 @@
 -	$(INSTALL_BIN) $(PKG_INSTALL_DIR)/usr/bin/upsrw $(1)/usr/bin
 -	$(INSTALL_BIN) $(PKG_INSTALL_DIR)/usr/bin/upscmd $(1)/usr/bin
 +	$(INSTALL_DIR) $(1)/opt/bin
-+	$(INSTALL_BIN) $(PKG_INSTALL_DIR)/opt/bin/upsc $(1)/opt/bin
-+	$(INSTALL_BIN) $(PKG_INSTALL_DIR)/opt/bin/upsrw $(1)/opt/bin
-+	$(INSTALL_BIN) $(PKG_INSTALL_DIR)/opt/bin/upscmd $(1)/opt/bin
++	$(INSTALL_BIN) $(PKG_INSTALL_DIR)/Apps/opt/bin/upsc $(1)/opt/bin
++	$(INSTALL_BIN) $(PKG_INSTALL_DIR)/Apps/opt/bin/upsrw $(1)/opt/bin
++	$(INSTALL_BIN) $(PKG_INSTALL_DIR)/Apps/opt/bin/upscmd $(1)/opt/bin
  endef
  
  define Package/nut-server/install
@@ -73,12 +73,12 @@
 +	$(INSTALL_DIR) $(1)/opt/share/nut
 +	$(INSTALL_DIR) $(1)/opt/etc/init.d
 +	$(INSTALL_BIN) ./files/S15upsd $(1)/opt/etc/init.d
-+	$(INSTALL_BIN) $(PKG_INSTALL_DIR)/opt/sbin/upsd $(1)/opt/sbin
-+	$(INSTALL_BIN) $(PKG_INSTALL_DIR)/opt/lib/nut/upsdrvctl $(1)/opt/lib/nut
-+	$(INSTALL_CONF) $(PKG_INSTALL_DIR)/opt/etc/nut/upsd.conf.sample $(1)/opt/etc/nut/upsd.conf
++	$(INSTALL_BIN) $(PKG_INSTALL_DIR)/Apps/opt/sbin/upsd $(1)/opt/sbin
++	$(INSTALL_BIN) $(PKG_INSTALL_DIR)/Apps/opt/lib/nut/upsdrvctl $(1)/opt/lib/nut
++	$(INSTALL_CONF) $(PKG_INSTALL_DIR)/Apps/opt/etc/nut/upsd.conf.sample $(1)/opt/etc/nut/upsd.conf
 +	ln -sf /var/run/upsd.users $(1)/opt/etc/nut/upsd.users
-+	$(INSTALL_DATA) $(PKG_INSTALL_DIR)/opt/share/nut/cmdvartab $(1)/opt/share/nut/cmdvartab
-+	$(INSTALL_DATA) $(PKG_INSTALL_DIR)/opt/share/nut/driver.list $(1)/opt/share/nut/driver.list
++	$(INSTALL_DATA) $(PKG_INSTALL_DIR)/Apps/opt/share/nut/cmdvartab $(1)/opt/share/nut/cmdvartab
++	$(INSTALL_DATA) $(PKG_INSTALL_DIR)/Apps/opt/share/nut/driver.list $(1)/opt/share/nut/driver.list
  endef
  
  define Package/nut-server/conffiles
@@ -90,7 +90,7 @@
 -	$(INSTALL_DIR) $(1)/usr/bin
 -	$(INSTALL_BIN) $(PKG_INSTALL_DIR)/usr/bin/upslog $(1)/usr/bin
 +	$(INSTALL_DIR) $(1)/opt/bin
-+	$(INSTALL_BIN) $(PKG_INSTALL_DIR)/opt/bin/upslog $(1)/opt/bin
++	$(INSTALL_BIN) $(PKG_INSTALL_DIR)/Apps/opt/bin/upslog $(1)/opt/bin
  endef
  
  define Package/nut-monitor/install
@@ -105,10 +105,10 @@
 +	$(INSTALL_DIR) $(1)/opt/sbin
 +	$(INSTALL_DIR) $(1)/opt/etc/nut
 +	$(INSTALL_DIR) $(1)/opt/etc/init.d
-+	$(INSTALL_BIN) $(PKG_INSTALL_DIR)/opt/sbin/upsmon $(1)/opt/sbin
-+	$(INSTALL_BIN) $(PKG_INSTALL_DIR)/opt/sbin/upssched $(1)/opt/sbin
++	$(INSTALL_BIN) $(PKG_INSTALL_DIR)/Apps/opt/sbin/upsmon $(1)/opt/sbin
++	$(INSTALL_BIN) $(PKG_INSTALL_DIR)/Apps/opt/sbin/upssched $(1)/opt/sbin
 +	ln -sf /opt/var/run/upsmon.conf $(1)/opt/etc/nut/upsmon.conf
-+	$(INSTALL_CONF) $(PKG_INSTALL_DIR)/opt/etc/nut/upssched.conf.sample $(1)/opt/etc/nut/upssched.conf
++	$(INSTALL_CONF) $(PKG_INSTALL_DIR)/Apps/opt/etc/nut/upssched.conf.sample $(1)/opt/etc/nut/upssched.conf
  endef
  
  define Package/nut-monitor/conffiles
@@ -124,11 +124,11 @@
 -	$(INSTALL_DIR) $$(1)/lib/nut/
 -	$(INSTALL_BIN) $$(PKG_INSTALL_DIR)/lib/nut/$(1) $$(1)/lib/nut/
 +	$(INSTALL_DIR) $$(1)/opt/lib/nut/
-+	$(INSTALL_BIN) $$(PKG_INSTALL_DIR)/opt/lib/nut/$(1) $$(1)/opt/lib/nut/
++	$(INSTALL_BIN) $$(PKG_INSTALL_DIR)/Apps/opt/lib/nut/$(1) $$(1)/opt/lib/nut/
      ifeq ($(1),clone)
  	# Bundle clone and clone-outlet together
 -	$(INSTALL_BIN) $$(PKG_INSTALL_DIR)/lib/nut/$(1)-outlet $$(1)/lib/nut/
-+	$(INSTALL_BIN) $$(PKG_INSTALL_DIR)/opt/lib/nut/$(1)-outlet $$(1)/opt/lib/nut/
++	$(INSTALL_BIN) $$(PKG_INSTALL_DIR)/Apps/opt/lib/nut/$(1)-outlet $$(1)/opt/lib/nut/
      endif
    endef
  endef

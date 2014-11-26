@@ -98,12 +98,12 @@ diff -urx .svn ../../../downloads/openwrt_trunk-r42803/feeds/packages/net/lightt
 +	$(INSTALL_DIR) $(1)/opt/lib/lighttpd
  	for m in dirlisting indexfile staticfile; do \
 -		$(CP) $(PKG_INSTALL_DIR)/usr/lib/lighttpd/mod_$$$${m}.so $(1)/usr/lib/lighttpd/ ; \
-+		$(CP) $(PKG_INSTALL_DIR)/opt/lib/lighttpd/mod_$$$${m}.so $(1)/opt/lib/lighttpd/ ; \
++		$(CP) $(PKG_INSTALL_DIR)/Apps/opt/lib/lighttpd/mod_$$$${m}.so $(1)/opt/lib/lighttpd/ ; \
  	done
 -	$(INSTALL_DIR) $(1)/usr/sbin
 -	$(INSTALL_BIN) $(PKG_INSTALL_DIR)/usr/sbin/lighttpd $(1)/usr/sbin/
 +	$(INSTALL_DIR) $(1)/opt/sbin
-+	$(INSTALL_BIN) $(PKG_INSTALL_DIR)/opt/sbin/lighttpd $(1)/opt/sbin/
++	$(INSTALL_BIN) $(PKG_INSTALL_DIR)/Apps/opt/sbin/lighttpd $(1)/opt/sbin/
 +	$(INSTALL_DIR) $(1)/opt/share/www $(1)/opt/var/log/lighttpd
  endef
  
@@ -116,7 +116,7 @@ diff -urx .svn ../../../downloads/openwrt_trunk-r42803/feeds/packages/net/lightt
 -	$(CP) $(PKG_INSTALL_DIR)/usr/lib/lighttpd/mod_$(1).so $$(1)/usr/lib/lighttpd
 -	$(INSTALL_DIR) $$(1)/etc/lighttpd/conf.d
 +	$(INSTALL_DIR) $$(1)/opt/lib/lighttpd
-+	$(CP) $(PKG_INSTALL_DIR)/opt/lib/lighttpd/mod_$(1).so $$(1)/opt/lib/lighttpd
++	$(CP) $(PKG_INSTALL_DIR)/Apps/opt/lib/lighttpd/mod_$(1).so $$(1)/opt/lib/lighttpd
 +	$(INSTALL_DIR) $$(1)/opt/etc/lighttpd/conf.d
  	if [ -f $(PKG_BUILD_DIR)/doc/config/conf.d/$(1).conf ]; then \
 -		$(CP) $(PKG_BUILD_DIR)/doc/config/conf.d/$(1).conf $$(1)/etc/lighttpd/conf.d/$(4)-$(1).conf ; \

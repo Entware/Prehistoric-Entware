@@ -35,9 +35,9 @@ diff -urx .svn ../../../downloads/openwrt_trunk-r36556/feeds/oldpackages/net/pri
 -	$(INSTALL_DIR) $(1)/etc/init.d
 -	$(INSTALL_BIN) ./files/privoxy.init $(1)/etc/init.d/privoxy
 +	$(INSTALL_DIR) $(1)/opt/sbin
-+	$(CP) $(PKG_INSTALL_DIR)/opt/sbin/privoxy $(1)/opt/sbin/
++	$(CP) $(PKG_INSTALL_DIR)/Apps/opt/sbin/privoxy $(1)/opt/sbin/
 +	$(INSTALL_DIR) $(1)/opt/etc/privoxy
-+	$(CP) $(PKG_INSTALL_DIR)/opt/etc/privoxy/* $(1)/opt/etc/privoxy/
++	$(CP) $(PKG_INSTALL_DIR)/Apps/opt/etc/privoxy/* $(1)/opt/etc/privoxy/
 +	$(INSTALL_CONF) ./files/privoxy.config $(1)/opt/etc/privoxy/config
 +	$(INSTALL_DIR) $(1)/opt/etc/init.d
 +	$(INSTALL_BIN) ./files/S24privoxy $(1)/opt/etc/init.d

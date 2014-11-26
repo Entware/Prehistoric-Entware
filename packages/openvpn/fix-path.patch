@@ -39,7 +39,7 @@
  	$(INSTALL_BIN) \
 -		$(PKG_INSTALL_DIR)/usr/sbin/openvpn \
 -		$(1)/usr/sbin/
-+		$(PKG_INSTALL_DIR)/opt/sbin/openvpn \
++		$(PKG_INSTALL_DIR)/Apps/opt/sbin/openvpn \
 +		$(1)/opt/sbin/
  
  	$(INSTALL_BIN) \

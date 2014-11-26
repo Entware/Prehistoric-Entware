@@ -31,7 +31,7 @@ diff -urx .svn ../../../downloads/openwrt_trunk-r42803/feeds/packages/net/xinetd
 -	$(INSTALL_DIR) $(1)/etc/init.d
 -	$(INSTALL_BIN) ./files/xinetd.init $(1)/etc/init.d/xinetd
 +	$(INSTALL_DIR) $(1)/opt/sbin
-+	$(INSTALL_BIN) $(PKG_INSTALL_DIR)/opt/sbin/xinetd $(1)/opt/sbin/
++	$(INSTALL_BIN) $(PKG_INSTALL_DIR)/Apps/opt/sbin/xinetd $(1)/opt/sbin/
 +	$(INSTALL_DIR) $(1)/opt/etc/init.d
 +	$(INSTALL_DATA) ./files/xinetd.conf $(1)/opt/etc/xinetd.conf
 +	$(INSTALL_DIR) $(1)/opt/etc/xinetd.d

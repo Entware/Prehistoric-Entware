@@ -22,27 +22,27 @@
 -	$(CP) $(PKG_INSTALL_DIR)/usr/lib/pkgconfig/speex.pc $(1)/usr/lib/pkgconfig/
 -	$(CP) $(PKG_INSTALL_DIR)/usr/lib/pkgconfig/speexdsp.pc $(1)/usr/lib/pkgconfig/
 +	$(INSTALL_DIR) $(1)/opt/include
-+	$(CP) $(PKG_INSTALL_DIR)/opt/include/speex $(1)/opt/include/
++	$(CP) $(PKG_INSTALL_DIR)/Apps/opt/include/speex $(1)/opt/include/
 +	$(INSTALL_DIR) $(1)/opt/lib
-+	$(CP) $(PKG_INSTALL_DIR)/opt/lib/libspeex.{a,so*} $(1)/opt/lib/
-+	$(CP) $(PKG_INSTALL_DIR)/opt/lib/libspeexdsp.{a,so*} $(1)/opt/lib/
++	$(CP) $(PKG_INSTALL_DIR)/Apps/opt/lib/libspeex.{a,so*} $(1)/opt/lib/
++	$(CP) $(PKG_INSTALL_DIR)/Apps/opt/lib/libspeexdsp.{a,so*} $(1)/opt/lib/
 +	$(INSTALL_DIR) $(1)/opt/lib/pkgconfig
-+	$(CP) $(PKG_INSTALL_DIR)/opt/lib/pkgconfig/speex.pc $(1)/opt/lib/pkgconfig/
-+	$(CP) $(PKG_INSTALL_DIR)/opt/lib/pkgconfig/speexdsp.pc $(1)/opt/lib/pkgconfig/
++	$(CP) $(PKG_INSTALL_DIR)/Apps/opt/lib/pkgconfig/speex.pc $(1)/opt/lib/pkgconfig/
++	$(CP) $(PKG_INSTALL_DIR)/Apps/opt/lib/pkgconfig/speexdsp.pc $(1)/opt/lib/pkgconfig/
  endef
  
  define Package/libspeex/install
 -	$(INSTALL_DIR) $(1)/usr/lib
 -	$(CP) $(PKG_INSTALL_DIR)/usr/lib/libspeex.so.* $(1)/usr/lib/
 +	$(INSTALL_DIR) $(1)/opt/lib
-+	$(CP) $(PKG_INSTALL_DIR)/opt/lib/libspeex.so.* $(1)/opt/lib/
++	$(CP) $(PKG_INSTALL_DIR)/Apps/opt/lib/libspeex.so.* $(1)/opt/lib/
  endef
  
  define Package/libspeexdsp/install
 -	$(INSTALL_DIR) $(1)/usr/lib
 -	$(CP) $(PKG_INSTALL_DIR)/usr/lib/libspeexdsp.so.* $(1)/usr/lib/
 +	$(INSTALL_DIR) $(1)/opt/lib
-+	$(CP) $(PKG_INSTALL_DIR)/opt/lib/libspeexdsp.so.* $(1)/opt/lib/
++	$(CP) $(PKG_INSTALL_DIR)/Apps/opt/lib/libspeexdsp.so.* $(1)/opt/lib/
  endef
  
  $(eval $(call BuildPackage,libspeex))

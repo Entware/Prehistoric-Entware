@@ -78,14 +78,14 @@
 -	$(INSTALL_DIR) $(1)/usr/lib
 -	$(CP) $(PKG_INSTALL_DIR)/usr/lib/libpq.so.* $(1)/usr/lib/
 +	$(INSTALL_DIR) $(1)/opt/lib
-+	$(CP) $(PKG_INSTALL_DIR)/opt/lib/libpq.so.* $(1)/opt/lib/
++	$(CP) $(PKG_INSTALL_DIR)/Apps/opt/lib/libpq.so.* $(1)/opt/lib/
  endef
  
  define Package/pgsql-cli/install
 -	$(INSTALL_DIR) $(1)/usr/bin
 -	$(INSTALL_BIN) $(PKG_INSTALL_DIR)/usr/bin/psql $(1)/usr/bin/
 +	$(INSTALL_DIR) $(1)/opt/bin
-+	$(INSTALL_BIN) $(PKG_INSTALL_DIR)/opt/bin/psql $(1)/opt/bin/
++	$(INSTALL_BIN) $(PKG_INSTALL_DIR)/Apps/opt/bin/psql $(1)/opt/bin/
  endef
  
  define Package/pgsql-server/install
@@ -107,14 +107,14 @@
 +	$(INSTALL_DIR) $(1)/opt/bin
 +	$(INSTALL_DIR) $(1)/opt/share/postgresql
 +	$(INSTALL_DIR) $(1)/opt/lib
-+	$(INSTALL_BIN) $(PKG_INSTALL_DIR)/opt/bin/* $(1)/opt/bin
++	$(INSTALL_BIN) $(PKG_INSTALL_DIR)/Apps/opt/bin/* $(1)/opt/bin
 +	ln -sf postgres $(1)/opt/bin/postmaster
-+	$(CP) -r $(PKG_INSTALL_DIR)/opt/share/postgresql/* \
++	$(CP) -r $(PKG_INSTALL_DIR)/Apps/opt/share/postgresql/* \
 +		$(1)/opt/share/postgresql
  	$(CP) -r \
 -		$(PKG_INSTALL_DIR)/usr/lib/postgresql \
 -		$(1)/usr/lib
-+		$(PKG_INSTALL_DIR)/opt/lib/postgresql \
++		$(PKG_INSTALL_DIR)/Apps/opt/lib/postgresql \
 +		$(1)/opt/lib
 +	$(INSTALL_DIR) $(1)/opt/etc/init.d
 +	$(INSTALL_BIN) ./files/S98postgresql  $(1)/opt/etc/init.d
@@ -192,14 +192,14 @@
 +	$(INSTALL_DIR) $(1)/opt/bin
 +	$(INSTALL_BIN) $(PKG_BUILD_DIR)/src/bin/pg_config/pg_config.host $(1)/opt/bin/pg_config
 +	$(INSTALL_DIR) $(1)/opt/include
-+	$(CP) $(PKG_INSTALL_DIR)/opt/include/libpq $(1)/opt/include/
-+	$(CP) $(PKG_INSTALL_DIR)/opt/include/libpq-fe.h $(1)/opt/include/
-+	$(CP) $(PKG_INSTALL_DIR)/opt/include/pg_config.h $(1)/opt/include/
-+	$(CP) $(PKG_INSTALL_DIR)/opt/include/pg_config_manual.h $(1)/opt/include/
-+	$(CP) $(PKG_INSTALL_DIR)/opt/include/postgres_ext.h $(1)/opt/include/
-+	$(CP) $(PKG_INSTALL_DIR)/opt/include/postgresql $(1)/opt/include/
++	$(CP) $(PKG_INSTALL_DIR)/Apps/opt/include/libpq $(1)/opt/include/
++	$(CP) $(PKG_INSTALL_DIR)/Apps/opt/include/libpq-fe.h $(1)/opt/include/
++	$(CP) $(PKG_INSTALL_DIR)/Apps/opt/include/pg_config.h $(1)/opt/include/
++	$(CP) $(PKG_INSTALL_DIR)/Apps/opt/include/pg_config_manual.h $(1)/opt/include/
++	$(CP) $(PKG_INSTALL_DIR)/Apps/opt/include/postgres_ext.h $(1)/opt/include/
++	$(CP) $(PKG_INSTALL_DIR)/Apps/opt/include/postgresql $(1)/opt/include/
 +	$(INSTALL_DIR) $(1)/opt/lib
-+	$(CP) $(PKG_INSTALL_DIR)/opt/lib/libpq.{a,so*} $(1)/opt/lib/
++	$(CP) $(PKG_INSTALL_DIR)/Apps/opt/lib/libpq.{a,so*} $(1)/opt/lib/
 +	$(CP) $(PKG_BUILD_DIR)/src/interfaces/ecpg/preproc/ecpg.host $(1)/opt/bin/ecpg
 +	$(CP) $(PKG_BUILD_DIR)/host-zic $(1)/opt/bin/zic
  endef

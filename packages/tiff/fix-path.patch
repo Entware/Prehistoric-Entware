@@ -17,29 +17,29 @@
 -	$(CP) $(PKG_INSTALL_DIR)/usr/lib/lib* $(1)/usr/lib/
 -	$(CP) $(PKG_INSTALL_DIR)/usr/include/* $(1)/usr/include/
 +	$(INSTALL_DIR) $(1)/opt/{lib,include}
-+	$(CP) $(PKG_INSTALL_DIR)/opt/lib/lib* $(1)/opt/lib/
-+	$(CP) $(PKG_INSTALL_DIR)/opt/include/* $(1)/opt/include/
++	$(CP) $(PKG_INSTALL_DIR)/Apps/opt/lib/lib* $(1)/opt/lib/
++	$(CP) $(PKG_INSTALL_DIR)/Apps/opt/include/* $(1)/opt/include/
  endef
  
  define Package/libtiff/install
 -	$(INSTALL_DIR) $(1)/usr/lib
 -	$(CP) $(PKG_INSTALL_DIR)/usr/lib/libtiff.so.* $(1)/usr/lib/
 +	$(INSTALL_DIR) $(1)/opt/lib
-+	$(CP) $(PKG_INSTALL_DIR)/opt/lib/libtiff.so.* $(1)/opt/lib/
++	$(CP) $(PKG_INSTALL_DIR)/Apps/opt/lib/libtiff.so.* $(1)/opt/lib/
  endef
  
  define Package/libtiffxx/install
 -	$(INSTALL_DIR) $(1)/usr/lib
 -	$(CP) $(PKG_INSTALL_DIR)/usr/lib/libtiffxx.so.* $(1)/usr/lib/
 +	$(INSTALL_DIR) $(1)/opt/lib
-+	$(CP) $(PKG_INSTALL_DIR)/opt/lib/libtiffxx.so.* $(1)/opt/lib/
++	$(CP) $(PKG_INSTALL_DIR)/Apps/opt/lib/libtiffxx.so.* $(1)/opt/lib/
  endef
  
  define Package/tiff-utils/install
 -	$(INSTALL_DIR) $(1)/usr/bin
 -	$(INSTALL_BIN) $(PKG_INSTALL_DIR)/usr/bin/* $(1)/usr/bin/
 +	$(INSTALL_DIR) $(1)/opt/bin
-+	$(INSTALL_BIN) $(PKG_INSTALL_DIR)/opt/bin/* $(1)/opt/bin/
++	$(INSTALL_BIN) $(PKG_INSTALL_DIR)/Apps/opt/bin/* $(1)/opt/bin/
  endef
  
  $(eval $(call BuildPackage,libtiff))

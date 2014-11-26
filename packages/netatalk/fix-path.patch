@@ -59,13 +59,13 @@ diff -ur ../../../downloads/openwrt_trunk-r42803/feeds/packages/net/netatalk/Mak
 +	$(INSTALL_DIR) $(1)/opt/lib/uams
 +	$(INSTALL_DIR) $(1)/opt/etc/netatalk
 +	$(INSTALL_DIR) $(1)/opt/etc/init.d
-+	$(CP) $(PKG_INSTALL_DIR)/opt/bin/afppasswd $(1)/opt/bin/
-+	$(CP) $(PKG_INSTALL_DIR)/opt/sbin/afpd $(1)/opt/sbin/
-+	$(CP) $(PKG_INSTALL_DIR)/opt/sbin/cnid_dbd $(1)/opt/sbin/
-+	$(CP) $(PKG_INSTALL_DIR)/opt/sbin/cnid_metad $(1)/opt/sbin/
-+	$(CP) $(PKG_INSTALL_DIR)/opt/lib/uams/*.so $(1)/opt/lib/uams/
++	$(CP) $(PKG_INSTALL_DIR)/Apps/opt/bin/afppasswd $(1)/opt/bin/
++	$(CP) $(PKG_INSTALL_DIR)/Apps/opt/sbin/afpd $(1)/opt/sbin/
++	$(CP) $(PKG_INSTALL_DIR)/Apps/opt/sbin/cnid_dbd $(1)/opt/sbin/
++	$(CP) $(PKG_INSTALL_DIR)/Apps/opt/sbin/cnid_metad $(1)/opt/sbin/
++	$(CP) $(PKG_INSTALL_DIR)/Apps/opt/lib/uams/*.so $(1)/opt/lib/uams/
 +	$(CP) ./files/AppleVolumes.default $(1)/opt/etc/netatalk/
-+	$(CP) $(PKG_INSTALL_DIR)/opt/etc/netatalk/AppleVolumes.system $(1)/opt/etc/netatalk/
++	$(CP) $(PKG_INSTALL_DIR)/Apps/opt/etc/netatalk/AppleVolumes.system $(1)/opt/etc/netatalk/
 +	$(INSTALL_CONF) ./files/afpd.conf $(1)/opt/etc/netatalk/
 +	$(INSTALL_BIN) ./files/{S26cnid_metad,S27afpd} $(1)/opt/etc/init.d
  endef

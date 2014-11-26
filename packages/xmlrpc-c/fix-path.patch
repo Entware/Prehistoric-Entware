@@ -14,16 +14,16 @@
  	$(CP) \
 -		$(PKG_INSTALL_DIR)/usr/include/* \
 -		$(1)/usr/include/
-+		$(PKG_INSTALL_DIR)/opt/include/* \
++		$(PKG_INSTALL_DIR)/Apps/opt/include/* \
 +		$(1)/opt/include/
  	$(CP) \
 -		$(PKG_INSTALL_DIR)/usr/lib/libxmlrpc*.{a,so*} \
 -		$(1)/usr/lib/
-+		$(PKG_INSTALL_DIR)/opt/lib/libxmlrpc*.{a,so*} \
++		$(PKG_INSTALL_DIR)/Apps/opt/lib/libxmlrpc*.{a,so*} \
 +		$(1)/opt/lib/
  	$(INSTALL_BIN) \
 -		$(PKG_INSTALL_DIR)/usr/bin/xmlrpc-c-config \
-+		$(PKG_INSTALL_DIR)/opt/bin/xmlrpc-c-config \
++		$(PKG_INSTALL_DIR)/Apps/opt/bin/xmlrpc-c-config \
  		$(2)/bin/
  	$(SED) \
 -		's,HEADERINST_DIR="/usr/include",HEADERINST_DIR="$(STAGING_DIR)/usr/include",g' \
@@ -42,7 +42,7 @@
  	$(CP) \
 -		$(PKG_INSTALL_DIR)/usr/lib/libxmlrpc.so* \
 -		$(1)/usr/lib/
-+		$(PKG_INSTALL_DIR)/opt/lib/libxmlrpc.so* \
++		$(PKG_INSTALL_DIR)/Apps/opt/lib/libxmlrpc.so* \
 +		$(1)/opt/lib/
  endef
  
@@ -53,17 +53,17 @@
  	$(CP) \
 -		$(PKG_INSTALL_DIR)/usr/lib/libxmlrpc.so* \
 -		$(1)/usr/lib/
-+		$(PKG_INSTALL_DIR)/opt/lib/libxmlrpc.so* \
++		$(PKG_INSTALL_DIR)/Apps/opt/lib/libxmlrpc.so* \
 +		$(1)/opt/lib/
  	$(CP) \
 -		$(PKG_INSTALL_DIR)/usr/lib/libxmlrpc_xmltok.so* \
 -		$(1)/usr/lib/
-+		$(PKG_INSTALL_DIR)/opt/lib/libxmlrpc_xmltok.so* \
++		$(PKG_INSTALL_DIR)/Apps/opt/lib/libxmlrpc_xmltok.so* \
 +		$(1)/opt/lib/
  	$(CP) \
 -		$(PKG_INSTALL_DIR)/usr/lib/libxmlrpc_xmlparse.so* \
 -		$(1)/usr/lib/
-+		$(PKG_INSTALL_DIR)/opt/lib/libxmlrpc_xmlparse.so* \
++		$(PKG_INSTALL_DIR)/Apps/opt/lib/libxmlrpc_xmlparse.so* \
 +		$(1)/opt/lib/
  endef
  
@@ -74,7 +74,7 @@
  	$(CP) \
 -		$(PKG_INSTALL_DIR)/usr/lib/libxmlrpc_server.so* \
 -		$(1)/usr/lib/
-+		$(PKG_INSTALL_DIR)/opt/lib/libxmlrpc_server.so* \
++		$(PKG_INSTALL_DIR)/Apps/opt/lib/libxmlrpc_server.so* \
 +		$(1)/opt/lib/
  endef
  
@@ -85,7 +85,7 @@
  	$(CP) \
 -		$(PKG_INSTALL_DIR)/usr/lib/libxmlrpc_abyss.so* \
 -		$(1)/usr/lib/
-+		$(PKG_INSTALL_DIR)/opt/lib/libxmlrpc_abyss.so* \
++		$(PKG_INSTALL_DIR)/Apps/opt/lib/libxmlrpc_abyss.so* \
 +		$(1)/opt/lib/
  endef
  
@@ -96,7 +96,7 @@
  	$(CP) \
 -		$(PKG_INSTALL_DIR)/usr/lib/libxmlrpc_server_abyss.so* \
 -		$(1)/usr/lib/
-+		$(PKG_INSTALL_DIR)/opt/lib/libxmlrpc_server_abyss.so* \
++		$(PKG_INSTALL_DIR)/Apps/opt/lib/libxmlrpc_server_abyss.so* \
 +		$(1)/opt/lib/
  endef
  
@@ -107,7 +107,7 @@
  	$(CP) \
 -		$(PKG_INSTALL_DIR)/usr/lib/libxmlrpc_client* \
 -		$(1)/usr/lib/
-+		$(PKG_INSTALL_DIR)/opt/lib/libxmlrpc_client* \
++		$(PKG_INSTALL_DIR)/Apps/opt/lib/libxmlrpc_client* \
 +		$(1)/opt/lib/
  endef
  
@@ -118,7 +118,7 @@
  	$(CP) \
 -		$(PKG_INSTALL_DIR)/usr/lib/libxmlrpc_util.so* \
 -		$(1)/usr/lib/
-+		$(PKG_INSTALL_DIR)/opt/lib/libxmlrpc_util.so* \
++		$(PKG_INSTALL_DIR)/Apps/opt/lib/libxmlrpc_util.so* \
 +		$(1)/opt/lib/
  endef
  

@@ -35,7 +35,7 @@ diff -urx .svn ../../../downloads/openwrt_trunk-r42803/feeds/packages/admin/zabb
  	$(INSTALL_BIN) \
 -		$(PKG_INSTALL_DIR)/usr/sbin/zabbix_$(2) \
 -		$(1)/usr/sbin/
-+		$(PKG_INSTALL_DIR)/opt/sbin/zabbix_$(2) \
++		$(PKG_INSTALL_DIR)/Apps/opt/sbin/zabbix_$(2) \
 +		$(1)/opt/sbin/
  endef
  
@@ -47,7 +47,7 @@ diff -urx .svn ../../../downloads/openwrt_trunk-r42803/feeds/packages/admin/zabb
  	$(INSTALL_BIN) \
 -		$(PKG_INSTALL_DIR)/usr/bin/zabbix_$(2) \
 -		$(1)/usr/bin/
-+		$(PKG_INSTALL_DIR)/opt/bin/zabbix_$(2) \
++		$(PKG_INSTALL_DIR)/Apps/opt/bin/zabbix_$(2) \
 +		$(1)/opt/bin/
  endef
  
@@ -59,7 +59,7 @@ diff -urx .svn ../../../downloads/openwrt_trunk-r42803/feeds/packages/admin/zabb
  	$(INSTALL_CONF) \
 -		$(PKG_INSTALL_DIR)/etc/zabbix_$(2).conf \
 -		$(1)/etc/
-+		$(PKG_INSTALL_DIR)/opt/etc/zabbix_$(2).conf \
++		$(PKG_INSTALL_DIR)/Apps/opt/etc/zabbix_$(2).conf \
 +		$(1)/opt/etc/
  endef
  

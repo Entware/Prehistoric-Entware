@@ -29,9 +29,9 @@
 +	$(INSTALL_DIR) $(1)/opt/etc/asterisk/
 +	$(CP) ./files/gui_* $(1)/opt/etc/asterisk/
 +	$(INSTALL_DIR) $(1)/opt/lib/asterisk/static-http
-+	$(CP) $(PKG_INSTALL_DIR)/opt/lib/asterisk/static-http/* $(1)/opt/lib/asterisk/static-http
++	$(CP) $(PKG_INSTALL_DIR)/Apps/opt/lib/asterisk/static-http/* $(1)/opt/lib/asterisk/static-http
 +	$(INSTALL_DIR) $(1)/opt/lib/asterisk/scripts
-+	$(CP) $(PKG_INSTALL_DIR)/opt/lib/asterisk/scripts/* $(1)/opt/lib/asterisk/scripts
++	$(CP) $(PKG_INSTALL_DIR)/Apps/opt/lib/asterisk/scripts/* $(1)/opt/lib/asterisk/scripts
 +	$(INSTALL_DIR) $(1)/opt/lib/asterisk/gui_backups
  endef
  

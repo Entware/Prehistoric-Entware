@@ -28,7 +28,7 @@
 -	    $(PKG_INSTALL_DIR)/usr/bin/easy_install \
 -	    $(1)/usr/bin/
 -	$(SED) '1s/#\!.*/#\!\/usr\/bin\/python/' $(1)/usr/bin/easy_install
-+	    $(PKG_INSTALL_DIR)/opt/bin/easy_install \
++	    $(PKG_INSTALL_DIR)/Apps/opt/bin/easy_install \
 +	    $(1)/opt/bin/
 +	$(SED) '1s/#\!.*/#\!\/opt\/bin\/python/' $(1)/opt/bin/easy_install
  endef

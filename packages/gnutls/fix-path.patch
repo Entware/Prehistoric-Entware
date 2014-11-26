@@ -26,17 +26,17 @@
  	$(CP) \
 -		$(PKG_INSTALL_DIR)/usr/include/gnutls \
 -		$(1)/usr/include/
-+		$(PKG_INSTALL_DIR)/opt/include/gnutls \
++		$(PKG_INSTALL_DIR)/Apps/opt/include/gnutls \
 +		$(1)/opt/include/
  	$(CP) \
 -		$(PKG_INSTALL_DIR)/usr/lib/libgnutls{,-openssl}.{a,so*} \
 -		$(1)/usr/lib/
-+		$(PKG_INSTALL_DIR)/opt/lib/libgnutls{,-openssl}.{a,so*} \
++		$(PKG_INSTALL_DIR)/Apps/opt/lib/libgnutls{,-openssl}.{a,so*} \
 +		$(1)/opt/lib/
  	$(CP) \
 -		$(PKG_INSTALL_DIR)/usr/lib/pkgconfig/gnutls.pc \
 -		$(1)/usr/lib/pkgconfig/
-+		$(PKG_INSTALL_DIR)/opt/lib/pkgconfig/gnutls.pc \
++		$(PKG_INSTALL_DIR)/Apps/opt/lib/pkgconfig/gnutls.pc \
 +		$(1)/opt/lib/pkgconfig/
  endef
  
@@ -53,7 +53,7 @@
 +	$(INSTALL_DIR) $(1)/opt/etc/gnutls
 +	$(INSTALL_CONF) $(PKG_BUILD_DIR)/doc/certtool.cfg $(1)/opt/etc/gnutls/
 +	$(INSTALL_DIR) $(1)/opt/bin
-+	$(CP) $(PKG_INSTALL_DIR)/opt/bin/certtool $(1)/opt/bin/
++	$(CP) $(PKG_INSTALL_DIR)/Apps/opt/bin/certtool $(1)/opt/bin/
  endef
  
  
@@ -65,34 +65,34 @@
  	$(CP) \
 -		$(PKG_INSTALL_DIR)/usr/bin/gnutls-{cli,serv} \
 -		$(1)/usr/bin/
-+		$(PKG_INSTALL_DIR)/opt/bin/gnutls-{cli,serv} \
++		$(PKG_INSTALL_DIR)/Apps/opt/bin/gnutls-{cli,serv} \
 +		$(1)/opt/bin/
  endif
  	$(CP) \
 -		$(PKG_INSTALL_DIR)/usr/bin/ocsptool \
 -		$(1)/usr/bin/
-+		$(PKG_INSTALL_DIR)/opt/bin/ocsptool \
++		$(PKG_INSTALL_DIR)/Apps/opt/bin/ocsptool \
 +		$(1)/opt/bin/
  endif
  ifeq ($(CONFIG_GNUTLS_SRP),y)
  	$(CP) \
 -		$(PKG_INSTALL_DIR)/usr/bin/srptool \
 -		$(1)/usr/bin/
-+		$(PKG_INSTALL_DIR)/opt/bin/srptool \
++		$(PKG_INSTALL_DIR)/Apps/opt/bin/srptool \
 +		$(1)/opt/bin/
  endif
  ifeq ($(CONFIG_GNUTLS_PSK),y)
  	$(CP) \
 -		$(PKG_INSTALL_DIR)/usr/bin/psktool \
 -		$(1)/usr/bin/
-+		$(PKG_INSTALL_DIR)/opt/bin/psktool \
++		$(PKG_INSTALL_DIR)/Apps/opt/bin/psktool \
 +		$(1)/opt/bin/
  endif
  ifeq ($(CONFIG_GNUTLS_PKCS11),y)
  	$(CP) \
 -		$(PKG_INSTALL_DIR)/usr/bin/p11tool \
 -		$(1)/usr/bin/
-+		$(PKG_INSTALL_DIR)/opt/bin/p11tool \
++		$(PKG_INSTALL_DIR)/Apps/opt/bin/p11tool \
 +		$(1)/opt/bin/
  endif
  endef
@@ -102,7 +102,7 @@
 -	$(INSTALL_DIR) $(1)/usr/lib
 -	$(CP) $(PKG_INSTALL_DIR)/usr/lib/libgnutls.so.* $(1)/usr/lib/
 +	$(INSTALL_DIR) $(1)/opt/lib
-+	$(CP) $(PKG_INSTALL_DIR)/opt/lib/libgnutls.so.* $(1)/opt/lib/
++	$(CP) $(PKG_INSTALL_DIR)/Apps/opt/lib/libgnutls.so.* $(1)/opt/lib/
  endef
  
  
@@ -110,7 +110,7 @@
 -	$(INSTALL_DIR) $(1)/usr/lib
 -	$(CP) $(PKG_INSTALL_DIR)/usr/lib/libgnutls-openssl.so.* $(1)/usr/lib/
 +	$(INSTALL_DIR) $(1)/opt/lib
-+	$(CP) $(PKG_INSTALL_DIR)/opt/lib/libgnutls-openssl.so.* $(1)/opt/lib/
++	$(CP) $(PKG_INSTALL_DIR)/Apps/opt/lib/libgnutls-openssl.so.* $(1)/opt/lib/
  endef
  
  

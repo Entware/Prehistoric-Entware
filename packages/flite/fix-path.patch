@@ -5,9 +5,9 @@
 -		--prefix="$(PKG_INSTALL_DIR)/usr" \
 -		--exec-prefix="$(PKG_INSTALL_DIR)/usr" \
 -		--bindir="$(PKG_INSTALL_DIR)/usr/bin" \
-+		--prefix="$(PKG_INSTALL_DIR)/opt" \
-+		--exec-prefix="$(PKG_INSTALL_DIR)/opt" \
-+		--bindir="$(PKG_INSTALL_DIR)/opt/bin" \
++		--prefix="$(PKG_INSTALL_DIR)/Apps/opt" \
++		--exec-prefix="$(PKG_INSTALL_DIR)/Apps/opt" \
++		--bindir="$(PKG_INSTALL_DIR)/Apps/opt/bin" \
  	)
 @@ -49,6 +49,6 @@
  define Build/InstallDev
@@ -16,9 +16,9 @@
 -	$(INSTALL_DIR) $(1)/usr/lib
 -	$(CP) $(PKG_INSTALL_DIR)/usr/lib/libflite*.so.* $(1)/usr/lib/
 +	$(INSTALL_DIR) $(1)/opt/include/flite
-+	$(CP) $(PKG_INSTALL_DIR)/opt/include/flite/{cst,flite}*.h $(1)/opt/include/flite/
++	$(CP) $(PKG_INSTALL_DIR)/Apps/opt/include/flite/{cst,flite}*.h $(1)/opt/include/flite/
 +	$(INSTALL_DIR) $(1)/opt/lib
-+	$(CP) $(PKG_INSTALL_DIR)/opt/lib/libflite*.so.* $(1)/opt/lib/
++	$(CP) $(PKG_INSTALL_DIR)/Apps/opt/lib/libflite*.so.* $(1)/opt/lib/
  endef
 @@ -56,6 +56,7 @@
  define Package/flite/install
@@ -27,8 +27,8 @@
 -	$(INSTALL_DIR) $(1)/usr/lib
 -	$(CP) $(PKG_INSTALL_DIR)/usr/lib/libflite*.so.* $(1)/usr/lib/
 +	$(INSTALL_DIR) $(1)/opt/bin
-+	$(INSTALL_BIN) $(PKG_INSTALL_DIR)/opt/bin/flite \
-+		$(PKG_INSTALL_DIR)/opt/bin/flite_time $(1)/opt/bin/
++	$(INSTALL_BIN) $(PKG_INSTALL_DIR)/Apps/opt/bin/flite \
++		$(PKG_INSTALL_DIR)/Apps/opt/bin/flite_time $(1)/opt/bin/
 +	$(INSTALL_DIR) $(1)/opt/lib
-+	$(CP) $(PKG_INSTALL_DIR)/opt/lib/libflite*.so.* $(1)/opt/lib/
++	$(CP) $(PKG_INSTALL_DIR)/Apps/opt/lib/libflite*.so.* $(1)/opt/lib/
  endef

@@ -22,7 +22,7 @@
  	$(CP) \
 -		$(PKG_INSTALL_DIR)/usr/include/* \
 -		$(1)/usr/include/
-+		$(PKG_INSTALL_DIR)/opt/include/* \
++		$(PKG_INSTALL_DIR)/Apps/opt/include/* \
 +		$(1)/opt/include/
  
 -	$(INSTALL_DIR) $(1)/usr/lib/
@@ -30,7 +30,7 @@
  	$(CP) \
 -		$(PKG_INSTALL_DIR)/usr/lib/*.so* \
 -		$(1)/usr/lib/
-+		$(PKG_INSTALL_DIR)/opt/lib/*.so* \
++		$(PKG_INSTALL_DIR)/Apps/opt/lib/*.so* \
 +		$(1)/opt/lib/
  
 -	$(INSTALL_DIR) $(1)/usr/lib/pkgconfig/
@@ -38,7 +38,7 @@
  	$(INSTALL_DATA) \
 -		$(PKG_INSTALL_DIR)/usr/lib/pkgconfig/* \
 -		$(1)/usr/lib/pkgconfig/
-+		$(PKG_INSTALL_DIR)/opt/lib/pkgconfig/* \
++		$(PKG_INSTALL_DIR)/Apps/opt/lib/pkgconfig/* \
 +		$(1)/opt/lib/pkgconfig/
  endef
  
@@ -48,7 +48,7 @@
  	$(CP) \
 -		$(PKG_INSTALL_DIR)/usr/lib/*.so* \
 -		$(1)/usr/lib/
-+		$(PKG_INSTALL_DIR)/opt/lib/*.so* \
++		$(PKG_INSTALL_DIR)/Apps/opt/lib/*.so* \
 +		$(1)/opt/lib/
  endef
  
@@ -58,12 +58,12 @@
  	$(CP) \
 -		$(PKG_INSTALL_DIR)/usr/bin/mogrify \
 -		$(1)/usr/bin/
-+		$(PKG_INSTALL_DIR)/opt/bin/mogrify \
++		$(PKG_INSTALL_DIR)/Apps/opt/bin/mogrify \
 +		$(1)/opt/bin/
  	$(CP) \
 -		$(PKG_INSTALL_DIR)/usr/bin/convert \
 -		$(1)/usr/bin/
-+		$(PKG_INSTALL_DIR)/opt/bin/convert \
++		$(PKG_INSTALL_DIR)/Apps/opt/bin/convert \
 +		$(1)/opt/bin/
  endef
  
@@ -75,9 +75,9 @@
 -	$(CP) $(PKG_INSTALL_DIR)/usr/lib/ImageMagick-$(PKG_VERSION)/modules-Q16/coders/$(1).la \
 -		$$(1)/usr/lib/ImageMagick-$(PKG_VERSION)/modules-Q16/coders
 +	$(INSTALL_DIR) $$(1)/opt/lib/ImageMagick-$(PKG_VERSION)/modules-Q16/coders
-+	$(CP) $(PKG_INSTALL_DIR)/opt/lib/ImageMagick-$(PKG_VERSION)/modules-Q16/coders/$(1).so \
++	$(CP) $(PKG_INSTALL_DIR)/Apps/opt/lib/ImageMagick-$(PKG_VERSION)/modules-Q16/coders/$(1).so \
 +		$$(1)/opt/lib/ImageMagick-$(PKG_VERSION)/modules-Q16/coders
-+	$(CP) $(PKG_INSTALL_DIR)/opt/lib/ImageMagick-$(PKG_VERSION)/modules-Q16/coders/$(1).la \
++	$(CP) $(PKG_INSTALL_DIR)/Apps/opt/lib/ImageMagick-$(PKG_VERSION)/modules-Q16/coders/$(1).la \
 +		$$(1)/opt/lib/ImageMagick-$(PKG_VERSION)/modules-Q16/coders
    endef
  

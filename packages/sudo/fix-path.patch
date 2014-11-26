@@ -36,16 +36,16 @@
 -	/etc/init.d/sudo start
 -}
 +	$(INSTALL_DIR) $(1)/opt/bin
-+	$(CP) $(PKG_INSTALL_DIR)/opt/bin/sudo $(1)/opt/bin/
++	$(CP) $(PKG_INSTALL_DIR)/Apps/opt/bin/sudo $(1)/opt/bin/
 +	chmod 4755 $(1)/opt/bin/sudo
 +	$(INSTALL_DIR) $(1)/opt/sbin
-+	$(CP) $(PKG_INSTALL_DIR)/opt/sbin/visudo $(1)/opt/sbin/
++	$(CP) $(PKG_INSTALL_DIR)/Apps/opt/sbin/visudo $(1)/opt/sbin/
 +	$(INSTALL_DIR) $(1)/opt/etc
-+	$(CP) $(PKG_INSTALL_DIR)/opt/etc/sudoers $(1)/opt/etc/
++	$(CP) $(PKG_INSTALL_DIR)/Apps/opt/etc/sudoers $(1)/opt/etc/
 +	chmod 0440 $(1)/opt/etc/sudoers
 +	$(INSTALL_DIR) $(1)/opt/etc/sudoers.d
 +	$(INSTALL_DIR) $(1)/opt/lib
-+	$(CP) $(PKG_INSTALL_DIR)/opt/lib/sudo_noexec.so $(1)/opt/lib/
++	$(CP) $(PKG_INSTALL_DIR)/Apps/opt/lib/sudo_noexec.so $(1)/opt/lib/
  endef
  
  $(eval $(call BuildPackage,sudo))

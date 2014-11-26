@@ -24,18 +24,18 @@
 -	$(INSTALL_DIR) $(1)/usr/lib/pkgconfig
 -	$(CP) $(PKG_INSTALL_DIR)/usr/lib/pkgconfig/* $(1)/usr/lib/pkgconfig/
 +	$(INSTALL_DIR) $(1)/opt/include
-+	$(CP) $(PKG_INSTALL_DIR)/opt/include/* $(1)/opt/include/
++	$(CP) $(PKG_INSTALL_DIR)/Apps/opt/include/* $(1)/opt/include/
 +	$(INSTALL_DIR) $(1)/opt/lib
-+	$(CP) $(PKG_INSTALL_DIR)/opt/lib/libavahi-* $(1)/opt/lib/
++	$(CP) $(PKG_INSTALL_DIR)/Apps/opt/lib/libavahi-* $(1)/opt/lib/
 +	$(INSTALL_DIR) $(1)/opt/lib/pkgconfig
-+	$(CP) $(PKG_INSTALL_DIR)/opt/lib/pkgconfig/* $(1)/opt/lib/pkgconfig/
++	$(CP) $(PKG_INSTALL_DIR)/Apps/opt/lib/pkgconfig/* $(1)/opt/lib/pkgconfig/
  endef
  
  define Package/libavahi-dbus-support/install
 -	$(INSTALL_DIR) $(1)/etc/dbus-1/system.d
 -	$(CP) $(PKG_INSTALL_DIR)/etc/dbus-1/system.d/* $(1)/etc/dbus-1/system.d
 +	$(INSTALL_DIR) $(1)/opt/etc/dbus-1/system.d
-+	$(CP) $(PKG_INSTALL_DIR)/opt/etc/dbus-1/system.d/* $(1)/opt/etc/dbus-1/system.d
++	$(CP) $(PKG_INSTALL_DIR)/Apps/opt/etc/dbus-1/system.d/* $(1)/opt/etc/dbus-1/system.d
  endef
  
  define Package/libavahi/install
@@ -46,21 +46,21 @@
 -	$(INSTALL_DIR) $(1)/usr/lib
 -	$(CP) $(PKG_INSTALL_DIR)/usr/lib/libavahi-{common,core}.so.* $(1)/usr/lib/
 +	$(INSTALL_DIR) $(1)/opt/lib
-+	$(CP) $(PKG_INSTALL_DIR)/opt/lib/libavahi-{common,core}.so.* $(1)/opt/lib/
++	$(CP) $(PKG_INSTALL_DIR)/Apps/opt/lib/libavahi-{common,core}.so.* $(1)/opt/lib/
  endef
  
  define Package/libavahi-client/install
 -	$(INSTALL_DIR) $(1)/usr/lib
 -	$(CP) $(PKG_INSTALL_DIR)/usr/lib/libavahi-client.so.* $(1)/usr/lib/
 +	$(INSTALL_DIR) $(1)/opt/lib
-+	$(CP) $(PKG_INSTALL_DIR)/opt/lib/libavahi-client.so.* $(1)/opt/lib/
++	$(CP) $(PKG_INSTALL_DIR)/Apps/opt/lib/libavahi-client.so.* $(1)/opt/lib/
  endef
  
  define Package/avahi-utils/install
 -	$(INSTALL_DIR) $(1)/usr/bin
 -	$(CP) $(PKG_INSTALL_DIR)/usr/bin/* $(1)/usr/bin/
 +	$(INSTALL_DIR) $(1)/opt/bin
-+	$(CP) $(PKG_INSTALL_DIR)/opt/bin/* $(1)/opt/bin/
++	$(CP) $(PKG_INSTALL_DIR)/Apps/opt/bin/* $(1)/opt/bin/
  endef
  
  define Package/avahi-autoipd/install
@@ -69,9 +69,9 @@
 -	$(INSTALL_DIR) $(1)/usr/sbin
 -	$(INSTALL_BIN) $(PKG_INSTALL_DIR)/usr/sbin/avahi-autoipd $(1)/usr/sbin/
 +	$(INSTALL_DIR) $(1)/opt/etc/avahi
-+	$(CP) $(PKG_INSTALL_DIR)/opt/etc/avahi/avahi-autoipd.action $(1)/opt/etc/avahi/
++	$(CP) $(PKG_INSTALL_DIR)/Apps/opt/etc/avahi/avahi-autoipd.action $(1)/opt/etc/avahi/
 +	$(INSTALL_DIR) $(1)/opt/sbin
-+	$(INSTALL_BIN) $(PKG_INSTALL_DIR)/opt/sbin/avahi-autoipd $(1)/opt/sbin/
++	$(INSTALL_BIN) $(PKG_INSTALL_DIR)/Apps/opt/sbin/avahi-autoipd $(1)/opt/sbin/
  endef
  
  define Package/avahi-daemon/install
@@ -85,7 +85,7 @@
 -	$(INSTALL_DIR) $(1)/etc/init.d
 -	$(INSTALL_BIN) ./files/avahi-daemon.init $(1)/etc/init.d/avahi-daemon
 +	$(INSTALL_DIR) $(1)/opt/sbin
-+	$(INSTALL_BIN) $(PKG_INSTALL_DIR)/opt/sbin/avahi-daemon $(1)/opt/sbin/
++	$(INSTALL_BIN) $(PKG_INSTALL_DIR)/Apps/opt/sbin/avahi-daemon $(1)/opt/sbin/
 +	$(INSTALL_DIR) $(1)/opt/etc/avahi
 +	$(INSTALL_DATA) ./files/avahi-daemon.conf $(1)/opt/etc/avahi/
 +	$(INSTALL_DIR) $(1)/opt/etc/avahi/services
@@ -101,9 +101,9 @@
 -	$(INSTALL_DIR) $(1)/usr/sbin
 -	$(INSTALL_BIN) $(PKG_INSTALL_DIR)/usr/sbin/avahi-dnsconfd $(1)/usr/sbin/
 +	$(INSTALL_DIR) $(1)/opt/etc/avahi
-+	$(CP) $(PKG_INSTALL_DIR)/opt/etc/avahi/avahi-dnsconfd.action $(1)/opt/etc/avahi/
++	$(CP) $(PKG_INSTALL_DIR)/Apps/opt/etc/avahi/avahi-dnsconfd.action $(1)/opt/etc/avahi/
 +	$(INSTALL_DIR) $(1)/opt/sbin
-+	$(INSTALL_BIN) $(PKG_INSTALL_DIR)/opt/sbin/avahi-dnsconfd $(1)/opt/sbin/
++	$(INSTALL_BIN) $(PKG_INSTALL_DIR)/Apps/opt/sbin/avahi-dnsconfd $(1)/opt/sbin/
  endef
  
  $(eval $(call BuildPackage,libavahi-client))

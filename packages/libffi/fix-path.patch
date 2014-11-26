@@ -9,12 +9,12 @@
  	$(CP) \
 -		$(PKG_INSTALL_DIR)/usr/lib/libffi.{so*,a,la} \
 -		$(1)/usr/lib/
-+		$(PKG_INSTALL_DIR)/opt/lib/libffi.{so*,a,la} \
++		$(PKG_INSTALL_DIR)/Apps/opt/lib/libffi.{so*,a,la} \
 +		$(1)/opt/lib/
  	$(CP) \
 -		$(PKG_INSTALL_DIR)/usr/lib/pkgconfig/* \
 -		$(1)/usr/lib/pkgconfig/
-+		$(PKG_INSTALL_DIR)/opt/lib/pkgconfig/* \
++		$(PKG_INSTALL_DIR)/Apps/opt/lib/pkgconfig/* \
 +		$(1)/opt/lib/pkgconfig/
  
 -	$(INSTALL_DIR) $(1)/usr/include
@@ -22,7 +22,7 @@
  	$(CP) \
 -		$(PKG_INSTALL_DIR)/usr/lib/libffi-$(PKG_VERSION)/include/*.h \
 -		$(1)/usr/include/
-+		$(PKG_INSTALL_DIR)/opt/lib/libffi-$(PKG_VERSION)/include/*.h \
++		$(PKG_INSTALL_DIR)/Apps/opt/lib/libffi-$(PKG_VERSION)/include/*.h \
 +		$(1)/opt/include/
  endef
  
@@ -32,7 +32,7 @@
  	$(CP) \
 -		$(PKG_INSTALL_DIR)/usr/lib/libffi.so.* \
 -		$(1)/usr/lib/
-+		$(PKG_INSTALL_DIR)/opt/lib/libffi.so.* \
++		$(PKG_INSTALL_DIR)/Apps/opt/lib/libffi.so.* \
 +		$(1)/opt/lib/
  endef
  

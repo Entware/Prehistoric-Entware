@@ -9,17 +9,17 @@
  	$(CP) \
 -		$(PKG_INSTALL_DIR)/usr/include/glib-2.0 \
 -		$(1)/usr/include/
-+		$(PKG_INSTALL_DIR)/opt/include/glib-2.0 \
++		$(PKG_INSTALL_DIR)/Apps/opt/include/glib-2.0 \
 +		$(1)/opt/include/
  	$(CP) \
 -		$(PKG_INSTALL_DIR)/usr/lib/glib-2.0/include/*.h \
 -		$(1)/usr/include/glib-2.0/
-+		$(PKG_INSTALL_DIR)/opt/lib/glib-2.0/include/*.h \
++		$(PKG_INSTALL_DIR)/Apps/opt/lib/glib-2.0/include/*.h \
 +		$(1)/opt/include/glib-2.0/
  	$(CP) \
 -		$(PKG_INSTALL_DIR)/usr/include/gio-unix-2.0 \
 -		$(1)/usr/include/
-+		$(PKG_INSTALL_DIR)/opt/include/gio-unix-2.0 \
++		$(PKG_INSTALL_DIR)/Apps/opt/include/gio-unix-2.0 \
 +		$(1)/opt/include/
  
 -	$(INSTALL_DIR) $(1)/usr/lib
@@ -27,13 +27,13 @@
  	$(CP) \
 -		$(PKG_INSTALL_DIR)/usr/lib/glib-2.0 \
 -		$(1)/usr/lib/
-+		$(PKG_INSTALL_DIR)/opt/lib/glib-2.0 \
++		$(PKG_INSTALL_DIR)/Apps/opt/lib/glib-2.0 \
 +		$(1)/opt/lib/
  
  	$(CP) \
 -		$(PKG_INSTALL_DIR)/usr/lib/*.{so*,a,la} \
 -		$(1)/usr/lib/
-+		$(PKG_INSTALL_DIR)/opt/lib/*.{so*,a,la} \
++		$(PKG_INSTALL_DIR)/Apps/opt/lib/*.{so*,a,la} \
 +		$(1)/opt/lib/
  
 -	$(INSTALL_DIR) $(1)/usr/lib/pkgconfig
@@ -41,13 +41,13 @@
  	$(INSTALL_DATA) \
 -		$(PKG_INSTALL_DIR)/usr/lib/pkgconfig/*.pc \
 -		$(1)/usr/lib/pkgconfig
-+		$(PKG_INSTALL_DIR)/opt/lib/pkgconfig/*.pc \
++		$(PKG_INSTALL_DIR)/Apps/opt/lib/pkgconfig/*.pc \
 +		$(1)/opt/lib/pkgconfig
  
  	$(INSTALL_DIR) $(2)/share/aclocal/
  	$(INSTALL_DATA) \
 -		$(PKG_INSTALL_DIR)/usr/share/aclocal/*.m4  \
-+		$(PKG_INSTALL_DIR)/opt/share/aclocal/*.m4  \
++		$(PKG_INSTALL_DIR)/Apps/opt/share/aclocal/*.m4  \
  		$(2)/share/aclocal/
  endef
  
@@ -57,7 +57,7 @@
  	$(CP) \
 -		$(PKG_INSTALL_DIR)/usr/lib/*.so* \
 -		$(1)/usr/lib/
-+		$(PKG_INSTALL_DIR)/opt/lib/*.so* \
++		$(PKG_INSTALL_DIR)/Apps/opt/lib/*.so* \
 +		$(1)/opt/lib/
  endef
  

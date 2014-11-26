@@ -81,7 +81,7 @@ diff -ur ../../../downloads/openwrt_trunk-r42803/feeds/packages/net/net-snmp/Mak
  	$(INSTALL_DIR) $(2)/bin
 -	$(INSTALL_BIN) $(PKG_INSTALL_DIR)/usr/bin/net-snmp-config $(2)/bin/
 -	$(SED) 's,=/usr,=$(STAGING_DIR)/usr,g' $(2)/bin/net-snmp-config
-+	$(INSTALL_BIN) $(PKG_INSTALL_DIR)/opt/bin/net-snmp-config $(2)/bin/
++	$(INSTALL_BIN) $(PKG_INSTALL_DIR)/Apps/opt/bin/net-snmp-config $(2)/bin/
 +	$(SED) 's,=/opt,=$(STAGING_DIR)/opt,g' $(2)/bin/net-snmp-config
  
 -	$(INSTALL_DIR) $(1)/usr/include
@@ -89,16 +89,16 @@ diff -ur ../../../downloads/openwrt_trunk-r42803/feeds/packages/net/net-snmp/Mak
 -	$(INSTALL_DIR) $(1)/usr/lib
 -	$(CP) $(PKG_INSTALL_DIR)/usr/lib/libnetsnmp{,agent,helpers,mibs}.{a,so*} $(1)/usr/lib/
 +	$(INSTALL_DIR) $(1)/opt/include
-+	$(CP) $(PKG_INSTALL_DIR)/opt/include/net-snmp $(1)/opt/include/
++	$(CP) $(PKG_INSTALL_DIR)/Apps/opt/include/net-snmp $(1)/opt/include/
 +	$(INSTALL_DIR) $(1)/opt/lib
-+	$(CP) $(PKG_INSTALL_DIR)/opt/lib/libnetsnmp{,agent,helpers,mibs,trapd}.{a,so*} $(1)/opt/lib/
++	$(CP) $(PKG_INSTALL_DIR)/Apps/opt/lib/libnetsnmp{,agent,helpers,mibs,trapd}.{a,so*} $(1)/opt/lib/
  endef
  
  define Package/libnetsnmp/install
 -	$(INSTALL_DIR) $(1)/usr/lib
 -	$(CP) $(PKG_INSTALL_DIR)/usr/lib/libnetsnmp{,agent,helpers,mibs}.so.* $(1)/usr/lib/
 +	$(INSTALL_DIR) $(1)/opt/lib
-+	$(CP) $(PKG_INSTALL_DIR)/opt/lib/libnetsnmp{,agent,helpers,mibs,trapd}.so.* $(1)/opt/lib/
++	$(CP) $(PKG_INSTALL_DIR)/Apps/opt/lib/libnetsnmp{,agent,helpers,mibs,trapd}.so.* $(1)/opt/lib/
  endef
  
  define Package/snmpd/conffiles
@@ -120,7 +120,7 @@ diff -ur ../../../downloads/openwrt_trunk-r42803/feeds/packages/net/net-snmp/Mak
 -	$(INSTALL_BIN) $(PKG_INSTALL_DIR)/usr/sbin/snmpd $(1)/usr/sbin/snmpd
 +	$(INSTALL_DIR) $(1)/opt/etc/snmp
 +	$(INSTALL_DIR) $(1)/opt/sbin
-+	$(INSTALL_BIN) $(PKG_INSTALL_DIR)/opt/sbin/snmpd $(1)/opt/sbin/snmpd
++	$(INSTALL_BIN) $(PKG_INSTALL_DIR)/Apps/opt/sbin/snmpd $(1)/opt/sbin/snmpd
  endef
  
  define Package/snmpd-static/conffiles
@@ -149,9 +149,9 @@ diff -ur ../../../downloads/openwrt_trunk-r42803/feeds/packages/net/net-snmp/Mak
 -	$(INSTALL_DIR) $(1)/usr/bin
 -	$(INSTALL_BIN) $(PKG_INSTALL_DIR)/usr/bin/snmp{get,set,status,test,trap,walk} $(1)/usr/bin/
 +	$(INSTALL_DIR) $(1)/opt/bin
-+	$(INSTALL_BIN) $(PKG_INSTALL_DIR)/opt/bin/snmp{get,set,status,test,trap,walk} $(1)/opt/bin/
++	$(INSTALL_BIN) $(PKG_INSTALL_DIR)/Apps/opt/bin/snmp{get,set,status,test,trap,walk} $(1)/opt/bin/
 +	$(INSTALL_DIR) $(1)/opt/share/snmp/mibs
-+	$(CP) $(PKG_INSTALL_DIR)/opt/share/snmp/mibs/*.txt $(1)/opt/share/snmp/mibs
++	$(CP) $(PKG_INSTALL_DIR)/Apps/opt/share/snmp/mibs/*.txt $(1)/opt/share/snmp/mibs
  endef
  
  $(eval $(call BuildPackage,libnetsnmp))

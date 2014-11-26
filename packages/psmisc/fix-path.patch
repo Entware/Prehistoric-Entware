@@ -33,7 +33,7 @@
 -ln -sf ../../bin/busybox $${IPKG_INSTROOT}/usr/bin/killall
 -$${IPKG_INSTROOT}/usr/bin/killall 2>&1 | grep 'applet not found' > /dev/null 2>&1 && rm $${IPKG_INSTROOT}/usr/bin/killall
 -exit 0
-+		$(PKG_INSTALL_DIR)/opt/bin/{fuser,killall,prtstat,pstree,peekfd} \
++		$(PKG_INSTALL_DIR)/Apps/opt/bin/{fuser,killall,prtstat,pstree,peekfd} \
 +		$(1)/opt/bin/
  endef
  

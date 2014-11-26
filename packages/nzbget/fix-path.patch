@@ -79,14 +79,14 @@
 -	$(INSTALL_DIR) $(1)/etc
 -	$(INSTALL_DATA) $(PKG_BUILD_DIR)/nzbget.conf.example $(1)/etc/nzbget.conf
 +	$(INSTALL_DIR) $(1)/opt/bin
-+	$(INSTALL_BIN) $(PKG_INSTALL_DIR)/opt/bin/nzbget* $(1)/opt/bin/
++	$(INSTALL_BIN) $(PKG_INSTALL_DIR)/Apps/opt/bin/nzbget* $(1)/opt/bin/
 +	$(INSTALL_DIR) $(1)/opt/sbin
-+	$(INSTALL_BIN) $(PKG_INSTALL_DIR)/opt/sbin/nzbgetd $(1)/opt/sbin/
++	$(INSTALL_BIN) $(PKG_INSTALL_DIR)/Apps/opt/sbin/nzbgetd $(1)/opt/sbin/
 +	$(INSTALL_DIR) $(1)/opt/etc/init.d
 +	$(INSTALL_BIN) ./files/S75nzbget $(1)/opt/etc/init.d/
-+	$(INSTALL_DATA) $(PKG_INSTALL_DIR)/opt/share/nzbget/nzbget*.conf $(1)/opt/etc/
++	$(INSTALL_DATA) $(PKG_INSTALL_DIR)/Apps/opt/share/nzbget/nzbget*.conf $(1)/opt/etc/
 +	$(INSTALL_DIR) $(1)/opt/share/nzbget
-+	$(CP) $(PKG_INSTALL_DIR)/opt/share/nzbget/* $(1)/opt/share/nzbget/
++	$(CP) $(PKG_INSTALL_DIR)/Apps/opt/share/nzbget/* $(1)/opt/share/nzbget/
  endef
  
  define Package/nzbget/conffiles

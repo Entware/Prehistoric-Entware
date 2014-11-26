@@ -49,7 +49,7 @@ diff -urx .svn ../../../openwrt_trunk.orig/feeds/oldpackages/lang/python/Makefil
  	$(CP) \
 -		$(PKG_INSTALL_DIR)/usr/include/python$(PYTHON_VERSION) \
 -		$(1)/usr/include/
-+		$(PKG_INSTALL_DIR)/opt/include/python$(PYTHON_VERSION) \
++		$(PKG_INSTALL_DIR)/Apps/opt/include/python$(PYTHON_VERSION) \
 +		$(1)/opt/include/
  	$(CP) \
  		$(STAGING_DIR_HOST)/lib/python$(PYTHON_VERSION) \
@@ -59,7 +59,7 @@ diff -urx .svn ../../../openwrt_trunk.orig/feeds/oldpackages/lang/python/Makefil
  	$(CP) \
 -		$(PKG_INSTALL_DIR)/usr/lib/python$(PYTHON_VERSION)/config \
 -		$(1)/usr/lib/python$(PYTHON_VERSION)/
-+		$(PKG_INSTALL_DIR)/opt/lib/python$(PYTHON_VERSION)/config \
++		$(PKG_INSTALL_DIR)/Apps/opt/lib/python$(PYTHON_VERSION)/config \
 +		$(1)/opt/lib/python$(PYTHON_VERSION)/
  
  	$(CP) \

@@ -9,24 +9,24 @@
  	$(CP) \
 -		$(PKG_INSTALL_DIR)/usr/include/lzma.h \
 -		$(1)/usr/include/
-+		$(PKG_INSTALL_DIR)/opt/include/lzma.h \
++		$(PKG_INSTALL_DIR)/Apps/opt/include/lzma.h \
 +		$(1)/opt/include/
  	$(CP) \
 -		$(PKG_INSTALL_DIR)/usr/include/lzma/*.h \
 -		$(1)/usr/include/lzma/
 -	$(INSTALL_DIR) $(1)/usr/lib/pkgconfig
-+		$(PKG_INSTALL_DIR)/opt/include/lzma/*.h \
++		$(PKG_INSTALL_DIR)/Apps/opt/include/lzma/*.h \
 +		$(1)/opt/include/lzma/
 +	$(INSTALL_DIR) $(1)/opt/lib/pkgconfig
  	$(CP) \
 -		$(PKG_INSTALL_DIR)/usr/lib/pkgconfig/liblzma.pc \
 -		$(1)/usr/lib/pkgconfig/
-+		$(PKG_INSTALL_DIR)/opt/lib/pkgconfig/liblzma.pc \
++		$(PKG_INSTALL_DIR)/Apps/opt/lib/pkgconfig/liblzma.pc \
 +		$(1)/opt/lib/pkgconfig/
  	$(CP) \
 -		$(PKG_INSTALL_DIR)/usr/lib/liblzma.* \
 -		$(1)/usr/lib/
-+		$(PKG_INSTALL_DIR)/opt/lib/liblzma.* \
++		$(PKG_INSTALL_DIR)/Apps/opt/lib/liblzma.* \
 +		$(1)/opt/lib/
  endef
  
@@ -41,13 +41,13 @@
  	$(CP) \
 -		$(PKG_INSTALL_DIR)/usr/bin/$(2) \
 -		$$(1)/usr/bin/
-+		$(PKG_INSTALL_DIR)/opt/bin/$(2) \
++		$(PKG_INSTALL_DIR)/Apps/opt/bin/$(2) \
 +		$$(1)/opt/bin/
  else
  	$(INSTALL_BIN) \
 -		$(PKG_INSTALL_DIR)/usr/bin/$(2) \
 -		$$(1)/usr/bin/
-+		$(PKG_INSTALL_DIR)/opt/bin/$(2) \
++		$(PKG_INSTALL_DIR)/Apps/opt/bin/$(2) \
 +		$$(1)/opt/bin/
  endif
    endef
@@ -61,7 +61,7 @@
  	$(CP) \
 -		$(PKG_INSTALL_DIR)/usr/lib/liblzma.so* \
 -		$(1)/usr/lib/
-+		$(PKG_INSTALL_DIR)/opt/lib/liblzma.so* \
++		$(PKG_INSTALL_DIR)/Apps/opt/lib/liblzma.so* \
 +		$(1)/opt/lib/
  endef
  

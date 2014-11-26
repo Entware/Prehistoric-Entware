@@ -25,16 +25,16 @@
 -	$(INSTALL_DIR) $(1)/usr/lib/libev
 -	$(CP) $(PKG_INSTALL_DIR)/usr/lib/libev.{a,so} $(1)/usr/lib/libev/
 +	$(INSTALL_DIR) $(1)/opt/include/libev
-+	$(CP) $(PKG_INSTALL_DIR)/opt/include/* $(1)/opt/include/libev/
++	$(CP) $(PKG_INSTALL_DIR)/Apps/opt/include/* $(1)/opt/include/libev/
 +	$(INSTALL_DIR) $(1)/opt/lib/libev
-+	$(CP) $(PKG_INSTALL_DIR)/opt/lib/libev.{a,so} $(1)/opt/lib/libev/
++	$(CP) $(PKG_INSTALL_DIR)/Apps/opt/lib/libev.{a,so} $(1)/opt/lib/libev/
  endef
  
  define Package/libev/install
 -	$(INSTALL_DIR) $(1)/usr/lib
 -	$(CP) $(PKG_INSTALL_DIR)/usr/lib/libev.so* $(1)/usr/lib/
 +	$(INSTALL_DIR) $(1)/opt/lib
-+	$(CP) $(PKG_INSTALL_DIR)/opt/lib/libev.so* $(1)/opt/lib/
++	$(CP) $(PKG_INSTALL_DIR)/Apps/opt/lib/libev.so* $(1)/opt/lib/
  endef
  
  $(eval $(call BuildPackage,libev))

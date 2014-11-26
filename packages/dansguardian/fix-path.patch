@@ -22,13 +22,13 @@
 -	$(INSTALL_DIR) $(1)/usr/share/dansguardian/languages/ukenglish
 -	$(CP) $(PKG_INSTALL_DIR)/usr/share/dansguardian/languages/ukenglish/* $(1)/usr/share/dansguardian/languages/ukenglish/
 +	$(INSTALL_DIR) $(1)/opt/sbin
-+	$(INSTALL_BIN) $(PKG_INSTALL_DIR)/opt/sbin/dansguardian $(1)/opt/sbin/
++	$(INSTALL_BIN) $(PKG_INSTALL_DIR)/Apps/opt/sbin/dansguardian $(1)/opt/sbin/
 +	$(INSTALL_DIR) $(1)/opt/etc/init.d
-+	$(CP) $(PKG_INSTALL_DIR)/opt/etc/dansguardian $(1)/opt/etc/
++	$(CP) $(PKG_INSTALL_DIR)/Apps/opt/etc/dansguardian $(1)/opt/etc/
 +	$(INSTALL_DIR) $(1)/opt/share/dansguardian
-+	$(INSTALL_DATA) $(PKG_INSTALL_DIR)/opt/share/dansguardian/transparent1x1.gif $(1)/opt/share/dansguardian/
++	$(INSTALL_DATA) $(PKG_INSTALL_DIR)/Apps/opt/share/dansguardian/transparent1x1.gif $(1)/opt/share/dansguardian/
 +	$(INSTALL_DIR) $(1)/opt/share/dansguardian/languages/ukenglish
-+	$(CP) $(PKG_INSTALL_DIR)/opt/share/dansguardian/languages/ukenglish/* $(1)/opt/share/dansguardian/languages/ukenglish/
++	$(CP) $(PKG_INSTALL_DIR)/Apps/opt/share/dansguardian/languages/ukenglish/* $(1)/opt/share/dansguardian/languages/ukenglish/
 +	$(INSTALL_DIR) $(1)/opt/var/run
 +	$(INSTALL_BIN) ./files/S24dansguardian $(1)/opt/etc/init.d
  endef

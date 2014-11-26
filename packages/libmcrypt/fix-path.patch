@@ -13,11 +13,11 @@
 -	$(SED) 's,-I$$$${prefix}/include,,g' $(1)/usr/bin/libmcrypt-config
 -	$(SED) 's,-L$$$${exec_prefix}/lib,,g' $(1)/usr/bin/libmcrypt-config
 +	$(INSTALL_DIR) $(1)/opt/include
-+	$(CP) $(PKG_INSTALL_DIR)/opt/include/* $(1)/opt/include/
++	$(CP) $(PKG_INSTALL_DIR)/Apps/opt/include/* $(1)/opt/include/
 +	$(INSTALL_DIR) $(1)/opt/lib
-+	$(CP) $(PKG_INSTALL_DIR)/opt/lib/libmcrypt.{a,so*} $(1)/opt/lib/
++	$(CP) $(PKG_INSTALL_DIR)/Apps/opt/lib/libmcrypt.{a,so*} $(1)/opt/lib/
 +	$(INSTALL_DIR) $(1)/opt/bin
-+	$(INSTALL_BIN) $(PKG_INSTALL_DIR)/opt/bin/libmcrypt-config $(1)/opt/bin/
++	$(INSTALL_BIN) $(PKG_INSTALL_DIR)/Apps/opt/bin/libmcrypt-config $(1)/opt/bin/
 +	$(SED) 's,-I$$$${prefix}/include,,g' $(1)/opt/bin/libmcrypt-config
 +	$(SED) 's,-L$$$${exec_prefix}/lib,,g' $(1)/opt/bin/libmcrypt-config
  endef
@@ -26,7 +26,7 @@
 -	$(INSTALL_DIR) $(1)/usr/lib
 -	$(CP) $(PKG_INSTALL_DIR)/usr/lib/libmcrypt.so.* $(1)/usr/lib/
 +	$(INSTALL_DIR) $(1)/opt/lib
-+	$(CP) $(PKG_INSTALL_DIR)/opt/lib/libmcrypt.so.* $(1)/opt/lib/
++	$(CP) $(PKG_INSTALL_DIR)/Apps/opt/lib/libmcrypt.so.* $(1)/opt/lib/
  endef
  
  $(eval $(call BuildPackage,libmcrypt))

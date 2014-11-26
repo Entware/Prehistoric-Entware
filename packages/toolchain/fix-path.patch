@@ -17,8 +17,8 @@
 -  LIBC_VERSION:=<LIBC_VERSION>
 -  LIBGCC_VERSION:=<LIBGCC_VERSION>
 -endif
-+LIBC_VERSION:=0.9.32
-+LIBGCC_VERSION:=4.6.4
++LIBC_VERSION:=2.6.1
++LIBGCC_VERSION:=4.2.0
  
  define Package/gcc/Default
    SECTION:=libs
@@ -38,7 +38,18 @@
  endef
  
  
-@@ -544,8 +538,8 @@
+@@ -147,6 +141,10 @@
+   TITLE:=C library
+ endef
+ 
++define Package/libc/extra_provides
++	cat $(TOPDIR)/target/linux/$(BOARD)/libc.provides >> $(PKG_INFO_DIR)/libc.provides
++endef
++
+ define Package/libc/config
+ 	menu "Configuration"
+ 	depends on EXTERNAL_TOOLCHAIN && PACKAGE_libc
+@@ -544,8 +542,8 @@
    define Package/libgcc/install
  	for file in $(call qstrip,$(CONFIG_LIBGCC_FILE_SPEC)); do \
  		dir=`dirname $$$$file` ; \
@@ -49,7 +60,7 @@
  	done ; \
  	exit 0
    endef
-@@ -553,16 +547,16 @@
+@@ -553,16 +551,16 @@
    define Package/libgfortran/install
  	for file in $(call qstrip,$(CONFIG_LIBGFORTRAN_FILE_SPEC)); do \
  		dir=`dirname $$$$file` ; \
@@ -70,7 +81,7 @@
  	done ; \
  	exit 0
    endef
-@@ -570,17 +564,18 @@
+@@ -570,17 +568,18 @@
    define Package/libstdcpp/install
  	for file in $(call qstrip,$(CONFIG_LIBSTDCPP_FILE_SPEC)); do \
  		dir=`dirname $$$$file` ; \
@@ -93,7 +104,7 @@
  	done ; \
  	exit 0
    endef
-@@ -588,17 +583,22 @@
+@@ -588,17 +587,22 @@
    define Package/libpthread/install
  	for file in $(call qstrip,$(CONFIG_LIBPTHREAD_FILE_SPEC)); do \
  		dir=`dirname $$$$file` ; \
@@ -120,7 +131,7 @@
  	done ; \
  	exit 0
    endef
-@@ -606,8 +606,8 @@
+@@ -606,8 +610,8 @@
    define Package/ldd/install
  	for file in $(call qstrip,$(CONFIG_LDD_FILE_SPEC)); do \
  		dir=`dirname $$$$file` ; \
@@ -131,7 +142,7 @@
  	done ; \
  	exit 0
    endef
-@@ -615,8 +615,8 @@
+@@ -615,8 +619,8 @@
    define Package/ldconfig/install
  	for file in $(call qstrip,$(CONFIG_LDCONFIG_FILE_SPEC)); do \
  		dir=`dirname $$$$file` ; \

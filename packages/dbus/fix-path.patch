@@ -52,13 +52,13 @@ diff -ur ../../../downloads/openwrt_trunk-r42803/feeds/packages/utils/dbus/Makef
 -		$(PKG_INSTALL_DIR)/usr/include/dbus-1.0 \
 -		$(1)/usr/include/
 -	$(INSTALL_DIR) $(1)/usr/lib/dbus-1.0/include/dbus/
-+		$(PKG_INSTALL_DIR)/opt/include/dbus-1.0 \
++		$(PKG_INSTALL_DIR)/Apps/opt/include/dbus-1.0 \
 +		$(1)/opt/include/
 +	$(INSTALL_DIR) $(1)/opt/lib/dbus-1.0/include/dbus/
  	$(INSTALL_DATA) \
 -		$(PKG_INSTALL_DIR)/usr/lib/dbus-1.0/include/dbus/*.h \
 -		$(1)/usr/lib/dbus-1.0/include/dbus/
-+		$(PKG_INSTALL_DIR)/opt/lib/dbus-1.0/include/dbus/*.h \
++		$(PKG_INSTALL_DIR)/Apps/opt/lib/dbus-1.0/include/dbus/*.h \
 +		$(1)/opt/lib/dbus-1.0/include/dbus/
  
 -	$(INSTALL_DIR) $(1)/usr/lib
@@ -66,19 +66,19 @@ diff -ur ../../../downloads/openwrt_trunk-r42803/feeds/packages/utils/dbus/Makef
  	$(INSTALL_DATA) \
 -		$(PKG_INSTALL_DIR)/usr/lib/libdbus-1.{so*,la,a} \
 -		$(1)/usr/lib/
-+		$(PKG_INSTALL_DIR)/opt/lib/libdbus-1.{so*,la,a} \
++		$(PKG_INSTALL_DIR)/Apps/opt/lib/libdbus-1.{so*,la,a} \
 +		$(1)/opt/lib/
  	$(CP) \
 -		$(PKG_INSTALL_DIR)/usr/lib/dbus-1.0 \
 -		$(1)/usr/lib/
 -	$(INSTALL_DIR) $(1)/usr/lib/pkgconfig
-+		$(PKG_INSTALL_DIR)/opt/lib/dbus-1.0 \
++		$(PKG_INSTALL_DIR)/Apps/opt/lib/dbus-1.0 \
 +		$(1)/opt/lib/
 +	$(INSTALL_DIR) $(1)/opt/lib/pkgconfig
  	$(INSTALL_DATA) \
 -		$(PKG_INSTALL_DIR)/usr/lib/pkgconfig/dbus-1.pc \
 -		$(1)/usr/lib/pkgconfig/
-+		$(PKG_INSTALL_DIR)/opt/lib/pkgconfig/dbus-1.pc \
++		$(PKG_INSTALL_DIR)/Apps/opt/lib/pkgconfig/dbus-1.pc \
 +		$(1)/opt/lib/pkgconfig/
  endef
  
@@ -95,7 +95,7 @@ diff -ur ../../../downloads/openwrt_trunk-r42803/feeds/packages/utils/dbus/Makef
  	$(CP) \
 -		$(PKG_INSTALL_DIR)/usr/lib/libdbus-1.so.* \
 -		$(1)/usr/lib/
-+		$(PKG_INSTALL_DIR)/opt/lib/libdbus-1.so.* \
++		$(PKG_INSTALL_DIR)/Apps/opt/lib/libdbus-1.so.* \
 +		$(1)/opt/lib/
  endef
  
@@ -105,7 +105,7 @@ diff -ur ../../../downloads/openwrt_trunk-r42803/feeds/packages/utils/dbus/Makef
  	$(CP) \
 -		$(PKG_INSTALL_DIR)/etc/dbus-1 \
 -		$(1)/etc/
-+		$(PKG_INSTALL_DIR)/opt/etc/dbus-1 \
++		$(PKG_INSTALL_DIR)/Apps/opt/etc/dbus-1 \
 +		$(1)/opt/etc/
  
 -	$(INSTALL_DIR) $(1)/usr/lib/dbus-1
@@ -113,7 +113,7 @@ diff -ur ../../../downloads/openwrt_trunk-r42803/feeds/packages/utils/dbus/Makef
  	$(INSTALL_BIN) \
 -		$(PKG_INSTALL_DIR)/usr/lib/dbus-1/dbus-daemon-launch-helper \
 -		$(1)/usr/lib/dbus-1/
-+		$(PKG_INSTALL_DIR)/opt/lib/dbus-1/dbus-daemon-launch-helper \
++		$(PKG_INSTALL_DIR)/Apps/opt/lib/dbus-1/dbus-daemon-launch-helper \
 +		$(1)/opt/lib/dbus-1/
  
 -	$(INSTALL_DIR) $(1)/usr/sbin
@@ -121,7 +121,7 @@ diff -ur ../../../downloads/openwrt_trunk-r42803/feeds/packages/utils/dbus/Makef
  	$(INSTALL_BIN) \
 -		$(PKG_INSTALL_DIR)/usr/sbin/dbus-daemon \
 -		$(1)/usr/sbin/
-+		$(PKG_INSTALL_DIR)/opt/sbin/dbus-daemon \
++		$(PKG_INSTALL_DIR)/Apps/opt/sbin/dbus-daemon \
 +		$(1)/opt/sbin/
  
 -	$(INSTALL_DIR) $(1)/usr/bin
@@ -129,13 +129,13 @@ diff -ur ../../../downloads/openwrt_trunk-r42803/feeds/packages/utils/dbus/Makef
  	$(INSTALL_BIN) \
 -		$(PKG_INSTALL_DIR)/usr/bin/dbus-uuidgen \
 -		$(1)/usr/bin/
-+		$(PKG_INSTALL_DIR)/opt/bin/dbus-uuidgen \
++		$(PKG_INSTALL_DIR)/Apps/opt/bin/dbus-uuidgen \
 +		$(1)/opt/bin/
  
  	$(INSTALL_BIN) \
 -		$(PKG_INSTALL_DIR)/usr/bin/dbus-launch \
 -		$(1)/usr/bin/dbus-launch.real
-+		$(PKG_INSTALL_DIR)/opt/bin/dbus-launch \
++		$(PKG_INSTALL_DIR)/Apps/opt/bin/dbus-launch \
 +		$(1)/opt/bin/dbus-launch.real
  	$(INSTALL_BIN) \
  		./files/dbus-launch \
@@ -159,7 +159,7 @@ diff -ur ../../../downloads/openwrt_trunk-r42803/feeds/packages/utils/dbus/Makef
  	$(INSTALL_BIN) \
 -		$(PKG_INSTALL_DIR)/usr/bin/dbus-{send,monitor,cleanup-sockets} \
 -		$(1)/usr/bin/
-+		$(PKG_INSTALL_DIR)/opt/bin/dbus-{send,monitor,cleanup-sockets} \
++		$(PKG_INSTALL_DIR)/Apps/opt/bin/dbus-{send,monitor,cleanup-sockets} \
 +		$(1)/opt/bin/
  endef
  

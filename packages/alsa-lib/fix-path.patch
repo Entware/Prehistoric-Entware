@@ -18,7 +18,7 @@
  	$(CP) \
 -		$(PKG_INSTALL_DIR)/usr/include/alsa \
 -		$(1)/usr/include/
-+		$(PKG_INSTALL_DIR)/opt/include/alsa \
++		$(PKG_INSTALL_DIR)/Apps/opt/include/alsa \
 +		$(1)/opt/include/
  
 -	$(INSTALL_DIR) $(1)/usr/lib/pkgconfig
@@ -26,12 +26,12 @@
  	$(CP) \
 -		$(PKG_INSTALL_DIR)/usr/lib/libasound.{la,so*} \
 -		$(1)/usr/lib/
-+		$(PKG_INSTALL_DIR)/opt/lib/libasound.{la,so*} \
++		$(PKG_INSTALL_DIR)/Apps/opt/lib/libasound.{la,so*} \
 +		$(1)/opt/lib/
  	$(INSTALL_DATA) \
 -		$(PKG_INSTALL_DIR)/usr/lib/pkgconfig/alsa.pc \
 -		$(1)/usr/lib/pkgconfig/
-+		$(PKG_INSTALL_DIR)/opt/lib/pkgconfig/alsa.pc \
++		$(PKG_INSTALL_DIR)/Apps/opt/lib/pkgconfig/alsa.pc \
 +		$(1)/opt/lib/pkgconfig/
  
 -	$(INSTALL_DIR) $(1)/usr/share/aclocal
@@ -39,7 +39,7 @@
  	$(INSTALL_DATA) \
 -		$(PKG_INSTALL_DIR)/usr/share/aclocal/alsa.m4 \
 -		$(1)/usr/share/aclocal/
-+		$(PKG_INSTALL_DIR)/opt/share/aclocal/alsa.m4 \
++		$(PKG_INSTALL_DIR)/Apps/opt/share/aclocal/alsa.m4 \
 +		$(1)/opt/share/aclocal/
  endef
  
@@ -49,7 +49,7 @@
  	$(CP) \
 -		$(PKG_INSTALL_DIR)/usr/lib/libasound.so.* \
 -		$(1)/usr/lib/
-+		$(PKG_INSTALL_DIR)/opt/lib/libasound.so.* \
++		$(PKG_INSTALL_DIR)/Apps/opt/lib/libasound.so.* \
 +		$(1)/opt/lib/
  
 -	$(INSTALL_DIR) $(1)/usr/share/alsa/{cards,pcm}
@@ -57,17 +57,17 @@
  	$(INSTALL_DATA) \
 -		$(PKG_INSTALL_DIR)/usr/share/alsa/alsa.conf \
 -		$(1)/usr/share/alsa/
-+		$(PKG_INSTALL_DIR)/opt/share/alsa/alsa.conf \
++		$(PKG_INSTALL_DIR)/Apps/opt/share/alsa/alsa.conf \
 +		$(1)/opt/share/alsa/
  	$(INSTALL_DATA) \
 -		$(PKG_INSTALL_DIR)/usr/share/alsa/pcm/* \
 -		$(1)/usr/share/alsa/pcm/
-+		$(PKG_INSTALL_DIR)/opt/share/alsa/pcm/* \
++		$(PKG_INSTALL_DIR)/Apps/opt/share/alsa/pcm/* \
 +		$(1)/opt/share/alsa/pcm/
  	$(CP) \
 -		$(PKG_INSTALL_DIR)/usr/share/alsa/cards/* \
 -		$(1)/usr/share/alsa/cards/
-+		$(PKG_INSTALL_DIR)/opt/share/alsa/cards/* \
++		$(PKG_INSTALL_DIR)/Apps/opt/share/alsa/cards/* \
 +		$(1)/opt/share/alsa/cards/
  endef
  

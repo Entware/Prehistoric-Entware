@@ -25,9 +25,9 @@
 -	$(INSTALL_DIR) $(1)/usr/share/nmap
 -	$(CP) $(PKG_INSTALL_DIR)/usr/share/nmap/* $(1)/usr/share/nmap/
 +	$(INSTALL_DIR) $(1)/opt/bin
-+	$(INSTALL_BIN) $(PKG_INSTALL_DIR)/opt/bin/nmap $(1)/opt/bin/
++	$(INSTALL_BIN) $(PKG_INSTALL_DIR)/Apps/opt/bin/nmap $(1)/opt/bin/
 +	$(INSTALL_DIR) $(1)/opt/share/nmap
-+	$(CP) $(PKG_INSTALL_DIR)/opt/share/nmap/* $(1)/opt/share/nmap/
++	$(CP) $(PKG_INSTALL_DIR)/Apps/opt/share/nmap/* $(1)/opt/share/nmap/
  endef
  
  define Package/nmap-ssl/install
@@ -36,16 +36,16 @@
 -	$(INSTALL_DIR) $(1)/usr/share/nmap
 -	$(CP) $(PKG_INSTALL_DIR)/usr/share/nmap/* $(1)/usr/share/nmap/
 +	$(INSTALL_DIR) $(1)/opt/bin
-+	$(INSTALL_BIN) $(PKG_INSTALL_DIR)/opt/bin/nmap $(1)/opt/bin/
++	$(INSTALL_BIN) $(PKG_INSTALL_DIR)/Apps/opt/bin/nmap $(1)/opt/bin/
 +	$(INSTALL_DIR) $(1)/opt/share/nmap
-+	$(CP) $(PKG_INSTALL_DIR)/opt/share/nmap/* $(1)/opt/share/nmap/
++	$(CP) $(PKG_INSTALL_DIR)/Apps/opt/share/nmap/* $(1)/opt/share/nmap/
  endef
  
  define Package/ncat/install
 -	$(INSTALL_DIR) $(1)/usr/bin
 -	$(INSTALL_BIN) $(PKG_INSTALL_DIR)/usr/bin/ncat $(1)/usr/bin/
 +	$(INSTALL_DIR) $(1)/opt/bin
-+	$(INSTALL_BIN) $(PKG_INSTALL_DIR)/opt/bin/ncat $(1)/opt/bin/
++	$(INSTALL_BIN) $(PKG_INSTALL_DIR)/Apps/opt/bin/ncat $(1)/opt/bin/
  endef
  
  define Package/ncat-ssl/install
@@ -54,23 +54,23 @@
 -	$(INSTALL_DIR) $(1)/usr/share/ncat
 -	$(CP) $(PKG_INSTALL_DIR)/usr/share/ncat/ca-bundle.crt $(1)/usr/share/ncat/
 +	$(INSTALL_DIR) $(1)/opt/bin
-+	$(INSTALL_BIN) $(PKG_INSTALL_DIR)/opt/bin/ncat $(1)/opt/bin/
++	$(INSTALL_BIN) $(PKG_INSTALL_DIR)/Apps/opt/bin/ncat $(1)/opt/bin/
 +	$(INSTALL_DIR) $(1)/opt/share/ncat
-+	$(CP) $(PKG_INSTALL_DIR)/opt/share/ncat/ca-bundle.crt $(1)/opt/share/ncat/
++	$(CP) $(PKG_INSTALL_DIR)/Apps/opt/share/ncat/ca-bundle.crt $(1)/opt/share/ncat/
  endef
  
  define Package/ndiff/install
 -	$(INSTALL_DIR) $(1)/usr/bin
 -	$(INSTALL_BIN) $(PKG_INSTALL_DIR)/usr/bin/ndiff $(1)/usr/bin/
 +	$(INSTALL_DIR) $(1)/opt/bin
-+	$(INSTALL_BIN) $(PKG_INSTALL_DIR)/opt/bin/ndiff $(1)/opt/bin/
++	$(INSTALL_BIN) $(PKG_INSTALL_DIR)/Apps/opt/bin/ndiff $(1)/opt/bin/
  endef
  
  define Package/nping/install
 -	$(INSTALL_DIR) $(1)/usr/bin
 -	$(INSTALL_BIN) $(PKG_INSTALL_DIR)/usr/bin/nping $(1)/usr/bin/
 +	$(INSTALL_DIR) $(1)/opt/bin
-+	$(INSTALL_BIN) $(PKG_INSTALL_DIR)/opt/bin/nping $(1)/opt/bin/
++	$(INSTALL_BIN) $(PKG_INSTALL_DIR)/Apps/opt/bin/nping $(1)/opt/bin/
  endef
  
  

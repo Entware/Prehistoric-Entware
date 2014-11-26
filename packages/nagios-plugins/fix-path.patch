@@ -16,7 +16,7 @@
 -	$(INSTALL_DIR) $(1)/usr/libexec/nagios
 -	$(CP) $(PKG_INSTALL_DIR)/usr/lib/* $(1)/usr/libexec/nagios/
 +	$(INSTALL_DIR) $(1)/opt/libexec/nagios
-+	$(CP) $(PKG_INSTALL_DIR)/opt/lib/* $(1)/opt/libexec/nagios/
++	$(CP) $(PKG_INSTALL_DIR)/Apps/opt/lib/* $(1)/opt/libexec/nagios/
  endef
  
  $(eval $(call BuildPackage,nagios-plugins))

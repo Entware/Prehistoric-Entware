@@ -28,13 +28,13 @@
 -	$(INSTALL_DIR) $(STAGING_DIR)/usr/bin
 -	$(INSTALL_BIN) $(PKG_INSTALL_DIR)/usr/bin/daq-modules-config $(STAGING_DIR)/usr/bin/
 +	$(INSTALL_DIR) $(STAGING_DIR)/opt/include
-+	$(CP) $(PKG_INSTALL_DIR)/opt/include/*.h $(STAGING_DIR)/opt/include/
++	$(CP) $(PKG_INSTALL_DIR)/Apps/opt/include/*.h $(STAGING_DIR)/opt/include/
 +	$(INSTALL_DIR) $(STAGING_DIR)/opt/lib
-+	$(CP) $(PKG_INSTALL_DIR)/opt/lib/lib* $(STAGING_DIR)/opt/lib/
++	$(CP) $(PKG_INSTALL_DIR)/Apps/opt/lib/lib* $(STAGING_DIR)/opt/lib/
 +	$(INSTALL_DIR) $(STAGING_DIR)/opt/lib/daq
-+	$(CP) $(PKG_INSTALL_DIR)/opt/lib/daq/* $(STAGING_DIR)/opt/lib/daq/
++	$(CP) $(PKG_INSTALL_DIR)/Apps/opt/lib/daq/* $(STAGING_DIR)/opt/lib/daq/
 +	$(INSTALL_DIR) $(STAGING_DIR)/opt/bin
-+	$(INSTALL_BIN) $(PKG_INSTALL_DIR)/opt/bin/daq-modules-config $(STAGING_DIR)/opt/bin/
++	$(INSTALL_BIN) $(PKG_INSTALL_DIR)/Apps/opt/bin/daq-modules-config $(STAGING_DIR)/opt/bin/
  endef
  
  define Package/libdaq/install
@@ -45,11 +45,11 @@
 -	$(INSTALL_DIR) $(1)/usr/bin
 -	$(INSTALL_BIN) $(PKG_INSTALL_DIR)/usr/bin/daq-modules-config $(1)/usr/bin/
 +	$(INSTALL_DIR) $(1)/opt/lib
-+	$(CP) $(PKG_INSTALL_DIR)/opt/lib/*.so* $(1)/opt/lib/
++	$(CP) $(PKG_INSTALL_DIR)/Apps/opt/lib/*.so* $(1)/opt/lib/
 +	$(INSTALL_DIR) $(1)/opt/lib/daq
-+	$(CP) $(PKG_INSTALL_DIR)/opt/lib/daq/*.so* $(1)/opt/lib/daq/
++	$(CP) $(PKG_INSTALL_DIR)/Apps/opt/lib/daq/*.so* $(1)/opt/lib/daq/
 +	$(INSTALL_DIR) $(1)/opt/bin
-+	$(INSTALL_BIN) $(PKG_INSTALL_DIR)/opt/bin/daq-modules-config $(1)/opt/bin/
++	$(INSTALL_BIN) $(PKG_INSTALL_DIR)/Apps/opt/bin/daq-modules-config $(1)/opt/bin/
  endef
  
  $(eval $(call BuildPackage,libdaq))

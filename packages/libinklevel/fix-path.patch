@@ -7,7 +7,7 @@
  	$(INSTALL_DATA) \
 -		$(PKG_INSTALL_DIR)/usr/include/inklevel.h \
 -		$(1)/usr/include/
-+		$(PKG_INSTALL_DIR)/opt/include/inklevel.h \
++		$(PKG_INSTALL_DIR)/Apps/opt/include/inklevel.h \
 +		$(1)/opt/include/
  
 -	$(INSTALL_DIR) $(1)/usr/lib
@@ -15,7 +15,7 @@
  	$(CP) \
 -		$(PKG_INSTALL_DIR)/usr/lib/libinklevel.so* \
 -		$(1)/usr/lib/
-+		$(PKG_INSTALL_DIR)/opt/lib/libinklevel.so* \
++		$(PKG_INSTALL_DIR)/Apps/opt/lib/libinklevel.so* \
 +		$(1)/opt/lib/
  endef
 @@ -51,6 +51,6 @@
@@ -25,6 +25,6 @@
  	$(CP) \
 -		$(PKG_INSTALL_DIR)/usr/lib/libinklevel.so* \
 -		$(1)/usr/lib/
-+		$(PKG_INSTALL_DIR)/opt/lib/libinklevel.so* \
++		$(PKG_INSTALL_DIR)/Apps/opt/lib/libinklevel.so* \
 +		$(1)/opt/lib/
  endef

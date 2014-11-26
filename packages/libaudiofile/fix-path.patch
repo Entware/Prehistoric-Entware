@@ -20,7 +20,7 @@
  	$(CP) \
 -		$(PKG_INSTALL_DIR)/usr/include/{af_vfs,audiofile,aupvlist}.h \
 -		$(1)/usr/include/
-+		$(PKG_INSTALL_DIR)/opt/include/{af_vfs,audiofile,aupvlist}.h \
++		$(PKG_INSTALL_DIR)/Apps/opt/include/{af_vfs,audiofile,aupvlist}.h \
 +		$(1)/opt/include/
  
 -	$(INSTALL_DIR) $(1)/usr/lib
@@ -28,7 +28,7 @@
  	$(CP) \
 -		$(PKG_INSTALL_DIR)/usr/lib/libaudiofile.{la,a,so*} \
 -		$(1)/usr/lib/
-+		$(PKG_INSTALL_DIR)/opt/lib/libaudiofile.{la,a,so*} \
++		$(PKG_INSTALL_DIR)/Apps/opt/lib/libaudiofile.{la,a,so*} \
 +		$(1)/opt/lib/
  
 -	$(INSTALL_DIR) $(1)/usr/lib/pkgconfig
@@ -36,7 +36,7 @@
  	$(CP) \
 -		$(PKG_INSTALL_DIR)/usr/lib/pkgconfig/audiofile.pc \
 -		$(1)/usr/lib/pkgconfig/
-+		$(PKG_INSTALL_DIR)/opt/lib/pkgconfig/audiofile.pc \
++		$(PKG_INSTALL_DIR)/Apps/opt/lib/pkgconfig/audiofile.pc \
 +		$(1)/opt/lib/pkgconfig/
  endef
  
@@ -46,7 +46,7 @@
  	$(CP) \
 -		$(PKG_INSTALL_DIR)/usr/lib/libaudiofile.so.* \
 -		$(1)/usr/lib/
-+		$(PKG_INSTALL_DIR)/opt/lib/libaudiofile.so.* \
++		$(PKG_INSTALL_DIR)/Apps/opt/lib/libaudiofile.so.* \
 +		$(1)/opt/lib/
  endef
  

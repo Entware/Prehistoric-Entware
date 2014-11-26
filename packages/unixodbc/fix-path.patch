@@ -15,13 +15,13 @@
 -	$(INSTALL_DIR) $(1)/etc/ODBCDataSources
 -	$(TARGET_CC) $(TARGET_CFLAGS) -E ./files/unixodbc_conf.h | tr '@' '\#' >$(1)/usr/include/unixodbc_conf.h
 +	$(INSTALL_DIR) $(1)/opt/bin
-+	$(CP) $(PKG_INSTALL_DIR)/opt/bin/* $(1)/opt/bin/
++	$(CP) $(PKG_INSTALL_DIR)/Apps/opt/bin/* $(1)/opt/bin/
 +	$(INSTALL_DIR) $(1)/opt/include
-+	$(CP) $(PKG_INSTALL_DIR)/opt/include/*.h $(1)/opt/include/
++	$(CP) $(PKG_INSTALL_DIR)/Apps/opt/include/*.h $(1)/opt/include/
 +	$(INSTALL_DIR) $(1)/opt/lib
-+	$(CP) $(PKG_INSTALL_DIR)/opt/lib/* $(1)/opt/lib/
++	$(CP) $(PKG_INSTALL_DIR)/Apps/opt/lib/* $(1)/opt/lib/
 +	$(INSTALL_DIR) $(1)/opt/etc
-+	$(CP) $(PKG_INSTALL_DIR)/opt/etc/odbc* $(1)/opt/etc/
++	$(CP) $(PKG_INSTALL_DIR)/Apps/opt/etc/odbc* $(1)/opt/etc/
 +	$(INSTALL_DIR) $(1)/opt/etc/ODBCDataSources
 +	$(TARGET_CC) $(TARGET_CFLAGS) -E ./files/unixodbc_conf.h | tr '@' '\#' >$(1)/opt/include/unixodbc_conf.h
  endef
@@ -34,25 +34,25 @@
 -	$(INSTALL_DIR) $(1)/etc
 -	$(CP) $(PKG_INSTALL_DIR)/etc/odbc* $(1)/etc/
 +	$(INSTALL_DIR) $(1)/opt/lib
-+	$(CP) $(PKG_INSTALL_DIR)/opt/lib/libodbc[ci]*so* $(1)/opt/lib/
-+	$(CP) $(PKG_INSTALL_DIR)/opt/lib/libodbc.*so* $(1)/opt/lib/
-+	$(CP) $(PKG_INSTALL_DIR)/opt/lib/libnn*so* $(1)/opt/lib/
++	$(CP) $(PKG_INSTALL_DIR)/Apps/opt/lib/libodbc[ci]*so* $(1)/opt/lib/
++	$(CP) $(PKG_INSTALL_DIR)/Apps/opt/lib/libodbc.*so* $(1)/opt/lib/
++	$(CP) $(PKG_INSTALL_DIR)/Apps/opt/lib/libnn*so* $(1)/opt/lib/
 +	$(INSTALL_DIR) $(1)/opt/etc
-+	$(CP) $(PKG_INSTALL_DIR)/opt/etc/odbc* $(1)/opt/etc/
++	$(CP) $(PKG_INSTALL_DIR)/Apps/opt/etc/odbc* $(1)/opt/etc/
  endef
  
  define Package/unixodbc-tools/install
 -	$(INSTALL_DIR) $(1)/usr/bin
 -	$(CP) $(PKG_INSTALL_DIR)/usr/bin/* $(1)/usr/bin/
 +	$(INSTALL_DIR) $(1)/opt/bin
-+	$(CP) $(PKG_INSTALL_DIR)/opt/bin/* $(1)/opt/bin/
++	$(CP) $(PKG_INSTALL_DIR)/Apps/opt/bin/* $(1)/opt/bin/
  endef
  
  define Package/pgsqlodbc/install
 -	$(INSTALL_DIR) $(1)/usr/lib
 -	$(CP) $(PKG_INSTALL_DIR)/usr/lib/libodbcpsql*so* $(1)/usr/lib/
 +	$(INSTALL_DIR) $(1)/opt/lib
-+	$(CP) $(PKG_INSTALL_DIR)/opt/lib/libodbcpsql*so* $(1)/opt/lib/
++	$(CP) $(PKG_INSTALL_DIR)/Apps/opt/lib/libodbcpsql*so* $(1)/opt/lib/
  endef
  
  $(eval $(call BuildPackage,unixodbc))

@@ -5,7 +5,7 @@
  		$(call Build/Compile/PyMod, \
  			python/, \
 -			install --no-compile --prefix $(PKG_INSTALL_DIR)/usr \
-+			install --no-compile --prefix $(PKG_INSTALL_DIR)/opt \
++			install --no-compile --prefix $(PKG_INSTALL_DIR)/Apps/opt \
  		) \
  	)
  endef
@@ -14,7 +14,7 @@
  	$(INSTALL_DIR) $(2)/bin
  	$(INSTALL_BIN) \
 -		$(PKG_INSTALL_DIR)/usr/bin/dnet-config \
-+		$(PKG_INSTALL_DIR)/opt/bin/dnet-config \
++		$(PKG_INSTALL_DIR)/Apps/opt/bin/dnet-config \
  		$(2)/bin/
  	$(SED) \
 -		's,^\(prefix\|exec_prefix\)=.*,\1=$(STAGING_DIR)/usr,g' \
@@ -26,12 +26,12 @@
  	$(INSTALL_DATA)\
 -		$(PKG_INSTALL_DIR)/usr/include/dnet.h \
 -		$(1)/usr/include/
-+		$(PKG_INSTALL_DIR)/opt/include/dnet.h \
++		$(PKG_INSTALL_DIR)/Apps/opt/include/dnet.h \
 +		$(1)/opt/include/
  	$(CP) \
 -		$(PKG_INSTALL_DIR)/usr/include/dnet \
 -		$(1)/usr/include/
-+		$(PKG_INSTALL_DIR)/opt/include/dnet \
++		$(PKG_INSTALL_DIR)/Apps/opt/include/dnet \
 +		$(1)/opt/include/
  
 -	$(INSTALL_DIR) $(1)/usr/lib
@@ -39,7 +39,7 @@
  	$(CP) \
 -		$(PKG_INSTALL_DIR)/usr/lib/libdnet.{la,a,so*} \
 -		$(1)/usr/lib/
-+		$(PKG_INSTALL_DIR)/opt/lib/libdnet.{la,a,so*} \
++		$(PKG_INSTALL_DIR)/Apps/opt/lib/libdnet.{la,a,so*} \
 +		$(1)/opt/lib/
  endef
  
@@ -49,7 +49,7 @@
  	$(CP) \
 -		$(PKG_INSTALL_DIR)/usr/lib/libdnet.so.* \
 -		$(1)/usr/lib/
-+		$(PKG_INSTALL_DIR)/opt/lib/libdnet.so.* \
++		$(PKG_INSTALL_DIR)/Apps/opt/lib/libdnet.so.* \
 +		$(1)/opt/lib/
  
 -	$(INSTALL_DIR) $(1)/usr/sbin
@@ -57,7 +57,7 @@
  	$(INSTALL_BIN) \
 -		$(PKG_INSTALL_DIR)/usr/sbin/dnet \
 -		$(1)/usr/sbin/
-+		$(PKG_INSTALL_DIR)/opt/sbin/dnet \
++		$(PKG_INSTALL_DIR)/Apps/opt/sbin/dnet \
 +		$(1)/opt/sbin/
  endef
  
@@ -65,7 +65,7 @@
 -	$(INSTALL_DIR) $(1)/usr/lib
 -	$(CP) $(PKG_INSTALL_DIR)/usr/lib/python* $(1)/usr/lib/
 +	$(INSTALL_DIR) $(1)/opt/lib
-+	$(CP) $(PKG_INSTALL_DIR)/opt/lib/python* $(1)/opt/lib/
++	$(CP) $(PKG_INSTALL_DIR)/Apps/opt/lib/python* $(1)/opt/lib/
  endef
  
  

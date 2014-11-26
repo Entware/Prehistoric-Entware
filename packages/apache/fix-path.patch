@@ -88,8 +88,8 @@
  define Build/InstallDev
 -	rm -rf	$(PKG_INSTALL_DIR)/usr/man/ \
 -		$(PKG_INSTALL_DIR)/usr/share/manual/
-+	rm -rf	$(PKG_INSTALL_DIR)/opt/man/ \
-+		$(PKG_INSTALL_DIR)/opt/share/manual/
++	rm -rf	$(PKG_INSTALL_DIR)/Apps/opt/man/ \
++		$(PKG_INSTALL_DIR)/Apps/opt/share/manual/
  	# if you need docs take a look into the build-dir :)
 -	$(INSTALL_DIR) $(1)/etc
 -	$(CP)   $(PKG_INSTALL_DIR)/etc/* \
@@ -113,19 +113,19 @@
 -	echo -e "You should take a look in the initscripts, busybox's httpd \n\
 -	uses some parameters which are maybe unsupported by apache."
 +	$(INSTALL_DIR) $(1)/opt/etc
-+	$(CP)   $(PKG_INSTALL_DIR)/opt/etc/* \
++	$(CP)   $(PKG_INSTALL_DIR)/Apps/opt/etc/* \
 +		$(1)/opt/etc
 +	$(INSTALL_DIR) $(1)/opt/include/apache
-+	$(CP)	$(PKG_INSTALL_DIR)/opt/include/* \
++	$(CP)	$(PKG_INSTALL_DIR)/Apps/opt/include/* \
 +		$(1)/opt/include/apache
 +	$(INSTALL_DIR) $(1)/opt/lib
-+	$(CP)   $(PKG_INSTALL_DIR)/opt/lib/httpd.exp \
++	$(CP)   $(PKG_INSTALL_DIR)/Apps/opt/lib/httpd.exp \
 +		$(1)/opt/lib
 +	$(INSTALL_DIR) $(1)/opt/sbin
-+	$(CP)   $(PKG_INSTALL_DIR)/opt/sbin/* \
++	$(CP)   $(PKG_INSTALL_DIR)/Apps/opt/sbin/* \
 +		$(1)/opt/sbin
 +	$(INSTALL_DIR) $(1)/opt/share
-+	$(CP)   $(PKG_INSTALL_DIR)/opt/share/* \
++	$(CP)   $(PKG_INSTALL_DIR)/Apps/opt/share/* \
 +		$(1)/opt/share
  endef
  
@@ -147,13 +147,13 @@
 -	ln -s /bin/busybox /usr/sbin/httpd
 -	echo -e "You may need to change your initscripts back for the use \n\
 -		with busybox's httpd."
-+	$(INSTALL_BIN) $(PKG_INSTALL_DIR)/opt/sbin/{ab,apachectl,checkgid,dbmmanage,envvars,envvars-std,htcacheclean,htdbm,htdigest,htpasswd,httpd,httxt2dbm,logresolve,rotatelogs} $(1)/opt/sbin/
++	$(INSTALL_BIN) $(PKG_INSTALL_DIR)/Apps/opt/sbin/{ab,apachectl,checkgid,dbmmanage,envvars,envvars-std,htcacheclean,htdbm,htdigest,htpasswd,httpd,httxt2dbm,logresolve,rotatelogs} $(1)/opt/sbin/
 +	$(INSTALL_DIR) $(1)/opt/lib
-+	$(CP) $(PKG_INSTALL_DIR)/opt/lib/httpd.exp $(1)/opt/lib/
++	$(CP) $(PKG_INSTALL_DIR)/Apps/opt/lib/httpd.exp $(1)/opt/lib/
 +	$(INSTALL_DIR) $(1)/opt/share
-+	$(CP) $(PKG_INSTALL_DIR)/opt/share/{error,htdocs,cgi-bin,build} $(1)/opt/share/
++	$(CP) $(PKG_INSTALL_DIR)/Apps/opt/share/{error,htdocs,cgi-bin,build} $(1)/opt/share/
 +	$(INSTALL_DIR) $(1)/opt/etc/apache
-+	$(CP) $(PKG_INSTALL_DIR)/opt/etc/apache/{httpd.conf,magic,mime.types,extra} $(1)/opt/etc/apache/
++	$(CP) $(PKG_INSTALL_DIR)/Apps/opt/etc/apache/{httpd.conf,magic,mime.types,extra} $(1)/opt/etc/apache/
 +	$(INSTALL_DIR) $(1)/opt/etc/init.d
 +	$(LN) -s /opt/sbin/apachectl $(1)/opt/etc/init.d/S80apache
  endef
@@ -162,7 +162,7 @@
 -	$(INSTALL_DIR) $(1)/usr/share
 -	$(CP) $(PKG_INSTALL_DIR)/usr/share/icons $(1)/usr/share/
 +	$(INSTALL_DIR) $(1)/opt/share
-+	$(CP) $(PKG_INSTALL_DIR)/opt/share/icons $(1)/opt/share/
++	$(CP) $(PKG_INSTALL_DIR)/Apps/opt/share/icons $(1)/opt/share/
  endef
  
  $(eval $(call BuildPackage,apache))

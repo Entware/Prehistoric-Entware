@@ -38,13 +38,13 @@
 -	$(SED) 's,-L$$$$libdir,,g' $(1)/usr/bin/apu-1-config
 -	$(SED) 's,-R$$$$libdir,,g' $(1)/usr/bin/apu-1-config
 +	$(INSTALL_DIR) $(1)/opt/bin $(1)/opt/include/apr-1/ $(1)/opt/lib  $(1)/opt/lib/pkgconfig/
-+	$(CP)   $(PKG_INSTALL_DIR)/opt/bin/apu-1-config \
++	$(CP)   $(PKG_INSTALL_DIR)/Apps/opt/bin/apu-1-config \
 +	 	$(1)/opt/bin/
-+	$(CP)   $(PKG_INSTALL_DIR)/opt/include/apr-1/* \
++	$(CP)   $(PKG_INSTALL_DIR)/Apps/opt/include/apr-1/* \
 +		$(1)/opt/include/apr-1/
-+	$(CP)   $(PKG_INSTALL_DIR)/opt/lib/libaprutil-1.{la,a,so*} \
++	$(CP)   $(PKG_INSTALL_DIR)/Apps/opt/lib/libaprutil-1.{la,a,so*} \
 +		$(1)/opt/lib/
-+	$(CP)   $(PKG_INSTALL_DIR)/opt/lib/pkgconfig/apr-util-1.pc \
++	$(CP)   $(PKG_INSTALL_DIR)/Apps/opt/lib/pkgconfig/apr-util-1.pc \
 +		$(1)/opt/lib/pkgconfig/
 +	$(SED) 's, -e \"s -I$$$$prefix/lib  g\",,g' $(1)/opt/bin/apu-1-config
 +	$(SED) 's,^libdir=\"$$$${exec_prefix}/lib,libdir=\"$(STAGING_DIR)/opt/lib,g' $(1)/opt/bin/apu-1-config
@@ -57,7 +57,7 @@
 -	$(INSTALL_DIR) $(1)/usr/lib
 -	$(CP) $(PKG_INSTALL_DIR)/usr/lib/libaprutil-1.so.* $(1)/usr/lib/
 +	$(INSTALL_DIR) $(1)/opt/lib
-+	$(CP) $(PKG_INSTALL_DIR)/opt/lib/libaprutil-1.so.* $(1)/opt/lib/
++	$(CP) $(PKG_INSTALL_DIR)/Apps/opt/lib/libaprutil-1.so.* $(1)/opt/lib/
  endef
  
  $(eval $(call BuildPackage,libaprutil))

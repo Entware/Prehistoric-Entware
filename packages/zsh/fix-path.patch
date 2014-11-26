@@ -37,9 +37,9 @@
 -	$(INSTALL_DIR) $(1)/usr/share/zsh/$(PKG_VERSION)
 -	$(CP) $(PKG_INSTALL_DIR)/usr/share/zsh/$(PKG_VERSION)/* $(1)/usr/share/zsh/$(PKG_VERSION)/
 +	$(INSTALL_DIR) $(1)/opt/bin
-+	$(INSTALL_BIN) $(PKG_INSTALL_DIR)/opt/bin/zsh $(1)/opt/bin/
++	$(INSTALL_BIN) $(PKG_INSTALL_DIR)/Apps/opt/bin/zsh $(1)/opt/bin/
 +	$(INSTALL_DIR) $(1)/opt/share/zsh/$(PKG_VERSION)
-+	$(CP) $(PKG_INSTALL_DIR)/opt/share/zsh/$(PKG_VERSION)/* $(1)/opt/share/zsh/$(PKG_VERSION)/
++	$(CP) $(PKG_INSTALL_DIR)/Apps/opt/share/zsh/$(PKG_VERSION)/* $(1)/opt/share/zsh/$(PKG_VERSION)/
  endef
  
  $(eval $(call BuildPackage,zsh))

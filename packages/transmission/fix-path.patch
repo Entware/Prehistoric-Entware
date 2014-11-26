@@ -25,7 +25,7 @@
 -	$(INSTALL_DIR) $(1)/etc/config
 -	$(INSTALL_CONF) files/transmission.config $(1)/etc/config/transmission
 +	$(INSTALL_DIR) $(1)/opt/bin
-+	$(INSTALL_BIN) $(PKG_INSTALL_DIR)/opt/bin/transmission-daemon $(1)/opt/bin/
++	$(INSTALL_BIN) $(PKG_INSTALL_DIR)/Apps/opt/bin/transmission-daemon $(1)/opt/bin/
 +	$(INSTALL_DIR) $(1)/opt/etc/transmission $(1)/opt/etc/transmission/blocklists $(1)/opt/etc/transmission/resume $(1)/opt/etc/transmission/torrents $(1)/opt/etc/transmission/watchdir
 +	$(INSTALL_CONF) files/settings.json $(1)/opt/etc/transmission
 +	$(INSTALL_DIR) $(1)/opt/etc/init.d
@@ -40,10 +40,10 @@
 -			$(PKG_INSTALL_DIR)/usr/bin/transmission-show \
 -			$(1)/usr/bin/
 +	$(INSTALL_DIR) $(1)/opt/bin
-+	$(INSTALL_BIN) $(PKG_INSTALL_DIR)/opt/bin/transmission-cli \
-+			$(PKG_INSTALL_DIR)/opt/bin/transmission-create \
-+			$(PKG_INSTALL_DIR)/opt/bin/transmission-edit \
-+			$(PKG_INSTALL_DIR)/opt/bin/transmission-show \
++	$(INSTALL_BIN) $(PKG_INSTALL_DIR)/Apps/opt/bin/transmission-cli \
++			$(PKG_INSTALL_DIR)/Apps/opt/bin/transmission-create \
++			$(PKG_INSTALL_DIR)/Apps/opt/bin/transmission-edit \
++			$(PKG_INSTALL_DIR)/Apps/opt/bin/transmission-show \
 +			$(1)/opt/bin/
  endef
  
@@ -51,14 +51,14 @@
 -	$(INSTALL_DIR) $(1)/usr/bin
 -	$(INSTALL_BIN) $(PKG_INSTALL_DIR)/usr/bin/transmission-remote $(1)/usr/bin/
 +	$(INSTALL_DIR) $(1)/opt/bin
-+	$(INSTALL_BIN) $(PKG_INSTALL_DIR)/opt/bin/transmission-remote $(1)/opt/bin/
++	$(INSTALL_BIN) $(PKG_INSTALL_DIR)/Apps/opt/bin/transmission-remote $(1)/opt/bin/
  endef
  
  define Package/transmission-web/install
 -	$(INSTALL_DIR) $(1)/usr/share/transmission
 -	$(CP) $(PKG_INSTALL_DIR)/usr/share/transmission/web $(1)/usr/share/transmission/
 +	$(INSTALL_DIR) $(1)/opt/share/transmission
-+	$(CP) $(PKG_INSTALL_DIR)/opt/share/transmission/web $(1)/opt/share/transmission/
++	$(CP) $(PKG_INSTALL_DIR)/Apps/opt/share/transmission/web $(1)/opt/share/transmission/
  endef
  
  $(eval $(call BuildPackage,transmission-daemon))

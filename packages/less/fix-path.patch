@@ -7,7 +7,7 @@
 -	$(INSTALL_DIR) $(1)/bin
 -	$(CP) $(PKG_INSTALL_DIR)/usr/bin/less $(1)/bin/less
 +	$(INSTALL_DIR) $(1)/opt/bin
-+	$(CP) $(PKG_INSTALL_DIR)/opt/bin/less $(1)/opt/bin/less
++	$(CP) $(PKG_INSTALL_DIR)/Apps/opt/bin/less $(1)/opt/bin/less
  endef
  
 -define Package/less/postinst

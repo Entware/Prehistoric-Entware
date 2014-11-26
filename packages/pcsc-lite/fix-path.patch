@@ -15,18 +15,18 @@
 -	$(INSTALL_DIR) $(1)/usr/lib/pkgconfig
 -	$(CP) $(PKG_INSTALL_DIR)/usr/lib/pkgconfig/libpcsclite.pc $(1)/usr/lib/pkgconfig/
 +	$(INSTALL_DIR) $(1)/opt/include/PCSC
-+	$(CP) $(PKG_INSTALL_DIR)/opt/include/PCSC/* $(1)/opt/include/PCSC/
++	$(CP) $(PKG_INSTALL_DIR)/Apps/opt/include/PCSC/* $(1)/opt/include/PCSC/
 +	$(INSTALL_DIR) $(1)/opt/lib
-+	$(CP) $(PKG_INSTALL_DIR)/opt/lib/libpcsclite.{a,so*} $(1)/opt/lib/
++	$(CP) $(PKG_INSTALL_DIR)/Apps/opt/lib/libpcsclite.{a,so*} $(1)/opt/lib/
 +	$(INSTALL_DIR) $(1)/opt/lib/pkgconfig
-+	$(CP) $(PKG_INSTALL_DIR)/opt/lib/pkgconfig/libpcsclite.pc $(1)/opt/lib/pkgconfig/
++	$(CP) $(PKG_INSTALL_DIR)/Apps/opt/lib/pkgconfig/libpcsclite.pc $(1)/opt/lib/pkgconfig/
  endef
  
  define Package/libpcsclite/install
 -	$(INSTALL_DIR) $(1)/usr/lib
 -	$(CP) $(PKG_INSTALL_DIR)/usr/lib/libpcsclite.so.* $(1)/usr/lib/
 +	$(INSTALL_DIR) $(1)/opt/lib
-+	$(CP) $(PKG_INSTALL_DIR)/opt/lib/libpcsclite.so.* $(1)/opt/lib/
++	$(CP) $(PKG_INSTALL_DIR)/Apps/opt/lib/libpcsclite.so.* $(1)/opt/lib/
  endef
  
  define Package/pcscd/conffiles
@@ -41,7 +41,7 @@
 -	$(INSTALL_BIN) ./files/pcscd.init $(1)/etc/init.d/pcscd
 -	$(INSTALL_DIR) $(1)/etc/reader.conf.d
 +	$(INSTALL_DIR) $(1)/opt/sbin
-+	$(INSTALL_BIN) $(PKG_INSTALL_DIR)/opt/sbin/pcscd $(1)/opt/sbin/
++	$(INSTALL_BIN) $(PKG_INSTALL_DIR)/Apps/opt/sbin/pcscd $(1)/opt/sbin/
 +	$(INSTALL_DIR) $(1)/opt/etc/init.d
 +	$(INSTALL_BIN) ./files/S48pcscd $(1)/opt/etc/init.d/
 +	$(INSTALL_DIR) $(1)/opt/etc/reader.conf.d

@@ -11,18 +11,18 @@
 -	$(INSTALL_DIR) $(1)/usr/lib/pkgconfig/
 -	$(INSTALL_DATA) $(PKG_INSTALL_DIR)/usr/lib/pkgconfig/* $(1)/usr/lib/pkgconfig/
 +	$(INSTALL_DIR) $(1)/opt/include/theora/
-+	$(INSTALL_DATA) $(PKG_INSTALL_DIR)/opt/include/theora/* $(1)/opt/include/theora/
++	$(INSTALL_DATA) $(PKG_INSTALL_DIR)/Apps/opt/include/theora/* $(1)/opt/include/theora/
 +	$(INSTALL_DIR) $(1)/opt/lib/
-+	$(CP) $(PKG_INSTALL_DIR)/opt/lib/*.{so*,a,la} $(1)/opt/lib/
++	$(CP) $(PKG_INSTALL_DIR)/Apps/opt/lib/*.{so*,a,la} $(1)/opt/lib/
 +	$(INSTALL_DIR) $(1)/opt/lib/pkgconfig/
-+	$(INSTALL_DATA) $(PKG_INSTALL_DIR)/opt/lib/pkgconfig/* $(1)/opt/lib/pkgconfig/
++	$(INSTALL_DATA) $(PKG_INSTALL_DIR)/Apps/opt/lib/pkgconfig/* $(1)/opt/lib/pkgconfig/
  endef
  
  define Package/libtheora/install
 -	$(INSTALL_DIR) $(1)/usr/lib/
 -	$(CP) $(PKG_INSTALL_DIR)/usr/lib/*.so* $(1)/usr/lib/
 +	$(INSTALL_DIR) $(1)/opt/lib/
-+	$(CP) $(PKG_INSTALL_DIR)/opt/lib/*.so* $(1)/opt/lib/
++	$(CP) $(PKG_INSTALL_DIR)/Apps/opt/lib/*.so* $(1)/opt/lib/
  endef
  
  $(eval $(call BuildPackage,libtheora))

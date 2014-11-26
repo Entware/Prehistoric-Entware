@@ -15,8 +15,8 @@
 -	$(CP) $(PKG_INSTALL_DIR)/usr/include/* $(1)/usr/include
 +	$(INSTALL_DIR) $(1)/opt/lib
 +	$(INSTALL_DIR) $(1)/opt/include/security
-+	$(CP) $(PKG_INSTALL_DIR)/opt/lib/* $(1)/opt/lib/
-+	$(CP) $(PKG_INSTALL_DIR)/opt/include/* $(1)/opt/include/security
++	$(CP) $(PKG_INSTALL_DIR)/Apps/opt/lib/* $(1)/opt/lib/
++	$(CP) $(PKG_INSTALL_DIR)/Apps/opt/include/* $(1)/opt/include/security
  endef
  
  define Package/libpam/install
@@ -32,12 +32,12 @@
 +	$(INSTALL_DIR) $(1)/opt/lib $(1)/opt/lib/security $(1)/opt/lib/security/pam_filter
 +	$(INSTALL_DIR) $(1)/opt/etc $(1)/opt/etc/pam.d
 +	$(INSTALL_DIR) $(1)/opt/sbin
-+	$(CP) $(PKG_INSTALL_DIR)/opt/lib/*.so* $(1)/opt/lib/
-+	$(CP) $(PKG_INSTALL_DIR)/opt/lib/security/*.so* $(1)/opt/lib/security/
-+	$(CP) $(PKG_INSTALL_DIR)/opt/lib/security/pam_filter/* $(1)/opt/lib/security/pam_filter/
-+	$(CP) $(PKG_INSTALL_DIR)/opt/etc/* $(1)/opt/etc/
++	$(CP) $(PKG_INSTALL_DIR)/Apps/opt/lib/*.so* $(1)/opt/lib/
++	$(CP) $(PKG_INSTALL_DIR)/Apps/opt/lib/security/*.so* $(1)/opt/lib/security/
++	$(CP) $(PKG_INSTALL_DIR)/Apps/opt/lib/security/pam_filter/* $(1)/opt/lib/security/pam_filter/
++	$(CP) $(PKG_INSTALL_DIR)/Apps/opt/etc/* $(1)/opt/etc/
 +	$(CP) ./files/* $(1)/opt/etc/
-+	$(INSTALL_BIN) $(PKG_INSTALL_DIR)/opt/sbin/* $(1)/opt/sbin/
++	$(INSTALL_BIN) $(PKG_INSTALL_DIR)/Apps/opt/sbin/* $(1)/opt/sbin/
  endef
  
  $(eval $(call BuildPackage,libpam))

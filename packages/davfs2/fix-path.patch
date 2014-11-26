@@ -56,7 +56,7 @@
 +	$(INSTALL_BIN) $(PKG_BUILD_DIR)/src/mount.davfs $(1)/opt/sbin/
 +	$(INSTALL_BIN) $(PKG_BUILD_DIR)/src/umount.davfs $(1)/opt/sbin/
 +	$(INSTALL_DIR) $(1)/opt/etc/davfs2/certs/private
-+	$(INSTALL_CONF) $(PKG_INSTALL_DIR)/opt/etc/davfs2/{davfs2.conf,secrets} \
++	$(INSTALL_CONF) $(PKG_INSTALL_DIR)/Apps/opt/etc/davfs2/{davfs2.conf,secrets} \
 +	    $(1)/opt/etc/davfs2/
 +	$(INSTALL_DIR) $(1)/opt/var/{run,cache}
  endef

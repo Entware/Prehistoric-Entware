@@ -8,15 +8,15 @@
 -	$(CP) $(PKG_INSTALL_DIR)/usr/lib/libjansson* $(1)/usr/lib
 -	$(CP) $(PKG_INSTALL_DIR)/usr/include/* $(1)/usr/include/
 +	$(INSTALL_DIR) $(1)/opt/{lib,include}
-+	$(CP) $(PKG_INSTALL_DIR)/opt/lib/libjansson* $(1)/opt/lib
-+	$(CP) $(PKG_INSTALL_DIR)/opt/include/* $(1)/opt/include/
++	$(CP) $(PKG_INSTALL_DIR)/Apps/opt/lib/libjansson* $(1)/opt/lib
++	$(CP) $(PKG_INSTALL_DIR)/Apps/opt/include/* $(1)/opt/include/
  endef
  
  define Package/jansson/install
 -	$(INSTALL_DIR) $(1)/usr/lib
 -	$(CP) $(PKG_INSTALL_DIR)/usr/lib/libjansson*so* $(1)/usr/lib/
 +	$(INSTALL_DIR) $(1)/opt/lib
-+	$(CP) $(PKG_INSTALL_DIR)/opt/lib/libjansson*so* $(1)/opt/lib/
++	$(CP) $(PKG_INSTALL_DIR)/Apps/opt/lib/libjansson*so* $(1)/opt/lib/
  endef
  
  $(eval $(call BuildPackage,jansson))

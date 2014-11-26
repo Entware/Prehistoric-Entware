@@ -18,9 +18,9 @@
 -	$(INSTALL_DIR) $(1)/usr/lib/rrdtool-1.2/lib
 -	$(CP) $(PKG_INSTALL_DIR)/usr/lib/librrd{,_th}.{a,so*} $(1)/usr/lib/rrdtool-1.2/lib/
 +	$(INSTALL_DIR) $(1)/opt/lib/rrdtool-1.2/include
-+	$(CP) $(PKG_INSTALL_DIR)/opt/include/rrd.h $(1)/opt/lib/rrdtool-1.2/include/
++	$(CP) $(PKG_INSTALL_DIR)/Apps/opt/include/rrd.h $(1)/opt/lib/rrdtool-1.2/include/
 +	$(INSTALL_DIR) $(1)/opt/lib/rrdtool-1.2/lib
-+	$(CP) $(PKG_INSTALL_DIR)/opt/lib/librrd{,_th}.{a,so*} $(1)/opt/lib/rrdtool-1.2/lib/
++	$(CP) $(PKG_INSTALL_DIR)/Apps/opt/lib/librrd{,_th}.{a,so*} $(1)/opt/lib/rrdtool-1.2/lib/
  endef
  
  define Package/librrd/install
@@ -29,8 +29,8 @@
 -	$(CP) $(PKG_INSTALL_DIR)/usr/lib/librrd_th.so.* $(1)/usr/lib/
 -	$(INSTALL_DIR) $(1)/usr/share/rrdtool/fonts
 +	$(INSTALL_DIR) $(1)/opt/lib
-+	$(CP) $(PKG_INSTALL_DIR)/opt/lib/librrd.so.* $(1)/opt/lib/
-+	$(CP) $(PKG_INSTALL_DIR)/opt/lib/librrd_th.so.* $(1)/opt/lib/
++	$(CP) $(PKG_INSTALL_DIR)/Apps/opt/lib/librrd.so.* $(1)/opt/lib/
++	$(CP) $(PKG_INSTALL_DIR)/Apps/opt/lib/librrd_th.so.* $(1)/opt/lib/
 +	$(INSTALL_DIR) $(1)/opt/share/rrdtool/fonts
  	$(CP) $(PKG_BUILD_DIR)/src/DejaVuSansMono-Roman.ttf \
 -		$(1)/usr/share/rrdtool/fonts/
@@ -41,7 +41,7 @@
 -	$(INSTALL_DIR) $(1)/usr/bin
 -	$(INSTALL_BIN) $(PKG_INSTALL_DIR)/usr/bin/rrdcgi $(1)/usr/bin/
 +	$(INSTALL_DIR) $(1)/opt/bin
-+	$(INSTALL_BIN) $(PKG_INSTALL_DIR)/opt/bin/rrdcgi $(1)/opt/bin/
++	$(INSTALL_BIN) $(PKG_INSTALL_DIR)/Apps/opt/bin/rrdcgi $(1)/opt/bin/
  endef
  
  define Package/rrdtool/install
@@ -49,8 +49,8 @@
 -	$(INSTALL_BIN) $(PKG_INSTALL_DIR)/usr/bin/rrdtool $(1)/usr/bin/
 -	$(INSTALL_BIN) $(PKG_INSTALL_DIR)/usr/bin/rrdupdate $(1)/usr/bin/
 +	$(INSTALL_DIR) $(1)/opt/bin
-+	$(INSTALL_BIN) $(PKG_INSTALL_DIR)/opt/bin/rrdtool $(1)/opt/bin/
-+	$(INSTALL_BIN) $(PKG_INSTALL_DIR)/opt/bin/rrdupdate $(1)/opt/bin/
++	$(INSTALL_BIN) $(PKG_INSTALL_DIR)/Apps/opt/bin/rrdtool $(1)/opt/bin/
++	$(INSTALL_BIN) $(PKG_INSTALL_DIR)/Apps/opt/bin/rrdupdate $(1)/opt/bin/
  endef
  
  define PyPackage/python-rrd/install

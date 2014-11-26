@@ -11,11 +11,11 @@
 -	$(INSTALL_DIR) $(1)/usr/lib/pkgconfig
 -	$(CP) $(PKG_INSTALL_DIR)/usr/lib/pkgconfig/ao.pc $(1)/usr/lib/pkgconfig/
 +	$(INSTALL_DIR) $(1)/opt/include
-+	$(CP) $(PKG_INSTALL_DIR)/opt/include/ao $(1)/opt/include/
++	$(CP) $(PKG_INSTALL_DIR)/Apps/opt/include/ao $(1)/opt/include/
 +	$(INSTALL_DIR) $(1)/opt/lib
-+	$(CP) $(PKG_INSTALL_DIR)/opt/lib/libao.{a,so*} $(1)/opt/lib/
++	$(CP) $(PKG_INSTALL_DIR)/Apps/opt/lib/libao.{a,so*} $(1)/opt/lib/
 +	$(INSTALL_DIR) $(1)/opt/lib/pkgconfig
-+	$(CP) $(PKG_INSTALL_DIR)/opt/lib/pkgconfig/ao.pc $(1)/opt/lib/pkgconfig/
++	$(CP) $(PKG_INSTALL_DIR)/Apps/opt/lib/pkgconfig/ao.pc $(1)/opt/lib/pkgconfig/
  endef
  
  define Package/libao/install
@@ -24,9 +24,9 @@
 -	$(INSTALL_DIR) $(1)/usr/lib/ao/plugins-4
 -	$(CP) $(PKG_INSTALL_DIR)/usr/lib/ao/plugins-4/lib*.so $(1)/usr/lib/ao/plugins-4/
 +	$(INSTALL_DIR) $(1)/opt/lib
-+	$(CP) $(PKG_INSTALL_DIR)/opt/lib/libao.so.* $(1)/opt/lib/
++	$(CP) $(PKG_INSTALL_DIR)/Apps/opt/lib/libao.so.* $(1)/opt/lib/
 +	$(INSTALL_DIR) $(1)/opt/lib/ao/plugins-4
-+	$(CP) $(PKG_INSTALL_DIR)/opt/lib/ao/plugins-4/lib*.so $(1)/opt/lib/ao/plugins-4/
++	$(CP) $(PKG_INSTALL_DIR)/Apps/opt/lib/ao/plugins-4/lib*.so $(1)/opt/lib/ao/plugins-4/
  endef
  
  $(eval $(call BuildPackage,libao))

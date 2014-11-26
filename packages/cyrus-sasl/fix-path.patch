@@ -22,13 +22,13 @@
 -	$(INSTALL_DIR) $(1)/usr/lib/sasl2
 -	$(CP) $(PKG_INSTALL_DIR)/usr/lib/sasl2/lib*.{a,so*} $(1)/usr/lib/sasl2/
 +	$(INSTALL_DIR) $(1)/opt/include/
-+	$(CP) $(PKG_INSTALL_DIR)/opt/include/sasl $(1)/opt/include/
++	$(CP) $(PKG_INSTALL_DIR)/Apps/opt/include/sasl $(1)/opt/include/
 +	$(INSTALL_DIR) $(1)/opt/lib/
-+	$(CP) $(PKG_INSTALL_DIR)/opt/lib/libsasl2.{a,so*} $(1)/opt/lib/
++	$(CP) $(PKG_INSTALL_DIR)/Apps/opt/lib/libsasl2.{a,so*} $(1)/opt/lib/
 +	ln -sf libsasl2.a $(1)/opt/lib/libsasl.a
 +	ln -sf libsasl2.so $(1)/opt/lib/libsasl.so
 +	$(INSTALL_DIR) $(1)/opt/lib/sasl2
-+	$(CP) $(PKG_INSTALL_DIR)/opt/lib/sasl2/lib*.{a,so*} $(1)/opt/lib/sasl2/
++	$(CP) $(PKG_INSTALL_DIR)/Apps/opt/lib/sasl2/lib*.{a,so*} $(1)/opt/lib/sasl2/
  endef
  
  define Package/libsasl2/install
@@ -37,9 +37,9 @@
 -	$(INSTALL_DIR) $(1)/usr/lib/sasl2
 -	$(CP) $(PKG_INSTALL_DIR)/usr/lib/sasl2/lib*.so.* $(1)/usr/lib/sasl2/
 +	$(INSTALL_DIR) $(1)/opt/lib/
-+	$(CP) $(PKG_INSTALL_DIR)/opt/lib/libsasl2.so.* $(1)/opt/lib/
++	$(CP) $(PKG_INSTALL_DIR)/Apps/opt/lib/libsasl2.so.* $(1)/opt/lib/
 +	$(INSTALL_DIR) $(1)/opt/lib/sasl2
-+	$(CP) $(PKG_INSTALL_DIR)/opt/lib/sasl2/lib*.so.* $(1)/opt/lib/sasl2/
++	$(CP) $(PKG_INSTALL_DIR)/Apps/opt/lib/sasl2/lib*.so.* $(1)/opt/lib/sasl2/
  endef
  
  $(eval $(call BuildPackage,libsasl2))

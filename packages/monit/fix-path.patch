@@ -28,7 +28,7 @@ diff -ur ../../../downloads/openwrt_trunk-r42803/feeds/packages/admin/monit/Make
 +	$(INSTALL_DIR) $(1)/opt/etc/init.d
 +	$(INSTALL_CONF) $(PKG_BUILD_DIR)/monitrc $(1)/opt/etc/
 +	$(INSTALL_DIR) $(1)/opt/bin
-+	$(INSTALL_BIN) $(PKG_INSTALL_DIR)/opt/bin/monit $(1)/opt/bin/
++	$(INSTALL_BIN) $(PKG_INSTALL_DIR)/Apps/opt/bin/monit $(1)/opt/bin/
 +	$(INSTALL_BIN) ./files/S99monit $(1)/opt/etc/init.d
  endef
  

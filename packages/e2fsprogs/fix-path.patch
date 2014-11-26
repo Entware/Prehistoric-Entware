@@ -34,17 +34,17 @@
 -	$(INSTALL_DATA) ./files/e2fsck.sh $(1)/lib/functions/fsck/
 -	$(INSTALL_DATA) ./files/e2fsck.conf $(1)/etc/e2fsck.conf
 +	$(INSTALL_DIR) $(1)/opt/sbin
-+	$(INSTALL_BIN) $(PKG_INSTALL_DIR)/opt/sbin/e2fsck $(1)/opt/sbin/
-+	$(INSTALL_BIN) $(PKG_INSTALL_DIR)/opt/sbin/mke2fs $(1)/opt/sbin/
-+	$(INSTALL_BIN) $(PKG_INSTALL_DIR)/opt/sbin/filefrag $(1)/opt/sbin/
++	$(INSTALL_BIN) $(PKG_INSTALL_DIR)/Apps/opt/sbin/e2fsck $(1)/opt/sbin/
++	$(INSTALL_BIN) $(PKG_INSTALL_DIR)/Apps/opt/sbin/mke2fs $(1)/opt/sbin/
++	$(INSTALL_BIN) $(PKG_INSTALL_DIR)/Apps/opt/sbin/filefrag $(1)/opt/sbin/
 +	$(INSTALL_DIR) $(1)/opt/bin
-+	$(INSTALL_BIN) $(PKG_INSTALL_DIR)/opt/bin/chattr $(1)/opt/bin/
-+	$(INSTALL_BIN) $(PKG_INSTALL_DIR)/opt/bin/lsattr $(1)/opt/bin/
++	$(INSTALL_BIN) $(PKG_INSTALL_DIR)/Apps/opt/bin/chattr $(1)/opt/bin/
++	$(INSTALL_BIN) $(PKG_INSTALL_DIR)/Apps/opt/bin/lsattr $(1)/opt/bin/
 +	ln -sf mke2fs $(1)/opt/sbin/mkfs.ext2
 +	ln -sf mke2fs $(1)/opt/sbin/mkfs.ext3
 +	ln -sf mke2fs $(1)/opt/sbin/mkfs.ext4
 +	$(INSTALL_DIR) $(1)/opt/lib
-+	$(CP) $(PKG_INSTALL_DIR)/opt/lib/libe2p.so.* $(1)/opt/lib/
++	$(CP) $(PKG_INSTALL_DIR)/Apps/opt/lib/libe2p.so.* $(1)/opt/lib/
 +	$(INSTALL_DIR) $(1)/opt/etc
 +	$(INSTALL_DATA) ./files/e2fsck.conf $(1)/opt/etc/e2fsck.conf
  endef
@@ -59,8 +59,8 @@
 -		$(PKG_INSTALL_DIR)/usr/lib/libext2fs.so.* \
 -		$(PKG_INSTALL_DIR)/usr/lib/libcom_err.so.* \
 -		$(1)/usr/lib/
-+		$(PKG_INSTALL_DIR)/opt/lib/libext2fs.so.* \
-+		$(PKG_INSTALL_DIR)/opt/lib/libcom_err.so.* \
++		$(PKG_INSTALL_DIR)/Apps/opt/lib/libext2fs.so.* \
++		$(PKG_INSTALL_DIR)/Apps/opt/lib/libcom_err.so.* \
 +		$(1)/opt/lib/
  endef
  
@@ -75,21 +75,21 @@
 -	$(INSTALL_DIR) $(1)/usr/sbin
 -	$(INSTALL_BIN) $(PKG_INSTALL_DIR)/usr/sbin/tune2fs $(1)/usr/sbin/
 +	$(INSTALL_DIR) $(1)/opt/sbin
-+	$(INSTALL_BIN) $(PKG_INSTALL_DIR)/opt/sbin/tune2fs $(1)/opt/sbin/
++	$(INSTALL_BIN) $(PKG_INSTALL_DIR)/Apps/opt/sbin/tune2fs $(1)/opt/sbin/
  endef
  
  define Package/resize2fs/install
 -	$(INSTALL_DIR) $(1)/usr/sbin
 -	$(INSTALL_BIN) $(PKG_INSTALL_DIR)/usr/sbin/resize2fs $(1)/usr/sbin/
 +	$(INSTALL_DIR) $(1)/opt/sbin
-+	$(INSTALL_BIN) $(PKG_INSTALL_DIR)/opt/sbin/resize2fs $(1)/opt/sbin/
++	$(INSTALL_BIN) $(PKG_INSTALL_DIR)/Apps/opt/sbin/resize2fs $(1)/opt/sbin/
  endef
  
  define Package/badblocks/install
 -	$(INSTALL_DIR) $(1)/usr/sbin
 -	$(INSTALL_BIN) $(PKG_INSTALL_DIR)/usr/sbin/badblocks $(1)/usr/sbin/
 +	$(INSTALL_DIR) $(1)/opt/sbin
-+	$(INSTALL_BIN) $(PKG_INSTALL_DIR)/opt/sbin/badblocks $(1)/opt/sbin/
++	$(INSTALL_BIN) $(PKG_INSTALL_DIR)/Apps/opt/sbin/badblocks $(1)/opt/sbin/
  endef
  
  $(eval $(call BuildPackage,e2fsprogs))

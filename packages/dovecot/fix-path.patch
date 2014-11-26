@@ -36,11 +36,11 @@
 +			$(1)/opt/lib/dovecot \
 +			$(1)/opt/bin \
 +			$(1)/opt/sbin
-+	$(CP) $(PKG_INSTALL_DIR)/opt/etc/dovecot/* $(1)/opt/etc/dovecot/
-+	$(CP) $(PKG_INSTALL_DIR)/opt/lib/dovecot/* $(1)/opt/lib/dovecot/
-+	$(CP) $(PKG_INSTALL_DIR)/opt/share/doc/dovecot/example-config $(1)/opt/share/doc/dovecot/example-config
-+	$(INSTALL_BIN) $(PKG_INSTALL_DIR)/opt/bin/doveconf $(1)/opt/bin/
-+	$(INSTALL_BIN) $(PKG_INSTALL_DIR)/opt/sbin/* $(1)/opt/sbin/
++	$(CP) $(PKG_INSTALL_DIR)/Apps/opt/etc/dovecot/* $(1)/opt/etc/dovecot/
++	$(CP) $(PKG_INSTALL_DIR)/Apps/opt/lib/dovecot/* $(1)/opt/lib/dovecot/
++	$(CP) $(PKG_INSTALL_DIR)/Apps/opt/share/doc/dovecot/example-config $(1)/opt/share/doc/dovecot/example-config
++	$(INSTALL_BIN) $(PKG_INSTALL_DIR)/Apps/opt/bin/doveconf $(1)/opt/bin/
++	$(INSTALL_BIN) $(PKG_INSTALL_DIR)/Apps/opt/sbin/* $(1)/opt/sbin/
 +	$(INSTALL_BIN) ./files/S90dovecot $(1)/opt/etc/init.d/
 +	rm  $(1)/opt/lib/dovecot/dovecot-config
 +	find $(1)/opt/lib/dovecot/ -name "*.a" -o -name "*.la" | xargs rm

@@ -7,7 +7,7 @@
 -	$(INSTALL_DIR) $(1)/usr/bin
 -	$(INSTALL_BIN) $(PKG_INSTALL_DIR)/usr/bin/* $(1)/usr/bin/
 +	$(INSTALL_DIR) $(1)/opt/bin
-+	$(INSTALL_BIN) $(PKG_INSTALL_DIR)/opt/bin/* $(1)/opt/bin/
++	$(INSTALL_BIN) $(PKG_INSTALL_DIR)/Apps/opt/bin/* $(1)/opt/bin/
  endef
  
  define Package/libattr/install
@@ -17,8 +17,8 @@
 -	$(CP) $(PKG_INSTALL_DIR)/usr/lib/*.so* $(1)/usr/lib/
 +	$(INSTALL_DIR) $(1)/opt/lib
 +	$(INSTALL_DIR) $(1)/opt/etc
-+	$(CP) $(PKG_INSTALL_DIR)/opt/etc $(1)/opt/
-+	$(CP) $(PKG_INSTALL_DIR)/opt/lib/*.so* $(1)/opt/lib/
++	$(CP) $(PKG_INSTALL_DIR)/Apps/opt/etc $(1)/opt/
++	$(CP) $(PKG_INSTALL_DIR)/Apps/opt/lib/*.so* $(1)/opt/lib/
  endef
  
  define Package/attr/conffiles
@@ -32,7 +32,7 @@
 -	$(CP) -r $(PKG_INSTALL_DIR)/usr/{include,lib} $(1)/usr/
 +	mkdir -p $(1)/opt/include
 +	mkdir -p $(1)/opt/lib/pkgconfig
-+	$(CP) -r $(PKG_INSTALL_DIR)/opt/{include,lib} $(1)/opt/
++	$(CP) -r $(PKG_INSTALL_DIR)/Apps/opt/{include,lib} $(1)/opt/
  endef
  
  $(eval $(call BuildPackage,attr))

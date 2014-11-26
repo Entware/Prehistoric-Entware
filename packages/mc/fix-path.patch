@@ -48,7 +48,7 @@
 -	$(INSTALL_BIN) $(PKG_BUILD_DIR)/src/mc $(1)/usr/bin
 -	$(INSTALL_DIR) $(1)/etc/mc
 +	$(INSTALL_DIR) $(1)/opt/bin
-+	$(INSTALL_BIN) $(PKG_INSTALL_DIR)/opt/bin/mc $(1)/opt/bin/
++	$(INSTALL_BIN) $(PKG_INSTALL_DIR)/Apps/opt/bin/mc $(1)/opt/bin/
 +	$(INSTALL_DIR) $(1)/opt/etc $(1)/opt/etc/mc
  ifeq ($(CONFIG_MC_DIFF_VIEWER),y)
 -	ln -sf mc $(1)/usr/bin/mcdiff
@@ -62,11 +62,11 @@
 -	$(INSTALL_DIR) $(1)/etc/mc/skins
 -	$(INSTALL_DATA) $(PKG_BUILD_DIR)/misc/skins/default.ini $(1)/etc/mc/skins
 -	$(INSTALL_DIR) $(1)/root/.mc/cedit/Syntax
-+	$(CP) $(PKG_INSTALL_DIR)/opt/etc/mc/* $(1)/opt/etc/mc/
++	$(CP) $(PKG_INSTALL_DIR)/Apps/opt/etc/mc/* $(1)/opt/etc/mc/
 +	$(INSTALL_DIR) $(1)/opt/lib $(1)/opt/lib/mc $(1)/opt/lib/mc/extfs.d $(1)/opt/lib/mc/fish
-+	$(CP) $(PKG_INSTALL_DIR)/opt/lib/mc/* $(1)/opt/lib/mc/
++	$(CP) $(PKG_INSTALL_DIR)/Apps/opt/lib/mc/* $(1)/opt/lib/mc/
 +	$(INSTALL_DIR) $(1)/opt/share $(1)/opt/share/mc $(1)/opt/share/mc/help $(1)/opt/share/mc/skins $(1)/opt/share/mc/hints $(1)/opt/share/mc/syntax
-+	$(CP) $(PKG_INSTALL_DIR)/opt/share/mc/* $(1)/opt/share/mc/
++	$(CP) $(PKG_INSTALL_DIR)/Apps/opt/share/mc/* $(1)/opt/share/mc/
  endef
  
  define Package/mc/conffiles

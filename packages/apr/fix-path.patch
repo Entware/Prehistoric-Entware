@@ -32,15 +32,15 @@
 -	$(SED) 's,-R$$$$libdir,,g' $(1)/usr/bin/apr-1-config
 -	$(SED) 's,/usr/share/build-1,$(STAGING_DIR)/usr/share/build-1,g' $(1)/usr/share/build-1/apr_rules.mk
 +	$(INSTALL_DIR) $(1)/opt/bin $(1)/opt/include/apr-1 $(1)/opt/lib $(1)/opt/lib/pkgconfig $(1)/opt/share/build-1
-+	$(CP)   $(PKG_INSTALL_DIR)/opt/bin/apr-1-config \
++	$(CP)   $(PKG_INSTALL_DIR)/Apps/opt/bin/apr-1-config \
 +		$(1)/opt/bin/
-+	$(CP)   $(PKG_INSTALL_DIR)/opt/include/apr-1/* \
++	$(CP)   $(PKG_INSTALL_DIR)/Apps/opt/include/apr-1/* \
 +		$(1)/opt/include/apr-1/
-+	$(CP)   $(PKG_INSTALL_DIR)/opt/lib/libapr-1.{la,a,so*} \
++	$(CP)   $(PKG_INSTALL_DIR)/Apps/opt/lib/libapr-1.{la,a,so*} \
 +		$(1)/opt/lib/
-+	$(CP)   $(PKG_INSTALL_DIR)/opt/lib/pkgconfig/apr-1.pc \
++	$(CP)   $(PKG_INSTALL_DIR)/Apps/opt/lib/pkgconfig/apr-1.pc \
 +		$(1)/opt/lib/pkgconfig/
-+	$(CP)   $(PKG_INSTALL_DIR)/opt/share/build-1/* \
++	$(CP)   $(PKG_INSTALL_DIR)/Apps/opt/share/build-1/* \
 +		$(1)/opt/share/build-1/
 +	$(SED) 's,^datadir=\"/opt/share\",datadir=\"$(STAGING_DIR)/opt/share\",g' $(1)/opt/bin/apr-1-config
 +	$(SED) 's,^installbuilddir=\"/opt/share/build-1\",installbuilddir=\"$(STAGING_DIR)/opt/share/build-1\",g' $(1)/opt/bin/apr-1-config
@@ -55,7 +55,7 @@
 -	$(INSTALL_DIR) $(1)/usr/lib
 -	$(CP) $(PKG_INSTALL_DIR)/usr/lib/libapr-1.so.* $(1)/usr/lib/
 +	$(INSTALL_DIR) $(1)/opt/lib
-+	$(CP) $(PKG_INSTALL_DIR)/opt/lib/libapr-1.so.* $(1)/opt/lib/
++	$(CP) $(PKG_INSTALL_DIR)/Apps/opt/lib/libapr-1.so.* $(1)/opt/lib/
  endef
  
  $(eval $(call BuildPackage,libapr))

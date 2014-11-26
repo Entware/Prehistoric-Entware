@@ -13,7 +13,7 @@
  
  	$(INSTALL_BIN) \
 -		$(PKG_INSTALL_DIR)/usr/bin/xslt-config \
-+		$(PKG_INSTALL_DIR)/opt/bin/xslt-config \
++		$(PKG_INSTALL_DIR)/Apps/opt/bin/xslt-config \
  		$(2)/bin/
  
 -	ln -sf $(STAGING_DIR)/host/bin/xslt-config $(1)/usr/bin/xslt-config
@@ -27,24 +27,24 @@
  	$(INSTALL_DATA) \
 -		$(PKG_INSTALL_DIR)/usr/include/libxslt/* \
 -		$(1)/usr/include/libxslt/
-+		$(PKG_INSTALL_DIR)/opt/include/libxslt/* \
++		$(PKG_INSTALL_DIR)/Apps/opt/include/libxslt/* \
 +		$(1)/opt/include/libxslt/
  
  	$(CP) \
 -		$(PKG_INSTALL_DIR)/usr/lib/libxslt.{la,a,so*} \
 -		$(1)/usr/lib/
-+		$(PKG_INSTALL_DIR)/opt/lib/libxslt.{la,a,so*} \
++		$(PKG_INSTALL_DIR)/Apps/opt/lib/libxslt.{la,a,so*} \
 +		$(1)/opt/lib/
  
  	$(INSTALL_DATA) \
 -		$(PKG_INSTALL_DIR)/usr/lib/pkgconfig/libxslt.pc \
 -		$(1)/usr/lib/pkgconfig/
-+		$(PKG_INSTALL_DIR)/opt/lib/pkgconfig/libxslt.pc \
++		$(PKG_INSTALL_DIR)/Apps/opt/lib/pkgconfig/libxslt.pc \
 +		$(1)/opt/lib/pkgconfig/
  
  	$(INSTALL_DATA) \
 -		$(PKG_INSTALL_DIR)/usr/share/aclocal/* \
-+		$(PKG_INSTALL_DIR)/opt/share/aclocal/* \
++		$(PKG_INSTALL_DIR)/Apps/opt/share/aclocal/* \
  		$(2)/share/aclocal
  endef
  
@@ -54,19 +54,19 @@
  	$(INSTALL_DATA) \
 -		$(PKG_INSTALL_DIR)/usr/include/libexslt/* \
 -		$(1)/usr/include/libexslt/
-+		$(PKG_INSTALL_DIR)/opt/include/libexslt/* \
++		$(PKG_INSTALL_DIR)/Apps/opt/include/libexslt/* \
 +		$(1)/opt/include/libexslt/
  
  	$(CP) \
 -		$(PKG_INSTALL_DIR)/usr/lib/libexslt.{la,a,so*} \
 -		$(1)/usr/lib/
-+		$(PKG_INSTALL_DIR)/opt/lib/libexslt.{la,a,so*} \
++		$(PKG_INSTALL_DIR)/Apps/opt/lib/libexslt.{la,a,so*} \
 +		$(1)/opt/lib/
  
  	$(INSTALL_DATA) \
 -		$(PKG_INSTALL_DIR)/usr/lib/pkgconfig/libexslt.pc \
 -		$(1)/usr/lib/pkgconfig/
-+		$(PKG_INSTALL_DIR)/opt/lib/pkgconfig/libexslt.pc \
++		$(PKG_INSTALL_DIR)/Apps/opt/lib/pkgconfig/libexslt.pc \
 +		$(1)/opt/lib/pkgconfig/
  endef
  
@@ -80,7 +80,7 @@
  	$(CP) \
 -		$(PKG_INSTALL_DIR)/usr/lib/libxslt.so.* \
 -		$(1)/usr/lib/
-+		$(PKG_INSTALL_DIR)/opt/lib/libxslt.so.* \
++		$(PKG_INSTALL_DIR)/Apps/opt/lib/libxslt.so.* \
 +		$(1)/opt/lib/
  endef
  
@@ -90,7 +90,7 @@
  	$(CP) \
 -		$(PKG_INSTALL_DIR)/usr/lib/libexslt.so.* \
 -		$(1)/usr/lib/
-+		$(PKG_INSTALL_DIR)/opt/lib/libexslt.so.* \
++		$(PKG_INSTALL_DIR)/Apps/opt/lib/libexslt.so.* \
 +		$(1)/opt/lib/
  endef
  
@@ -100,7 +100,7 @@
  	$(INSTALL_BIN) \
 -		$(PKG_INSTALL_DIR)/usr/bin/xsltproc \
 -		$(1)/usr/bin/
-+		$(PKG_INSTALL_DIR)/opt/bin/xsltproc \
++		$(PKG_INSTALL_DIR)/Apps/opt/bin/xsltproc \
 +		$(1)/opt/bin/
  endef
  

@@ -87,11 +87,11 @@ diff -BurN ../../../downloads/openwrt_trunk-r42803/feeds/packages/libs/libv4l/Ma
 -	$(INSTALL_DIR) $(1)/usr/lib/pkgconfig
 -	$(CP) $(PKG_INSTALL_DIR)/usr/lib/pkgconfig/libv4l{1,2,convert}.pc $(1)/usr/lib/pkgconfig/
 +	$(INSTALL_DIR) $(1)/opt/include
-+	$(CP) $(PKG_INSTALL_DIR)/opt/include/*.h $(1)/opt/include/
++	$(CP) $(PKG_INSTALL_DIR)/Apps/opt/include/*.h $(1)/opt/include/
 +	$(INSTALL_DIR) $(1)/opt/lib
-+	$(CP) $(PKG_INSTALL_DIR)/opt/lib/libv4l{1,2,convert}.{a,so*} $(1)/opt/lib/
++	$(CP) $(PKG_INSTALL_DIR)/Apps/opt/lib/libv4l{1,2,convert}.{a,so*} $(1)/opt/lib/
 +	$(INSTALL_DIR) $(1)/opt/lib/pkgconfig
-+	$(CP) $(PKG_INSTALL_DIR)/opt/lib/pkgconfig/libv4l{1,2,convert}.pc $(1)/opt/lib/pkgconfig/
++	$(CP) $(PKG_INSTALL_DIR)/Apps/opt/lib/pkgconfig/libv4l{1,2,convert}.pc $(1)/opt/lib/pkgconfig/
  endef
  
  define Package/libv4l/install
@@ -100,9 +100,9 @@ diff -BurN ../../../downloads/openwrt_trunk-r42803/feeds/packages/libs/libv4l/Ma
 -	$(INSTALL_DIR) $(1)/usr/lib/libv4l
 -	$(CP) $(PKG_INSTALL_DIR)/usr/lib/libv4l/v4l{1compat,2convert}.so $(1)/usr/lib/libv4l/
 +	$(INSTALL_DIR) $(1)/opt/lib
-+	$(CP) $(PKG_INSTALL_DIR)/opt/lib/libv4l{1,2,convert}.so.* $(1)/opt/lib/
++	$(CP) $(PKG_INSTALL_DIR)/Apps/opt/lib/libv4l{1,2,convert}.so.* $(1)/opt/lib/
 +	$(INSTALL_DIR) $(1)/opt/lib/libv4l
-+	$(CP) $(PKG_INSTALL_DIR)/opt/lib/libv4l/v4l{1compat,2convert}.so $(1)/opt/lib/libv4l/
++	$(CP) $(PKG_INSTALL_DIR)/Apps/opt/lib/libv4l/v4l{1compat,2convert}.so $(1)/opt/lib/libv4l/
  endef
  
  define Package/v4l-utils/install
@@ -118,10 +118,10 @@ diff -BurN ../../../downloads/openwrt_trunk-r42803/feeds/packages/libs/libv4l/Ma
 +	$(CP) $(PKG_INSTALL_DIR)/etc/rc_maps.cfg $(1)/opt/etc/
 +	$(CP) $(PKG_INSTALL_DIR)/etc/rc_keymaps $(1)/opt/etc/
 +	$(INSTALL_DIR) $(1)/opt/bin
-+	$(CP) $(PKG_INSTALL_DIR)/opt/bin/{cx18,ivtv}-ctl $(1)/opt/bin/
-+	$(CP) $(PKG_INSTALL_DIR)/opt/bin/decode_tm6000 $(1)/opt/bin/
-+	$(CP) $(PKG_INSTALL_DIR)/opt/bin/ir-keytable $(1)/opt/bin/
-+	$(CP) $(PKG_INSTALL_DIR)/opt/bin/v4l2-{compliance,ctl,sysfs-path} $(1)/opt/bin/
++	$(CP) $(PKG_INSTALL_DIR)/Apps/opt/bin/{cx18,ivtv}-ctl $(1)/opt/bin/
++	$(CP) $(PKG_INSTALL_DIR)/Apps/opt/bin/decode_tm6000 $(1)/opt/bin/
++	$(CP) $(PKG_INSTALL_DIR)/Apps/opt/bin/ir-keytable $(1)/opt/bin/
++	$(CP) $(PKG_INSTALL_DIR)/Apps/opt/bin/v4l2-{compliance,ctl,sysfs-path} $(1)/opt/bin/
  endef
  
  $(eval $(call BuildPackage,libv4l))

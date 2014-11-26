@@ -7,21 +7,21 @@
 -	$(INSTALL_DIR) $(1)/usr/bin
 -	$(CP) $(PKG_INSTALL_DIR)/usr/bin/rrd{tool,update} $(1)/usr/bin/
 +	$(INSTALL_DIR) $(1)/opt/bin
-+	$(CP) $(PKG_INSTALL_DIR)/opt/bin/rrd{tool,update} $(1)/opt/bin/
++	$(CP) $(PKG_INSTALL_DIR)/Apps/opt/bin/rrd{tool,update} $(1)/opt/bin/
  endef
  
  define Package/rrdcgi1/install
 -	$(INSTALL_DIR) $(1)/usr/bin
 -	$(CP) $(PKG_INSTALL_DIR)/usr/bin/rrdcgi $(1)/usr/bin/
 +	$(INSTALL_DIR) $(1)/opt/bin
-+	$(CP) $(PKG_INSTALL_DIR)/opt/bin/rrdcgi $(1)/opt/bin/
++	$(CP) $(PKG_INSTALL_DIR)/Apps/opt/bin/rrdcgi $(1)/opt/bin/
  endef
  
  define Package/librrd1/install
 -	$(INSTALL_DIR) $(1)/usr/lib
 -	$(CP) $(PKG_INSTALL_DIR)/usr/lib/librrd.so.* $(1)/usr/lib/
 +	$(INSTALL_DIR) $(1)/opt/lib
-+	$(CP) $(PKG_INSTALL_DIR)/opt/lib/librrd.so.* $(1)/opt/lib/
++	$(CP) $(PKG_INSTALL_DIR)/Apps/opt/lib/librrd.so.* $(1)/opt/lib/
  endef
  
  define Build/InstallDev
@@ -30,9 +30,9 @@
 -	$(INSTALL_DIR)  $(1)/usr/lib/rrdtool-1.0/lib
 -	$(CP) $(PKG_INSTALL_DIR)/usr/lib/librrd.{a,so*} $(1)/usr/lib/rrdtool-1.0/lib/
 +	$(INSTALL_DIR) $(1)/opt/lib/rrdtool-1.0/include
-+	$(CP) $(PKG_INSTALL_DIR)/opt/include/rrd.h $(1)/opt/lib/rrdtool-1.0/include/
++	$(CP) $(PKG_INSTALL_DIR)/Apps/opt/include/rrd.h $(1)/opt/lib/rrdtool-1.0/include/
 +	$(INSTALL_DIR)  $(1)/opt/lib/rrdtool-1.0/lib
-+	$(CP) $(PKG_INSTALL_DIR)/opt/lib/librrd.{a,so*} $(1)/opt/lib/rrdtool-1.0/lib/
++	$(CP) $(PKG_INSTALL_DIR)/Apps/opt/lib/librrd.{a,so*} $(1)/opt/lib/rrdtool-1.0/lib/
  endef
  
  $(eval $(call BuildPackage,librrd1))

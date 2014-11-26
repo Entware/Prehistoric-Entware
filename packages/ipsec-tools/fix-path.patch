@@ -53,13 +53,13 @@
 +	$(INSTALL_DIR) $(1)/opt/etc/init.d
 +	$(INSTALL_BIN) ./files/S49racoon $(1)/opt/etc/init.d/
 +	$(INSTALL_DIR) $(1)/opt/lib
-+	$(CP) $(PKG_INSTALL_DIR)/opt/lib/libipsec.so.* $(1)/opt/lib/
-+	$(CP) $(PKG_INSTALL_DIR)/opt/lib/libracoon.so.* $(1)/opt/lib/
++	$(CP) $(PKG_INSTALL_DIR)/Apps/opt/lib/libipsec.so.* $(1)/opt/lib/
++	$(CP) $(PKG_INSTALL_DIR)/Apps/opt/lib/libracoon.so.* $(1)/opt/lib/
 +	$(INSTALL_DIR) $(1)/opt/sbin
-+	$(INSTALL_BIN) $(PKG_INSTALL_DIR)/opt/sbin/plainrsa-gen $(1)/opt/sbin/
-+	$(INSTALL_BIN) $(PKG_INSTALL_DIR)/opt/sbin/racoon $(1)/opt/sbin/
-+	$(INSTALL_BIN) $(PKG_INSTALL_DIR)/opt/sbin/racoonctl $(1)/opt/sbin/
-+	$(INSTALL_BIN) $(PKG_INSTALL_DIR)/opt/sbin/setkey $(1)/opt/sbin/
++	$(INSTALL_BIN) $(PKG_INSTALL_DIR)/Apps/opt/sbin/plainrsa-gen $(1)/opt/sbin/
++	$(INSTALL_BIN) $(PKG_INSTALL_DIR)/Apps/opt/sbin/racoon $(1)/opt/sbin/
++	$(INSTALL_BIN) $(PKG_INSTALL_DIR)/Apps/opt/sbin/racoonctl $(1)/opt/sbin/
++	$(INSTALL_BIN) $(PKG_INSTALL_DIR)/Apps/opt/sbin/setkey $(1)/opt/sbin/
  endef
  
  define Package/ipsec-tools/conffiles

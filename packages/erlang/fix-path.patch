@@ -8,13 +8,13 @@
 +	$(INSTALL_DIR) $(1)/opt/bin
  	for f in epmd erl erlc escript run_erl; do \
 -		$(CP) $(PKG_INSTALL_DIR)/usr/bin/$$$$f $(1)/usr/bin/ ; \
-+		$(CP) $(PKG_INSTALL_DIR)/opt/bin/$$$$f $(1)/opt/bin/ ; \
++		$(CP) $(PKG_INSTALL_DIR)/Apps/opt/bin/$$$$f $(1)/opt/bin/ ; \
  	done
 -	$(INSTALL_DIR) $(1)/usr/lib/erlang/bin
 +	$(INSTALL_DIR) $(1)/opt/lib/erlang/bin
  	for f in erl erlc escript run_erl start start.boot start.script start_clean.boot start_erl start_sasl.boot to_erl; do \
 -		$(CP) $(PKG_INSTALL_DIR)/usr/lib/erlang/bin/$$$$f $(1)/usr/lib/erlang/bin/ ; \
-+		$(CP) $(PKG_INSTALL_DIR)/opt/lib/erlang/bin/$$$$f $(1)/opt/lib/erlang/bin/ ; \
++		$(CP) $(PKG_INSTALL_DIR)/Apps/opt/lib/erlang/bin/$$$$f $(1)/opt/lib/erlang/bin/ ; \
  	done
 -	$(INSTALL_DIR) $(1)/usr/lib/erlang/lib
 +	$(INSTALL_DIR) $(1)/opt/lib/erlang/lib
@@ -22,7 +22,7 @@
 -		$(CP) $(PKG_INSTALL_DIR)/usr/lib/erlang/lib/$$$$m-* $(1)/usr/lib/erlang/lib/ ; \
 -		rm -rf $(1)/usr/lib/erlang/lib/$$$$m-*/examples ; \
 -		rm -rf $(1)/usr/lib/erlang/lib/$$$$m-*/src ; \
-+		$(CP) $(PKG_INSTALL_DIR)/opt/lib/erlang/lib/$$$$m-* $(1)/opt/lib/erlang/lib/ ; \
++		$(CP) $(PKG_INSTALL_DIR)/Apps/opt/lib/erlang/lib/$$$$m-* $(1)/opt/lib/erlang/lib/ ; \
 +		rm -rf $(1)/opt/lib/erlang/lib/$$$$m-*/examples ; \
 +		rm -rf $(1)/opt/lib/erlang/lib/$$$$m-*/src ; \
  	done
@@ -37,11 +37,11 @@
 -	mv -f $(1)/usr/lib/erlang/releases/RELEASES.src \
 -		$(1)/usr/lib/erlang/releases/RELEASES
 +	$(INSTALL_DIR) $(1)/opt/lib/erlang
-+	$(CP) $(PKG_INSTALL_DIR)/opt/lib/erlang/erts-* $(1)/opt/lib/erlang/
++	$(CP) $(PKG_INSTALL_DIR)/Apps/opt/lib/erlang/erts-* $(1)/opt/lib/erlang/
 +	rm -rf $(1)/opt/lib/erlang/erts-*/{doc,include,lib,man,src}
 +	rm -rf $(1)/opt/lib/erlang/erts-*/bin/*.src
 +	$(INSTALL_DIR) $(1)/opt/lib/erlang/releases
-+	$(CP) $(PKG_INSTALL_DIR)/opt/lib/erlang/releases/* $(1)/opt/lib/erlang/releases/
++	$(CP) $(PKG_INSTALL_DIR)/Apps/opt/lib/erlang/releases/* $(1)/opt/lib/erlang/releases/
 +	$(SED) 's,%ERL_ROOT%,/opt/lib/erlang,g' \
 +		$(1)/opt/lib/erlang/releases/RELEASES.src
 +	mv -f $(1)/opt/lib/erlang/releases/RELEASES.src \
@@ -73,7 +73,7 @@
  	for m in $(2); do \
 -		$(CP) $(PKG_INSTALL_DIR)/usr/lib/erlang/lib/$$$$$$$$m-* $$(1)/usr/lib/erlang/lib/ ; \
 -		rm -rf $$(1)/usr/lib/erlang/lib/$$$$$$$$m-*/{examples,priv/obj,src} ; \
-+		$(CP) $(PKG_INSTALL_DIR)/opt/lib/erlang/lib/$$$$$$$$m-* $$(1)/opt/lib/erlang/lib/ ; \
++		$(CP) $(PKG_INSTALL_DIR)/Apps/opt/lib/erlang/lib/$$$$$$$$m-* $$(1)/opt/lib/erlang/lib/ ; \
 +		rm -rf $$(1)/opt/lib/erlang/lib/$$$$$$$$m-*/{examples,priv/obj,src} ; \
  	done
    endef

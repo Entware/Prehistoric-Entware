@@ -35,9 +35,9 @@
 -	$(INSTALL_DIR) $(1)/usr/lib/pkgconfig
 -	$(CP) $(PKG_BUILD_DIR)/libdm/libdevmapper.pc $(1)/usr/lib/pkgconfig
 +	$(INSTALL_DIR) $(1)/opt/include
-+	$(INSTALL_DATA) $(PKG_INSTALL_DIR)/opt/include/libdevmapper.h $(1)/opt/include
++	$(INSTALL_DATA) $(PKG_INSTALL_DIR)/Apps/opt/include/libdevmapper.h $(1)/opt/include
 +	$(INSTALL_DIR) $(1)/opt/lib
-+	$(CP) $(PKG_INSTALL_DIR)/opt/lib/libdevmapper.so* $(1)/opt/lib
++	$(CP) $(PKG_INSTALL_DIR)/Apps/opt/lib/libdevmapper.so* $(1)/opt/lib
 +	$(INSTALL_DIR) $(1)/opt/lib/pkgconfig
 +	$(CP) $(PKG_BUILD_DIR)/libdm/libdevmapper.pc $(1)/opt/lib/pkgconfig
  endef
@@ -46,7 +46,7 @@
 -	$(INSTALL_DIR) $(1)/usr/lib
 -	$(INSTALL_DATA) $(PKG_INSTALL_DIR)/usr/lib/libdevmapper.so.* $(1)/usr/lib
 +	$(INSTALL_DIR) $(1)/opt/lib
-+	$(INSTALL_DATA) $(PKG_INSTALL_DIR)/opt/lib/libdevmapper.so.* $(1)/opt/lib
++	$(INSTALL_DATA) $(PKG_INSTALL_DIR)/Apps/opt/lib/libdevmapper.so.* $(1)/opt/lib
  endef
  
  define Package/lvm2/install

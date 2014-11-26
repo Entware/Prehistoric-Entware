@@ -24,13 +24,13 @@
 -	$(INSTALL_BIN) $(PKG_INSTALL_DIR)/usr/sbin/{ftpshut,proftpd} $(1)/usr/sbin/
 -	$(CP) $(PKG_INSTALL_DIR)/usr/sbin/in.proftpd $(1)/usr/sbin/
 +	$(INSTALL_DIR) $(1)/opt/etc/init.d
-+	$(if $(CONFIG_IPV6),,$(SED) 's/^UseIPv6/#UseIPv6/' $(PKG_INSTALL_DIR)/opt/etc/proftpd.conf)
-+	$(INSTALL_CONF) $(PKG_INSTALL_DIR)/opt/etc/proftpd.conf $(1)/opt/etc/
++	$(if $(CONFIG_IPV6),,$(SED) 's/^UseIPv6/#UseIPv6/' $(PKG_INSTALL_DIR)/Apps/opt/etc/proftpd.conf)
++	$(INSTALL_CONF) $(PKG_INSTALL_DIR)/Apps/opt/etc/proftpd.conf $(1)/opt/etc/
 +	$(INSTALL_DIR) $(1)/opt/bin
-+	$(INSTALL_BIN) $(PKG_INSTALL_DIR)/opt/bin/ftp{count,top,who} $(1)/opt/bin/
++	$(INSTALL_BIN) $(PKG_INSTALL_DIR)/Apps/opt/bin/ftp{count,top,who} $(1)/opt/bin/
 +	$(INSTALL_DIR) $(1)/opt/sbin
-+	$(INSTALL_BIN) $(PKG_INSTALL_DIR)/opt/sbin/{ftpshut,proftpd} $(1)/opt/sbin/
-+	$(CP) $(PKG_INSTALL_DIR)/opt/sbin/in.proftpd $(1)/opt/sbin/
++	$(INSTALL_BIN) $(PKG_INSTALL_DIR)/Apps/opt/sbin/{ftpshut,proftpd} $(1)/opt/sbin/
++	$(CP) $(PKG_INSTALL_DIR)/Apps/opt/sbin/in.proftpd $(1)/opt/sbin/
 +	$(INSTALL_BIN) ./files/S66proftpd $(1)/opt/etc/init.d
  endef
  

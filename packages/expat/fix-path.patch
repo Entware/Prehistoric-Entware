@@ -7,24 +7,24 @@
 -	$(INSTALL_DIR) $(1)/usr/include
 -	$(CP) $(PKG_INSTALL_DIR)/usr/include/expat{,_external}.h $(1)/usr/include/
 +	$(INSTALL_DIR) $(1)/opt/include
-+	$(CP) $(PKG_INSTALL_DIR)/opt/include/expat{,_external}.h $(1)/opt/include/
++	$(CP) $(PKG_INSTALL_DIR)/Apps/opt/include/expat{,_external}.h $(1)/opt/include/
  
 -	$(INSTALL_DIR) $(1)/usr/lib/pkgconfig
 -	$(INSTALL_DATA) $(PKG_INSTALL_DIR)/usr/lib/pkgconfig/expat.pc $(1)/usr/lib/pkgconfig/
 +	$(INSTALL_DIR) $(1)/opt/lib/pkgconfig
-+	$(INSTALL_DATA) $(PKG_INSTALL_DIR)/opt/lib/pkgconfig/expat.pc $(1)/opt/lib/pkgconfig/
++	$(INSTALL_DATA) $(PKG_INSTALL_DIR)/Apps/opt/lib/pkgconfig/expat.pc $(1)/opt/lib/pkgconfig/
  
 -	$(INSTALL_DIR) $(1)/usr/lib
 -	$(CP) $(PKG_INSTALL_DIR)/usr/lib/libexpat.{a,so*} $(1)/usr/lib/
 +	$(INSTALL_DIR) $(1)/opt/lib
-+	$(CP) $(PKG_INSTALL_DIR)/opt/lib/libexpat.{a,so*} $(1)/opt/lib/
++	$(CP) $(PKG_INSTALL_DIR)/Apps/opt/lib/libexpat.{a,so*} $(1)/opt/lib/
  endef
  
  define Package/libexpat/install
 -	$(INSTALL_DIR) $(1)/usr/lib
 -	$(CP) $(PKG_INSTALL_DIR)/usr/lib/libexpat.so.* $(1)/usr/lib/
 +	$(INSTALL_DIR) $(1)/opt/lib
-+	$(CP) $(PKG_INSTALL_DIR)/opt/lib/libexpat.so.* $(1)/opt/lib/
++	$(CP) $(PKG_INSTALL_DIR)/Apps/opt/lib/libexpat.so.* $(1)/opt/lib/
  endef
  
  $(eval $(call HostBuild))

@@ -140,7 +140,7 @@ diff -ur ../../../downloads/openwrt_trunk-r40423/feeds/oldpackages/net/isc-dhcp/
 -	$(INSTALL_BIN) ./files/dhcrelay6.init $(1)/etc/init.d/dhcrelay6
 -endif
 +	$(INSTALL_DIR) $(1)/opt/sbin
-+	$(INSTALL_BIN) $(PKG_INSTALL_DIR)/opt/sbin/dhcrelay $(1)/opt/sbin
++	$(INSTALL_BIN) $(PKG_INSTALL_DIR)/Apps/opt/sbin/dhcrelay $(1)/opt/sbin
  endef
  
  define Package/isc-dhcp-server-$(BUILD_VARIANT)/install
@@ -149,7 +149,7 @@ diff -ur ../../../downloads/openwrt_trunk-r40423/feeds/oldpackages/net/isc-dhcp/
 -	$(INSTALL_BIN) ./files/dhcpd.init $(1)/etc/init.d/dhcpd
 -	$(INSTALL_BIN) ./files/dhcpd.conf $(1)/etc
 +	$(INSTALL_DIR) $(1)/opt/sbin $(1)/opt/etc
-+	$(INSTALL_BIN) $(PKG_INSTALL_DIR)/opt/sbin/dhcpd $(1)/opt/sbin
++	$(INSTALL_BIN) $(PKG_INSTALL_DIR)/Apps/opt/sbin/dhcpd $(1)/opt/sbin
 +	$(INSTALL_BIN) ./files/dhcpd.conf $(1)/opt/etc
  ifeq ($(BUILD_VARIANT),ipv6)
 -	$(INSTALL_BIN) ./files/dhcpd6.init $(1)/etc/init.d/dhcpd6
@@ -164,7 +164,7 @@ diff -ur ../../../downloads/openwrt_trunk-r40423/feeds/oldpackages/net/isc-dhcp/
 -	$(INSTALL_BIN) ./files/dhclient-script $(1)/usr/sbin/
 -	$(INSTALL_BIN) ./files/dhclient.init $(1)/etc/init.d/dhclient
 +	$(INSTALL_DIR) $(1)/opt/sbin $(1)/opt/etc
-+	$(INSTALL_BIN) $(PKG_INSTALL_DIR)/opt/sbin/dhclient $(1)/opt/sbin
++	$(INSTALL_BIN) $(PKG_INSTALL_DIR)/Apps/opt/sbin/dhclient $(1)/opt/sbin
 +	$(INSTALL_BIN) ./files/dhclient-script $(1)/opt/sbin/
  ifeq ($(BUILD_VARIANT),ipv6)
 -	$(INSTALL_BIN) ./files/dhclient6.init $(1)/etc/init.d/dhclient6
@@ -177,7 +177,7 @@ diff -ur ../../../downloads/openwrt_trunk-r40423/feeds/oldpackages/net/isc-dhcp/
 -	$(INSTALL_DIR) $(1)/usr/bin
 -	$(INSTALL_BIN) $(PKG_INSTALL_DIR)/usr/bin/omshell $(1)/usr/bin
 +	$(INSTALL_DIR) $(1)/opt/bin
-+	$(INSTALL_BIN) $(PKG_INSTALL_DIR)/opt/bin/omshell $(1)/opt/bin
++	$(INSTALL_BIN) $(PKG_INSTALL_DIR)/Apps/opt/bin/omshell $(1)/opt/bin
  endef
  
  $(eval $(call BuildPackage,isc-dhcp-relay-ipv4))

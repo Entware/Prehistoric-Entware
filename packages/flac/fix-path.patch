@@ -10,18 +10,18 @@
 -		$(PKG_INSTALL_DIR)/usr/include/FLAC \
 -		$(1)/usr/include/
 -	$(INSTALL_DIR) $(1)/usr/lib/pkgconfig
-+		$(PKG_INSTALL_DIR)/opt/include/FLAC \
++		$(PKG_INSTALL_DIR)/Apps/opt/include/FLAC \
 +		$(1)/opt/include/
 +	$(INSTALL_DIR) $(1)/opt/lib/pkgconfig
  	$(CP) \
 -		$(PKG_INSTALL_DIR)/usr/lib/libFLAC.{a,so*,la} \
 -		$(1)/usr/lib/
-+		$(PKG_INSTALL_DIR)/opt/lib/libFLAC.{a,so*,la} \
++		$(PKG_INSTALL_DIR)/Apps/opt/lib/libFLAC.{a,so*,la} \
 +		$(1)/opt/lib/
  	$(INSTALL_DATA) \
 -		$(PKG_INSTALL_DIR)/usr/lib/pkgconfig/* \
 -		$(1)/usr/lib/pkgconfig/
-+		$(PKG_INSTALL_DIR)/opt/lib/pkgconfig/* \
++		$(PKG_INSTALL_DIR)/Apps/opt/lib/pkgconfig/* \
 +		$(1)/opt/lib/pkgconfig/
  
 -	$(INSTALL_DIR) $(1)/usr/share/aclocal/
@@ -29,7 +29,7 @@
  	$(INSTALL_DATA) \
 -		$(PKG_INSTALL_DIR)/usr/share/aclocal/* \
 -		$(1)/usr/share/aclocal/
-+		$(PKG_INSTALL_DIR)/opt/share/aclocal/* \
++		$(PKG_INSTALL_DIR)/Apps/opt/share/aclocal/* \
 +		$(1)/opt/share/aclocal/
  endef
  
@@ -37,7 +37,7 @@
 -	$(INSTALL_DIR) $(1)/usr/lib
 -	$(CP) $(PKG_INSTALL_DIR)/usr/lib/libFLAC.so* $(1)/usr/lib/
 +	$(INSTALL_DIR) $(1)/opt/lib
-+	$(CP) $(PKG_INSTALL_DIR)/opt/lib/libFLAC.so* $(1)/opt/lib/
++	$(CP) $(PKG_INSTALL_DIR)/Apps/opt/lib/libFLAC.so* $(1)/opt/lib/
  endef
  
  $(eval $(call BuildPackage,libflac))

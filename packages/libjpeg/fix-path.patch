@@ -6,8 +6,8 @@
  		LIBTOOL="./libtool --tag=CC" \
 -		prefix="$(PKG_INSTALL_DIR)/usr" \
 -		exec_prefix="$(PKG_INSTALL_DIR)/usr" \
-+		prefix="$(PKG_INSTALL_DIR)/opt" \
-+		exec_prefix="$(PKG_INSTALL_DIR)/opt" \
++		prefix="$(PKG_INSTALL_DIR)/Apps/opt" \
++		exec_prefix="$(PKG_INSTALL_DIR)/Apps/opt" \
  		all
  	$(MAKE) -C $(PKG_BUILD_DIR) \
  		DESTDIR="$(PKG_INSTALL_DIR)" \
@@ -22,25 +22,25 @@
 -	$(INSTALL_DIR) $(1)/usr/lib
 -	$(CP) $(PKG_INSTALL_DIR)/usr/lib/libjpeg.{a,so*} $(1)/usr/lib/
 +	$(INSTALL_DIR) $(1)/opt/include
-+	$(CP) $(PKG_INSTALL_DIR)/opt/include/jpeglib.h $(1)/opt/include/
++	$(CP) $(PKG_INSTALL_DIR)/Apps/opt/include/jpeglib.h $(1)/opt/include/
 +	$(CP) $(PKG_BUILD_DIR)/jpegint.h $(1)/opt/include/
-+	$(CP) $(PKG_INSTALL_DIR)/opt/include/j{config,error,morecfg}.h $(1)/opt/include/
++	$(CP) $(PKG_INSTALL_DIR)/Apps/opt/include/j{config,error,morecfg}.h $(1)/opt/include/
 +	$(INSTALL_DIR) $(1)/opt/lib
-+	$(CP) $(PKG_INSTALL_DIR)/opt/lib/libjpeg.{a,so*} $(1)/opt/lib/
++	$(CP) $(PKG_INSTALL_DIR)/Apps/opt/lib/libjpeg.{a,so*} $(1)/opt/lib/
  endef
  
  define Package/libjpeg/install
 -	$(INSTALL_DIR) $(1)/usr/lib
 -	$(CP) $(PKG_INSTALL_DIR)/usr/lib/libjpeg.so.* $(1)/usr/lib/
 +	$(INSTALL_DIR) $(1)/opt/lib
-+	$(CP) $(PKG_INSTALL_DIR)/opt/lib/libjpeg.so.* $(1)/opt/lib/
++	$(CP) $(PKG_INSTALL_DIR)/Apps/opt/lib/libjpeg.so.* $(1)/opt/lib/
  endef
  
  define Package/jpeg-tools/install
 -	$(INSTALL_DIR) $(1)/usr/bin
 -	$(INSTALL_BIN) $(PKG_INSTALL_DIR)/usr/bin/*jpeg* $(1)/usr/bin/
 +	$(INSTALL_DIR) $(1)/opt/bin
-+	$(INSTALL_BIN) $(PKG_INSTALL_DIR)/opt/bin/*jpeg* $(1)/opt/bin/
++	$(INSTALL_BIN) $(PKG_INSTALL_DIR)/Apps/opt/bin/*jpeg* $(1)/opt/bin/
  endef
  
  $(eval $(call HostBuild))

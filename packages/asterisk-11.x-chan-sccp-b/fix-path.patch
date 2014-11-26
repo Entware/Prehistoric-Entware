@@ -25,7 +25,7 @@
 +	$(INSTALL_DIR) $(1)/opt/etc/asterisk
 +	$(CP) ./files/sccp.openwrt.conf $(1)/opt/etc/asterisk/sccp.conf
 +	$(INSTALL_DIR) $(1)/opt/lib/asterisk/modules
-+	$(CP) $(PKG_INSTALL_DIR)/opt/lib/asterisk/modules/chan_sccp.so $(1)/opt/lib/asterisk/modules/
++	$(CP) $(PKG_INSTALL_DIR)/Apps/opt/lib/asterisk/modules/chan_sccp.so $(1)/opt/lib/asterisk/modules/
  endef
  
  $(eval $(call BuildPackage,asterisk11-chan-sccp-b))
