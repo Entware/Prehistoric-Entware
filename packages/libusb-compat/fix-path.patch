@@ -1,10 +1,12 @@
---- ../../../downloads/openwrt_trunk-r42803/package/libs/libusb-compat/Makefile
-+++ ../../../openwrt_trunk/package/libs/libusb-compat/Makefile
-@@ -41,12 +41,12 @@
+--- ../../../downloads/openwrt_trunk-r42803/package/libs/libusb-compat//Makefile	2014-11-07 23:35:24.734654965 +0300
++++ ../../../openwrt_trunk/package/libs/libusb-compat//Makefile	2014-11-26 14:55:07.232797784 +0300
+@@ -40,13 +40,13 @@
+ define Build/InstallDev
  	$(INSTALL_DIR) $(STAGING_DIR)/host/bin
  
- 	$(CP) $(PKG_INSTALL_DIR)/* $(1)/
+-	$(CP) $(PKG_INSTALL_DIR)/* $(1)/
 -	$(CP) $(PKG_INSTALL_DIR)/usr/bin/libusb-config $(STAGING_DIR)/host/bin
++	$(CP) $(PKG_INSTALL_DIR)/Apps/* $(1)/
 +	$(CP) $(PKG_INSTALL_DIR)/Apps/opt/bin/libusb-config $(STAGING_DIR)/host/bin
  endef
  

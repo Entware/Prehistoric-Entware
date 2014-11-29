@@ -37,6 +37,7 @@ all: .toolchain_prepared
 		./$(CROSS)/ct-ng oldconfig && \
 		./$(CROSS)/ct-ng build \
 	)
+	patch -d $(TOP)/cross/targets/src/linux-2.6.31/ -p1 < kernel-scsi-h.patch
 	@touch $@
 
 $(TOP)/cross:

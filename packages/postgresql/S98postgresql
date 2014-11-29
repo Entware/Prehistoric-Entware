@@ -1,7 +1,7 @@
 #!/bin/sh
 
 # Installation prefix
-prefix="/opt"
+prefix="/Apps/opt"
 
 # Data directory
 PGDATA="$prefix/var/pgsql/data"

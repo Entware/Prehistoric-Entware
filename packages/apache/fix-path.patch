@@ -1,5 +1,5 @@
---- ../../../downloads/openwrt_trunk-r42803/feeds/packages/net/apache/Makefile	2014-10-15 10:43:09.823917919 +0400
-+++ ../../../openwrt_trunk/feeds/packages/net/apache/Makefile	2014-10-28 14:46:12.231974846 +0300
+--- ../../../downloads/openwrt_trunk-r42803/feeds/packages/net/apache/Makefile	2014-11-07 23:35:24.536148262 +0300
++++ ../../../openwrt_trunk/feeds/packages/net/apache/Makefile	2014-11-28 15:59:37.202935100 +0300
 @@ -9,7 +9,7 @@
  
  PKG_NAME:=apache
@@ -75,13 +75,13 @@
  		--enable-mime-magic \
  		--without-suexec-bin \
 -		--sysconfdir=/etc/apache \
-+		--sysconfdir=/opt/etc/apache \
++		--sysconfdir=/Apps/opt/etc/apache \
 +		--enable-modules=all \
  		ap_cv_void_ptr_lt_long=no \
 -		logfiledir="/var/log" \
 -		runtimedir="/var/run" \
-+		logfiledir="/opt/var/log" \
-+		runtimedir="/opt/var/run" \
++		logfiledir="/Apps/opt/var/log" \
++		runtimedir="/Apps/opt/var/run" \
  	)
  endef
  

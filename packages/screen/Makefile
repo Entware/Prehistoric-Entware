@@ -10,6 +10,7 @@ all: .done
 .done:
 	patch -d $(TOP) -p3 -i $(CURDIR)/fix-path.patch
 	cp -f ./500-no-stropts.patch ../../../openwrt_trunk/feeds/packages/utils/screen/patches/
+	cp -f ./600-no-libelf.patch ../../../openwrt_trunk/feeds/packages/utils/screen/patches/
 	@touch $@
 
 clean:

@@ -1,6 +1,11 @@
---- ../../../downloads/openwrt_trunk-r35474/package/libs/libusb/Makefile
-+++ ../../../openwrt_trunk/package/libs/libusb/Makefile
-@@ -42,8 +42,8 @@
+--- ../../../downloads/openwrt_trunk-r42803/package/libs/libusb//Makefile	2014-11-07 23:35:24.738654897 +0300
++++ ../../../openwrt_trunk/package/libs/libusb//Makefile	2014-11-26 14:47:31.122886558 +0300
+@@ -38,12 +38,12 @@
+ TARGET_CFLAGS += $(FPIC)
+ 
+ define Build/InstallDev
+-	$(CP) $(PKG_INSTALL_DIR)/* $(1)/
++	$(CP) $(PKG_INSTALL_DIR)/Apps/* $(1)/
  endef
  
  define Package/libusb-1.0/install

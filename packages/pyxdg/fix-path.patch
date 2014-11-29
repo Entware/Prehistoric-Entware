@@ -1,6 +1,6 @@
---- ../../../openwrt_trunk.orig/feeds/oldpackages/lang/pyxdg/Makefile
-+++ ../../../openwrt_trunk/feeds/oldpackages/lang/pyxdg/Makefile
-@@ -34,7 +34,7 @@
+--- ../../../downloads/openwrt_trunk-r42803/feeds/oldpackages/lang/pyxdg/Makefile	2014-11-07 23:35:24.502715101 +0300
++++ ../../../openwrt_trunk/feeds/oldpackages/lang/pyxdg/Makefile	2014-11-28 11:49:07.630602745 +0300
+@@ -34,13 +34,13 @@
  endef
  
  define Build/Compile
@@ -9,3 +9,10 @@
  endef
  
  define Package/pyxdg/install
+ 	$(INSTALL_DIR) $(1)$(PYTHON_PKG_DIR)
+ 	$(CP) \
+-	    $(PKG_INSTALL_DIR)$(PYTHON_PKG_DIR)/* \
++	    $(PKG_INSTALL_DIR)/Apps$(PYTHON_PKG_DIR)/* \
+ 	    $(1)$(PYTHON_PKG_DIR)
+ endef
+ 

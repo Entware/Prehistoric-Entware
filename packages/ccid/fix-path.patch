@@ -1,11 +1,11 @@
---- ../../../downloads/openwrt_trunk-r36151/feeds/packages/utils/ccid/Makefile
-+++ ../../../openwrt_trunk/feeds/packages/utils/ccid/Makefile
+--- ../../../downloads/openwrt_trunk-r42803/feeds/packages/utils/ccid/Makefile	2014-11-07 23:35:24.540429288 +0300
++++ ../../../openwrt_trunk/feeds/packages/utils/ccid/Makefile	2014-11-28 16:50:08.918453018 +0300
 @@ -42,11 +42,11 @@
  
  CONFIGURE_ARGS += \
  	--enable-embedded \
 -	--enable-usbdropdir=/usr/lib/pcsc/drivers
-+	--enable-usbdropdir=/opt/lib/pcsc/drivers
++	--enable-usbdropdir=/Apps/opt/lib/pcsc/drivers
  
  define Package/ccid/install
 -	$(INSTALL_DIR) $(1)/usr/lib/pcsc

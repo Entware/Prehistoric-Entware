@@ -1,5 +1,5 @@
---- ../../../downloads/openwrt_trunk-r42803/feeds/telephony/net/asterisk-1.8.x/Makefile
-+++ ../../../openwrt_trunk/feeds/telephony/net/asterisk-1.8.x/Makefile
+--- ../../../downloads/openwrt_trunk-r42803/feeds/telephony/net/asterisk-1.8.x/Makefile	2014-11-07 23:35:24.592139548 +0300
++++ ../../../openwrt_trunk/feeds/telephony/net/asterisk-1.8.x/Makefile	2014-11-29 19:32:13.850427910 +0300
 @@ -20,28 +20,28 @@
  include $(INCLUDE_DIR)/package.mk
  
@@ -200,10 +200,10 @@
 -		ASTDATADIR="/usr/lib/asterisk" \
 -		ASTKEYDIR="/usr/lib/asterisk" \
 -		ASTDBDIR="/usr/lib/asterisk" \
-+		ASTVARLIBDIR="/opt/lib/asterisk" \
-+		ASTDATADIR="/opt/lib/asterisk" \
-+		ASTKEYDIR="/opt/lib/asterisk" \
-+		ASTDBDIR="/opt/lib/asterisk" \
++		ASTVARLIBDIR="/Apps/opt/lib/asterisk" \
++		ASTDATADIR="/Apps/opt/lib/asterisk" \
++		ASTKEYDIR="/Apps/opt/lib/asterisk" \
++		ASTDBDIR="/Apps/opt/lib/asterisk" \
  		NOISY_BUILD="1" \
  		DEBUG="" \
  		OPTIMIZE="" \

@@ -1,5 +1,5 @@
---- ../../../openwrt_trunk.orig/feeds/oldpackages/net/squid/Makefile
-+++ ../../../openwrt_trunk/feeds/oldpackages/net/squid/Makefile
+--- ../../../downloads/openwrt_trunk-r42803/feeds/oldpackages/net/squid/Makefile	2014-11-07 23:35:24.468165764 +0300
++++ ../../../openwrt_trunk/feeds/oldpackages/net/squid/Makefile	2014-11-28 12:26:55.576647805 +0300
 @@ -39,8 +39,8 @@
  endef
  
@@ -18,9 +18,9 @@
 -	--datadir=/usr/share/squid \
 -	--libexecdir=/usr/lib/squid \
 -	--sysconfdir=/etc/squid \
-+	--datadir=/opt/share/squid \
-+	--libexecdir=/opt/lib/squid \
-+	--sysconfdir=/opt/etc/squid \
++	--datadir=/Apps/opt/share/squid \
++	--libexecdir=/Apps/opt/lib/squid \
++	--sysconfdir=/Apps/opt/etc/squid \
  	--enable-shared \
  	--enable-static \
  	--enable-x-accelerator-vary \

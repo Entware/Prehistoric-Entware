@@ -22,7 +22,7 @@ all: .buildroot_prepared
 	@for patch in `ls $(CURDIR)/patches/*.patch | sort`; do ( \
                 patch -d $(TOP) -p3 -i $$patch; \
         ); done
-	sed -i 's,__LINUX_DIR_PATH__,$$(TOPDIR)/cross/targets/src/linux-2.6.31,g' $(TOP)/openwrt_trunk/include/package-defaults.mk
+	sed -i 's,__LINUX_DIR_PATH__,$$(TOPDIR)/../cross/targets/src/linux-2.6.31,g' $(TOP)/openwrt_trunk/include/package-defaults.mk
 	@echo "Adding custom config..."
 	cp -f .config $(TOP)/openwrt_trunk/.config
 	sed -i -e '/^CONFIG_TOOLCHAIN_ROOT/s|=.*|="$(TOP)/i686-unknown-linux-gnu"|' $(TOP)/openwrt_trunk/.config

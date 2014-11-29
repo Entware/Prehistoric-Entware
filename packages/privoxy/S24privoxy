@@ -2,7 +2,7 @@
 
 ENABLED=yes
 PROCS=privoxy
-ARGS="/opt/etc/privoxy/config"
+ARGS="/Apps/opt/etc/privoxy/config"
 PREARGS=""
 DESC=$PROCS
 PATH=/Apps/opt/sbin:Apps/opt/bin:Apps/opt/usr/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin

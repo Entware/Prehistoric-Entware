@@ -1,23 +1,23 @@
-diff -urx .svn ../../../downloads/openwrt_trunk-r36556/feeds/oldpackages/net/privoxy/files/privoxy.config ../../../openwrt_trunk/feeds/oldpackages/net/privoxy/files/privoxy.config
---- ../../../downloads/openwrt_trunk-r36556/feeds/oldpackages/net/privoxy/files/privoxy.config	2013-05-06 15:25:41.763204416 +0400
-+++ ../../../openwrt_trunk/feeds/oldpackages/net/privoxy/files/privoxy.config	2013-05-06 15:36:22.059192743 +0400
+diff -urx .svn ../../../downloads/openwrt_trunk-r42803/feeds/oldpackages/net/privoxy/files/privoxy.config ../../../openwrt_trunk/feeds/oldpackages/net/privoxy/files/privoxy.config
+--- ../../../downloads/openwrt_trunk-r42803/feeds/oldpackages/net/privoxy/files/privoxy.config	2014-11-07 23:35:24.463174332 +0300
++++ ../../../openwrt_trunk/feeds/oldpackages/net/privoxy/files/privoxy.config	2014-11-27 18:21:50.380456919 +0300
 @@ -1,5 +1,5 @@
 -confdir /etc/privoxy
 -logdir /var/log
-+confdir /opt/etc/privoxy
-+logdir /opt/var/log
++confdir /Apps/opt/etc/privoxy
++logdir /Apps/opt/var/log
  filterfile default.filter
  logfile privoxy
  actionsfile match-all.action # Actions that are applied to all sites and maybe overruled later on.
-diff -urx .svn ../../../downloads/openwrt_trunk-r36556/feeds/oldpackages/net/privoxy/Makefile ../../../openwrt_trunk/feeds/oldpackages/net/privoxy/Makefile
---- ../../../downloads/openwrt_trunk-r36556/feeds/oldpackages/net/privoxy/Makefile	2013-05-06 15:25:41.763204416 +0400
-+++ ../../../openwrt_trunk/feeds/oldpackages/net/privoxy/Makefile	2013-05-06 15:36:22.059192743 +0400
+diff -urx .svn ../../../downloads/openwrt_trunk-r42803/feeds/oldpackages/net/privoxy/Makefile ../../../openwrt_trunk/feeds/oldpackages/net/privoxy/Makefile
+--- ../../../downloads/openwrt_trunk-r42803/feeds/oldpackages/net/privoxy/Makefile	2014-11-07 23:35:24.463174332 +0300
++++ ../../../openwrt_trunk/feeds/oldpackages/net/privoxy/Makefile	2014-11-27 18:20:41.455998182 +0300
 @@ -43,22 +43,22 @@
  endef
  
  CONFIGURE_ARGS += \
 -	--sysconfdir=/etc/privoxy \
-+	--sysconfdir=/opt/etc/privoxy \
++	--sysconfdir=/Apps/opt/etc/privoxy \
  
  MAKE_FLAGS :=
  

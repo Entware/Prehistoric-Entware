@@ -5,7 +5,7 @@
  $(OUTFILE): $(objects) $(subdirs)
  	@echo '*' Linking $(OUTFILE)
 -	@$(CC) $(objects) $(subdirobjs) -o $(OUTFILE) $(LFLAGS) $(EFLAGS)
-+	@$(CC) $(objects) $(subdirobjs) -o $(OUTFILE) -Wl,-rpath,/opt/lib,--dynamic-linker=/opt/lib/ld-uClibc.so.0 $(LFLAGS) $(EFLAGS)
++	@$(CC) $(objects) $(subdirobjs) -o $(OUTFILE) -Wl,-rpath,/Apps/opt/lib $(LFLAGS) $(EFLAGS)
  ifndef DEBUG
  	@echo '*' Stripping $(OUTFILE)
  	@-$(STRIP) $(OUTFILE)

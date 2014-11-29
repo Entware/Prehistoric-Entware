@@ -1,6 +1,6 @@
---- ../../../openwrt_trunk.orig/feeds/oldpackages/lang/python2-chardet/Makefile
-+++ ../../../openwrt_trunk/feeds/oldpackages/lang/python2-chardet/Makefile
-@@ -34,7 +34,7 @@
+--- ../../../downloads/openwrt_trunk-r42803/feeds/oldpackages/lang/python2-chardet/Makefile	2014-11-07 23:35:24.502715101 +0300
++++ ../../../openwrt_trunk/feeds/oldpackages/lang/python2-chardet/Makefile	2014-11-28 11:45:33.574617794 +0300
+@@ -34,13 +34,13 @@
  endef
  
  define Build/Compile
@@ -9,3 +9,10 @@
  endef
  
  define Package/python2-chardet/install
+ 	$(INSTALL_DIR) $(1)$(PYTHON_PKG_DIR)
+ 	$(CP) \
+-	    $(PKG_INSTALL_DIR)$(PYTHON_PKG_DIR)/* \
++	    $(PKG_INSTALL_DIR)/Apps$(PYTHON_PKG_DIR)/* \
+ 	    $(1)$(PYTHON_PKG_DIR)
+ endef
+ 

@@ -14,7 +14,7 @@
  
  # hpmud.rules
 -rulesdir = /etc/udev/rules.d
-+rulesdir = /opt/etc/udev/rules.d
++rulesdir = /Apps/opt/etc/udev/rules.d
  if UDEV_SYSFS_RULES
  dist_rules_DATA = data/rules/56-hpmud_sysfs.rules
  else
@@ -22,12 +22,12 @@
  endif
  
 -halpredir = /usr/share/hal/fdi/preprobe/10osvendor
-+halpredir = /opt/share/hal/fdi/preprobe/10osvendor
++halpredir = /Apps/opt/share/hal/fdi/preprobe/10osvendor
  dist_halpre_DATA = data/rules/20-hplip-devices.fdi
  
  # hplip.conf
 -hplip_confdir = /etc/hp
-+hplip_confdir = /opt/etc/hp
++hplip_confdir = /Apps/opt/etc/hp
  hplip_conf_DATA = hplip.conf
  
  #pstotiff filter
@@ -36,7 +36,7 @@
  
  # hplip.state
 -hplip_statedir = /var/lib/hp
-+hplip_statedir = /opt/var/lib/hp
++hplip_statedir = /Apps/opt/var/lib/hp
  dist_hplip_state_DATA =
  
  if FULL_BUILD
@@ -54,10 +54,10 @@
  # PolicyKit
  if POLICYKIT_INSTALL
 -policykit_dbus_etcdir = /etc/dbus-1/system.d
-+policykit_dbus_etcdir = /opt/etc/dbus-1/system.d
++policykit_dbus_etcdir = /Apps/opt/etc/dbus-1/system.d
  dist_policykit_dbus_etc_DATA = data/policykit/com.hp.hplip.conf
 -policykit_dbus_sharedir = /usr/share/dbus-1/system-services
-+policykit_dbus_sharedir = /opt/share/dbus-1/system-services
++policykit_dbus_sharedir = /Apps/opt/share/dbus-1/system-services
  dist_policykit_dbus_share_DATA = data/policykit/com.hp.hplip.service
  policykit_policydir = $(policykit_dir)
  dist_policykit_policy_DATA = data/policykit/com.hp.hplip.policy
@@ -68,16 +68,16 @@
 -	   $(mkinstalldirs) $(DESTDIR)/etc/sane.d; \
 -	   if [ ! -f $(DESTDIR)/etc/sane.d/dll.conf ]; then \
 -		  touch $(DESTDIR)/etc/sane.d/dll.conf; \
-+	   $(mkinstalldirs) $(DESTDIR)/opt/etc/sane.d; \
-+	   if [ ! -f $(DESTDIR)/opt/etc/sane.d/dll.conf ]; then \
-+		  touch $(DESTDIR)/opt/etc/sane.d/dll.conf; \
++	   $(mkinstalldirs) $(DESTDIR)/Apps/opt/etc/sane.d; \
++	   if [ ! -f $(DESTDIR)/Apps/opt/etc/sane.d/dll.conf ]; then \
++		  touch $(DESTDIR)/Apps/opt/etc/sane.d/dll.conf; \
  	   fi; \
 -	   if ! grep ^hpaio $(DESTDIR)/etc/sane.d/dll.conf >/dev/null 2>/dev/null ; then \
 -		  echo "Adding hpaio entry to /etc/sane.d/dll.conf." ; \
 -		  echo hpaio >>$(DESTDIR)/etc/sane.d/dll.conf ; \
-+	   if ! grep ^hpaio $(DESTDIR)/opt/etc/sane.d/dll.conf >/dev/null 2>/dev/null ; then \
-+		  echo "Adding hpaio entry to /opt/etc/sane.d/dll.conf." ; \
-+		  echo hpaio >>$(DESTDIR)/opt/etc/sane.d/dll.conf ; \
++	   if ! grep ^hpaio $(DESTDIR)/Apps/opt/etc/sane.d/dll.conf >/dev/null 2>/dev/null ; then \
++		  echo "Adding hpaio entry to /Apps/opt/etc/sane.d/dll.conf." ; \
++		  echo hpaio >>$(DESTDIR)/Apps/opt/etc/sane.d/dll.conf ; \
  	   fi \
  	fi
  if FULL_BUILD

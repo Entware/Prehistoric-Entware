@@ -1,5 +1,5 @@
---- ../../../downloads/mipsel-hardfloat/openwrt_trunk-r40423/feeds/oldpackages/utils/avrdude/Makefile
-+++ ../../../openwrt_trunk/feeds/oldpackages/utils/avrdude/Makefile
+--- ../../../downloads/openwrt_trunk-r42803/feeds/oldpackages/utils/avrdude//Makefile	2014-11-07 23:35:24.492147100 +0300
++++ ../../../openwrt_trunk/feeds/oldpackages/utils/avrdude//Makefile	2014-11-26 14:56:25.168773503 +0300
 @@ -48,14 +48,14 @@
  endef
  
@@ -14,9 +14,9 @@
 -	$(INSTALL_DIR) $(1)/usr/bin
 -	$(INSTALL_BIN) $(PKG_INSTALL_DIR)/usr/bin/avrdude $(1)/usr/bin/
 +	$(INSTALL_DIR) $(1)/opt/etc
-+	$(INSTALL_CONF) $(PKG_INSTALL_DIR)/opt/etc/avrdude.conf $(1)/opt/etc/
++	$(INSTALL_CONF) $(PKG_INSTALL_DIR)/Apps/opt/etc/avrdude.conf $(1)/opt/etc/
 +	$(INSTALL_DIR) $(1)/opt/bin
-+	$(INSTALL_BIN) $(PKG_INSTALL_DIR)/opt/bin/avrdude $(1)/opt/bin/
++	$(INSTALL_BIN) $(PKG_INSTALL_DIR)/Apps/opt/bin/avrdude $(1)/opt/bin/
  endef
  
  $(eval $(call BuildPackage,avrdude))

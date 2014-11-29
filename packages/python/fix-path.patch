@@ -1,6 +1,6 @@
-diff -urx .svn ../../../openwrt_trunk.orig/feeds/oldpackages/lang/python/files/python-package.mk ../../../openwrt_trunk/feeds/oldpackages/lang/python/files/python-package.mk
---- ../../../openwrt_trunk.orig/feeds/oldpackages/lang/python/files/python-package.mk	2012-07-10 18:59:23.113220818 +0400
-+++ ../../../openwrt_trunk/feeds/oldpackages/lang/python/files/python-package.mk	2012-07-10 19:00:16.448550302 +0400
+diff -urx .svn ../../../downloads/openwrt_trunk-r42803/feeds/oldpackages/lang/python/files/python-package.mk ../../../openwrt_trunk/feeds/oldpackages/lang/python/files/python-package.mk
+--- ../../../downloads/openwrt_trunk-r42803/feeds/oldpackages/lang/python/files/python-package.mk	2014-11-07 23:35:24.502715101 +0300
++++ ../../../openwrt_trunk/feeds/oldpackages/lang/python/files/python-package.mk	2014-11-28 10:56:51.811144199 +0300
 @@ -7,16 +7,16 @@
  
  PYTHON_VERSION=2.7
@@ -21,15 +21,36 @@ diff -urx .svn ../../../openwrt_trunk.orig/feeds/oldpackages/lang/python/files/p
  
  define HostPython
  	(	export PYTHONPATH="$(PYTHON_LIB_DIR):$(STAGING_DIR)/$(PYTHON_PKG_DIR)"; \
-diff -urx .svn ../../../openwrt_trunk.orig/feeds/oldpackages/lang/python/Makefile ../../../openwrt_trunk/feeds/oldpackages/lang/python/Makefile
---- ../../../openwrt_trunk.orig/feeds/oldpackages/lang/python/Makefile	2012-07-10 18:59:23.109220868 +0400
-+++ ../../../openwrt_trunk/feeds/oldpackages/lang/python/Makefile	2012-07-11 12:44:24.596500063 +0400
+@@ -39,11 +39,11 @@
+ 			if [ -n "$$$$$$$$fperm" ]; then \
+ 			  dperm="-m$$$$$$$$fperm"; \
+ 			else \
+-			  dperm=`stat -c "%a" $(PKG_INSTALL_DIR)$$$$$$$$dpath`; \
++			  dperm=`stat -c "%a" $(PKG_INSTALL_DIR)/Apps$$$$$$$$dpath`; \
+ 			fi; \
+ 			mkdir -p $$$$$$$$$dperm $$(1)$$$$$$$$dpath; \
+ 			echo "copying: '$$$$$$$$fspec'"; \
+-			cp -fpR $(PKG_INSTALL_DIR)$$$$$$$$fspec $$(1)$$$$$$$$dpath/; \
++			cp -fpR $(PKG_INSTALL_DIR)/Apps$$$$$$$$fspec $$(1)$$$$$$$$dpath/; \
+ 			if [ -n "$$$$$$$$fperm" ]; then \
+ 			  chmod -R $$$$$$$$fperm $$(1)$$$$$$$$fspec; \
+ 			fi; \
+@@ -73,5 +73,5 @@
+ 		, \
+ 		./setup.py $(2) \
+ 	)
+-	find $(PKG_INSTALL_DIR) -name "*\.pyc" -o -name "*\.pyo" | xargs rm -f
++	find $(PKG_INSTALL_DIR)/Apps -name "*\.pyc" -o -name "*\.pyo" | xargs rm -f
+ endef
+diff -urx .svn ../../../downloads/openwrt_trunk-r42803/feeds/oldpackages/lang/python/Makefile ../../../openwrt_trunk/feeds/oldpackages/lang/python/Makefile
+--- ../../../downloads/openwrt_trunk-r42803/feeds/oldpackages/lang/python/Makefile	2014-11-07 23:35:24.502715101 +0300
++++ ../../../openwrt_trunk/feeds/oldpackages/lang/python/Makefile	2014-11-28 08:58:10.919289998 +0300
 @@ -156,11 +156,11 @@
  	$(CP) $(STAGING_DIR_HOST)/bin/pgen $(PKG_BUILD_DIR)/hostpgen
  	$(CP) $(STAGING_DIR_HOST)/bin/python$(PYTHON_VERSION) $(PKG_BUILD_DIR)/hostpython
  	$(call Build/Configure/Default, \
 -		--sysconfdir=/etc \
-+		--sysconfdir=/opt/etc \
++		--sysconfdir=/Apps/opt/etc \
  		--disable-shared \
  		--without-cxx-main \
  		--with-threads \

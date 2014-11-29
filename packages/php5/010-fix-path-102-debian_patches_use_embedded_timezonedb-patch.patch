@@ -5,7 +5,7 @@
  +#define ZONEINFO_PREFIX HAVE_SYSTEM_TZDATA_PREFIX
  +#else
 -+#define ZONEINFO_PREFIX "/usr/share/zoneinfo"
-++#define ZONEINFO_PREFIX "/opt/share/zoneinfo"
+++#define ZONEINFO_PREFIX "/Apps/opt/share/zoneinfo"
  +#endif
  +
  +/* System timezone database pointer. */

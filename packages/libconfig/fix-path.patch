@@ -1,6 +1,11 @@
---- ../../../openwrt_trunk/package/libs/libconfig/Makefile.orig
-+++ ../../../openwrt_trunk/package/libs/libconfig/Makefile
-@@ -51,8 +51,8 @@
+--- ../../../downloads/openwrt_trunk-r42803/package/libs/libconfig/Makefile	2014-11-07 23:35:24.890700705 +0300
++++ ../../../openwrt_trunk/package/libs/libconfig/Makefile	2014-11-29 16:59:52.275442476 +0300
+@@ -47,12 +47,12 @@
+ 	--disable-cxx
+ 
+ define Build/InstallDev
+-	$(CP) $(PKG_INSTALL_DIR)/* $(1)/
++	$(CP) $(PKG_INSTALL_DIR)/Apps/* $(1)/
  endef
  
  define Package/libconfig/install

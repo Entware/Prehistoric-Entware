@@ -1,11 +1,11 @@
---- ../../../downloads/openwrt_trunk-r42803/feeds/packages/multimedia/icecast/Makefile
-+++ ../../../openwrt_trunk/feeds/packages/multimedia/icecast/Makefile
+--- ../../../downloads/openwrt_trunk-r42803/feeds/packages/multimedia/icecast/Makefile	2014-11-07 23:35:24.544155698 +0300
++++ ../../../openwrt_trunk/feeds/packages/multimedia/icecast/Makefile	2014-11-28 20:49:33.651332263 +0300
 @@ -21,7 +21,7 @@
  include $(INCLUDE_DIR)/package.mk
  
  TREMOR_BUILD_DIR=$(PKG_BUILD_DIR)/libvorbisidec-1.2.0-dave
 -TREMOR_DIR=$(TREMOR_BUILD_DIR)/ipkg-install/usr
-+TREMOR_DIR=$(TREMOR_BUILD_DIR)/ipkg-install/opt
++TREMOR_DIR=$(TREMOR_BUILD_DIR)/ipkg-install/Apps/opt
  
  define Package/icecast
    SECTION:=multimedia

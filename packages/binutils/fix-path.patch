@@ -1,6 +1,11 @@
---- ../../../downloads/openwrt_trunk-r42803/package/devel/binutils/Makefile
-+++ ../../../openwrt_trunk/package/devel/binutils/Makefile
-@@ -66,17 +66,16 @@
+--- ../../../downloads/openwrt_trunk-r42803/package/devel/binutils//Makefile	2014-11-07 23:35:26.231309440 +0300
++++ ../../../openwrt_trunk/package/devel/binutils//Makefile	2014-11-26 13:57:24.774797310 +0300
+@@ -62,21 +62,20 @@
+ endef
+ 
+ define Build/InstallDev
+-	$(CP) $(PKG_INSTALL_DIR)/* $(1)/
++	$(CP) $(PKG_INSTALL_DIR)/Apps/* $(1)/
  endef
  
  define Package/objdump/install

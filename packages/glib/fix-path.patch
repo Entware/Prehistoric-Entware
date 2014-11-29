@@ -1,15 +1,17 @@
---- ../../../openwrt_trunk.orig/feeds/oldpackages/libs/glib/Makefile
-+++ ../../../openwrt_trunk/feeds/oldpackages/libs/glib/Makefile
-@@ -72,17 +72,17 @@
+--- ../../../downloads/openwrt_trunk-r42803/feeds/oldpackages/libs/glib/Makefile	2014-11-07 23:35:24.435867677 +0300
++++ ../../../openwrt_trunk/feeds/oldpackages/libs/glib/Makefile	2014-11-26 15:09:40.248211179 +0300
+@@ -71,18 +71,18 @@
+ 
  define Build/InstallDev
  	$(INSTALL_DIR) $(1) $(2)/bin
- 	$(CP) $(PKG_INSTALL_DIR)/* $(1)/
+-	$(CP) $(PKG_INSTALL_DIR)/* $(1)/
 -	$(CP) $(PKG_BUILD_DIR)/.libs/*.a $(PKG_BUILD_DIR)/*/.libs/*.a $(1)/usr/lib
 -	$(CP) $(PKG_BUILD_DIR)/glibconfig-sysdefs.h $(1)/usr/include/glib-1.2/
 -	ln -sf $(STAGING_DIR)/usr/bin/glib-config $(2)/bin/
 -	$(SED) 's,-I$$$${prefix}/include/glib,-I$(STAGING_DIR)/usr/include/glib,g' $(1)/usr/bin/glib-config
 -	$(SED) 's,-I$$$${exec_prefix}/lib/glib,-I$(STAGING_DIR)/usr/lib/glib,g' $(1)/usr/bin/glib-config
 -	$(SED) 's,-L$$$${exec_prefix}/lib,,g' $(1)/usr/bin/glib-config
++	$(CP) $(PKG_INSTALL_DIR)/Apps/* $(1)/
 +	$(CP) $(PKG_BUILD_DIR)/.libs/*.a $(PKG_BUILD_DIR)/*/.libs/*.a $(1)/opt/lib
 +	$(CP) $(PKG_BUILD_DIR)/glibconfig-sysdefs.h $(1)/opt/include/glib-1.2/
 +	ln -sf $(STAGING_DIR)/opt/bin/glib-config $(2)/bin/

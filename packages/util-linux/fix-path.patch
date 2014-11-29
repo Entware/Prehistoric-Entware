@@ -1,7 +1,11 @@
---- ../../../downloads/openwrt_trunk-r42803/package/utils/util-linux/Makefile
-+++ ../../../openwrt_trunk/package/utils/util-linux/Makefile
-@@ -45,22 +45,22 @@
- 		DESTDIR="$(1)" \
+--- ../../../downloads/openwrt_trunk-r42803/package/utils/util-linux/Makefile	2014-11-07 23:35:24.914656035 +0300
++++ ../../../openwrt_trunk/package/utils/util-linux/Makefile	2014-11-26 18:13:02.647384816 +0300
+@@ -42,25 +42,25 @@
+ define Build/InstallDev
+ 	$(MAKE) -C $(PKG_BUILD_DIR) \
+ 		BUILDCC="$(HOSTCC)" \
+-		DESTDIR="$(1)" \
++		DESTDIR="$(PKG_INSTALL_DIR)" \
  		installdirs install-data
  
 -	$(INSTALL_DIR) $(1)/usr/lib/pkgconfig

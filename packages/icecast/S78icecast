@@ -2,7 +2,7 @@
 
 ENABLED=yes
 PROCS=icecast
-ARGS="-c /opt/etc/icecast.xml -b"
+ARGS="-c /Apps/opt/etc/icecast.xml -b"
 PREARGS=""
 DESC=$PROCS
 PATH=/Apps/opt/sbin:Apps/opt/bin:Apps/opt/usr/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin

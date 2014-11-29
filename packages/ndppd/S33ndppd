@@ -2,7 +2,7 @@
 
 ENABLED=yes
 PROCS=ndppd
-ARGS="-p /opt/var/run/ndppd.pid -d"
+ARGS="-p /Apps/opt/var/run/ndppd.pid -d"
 PREARGS=""
 DESC=$PROCS
 PATH=/Apps/opt/sbin:Apps/opt/bin:Apps/opt/usr/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin

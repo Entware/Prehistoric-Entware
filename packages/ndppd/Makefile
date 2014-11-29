@@ -11,6 +11,7 @@ all: .done
 	patch -d $(TOP) -p3 -i $(CURDIR)/fix-path.patch
 	mkdir -p ../../../openwrt_trunk/feeds/routing/ndppd/patches/
 	cp -f ./500-config-path.patch ../../../openwrt_trunk/feeds/routing/ndppd/patches/
+	cp -f ./600-ether.patch ../../../openwrt_trunk/feeds/routing/ndppd/patches/
 	cp -f ./S33ndppd ../../../openwrt_trunk/feeds/routing/ndppd/files/
 	@touch $@
 

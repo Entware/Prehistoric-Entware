@@ -2,7 +2,7 @@
 
 ENABLED=yes
 PROCS=bitlbee
-ARGS="-D -c /opt/etc/bitlbee/bitlbee.conf"
+ARGS="-D -c /Apps/opt/etc/bitlbee/bitlbee.conf"
 PREARGS=""
 DESC=$PROCS
 PATH=/Apps/opt/sbin:Apps/opt/bin:Apps/opt/usr/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin

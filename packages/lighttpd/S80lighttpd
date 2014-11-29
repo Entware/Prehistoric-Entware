@@ -2,7 +2,7 @@
 
 ENABLED=yes
 PROCS=lighttpd
-ARGS="-f /opt/etc/lighttpd/lighttpd.conf"
+ARGS="-f /Apps/opt/etc/lighttpd/lighttpd.conf"
 PREARGS=""
 DESC=$PROCS
 PATH=/Apps/opt/sbin:Apps/opt/bin:Apps/opt/usr/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin

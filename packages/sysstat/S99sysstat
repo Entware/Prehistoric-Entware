@@ -1,6 +1,6 @@
 #!/bin/sh
 
-prefix="/opt"
+prefix="/Apps/opt"
 PATH=${prefix}/bin:${prefix}/sbin:/sbin:/bin:/usr/sbin:/usr/bin
 
 case "$1" in

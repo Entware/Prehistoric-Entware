@@ -2,7 +2,7 @@
 
 ENABLED=yes
 PROCS=aria2c
-ARGS="--conf-path=/opt/etc/aria2.conf"
+ARGS="--conf-path=/Apps/opt/etc/aria2.conf"
 PREARGS=""
 DESC=$PROCS
 PATH=/Apps/opt/sbin:Apps/opt/bin:Apps/opt/usr/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin

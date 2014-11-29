@@ -1,6 +1,6 @@
-diff -ur ../../../downloads/openwrt_trunk-r42803/feeds/packages/utils/dbus/files/dbus-launch ../../../openwrt_trunk/feeds/packages/utils/dbus/files/dbus-launch
---- ../../../downloads/openwrt_trunk-r42803/feeds/packages/utils/dbus/files/dbus-launch	2014-10-06 15:46:23.769250644 +0400
-+++ ../../../openwrt_trunk/feeds/packages/utils/dbus/files/dbus-launch	2014-10-07 11:59:09.327925137 +0400
+diff -urx .svn ../../../downloads/openwrt_trunk-r42803/feeds/packages/utils/dbus/files/dbus-launch ../../../openwrt_trunk/feeds/packages/utils/dbus/files/dbus-launch
+--- ../../../downloads/openwrt_trunk-r42803/feeds/packages/utils/dbus/files/dbus-launch	2014-11-07 23:35:24.536148262 +0300
++++ ../../../openwrt_trunk/feeds/packages/utils/dbus/files/dbus-launch	2014-11-26 12:32:11.258811720 +0300
 @@ -5,8 +5,8 @@
  # dbus-launch-x package. The script is used to prefer dbus-launch with x over
  # the dbus-lauch without x.
@@ -13,9 +13,9 @@ diff -ur ../../../downloads/openwrt_trunk-r42803/feeds/packages/utils/dbus/files
 -	exec /usr/bin/dbus-launch.real $@
 +	exec /opt/bin/dbus-launch.real $@
  fi
-diff -ur ../../../downloads/openwrt_trunk-r42803/feeds/packages/utils/dbus/Makefile ../../../openwrt_trunk/feeds/packages/utils/dbus/Makefile
---- ../../../downloads/openwrt_trunk-r42803/feeds/packages/utils/dbus/Makefile	2014-10-06 15:46:23.773250645 +0400
-+++ ../../../openwrt_trunk/feeds/packages/utils/dbus/Makefile	2014-10-07 11:59:09.327925137 +0400
+diff -urx .svn ../../../downloads/openwrt_trunk-r42803/feeds/packages/utils/dbus/Makefile ../../../openwrt_trunk/feeds/packages/utils/dbus/Makefile
+--- ../../../downloads/openwrt_trunk-r42803/feeds/packages/utils/dbus/Makefile	2014-11-07 23:35:24.536148262 +0300
++++ ../../../openwrt_trunk/feeds/packages/utils/dbus/Makefile	2014-11-26 15:29:57.966815124 +0300
 @@ -24,8 +24,7 @@
  include $(INCLUDE_DIR)/package.mk
  
@@ -33,12 +33,12 @@ diff -ur ../../../downloads/openwrt_trunk-r42803/feeds/packages/utils/dbus/Makef
 -	--with-dbus-daemondir="/usr/sbin" \
 -	--with-system-socket="/var/run/dbus/system_bus_socket" \
 -	--with-system-pid-file="/var/run/dbus.pid" \
-+	--with-dbus-daemondir="/opt/sbin" \
-+	--with-system-socket="/opt/var/run/dbus/system_bus_socket" \
-+	--with-system-pid-file="/opt/var/run/dbus.pid" \
++	--with-dbus-daemondir="/Apps/opt/sbin" \
++	--with-system-socket="/Apps/opt/var/run/dbus/system_bus_socket" \
++	--with-system-pid-file="/Apps/opt/var/run/dbus.pid" \
  	--without-x \
 -	--libexecdir=/usr/lib/dbus-1
-+	--libexecdir=/opt/lib/dbus-1
++	--libexecdir=/Apps/opt/lib/dbus-1
  
  CONFIGURE_VARS+= \
  	ac_cv_have_abstract_sockets="yes" \

@@ -1,5 +1,5 @@
---- ../../../openwrt_trunk.orig/feeds/packages/libs/apr/Makefile
-+++ ../../../openwrt_trunk/feeds/packages/libs/apr/Makefile
+--- ../../../downloads/openwrt_trunk-r42803/feeds/packages/libs/apr/Makefile	2014-11-07 23:35:24.512552770 +0300
++++ ../../../openwrt_trunk/feeds/packages/libs/apr/Makefile	2014-11-28 14:24:37.999638902 +0300
 @@ -42,6 +42,8 @@
  
  # XXX: ac_cv_sizeof_struct_iovec=1 is just to trick configure
@@ -42,13 +42,13 @@
 +		$(1)/opt/lib/pkgconfig/
 +	$(CP)   $(PKG_INSTALL_DIR)/Apps/opt/share/build-1/* \
 +		$(1)/opt/share/build-1/
-+	$(SED) 's,^datadir=\"/opt/share\",datadir=\"$(STAGING_DIR)/opt/share\",g' $(1)/opt/bin/apr-1-config
-+	$(SED) 's,^installbuilddir=\"/opt/share/build-1\",installbuilddir=\"$(STAGING_DIR)/opt/share/build-1\",g' $(1)/opt/bin/apr-1-config
++	$(SED) 's,^datadir=\"/Apps/opt/share\",datadir=\"$(STAGING_DIR)/opt/share\",g' $(1)/opt/bin/apr-1-config
++	$(SED) 's,^installbuilddir=\"/Apps/opt/share/build-1\",installbuilddir=\"$(STAGING_DIR)/opt/share/build-1\",g' $(1)/opt/bin/apr-1-config
 +	$(SED) 's,^libdir=\"$$$${exec_prefix}/lib,libdir=\"$(STAGING_DIR)/opt/lib,g' $(1)/opt/bin/apr-1-config
 +	$(SED) 's,^includedir=\"$$$${prefix}/include/,includedir=\"$(STAGING_DIR)/opt/include/,g' $(1)/opt/bin/apr-1-config
 +	$(SED) 's,-L$$$$libdir,,g' $(1)/opt/bin/apr-1-config
 +	$(SED) 's,-R$$$$libdir,,g' $(1)/opt/bin/apr-1-config
-+	$(SED) 's,/opt/share/build-1,$(STAGING_DIR)/opt/share/build-1,g' $(1)/opt/share/build-1/apr_rules.mk
++	$(SED) 's,/Apps/opt/share/build-1,$(STAGING_DIR)/opt/share/build-1,g' $(1)/opt/share/build-1/apr_rules.mk
  endef
  
  define Package/libapr/install

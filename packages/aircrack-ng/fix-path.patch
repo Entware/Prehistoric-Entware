@@ -1,11 +1,11 @@
---- ../../../openwrt_trunk.orig/feeds/oldpackages/net/aircrack-ng/Makefile
-+++ ../../../openwrt_trunk/feeds/oldpackages/net/aircrack-ng/Makefile
+--- ../../../downloads/openwrt_trunk-r42803/feeds/oldpackages/net/aircrack-ng//Makefile	2014-11-07 23:35:24.472278105 +0300
++++ ../../../openwrt_trunk/feeds/oldpackages/net/aircrack-ng//Makefile	2014-11-26 14:21:45.550912413 +0300
 @@ -38,15 +38,15 @@
  	CFLAGS="$(TARGET_CFLAGS) -Wall -Iinclude/ $(TARGET_CPPFLAGS) -D_REVISION=0" \
  	LDFLAGS="$(TARGET_LDFLAGS)" \
  	OSNAME=Linux \
 -	prefix="/usr" \
-+	prefix="/opt" \
++	prefix="/Apps/opt" \
  	sqlite="false" \
  	unstable="true"
  

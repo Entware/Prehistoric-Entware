@@ -1,5 +1,5 @@
---- ../../../openwrt_trunk.orig/feeds/oldpackages/libs/clearsilver/Makefile
-+++ ../../../openwrt_trunk/feeds/oldpackages/libs/clearsilver/Makefile
+--- ../../../downloads/openwrt_trunk-r42803/feeds/oldpackages/libs/clearsilver/Makefile	2014-11-07 23:35:24.439626265 +0300
++++ ../../../openwrt_trunk/feeds/oldpackages/libs/clearsilver/Makefile	2014-11-26 17:44:25.400388894 +0300
 @@ -32,7 +32,7 @@
    TITLE:=ClearSilver template system
    URL:=http://www.clearsilver.net/
@@ -14,11 +14,16 @@
  	--disable-java \
  	--disable-csharp \
 -	--prefix=/usr
-+	--prefix=/opt
++	--prefix=/Apps/opt
  
  ifeq ($(SDK)$(CONFIG_CLEARSILVER_ENABLE_COMPRESSION),y)
  	CONFIGURE_ARGS+= \
-@@ -96,7 +96,7 @@
+@@ -92,11 +92,11 @@
+ 	OSTYPE=Linux
+ 
+ define Build/InstallDev
+-	$(CP) $(PKG_INSTALL_DIR)/* $(1)/
++	$(CP) $(PKG_INSTALL_DIR)/Apps/* $(1)/
  endef
  
  define Package/clearsilver/install

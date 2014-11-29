@@ -1,6 +1,11 @@
---- ../../../openwrt_trunk.orig/feeds/packages/libs/libsndfile/Makefile
-+++ ../../../openwrt_trunk/feeds/packages/libs/libsndfile/Makefile
-@@ -58,8 +58,8 @@
+--- ../../../downloads/openwrt_trunk-r42803/feeds/packages/libs/libsndfile/Makefile	2014-11-07 23:35:24.512552770 +0300
++++ ../../../openwrt_trunk/feeds/packages/libs/libsndfile/Makefile	2014-11-28 21:55:05.153570242 +0300
+@@ -54,12 +54,12 @@
+ 
+ define Build/InstallDev
+ 	$(INSTALL_DIR) $(1)
+-	$(CP) $(PKG_INSTALL_DIR)/* $(1)/
++	$(CP) $(PKG_INSTALL_DIR)/Apps/* $(1)/
  endef
  
  define Package/libsndfile/install

@@ -1,5 +1,5 @@
---- ../../../downloads/openwrt_trunk-r42803/feeds/packages/net/freeradius2/Makefile
-+++ ../../../openwrt_trunk/feeds/packages/net/freeradius2/Makefile
+--- ../../../downloads/openwrt_trunk-r42803/feeds/packages/net/freeradius2/Makefile	2014-11-07 23:35:24.536148262 +0300
++++ ../../../openwrt_trunk/feeds/packages/net/freeradius2/Makefile	2014-11-28 17:12:07.729037729 +0300
 @@ -46,9 +46,9 @@
  endef
  
@@ -214,8 +214,8 @@
  CONFIGURE_ARGS+= \
 -	--libdir=/usr/lib/freeradius2 \
 -	--libexecdir=/usr/lib/freeradius2 \
-+	--libdir=/opt/lib/freeradius2 \
-+	--libexecdir=/opt/lib/freeradius2 \
++	--libdir=/Apps/opt/lib/freeradius2 \
++	--libexecdir=/Apps/opt/lib/freeradius2 \
  	--enable-shared \
  	--disable-static \
  	--disable-developer \
@@ -231,9 +231,9 @@
 -	--with-raddbdir=/etc/freeradius2 \
 -	--with-radacctdir=/var/db/radacct \
 -	--with-logdir=/var/log \
-+	--with-raddbdir=/opt/etc/freeradius2 \
-+	--with-radacctdir=/opt/var/db/radacct \
-+	--with-logdir=/opt/var/log \
++	--with-raddbdir=/Apps/opt/etc/freeradius2 \
++	--with-radacctdir=/Apps/opt/var/db/radacct \
++	--with-logdir=/Apps/opt/var/log \
  	--without-edir \
  	--without-snmp \
  	--without-rlm_checkval \

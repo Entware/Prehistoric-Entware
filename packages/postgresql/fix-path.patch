@@ -1,5 +1,5 @@
---- ../../../downloads/openwrt_trunk-r42803/feeds/packages/libs/postgresql/Makefile
-+++ ../../../openwrt_trunk/feeds/packages/libs/postgresql/Makefile
+--- ../../../downloads/openwrt_trunk-r42803/feeds/packages/libs/postgresql/Makefile	2014-11-07 23:35:24.520159187 +0300
++++ ../../../openwrt_trunk/feeds/packages/libs/postgresql/Makefile	2014-11-27 16:26:34.528998692 +0300
 @@ -68,18 +68,18 @@
  define Build/Configure
  	(cd $(PKG_BUILD_DIR); rm -f config.cache; \
@@ -16,18 +16,18 @@
 -			--mandir=/usr/share/man \
 -			--sbindir=/usr/sbin \
 -			--sysconfdir=/etc \
-+			--prefix=/opt \
-+			--exec-prefix=/opt \
-+			--bindir=/opt/bin \
-+			--datadir=/opt/share \
-+			--includedir=/opt/include \
-+			--infodir=/opt/share/info \
-+			--libdir=/opt/lib \
-+			--libexecdir=/opt/lib \
-+			--localstatedir=/opt/var \
-+			--mandir=/opt/share/man \
-+			--sbindir=/opt/sbin \
-+			--sysconfdir=/opt/etc \
++			--prefix=/Apps/opt \
++			--exec-prefix=/Apps/opt \
++			--bindir=/Apps/opt/bin \
++			--datadir=/Apps/opt/share \
++			--includedir=/Apps/opt/include \
++			--infodir=/Apps/opt/share/info \
++			--libdir=/Apps/opt/lib \
++			--libexecdir=/Apps/opt/lib \
++			--localstatedir=/Apps/opt/var \
++			--mandir=/Apps/opt/share/man \
++			--sbindir=/Apps/opt/sbin \
++			--sysconfdir=/Apps/opt/etc \
  			$(DISABLE_NLS) \
  			--enable-shared \
  			--enable-static \
@@ -56,18 +56,18 @@
 -			--mandir=/usr/share/man \
 -			--sbindir=/usr/sbin \
 -			--sysconfdir=/etc \
-+			--prefix=/opt \
-+			--exec-prefix=/opt \
-+			--bindir=/opt/bin \
-+			--datadir=/opt/share \
-+			--includedir=/opt/include \
-+			--infodir=/opt/share/info \
-+			--libdir=/opt/lib \
-+			--libexecdir=/opt/lib \
-+			--localstatedir=/opt/var \
-+			--mandir=/opt/share/man \
-+			--sbindir=/opt/sbin \
-+			--sysconfdir=/opt/etc \
++			--prefix=/Apps/opt \
++			--exec-prefix=/Apps/opt \
++			--bindir=/Apps/opt/bin \
++			--datadir=/Apps/opt/share \
++			--includedir=/Apps/opt/include \
++			--infodir=/Apps/opt/share/info \
++			--libdir=/Apps/opt/lib \
++			--libexecdir=/Apps/opt/lib \
++			--localstatedir=/Apps/opt/var \
++			--mandir=/Apps/opt/share/man \
++			--sbindir=/Apps/opt/sbin \
++			--sysconfdir=/Apps/opt/etc \
  			$(DISABLE_NLS) \
  			$(DISABLE_LARGEFILE) \
  			--enable-shared \

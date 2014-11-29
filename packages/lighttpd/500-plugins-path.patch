@@ -9,11 +9,11 @@
 -                               ".rb"  => "/usr/bin/ruby",
 -                               ".erb" => "/usr/bin/eruby",
 -                               ".py"  => "/usr/bin/python" )
-+cgi.assign                 = ( ".pl"  => "/opt/bin/perl",
-+                               ".cgi" => "/opt/bin/perl",
-+                               ".rb"  => "/opt/bin/ruby",
-+                               ".erb" => "/opt/bin/eruby",
-+                               ".py"  => "/opt/bin/python" )
++cgi.assign                 = ( ".pl"  => "/Apps/opt/bin/perl",
++                               ".cgi" => "/Apps/opt/bin/perl",
++                               ".rb"  => "/Apps/opt/bin/ruby",
++                               ".erb" => "/Apps/opt/bin/eruby",
++                               ".py"  => "/Apps/opt/bin/python" )
  
  ##
  ## to get the old cgi-bin behavior of apache
@@ -24,13 +24,13 @@
  ## Path to the rrdtool binary.
  ##
 -rrdtool.binary             = "/usr/bin/rrdtool"
-+rrdtool.binary             = "/opt/bin/rrdtool"
++rrdtool.binary             = "/Apps/opt/bin/rrdtool"
  
  ##
  ## Path to the rrdtool database. You can override this in conditionals.
  ##
 -rrdtool.db-name            = "/var/lib/lighttpd/lighttpd.rrd"
-+rrdtool.db-name            = "/opt/var/lib/lighttpd/lighttpd.rrd"
++rrdtool.db-name            = "/Apps/opt/var/lib/lighttpd/lighttpd.rrd"
  
  ##
  #######################################################################
@@ -41,7 +41,7 @@
  simple-vhost.server-root   = vhosts_dir + "/"
  simple-vhost.default-host  = "default.example.com"
 -simple-vhost.document-root = "/htdocs/"
-+simple-vhost.document-root = "/opt/share/www/"
++simple-vhost.document-root = "/Apps/opt/share/www/"
  
  ##
  ## Print some errors for finding the document-root

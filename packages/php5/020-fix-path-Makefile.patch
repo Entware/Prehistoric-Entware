@@ -1,20 +1,20 @@
---- ../../../downloads/openwrt_trunk-r42803/feeds/packages/lang/php5/Makefile
-+++ ../../../openwrt_trunk/feeds/packages/lang/php5/Makefile
+--- ../../../downloads/openwrt_trunk-r42803/feeds/packages/lang/php5/Makefile	2014-11-07 23:35:24.548413464 +0300
++++ ../../../openwrt_trunk/feeds/packages/lang/php5/Makefile	2014-11-27 17:49:06.563948061 +0300
 @@ -136,13 +136,13 @@
  	--disable-debug \
  	--without-pear \
  	\
 -	--with-config-file-path=/etc \
 -	--with-config-file-scan-dir=/etc/php5 \
-+	--with-config-file-path=/opt/etc \
-+	--with-config-file-scan-dir=/opt/etc/php5 \
++	--with-config-file-path=/Apps/opt/etc \
++	--with-config-file-scan-dir=/Apps/opt/etc/php5 \
  	--disable-short-tags \
  	\
 -	--with-zlib="$(STAGING_DIR)/usr" \
 -	  --with-zlib-dir="$(STAGING_DIR)/usr" \
 -	--with-pcre-regex="$(STAGING_DIR)/usr" \
 +	--with-zlib="$(STAGING_DIR)/opt" \
-+	  --with-zlib-dir="$(STAGING_DIR)/opt" \
++	--with-zlib-dir="$(STAGING_DIR)/opt" \
 +	--with-pcre-regex="$(STAGING_DIR)/opt" \
  	--disable-phar
  
@@ -236,11 +236,12 @@
 +	mkdir -p $(PKG_BUILD_DIR)/staging/opt/bin
  	make -C $(PKG_BUILD_DIR) install INSTALL_ROOT=$(PKG_BUILD_DIR)/staging
 -	rm -f $(PKG_BUILD_DIR)/staging/usr/bin/php
-+	rm -f $(PKG_BUILD_DIR)/staging/opt/bin/php
- 	$(CP) $(PKG_BUILD_DIR)/staging/* $(STAGING_DIR_HOST)
+-	$(CP) $(PKG_BUILD_DIR)/staging/* $(STAGING_DIR_HOST)
 -	sed -i -e "s#prefix='/usr'#prefix='$(STAGING_DIR_HOST)/usr'#" $(STAGING_DIR_HOST)/usr/bin/phpize
 -	sed -i -e "s#exec_prefix=\"\`eval echo /usr\`\"#exec_prefix='$(STAGING_DIR_HOST)/usr'#" $(STAGING_DIR_HOST)/usr/bin/phpize
 -	sed -i -e "s#prefix=\"/usr\"#prefix=\"$(STAGING_DIR_HOST)/usr\"#" $(STAGING_DIR_HOST)/usr/bin/php-config
++	rm -f $(PKG_BUILD_DIR)/staging/opt/bin/php
++	$(CP) $(PKG_BUILD_DIR)/staging/Apps/* $(STAGING_DIR_HOST)
 +	sed -i -e "s#prefix='/opt'#prefix='$(STAGING_DIR_HOST)/opt'#" $(STAGING_DIR_HOST)/opt/bin/phpize
 +	sed -i -e "s#exec_prefix=\"\`eval echo /opt\`\"#exec_prefix='$(STAGING_DIR_HOST)/opt'#" $(STAGING_DIR_HOST)/opt/bin/phpize
 +	sed -i -e "s#prefix=\"/opt\"#prefix=\"$(STAGING_DIR_HOST)/opt\"#" $(STAGING_DIR_HOST)/opt/bin/php-config

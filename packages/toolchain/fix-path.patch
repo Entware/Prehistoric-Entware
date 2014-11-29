@@ -1,5 +1,5 @@
---- ../../../downloads/openwrt_trunk-r42803/package/libs/toolchain/Makefile
-+++ ../../../openwrt_trunk/package/libs/toolchain/Makefile
+--- ../../../downloads/openwrt_trunk-r42803/package/libs/toolchain/Makefile	2014-11-07 23:35:24.887033725 +0300
++++ ../../../openwrt_trunk/package/libs/toolchain/Makefile	2014-11-26 13:21:23.094911288 +0300
 @@ -7,18 +7,14 @@
  
  include $(TOPDIR)/rules.mk
@@ -49,25 +49,23 @@
  define Package/libc/config
  	menu "Configuration"
  	depends on EXTERNAL_TOOLCHAIN && PACKAGE_libc
-@@ -544,8 +542,8 @@
+@@ -544,8 +542,7 @@
    define Package/libgcc/install
  	for file in $(call qstrip,$(CONFIG_LIBGCC_FILE_SPEC)); do \
  		dir=`dirname $$$$file` ; \
 -		$(INSTALL_DIR) $(1)/$$$$dir ; \
 -		$(CP) $(call qstrip,$(CONFIG_LIBGCC_ROOT_DIR))/$$$$file $(1)/$$$$dir/ ; \
 +		$(INSTALL_DIR) $(1)/opt/$$$$dir ; \
-+		$(CP) $(call qstrip,$(CONFIG_LIBGCC_ROOT_DIR))/$$$$file $(1)/opt/$$$$dir/ ; \
  	done ; \
  	exit 0
    endef
-@@ -553,16 +551,16 @@
+@@ -553,16 +550,14 @@
    define Package/libgfortran/install
  	for file in $(call qstrip,$(CONFIG_LIBGFORTRAN_FILE_SPEC)); do \
  		dir=`dirname $$$$file` ; \
 -		$(INSTALL_DIR) $(1)/$$$$dir ; \
 -		$(CP) $(call qstrip,$(CONFIG_LIBGFORTRAN_ROOT_DIR))/$$$$file $(1)/$$$$dir/ ; \
 +		$(INSTALL_DIR) $(1)/opt/$$$$dir ; \
-+		$(CP) $(call qstrip,$(CONFIG_LIBGFORTRAN_ROOT_DIR))/$$$$file $(1)/opt/$$$$dir/ ; \
  	done
    endef
  
@@ -77,18 +75,16 @@
 -		$(INSTALL_DIR) $(1)/$$$$dir ; \
 -		$(CP) $(call qstrip,$(CONFIG_LIBSSP_ROOT_DIR))/$$$$file $(1)/$$$$dir/ ; \
 +		$(INSTALL_DIR) $(1)/opt/$$$$dir ; \
-+		$(CP) $(call qstrip,$(CONFIG_LIBSSP_ROOT_DIR))/$$$$file $(1)/opt/$$$$dir/ ; \
  	done ; \
  	exit 0
    endef
-@@ -570,17 +568,18 @@
+@@ -570,17 +565,16 @@
    define Package/libstdcpp/install
  	for file in $(call qstrip,$(CONFIG_LIBSTDCPP_FILE_SPEC)); do \
  		dir=`dirname $$$$file` ; \
 -		$(INSTALL_DIR) $(1)/$$$$dir ; \
 -		$(CP) $(call qstrip,$(CONFIG_LIBSTDCPP_ROOT_DIR))/$$$$file $(1)/$$$$dir/ ; \
 +		$(INSTALL_DIR) $(1)/opt/$$$$dir ; \
-+		$(CP) $(call qstrip,$(CONFIG_LIBSTDCPP_ROOT_DIR))/$$$$file $(1)/opt/$$$$dir/ ; \
  	done ; \
 +	rm -f $(1)/opt/$$$$dir/*.py ; \
  	exit 0
@@ -100,25 +96,22 @@
 -		$(INSTALL_DIR) $(1)/$$$$dir ; \
 -		$(CP) $(call qstrip,$(CONFIG_LIBC_ROOT_DIR))/$$$$file $(1)/$$$$dir/ ; \
 +		$(INSTALL_DIR) $(1)/opt/$$$$dir ; \
-+		$(CP) $(call qstrip,$(CONFIG_LIBC_ROOT_DIR))/$$$$file $(1)/opt/$$$$dir/ ; \
  	done ; \
  	exit 0
    endef
-@@ -588,17 +587,22 @@
+@@ -588,17 +582,19 @@
    define Package/libpthread/install
  	for file in $(call qstrip,$(CONFIG_LIBPTHREAD_FILE_SPEC)); do \
  		dir=`dirname $$$$file` ; \
 -		$(INSTALL_DIR) $(1)/$$$$dir ; \
 -		$(CP) $(call qstrip,$(CONFIG_LIBPTHREAD_ROOT_DIR))/$$$$file $(1)/$$$$dir/ ; \
 +		$(INSTALL_DIR) $(1)/opt/$$$$dir ; \
-+		$(CP) $(call qstrip,$(CONFIG_LIBPTHREAD_ROOT_DIR))/$$$$file $(1)/opt/$$$$dir/ ; \
  	done ; \
  	exit 0
    endef
  
 +  define Package/libthread-db/install
 +	$(INSTALL_DIR) $(1)/opt/lib
-+	$(CP) $(call qstrip,$(CONFIG_LIBPTHREAD_ROOT_DIR))/lib/libthread_db{-*.so,.so.*} $(1)/opt/lib/
 +  endef
 +
    define Package/librt/install
@@ -127,29 +120,26 @@
 -		$(INSTALL_DIR) $(1)/$$$$dir ; \
 -		$(CP) $(call qstrip,$(CONFIG_LIBRT_ROOT_DIR))/$$$$file $(1)/$$$$dir/ ; \
 +		$(INSTALL_DIR) $(1)/opt/$$$$dir ; \
-+		$(CP) $(call qstrip,$(CONFIG_LIBRT_ROOT_DIR))/$$$$file $(1)/opt/$$$$dir/ ; \
  	done ; \
  	exit 0
    endef
-@@ -606,8 +610,8 @@
+@@ -606,8 +602,7 @@
    define Package/ldd/install
  	for file in $(call qstrip,$(CONFIG_LDD_FILE_SPEC)); do \
  		dir=`dirname $$$$file` ; \
 -		$(INSTALL_DIR) $(1)/$$$$dir ; \
 -		$(CP) $(call qstrip,$(CONFIG_LDD_ROOT_DIR))/$$$$file $(1)/$$$$dir/ ; \
 +		$(INSTALL_DIR) $(1)/opt/bin ; \
-+		$(CP) $(call qstrip,$(CONFIG_LDD_ROOT_DIR))/$$$$file $(1)/opt/bin/ ; \
  	done ; \
  	exit 0
    endef
-@@ -615,8 +619,8 @@
+@@ -615,8 +610,7 @@
    define Package/ldconfig/install
  	for file in $(call qstrip,$(CONFIG_LDCONFIG_FILE_SPEC)); do \
  		dir=`dirname $$$$file` ; \
 -		$(INSTALL_DIR) $(1)/$$$$dir ; \
 -		$(CP) $(call qstrip,$(CONFIG_LDCONFIG_ROOT_DIR))/$$$$file $(1)/$$$$dir/ ; \
 +		$(INSTALL_DIR) $(1)/opt/bin ; \
-+		$(CP) $(call qstrip,$(CONFIG_LDCONFIG_ROOT_DIR))/$$$$file $(1)/opt/bin/ ; \
  	done ; \
  	exit 0
    endef

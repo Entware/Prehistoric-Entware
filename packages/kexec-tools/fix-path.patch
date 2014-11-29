@@ -1,5 +1,5 @@
---- ../../../downloads/mipsel-hardfloat/openwrt_trunk-r40423/package/boot/kexec-tools/Makefile
-+++ ../../../openwrt_trunk/package/boot/kexec-tools/Makefile
+--- ../../../downloads/openwrt_trunk-r42803/package/boot/kexec-tools//Makefile	2014-11-07 23:35:24.624823162 +0300
++++ ../../../openwrt_trunk/package/boot/kexec-tools//Makefile	2014-11-26 13:27:56.849124006 +0300
 @@ -24,7 +24,7 @@
  define Package/kexec-tools
    SECTION:=utils
@@ -28,12 +28,12 @@
 -		--sbindir=/usr/sbin \
 -		--libexecdir=/usr/lib \
 -		--sysconfdir=/etc \
-+		--prefix=/opt \
-+		--exec-prefix=/opt \
-+		--bindir=/opt/bin \
-+		--sbindir=/opt/sbin \
-+		--libexecdir=/opt/lib \
-+		--sysconfdir=/opt/etc \
++		--prefix=/Apps/opt \
++		--exec-prefix=/Apps/opt \
++		--bindir=/Apps/opt/bin \
++		--sbindir=/Apps/opt/sbin \
++		--libexecdir=/Apps/opt/lib \
++		--sysconfdir=/Apps/opt/etc \
  		$(if $(CONFIG_KEXEC_ZLIB),--with,--without)-zlib \
  		--without-lzma
  

@@ -1,5 +1,5 @@
---- ../../../downloads/mipsel-hardfloat/openwrt_trunk-r40423/feeds/oldpackages/utils/hplip/Makefile
-+++ ../../../openwrt_trunk/feeds/oldpackages/utils/hplip/Makefile
+--- ../../../downloads/openwrt_trunk-r42803/feeds/oldpackages/utils/hplip/Makefile	2014-11-07 23:35:24.482742553 +0300
++++ ../../../openwrt_trunk/feeds/oldpackages/utils/hplip/Makefile	2014-11-26 17:19:23.023400649 +0300
 @@ -8,15 +8,15 @@
  include $(TOPDIR)/rules.mk
  
@@ -34,10 +34,10 @@
  	--disable-doc-build \
  	--disable-foomatic-xml-install \
 -	--disable-dbus-build
-+	--with-cupsbackenddir=/opt/lib/cups/backend \
-+	--with-cupsfilterdir=/opt/lib/cups/filter \
-+	--with-icondir=/opt/var \
-+	--with-systraydir=/opt/var
++	--with-cupsbackenddir=/Apps/opt/lib/cups/backend \
++	--with-cupsfilterdir=/Apps/opt/lib/cups/filter \
++	--with-icondir=/Apps/opt/var \
++	--with-systraydir=/Apps/opt/var
 +
 +TARGET_CFLAGS += \
 +	-I$(STAGING_DIR)/opt/include/libusb-1.0
@@ -51,11 +51,11 @@
 -	$(INSTALL_DIR) $(1)/usr/lib
 -	$(CP) $(PKG_BUILD_DIR)/.libs/libhpip.so* $(1)/usr/lib/
 -	$(CP) $(PKG_BUILD_DIR)/.libs/libhpmud.so* $(1)/usr/lib/
-+	find $(PKG_INSTALL_DIR)/Apps/opt/share/hplip -name *.py | xargs $(SED) 's|/usr/bin/env python|/opt/bin/python|;s|/usr/bin/python|/opt/bin/python|'
-+	find $(PKG_INSTALL_DIR)/Apps/opt -name *.py | xargs $(SED) 's|/usr/|/opt/|g'
++	find $(PKG_INSTALL_DIR)/Apps/opt/share/hplip -name *.py | xargs $(SED) 's|/usr/bin/env python|/Apps/opt/bin/python|;s|/usr/bin/python|/Apps/opt/bin/python|'
++	find $(PKG_INSTALL_DIR)/Apps/opt -name *.py | xargs $(SED) 's|/usr/|/Apps/opt/|g'
 +	$(SED) 's|/usr/|/opt/|g' $(PKG_INSTALL_DIR)/Apps/opt/lib/cups/filter/{pstotiff,hpps}
-+	$(SED) 's|/bin/env python|/bin/python|' $(PKG_INSTALL_DIR)/Apps/opt/lib/cups/filter/pstotiff
-+	find $(PKG_INSTALL_DIR)/Apps/opt/etc/udev/rules.d -name *.rules | xargs $(SED) 's|/usr/bin/|/opt/bin/|g'
++	$(SED) 's|/bin/env python|/Apps/opt/bin/python|' $(PKG_INSTALL_DIR)/Apps/opt/lib/cups/filter/pstotiff
++	find $(PKG_INSTALL_DIR)/Apps/opt/etc/udev/rules.d -name *.rules | xargs $(SED) 's|/usr/bin/|/Apps/opt/bin/|g'
 +
 +	$(INSTALL_DIR) $(1)/opt/bin
 +	$(CP) $(PKG_INSTALL_DIR)/Apps/opt/bin/* $(1)/opt/bin

@@ -1,5 +1,5 @@
---- ../../../downloads/openwrt_trunk-r42803/feeds/packages/net/openssh/Makefile
-+++ ../../../openwrt_trunk/feeds/packages/net/openssh/Makefile
+--- ../../../downloads/openwrt_trunk-r42803/feeds/packages/net/openssh/Makefile	2014-11-07 23:35:24.528158203 +0300
++++ ../../../openwrt_trunk/feeds/packages/net/openssh/Makefile	2014-11-29 10:48:21.482440356 +0300
 @@ -57,7 +57,7 @@
  endef
  
@@ -36,13 +36,22 @@
  CONFIGURE_ARGS+= \
  	$(DISABLE_NLS) \
 -	--sysconfdir=/etc/ssh \
-+	--sysconfdir=/opt/etc/ssh \
++	--sysconfdir=/Apps/opt/etc/ssh \
  	--with-privsep-user=sshd \
 -	--with-privsep-path=/var/empty \
-+	--with-privsep-path=/opt/var/empty \
++	--with-privsep-path=/Apps/opt/var/empty \
  	--enable-shared \
  	--disable-static \
  	--disable-debug \
+@@ -175,7 +175,7 @@
+ define Build/Compile
+ 	$(MAKE) -C $(PKG_BUILD_DIR) \
+ 		DESTDIR="$(PKG_INSTALL_DIR)" \
+-		LIBS="" \
++		LIBS="-lrt" \
+ 		sftp-server
+ 	$(MAKE) -C $(PKG_BUILD_DIR) \
+ 		DESTDIR="$(PKG_INSTALL_DIR)" \
 @@ -183,78 +183,60 @@
  		all install
  endef

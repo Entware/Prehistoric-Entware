@@ -1,29 +1,29 @@
-diff -ur ../../../downloads/openwrt_trunk-r42803/feeds/packages/utils/mysql/conf/my.cnf ../../../openwrt_trunk/feeds/packages/utils/mysql/conf/my.cnf
---- ../../../downloads/openwrt_trunk-r42803/feeds/packages/utils/mysql/conf/my.cnf	2014-10-06 15:46:23.777250645 +0400
-+++ ../../../openwrt_trunk/feeds/packages/utils/mysql/conf/my.cnf	2014-10-08 13:57:24.342723449 +0400
+diff -urx .svn ../../../downloads/openwrt_trunk-r42803/feeds/packages/utils/mysql/conf/my.cnf ../../../openwrt_trunk/feeds/packages/utils/mysql/conf/my.cnf
+--- ../../../downloads/openwrt_trunk-r42803/feeds/packages/utils/mysql/conf/my.cnf	2014-11-07 23:35:24.540429288 +0300
++++ ../../../openwrt_trunk/feeds/packages/utils/mysql/conf/my.cnf	2014-11-27 11:53:44.211887700 +0300
 @@ -1,20 +1,20 @@
  [client]
  port		= 3306
 -socket		= /var/run/mysqld.sock
-+socket		= /opt/var/run/mysqld.sock
++socket		= /Apps/opt/var/run/mysqld.sock
  
  [mysqld]
  user		= root
 -socket		= /var/run/mysqld.sock
-+socket		= /opt/var/run/mysqld.sock
++socket		= /Apps/opt/var/run/mysqld.sock
  port		= 3306
 -basedir		= /usr
-+basedir		= /opt
++basedir		= /Apps/opt
  
  ############ Don't put this on the NAND #############
  # Figure out where you are going to put the databases
  # And run mysql_install_db --force
 -datadir		= /mnt/data/mysql/
-+datadir		= /opt/var/
++datadir		= /Apps/opt/var/
  
  ######### This should also not go on the NAND #######
 -tmpdir		= /mnt/data/tmp/
-+tmpdir		= /opt/tmp/
++tmpdir		= /Apps/opt/tmp/
  
  skip-external-locking
  
@@ -32,20 +32,29 @@ diff -ur ../../../downloads/openwrt_trunk-r42803/feeds/packages/utils/mysql/conf
  
  # Here you can see queries with especially long duration
 -#log_slow_queries	= /var/log/mysql/mysql-slow.log
-+#log_slow_queries	= /opt/var/log/mysql/mysql-slow.log
++#log_slow_queries	= /Apps/opt/var/log/mysql/mysql-slow.log
  #long_query_time = 2
  #log-queries-not-using-indexes
  
  # The following can be used as easy to replay backup logs or for replication.
  #server-id		= 1
 -#log_bin			= /var/log/mysql/mysql-bin.log
-+#log_bin			= /opt/var/log/mysql/mysql-bin.log
++#log_bin			= /Apps/opt/var/log/mysql/mysql-bin.log
  #expire_logs_days	= 10
  #max_binlog_size         = 100M
  #binlog_do_db		= include_database_name
-diff -ur ../../../downloads/openwrt_trunk-r42803/feeds/packages/utils/mysql/Makefile ../../../openwrt_trunk/feeds/packages/utils/mysql/Makefile
---- ../../../downloads/openwrt_trunk-r42803/feeds/packages/utils/mysql/Makefile	2014-10-06 15:46:23.777250645 +0400
-+++ ../../../openwrt_trunk/feeds/packages/utils/mysql/Makefile	2014-10-08 13:57:24.346723238 +0400
+diff -urx .svn ../../../downloads/openwrt_trunk-r42803/feeds/packages/utils/mysql/Makefile ../../../openwrt_trunk/feeds/packages/utils/mysql/Makefile
+--- ../../../downloads/openwrt_trunk-r42803/feeds/packages/utils/mysql/Makefile	2014-11-07 23:35:24.540429288 +0300
++++ ../../../openwrt_trunk/feeds/packages/utils/mysql/Makefile	2014-11-27 11:40:07.392387653 +0300
+@@ -58,7 +58,7 @@
+   DEPENDS+= +libpthread
+ endef
+ 
+-TARGET_CXX=g++-uc
++#TARGET_CXX=g++-uc
+ 
+ TARGET_CFLAGS += $(FPIC)
+ 
 @@ -71,7 +71,7 @@
  	--with-server \
  	--without-mysqlmanager \

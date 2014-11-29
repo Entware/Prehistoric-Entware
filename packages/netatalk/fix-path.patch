@@ -1,12 +1,12 @@
-diff -ur ../../../downloads/openwrt_trunk-r42803/feeds/packages/net/netatalk/files/afpd.conf ../../../openwrt_trunk/feeds/packages/net/netatalk/files/afpd.conf
---- ../../../downloads/openwrt_trunk-r42803/feeds/packages/net/netatalk/files/afpd.conf	2014-10-06 15:46:23.753250644 +0400
-+++ ../../../openwrt_trunk/feeds/packages/net/netatalk/files/afpd.conf	2014-10-07 11:59:31.599924730 +0400
+diff -urx .svn ../../../downloads/openwrt_trunk-r42803/feeds/packages/net/netatalk/files/afpd.conf ../../../openwrt_trunk/feeds/packages/net/netatalk/files/afpd.conf
+--- ../../../downloads/openwrt_trunk-r42803/feeds/packages/net/netatalk/files/afpd.conf	2014-11-07 23:35:24.536148262 +0300
++++ ../../../openwrt_trunk/feeds/packages/net/netatalk/files/afpd.conf	2014-11-29 09:41:06.746564674 +0300
 @@ -1 +1 @@
 -- -noddp -uampath /usr/lib/uams -uamlist uams_guest.so,uams_passwd.so,uams_dhx_passwd.so,uams_randnum.so,uams_dhx2.so -passwdfile /etc/netatalk/afppasswd -savepassword -passwdminlen 0 -nosetpassword -defaultvol /etc/netatalk/AppleVolumes.default -systemvol /etc/netatalk/AppleVolumes.system -nouservol -guestname "nobody" -sleep 1 -icon
-+- -noddp -uampath /opt/lib/uams -uamlist uams_guest.so,uams_passwd.so,uams_dhx_passwd.so,uams_randnum.so,uams_dhx2.so -passwdfile /etc/netatalk/afppasswd -savepassword -passwdminlen 0 -nosetpassword -defaultvol /etc/netatalk/AppleVolumes.default -systemvol /etc/netatalk/AppleVolumes.system -nouservol -guestname "nobody" -sleep 1 -icon
-diff -ur ../../../downloads/openwrt_trunk-r42803/feeds/packages/net/netatalk/Makefile ../../../openwrt_trunk/feeds/packages/net/netatalk/Makefile
---- ../../../downloads/openwrt_trunk-r42803/feeds/packages/net/netatalk/Makefile	2014-10-06 15:46:23.753250644 +0400
-+++ ../../../openwrt_trunk/feeds/packages/net/netatalk/Makefile	2014-10-08 14:18:15.934707235 +0400
++- -noddp -uampath /Apps/opt/lib/uams -uamlist uams_guest.so,uams_passwd.so,uams_dhx_passwd.so,uams_randnum.so,uams_dhx2.so -passwdfile /etc/netatalk/afppasswd -savepassword -passwdminlen 0 -nosetpassword -defaultvol /etc/netatalk/AppleVolumes.default -systemvol /etc/netatalk/AppleVolumes.system -nouservol -guestname "nobody" -sleep 1 -icon
+diff -urx .svn ../../../downloads/openwrt_trunk-r42803/feeds/packages/net/netatalk/Makefile ../../../openwrt_trunk/feeds/packages/net/netatalk/Makefile
+--- ../../../downloads/openwrt_trunk-r42803/feeds/packages/net/netatalk/Makefile	2014-11-07 23:35:24.536148262 +0300
++++ ../../../openwrt_trunk/feeds/packages/net/netatalk/Makefile	2014-11-29 09:38:25.246925281 +0300
 @@ -38,11 +38,11 @@
  endef
  
@@ -32,7 +32,7 @@ diff -ur ../../../downloads/openwrt_trunk-r42803/feeds/packages/net/netatalk/Mak
 +	--with-bdb="$(STAGING_DIR)/opt/" \
 +	--with-libgcrypt-dir="$(STAGING_DIR)/opt" \
 +	--with-ssl-dir="$(STAGING_DIR)/opt" \
-+	--with-uams-path="/opt/lib/uams" \
++	--with-uams-path="/Apps/opt/lib/uams" \
  	--without-acls \
  	--without-pam \
  	--disable-admin-group \
