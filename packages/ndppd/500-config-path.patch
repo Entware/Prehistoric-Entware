@@ -5,7 +5,7 @@
      signal(SIGTERM, exit_ndppd);
  
 -    std::string config_path("/etc/ndppd.conf");
-+    std::string config_path("/opt/etc/ndppd.conf");
++    std::string config_path("/Apps/opt/etc/ndppd.conf");
      std::string pidfile;
      std::string verbosity;
      bool daemon = false;
