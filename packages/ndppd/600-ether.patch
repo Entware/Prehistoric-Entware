@@ -1,0 +1,18 @@
+--- a/src/iface.cc.orig	2014-11-29 18:28:12.322998782 +0300
++++ b/src/iface.cc	2014-11-29 18:28:19.444901692 +0300
+@@ -40,6 +40,15 @@
+ 
+ #include "ndppd.h"
+ 
++// Some systems do not define all ETHERTYPE_* constants we need.
++#ifndef ETHERTYPE_IPV6
++#define ETHERTYPE_IPV6 0x86dd
++#endif
++#ifndef ETHERTYPE_VLAN
++#define ETHERTYPE_VLAN 0x8100
++#endif
++
++
+ NDPPD_NS_BEGIN
+ 
+ std::map<std::string, weak_ptr<iface> > iface::_map;
