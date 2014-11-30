@@ -9,7 +9,7 @@ all: .done
 
 .done:
 	patch -d $(TOP) -p3 -i $(CURDIR)/fix-path.patch
-	cp -f ./600-libresolv.patch ../../../openwrt_trunk/feeds/packages/net/mtr/patches/
+#	cp -f ./600-libresolv.patch ../../../openwrt_trunk/feeds/packages/net/mtr/patches/
 	@touch $@
 
 clean:
