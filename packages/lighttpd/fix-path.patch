@@ -6,14 +6,14 @@ diff -urx .svn ../../../downloads/openwrt_trunk-r42803/feeds/packages/net/lightt
  )
  
 -server.document-root        = "/www"
-+server.document-root        = "/Apps/opt/share/www"
++server.document-root        = "/opt/share/www"
  server.upload-dirs          = ( "/tmp" )
 -server.errorlog             = "/var/log/lighttpd/error.log"
 -server.pid-file             = "/var/run/lighttpd.pid"
 -server.username             = "http"
 -server.groupname            = "www-data"
-+server.errorlog             = "/Apps/opt/var/log/lighttpd/error.log"
-+server.pid-file             = "/Apps/opt/var/run/lighttpd.pid"
++server.errorlog             = "/opt/var/log/lighttpd/error.log"
++server.pid-file             = "/opt/var/run/lighttpd.pid"
 +#server.username             = "http"
 +#server.groupname            = "www-data"
  
@@ -33,6 +33,7 @@ diff -urx .svn ../../../downloads/openwrt_trunk-r42803/feeds/packages/net/lightt
 -include_shell "cat /etc/lighttpd/conf.d/*.conf"
 +include       "/opt/etc/lighttpd/mime.conf"
 +include_shell "cat /opt/etc/lighttpd/conf.d/*.conf"
+Только в ../../../openwrt_trunk/feeds/packages/net/lighttpd/files: S80lighttpd
 diff -urx .svn ../../../downloads/openwrt_trunk-r42803/feeds/packages/net/lighttpd/Makefile ../../../openwrt_trunk/feeds/packages/net/lighttpd/Makefile
 --- ../../../downloads/openwrt_trunk-r42803/feeds/packages/net/lighttpd/Makefile	2014-11-07 23:35:24.532584012 +0300
 +++ ../../../openwrt_trunk/feeds/packages/net/lighttpd/Makefile	2014-11-28 21:18:46.453588542 +0300
@@ -144,3 +145,4 @@ diff -urx .svn ../../../downloads/openwrt_trunk-r42803/feeds/packages/net/lightt
  $(eval $(call BuildPlugin,mysql_vhost,Mysql virtual hosting,+PACKAGE_lighttpd-mod-mysql_vhost:libmysqlclient,10))
  $(eval $(call BuildPlugin,proxy,Proxy,,10))
  $(eval $(call BuildPlugin,redirect,URL redirection,+PACKAGE_lighttpd-mod-redirect:libpcre,10))
+Только в ../../../openwrt_trunk/feeds/packages/net/lighttpd: patches
