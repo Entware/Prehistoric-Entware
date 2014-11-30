@@ -4,8 +4,8 @@
  define Build/Configure
  	$(call Build/Configure/Default,\
  		--with-sys-screenrc=/etc/screenrc \
-+		--with-sys-screenrc=/opt/etc/screenrc \
-+		--with-socket-dir=/opt/tmp/screens \
++		--with-sys-screenrc=/Apps/opt/etc/screenrc \
++		--with-socket-dir=/Apps/opt/tmp/screens \
  	)
  	# XXX: memmove() works well with overlapped memory areas
  	echo "#define USEMEMMOVE 1" >>$(PKG_BUILD_DIR)/config.h
