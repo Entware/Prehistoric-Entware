@@ -1,5 +1,5 @@
---- a/src/ffmpeg_decoder_plugin.c.orig	2014-11-28 22:40:11.221975941 +0300
-+++ b/src/ffmpeg_decoder_plugin.c	2014-11-28 22:41:59.578879133 +0300
+--- a/src/decoder/ffmpeg_decoder_plugin.c.orig	2014-11-28 22:40:11.221975941 +0300
++++ b/src/decoder/ffmpeg_decoder_plugin.c	2014-11-28 22:41:59.578879133 +0300
 @@ -47,6 +47,8 @@
  #undef G_LOG_DOMAIN
  #define G_LOG_DOMAIN "ffmpeg"
