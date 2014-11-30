@@ -1,0 +1,67 @@
+--- a/include/attributes.h.orig	2014-11-26 15:57:56.425404552 +0300
++++ b/include/attributes.h	2014-11-26 16:00:45.005252966 +0300
+@@ -121,10 +121,10 @@
+  */
+ extern int attr_get (const char *__path, const char *__attrname,
+ 			char *__attrvalue, int *__valuelength, int __flags)
+-	__attribute__ ((deprecated ("Use getxattr or lgetxattr instead")));
++	__attribute__ ((deprecated ));
+ extern int attr_getf (int __fd, const char *__attrname, char *__attrvalue,
+ 			int *__valuelength, int __flags)
+-	__attribute__ ((deprecated ("Use fgetxattr instead")));
++	__attribute__ ((deprecated ));
+ 
+ /*
+  * Set the value of an attribute, creating the attribute if necessary.
+@@ -133,11 +133,11 @@
+ extern int attr_set (const char *__path, const char *__attrname,
+ 			const char *__attrvalue, const int __valuelength,
+ 			int __flags)
+-	__attribute__ ((deprecated ("Use setxattr or lsetxattr instead")));
++	__attribute__ ((deprecated ));
+ extern int attr_setf (int __fd, const char *__attrname,
+ 			const char *__attrvalue, const int __valuelength,
+ 			int __flags)
+-	__attribute__ ((deprecated ("Use fsetxattr instead")));
++	__attribute__ ((deprecated ));
+ 
+ /*
+  * Remove an attribute.
+@@ -145,9 +145,9 @@
+  */
+ extern int attr_remove (const char *__path, const char *__attrname,
+ 			int __flags)
+-	__attribute__ ((deprecated ("Use removexattr or lremovexattr instead")));
++	__attribute__ ((deprecated ));
+ extern int attr_removef (int __fd, const char *__attrname, int __flags)
+-	__attribute__ ((deprecated ("Use fremovexattr instead")));
++	__attribute__ ((deprecated ));
+ 
+ /*
+  * List the names and sizes of the values of all the attributes of an object.
+@@ -158,10 +158,10 @@
+  */
+ int attr_list(const char *__path, char *__buffer, const int __buffersize,
+ 		int __flags, attrlist_cursor_t *__cursor)
+-	__attribute__ ((deprecated ("Use listxattr or llistxattr instead")));
++	__attribute__ ((deprecated ));
+ int attr_listf(int __fd, char *__buffer, const int __buffersize,
+ 		int __flags, attrlist_cursor_t *__cursor)
+-	__attribute__ ((deprecated ("Use flistxattr instead")));
++	__attribute__ ((deprecated ));
+ 
+ /*
+  * Operate on multiple attributes of the same object simultaneously.
+@@ -182,10 +182,10 @@
+  */
+ extern int attr_multi (const char *__path, attr_multiop_t *__oplist,
+ 			int __count, int __flags)
+-	__attribute__ ((deprecated ("Use getxattr, setxattr, listxattr, removexattr instead")));
++	__attribute__ ((deprecated ));
+ extern int attr_multif (int __fd, attr_multiop_t *__oplist,
+ 			int __count, int __flags)
+-	__attribute__ ((deprecated ("Use getxattr, setxattr, listxattr, removexattr instead")));
++	__attribute__ ((deprecated ));
+ 
+ #ifdef __cplusplus
+ }

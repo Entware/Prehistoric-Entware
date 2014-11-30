@@ -1,0 +1,49 @@
+--- a/configure.orig	2014-11-29 15:28:39.242495795 +0300
++++ b/configure	2014-11-29 15:29:30.846451320 +0300
+@@ -4154,46 +4154,6 @@
+ rm -f conftest*
+ 
+ 
+-oldlibs="$LIBS"
+-LIBS="$LIBS -lelf"
+-{ $as_echo "$as_me:${as_lineno-$LINENO}: checking SVR4..." >&5
+-$as_echo "$as_me: checking SVR4..." >&6;}
+-cat confdefs.h - <<_ACEOF >conftest.$ac_ext
+-/* end confdefs.h.  */
+-#include <utmpx.h>
+-
+-int
+-main ()
+-{
+-
+-  ;
+-  return 0;
+-}
+-_ACEOF
+-if ac_fn_c_try_link "$LINENO"; then :
+-  ac_fn_c_check_header_mongrel "$LINENO" "dwarf.h" "ac_cv_header_dwarf_h" "$ac_includes_default"
+-if test "x$ac_cv_header_dwarf_h" = xyes; then :
+-  $as_echo "#define SVR4 1" >>confdefs.h
+- $as_echo "#define BUGGYGETLOGIN 1" >>confdefs.h
+-
+-else
+-  ac_fn_c_check_header_mongrel "$LINENO" "elf.h" "ac_cv_header_elf_h" "$ac_includes_default"
+-if test "x$ac_cv_header_elf_h" = xyes; then :
+-  $as_echo "#define SVR4 1" >>confdefs.h
+- $as_echo "#define BUGGYGETLOGIN 1" >>confdefs.h
+-
+-fi
+-
+-
+-fi
+-
+-
+-
+-else
+-  LIBS="$oldlibs"
+-fi
+-rm -f core conftest.err conftest.$ac_objext \
+-    conftest$ac_exeext conftest.$ac_ext
+ for ac_header in string.h strings.h
+ do :
+   as_ac_Header=`$as_echo "ac_cv_header_$ac_header" | $as_tr_sh`
