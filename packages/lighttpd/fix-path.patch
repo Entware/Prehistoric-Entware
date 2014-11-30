@@ -1,3 +1,39 @@
+diff -urx .svn ../../../downloads/openwrt_trunk-r42803/feeds/packages/net/lighttpd/files/lighttpd.conf ../../../openwrt_trunk/feeds/packages/net/lighttpd/files/lighttpd.conf
+--- ../../../downloads/openwrt_trunk-r42803/feeds/packages/net/lighttpd/files/lighttpd.conf	2014-11-07 23:35:24.532584012 +0300
++++ ../../../openwrt_trunk/feeds/packages/net/lighttpd/files/lighttpd.conf	2014-11-26 12:32:13.090794020 +0300
+@@ -1,12 +1,12 @@
+ server.modules = (
+ )
+ 
+-server.document-root        = "/www"
++server.document-root        = "/Apps/opt/share/www"
+ server.upload-dirs          = ( "/tmp" )
+-server.errorlog             = "/var/log/lighttpd/error.log"
+-server.pid-file             = "/var/run/lighttpd.pid"
+-server.username             = "http"
+-server.groupname            = "www-data"
++server.errorlog             = "/Apps/opt/var/log/lighttpd/error.log"
++server.pid-file             = "/Apps/opt/var/run/lighttpd.pid"
++#server.username             = "http"
++#server.groupname            = "www-data"
+ 
+ index-file.names            = ( "index.php", "index.html",
+                                 "index.htm", "default.htm",
+@@ -23,10 +23,10 @@
+ #server.network-backend      = "write"
+ 
+ ### Use IPv6 if available
+-#include_shell "/usr/share/lighttpd/use-ipv6.pl"
++#include_shell "/opt/share/lighttpd/use-ipv6.pl"
+ 
+ #dir-listing.encoding        = "utf-8"
+ #server.dir-listing          = "enable"
+ 
+-include       "/etc/lighttpd/mime.conf"
+-include_shell "cat /etc/lighttpd/conf.d/*.conf"
++include       "/opt/etc/lighttpd/mime.conf"
++include_shell "cat /opt/etc/lighttpd/conf.d/*.conf"
+diff -urx .svn ../../../downloads/openwrt_trunk-r42803/feeds/packages/net/lighttpd/Makefile ../../../openwrt_trunk/feeds/packages/net/lighttpd/Makefile
 --- ../../../downloads/openwrt_trunk-r42803/feeds/packages/net/lighttpd/Makefile	2014-11-07 23:35:24.532584012 +0300
 +++ ../../../openwrt_trunk/feeds/packages/net/lighttpd/Makefile	2014-11-28 21:18:46.453588542 +0300
 @@ -50,8 +50,8 @@
