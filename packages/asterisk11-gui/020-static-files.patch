@@ -6,7 +6,7 @@ diff -ur a/config/asterisklogs.html b/config/asterisklogs.html
  		var space = (ld < 10 ) ? '  ' : ' ' ;
  		var lm = sel_date.split(' ')[1]; lm = lm.trim();
 -		var tmp_cmd = "/bin/grep /var/log/asterisk/messages -e '" + lm + space + ld + " ' " ;
-+		var tmp_cmd = "/bin/grep /opt/var/log/asterisk/messages -e '" + lm + space + ld + " ' " ;
++		var tmp_cmd = "/bin/grep /Apps/opt/var/log/asterisk/messages -e '" + lm + space + ld + " ' " ;
  		parent.ASTGUI.dialog.waitWhile(' Loading Asterisk Logs ...');
  		top.log.debug(tmp_cmd);
  		ASTGUI.systemCmdWithOutput( tmp_cmd , function(output){
@@ -18,7 +18,7 @@ diff -ur a/config/js/backup.js b/config/js/backup.js
  	}else{
  		if(confirm('All your old configuration will be replaced by this backup configuration. \n\n Are you sure you want to proceed ?')){
 -			//parent.astmanEngine.run_tool("rm /etc/asterisk/* -rf ", callback=function(){  } );
-+			//parent.astmanEngine.run_tool("rm /opt/etc/asterisk/* -rf ", callback=function(){  } );
++			//parent.astmanEngine.run_tool("rm /Apps/opt/etc/asterisk/* -rf ", callback=function(){  } );
  			restore_bkp_step3(bkpPath + filename);
  		}
  	}
@@ -27,7 +27,7 @@ diff -ur a/config/js/backup.js b/config/js/backup.js
  		return ;
  	}else{
 -		parent.ASTGUI.systemCmd( "tar -chf " + bkpPath + bkpfile + ' ' +  ' /etc/asterisk', function(){
-+		parent.ASTGUI.systemCmd( "tar -chf " + bkpPath + bkpfile + ' ' +  ' /opt/etc/asterisk', function(){
++		parent.ASTGUI.systemCmd( "tar -chf " + bkpPath + bkpfile + ' ' +  ' /Apps/opt/etc/asterisk', function(){
  			ASTGUI.feedback( { msg:'Backup Successful', showfor:2 });
  			parent.ASTGUI.dialog.waitWhile('Reloading List of backup Files');
  			setTimeout( function(){ parent.ASTGUI.dialog.hide(); window.location.reload(); } , 2000 );
@@ -39,13 +39,13 @@ diff -ur a/config/js/flashupdate.js b/config/js/flashupdate.js
   */
  var uImage_filename;
 -var uImage_uploadpath = "/var/lib/asterisk/sounds/imageupdate";
-+var uImage_uploadpath = "/opt/lib/asterisk/sounds/imageupdate";
++var uImage_uploadpath = "/Apps/opt/lib/asterisk/sounds/imageupdate";
  loaded_external = false;
  current_version = '';
  starteduploading = 0;
  var overlay_upload_Path ;
 -var overlay_disk_Path = '/var/lib/asterisk/sounds/asteriskoverlay/';
-+var overlay_disk_Path = '/opt/lib/asterisk/sounds/asteriskoverlay/';
++var overlay_disk_Path = '/Apps/opt/lib/asterisk/sounds/asteriskoverlay/';
  
  var check_forNewFirmwareVersions = function(){
  	parent.ASTGUI.dialog.waitWhile(' Checking for firmware updates ...');
@@ -55,8 +55,8 @@ diff -ur a/config/js/flashupdate.js b/config/js/flashupdate.js
  
 -	ASTGUI.systemCmdWithOutput( "ls /var/lib/asterisk/sounds/a*" , function(a){
 -		if( a.contains('/var/lib/asterisk/sounds/asteriskoverlay') ){
-+	ASTGUI.systemCmdWithOutput( "ls /opt/lib/asterisk/sounds/a*" , function(a){
-+		if( a.contains('/opt/lib/asterisk/sounds/asteriskoverlay') ){
++	ASTGUI.systemCmdWithOutput( "ls /Apps/opt/lib/asterisk/sounds/a*" , function(a){
++		if( a.contains('/Apps/opt/lib/asterisk/sounds/asteriskoverlay') ){
  			_$('uploadOVERLAY_iframe').src = "upload_form.html" ;
  			$("#overlayUpload_TR").show();
  		}
@@ -68,7 +68,7 @@ diff -ur a/config/js/hardware_aa50.js b/config/js/hardware_aa50.js
  	
  		ASTGUI.dialog.waitWhile('updating modprobe.conf ...');
 -		var cmd1 = "cp /etc/asterisk/modprobe_default /etc/modprobe.conf";
-+		var cmd1 = "cp /opt/etc/asterisk/modprobe_default /opt/etc/modprobe.conf";
++		var cmd1 = "cp /Apps/opt/etc/asterisk/modprobe_default /Apps/opt/etc/modprobe.conf";
  		var params = "options sx00i ";
  		var h = ASTGUI.getFieldValue('opermode') ;
  			if(h){ params += " opermode=" + h; }
@@ -77,7 +77,7 @@ diff -ur a/config/js/hardware_aa50.js b/config/js/hardware_aa50.js
  		}
  	
 -		var cmd2 = "echo \"" + params + "\" >> /etc/modprobe.conf ";
-+		var cmd2 = "echo \"" + params + "\" >> /opt/etc/modprobe.conf ";
++		var cmd2 = "echo \"" + params + "\" >> /Apps/opt/etc/modprobe.conf ";
  	
  		var update_usersConf = function(){
  			// update MWI settings in users.conf
@@ -86,7 +86,7 @@ diff -ur a/config/js/hardware_aa50.js b/config/js/hardware_aa50.js
  		var s = $.ajax({ url: ASTGUI.paths.rawman+'?action=getconfig&filename=' + tmp_file , async: false }).responseText;
  		if( s.contains('Response: Error') && s.contains('Message: Config file not found') ){
 -			ASTGUI.systemCmd( "touch /etc/asterisk/" + tmp_file, function(){
-+			ASTGUI.systemCmd( "touch /opt/etc/asterisk/" + tmp_file, function(){
++			ASTGUI.systemCmd( "touch /Apps/opt/etc/asterisk/" + tmp_file, function(){
  				var u = new listOfSynActions(tmp_file) ;
  				u.new_action('delcat', 'general', "", ""); 
  				u.new_action('newcat', 'general', "", ""); 
@@ -95,7 +95,7 @@ diff -ur a/config/js/hardware_aa50.js b/config/js/hardware_aa50.js
  		}) ;
  
 -		parent.ASTGUI.systemCmd( ' touch /etc/asterisk/applyzap.conf', function(){ // run ztscan and then try loading ztscan.conf
-+		parent.ASTGUI.systemCmd( ' touch /opt/etc/asterisk/applyzap.conf', function(){ // run ztscan and then try loading ztscan.conf
++		parent.ASTGUI.systemCmd( ' touch /Apps/opt/etc/asterisk/applyzap.conf', function(){ // run ztscan and then try loading ztscan.conf
  			setTimeout( function(){ 
  				var DAHDI_version = "0";
  				ASTGUI.systemCmdWithOutput( 'cat /sys/module/dahdi/version' , function(output){
@@ -107,7 +107,7 @@ diff -ur a/config/js/hardware_dahdi.js b/config/js/hardware_dahdi.js
  		var ztsc_Lower = ztsc.toLowerCase();
  		if( ztsc_Lower.contains('response: error') && ztsc_Lower.contains('message: config file not found') ){
 -			parent.ASTGUI.dialog.waitWhile("Please check if <B>ztscan</B> is installed ? <BR> /etc/asterisk/dahdi_scan.conf not found");
-+			parent.ASTGUI.dialog.waitWhile("Please check if <B>ztscan</B> is installed ? <BR> /opt/etc/asterisk/dahdi_scan.conf not found");
++			parent.ASTGUI.dialog.waitWhile("Please check if <B>ztscan</B> is installed ? <BR> /Apps/opt/etc/asterisk/dahdi_scan.conf not found");
  			ASTGUI.feedback( { msg:"No Cards/Spans found,  No Config File found !!", showfor:2 });
  			return;
  		}
@@ -116,7 +116,7 @@ diff -ur a/config/js/hardware_dahdi.js b/config/js/hardware_dahdi.js
  		if( usrs_Lower.contains('response: error') && usrs_Lower.contains('message: config file not found') ){
  			ASTGUI.feedback( { msg:"No Users File found !!", showfor:2 });
 -			parent.ASTGUI.dialog.waitWhile("/etc/asterisk/users.conf not found");
-+			parent.ASTGUI.dialog.waitWhile("/opt/etc/asterisk/users.conf not found");
++			parent.ASTGUI.dialog.waitWhile("/Apps/opt/etc/asterisk/users.conf not found");
  			return;
  		}
  		var n = config2json({ configFile_output: usrs, usf : 1 });// read users.conf and load switchtype, signalling, zapchan into the SPANS object
@@ -125,7 +125,7 @@ diff -ur a/config/js/hardware_dahdi.js b/config/js/hardware_dahdi.js
  
  var storeDetectedHardware = function(){
 -	var cmd = 'rm /etc/asterisk/' + hwcfgfile + '; touch /etc/asterisk/' + hwcfgfile;
-+	var cmd = 'rm /opt/etc/asterisk/' + hwcfgfile + '; touch /opt/etc/asterisk/' + hwcfgfile;
++	var cmd = 'rm /Apps/opt/etc/asterisk/' + hwcfgfile + '; touch /Apps/opt/etc/asterisk/' + hwcfgfile;
  	parent.ASTGUI.systemCmd( cmd, function(){ 
  		var storeNewinfo = function(){
  			var after = function(){
@@ -134,7 +134,7 @@ diff -ur a/config/js/hardware_dahdi.js b/config/js/hardware_dahdi.js
    	
  	
 -		var cmd2 = "grep -v \"^" + params_to_delete + "\" /etc/modprobe.d/dahdi.conf > /etc/modprobe.d/dahdi.conf ; echo \"" + params + "\" >> /etc/modprobe.d/dahdi.conf ";
-+		var cmd2 = "grep -v \"^" + params_to_delete + "\" /opt/etc/modprobe.d/dahdi.conf > /opt/etc/modprobe.d/dahdi.conf ; echo \"" + params + "\" >> /opt/etc/modprobe.d/dahdi.conf ";
++		var cmd2 = "grep -v \"^" + params_to_delete + "\" /Apps/opt/etc/modprobe.d/dahdi.conf > /Apps/opt/etc/modprobe.d/dahdi.conf ; echo \"" + params + "\" >> /Apps/opt/etc/modprobe.d/dahdi.conf ";
  	
  		var update_usersConf = function(){
  			// update MWI settings in users.conf
@@ -146,7 +146,7 @@ diff -ur a/config/js/hardware.js b/config/js/hardware.js
  		var ztsc_Lower = ztsc.toLowerCase();
  		if( ztsc_Lower.contains('response: error') && ztsc_Lower.contains('message: config file not found') ){
 -			parent.ASTGUI.dialog.waitWhile("Please check if <B>ztscan</B> is installed ? <BR> /etc/asterisk/ztscan.conf not found");
-+			parent.ASTGUI.dialog.waitWhile("Please check if <B>ztscan</B> is installed ? <BR> /opt/etc/asterisk/ztscan.conf not found");
++			parent.ASTGUI.dialog.waitWhile("Please check if <B>ztscan</B> is installed ? <BR> /Apps/opt/etc/asterisk/ztscan.conf not found");
  			ASTGUI.feedback( { msg:"No Cards/Spans found,  No Config File found !!", showfor:2 });
  			return;
  		}
@@ -155,7 +155,7 @@ diff -ur a/config/js/hardware.js b/config/js/hardware.js
  		if( usrs_Lower.contains('response: error') && usrs_Lower.contains('message: config file not found') ){
  			ASTGUI.feedback( { msg:"No Users File found !!", showfor:2 });
 -			parent.ASTGUI.dialog.waitWhile("/etc/asterisk/users.conf not found");
-+			parent.ASTGUI.dialog.waitWhile("/opt/etc/asterisk/users.conf not found");
++			parent.ASTGUI.dialog.waitWhile("/Apps/opt/etc/asterisk/users.conf not found");
  			return;
  		}
  		var n = config2json({ configFile_output: usrs, usf : 1 });// read users.conf and load switchtype, signalling, zapchan into the SPANS object
@@ -164,7 +164,7 @@ diff -ur a/config/js/hardware.js b/config/js/hardware.js
  
  var storeDetectedHardware = function(){
 -	var cmd = 'rm /etc/asterisk/' + hwcfgfile + '; touch /etc/asterisk/' + hwcfgfile;
-+	var cmd = 'rm /opt/etc/asterisk/' + hwcfgfile + '; touch /opt/etc/asterisk/' + hwcfgfile;
++	var cmd = 'rm /Apps/opt/etc/asterisk/' + hwcfgfile + '; touch /Apps/opt/etc/asterisk/' + hwcfgfile;
  	parent.ASTGUI.systemCmd( cmd, function(){ 
  		var storeNewinfo = function(){
  			var after = function(){
@@ -173,7 +173,7 @@ diff -ur a/config/js/hardware.js b/config/js/hardware.js
  	
  		ASTGUI.dialog.waitWhile('updating modprobe configuration ...');
 -		var cmd1 = "cp /etc/asterisk/modprobe_default /etc/modprobe.d/dahdi.conf";
-+		var cmd1 = "cp /opt/etc/asterisk/modprobe_default /opt/etc/modprobe.d/dahdi.conf";
++		var cmd1 = "cp /Apps/opt/etc/asterisk/modprobe_default /Apps/opt/etc/modprobe.d/dahdi.conf";
  		var params = "options " + ASTGUI.getFieldValue('zap_moduleName') ;
  
  		if( _$('enable_disable_checkbox_opermode').checked ){
@@ -182,7 +182,7 @@ diff -ur a/config/js/hardware.js b/config/js/hardware.js
  		}
  	
 -		var cmd2 = "echo \"" + params + "\" >> /etc/modprobe.d/dahdi.conf ";
-+		var cmd2 = "echo \"" + params + "\" >> /opt/etc/modprobe.d/dahdi.conf ";
++		var cmd2 = "echo \"" + params + "\" >> /Apps/opt/etc/modprobe.d/dahdi.conf ";
  	
  		var update_usersConf = function(){
  			// update MWI settings in users.conf
@@ -191,7 +191,7 @@ diff -ur a/config/js/hardware.js b/config/js/hardware.js
  	})();
  
 -	ASTGUI.systemCmd( 'touch /etc/asterisk/modprobe_default', function(){
-+	ASTGUI.systemCmd( 'touch /opt/etc/asterisk/modprobe_default', function(){
++	ASTGUI.systemCmd( 'touch /Apps/opt/etc/asterisk/modprobe_default', function(){
  		loadConfigFiles.load_hwcfgfile(); // try to load last detected/configured hardware information
  	});
  
@@ -203,7 +203,7 @@ diff -ur a/config/js/index.js b/config/js/index.js
  			}
  			if( !http_conf.post_mappings.hasOwnProperty('uploads') ){
 -				u.new_action('append', 'post_mappings' , 'uploads', '/var/lib/asterisk/sounds/imageupdate' ) ;
-+				u.new_action('append', 'post_mappings' , 'uploads', '/opt/lib/asterisk/sounds/imageupdate' ) ;
++				u.new_action('append', 'post_mappings' , 'uploads', '/Apps/opt/lib/asterisk/sounds/imageupdate' ) ;
  				pu = true;
  			}
  			if( !http_conf.post_mappings.hasOwnProperty('backups') ){
@@ -215,10 +215,10 @@ diff -ur a/config/js/index.js b/config/js/index.js
 -		sessionData.directories.astvarlibdir = ASTERISK_CONF.getProperty('astvarlibdir') || '/var/lib/asterisk/' ;
 -		sessionData.directories.AGIBIN = ASTERISK_CONF.getProperty('astagidir') || '/var/lib/asterisk/agi-bin/' ;
 -		sessionData.directories.astspooldir = ASTERISK_CONF.getProperty('astspooldir') || '/var/spool/asterisk/' ;
-+		sessionData.directories.asteriskConfig =  ASTERISK_CONF.getProperty('astetcdir') ||  '/opt/etc/asterisk/' ;
-+		sessionData.directories.astvarlibdir = ASTERISK_CONF.getProperty('astvarlibdir') || '/opt/lib/asterisk/' ;
-+		sessionData.directories.AGIBIN = ASTERISK_CONF.getProperty('astagidir') || '/opt/lib/asterisk/agi-bin/' ;
-+		sessionData.directories.astspooldir = ASTERISK_CONF.getProperty('astspooldir') || '/opt/var/spool/asterisk/' ;
++		sessionData.directories.asteriskConfig =  ASTERISK_CONF.getProperty('astetcdir') ||  '/Apps/opt/etc/asterisk/' ;
++		sessionData.directories.astvarlibdir = ASTERISK_CONF.getProperty('astvarlibdir') || '/Apps/opt/lib/asterisk/' ;
++		sessionData.directories.AGIBIN = ASTERISK_CONF.getProperty('astagidir') || '/Apps/opt/lib/asterisk/agi-bin/' ;
++		sessionData.directories.astspooldir = ASTERISK_CONF.getProperty('astspooldir') || '/Apps/opt/var/spool/asterisk/' ;
  
  		if( !sessionData.directories.asteriskConfig.endsWith('/') ){ sessionData.directories.asteriskConfig = sessionData.directories.asteriskConfig + '/' ; }
  		if( !sessionData.directories.astvarlibdir.endsWith('/') ){ sessionData.directories.astvarlibdir = sessionData.directories.astvarlibdir + '/' ; }
@@ -227,7 +227,7 @@ diff -ur a/config/js/index.js b/config/js/index.js
  
  		sessionData.directories.app_DahdiScan = 'dahdi_scan > ' + sessionData.directories.asteriskConfig + ASTGUI.globals.dahdiScanOutput ;
 -		sessionData.directories.app_dahdi_genconf = 'dahdi_genconf'; // generates new /etc/dahdi/system.conf
-+		sessionData.directories.app_dahdi_genconf = 'dahdi_genconf'; // generates new /opt/etc/dahdi/system.conf
++		sessionData.directories.app_dahdi_genconf = 'dahdi_genconf'; // generates new /Apps/opt/etc/dahdi/system.conf
  		sessionData.directories.app_mISDNscan = 'misdn-init scan' ;
  		sessionData.directories.app_flashupdate = 'flashupdate' ;
  	},
@@ -236,7 +236,7 @@ diff -ur a/config/js/index.js b/config/js/index.js
  
  		if( sessionData.PLATFORM.isABE ){ // ABE-1600
 -// 			ASTGUI.systemCmdWithOutput( "ls /var/lib/asterisk/" , function(a){
-+// 			ASTGUI.systemCmdWithOutput( "ls /opt/lib/asterisk/" , function(a){
++// 			ASTGUI.systemCmdWithOutput( "ls /Apps/opt/lib/asterisk/" , function(a){
  // 				if( a.contains('gui-overlay') ){
  // 					$('.default_Hidden').show();
  // 				}
@@ -248,7 +248,7 @@ diff -ur a/config/js/misdn.js b/config/js/misdn.js
  
  function generate_applyMisdn(){
 - //save the PORTS object with some default options into /etc/misdn-init.conf via /etc/asterisk/applymisdn.conf
-+ //save the PORTS object with some default options into /opt/etc/misdn-init.conf via /opt/etc/asterisk/applymisdn.conf
++ //save the PORTS object with some default options into /Apps/opt/etc/misdn-init.conf via /Apps/opt/etc/asterisk/applymisdn.conf
  	 // first generate the output into [general] section of applymisdn.conf
  
  	var d= 'general', e, addedcards = {};
@@ -257,7 +257,7 @@ diff -ur a/config/js/misdn.js b/config/js/misdn.js
  	x.new_action('append', d, "debug" , "0");
  	x.callActions(function(){
 -		// call the script that would generate /etc/misdn-init.conf from /etc/asterisk/applymisdn.conf
-+		// call the script that would generate /opt/etc/misdn-init.conf from /opt/etc/asterisk/applymisdn.conf
++		// call the script that would generate /Apps/opt/etc/misdn-init.conf from /Apps/opt/etc/asterisk/applymisdn.conf
  		parent.ASTGUI.systemCmd( top.sessionData.directories.script_generatemISDN_init + " applysettings", function(){ 
  			alert("You need to restart your machine for these settings to take effect");
  			window.location.reload();
@@ -269,7 +269,7 @@ diff -ur a/config/js/networking.js b/config/js/networking.js
  
  	var cb = function(){
 -		var network_params = "/etc/asterisk/scripts/network.params";
-+		var network_params = "/opt/etc/asterisk/scripts/network.params";
++		var network_params = "/Apps/opt/etc/asterisk/scripts/network.params";
  
  		if(_$('DHCP_WAN').checked){var dwv = "on"; }else{var dwv = "off"; }
  		if(_$('DHCP_LAN').checked){var dlv = "on"; }else{var dlv = "off"; }
@@ -281,7 +281,7 @@ diff -ur a/config/js/pbx.js b/config/js/pbx.js
  						top.log.error(result);
  					} else {
 -						/* copy applyzap.conf to /etc/dahdi/system.conf */
-+						/* copy applyzap.conf to /opt/etc/dahdi/system.conf */
++						/* copy applyzap.conf to /Apps/opt/etc/dahdi/system.conf */
  						ASTGUI.systemCmd(sessionData.directories.script_generateZaptel + ' applysettings', function() {
  								ASTGUI.dialog.alertmsg('Changes to your hardware configs has been made. <BR> Your hardware might not work properly until you reboot!');
  						});
@@ -290,7 +290,7 @@ diff -ur a/config/js/pbx.js b/config/js/pbx.js
  	
  			parent.ASTGUI.dialog.waitWhile('Taking Backup of current configuration ...');
 -			ASTGUI.systemCmd( "tar -cf " + top.sessionData.directories.ConfigBkp + tmp_bkpFileName + ' ' +  ' /etc/asterisk', function(){
-+			ASTGUI.systemCmd( "tar -cf " + top.sessionData.directories.ConfigBkp + tmp_bkpFileName + ' ' +  ' /opt/etc/asterisk', function(){
++			ASTGUI.systemCmd( "tar -cf " + top.sessionData.directories.ConfigBkp + tmp_bkpFileName + ' ' +  ' /Apps/opt/etc/asterisk', function(){
  				ASTGUI.feedback({ msg:'Backup Successful', showfor:2 });
  				do_Upgrade();
  			});
@@ -302,7 +302,7 @@ diff -ur a/config/js/timezone.js b/config/js/timezone.js
  function setaslocal( filename ){
  	if(!confirm("Set '"+ filename +"' as the Default TimeZone ?")){ return ; }
 -	ASTGUI.systemCmd( "rm /etc/localtime ; /bin/ln -s " + upload_Path + filename + " /etc/localtime" , function(){
-+	ASTGUI.systemCmd( "rm /opt/etc/localtime ; /bin/ln -s " + upload_Path + filename + " /opt/etc/localtime" , function(){
++	ASTGUI.systemCmd( "rm /Apps/opt/etc/localtime ; /bin/ln -s " + upload_Path + filename + " /Apps/opt/etc/localtime" , function(){
  		ASTGUI.feedback( { msg:'Default Timezone set to '+ filename + ' !', showfor:2 });
  		top.cookies.set( 'configFilesChanged' , 'yes' );
  		parent.$('#applyChanges_Button').show();
@@ -311,7 +311,7 @@ diff -ur a/config/js/timezone.js b/config/js/timezone.js
  		ASTGUI.tabbedOptions( _$('tabbedMenu') , t );
  
 -	ASTGUI.systemCmdWithOutput( 'ls -l /etc/localtime ' , function(op){
-+	ASTGUI.systemCmdWithOutput( 'ls -l /opt/etc/localtime ' , function(op){
++	ASTGUI.systemCmdWithOutput( 'ls -l /Apps/opt/etc/localtime ' , function(op){
  		if(op.length == 0){
  			ASTGUI.feedback( { msg:'You do not have a default TimeZone', showfor:2 });
  		}else{
@@ -324,15 +324,15 @@ diff -ur a/config/smtp_settings.html b/config/smtp_settings.html
  		var smtpport = ( parseInt(_$('smtp_port').value, 10 ) ) ? _$('smtp_port').value : '25' ;
 -		var cmd1 = "echo \"mailhub=" + _$('smtp_server').value + ":" + smtpport + "\" > /etc/ssmtp/ssmtp.conf ";
 -		var cmd2 = "echo \"FromLineOverride=YES\" >> /etc/ssmtp/ssmtp.conf ";
-+		var cmd1 = "echo \"mailhub=" + _$('smtp_server').value + ":" + smtpport + "\" > /opt/etc/ssmtp/ssmtp.conf ";
-+		var cmd2 = "echo \"FromLineOverride=YES\" >> /opt/etc/ssmtp/ssmtp.conf ";
++		var cmd1 = "echo \"mailhub=" + _$('smtp_server').value + ":" + smtpport + "\" > /Apps/opt/etc/ssmtp/ssmtp.conf ";
++		var cmd2 = "echo \"FromLineOverride=YES\" >> /Apps/opt/etc/ssmtp/ssmtp.conf ";
  		var cmd3 = "" , cmd4 = "";
  
  		if( _$('chk_UseAuthentication').checked ){
 -			cmd3 = "echo \"AuthUser=" + _$('AuthUser').value + "\" >> /etc/ssmtp/ssmtp.conf ";
 -			cmd4 = "echo \"AuthPass=" + _$('AuthPass').value + "\" >> /etc/ssmtp/ssmtp.conf ";
-+			cmd3 = "echo \"AuthUser=" + _$('AuthUser').value + "\" >> /opt/etc/ssmtp/ssmtp.conf ";
-+			cmd4 = "echo \"AuthPass=" + _$('AuthPass').value + "\" >> /opt/etc/ssmtp/ssmtp.conf ";
++			cmd3 = "echo \"AuthUser=" + _$('AuthUser').value + "\" >> /Apps/opt/etc/ssmtp/ssmtp.conf ";
++			cmd4 = "echo \"AuthPass=" + _$('AuthPass').value + "\" >> /Apps/opt/etc/ssmtp/ssmtp.conf ";
  		}
  
  		parent.ASTGUI.systemCmd( cmd1, function(){
@@ -344,7 +344,7 @@ diff -ur a/config/upload_abe_overlay.html b/config/upload_abe_overlay.html
  	starteduploading = 0;
  	var overlay_upload_Path ;
 -	var overlay_disk_Path = '/var/lib/asterisk/gui-overlay/';
-+	var overlay_disk_Path = '/opt/lib/asterisk/gui-overlay/';
++	var overlay_disk_Path = '/Apps/opt/lib/asterisk/gui-overlay/';
  
  	var localajaxinit = function(){
  		top.document.title = 'Upload GUI overlay file' ;

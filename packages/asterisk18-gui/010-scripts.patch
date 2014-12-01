@@ -6,7 +6,7 @@ diff -ur a/scripts/detectdahdi.sh b/scripts/detectdahdi.sh
  # script to detect whether zaptel/dahdi was installed & generate an include file for GUI
  
 -OUTPUTFILE="/etc/asterisk/dahdi_guiread.conf"
-+OUTPUTFILE="/opt/etc/asterisk/dahdi_guiread.conf"
++OUTPUTFILE="/Apps/opt/etc/asterisk/dahdi_guiread.conf"
  
  echo "" > ${OUTPUTFILE}
  echo "[general]" >> ${OUTPUTFILE}
@@ -18,7 +18,7 @@ diff -ur a/scripts/dldsoundpack b/scripts/dldsoundpack
  SOUNDS_LANGUAGE="en"
  SOUND_FORMATS="ulaw alaw gsm g722 g729"
 -SOUND_BASE="/var/lib/asterisk/sounds"
-+SOUND_BASE="/opt/lib/asterisk/sounds"
++SOUND_BASE="/Apps/opt/lib/asterisk/sounds"
  SOUND_LOC="$SOUND_BASE"
  DO_EXTRA="yes"
  
@@ -27,7 +27,7 @@ diff -ur a/scripts/dldsoundpack b/scripts/dldsoundpack
  
  
 -echo "DoneDoneDone" >> /var/lib/asterisk/static-http/config/sysinfo_output.html
-+echo "DoneDoneDone" >> /opt/lib/asterisk/static-http/config/sysinfo_output.html
++echo "DoneDoneDone" >> /Apps/opt/lib/asterisk/static-http/config/sysinfo_output.html
  sync; sync; sync
  
 diff -ur a/scripts/editmisdn.sh b/scripts/editmisdn.sh
@@ -45,8 +45,8 @@ diff -ur a/scripts/editmisdn.sh b/scripts/editmisdn.sh
  
 -MISDNCONF="/etc/misdn-init.conf"
 -MISDNFILE="/etc/asterisk/applymisdn.conf"
-+MISDNCONF="/opt/etc/misdn-init.conf"
-+MISDNFILE="/opt/etc/asterisk/applymisdn.conf"
++MISDNCONF="/Apps/opt/etc/misdn-init.conf"
++MISDNFILE="/Apps/opt/etc/asterisk/applymisdn.conf"
  grep -v "\[general\]" ${MISDNFILE} | grep -v "\;" | sed 's/ = /=/g' > ${MISDNCONF}
 diff -ur a/scripts/editzap.sh b/scripts/editzap.sh
 --- a/scripts/editzap.sh	2009-01-20 22:45:34.000000000 +0300
@@ -62,16 +62,16 @@ diff -ur a/scripts/editzap.sh b/scripts/editzap.sh
  
  if [ -e /dev/zap ]; then
 -	ZAPCONF="/etc/zaptel.conf"
-+	ZAPCONF="/opt/etc/zaptel.conf"
++	ZAPCONF="/Apps/opt/etc/zaptel.conf"
  fi
  
  if [ -e /dev/dahdi ]; then
 -	ZAPCONF="/etc/dahdi/system.conf"
-+	ZAPCONF="/opt/etc/dahdi/system.conf"
++	ZAPCONF="/Apps/opt/etc/dahdi/system.conf"
  fi
  
 -FILENAME="/etc/asterisk/applyzap.conf"
-+FILENAME="/opt/etc/asterisk/applyzap.conf"
++FILENAME="/Apps/opt/etc/asterisk/applyzap.conf"
  grep -v '\;' ${FILENAME} | sed 's/\[general\]//g' > ${ZAPCONF}
  
 diff -ur a/scripts/listfiles b/scripts/listfiles
@@ -81,7 +81,7 @@ diff -ur a/scripts/listfiles b/scripts/listfiles
  #!/bin/sh
  
 -SYSINFO_OUTPUT="/var/lib/asterisk/static-http/config/sysinfo_output.html"
-+SYSINFO_OUTPUT="/opt/lib/asterisk/static-http/config/sysinfo_output.html"
++SYSINFO_OUTPUT="/Apps/opt/lib/asterisk/static-http/config/sysinfo_output.html"
  
  #/bin/echo "<div id=list_files>" > $SYSINFO_OUTPUT
  /bin/mkdir -p -- "$1"
@@ -94,8 +94,8 @@ diff -ur a/scripts/mastercsvexists b/scripts/mastercsvexists
  
 -MASTERCSV="/var/log/asterisk/cdr-csv/Master.csv"
 -STATICHTTP="/var/lib/asterisk/static-http/"
-+MASTERCSV="/opt/var/log/asterisk/Master.csv"
-+STATICHTTP="/opt/lib/asterisk/static-http/"
++MASTERCSV="/Apps/opt/var/log/asterisk/Master.csv"
++STATICHTTP="/Apps/opt/lib/asterisk/static-http/"
  
  if [ `whoami` != "root" ]; then
  	echo "Error: You must be root to run this script."
@@ -103,10 +103,10 @@ diff -ur a/scripts/mastercsvexists b/scripts/mastercsvexists
  fi
  
 -if [ -f /var/log/asterisk/cdr-csv/Master.csv ]; then
-+if [ -f /opt/var/log/asterisk/Master.csv ]; then
++if [ -f /Apps/opt/var/log/asterisk/Master.csv ]; then
  	if [ ! -f $STATICHTTP`basename $MASTERCSV` ]; then
 -		ln -s $MASTERCSV /var/lib/asterisk/static-http/config/`basename $MASTERCSV`
-+		ln -s $MASTERCSV /opt/lib/asterisk/static-http/config/`basename $MASTERCSV`
++		ln -s $MASTERCSV /Apps/opt/lib/asterisk/static-http/config/`basename $MASTERCSV`
  	fi
  fi
  
@@ -119,8 +119,8 @@ diff -ur a/scripts/registerg729.sh b/scripts/registerg729.sh
  # script for generating regtool compatible tab delimited file from a gui config file.
 -INPUTFILE="/etc/asterisk/g729reginfo.conf"
 -OUTPUTFILE="/etc/asterisk/g729reginfo_tabs.conf"
-+INPUTFILE="/opt/etc/asterisk/g729reginfo.conf"
-+OUTPUTFILE="/opt/etc/asterisk/g729reginfo_tabs.conf"
++INPUTFILE="/Apps/opt/etc/asterisk/g729reginfo.conf"
++OUTPUTFILE="/Apps/opt/etc/asterisk/g729reginfo_tabs.conf"
  rm ${OUTPUTFILE}
  
  TABBEDVALUES=`grep -v '\;' ${INPUTFILE} | sed 's/\[general\]//g' | sed 's/ = /\\t/g'`
@@ -136,7 +136,7 @@ diff -ur a/scripts/restorebackup b/scripts/restorebackup
  tar -xf $1 -C /
  # clean out dhcpcd cache data
 -rm /etc/config/dhcpcd*
-+rm /opt/etc/config/dhcpcd*
++rm /Apps/opt/etc/config/dhcpcd*
  save_config
  sync
  sleep 1
@@ -146,10 +146,10 @@ diff -ur a/scripts/takebackup b/scripts/takebackup
 @@ -1,6 +1,7 @@
  #!/bin/sh
 -/bin/tar -cf $1 /etc/asterisk /etc/localtime
-+/bin/tar -cf $1 /opt/etc/asterisk /opt/etc/localtime
++/bin/tar -cf $1 /Apps/opt/etc/asterisk /Apps/opt/etc/localtime
 +# /etc/localtime
  if [ "$2" = "YES" ]; then
  	SF=`echo "$1" | cut -d '.' -f 1`
 -	/bin/tar -cf "${SF}"_sounds.tar /var/lib/asterisk/sounds/voicemail /var/lib/asterisk/sounds/record
-+	/bin/tar -cf "${SF}"_sounds.tar /opt/lib/asterisk/sounds/voicemail /opt/lib/asterisk/sounds/record
++	/bin/tar -cf "${SF}"_sounds.tar /Apps/opt/lib/asterisk/sounds/voicemail /Apps/opt/lib/asterisk/sounds/record
  fi
