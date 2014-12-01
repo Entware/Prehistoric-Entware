@@ -9,8 +9,8 @@ all: .done
 
 .done:
 	patch -d $(TOP) -p3 -i $(CURDIR)/fix-path.patch
-	mkdir -p ../../../openwrt_trunk/feeds/libs/libubox/patches
-	cp -f ./010-gcc42.patch ../../../openwrt_trunk/feeds/libs/libubox/patches
+	mkdir -p ../../../openwrt_trunk/package/libs/libubox/patches
+	cp -f ./010-gcc42.patch ../../../openwrt_trunk/package/libs/libubox/patches
 	@touch $@
 
 clean:
