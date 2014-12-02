@@ -6,7 +6,7 @@
  
 -	if (!root_dir)
 -		root_dir = conf->default_dest->root_dir;
-+	root_dir = "/opt";
++	root_dir = "/Apps/opt";
  
  	kbs_available = get_available_kbytes(root_dir);
  
