@@ -20,7 +20,12 @@ all: .toolchain_prepared
 
 .toolchain_prepared: \
 	$(TOP)/cross \
-	$(TOP)/downloads
+	$(TOP)/downloads \
+	$(TOP)/downloads/$(BINUTILS_ARCH) \
+	$(TOP)/downloads/$(GCC_ARCH) \
+	$(TOP)/downloads/$(GLIBC_ARCH) \
+	$(TOP)/downloads/$(KERNEL_ARCH) \
+	$(TOP)/downloads/$(CROSS_ARCH)
 	tar -C $(TOP)/cross -xf $(TOP)/downloads/$(CROSS_ARCH)
 	( \
 		cd $(TOP)/cross/$(CROSS) && \
@@ -45,11 +50,32 @@ $(TOP)/cross:
 
 $(TOP)/downloads:
 	[ -d "$(TOP)/downloads" ] || mkdir -p "$(TOP)/downloads"
-	[ -f "$(TOP)/downloads/$(BINUTILS_ARCH)" ] || wget $(SRC_MIRROR)/$(BINUTILS_ARCH) -O $(TOP)/downloads/$(BINUTILS_ARCH)
-	[ -f "$(TOP)/downloads/$(GCC_ARCH)"      ] || wget $(SRC_MIRROR)/$(GCC_ARCH)      -O $(TOP)/downloads/$(GCC_ARCH)
-	[ -f "$(TOP)/downloads/$(GLIBC_ARCH)"    ] || wget $(SRC_MIRROR)/$(GLIBC_ARCH)    -O $(TOP)/downloads/$(GLIBC_ARCH)
-	[ -f "$(TOP)/downloads/$(KERNEL_ARCH)"   ] || wget $(SRC_MIRROR)/$(KERNEL_ARCH)   -O $(TOP)/downloads/$(KERNEL_ARCH)
-	[ -f "$(TOP)/downloads/$(CROSS_ARCH)"    ] || wget $(SRC_MIRROR)/$(CROSS_ARCH)    -O $(TOP)/downloads/$(CROSS_ARCH)
+
+$(TOP)/downloads/$(BINUTILS_ARCH): $(TOP)/downloads
+	[ -f $(TOP)/downloads/$(BINUTILS_ARCH) ] || wget $(SRC_MIRROR)/$(BINUTILS_ARCH) \
+		-O $(TOP)/downloads/$(BINUTILS_ARCH)
+	@echo "Binutils downloaded"
+
+$(TOP)/downloads/$(GCC_ARCH): $(TOP)/downloads
+	[ -f $(TOP)/downloads/$(GCC_ARCH) ]      || wget $(SRC_MIRROR)/$(GCC_ARCH) \
+		-O $(TOP)/downloads/$(GCC_ARCH)
+	@echo "GCC downloaded"
+
+$(TOP)/downloads/$(GLIBC_ARCH): $(TOP)/downloads
+	[ -f $(TOP)/downloads/$(GLIBC_ARCH) ]     || wget $(SRC_MIRROR)/$(GLIBC_ARCH) \
+		-O $(TOP)/downloads/$(GLIBC_ARCH)
+	@echo "GLIBC downloaded"
+
+$(TOP)/downloads/$(KERNEL_ARCH): $(TOP)/downloads
+	[ -f $(TOP)/downloads/$(KERNEL_ARCH) ]   || wget $(SRC_MIRROR)/$(KERNEL_ARCH) \
+		-O $(TOP)/downloads/$(KERNEL_ARCH)
+	@echo "Kernel downloaded"
+
+$(TOP)/downloads/$(CROSS_ARCH): $(TOP)/downloads
+	[ -f $(TOP)/downloads/$(CROSS_ARCH) ]    || wget $(SRC_MIRROR)/$(CROSS_ARCH) \
+		-O $(TOP)/downloads/$(CROSS_ARCH)
+	@echo "Kernel downloaded"
+
 clean:
 	@rm -f .toolchain_prepared
 	@rm -fr $(TOP)/cross
