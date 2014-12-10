@@ -1,14 +1,28 @@
---- ../../../downloads/mipsel-hardfloat/openwrt_trunk-r40423/feeds/packages/net/aria2/Makefile
-+++ ../../../openwrt_trunk/feeds/packages/net/aria2/Makefile
-@@ -63,8 +63,11 @@
+--- ../../../downloads/openwrt_trunk-r42803/feeds/packages/net/aria2/Makefile	2014-10-15 10:43:09.835917916 +0400
++++ ../../../openwrt_trunk/feeds/packages/net/aria2/Makefile	2014-12-08 08:03:24.894391534 +0300
+@@ -8,7 +8,7 @@
+ 
+ PKG_NAME:=aria2
+ PKG_VERSION:=1.18.7
+-PKG_RELEASE:=1
++PKG_RELEASE:=1a
+ 
+ PKG_SOURCE:=$(PKG_NAME)-$(PKG_VERSION).tar.bz2
+ PKG_SOURCE_URL:=@SF/aria2
+@@ -62,9 +62,16 @@
+ 	--without-sqlite3 \
  	--with-libz
  
++define Package/aria2/conffiles
++/opt/etc/aria2.conf
++endef
++
  define Package/aria2/install
 -	$(INSTALL_DIR) $(1)/usr/bin
 -	$(INSTALL_BIN) $(PKG_INSTALL_DIR)/usr/bin/aria2c $(1)/usr/bin
 +	$(INSTALL_DIR) $(1)/opt/bin
 +	$(INSTALL_BIN) $(PKG_INSTALL_DIR)/opt/bin/aria2c $(1)/opt/bin
-+	$(INSTALL_DIR) $(1)/opt/var/{log,run} $(1)/opt/etc/init.d
++	$(INSTALL_DIR) $(1)/opt/var/aria2/torrents $(1)/opt/etc/init.d
 +	$(INSTALL_CONF) ./files/aria2.conf $(1)/opt/etc
 +	$(INSTALL_BIN) ./files/S81aria2 $(1)/opt/etc/init.d
  endef

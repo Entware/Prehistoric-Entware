@@ -1,5 +1,7 @@
 #!/bin/sh
 
+[ -e /opt/var/aria2/session.dat ] || touch /opt/var/aria2/session.dat
+
 ENABLED=yes
 PROCS=aria2c
 ARGS="--conf-path=/opt/etc/aria2.conf"
