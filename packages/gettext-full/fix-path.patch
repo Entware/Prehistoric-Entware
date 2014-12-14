@@ -1,5 +1,14 @@
---- ../../../openwrt_trunk/package/libs/gettext-full/Makefile.orig
-+++ ../../../openwrt_trunk/package/libs/gettext-full/Makefile
+--- ../../../downloads/openwrt_trunk-r42803/package/libs/gettext-full/Makefile	2014-12-08 20:56:39.274671399 +0300
++++ ../../../openwrt_trunk/package/libs/gettext-full/Makefile	2014-12-09 20:25:01.919049372 +0300
+@@ -22,7 +22,7 @@
+ PKG_FIXUP:=autoreconf
+ PKG_INSTALL:=1
+ PKG_BUILD_PARALLEL:=0
+-PKG_BUILD_DEPENDS:=gettext-full/host
++PKG_BUILD_DEPENDS:=libncurses libiconv-full gettext-full/host
+ PKG_CHECK_FORMAT_SECURITY:=0
+ 
+ include $(INCLUDE_DIR)/package.mk
 @@ -51,6 +51,7 @@
  	--disable-java \
  	--disable-native-java \
