@@ -100,7 +100,7 @@
 +define Package/terminfo/postinst
 +#!/bin/sh
 +
-+grep -q "^export TERMINFO" /opt/etc/profile || echo "export TERMINFO=/opt/share/terminfo" >> /opt/etc/profile
++grep -q "^export TERMINFO" /Apps/opt/etc/profile || echo "export TERMINFO=/Apps/opt/share/terminfo" >> /Apps/opt/etc/profile
 +endef
 +
  define Package/libncurses/install

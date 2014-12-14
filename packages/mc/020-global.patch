@@ -5,7 +5,7 @@
  #define PATH_SEP_STR "/"
  #define PATH_ENV_SEP ':'
 -#define TMPDIR_DEFAULT "/tmp"
-+#define TMPDIR_DEFAULT "/opt/tmp"
++#define TMPDIR_DEFAULT "/Apps/opt/tmp"
  #define SCRIPT_SUFFIX ""
  #define get_default_editor() "vi"
  #define OS_SORT_CASE_SENSITIVE_DEFAULT 1

@@ -1,6 +1,6 @@
---- ../../../downloads/openwrt_trunk-r42803/feeds/packages/utils/smartmontools/Makefile
-+++ ../../../openwrt_trunk/feeds/packages/utils/smartmontools/Makefile
-@@ -18,12 +18,14 @@
+--- ../../../downloads/openwrt_trunk-r42803/feeds/packages/utils/smartmontools/Makefile	2014-12-08 20:56:36.449259284 +0300
++++ ../../../openwrt_trunk/feeds/packages/utils/smartmontools/Makefile	2014-12-11 20:42:02.491890932 +0300
+@@ -18,6 +18,8 @@
  PKG_MAINTAINER:=Maxim Storchak <m.storchak@gmail.com>
  PKG_LICENSE:=GPL-2.0+
  
@@ -9,23 +9,20 @@
  include $(INCLUDE_DIR)/package.mk
  
  define Package/smartmontools/Default
-   SECTION:=utils
-   CATEGORY:=Utilities
--  DEPENDS:=$(CXX_DEPENDS)
-+  DEPENDS:=+uclibcxx
-   TITLE:=S.M.A.R.T Monitoring
-   URL:=http://smartmontools.sourceforge.net/
- endef
-@@ -56,7 +58,7 @@
+@@ -54,12 +56,6 @@
  
- CONFIGURE_VARS += \
- 	CXXFLAGS="$$$$CXXFLAGS -fno-builtin -fno-rtti -nostdinc++" \
+ # uses GNU configure
+ 
+-CONFIGURE_VARS += \
+-	CXXFLAGS="$$$$CXXFLAGS -fno-builtin -fno-rtti -nostdinc++" \
 -	CPPFLAGS="$$$$CPPFLAGS -I$(STAGING_DIR)/usr/include/uClibc++ -I$(LINUX_DIR)/include" \
-+	CPPFLAGS="$$$$CPPFLAGS -I$(STAGING_DIR)/opt/include/uClibc++ -I$(LINUX_DIR)/include" \
- 	LDFLAGS="$$$$LDFLAGS" \
- 	LIBS="-nodefaultlibs -lc -luClibc++ -lm $(LIBGCC_S) -lc" \
- 
-@@ -74,21 +76,23 @@
+-	LDFLAGS="$$$$LDFLAGS" \
+-	LIBS="-nodefaultlibs -lc -luClibc++ -lm $(LIBGCC_S) -lc" \
+-
+ define Build/Configure
+ 	(cd $(PKG_BUILD_DIR); rm -rf config.{cache,status} ; \
+ 		./autogen.sh \
+@@ -74,21 +70,23 @@
  endef
  
  define Package/smartmontools/install

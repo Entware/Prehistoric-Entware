@@ -29,7 +29,7 @@ diff -urx .svn ../../../downloads/openwrt_trunk-r42803/package/system/opkg/Makef
 -	--with-opkgetcdir=/etc \
 -	--with-opkglockfile=/var/lock/opkg.lock
 +	--with-opkgetcdir=/Apps/opt/etc \
-+	--with-opkglibdir=/Apps/opt/lib \
++	--with-opkglibdir=/opt/lib \
 +	--with-opkglockfile=/Apps/opt/var/lock/opkg.lock
  
  ifeq ($(BUILD_VARIANT),smime)
