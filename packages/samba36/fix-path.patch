@@ -48,9 +48,9 @@ diff -urx .svn ../../../downloads/openwrt_trunk-r42803/package/network/services/
 -	$(INSTALL_BIN) ./files/samba.init $(1)/etc/init.d/samba
 -	$(INSTALL_DIR) $(1)/usr/sbin
 -	$(INSTALL_BIN) $(PKG_BUILD_BIN)/samba_multicall $(1)/usr/sbin
--	ln -sf samba_multicall $(1)/usr/sbin/smbd
--	ln -sf samba_multicall $(1)/usr/sbin/nmbd
--	ln -sf samba_multicall $(1)/usr/sbin/smbpasswd
+-	$(LN) samba_multicall $(1)/usr/sbin/smbd
+-	$(LN) samba_multicall $(1)/usr/sbin/nmbd
+-	$(LN) samba_multicall $(1)/usr/sbin/smbpasswd
 +	$(INSTALL_DIR) $(1)/opt/etc/samba
 +	$(INSTALL_DATA) ./files/smb.conf.template $(1)/opt/etc/samba
 +	$(INSTALL_DATA) $(PKG_BUILD_DIR)/codepages/lowcase.dat $(1)/opt/etc/samba
@@ -61,9 +61,9 @@ diff -urx .svn ../../../downloads/openwrt_trunk-r42803/package/network/services/
 +	$(INSTALL_DIR) $(1)/opt/var/log
 +	$(INSTALL_DIR) $(1)/opt/var/run
 +	$(INSTALL_BIN) $(PKG_BUILD_BIN)/samba_multicall $(1)/opt/sbin
-+	ln -sf samba_multicall $(1)/opt/sbin/smbd
-+	ln -sf samba_multicall $(1)/opt/sbin/nmbd
-+	ln -sf samba_multicall $(1)/opt/sbin/smbpasswd
++	$(LN) samba_multicall $(1)/opt/sbin/smbd
++	$(LN) samba_multicall $(1)/opt/sbin/nmbd
++	$(LN) samba_multicall $(1)/opt/sbin/smbpasswd
 +	$(INSTALL_DIR) $(1)/opt/etc/init.d
 +	$(INSTALL_BIN) ./files/S08samba $(1)/opt/etc/init.d
  endef

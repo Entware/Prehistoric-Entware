@@ -1,6 +1,6 @@
 --- ../../../openwrt_trunk.orig/package/libs/gmp/Makefile
 +++ ../../../openwrt_trunk/package/libs/gmp/Makefile
-@@ -54,15 +54,15 @@
+@@ -55,15 +55,15 @@
  endef
  
  define Build/InstallDev

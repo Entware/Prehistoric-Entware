@@ -1,6 +1,6 @@
---- ../../../openwrt_trunk.orig/feeds/packages/libs/libmpdclient/Makefile
-+++ ../../../openwrt_trunk/feeds/packages/libs/libmpdclient/Makefile
-@@ -42,26 +42,26 @@
+--- ../../../downloads/openwrt_trunk-r43593/feeds/packages/libs/libmpdclient/Makefile	2014-12-10 12:26:32.922951682 +0300
++++ ../../../openwrt_trunk/feeds/packages/libs/libmpdclient/Makefile	2014-12-10 12:49:04.918927054 +0300
+@@ -44,26 +44,26 @@
  
  define Build/InstallDev
  	$(INSTALL_DIR) \

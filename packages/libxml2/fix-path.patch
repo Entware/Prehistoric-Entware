@@ -1,6 +1,15 @@
---- ../../../downloads/openwrt_trunk-r42803/feeds/packages/libs/libxml2/Makefile
-+++ ../../../openwrt_trunk/feeds/packages/libs/libxml2/Makefile
-@@ -76,25 +76,25 @@
+--- ../../../downloads/openwrt_trunk-r43593/feeds/packages/libs/libxml2/Makefile	2014-12-10 12:26:32.886951683 +0300
++++ ../../../openwrt_trunk/feeds/packages/libs/libxml2/Makefile	2014-12-12 16:34:56.572831053 +0300
+@@ -72,7 +72,7 @@
+ 	--with-xinclude \
+ 	--with-xpath \
+ 	--with-xptr \
+-	--with-zlib=$(STAGING_DIR)/usr \
++	--with-zlib=$(STAGING_DIR)/opt \
+ 	--without-lzma
+ 
+ HOST_CONFIGURE_ARGS += \
+@@ -109,25 +109,25 @@
  
  define Build/InstallDev
  	$(INSTALL_DIR) $(2)/bin
@@ -36,4 +45,4 @@
 +	$(CP) $(PKG_INSTALL_DIR)/opt/lib/libxml2.so* $(1)/opt/lib/
  endef
  
- $(eval $(call BuildPackage,libxml2))
+ $(eval $(call HostBuild))

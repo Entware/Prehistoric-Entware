@@ -1,6 +1,6 @@
-diff -BurN ../../../downloads/openwrt_trunk-r42803/feeds/packages/libs/libv4l/Makefile ../../../openwrt_trunk/feeds/packages/libs/libv4l/Makefile
---- ../../../downloads/openwrt_trunk-r42803/feeds/packages/libs/libv4l/Makefile	2014-10-09 19:10:17.720806523 +0400
-+++ ../../../openwrt_trunk/feeds/packages/libs/libv4l/Makefile	2014-05-27 14:18:57.097779893 +0400
+diff -urN ../../../downloads/openwrt_trunk-r43593/feeds/packages/libs/libv4l/Makefile ../../../openwrt_trunk/feeds/packages/libs/libv4l/Makefile
+--- ../../../downloads/openwrt_trunk-r43593/feeds/packages/libs/libv4l/Makefile	2014-12-10 12:26:32.898951682 +0300
++++ ../../../openwrt_trunk/feeds/packages/libs/libv4l/Makefile	2014-10-15 10:43:18.000000000 +0400
 @@ -1,5 +1,5 @@
  #
 -# Copyright (C) 2009-2014 OpenWrt.org
@@ -8,13 +8,14 @@ diff -BurN ../../../downloads/openwrt_trunk-r42803/feeds/packages/libs/libv4l/Ma
  # Copyright (C) 2009 David Cooper <dave@kupesoft.com>
  #
  # This is free software, licensed under the GNU General Public License v2.
-@@ -9,23 +9,17 @@
+@@ -9,24 +9,17 @@
  include $(TOPDIR)/rules.mk
  
  PKG_NAME:=v4l-utils
 -PKG_VERSION:=1.2.1
 +PKG_VERSION:=0.8.6
  PKG_RELEASE:=2
+-PKG_USE_MIPS16:=0
  
  PKG_SOURCE:=$(PKG_NAME)-$(PKG_VERSION).tar.bz2
  PKG_SOURCE_URL:=http://www.linuxtv.org/downloads/v4l-utils
@@ -23,7 +24,7 @@ diff -BurN ../../../downloads/openwrt_trunk-r42803/feeds/packages/libs/libv4l/Ma
 -PKG_MAINTAINER:=Ted Hess <thess@kitschensync.net>
 -
 -PKG_LICENSE:=GPL-2.0 LGPL-2.1
--PKG_LICENSE_FILE:=COPYING COPYING.libv4l
+-PKG_LICENSE_FILES:=COPYING COPYING.libv4l
 +PKG_MD5SUM:=80062780ae90e5955473b09b31e9828a
  
  PKG_BUILD_DEPENDS:=argp-standalone
@@ -34,7 +35,7 @@ diff -BurN ../../../downloads/openwrt_trunk-r42803/feeds/packages/libs/libv4l/Ma
  
  define Package/libv4l/Default
    TITLE:=Video 4 Linux
-@@ -52,7 +46,7 @@
+@@ -53,7 +46,7 @@
    SECTION:=libs
    CATEGORY:=Libraries
    TITLE+= wrapper libraries
@@ -43,7 +44,7 @@ diff -BurN ../../../downloads/openwrt_trunk-r42803/feeds/packages/libs/libv4l/Ma
  endef
  
  define Package/libv4l/description
-@@ -64,7 +58,7 @@
+@@ -65,7 +58,7 @@
    SECTION:=utils
    CATEGORY:=Utilities
    TITLE+= utilities
@@ -52,7 +53,7 @@ diff -BurN ../../../downloads/openwrt_trunk-r42803/feeds/packages/libs/libv4l/Ma
  endef
  
  define Package/v4l-utils/description
-@@ -73,48 +67,46 @@
+@@ -74,48 +67,46 @@
  endef
  
  TARGET_CFLAGS += $(FPIC)
@@ -125,9 +126,9 @@ diff -BurN ../../../downloads/openwrt_trunk-r42803/feeds/packages/libs/libv4l/Ma
  endef
  
  $(eval $(call BuildPackage,libv4l))
-diff -BurN ../../../downloads/openwrt_trunk-r42803/feeds/packages/libs/libv4l/patches/001-no-shm_open-fix.patch ../../../openwrt_trunk/feeds/packages/libs/libv4l/patches/001-no-shm_open-fix.patch
---- ../../../downloads/openwrt_trunk-r42803/feeds/packages/libs/libv4l/patches/001-no-shm_open-fix.patch	2014-10-09 19:10:17.720806523 +0400
-+++ ../../../openwrt_trunk/feeds/packages/libs/libv4l/patches/001-no-shm_open-fix.patch	2014-05-27 14:17:51.425781084 +0400
+diff -urN ../../../downloads/openwrt_trunk-r43593/feeds/packages/libs/libv4l/patches/001-no-shm_open-fix.patch ../../../openwrt_trunk/feeds/packages/libs/libv4l/patches/001-no-shm_open-fix.patch
+--- ../../../downloads/openwrt_trunk-r43593/feeds/packages/libs/libv4l/patches/001-no-shm_open-fix.patch	2014-12-10 12:26:32.898951682 +0300
++++ ../../../openwrt_trunk/feeds/packages/libs/libv4l/patches/001-no-shm_open-fix.patch	2014-10-15 10:43:18.000000000 +0400
 @@ -1,15 +1,15 @@
  --- a/lib/libv4lconvert/control/libv4lcontrol.c
  +++ b/lib/libv4lconvert/control/libv4lcontrol.c
@@ -148,9 +149,9 @@ diff -BurN ../../../downloads/openwrt_trunk-r42803/feeds/packages/libs/libv4l/pa
   
   	if (getpwuid_r(geteuid(), &pwd, pwd_buf, sizeof(pwd_buf), &pwd_p) == 0) {
   		if (got_usb_info)
-diff -BurN ../../../downloads/openwrt_trunk-r42803/feeds/packages/libs/libv4l/patches/002-allow-disabling-libjpeg.patch ../../../openwrt_trunk/feeds/packages/libs/libv4l/patches/002-allow-disabling-libjpeg.patch
---- ../../../downloads/openwrt_trunk-r42803/feeds/packages/libs/libv4l/patches/002-allow-disabling-libjpeg.patch	1970-01-01 03:00:00.000000000 +0300
-+++ ../../../openwrt_trunk/feeds/packages/libs/libv4l/patches/002-allow-disabling-libjpeg.patch	2014-05-27 14:17:51.425781084 +0400
+diff -urN ../../../downloads/openwrt_trunk-r43593/feeds/packages/libs/libv4l/patches/002-allow-disabling-libjpeg.patch ../../../openwrt_trunk/feeds/packages/libs/libv4l/patches/002-allow-disabling-libjpeg.patch
+--- ../../../downloads/openwrt_trunk-r43593/feeds/packages/libs/libv4l/patches/002-allow-disabling-libjpeg.patch	1970-01-01 03:00:00.000000000 +0300
++++ ../../../openwrt_trunk/feeds/packages/libs/libv4l/patches/002-allow-disabling-libjpeg.patch	2014-10-15 10:43:18.000000000 +0400
 @@ -0,0 +1,160 @@
 +--- a/lib/libv4lconvert/Makefile
 ++++ b/lib/libv4lconvert/Makefile
@@ -312,9 +313,9 @@ diff -BurN ../../../downloads/openwrt_trunk-r42803/feeds/packages/libs/libv4l/pa
 + 		case V4L2_PIX_FMT_SN9C2028:
 + 			v4lconvert_decode_sn9c2028(src, tmpbuf, width, height);
 + 			tmpfmt.fmt.pix.pixelformat = V4L2_PIX_FMT_SBGGR8;
-diff -BurN ../../../downloads/openwrt_trunk-r42803/feeds/packages/libs/libv4l/patches/003-add-missing-libs.patch ../../../openwrt_trunk/feeds/packages/libs/libv4l/patches/003-add-missing-libs.patch
---- ../../../downloads/openwrt_trunk-r42803/feeds/packages/libs/libv4l/patches/003-add-missing-libs.patch	1970-01-01 03:00:00.000000000 +0300
-+++ ../../../openwrt_trunk/feeds/packages/libs/libv4l/patches/003-add-missing-libs.patch	2014-05-27 14:17:51.425781084 +0400
+diff -urN ../../../downloads/openwrt_trunk-r43593/feeds/packages/libs/libv4l/patches/003-add-missing-libs.patch ../../../openwrt_trunk/feeds/packages/libs/libv4l/patches/003-add-missing-libs.patch
+--- ../../../downloads/openwrt_trunk-r43593/feeds/packages/libs/libv4l/patches/003-add-missing-libs.patch	1970-01-01 03:00:00.000000000 +0300
++++ ../../../openwrt_trunk/feeds/packages/libs/libv4l/patches/003-add-missing-libs.patch	2014-10-15 10:43:18.000000000 +0400
 @@ -0,0 +1,66 @@
 +--- a/contrib/test/Makefile
 ++++ b/contrib/test/Makefile
@@ -382,9 +383,9 @@ diff -BurN ../../../downloads/openwrt_trunk-r42803/feeds/packages/libs/libv4l/pa
 + 
 + install: $(TARGETS)
 + 	mkdir -p $(DESTDIR)$(PREFIX)/bin
-diff -BurN ../../../downloads/openwrt_trunk-r42803/feeds/packages/libs/libv4l/patches/004-disable-qv4l2.patch ../../../openwrt_trunk/feeds/packages/libs/libv4l/patches/004-disable-qv4l2.patch
---- ../../../downloads/openwrt_trunk-r42803/feeds/packages/libs/libv4l/patches/004-disable-qv4l2.patch	1970-01-01 03:00:00.000000000 +0300
-+++ ../../../openwrt_trunk/feeds/packages/libs/libv4l/patches/004-disable-qv4l2.patch	2014-05-27 14:17:51.425781084 +0400
+diff -urN ../../../downloads/openwrt_trunk-r43593/feeds/packages/libs/libv4l/patches/004-disable-qv4l2.patch ../../../openwrt_trunk/feeds/packages/libs/libv4l/patches/004-disable-qv4l2.patch
+--- ../../../downloads/openwrt_trunk-r43593/feeds/packages/libs/libv4l/patches/004-disable-qv4l2.patch	1970-01-01 03:00:00.000000000 +0300
++++ ../../../openwrt_trunk/feeds/packages/libs/libv4l/patches/004-disable-qv4l2.patch	2014-10-15 10:43:18.000000000 +0400
 @@ -0,0 +1,24 @@
 +--- a/utils/Makefile
 ++++ b/utils/Makefile
@@ -410,8 +411,8 @@ diff -BurN ../../../downloads/openwrt_trunk-r42803/feeds/packages/libs/libv4l/pa
 + sync-with-kernel:
 + 	$(MAKE) -C keytable $@
 + 	$(MAKE) -C v4l2-dbg $@
-diff -BurN ../../../downloads/openwrt_trunk-r42803/feeds/packages/libs/libv4l/patches/020-add-missing-includes.patch ../../../openwrt_trunk/feeds/packages/libs/libv4l/patches/020-add-missing-includes.patch
---- ../../../downloads/openwrt_trunk-r42803/feeds/packages/libs/libv4l/patches/020-add-missing-includes.patch	2014-10-09 19:10:17.720806523 +0400
+diff -urN ../../../downloads/openwrt_trunk-r43593/feeds/packages/libs/libv4l/patches/020-add-missing-includes.patch ../../../openwrt_trunk/feeds/packages/libs/libv4l/patches/020-add-missing-includes.patch
+--- ../../../downloads/openwrt_trunk-r43593/feeds/packages/libs/libv4l/patches/020-add-missing-includes.patch	2014-12-10 12:26:32.898951682 +0300
 +++ ../../../openwrt_trunk/feeds/packages/libs/libv4l/patches/020-add-missing-includes.patch	1970-01-01 03:00:00.000000000 +0300
 @@ -1,10 +0,0 @@
 ---- a/utils/rds-ctl/rds-ctl.cpp
@@ -424,9 +425,9 @@ diff -BurN ../../../downloads/openwrt_trunk-r42803/feeds/packages/libs/libv4l/pa
 - #include <fcntl.h>
 - #include <errno.h>
 - #include <sys/ioctl.h>
-diff -BurN ../../../downloads/openwrt_trunk-r42803/feeds/packages/libs/libv4l/patches/500-keymaps-dir.patch ../../../openwrt_trunk/feeds/packages/libs/libv4l/patches/500-keymaps-dir.patch
---- ../../../downloads/openwrt_trunk-r42803/feeds/packages/libs/libv4l/patches/500-keymaps-dir.patch	1970-01-01 03:00:00.000000000 +0300
-+++ ../../../openwrt_trunk/feeds/packages/libs/libv4l/patches/500-keymaps-dir.patch	2014-05-27 14:18:57.101779893 +0400
+diff -urN ../../../downloads/openwrt_trunk-r43593/feeds/packages/libs/libv4l/patches/500-keymaps-dir.patch ../../../openwrt_trunk/feeds/packages/libs/libv4l/patches/500-keymaps-dir.patch
+--- ../../../downloads/openwrt_trunk-r43593/feeds/packages/libs/libv4l/patches/500-keymaps-dir.patch	1970-01-01 03:00:00.000000000 +0300
++++ ../../../openwrt_trunk/feeds/packages/libs/libv4l/patches/500-keymaps-dir.patch	2014-10-15 10:43:18.000000000 +0400
 @@ -0,0 +1,11 @@
 +--- a/utils/keytable/keytable.c
 ++++ b/utils/keytable/keytable.c

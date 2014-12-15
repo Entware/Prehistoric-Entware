@@ -1,5 +1,5 @@
---- ../../../openwrt_trunk/package/libs/librpc/Makefile.orig
-+++ ../../../openwrt_trunk/package/libs/librpc/Makefile
+--- ../../../downloads/openwrt_trunk-r43593/package/libs/librpc/Makefile	2014-12-10 12:26:33.278951674 +0300
++++ ../../../openwrt_trunk/package/libs/librpc/Makefile	2014-12-12 11:13:42.611884750 +0300
 @@ -9,7 +9,6 @@
  PKG_SOURCE_SUBDIR:=$(PKG_NAME)-$(PKG_VERSION)
  PKG_SOURCE_VERSION:=0a2179bbc0844928f2a0ec01dba93d9b5d6d41a7
@@ -7,8 +7,8 @@
 -CMAKE_INSTALL:=1
  PKG_USE_MIPS16:=0
  
- PKG_LICENSE:=GPLv2 LGPLv2.1
-@@ -26,9 +25,26 @@
+ PKG_LICENSE:=LGPL-2.1
+@@ -26,9 +25,21 @@
    TITLE:=uClibc RPC library
  endef
  
@@ -31,9 +31,4 @@
 +	touch $(1)/opt/tmp/.librpc_placeholder
  endef
  
-+#define Package/librpc/install
-+#	$(INSTALL_DIR) $(1)/opt/lib/
-+#	$(INSTALL_DATA) $(PKG_INSTALL_DIR)/opt/lib/librpc.so $(1)/opt/lib/
-+#endef
-+
  $(eval $(call BuildPackage,librpc))

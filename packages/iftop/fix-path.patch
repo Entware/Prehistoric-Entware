@@ -1,6 +1,6 @@
 --- ../../../openwrt_trunk.orig/package/network/utils/iftop/Makefile
 +++ ../../../openwrt_trunk/package/network/utils/iftop/Makefile
-@@ -35,8 +35,8 @@
+@@ -36,8 +36,8 @@
  endef
  
  define Package/iftop/install	

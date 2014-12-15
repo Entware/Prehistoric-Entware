@@ -1,14 +1,29 @@
---- ../../../downloads/openwrt_trunk-r42803/package/network/utils/comgt/Makefile
-+++ ../../../openwrt_trunk/package/network/utils/comgt/Makefile
-@@ -26,7 +26,6 @@
-   SECTION:=utils
-   CATEGORY:=Utilities
+--- ../../../downloads/openwrt_trunk-r43593/package/network/utils/comgt/Makefile	2014-12-10 12:26:33.798951666 +0300
++++ ../../../openwrt_trunk/package/network/utils/comgt/Makefile	2014-12-11 12:49:14.777359241 +0300
+@@ -31,20 +31,19 @@
+ define Package/comgt
+ $(call Package/comgt/Default)
    TITLE:=Option/Vodafone 3G/GPRS control tool
 -  DEPENDS:=+chat
    URL:=http://www.pharscape.org/comgt.html
  endef
  
-@@ -40,32 +39,27 @@
+ define Package/comgt-directip
+ $(call Package/comgt/Default)
+   TITLE:=Sierra Wireless Direct-IP support
+-  DEPENDS:=+comgt +kmod-usb-serial +kmod-usb-serial-sierrawireless +kmod-usb-net +kmod-usb-net-sierrawireless
++  DEPENDS:=+comgt
+ endef
+ 
+ define Package/comgt-ncm
+ $(call Package/comgt/Default)
+   TITLE+=NCM 3G/4G Support
+-  DEPENDS:=+comgt +kmod-usb-serial +kmod-usb-serial-option +kmod-usb-net +kmod-usb-net-cdc-ncm +kmod-usb-net-huawei-cdc-ncm
++  DEPENDS:=+comgt
+ endef
+ 
+ define Package/comgt/description
+@@ -57,48 +56,39 @@
  	$(MAKE) -C $(PKG_BUILD_DIR) \
  		$(TARGET_CONFIGURE_OPTS) \
  		CFLAGS="$(TARGET_CFLAGS)" \
@@ -32,13 +47,13 @@
 -	$(INSTALL_DATA) ./files/getcarrier.gcom $(1)/etc/gcom/getcarrier.gcom
 -	$(INSTALL_DATA) ./files/getcnum.gcom $(1)/etc/gcom/getcnum.gcom
 -	$(INSTALL_DATA) ./files/getimsi.gcom $(1)/etc/gcom/getimsi.gcom
--	$(INSTALL_DATA) ./files/directip.gcom $(1)/etc/gcom/directip.gcom
--	$(INSTALL_DATA) ./files/directip-stop.gcom $(1)/etc/gcom/directip-stop.gcom
 -	$(INSTALL_DIR) $(1)/etc/hotplug.d/tty
 -	$(INSTALL_DATA) ./files/3g.usb $(1)/etc/hotplug.d/tty/30-3g
 -	$(INSTALL_DIR) $(1)/lib/netifd/proto
 -	$(INSTALL_BIN) ./files/3g.sh $(1)/lib/netifd/proto/3g.sh
 -	$(INSTALL_BIN) ./files/directip.sh $(1)/lib/netifd/proto/directip.sh
+-	$(INSTALL_DIR) $(1)/lib/network/wwan/
+-	$(INSTALL_DATA) ./files/data/* $(1)/lib/network/wwan/
 +	$(INSTALL_DIR) $(1)/opt/bin
 +	$(INSTALL_BIN) $(PKG_BUILD_DIR)/comgt $(1)/opt/bin/
 +	ln -s comgt $(1)/opt/bin/gcom
@@ -53,8 +68,30 @@
 +	$(INSTALL_DATA) ./files/getcarrier.gcom $(1)/opt/etc/gcom/getcarrier.gcom
 +	$(INSTALL_DATA) ./files/getcnum.gcom $(1)/opt/etc/gcom/getcnum.gcom
 +	$(INSTALL_DATA) ./files/getimsi.gcom $(1)/opt/etc/gcom/getimsi.gcom
++	$(INSTALL_DIR) $(1)/opt/lib/network/wwan/
++	$(INSTALL_DATA) ./files/data/* $(1)/opt/lib/network/wwan/
+ endef
+ 
+ define Package/comgt-directip/install
+-	$(INSTALL_DIR) $(1)/etc/gcom
+-	$(INSTALL_DATA) ./files/directip.gcom $(1)/etc/gcom/directip.gcom
+-	$(INSTALL_DATA) ./files/directip-stop.gcom $(1)/etc/gcom/directip-stop.gcom
+-	$(INSTALL_DIR) $(1)/lib/netifd/proto
+-	$(INSTALL_BIN) ./files/directip.sh $(1)/lib/netifd/proto/directip.sh
++	$(INSTALL_DIR) $(1)/opt/etc/gcom
 +	$(INSTALL_DATA) ./files/directip.gcom $(1)/opt/etc/gcom/directip.gcom
 +	$(INSTALL_DATA) ./files/directip-stop.gcom $(1)/opt/etc/gcom/directip-stop.gcom
+ endef
+ 
+ define Package/comgt-ncm/install
+-	$(INSTALL_DIR) $(1)/etc/gcom
+-	$(INSTALL_DATA) ./files/ncm.json $(1)/etc/gcom/ncm.json
+-	$(INSTALL_DATA) ./files/runcommand.gcom $(1)/etc/gcom/runcommand.gcom
+-	$(INSTALL_DIR) $(1)/lib/netifd/proto
+-	$(INSTALL_BIN) ./files/ncm.sh $(1)/lib/netifd/proto/ncm.sh
++	$(INSTALL_DIR) $(1)/opt/etc/gcom
++	$(INSTALL_DATA) ./files/ncm.json $(1)/opt/etc/gcom/ncm.json
++	$(INSTALL_DATA) ./files/runcommand.gcom $(1)/opt/etc/gcom/runcommand.gcom
  endef
  
  $(eval $(call BuildPackage,comgt))

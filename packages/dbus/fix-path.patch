@@ -1,6 +1,6 @@
-diff -ur ../../../downloads/openwrt_trunk-r42803/feeds/packages/utils/dbus/files/dbus-launch ../../../openwrt_trunk/feeds/packages/utils/dbus/files/dbus-launch
---- ../../../downloads/openwrt_trunk-r42803/feeds/packages/utils/dbus/files/dbus-launch	2014-10-06 15:46:23.769250644 +0400
-+++ ../../../openwrt_trunk/feeds/packages/utils/dbus/files/dbus-launch	2014-10-07 11:59:09.327925137 +0400
+diff -urx .svn ../../../downloads/openwrt_trunk-r43593/feeds/packages/utils/dbus/files/dbus-launch ../../../openwrt_trunk/feeds/packages/utils/dbus/files/dbus-launch
+--- ../../../downloads/openwrt_trunk-r43593/feeds/packages/utils/dbus/files/dbus-launch	2014-12-10 12:26:33.026951680 +0300
++++ ../../../openwrt_trunk/feeds/packages/utils/dbus/files/dbus-launch	2014-12-10 12:49:03.202927085 +0300
 @@ -5,8 +5,8 @@
  # dbus-launch-x package. The script is used to prefer dbus-launch with x over
  # the dbus-lauch without x.
@@ -13,10 +13,10 @@ diff -ur ../../../downloads/openwrt_trunk-r42803/feeds/packages/utils/dbus/files
 -	exec /usr/bin/dbus-launch.real $@
 +	exec /opt/bin/dbus-launch.real $@
  fi
-diff -ur ../../../downloads/openwrt_trunk-r42803/feeds/packages/utils/dbus/Makefile ../../../openwrt_trunk/feeds/packages/utils/dbus/Makefile
---- ../../../downloads/openwrt_trunk-r42803/feeds/packages/utils/dbus/Makefile	2014-10-06 15:46:23.773250645 +0400
-+++ ../../../openwrt_trunk/feeds/packages/utils/dbus/Makefile	2014-10-07 11:59:09.327925137 +0400
-@@ -24,8 +24,7 @@
+diff -urx .svn ../../../downloads/openwrt_trunk-r43593/feeds/packages/utils/dbus/Makefile ../../../openwrt_trunk/feeds/packages/utils/dbus/Makefile
+--- ../../../downloads/openwrt_trunk-r43593/feeds/packages/utils/dbus/Makefile	2014-12-10 12:26:33.026951680 +0300
++++ ../../../openwrt_trunk/feeds/packages/utils/dbus/Makefile	2014-12-10 12:49:03.202927085 +0300
+@@ -25,8 +25,7 @@
  include $(INCLUDE_DIR)/package.mk
  
  TARGET_LDFLAGS+= \
@@ -26,7 +26,7 @@ diff -ur ../../../downloads/openwrt_trunk-r42803/feeds/packages/utils/dbus/Makef
  
  define Package/dbus/Default
    SECTION:=utils
-@@ -97,11 +96,11 @@
+@@ -98,11 +97,11 @@
  	--disable-xml-docs \
  	--with-xml="expat" \
  	--with-dbus-user=root \
@@ -42,8 +42,8 @@ diff -ur ../../../downloads/openwrt_trunk-r42803/feeds/packages/utils/dbus/Makef
  
  CONFIGURE_VARS+= \
  	ac_cv_have_abstract_sockets="yes" \
-@@ -109,79 +108,81 @@
- 
+@@ -133,79 +132,81 @@
+ 	ac_cv_lib_expat_XML_ParserCreate_MM="yes" \
  
  define Build/InstallDev
 -	$(INSTALL_DIR) $(1)/usr/include
@@ -163,4 +163,4 @@ diff -ur ../../../downloads/openwrt_trunk-r42803/feeds/packages/utils/dbus/Makef
 +		$(1)/opt/bin/
  endef
  
- $(eval $(call BuildPackage,libdbus))
+ $(eval $(call HostBuild))

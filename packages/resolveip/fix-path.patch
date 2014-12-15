@@ -1,6 +1,6 @@
---- ../../../downloads/openwrt_trunk-r42803/package/network/utils/resolveip/Makefile
-+++ ../../../openwrt_trunk/package/network/utils/resolveip/Makefile
-@@ -33,13 +33,13 @@
+--- ../../../downloads/openwrt_trunk-r43593/package/network/utils/resolveip/Makefile	2014-12-10 12:26:33.774951667 +0300
++++ ../../../openwrt_trunk/package/network/utils/resolveip/Makefile	2014-12-10 12:49:09.830926963 +0300
+@@ -34,13 +34,13 @@
  endef
  
  define Build/Compile

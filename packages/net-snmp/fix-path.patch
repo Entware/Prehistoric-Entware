@@ -1,39 +1,5 @@
-diff -ur ../../../downloads/openwrt_trunk-r42803/feeds/packages/net/net-snmp/files/snmpd.default ../../../openwrt_trunk/feeds/packages/net/net-snmp/files/snmpd.default
---- ../../../downloads/openwrt_trunk-r42803/feeds/packages/net/net-snmp/files/snmpd.default	2014-10-06 15:46:23.753250644 +0400
-+++ ../../../openwrt_trunk/feeds/packages/net/net-snmp/files/snmpd.default	2014-10-07 11:59:31.647924729 +0400
-@@ -1 +1 @@
--OPTIONS="-Lf /dev/null -p /var/run/snmpd.pid"
-+OPTIONS="-Lf /dev/null -p /opt/var/run/snmpd.pid"
-diff -ur ../../../downloads/openwrt_trunk-r42803/feeds/packages/net/net-snmp/files/snmpd.init ../../../openwrt_trunk/feeds/packages/net/net-snmp/files/snmpd.init
---- ../../../downloads/openwrt_trunk-r42803/feeds/packages/net/net-snmp/files/snmpd.init	2014-10-06 15:46:23.753250644 +0400
-+++ ../../../openwrt_trunk/feeds/packages/net/net-snmp/files/snmpd.init	2014-10-07 11:59:31.647924729 +0400
-@@ -2,10 +2,10 @@
- # Copyright (C) 2008 OpenWrt.org
- START=50
- 
--DEFAULT=/etc/default/snmpd
--LIB_D=/var/lib/snmp
--LOG_D=/var/log
--RUN_D=/var/run
-+DEFAULT=/opt/etc/default/snmpd
-+LIB_D=/opt/var/lib/snmp
-+LOG_D=/opt/var/log
-+RUN_D=/opt/var/run
- PID_F=$RUN_D/snmpd.pid
- RUN_C=$RUN_D/snmpd.conf
- 
-@@ -138,7 +138,7 @@
- 	config_foreach snmpd_exec_add exec
- 
- 	[ -f $DEFAULT ] && . $DEFAULT
--	$DEBUG /usr/sbin/snmpd $OPTIONS
-+	$DEBUG /opt/sbin/snmpd $OPTIONS
- }
- stop() {
- 	[ -f $PID_F ] && kill $(cat $PID_F)
-diff -ur ../../../downloads/openwrt_trunk-r42803/feeds/packages/net/net-snmp/Makefile ../../../openwrt_trunk/feeds/packages/net/net-snmp/Makefile
---- ../../../downloads/openwrt_trunk-r42803/feeds/packages/net/net-snmp/Makefile	2014-10-06 15:46:23.753250644 +0400
-+++ ../../../openwrt_trunk/feeds/packages/net/net-snmp/Makefile	2014-10-07 11:59:31.651924729 +0400
+--- ../../../downloads/openwrt_trunk-r43593/feeds/packages/net/net-snmp/Makefile	2014-12-10 12:26:32.982951682 +0300
++++ ../../../openwrt_trunk/feeds/packages/net/net-snmp/Makefile	2014-12-10 12:49:07.810927000 +0300
 @@ -156,31 +156,32 @@
  	--enable-shared \
  	--enable-static \
@@ -155,19 +121,3 @@ diff -ur ../../../downloads/openwrt_trunk-r42803/feeds/packages/net/net-snmp/Mak
  endef
  
  $(eval $(call BuildPackage,libnetsnmp))
-diff -ur ../../../downloads/openwrt_trunk-r42803/feeds/packages/net/net-snmp/patches/120-debian-searchdirs.patch ../../../openwrt_trunk/feeds/packages/net/net-snmp/patches/120-debian-searchdirs.patch
---- ../../../downloads/openwrt_trunk-r42803/feeds/packages/net/net-snmp/patches/120-debian-searchdirs.patch	2014-10-06 15:46:23.753250644 +0400
-+++ ../../../openwrt_trunk/feeds/packages/net/net-snmp/patches/120-debian-searchdirs.patch	2014-10-07 11:59:31.659924729 +0400
-@@ -6,9 +6,9 @@
-  }
- -push @def_search_dirs, "/usr/local/share/snmp/";
- -push @def_search_dirs, "/usr/local/share/snmp/mib2c-data";
--+push @def_search_dirs, "/etc/snmp/";
--+push @def_search_dirs, "/usr/share/snmp/";
--+push @def_search_dirs, "/usr/share/snmp/mib2c-data";
-++push @def_search_dirs, "/opt/etc/snmp/";
-++push @def_search_dirs, "/opt/share/snmp/";
-++push @def_search_dirs, "/opt/share/snmp/mib2c-data";
-  push @def_search_dirs, "./mib2c-conf.d";
-  
-  sub usage {

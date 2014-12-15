@@ -1,6 +1,6 @@
---- ../../../downloads/openwrt_trunk-r42803/feeds/telephony/net/asterisk-1.8.x-chan-sccp-b/Makefile
-+++ ../../../openwrt_trunk/feeds/telephony/net/asterisk-1.8.x-chan-sccp-b/Makefile
-@@ -38,7 +38,7 @@
+--- ../../../downloads/openwrt_trunk-r43593/feeds/telephony/net/asterisk-1.8.x-chan-sccp-b/Makefile	2014-12-10 12:26:33.206951677 +0300
++++ ../../../openwrt_trunk/feeds/telephony/net/asterisk-1.8.x-chan-sccp-b/Makefile	2014-12-10 12:48:51.606927296 +0300
+@@ -41,7 +41,7 @@
  endef
  
  define Build/Configure
@@ -9,7 +9,7 @@
  endef
  
  define Build/Compile
-@@ -49,14 +49,14 @@
+@@ -52,14 +52,14 @@
  endef
  
  define Package/asterisk18-chan-sccp-b/conffiles

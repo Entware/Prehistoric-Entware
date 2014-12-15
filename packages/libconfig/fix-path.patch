@@ -1,6 +1,6 @@
 --- ../../../openwrt_trunk/package/libs/libconfig/Makefile.orig
 +++ ../../../openwrt_trunk/package/libs/libconfig/Makefile
-@@ -51,8 +51,8 @@
+@@ -52,8 +52,8 @@
  endef
  
  define Package/libconfig/install

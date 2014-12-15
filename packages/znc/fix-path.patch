@@ -1,5 +1,5 @@
---- ../../../downloads/openwrt_trunk-r42803/feeds/packages/net/znc/Makefile
-+++ ../../../openwrt_trunk/feeds/packages/net/znc/Makefile
+--- ../../../downloads/openwrt_trunk-r43708/feeds/packages/net/znc/Makefile	2014-12-15 12:19:58.028388958 +0300
++++ ../../../openwrt_trunk/feeds/packages/net/znc/Makefile	2014-12-15 14:11:16.388264891 +0300
 @@ -44,22 +44,29 @@
  endef
  
@@ -87,14 +87,14 @@
    endef
    ZNC_MODULES += znc-webskin-$(strip $(1))
  endef
-@@ -266,8 +273,8 @@
+@@ -265,8 +272,8 @@
  
  CONFIGURE_VARS += \
- 	CXXFLAGS="$(TARGET_CFLAGS) -fno-builtin -fno-rtti -nostdinc++" \
+ 	CXXFLAGS="$(TARGET_CFLAGS) -fno-builtin -fno-rtti" \
 -	CPPFLAGS="-I$(STAGING_DIR)/usr/include -I$(STAGING_DIR)/include" \
 -	LDFLAGS="-nodefaultlibs -lc -L$(STAGING_DIR)/usr/lib -L$(STAGING_DIR)/lib" \
 +	CPPFLAGS="-I$(STAGING_DIR)/opt/include -I$(STAGING_DIR)/include" \
 +	LDFLAGS="-nodefaultlibs -lc -L$(STAGING_DIR)/opt/lib -L$(STAGING_DIR)/lib -Wl,--dynamic-linker=/opt/lib/ld-uClibc.so.0 -Wl,-rpath,/opt/lib" \
- 	LIBS="-luClibc++ -lm -lssl -lcrypto $(LIBGCC_S) -lc"
+ 	LIBS="-lstdc++ -lm -lssl -lcrypto $(LIBGCC_S) -lc"
  
  CONFIGURE_ARGS += \

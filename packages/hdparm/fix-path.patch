@@ -1,6 +1,6 @@
---- ../../../openwrt_trunk.orig/feeds/oldpackages/utils/hdparm/Makefile
-+++ ../../../openwrt_trunk/feeds/oldpackages/utils/hdparm/Makefile
-@@ -30,8 +30,8 @@
+--- ../../../downloads/openwrt_trunk-r43593/feeds/packages/utils/hdparm/Makefile	2014-12-10 12:26:33.030951680 +0300
++++ ../../../openwrt_trunk/feeds/packages/utils/hdparm/Makefile	2014-12-11 11:17:04.901453558 +0300
+@@ -35,8 +35,8 @@
  endef
  
  define Package/hdparm/install

@@ -1,6 +1,6 @@
 --- ../../../downloads/openwrt_trunk-r35474/package/libs/libusb/Makefile
 +++ ../../../openwrt_trunk/package/libs/libusb/Makefile
-@@ -42,8 +42,8 @@
+@@ -43,8 +43,8 @@
  endef
  
  define Package/libusb-1.0/install

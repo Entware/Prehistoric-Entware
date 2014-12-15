@@ -1,6 +1,6 @@
 --- ../../../downloads/mipsel-hardfloat/openwrt_trunk-r40423/package/libs/libpcap/Makefile
 +++ ../../../openwrt_trunk/package/libs/libpcap/Makefile
-@@ -82,16 +82,16 @@
+@@ -83,16 +83,16 @@
  endef
  
  define Build/InstallDev

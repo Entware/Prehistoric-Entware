@@ -1,5 +1,5 @@
---- ../../../downloads/openwrt_trunk-r42803/feeds/packages/net/openssh/Makefile
-+++ ../../../openwrt_trunk/feeds/packages/net/openssh/Makefile
+--- ../../../downloads/openwrt_trunk-r43593/feeds/packages/net/openssh/Makefile	2014-12-10 12:26:32.982951682 +0300
++++ ../../../openwrt_trunk/feeds/packages/net/openssh/Makefile	2014-12-12 17:04:27.372792222 +0300
 @@ -57,7 +57,7 @@
  endef
  
@@ -9,7 +9,7 @@
  endef
  
  define Package/openssh-client-utils
-@@ -90,7 +90,7 @@
+@@ -91,7 +91,7 @@
  endef
  
  define Package/openssh-server/conffiles
@@ -18,7 +18,7 @@
  endef
  
  define Package/openssh-server-pam
-@@ -105,9 +105,9 @@
+@@ -107,9 +107,9 @@
  endef
  
  define Package/openssh-server-pam/conffiles
@@ -31,7 +31,13 @@
  endef
  
  define Package/openssh-sftp-client
-@@ -131,9 +131,9 @@
+@@ -143,14 +143,14 @@
+ endef
+ 
+ define Package/openssh-sftp-avahi-service/conffiles
+-/etc/avahi/services/sftp-ssh.service
++/opt/etc/avahi/services/sftp-ssh.service
+ endef
  
  CONFIGURE_ARGS+= \
  	$(DISABLE_NLS) \
@@ -43,7 +49,7 @@
  	--enable-shared \
  	--disable-static \
  	--disable-debug \
-@@ -183,78 +183,60 @@
+@@ -200,83 +200,65 @@
  		all install
  endef
  
@@ -150,6 +156,13 @@
 +	$(CP) $(PKG_INSTALL_DIR)/opt/lib/sftp-server $(1)/opt/lib/
 +	$(INSTALL_DIR) $(1)/opt/libexec
 +	ln -sf ../lib/sftp-server $(1)/opt/libexec/sftp-server
+ endef
+ 
+ define Package/openssh-sftp-avahi-service/install
+-	$(INSTALL_DIR) $(1)/etc/avahi/services
+-	$(INSTALL_DATA) ./files/sftp-ssh.service $(1)/etc/avahi/services/
++	$(INSTALL_DIR) $(1)/opt/etc/avahi/services
++	$(INSTALL_DATA) ./files/sftp-ssh.service $(1)/opt/etc/avahi/services/
  endef
  
  $(eval $(call BuildPackage,openssh-client))

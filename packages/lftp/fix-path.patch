@@ -1,24 +1,15 @@
---- ../../../downloads/openwrt_trunk-r42803/feeds/packages/net/lftp/Makefile
-+++ ../../../openwrt_trunk/feeds/packages/net/lftp/Makefile
-@@ -21,7 +21,7 @@
-   SUBMENU:=File Transfer
-   SECTION:=net
-   CATEGORY:=Network
--  DEPENDS:=+libncurses +libopenssl +libreadline $(CXX_DEPENDS) +libexpat
-+  DEPENDS:=+libncurses +libopenssl +libreadline $(CXX_DEPENDS) +libexpat +libidn
-   TITLE:=a sophisticated file transfer program with command line interface.
-   MAINTAINER:=Federico Di Marco <fededim@gmail.com>
-   URL:=http://lftp.yar.ru/
-@@ -51,7 +51,7 @@
- 	--without-libintl-prefix \
+--- ../../../downloads/openwrt_trunk-r43593/feeds/packages/net/lftp/Makefile	2014-12-10 12:26:32.982951682 +0300
++++ ../../../openwrt_trunk/feeds/packages/net/lftp/Makefile	2014-12-12 16:22:01.632841605 +0300
+@@ -55,7 +55,7 @@
  	--without-gnutls \
+ 	--without-libidn \
  	--without-libresolv \
 -	--with-openssl="$(STAGING_DIR)/usr" \
 +	--with-openssl="$(STAGING_DIR)/opt" \
  	--disable-static
  
  #CONFIGURE_VARS += \
-@@ -62,8 +62,8 @@
+@@ -66,8 +66,8 @@
  #	LD="$(TARGET_CXX)"
  
  define Package/lftp/install

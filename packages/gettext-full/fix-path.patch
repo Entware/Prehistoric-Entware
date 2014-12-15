@@ -1,6 +1,6 @@
---- ../../../openwrt_trunk/package/libs/gettext-full/Makefile.orig
-+++ ../../../openwrt_trunk/package/libs/gettext-full/Makefile
-@@ -51,6 +51,7 @@
+--- ../../../downloads/openwrt_trunk-r43593/package/libs/gettext-full/Makefile	2014-12-10 12:26:33.282951674 +0300
++++ ../../../openwrt_trunk/package/libs/gettext-full/Makefile	2014-12-10 12:49:03.598927078 +0300
+@@ -52,6 +52,7 @@
  	--disable-java \
  	--disable-native-java \
  	--disable-openmp \
@@ -8,7 +8,7 @@
  	--with-included-gettext \
  	--without-libintl-prefix \
  	--without-libexpat-prefix \
-@@ -60,19 +61,19 @@
+@@ -61,19 +62,19 @@
  	--with-included-libxml --without-libxml2-prefix --with-included-libcroco
  
  define Build/InstallDev

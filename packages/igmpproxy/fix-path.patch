@@ -1,6 +1,6 @@
 --- ../../../openwrt_trunk/package/network/services/igmpproxy/Makefile.orig
 +++ ../../../openwrt_trunk/package/network/services/igmpproxy/Makefile
-@@ -35,7 +35,7 @@
+@@ -36,7 +36,7 @@
  endef
  
  define Package/igmpproxy/conffiles
@@ -9,7 +9,7 @@
  endef
  
  TARGET_CFLAGS += -Dlog=igmpproxy_log
-@@ -47,12 +47,12 @@
+@@ -48,12 +48,12 @@
  endef
  
  define Package/igmpproxy/install

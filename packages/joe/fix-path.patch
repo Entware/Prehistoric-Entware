@@ -1,6 +1,6 @@
---- ../../../downloads/openwrt_trunk-r34568/feeds/oldpackages/utils/joe/Makefile
-+++ ../../../openwrt_trunk/feeds/oldpackages/utils/joe/Makefile
-@@ -39,10 +39,10 @@
+--- ../../../downloads/openwrt_trunk-r43708/feeds/packages/utils/joe/Makefile	2014-12-15 12:19:58.048388959 +0300
++++ ../../../openwrt_trunk/feeds/packages/utils/joe/Makefile	2014-12-15 14:51:08.092223838 +0300
+@@ -47,10 +47,10 @@
  endef
  
  define Package/joe/install
@@ -12,5 +12,5 @@
 -	  ln -sf joe $(1)/usr/bin/$$$$i; \
 +	  ln -sf joe $(1)/opt/bin/$$$$i; \
  	done
- endef
- 
+ 	$(INSTALL_DIR) $(1)/etc/joe
+ 	$(INSTALL_CONF) ./files/joerc $(1)/etc/joe/joerc

@@ -1,6 +1,6 @@
---- ../../../openwrt_trunk/feeds/routing/ndppd/Makefile.orig
-+++ ../../../openwrt_trunk/feeds/routing/ndppd/Makefile
-@@ -31,7 +31,7 @@
+--- ../../../downloads/openwrt_trunk-r43593/feeds/routing/ndppd/Makefile	2014-12-10 12:26:32.822951684 +0300
++++ ../../../openwrt_trunk/feeds/routing/ndppd/Makefile	2014-12-10 12:49:07.766927002 +0300
+@@ -32,7 +32,7 @@
    TITLE:=NDP Proxy Daemon
    URL:=http://www.priv.nu/projects/ndppd/
    MAINTAINER:=Gabriel Kerneis <gabriel@kerneis.info>
@@ -9,7 +9,7 @@
  endef
  
  define Package/ndppd/description
-@@ -46,7 +46,7 @@
+@@ -47,7 +47,7 @@
  endef
  
  define Package/ndppd/conffiles
@@ -18,7 +18,7 @@
  endef
  
  define Build/Compile
-@@ -59,11 +59,11 @@
+@@ -60,11 +60,11 @@
  endef
  
  define Package/ndppd/install

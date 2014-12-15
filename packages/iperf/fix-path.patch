@@ -1,6 +1,6 @@
 --- ../../../openwrt_trunk.orig/package/network/utils/iperf/Makefile
 +++ ../../../openwrt_trunk/package/network/utils/iperf/Makefile
-@@ -78,8 +78,8 @@
+@@ -79,8 +79,8 @@
  endif
  
  define Package/iperf/install

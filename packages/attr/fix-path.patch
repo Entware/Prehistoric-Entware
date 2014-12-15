@@ -1,6 +1,6 @@
---- ../../../downloads/openwrt_trunk-r42803/feeds/packages/utils/attr/Makefile
-+++ ../../../openwrt_trunk/feeds/packages/utils/attr/Makefile
-@@ -70,25 +70,25 @@
+--- ../../../downloads/openwrt_trunk-r43708/feeds/packages/utils/attr/Makefile	2014-12-15 12:19:58.052388959 +0300
++++ ../../../openwrt_trunk/feeds/packages/utils/attr/Makefile	2014-12-15 12:20:05.484388821 +0300
+@@ -71,25 +71,25 @@
  endef
  
  define Package/attr/install

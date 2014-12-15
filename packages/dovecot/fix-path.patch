@@ -1,6 +1,6 @@
---- ../../../downloads/openwrt_trunk-r42803/feeds/packages/mail/dovecot/Makefile
-+++ ../../../openwrt_trunk/feeds/packages/mail/dovecot/Makefile
-@@ -51,7 +51,7 @@
+--- ../../../downloads/openwrt_trunk-r43593/feeds/packages/mail/dovecot/Makefile	2014-12-10 12:26:32.942951682 +0300
++++ ../../../openwrt_trunk/feeds/packages/mail/dovecot/Makefile	2014-12-10 12:49:03.278927084 +0300
+@@ -52,7 +52,7 @@
  CONFIGURE_ARGS += \
  	--without-gssapi \
  	--without-pam \
@@ -9,7 +9,7 @@
  	--with-notify=dnotify \
  	--without-lzma \
  	--without-lz4
-@@ -77,21 +77,23 @@
+@@ -78,21 +78,23 @@
  	lib_cv___va_copy=yes \
  	lib_cv_va_val_copy=yes
  

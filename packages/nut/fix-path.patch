@@ -1,158 +1,121 @@
---- ../../../downloads/mipsel-hardfloat/openwrt_trunk-r40423/feeds/oldpackages/utils/nut/Makefile
-+++ ../../../openwrt_trunk/feeds/oldpackages/utils/nut/Makefile
-@@ -24,7 +24,7 @@
- define Package/nut/Default
-   URL:=http://www.networkupstools.org/
-   TITLE:= Network UPS Tools
--  DEPENDS:=@USB_SUPPORT +libnetsnmp +libpthread
-+  DEPENDS:=+libnetsnmp +libpthread
-   SECTION:=utils
-   CATEGORY:=Utilities
- endef
-@@ -68,69 +68,68 @@
- endef
- 
- define Package/nut/install
--	$(INSTALL_DIR) $(1)/usr/lib
--	$(INSTALL_DIR) $(1)/etc/nut
--	$(CP) $(PKG_INSTALL_DIR)/usr/lib/libupsclient.so* $(1)/usr/lib/
--	$(INSTALL_CONF) $(PKG_INSTALL_DIR)/etc/nut/nut.conf.sample $(1)/etc/nut/nut.conf
--	ln -sf /var/run/ups.conf $(1)/etc/nut/ups.conf
-+	$(INSTALL_DIR) $(1)/opt/lib
-+	$(INSTALL_DIR) $(1)/opt/etc/nut
-+	$(CP) $(PKG_INSTALL_DIR)/opt/lib/libupsclient.so* $(1)/opt/lib/
-+	$(INSTALL_CONF) $(PKG_INSTALL_DIR)/opt/etc/nut/nut.conf.sample $(1)/opt/etc/nut/nut.conf
-+	ln -sf /opt/var/run/ups.conf $(1)/opt/etc/nut/ups.conf
- endef
- 
- define Build/InstallDev
--	$(INSTALL_DIR) $(1)/usr/include
--	$(CP) $(PKG_INSTALL_DIR)/usr/include/*.h $(1)/usr/include
--	$(INSTALL_DIR) $(1)/usr/lib/pkgconfig
--	$(CP) $(PKG_INSTALL_DIR)/usr/lib/pkgconfig/*.pc $(1)/usr/lib/pkgconfig
--	$(CP) $(PKG_INSTALL_DIR)/usr/lib/lib* $(1)/usr/lib
-+	$(INSTALL_DIR) $(1)/opt/include
-+	$(CP) $(PKG_INSTALL_DIR)/opt/include/*.h $(1)/opt/include
-+	$(INSTALL_DIR) $(1)/opt/lib/pkgconfig
-+	$(CP) $(PKG_INSTALL_DIR)/opt/lib/pkgconfig/*.pc $(1)/opt/lib/pkgconfig
-+	$(CP) $(PKG_INSTALL_DIR)/opt/lib/lib* $(1)/opt/lib
+--- ../../../downloads/openwrt_trunk-r43593/feeds/packages/net/nut/Makefile	2014-12-10 12:26:32.942951682 +0300
++++ ../../../openwrt_trunk/feeds/packages/net/nut/Makefile	2014-12-11 11:43:06.537425298 +0300
+@@ -66,49 +66,49 @@
  endef
  
  define Package/nut/conffiles
--/etc/nut/nut.conf
-+/opt/etc/nut/nut.conf
+-	/etc/nut/nut.conf
+-	$(if $(CONFIG_NUT_CLIENTS_UPSMON),/etc/nut/upsmon.conf)
+-	$(if $(CONFIG_NUT_CLIENTS_UPSSCHED),/etc/nut/upssched.conf)
+-	$(if $(CONFIG_NUT_SERVER),/etc/nut/ups.conf)
+-	$(if $(CONFIG_NUT_SERVER),/etc/nut/upsd.conf)
+-	$(if $(CONFIG_NUT_SERVER),/etc/nut/upsd.users)
++	/opt/etc/nut/nut.conf
++	$(if $(CONFIG_NUT_CLIENTS_UPSMON),/opt/etc/nut/upsmon.conf)
++	$(if $(CONFIG_NUT_CLIENTS_UPSSCHED),/opt/etc/nut/upssched.conf)
++	$(if $(CONFIG_NUT_SERVER),/opt/etc/nut/ups.conf)
++	$(if $(CONFIG_NUT_SERVER),/opt/etc/nut/upsd.conf)
++	$(if $(CONFIG_NUT_SERVER),/opt/etc/nut/upsd.users)
  endef
  
- define Package/nut-client/install
--	$(INSTALL_DIR) $(1)/usr/bin
--	$(INSTALL_BIN) $(PKG_INSTALL_DIR)/usr/bin/upsc $(1)/usr/bin
--	$(INSTALL_BIN) $(PKG_INSTALL_DIR)/usr/bin/upsrw $(1)/usr/bin
--	$(INSTALL_BIN) $(PKG_INSTALL_DIR)/usr/bin/upscmd $(1)/usr/bin
-+	$(INSTALL_DIR) $(1)/opt/bin
-+	$(INSTALL_BIN) $(PKG_INSTALL_DIR)/opt/bin/upsc $(1)/opt/bin
-+	$(INSTALL_BIN) $(PKG_INSTALL_DIR)/opt/bin/upsrw $(1)/opt/bin
-+	$(INSTALL_BIN) $(PKG_INSTALL_DIR)/opt/bin/upscmd $(1)/opt/bin
- endef
- 
- define Package/nut-server/install
+ define Package/nut/install
 -	$(INSTALL_DIR) $(1)/etc/nut
--	$(INSTALL_DIR) $(1)/usr/sbin
--	$(INSTALL_DIR) $(1)/lib/nut
--	$(INSTALL_DIR) $(1)/usr/share/nut
--	$(INSTALL_DIR) $(1)/etc/init.d
--	$(INSTALL_BIN) ./files/ups.init $(1)/etc/init.d/ups
--	$(INSTALL_BIN) $(PKG_INSTALL_DIR)/usr/sbin/upsd $(1)/usr/sbin
--	$(INSTALL_BIN) $(PKG_INSTALL_DIR)/lib/nut/upsdrvctl $(1)/lib/nut
--	$(INSTALL_CONF) $(PKG_INSTALL_DIR)/etc/nut/upsd.conf.sample $(1)/etc/nut/upsd.conf
--	ln -sf /var/run/upsd.users $(1)/etc/nut/upsd.users
--	$(INSTALL_DATA) $(PKG_INSTALL_DIR)/usr/share/nut/cmdvartab $(1)/usr/share/nut/cmdvartab
--	$(INSTALL_DATA) $(PKG_INSTALL_DIR)/usr/share/nut/driver.list $(1)/usr/share/nut/driver.list
-+	$(INSTALL_DIR) $(1)/opt/etc/nut
-+	$(INSTALL_DIR) $(1)/opt/sbin
-+	$(INSTALL_DIR) $(1)/opt/lib/nut
-+	$(INSTALL_DIR) $(1)/opt/share/nut
-+	$(INSTALL_DIR) $(1)/opt/etc/init.d
-+	$(INSTALL_BIN) ./files/S15upsd $(1)/opt/etc/init.d
-+	$(INSTALL_BIN) $(PKG_INSTALL_DIR)/opt/sbin/upsd $(1)/opt/sbin
-+	$(INSTALL_BIN) $(PKG_INSTALL_DIR)/opt/lib/nut/upsdrvctl $(1)/opt/lib/nut
-+	$(INSTALL_CONF) $(PKG_INSTALL_DIR)/opt/etc/nut/upsd.conf.sample $(1)/opt/etc/nut/upsd.conf
-+	ln -sf /var/run/upsd.users $(1)/opt/etc/nut/upsd.users
-+	$(INSTALL_DATA) $(PKG_INSTALL_DIR)/opt/share/nut/cmdvartab $(1)/opt/share/nut/cmdvartab
-+	$(INSTALL_DATA) $(PKG_INSTALL_DIR)/opt/share/nut/driver.list $(1)/opt/share/nut/driver.list
- endef
- 
- define Package/nut-server/conffiles
--/etc/nut/upsd.conf
-+/opt/etc/nut/upsd.conf
- endef
- 
- define Package/nut-logger/install
 -	$(INSTALL_DIR) $(1)/usr/bin
--	$(INSTALL_BIN) $(PKG_INSTALL_DIR)/usr/bin/upslog $(1)/usr/bin
-+	$(INSTALL_DIR) $(1)/opt/bin
-+	$(INSTALL_BIN) $(PKG_INSTALL_DIR)/opt/bin/upslog $(1)/opt/bin
- endef
- 
- define Package/nut-monitor/install
+-	$(INSTALL_DIR) $(1)/usr/bin
+-	$(INSTALL_DIR) $(1)/usr/lib
 -	$(INSTALL_DIR) $(1)/usr/sbin
--	$(INSTALL_DIR) $(1)/etc/nut
--	$(INSTALL_DIR) $(1)/etc/init.d
--	$(INSTALL_BIN) ./files/upsmon.init $(1)/etc/init.d/upsmon
--	$(INSTALL_BIN) $(PKG_INSTALL_DIR)/usr/sbin/upsmon $(1)/usr/sbin
--	$(INSTALL_BIN) $(PKG_INSTALL_DIR)/usr/sbin/upssched $(1)/usr/sbin
--	ln -sf /var/run/upsmon.conf $(1)/etc/nut/upsmon.conf
--	$(INSTALL_CONF) $(PKG_INSTALL_DIR)/etc/nut/upssched.conf.sample $(1)/etc/nut/upssched.conf
-+	$(INSTALL_DIR) $(1)/opt/sbin
+-	$(INSTALL_CONF) $(PKG_INSTALL_DIR)/etc/nut/nut.conf.sample $(1)/etc/nut/nut.conf
 +	$(INSTALL_DIR) $(1)/opt/etc/nut
-+	$(INSTALL_DIR) $(1)/opt/etc/init.d
-+	$(INSTALL_BIN) $(PKG_INSTALL_DIR)/opt/sbin/upsmon $(1)/opt/sbin
-+	$(INSTALL_BIN) $(PKG_INSTALL_DIR)/opt/sbin/upssched $(1)/opt/sbin
-+	ln -sf /opt/var/run/upsmon.conf $(1)/opt/etc/nut/upsmon.conf
-+	$(INSTALL_CONF) $(PKG_INSTALL_DIR)/opt/etc/nut/upssched.conf.sample $(1)/opt/etc/nut/upssched.conf
++	$(INSTALL_DIR) $(1)/opt/bin
++	$(INSTALL_DIR) $(1)/opt/bin
++	$(INSTALL_DIR) $(1)/opt/lib
++	$(INSTALL_DIR) $(1)/opt/sbin
++	$(INSTALL_CONF) $(PKG_INSTALL_DIR)/opt/etc/nut/nut.conf.sample $(1)/opt/etc/nut/nut.conf
+ 	$(if $(or $(CONFIG_NUT_CLIENTS_UPSC),\
+ 		$(CONFIG_NUT_CLIENTS_UPSCMD),\
+ 		$(CONFIG_NUT_CLIENTS_LOG),\
+ 		$(CONFIG_NUT_CLIENTS_UPSRW),\
+ 		$(CONFIG_NUT_CLIENTS_UPSMON),\
+-		$(CONFIG_NUT_CLIENTS_UPSSCHED)),$(CP) $(PKG_INSTALL_DIR)/usr/lib/libupsclient.so* $(1)/usr/lib/)
++		$(CONFIG_NUT_CLIENTS_UPSSCHED)),$(CP) $(PKG_INSTALL_DIR)/opt/lib/libupsclient.so* $(1)/opt/lib/)
+ 	$(if $(or $(CONFIG_NUT_SERVER),\
+-		$(CONFIG_NUT_CLIENTS_UPSMON)),$(INSTALL_DIR) $(1)/etc/init.d)
+-	$(if $(CONFIG_NUT_SERVER),$(INSTALL_DIR) $(1)/lib/nut)
+-	$(if $(CONFIG_NUT_SERVER),$(INSTALL_DIR) $(1)/usr/share/nut)
+-	$(if $(CONFIG_NUT_SERVER),$(CP) ./files/nut-server.init $(1)/etc/init.d/)
+-	$(if $(CONFIG_NUT_SERVER),$(CP) $(PKG_INSTALL_DIR)/usr/sbin/upsd $(1)/usr/sbin)
+-	$(if $(CONFIG_NUT_SERVER),$(CP) $(PKG_INSTALL_DIR)/usr/sbin/upsdrvctl $(1)/usr/sbin)
+-	$(if $(CONFIG_NUT_SERVER),$(CP) $(PKG_INSTALL_DIR)/usr/share/nut/cmdvartab $(1)/usr/share/nut/)
+-	$(if $(CONFIG_NUT_SERVER),$(CP) $(PKG_INSTALL_DIR)/usr/share/nut/driver.list $(1)/usr/share/nut/)
+-	$(if $(CONFIG_NUT_SERVER),$(INSTALL_CONF) $(PKG_INSTALL_DIR)/etc/nut/ups.conf.sample $(1)/etc/nut/ups.conf)
+-	$(if $(CONFIG_NUT_SERVER),$(INSTALL_CONF) $(PKG_INSTALL_DIR)/etc/nut/upsd.conf.sample $(1)/etc/nut/upsd.conf)
+-	$(if $(CONFIG_NUT_SERVER),$(INSTALL_CONF) $(PKG_INSTALL_DIR)/etc/nut/upsd.users.sample $(1)/etc/nut/upsd.users)
+-	$(if $(CONFIG_NUT_CLIENTS_UPSC),$(CP) $(PKG_INSTALL_DIR)/usr/bin/upsc $(1)/usr/bin/)
+-	$(if $(CONFIG_NUT_CLIENTS_UPSCMD),$(CP) $(PKG_INSTALL_DIR)/usr/bin/upscmd $(1)/usr/bin/)
+-	$(if $(CONFIG_NUT_CLIENTS_LOG),$(CP) $(PKG_INSTALL_DIR)/usr/bin/upslog $(1)/usr/bin/)
+-	$(if $(CONFIG_NUT_CLIENTS_UPSRW),$(CP) $(PKG_INSTALL_DIR)/usr/bin/upsrw $(1)/usr/bin/)
+-	$(if $(CONFIG_NUT_CLIENTS_UPSMON),$(CP) ./files/nut-monitor.init $(1)/etc/init.d/)
+-	$(if $(CONFIG_NUT_CLIENTS_UPSMON),$(CP) $(PKG_INSTALL_DIR)/usr/sbin/upsmon $(1)/usr/sbin/)
+-	$(if $(CONFIG_NUT_CLIENTS_UPSMON),$(INSTALL_CONF) $(PKG_INSTALL_DIR)/etc/nut/upsmon.conf.sample $(1)/etc/nut/upsmon.conf)
+-	$(if $(CONFIG_NUT_CLIENTS_UPSSCHED),$(CP) $(PKG_INSTALL_DIR)/usr/bin/upssched-cmd $(1)/usr/bin/)
+-	$(if $(CONFIG_NUT_CLIENTS_UPSSCHED),$(CP) $(PKG_INSTALL_DIR)/usr/sbin/upssched $(1)/usr/sbin/)
+-	$(if $(CONFIG_NUT_CLIENTS_UPSSCHED),$(INSTALL_CONF) $(PKG_INSTALL_DIR)/etc/nut/upssched.conf.sample $(1)/etc/nut/upssched.conf)
++		$(CONFIG_NUT_CLIENTS_UPSMON)),$(INSTALL_DIR) $(1)/opt/etc/init.d)
++	$(if $(CONFIG_NUT_SERVER),$(INSTALL_DIR) $(1)/opt/lib/nut)
++	$(if $(CONFIG_NUT_SERVER),$(INSTALL_DIR) $(1)/opt/share/nut)
++	$(if $(CONFIG_NUT_SERVER),$(CP) ./files/S15upsd $(1)/opt/etc/init.d/)
++	$(if $(CONFIG_NUT_SERVER),$(CP) $(PKG_INSTALL_DIR)/opt/sbin/upsd $(1)/opt/sbin)
++	$(if $(CONFIG_NUT_SERVER),$(CP) $(PKG_INSTALL_DIR)/opt/sbin/upsdrvctl $(1)/opt/sbin)
++	$(if $(CONFIG_NUT_SERVER),$(CP) $(PKG_INSTALL_DIR)/opt/share/nut/cmdvartab $(1)/opt/share/nut/)
++	$(if $(CONFIG_NUT_SERVER),$(CP) $(PKG_INSTALL_DIR)/opt/share/nut/driver.list $(1)/opt/share/nut/)
++	$(if $(CONFIG_NUT_SERVER),$(INSTALL_CONF) $(PKG_INSTALL_DIR)/opt/etc/nut/ups.conf.sample $(1)/opt/etc/nut/ups.conf)
++	$(if $(CONFIG_NUT_SERVER),$(INSTALL_CONF) $(PKG_INSTALL_DIR)/opt/etc/nut/upsd.conf.sample $(1)/opt/etc/nut/upsd.conf)
++	$(if $(CONFIG_NUT_SERVER),$(INSTALL_CONF) $(PKG_INSTALL_DIR)/opt/etc/nut/upsd.users.sample $(1)/opt/etc/nut/upsd.users)
++	$(if $(CONFIG_NUT_CLIENTS_UPSC),$(CP) $(PKG_INSTALL_DIR)/opt/bin/upsc $(1)/opt/bin/)
++	$(if $(CONFIG_NUT_CLIENTS_UPSCMD),$(CP) $(PKG_INSTALL_DIR)/opt/bin/upscmd $(1)/opt/bin/)
++	$(if $(CONFIG_NUT_CLIENTS_LOG),$(CP) $(PKG_INSTALL_DIR)/opt/bin/upslog $(1)/opt/bin/)
++	$(if $(CONFIG_NUT_CLIENTS_UPSRW),$(CP) $(PKG_INSTALL_DIR)/opt/bin/upsrw $(1)/opt/bin/)
++	$(if $(CONFIG_NUT_CLIENTS_UPSMON),$(CP) ./files/S15upsmon $(1)/opt/etc/init.d/)
++	$(if $(CONFIG_NUT_CLIENTS_UPSMON),$(CP) $(PKG_INSTALL_DIR)/opt/sbin/upsmon $(1)/opt/sbin/)
++	$(if $(CONFIG_NUT_CLIENTS_UPSMON),$(INSTALL_CONF) $(PKG_INSTALL_DIR)/opt/etc/nut/upsmon.conf.sample $(1)/opt/etc/nut/upsmon.conf)
++	$(if $(CONFIG_NUT_CLIENTS_UPSSCHED),$(CP) $(PKG_INSTALL_DIR)/opt/bin/upssched-cmd $(1)/opt/bin/)
++	$(if $(CONFIG_NUT_CLIENTS_UPSSCHED),$(CP) $(PKG_INSTALL_DIR)/opt/sbin/upssched $(1)/opt/sbin/)
++	$(if $(CONFIG_NUT_CLIENTS_UPSSCHED),$(INSTALL_CONF) $(PKG_INSTALL_DIR)/opt/etc/nut/upssched.conf.sample $(1)/opt/etc/nut/upssched.conf)
  endef
  
- define Package/nut-monitor/conffiles
--/etc/nut/upssched.conf
-+/opt/etc/nut/upssched.conf
+ # Dealing with all of the drivers is very repetitive, but the previous
+@@ -129,9 +129,9 @@
+ 		
+         endef
+         define Package/nut-driver-$(2)/install
+-        	$(INSTALL_DIR) $$(1)/lib/nut
+-		$(CP) $$(PKG_INSTALL_DIR)/lib/nut/$(2) $$(1)/lib/nut/
+-		$(if $(filter $(2),clone),$(CP) $$(PKG_INSTALL_DIR)/lib/nut/$(2)-outlet $$(1)/lib/nut/)
++        	$(INSTALL_DIR) $$(1)/opt/lib/nut
++		$(CP) $$(PKG_INSTALL_DIR)/opt/lib/nut/$(2) $$(1)/opt/lib/nut/
++		$(if $(filter $(2),clone),$(CP) $$(PKG_INSTALL_DIR)/opt/lib/nut/$(2)-outlet $$(1)/opt/lib/nut/)
+         endef
  endef
+ define DriverDescription
+@@ -281,10 +281,17 @@
+ 	--without-libltdl \
+ 	--with-user=root \
+ 	--with-group=root \
+-	--sysconfdir=/etc/nut \
+-	--with-drvpath=/lib/nut \
+-	--with-statepath=/var/run \
+-	--datadir=/usr/share/nut
++	--sysconfdir=/opt/etc/nut \
++	--with-drvpath=/opt/lib/nut \
++	--with-statepath=/opt/var/run \
++	--datadir=/opt/share/nut \
++	--without-doc \
++	--with-udev-dir=/opt/etc/udev \
++	--with-hotplug-dir=/opt/etc/hotplug \
++	--with-pidpath=/opt/var/run \
++	--with-altpidpath=/opt/var/run \
++	--with-htmlpath=/opt/share/www/nut \
++	--with-cgipath=/opt/shae/www/cgi-bin/nut \
  
- define DriverPackage
-@@ -153,11 +152,11 @@
- 
-   endef
-   define Package/nut-driver-$(1)/install
--	$(INSTALL_DIR) $$(1)/lib/nut/
--	$(INSTALL_BIN) $$(PKG_INSTALL_DIR)/lib/nut/$(1) $$(1)/lib/nut/
-+	$(INSTALL_DIR) $$(1)/opt/lib/nut/
-+	$(INSTALL_BIN) $$(PKG_INSTALL_DIR)/opt/lib/nut/$(1) $$(1)/opt/lib/nut/
-     ifeq ($(1),clone)
- 	# Bundle clone and clone-outlet together
--	$(INSTALL_BIN) $$(PKG_INSTALL_DIR)/lib/nut/$(1)-outlet $$(1)/lib/nut/
-+	$(INSTALL_BIN) $$(PKG_INSTALL_DIR)/opt/lib/nut/$(1)-outlet $$(1)/opt/lib/nut/
-     endif
-   endef
- endef
-@@ -280,12 +279,17 @@
- 
- CONFIGURE_ARGS += \
-   --without-ssl \
--  --with-pidpath=/var/run \
--  --with-statepath=/var/run \
--  --with-altpidpath=/var/run \
--  --sysconfdir=/etc/nut \
--  --with-drvpath=/lib/nut \
--  --datadir=/usr/share/nut \
-+  --without-doc \
-+  --with-udev-dir=/opt/etc/udev \
-+  --with-hotplug-dir=/opt/etc/hotplug \
-+  --with-pidpath=/opt/var/run \
-+  --with-statepath=/opt/var/run \
-+  --with-altpidpath=/opt/var/run \
-+  --sysconfdir=/opt/etc/nut \
-+  --with-drvpath=/opt/lib/nut \
-+  --datadir=/opt/share/nut \
-+  --with-htmlpath=/opt/share/www/nut \
-+  --with-cgipath=/opt/shae/www/cgi-bin/nut \
-   --with-user=root \
-   --with-group=root \
-   --with-usb \
+ $(eval $(call BuildPackage,nut))
+ $(foreach d,$(filter-out $(SERIAL_DRIVERLIST_IGNORE),$(SERIAL_DRIVERLIST)),$(eval $(call BuildPackage,nut-driver-$(d))))

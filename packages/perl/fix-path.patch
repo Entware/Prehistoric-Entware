@@ -1,6 +1,6 @@
-diff -urx .svn ../../../downloads/openwrt_trunk-r42803/feeds/packages/lang/perl/files/config.sh-mipsel.in ../../../openwrt_trunk/feeds/packages/lang/perl/files/config.sh-mipsel.in
---- ../../../downloads/openwrt_trunk-r42803/feeds/packages/lang/perl/files/config.sh-mipsel.in	2014-10-15 10:43:09.807917917 +0400
-+++ ../../../openwrt_trunk/feeds/packages/lang/perl/files/config.sh-mipsel.in	2014-10-28 11:17:35.048202448 +0300
+diff -urx .svn ../../../downloads/openwrt_trunk-r43708/feeds/packages/lang/perl/files/config.sh-mipsel.in ../../../openwrt_trunk/feeds/packages/lang/perl/files/config.sh-mipsel.in
+--- ../../../downloads/openwrt_trunk-r43708/feeds/packages/lang/perl/files/config.sh-mipsel.in	2014-12-15 12:19:58.000388958 +0300
++++ ../../../openwrt_trunk/feeds/packages/lang/perl/files/config.sh-mipsel.in	2014-12-15 15:04:34.532210216 +0300
 @@ -691,21 +691,21 @@
  inc_version_list_init='0'
  incpath=''
@@ -42,7 +42,7 @@ diff -urx .svn ../../../downloads/openwrt_trunk-r42803/feeds/packages/lang/perl/
 @@ -821,15 +821,15 @@
  perl_patchlevel=''
  perladmin='root@merope.dev.null'
- perllibs='-lnsl -ldl -lm -lcrypt -lutil -lc %%EXTRA_PERLLIBS%%'
+ perllibs='-ldl -lm -lcrypt -lutil -lc %%EXTRA_PERLLIBS%%'
 -perlpath='/usr/bin/perl'
 +perlpath='/opt/bin/perl'
  pg='pg'
@@ -109,14 +109,13 @@ diff -urx .svn ../../../downloads/openwrt_trunk-r42803/feeds/packages/lang/perl/
  startsh='#!/bin/sh'
  static_ext=' '
  stdchar='char'
-@@ -936,17 +936,17 @@
+@@ -936,16 +936,16 @@
  stdio_ptr='((fp)->_ptr)'
  stdio_stream_array=''
  strerror_r_proto='0'
 -#strings='/usr/include/string.h'
 +#strings='/opt/include/string.h'
  submit=''
- subversion='0'
 -sysman='/usr/share/man/man1'
 +sysman='/opt/share/man/man1'
  tail=''
@@ -130,7 +129,7 @@ diff -urx .svn ../../../downloads/openwrt_trunk-r42803/feeds/packages/lang/perl/
  timetype='time_t'
  tmpnam_r_proto='0'
  to=':'
-@@ -1126,21 +1126,21 @@
+@@ -1124,22 +1124,22 @@
  api_version='20'
  api_versionstring='5.20.0'
  dynamic_ext='B Compress/Raw/Bzip2 Compress/Raw/Zlib Cwd DB_File Data/Dumper Devel/PPPort Devel/Peek Digest/MD5 Digest/SHA Encode Fcntl File/DosGlob File/Glob Filter/Util/Call GDBM_File Hash/Util Hash/Util/FieldHash I18N/Langinfo IO IPC/SysV List/Util MIME/Base64 Math/BigInt/FastCalc Opcode POSIX PerlIO/encoding PerlIO/mmap PerlIO/scalar PerlIO/via SDBM_File Socket Storable Sys/Hostname Sys/Syslog Tie/Hash/NamedCapture Time/HiRes Time/Piece Unicode/Collate Unicode/Normalize XS/APItest XS/Typemap arybase attributes mro re threads threads/shared'
@@ -151,28 +150,20 @@ diff -urx .svn ../../../downloads/openwrt_trunk-r42803/feeds/packages/lang/perl/
 +privlibexp='/opt/lib/perl5/5.20'
 +archlib='/opt/lib/perl5/5.20'
 +archlibexp='/opt/lib/perl5/5.20'
- version='5.20.0'
- version_patchlevel_string='version 20 subversion 0'
+ version='5.20.1'
+ version_patchlevel_string='version 20 subversion 1'
  PERL_VERSION=20
  PERL_API_VERSION=20
+ PERL_SUBVERSION=1
  patchlevel='20'
 -ccdlflags='-fPIC -Wl,-rpath,/usr/lib/perl5/5.20/CORE'
 +ccdlflags='-fPIC -Wl,-rpath,/opt/lib/perl5/5.20/CORE:/opt/lib'
+ subversion='1'
  
  # Make perl use these tools instead of the target binaries during build.
- hostgenerate='%%HOSTGENERATE%%'
-diff -urx .svn ../../../downloads/openwrt_trunk-r42803/feeds/packages/lang/perl/Makefile ../../../openwrt_trunk/feeds/packages/lang/perl/Makefile
---- ../../../downloads/openwrt_trunk-r42803/feeds/packages/lang/perl/Makefile	2014-10-15 10:43:09.807917917 +0400
-+++ ../../../openwrt_trunk/feeds/packages/lang/perl/Makefile	2014-10-28 11:03:02.172219008 +0300
-@@ -9,7 +9,7 @@
- 
- PKG_NAME:=perl
- PKG_VERSION:=5.20.0
--PKG_RELEASE:=5
-+PKG_RELEASE:=5b
- 
- PKG_SOURCE_URL:=ftp://ftp.cpan.org/pub/CPAN/src/5.0 \
- 		http://www.cpan.org/src/5.0/perl-5.20.0.tar.gz \
+diff -urx .svn ../../../downloads/openwrt_trunk-r43708/feeds/packages/lang/perl/Makefile ../../../openwrt_trunk/feeds/packages/lang/perl/Makefile
+--- ../../../downloads/openwrt_trunk-r43708/feeds/packages/lang/perl/Makefile	2014-12-15 12:19:58.000388958 +0300
++++ ../../../openwrt_trunk/feeds/packages/lang/perl/Makefile	2014-12-15 15:06:46.080202699 +0300
 @@ -38,7 +38,7 @@
  HOST_PERL_PREFIX:=$(STAGING_DIR_HOST)/usr
  ifneq ($(CONFIG_USE_EGLIBC),)
@@ -182,7 +173,7 @@ diff -urx .svn ../../../downloads/openwrt_trunk-r42803/feeds/packages/lang/perl/
  endif
  # Filter -g3, it will break Compress-Raw-Zlib
  TARGET_CFLAGS_PERL:=$(patsubst -g3,-g,$(TARGET_CFLAGS))
-@@ -88,8 +88,8 @@
+@@ -102,8 +102,8 @@
  		-e 's!%%AR%%!$(TARGET_CROSS)ar!g' \
  		-e 's!%%LD%%!$(TARGET_CROSS)gcc!g' \
  		-e 's!%%LDFLAGS%%!-rdynamic $(TARGET_LDFLAGS)!g' \
@@ -193,7 +184,7 @@ diff -urx .svn ../../../downloads/openwrt_trunk-r42803/feeds/packages/lang/perl/
  		-e 's!%%EXTRA_PERLLIBS%%!$(EXTRA_LIBS:%=-l%)!g' \
  		-e 's!%%EXTRA_PERLLIBDIRS%%!$(EXTRA_LIBDIRS:%=-L%)!g' \
  		-e 's!%%IPV6%%!$(if $($(CONFIG_IPV6)),define,undef)!g' \
-@@ -106,17 +106,17 @@
+@@ -120,17 +120,17 @@
  endef
  
  define Build/InstallDev
@@ -218,13 +209,54 @@ diff -urx .svn ../../../downloads/openwrt_trunk-r42803/feeds/packages/lang/perl/
  endef
  
  
-diff -urx .svn ../../../downloads/openwrt_trunk-r42803/feeds/packages/lang/perl/perlbase.mk ../../../openwrt_trunk/feeds/packages/lang/perl/perlbase.mk
---- ../../../downloads/openwrt_trunk-r42803/feeds/packages/lang/perl/perlbase.mk	2014-10-15 10:43:09.807917917 +0400
-+++ ../../../openwrt_trunk/feeds/packages/lang/perl/perlbase.mk	2014-10-15 10:43:20.311917728 +0400
-@@ -1187,8 +1187,8 @@
+@@ -154,9 +154,9 @@
+ 	$(INSTALL_DIR) $(1)/$(PERL_TESTSDIR)
+ 	$(INSTALL_DIR) $(1)/$(PERL_TESTSDIR)/Porting
+ 	$(INSTALL_DIR) $(1)/$(PERL_TESTSDIR)/regen
+-	$(INSTALL_DIR) $(1)/usr/lib/perl5/5.20/XS
+-	$(INSTALL_DIR) $(1)/usr/lib/perl5/5.20/auto/XS
+-	$(INSTALL_DIR) $(1)/usr/lib/perl5/5.20/unicore
++	$(INSTALL_DIR) $(1)/opt/lib/perl5/5.20/XS
++	$(INSTALL_DIR) $(1)/opt/lib/perl5/5.20/auto/XS
++	$(INSTALL_DIR) $(1)/opt/lib/perl5/5.20/unicore
+ 	
+ 	$(CP) $(PKG_BUILD_DIR)/t $(1)/$(PERL_TESTSDIR)
+ 	$(CP) $(PKG_BUILD_DIR)/Porting $(1)/$(PERL_TESTSDIR)
+@@ -165,10 +165,10 @@
+ 	$(CP) $(PKG_BUILD_DIR)/TestInit.pm $(1)/$(PERL_TESTSDIR)
+ 	$(CP) $(PKG_BUILD_DIR)/vutil.c $(1)/$(PERL_TESTSDIR)
+ 	$(CP) $(PKG_BUILD_DIR)/vxs.inc $(1)/$(PERL_TESTSDIR)
+-	$(CP) $(PKG_BUILD_DIR)/lib/XS $(1)/usr/lib/perl5/5.20/
+-	$(CP) $(PKG_BUILD_DIR)/lib/auto/XS $(1)/usr/lib/perl5/5.20/auto
+-	$(CP) $(PKG_BUILD_DIR)/lib/vmsish.pm $(1)/usr/lib/perl5/5.20/
+-	$(CP) $(PKG_BUILD_DIR)/lib/unicore/TestProp.pl $(1)/usr/lib/perl5/5.20/unicore
++	$(CP) $(PKG_BUILD_DIR)/lib/XS $(1)/opt/lib/perl5/5.20/
++	$(CP) $(PKG_BUILD_DIR)/lib/auto/XS $(1)/opt/lib/perl5/5.20/auto
++	$(CP) $(PKG_BUILD_DIR)/lib/vmsish.pm $(1)/opt/lib/perl5/5.20/
++	$(CP) $(PKG_BUILD_DIR)/lib/unicore/TestProp.pl $(1)/opt/lib/perl5/5.20/unicore
+ 	$(CP) files/perl-run_tests.sh $(1)/$(PERL_TESTSDIR)/run_tests.sh
+ 	sed -e 's!%%PERL_DISABLEDTESTS%%!$(PERL_DISABLEDTESTS)!' -i $(1)/$(PERL_TESTSDIR)/run_tests.sh
+ 	$(CP) $(PKG_BUILD_DIR)/config_h.SH $(1)/$(PERL_TESTSDIR)
+diff -urx .svn ../../../downloads/openwrt_trunk-r43708/feeds/packages/lang/perl/perlbase.mk ../../../openwrt_trunk/feeds/packages/lang/perl/perlbase.mk
+--- ../../../downloads/openwrt_trunk-r43708/feeds/packages/lang/perl/perlbase.mk	2014-12-15 12:19:58.000388958 +0300
++++ ../../../openwrt_trunk/feeds/packages/lang/perl/perlbase.mk	2014-12-15 15:14:08.684196887 +0300
+@@ -1131,9 +1131,9 @@
+ $(call perlmod/Install,$(1),Pod,Pod/Usage.pm)
+ $(call perlmod/Install/NoStrip,$(1),Pod/Usage.pm,)
+ $(call perlmod/InstallBaseTests,$(1),cpan/Pod-Checker/t cpan/Pod-Escapes/t cpan/Pod-Parser/lib cpan/Pod-Parser/scripts cpan/Pod-Parser/t cpan/Pod-Perldoc/t cpan/Pod-Simple/t cpan/Pod-Usage/scripts cpan/Pod-Usage/t cpan/podlators/t ext/Pod-Functions/Functions.pm ext/Pod-Functions/t ext/Pod-Html/t)
+-	$(INSTALL_DIR) $(1)/usr/bin
+-	$(CP) $(PKG_INSTALL_DIR)/usr/bin/pod2man $(1)/usr/bin/
+-	$(CP) $(PKG_INSTALL_DIR)/usr/bin/pod2text $(1)/usr/bin/
++	$(INSTALL_DIR) $(1)/opt/bin
++	$(CP) $(PKG_INSTALL_DIR)/opt/bin/pod2man $(1)/opt/bin/
++	$(CP) $(PKG_INSTALL_DIR)/opt/bin/pod2text $(1)/opt/bin/
+ endef
  
- define Package/perlbase-test/install
- $(call perlmod/Install,$(1),Test Test.pm,Test/Harness/TAP.pod Test/Tutorial.pod)
+ $(eval $(call BuildPackage,perlbase-pod))
+@@ -1368,8 +1368,8 @@
+ $(call perlmod/Install,$(1),Test Test.pm,Test/Builder.pm Test/Harness/TAP.pod Test/More.pm Test/Tutorial.pod)
+ $(call perlmod/Install/NoStrip,$(1),Test/Builder.pm Test/More.pm,)
+ $(call perlmod/InstallBaseTests,$(1),cpan/Test-Harness/t cpan/Test-Simple/t cpan/Test/t)
 -	$(INSTALL_DIR) $(1)/usr/bin
 -	$(INSTALL_BIN) $(PKG_INSTALL_DIR)/usr/bin/prove $(1)/usr/bin
 +	$(INSTALL_DIR) $(1)/opt/bin
@@ -232,10 +264,10 @@ diff -urx .svn ../../../downloads/openwrt_trunk-r42803/feeds/packages/lang/perl/
  endef
  
  $(eval $(call BuildPackage,perlbase-test))
-diff -urx .svn ../../../downloads/openwrt_trunk-r42803/feeds/packages/lang/perl/perlmod.mk ../../../openwrt_trunk/feeds/packages/lang/perl/perlmod.mk
---- ../../../downloads/openwrt_trunk-r42803/feeds/packages/lang/perl/perlmod.mk	2014-10-15 10:43:09.807917917 +0400
-+++ ../../../openwrt_trunk/feeds/packages/lang/perl/perlmod.mk	2014-10-15 10:43:20.315917726 +0400
-@@ -5,12 +5,12 @@
+diff -urx .svn ../../../downloads/openwrt_trunk-r43708/feeds/packages/lang/perl/perlmod.mk ../../../openwrt_trunk/feeds/packages/lang/perl/perlmod.mk
+--- ../../../downloads/openwrt_trunk-r43708/feeds/packages/lang/perl/perlmod.mk	2014-12-15 12:19:58.000388958 +0300
++++ ../../../openwrt_trunk/feeds/packages/lang/perl/perlmod.mk	2014-12-15 15:15:08.540198087 +0300
+@@ -5,15 +5,15 @@
  HOST_PERL_PREFIX:=$(STAGING_DIR_HOST)/usr
  ifneq ($(CONFIG_USE_EGLIBC),)
  	EXTRA_LIBS:=bsd
@@ -246,11 +278,17 @@ diff -urx .svn ../../../downloads/openwrt_trunk-r42803/feeds/packages/lang/perl/
  
  # Module install prefix
 -PERL_SITELIB:=/usr/lib/perl5/5.20
+-PERL_TESTSDIR:=/usr/share/perl/perl-tests
+-PERLBASE_TESTSDIR:=/usr/share/perl/perlbase-tests
+-PERLMOD_TESTSDIR:=/usr/share/perl/perlmod-tests
 +PERL_SITELIB:=/opt/lib/perl5/5.20
++PERL_TESTSDIR:=/opt/share/perl/perl-tests
++PERLBASE_TESTSDIR:=/opt/share/perl/perlbase-tests
++PERLMOD_TESTSDIR:=/opt/share/perl/perlmod-tests
  
  define perlmod/host/relink
  	rm -f $(1)/Makefile.aperl
-@@ -50,15 +50,15 @@
+@@ -53,15 +53,15 @@
  	$(PERL_CMD) Makefile.PL \
  		$(1) \
  		AR=ar \
@@ -269,7 +307,7 @@ diff -urx .svn ../../../downloads/openwrt_trunk-r42803/feeds/packages/lang/perl/
  		LDDLFLAGS="-shared $(TARGET_LDFLAGS)"  \
  		LDFLAGS="$(EXTRA_LIBDIRS:%=-L%) $(EXTRA_LIBS:%=-l%) " \
  		LIBC=" " \
-@@ -72,29 +72,29 @@
+@@ -75,29 +75,29 @@
  		SO=so  \
  		VENDORARCHEXP=" " \
  		VENDORLIBEXP=" " \

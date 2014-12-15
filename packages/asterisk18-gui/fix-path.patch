@@ -1,6 +1,6 @@
---- ../../../downloads/mipsel-hardfloat/openwrt_trunk-r40423/feeds/telephony/admin/asterisk18-gui/Makefile
-+++ ../../../openwrt_trunk/feeds/telephony/admin/asterisk18-gui/Makefile
-@@ -47,11 +47,11 @@
+--- ../../../downloads/openwrt_trunk-r43593/feeds/telephony/admin/asterisk18-gui/Makefile	2014-12-10 12:26:33.210951677 +0300
++++ ../../../openwrt_trunk/feeds/telephony/admin/asterisk18-gui/Makefile	2014-12-10 12:48:51.586927297 +0300
+@@ -50,11 +50,11 @@
  			--build=$(GNU_HOST_NAME) \
  			--host=$(GNU_TARGET_NAME) \
  			--target=$(GNU_TARGET_NAME) \
@@ -15,7 +15,7 @@
  		)
  endef
  
-@@ -61,15 +61,13 @@
+@@ -64,15 +64,13 @@
  endef
  
  define Package/asterisk18-gui/install

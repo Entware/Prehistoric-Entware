@@ -1,5 +1,5 @@
---- ../../../downloads/openwrt_trunk-r42803/feeds/packages/multimedia/ffmpeg/Makefile
-+++ ../../../openwrt_trunk/feeds/packages/multimedia/ffmpeg/Makefile
+--- ../../../downloads/openwrt_trunk-r43593/feeds/packages/multimedia/ffmpeg/Makefile	2014-12-10 12:26:32.882951683 +0300
++++ ../../../openwrt_trunk/feeds/packages/multimedia/ffmpeg/Makefile	2014-12-10 12:49:03.466927079 +0300
 @@ -355,7 +355,7 @@
  	--cross-prefix="$(TARGET_CROSS)" \
  	--arch="$(ARCH)" \
@@ -9,7 +9,7 @@
  	--pkg-config="pkg-config" \
  	--enable-shared \
  	--enable-static \
-@@ -496,21 +496,21 @@
+@@ -507,21 +507,21 @@
  endef
  
  define Build/InstallDev/custom
@@ -43,7 +43,7 @@
  endef
  
  define Build/InstallDev/mini
-@@ -549,28 +549,28 @@
+@@ -560,28 +560,28 @@
  endif
  
  define Package/ffmpeg/install

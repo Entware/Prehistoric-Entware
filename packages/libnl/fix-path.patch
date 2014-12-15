@@ -1,0 +1,57 @@
+--- ../../../downloads/openwrt_trunk-r43593/package/libs/libnl/Makefile	2014-12-10 12:26:33.278951674 +0300
++++ ../../../openwrt_trunk/package/libs/libnl/Makefile	2014-12-12 11:06:25.255890434 +0300
+@@ -1,5 +1,5 @@
+ #
+-# Copyright (C) 2006-2013 OpenWrt.org
++# Copyright (C) 2006-2009 OpenWrt.org
+ #
+ # This is free software, licensed under the GNU General Public License v2.
+ # See /LICENSE for more information.
+@@ -8,12 +8,12 @@
+ include $(TOPDIR)/rules.mk
+ 
+ PKG_NAME:=libnl
+-PKG_VERSION:=3.2.21
++PKG_VERSION:=2.0
+ PKG_RELEASE:=1
+ 
+ PKG_SOURCE:=$(PKG_NAME)-$(PKG_VERSION).tar.gz
+ PKG_SOURCE_URL:=http://www.infradead.org/~tgr/libnl/files/
+-PKG_MD5SUM:=6fe7136558a9071e70673dcda38545b3
++PKG_MD5SUM:=6aaf1e9802a17a7d702bb0638044ffa7
+ PKG_LICENSE:=LGPL-2.1
+ 
+ include $(INCLUDE_DIR)/package.mk
+@@ -22,7 +22,6 @@
+   SECTION:=libs
+   CATEGORY:=Libraries
+   TITLE:=netlink socket library
+-  DEPENDS:=+libpthread
+   URL:=http://people.suug.ch/~tgr/libnl/
+ endef
+ 
+@@ -42,16 +41,17 @@
+ define Build/InstallDev
+ 	$(INSTALL_DIR) $(1)
+ 	$(CP) $(PKG_INSTALL_DIR)/* $(1)/
+-	mkdir -p $(1)/usr/include/libnl
+-	$(CP) $(PKG_BUILD_DIR)/include/linux $(1)/usr/include/libnl/
++	mkdir -p $(1)/opt/include/libnl
++	$(CP) $(PKG_BUILD_DIR)/include/linux $(1)/opt/include/libnl/
+ endef
+ 
+ define Package/libnl/install
+-	$(INSTALL_DIR) $(1)/usr/lib
+-	$(CP) $(PKG_INSTALL_DIR)/usr/lib/libnl-route-3.so.* $(1)/usr/lib/
+-	$(CP) $(PKG_INSTALL_DIR)/usr/lib/libnl-genl-3.so.* $(1)/usr/lib/
+-	$(CP) $(PKG_INSTALL_DIR)/usr/lib/libnl-nf-3.so.* $(1)/usr/lib/
+-	$(CP) $(PKG_INSTALL_DIR)/usr/lib/libnl-3.so.* $(1)/usr/lib/
++	$(INSTALL_DIR) $(1)/opt/lib
++	$(CP) $(PKG_INSTALL_DIR)/opt/lib/libnl-route.so.* $(1)/opt/lib/
++	$(CP) $(PKG_INSTALL_DIR)/opt/lib/libnl-genl.so.* $(1)/opt/lib/
++	$(CP) $(PKG_INSTALL_DIR)/opt/lib/libnl-nf.so.* $(1)/opt/lib/
++	$(CP) $(PKG_INSTALL_DIR)/opt/lib/libnl-route.so.* $(1)/opt/lib/
++	$(CP) $(PKG_INSTALL_DIR)/opt/lib/libnl.so.* $(1)/opt/lib/
+ endef
+ 
+ $(eval $(call BuildPackage,libnl))

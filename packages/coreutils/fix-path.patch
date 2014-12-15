@@ -1,5 +1,5 @@
---- ../../../openwrt_trunk.orig/feeds/packages/utils/coreutils/Makefile
-+++ ../../../openwrt_trunk/feeds/packages/utils/coreutils/Makefile
+--- ../../../downloads/openwrt_trunk-r43593/feeds/packages/utils/coreutils/Makefile	2014-12-10 12:26:33.030951680 +0300
++++ ../../../openwrt_trunk/feeds/packages/utils/coreutils/Makefile	2014-12-10 12:48:55.578927224 +0300
 @@ -23,7 +23,7 @@
  
  COREUTILS_APPLETS := \
@@ -9,7 +9,7 @@
  	false fmt fold groups head hostid id install join kill link ln logname	\
  	ls md5sum mkdir mkfifo mknod mktemp mv nice nl nohup nproc od paste	\
  	pathchk pinky pr printenv printf ptx pwd readlink realpath rm rmdir	\
-@@ -74,7 +74,8 @@
+@@ -80,7 +80,8 @@
  CONFIGURE_VARS += \
  	gl_cv_func_mbrtowc_incomplete_state=yes \
  	gl_cv_func_mbrtowc_retval=yes \
@@ -19,7 +19,7 @@
  
  ifneq ($(CONFIG_USE_UCLIBC),)
    CONFIGURE_VARS += \
-@@ -98,8 +99,8 @@
+@@ -104,8 +105,8 @@
  
  define BuildPlugin
    define Package/$(1)/install

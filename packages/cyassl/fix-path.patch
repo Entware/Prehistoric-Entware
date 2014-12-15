@@ -1,6 +1,6 @@
 --- ../../../downloads/mipsel-hardfloat/openwrt_trunk-r38784/package/libs/cyassl/Makefile
 +++ ../../../openwrt_trunk/package/libs/cyassl/Makefile
-@@ -42,16 +42,16 @@
+@@ -43,16 +43,16 @@
  	--disable-examples
  
  define Build/InstallDev

@@ -1,6 +1,6 @@
---- ../../../downloads/openwrt_trunk-r42803/feeds/packages/libs/gnutls/Makefile
-+++ ../../../openwrt_trunk/feeds/packages/libs/gnutls/Makefile
-@@ -108,7 +108,7 @@
+--- ../../../downloads/openwrt_trunk-r43593/feeds/packages/libs/gnutls/Makefile	2014-12-10 12:26:32.886951683 +0300
++++ ../../../openwrt_trunk/feeds/packages/libs/gnutls/Makefile	2014-12-10 12:49:03.666927077 +0300
+@@ -122,7 +122,7 @@
  	--disable-doc \
  	--disable-tests \
  	--disable-rsa-export \
@@ -9,7 +9,7 @@
  	--disable-crywrap
  
  ifneq ($(CONFIG_GNUTLS_EXT_LIBTASN1),y)
-@@ -160,7 +160,6 @@
+@@ -174,7 +174,6 @@
  endif
  
  TARGET_CFLAGS += $(FPIC)
@@ -17,7 +17,7 @@
  
  define Build/Configure
  	$(SED) 's,-I$$$${includedir},,g' $(PKG_BUILD_DIR)/configure
-@@ -169,69 +168,69 @@
+@@ -183,69 +182,69 @@
  endef
  
  define Build/InstallDev

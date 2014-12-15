@@ -1,7 +1,7 @@
---- ../../../openwrt_trunk.orig/package/libs/lzo/Makefile
-+++ ../../../openwrt_trunk/package/libs/lzo/Makefile
-@@ -45,14 +45,14 @@
- MAKE_FLAGS += CFLAGS_O="$(TARGET_CFLAGS)"
+--- ../../../downloads/openwrt_trunk-r43593/package/libs/lzo/Makefile	2014-12-10 12:26:33.282951674 +0300
++++ ../../../openwrt_trunk/package/libs/lzo/Makefile	2014-12-10 12:49:06.838925485 +0300
+@@ -50,14 +50,14 @@
+ endif
  
  define Build/InstallDev
 -	$(INSTALL_DIR) $(1)/usr/include $(1)/usr/lib

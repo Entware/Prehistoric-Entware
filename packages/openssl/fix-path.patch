@@ -1,6 +1,6 @@
---- ../../../downloads/mipsel-hardfloat/openwrt_trunk-r40423/package/libs/openssl/Makefile
-+++ ../../../openwrt_trunk/package/libs/openssl/Makefile
-@@ -68,7 +68,7 @@
+--- ../../../downloads/openwrt_trunk-r43593/package/libs/openssl/Makefile	2014-12-10 12:26:33.262951674 +0300
++++ ../../../openwrt_trunk/package/libs/openssl/Makefile	2014-12-10 12:49:08.462926977 +0300
+@@ -78,7 +78,7 @@
  endef
  
  define Package/openssl-util/conffiles
@@ -9,7 +9,7 @@
  endef
  
  define Package/openssl-util/description
-@@ -120,8 +120,8 @@
+@@ -133,8 +133,8 @@
  	}
  	(cd $(PKG_BUILD_DIR); \
  		./Configure $(OPENSSL_TARGET) \
@@ -20,7 +20,7 @@
  			$(TARGET_CPPFLAGS) \
  			$(TARGET_LDFLAGS) -ldl \
  			-DOPENSSL_SMALL_FOOTPRINT \
-@@ -172,29 +172,32 @@
+@@ -185,29 +185,32 @@
  endef
  
  define Build/InstallDev

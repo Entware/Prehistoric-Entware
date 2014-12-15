@@ -1,15 +1,6 @@
---- ../../../downloads/openwrt_trunk-r42803/feeds/packages/utils/bash/Makefile
-+++ ../../../openwrt_trunk/feeds/packages/utils/bash/Makefile
-@@ -10,7 +10,7 @@
- BASE_VERSION:=4.3
- 
- PKG_NAME:=bash
--PKG_VERSION:=$(BASE_VERSION).26
-+PKG_VERSION:=$(BASE_VERSION).30
- PKG_RELEASE:=1
- 
- PKG_SOURCE:=$(PKG_NAME)-$(BASE_VERSION).tar.gz
-@@ -42,7 +42,7 @@
+--- ../../../downloads/openwrt_trunk-r43593/feeds/packages/utils/bash/Makefile	2014-12-10 12:26:33.030951680 +0300
++++ ../../../openwrt_trunk/feeds/packages/utils/bash/Makefile	2014-12-12 16:00:53.844860114 +0300
+@@ -43,7 +43,7 @@
  define Build/Configure
  	$(call Build/Configure/Default, \
  		--without-bash-malloc \
@@ -18,7 +9,7 @@
  	)
  endef
  
-@@ -55,17 +55,11 @@
+@@ -56,17 +56,10 @@
  		all install
  endef
  
@@ -28,7 +19,7 @@
 -	echo "/bin/bash" >> $${IPKG_INSTROOT}/etc/shells
 -	echo "/bin/rbash" >> $${IPKG_INSTROOT}/etc/shells
 -endef
- 
+-
  define Package/bash/install
 -	$(INSTALL_DIR) $(1)/bin
 -	$(INSTALL_BIN) $(PKG_INSTALL_DIR)/bin/bash $(1)/bin/

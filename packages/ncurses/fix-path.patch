@@ -136,8 +136,8 @@
 +	$(CP) $(PKG_INSTALL_DIR)/opt/bin/ncursesw5-config $(2)/bin/
 +	$(SED) 's,^\(prefix\|exec_prefix\)=.*,\1=$(STAGING_DIR)/opt,g' -e 's/$$$$INCS //g' \
  		$(2)/bin/ncursesw5-config
--	ln -sf $(STAGING_DIR)/host/bin/ncursesw5-config $(1)/usr/bin/ncursesw5-config
-+	ln -sf $(STAGING_DIR)/host/bin/ncursesw5-config $(1)/opt/bin/ncursesw5-config
+-	$(LN) $(2)/bin/ncursesw5-config $(1)/usr/bin/ncursesw5-config
++	$(LN) $(2)/bin/ncursesw5-config $(1)/opt/bin/ncursesw5-config
  endef
  else
  define Build/InstallDev
@@ -158,8 +158,8 @@
 +	$(CP) $(PKG_INSTALL_DIR)/opt/bin/ncurses5-config $(2)/bin/
 +	$(SED) 's,^\(prefix\|exec_prefix\)=.*,\1=$(STAGING_DIR)/opt,g' \
  		$(2)/bin/ncurses5-config
--	ln -sf $(STAGING_DIR)/host/bin/ncurses5-config $(1)/usr/bin/ncurses5-config
-+	ln -sf $(STAGING_DIR)/host/bin/ncurses5-config $(1)/opt/bin/ncurses5-config
+-	$(LN) $(2)/bin/ncurses5-config $(1)/usr/bin/ncurses5-config
++	$(LN) $(2)/bin/ncurses5-config $(1)/opt/bin/ncurses5-config
  endef
  endif
  

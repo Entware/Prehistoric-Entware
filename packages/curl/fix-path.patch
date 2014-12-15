@@ -1,5 +1,5 @@
---- ../../../downloads/openwrt_trunk-r42803/package/network/utils/curl/Makefile
-+++ ../../../openwrt_trunk/package/network/utils/curl/Makefile
+--- ../../../downloads/openwrt_trunk-r43593/package/network/utils/curl/Makefile	2014-12-10 12:26:33.770951667 +0300
++++ ../../../openwrt_trunk/package/network/utils/curl/Makefile	2014-12-11 12:51:49.645353192 +0300
 @@ -75,7 +75,7 @@
    $(call Package/curl/Default)
    SECTION:=libs
@@ -64,7 +64,7 @@
 -	$(CP) $(PKG_BUILD_DIR)/libcurl.pc $(1)/usr/lib/pkgconfig/
 -	$(SED) 's,-L$$$${exec_prefix}/lib,,g' $(1)/usr/bin/curl-config
 -	[ -n "$(TARGET_LDFLAGS)" ] && $(SED) 's#$(TARGET_LDFLAGS)##g' $(1)/usr/lib/pkgconfig/libcurl.pc || true
--	ln -sf $(STAGING_DIR)/usr/bin/curl-config $(2)/bin/
+-	$(LN) $(STAGING_DIR)/usr/bin/curl-config $(2)/bin/
 +	$(INSTALL_DIR) $(2)/bin $(1)/opt/bin $(1)/opt/include $(1)/opt/lib $(1)/opt/lib/pkgconfig
 +	$(INSTALL_BIN) $(PKG_INSTALL_DIR)/opt/bin/curl-config $(1)/opt/bin/
 +	$(CP) $(PKG_INSTALL_DIR)/opt/include/curl $(1)/opt/include/
@@ -72,7 +72,7 @@
 +	$(CP) $(PKG_BUILD_DIR)/libcurl.pc $(1)/opt/lib/pkgconfig/
 +	$(SED) 's,-L$$$${exec_prefix}/lib,,g' $(1)/opt/bin/curl-config
 +	[ -n "$(TARGET_LDFLAGS)" ] && $(SED) 's#$(TARGET_LDFLAGS)##g' $(1)/opt/lib/pkgconfig/libcurl.pc || true
-+	ln -sf $(STAGING_DIR)/opt/bin/curl-config $(2)/bin/
++	$(LN) $(STAGING_DIR)/opt/bin/curl-config $(2)/bin/
  endef
  
  define Package/curl/install

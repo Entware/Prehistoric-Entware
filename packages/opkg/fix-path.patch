@@ -1,5 +1,5 @@
---- ../../../downloads/openwrt_trunk-r42803/package/system/opkg/Makefile
-+++ ../../../openwrt_trunk/package/system/opkg/Makefile
+--- ../../../downloads/openwrt_trunk-r43593/package/system/opkg/Makefile	2014-12-10 12:26:33.246951676 +0300
++++ ../../../openwrt_trunk/package/system/opkg/Makefile	2014-12-12 11:34:39.175856698 +0300
 @@ -5,7 +5,6 @@
  # See /LICENSE for more information.
  
@@ -78,7 +78,7 @@
 -	done
 -    ifneq ($(CONFIG_PER_FEED_REPO_ADD_DISABLED),)
 -	for d in $(FEEDS_DISABLED); do \
--		echo "# src/gz %n_$$$$d %U/$$$$d" >> $(1)/etc/opkg.conf; \
+-		echo "$(if $(CONFIG_PER_FEED_REPO_ADD_COMMENTED),# )src/gz %n_$$$$d %U/$$$$d" >> $(1)/etc/opkg.conf; \
 -	done
 -    endif
 -  endif
