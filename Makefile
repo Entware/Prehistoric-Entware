@@ -14,6 +14,7 @@ all: \
 	    packages/.package_prepared
 	$(MAKE) -C "$(TOP)/openwrt_trunk" tools/compile
 	$(MAKE) -C "$(TOP)/openwrt_trunk" tools/install
+	$(MAKE) -C "$(TOP)/openwrt_trunk" package/toolchain/compile
 	@echo "Buildroot is ready! To recompile the whole repo type:"
 	@echo "cd ../openwrt_trunk"
 	@echo "make package/compile"
