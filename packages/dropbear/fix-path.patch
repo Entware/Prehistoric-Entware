@@ -1,6 +1,6 @@
-diff -urx .svn ../../../downloads/openwrt_trunk-r43593/package/network/services/dropbear/Makefile ../../../openwrt_trunk/package/network/services/dropbear/Makefile
---- ../../../downloads/openwrt_trunk-r43593/package/network/services/dropbear/Makefile	2014-12-10 12:26:33.446951672 +0300
-+++ ../../../openwrt_trunk/package/network/services/dropbear/Makefile	2014-12-11 12:57:45.785335453 +0300
+diff -urx .svn ../../../downloads/openwrt_trunk-r43718/package/network/services/dropbear/Makefile ../../../openwrt_trunk/package/network/services/dropbear/Makefile
+--- ../../../downloads/openwrt_trunk-r43718/package/network/services/dropbear/Makefile	2014-12-15 16:50:13.640093574 +0300
++++ ../../../openwrt_trunk/package/network/services/dropbear/Makefile	2014-12-16 12:39:30.226789389 +0300
 @@ -47,9 +47,9 @@
  endef
  
@@ -37,6 +37,12 @@ diff -urx .svn ../../../downloads/openwrt_trunk-r43593/package/network/services/
 -	$(LN) ../sbin/dropbear $(1)/usr/bin/dropbearkey
 -	$(INSTALL_DIR) $(1)/etc/config
 -	$(INSTALL_DATA) ./files/dropbear.config $(1)/etc/config/dropbear
+-	$(INSTALL_DIR) $(1)/etc/init.d
+-	$(INSTALL_BIN) ./files/dropbear.init $(1)/etc/init.d/dropbear
+-	$(INSTALL_DIR) $(1)/usr/lib/opkg/info
+-	$(INSTALL_DIR) $(1)/etc/dropbear
+-	touch $(1)/etc/dropbear/dropbear_rsa_host_key
+-	touch $(1)/etc/dropbear/dropbear_dss_host_key
 +	$(INSTALL_DIR) $(1)/opt/sbin
 +	$(INSTALL_BIN) $(PKG_BUILD_DIR)/dropbearmulti $(1)/opt/sbin/dropbear
 +	$(INSTALL_DIR) $(1)/opt/bin
@@ -44,13 +50,8 @@ diff -urx .svn ../../../downloads/openwrt_trunk-r43593/package/network/services/
 +	$(LN) ../sbin/dropbear $(1)/opt/bin/ssh
 +	$(LN) ../sbin/dropbear $(1)/opt/bin/dbclient
 +	$(LN) ../sbin/dropbear $(1)/opt/bin/dropbearkey
- 	$(INSTALL_DIR) $(1)/etc/init.d
--	$(INSTALL_BIN) ./files/dropbear.init $(1)/etc/init.d/dropbear
--	$(INSTALL_DIR) $(1)/usr/lib/opkg/info
--	$(INSTALL_DIR) $(1)/etc/dropbear
--	touch $(1)/etc/dropbear/dropbear_rsa_host_key
--	touch $(1)/etc/dropbear/dropbear_dss_host_key
-+	$(INSTALL_BIN) ./files/S51dropbear $(1)/etc/init.d
++	$(INSTALL_DIR) $(1)/opt/etc/init.d
++	$(INSTALL_BIN) ./files/S51dropbear $(1)/opt/etc/init.d
  endef
  
  define Package/dropbearconvert/install
@@ -73,9 +74,9 @@ diff -urx .svn ../../../downloads/openwrt_trunk-r43593/package/network/services/
  endef
  
  $(eval $(call BuildPackage,dropbear))
-diff -urx .svn ../../../downloads/openwrt_trunk-r43593/package/network/services/dropbear/patches/100-pubkey_path.patch ../../../openwrt_trunk/package/network/services/dropbear/patches/100-pubkey_path.patch
---- ../../../downloads/openwrt_trunk-r43593/package/network/services/dropbear/patches/100-pubkey_path.patch	2014-12-10 12:26:33.446951672 +0300
-+++ ../../../openwrt_trunk/package/network/services/dropbear/patches/100-pubkey_path.patch	2014-12-10 12:49:03.282927084 +0300
+diff -urx .svn ../../../downloads/openwrt_trunk-r43718/package/network/services/dropbear/patches/100-pubkey_path.patch ../../../openwrt_trunk/package/network/services/dropbear/patches/100-pubkey_path.patch
+--- ../../../downloads/openwrt_trunk-r43718/package/network/services/dropbear/patches/100-pubkey_path.patch	2014-12-15 16:50:13.640093574 +0300
++++ ../../../openwrt_trunk/package/network/services/dropbear/patches/100-pubkey_path.patch	2014-12-15 16:50:19.764093462 +0300
 @@ -28,7 +28,7 @@
  +		/* open the file */
  +		authfile = fopen(filename, "r");

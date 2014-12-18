@@ -1,6 +1,6 @@
---- ../../../downloads/openwrt_trunk-r43708/feeds/packages/utils/joe/Makefile	2014-12-15 12:19:58.048388959 +0300
-+++ ../../../openwrt_trunk/feeds/packages/utils/joe/Makefile	2014-12-15 14:51:08.092223838 +0300
-@@ -47,10 +47,10 @@
+--- ../../../downloads/openwrt_trunk-r43718/feeds/packages/utils/joe/Makefile	2014-12-15 16:50:13.332093577 +0300
++++ ../../../openwrt_trunk/feeds/packages/utils/joe/Makefile	2014-12-18 10:34:35.147774877 +0300
+@@ -47,17 +47,17 @@
  endef
  
  define Package/joe/install
@@ -12,5 +12,15 @@
 -	  ln -sf joe $(1)/usr/bin/$$$$i; \
 +	  ln -sf joe $(1)/opt/bin/$$$$i; \
  	done
- 	$(INSTALL_DIR) $(1)/etc/joe
- 	$(INSTALL_CONF) ./files/joerc $(1)/etc/joe/joerc
+-	$(INSTALL_DIR) $(1)/etc/joe
+-	$(INSTALL_CONF) ./files/joerc $(1)/etc/joe/joerc
++	$(INSTALL_DIR) $(1)/opt/etc/joe
++	$(INSTALL_CONF) ./files/joerc $(1)/opt/etc/joe/joerc
+ endef
+ 
+ define Package/joe/conffiles
+-/etc/joe/joerc
++/opt/etc/joe/joerc
+ endef
+ 
+ $(eval $(call BuildPackage,joe))

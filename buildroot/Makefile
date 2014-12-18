@@ -32,11 +32,8 @@ $(TOP)/downloads/openwrt_trunk-r$(OPENWRT_REVISION): \
 	svn co --revision=$(OPENWRT_REVISION) svn://svn.openwrt.org/openwrt/trunk/ $(TOP)/openwrt_trunk
 	cp -f feeds.conf $(TOP)/openwrt_trunk
 	(cd $(TOP)/openwrt_trunk; \
-	    for feed in packages routing telephony management oldpackages rtndev; \
-	    do \
-		./scripts/feeds update $$feed; \
-		./scripts/feeds install -a -p $$feed; \
-	    done)
+	./scripts/feeds update; \
+	./scripts/feeds install -a;)
 	mkdir -p $(TOP)/downloads/openwrt_trunk-r$(OPENWRT_REVISION)
 	ln -sf $(TOP)/downloads $(TOP)/openwrt_trunk/dl
 	cp -fr $(TOP)/openwrt_trunk/* $(TOP)/downloads/openwrt_trunk-r$(OPENWRT_REVISION)

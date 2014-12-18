@@ -9,7 +9,7 @@ all: .done
 
 .done:
 	patch -d $(TOP) -p3 -i $(CURDIR)/fix-path.patch
-	cp -f ./S06lvm2 ../../../openwrt_trunk/feeds/packages/utils/lvm2/files/
+	cp -f ./500-ffmpeg_compat2.patch ../../../openwrt_trunk/feeds/oldpackages/libs/libdlna/patches/
 	@touch $@
 
 clean:

@@ -1,5 +1,14 @@
---- ../../../downloads/openwrt_trunk-r43593/feeds/packages/multimedia/ffmpeg/Makefile	2014-12-10 12:26:32.882951683 +0300
-+++ ../../../openwrt_trunk/feeds/packages/multimedia/ffmpeg/Makefile	2014-12-10 12:49:03.466927079 +0300
+--- ../../../downloads/openwrt_trunk-r43718/feeds/packages/multimedia/ffmpeg/Makefile	2014-12-15 16:50:13.284093580 +0300
++++ ../../../openwrt_trunk/feeds/packages/multimedia/ffmpeg/Makefile	2014-12-17 14:34:53.093094239 +0300
+@@ -322,7 +322,7 @@
+ define Package/libffmpeg-full
+ $(call Package/libffmpeg/Default)
+  TITLE+= (full)
+- DEPENDS+= @BUILD_PATENTED +alsa-lib
++ DEPENDS+= +liblzma @BUILD_PATENTED +alsa-lib
+  VARIANT:=full
+ endef
+ 
 @@ -355,7 +355,7 @@
  	--cross-prefix="$(TARGET_CROSS)" \
  	--arch="$(ARCH)" \
@@ -9,7 +18,7 @@
  	--pkg-config="pkg-config" \
  	--enable-shared \
  	--enable-static \
-@@ -507,21 +507,21 @@
+@@ -507,30 +507,30 @@
  endef
  
  define Build/InstallDev/custom
@@ -43,7 +52,22 @@
  endef
  
  define Build/InstallDev/mini
-@@ -560,28 +560,28 @@
+-	$(INSTALL_DIR) $(1)/usr/include
+-	$(CP) $(PKG_INSTALL_DIR)/usr/include/lib{avcodec,avformat,avutil} $(1)/usr/include/
+-	$(INSTALL_DIR) $(1)/usr/lib
+-	$(CP) $(PKG_INSTALL_DIR)/usr/lib/lib{avcodec,avformat,avutil}.{a,so*} $(1)/usr/lib/
+-	$(INSTALL_DIR) $(1)/usr/lib/pkgconfig
+-	$(CP) $(PKG_INSTALL_DIR)/usr/lib/pkgconfig/lib{avcodec,avformat,avutil}.pc $(1)/usr/lib/pkgconfig/
++	$(INSTALL_DIR) $(1)/opt/include
++	$(CP) $(PKG_INSTALL_DIR)/opt/include/lib{avcodec,avformat,avutil} $(1)/opt/include/
++	$(INSTALL_DIR) $(1)/opt/lib
++	$(CP) $(PKG_INSTALL_DIR)/opt/lib/lib{avcodec,avformat,avutil}.{a,so*} $(1)/opt/lib/
++	$(INSTALL_DIR) $(1)/opt/lib/pkgconfig
++	$(CP) $(PKG_INSTALL_DIR)/opt/lib/pkgconfig/lib{avcodec,avformat,avutil}.pc $(1)/opt/lib/pkgconfig/
+ endef
+ 
+ Build/InstallDev/audio-dec = $(Build/InstallDev/custom)
+@@ -560,33 +560,33 @@
  endif
  
  define Package/ffmpeg/install
@@ -82,3 +106,10 @@
  endef
  
  define Package/libffmpeg-mini/install
+-	$(INSTALL_DIR) $(1)/usr/lib
+-	$(CP) $(PKG_INSTALL_DIR)/usr/lib/lib{avcodec,avformat,avutil}.so.* $(1)/usr/lib/
++	$(INSTALL_DIR) $(1)/opt/lib
++	$(CP) $(PKG_INSTALL_DIR)/opt/lib/lib{avcodec,avformat,avutil}.so.* $(1)/opt/lib/
+ endef
+ 
+ Package/libffmpeg-audio-dec/install = $(Package/libffmpeg-custom/install)

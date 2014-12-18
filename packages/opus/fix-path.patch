@@ -1,0 +1,28 @@
+--- ../../../downloads/openwrt_trunk-r43718/feeds/packages/libs/opus/Makefile	2014-12-15 16:50:13.292093580 +0300
++++ ../../../openwrt_trunk/feeds/packages/libs/opus/Makefile	2014-12-16 11:22:34.466885843 +0300
+@@ -37,17 +37,17 @@
+ endef
+ 
+ define Build/InstallDev
+-	$(INSTALL_DIR) $(1)/usr/include
+-	$(CP) $(PKG_INSTALL_DIR)/usr/include/opus $(1)/usr/include/
+-	$(INSTALL_DIR) $(1)/usr/lib
+-	$(CP) $(PKG_INSTALL_DIR)/usr/lib/libopus.so* $(1)/usr/lib/
+-	$(INSTALL_DIR) $(1)/usr/lib/pkgconfig
+-	$(CP) $(PKG_INSTALL_DIR)/usr/lib/pkgconfig/opus.pc $(1)/usr/lib/pkgconfig/
++	$(INSTALL_DIR) $(1)/opt/include
++	$(CP) $(PKG_INSTALL_DIR)/opt/include/opus $(1)/opt/include/
++	$(INSTALL_DIR) $(1)/opt/lib
++	$(CP) $(PKG_INSTALL_DIR)/opt/lib/libopus.so* $(1)/opt/lib/
++	$(INSTALL_DIR) $(1)/opt/lib/pkgconfig
++	$(CP) $(PKG_INSTALL_DIR)/opt/lib/pkgconfig/opus.pc $(1)/opt/lib/pkgconfig/
+ endef
+ 
+ define Package/libopus/install
+-	$(INSTALL_DIR) $(1)/usr/lib
+-	$(CP) $(PKG_INSTALL_DIR)/usr/lib/libopus.so.* $(1)/usr/lib/
++	$(INSTALL_DIR) $(1)/opt/lib
++	$(CP) $(PKG_INSTALL_DIR)/opt/lib/libopus.so.* $(1)/opt/lib/
+ endef
+ 
+ $(eval $(call BuildPackage,libopus))

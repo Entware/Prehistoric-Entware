@@ -1,5 +1,5 @@
---- ../../../downloads/openwrt_trunk-r43593/package/devel/gdb/Makefile	2014-12-10 12:26:33.322951675 +0300
-+++ ../../../openwrt_trunk/package/devel/gdb/Makefile	2014-12-11 13:09:05.361328797 +0300
+--- ../../../downloads/openwrt_trunk-r43718/package/devel/gdb/Makefile	2014-12-15 16:50:13.548093573 +0300
++++ ../../../openwrt_trunk/package/devel/gdb/Makefile	2014-12-16 10:39:38.086929958 +0300
 @@ -8,12 +8,12 @@
  include $(TOPDIR)/rules.mk
  
@@ -8,7 +8,8 @@
 +PKG_VERSION:=7.3.1
  PKG_RELEASE:=1
  
- PKG_SOURCE:=$(PKG_NAME)-$(PKG_VERSION).tar.xz
+-PKG_SOURCE:=$(PKG_NAME)-$(PKG_VERSION).tar.xz
++PKG_SOURCE:=$(PKG_NAME)-$(PKG_VERSION).tar.bz2
  PKG_SOURCE_URL:=@GNU/gdb
 -PKG_MD5SUM:=bd958fe9019d7c7896f29f6724a764ed
 +PKG_MD5SUM:=b89a5fac359c618dda97b88645ceab47

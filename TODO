@@ -13,8 +13,6 @@ hplip		3.14.4
 imapfilter	2.5.6
 leptonica	1.71	giflib 5.0.0 compability
 libev		4.19
-libsodium	1.0.0
-lvm2		2.02.111
 mosh		1.2.4a-20140108
 msmtp		1.4.32
 n2n		2.1.0-r7223
@@ -28,4 +26,5 @@ gdb		7.3.1		due to gnu_v3_object_ctor_group() absence
 libnl		2.0 (r33657)
 libv4l		0.8.6
 mjpg-streamer	r181
+python		2.7.3		A big mess with new package. Will sit on this forawhile
 usbip		0.1.7

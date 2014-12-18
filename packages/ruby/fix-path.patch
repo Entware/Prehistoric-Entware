@@ -1,6 +1,10 @@
---- ../../../downloads/openwrt_trunk-r43708/feeds/packages/lang/ruby/Makefile	2014-12-15 12:19:57.996388958 +0300
-+++ ../../../openwrt_trunk/feeds/packages/lang/ruby/Makefile	2014-12-15 14:32:03.464243865 +0300
-@@ -816,19 +816,19 @@
+--- ../../../downloads/openwrt_trunk-r43718/feeds/packages/lang/ruby/Makefile	2014-12-15 16:50:13.280093580 +0300
++++ ../../../openwrt_trunk/feeds/packages/lang/ruby/Makefile	2014-12-18 10:12:02.055804040 +0300
+@@ -813,22 +813,23 @@
+ 
+ MAKE_FLAGS += \
+ 	DESTDIR="$(PKG_INSTALL_DIR)" \
++	EXTLDFLAGS="$(TARGET_LDFLAGS)" \
  	SHELL="/bin/bash"
  
  define Package/ruby/install
@@ -30,7 +34,7 @@
  endef
  
  define Package/ruby-stdlib/install
-@@ -837,222 +837,222 @@
+@@ -837,222 +838,222 @@
  
  define Package/ruby-bigdecimal/install
  	( cd $(PKG_INSTALL_DIR); $(TAR) -cf - \
@@ -367,7 +371,7 @@
  	) | ( cd $(1); $(TAR) -xf - )
  endef
  
-@@ -1060,220 +1060,220 @@
+@@ -1060,220 +1061,220 @@
  
  define Package/ruby-mkmf/install
  	( cd $(PKG_INSTALL_DIR); $(TAR) -cf - \

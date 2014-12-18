@@ -9,6 +9,8 @@ all: .done
 
 .done:
 	patch -d $(TOP) -p3 -i $(CURDIR)/fix-path.patch
+	mkdir -p ../../../openwrt_trunk/feeds/packages/multimedia/motion/patches
+	cp -f ./002-honor_cppflags.patch ../../../openwrt_trunk/feeds/packages/multimedia/motion/patches/
 	mkdir -p ../../../openwrt_trunk/feeds/packages/multimedia/motion/files
 	cp -f ./S99motion ../../../openwrt_trunk/feeds/packages/multimedia/motion/files/
 	@touch $@

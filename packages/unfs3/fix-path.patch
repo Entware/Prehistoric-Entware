@@ -1,11 +1,11 @@
---- ../../../openwrt_trunk.orig/feeds/oldpackages/net/unfs3/Makefile
-+++ ../../../openwrt_trunk/feeds/oldpackages/net/unfs3/Makefile
+--- ../../../downloads/openwrt_trunk-r43718/feeds/oldpackages/net/unfs3/Makefile	2014-12-15 16:50:13.396093578 +0300
++++ ../../../openwrt_trunk/feeds/oldpackages/net/unfs3/Makefile	2014-12-17 15:03:25.125062621 +0300
 @@ -26,7 +26,7 @@
    SECTION:=net
    CATEGORY:=Network
    SUBMENU:=Filesystem
 -  DEPENDS:=+portmap $(LIBRPC_DEPENDS)
-+  DEPENDS:=+portmap
++  DEPENDS:=+portmap +libacl
    TITLE:=User-space NFSv3 Server
    URL:=http://unfs3.sourceforge.net/
  endef

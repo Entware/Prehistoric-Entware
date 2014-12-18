@@ -9,6 +9,7 @@ all: .done
 
 .done:
 	patch -d $(TOP) -p3 -i $(CURDIR)/fix-path.patch
+	cp -f ./500-no_sslv2.patch ../../../openwrt_trunk/feeds/oldpackages/net/squid/patches/
 	mkdir -p ../../../openwrt_trunk/feeds/oldpackages/net/squid/files
 	cp -f ./S22squid ../../../openwrt_trunk/feeds/oldpackages/net/squid/files/
 	@touch $@

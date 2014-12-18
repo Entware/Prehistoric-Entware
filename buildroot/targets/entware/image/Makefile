@@ -1,10 +1,10 @@
-# 
-# Copyright (C) 2010 ZyXEL.RU
-# Copyright (C) 2010,2011 NDM Systems
+#
+# Copyright (C) 2011-2014 Entware
 #
 # This is free software, licensed under the GNU General Public License v2.
 # See /LICENSE for more information.
 #
+
 include $(TOPDIR)/rules.mk
 include $(INCLUDE_DIR)/image.mk
 

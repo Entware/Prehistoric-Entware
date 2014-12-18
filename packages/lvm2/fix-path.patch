@@ -1,5 +1,5 @@
---- ../../../downloads/openwrt_trunk-r43593/feeds/packages/utils/lvm2/Makefile	2014-12-10 12:26:33.038951680 +0300
-+++ ../../../openwrt_trunk/feeds/packages/utils/lvm2/Makefile	2014-12-11 11:20:38.121451577 +0300
+--- ../../../downloads/openwrt_trunk-r43718/feeds/packages/utils/lvm2/Makefile	2014-12-15 16:50:13.336093577 +0300
++++ ../../../openwrt_trunk/feeds/packages/utils/lvm2/Makefile	2014-12-17 14:59:44.741066769 +0300
 @@ -26,7 +26,7 @@
    CATEGORY:=Libraries
    TITLE:=The Linux Kernel Device Mapper userspace library
