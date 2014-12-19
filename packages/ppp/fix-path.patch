@@ -254,4 +254,3 @@ diff -urx .svn ../../../downloads/openwrt_trunk-r42803/package/network/services/
  +CFLAGS	+= -DPPP_FILTER -DPPP_PRECOMPILED_FILTER -I$(STAGING_DIR)/usr/include
  +endif
  +
-Only in ../../../openwrt_trunk/package/network/services/ppp/patches: 600-entware-path.patch

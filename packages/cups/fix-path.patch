@@ -1,6 +1,6 @@
-diff -urx .svn ../../../downloads/mipsel-hardfloat/openwrt_trunk-r40423/feeds/oldpackages/net/cups/files/etc/cups/cupsd.conf ../../../openwrt_trunk/feeds/oldpackages/net/cups/files/etc/cups/cupsd.conf
---- ../../../downloads/mipsel-hardfloat/openwrt_trunk-r40423/feeds/oldpackages/net/cups/files/etc/cups/cupsd.conf	2014-04-09 16:17:24.178286483 +0400
-+++ ../../../openwrt_trunk/feeds/oldpackages/net/cups/files/etc/cups/cupsd.conf	2014-04-09 16:53:25.978247102 +0400
+diff -urx .svn ../../../downloads/openwrt_trunk-r43718/feeds/oldpackages/net/cups/files/etc/cups/cupsd.conf ../../../openwrt_trunk/feeds/oldpackages/net/cups/files/etc/cups/cupsd.conf
+--- ../../../downloads/openwrt_trunk-r43718/feeds/oldpackages/net/cups/files/etc/cups/cupsd.conf	2014-12-18 13:14:28.551607756 +0300
++++ ../../../openwrt_trunk/feeds/oldpackages/net/cups/files/etc/cups/cupsd.conf	2014-12-18 13:14:37.023607602 +0300
 @@ -21,12 +21,12 @@
  MaxPrinterHistory 10
  #Printcap /etc/printcap
@@ -16,9 +16,9 @@ diff -urx .svn ../../../downloads/mipsel-hardfloat/openwrt_trunk-r40423/feeds/ol
  Port 631
  HostNameLookups Off
  KeepAlive On
-diff -urx .svn ../../../downloads/mipsel-hardfloat/openwrt_trunk-r40423/feeds/oldpackages/net/cups/Makefile ../../../openwrt_trunk/feeds/oldpackages/net/cups/Makefile
---- ../../../downloads/mipsel-hardfloat/openwrt_trunk-r40423/feeds/oldpackages/net/cups/Makefile	2014-04-09 16:17:24.178286483 +0400
-+++ ../../../openwrt_trunk/feeds/oldpackages/net/cups/Makefile	2014-04-09 16:53:25.978247102 +0400
+diff -urx .svn ../../../downloads/openwrt_trunk-r43718/feeds/oldpackages/net/cups/Makefile ../../../openwrt_trunk/feeds/oldpackages/net/cups/Makefile
+--- ../../../downloads/openwrt_trunk-r43718/feeds/oldpackages/net/cups/Makefile	2014-12-18 13:14:28.551607756 +0300
++++ ../../../openwrt_trunk/feeds/oldpackages/net/cups/Makefile	2014-12-18 15:22:20.495463811 +0300
 @@ -15,7 +15,7 @@
  PKG_SOURCE_URL:= http://www.cups.org/software/$(PKG_VERSION)
  PKG_MD5SUM:=de3006e5cf1ee78a9c6145ce62c4e982
@@ -59,7 +59,15 @@ diff -urx .svn ../../../downloads/mipsel-hardfloat/openwrt_trunk-r40423/feeds/ol
    TITLE:=Common UNIX Printing System - Core library
  endef
  
-@@ -424,247 +424,247 @@
+@@ -409,6 +409,7 @@
+ 		--disable-cdsassl \
+ 		--disable-ssl \
+ 		--disable-gssapi \
++		--disable-acl \
+ 		--disable-tiff, \
+ 		UNAME="Linux" \
+ 		LIBS="$(TARGET_LDFLAGS) -lz -lpng -ljpeg" \
+@@ -424,247 +425,247 @@
  endef
  
  define Package/cups/install
