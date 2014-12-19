@@ -1,5 +1,14 @@
---- ../../../openwrt_trunk.orig/feeds/oldpackages/net/pyload/Makefile
-+++ ../../../openwrt_trunk/feeds/oldpackages/net/pyload/Makefile
+--- ../../../downloads/openwrt_trunk-r43718/feeds/oldpackages/net/pyload/Makefile	2014-12-18 13:14:28.535607756 +0300
++++ ../../../openwrt_trunk/feeds/oldpackages/net/pyload/Makefile	2014-12-19 16:11:00.925839952 +0300
+@@ -25,7 +25,7 @@
+   SECTION:=net
+   CATEGORY:=Network
+   DEPENDS:=+python +pyopenssl +python-curl +python-crypto \
+-	+python-expat +python-imaging-library +python-sqlite3 +js \
++	+python-expat +python-imaging-library +python-sqlite3 +duktape \
+ 	+tesseract +unrar
+   TITLE:=A fast, lightweight and full featured download manager
+   URL:=http://pyload.org
 @@ -38,12 +38,12 @@
  endef
  
