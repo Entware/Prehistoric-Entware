@@ -1,5 +1,14 @@
---- ../../../downloads/openwrt_trunk-r43718/feeds/packages/utils/mc/Makefile	2014-12-15 16:50:13.332093577 +0300
-+++ ../../../openwrt_trunk/feeds/packages/utils/mc/Makefile	2014-12-18 09:55:48.951824241 +0300
+--- ../../../downloads/openwrt_trunk-r43718/feeds/packages/utils/mc/Makefile	2014-12-18 13:14:28.467607759 +0300
++++ ../../../openwrt_trunk/feeds/packages/utils/mc/Makefile	2014-12-22 12:47:55.525340648 +0300
+@@ -9,7 +9,7 @@
+ 
+ PKG_NAME:=mc
+ PKG_VERSION:=4.8.13
+-PKG_RELEASE:=1.2
++PKG_RELEASE:=1.2a
+ PKG_MAINTAINER:=Dirk Brenken <dibdot@gmail.com>
+ PKG_LICENSE:=GPL-3.0+
+ 
 @@ -19,6 +19,7 @@
  
  PKG_BUILD_PARALLEL:=1
