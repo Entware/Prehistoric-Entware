@@ -1,5 +1,15 @@
---- ../../../downloads/openwrt_trunk-r43708/feeds/packages/utils/unrar/Makefile	2014-12-15 12:19:58.056388959 +0300
-+++ ../../../openwrt_trunk/feeds/packages/utils/unrar/Makefile	2014-12-15 12:20:25.120388466 +0300
+diff -urx .svn ../../../downloads/openwrt_trunk-r43718/feeds/packages/utils/unrar/Makefile ../../../openwrt_trunk/feeds/packages/utils/unrar/Makefile
+--- ../../../downloads/openwrt_trunk-r43718/feeds/packages/utils/unrar/Makefile	2014-12-18 13:14:28.475607759 +0300
++++ ../../../openwrt_trunk/feeds/packages/utils/unrar/Makefile	2014-12-25 12:31:50.520636996 +0300
+@@ -9,7 +9,7 @@
+ 
+ PKG_NAME:=unrar
+ PKG_VERSION:=5.2.2
+-PKG_RELEASE:=1
++PKG_RELEASE:=1a
+ 
+ PKG_SOURCE:=unrarsrc-$(PKG_VERSION).tar.gz
+ PKG_SOURCE_URL:=http://www.rarlab.com/rar
 @@ -43,8 +43,8 @@
  endef
  
@@ -11,3 +21,15 @@
  endef
  
  $(eval $(call BuildPackage,unrar))
+diff -urx .svn ../../../downloads/openwrt_trunk-r43718/feeds/packages/utils/unrar/patches/100-makefile_fixes.patch ../../../openwrt_trunk/feeds/packages/utils/unrar/patches/100-makefile_fixes.patch
+--- ../../../downloads/openwrt_trunk-r43718/feeds/packages/utils/unrar/patches/100-makefile_fixes.patch	2014-12-18 13:14:28.475607759 +0300
++++ ../../../openwrt_trunk/feeds/packages/utils/unrar/patches/100-makefile_fixes.patch	2014-12-25 12:32:52.008636792 +0300
+@@ -12,7 +12,7 @@
+  DEFINES=-D_FILE_OFFSET_BITS=64 -D_LARGEFILE_SOURCE -DRAR_SMP
+  STRIP=strip
+ -LDFLAGS=-pthread
+-+LDFLAGS=-lpthread
+++LDFLAGS+=-lpthread
+  DESTDIR=/usr
+  
+  # Linux using LCC
