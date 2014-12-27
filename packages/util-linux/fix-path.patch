@@ -1,5 +1,5 @@
---- ../../../downloads/openwrt_trunk-r43593/package/utils/util-linux/Makefile	2014-12-10 12:26:33.862951665 +0300
-+++ ../../../openwrt_trunk/package/utils/util-linux/Makefile	2014-12-12 11:52:15.499841287 +0300
+--- ../../../downloads/openwrt_trunk-r43718/package/utils/util-linux/Makefile	2014-12-18 13:14:29.359607742 +0300
++++ ../../../openwrt_trunk/package/utils/util-linux/Makefile	2014-12-27 18:49:40.757074608 +0300
 @@ -46,26 +46,26 @@
  		DESTDIR="$(1)" \
  		installdirs install-data
@@ -52,11 +52,11 @@
  $(call Package/util-linux/Default)
    TITLE:=swap space management utilities
 -  DEPENDS+= +libblkid
-+  DEPENDS+= +libblkid +libmount
++  DEPENDS+= +libblkid +libmount +libsmartcols
    SUBMENU:=disc
  endef
  
-@@ -421,169 +421,169 @@
+@@ -421,169 +421,170 @@
  endef
  
  define Package/libblkid/install
@@ -258,6 +258,7 @@
 +	$(INSTALL_DIR) $(1)/opt/sbin
 +	$(INSTALL_BIN) $(PKG_BUILD_DIR)/.libs/mkswap $(1)/opt/sbin/
 +	$(INSTALL_BIN) $(PKG_BUILD_DIR)/.libs/swaplabel $(1)/opt/sbin/
++	$(INSTALL_BIN) $(PKG_BUILD_DIR)/.libs/swap{on,off} $(1)/opt/sbin/
  endef
  
  define Package/uuidd/install
