@@ -2,7 +2,7 @@
 
 ENABLED=yes
 PROCS=xinetd
-ARGS="-f /opt/etc/xinetd.conf"
+ARGS="-f /Apps/opt/etc/xinetd.conf"
 PREARGS=""
 DESC=$PROCS
 PATH=/Apps/opt/sbin:/Apps/opt/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin

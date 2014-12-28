@@ -5,7 +5,7 @@
  config BUSYBOX_DEFAULT_PID_FILE_PATH
  	string
 -	default "/var/run"
-+	default "/opt/var/run"
++	default "/Apps/opt/var/run"
  config BUSYBOX_DEFAULT_FEATURE_SUID
  	bool
  	default y
@@ -14,7 +14,7 @@
  config BUSYBOX_DEFAULT_FEATURE_CROND_DIR
  	string
 -	default "/etc"
-+	default "/opt/etc"
++	default "/Apps/opt/etc"
  config BUSYBOX_DEFAULT_CRONTAB
  	bool
  	default y
@@ -23,7 +23,7 @@
  config BUSYBOX_DEFAULT_UDHCPC_DEFAULT_SCRIPT
  	string
 -	default "/usr/share/udhcpc/default.script"
-+	default "/opt/share/udhcpc/default.script"
++	default "/Apps/opt/share/udhcpc/default.script"
  config BUSYBOX_DEFAULT_UDHCPC_SLACK_FOR_BUGGY_SERVERS
  	int
  	default 80

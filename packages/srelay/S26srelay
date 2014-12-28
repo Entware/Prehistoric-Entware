@@ -2,7 +2,7 @@
 
 ENABLED=yes
 PROCS=srelay
-ARGS="-c /opt/etc/srelay.conf -r -s"
+ARGS="-c /Apps/opt/etc/srelay.conf -r -s"
 PREARGS=""
 DESC=$PROCS
 PATH=/Apps/opt/sbin:/Apps/opt/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin

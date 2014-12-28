@@ -2,7 +2,7 @@
 
 ENABLED=yes
 PROCS=transmission-daemon
-ARGS="-g /opt/etc/transmission"
+ARGS="-g /Apps/opt/etc/transmission"
 PREARGS=""
 DESC=$PROCS
 PATH=/Apps/opt/sbin:/Apps/opt/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin

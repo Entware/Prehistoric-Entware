@@ -1,11 +1,11 @@
 #!/bin/sh
 
 mkdir -m 0700 -p /opt/var/racoon
-[ -f /opt/etc/ipsec.conf ] && /opt/sbin/setkey -f /opt/etc/ipsec.conf
+[ -f /Apps/opt/etc/ipsec.conf ] && /Apps/opt/sbin/setkey -f /Apps/opt/etc/ipsec.conf
 
 ENABLED=yes
 PROCS=racoon
-ARGS="-f /opt/etc/racoon.conf"
+ARGS="-f /Apps/opt/etc/racoon.conf"
 PREARGS=""
 DESC=$PROCS
 PATH=/Apps/opt/sbin:/Apps/opt/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin

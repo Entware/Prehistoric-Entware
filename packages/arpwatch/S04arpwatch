@@ -2,7 +2,7 @@
 
 ENABLED=yes
 PROCS=arpwatch
-ARGS="-f /opt/etc/arpwatch/arp.dat -i br0"
+ARGS="-f /Apps/opt/etc/arpwatch/arp.dat -i br0"
 PREARGS=""
 DESC=$PROCS
 PATH=/Apps/opt/sbin:/Apps/opt/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin

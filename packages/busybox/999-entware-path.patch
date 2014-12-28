@@ -6,8 +6,8 @@
  		FILE *input;
 -		debug_printf("sourcing /etc/profile\n");
 -		input = fopen_for_read("/etc/profile");
-+		debug_printf("sourcing /opt/etc/profile\n");
-+		input = fopen_for_read("/opt/etc/profile");
++		debug_printf("sourcing /Apps/opt/etc/profile\n");
++		input = fopen_for_read("/Apps/opt/etc/profile");
  		if (input != NULL) {
  			close_on_exec_on(fileno(input));
  			install_special_sighandlers();
@@ -18,7 +18,7 @@
  	if (!pw.pw_dir) {
  		/* create string for $HOME if not specified already */
 -		pw.pw_dir = xasprintf("/home/%s", argv[0]);
-+		pw.pw_dir = xasprintf("/opt/home/%s", argv[0]);
++		pw.pw_dir = xasprintf("/Apps/opt/home/%s", argv[0]);
  	}
  	pw.pw_passwd = (char *)"x";
  	if (opts & OPT_SYSTEM_ACCOUNT) {
@@ -29,7 +29,7 @@
  
  		state = 1;
 -		read_profile("/etc/profile");
-+		read_profile("/opt/etc/profile");
++		read_profile("/Apps/opt/etc/profile");
   state1:
  		state = 2;
  		hp = lookupvar("HOME");

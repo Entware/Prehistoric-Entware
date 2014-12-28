@@ -2,7 +2,7 @@
 
 ENABLED=yes
 PROCS=xl2tpd
-ARGS="-p /opt/var/run/xl2tpd.pid"
+ARGS="-p /Apps/opt/var/run/xl2tpd.pid"
 PREARGS=""
 DESC=$PROCS
 PATH=/Apps/opt/sbin:/Apps/opt/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin

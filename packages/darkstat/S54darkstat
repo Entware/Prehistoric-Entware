@@ -2,7 +2,7 @@
 
 ENABLED=yes
 PROCS=darkstat
-ARGS="-i ppp0 --chroot /opt/var/empty --syslog"
+ARGS="-i ppp0 --chroot /Apps/opt/var/empty --syslog"
 PREARGS=""
 DESC=$PROCS
 PATH=/Apps/opt/sbin:/Apps/opt/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin

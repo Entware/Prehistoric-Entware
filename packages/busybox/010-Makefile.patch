@@ -62,16 +62,16 @@
 +define Package/busybox/postinst
 +#!/bin/sh
 +
-+cd /opt
++cd /Apps/opt
 +rm -f share/busybox_applets.lst
 +for applet in $$(cat share/busybox_applets.lst.dist)
 +do
 +    if [ ! -e $$applet ]
 +    then
-+	ln -s /opt/bin/busybox $$applet
++	ln -s /Apps/opt/bin/busybox $$applet
 +	echo "$$applet" >> share/busybox_applets.lst
 +    else
-+	echo "Warning: '/opt/$$applet' is already exists, skipping."
++	echo "Warning: '/Apps/opt/$$applet' is already exists, skipping."
 +    fi
 +done
 +endef
@@ -79,14 +79,14 @@
 +define Package/busybox/postrm
 +#!/bin/sh
 +
-+cd /opt
++cd /Apps/opt
 +for applet in $$(cat share/busybox_applets.lst)
 +do
 +    if [ -L $$applet ]
 +    then
 +	rm -f $$applet
 +    else
-+	echo "Warning: '/opt/$$applet' has been deleted\modified before, skipping."
++	echo "Warning: '/Apps/opt/$$applet' has been deleted\modified before, skipping."
 +    fi
 +done
 +rm -f share/busybox_applets.lst

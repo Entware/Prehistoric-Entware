@@ -9,8 +9,7 @@ all: .done
 
 .done:
 	patch -d $(TOP) -p3 -i $(CURDIR)/fix-path.patch
-	cp -f ./S80mini_httpd ../../../openwrt_trunk/feeds/oldpackages/net/mini_httpd/files/
-	cp -f ./600-conflict_getline.patch ../../../openwrt_trunk/feeds/oldpackages/net/mini_httpd/patches/
+	cp -f ./010-getc.patch ../../../openwrt_trunk/feeds/oldpackages/utils/gzip/patches/
 	@touch $@
 
 clean:

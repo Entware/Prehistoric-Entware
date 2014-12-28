@@ -2,7 +2,7 @@
 
 ENABLED=yes
 PROCS=monit
-ARGS="-c /opt/etc/monitrc -d 120"
+ARGS="-c /Apps/opt/etc/monitrc -d 120"
 PREARGS=""
 DESC=$PROCS
 PATH=/Apps/opt/sbin:/Apps/opt/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin

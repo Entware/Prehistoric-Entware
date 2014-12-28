@@ -2,7 +2,7 @@
 
 ENABLED=yes
 PROCS=minidlna
-ARGS="-f /opt/etc/minidlna.conf"
+ARGS="-f /Apps/opt/etc/minidlna.conf"
 PREARGS=""
 DESC=$PROCS
 PATH=/Apps/opt/sbin:/Apps/opt/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin

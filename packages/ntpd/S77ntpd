@@ -2,7 +2,7 @@
 
 ENABLED=yes
 PROCS=ntpd
-ARGS="-c /opt/etc/ntp.conf -f /opt/var/spool/ntp/ntp.drift -s /opt/var/spool/ntp -k /opt/etc/ntp -l /opt/var/spool/ntp/ntp.log"
+ARGS="-c /Apps/opt/etc/ntp.conf -f /Apps/opt/var/spool/ntp/ntp.drift -s /Apps/opt/var/spool/ntp -k /Apps/opt/etc/ntp -l /Apps/opt/var/spool/ntp/ntp.log"
 PREARGS=""
 DESC=$PROCS
 PATH=/Apps/opt/sbin:/Apps/opt/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin

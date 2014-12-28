@@ -5,7 +5,7 @@
    TITLE:=OProfile System Profiler
    URL:=http://oprofile.sourceforge.net
 -  DEPENDS:=+libpopt +kmod-oprofile +libstdcpp +objdump
-+  DEPENDS:=+libpopt +libstdcpp +objdump
++  DEPENDS:=+librt +libpopt +libstdcpp +objdump
  endef
  
  define Package/oprofile/description

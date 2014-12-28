@@ -2,7 +2,7 @@
 
 ENABLED=yes
 PROCS=lcd4linux
-ARGS="-f /opt/etc/lcd4linux.conf"
+ARGS="-f /Apps/opt/etc/lcd4linux.conf"
 PREARGS=""
 DESC=$PROCS
 PATH=/Apps/opt/sbin:/Apps/opt/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin

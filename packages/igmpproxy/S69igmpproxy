@@ -2,7 +2,7 @@
 
 ENABLED=yes
 PROCS=igmpproxy
-ARGS="/opt/etc/igmpproxy.conf"
+ARGS="/Apps/opt/etc/igmpproxy.conf"
 PREARGS=""
 DESC=$PROCS
 PATH=/Apps/opt/sbin:/Apps/opt/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin

@@ -1,6 +1,15 @@
---- ../../../openwrt_trunk.orig/feeds/oldpackages/net/matrixtunnel/Makefile
-+++ ../../../openwrt_trunk/feeds/oldpackages/net/matrixtunnel/Makefile
-@@ -46,8 +46,8 @@
+--- ../../../downloads/openwrt_trunk-r42803/feeds/oldpackages/net/matrixtunnel/Makefile	2014-12-15 21:16:17.600901575 +0300
++++ ../../../openwrt_trunk/feeds/oldpackages/net/matrixtunnel/Makefile	2014-12-20 09:57:20.216983945 +0300
+@@ -37,6 +37,8 @@
+ 	based on matrixssl library.
+ endef
+ 
++TARGET_CFLAGS += -DLINUX
++
+ define Build/Configure
+ 	$(call Build/Configure/Default, \
+ 		--without-libiconv-prefix \
+@@ -46,8 +48,8 @@
  endef
  
  define Package/matrixtunnel/install

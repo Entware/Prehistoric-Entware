@@ -2,7 +2,7 @@
 
 ENABLED=yes
 PROCS=tvheadend
-ARGS="-C -f -u admin -g root -c /opt/etc/tvheadend"
+ARGS="-C -f -u admin -g root -c /Apps/opt/etc/tvheadend"
 PREARGS=""
 DESC=$PROCS
 PATH=/Apps/opt/sbin:/Apps/opt/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin

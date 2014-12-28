@@ -2,7 +2,7 @@
 
 ENABLED=yes
 PROCS=mini_httpd
-ARGS="-C /opt/etc/mini_httpd.conf"
+ARGS="-C /Apps/opt/etc/mini_httpd.conf"
 PREARGS=""
 DESC=$PROCS
 PATH=/Apps/opt/sbin:/Apps/opt/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin

@@ -1,5 +1,20 @@
---- ../../../openwrt_trunk.orig/feeds/oldpackages/utils/tar/Makefile
-+++ ../../../openwrt_trunk/feeds/oldpackages/utils/tar/Makefile
+--- ../../../downloads/openwrt_trunk-r42803/feeds/oldpackages/utils/tar/Makefile	2014-12-15 21:16:18.168867904 +0300
++++ ../../../openwrt_trunk/feeds/oldpackages/utils/tar/Makefile	2014-12-20 11:55:50.915774882 +0300
+@@ -8,12 +8,12 @@
+ include $(TOPDIR)/rules.mk
+ 
+ PKG_NAME:=tar
+-PKG_VERSION:=1.23
++PKG_VERSION:=1.28
+ PKG_RELEASE:=1
+ 
+ PKG_SOURCE:=$(PKG_NAME)-$(PKG_VERSION).tar.bz2
+ PKG_SOURCE_URL:=@GNU/$(PKG_NAME)
+-PKG_MD5SUM:=41e2ca4b924ec7860e51b43ad06cdb7e
++PKG_MD5SUM:=8f32b2bc1ed7ddf4cf4e4a39711341b0
+ 
+ PKG_INSTALL:=1
+ 
 @@ -32,29 +32,13 @@
  	single archive in tar format.
  endef
