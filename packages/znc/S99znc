@@ -1,14 +1,14 @@
 #!/bin/sh
 
 # Give a r\w permissions for "nobody" user
-find /opt/share/znc/ -type f | xargs chmod 666
-find /opt/share/znc/ -type d | xargs chmod 777
+find /Apps/opt/share/znc/ -type f | xargs chmod 666
+find /Apps/opt/share/znc/ -type d | xargs chmod 777
 
 ENABLED=yes
 PROCS=znc
-ARGS="-d /opt/share/znc"
+ARGS="-d /Apps/opt/share/znc"
 PREARGS=""
 DESC=$PROCS
-PATH=/Apps/opt/sbin:Apps/opt/bin:Apps/opt/usr/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin
+PATH=/Apps/opt/sbin:/Apps/opt/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin
 
 . /Apps/opt/etc/init.d/rc.func

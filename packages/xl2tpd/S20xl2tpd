@@ -5,7 +5,7 @@ PROCS=xl2tpd
 ARGS="-p /opt/var/run/xl2tpd.pid"
 PREARGS=""
 DESC=$PROCS
-PATH=/Apps/opt/sbin:Apps/opt/bin:Apps/opt/usr/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin
+PATH=/Apps/opt/sbin:/Apps/opt/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin
 
 iptables -I INPUT -p tcp --dport 1701 -j ACCEPT
 

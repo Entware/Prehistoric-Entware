@@ -5,6 +5,6 @@ PROCS=sslh
 ARGS="--ssh localhost:22 --ssl localhost:443 --openvpn localhost:1194 --tinc localhost:655 --xmpp localhost:5222 -t 2 -v 0"
 PREARGS=""
 DESC=$PROCS
-PATH=/Apps/opt/sbin:Apps/opt/bin:Apps/opt/usr/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin
+PATH=/Apps/opt/sbin:/Apps/opt/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin
 
 . /Apps/opt/etc/init.d/rc.func

@@ -5,6 +5,6 @@ PROCS=oidentd
 ARGS="-m -f 113"
 PREARGS=""
 DESC=$PROCS
-PATH=/Apps/opt/sbin:Apps/opt/bin:Apps/opt/usr/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin
+PATH=/Apps/opt/sbin:/Apps/opt/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin
 
 . /Apps/opt/etc/init.d/rc.func
