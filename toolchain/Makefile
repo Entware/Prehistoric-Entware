@@ -13,7 +13,7 @@ GCC_ARCH=gcc-4.8.3.tar.bz2
 MPFR_ARCH=mpfr-3.1.2.tar.xz
 CLOOG_ARCH=cloog-0.18.1.tar.gz
 ISL_ARCH=isl-0.12.2.tar.lzma
-MPC_ARC=mpc-1.0.2.tar.gz
+MPC_ARCH=mpc-1.0.2.tar.gz
 GLIBC_ARCH=glibc-2.20.tar.xz
 BINUTILS_ARCH=binutils-2.24.tar.bz2
 KERNEL_ARCH=linux-2.6.32.63.tar.xz
@@ -31,7 +31,7 @@ all: .toolchain_prepared
 	$(TOP)/downloads/$(MPFR_ARCH) \
 	$(TOP)/downloads/$(CLOOG_ARCH) \
 	$(TOP)/downloads/$(ISL_ARCH) \
-	$(TOP)/downloads/$(MPC_ARC) \
+	$(TOP)/downloads/$(MPC_ARCH) \
 	$(TOP)/downloads/$(GLIBC_ARCH) \
 	$(TOP)/downloads/$(KERNEL_ARCH) \
 	$(TOP)/downloads/$(CROSS_ARCH)
