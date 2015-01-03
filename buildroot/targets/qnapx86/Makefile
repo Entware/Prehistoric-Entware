@@ -6,16 +6,16 @@
 #
 include $(TOPDIR)/rules.mk
 
-ARCH:=i386
-BOARD:=qnapx86
-BOARDNAME:=QNAP x86
+ARCH:=arm
+BOARD:=qnaparm
+BOARDNAME:=QNAP arm
 FEATURES:=
-LINUX_VERSION:=2.6.31
+LINUX_VERSION:=2.6.32
 
 include $(INCLUDE_DIR)/target.mk
 
 define Target/Description
-	Build Software Repository for MIPSEL soft float routers, like Zyxel Keenetic and others.
+	Build Software Repository for ARM NASes, like QNAP and Synology.
 endef
 
 $(eval $(call BuildTarget))
