@@ -6,16 +6,16 @@
 #
 include $(TOPDIR)/rules.mk
 
-ARCH:=arm
-BOARD:=qnaparm
-BOARDNAME:=QNAP arm
+ARCH:=i386
+BOARD:=qnapx86
+BOARDNAME:=QNAP x86
 FEATURES:=
 LINUX_VERSION:=2.6.32
 
 include $(INCLUDE_DIR)/target.mk
 
 define Target/Description
-	Build Software Repository for ARM NASes, like QNAP and Synology.
+	Build Software Repository for x86 NASes, like QNAP and Synology.
 endef
 
 $(eval $(call BuildTarget))
