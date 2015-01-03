@@ -1,0 +1,24 @@
+--- ../../../downloads/openwrt_trunk-r42803/package/libs/libnl-tiny/Makefile	2014-12-15 21:16:34.057049665 +0300
++++ ../../../openwrt_trunk/package/libs/libnl-tiny/Makefile	2015-01-03 22:56:39.393035083 +0300
+@@ -43,15 +43,15 @@
+ endef
+ 
+ define Build/InstallDev
+-	$(INSTALL_DIR) $(1)/usr/lib/pkgconfig $(1)/usr/include/libnl-tiny
+-	$(CP) $(PKG_BUILD_DIR)/include/* $(1)/usr/include/libnl-tiny
+-	$(CP) $(PKG_BUILD_DIR)/libnl-tiny.so $(1)/usr/lib/
+-	$(CP) ./files/libnl-tiny.pc $(1)/usr/lib/pkgconfig
++	$(INSTALL_DIR) $(1)/opt/lib/pkgconfig $(1)/opt/include/libnl-tiny
++	$(CP) $(PKG_BUILD_DIR)/include/* $(1)/opt/include/libnl-tiny
++	$(CP) $(PKG_BUILD_DIR)/libnl-tiny.so $(1)/opt/lib/
++	$(CP) ./files/libnl-tiny.pc $(1)/opt/lib/pkgconfig
+ endef
+ 
+ define Package/libnl-tiny/install
+-	$(INSTALL_DIR) $(1)/usr/lib
+-	$(CP) $(PKG_BUILD_DIR)/libnl-tiny.so $(1)/usr/lib/
++	$(INSTALL_DIR) $(1)/opt/lib
++	$(CP) $(PKG_BUILD_DIR)/libnl-tiny.so $(1)/opt/lib/
+ endef
+ 
+ $(eval $(call BuildPackage,libnl-tiny))
