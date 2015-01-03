@@ -41,7 +41,7 @@ all: .toolchain_prepared
 		cd $(TOP)/cross/$(TARGET)/$(CROSS) && \
 		./bootstrap && \
 		./configure --enable-local && \
-		sed -i 's|MAKELEVEL),0|MAKELEVEL),1|g' $(TOP)/cross/$(TARGET)/$(CROSS)/Makefile && \
+		sed -i 's|$$(error Recursion detected, bailing out...)|\t@echo NotError|g' $(TOP)/cross/$(TARGET)/$(CROSS)/Makefile && \
 		$(MAKE) \
 	)
 	cp -f ./.config.$(TARGET) $(TOP)/cross/$(TARGET)
