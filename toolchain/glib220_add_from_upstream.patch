@@ -1,0 +1,76 @@
+--- a/config/libc/glibc.in.orig	2014-09-09 01:58:37.000000000 +0400
++++ b/config/libc/glibc.in	2014-12-18 07:35:30.000000000 +0300
+@@ -17,6 +17,11 @@
+ # Don't remove next line
+ # CT_INSERT_VERSION_BELOW
+ 
++config LIBC_GLIBC_V_2_20
++    bool
++    prompt "2.20"
++    select LIBC_GLIBC_2_20_or_later
++
+ config LIBC_GLIBC_V_2_19
+     bool
+     prompt "2.19"
+@@ -90,12 +95,38 @@
+     prompt "2.8"
+     select LIBC_GLIBC_PORTS_EXTERNAL
+ 
++config LIBC_GLIBC_CUSTOM
++    bool
++    prompt "Custom glibc"
++    depends on EXPERIMENTAL
++    select LIBC_CUSTOM
++    select LIBC_GLIBC_2_20_or_later
++
+ endchoice
+ 
++config LIBC_GLIBC_2_20_or_later
++    bool
++
++config LIBC_CUSTOM
++    bool
++
++if LIBC_GLIBC_CUSTOM
++
++config LIBC_GLIBC_CUSTOM_LOCATION
++    string
++    prompt "Full path to custom glibc source"
++    default ""
++    help
++      Enter the path to the directory (or tarball) of your source for glibc,
++      or leave blank to use default CT_CUSTOM_LOCATION_ROOT_DIR/glibc
++
++endif # LIBC_GLIBC_CUSTOM
++
+ config LIBC_VERSION
+     string
+ # Don't remove next line
+ # CT_INSERT_VERSION_STRING_BELOW
++    default "2.20" if LIBC_GLIBC_V_2_20
+     default "2.19" if LIBC_GLIBC_V_2_19
+     default "2.18" if LIBC_GLIBC_V_2_18
+     default "2.17" if LIBC_GLIBC_V_2_17
+@@ -111,3 +142,4 @@
+     default "2.10.1" if LIBC_GLIBC_V_2_10_1
+     default "2.9" if LIBC_GLIBC_V_2_9
+     default "2.8" if LIBC_GLIBC_V_2_8
++    default "custom" if LIBC_GLIBC_CUSTOM
+--- a/config/libc/glibc-eglibc.in-common.orig	2014-09-09 01:58:37.000000000 +0400
++++ b/config/libc/glibc-eglibc.in-common	2014-12-18 07:35:30.000000000 +0300
+@@ -14,6 +14,7 @@
+     default y if ARCH_arm
+     default y if ARCH_mips
+     select LIBC_GLIBC_USE_PORTS
++    depends on !LIBC_GLIBC_2_20_or_later
+ 
+ # Force using the BFD linker during the toolchain build
+ config LIBC_glibc_familly
+@@ -121,6 +122,7 @@
+ config LIBC_GLIBC_USE_PORTS
+     bool
+     prompt "Use the ports addon"
++    depends on !LIBC_GLIBC_2_20_or_later
+     help
+       The ports addon contains some architecture ports that are not available
+       in the official distribution.

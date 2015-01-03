@@ -8,8 +8,8 @@
 export OPENWRT_REVISION=42803
 
 # Target architecture for repo (now only x86 is supported)
-export TARGET=qnapx86
-#export TARGET=qnaparm
+#export TARGET=x86
+export TARGET=arm
 
 # Mirror for sources
 SRC_MIRROR=http://qnapware.zyxmon.org/sources

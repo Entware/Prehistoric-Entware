@@ -1,11 +1,11 @@
---- ../../../downloads/openwrt_trunk-r42803/package/libs/toolchain/Makefile	2014-11-07 23:35:24.887033725 +0300
-+++ ../../../openwrt_trunk/package/libs/toolchain/Makefile	2014-11-26 13:21:23.094911288 +0300
+--- ../../../downloads/openwrt_trunk-r42803/package/libs/toolchain/Makefile	2014-12-15 21:16:34.172488271 +0300
++++ ../../../openwrt_trunk/package/libs/toolchain/Makefile	2014-12-29 08:36:01.557387123 +0300
 @@ -7,18 +7,14 @@
  
  include $(TOPDIR)/rules.mk
  PKG_NAME:=toolchain
 -PKG_RELEASE:=1
-+PKG_RELEASE:=8
++PKG_RELEASE:=8a
  
  PKG_MAINTAINER:=Felix Fietkau <nbd@openwrt.org>
  
@@ -17,12 +17,75 @@
 -  LIBC_VERSION:=<LIBC_VERSION>
 -  LIBGCC_VERSION:=<LIBGCC_VERSION>
 -endif
-+LIBC_VERSION:=2.6.1
-+LIBGCC_VERSION:=4.2.0
++LIBC_VERSION:=2.20
++LIBGCC_VERSION:=4.8.3
  
  define Package/gcc/Default
    SECTION:=libs
-@@ -80,7 +76,6 @@
+@@ -27,6 +23,62 @@
+   VERSION:=$(LIBGCC_VERSION)-$(PKG_RELEASE)
+ endef
+ 
++define Package/locales
++$(call Package/gcc/Default)
++  TITLE:=Locales support (independent of system lib)
++  VERSION:=$(LIBC_VERSION)-$(PKG_RELEASE)
++endef
++
++define Package/locales/config
++	menu "Configuration"
++		depends on EXTERNAL_TOOLCHAIN && PACKAGE_locales
++
++	config TOOLCHAIN_USR_DIR
++		string
++		prompt "External toolchain usr directory"
++		depends on EXTERNAL_TOOLCHAIN && PACKAGE_locales
++
++	config LOCALE_PROGS_SPEC
++		string
++		prompt "programs to work with locales"
++		depends on EXTERNAL_TOOLCHAIN && PACKAGE_locales
++		default "./bin/locale ./bin/localedef"
++
++	config i18N_LOCALES
++		string
++		prompt "locale sources to install"
++		depends on EXTERNAL_TOOLCHAIN && PACKAGE_locales
++
++	config i18N_CHARMAPS
++		string
++		prompt "charmaps to install"
++		depends on EXTERNAL_TOOLCHAIN && PACKAGE_locales
++
++	endmenu
++endef
++
++define Package/locales/postinst
++#!/bin/sh
++
++echo "qnapware uses separate locale-archive file independent from main system"
++if ! [ -f '/Apps/opt/usr/lib/locale/locale-archive' ]
++then
++	mkdir -p /Apps/opt/usr/lib/locale
++        echo "Creating locale archive - /Apps/opt/usr/lib/locale/locale-archive"
++        echo "Adding en_EN.UTF-8"
++        /Apps/opt/bin/localedef.new -c -f UTF-8 -i en_US en_US.UTF-8
++        echo "Adding ru_RU.UTF-8"
++        /Apps/opt/bin/localedef.new -c -f UTF-8 -i ru_RU ru_RU.UTF-8
++fi
++if [ -f '/Apps/opt/usr/lib/locale/locale-archive' ]
++then
++        echo "/Apps/opt/usr/lib/locale/locale-archive found"
++        echo "You can download locale sources from http://qnapware.zyxmon.org/sources/i18n.tar.gz"
++        echo "You can add new locales for qnapware using /Apps/opt/bin/localedef.new"
++fi
++endef
++
++
+ define Package/libgcc
+ $(call Package/gcc/Default)
+   TITLE:=GCC support library
+@@ -80,7 +132,6 @@
  
  define Package/libssp
  $(call Package/gcc/Default)
@@ -30,7 +93,7 @@
    TITLE:=GCC support library
  endef
  
-@@ -138,7 +133,6 @@
+@@ -138,7 +189,6 @@
    VERSION:=$(LIBC_VERSION)-$(PKG_RELEASE)
    DEPENDS:=+libgcc
    URL:=$(LIBC_URL)
@@ -38,34 +101,25 @@
  endef
  
  
-@@ -147,6 +141,10 @@
-   TITLE:=C library
- endef
- 
-+define Package/libc/extra_provides
-+	cat $(TOPDIR)/target/linux/$(BOARD)/libc.provides >> $(PKG_INFO_DIR)/libc.provides
-+endef
-+
- define Package/libc/config
- 	menu "Configuration"
- 	depends on EXTERNAL_TOOLCHAIN && PACKAGE_libc
-@@ -544,8 +542,7 @@
+@@ -544,8 +594,8 @@
    define Package/libgcc/install
  	for file in $(call qstrip,$(CONFIG_LIBGCC_FILE_SPEC)); do \
  		dir=`dirname $$$$file` ; \
 -		$(INSTALL_DIR) $(1)/$$$$dir ; \
 -		$(CP) $(call qstrip,$(CONFIG_LIBGCC_ROOT_DIR))/$$$$file $(1)/$$$$dir/ ; \
 +		$(INSTALL_DIR) $(1)/opt/$$$$dir ; \
++		$(CP) $(call qstrip,$(CONFIG_LIBGCC_ROOT_DIR))/$$$$file $(1)/opt/$$$$dir/ ; \
  	done ; \
  	exit 0
    endef
-@@ -553,16 +550,14 @@
+@@ -553,16 +603,16 @@
    define Package/libgfortran/install
  	for file in $(call qstrip,$(CONFIG_LIBGFORTRAN_FILE_SPEC)); do \
  		dir=`dirname $$$$file` ; \
 -		$(INSTALL_DIR) $(1)/$$$$dir ; \
 -		$(CP) $(call qstrip,$(CONFIG_LIBGFORTRAN_ROOT_DIR))/$$$$file $(1)/$$$$dir/ ; \
 +		$(INSTALL_DIR) $(1)/opt/$$$$dir ; \
++		$(CP) $(call qstrip,$(CONFIG_LIBGFORTRAN_ROOT_DIR))/$$$$file $(1)/opt/$$$$dir/ ; \
  	done
    endef
  
@@ -75,16 +129,18 @@
 -		$(INSTALL_DIR) $(1)/$$$$dir ; \
 -		$(CP) $(call qstrip,$(CONFIG_LIBSSP_ROOT_DIR))/$$$$file $(1)/$$$$dir/ ; \
 +		$(INSTALL_DIR) $(1)/opt/$$$$dir ; \
++		$(CP) $(call qstrip,$(CONFIG_LIBSSP_ROOT_DIR))/$$$$file $(1)/opt/$$$$dir/ ; \
  	done ; \
  	exit 0
    endef
-@@ -570,17 +565,16 @@
+@@ -570,17 +620,18 @@
    define Package/libstdcpp/install
  	for file in $(call qstrip,$(CONFIG_LIBSTDCPP_FILE_SPEC)); do \
  		dir=`dirname $$$$file` ; \
 -		$(INSTALL_DIR) $(1)/$$$$dir ; \
 -		$(CP) $(call qstrip,$(CONFIG_LIBSTDCPP_ROOT_DIR))/$$$$file $(1)/$$$$dir/ ; \
 +		$(INSTALL_DIR) $(1)/opt/$$$$dir ; \
++		$(CP) $(call qstrip,$(CONFIG_LIBSTDCPP_ROOT_DIR))/$$$$file $(1)/opt/$$$$dir/ ; \
  	done ; \
 +	rm -f $(1)/opt/$$$$dir/*.py ; \
  	exit 0
@@ -96,22 +152,25 @@
 -		$(INSTALL_DIR) $(1)/$$$$dir ; \
 -		$(CP) $(call qstrip,$(CONFIG_LIBC_ROOT_DIR))/$$$$file $(1)/$$$$dir/ ; \
 +		$(INSTALL_DIR) $(1)/opt/$$$$dir ; \
++		$(CP) $(call qstrip,$(CONFIG_LIBC_ROOT_DIR))/$$$$file $(1)/opt/$$$$dir/ ; \
  	done ; \
  	exit 0
    endef
-@@ -588,17 +582,19 @@
+@@ -588,17 +639,22 @@
    define Package/libpthread/install
  	for file in $(call qstrip,$(CONFIG_LIBPTHREAD_FILE_SPEC)); do \
  		dir=`dirname $$$$file` ; \
 -		$(INSTALL_DIR) $(1)/$$$$dir ; \
 -		$(CP) $(call qstrip,$(CONFIG_LIBPTHREAD_ROOT_DIR))/$$$$file $(1)/$$$$dir/ ; \
 +		$(INSTALL_DIR) $(1)/opt/$$$$dir ; \
++		$(CP) $(call qstrip,$(CONFIG_LIBPTHREAD_ROOT_DIR))/$$$$file $(1)/opt/$$$$dir/ ; \
  	done ; \
  	exit 0
    endef
  
 +  define Package/libthread-db/install
 +	$(INSTALL_DIR) $(1)/opt/lib
++	$(CP) $(call qstrip,$(CONFIG_LIBPTHREAD_ROOT_DIR))/lib/libthread_db{-*.so,.so.*} $(1)/opt/lib/
 +  endef
 +
    define Package/librt/install
@@ -120,26 +179,58 @@
 -		$(INSTALL_DIR) $(1)/$$$$dir ; \
 -		$(CP) $(call qstrip,$(CONFIG_LIBRT_ROOT_DIR))/$$$$file $(1)/$$$$dir/ ; \
 +		$(INSTALL_DIR) $(1)/opt/$$$$dir ; \
++		$(CP) $(call qstrip,$(CONFIG_LIBRT_ROOT_DIR))/$$$$file $(1)/opt/$$$$dir/ ; \
  	done ; \
  	exit 0
    endef
-@@ -606,8 +602,7 @@
+@@ -606,17 +662,41 @@
    define Package/ldd/install
  	for file in $(call qstrip,$(CONFIG_LDD_FILE_SPEC)); do \
  		dir=`dirname $$$$file` ; \
 -		$(INSTALL_DIR) $(1)/$$$$dir ; \
 -		$(CP) $(call qstrip,$(CONFIG_LDD_ROOT_DIR))/$$$$file $(1)/$$$$dir/ ; \
 +		$(INSTALL_DIR) $(1)/opt/bin ; \
++		$(CP) $(call qstrip,$(CONFIG_LDD_ROOT_DIR))/$$$$file $(1)/opt/bin/ ; \
  	done ; \
++	$(SED) 's!/bin/bash!/bin/sh!g' $(1)/opt/bin/ldd ; \
++	$(SED) 's!/lib/ld-linux.so.3!/Apps/opt/lib/ld-linux.so.3!g' $(1)/opt/bin/ldd ; \
  	exit 0
    endef
-@@ -615,8 +610,7 @@
+ 
    define Package/ldconfig/install
  	for file in $(call qstrip,$(CONFIG_LDCONFIG_FILE_SPEC)); do \
  		dir=`dirname $$$$file` ; \
 -		$(INSTALL_DIR) $(1)/$$$$dir ; \
 -		$(CP) $(call qstrip,$(CONFIG_LDCONFIG_ROOT_DIR))/$$$$file $(1)/$$$$dir/ ; \
 +		$(INSTALL_DIR) $(1)/opt/bin ; \
++		$(CP) $(call qstrip,$(CONFIG_LDCONFIG_ROOT_DIR))/$$$$file $(1)/opt/bin/ ; \
++	done ; \
++	exit 0
++  endef
++
++  define Package/locales/install
++	$(INSTALL_DIR) $(1)/opt/usr/lib/locale; \
++	for file in $(call qstrip,$(CONFIG_LOCALE_PROGS_SPEC)); do \
++		dir=`dirname $$$$file` ; \
++		$(INSTALL_DIR) $(1)/opt/bin ; \
++		$(CP) $(call qstrip,$(CONFIG_TOOLCHAIN_USR_DIR))/$$$$file $(1)/opt/bin/ ; \
++	done ; \
++	mv $(1)/opt/bin/locale $(1)/opt/bin/locale.new; \
++	mv $(1)/opt/bin/localedef $(1)/opt/bin/localedef.new; \
++	for file in $(call qstrip,$(CONFIG_i18N_LOCALES)); do \
++		dir=`dirname $$$$file` ; \
++		$(INSTALL_DIR) $(1)/opt/usr/share/i18n/locales; \
++		$(CP) $(call qstrip,$(CONFIG_TOOLCHAIN_USR_DIR))/$$$$file $(1)/opt/usr/share/i18n/locales ; \
++	done ; \
++	for file in $(call qstrip,$(CONFIG_i18N_CHARMAPS)); do \
++		dir=`dirname $$$$file` ; \
++		$(INSTALL_DIR) $(1)/opt/usr/share/i18n/charmaps; \
++		$(CP) $(call qstrip,$(CONFIG_TOOLCHAIN_USR_DIR))/$$$$file $(1)/opt/usr/share/i18n/charmaps ; \
  	done ; \
  	exit 0
    endef
+@@ -634,3 +714,4 @@
+ $(eval $(call BuildPackage,libgfortran))
+ $(eval $(call BuildPackage,ldd))
+ $(eval $(call BuildPackage,ldconfig))
++$(eval $(call BuildPackage,locales))

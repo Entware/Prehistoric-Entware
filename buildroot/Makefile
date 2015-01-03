@@ -25,7 +25,7 @@ all: .buildroot_prepared
 	sed -i 's,__LINUX_DIR_PATH__,$$(TOPDIR)/../cross/targets/src/linux-2.6.31,g' $(TOP)/openwrt_trunk/include/package-defaults.mk
 	@echo "Adding custom config..."
 	cp -f .config $(TOP)/openwrt_trunk/.config
-	sed -i -e '/^CONFIG_TOOLCHAIN_ROOT/s|=.*|="$(TOP)/i686-unknown-linux-gnu"|' $(TOP)/openwrt_trunk/.config
+	make -C ../switch-arch $(TARGET)
 	@touch $@
 
 $(TOP)/downloads/openwrt_trunk-r$(OPENWRT_REVISION): \

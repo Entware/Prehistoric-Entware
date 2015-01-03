@@ -1,0 +1,5 @@
+src/gz packages http://qnapware.zyxmon.org/binaries-arm
+dest root /Apps
+dest ram /Apps/opt/tmp
+lists_dir ext /Apps/opt/var/opkg-lists
+option tmp_dir /Apps/opt/tmp

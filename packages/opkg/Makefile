@@ -12,6 +12,8 @@ all: .done
 	cp -f ./999-change-default-config-path.patch ../../../openwrt_trunk/package/system/opkg/patches
 	cp -f ./999-free-space-calc.patch ../../../openwrt_trunk/package/system/opkg/patches
 	rm -f ../../../openwrt_trunk/package/system/opkg/patches/009-remove-upgrade-all.patch
+	cp -f ./opkg.conf.i386 ../../../openwrt_trunk/package/system/opkg/files
+	cp -f ./opkg.conf.arm ../../../openwrt_trunk/package/system/opkg/files
 	@touch $@
 
 clean:

@@ -6,3 +6,5 @@
 /toolchain/.toolchain_prepared
 /buildroot/.buildroot_prepared
 /kernel-2.6.22.19/.kernel_prepared
+/switch-arch/.arch_defs_arm
+/switch-arch/.arch_defs_x86
