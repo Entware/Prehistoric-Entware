@@ -1,5 +1,5 @@
---- ../../../downloads/openwrt_trunk-r42803/feeds/oldpackages/utils/vim/Makefile	2014-11-07 23:35:24.492147100 +0300
-+++ ../../../openwrt_trunk/feeds/oldpackages/utils/vim/Makefile	2014-11-28 15:47:01.830555804 +0300
+--- ../../../downloads/openwrt_trunk-r42803/feeds/oldpackages/utils/vim/Makefile	2014-12-15 21:16:18.568479760 +0300
++++ ../../../openwrt_trunk/feeds/oldpackages/utils/vim/Makefile	2015-01-04 10:28:40.144806617 +0300
 @@ -58,11 +58,11 @@
  endef
  
@@ -21,7 +21,7 @@
 -	(cd $(PKG_INSTALL_DIR) && tar -cf $(PKG_BUILD_DIR)/docs.tar ./usr/share/vim/vim$(VIMVER)/doc)
 -	rm -rf $(PKG_INSTALL_DIR)/usr/share/vim/vim$(VIMVER)/doc
 -	rm -rf $(PKG_INSTALL_DIR)/usr/man
-+	(cd $(PKG_INSTALL_DIR) && tar -cf $(PKG_BUILD_DIR)/docs.tar ./Apps/opt/share/vim/vim$(VIMVER)/doc)
++	(cd $(PKG_INSTALL_DIR)/Apps && tar -cf $(PKG_BUILD_DIR)/docs.tar ./opt/share/vim/vim$(VIMVER)/doc)
 +	rm -rf $(PKG_INSTALL_DIR)/Apps/opt/share/vim/vim$(VIMVER)/doc
 +	rm -rf $(PKG_INSTALL_DIR)/Apps/opt/man
  endef
@@ -53,8 +53,9 @@
  endef
  
  define Package/vim-runtime/install
- 	$(CP) $(PKG_INSTALL_DIR)/* $(1)
+-	$(CP) $(PKG_INSTALL_DIR)/* $(1)
 -	rm -rf $(1)/usr/share/vim/vim$(VIMVER)/doc
++	$(CP) $(PKG_INSTALL_DIR)/Apps/* $(1)
 +	rm -rf $(1)/opt/share/vim/vim$(VIMVER)/doc
  endef
  
