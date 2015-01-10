@@ -1,15 +1,15 @@
---- ../../../downloads/openwrt_trunk-r40859/feeds/telephony/net/asterisk-11.x-chan-dongle/Makefile
-+++ ../../../openwrt_trunk/feeds/telephony/net/asterisk-11.x-chan-dongle/Makefile
-@@ -29,7 +29,7 @@
+--- ../../../downloads/openwrt_trunk-r43593/feeds/telephony/net/asterisk-11.x-chan-dongle/Makefile	2014-12-10 12:26:33.206951677 +0300
++++ ../../../openwrt_trunk/feeds/telephony/net/asterisk-11.x-chan-dongle/Makefile	2014-12-10 12:48:51.570927297 +0300
+@@ -33,7 +33,7 @@
    SECTION:=net
    CATEGORY:=Network
    URL:=https://code.google.com/p/asterisk-chan-dongle/
 -  DEPENDS:= asterisk11 +libiconv-full +kmod-usb-acm +kmod-usb-serial +kmod-usb-serial-option +libusb-1.0 +usb-modeswitch
 +  DEPENDS:= asterisk11 +libiconv-full +libusb-1.0
    TITLE:=Huawei UMTS 3G dongle support
-   MAINTAINER:=Jiri Slachta <slachta@cesnet.cz>
  endef
-@@ -41,9 +41,9 @@
+ 
+@@ -44,9 +44,9 @@
  MAKE_ARGS:= \
  	CC="$(TARGET_CC)" \
  	LD="$(TARGET_CC)" \
@@ -22,7 +22,7 @@
  
  CONFIGURE_VARS += \
  	ac_cv_type_size_t=yes \
-@@ -51,25 +51,25 @@
+@@ -54,25 +54,25 @@
  
  define Build/Configure
  	$(call Build/Configure/Default, \

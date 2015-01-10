@@ -1,5 +1,5 @@
---- ../../../downloads/openwrt_trunk-r42803/feeds/packages/ipv6/aiccu/Makefile
-+++ ../../../openwrt_trunk/feeds/packages/ipv6/aiccu/Makefile
+--- ../../../downloads/openwrt_trunk-r43593/feeds/packages/ipv6/aiccu/Makefile	2014-12-10 12:26:33.054951677 +0300
++++ ../../../openwrt_trunk/feeds/packages/ipv6/aiccu/Makefile	2014-12-11 10:51:43.737483945 +0300
 @@ -24,7 +24,7 @@
  define Package/aiccu
    SECTION:=net
@@ -9,20 +9,23 @@
    TITLE:=SixXS Automatic IPv6 Connectivity Client Utility
    URL:=http://www.sixxs.net/tools/aiccu/
    MAINTAINER:=Ondrej Caletka <ondrej@caletka.cz>
-@@ -42,14 +42,9 @@
- 		DEBUG=0
+@@ -43,14 +43,14 @@
  endef
  
--define Package/aiccu/conffiles
+ define Package/aiccu/conffiles
 -/etc/config/aiccu
--endef
--
++/opt/etc/aiccu.conf
+ endef
+ 
  define Package/aiccu/install
--	$(INSTALL_DIR) $(1)/usr/sbin $(1)/lib/netifd/proto
+-	$(INSTALL_DIR) $(1)/usr/sbin $(1)/lib/netifd/proto $(1)/etc/hotplug.d/ntp
 -	$(INSTALL_BIN) $(PKG_BUILD_DIR)/unix-console/$(PKG_NAME) $(1)/usr/sbin/
 -	$(INSTALL_BIN) ./files/aiccu.sh $(1)/lib/netifd/proto/aiccu.sh
-+	$(INSTALL_DIR) $(1)/opt/sbin
+-	$(INSTALL_DATA) ./files/aiccu.hotplug $(1)/etc/hotplug.d/ntp/10-aiccu
++	$(INSTALL_DIR) $(1)/opt/sbin $(1)/opt/etc/init.d
 +	$(INSTALL_BIN) $(PKG_BUILD_DIR)/unix-console/$(PKG_NAME) $(1)/opt/sbin/
++	$(INSTALL_BIN) ./files/S50aiccu $(1)/opt/etc/init.d/
++	$(INSTALL_CONF) ./files/aiccu.conf $(1)/opt/etc/
  endef
  
  $(eval $(call BuildPackage,aiccu))

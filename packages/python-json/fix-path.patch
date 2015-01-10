@@ -1,4 +1,4 @@
---- ../../../downloads/openwrt_trunk-r42803/feeds/oldpackages/lang/python-json/Makefile	2014-11-07 23:35:24.502715101 +0300
+--- ../../../downloads/openwrt_trunk-r43718/feeds/oldpackages/lang/python-json/Makefile	2014-11-07 23:35:24.502715101 +0300
 +++ ../../../openwrt_trunk/feeds/oldpackages/lang/python-json/Makefile	2014-11-28 11:24:32.180057687 +0300
 @@ -36,7 +36,7 @@
  	$(INSTALL_DIR) $(PKG_INSTALL_DIR)$(PYTHON_PKG_DIR)

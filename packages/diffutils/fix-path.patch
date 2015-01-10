@@ -1,4 +1,4 @@
---- ../../../downloads/openwrt_trunk-r42803/feeds/packages/devel/diffutils/Makefile	2014-12-15 21:16:27.020471970 +0300
+--- ../../../downloads/openwrt_trunk-r43718/feeds/packages/devel/diffutils/Makefile	2014-12-15 21:16:27.020471970 +0300
 +++ ../../../openwrt_trunk/feeds/packages/devel/diffutils/Makefile	2014-12-20 12:41:14.811166692 +0300
 @@ -36,27 +36,11 @@
  

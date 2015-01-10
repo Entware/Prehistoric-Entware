@@ -1,4 +1,4 @@
---- ../../../downloads/openwrt_trunk-r42803/feeds/oldpackages/utils/avrdude//Makefile	2014-11-07 23:35:24.492147100 +0300
+--- ../../../downloads/openwrt_trunk-r43718/feeds/oldpackages/utils/avrdude//Makefile	2014-11-07 23:35:24.492147100 +0300
 +++ ../../../openwrt_trunk/feeds/oldpackages/utils/avrdude//Makefile	2014-11-26 14:56:25.168773503 +0300
 @@ -48,14 +48,14 @@
  endef

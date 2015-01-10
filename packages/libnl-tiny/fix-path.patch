@@ -1,4 +1,4 @@
---- ../../../downloads/openwrt_trunk-r42803/package/libs/libnl-tiny/Makefile	2014-12-15 21:16:34.057049665 +0300
+--- ../../../downloads/openwrt_trunk-r43718/package/libs/libnl-tiny/Makefile	2014-12-15 21:16:34.057049665 +0300
 +++ ../../../openwrt_trunk/package/libs/libnl-tiny/Makefile	2015-01-03 22:56:39.393035083 +0300
 @@ -43,15 +43,15 @@
  endef

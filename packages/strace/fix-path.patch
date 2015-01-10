@@ -1,4 +1,4 @@
---- ../../../downloads/openwrt_trunk-r42803/package/devel/strace/Makefile
+--- ../../../downloads/openwrt_trunk-r43718/package/devel/strace/Makefile
 +++ ../../../openwrt_trunk/package/devel/strace/Makefile
 @@ -6,7 +6,6 @@
  #

@@ -1,4 +1,4 @@
---- ../../../downloads/openwrt_trunk-r42803/feeds/packages/lang/perl-www-curl/Makefile
+--- ../../../downloads/openwrt_trunk-r43718/feeds/packages/lang/perl-www-curl/Makefile
 +++ ../../../openwrt_trunk/feeds/packages/lang/perl-www-curl/Makefile
 @@ -34,7 +34,7 @@
  endef

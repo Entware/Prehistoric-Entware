@@ -1,4 +1,4 @@
---- ../../../downloads/openwrt_trunk-r42803/feeds/oldpackages/libs/leptonica/Makefile
+--- ../../../downloads/openwrt_trunk-r43718/feeds/oldpackages/libs/leptonica/Makefile
 +++ ../../../openwrt_trunk/feeds/oldpackages/libs/leptonica/Makefile
 @@ -8,12 +8,12 @@
  include $(TOPDIR)/rules.mk

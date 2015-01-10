@@ -1,19 +1,33 @@
---- ../../../openwrt_trunk.orig/feeds/packages/libs/avahi/Makefile
-+++ ../../../openwrt_trunk/feeds/packages/libs/avahi/Makefile
-@@ -112,9 +112,9 @@
+--- ../../../downloads/openwrt_trunk-r43593/feeds/packages/libs/avahi/Makefile	2014-12-10 12:26:32.898951682 +0300
++++ ../../../openwrt_trunk/feeds/packages/libs/avahi/Makefile	2014-12-11 12:19:12.077386221 +0300
+@@ -113,7 +113,7 @@
  endef
  
  define Package/avahi-daemon/conffiles
 -/etc/avahi/avahi-daemon.conf
--/etc/avahi/services/http.service
--/etc/avahi/services/ssh.service
 +/opt/etc/avahi/avahi-daemon.conf
+ endef
+ 
+ define Package/avahi-daemon-service-http
+@@ -130,7 +130,7 @@
+ endef
+ 
+ define Package/avahi-daemon-service-http/conffiles
+-/etc/avahi/services/http.service
 +/opt/etc/avahi/services/http.service
+ endef
+ 
+ define Package/avahi-daemon-service-ssh
+@@ -147,7 +147,7 @@
+ endef
+ 
+ define Package/avahi-daemon-service-ssh/conffiles
+-/etc/avahi/services/ssh.service
 +/opt/etc/avahi/services/ssh.service
  endef
  
  define Package/avahi-dnsconfd
-@@ -243,17 +243,17 @@
+@@ -293,20 +293,20 @@
  	ac_cv_header_sys_capability_h=no \
  
  define Build/InstallDev
@@ -21,12 +35,16 @@
 -	$(CP) $(PKG_INSTALL_DIR)/usr/include/* $(1)/usr/include/
 -	$(INSTALL_DIR) $(1)/usr/lib
 -	$(CP) $(PKG_INSTALL_DIR)/usr/lib/libavahi-* $(1)/usr/lib/
--	$(INSTALL_DIR) $(1)/usr/lib/pkgconfig
--	$(CP) $(PKG_INSTALL_DIR)/usr/lib/pkgconfig/* $(1)/usr/lib/pkgconfig/
 +	$(INSTALL_DIR) $(1)/opt/include
 +	$(CP) $(PKG_INSTALL_DIR)/Apps/opt/include/* $(1)/opt/include/
 +	$(INSTALL_DIR) $(1)/opt/lib
 +	$(CP) $(PKG_INSTALL_DIR)/Apps/opt/lib/libavahi-* $(1)/opt/lib/
+ ifneq ($(CONFIG_PACKAGE_libavahi-compat-libdnssd),)
+-	$(CP) $(PKG_INSTALL_DIR)/usr/lib/libdns_sd* $(1)/usr/lib/
++	$(CP) $(PKG_INSTALL_DIR)/Apps/opt/lib/libdns_sd* $(1)/opt/lib/
+ endif
+-	$(INSTALL_DIR) $(1)/usr/lib/pkgconfig
+-	$(CP) $(PKG_INSTALL_DIR)/usr/lib/pkgconfig/* $(1)/usr/lib/pkgconfig/
 +	$(INSTALL_DIR) $(1)/opt/lib/pkgconfig
 +	$(CP) $(PKG_INSTALL_DIR)/Apps/opt/lib/pkgconfig/* $(1)/opt/lib/pkgconfig/
  endef
@@ -39,7 +57,7 @@
  endef
  
  define Package/libavahi/install
-@@ -264,44 +264,44 @@
+@@ -317,59 +317,59 @@
  	# "Other" means this: if the current build is "dbus", the other is "nodebus",
  	# and if the current build is "nodbus", the other is "dbus".
  	$(RM) -f $(PKG_ALT_DIR)/.built
@@ -54,6 +72,13 @@
 -	$(CP) $(PKG_INSTALL_DIR)/usr/lib/libavahi-client.so.* $(1)/usr/lib/
 +	$(INSTALL_DIR) $(1)/opt/lib
 +	$(CP) $(PKG_INSTALL_DIR)/Apps/opt/lib/libavahi-client.so.* $(1)/opt/lib/
+ endef
+ 
+ define Package/libavahi-compat-libdnssd/install
+-	$(INSTALL_DIR) $(1)/usr/lib
+-	$(CP) $(PKG_INSTALL_DIR)/usr/lib/libdns_sd.so.* $(1)/usr/lib/
++	$(INSTALL_DIR) $(1)/opt/lib
++	$(CP) $(PKG_INSTALL_DIR)/Apps/opt/lib/libdns_sd.so.* $(1)/opt/lib/
  endef
  
  define Package/avahi-utils/install
@@ -93,6 +118,20 @@
 +	$(INSTALL_DATA) ./files/service-ssh $(1)/opt/etc/avahi/services/ssh.service
 +	$(INSTALL_DIR) $(1)/opt/etc/init.d
 +	$(INSTALL_BIN) ./files/S42avahi-daemon $(1)/opt/etc/init.d/
+ endef
+ 
+ define Package/avahi-daemon-service-http/install
+-	$(INSTALL_DIR) $(1)/etc/avahi/services
+-	$(INSTALL_DATA) ./files/service-http $(1)/etc/avahi/services/http.service
++	$(INSTALL_DIR) $(1)/opt/etc/avahi/services
++	$(INSTALL_DATA) ./files/service-http $(1)/opt/etc/avahi/services/http.service
+ endef
+ 
+ define Package/avahi-daemon-service-ssh/install
+-	$(INSTALL_DIR) $(1)/etc/avahi/services
+-	$(INSTALL_DATA) ./files/service-ssh $(1)/etc/avahi/services/ssh.service
++	$(INSTALL_DIR) $(1)/opt/etc/avahi/services
++	$(INSTALL_DATA) ./files/service-ssh $(1)/opt/etc/avahi/services/ssh.service
  endef
  
  define Package/avahi-dnsconfd/install

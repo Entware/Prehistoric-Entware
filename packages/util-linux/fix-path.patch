@@ -1,6 +1,6 @@
---- ../../../downloads/openwrt_trunk-r42803/package/utils/util-linux/Makefile	2014-11-07 23:35:24.914656035 +0300
-+++ ../../../openwrt_trunk/package/utils/util-linux/Makefile	2014-11-26 18:13:02.647384816 +0300
-@@ -42,25 +42,25 @@
+--- ../../../downloads/openwrt_trunk-r43718/package/utils/util-linux/Makefile	2015-01-08 13:29:19.471660007 +0300
++++ ../../../openwrt_trunk/package/utils/util-linux/Makefile	2015-01-09 09:39:33.166906431 +0300
+@@ -43,29 +43,29 @@
  define Build/InstallDev
  	$(MAKE) -C $(PKG_BUILD_DIR) \
  		BUILDCC="$(HOSTCC)" \
@@ -11,6 +11,7 @@
 -	$(INSTALL_DIR) $(1)/usr/lib/pkgconfig
 -	$(CP) $(PKG_BUILD_DIR)/libblkid/blkid.pc $(1)/usr/lib/pkgconfig
 -	$(CP) $(PKG_BUILD_DIR)/libmount/mount.pc $(1)/usr/lib/pkgconfig
+-	$(CP) $(PKG_BUILD_DIR)/libsmartcols/smartcols.pc $(1)/usr/lib/pkgconfig
 -	$(CP) $(PKG_BUILD_DIR)/libuuid/uuid.pc $(1)/usr/lib/pkgconfig
 -
 -	$(INSTALL_DIR) $(1)/usr/include/blkid
@@ -19,14 +20,18 @@
 -	$(CP) $(PKG_BUILD_DIR)/libmount/src/libmount.h $(1)/usr/include/libmount
 -	$(INSTALL_DIR) $(1)/usr/include/uuid
 -	$(CP) $(PKG_BUILD_DIR)/libuuid/src/uuid.h $(1)/usr/include/uuid
+-	$(INSTALL_DIR) $(1)/usr/include/smartcols
+-	$(CP) $(PKG_BUILD_DIR)/libsmartcols/src/libsmartcols.h $(1)/usr/include/smartcols
 -
 -	$(INSTALL_DIR) $(1)/usr/lib
 -	$(CP) $(PKG_BUILD_DIR)/.libs/libblkid.{a,so*} $(1)/usr/lib
 -	$(CP) $(PKG_BUILD_DIR)/.libs/libmount.{a,so*} $(1)/usr/lib
 -	$(CP) $(PKG_BUILD_DIR)/.libs/libuuid.{a,so*} $(1)/usr/lib
+-	$(CP) $(PKG_BUILD_DIR)/.libs/libsmartcols.{a,so*} $(1)/usr/lib
 +	$(INSTALL_DIR) $(1)/opt/lib/pkgconfig
 +	$(CP) $(PKG_BUILD_DIR)/libblkid/blkid.pc $(1)/opt/lib/pkgconfig
 +	$(CP) $(PKG_BUILD_DIR)/libmount/mount.pc $(1)/opt/lib/pkgconfig
++	$(CP) $(PKG_BUILD_DIR)/libsmartcols/smartcols.pc $(1)/opt/lib/pkgconfig
 +	$(CP) $(PKG_BUILD_DIR)/libuuid/uuid.pc $(1)/opt/lib/pkgconfig
 +
 +	$(INSTALL_DIR) $(1)/opt/include/blkid
@@ -35,24 +40,27 @@
 +	$(CP) $(PKG_BUILD_DIR)/libmount/src/libmount.h $(1)/opt/include/libmount
 +	$(INSTALL_DIR) $(1)/opt/include/uuid
 +	$(CP) $(PKG_BUILD_DIR)/libuuid/src/uuid.h $(1)/opt/include/uuid
++	$(INSTALL_DIR) $(1)/opt/include/smartcols
++	$(CP) $(PKG_BUILD_DIR)/libsmartcols/src/libsmartcols.h $(1)/opt/include/smartcols
 +
 +	$(INSTALL_DIR) $(1)/opt/lib
 +	$(CP) $(PKG_BUILD_DIR)/.libs/libblkid.{a,so*} $(1)/opt/lib
 +	$(CP) $(PKG_BUILD_DIR)/.libs/libmount.{a,so*} $(1)/opt/lib
 +	$(CP) $(PKG_BUILD_DIR)/.libs/libuuid.{a,so*} $(1)/opt/lib
++	$(CP) $(PKG_BUILD_DIR)/.libs/libsmartcols.{a,so*} $(1)/opt/lib
  endef
  
  define Package/libblkid
-@@ -336,7 +336,7 @@
+@@ -353,7 +353,7 @@
  define Package/swap-utils
  $(call Package/util-linux/Default)
    TITLE:=swap space management utilities
 -  DEPENDS+= +libblkid
-+  DEPENDS+= +libblkid +libmount
++  DEPENDS+= +libblkid +libmount +libsmartcols
    SUBMENU:=disc
  endef
  
-@@ -404,159 +404,161 @@
+@@ -421,169 +421,170 @@
  endef
  
  define Package/libblkid/install
@@ -67,6 +75,13 @@
 -	$(CP) $(PKG_BUILD_DIR)/.libs/libmount.so.* $(1)/usr/lib/
 +        $(INSTALL_DIR) $(1)/opt/lib
 +	$(CP) $(PKG_BUILD_DIR)/.libs/libmount.so.* $(1)/opt/lib/
+ endef
+ 
+ define Package/libsmartcols/install
+-        $(INSTALL_DIR) $(1)/usr/lib
+-	$(CP) $(PKG_BUILD_DIR)/.libs/libsmartcols.so.* $(1)/usr/lib/
++        $(INSTALL_DIR) $(1)/opt/lib
++	$(CP) $(PKG_BUILD_DIR)/.libs/libsmartcols.so.* $(1)/opt/lib/
  endef
  
  define Package/libuuid/install
@@ -102,6 +117,13 @@
 -	$(INSTALL_BIN) $(PKG_BUILD_DIR)/.libs/cfdisk $(1)/usr/sbin/
 +	$(INSTALL_DIR) $(1)/opt/sbin
 +	$(INSTALL_BIN) $(PKG_BUILD_DIR)/.libs/cfdisk $(1)/opt/sbin/
+ endef
+ 
+ define Package/dmesg/install
+-	$(INSTALL_DIR) $(1)/usr/sbin
+-	$(INSTALL_BIN) $(PKG_BUILD_DIR)/dmesg $(1)/usr/sbin/
++	$(INSTALL_DIR) $(1)/opt/sbin
++	$(INSTALL_BIN) $(PKG_BUILD_DIR)/dmesg $(1)/opt/sbin/
  endef
  
  define Package/fdisk/install
@@ -240,8 +262,7 @@
 +	$(INSTALL_DIR) $(1)/opt/sbin
 +	$(INSTALL_BIN) $(PKG_BUILD_DIR)/.libs/mkswap $(1)/opt/sbin/
 +	$(INSTALL_BIN) $(PKG_BUILD_DIR)/.libs/swaplabel $(1)/opt/sbin/
-+	$(INSTALL_BIN) $(PKG_BUILD_DIR)/.libs/swapon $(1)/opt/sbin/
-+	$(LN) swapon $(1)/opt/sbin/swapoff
++	$(INSTALL_BIN) $(PKG_BUILD_DIR)/.libs/swap{on,off} $(1)/opt/sbin/
  endef
  
  define Package/uuidd/install

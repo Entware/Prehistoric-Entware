@@ -1,4 +1,4 @@
---- ../../../downloads/openwrt_trunk-r42803/feeds/packages/libs/tiff/Makefile
+--- ../../../downloads/openwrt_trunk-r43718/feeds/packages/libs/tiff/Makefile
 +++ ../../../openwrt_trunk/feeds/packages/libs/tiff/Makefile
 @@ -39,7 +39,7 @@
    SECTION:=libs

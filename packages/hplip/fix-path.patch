@@ -1,4 +1,4 @@
---- ../../../downloads/openwrt_trunk-r42803/feeds/oldpackages/utils/hplip/Makefile	2014-11-07 23:35:24.482742553 +0300
+--- ../../../downloads/openwrt_trunk-r43718/feeds/oldpackages/utils/hplip/Makefile	2014-11-07 23:35:24.482742553 +0300
 +++ ../../../openwrt_trunk/feeds/oldpackages/utils/hplip/Makefile	2014-11-26 17:19:23.023400649 +0300
 @@ -8,15 +8,15 @@
  include $(TOPDIR)/rules.mk

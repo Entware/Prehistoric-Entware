@@ -1,7 +1,7 @@
---- ../../../openwrt_trunk.orig/feeds/oldpackages/utils/zoneinfo/Makefile
-+++ ../../../openwrt_trunk/feeds/oldpackages/utils/zoneinfo/Makefile
-@@ -119,7 +119,7 @@
- 
+--- ../../../downloads/openwrt_trunk-r43593/feeds/packages/utils/zoneinfo/Makefile	2014-12-10 12:26:33.038951680 +0300
++++ ../../../openwrt_trunk/feeds/packages/utils/zoneinfo/Makefile	2014-12-11 12:07:07.293398840 +0300
+@@ -118,7 +118,7 @@
+ endef
  
  define Package/zoneinfo-core/install
 -	$(INSTALL_DIR) $(1)/usr/share/zoneinfo
@@ -9,7 +9,7 @@
  	for i in \
  		CET CST6CDT EET EST EST5EDT GB-Eire Eire \
  		GB    GMT   GMT+0 GMT-0 GMT0  Greenwich  \
-@@ -127,12 +127,12 @@
+@@ -126,12 +126,12 @@
  		PRC   PST8PDT ROC ROK     UCT   UTC      \
  		Universal W-SU WET Zulu Etc/* zone.tab ; do \
  	  $(CP) $(PKG_INSTALL_DIR)/zoneinfo/$$$$i \
@@ -24,7 +24,7 @@
  	for i in Pacific/Honolulu     \
  		America/Anchorage   America/Los_Angeles America/Denver   \
  		America/Chicago     America/New_York    America/Caracas  \
-@@ -143,98 +143,98 @@
+@@ -142,89 +142,89 @@
  		Australia/Adelaide  Australia/Brisbane  Australia/Sydney \
  		Australia/Perth     Pacific/Noumea ; do \
  	  $(CP) $(PKG_INSTALL_DIR)/zoneinfo/$$$$i \
@@ -128,21 +128,10 @@
  	done
  endef
  
- 
  define Package/zoneinfo-india/install
 -	$(INSTALL_DIR) $(1)/usr/share/zoneinfo
 +	$(INSTALL_DIR) $(1)/opt/share/zoneinfo
  	for i in Indian ; do \
- 	  $(CP) $(PKG_INSTALL_DIR)/zoneinfo/$$$$i \
--	      $(1)/usr/share/zoneinfo ; \
-+	      $(1)/opt/share/zoneinfo ; \
- 	done
- endef
- 
- define Package/zoneinfo-middleeast/install
--	$(INSTALL_DIR) $(1)/usr/share/zoneinfo
-+	$(INSTALL_DIR) $(1)/opt/share/zoneinfo
- 	for i in Egypt Libya Iran Israel Turkey Mideast ; do \
  	  $(CP) $(PKG_INSTALL_DIR)/zoneinfo/$$$$i \
 -	      $(1)/usr/share/zoneinfo ; \
 +	      $(1)/opt/share/zoneinfo ; \

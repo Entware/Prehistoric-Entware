@@ -1,6 +1,6 @@
---- ../../../downloads/openwrt_trunk-r42803/feeds/telephony/libs/spandsp/Makefile
-+++ ../../../openwrt_trunk/feeds/telephony/libs/spandsp/Makefile
-@@ -32,25 +32,25 @@
+--- ../../../downloads/openwrt_trunk-r43593/feeds/telephony/libs/spandsp/Makefile	2014-12-10 12:26:33.206951677 +0300
++++ ../../../openwrt_trunk/feeds/telephony/libs/spandsp/Makefile	2014-12-10 12:49:10.418926958 +0300
+@@ -36,25 +36,25 @@
  TARGET_CFLAGS += $(FPIC)
  
  define Build/InstallDev

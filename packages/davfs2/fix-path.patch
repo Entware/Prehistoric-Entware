@@ -1,4 +1,4 @@
---- ../../../downloads/openwrt_trunk-r42803/feeds/packages/net/davfs2/Makefile
+--- ../../../downloads/openwrt_trunk-r43718/feeds/packages/net/davfs2/Makefile
 +++ ../../../openwrt_trunk/feeds/packages/net/davfs2/Makefile
 @@ -15,13 +15,17 @@
  PKG_SOURCE_URL:=http://download.savannah.gnu.org/releases/davfs2/

@@ -1,5 +1,5 @@
---- ../../../downloads/openwrt_trunk-r42803/feeds/packages/libs/cyrus-sasl/Makefile
-+++ ../../../openwrt_trunk/feeds/packages/libs/cyrus-sasl/Makefile
+--- ../../../downloads/openwrt_trunk-r43718/feeds/packages/libs/cyrus-sasl/Makefile	2015-01-05 20:26:58.329167102 +0300
++++ ../../../openwrt_trunk/feeds/packages/libs/cyrus-sasl/Makefile	2015-01-08 10:55:55.380547313 +0300
 @@ -67,7 +67,7 @@
  	--without-authdaemond \
  	--without-pwcheck \
@@ -33,9 +33,9 @@
  
  define Package/libsasl2/install
 -	$(INSTALL_DIR) $(1)/usr/lib/
--	$(CP) $(PKG_INSTALL_DIR)/usr/lib/libsasl2.so.* $(1)/usr/lib/
+-	$(CP) $(PKG_INSTALL_DIR)/usr/lib/libsasl2.so* $(1)/usr/lib/
 -	$(INSTALL_DIR) $(1)/usr/lib/sasl2
--	$(CP) $(PKG_INSTALL_DIR)/usr/lib/sasl2/lib*.so.* $(1)/usr/lib/sasl2/
+-	$(CP) $(PKG_INSTALL_DIR)/usr/lib/sasl2/lib*.so* $(1)/usr/lib/sasl2/
 +	$(INSTALL_DIR) $(1)/opt/lib/
 +	$(CP) $(PKG_INSTALL_DIR)/Apps/opt/lib/libsasl2.so.* $(1)/opt/lib/
 +	$(INSTALL_DIR) $(1)/opt/lib/sasl2

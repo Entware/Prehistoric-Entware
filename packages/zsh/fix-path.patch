@@ -1,4 +1,4 @@
---- ../../../downloads/openwrt_trunk-r42803/feeds/packages/utils/zsh/Makefile	2014-11-07 23:35:24.540429288 +0300
+--- ../../../downloads/openwrt_trunk-r43718/feeds/packages/utils/zsh/Makefile	2014-11-07 23:35:24.540429288 +0300
 +++ ../../../openwrt_trunk/feeds/packages/utils/zsh/Makefile	2014-11-29 18:04:29.214451773 +0300
 @@ -25,7 +25,7 @@
    SECTION:=utils

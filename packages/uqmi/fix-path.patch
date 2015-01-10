@@ -1,5 +1,14 @@
---- ../../../downloads/openwrt_trunk-r42803/package/network/utils/uqmi/Makefile
-+++ ../../../openwrt_trunk/package/network/utils/uqmi/Makefile
+--- ../../../downloads/openwrt_trunk-r43718/package/network/utils/uqmi/Makefile	2014-12-15 15:21:13.368190851 +0300
++++ ../../../openwrt_trunk/package/network/utils/uqmi/Makefile	2014-12-15 16:19:41.908125018 +0300
+@@ -24,7 +24,7 @@
+ define Package/uqmi
+   SECTION:=net
+   CATEGORY:=Network
+-  DEPENDS:=+libubox +libblobmsg-json +kmod-usb-net +kmod-usb-net-qmi-wwan
++  DEPENDS:=+libubox +libblobmsg-json
+   TITLE:=Control utility for mobile broadband modems
+ endef
+ 
 @@ -34,7 +34,7 @@
  endef
  

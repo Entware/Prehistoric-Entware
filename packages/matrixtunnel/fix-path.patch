@@ -1,5 +1,5 @@
---- ../../../downloads/openwrt_trunk-r42803/feeds/oldpackages/net/matrixtunnel/Makefile	2014-12-15 21:16:17.600901575 +0300
-+++ ../../../openwrt_trunk/feeds/oldpackages/net/matrixtunnel/Makefile	2014-12-20 09:57:20.216983945 +0300
+--- ../../../downloads/openwrt_trunk-r43718/feeds/oldpackages/net/matrixtunnel/Makefile	2015-01-09 19:51:33.795205887 +0300
++++ ../../../openwrt_trunk/feeds/oldpackages/net/matrixtunnel/Makefile	2015-01-09 22:44:05.189058089 +0300
 @@ -37,6 +37,8 @@
  	based on matrixssl library.
  endef

@@ -5,7 +5,7 @@
    CATEGORY:=Network
    SUBMENU:=Filesystem
 -  DEPENDS:=+portmap $(LIBRPC_DEPENDS)
-+  DEPENDS:=+portmap
++  DEPENDS:=+portmap +libacl
    TITLE:=User-space NFSv3 Server
    URL:=http://unfs3.sourceforge.net/
  endef

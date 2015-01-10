@@ -1,4 +1,4 @@
---- ../../../downloads/openwrt_trunk-r42803/feeds/oldpackages/libs/libdlna/Makefile	2014-11-07 23:35:24.439626265 +0300
+--- ../../../downloads/openwrt_trunk-r43718/feeds/oldpackages/libs/libdlna/Makefile	2014-11-07 23:35:24.439626265 +0300
 +++ ../../../openwrt_trunk/feeds/oldpackages/libs/libdlna/Makefile	2014-11-27 12:40:32.008548138 +0300
 @@ -43,12 +43,12 @@
  	# this is *NOT* GNU configure

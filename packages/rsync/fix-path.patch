@@ -1,6 +1,6 @@
---- ../../../downloads/openwrt_trunk-r42803/feeds/packages/net/rsync/Makefile
-+++ ../../../openwrt_trunk/feeds/packages/net/rsync/Makefile
-@@ -42,6 +42,8 @@
+--- ../../../downloads/openwrt_trunk-r43708/feeds/packages/net/rsync/Makefile	2014-12-15 12:19:58.032388959 +0300
++++ ../../../openwrt_trunk/feeds/packages/net/rsync/Makefile	2014-12-15 12:20:24.512388475 +0300
+@@ -41,6 +41,8 @@
  	--with-included-popt=no \
  	--disable-debug \
  	--disable-locale \
@@ -9,7 +9,7 @@
  
  ifeq ($(CONFIG_RSYNC_xattr),y)
  	CONFIGURE_ARGS+= --enable-xattr-support
-@@ -81,8 +83,8 @@
+@@ -80,8 +82,8 @@
  endef
  
  define Package/rsync/install
@@ -20,7 +20,7 @@
  endef
  
  define Package/rsyncd/description
-@@ -91,14 +93,17 @@
+@@ -90,14 +92,17 @@
  endef
  
  define Package/rsyncd/conffiles

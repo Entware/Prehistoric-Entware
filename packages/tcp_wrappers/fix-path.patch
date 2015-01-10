@@ -1,4 +1,4 @@
---- ../../../downloads/openwrt_trunk-r42803/feeds/packages/libs/tcp_wrappers/Makefile
+--- ../../../downloads/openwrt_trunk-r43718/feeds/packages/libs/tcp_wrappers/Makefile
 +++ ../../../openwrt_trunk/feeds/packages/libs/tcp_wrappers/Makefile
 @@ -44,22 +44,22 @@
  			-Dss_family=__ss_family -Dss_len=__ss_len" \

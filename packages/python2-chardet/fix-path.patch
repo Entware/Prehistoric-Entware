@@ -1,4 +1,4 @@
---- ../../../downloads/openwrt_trunk-r42803/feeds/oldpackages/lang/python2-chardet/Makefile	2014-11-07 23:35:24.502715101 +0300
+--- ../../../downloads/openwrt_trunk-r43718/feeds/oldpackages/lang/python2-chardet/Makefile	2014-11-07 23:35:24.502715101 +0300
 +++ ../../../openwrt_trunk/feeds/oldpackages/lang/python2-chardet/Makefile	2014-11-28 11:45:33.574617794 +0300
 @@ -34,13 +34,13 @@
  endef

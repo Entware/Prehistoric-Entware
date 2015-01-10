@@ -1,4 +1,4 @@
---- ../../../downloads/openwrt_trunk-r42803/package/libs/libreadline/Makefile
+--- ../../../downloads/openwrt_trunk-r43718/package/libs/libreadline/Makefile
 +++ ../../../openwrt_trunk/package/libs/libreadline/Makefile
 @@ -60,15 +60,15 @@
  endef

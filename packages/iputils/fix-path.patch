@@ -1,6 +1,6 @@
---- ../../../downloads/openwrt_trunk-r42803/package/network/utils/iputils/Makefile
+--- ../../../downloads/openwrt_trunk-r43718/package/network/utils/iputils/Makefile
 +++ ../../../openwrt_trunk/package/network/utils/iputils/Makefile
-@@ -67,7 +67,7 @@
+@@ -68,7 +68,7 @@
  define Package/iputils-ping6
  $(call Package/iputils/Default)
    TITLE:=iputils - ping6
@@ -9,7 +9,7 @@
  endef
  
  define Package/iputils-ping6/description
-@@ -131,43 +131,43 @@
+@@ -132,43 +132,43 @@
  	CONFIG_USE_UCLIBC="$(CONFIG_USE_UCLIBC)$(CONFIG_USE_MUSL)" \
  
  define Package/iputils-arping/install

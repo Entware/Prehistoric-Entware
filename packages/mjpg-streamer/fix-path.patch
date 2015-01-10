@@ -1,5 +1,5 @@
---- ../../../downloads/openwrt_trunk-r42803/feeds/packages/multimedia/mjpg-streamer/Makefile
-+++ ../../../openwrt_trunk/feeds/packages/multimedia/mjpg-streamer/Makefile
+--- ../../../downloads/openwrt_trunk-r43708/feeds/packages/multimedia/mjpg-streamer/Makefile	2014-12-15 12:19:58.004388958 +0300
++++ ../../../openwrt_trunk/feeds/packages/multimedia/mjpg-streamer/Makefile	2014-12-15 14:58:34.848215357 +0300
 @@ -8,13 +8,13 @@
  include $(TOPDIR)/rules.mk
  
@@ -7,7 +7,8 @@
 -PKG_REV:=182
 +PKG_REV:=181
  PKG_VERSION:=r$(PKG_REV)
- PKG_RELEASE:=2
+-PKG_RELEASE:=4
++PKG_RELEASE:=2
  PKG_MAINTAINER:=Roger D <rogerdammit@gmail.com>
  
 -PKG_SOURCE:=$(PKG_NAME)-$(PKG_VERSION).1.tar.bz2
@@ -17,7 +18,7 @@
  PKG_SOURCE_SUBDIR:=$(PKG_NAME)-$(PKG_VERSION)
  PKG_SOURCE_VERSION:=$(PKG_REV)
  PKG_SOURCE_PROTO:=svn
-@@ -46,63 +46,36 @@
+@@ -45,63 +45,36 @@
  
  EXTRA_CFLAGS += $(TARGET_CPPFLAGS) $(TARGET_LDFLAGS)
  

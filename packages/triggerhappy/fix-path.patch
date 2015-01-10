@@ -1,4 +1,4 @@
---- ../../../downloads/openwrt_trunk-r42803/feeds/packages/utils/triggerhappy/Makefile
+--- ../../../downloads/openwrt_trunk-r43718/feeds/packages/utils/triggerhappy/Makefile
 +++ ../../../openwrt_trunk/feeds/packages/utils/triggerhappy/Makefile
 @@ -33,8 +33,6 @@
  

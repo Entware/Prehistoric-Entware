@@ -1,5 +1,5 @@
 #
-# Copyright (C) 2011-2014 Entware
+# Copyright (C) 2011-2015 Entware
 #
 # This is free software, licensed under the GNU General Public License v2.
 # See /LICENSE for more information.
@@ -9,7 +9,8 @@ all: .done
 
 .done:
 	patch -d $(TOP) -p3 -i $(CURDIR)/fix-path.patch
-	rm -f ../../../openwrt_trunk/package/devel/gdb/patches/001-gdb-pr14523-mips-signal-number.patch
+	mkdir -p ../../../openwrt_trunk/package/libs/libnl/patches
+	cp -f ./1*.patch ../../../openwrt_trunk/package/libs/libnl/patches/
 	@touch $@
 
 clean:

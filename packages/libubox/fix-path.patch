@@ -1,4 +1,4 @@
---- ../../../downloads/openwrt_trunk-r42803/package/libs/libubox/Makefile	2014-12-15 21:16:34.001089056 +0300
+--- ../../../downloads/openwrt_trunk-r43718/package/libs/libubox/Makefile	2014-12-15 21:16:34.001089056 +0300
 +++ ../../../openwrt_trunk/package/libs/libubox/Makefile	2015-01-03 22:39:38.756680562 +0300
 @@ -10,7 +10,7 @@
  PKG_SOURCE_VERSION:=dffbc09baf71b294185a36048166d00066d433b5

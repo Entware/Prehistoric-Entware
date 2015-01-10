@@ -1,4 +1,4 @@
---- ../../../downloads/openwrt_trunk-r42803/feeds/packages/libs/libnatpmp/Makefile
+--- ../../../downloads/openwrt_trunk-r43718/feeds/packages/libs/libnatpmp/Makefile
 +++ ../../../openwrt_trunk/feeds/packages/libs/libnatpmp/Makefile
 @@ -66,21 +66,21 @@
  	OS="Linux"

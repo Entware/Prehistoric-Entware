@@ -1,6 +1,6 @@
---- ../../../downloads/openwrt_trunk-r38381/feeds/oldpackages/utils/cryptsetup/Makefile
-+++ ../../../openwrt_trunk/feeds/oldpackages/utils/cryptsetup/Makefile
-@@ -19,13 +19,13 @@
+--- ../../../downloads/openwrt_trunk-r43593/feeds/packages/utils/cryptsetup/Makefile	2014-12-10 12:26:33.030951680 +0300
++++ ../../../openwrt_trunk/feeds/packages/utils/cryptsetup/Makefile	2014-12-11 11:15:40.545455269 +0300
+@@ -22,13 +22,13 @@
  
  include $(INCLUDE_DIR)/package.mk
  
@@ -16,7 +16,7 @@
    URL:=http://code.google.com/p/cryptsetup/
  endef
  
-@@ -57,16 +57,19 @@
+@@ -60,16 +60,19 @@
  linked against openssl
  endef
  

@@ -1,6 +1,6 @@
 --- ../../../openwrt_trunk/feeds/routing/bird/Makefile.orig
 +++ ../../../openwrt_trunk/feeds/routing/bird/Makefile
-@@ -131,22 +131,20 @@
+@@ -132,22 +132,20 @@
  $(STAMP_BUILT): $(STAMP_BUILT)-$(2)
  
  define Package/bird$(2)/install

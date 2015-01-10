@@ -1,27 +1,11 @@
---- ../../../downloads/openwrt_trunk-r42803/feeds/packages/libs/libsodium/Makefile
-+++ ../../../openwrt_trunk/feeds/packages/libs/libsodium/Makefile
-@@ -8,13 +8,12 @@
- include $(TOPDIR)/rules.mk
- 
- PKG_NAME:=libsodium
--PKG_VERSION:=0.7.1
-+PKG_VERSION:=1.0.0
- PKG_RELEASE:=1
- 
--PKG_BUILD_DIR:=$(BUILD_DIR)/$(PKG_NAME)-$(PKG_VERSION)
- PKG_SOURCE:=$(PKG_NAME)-$(PKG_VERSION).tar.gz
- PKG_SOURCE_URL:=https://download.libsodium.org/libsodium/releases
--PKG_MD5SUM:=c224fe3923d1dcfe418c65c8a7246316
-+PKG_MD5SUM:=3093dabe4e038d09f0d150cef064b2f7
- PKG_CAT:=zcat
- 
- PKG_FIXUP:=libtool autoreconf
-@@ -52,21 +51,27 @@
+--- ../../../downloads/openwrt_trunk-r43718/feeds/packages/libs/libsodium/Makefile	2014-12-15 15:21:12.720190865 +0300
++++ ../../../openwrt_trunk/feeds/packages/libs/libsodium/Makefile	2014-12-15 15:27:48.924186403 +0300
+@@ -52,23 +52,27 @@
  endmenu
  endef
  
 +TARGET_CFLAGS += \
-+	-std=gnu99 \
++	-std=gnu99
 +
  CONFIGURE_ARGS+= \
  	--disable-ssp \
@@ -34,13 +18,15 @@
 -	$(CP) $(PKG_INSTALL_DIR)/usr/include/sodium/*.h $(1)/usr/include/sodium
 -	$(INSTALL_DIR) $(1)/usr/lib
 -	$(CP) $(PKG_INSTALL_DIR)/usr/lib/libsodium.{a,so*} $(1)/usr/lib
+-	$(INSTALL_DIR) $(1)/usr/lib/pkgconfig
+-	$(CP) $(PKG_INSTALL_DIR)/usr/lib/pkgconfig/libsodium.pc $(1)/usr/lib/pkgconfig/
 +	$(INSTALL_DIR) $(1)/opt/include/sodium
 +	$(CP) $(PKG_INSTALL_DIR)/Apps/opt/include/sodium.h $(1)/opt/include
 +	$(CP) $(PKG_INSTALL_DIR)/Apps/opt/include/sodium/*.h $(1)/opt/include/sodium
-+	$(INSTALL_DIR) $(1)/opt/lib/pkgconfig
-+	$(CP) $(PKG_INSTALL_DIR)/Apps/opt/lib/pkgconfig/libsodium.pc $(1)/opt/lib/pkgconfig
 +	$(INSTALL_DIR) $(1)/opt/lib
 +	$(CP) $(PKG_INSTALL_DIR)/Apps/opt/lib/libsodium.{a,so*} $(1)/opt/lib
++	$(INSTALL_DIR) $(1)/opt/lib/pkgconfig
++	$(CP) $(PKG_INSTALL_DIR)/Apps/opt/lib/pkgconfig/libsodium.pc $(1)/opt/lib/pkgconfig/
  endef
  
  define Package/libsodium/install

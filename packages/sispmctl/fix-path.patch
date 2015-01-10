@@ -1,6 +1,6 @@
---- ../../../downloads/openwrt_trunk-r40423/feeds/oldpackages/utils/sispmctl/Makefile
-+++ ../../../openwrt_trunk/feeds/oldpackages/utils/sispmctl/Makefile
-@@ -43,8 +43,8 @@
+--- ../../../downloads/openwrt_trunk-r43593/feeds/packages/utils/sispmctl/Makefile	2014-12-10 12:26:33.030951680 +0300
++++ ../../../openwrt_trunk/feeds/packages/utils/sispmctl/Makefile	2014-12-11 12:04:08.001400889 +0300
+@@ -49,8 +49,8 @@
  	--disable-dependency-tracking
  
  define Package/sispmctl/install

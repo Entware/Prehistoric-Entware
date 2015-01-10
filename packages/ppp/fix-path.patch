@@ -1,5 +1,5 @@
-diff -urx .svn ../../../downloads/openwrt_trunk-r42803/package/network/services/ppp/files/etc/ppp/radius/dictionary ../../../openwrt_trunk/package/network/services/ppp/files/etc/ppp/radius/dictionary
---- ../../../downloads/openwrt_trunk-r42803/package/network/services/ppp/files/etc/ppp/radius/dictionary	2014-10-09 19:10:18.036806516 +0400
+diff -urx .svn ../../../downloads/openwrt_trunk-r43718/package/network/services/ppp/files/etc/ppp/radius/dictionary ../../../openwrt_trunk/package/network/services/ppp/files/etc/ppp/radius/dictionary
+--- ../../../downloads/openwrt_trunk-r43718/package/network/services/ppp/files/etc/ppp/radius/dictionary	2014-10-09 19:10:18.036806516 +0400
 +++ ../../../openwrt_trunk/package/network/services/ppp/files/etc/ppp/radius/dictionary	2014-10-15 09:30:44.743993761 +0400
 @@ -250,4 +250,4 @@
  VALUE		Octets-Direction        MaxOveral		3
@@ -7,8 +7,8 @@ diff -urx .svn ../../../downloads/openwrt_trunk-r42803/package/network/services/
  
 -INCLUDE /etc/ppp/radius/dictionary.microsoft
 +INCLUDE /opt/etc/ppp/radius/dictionary.microsoft
-diff -urx .svn ../../../downloads/openwrt_trunk-r42803/package/network/services/ppp/files/etc/ppp/radius.conf ../../../openwrt_trunk/package/network/services/ppp/files/etc/ppp/radius.conf
---- ../../../downloads/openwrt_trunk-r42803/package/network/services/ppp/files/etc/ppp/radius.conf	2014-10-09 19:10:18.036806516 +0400
+diff -urx .svn ../../../downloads/openwrt_trunk-r43718/package/network/services/ppp/files/etc/ppp/radius.conf ../../../openwrt_trunk/package/network/services/ppp/files/etc/ppp/radius.conf
+--- ../../../downloads/openwrt_trunk-r43718/package/network/services/ppp/files/etc/ppp/radius.conf	2014-10-09 19:10:18.036806516 +0400
 +++ ../../../openwrt_trunk/package/network/services/ppp/files/etc/ppp/radius.conf	2014-10-15 09:30:31.695996283 +0400
 @@ -1,8 +1,8 @@
  authserver localhost:1812
@@ -22,8 +22,8 @@ diff -urx .svn ../../../downloads/openwrt_trunk-r42803/package/network/services/
 +seqfile /opt/tmp/radius.seq
  radius_timeout 5
  radius_retries 3
-diff -urx .svn ../../../downloads/openwrt_trunk-r42803/package/network/services/ppp/Makefile ../../../openwrt_trunk/package/network/services/ppp/Makefile
---- ../../../downloads/openwrt_trunk-r42803/package/network/services/ppp/Makefile	2014-10-09 19:10:18.036806516 +0400
+diff -urx .svn ../../../downloads/openwrt_trunk-r43718/package/network/services/ppp/Makefile ../../../openwrt_trunk/package/network/services/ppp/Makefile
+--- ../../../downloads/openwrt_trunk-r43718/package/network/services/ppp/Makefile	2014-10-09 19:10:18.036806516 +0400
 +++ ../../../openwrt_trunk/package/network/services/ppp/Makefile	2014-10-15 09:29:57.231999955 +0400
 @@ -6,7 +6,6 @@
  #
@@ -140,7 +140,7 @@ diff -urx .svn ../../../downloads/openwrt_trunk-r42803/package/network/services/
 -	$(INSTALL_CONF) ./files/etc/ppp/chap-secrets $(1)/etc/ppp/
 -	$(INSTALL_DATA) ./files/etc/ppp/filter $(1)/etc/ppp/
 -	$(INSTALL_DATA) ./files/etc/ppp/options $(1)/etc/ppp/
--	ln -sf /tmp/resolv.conf.ppp $(1)/etc/ppp/resolv.conf
+-	$(LN) /tmp/resolv.conf.ppp $(1)/etc/ppp/resolv.conf
 -	$(INSTALL_DIR) $(1)/lib/netifd/proto
 -	$(INSTALL_BIN) ./files/ppp.sh $(1)/lib/netifd/proto/
 -	$(INSTALL_BIN) ./files/lib/netifd/ppp-up $(1)/lib/netifd/
@@ -242,8 +242,8 @@ diff -urx .svn ../../../downloads/openwrt_trunk-r42803/package/network/services/
  endef
  
  $(eval $(call BuildPackage,ppp))
-diff -urx .svn ../../../downloads/openwrt_trunk-r42803/package/network/services/ppp/patches/310-precompile_filter.patch ../../../openwrt_trunk/package/network/services/ppp/patches/310-precompile_filter.patch
---- ../../../downloads/openwrt_trunk-r42803/package/network/services/ppp/patches/310-precompile_filter.patch	2014-10-09 19:10:18.036806516 +0400
+diff -urx .svn ../../../downloads/openwrt_trunk-r43718/package/network/services/ppp/patches/310-precompile_filter.patch ../../../openwrt_trunk/package/network/services/ppp/patches/310-precompile_filter.patch
+--- ../../../downloads/openwrt_trunk-r43718/package/network/services/ppp/patches/310-precompile_filter.patch	2014-10-09 19:10:18.036806516 +0400
 +++ ../../../openwrt_trunk/package/network/services/ppp/patches/310-precompile_filter.patch	2014-10-09 19:10:27.504806343 +0400
 @@ -31,7 +31,7 @@
  +PPPDSRCS += pcap_pcc.c
@@ -254,4 +254,3 @@ diff -urx .svn ../../../downloads/openwrt_trunk-r42803/package/network/services/
  +CFLAGS	+= -DPPP_FILTER -DPPP_PRECOMPILED_FILTER -I$(STAGING_DIR)/usr/include
  +endif
  +
-Only in ../../../openwrt_trunk/package/network/services/ppp/patches: 600-entware-path.patch

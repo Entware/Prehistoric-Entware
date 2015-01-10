@@ -1,4 +1,4 @@
---- ../../../downloads/openwrt_trunk-r42803/feeds/oldpackages/libs/clearsilver/Makefile	2014-11-07 23:35:24.439626265 +0300
+--- ../../../downloads/openwrt_trunk-r43718/feeds/oldpackages/libs/clearsilver/Makefile	2014-11-07 23:35:24.439626265 +0300
 +++ ../../../openwrt_trunk/feeds/oldpackages/libs/clearsilver/Makefile	2014-11-26 17:44:25.400388894 +0300
 @@ -32,7 +32,7 @@
    TITLE:=ClearSilver template system

@@ -1,5 +1,5 @@
-diff -urx .svn ../../../downloads/openwrt_trunk-r42803/feeds/oldpackages/net/apcupsd/files/apccontrol ../../../openwrt_trunk/feeds/oldpackages/net/apcupsd/files/apccontrol
---- ../../../downloads/openwrt_trunk-r42803/feeds/oldpackages/net/apcupsd/files/apccontrol	2014-11-07 23:35:24.476144841 +0300
+diff -urx .svn ../../../downloads/openwrt_trunk-r43718/feeds/oldpackages/net/apcupsd/files/apccontrol ../../../openwrt_trunk/feeds/oldpackages/net/apcupsd/files/apccontrol
+--- ../../../downloads/openwrt_trunk-r43718/feeds/oldpackages/net/apcupsd/files/apccontrol	2014-11-07 23:35:24.476144841 +0300
 +++ ../../../openwrt_trunk/feeds/oldpackages/net/apcupsd/files/apccontrol	2014-11-26 12:32:01.898912017 +0300
 @@ -15,14 +15,14 @@
  #
@@ -42,8 +42,8 @@ diff -urx .svn ../../../downloads/openwrt_trunk-r42803/feeds/oldpackages/net/apc
  	sleep 5
  	`${APCUPSD}`
  	echo "apcupsd"
-diff -urx .svn ../../../downloads/openwrt_trunk-r42803/feeds/oldpackages/net/apcupsd/files/apcupsd.conf ../../../openwrt_trunk/feeds/oldpackages/net/apcupsd/files/apcupsd.conf
---- ../../../downloads/openwrt_trunk-r42803/feeds/oldpackages/net/apcupsd/files/apcupsd.conf	2014-11-07 23:35:24.472278105 +0300
+diff -urx .svn ../../../downloads/openwrt_trunk-r43718/feeds/oldpackages/net/apcupsd/files/apcupsd.conf ../../../openwrt_trunk/feeds/oldpackages/net/apcupsd/files/apcupsd.conf
+--- ../../../downloads/openwrt_trunk-r43718/feeds/oldpackages/net/apcupsd/files/apcupsd.conf	2014-11-07 23:35:24.472278105 +0300
 +++ ../../../openwrt_trunk/feeds/oldpackages/net/apcupsd/files/apcupsd.conf	2014-11-26 12:32:01.898912017 +0300
 @@ -78,23 +78,23 @@
  
@@ -91,8 +91,8 @@ diff -urx .svn ../../../downloads/openwrt_trunk-r42803/feeds/oldpackages/net/apc
  
  # LOGSTATS [ on | off ] on enables, off disables
  # Note! This generates a lot of output, so if         
-diff -urx .svn ../../../downloads/openwrt_trunk-r42803/feeds/oldpackages/net/apcupsd/files/apcupsd_mail.conf ../../../openwrt_trunk/feeds/oldpackages/net/apcupsd/files/apcupsd_mail.conf
---- ../../../downloads/openwrt_trunk-r42803/feeds/oldpackages/net/apcupsd/files/apcupsd_mail.conf	2014-11-07 23:35:24.476144841 +0300
+diff -urx .svn ../../../downloads/openwrt_trunk-r43718/feeds/oldpackages/net/apcupsd/files/apcupsd_mail.conf ../../../openwrt_trunk/feeds/oldpackages/net/apcupsd/files/apcupsd_mail.conf
+--- ../../../downloads/openwrt_trunk-r43718/feeds/oldpackages/net/apcupsd/files/apcupsd_mail.conf	2014-11-07 23:35:24.476144841 +0300
 +++ ../../../openwrt_trunk/feeds/oldpackages/net/apcupsd/files/apcupsd_mail.conf	2014-11-26 12:32:01.898912017 +0300
 @@ -1,6 +1,6 @@
  #!/bin/sh
@@ -102,8 +102,8 @@ diff -urx .svn ../../../downloads/openwrt_trunk-r42803/feeds/oldpackages/net/apc
  MAILHOST="mail:25"
  FROM="OpenWrt"
  TO="apcups@example.com"
-diff -urx .svn ../../../downloads/openwrt_trunk-r42803/feeds/oldpackages/net/apcupsd/files/changeme ../../../openwrt_trunk/feeds/oldpackages/net/apcupsd/files/changeme
---- ../../../downloads/openwrt_trunk-r42803/feeds/oldpackages/net/apcupsd/files/changeme	2014-11-07 23:35:24.476144841 +0300
+diff -urx .svn ../../../downloads/openwrt_trunk-r43718/feeds/oldpackages/net/apcupsd/files/changeme ../../../openwrt_trunk/feeds/oldpackages/net/apcupsd/files/changeme
+--- ../../../downloads/openwrt_trunk-r43718/feeds/oldpackages/net/apcupsd/files/changeme	2014-11-07 23:35:24.476144841 +0300
 +++ ../../../openwrt_trunk/feeds/oldpackages/net/apcupsd/files/changeme	2014-11-26 12:32:01.898912017 +0300
 @@ -5,13 +5,13 @@
  # detects that the battery should be replaced.
@@ -121,8 +121,8 @@ diff -urx .svn ../../../downloads/openwrt_trunk-r42803/feeds/oldpackages/net/apc
 +   /opt/sbin/apcaccess status
  ) | $MAILPROG -h $MAILHOST -f $FROM -s "$MSG" $TO
  exit 0
-diff -urx .svn ../../../downloads/openwrt_trunk-r42803/feeds/oldpackages/net/apcupsd/files/commfailure ../../../openwrt_trunk/feeds/oldpackages/net/apcupsd/files/commfailure
---- ../../../downloads/openwrt_trunk-r42803/feeds/oldpackages/net/apcupsd/files/commfailure	2014-11-07 23:35:24.476144841 +0300
+diff -urx .svn ../../../downloads/openwrt_trunk-r43718/feeds/oldpackages/net/apcupsd/files/commfailure ../../../openwrt_trunk/feeds/oldpackages/net/apcupsd/files/commfailure
+--- ../../../downloads/openwrt_trunk-r43718/feeds/oldpackages/net/apcupsd/files/commfailure	2014-11-07 23:35:24.476144841 +0300
 +++ ../../../openwrt_trunk/feeds/oldpackages/net/apcupsd/files/commfailure	2014-11-26 12:32:01.898912017 +0300
 @@ -5,13 +5,13 @@
  # loses contact with the UPS (i.e. the serial connection is not responding).
@@ -140,8 +140,8 @@ diff -urx .svn ../../../downloads/openwrt_trunk-r42803/feeds/oldpackages/net/apc
 +   /opt/sbin/apcaccess status
  ) | $MAILPROG -h $MAILHOST -f $FROM -s "$MSG" $TO
  exit 0
-diff -urx .svn ../../../downloads/openwrt_trunk-r42803/feeds/oldpackages/net/apcupsd/files/commok ../../../openwrt_trunk/feeds/oldpackages/net/apcupsd/files/commok
---- ../../../downloads/openwrt_trunk-r42803/feeds/oldpackages/net/apcupsd/files/commok	2014-11-07 23:35:24.476144841 +0300
+diff -urx .svn ../../../downloads/openwrt_trunk-r43718/feeds/oldpackages/net/apcupsd/files/commok ../../../openwrt_trunk/feeds/oldpackages/net/apcupsd/files/commok
+--- ../../../downloads/openwrt_trunk-r43718/feeds/oldpackages/net/apcupsd/files/commok	2014-11-07 23:35:24.476144841 +0300
 +++ ../../../openwrt_trunk/feeds/oldpackages/net/apcupsd/files/commok	2014-11-26 12:32:01.898912017 +0300
 @@ -5,13 +5,13 @@
  # restores contact with the UPS (i.e. the serial connection is restored).
@@ -159,8 +159,8 @@ diff -urx .svn ../../../downloads/openwrt_trunk-r42803/feeds/oldpackages/net/apc
 +   /opt/sbin/apcaccess status
  ) | $MAILPROG -h $MAILHOST -f $FROM -s "$MSG" $TO
  exit 0
-diff -urx .svn ../../../downloads/openwrt_trunk-r42803/feeds/oldpackages/net/apcupsd/files/offbattery ../../../openwrt_trunk/feeds/oldpackages/net/apcupsd/files/offbattery
---- ../../../downloads/openwrt_trunk-r42803/feeds/oldpackages/net/apcupsd/files/offbattery	2014-11-07 23:35:24.476144841 +0300
+diff -urx .svn ../../../downloads/openwrt_trunk-r43718/feeds/oldpackages/net/apcupsd/files/offbattery ../../../openwrt_trunk/feeds/oldpackages/net/apcupsd/files/offbattery
+--- ../../../downloads/openwrt_trunk-r43718/feeds/oldpackages/net/apcupsd/files/offbattery	2014-11-07 23:35:24.476144841 +0300
 +++ ../../../openwrt_trunk/feeds/oldpackages/net/apcupsd/files/offbattery	2014-11-26 12:32:01.902813443 +0300
 @@ -5,13 +5,13 @@
  # UPS goes back on to the mains after a power failure.
@@ -178,8 +178,8 @@ diff -urx .svn ../../../downloads/openwrt_trunk-r42803/feeds/oldpackages/net/apc
 +   /opt/sbin/apcaccess status
  ) | $MAILPROG -h $MAILHOST -f $FROM -s "$MSG" $TO
  exit 0
-diff -urx .svn ../../../downloads/openwrt_trunk-r42803/feeds/oldpackages/net/apcupsd/files/onbattery ../../../openwrt_trunk/feeds/oldpackages/net/apcupsd/files/onbattery
---- ../../../downloads/openwrt_trunk-r42803/feeds/oldpackages/net/apcupsd/files/onbattery	2014-11-07 23:35:24.476144841 +0300
+diff -urx .svn ../../../downloads/openwrt_trunk-r43718/feeds/oldpackages/net/apcupsd/files/onbattery ../../../openwrt_trunk/feeds/oldpackages/net/apcupsd/files/onbattery
+--- ../../../downloads/openwrt_trunk-r43718/feeds/oldpackages/net/apcupsd/files/onbattery	2014-11-07 23:35:24.476144841 +0300
 +++ ../../../openwrt_trunk/feeds/oldpackages/net/apcupsd/files/onbattery	2014-11-26 12:32:01.902813443 +0300
 @@ -5,13 +5,13 @@
  # goes on batteries.
@@ -197,8 +197,8 @@ diff -urx .svn ../../../downloads/openwrt_trunk-r42803/feeds/oldpackages/net/apc
 +   /opt/sbin/apcaccess status
  ) | $MAILPROG -h $MAILHOST -f $FROM -s "$MSG" $TO
  exit 0
-diff -urx .svn ../../../downloads/openwrt_trunk-r42803/feeds/oldpackages/net/apcupsd/Makefile ../../../openwrt_trunk/feeds/oldpackages/net/apcupsd/Makefile
---- ../../../downloads/openwrt_trunk-r42803/feeds/oldpackages/net/apcupsd/Makefile	2014-11-07 23:35:24.472278105 +0300
+diff -urx .svn ../../../downloads/openwrt_trunk-r43718/feeds/oldpackages/net/apcupsd/Makefile ../../../openwrt_trunk/feeds/oldpackages/net/apcupsd/Makefile
+--- ../../../downloads/openwrt_trunk-r43718/feeds/oldpackages/net/apcupsd/Makefile	2014-11-07 23:35:24.472278105 +0300
 +++ ../../../openwrt_trunk/feeds/oldpackages/net/apcupsd/Makefile	2014-11-26 16:42:04.468813822 +0300
 @@ -29,7 +29,8 @@
  	$(CP) $(SCRIPT_DIR)/config.* $(PKG_BUILD_DIR)/autoconf/

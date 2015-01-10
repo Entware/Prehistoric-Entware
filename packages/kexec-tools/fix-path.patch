@@ -1,4 +1,4 @@
---- ../../../downloads/openwrt_trunk-r42803/package/boot/kexec-tools//Makefile	2014-11-07 23:35:24.624823162 +0300
+--- ../../../downloads/openwrt_trunk-r43718/package/boot/kexec-tools//Makefile	2014-11-07 23:35:24.624823162 +0300
 +++ ../../../openwrt_trunk/package/boot/kexec-tools//Makefile	2014-11-26 13:27:56.849124006 +0300
 @@ -24,7 +24,7 @@
  define Package/kexec-tools

@@ -1,0 +1,28 @@
+--- ../../../downloads/openwrt_trunk-r43718/feeds/telephony/libs/bcg729/Makefile	2014-12-15 16:50:13.464093575 +0300
++++ ../../../openwrt_trunk/feeds/telephony/libs/bcg729/Makefile	2014-12-16 09:26:28.795007565 +0300
+@@ -46,17 +46,17 @@
+ 	--enable-static
+ 
+ define Build/InstallDev
+-	$(INSTALL_DIR) $(1)/usr/include
+-	$(CP) -R $(PKG_INSTALL_DIR)/usr/include/bcg729 $(1)/usr/include/
+-	$(INSTALL_DIR) $(1)/usr/lib
+-	$(CP) $(PKG_INSTALL_DIR)/usr/lib/libbcg729.{a,so*} $(1)/usr/lib/
+-	$(INSTALL_DIR) $(1)/usr/lib/pkgconfig
+-	$(CP) $(PKG_INSTALL_DIR)/usr/lib/pkgconfig/libbcg729.pc $(1)/usr/lib/pkgconfig/
++	$(INSTALL_DIR) $(1)/opt/include
++	$(CP) -R $(PKG_INSTALL_DIR)/Apps/opt/include/bcg729 $(1)/opt/include/
++	$(INSTALL_DIR) $(1)/opt/lib
++	$(CP) $(PKG_INSTALL_DIR)/Apps/opt/lib/libbcg729.{a,so*} $(1)/opt/lib/
++	$(INSTALL_DIR) $(1)/opt/lib/pkgconfig
++	$(CP) $(PKG_INSTALL_DIR)/Apps/opt/lib/pkgconfig/libbcg729.pc $(1)/opt/lib/pkgconfig/
+ endef
+ 
+ define Package/bcg729/install
+-	$(INSTALL_DIR) $(1)/usr/lib
+-	$(CP) $(PKG_INSTALL_DIR)/usr/lib/libbcg729.so* $(1)/usr/lib/
++	$(INSTALL_DIR) $(1)/opt/lib
++	$(CP) $(PKG_INSTALL_DIR)/Apps/opt/lib/libbcg729.so* $(1)/opt/lib/
+ endef
+ 
+ $(eval $(call BuildPackage,bcg729))

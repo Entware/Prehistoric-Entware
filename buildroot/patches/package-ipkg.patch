@@ -1,15 +1,15 @@
---- ../../../downloads/openwrt_trunk-r42803/include/package-ipkg.mk
-+++ ../../../openwrt_trunk/include/package-ipkg.mk
+--- ../../../openwrt_trunk/include/package-ipkg.mk.orig	2014-12-10 12:23:45.466954732 +0300
++++ ../../../openwrt_trunk/include/package-ipkg.mk	2014-12-10 12:45:08.274926948 +0300
 @@ -11,7 +11,7 @@
  IPKG_BUILD:= \
-   ipkg-build -c -o 0 -g 0
+   $(STAGING_DIR_HOST)/bin/ipkg-build -c -o 0 -g 0
  
 -IPKG_STATE_DIR:=$(TARGET_DIR)/usr/lib/opkg
 +IPKG_STATE_DIR:=$(TARGET_DIR)/opt/lib/opkg
  
- define BuildIPKGVariable
- ifdef Package/$(1)/$(2)
-@@ -117,8 +117,8 @@
+ # 1: package name
+ # 2: variable name
+@@ -126,8 +126,8 @@
  
      $(eval $(call BuildIPKGVariable,$(1),conffiles))
      $(eval $(call BuildIPKGVariable,$(1),preinst))
@@ -20,26 +20,26 @@
      $(eval $(call BuildIPKGVariable,$(1),postrm))
  
      $(STAGING_DIR_ROOT)/stamp/.$(1)_installed: $(STAMP_BUILT)
-@@ -179,18 +179,6 @@
- 		echo -n "Description: "; $(SH_FUNC) getvar $(call shvar,Package/$(1)/description) | sed -e 's,^[[:space:]]*, ,g'; \
-  	) > $$(IDIR_$(1))/CONTROL/control
- 	chmod 644 $$(IDIR_$(1))/CONTROL/control
--	( \
--		echo "#!/bin/sh"; \
--		echo "[ \"\$$$${IPKG_NO_SCRIPT}\" = \"1\" ] && exit 0"; \
--		echo ". \$$$${IPKG_INSTROOT}/lib/functions.sh"; \
--		echo "default_postinst \$$$$0 \$$$$@"; \
--	) > $$(IDIR_$(1))/CONTROL/postinst
--	( \
--		echo "#!/bin/sh"; \
--		echo ". \$$$${IPKG_INSTROOT}/lib/functions.sh"; \
--		echo "default_prerm \$$$$0 \$$$$@"; \
--	) > $$(IDIR_$(1))/CONTROL/prerm
--	chmod 0755 $$(IDIR_$(1))/CONTROL/prerm
- 	$(SH_FUNC) (cd $$(IDIR_$(1))/CONTROL; \
+@@ -192,18 +192,6 @@
+ 			printf "Description: "; echo "$$$$DESCRIPTION" | sed -e 's,^[[:space:]]*, ,g'; \
+ 		) > control; \
+ 		chmod 644 control; \
+-		( \
+-			echo "#!/bin/sh"; \
+-			echo "[ \"\$$$${IPKG_NO_SCRIPT}\" = \"1\" ] && exit 0"; \
+-			echo ". \$$$${IPKG_INSTROOT}/lib/functions.sh"; \
+-			echo "default_postinst \$$$$0 \$$$$@"; \
+-		) > postinst; \
+-		( \
+-			echo "#!/bin/sh"; \
+-			echo ". \$$$${IPKG_INSTROOT}/lib/functions.sh"; \
+-			echo "default_prerm \$$$$0 \$$$$@"; \
+-		) > prerm; \
+-		chmod 0755 prerm; \
  		$($(1)_COMMANDS) \
  	)
-@@ -202,8 +190,8 @@
+ 
+@@ -214,8 +202,8 @@
  				[ -f "$$(IDIR_$(1))/$$$$x" ] || keepfiles="$$$${keepfiles:+$$$$keepfiles }$$$$x"; \
  			done; \
  			[ -z "$$$$keepfiles" ] || { \

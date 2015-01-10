@@ -1,6 +1,6 @@
---- ../../../downloads/mipsel-hardfloat/openwrt_trunk-r40423/feeds/packages/utils/lsof/Makefile
-+++ ../../../openwrt_trunk/feeds/packages/utils/lsof/Makefile
-@@ -20,8 +20,6 @@
+--- ../../../downloads/openwrt_trunk-r43708/feeds/packages/utils/lsof/Makefile	2014-12-15 12:19:58.048388959 +0300
++++ ../../../openwrt_trunk/feeds/packages/utils/lsof/Makefile	2014-12-15 12:20:23.268388501 +0300
+@@ -22,8 +22,6 @@
  
  include $(INCLUDE_DIR)/package.mk
  
@@ -9,7 +9,7 @@
  define Package/lsof
    SECTION:=utils
    CATEGORY:=Utilities
-@@ -32,14 +30,15 @@
+@@ -34,14 +32,15 @@
  
  define Build/Configure
  	cd $(PKG_BUILD_DIR); \
@@ -27,7 +27,7 @@
  		./Configure -n linux
  endef
  
-@@ -48,8 +47,8 @@
+@@ -50,8 +49,8 @@
  endef
  
  define Package/lsof/install	

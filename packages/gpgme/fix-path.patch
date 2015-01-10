@@ -1,14 +1,6 @@
---- ../../../downloads/openwrt_trunk-r42803/feeds/oldpackages/libs/gpgme/Makefile	2014-11-07 23:35:24.439626265 +0300
-+++ ../../../openwrt_trunk/feeds/oldpackages/libs/gpgme/Makefile	2014-11-26 16:57:44.226890192 +0300
-@@ -14,6 +14,7 @@
- PKG_SOURCE:=$(PKG_NAME)-$(PKG_VERSION).tar.bz2
- PKG_SOURCE_URL:=ftp://ftp.gnupg.org/gcrypt/gpgme/
- PKG_MD5SUM:=334e524cffa8af4e2f43ae8afe585672
-+PKG_BUILD_DEPENDS:=argp-standalone
- 
- PKG_INSTALL:=1
- 
-@@ -37,33 +38,34 @@
+--- ../../../downloads/mipsel-hardfloat/openwrt_trunk-r38800/feeds/oldpackages/libs/gpgme/Makefile
++++ ../../../openwrt_trunk/feeds/oldpackages/libs/gpgme/Makefile
+@@ -37,33 +37,34 @@
    for CMS (S/MIME).
  endef
  

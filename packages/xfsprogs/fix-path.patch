@@ -1,4 +1,4 @@
---- ../../../downloads/openwrt_trunk-r42803/package/utils/xfsprogs/Makefile
+--- ../../../downloads/openwrt_trunk-r43718/package/utils/xfsprogs/Makefile
 +++ ../../../openwrt_trunk/package/utils/xfsprogs/Makefile
 @@ -50,7 +50,7 @@
  	--enable-blkid=no

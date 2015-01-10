@@ -1,4 +1,4 @@
---- ../../../downloads/openwrt_trunk-r42803/feeds/packages/net/mtr/Makefile	2014-11-07 23:35:24.536148262 +0300
+--- ../../../downloads/openwrt_trunk-r43718/feeds/packages/net/mtr/Makefile	2014-11-07 23:35:24.536148262 +0300
 +++ ../../../openwrt_trunk/feeds/packages/net/mtr/Makefile	2014-11-29 00:10:37.026199148 +0300
 @@ -46,6 +46,11 @@
  CONFIGURE_ARGS += \

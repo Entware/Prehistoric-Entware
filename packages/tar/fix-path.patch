@@ -1,5 +1,5 @@
---- ../../../downloads/openwrt_trunk-r42803/feeds/oldpackages/utils/tar/Makefile	2014-12-15 21:16:18.168867904 +0300
-+++ ../../../openwrt_trunk/feeds/oldpackages/utils/tar/Makefile	2014-12-20 11:55:50.915774882 +0300
+--- ../../../downloads/openwrt_trunk-r43718/feeds/oldpackages/utils/tar/Makefile	2015-01-08 13:29:18.055640763 +0300
++++ ../../../openwrt_trunk/feeds/oldpackages/utils/tar/Makefile	2015-01-09 12:08:49.237647999 +0300
 @@ -8,12 +8,12 @@
  include $(TOPDIR)/rules.mk
  
@@ -15,6 +15,15 @@
  
  PKG_INSTALL:=1
  
+@@ -22,7 +22,7 @@
+ define Package/tar
+   SECTION:=utils
+   CATEGORY:=Utilities
+-  DEPENDS:=+bzip2
++  DEPENDS:=+bzip2 +libacl
+   TITLE:=GNU tar
+   URL:=http://www.gnu.org/software/tar/
+ endef
 @@ -32,29 +32,13 @@
  	single archive in tar format.
  endef

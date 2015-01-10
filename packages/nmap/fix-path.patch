@@ -1,16 +1,15 @@
---- ../../../openwrt_trunk.orig/feeds/packages/net/nmap/Makefile
-+++ ../../../openwrt_trunk/feeds/packages/net/nmap/Makefile
-@@ -86,51 +86,52 @@
+--- ../../../downloads/openwrt_trunk-r43593/feeds/packages/net/nmap/Makefile	2014-12-10 12:26:33.006951679 +0300
++++ ../../../openwrt_trunk/feeds/packages/net/nmap/Makefile	2014-12-12 16:54:23.452812638 +0300
+@@ -86,52 +86,52 @@
  CONFIGURE_ARGS += \
  	--with-libdnet=included \
  	--with-libpcre=included \
 -	--with-libpcap="$(STAGING_DIR)/usr" \
 +	--with-libpcap="$(STAGING_DIR)/opt" \
- 	--without-liblua
+ 	--without-liblua \
+ 	--without-zenmap
  
--CONFIGURE_VARS += CXXFLAGS="$$$$CXXFLAGS -fno-builtin"
-+CONFIGURE_VARS += \
-+	CXXFLAGS="$$$$CXXFLAGS -fno-builtin"
+ CONFIGURE_VARS += CXXFLAGS="$$$$CXXFLAGS -fno-builtin"
  
  ifeq ($(BUILD_VARIANT),ssl)
 -	CONFIGURE_ARGS += --with-openssl="$(STAGING_DIR)/usr"

@@ -1,59 +1,24 @@
---- ../../../downloads/openwrt_trunk-r42803/feeds/packages/sound/mpd/Makefile	2014-11-07 23:35:24.508566188 +0300
-+++ ../../../openwrt_trunk/feeds/packages/sound/mpd/Makefile	2014-11-28 23:44:09.494531326 +0300
-@@ -8,17 +8,14 @@
- include $(TOPDIR)/rules.mk
- 
- PKG_NAME:=mpd
--PKG_VERSION:=0.18.16
--PKG_RELEASE:=1
-+PKG_VERSION:=0.17.6
-+PKG_RELEASE:=4
- 
--PKG_SOURCE:=$(PKG_NAME)-$(PKG_VERSION).tar.xz
--PKG_SOURCE_URL:=http://www.musicpd.org/download/mpd/0.18/
--PKG_MD5SUM:=900657ff55726f4cc09a27eb7df57015
-+PKG_SOURCE:=$(PKG_NAME)-$(PKG_VERSION).tar.bz2
-+PKG_SOURCE_URL:=http://www.musicpd.org/download/mpd/0.17/
-+PKG_MD5SUM:=0a42ed81ff298c12e22c16be31097e4c
- PKG_MAINTAINER:=Ted Hess <thess@kitschensync.net>
- 
--PKG_LICENSE:=GPL-2.0
--PKG_LICENSE_FILE:=COPYING
--
- PKG_BUILD_DIR:=$(BUILD_DIR)/$(PKG_NAME)-$(BUILD_VARIANT)/$(PKG_NAME)-$(PKG_VERSION)
- PKG_BUILD_PARALLEL:=1
- 
-@@ -35,8 +32,8 @@
-   CATEGORY:=Sound
+--- ../../../downloads/openwrt_trunk-r43718/feeds/packages/sound/mpd/Makefile	2014-12-15 16:50:13.324093577 +0300
++++ ../../../openwrt_trunk/feeds/packages/sound/mpd/Makefile	2014-12-15 17:06:24.876080563 +0300
+@@ -36,7 +36,7 @@
    TITLE:=Music Player Daemon
    URL:=http://www.musicpd.org/
--  DEPENDS:= +glib2 +libcurl +libpthread +libmpdclient $(ICONV_DEPENDS) +libstdcpp \
+   DEPENDS:= +glib2 +libcurl +libpthread +libmpdclient $(ICONV_DEPENDS) +libstdcpp \
 -	    +libflac +BUILD_PATENTED:libmad +libvorbisidec +AUDIO_SUPPORT:alsa-lib
-+  DEPENDS:= +glib2 +libcurl +libpthread $(ICONV_DEPENDS) \
-+	    +libflac +BUILD_PATENTED:libmad +libvorbisidec
++	    +libflac +BUILD_PATENTED:libmad +libvorbisidec +alsa-lib
  endef
  
  define Package/mpd/Default/description
-@@ -50,6 +47,7 @@
- $(call Package/mpd/Default)
-   TITLE+= (full)
-   DEPENDS+= \
-+	+AUDIO_SUPPORT:alsa-lib \
- 	+libaudiofile +BUILD_PATENTED:libfaad2 +libffmpeg +libid3tag \
- 	+libmms +libogg +libsndfile +libvorbis
-   PROVIDES:=mpd
-@@ -63,8 +61,8 @@
+@@ -63,7 +63,7 @@
  endef
  
  define Package/mpd-full/conffiles
--/etc/avahi/services/mpd.service
 -/etc/mpd.conf
-+/opt/etc/avahi/services/mpd.service
 +/opt/etc/mpd.conf
  endef
  
  define Package/mpd-mini
-@@ -82,7 +80,7 @@
+@@ -81,7 +81,7 @@
  endef
  
  define Package/mpd-mini/conffiles
@@ -61,36 +26,36 @@
 +/opt/etc/mpd.conf
  endef
  
- CONFIGURE_ARGS += \
-@@ -100,7 +98,6 @@
- 	--disable-fluidsynth \
- 	--disable-gme \
- 	--enable-inotify \
--	--disable-eventfd \
- 	--disable-iso9660 \
- 	--disable-jack \
- 	--disable-lame-encoder \
-@@ -112,7 +109,6 @@
+ define Package/mpd-avahi-service
+@@ -108,7 +108,7 @@
+ 	--disable-gprof \
+ 	--disable-test \
+ 	--disable-werror \
+-	\
++	--disable-signalfd \
+ 	--disable-ao \
+ 	--disable-bzip2 \
+ 	--enable-cue \
+@@ -126,7 +126,6 @@
+ 	--disable-modplug \
+ 	--disable-mpc \
  	--disable-mpg123 \
- 	--disable-mvp \
+-	--disable-mvp \
  	--disable-openal \
--	--disable-opus \
+ 	--disable-opus \
  	--disable-pulse \
- 	--disable-sidplay \
- 	--disable-solaris-output \
-@@ -123,23 +119,27 @@
- 	--disable-wavpack \
+@@ -140,28 +139,28 @@
  	--disable-wildmidi \
  	--disable-zzip \
--	--with-zeroconf=no \
-+	--with-zeroconf=auto \
- 	\
+ 	--with-zeroconf=no \
+-	\
++	--enable-epoll \
  	--enable-curl \
  	--enable-flac \
  	--enable-httpd-output \
  	$(call autoconf_bool,CONFIG_BUILD_PATENTED,mad) \
 -	$(call autoconf_bool,CONFIG_AUDIO_SUPPORT,alsa) \
-+	$(call autoconf_bool,CONFIG_AUDIO_SUPPORT,oss) \
++	--enable-alsa \
  	--enable-tcp \
  	--enable-un \
  
@@ -102,15 +67,18 @@
  	$(if $(CONFIG_BUILD_PATENTED),MAD_LIBS="$(TARGET_LDFLAGS) -lmad") \
  
 -TARGET_LDFLAGS += -Wl,-rpath-link=$(STAGING_DIR)/usr/lib $(if $(ICONV_FULL),-liconv)
-+TARGET_CFLAGS += -std=gnu99
 +TARGET_LDFLAGS += -Wl,-rpath-link=$(STAGING_DIR)/opt/lib $(if $(ICONV_FULL),-liconv)
-+
-+# use gcc instead of g++ to avoid unnecessary linking against libstdc++
-+TARGET_CXX:=$(TARGET_CC)
  
  ifeq ($(BUILD_VARIANT),full)
  
-@@ -159,7 +159,7 @@
+   CONFIGURE_ARGS += \
+ 	$(call autoconf_bool,CONFIG_BUILD_PATENTED,aac) \
+-	$(call autoconf_bool,CONFIG_AUDIO_SUPPORT,alsa) \
++	--enable-alsa \
+ 	--enable-audiofile \
+ 	--enable-fifo \
+ 	--enable-ffmpeg \
+@@ -175,7 +174,7 @@
  	--enable-sndfile \
  	--enable-vorbis \
  	--disable-vorbis-encoder \
@@ -119,7 +87,17 @@
  	--with-tremor=yes \
  
  endif
-@@ -188,18 +188,18 @@
+@@ -190,9 +189,7 @@
+ 	--disable-fifo \
+ 	--disable-ffmpeg \
+ 	--disable-id3 \
+-	--disable-lastfm \
+ 	--disable-mms \
+-	--disable-oggflac \
+ 	--disable-pipe-output \
+ 	--disable-recorder-output \
+ 	--disable-shout \
+@@ -204,12 +201,12 @@
  endif
  
  define Package/mpd/install
@@ -134,11 +112,14 @@
 +	$(INSTALL_DIR) $(1)/opt/etc
 +	$(CP) $(PKG_BUILD_DIR)/doc/mpdconf.example $(1)/opt/etc/mpd.conf
 +	$(INSTALL_DIR) $(1)/opt/etc/init.d
-+	$(INSTALL_BIN) ./files/S89mpd $(1)/opt/etc/init.d
++	$(INSTALL_BIN) ./files/S89mpd $(1)/opt/etc/init.d/
  endef
  
  define Package/mpd-full/install
- $(call Package/mpd/install,$1)
+@@ -221,8 +218,8 @@
+ endef
+ 
+ define Package/mpd-avahi-service/install
 -	$(INSTALL_DIR) $(1)/etc/avahi/services
 -	$(INSTALL_DATA) ./files/mpd.service $(1)/etc/avahi/services/
 +	$(INSTALL_DIR) $(1)/opt/etc/avahi/services

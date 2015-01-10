@@ -1,5 +1,5 @@
-diff -urx .svn ../../../downloads/openwrt_trunk-r42803/feeds/packages/net/xl2tpd/files/options.xl2tpd ../../../openwrt_trunk/feeds/packages/net/xl2tpd/files/options.xl2tpd
---- ../../../downloads/openwrt_trunk-r42803/feeds/packages/net/xl2tpd/files/options.xl2tpd	2014-10-09 19:10:17.744806522 +0400
+diff -urx .svn ../../../downloads/openwrt_trunk-r43718/feeds/packages/net/xl2tpd/files/options.xl2tpd ../../../openwrt_trunk/feeds/packages/net/xl2tpd/files/options.xl2tpd
+--- ../../../downloads/openwrt_trunk-r43718/feeds/packages/net/xl2tpd/files/options.xl2tpd	2014-10-09 19:10:17.744806522 +0400
 +++ ../../../openwrt_trunk/feeds/packages/net/xl2tpd/files/options.xl2tpd	2014-10-09 19:10:29.464806309 +0400
 @@ -1,13 +1,12 @@
 -#
@@ -25,8 +25,8 @@ diff -urx .svn ../../../downloads/openwrt_trunk-r42803/feeds/packages/net/xl2tpd
 -noaccomp
 +ip-up-script /opt/etc/ppp/ip-up.sh
 +ip-down-script /opt/etc/ppp/ip-down.sh
-diff -urx .svn ../../../downloads/openwrt_trunk-r42803/feeds/packages/net/xl2tpd/files/xl2tpd.conf ../../../openwrt_trunk/feeds/packages/net/xl2tpd/files/xl2tpd.conf
---- ../../../downloads/openwrt_trunk-r42803/feeds/packages/net/xl2tpd/files/xl2tpd.conf	2014-10-09 19:10:17.744806522 +0400
+diff -urx .svn ../../../downloads/openwrt_trunk-r43718/feeds/packages/net/xl2tpd/files/xl2tpd.conf ../../../openwrt_trunk/feeds/packages/net/xl2tpd/files/xl2tpd.conf
+--- ../../../downloads/openwrt_trunk-r43718/feeds/packages/net/xl2tpd/files/xl2tpd.conf	2014-10-09 19:10:17.744806522 +0400
 +++ ../../../openwrt_trunk/feeds/packages/net/xl2tpd/files/xl2tpd.conf	2014-10-09 19:10:29.464806309 +0400
 @@ -1,23 +1,20 @@
  [global]
@@ -69,8 +69,8 @@ diff -urx .svn ../../../downloads/openwrt_trunk-r42803/feeds/packages/net/xl2tpd
 +ppp debug = no
 +pppoptfile = /opt/etc/ppp/options.xl2tpd
 +flow bit = yes
-diff -urx .svn ../../../downloads/openwrt_trunk-r42803/feeds/packages/net/xl2tpd/Makefile ../../../openwrt_trunk/feeds/packages/net/xl2tpd/Makefile
---- ../../../downloads/openwrt_trunk-r42803/feeds/packages/net/xl2tpd/Makefile	2014-10-09 19:10:17.744806522 +0400
+diff -urx .svn ../../../downloads/openwrt_trunk-r43718/feeds/packages/net/xl2tpd/Makefile ../../../openwrt_trunk/feeds/packages/net/xl2tpd/Makefile
+--- ../../../downloads/openwrt_trunk-r43718/feeds/packages/net/xl2tpd/Makefile	2014-10-09 19:10:17.744806522 +0400
 +++ ../../../openwrt_trunk/feeds/packages/net/xl2tpd/Makefile	2014-10-09 19:10:29.464806309 +0400
 @@ -29,10 +29,10 @@
  define Package/xl2tpd

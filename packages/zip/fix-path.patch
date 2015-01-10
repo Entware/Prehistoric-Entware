@@ -1,4 +1,4 @@
---- ../../../downloads/openwrt_trunk-r42803/feeds/packages/utils/zip/Makefile
+--- ../../../downloads/openwrt_trunk-r43718/feeds/packages/utils/zip/Makefile
 +++ ../../../openwrt_trunk/feeds/packages/utils/zip/Makefile
 @@ -46,8 +46,9 @@
  

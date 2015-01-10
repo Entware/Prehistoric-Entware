@@ -1,4 +1,4 @@
---- ../../../downloads/openwrt_trunk-r42803/feeds/oldpackages/net/openswan/Makefile
+--- ../../../downloads/openwrt_trunk-r43718/feeds/oldpackages/net/openswan/Makefile
 +++ ../../../openwrt_trunk/feeds/oldpackages/net/openswan/Makefile
 @@ -6,7 +6,7 @@
  #

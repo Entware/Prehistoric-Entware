@@ -1,4 +1,4 @@
---- ../../../downloads/openwrt_trunk-r42803/package/libs/libusb//Makefile	2014-11-07 23:35:24.738654897 +0300
+--- ../../../downloads/openwrt_trunk-r43718/package/libs/libusb//Makefile	2014-11-07 23:35:24.738654897 +0300
 +++ ../../../openwrt_trunk/package/libs/libusb//Makefile	2014-11-26 14:47:31.122886558 +0300
 @@ -38,12 +38,12 @@
  TARGET_CFLAGS += $(FPIC)

@@ -1,6 +1,13 @@
---- ../../../downloads/openwrt_trunk-r42803/package/libs/toolchain/Makefile	2014-12-15 21:16:34.172488271 +0300
-+++ ../../../openwrt_trunk/package/libs/toolchain/Makefile	2014-12-29 08:36:01.557387123 +0300
-@@ -7,18 +7,14 @@
+--- ../../../downloads/openwrt_trunk-r43718/package/libs/toolchain/Makefile	2015-01-05 20:26:58.701408722 +0300
++++ ../../../openwrt_trunk/package/libs/toolchain/Makefile	2015-01-08 11:08:09.831129632 +0300
+@@ -1,5 +1,5 @@
+ #
+-# Copyright (C) 2007-2014 OpenWrt.org
++# Copyright (C) 2007-2012 OpenWrt.org
+ #
+ # This is free software, licensed under the GNU General Public License v2.
+ # See /LICENSE for more information.
+@@ -7,19 +7,15 @@
  
  include $(TOPDIR)/rules.mk
  PKG_NAME:=toolchain
@@ -8,6 +15,7 @@
 +PKG_RELEASE:=8a
  
  PKG_MAINTAINER:=Felix Fietkau <nbd@openwrt.org>
+ PKG_LICENSE:=GPL-3.0-with-GCC-exception
  
  include $(INCLUDE_DIR)/package.mk
  
@@ -22,7 +30,7 @@
  
  define Package/gcc/Default
    SECTION:=libs
-@@ -27,6 +23,62 @@
+@@ -28,6 +24,62 @@
    VERSION:=$(LIBGCC_VERSION)-$(PKG_RELEASE)
  endef
  
@@ -85,7 +93,7 @@
  define Package/libgcc
  $(call Package/gcc/Default)
    TITLE:=GCC support library
-@@ -80,7 +132,6 @@
+@@ -81,7 +133,6 @@
  
  define Package/libssp
  $(call Package/gcc/Default)
@@ -93,7 +101,7 @@
    TITLE:=GCC support library
  endef
  
-@@ -138,7 +189,6 @@
+@@ -139,7 +190,6 @@
    VERSION:=$(LIBC_VERSION)-$(PKG_RELEASE)
    DEPENDS:=+libgcc
    URL:=$(LIBC_URL)
@@ -101,7 +109,55 @@
  endef
  
  
-@@ -544,8 +594,8 @@
+@@ -402,7 +452,7 @@
+ 
+   define Package/libatomic/install
+ 	$(INSTALL_DIR) $(1)/lib
+-	$(if $(CONFIG_GCC_VERSION_4_6)$(CONFIG_TARGET_avr32)$(CONFIG_TARGET_coldfire),,$(CP) $(TOOLCHAIN_DIR)/lib/libatomic.so.* $(1)/lib/)
++	$(if $(CONFIG_TARGET_avr32)$(CONFIG_TARGET_coldfire),,$(CP) $(TOOLCHAIN_DIR)/lib/libatomic.so.* $(1)/lib/)
+   endef
+ 
+   define Package/libgfortran/install
+@@ -427,7 +477,7 @@
+   define Package/eglibc/install
+ 	$(CP) ./eglibc-files/* $(1)/
+ 	rm -f $(1)/etc/localtime
+-	$(LN) /tmp/localtime $(1)/etc/localtime
++	ln -sf /tmp/localtime $(1)/etc/localtime
+ 	$(INSTALL_DIR) $(1)/lib
+ 	$(CP) \
+ 		$(TOOLCHAIN_DIR)/lib/ld*.so.* \
+@@ -452,7 +502,7 @@
+ 		$(TOOLCHAIN_DIR)/lib/libc.so.* \
+ 		$(TOOLCHAIN_DIR)/lib/libuClibc-$(LIBC_SO_VERSION).so \
+ 		$(1)/lib/
+-	for file in libcrypt libdl libm libutil; do \
++	for file in libatomic libcrypt libdl libm libutil; do \
+ 		$(CP) \
+ 			$(TOOLCHAIN_DIR)/lib/$$$$file.so.* \
+ 			$(TOOLCHAIN_DIR)/lib/$$$$file-$(LIBC_SO_VERSION).so \
+@@ -466,17 +516,17 @@
+ 		$(1)/lib/
+   endef
+ 
+-  LD_MUSL_NAME = $(notdir $(firstword $(wildcard $(TOOLCHAIN_DIR)/lib/libc.so*)))
++  LD_MUSL_NAME = $(notdir $(firstword $(wildcard $(TOOLCHAIN_DIR)/lib/ld-musl-*.so*)))
+ 
+   define Package/musl/install
+-	$(INSTALL_DIR) $(1)/lib $(1)/usr/bin
++	$(INSTALL_DIR) $(1)/lib
+ 	$(CP) \
+ 		$(TOOLCHAIN_DIR)/lib/ld-musl-*.so* \
+ 		$(1)/lib/
+ 	$(CP) \
+ 		$(TOOLCHAIN_DIR)/lib/libc.so* \
+ 		$(1)/lib/
+-	$(LN) ../../lib/$(LD_MUSL_NAME) $(1)/usr/bin/ldd
++	$(if $(findstring -sf.so,$(LD_MUSL_NAME)),ln -s $(LD_MUSL_NAME) $(1)/lib/$(subst -sf.so,.so,$(LD_MUSL_NAME)))
+   endef
+ 
+   define Package/libc/install
+@@ -545,8 +595,8 @@
    define Package/libgcc/install
  	for file in $(call qstrip,$(CONFIG_LIBGCC_FILE_SPEC)); do \
  		dir=`dirname $$$$file` ; \
@@ -112,7 +168,7 @@
  	done ; \
  	exit 0
    endef
-@@ -553,16 +603,16 @@
+@@ -554,16 +604,16 @@
    define Package/libgfortran/install
  	for file in $(call qstrip,$(CONFIG_LIBGFORTRAN_FILE_SPEC)); do \
  		dir=`dirname $$$$file` ; \
@@ -133,7 +189,7 @@
  	done ; \
  	exit 0
    endef
-@@ -570,17 +620,18 @@
+@@ -571,17 +621,18 @@
    define Package/libstdcpp/install
  	for file in $(call qstrip,$(CONFIG_LIBSTDCPP_FILE_SPEC)); do \
  		dir=`dirname $$$$file` ; \
@@ -156,7 +212,7 @@
  	done ; \
  	exit 0
    endef
-@@ -588,17 +639,22 @@
+@@ -589,17 +640,22 @@
    define Package/libpthread/install
  	for file in $(call qstrip,$(CONFIG_LIBPTHREAD_FILE_SPEC)); do \
  		dir=`dirname $$$$file` ; \
@@ -183,7 +239,7 @@
  	done ; \
  	exit 0
    endef
-@@ -606,17 +662,41 @@
+@@ -607,17 +663,41 @@
    define Package/ldd/install
  	for file in $(call qstrip,$(CONFIG_LDD_FILE_SPEC)); do \
  		dir=`dirname $$$$file` ; \
@@ -229,7 +285,7 @@
  	done ; \
  	exit 0
    endef
-@@ -634,3 +714,4 @@
+@@ -635,3 +715,4 @@
  $(eval $(call BuildPackage,libgfortran))
  $(eval $(call BuildPackage,ldd))
  $(eval $(call BuildPackage,ldconfig))

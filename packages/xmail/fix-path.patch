@@ -1,4 +1,4 @@
---- ../../../downloads/openwrt_trunk-r42803/feeds/oldpackages/mail/xmail/Makefile	2014-10-15 10:43:09.903917917 +0400
+--- ../../../downloads/openwrt_trunk-r43718/feeds/oldpackages/mail/xmail/Makefile	2014-10-15 10:43:09.903917917 +0400
 +++ ../../../openwrt_trunk/feeds/oldpackages/mail/xmail/Makefile	2014-10-28 15:02:32.851961346 +0300
 @@ -9,7 +9,7 @@
  

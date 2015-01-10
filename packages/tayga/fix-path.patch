@@ -1,4 +1,4 @@
---- ../../../downloads/openwrt_trunk-r42803/feeds/packages/ipv6/tayga/Makefile
+--- ../../../downloads/openwrt_trunk-r43718/feeds/packages/ipv6/tayga/Makefile
 +++ ../../../openwrt_trunk/feeds/packages/ipv6/tayga/Makefile
 @@ -21,7 +21,6 @@
  define Package/tayga

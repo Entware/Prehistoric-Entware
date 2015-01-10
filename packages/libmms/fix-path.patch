@@ -1,4 +1,4 @@
---- ../../../downloads/openwrt_trunk-r42803/feeds/packages/libs/libmms/Makefile
+--- ../../../downloads/openwrt_trunk-r43718/feeds/packages/libs/libmms/Makefile
 +++ ../../../openwrt_trunk/feeds/packages/libs/libmms/Makefile
 @@ -50,19 +50,19 @@
  endef

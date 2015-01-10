@@ -1,0 +1,11 @@
+--- ../../../downloads/openwrt_trunk-r43718/feeds/packages/libs/tinycdb/Makefile	2014-12-15 16:50:13.300093577 +0300
++++ ../../../openwrt_trunk/feeds/packages/libs/tinycdb/Makefile	2014-12-16 12:30:10.374809119 +0300
+@@ -31,7 +31,7 @@
+ endef
+ 
+ define Build/InstallDev
+-        cd $(PKG_BUILD_DIR); $(MAKE) DESTDIR=$(1) prefix=/usr install
++        cd $(PKG_BUILD_DIR); $(MAKE) DESTDIR=$(1) prefix=/opt install
+ endef
+ 
+ 

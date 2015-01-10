@@ -1,7 +1,7 @@
---- ../../../downloads/openwrt_trunk-r42803/package/libs/polarssl/Makefile
-+++ ../../../openwrt_trunk/package/libs/polarssl/Makefile
-@@ -53,15 +53,15 @@
- 	-DENABLE_TESTING:Bool=OFF \
+--- ../../../downloads/openwrt_trunk-r43593/package/libs/polarssl/Makefile	2014-12-10 12:26:33.286951674 +0300
++++ ../../../openwrt_trunk/package/libs/polarssl/Makefile	2014-12-10 12:49:08.662926986 +0300
+@@ -55,15 +55,15 @@
+ 	-DENABLE_PROGRAMS:Bool=OFF \
  
  define Build/InstallDev
 -	$(INSTALL_DIR) $(1)/usr/include

@@ -1,6 +1,6 @@
-diff -urx .svn ../../../downloads/openwrt_trunk-r42803/package/network/services/dropbear/Makefile ../../../openwrt_trunk/package/network/services/dropbear/Makefile
---- ../../../downloads/openwrt_trunk-r42803/package/network/services/dropbear/Makefile	2014-10-06 15:46:24.061250638 +0400
-+++ ../../../openwrt_trunk/package/network/services/dropbear/Makefile	2014-10-07 11:59:09.455925135 +0400
+diff -urx .svn ../../../downloads/openwrt_trunk-r43718/package/network/services/dropbear/Makefile ../../../openwrt_trunk/package/network/services/dropbear/Makefile
+--- ../../../downloads/openwrt_trunk-r43718/package/network/services/dropbear/Makefile	2014-12-15 16:50:13.640093574 +0300
++++ ../../../openwrt_trunk/package/network/services/dropbear/Makefile	2014-12-16 12:39:30.226789389 +0300
 @@ -47,9 +47,9 @@
  endef
  
@@ -31,10 +31,10 @@ diff -urx .svn ../../../downloads/openwrt_trunk-r42803/package/network/services/
 -	$(INSTALL_DIR) $(1)/usr/sbin
 -	$(INSTALL_BIN) $(PKG_BUILD_DIR)/dropbearmulti $(1)/usr/sbin/dropbear
 -	$(INSTALL_DIR) $(1)/usr/bin
--	ln -sf ../sbin/dropbear $(1)/usr/bin/scp
--	ln -sf ../sbin/dropbear $(1)/usr/bin/ssh
--	ln -sf ../sbin/dropbear $(1)/usr/bin/dbclient
--	ln -sf ../sbin/dropbear $(1)/usr/bin/dropbearkey
+-	$(LN) ../sbin/dropbear $(1)/usr/bin/scp
+-	$(LN) ../sbin/dropbear $(1)/usr/bin/ssh
+-	$(LN) ../sbin/dropbear $(1)/usr/bin/dbclient
+-	$(LN) ../sbin/dropbear $(1)/usr/bin/dropbearkey
 -	$(INSTALL_DIR) $(1)/etc/config
 -	$(INSTALL_DATA) ./files/dropbear.config $(1)/etc/config/dropbear
 -	$(INSTALL_DIR) $(1)/etc/init.d
@@ -46,12 +46,19 @@ diff -urx .svn ../../../downloads/openwrt_trunk-r42803/package/network/services/
 +	$(INSTALL_DIR) $(1)/opt/sbin
 +	$(INSTALL_BIN) $(PKG_BUILD_DIR)/dropbearmulti $(1)/opt/sbin/dropbear
 +	$(INSTALL_DIR) $(1)/opt/bin
-+	ln -sf ../sbin/dropbear $(1)/opt/bin/scp
-+	ln -sf ../sbin/dropbear $(1)/opt/bin/ssh
-+	ln -sf ../sbin/dropbear $(1)/opt/bin/dbclient
-+	ln -sf ../sbin/dropbear $(1)/opt/bin/dropbearkey
-+	$(INSTALL_DIR) $(1)/opt/etc/dropbear $(1)/opt/etc/init.d
-+	$(INSTALL_BIN) ./files/S51dropbear $(1)/opt/etc/init.d/
++	$(LN) ../sbin/dropbear $(1)/opt/bin/scp
++	$(LN) ../sbin/dropbear $(1)/opt/bin/ssh
++	$(LN) ../sbin/dropbear $(1)/opt/bin/dbclient
++	$(LN) ../sbin/dropbear $(1)/opt/bin/dropbearkey
++	$(INSTALL_DIR) $(1)/opt/etc/init.d
++	$(INSTALL_BIN) ./files/S51dropbear $(1)/opt/etc/init.d
+ endef
+ 
+ define Package/dropbearconvert/install
+-	$(INSTALL_DIR) $(1)/usr/bin
+-	$(INSTALL_BIN) $(PKG_BUILD_DIR)/dropbearconvert $(1)/usr/bin/dropbearconvert
++	$(INSTALL_DIR) $(1)/opt/bin
++	$(INSTALL_BIN) $(PKG_BUILD_DIR)/dropbearconvert $(1)/opt/bin/dropbearconvert
 +endef
 +
 +define package/network/services/dropbear/postinst
@@ -66,17 +73,10 @@ diff -urx .svn ../../../downloads/openwrt_trunk-r42803/package/network/services/
 +fi
  endef
  
- define Package/dropbearconvert/install
--	$(INSTALL_DIR) $(1)/usr/bin
--	$(INSTALL_BIN) $(PKG_BUILD_DIR)/dropbearconvert $(1)/usr/bin/dropbearconvert
-+	$(INSTALL_DIR) $(1)/opt/bin
-+	$(INSTALL_BIN) $(PKG_BUILD_DIR)/dropbearconvert $(1)/opt/bin/dropbearconvert
- endef
- 
  $(eval $(call BuildPackage,dropbear))
-diff -urx .svn ../../../downloads/openwrt_trunk-r42803/package/network/services/dropbear/patches/100-pubkey_path.patch ../../../openwrt_trunk/package/network/services/dropbear/patches/100-pubkey_path.patch
---- ../../../downloads/openwrt_trunk-r42803/package/network/services/dropbear/patches/100-pubkey_path.patch	2014-10-06 15:46:24.061250638 +0400
-+++ ../../../openwrt_trunk/package/network/services/dropbear/patches/100-pubkey_path.patch	2014-10-07 11:59:09.463925134 +0400
+diff -urx .svn ../../../downloads/openwrt_trunk-r43718/package/network/services/dropbear/patches/100-pubkey_path.patch ../../../openwrt_trunk/package/network/services/dropbear/patches/100-pubkey_path.patch
+--- ../../../downloads/openwrt_trunk-r43718/package/network/services/dropbear/patches/100-pubkey_path.patch	2014-12-15 16:50:13.640093574 +0300
++++ ../../../openwrt_trunk/package/network/services/dropbear/patches/100-pubkey_path.patch	2014-12-15 16:50:19.764093462 +0300
 @@ -28,7 +28,7 @@
  +		/* open the file */
  +		authfile = fopen(filename, "r");

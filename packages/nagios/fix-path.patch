@@ -1,4 +1,4 @@
---- ../../../downloads/openwrt_trunk-r42803/feeds/oldpackages/admin/nagios/Makefile	2014-11-07 23:35:24.431154522 +0300
+--- ../../../downloads/openwrt_trunk-r43718/feeds/oldpackages/admin/nagios/Makefile	2014-11-07 23:35:24.431154522 +0300
 +++ ../../../openwrt_trunk/feeds/oldpackages/admin/nagios/Makefile	2014-11-27 16:06:46.807295448 +0300
 @@ -20,7 +20,7 @@
  define Package/nagios

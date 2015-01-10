@@ -1,6 +1,6 @@
---- ../../../openwrt_trunk/package/utils/e2fsprogs/Makefile.orig
-+++ ../../../openwrt_trunk/package/utils/e2fsprogs/Makefile
-@@ -44,6 +44,7 @@
+--- ../../../downloads/openwrt_trunk-r43593/package/utils/e2fsprogs/Makefile	2014-12-10 12:26:33.854951668 +0300
++++ ../../../openwrt_trunk/package/utils/e2fsprogs/Makefile	2014-12-11 13:05:50.737332102 +0300
+@@ -43,6 +43,7 @@
    SECTION:=libs
    CATEGORY:=Libraries
    TITLE:=ext2/3/4 filesystem library
@@ -8,7 +8,7 @@
  endef
  
  define Package/libext2fs/description
-@@ -96,7 +97,7 @@
+@@ -95,7 +96,7 @@
  		LDFLAGS="" \
  		subst
  	$(MAKE) -C $(PKG_BUILD_DIR) \
@@ -17,16 +17,43 @@
  		BUILDCC="$(HOSTCC)" \
  		DESTDIR="$(PKG_INSTALL_DIR)" \
  		LIBBLKID="$(PKG_BUILD_DIR)/lib/libblkid.a -luuid" \
-@@ -104,49 +105,51 @@
+@@ -103,64 +104,66 @@
+ endef
+ 
+ define Build/InstallDev
+-	$(INSTALL_DIR) $(1)/usr/lib/pkgconfig
+-	$(CP) $(PKG_BUILD_DIR)/lib/ext2fs/ext2fs.pc $(1)/usr/lib/pkgconfig
+-	$(CP) $(PKG_BUILD_DIR)/lib/et/com_err.pc $(1)/usr/lib/pkgconfig
+-
+-	$(INSTALL_DIR) $(1)/usr/lib
+-	$(CP) $(PKG_BUILD_DIR)/lib/libext2fs.{so,a}* $(1)/usr/lib
+-	$(CP) $(PKG_BUILD_DIR)/lib/libcom_err.{so,a}* $(1)/usr/lib
+-
+-	$(INSTALL_DIR) $(1)/usr/include/ext2fs
+-	$(CP) $(PKG_BUILD_DIR)/lib/ext2fs/*.h $(1)/usr/include/ext2fs
+-	$(INSTALL_DIR) $(1)/usr/include/et
+-	$(CP) $(PKG_BUILD_DIR)/lib/et/*.h $(1)/usr/include/et
++	$(INSTALL_DIR) $(1)/opt/lib/pkgconfig
++	$(CP) $(PKG_BUILD_DIR)/lib/ext2fs/ext2fs.pc $(1)/opt/lib/pkgconfig
++	$(CP) $(PKG_BUILD_DIR)/lib/et/com_err.pc $(1)/opt/lib/pkgconfig
++
++	$(INSTALL_DIR) $(1)/opt/lib
++	$(CP) $(PKG_BUILD_DIR)/lib/libext2fs.{so,a}* $(1)/opt/lib
++	$(CP) $(PKG_BUILD_DIR)/lib/libcom_err.{so,a}* $(1)/opt/lib
++
++	$(INSTALL_DIR) $(1)/opt/include/ext2fs
++	$(CP) $(PKG_BUILD_DIR)/lib/ext2fs/*.h $(1)/opt/include/ext2fs
++	$(INSTALL_DIR) $(1)/opt/include/et
++	$(CP) $(PKG_BUILD_DIR)/lib/et/*.h $(1)/opt/include/et
  endef
  
  define Package/e2fsprogs/install
 -	$(INSTALL_DIR) $(1)/usr/sbin
 -	$(INSTALL_BIN) $(PKG_INSTALL_DIR)/usr/sbin/e2fsck $(1)/usr/sbin/
 -	$(INSTALL_BIN) $(PKG_INSTALL_DIR)/usr/sbin/mke2fs $(1)/usr/sbin/
--	ln -sf mke2fs $(1)/usr/sbin/mkfs.ext2
--	ln -sf mke2fs $(1)/usr/sbin/mkfs.ext3
--	ln -sf mke2fs $(1)/usr/sbin/mkfs.ext4
+-	$(LN) mke2fs $(1)/usr/sbin/mkfs.ext2
+-	$(LN) mke2fs $(1)/usr/sbin/mkfs.ext3
+-	$(LN) mke2fs $(1)/usr/sbin/mkfs.ext4
 -	$(INSTALL_DIR) $(1)/usr/lib
 -	$(CP) $(PKG_INSTALL_DIR)/usr/lib/libe2p.so.* $(1)/usr/lib/
 -	$(INSTALL_DIR) $(1)/etc/init.d
@@ -40,9 +67,9 @@
 +	$(INSTALL_DIR) $(1)/opt/bin
 +	$(INSTALL_BIN) $(PKG_INSTALL_DIR)/Apps/opt/bin/chattr $(1)/opt/bin/
 +	$(INSTALL_BIN) $(PKG_INSTALL_DIR)/Apps/opt/bin/lsattr $(1)/opt/bin/
-+	ln -sf mke2fs $(1)/opt/sbin/mkfs.ext2
-+	ln -sf mke2fs $(1)/opt/sbin/mkfs.ext3
-+	ln -sf mke2fs $(1)/opt/sbin/mkfs.ext4
++	$(LN) mke2fs $(1)/opt/sbin/mkfs.ext2
++	$(LN) mke2fs $(1)/opt/sbin/mkfs.ext3
++	$(LN) mke2fs $(1)/opt/sbin/mkfs.ext4
 +	$(INSTALL_DIR) $(1)/opt/lib
 +	$(CP) $(PKG_INSTALL_DIR)/Apps/opt/lib/libe2p.so.* $(1)/opt/lib/
 +	$(INSTALL_DIR) $(1)/opt/etc

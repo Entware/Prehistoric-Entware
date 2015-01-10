@@ -1,4 +1,4 @@
---- ../../../downloads/openwrt_trunk-r42803/feeds/oldpackages/utils/sysstat/Makefile	2014-11-07 23:35:24.482742553 +0300
+--- ../../../downloads/openwrt_trunk-r43718/feeds/oldpackages/utils/sysstat/Makefile	2014-11-07 23:35:24.482742553 +0300
 +++ ../../../openwrt_trunk/feeds/oldpackages/utils/sysstat/Makefile	2014-11-28 15:07:50.063098983 +0300
 @@ -32,28 +32,31 @@
  endef

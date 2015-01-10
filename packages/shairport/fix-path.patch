@@ -1,4 +1,4 @@
---- ../../../downloads/openwrt_trunk-r42803/feeds/packages/multimedia/shairport/Makefile
+--- ../../../downloads/openwrt_trunk-r43718/feeds/packages/multimedia/shairport/Makefile
 +++ ../../../openwrt_trunk/feeds/packages/multimedia/shairport/Makefile
 @@ -49,12 +49,8 @@
  	LDFLAGS="$(TARGET_LDFLAGS) $(LIBS)"

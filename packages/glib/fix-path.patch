@@ -1,4 +1,4 @@
---- ../../../downloads/openwrt_trunk-r42803/feeds/oldpackages/libs/glib/Makefile	2014-11-07 23:35:24.435867677 +0300
+--- ../../../downloads/openwrt_trunk-r43718/feeds/oldpackages/libs/glib/Makefile	2014-11-07 23:35:24.435867677 +0300
 +++ ../../../openwrt_trunk/feeds/oldpackages/libs/glib/Makefile	2014-11-26 15:09:40.248211179 +0300
 @@ -71,18 +71,18 @@
  

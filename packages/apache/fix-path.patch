@@ -1,4 +1,4 @@
---- ../../../downloads/openwrt_trunk-r42803/feeds/packages/net/apache/Makefile	2014-11-07 23:35:24.536148262 +0300
+--- ../../../downloads/openwrt_trunk-r43718/feeds/packages/net/apache/Makefile	2014-11-07 23:35:24.536148262 +0300
 +++ ../../../openwrt_trunk/feeds/packages/net/apache/Makefile	2014-11-28 15:59:37.202935100 +0300
 @@ -9,7 +9,7 @@
  

@@ -1,5 +1,5 @@
-diff -urx .svn ../../../downloads/openwrt_trunk-r42803/feeds/packages/utils/mysql/conf/my.cnf ../../../openwrt_trunk/feeds/packages/utils/mysql/conf/my.cnf
---- ../../../downloads/openwrt_trunk-r42803/feeds/packages/utils/mysql/conf/my.cnf	2014-11-07 23:35:24.540429288 +0300
+diff -urx .svn ../../../downloads/openwrt_trunk-r43718/feeds/packages/utils/mysql/conf/my.cnf ../../../openwrt_trunk/feeds/packages/utils/mysql/conf/my.cnf
+--- ../../../downloads/openwrt_trunk-r43718/feeds/packages/utils/mysql/conf/my.cnf	2014-11-07 23:35:24.540429288 +0300
 +++ ../../../openwrt_trunk/feeds/packages/utils/mysql/conf/my.cnf	2014-11-27 11:53:44.211887700 +0300
 @@ -1,20 +1,20 @@
  [client]
@@ -43,8 +43,8 @@ diff -urx .svn ../../../downloads/openwrt_trunk-r42803/feeds/packages/utils/mysq
  #expire_logs_days	= 10
  #max_binlog_size         = 100M
  #binlog_do_db		= include_database_name
-diff -urx .svn ../../../downloads/openwrt_trunk-r42803/feeds/packages/utils/mysql/Makefile ../../../openwrt_trunk/feeds/packages/utils/mysql/Makefile
---- ../../../downloads/openwrt_trunk-r42803/feeds/packages/utils/mysql/Makefile	2014-11-07 23:35:24.540429288 +0300
+diff -urx .svn ../../../downloads/openwrt_trunk-r43718/feeds/packages/utils/mysql/Makefile ../../../openwrt_trunk/feeds/packages/utils/mysql/Makefile
+--- ../../../downloads/openwrt_trunk-r43718/feeds/packages/utils/mysql/Makefile	2014-11-07 23:35:24.540429288 +0300
 +++ ../../../openwrt_trunk/feeds/packages/utils/mysql/Makefile	2014-11-27 11:40:07.392387653 +0300
 @@ -58,7 +58,7 @@
    DEPENDS+= +libpthread

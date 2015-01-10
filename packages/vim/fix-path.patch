@@ -1,5 +1,5 @@
---- ../../../downloads/openwrt_trunk-r42803/feeds/oldpackages/utils/vim/Makefile	2014-12-15 21:16:18.568479760 +0300
-+++ ../../../openwrt_trunk/feeds/oldpackages/utils/vim/Makefile	2015-01-04 10:28:40.144806617 +0300
+--- ../../../downloads/openwrt_trunk-r43718/feeds/oldpackages/utils/vim/Makefile	2014-12-15 16:50:13.448093575 +0300
++++ ../../../openwrt_trunk/feeds/oldpackages/utils/vim/Makefile	2014-12-17 15:11:48.953053107 +0300
 @@ -58,11 +58,11 @@
  endef
  
@@ -14,7 +14,17 @@
  endef
  
  define Package/vim/description
-@@ -145,9 +145,9 @@
+@@ -98,7 +98,8 @@
+ 	--disable-netbeans \
+ 	--disable-cscope \
+ 	--disable-gpm \
+-	--with-tlib=ncurses
++	--with-tlib=ncurses \
++	--disable-acl
+ 
+ CONFIGURE_VARS += \
+ 	vim_cv_getcwd_broken=no \
+@@ -145,9 +146,9 @@
  
  define Build/Compile/vim-runtime
  	$(MAKE) -C $(PKG_BUILD_DIR)/src DESTDIR="$(PKG_INSTALL_DIR)" installrtbase
@@ -27,7 +37,7 @@
  endef
  
  define Build/Compile
-@@ -158,22 +158,22 @@
+@@ -158,22 +159,22 @@
  endef
  
  define Package/vim/install
@@ -60,7 +70,7 @@
  endef
  
  define Package/vim-help/install
-@@ -181,8 +181,8 @@
+@@ -181,8 +182,8 @@
  endef
  
  define Package/xxd/install

@@ -1,4 +1,4 @@
---- ../../../downloads/openwrt_trunk-r42803/feeds/packages/libs/protobuf-c/Makefile
+--- ../../../downloads/openwrt_trunk-r43718/feeds/packages/libs/protobuf-c/Makefile
 +++ ../../../openwrt_trunk/feeds/packages/libs/protobuf-c/Makefile
 @@ -50,17 +50,17 @@
  endef

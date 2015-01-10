@@ -1,4 +1,4 @@
---- ../../../downloads/openwrt_trunk-r42803/feeds/packages/libs/neon/Makefile
+--- ../../../downloads/openwrt_trunk-r43718/feeds/packages/libs/neon/Makefile
 +++ ../../../openwrt_trunk/feeds/packages/libs/neon/Makefile
 @@ -58,21 +58,21 @@
  	LDFLAGS="$$$$LDFLAGS -lcrypto -lssl"

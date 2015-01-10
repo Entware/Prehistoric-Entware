@@ -1,15 +1,6 @@
---- ../../../downloads/openwrt_trunk-r42803/package/libs/gettext-full/Makefile	2014-12-08 20:56:39.274671399 +0300
-+++ ../../../openwrt_trunk/package/libs/gettext-full/Makefile	2014-12-09 20:25:01.919049372 +0300
-@@ -22,7 +22,7 @@
- PKG_FIXUP:=autoreconf
- PKG_INSTALL:=1
- PKG_BUILD_PARALLEL:=0
--PKG_BUILD_DEPENDS:=gettext-full/host
-+PKG_BUILD_DEPENDS:=libncurses libiconv-full gettext-full/host
- PKG_CHECK_FORMAT_SECURITY:=0
- 
- include $(INCLUDE_DIR)/package.mk
-@@ -51,6 +51,7 @@
+--- ../../../downloads/openwrt_trunk-r43593/package/libs/gettext-full/Makefile	2014-12-10 12:26:33.282951674 +0300
++++ ../../../openwrt_trunk/package/libs/gettext-full/Makefile	2014-12-10 12:49:03.598927078 +0300
+@@ -52,6 +52,7 @@
  	--disable-java \
  	--disable-native-java \
  	--disable-openmp \
@@ -17,7 +8,7 @@
  	--with-included-gettext \
  	--without-libintl-prefix \
  	--without-libexpat-prefix \
-@@ -60,19 +61,19 @@
+@@ -61,19 +62,19 @@
  	--with-included-libxml --without-libxml2-prefix --with-included-libcroco
  
  define Build/InstallDev

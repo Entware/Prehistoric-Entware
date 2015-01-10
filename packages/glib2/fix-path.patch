@@ -1,4 +1,4 @@
---- ../../../downloads/openwrt_trunk-r42803/feeds/packages/libs/glib2/Makefile
+--- ../../../downloads/openwrt_trunk-r43718/feeds/packages/libs/glib2/Makefile
 +++ ../../../openwrt_trunk/feeds/packages/libs/glib2/Makefile
 @@ -60,42 +60,42 @@
  	ac_cv_func_posix_getgrgid_r=yes

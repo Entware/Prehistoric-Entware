@@ -1,6 +1,6 @@
 --- ../../../openwrt_trunk.orig/package/libs/popt/Makefile
 +++ ../../../openwrt_trunk/package/libs/popt/Makefile
-@@ -40,15 +40,15 @@
+@@ -41,15 +41,15 @@
  endef
  
  define Build/InstallDev

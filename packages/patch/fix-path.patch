@@ -1,4 +1,4 @@
---- ../../../downloads/openwrt_trunk-r42803/feeds/packages/devel/patch/Makefile
+--- ../../../downloads/openwrt_trunk-r43718/feeds/packages/devel/patch/Makefile
 +++ ../../../openwrt_trunk/feeds/packages/devel/patch/Makefile
 @@ -41,8 +41,8 @@
  endef

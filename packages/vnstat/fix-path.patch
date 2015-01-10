@@ -1,4 +1,4 @@
---- ../../../downloads/openwrt_trunk-r42803/feeds/packages/net/vnstat/Makefile
+--- ../../../downloads/openwrt_trunk-r43718/feeds/packages/net/vnstat/Makefile
 +++ ../../../openwrt_trunk/feeds/packages/net/vnstat/Makefile
 @@ -56,21 +56,21 @@
  endef

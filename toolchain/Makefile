@@ -110,7 +110,7 @@ $(TOP)/downloads/$(KERNEL_ARCH): $(TOP)/downloads
 $(TOP)/downloads/$(CROSS_ARCH): $(TOP)/downloads
 	[ -f $(TOP)/downloads/$(CROSS_ARCH) ]    || wget $(SRC_MIRROR)/$(CROSS_ARCH) \
 		-O $(TOP)/downloads/$(CROSS_ARCH)
-	@echo "Kernel downloaded"
+	@echo "Crosstool downloaded"
 
 clean:
 	@rm -f .toolchain_prepared

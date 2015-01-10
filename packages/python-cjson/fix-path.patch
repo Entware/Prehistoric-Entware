@@ -1,4 +1,4 @@
---- ../../../downloads/openwrt_trunk-r42803/feeds/oldpackages/lang/python-cjson/Makefile	2014-11-07 23:35:24.502715101 +0300
+--- ../../../downloads/openwrt_trunk-r43718/feeds/oldpackages/lang/python-cjson/Makefile	2014-11-07 23:35:24.502715101 +0300
 +++ ../../../openwrt_trunk/feeds/oldpackages/lang/python-cjson/Makefile	2014-11-28 11:39:40.718705877 +0300
 @@ -35,13 +35,13 @@
  endef

@@ -1,6 +1,6 @@
---- ../../../downloads/openwrt_trunk-r42803/feeds/packages/net/wget/Makefile
-+++ ../../../openwrt_trunk/feeds/packages/net/wget/Makefile
-@@ -73,7 +73,7 @@
+--- ../../../downloads/openwrt_trunk-r43708/feeds/packages/net/wget/Makefile	2014-12-15 12:19:58.020388958 +0300
++++ ../../../openwrt_trunk/feeds/packages/net/wget/Makefile	2014-12-15 12:20:25.240388462 +0300
+@@ -75,7 +75,7 @@
  ifeq ($(BUILD_VARIANT),ssl)
  	CONFIGURE_ARGS+= \
  		--with-ssl=openssl \
@@ -9,7 +9,7 @@
  endif
  
  ifeq ($(BUILD_VARIANT),nossl)
-@@ -83,49 +83,14 @@
+@@ -85,49 +85,14 @@
  endif
  
  define Package/wget/install

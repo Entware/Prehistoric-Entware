@@ -1,4 +1,4 @@
---- ../../../downloads/openwrt_trunk-r42803/feeds/packages/net/miniupnpc/Makefile
+--- ../../../downloads/openwrt_trunk-r43718/feeds/packages/net/miniupnpc/Makefile
 +++ ../../../openwrt_trunk/feeds/packages/net/miniupnpc/Makefile
 @@ -47,26 +47,26 @@
  	OS="Linux" \

@@ -1,4 +1,4 @@
---- ../../../downloads/openwrt_trunk-r42803/feeds/oldpackages/lang/twisted/Makefile	2014-11-07 23:35:24.500458427 +0300
+--- ../../../downloads/openwrt_trunk-r43718/feeds/oldpackages/lang/twisted/Makefile	2014-11-07 23:35:24.500458427 +0300
 +++ ../../../openwrt_trunk/feeds/oldpackages/lang/twisted/Makefile	2014-11-28 15:24:22.567633099 +0300
 @@ -128,8 +128,8 @@
  endef

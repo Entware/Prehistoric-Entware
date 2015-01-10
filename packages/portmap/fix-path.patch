@@ -1,4 +1,4 @@
---- ../../../downloads/openwrt_trunk-r42803/feeds/packages/net/portmap/Makefile
+--- ../../../downloads/openwrt_trunk-r43718/feeds/packages/net/portmap/Makefile
 +++ ../../../openwrt_trunk/feeds/packages/net/portmap/Makefile
 @@ -25,7 +25,7 @@
  define Package/portmap
@@ -9,7 +9,7 @@
    TITLE:=The RPC Portmapper
    URL:=http://neil.brown.name/portmap/
    MAINTAINER:=Peter Wagner <tripolar@gmx.at>
-@@ -39,14 +39,14 @@
+@@ -40,14 +40,14 @@
  MAKE_FLAGS += \
  	CFLAGS="$(TARGET_CFLAGS) $(TARGET_CPPFLAGS) -DHOSTS_ACCESS -DFACILITY=LOG_DAEMON -DIGNORE_SIGCHLD" \
  	RPCUSER="rpc" \

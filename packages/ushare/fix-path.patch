@@ -1,4 +1,4 @@
---- ../../../downloads/openwrt_trunk-r42803/feeds/oldpackages/multimedia/ushare/Makefile	2014-11-07 23:35:24.500458427 +0300
+--- ../../../downloads/openwrt_trunk-r43718/feeds/oldpackages/multimedia/ushare/Makefile	2014-11-07 23:35:24.500458427 +0300
 +++ ../../../openwrt_trunk/feeds/oldpackages/multimedia/ushare/Makefile	2014-11-28 15:33:02.543684370 +0300
 @@ -40,14 +40,14 @@
  	# this is *NOT* GNU configure

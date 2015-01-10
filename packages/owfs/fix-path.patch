@@ -1,4 +1,4 @@
---- ../../../downloads/openwrt_trunk-r42803/feeds/packages/utils/owfs/Makefile
+--- ../../../downloads/openwrt_trunk-r43718/feeds/packages/utils/owfs/Makefile
 +++ ../../../openwrt_trunk/feeds/packages/utils/owfs/Makefile
 @@ -21,6 +21,7 @@
  PKG_INSTALL:=1

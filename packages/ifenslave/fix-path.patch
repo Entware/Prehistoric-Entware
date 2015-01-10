@@ -1,5 +1,5 @@
---- ../../../openwrt_trunk.orig/package/network/utils/ifenslave/Makefile
-+++ ../../../openwrt_trunk/package/network/utils/ifenslave/Makefile
+--- ../../../downloads/openwrt_trunk-r43593/package/network/utils/ifenslave/Makefile	2014-12-10 12:26:33.806951666 +0300
++++ ../../../openwrt_trunk/package/network/utils/ifenslave/Makefile	2014-12-10 12:49:04.274927063 +0300
 @@ -6,9 +6,9 @@
  #
  
@@ -9,9 +9,9 @@
  PKG_NAME:=ifenslave
 +PKG_VERSION:=2.6.22
  PKG_RELEASE:=1
+ PKG_LICENSE:=GPL-2.0
  
- include $(INCLUDE_DIR)/package.mk
-@@ -16,9 +16,7 @@
+@@ -17,9 +17,7 @@
  define Package/ifenslave
    SECTION:=net
    CATEGORY:=Network
@@ -21,7 +21,7 @@
    URL:=http://www.kernel.org
  endef
  
-@@ -30,13 +28,13 @@
+@@ -31,13 +29,13 @@
  endef
  
  define Build/Compile

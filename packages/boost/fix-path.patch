@@ -1,4 +1,4 @@
---- ../../../downloads/openwrt_trunk-r42803/feeds/oldpackages/libs/boost/Makefile	2014-11-07 23:35:24.439626265 +0300
+--- ../../../downloads/openwrt_trunk-r43718/feeds/oldpackages/libs/boost/Makefile	2014-11-07 23:35:24.439626265 +0300
 +++ ../../../openwrt_trunk/feeds/oldpackages/libs/boost/Makefile	2014-12-08 14:32:10.333161461 +0300
 @@ -187,9 +187,9 @@
  

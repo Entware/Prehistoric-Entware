@@ -1,0 +1,176 @@
+Только в ../../../openwrt_trunk/feeds/packages/mail/postfix/files: S69postfix
+diff -urx .svn ../../../downloads/openwrt_trunk-r43718/feeds/packages/mail/postfix/Makefile ../../../openwrt_trunk/feeds/packages/mail/postfix/Makefile
+--- ../../../downloads/openwrt_trunk-r43718/feeds/packages/mail/postfix/Makefile	2015-01-08 13:29:18.151611282 +0300
++++ ../../../openwrt_trunk/feeds/packages/mail/postfix/Makefile	2015-01-09 16:03:55.694330228 +0300
+@@ -62,8 +62,8 @@
+ 	endmenu
+ endef
+ 
+-CCARGS=-DNO_EPOLL -DNO_SIGSETJMP -DNO_NIS
+-AUXLIBS=-L$(STAGING_DIR)/usr/lib
++CCARGS=-DNO_EPOLL -DNO_SIGSETJMP -DNO_NIS -I$(STAGING_DIR)/opt/include
++AUXLIBS=-L$(STAGING_DIR)/opt/lib
+ default_database_type=cdb
+ 
+ ifdef CONFIG_POSTFIX_TLS
+@@ -72,7 +72,7 @@
+ endif
+ 
+ ifdef CONFIG_POSTFIX_SASL
+-  CCARGS+=-DUSE_SASL_AUTH -DUSE_CYRUS_SASL -I$(STAGING_DIR)/usr/include/sasl
++  CCARGS+=-DUSE_SASL_AUTH -DUSE_CYRUS_SASL -I$(STAGING_DIR)/opt/include/sasl
+   AUXLIBS+=-lsasl2
+ endif
+ 
+@@ -98,19 +98,19 @@
+ 
+ CCARGS+=-DDEF_DB_TYPE=\"$(default_database_type)\"
+ 
+-config_directory=/etc/postfix# also add this to postfix init file
+-sample_directory=/etc/postfix
+-command_directory=/usr/sbin
+-daemon_directory=/usr/libexec/postfix
+-data_directory=/usr/var/lib/postfix
+-queue_directory=/usr/var/spool/postfix
+-mail_spool_directory=/usr/var/mail
++config_directory=/Apps/opt/etc/postfix# also add this to postfix init file
++sample_directory=/Apps/opt/etc/postfix
++command_directory=/Apps/opt/sbin
++daemon_directory=/Apps/opt/libexec/postfix
++data_directory=/Apps/opt/var/lib/postfix
++queue_directory=/Apps/opt/var/spool/postfix
++mail_spool_directory=/Apps/opt/var/mail
+ html_directory=no
+ manpage_directory=no
+ readme_directory=no
+-sendmail_path=/usr/sbin/sendmail
+-newaliases_path=/usr/bin/newaliases
+-mailq_path=/usr/bin/mailq
++sendmail_path=/Apps/opt/sbin/sendmail
++newaliases_path=/Apps/opt/bin/newaliases
++mailq_path=/Apps/opt/bin/mailq
+ 
+ ln_suffix=.postfix
+ ln_old_suffix=.old
+@@ -153,75 +153,16 @@
+ endef
+ 
+ define Package/postfix/install
+-	cd $(PKG_BUILD_DIR); $(MAKE) install_root=$(1) command_directory=$(command_directory) daemon_directory=$(daemon_directory) data_directory=$(data_directory) html_directory=$(html_directory) mail_owner=postfix mailq_path=$(mailq_path)$(ln_suffix) manpage_directory=$(manpage_directory) newaliases_path=$(newaliases_path)$(ln_suffix) queue_directory=$(queue_directory) readme_directory=$(readme_directory) sendmail_path=$(sendmail_path)$(ln_suffix) setgid_group=postdrop sample_directory=$(sample_directory) config_directory=$(config_directory) non-interactive-package
+-	$(INSTALL_DIR) $(1)$(mail_spool_directory)
+-	$(INSTALL_DIR) $(1)/etc/init.d/
+-	$(INSTALL_BIN) ./files/postfix.init $(1)/etc/init.d/postfix
+-endef
+-
+-define Package/postfix/postinst
+-#!/bin/sh
+-
+- if [ -f "$${IPKG_INSTROOT}$(sendmail_path)" -a "$$(readlink "$${IPKG_INSTROOT}$(sendmail_path)")" != "$(sendmail_path)$(ln_suffix)" ]; then
+-  mv "$${IPKG_INSTROOT}$(sendmail_path)" "$${IPKG_INSTROOT}$(sendmail_path)$(ln_old_suffix)"
+-  echo "Warning: $${IPKG_INSTROOT}$(sendmail_path) saved as $${IPKG_INSTROOT}$(sendmail_path)$(ln_old_suffix)"
+- fi
+- if [ ! -f "$${IPKG_INSTROOT}$(sendmail_path)" ]; then
+-  ln -s "$${IPKG_INSTROOT}$(sendmail_path)$(ln_suffix)" "$(sendmail_path)"
+- fi
+-
+- if [ -f "$${IPKG_INSTROOT}$(newaliases_path)" -a "$$(readlink "$${IPKG_INSTROOT}$(newaliases_path)")" != "$(newaliases_path)$(ln_suffix)" ]; then
+-  mv "$${IPKG_INSTROOT}$(newaliases_path)" "$${IPKG_INSTROOT}$(newaliases_path)$(ln_old_suffix)"
+-  echo "Warning: $${IPKG_INSTROOT}$(newaliases_path) saved as $${IPKG_INSTROOT}$(newaliases_path)$(ln_old_suffix)"
+- fi
+- if [ ! -f "$${IPKG_INSTROOT}$(newaliases_path)" ]; then
+-  ln -s "$${IPKG_INSTROOT}$(newaliases_path)$(ln_suffix)" "$(newaliases_path)"
+- fi
+-
+- if [ -f "$${IPKG_INSTROOT}$(mailq_path)" -a "$$(readlink "$${IPKG_INSTROOT}$(mailq_path)")" != "$(mailq_path)$(ln_suffix)" ]; then
+-  mv "$${IPKG_INSTROOT}$(mailq_path)" "$${IPKG_INSTROOT}$(mailq_path)$(ln_old_suffix)"
+-  echo "Warning: $${IPKG_INSTROOT}$(mailq_path) saved as $${IPKG_INSTROOT}$(mailq_path)$(ln_old_suffix)"
+- fi
+- if [ ! -f "$(mailq_path)" ]; then
+-  ln -s "$${IPKG_INSTROOT}$(mailq_path)$(ln_suffix)" "$(mailq_path)"
+- fi
+-
+- grep -qc main\.cf "$${IPKG_INSTROOT}"/etc/sysupgrade.conf >/dev/null || echo "$(config_directory)/main.cf" >> "$${IPKG_INSTROOT}"/etc/sysupgrade.conf
+- grep -qc master\.cf "$${IPKG_INSTROOT}"/etc/sysupgrade.conf >/dev/null || echo "$(config_directory)/master.cf" >> "$${IPKG_INSTROOT}"/etc/sysupgrade.conf
+- grep -qc aliases "$${IPKG_INSTROOT}"/etc/sysupgrade.conf >/dev/null || echo "$(config_directory)/aliases" >> "$${IPKG_INSTROOT}"/etc/sysupgrade.conf
+-
+- touch "$${IPKG_INSTROOT}$(config_directory)"/opkg_postinst
+-
+- if [ -z "$${IPKG_INSTROOT}" ]; then
+-  ps | grep "postfix/master" | grep -cvq grep >/dev/null && /etc/init.d/postfix reload
+- fi
+-
+-endef
+-
+-define Package/postfix/prerm
+-#!/bin/sh
+- ps | grep "postfix/master" | grep -cvq grep >/dev/null && postfix stop
+- /etc/init.d/postfix disable
+-endef
+-
+-define Package/postfix/postrm
+-#!/bin/sh
+- rm -f $${IPKG_INSTROOT}$(config_directory)/aliases.cdb $${IPKG_INSTROOT}$(config_directory)/aliases.db $${IPKG_INSTROOT}$(data_directory)/master.lock
+-
+- rm -f "$${IPKG_INSTROOT}$(sendmail_path)" "$${IPKG_INSTROOT}$(newaliases_path)" "$${IPKG_INSTROOT}$(mailq_path)"
+-
+- if [ -f "$${IPKG_INSTROOT}$(sendmail_path)$(ln_old_suffix)" ]; then
+-  mv "$${IPKG_INSTROOT}$(sendmail_path)$(ln_old_suffix)" "$${IPKG_INSTROOT}$(sendmail_path)"
+-  echo "Warning: $${IPKG_INSTROOT}$(sendmail_path) restored from $${IPKG_INSTROOT}$(sendmail_path)$(ln_old_suffix)"
+- fi
+- if [ -f "$${IPKG_INSTROOT}$(newaliases_path)$(ln_old_suffix)" ]; then
+-  mv "$${IPKG_INSTROOT}$(newaliases_path)$(ln_old_suffix)" "$${IPKG_INSTROOT}$(newaliases_path)"
+-  echo "Warning: $${IPKG_INSTROOT}$(newaliases_path) restored from $${IPKG_INSTROOT}$(newaliases_path)$(ln_old_suffix)"
+- fi
+- if [ -f "$${IPKG_INSTROOT}$(mailq_path)$(ln_old_suffix)" ]; then
+-  mv "$${IPKG_INSTROOT}$(mailq_path)$(ln_old_suffix)" "$${IPKG_INSTROOT}$(mailq_path)"
+-  echo "Warning: $${IPKG_INSTROOT}$(mailq_path) restored from $${IPKG_INSTROOT}$(mailq_path)$(ln_old_suffix)"
+- fi
++	cd $(PKG_BUILD_DIR); $(MAKE) install_root=$(PKG_INSTALL_DIR)  command_directory=$(command_directory) daemon_directory=$(daemon_directory) data_directory=$(data_directory) html_directory=$(html_directory) mail_owner=postfix mailq_path=$(mailq_path)$(ln_suffix) manpage_directory=$(manpage_directory) newaliases_path=$(newaliases_path)$(ln_suffix) queue_directory=$(queue_directory) readme_directory=$(readme_directory) sendmail_path=$(sendmail_path)$(ln_suffix) setgid_group=postdrop sample_directory=$(sample_directory) config_directory=$(config_directory) non-interactive-package
++	$(INSTALL_DIR) $(1)/opt
++	cp -rf $(PKG_INSTALL_DIR)/Apps/opt/* $(1)/opt
++	$(RM) $(1)/opt/bin/mailq.postfix
++	$(RM) $(1)/opt/bin/newaliases.postfix
++	ln -s /Apps/opt/sbin/sendmail.postfix $(1)/opt/bin/mailq.postfix
++	ln -s /Apps/opt/sbin/sendmail.postfix $(1)/opt/bin/newaliases.postfix	
++	$(INSTALL_DIR) $(1)/opt/var/mail
++	$(INSTALL_DIR) $(1)/opt/etc/init.d/
++	$(INSTALL_BIN) ./files/S69postfix $(1)/opt/etc/init.d/
+ endef
+ 
+ $(eval $(call BuildPackage,postfix))
+diff -urx .svn ../../../downloads/openwrt_trunk-r43718/feeds/packages/mail/postfix/patches/100-fsstat.patch ../../../openwrt_trunk/feeds/packages/mail/postfix/patches/100-fsstat.patch
+--- ../../../downloads/openwrt_trunk-r43718/feeds/packages/mail/postfix/patches/100-fsstat.patch	2015-01-08 13:29:18.151611282 +0300
++++ ../../../openwrt_trunk/feeds/packages/mail/postfix/patches/100-fsstat.patch	2015-01-08 13:31:25.823635589 +0300
+@@ -6,7 +6,7 @@
+  #define BLOCKS(x)	((x) / fsbuf.block_size)
+  
+ -    fsspace(".", &fsbuf);
+-+    fsspace("/overlay", &fsbuf);
+++    fsspace("/opt", &fsbuf);
+      if (msg_verbose)
+  	msg_info("%s: blocks %lu avail %lu min_free %lu msg_size_limit %lu",
+  		 myname,
+diff -urx .svn ../../../downloads/openwrt_trunk-r43718/feeds/packages/mail/postfix/patches/400-cdb.patch ../../../openwrt_trunk/feeds/packages/mail/postfix/patches/400-cdb.patch
+--- ../../../downloads/openwrt_trunk-r43718/feeds/packages/mail/postfix/patches/400-cdb.patch	2015-01-08 13:29:18.151611282 +0300
++++ ../../../openwrt_trunk/feeds/packages/mail/postfix/patches/400-cdb.patch	2015-01-08 13:31:25.823635589 +0300
+@@ -8,7 +8,7 @@
+ -#define HAS_DB
+  #define NATIVE_DB_TYPE	"hash"
+ -#define ALIAS_DB_MAP	DEF_DB_TYPE ":/etc/aliases"
+-+#define ALIAS_DB_MAP	DEF_DB_TYPE ":/etc/postfix/aliases"
+++#define ALIAS_DB_MAP	DEF_DB_TYPE ":/Apps/opt/etc/postfix/aliases"
+  #ifndef NO_NIS
+  #define HAS_NIS
+  #endif
+diff -urx .svn ../../../downloads/openwrt_trunk-r43718/feeds/packages/mail/postfix/patches/500-crosscompile.patch ../../../openwrt_trunk/feeds/packages/mail/postfix/patches/500-crosscompile.patch
+--- ../../../downloads/openwrt_trunk-r43718/feeds/packages/mail/postfix/patches/500-crosscompile.patch	2015-01-08 13:29:18.151611282 +0300
++++ ../../../openwrt_trunk/feeds/packages/mail/postfix/patches/500-crosscompile.patch	2015-01-08 13:31:25.823635589 +0300
+@@ -8,7 +8,7 @@
+ -    RELEASE=`(uname -r) 2>/dev/null`
+ -    VERSION=`(uname -v) 2>/dev/null`
+ + 0) SYSTEM="Linux"
+-+    RELEASE="3.10.18"
+++    RELEASE="2.6.22"
+ +    VERSION="OpenWRT"
+      case "$VERSION" in
+       dcosx*) SYSTEM=$VERSION;;
