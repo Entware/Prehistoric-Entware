@@ -1,0 +1,31 @@
+--- a/minidlna.c
++++ b/minidlna.c
+@@ -492,7 +492,7 @@
+ 	int options_flag = 0;
+ 	struct sigaction sa;
+ 	const char * presurl = NULL;
+-	const char * optionsfile = "/etc/minidlna.conf";
++	const char * optionsfile = "/opt/etc/minidlna.conf";
+ 	char mac_str[13];
+ 	char *string, *word;
+ 	char *path;
+--- a/upnpglobalvars.c
++++ b/upnpglobalvars.c
+@@ -60,7 +60,7 @@
+ struct runtime_vars_s runtime_vars;
+ uint32_t runtime_flags = INOTIFY_MASK;
+ 
+-const char *pidfilename = "/var/run/minidlna/minidlna.pid";
++const char *pidfilename = "/opt/var/minidlna/minidlna.pid";
+ 
+ char uuidvalue[] = "uuid:00000000-0000-0000-0000-000000000000";
+ char modelname[MODELNAME_MAX_LEN] = ROOTDEV_MODELNAME;
+@@ -79,7 +79,7 @@
+ int sssdp = -1;
+ 
+ /* Path of the Unix socket used to communicate with MiniSSDPd */
+-const char * minissdpdsocketpath = "/var/run/minissdpd.sock";
++const char * minissdpdsocketpath = "/opt/var/minidlna/minissdpd.sock";
+ 
+ /* UPnP-A/V [DLNA] */
+ sqlite3 *db;

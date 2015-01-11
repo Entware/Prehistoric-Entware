@@ -1,5 +1,14 @@
---- ../../../downloads/openwrt_trunk-r43593/feeds/packages/multimedia/minidlna/Makefile	2014-12-10 12:26:32.882951683 +0300
-+++ ../../../openwrt_trunk/feeds/packages/multimedia/minidlna/Makefile	2014-12-12 16:38:12.664825845 +0300
+--- ../../../downloads/openwrt_trunk-r43718/feeds/packages/multimedia/minidlna/Makefile	2014-12-18 13:14:28.411607760 +0300
++++ ../../../openwrt_trunk/feeds/packages/multimedia/minidlna/Makefile	2015-01-11 13:32:02.628908832 +0300
+@@ -9,7 +9,7 @@
+ 
+ PKG_NAME:=minidlna
+ PKG_VERSION:=1.1.4
+-PKG_RELEASE:=1
++PKG_RELEASE:=1a
+ 
+ PKG_SOURCE:=$(PKG_NAME)-$(PKG_VERSION).tar.gz
+ PKG_SOURCE_URL:=@SF/minidlna
 @@ -31,7 +31,7 @@
    TITLE:=UPnP A/V & DLNA Media Server
    URL:=http://minidlna.sourceforge.net/
