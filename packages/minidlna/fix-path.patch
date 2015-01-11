@@ -1,5 +1,5 @@
 --- ../../../downloads/openwrt_trunk-r43718/feeds/packages/multimedia/minidlna/Makefile	2014-12-18 13:14:28.411607760 +0300
-+++ ../../../openwrt_trunk/feeds/packages/multimedia/minidlna/Makefile	2015-01-11 13:32:02.628908832 +0300
++++ ../../../openwrt_trunk/feeds/packages/multimedia/minidlna/Makefile	2015-01-11 14:18:13.232861792 +0300
 @@ -9,7 +9,7 @@
  
  PKG_NAME:=minidlna
@@ -23,7 +23,7 @@
  
  define Package/minidlna/conffiles
 -/etc/config/minidlna
-+/opt/etc/config/minidlna
++/opt/etc/minidlna.conf
  endef
  
  TARGET_CPPFLAGS += \
