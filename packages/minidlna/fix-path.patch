@@ -1,5 +1,14 @@
---- ../../../downloads/openwrt_trunk-r43593/feeds/packages/multimedia/minidlna/Makefile	2014-12-10 12:26:32.882951683 +0300
-+++ ../../../openwrt_trunk/feeds/packages/multimedia/minidlna/Makefile	2014-12-12 16:38:12.664825845 +0300
+--- ../../../downloads/openwrt_trunk-r43719/feeds/packages/multimedia/minidlna/Makefile	2015-01-10 13:05:42.559578105 +0300
++++ ../../../openwrt_trunk/feeds/packages/multimedia/minidlna/Makefile	2015-01-11 10:35:12.563033124 +0300
+@@ -9,7 +9,7 @@
+ 
+ PKG_NAME:=minidlna
+ PKG_VERSION:=1.1.4
+-PKG_RELEASE:=1
++PKG_RELEASE:=1a
+ 
+ PKG_SOURCE:=$(PKG_NAME)-$(PKG_VERSION).tar.gz
+ PKG_SOURCE_URL:=@SF/minidlna
 @@ -31,7 +31,7 @@
    TITLE:=UPnP A/V & DLNA Media Server
    URL:=http://minidlna.sourceforge.net/
@@ -14,7 +23,7 @@
  
  define Package/minidlna/conffiles
 -/etc/config/minidlna
-+/opt/etc/config/minidlna
++/opt/etc/minidlna.conf
  endef
  
  TARGET_CPPFLAGS += \
@@ -39,14 +48,14 @@
  
  MAKE_FLAGS +=\
  	CFLAGS="$(TARGET_CFLAGS) $(TARGET_CPPFLAGS)" \
-@@ -70,16 +69,15 @@
+@@ -70,16 +69,16 @@
  	--with-os-name="OpenWrt Linux" \
  	--with-os-version="$(LINUX_VERSION)" \
  	--with-os-url="http://openwrt.org/" \
 -	--with-db-path="/var/run/minidlna" \
 -	--with-log-path="/var/log" \
-+	--with-db-path="/Apps/opt/var/run/minidlna" \
-+	--with-log-path="/Apps/opt/var/log" \
++	--with-db-path="/Apps/opt/var/minidlna" \
++	--with-log-path="/Apps/opt/var/minidlna" \
  
  define Package/minidlna/install
 -	$(INSTALL_DIR) $(1)/usr/bin
@@ -59,7 +68,8 @@
 +	$(INSTALL_BIN) $(PKG_BUILD_DIR)/minidlnad $(1)/opt/bin/minidlna
 +	$(INSTALL_DIR) $(1)/opt/etc/init.d
 +	$(INSTALL_BIN) ./files/S90minidlna $(1)/opt/etc/init.d
-+	$(INSTALL_CONF) $(PKG_BUILD_DIR)/minidlna.conf $(1)/opt/etc
++	$(INSTALL_CONF) ./files/minidlna.conf $(1)/opt/etc
++	$(INSTALL_DIR) $(1)/opt/var/minidlna
  endef
  
  $(eval $(call BuildPackage,minidlna))
