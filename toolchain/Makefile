@@ -6,7 +6,8 @@
 #
 
 export TOP?=$(shell (cd ../.. && pwd -P))
-TARCH_NAME=toolchain-$(TARGET)-r$(TOOLCHAIN_REVISION).tgz
+ARCH_BITS=$(shell getconf LONG_BIT)
+TARCH_NAME=toolchain-x$(ARCH_BITS)-$(TARGET)-r$(TOOLCHAIN_REVISION).tgz
 include ../config.mk
 
 all: .toolchain_prepared
