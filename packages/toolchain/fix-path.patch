@@ -1,5 +1,5 @@
---- ../../../downloads/openwrt_trunk-r43718/package/libs/toolchain/Makefile	2015-01-05 20:26:58.701408722 +0300
-+++ ../../../openwrt_trunk/package/libs/toolchain/Makefile	2015-01-08 11:08:09.831129632 +0300
+--- ../../../downloads/openwrt_trunk-r43719/package/libs/toolchain/Makefile	2015-01-12 11:57:55.891703818 +0300
++++ ../../../openwrt_trunk/package/libs/toolchain/Makefile	2015-01-14 13:32:52.981804000 +0300
 @@ -1,5 +1,5 @@
  #
 -# Copyright (C) 2007-2014 OpenWrt.org
@@ -12,7 +12,7 @@
  include $(TOPDIR)/rules.mk
  PKG_NAME:=toolchain
 -PKG_RELEASE:=1
-+PKG_RELEASE:=8a
++PKG_RELEASE:=8b
  
  PKG_MAINTAINER:=Felix Fietkau <nbd@openwrt.org>
  PKG_LICENSE:=GPL-3.0-with-GCC-exception
@@ -189,7 +189,7 @@
  	done ; \
  	exit 0
    endef
-@@ -571,17 +621,18 @@
+@@ -571,35 +621,43 @@
    define Package/libstdcpp/install
  	for file in $(call qstrip,$(CONFIG_LIBSTDCPP_FILE_SPEC)); do \
  		dir=`dirname $$$$file` ; \
@@ -210,9 +210,11 @@
 +		$(INSTALL_DIR) $(1)/opt/$$$$dir ; \
 +		$(CP) $(call qstrip,$(CONFIG_LIBC_ROOT_DIR))/$$$$file $(1)/opt/$$$$dir/ ; \
  	done ; \
++	$(INSTALL_DIR) $(1)/opt/etc ; \
++	$(CP) ./files/nsswitch_syno.conf $(1)/opt/etc/nsswitch.conf ; \
  	exit 0
    endef
-@@ -589,17 +640,22 @@
+ 
    define Package/libpthread/install
  	for file in $(call qstrip,$(CONFIG_LIBPTHREAD_FILE_SPEC)); do \
  		dir=`dirname $$$$file` ; \
@@ -239,7 +241,7 @@
  	done ; \
  	exit 0
    endef
-@@ -607,17 +663,41 @@
+@@ -607,17 +665,41 @@
    define Package/ldd/install
  	for file in $(call qstrip,$(CONFIG_LDD_FILE_SPEC)); do \
  		dir=`dirname $$$$file` ; \
@@ -285,7 +287,7 @@
  	done ; \
  	exit 0
    endef
-@@ -635,3 +715,4 @@
+@@ -635,3 +717,4 @@
  $(eval $(call BuildPackage,libgfortran))
  $(eval $(call BuildPackage,ldd))
  $(eval $(call BuildPackage,ldconfig))
