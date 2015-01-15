@@ -48,6 +48,7 @@ all: .toolchain_prepared
 	mkdir -p $(TOP)/cross/$(TARGET)/$(CROSS)/patches/glibc/2.20
 	rm -f $(TOP)/cross/.build/src/.glibc*
 	cp -f ./999-qnapware-locale-dirs-glibc220_$(TARGET).patch $(TOP)/cross/$(TARGET)/$(CROSS)/patches/glibc/2.20
+	cp -f ./888-nsswitch.patch $(TOP)/cross/$(TARGET)/$(CROSS)/patches/glibc/2.20
 	mv -f -T $(TOP)/cross/$(TARGET)/.config.$(TARGET) $(TOP)/cross/$(TARGET)/.config
 	sed -i \
 		-e '/^CT_LOCAL_TARBALLS_DIR/s|=.*|="$(TOP)/downloads"|' \
