@@ -1,5 +1,5 @@
---- ../../../downloads/openwrt_trunk-r43719/package/libs/toolchain/Makefile	2015-01-12 11:57:55.891703818 +0300
-+++ ../../../openwrt_trunk/package/libs/toolchain/Makefile	2015-01-14 13:32:52.981804000 +0300
+--- ../../../downloads/openwrt_trunk-r43719/package/libs/toolchain/Makefile	2015-01-10 13:05:42.783154007 +0300
++++ ../../../openwrt_trunk/package/libs/toolchain/Makefile	2015-01-15 21:28:46.098065511 +0300
 @@ -1,5 +1,5 @@
  #
 -# Copyright (C) 2007-2014 OpenWrt.org
@@ -241,7 +241,7 @@
  	done ; \
  	exit 0
    endef
-@@ -607,17 +665,41 @@
+@@ -607,17 +665,42 @@
    define Package/ldd/install
  	for file in $(call qstrip,$(CONFIG_LDD_FILE_SPEC)); do \
  		dir=`dirname $$$$file` ; \
@@ -252,6 +252,7 @@
  	done ; \
 +	$(SED) 's!/bin/bash!/bin/sh!g' $(1)/opt/bin/ldd ; \
 +	$(SED) 's!/lib/ld-linux.so.3!/Apps/opt/lib/ld-linux.so.3!g' $(1)/opt/bin/ldd ; \
++	$(SED) 's!/lib/ld-linux.so.2!/Apps/opt/lib/ld-linux.so.2!g' $(1)/opt/bin/ldd ; \
  	exit 0
    endef
  
@@ -287,7 +288,7 @@
  	done ; \
  	exit 0
    endef
-@@ -635,3 +717,4 @@
+@@ -635,3 +718,4 @@
  $(eval $(call BuildPackage,libgfortran))
  $(eval $(call BuildPackage,ldd))
  $(eval $(call BuildPackage,ldconfig))
