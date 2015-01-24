@@ -1,0 +1,85 @@
+--- ../../../downloads/openwrt_trunk-r43719/feeds/oldpackages/net/weechat/Makefile	2015-01-10 13:05:42.471095632 +0300
++++ ../../../openwrt_trunk/feeds/oldpackages/net/weechat/Makefile	2015-01-23 15:54:13.000000000 +0300
+@@ -8,14 +8,14 @@
+ include $(TOPDIR)/rules.mk
+ 
+ PKG_NAME:=weechat
+-PKG_VERSION:=0.4.3
+-PKG_RELEASE:=1
++PKG_VERSION:=1.1
++PKG_RELEASE:=4
+ 
+ PKG_SOURCE:=$(PKG_NAME)-$(PKG_VERSION).tar.bz2
+ PKG_SOURCE_URL:=http://www.weechat.org/files/src
+-PKG_MD5SUM:=07500f0d1054691d88f21dd12b7c5871
++PKG_MD5SUM:=5985f29ec2750aff4b89df1832d36b6f
+ 
+-PKG_FIXUP:=autoreconf
++#PKG_FIXUP:=autoreconf
+ 
+ include $(INCLUDE_DIR)/package.mk
+ include $(INCLUDE_DIR)/nls.mk
+@@ -27,32 +27,53 @@
+   CATEGORY:=Network
+   TITLE:=Lightweight IRC client
+   URL:=http://www.weechat.org/
+-  DEPENDS:=+libcurl +libgnutls +libgcrypt +zlib +libncursesw $(ICONV_DEPENDS)
++  DEPENDS:=+libcurl +libgnutls +libgcrypt +zlib +libncursesw +$(INTL_DEPENDS) +libaspell +perl
+ endef
+ 
+ define Package/weechat/description
+  Weechat is fast, light & extensible IRC client.
+ endef
+ 
++#ENABLE_PERL:BOOL=ON
++#PERL_EXECUTABLE:FILEPATH=/usr/bin/perl
++#PERL_INCLUDE_PATH:PATH=PERL_INCLUDE_PATH-NOTFOUND
++#PERL_LIBRARY:FILEPATH=PERL_LIBRARY-NOTFOUND
++#ENABLE_PYTHON:BOOL=ON
++#ENABLE_PYTHON3:BOOL=OFF
++#PYTHON_EXECUTABLE:FILEPATH=/media/qnap/qwork/openwrt_trunk/staging_dir/target-arm-openwrt-linux-gnueabi/host/bin/python2.7
++#PYTHON_INCLUDE_PATH:PATH=PYTHON_INCLUDE_PATH-NOTFOUND
++#PYTHON_LIBRARY:FILEPATH=/media/qnap/qwork/openwrt_trunk/staging_dir/target-arm-openwrt-linux-gnueabi/opt/lib/libpython2.7.a
++
++
+ CMAKE_OPTIONS+= \
+-	-DENABLE_PYTHON=OFF \
+-	-DENABLE_PERL=OFF \
++	-DENABLE_PYTHON=ON \
++	-DENABLE_PYTHON3=OFF \
++	-DPYTHON_EXECUTABLE="$(STAGING_DIR)/host/bin/python2.7" \
++	-DPYTHON_INCLUDE_PATH="$(STAGING_DIR)/opt/include/python2.7" \
++	-DPYTHON_LIBRARY="$(STAGING_DIR)/opt/lib/libpython2.7.a" \
++	-DENABLE_PERL=ON \
++	-DPERL_EXECUTABLE:FILEPATH="$(STAGING_DIR)/host/bin/perl" \
++	-DPERL_INCLUDE_PATH="$(STAGING_DIR)/opt/lib/perl5/5.20/CORE" \
++	-DPERL_LIBRARY="$(STAGING_DIR)/opt/lib/perl5/5.20/CORE/libperl.so" \
+ 	-DENABLE_LUA=OFF \
+ 	-DENABLE_GUILE=OFF \
+ 	-DENABLE_RUBY=OFF \
+ 	-DENABLE_TCL=OFF
+ 
+ TARGET_LDFLAGS += \
+-	-L$(ICONV_PREFIX)/lib -ldl \
+-	-Wl,-rpath-link,$(STAGING_DIR)/usr/lib
++	-L$(ICONV_PREFIX)/lib -ldl -lintl \
++	-Wl,-rpath-link,$(STAGING_DIR)/opt/lib
++
++CONFIGURE_ARGS+= --with-libintl-prefix="$(STAGING_DIR)/opt/lib/libintl-full"
+ 
+ define Package/weechat/install
+-	$(INSTALL_DIR) $(1)/usr/bin
+-	$(INSTALL_BIN) $(PKG_INSTALL_DIR)/usr/bin/weechat-curses $(1)/usr/bin/
+-	$(INSTALL_DIR) $(1)/usr/lib/weechat/plugins
++	$(INSTALL_DIR) $(1)/opt/bin
++	$(INSTALL_BIN) $(PKG_INSTALL_DIR)/Apps/opt/bin/weechat-curses $(1)/opt/bin/
++	ln -sf weechat-curses $(1)/opt/bin/weechat
++	$(INSTALL_DIR) $(1)/opt/lib/weechat/plugins
+ 	$(CP) \
+-		$(PKG_INSTALL_DIR)/usr/lib/weechat/plugins/* \
+-		$(1)/usr/lib/weechat/plugins/
++		$(PKG_INSTALL_DIR)/Apps/opt/lib/weechat/plugins/* \
++		$(1)/opt/lib/weechat/plugins/
+ endef
+ 
+ $(eval $(call BuildPackage,weechat))
