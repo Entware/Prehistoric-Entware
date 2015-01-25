@@ -1,11 +1,11 @@
---- ../../../downloads/openwrt_trunk-r43718/package/libs/ncurses//Makefile	2014-11-07 23:35:24.887033725 +0300
-+++ ../../../openwrt_trunk/package/libs/ncurses//Makefile	2014-11-26 13:34:36.350917375 +0300
+--- ../../../downloads/openwrt_trunk-r43719/package/libs/ncurses/Makefile	2015-01-17 14:40:36.599775476 +0300
++++ ../../../openwrt_trunk/package/libs/ncurses/Makefile	2015-01-25 11:48:48.255914383 +0300
 @@ -9,7 +9,7 @@
  
  PKG_NAME:=ncurses
  PKG_VERSION:=5.9
 -PKG_RELEASE:=1
-+PKG_RELEASE:=1a
++PKG_RELEASE:=1b
  
  PKG_BUILD_DIR:=$(BUILD_DIR)/$(BUILD_VARIANT)/$(PKG_NAME)-$(PKG_VERSION)
  PKG_SOURCE:=$(PKG_NAME)-$(PKG_VERSION).tar.gz
@@ -42,13 +42,13 @@
  	--with-shared \
 -	--with-terminfo-dirs=/usr/share/terminfo \
 -	--with-default-terminfo-dir=/usr/share/terminfo
-+	--with-terminfo-dirs=/opt/share/terminfo \
-+	--with-default-terminfo-dir=/opt/share/terminfo
++	--with-terminfo-dirs=/Apps/opt/share/terminfo \
++	--with-default-terminfo-dir=/Apps/opt/share/terminfo
  
  ifeq ($(HOST_OS),FreeBSD)
  	CONFIGURE_ARGS +=
 -		--with-terminfo=/usr/share/terminfo.db 
-+		--with-terminfo=/opt/share/terminfo.db 
++		--with-terminfo=/Apps/opt/share/terminfo.db 
  endif
  
  ifeq ($(BUILD_VARIANT),libncursesw)
@@ -79,7 +79,7 @@
 -	$(INSTALL_DIR) $(1)/usr/share/terminfo
 -	(cd $(PKG_INSTALL_DIR)/usr/share/terminfo; \
 +	$(INSTALL_DIR) $(1)/opt/share/terminfo
-+	(cd $(PKG_INSTALL_DIR)/opt/share/terminfo; \
++	(cd $(PKG_INSTALL_DIR)/Apps/opt/share/terminfo; \
  		for dir in ??; do \
  			[ -d "$$$$dir" ] || continue; \
  			mv $$$$dir $$$$(echo -ne "\x$$$$dir"); \
@@ -89,9 +89,9 @@
 -		$(INSTALL_DIR) $(1)/usr/share/terminfo/`dirname $$$$file`; \
 -		$(CP) $(PKG_INSTALL_DIR)/usr/share/terminfo/$$$$file \
 -			$(1)/usr/share/terminfo/$$$$file; \
-+	for file in a/ansi d/dumb l/linux r/rxvt r/rxvt-unicode s/screen v/vt100 v/vt102 x/xterm x/xterm-color x/xterm-256color x/xterm-utf8; do \
++	for file in a/ansi d/dumb l/linux r/rxvt r/rxvt-unicode s/screen s/screen-256color v/vt100 v/vt102 x/xterm x/xterm-color x/xterm-256color x/xterm-utf8; do \
 +		$(INSTALL_DIR) $(1)/opt/share/terminfo/`dirname $$$$file`; \
-+		$(CP) $(PKG_INSTALL_DIR)/opt/share/terminfo/$$$$file \
++		$(CP) $(PKG_INSTALL_DIR)/Apps/opt/share/terminfo/$$$$file \
 +			$(1)/opt/share/terminfo/$$$$file; \
  	done
  endif
