@@ -1,6 +1,15 @@
---- ../../../downloads/mipsel-hardfloat/openwrt_trunk-r38800/feeds/oldpackages/libs/gpgme/Makefile
-+++ ../../../openwrt_trunk/feeds/oldpackages/libs/gpgme/Makefile
-@@ -37,33 +37,34 @@
+--- ../../../downloads/openwrt_trunk-r43718/feeds/oldpackages/libs/gpgme/Makefile	2015-01-29 23:18:24.042151521 +0300
++++ ../../../openwrt_trunk/feeds/oldpackages/libs/gpgme/Makefile	2015-01-30 12:33:23.789981799 +0300
+@@ -19,6 +19,8 @@
+ 
+ PKG_USE_MIPS16:=0
+ 
++PKG_BUILD_DEPENDS:=argp-standalone
++
+ include $(INCLUDE_DIR)/package.mk
+ 
+ define Package/libgpgme
+@@ -37,33 +39,34 @@
    for CMS (S/MIME).
  endef
  
