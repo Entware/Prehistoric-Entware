@@ -28,10 +28,10 @@
  #ifndef DATABASEDIR
  #if defined(__FreeBSD__) || defined(__NetBSD__) || defined(__OpenBSD__) || defined(__APPLE__)
 -#define DATABASEDIR "/var/db/vnstat"
-+#define DATABASEDIR "/opt/var/db/vnstat"
++#define DATABASEDIR "/Apps/opt/var/db/vnstat"
  #else
 -#define DATABASEDIR "/var/lib/vnstat"
-+#define DATABASEDIR "/opt/var/lib/vnstat"
++#define DATABASEDIR "/Apps/opt/var/lib/vnstat"
  #endif
  #endif
  #define DATABASEFILE "vnstat.db"
@@ -41,8 +41,8 @@
  #define UPDATEFILEOWNER 1
 -#define LOGFILE "/var/log/vnstat/vnstat.log"
 -#define PIDFILE "/var/run/vnstat/vnstat.pid"
-+#define LOGFILE "/opt/var/log/vnstat/vnstat.log"
-+#define PIDFILE "/opt/var/run/vnstat/vnstat.pid"
++#define LOGFILE "/Apps/opt/var/log/vnstat/vnstat.log"
++#define PIDFILE "/Apps/opt/var/run/vnstat/vnstat.pid"
  
  /* no transparency by default */
  #define TRANSBG 0

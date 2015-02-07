@@ -1,5 +1,14 @@
---- ../../../downloads/openwrt_trunk-r43718/feeds/packages/net/vnstat/Makefile
-+++ ../../../openwrt_trunk/feeds/packages/net/vnstat/Makefile
+--- ../../../downloads/openwrt_trunk-r43719/feeds/packages/net/vnstat/Makefile	2015-01-10 13:05:42.539612718 +0300
++++ ../../../openwrt_trunk/feeds/packages/net/vnstat/Makefile	2015-02-07 15:08:54.707252533 +0300
+@@ -9,7 +9,7 @@
+ 
+ PKG_NAME:=vnstat
+ PKG_VERSION:=1.12
+-PKG_RELEASE:=1
++PKG_RELEASE:=1a
+ 
+ PKG_SOURCE:=$(PKG_NAME)-$(PKG_VERSION).tar.gz
+ PKG_SOURCE_URL:=http://humdi.net/vnstat
 @@ -56,21 +56,21 @@
  endef
  
