@@ -11,7 +11,7 @@
 -			--localstatedir="/usr" \
 -			--sysconfdir="/etc" \
 +			--localstatedir="/Apps/opt" \
-+			--sysconfdir="/Apss/opt/etc" \
++			--sysconfdir="/Apps/opt/etc" \
  		)
  endef
  
