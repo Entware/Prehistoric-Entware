@@ -14,10 +14,10 @@
  			if (debug)
  				printf("Config file: $HOME/.vnstatrc\n");
 -		} else if ((fd=fopen("/etc/vnstat.conf", "r"))!=NULL) {
-+		} else if ((fd=fopen("/opt/etc/vnstat.conf", "r"))!=NULL) {
++		} else if ((fd=fopen("/Apps/opt/etc/vnstat.conf", "r"))!=NULL) {
  			if (debug)
 -				printf("Config file: /etc/vnstat.conf\n");
-+				printf("Config file: /opt/etc/vnstat.conf\n");
++				printf("Config file: /Apps/opt/etc/vnstat.conf\n");
  		} else {
  			if (debug)
  				printf("Config file: none\n");
