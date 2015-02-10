@@ -58,7 +58,7 @@ diff -urx .svn ../../../downloads/openwrt_trunk-r43593/feeds/packages/net/privox
 -	# [ "$${PKG_UPGRADE}" = "1" ] && /etc/init.d/privoxy stop
 -	/etc/init.d/privoxy stop >/dev/null 2>&1
 -	exit 0	# supress errors from stop command
-+/Apps/opt/etc/privoxy/config	# temporary needed if updating from old version
++/opt/etc/privoxy/config	# temporary needed if updating from old version
  endef
  
  define Package/privoxy/install
