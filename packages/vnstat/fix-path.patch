@@ -1,11 +1,11 @@
 --- ../../../downloads/openwrt_trunk-r43719/feeds/packages/net/vnstat/Makefile	2015-01-10 13:05:42.539612718 +0300
-+++ ../../../openwrt_trunk/feeds/packages/net/vnstat/Makefile	2015-02-07 15:08:54.707252533 +0300
++++ ../../../openwrt_trunk/feeds/packages/net/vnstat/Makefile	2015-02-10 12:31:00.181117796 +0300
 @@ -9,7 +9,7 @@
  
  PKG_NAME:=vnstat
  PKG_VERSION:=1.12
 -PKG_RELEASE:=1
-+PKG_RELEASE:=1a
++PKG_RELEASE:=1c
  
  PKG_SOURCE:=$(PKG_NAME)-$(PKG_VERSION).tar.gz
  PKG_SOURCE_URL:=http://humdi.net/vnstat
@@ -36,7 +36,7 @@
  		all
  endef
  
-@@ -80,29 +80,17 @@
+@@ -80,29 +80,19 @@
  endef
  
  define Package/vnstat/install
@@ -56,6 +56,8 @@
 +	$(CP) $(PKG_INSTALL_DIR)/usr/bin/vnstat $(1)/opt/bin/
 +	$(CP) $(PKG_INSTALL_DIR)/usr/sbin/vnstatd $(1)/opt/bin/
 +	$(INSTALL_DIR) $(1)/opt/var/lib/vnstat
++	$(INSTALL_DIR) $(1)/opt/etc
++	$(INSTALL_CONF) ./files/vnstat.conf $(1)/opt/etc/
 +	$(INSTALL_DIR) $(1)/opt/etc/init.d
 +	$(INSTALL_BIN) ./files/S32vnstat $(1)/opt/etc/init.d
  endef
