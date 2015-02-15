@@ -11,6 +11,7 @@ all: .done
 	patch -d $(TOP) -p3 -i $(CURDIR)/fix-path.patch
 	cp -f ./010-cfg-and-db-paths.patch ../../../openwrt_trunk/feeds/packages/net/vnstat/patches/
 	cp -f ./S32vnstat ../../../openwrt_trunk/feeds/packages/net/vnstat/files/
+	cp -f ./vnstat.conf ../../../openwrt_trunk/feeds/packages/net/vnstat/files/
 	@touch $@
 
 clean:
