@@ -1,14 +1,6 @@
---- ../../../downloads/openwrt_trunk-r43718/feeds/telephony/net/asterisk-1.8.x-codec-g729/Makefile	2014-12-15 16:50:13.464093575 +0300
-+++ ../../../openwrt_trunk/feeds/telephony/net/asterisk-1.8.x-codec-g729/Makefile	2014-12-18 12:04:03.011681582 +0300
-@@ -34,19 +34,19 @@
-   TITLE:=G.729 codec for Asterisk open source PBX
- endef
- 
--define Package/asterisk11-codec-g729/description
-+define Package/asterisk18-codec-g729/description
-  Asterisk G.729 codec based on bcg729 implementation.
- endef
- 
+--- ../../../downloads/openwrt_trunk-r44486/feeds/telephony/net/asterisk-1.8.x-codec-g729/Makefile	2015-02-18 12:16:57.776306329 +0300
++++ ../../../openwrt_trunk/feeds/telephony/net/asterisk-1.8.x-codec-g729/Makefile	2015-02-18 16:29:40.032027614 +0300
+@@ -41,12 +41,12 @@
  MAKE_ARGS:= \
  	CC="$(TARGET_CC)" \
  	LD="$(TARGET_LD)" \
@@ -18,7 +10,7 @@
  	DESTDIR="$(PKG_INSTALL_DIR)"
  
  CONFIGURE_ARGS+=\
--	--with-asterisk-includes=$(STAGING_DIR)/usr/include/asterisk-11/include \
+-	--with-asterisk-includes=$(STAGING_DIR)/usr/include/asterisk-1.8/include \
 +	--with-asterisk-includes=$(STAGING_DIR)/opt/include/asterisk-1.8/include \
  	--with-asterisk18 \
  	--with-bcg729 \

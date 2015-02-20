@@ -1,10 +1,9 @@
---- ../../../downloads/openwrt_trunk-r42803/feeds/packages/libs/freetype/Makefile
-+++ ../../../openwrt_trunk/feeds/packages/libs/freetype/Makefile
-@@ -54,24 +54,36 @@
- endef
+--- ../../../downloads/openwrt_trunk-r44486/feeds/packages/libs/freetype/Makefile	2015-02-18 12:16:57.596306332 +0300
++++ ../../../openwrt_trunk/feeds/packages/libs/freetype/Makefile	2015-02-19 14:40:14.006574489 +0300
+@@ -55,29 +55,29 @@
  
  define Build/InstallDev
--	$(INSTALL_DIR) $(2)/bin
+ 	$(INSTALL_DIR) $(2)/bin
 -	$(INSTALL_BIN) $(PKG_INSTALL_DIR)/usr/bin/freetype-config $(2)/bin/
 -	$(INSTALL_DIR) $(1)/usr/include
 -	$(CP) $(PKG_INSTALL_DIR)/usr/include/freetype2 $(1)/usr/include/
@@ -12,32 +11,28 @@
 -	$(CP) $(PKG_INSTALL_DIR)/usr/lib/libfreetype.{a,so*} $(1)/usr/lib/
 -	$(INSTALL_DIR) $(1)/usr/lib/pkgconfig
 -	$(CP) $(PKG_INSTALL_DIR)/usr/lib/pkgconfig/freetype2.pc $(1)/usr/lib/pkgconfig/
-+	$(INSTALL_DIR) $(1)/opt/bin
-+	$(INSTALL_BIN) $(PKG_INSTALL_DIR)/opt/bin/freetype-config $(1)/opt/bin/
++	$(INSTALL_BIN) $(PKG_INSTALL_DIR)/opt/bin/freetype-config $(2)/bin/
 +	$(INSTALL_DIR) $(1)/opt/include
 +	$(CP) $(PKG_INSTALL_DIR)/opt/include/freetype2 $(1)/opt/include/
-+	$(LN) ./freetype2 $(1)/opt/include/freetype
 +	$(INSTALL_DIR) $(1)/opt/lib
 +	$(CP) $(PKG_INSTALL_DIR)/opt/lib/libfreetype.{a,so*} $(1)/opt/lib/
 +	$(INSTALL_DIR) $(1)/opt/lib/pkgconfig
 +	$(CP) $(PKG_INSTALL_DIR)/opt/lib/pkgconfig/freetype2.pc $(1)/opt/lib/pkgconfig/
-+	$(SED) \
-+		's,^\(includedir\)=.*,\1="$$$${prefix}/include/freetype2",g' \
-+		 $(1)/opt/lib/pkgconfig/freetype2.pc
  
  	$(SED) \
 -		's,^\(prefix\|exec_prefix\)=.*,\1="$(STAGING_DIR)/usr",g' \
--		 $(2)/bin/freetype-config
 +		's,^\(prefix\|exec_prefix\)=.*,\1="$(STAGING_DIR)/opt",g' \
-+		 $(1)/opt/bin/freetype-config
-+	$(SED) \
-+		's,^\(includedir\)=.*,\1="$(STAGING_DIR)/opt/include",g' \
-+		 $(1)/opt/bin/freetype-config
-+	$(SED) \
-+		's,^\(libdir\)=.*,\1="$(STAGING_DIR)/opt/lib",g' \
-+		 $(1)/opt/bin/freetype-config
-+	$(INSTALL_DIR) $(2)/bin
-+	$(LN) ../../opt/bin/freetype-config $(2)/bin/
+ 		 $(2)/bin/freetype-config
+ 	$(SED) \
+-		's,/usr/include,$$$${prefix}/include,g' \
+-		 $(1)/usr/lib/pkgconfig/freetype2.pc
++		's,/opt/include,$$$${prefix}/include,g' \
++		 $(1)/opt/lib/pkgconfig/freetype2.pc
+ 	$(SED) \
+-		's,/usr/lib,$$$${exec_prefix}/lib,g' \
+-		 $(1)/usr/lib/pkgconfig/freetype2.pc
++		's,/opt/lib,$$$${exec_prefix}/lib,g' \
++		 $(1)/opt/lib/pkgconfig/freetype2.pc
  endef
  
  

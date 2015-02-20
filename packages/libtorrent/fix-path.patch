@@ -1,21 +1,13 @@
---- ../../../downloads/openwrt_trunk-r42803/feeds/packages/libs/libtorrent/Makefile
-+++ ../../../openwrt_trunk/feeds/packages/libs/libtorrent/Makefile
-@@ -43,11 +43,11 @@
- TARGET_LDFLAGS += $(LIBGCC_S)
- 
- CONFIGURE_ARGS+= \
--	--enable-shared \
--	--enable-static \
- 	--enable-aligned \
+--- ../../../downloads/openwrt_trunk-r44486/feeds/packages/libs/libtorrent/Makefile	2015-02-18 12:16:57.584306331 +0300
++++ ../../../openwrt_trunk/feeds/packages/libs/libtorrent/Makefile	2015-02-19 15:09:18.218542118 +0300
+@@ -49,20 +49,22 @@
  	--disable-debug \
  	--enable-openssl \
+ 	--disable-instrumentation \
+-	--with-zlib=$(STAGING_DIR)/usr
 +	--with-posix-fallocate \
 +	--enable-ipv6 \
- 	--disable-instrumentation
- 
- define Build/Configure
-@@ -56,17 +56,17 @@
- endef
++	--with-zlib=$(STAGING_DIR)/opt
  
  define Build/InstallDev
 -	$(INSTALL_DIR) $(1)/usr/include

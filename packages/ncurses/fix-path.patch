@@ -1,5 +1,5 @@
---- ../../../downloads/openwrt_trunk-r42803/package/libs/ncurses/Makefile
-+++ ../../../openwrt_trunk/package/libs/ncurses/Makefile
+--- ../../../downloads/openwrt_trunk-r44486/package/libs/ncurses/Makefile	2015-02-18 12:16:57.820306328 +0300
++++ ../../../openwrt_trunk/package/libs/ncurses/Makefile	2015-02-19 16:08:23.494479553 +0300
 @@ -9,7 +9,7 @@
  
  PKG_NAME:=ncurses
@@ -9,7 +9,7 @@
  
  PKG_BUILD_DIR:=$(BUILD_DIR)/$(BUILD_VARIANT)/$(PKG_NAME)-$(PKG_VERSION)
  PKG_SOURCE:=$(PKG_NAME)-$(PKG_VERSION).tar.gz
-@@ -49,27 +49,37 @@
+@@ -52,13 +52,24 @@
    VARIANT:=libncursesw
  endef
  
@@ -34,9 +34,8 @@
 +	--disable-rpath-hack \
  	--without-ada \
  	--without-debug \
- 	--without-profile \
--	--without-progs \
- 	--disable-big-core \
+ 	--without-manpages \
+@@ -69,8 +80,8 @@
  	--disable-home-terminfo \
  	--with-normal \
  	--with-shared \
@@ -45,6 +44,10 @@
 +	--with-terminfo-dirs=/opt/share/terminfo \
 +	--with-default-terminfo-dir=/opt/share/terminfo
  
+ HOST_CONFIGURE_ARGS += \
+ 	--without-cxx \
+@@ -85,7 +96,7 @@
+ 
  ifeq ($(HOST_OS),FreeBSD)
  	CONFIGURE_ARGS +=
 -		--with-terminfo=/usr/share/terminfo.db 
@@ -52,7 +55,7 @@
  endif
  
  ifeq ($(BUILD_VARIANT),libncursesw)
-@@ -82,73 +92,86 @@
+@@ -98,70 +109,82 @@
  	BUILD_CC="$(HOSTCC)" \
  	HOSTCC="$(HOSTCC)" \
  	HOSTCCFLAGS="" \
@@ -163,6 +166,7 @@
  endef
  endif
  
+@@ -179,3 +202,4 @@
  $(eval $(call BuildPackage,terminfo))
  $(eval $(call BuildPackage,libncurses))
  $(eval $(call BuildPackage,libncursesw))

@@ -1,24 +1,28 @@
---- ../../../downloads/openwrt_trunk-r43593/package/libs/polarssl/Makefile	2014-12-10 12:26:33.286951674 +0300
-+++ ../../../openwrt_trunk/package/libs/polarssl/Makefile	2014-12-10 12:49:08.662926986 +0300
-@@ -55,15 +55,15 @@
+--- ../../../downloads/openwrt_trunk-r44486/package/libs/polarssl/Makefile	2015-02-18 12:16:57.840306327 +0300
++++ ../../../openwrt_trunk/package/libs/polarssl/Makefile	2015-02-19 17:13:01.738411331 +0300
+@@ -55,17 +55,17 @@
  	-DENABLE_PROGRAMS:Bool=OFF \
  
  define Build/InstallDev
 -	$(INSTALL_DIR) $(1)/usr/include
 -	$(CP) $(PKG_INSTALL_DIR)/usr/include/polarssl $(1)/usr/include/
 -	$(INSTALL_DIR) $(1)/usr/lib
--	$(CP) $(PKG_INSTALL_DIR)/usr/lib/libpolarssl.so* $(1)/usr/lib/
+-	$(CP) $(PKG_INSTALL_DIR)/usr/lib/libmbedtls.so* $(1)/usr/lib/
+-	$(LN) libmbedtls.so $(1)/usr/lib/libpolarssl.so
 +	$(INSTALL_DIR) $(1)/opt/include
 +	$(CP) $(PKG_INSTALL_DIR)/opt/include/polarssl $(1)/opt/include/
 +	$(INSTALL_DIR) $(1)/opt/lib
-+	$(CP) $(PKG_INSTALL_DIR)/opt/lib/libpolarssl.so* $(1)/opt/lib/
++	$(CP) $(PKG_INSTALL_DIR)/opt/lib/libmbedtls.so* $(1)/opt/lib/
++	$(LN) libmbedtls.so $(1)/opt/lib/libpolarssl.so
  endef
  
  define Package/libpolarssl/install
 -	$(INSTALL_DIR) $(1)/usr/lib
--	$(CP) $(PKG_INSTALL_DIR)/usr/lib/libpolarssl.so* $(1)/usr/lib/
+-	$(CP) $(PKG_INSTALL_DIR)/usr/lib/libmbedtls.so* $(1)/usr/lib/
+-	$(LN) libmbedtls.so $(1)/usr/lib/libpolarssl.so
 +	$(INSTALL_DIR) $(1)/opt/lib
-+	$(CP) $(PKG_INSTALL_DIR)/opt/lib/libpolarssl.so* $(1)/opt/lib/
++	$(CP) $(PKG_INSTALL_DIR)/opt/lib/libmbedtls.so* $(1)/opt/lib/
++	$(LN) libmbedtls.so $(1)/opt/lib/libpolarssl.so
  endef
  
  $(eval $(call BuildPackage,libpolarssl))

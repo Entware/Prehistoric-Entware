@@ -1,11 +1,11 @@
---- ../../../downloads/mipsel-hardfloat/openwrt_trunk-r40423/package/boot/kexec-tools/Makefile
-+++ ../../../openwrt_trunk/package/boot/kexec-tools/Makefile
+--- ../../../downloads/openwrt_trunk-r44497/package/boot/kexec-tools/Makefile	2015-02-20 12:39:14.437134230 +0300
++++ ../../../openwrt_trunk/package/boot/kexec-tools/Makefile	2015-02-20 13:06:02.881105845 +0300
 @@ -24,7 +24,7 @@
  define Package/kexec-tools
    SECTION:=utils
    CATEGORY:=Utilities
--  DEPENDS:=@armeb||@arm||@i386||@powerpc64||@mipsel||@mips +KEXEC_ZLIB:zlib
-+  DEPENDS:=@armeb||@arm||@i386||@powerpc64||@mipsel||@mips +KEXEC_ZLIB:zlib +liblzma
+-  DEPENDS:=@KERNEL_KEXEC @armeb||@arm||@i386||@powerpc64||@mipsel||@mips +KEXEC_ZLIB:zlib +KEXEC_LZMA:liblzma
++  DEPENDS:=+KEXEC_ZLIB:zlib +KEXEC_LZMA:liblzma
    TITLE:=Kernel boots kernel
    URL:=http://kernel.org/pub/linux/kernel/people/horms/kexec-tools/
    MAINTAINER:=Florian Fainelli <florian@openwrt.org>
@@ -35,7 +35,7 @@
 +		--libexecdir=/opt/lib \
 +		--sysconfdir=/opt/etc \
  		$(if $(CONFIG_KEXEC_ZLIB),--with,--without)-zlib \
- 		--without-lzma
+ 		$(if $(CONFIG_KEXEC_LZMA),--with,--without)-lzma
  
 @@ -71,17 +71,13 @@
  endef

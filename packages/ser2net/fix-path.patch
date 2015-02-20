@@ -1,6 +1,6 @@
---- ../../../openwrt_trunk.orig/feeds/oldpackages/net/ser2net/Makefile
-+++ ../../../openwrt_trunk/feeds/oldpackages/net/ser2net/Makefile
-@@ -35,16 +35,16 @@
+--- ../../../downloads/openwrt_trunk-r44486/feeds/packages/net/ser2net/Makefile	2015-02-18 12:16:57.612306332 +0300
++++ ../../../openwrt_trunk/feeds/packages/net/ser2net/Makefile	2015-02-20 11:41:04.341198210 +0300
+@@ -37,14 +37,14 @@
  endef
  
  define Package/ser2net/conffiles
@@ -8,15 +8,13 @@
 +/opt/etc/ser2net.conf
  endef
  
- # uses GNU configure
- 
  define Package/ser2net/install
 -	$(INSTALL_DIR) $(1)/usr/sbin
--	$(INSTALL_BIN) $(PKG_INSTALL_DIR)/usr/sbin/ser2net $(1)/usr/sbin/
+-	$(CP) $(PKG_INSTALL_DIR)/usr/sbin/ser2net $(1)/usr/sbin/
 -	$(INSTALL_DIR) $(1)/etc
 -	$(INSTALL_CONF) $(PKG_BUILD_DIR)/ser2net.conf $(1)/etc/
 +	$(INSTALL_DIR) $(1)/opt/sbin
-+	$(INSTALL_BIN) $(PKG_INSTALL_DIR)/opt/sbin/ser2net $(1)/opt/sbin/
++	$(CP) $(PKG_INSTALL_DIR)/opt/sbin/ser2net $(1)/opt/sbin/
 +	$(INSTALL_DIR) $(1)/opt/etc
 +	$(INSTALL_CONF) $(PKG_BUILD_DIR)/ser2net.conf $(1)/opt/etc/
  endef

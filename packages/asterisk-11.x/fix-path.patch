@@ -1,5 +1,5 @@
---- ../../../downloads/openwrt_trunk-r43593/feeds/telephony/net/asterisk-11.x/Makefile	2014-12-10 12:26:33.210951677 +0300
-+++ ../../../openwrt_trunk/feeds/telephony/net/asterisk-11.x/Makefile	2014-12-10 12:48:51.558927296 +0300
+--- ../../../downloads/openwrt_trunk-r44486/feeds/telephony/net/asterisk-11.x/Makefile	2015-02-18 12:16:57.776306329 +0300
++++ ../../../openwrt_trunk/feeds/telephony/net/asterisk-11.x/Makefile	2015-02-18 16:18:17.040037377 +0300
 @@ -24,28 +24,28 @@
  include $(INCLUDE_DIR)/package.mk
  
@@ -39,7 +39,7 @@
  endef
  
  define BuildAsterisk11Module
-@@ -101,24 +101,24 @@
+@@ -101,23 +101,23 @@
  endef
  
  define Package/asterisk11/conffiles
@@ -59,7 +59,6 @@
 -/etc/asterisk/sip_notify.conf
 -/etc/asterisk/udptl.conf
 -/etc/asterisk/users.conf
--/etc/default/asterisk
 -/etc/init.d/asterisk
 +/opt/etc/asterisk/asterisk.conf
 +/opt/etc/asterisk/acl.conf
@@ -77,17 +76,14 @@
 +/opt/etc/asterisk/sip_notify.conf
 +/opt/etc/asterisk/udptl.conf
 +/opt/etc/asterisk/users.conf
-+/opt/etc/default/asterisk
 +/opt/etc/init.d/asterisk
  endef
  
  AST_CFG_FILES:= \
-@@ -135,10 +135,10 @@
+@@ -134,8 +134,10 @@
  $(call Package/asterisk11/install/sbin,$(1),astgenkey)
  $(foreach m,$(AST_CFG_FILES),$(call Package/asterisk11/install/conffile,$(1),$(m));)
  $(foreach m,$(AST_EMB_MODULES),$(call Package/asterisk11/install/module,$(1),$(m));)
--	$(INSTALL_DIR) $(1)/etc/default
--	$(INSTALL_DATA) ./files/asterisk.default $(1)/etc/default/asterisk
 -	$(INSTALL_DIR) $(1)/etc/init.d
 -	$(INSTALL_BIN) ./files/asterisk.init $(1)/etc/init.d/asterisk
 +	$(INSTALL_DIR) $(1)/opt/var/{run,log,spool}/asterisk
@@ -97,7 +93,7 @@
  endef
  
  define Package/asterisk11-sounds
-@@ -153,15 +153,15 @@
+@@ -150,16 +152,16 @@
  endef
  
  define Package/asterisk11-sounds/install
@@ -111,6 +107,17 @@
 +	rm -f $(1)/opt/lib/asterisk/sounds/conf-*
  endef
  
+ ifneq ($(SDK)$(CONFIG_PACKAGE_asterisk11-chan-dahdi),)
+   CONFIGURE_ARGS+= \
+-	--with-dahdi="$(STAGING_DIR)/usr" \
+-	--with-tonezone="$(STAGING_DIR)/usr"
++	--with-dahdi="$(STAGING_DIR)/opt" \
++	--with-tonezone="$(STAGING_DIR)/opt"
+ else
+   CONFIGURE_ARGS+= \
+ 	--without-dahdi \
+@@ -168,7 +170,7 @@
+ 
  ifneq ($(SDK)$(CONFIG_PACKAGE_asterisk11-curl),)
    CONFIGURE_ARGS+= \
 -	--with-libcurl="$(STAGING_DIR)/usr"
@@ -118,7 +125,7 @@
  else
    CONFIGURE_ARGS+= \
  	--without-libcurl
-@@ -177,7 +177,7 @@
+@@ -184,7 +186,7 @@
  
  ifneq ($(SDK)$(CONFIG_PACKAGE_asterisk11-pbx-lua),)
    CONFIGURE_ARGS+= \
@@ -127,7 +134,7 @@
    TARGET_LDFLAGS+=-ldl -lcrypt
  else
    CONFIGURE_ARGS+= \
-@@ -186,7 +186,7 @@
+@@ -193,7 +195,7 @@
  
  ifneq ($(SDK)$(CONFIG_PACKAGE_asterisk11-pgsql),)
    CONFIGURE_ARGS+= \
@@ -136,7 +143,7 @@
  else
    CONFIGURE_ARGS+= \
  	--without-postgres
-@@ -194,7 +194,7 @@
+@@ -201,7 +203,7 @@
  
  ifneq ($(SDK)$(CONFIG_PACKAGE_asterisk11-res-fax-spandsp),)
    CONFIGURE_ARGS+= \
@@ -145,7 +152,7 @@
  else
    CONFIGURE_ARGS+= \
  	--without-spandsp
-@@ -202,7 +202,7 @@
+@@ -209,7 +211,7 @@
  
  ifneq ($(SDK)$(CONFIG_PACKAGE_asterisk11-res-srtp),)
    CONFIGURE_ARGS+= \
@@ -154,7 +161,7 @@
  else
    CONFIGURE_ARGS+= \
  	--without-srtp
-@@ -210,7 +210,7 @@
+@@ -217,7 +219,7 @@
  
  ifneq ($(SDK)$(CONFIG_PACKAGE_asterisk11-res-xmpp),)
    CONFIGURE_ARGS+= \
@@ -163,7 +170,7 @@
    SITE_VARS+= \
  	ac_cv_lib_iksemel_iks_start_sasl=yes
  else
-@@ -219,7 +219,7 @@
+@@ -226,7 +228,7 @@
  endif
  
  EXTRA_CFLAGS+= $(TARGET_CPPFLAGS)
@@ -172,7 +179,7 @@
  CONFIGURE_ARGS+= \
  	--build=$(GNU_HOST_NAME) \
  	--host=$(GNU_TARGET_NAME) \
-@@ -235,27 +235,27 @@
+@@ -241,26 +243,26 @@
  	--without-libxml2 \
  	--without-misdn \
  	--without-nbs \
@@ -195,7 +202,6 @@
  	--without-tds \
  	--without-termcap \
  	--without-tinfo \
- 	--without-tonezone \
 -	--with-uuid="$(STAGING_DIR)/usr" \
 +	--with-uuid="$(STAGING_DIR)/opt" \
  	--without-vorbis \
@@ -205,7 +211,7 @@
  	--with-sounds-cache="$(DL_DIR)" \
  	--disable-xmldoc 
  
-@@ -284,10 +284,10 @@
+@@ -289,10 +291,10 @@
  	ASTCFLAGS="$(EXTRA_CFLAGS) -DLOW_MEMORY"
  	ASTLDFLAGS="$(EXTRA_LDFLAGS)"
  	$(MAKE) -C "$(PKG_BUILD_DIR)" \
@@ -220,7 +226,7 @@
  		NOISY_BUILD="yes" \
  		DEBUG="" \
  		OPTIMIZE="" \
-@@ -296,9 +296,9 @@
+@@ -301,9 +303,9 @@
  endef
  
  define Build/InstallDev
@@ -233,12 +239,13 @@
  endef
  
  $(eval $(call BuildPackage,asterisk11))
-@@ -320,13 +320,13 @@
+@@ -325,14 +327,14 @@
  
  $(eval $(call BuildAsterisk11Module,app-alarmreceiver,Alarm receiver,Central Station Alarm receiver for Ademco Contact ID,,,,app_alarmreceiver,))
  $(eval $(call BuildAsterisk11Module,app-authenticate,Authenticate commands,Execute arbitrary authenticate commands,,,,app_authenticate,))
 -$(eval $(call BuildAsterisk11Module,app-confbridge,ConfBridge,Software bridge for multi-party audio conferencing,,/etc/asterisk/confbridge.conf,confbridge.conf,app_confbridge bridge_builtin_features bridge_multiplexed bridge_simple bridge_softmix chan_bridge,))
 +$(eval $(call BuildAsterisk11Module,app-confbridge,ConfBridge,Software bridge for multi-party audio conferencing,,/opt/etc/asterisk/confbridge.conf,confbridge.conf,app_confbridge bridge_builtin_features bridge_multiplexed bridge_simple bridge_softmix chan_bridge,))
+ $(eval $(call BuildAsterisk11Module,app-dahdiras,Execute an ISDN RAS,support for executing an ISDN RAS using DAHDI,+asterisk11-chan-dahdi,,,app_dahdiras,))
  $(eval $(call BuildAsterisk11Module,app-directed_pickup,Directed call pickup,support for directed call pickup,,,,app_directed_pickup,))
  $(eval $(call BuildAsterisk11Module,app-disa,Direct Inward System Access,Direct Inward System Access,,,,app_disa,))
  $(eval $(call BuildAsterisk11Module,app-exec,Exec application,support for application execution,,,,app_exec,))
@@ -249,7 +256,7 @@
  $(eval $(call BuildAsterisk11Module,app-mixmonitor,Record a call and mix the audio,record a call and mix the audio during the recording,,,,app_mixmonitor,))
  $(eval $(call BuildAsterisk11Module,app-originate,Originate a call,originating an outbound call and connecting it to a specified extension or application,,,,app_originate,))
  $(eval $(call BuildAsterisk11Module,app-playtones,Playtones application,play a tone list,,,,app_playtones,))
-@@ -342,7 +342,7 @@
+@@ -348,7 +350,7 @@
  $(eval $(call BuildAsterisk11Module,app-verbose,Verbose logging,Verbose logging application,,,,app_verbose,))
  $(eval $(call BuildAsterisk11Module,app-waituntil,Sleep,support sleeping until the given epoch,,,,app_waituntil,))
  $(eval $(call BuildAsterisk11Module,app-while,While loop,a while loop implementation,,,,app_while,))
@@ -258,10 +265,11 @@
  $(eval $(call BuildAsterisk11Module,cdr-csv,Provides CDR CSV,Call Detail Record with CSV support,,,,cdr_csv,))
  $(eval $(call BuildAsterisk11Module,cdr-sqlite3,Provides CDR SQLITE3,Call Detail Record with SQLITE3 support,libsqlite3,,,cdr_sqlite3_custom,))
  $(eval $(call BuildAsterisk11Module,codec-a-mu,Alaw to ulaw translation,translation between alaw and ulaw codecs,,,,codec_a_mu,))
-@@ -378,30 +378,30 @@
+@@ -385,32 +387,32 @@
  $(eval $(call BuildAsterisk11Module,func-uri,URI encoding and decoding,Encodes and decodes URI-safe strings,,,,func_uri,))
  $(eval $(call BuildAsterisk11Module,func-vmcount,vmcount dialplan,a vmcount dialplan function,,,,func_vmcount,))
  $(eval $(call BuildAsterisk11Module,chan-agent,Agents proxy channel,an implementation of agents proxy channel,,,,chan_agent,))
+-$(eval $(call BuildAsterisk11Module,chan-dahdi,DAHDI channel,DAHDI channel support,+dahdi-tools-libtonezone +kmod-dahdi,/etc/asterisk/chan_dahdi.conf,chan_dahdi.conf,chan_dahdi,))
 -$(eval $(call BuildAsterisk11Module,chan-iax2,IAX2 channel,IAX support,+asterisk11-res-timing-timerfd,/etc/asterisk/iax.conf /etc/asterisk/iaxprov.conf,iax.conf iaxprov.conf,chan_iax2,))
 -$(eval $(call BuildAsterisk11Module,chan-motif,Jingle channel,Motif Jingle Channel Driver,+asterisk11-res-xmpp,/etc/asterisk/motif.conf /etc/asterisk/jingle.conf,motif.conf jingle.conf,chan_motif,))
 -$(eval $(call BuildAsterisk11Module,chan-mgcp,MGCP channel,the channel chan_mgcp,,/etc/asterisk/mgcp.conf,mgcp.conf,chan_mgcp,))
@@ -271,6 +279,7 @@
 -$(eval $(call BuildAsterisk11Module,mysql,MySQL,MySQL support,+libmysqlclient,/etc/asterisk/res_config_mysql.conf,res_config_mysql.conf,res_config_mysql,))
 -$(eval $(call BuildAsterisk11Module,odbc,ODBC,ODBC support,+libpthread +libc +unixodbc,/etc/asterisk/cdr_adaptive_odbc.conf /etc/asterisk/cdr_odbc.conf /etc/asterisk/cel_odbc.conf /etc/asterisk/func_odbc.conf /etc/asterisk/res_odbc.conf,cdr_adaptive_odbc cdr_odbc cel_odbc func_odbc res_odbc,cdr_adaptive_odbc cdr_odbc cel_odbc func_odbc res_config_odbc res_odbc,))
 -$(eval $(call BuildAsterisk11Module,pgsql,PostgreSQL,PostgreSQL support,+libpq,/etc/asterisk/cel_pgsql.conf /etc/asterisk/cdr_pgsql.conf /etc/asterisk/res_pgsql.conf,cel_pgsql.conf cdr_pgsql.conf res_pgsql.conf,cel_pgsql cdr_pgsql res_config_pgsql,))
++$(eval $(call BuildAsterisk11Module,chan-dahdi,DAHDI channel,DAHDI channel support,+dahdi-tools-libtonezone +kmod-dahdi,/opt/etc/asterisk/chan_dahdi.conf,chan_dahdi.conf,chan_dahdi,))
 +$(eval $(call BuildAsterisk11Module,chan-iax2,IAX2 channel,IAX support,+asterisk11-res-timing-timerfd,/opt/etc/asterisk/iax.conf /opt/etc/asterisk/iaxprov.conf,iax.conf iaxprov.conf,chan_iax2,))
 +$(eval $(call BuildAsterisk11Module,chan-motif,Jingle channel,Motif Jingle Channel Driver,+asterisk11-res-xmpp,/opt/etc/asterisk/motif.conf /opt/etc/asterisk/jingle.conf,motif.conf jingle.conf,chan_motif,))
 +$(eval $(call BuildAsterisk11Module,chan-mgcp,MGCP channel,the channel chan_mgcp,,/opt/etc/asterisk/mgcp.conf,mgcp.conf,chan_mgcp,))
@@ -300,6 +309,7 @@
 -$(eval $(call BuildAsterisk11Module,res-musiconhold,MOH,Music On Hold support,,/etc/asterisk/musiconhold.conf,musiconhold.conf,res_musiconhold,))
 +$(eval $(call BuildAsterisk11Module,res-musiconhold,MOH,Music On Hold support,,/opt/etc/asterisk/musiconhold.conf,musiconhold.conf,res_musiconhold,))
  $(eval $(call BuildAsterisk11Module,res-srtp,SRTP,Secure RTP,+libsrtp,,,res_srtp,))
+ $(eval $(call BuildAsterisk11Module,res-timing-dahdi,DAHDI Timing Interface,,+asterisk11-chan-dahdi,,,res_timing_dahdi,))
  $(eval $(call BuildAsterisk11Module,res-timing-pthread,pthread Timing Interface,,,,,res_timing_pthread,))
  $(eval $(call BuildAsterisk11Module,res-timing-timerfd,Timerfd Timing Interface,,,,,res_timing_timerfd,))
 -$(eval $(call BuildAsterisk11Module,res-xmpp,XMPP client and component module,reference module for interfacting Asterisk directly as a client or component with XMPP server,+libiksemel +libopenssl,/etc/asterisk/xmpp.conf,xmpp.conf,res_xmpp,))

@@ -6,7 +6,7 @@
 #
 
 export TOOLCHAIN_REVISION=5621
-export OPENWRT_REVISION=43718
+export OPENWRT_REVISION=44497
 
 # Download or compile toolchain\kernel?
 #FORCE_COMPILE=y

@@ -1,0 +1,28 @@
+--- ../../../downloads/openwrt_trunk-r44497/feeds/packages/libs/libical/Makefile	2015-02-20 12:39:13.373134249 +0300
++++ ../../../openwrt_trunk/feeds/packages/libs/libical/Makefile	2015-02-20 13:10:24.669096907 +0300
+@@ -46,17 +46,17 @@
+ 	--disable-python \
+ 
+ define Build/InstallDev
+-	$(INSTALL_DIR) $(1)/usr/include
+-	$(CP) $(PKG_INSTALL_DIR)/usr/include/{ical.h,libical} $(1)/usr/include/
+-	$(INSTALL_DIR) $(1)/usr/lib
+-	$(CP) $(PKG_INSTALL_DIR)/usr/lib/libical{,ss,vcal}.{a,so*} $(1)/usr/lib/
+-	$(INSTALL_DIR) $(1)/usr/lib/pkgconfig
+-	$(CP) $(PKG_INSTALL_DIR)/usr/lib/pkgconfig/libical.pc $(1)/usr/lib/pkgconfig/
++	$(INSTALL_DIR) $(1)/opt/include
++	$(CP) $(PKG_INSTALL_DIR)/opt/include/{ical.h,libical} $(1)/opt/include/
++	$(INSTALL_DIR) $(1)/opt/lib
++	$(CP) $(PKG_INSTALL_DIR)/opt/lib/libical{,ss,vcal}.{a,so*} $(1)/opt/lib/
++	$(INSTALL_DIR) $(1)/opt/lib/pkgconfig
++	$(CP) $(PKG_INSTALL_DIR)/opt/lib/pkgconfig/libical.pc $(1)/opt/lib/pkgconfig/
+ endef
+ 
+ define Package/libical/install
+-	$(INSTALL_DIR) $(1)/usr/lib
+-	$(CP) $(PKG_INSTALL_DIR)/usr/lib/libical{,ss,vcal}.so.* $(1)/usr/lib/
++	$(INSTALL_DIR) $(1)/opt/lib
++	$(CP) $(PKG_INSTALL_DIR)/opt/lib/libical{,ss,vcal}.so.* $(1)/opt/lib/
+ endef
+ 
+ $(eval $(call BuildPackage,libical))

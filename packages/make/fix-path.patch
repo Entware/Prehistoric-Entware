@@ -1,5 +1,14 @@
---- ../../../downloads/openwrt_trunk-r36151/feeds/oldpackages/devel/make/Makefile
-+++ ../../../openwrt_trunk/feeds/oldpackages/devel/make/Makefile
+--- ../../../downloads/openwrt_trunk-r44486/feeds/oldpackages/devel/make/Makefile	2015-02-18 12:16:57.728306330 +0300
++++ ../../../openwrt_trunk/feeds/oldpackages/devel/make/Makefile	2015-02-19 14:29:42.682582599 +0300
+@@ -20,7 +20,7 @@
+ define Package/make
+   SECTION:=devel
+   CATEGORY:=Development
+-  DEPENDS:=+libelf1
++  DEPENDS:=+libelf
+   TITLE:=make
+   URL:=http://www.gnu.org/software/make/
+ endef
 @@ -30,8 +30,8 @@
  endef
  

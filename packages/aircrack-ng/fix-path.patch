@@ -1,23 +1,34 @@
---- ../../../openwrt_trunk.orig/feeds/oldpackages/net/aircrack-ng/Makefile
-+++ ../../../openwrt_trunk/feeds/oldpackages/net/aircrack-ng/Makefile
-@@ -38,15 +38,15 @@
- 	CFLAGS="$(TARGET_CFLAGS) -Wall -Iinclude/ $(TARGET_CPPFLAGS) -D_REVISION=0" \
- 	LDFLAGS="$(TARGET_LDFLAGS)" \
- 	OSNAME=Linux \
--	prefix="/usr" \
-+	prefix="/opt" \
- 	sqlite="false" \
- 	unstable="true"
+--- ../../../downloads/openwrt_trunk-r44486/feeds/packages/net/aircrack-ng/Makefile	2015-02-18 12:16:57.604306332 +0300
++++ ../../../openwrt_trunk/feeds/packages/net/aircrack-ng/Makefile	2015-02-18 16:00:40.296062054 +0300
+@@ -25,7 +25,7 @@
+ define Package/aircrack-ng
+   SECTION:=net
+   CATEGORY:=Network
+-  DEPENDS:=+libpcap +libpthread +libopenssl +libnl +wireless-tools +ethtool
++  DEPENDS:=+libpcap +libpthread +libopenssl +libnl
+   TITLE:=WLAN tools for breaking 802.11 WEP/WPA keys
+   URL:=http://www.aircrack-ng.org/
+   MAINTAINER:=Rick Farina <zerochaos@gentoo.org>
+@@ -36,17 +36,17 @@
+   WLAN tools for breaking 802.11 WEP/WPA keys
+ endef
+ 
+-MAKE_FLAGS += prefix=/usr \
++MAKE_FLAGS += prefix=/opt \
+ 	libnl=true \
+ 	sqlite=false \
+ 	unstable=false \
+ 	OSNAME=Linux
  
  define Package/aircrack-ng/install
 -	$(INSTALL_DIR) $(1)/usr/bin
--	$(CP) $(PKG_INSTALL_DIR)/usr/bin/* $(1)/usr/bin/
+-	$(INSTALL_BIN) $(PKG_INSTALL_DIR)/usr/bin/* $(1)/usr/bin/
 -	$(INSTALL_DIR) $(1)/usr/sbin
--	$(CP) $(PKG_INSTALL_DIR)/usr/sbin/* $(1)/usr/sbin/
+-	$(INSTALL_BIN) $(PKG_INSTALL_DIR)/usr/sbin/* $(1)/usr/sbin/
 +	$(INSTALL_DIR) $(1)/opt/bin
-+	$(CP) $(PKG_INSTALL_DIR)/opt/bin/* $(1)/opt/bin/
++	$(INSTALL_BIN) $(PKG_INSTALL_DIR)/opt/bin/* $(1)/opt/bin/
 +	$(INSTALL_DIR) $(1)/opt/sbin
-+	$(CP) $(PKG_INSTALL_DIR)/opt/sbin/* $(1)/opt/sbin/
++	$(INSTALL_BIN) $(PKG_INSTALL_DIR)/opt/sbin/* $(1)/opt/sbin/
  endef
  
  $(eval $(call BuildPackage,aircrack-ng))

@@ -1,5 +1,5 @@
---- ../../../downloads/openwrt_trunk-r43718/feeds/packages/utils/lvm2/Makefile	2014-12-15 16:50:13.336093577 +0300
-+++ ../../../openwrt_trunk/feeds/packages/utils/lvm2/Makefile	2014-12-17 14:59:44.741066769 +0300
+--- ../../../downloads/openwrt_trunk-r44486/feeds/packages/utils/lvm2/Makefile	2015-02-18 12:16:57.640306330 +0300
++++ ../../../openwrt_trunk/feeds/packages/utils/lvm2/Makefile	2015-02-19 15:36:03.638516242 +0300
 @@ -26,7 +26,7 @@
    CATEGORY:=Libraries
    TITLE:=The Linux Kernel Device Mapper userspace library
@@ -9,7 +9,7 @@
  endef
  
  define Package/libdevmapper/description
-@@ -59,30 +59,30 @@
+@@ -59,32 +59,32 @@
  endef
  
  define Build/InstallDev
@@ -38,15 +38,19 @@
 -	$(INSTALL_DIR) $(1)/sbin
 -	$(INSTALL_BIN) $(PKG_BUILD_DIR)/tools/lvm $(1)/sbin
 -	$(INSTALL_DIR) $(1)/etc/lvm
+-	$(SED) '/^[[:space:]]*\(#\|$$$$\)/d; /cache_dir/s@.*@    cache_dir = "/tmp/lvm/cache"@' $(PKG_BUILD_DIR)/conf/example.conf
 -	$(INSTALL_CONF) $(PKG_BUILD_DIR)/conf/example.conf $(1)/etc/lvm/lvm.conf
 -	$(INSTALL_DIR) $(1)/etc/init.d
 -	$(INSTALL_BIN) ./files/lvm2.init $(1)/etc/init.d/lvm2
+-	$(FIND) $(PKG_INSTALL_DIR)/usr/sbin/ -type l -exec $(CP) -a {} $(1)/sbin/ \;
 +	$(INSTALL_DIR) $(1)/opt/sbin
 +	$(INSTALL_BIN) $(PKG_BUILD_DIR)/tools/lvm $(1)/opt/sbin
 +	$(INSTALL_DIR) $(1)/opt/etc/lvm
++	$(SED) '/^[[:space:]]*\(#\|$$$$\)/d; /cache_dir/s@.*@    cache_dir = "/opt/tmp/lvm/cache"@' $(PKG_BUILD_DIR)/conf/example.conf
 +	$(INSTALL_CONF) $(PKG_BUILD_DIR)/conf/example.conf $(1)/opt/etc/lvm/lvm.conf
 +	$(INSTALL_DIR) $(1)/opt/etc/init.d
 +	$(INSTALL_BIN) ./files/S06lvm2 $(1)/opt/etc/init.d
++	$(FIND) $(PKG_INSTALL_DIR)/opt/sbin/ -type l -exec $(CP) -a {} $(1)/opt/sbin/ \;
  endef
  
  define Package/lvm2/conffiles

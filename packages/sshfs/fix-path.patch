@@ -1,15 +1,6 @@
---- ../../../openwrt_trunk.orig/feeds/oldpackages/net/sshfs/Makefile
-+++ ../../../openwrt_trunk/feeds/oldpackages/net/sshfs/Makefile
-@@ -9,7 +9,7 @@
- 
- PKG_NAME:=sshfs
- PKG_VERSION:=2.2
--PKG_RELEASE:=1
-+PKG_RELEASE:=2
- 
- PKG_SOURCE:=$(PKG_NAME)-fuse-$(PKG_VERSION).tar.gz
- PKG_SOURCE_URL:=@SF/fuse
-@@ -36,12 +36,12 @@
+--- ../../../downloads/openwrt_trunk-r44497/feeds/packages/net/sshfs/Makefile	2015-02-20 12:39:13.413134248 +0300
++++ ../../../openwrt_trunk/feeds/packages/net/sshfs/Makefile	2015-02-20 12:39:23.697134061 +0300
+@@ -39,12 +39,12 @@
  CONFIGURE_VARS += \
  	SSHFS_CFLAGS=" \
  		-D_FILE_OFFSET_BITS=64 \
@@ -26,7 +17,7 @@
  
  define Build/Compile
  	$(MAKE) -C $(PKG_BUILD_DIR) \
-@@ -52,8 +52,8 @@
+@@ -55,8 +55,8 @@
  endef
  
  define Package/sshfs/install

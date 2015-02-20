@@ -1,15 +1,6 @@
---- ../../../openwrt_trunk.orig/feeds/oldpackages/libs/libdnet/Makefile
-+++ ../../../openwrt_trunk/feeds/oldpackages/libs/libdnet/Makefile
-@@ -94,7 +94,7 @@
- 	$(if $(CONFIG_PACKAGE_pydnet), \
- 		$(call Build/Compile/PyMod, \
- 			python/, \
--			install --no-compile --prefix $(PKG_INSTALL_DIR)/usr \
-+			install --no-compile --prefix $(PKG_INSTALL_DIR)/opt \
- 		) \
- 	)
- endef
-@@ -102,41 +102,41 @@
+--- ../../../downloads/openwrt_trunk-r44486/feeds/packages/libs/libdnet/Makefile	2015-02-18 12:16:57.592306331 +0300
++++ ../../../openwrt_trunk/feeds/packages/libs/libdnet/Makefile	2015-02-19 14:56:19.582559185 +0300
+@@ -52,36 +52,36 @@
  define Build/InstallDev
  	$(INSTALL_DIR) $(2)/bin
  	$(INSTALL_BIN) \
@@ -61,11 +52,4 @@
 +		$(1)/opt/sbin/
  endef
  
- define Package/pydnet/install
--	$(INSTALL_DIR) $(1)/usr/lib
--	$(CP) $(PKG_INSTALL_DIR)/usr/lib/python* $(1)/usr/lib/
-+	$(INSTALL_DIR) $(1)/opt/lib
-+	$(CP) $(PKG_INSTALL_DIR)/opt/lib/python* $(1)/opt/lib/
- endef
- 
- 
+ $(eval $(call BuildPackage,libdnet))

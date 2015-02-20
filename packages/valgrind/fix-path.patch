@@ -1,7 +1,7 @@
---- ../../../downloads/openwrt_trunk-r43593/package/devel/valgrind/Makefile	2014-12-10 12:26:33.318951675 +0300
-+++ ../../../openwrt_trunk/package/devel/valgrind/Makefile	2014-12-10 12:49:10.910926945 +0300
-@@ -104,68 +104,68 @@
- 	--without-included-gettext
+--- ../../../downloads/openwrt_trunk-r44486/package/devel/valgrind/Makefile	2015-02-18 12:16:58.056306324 +0300
++++ ../../../openwrt_trunk/package/devel/valgrind/Makefile	2015-02-18 12:17:41.944305525 +0300
+@@ -105,68 +105,68 @@
+ 	--with-pagesize=4 \
  
  define Package/valgrind/install	
 -	$(INSTALL_DIR) $(1)/usr/bin

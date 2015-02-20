@@ -1,6 +1,7 @@
---- ../../../downloads/openwrt_trunk-r43718/feeds/packages/lang/ruby/Makefile	2014-12-15 16:50:13.280093580 +0300
-+++ ../../../openwrt_trunk/feeds/packages/lang/ruby/Makefile	2014-12-18 10:12:02.055804040 +0300
-@@ -813,22 +813,23 @@
+diff -urx .svn ../../../downloads/openwrt_trunk-r44486/feeds/packages/lang/ruby/Makefile ../../../openwrt_trunk/feeds/packages/lang/ruby/Makefile
+--- ../../../downloads/openwrt_trunk-r44486/feeds/packages/lang/ruby/Makefile	2015-02-18 12:16:57.576306332 +0300
++++ ../../../openwrt_trunk/feeds/packages/lang/ruby/Makefile	2015-02-20 11:39:22.169200294 +0300
+@@ -827,24 +827,25 @@
  
  MAKE_FLAGS += \
  	DESTDIR="$(PKG_INSTALL_DIR)" \
@@ -14,6 +15,8 @@
 -	$(INSTALL_DIR) $(1)/usr/lib/ruby/site_ruby/$(PKG_LIBVER)
 -	$(INSTALL_BIN) $(PKG_INSTALL_DIR)/usr/bin/ruby $(1)/usr/lib/ruby/ruby$(PKG_LIBVER)-bin
 -	$(INSTALL_BIN) ./files/ruby $(1)/usr/bin/ruby
+-	$(CP) $(PKG_INSTALL_DIR)/usr/lib/ruby/vendor_ruby/$(PKG_LIBVER)/* $(1)/usr/lib/ruby/vendor_ruby/$(PKG_LIBVER)/
+-	$(CP) $(PKG_INSTALL_DIR)/usr/lib/ruby/site_ruby/$(PKG_LIBVER)/* $(1)/usr/lib/ruby/site_ruby/$(PKG_LIBVER)/
 -	sed -i -e "s%@RUBY_LIBPATH@%/usr/lib/ruby/$(PKG_LIBVER)%" $(1)/usr/bin/ruby
 -	sed -i -e "s%@RUBY_BINPATH@%/usr/lib/ruby/ruby$(PKG_LIBVER)-bin%" $(1)/usr/bin/ruby
 +	$(INSTALL_DIR) $(1)/opt/bin
@@ -22,6 +25,8 @@
 +	$(INSTALL_DIR) $(1)/opt/lib/ruby/site_ruby/$(PKG_LIBVER)
 +	$(INSTALL_BIN) $(PKG_INSTALL_DIR)/opt/bin/ruby $(1)/opt/lib/ruby/ruby$(PKG_LIBVER)-bin
 +	$(INSTALL_BIN) ./files/ruby $(1)/opt/bin/ruby
++	$(CP) $(PKG_INSTALL_DIR)/opt/lib/ruby/vendor_ruby/$(PKG_LIBVER)/* $(1)/opt/lib/ruby/vendor_ruby/$(PKG_LIBVER)/
++	$(CP) $(PKG_INSTALL_DIR)/opt/lib/ruby/site_ruby/$(PKG_LIBVER)/* $(1)/opt/lib/ruby/site_ruby/$(PKG_LIBVER)/
 +	sed -i -e "s%@RUBY_LIBPATH@%/opt/lib/ruby/$(PKG_LIBVER)%" $(1)/opt/bin/ruby
 +	sed -i -e "s%@RUBY_BINPATH@%/opt/lib/ruby/ruby$(PKG_LIBVER)-bin%" $(1)/opt/bin/ruby
  endef
@@ -34,7 +39,7 @@
  endef
  
  define Package/ruby-stdlib/install
-@@ -837,222 +838,222 @@
+@@ -853,217 +854,217 @@
  
  define Package/ruby-bigdecimal/install
  	( cd $(PKG_INSTALL_DIR); $(TAR) -cf - \
@@ -110,19 +115,6 @@
 +		opt/lib/ruby/$(PKG_LIBVER)/digest.rb \
 +		opt/lib/ruby/$(PKG_LIBVER)/*/digest.so \
 +		opt/lib/ruby/$(PKG_LIBVER)/*/digest/* \
- 	) | ( cd $(1); $(TAR) -xf - )
- endef
- 
- define Package/ruby-dl/install
- 	( cd $(PKG_INSTALL_DIR); $(TAR) -cf - \
--		usr/lib/ruby/$(PKG_LIBVER)/dl.rb \
--		usr/lib/ruby/$(PKG_LIBVER)/dl \
--		usr/lib/ruby/$(PKG_LIBVER)/*/dl.so \
--		usr/lib/ruby/$(PKG_LIBVER)/*/dl/ \
-+		opt/lib/ruby/$(PKG_LIBVER)/dl.rb \
-+		opt/lib/ruby/$(PKG_LIBVER)/dl \
-+		opt/lib/ruby/$(PKG_LIBVER)/*/dl.so \
-+		opt/lib/ruby/$(PKG_LIBVER)/*/dl/ \
  	) | ( cd $(1); $(TAR) -xf - )
  endef
  
@@ -216,6 +208,15 @@
 -	$(INSTALL_DIR) $(1)/usr/lib/ruby/$(PKG_LIBVER)
 -	$(CP) $(PKG_INSTALL_DIR)/usr/lib/ruby/$(PKG_LIBVER)/ubygems.rb $(1)/usr/lib/ruby/$(PKG_LIBVER)/
 -	$(CP) $(PKG_INSTALL_DIR)/usr/lib/ruby/$(PKG_LIBVER)/rubygems.rb $(1)/usr/lib/ruby/$(PKG_LIBVER)/
++	$(INSTALL_DIR) $(1)/opt/bin
++	$(CP) $(PKG_INSTALL_DIR)/opt/bin/gem $(1)/opt/bin/
++	$(INSTALL_DIR) $(1)/opt/lib/ruby/$(PKG_LIBVER)
++	$(CP) $(PKG_INSTALL_DIR)/opt/lib/ruby/$(PKG_LIBVER)/ubygems.rb $(1)/opt/lib/ruby/$(PKG_LIBVER)/
++	$(CP) $(PKG_INSTALL_DIR)/opt/lib/ruby/$(PKG_LIBVER)/rubygems.rb $(1)/opt/lib/ruby/$(PKG_LIBVER)/
+ 	# Remove tests (avoids extra deps)
+-	$(RM) $(PKG_INSTALL_DIR)/usr/lib/ruby/$(PKG_LIBVER)/rubygems/test_case.rb
+-	$(RM) $(PKG_INSTALL_DIR)/usr/lib/ruby/$(PKG_LIBVER)/rubygems/package/tar_test_case.rb
+-	$(RM) $(PKG_INSTALL_DIR)/usr/lib/ruby/$(PKG_LIBVER)/rubygems/installer_test_case.rb
 -	$(CP) $(PKG_INSTALL_DIR)/usr/lib/ruby/$(PKG_LIBVER)/rubygems $(1)/usr/lib/ruby/$(PKG_LIBVER)/
 -	$(INSTALL_DIR) $(1)/usr/lib/ruby/gems/$(PKG_LIBVER)/specifications/default
 -	$(INSTALL_DIR) $(1)/usr/lib/ruby/gems/$(PKG_LIBVER)/gems
@@ -223,11 +224,9 @@
 -	$(INSTALL_DIR) $(1)/usr/lib/ruby/gems/$(PKG_LIBVER)/cache
 -	$(INSTALL_DIR) $(1)/usr/lib/ruby/gems/$(PKG_LIBVER)/extensions
 -	$(INSTALL_DIR) $(1)/usr/lib/ruby/gems/$(PKG_LIBVER)/build_info
-+	$(INSTALL_DIR) $(1)/opt/bin
-+	$(CP) $(PKG_INSTALL_DIR)/opt/bin/gem $(1)/opt/bin/
-+	$(INSTALL_DIR) $(1)/opt/lib/ruby/$(PKG_LIBVER)
-+	$(CP) $(PKG_INSTALL_DIR)/opt/lib/ruby/$(PKG_LIBVER)/ubygems.rb $(1)/opt/lib/ruby/$(PKG_LIBVER)/
-+	$(CP) $(PKG_INSTALL_DIR)/opt/lib/ruby/$(PKG_LIBVER)/rubygems.rb $(1)/opt/lib/ruby/$(PKG_LIBVER)/
++	$(RM) $(PKG_INSTALL_DIR)/opt/lib/ruby/$(PKG_LIBVER)/rubygems/test_case.rb
++	$(RM) $(PKG_INSTALL_DIR)/opt/lib/ruby/$(PKG_LIBVER)/rubygems/package/tar_test_case.rb
++	$(RM) $(PKG_INSTALL_DIR)/opt/lib/ruby/$(PKG_LIBVER)/rubygems/installer_test_case.rb
 +	$(CP) $(PKG_INSTALL_DIR)/opt/lib/ruby/$(PKG_LIBVER)/rubygems $(1)/opt/lib/ruby/$(PKG_LIBVER)/
 +	$(INSTALL_DIR) $(1)/opt/lib/ruby/gems/$(PKG_LIBVER)/specifications/default
 +	$(INSTALL_DIR) $(1)/opt/lib/ruby/gems/$(PKG_LIBVER)/gems
@@ -293,16 +292,12 @@
 -		usr/lib/ruby/$(PKG_LIBVER)/prime.rb \
 -		usr/lib/ruby/$(PKG_LIBVER)/mathn.rb \
 -		usr/lib/ruby/$(PKG_LIBVER)/cmath.rb \
--		usr/lib/ruby/$(PKG_LIBVER)/complex.rb \
--		usr/lib/ruby/$(PKG_LIBVER)/rational.rb \
 -		usr/lib/ruby/$(PKG_LIBVER)/*/mathn \
 -		usr/lib/ruby/$(PKG_LIBVER)/matrix.rb \
 -		usr/lib/ruby/$(PKG_LIBVER)/matrix \
 +		opt/lib/ruby/$(PKG_LIBVER)/prime.rb \
 +		opt/lib/ruby/$(PKG_LIBVER)/mathn.rb \
 +		opt/lib/ruby/$(PKG_LIBVER)/cmath.rb \
-+		opt/lib/ruby/$(PKG_LIBVER)/complex.rb \
-+		opt/lib/ruby/$(PKG_LIBVER)/rational.rb \
 +		opt/lib/ruby/$(PKG_LIBVER)/*/mathn \
 +		opt/lib/ruby/$(PKG_LIBVER)/matrix.rb \
 +		opt/lib/ruby/$(PKG_LIBVER)/matrix \
@@ -310,12 +305,17 @@
  endef
  
  define Package/ruby-minitest/install
- 	( cd $(PKG_INSTALL_DIR); $(TAR) -cf - \
--		usr/lib/ruby/$(PKG_LIBVER)/minitest/ \
--		usr/lib/ruby/gems/$(PKG_LIBVER)/specifications/default/minitest-*.gemspec \
-+		opt/lib/ruby/$(PKG_LIBVER)/minitest/ \
-+		opt/lib/ruby/gems/$(PKG_LIBVER)/specifications/default/minitest-*.gemspec \
- 	) | ( cd $(1); $(TAR) -xf - )
+-	$(INSTALL_DIR) $(1)/usr/lib/ruby/gems/$(PKG_LIBVER)/specifications
+-	$(INSTALL_DIR) $(1)/usr/lib/ruby/gems/$(PKG_LIBVER)/gems
+-	$(CP) $(PKG_INSTALL_DIR)/usr/lib/ruby/gems/$(PKG_LIBVER)/specifications/minitest-*.gemspec $(1)/usr/lib/ruby/gems/$(PKG_LIBVER)/specifications/
++	$(INSTALL_DIR) $(1)/opt/lib/ruby/gems/$(PKG_LIBVER)/specifications
++	$(INSTALL_DIR) $(1)/opt/lib/ruby/gems/$(PKG_LIBVER)/gems
++	$(CP) $(PKG_INSTALL_DIR)/opt/lib/ruby/gems/$(PKG_LIBVER)/specifications/minitest-*.gemspec $(1)/opt/lib/ruby/gems/$(PKG_LIBVER)/specifications/
+ 	# Remove tests (avoids extra deps)
+-	$(RM) -rf $(PKG_INSTALL_DIR)/usr/lib/ruby/gems/$(PKG_LIBVER)/gems/minitest-*/test
+-	$(CP) $(PKG_INSTALL_DIR)/usr/lib/ruby/gems/$(PKG_LIBVER)/gems/minitest-* $(1)/usr/lib/ruby/gems/$(PKG_LIBVER)/gems/
++	$(RM) -rf $(PKG_INSTALL_DIR)/opt/lib/ruby/gems/$(PKG_LIBVER)/gems/minitest-*/test
++	$(CP) $(PKG_INSTALL_DIR)/opt/lib/ruby/gems/$(PKG_LIBVER)/gems/minitest-* $(1)/opt/lib/ruby/gems/$(PKG_LIBVER)/gems/
  endef
  
  define Package/ruby-misc/install
@@ -371,7 +371,7 @@
  	) | ( cd $(1); $(TAR) -xf - )
  endef
  
-@@ -1060,220 +1061,220 @@
+@@ -1071,242 +1072,242 @@
  
  define Package/ruby-mkmf/install
  	( cd $(PKG_INSTALL_DIR); $(TAR) -cf - \
@@ -435,8 +435,10 @@
  define Package/ruby-optparse/install
  	( cd $(PKG_INSTALL_DIR); $(TAR) -cf - \
 -		usr/lib/ruby/$(PKG_LIBVER)/optparse.rb \
+-		usr/lib/ruby/$(PKG_LIBVER)/optionparser.rb \
 -		usr/lib/ruby/$(PKG_LIBVER)/optparse \
 +		opt/lib/ruby/$(PKG_LIBVER)/optparse.rb \
++		opt/lib/ruby/$(PKG_LIBVER)/optionparser.rb \
 +		opt/lib/ruby/$(PKG_LIBVER)/optparse \
  	) | ( cd $(1); $(TAR) -xf - )
  endef
@@ -450,6 +452,20 @@
 +		opt/lib/ruby/$(PKG_LIBVER)/singleton.rb \
 +		opt/lib/ruby/$(PKG_LIBVER)/forwardable.rb \
  	) | ( cd $(1); $(TAR) -xf - )
+ endef
+ 
+ define Package/ruby-powerassert/install
+-	$(INSTALL_DIR) $(1)/usr/lib/ruby/gems/$(PKG_LIBVER)/specifications
+-	$(INSTALL_DIR) $(1)/usr/lib/ruby/gems/$(PKG_LIBVER)/gems
+-	$(CP) $(PKG_INSTALL_DIR)/usr/lib/ruby/gems/$(PKG_LIBVER)/specifications/power_assert-*.gemspec $(1)/usr/lib/ruby/gems/$(PKG_LIBVER)/specifications/
++	$(INSTALL_DIR) $(1)/opt/lib/ruby/gems/$(PKG_LIBVER)/specifications
++	$(INSTALL_DIR) $(1)/opt/lib/ruby/gems/$(PKG_LIBVER)/gems
++	$(CP) $(PKG_INSTALL_DIR)/opt/lib/ruby/gems/$(PKG_LIBVER)/specifications/power_assert-*.gemspec $(1)/opt/lib/ruby/gems/$(PKG_LIBVER)/specifications/
+ 	# Remove tests (avoids extra deps)
+-	$(RM) -rf $(PKG_INSTALL_DIR)/usr/lib/ruby/gems/$(PKG_LIBVER)/gems/power_assert-*/test
+-	$(CP) $(PKG_INSTALL_DIR)/usr/lib/ruby/gems/$(PKG_LIBVER)/gems/power_assert-* $(1)/usr/lib/ruby/gems/$(PKG_LIBVER)/gems/
++	$(RM) -rf $(PKG_INSTALL_DIR)/opt/lib/ruby/gems/$(PKG_LIBVER)/gems/power_assert-*/test
++	$(CP) $(PKG_INSTALL_DIR)/opt/lib/ruby/gems/$(PKG_LIBVER)/gems/power_assert-* $(1)/opt/lib/ruby/gems/$(PKG_LIBVER)/gems/
  endef
  
  define Package/ruby-prettyprint/install
@@ -495,16 +511,19 @@
 -	$(INSTALL_BIN) $(PKG_INSTALL_DIR)/usr/bin/rake $(1)/usr/bin/
 -	$(INSTALL_DIR) $(1)/usr/lib/ruby/$(PKG_LIBVER)
 -	$(CP) $(PKG_INSTALL_DIR)/usr/lib/ruby/$(PKG_LIBVER)/rake.rb $(1)/usr/lib/ruby/$(PKG_LIBVER)/
++	$(INSTALL_DIR) $(1)/opt/bin
++	$(INSTALL_BIN) $(PKG_INSTALL_DIR)/opt/bin/rake $(1)/opt/bin/
++	$(INSTALL_DIR) $(1)/opt/lib/ruby/$(PKG_LIBVER)
++	$(CP) $(PKG_INSTALL_DIR)/opt/lib/ruby/$(PKG_LIBVER)/rake.rb $(1)/opt/lib/ruby/$(PKG_LIBVER)/
+ 	# Remove tests (avoids extra deps)
+-	$(RM) $(PKG_INSTALL_DIR)/usr/lib/ruby/$(PKG_LIBVER)/rake/runtest.rb
 -	$(CP) $(PKG_INSTALL_DIR)/usr/lib/ruby/$(PKG_LIBVER)/rake $(1)/usr/lib/ruby/$(PKG_LIBVER)/
 -	$(INSTALL_DIR) $(1)/usr/lib/ruby/gems/$(PKG_LIBVER)/specifications/default
 -	$(INSTALL_DIR) $(1)/usr/lib/ruby/gems/$(PKG_LIBVER)/gems
 -	$(CP) $(PKG_INSTALL_DIR)/usr/lib/ruby/gems/$(PKG_LIBVER)/specifications/default/rake-*.gemspec \
 -		$(1)/usr/lib/ruby/gems/$(PKG_LIBVER)/specifications/default/
 -	$(CP) $(PKG_INSTALL_DIR)/usr/lib/ruby/gems/$(PKG_LIBVER)/gems/rake-* $(1)/usr/lib/ruby/gems/$(PKG_LIBVER)/gems/
-+	$(INSTALL_DIR) $(1)/opt/bin
-+	$(INSTALL_BIN) $(PKG_INSTALL_DIR)/opt/bin/rake $(1)/opt/bin/
-+	$(INSTALL_DIR) $(1)/opt/lib/ruby/$(PKG_LIBVER)
-+	$(CP) $(PKG_INSTALL_DIR)/opt/lib/ruby/$(PKG_LIBVER)/rake.rb $(1)/opt/lib/ruby/$(PKG_LIBVER)/
++	$(RM) $(PKG_INSTALL_DIR)/opt/lib/ruby/$(PKG_LIBVER)/rake/runtest.rb
 +	$(CP) $(PKG_INSTALL_DIR)/opt/lib/ruby/$(PKG_LIBVER)/rake $(1)/opt/lib/ruby/$(PKG_LIBVER)/
 +	$(INSTALL_DIR) $(1)/opt/lib/ruby/gems/$(PKG_LIBVER)/specifications/default
 +	$(INSTALL_DIR) $(1)/opt/lib/ruby/gems/$(PKG_LIBVER)/gems
@@ -529,6 +548,14 @@
 -	$(INSTALL_BIN) $(PKG_INSTALL_DIR)/usr/bin/rdoc $(1)/usr/bin/
 -	$(INSTALL_BIN) $(PKG_INSTALL_DIR)/usr/bin/ri $(1)/usr/bin/
 -	$(INSTALL_DIR) $(1)/usr/lib/ruby/$(PKG_LIBVER)
++	$(INSTALL_DIR) $(1)/opt/bin
++	$(INSTALL_BIN) $(PKG_INSTALL_DIR)/opt/bin/rdoc $(1)/opt/bin/
++	$(INSTALL_BIN) $(PKG_INSTALL_DIR)/opt/bin/ri $(1)/opt/bin/
++	$(INSTALL_DIR) $(1)/opt/lib/ruby/$(PKG_LIBVER)
+ 	# Remove tests (avoids extra deps)
+-	$(RM) $(PKG_INSTALL_DIR)/usr/lib/ruby/$(PKG_LIBVER)/rdoc/test_case.rb
+-	$(RM) $(PKG_INSTALL_DIR)/usr/lib/ruby/$(PKG_LIBVER)/rdoc/markup/formatter_test_case.rb
+-	$(RM) $(PKG_INSTALL_DIR)/usr/lib/ruby/$(PKG_LIBVER)/rdoc/markup/text_formatter_test_case.rb
 -	$(CP) $(PKG_INSTALL_DIR)/usr/lib/ruby/$(PKG_LIBVER)/rdoc.rb $(1)/usr/lib/ruby/$(PKG_LIBVER)/
 -	$(CP) $(PKG_INSTALL_DIR)/usr/lib/ruby/$(PKG_LIBVER)/rdoc $(1)/usr/lib/ruby/$(PKG_LIBVER)/
 -	$(INSTALL_DIR) $(1)/usr/lib/ruby/gems/$(PKG_LIBVER)/specifications/default
@@ -537,10 +564,9 @@
 -		$(1)/usr/lib/ruby/gems/$(PKG_LIBVER)/specifications/default/
 -	$(CP) $(PKG_INSTALL_DIR)/usr/lib/ruby/gems/$(PKG_LIBVER)/gems/rdoc-* \
 -		$(1)/usr/lib/ruby/gems/$(PKG_LIBVER)/gems/
-+	$(INSTALL_DIR) $(1)/opt/bin
-+	$(INSTALL_BIN) $(PKG_INSTALL_DIR)/opt/bin/rdoc $(1)/opt/bin/
-+	$(INSTALL_BIN) $(PKG_INSTALL_DIR)/opt/bin/ri $(1)/opt/bin/
-+	$(INSTALL_DIR) $(1)/opt/lib/ruby/$(PKG_LIBVER)
++	$(RM) $(PKG_INSTALL_DIR)/opt/lib/ruby/$(PKG_LIBVER)/rdoc/test_case.rb
++	$(RM) $(PKG_INSTALL_DIR)/opt/lib/ruby/$(PKG_LIBVER)/rdoc/markup/formatter_test_case.rb
++	$(RM) $(PKG_INSTALL_DIR)/opt/lib/ruby/$(PKG_LIBVER)/rdoc/markup/text_formatter_test_case.rb
 +	$(CP) $(PKG_INSTALL_DIR)/opt/lib/ruby/$(PKG_LIBVER)/rdoc.rb $(1)/opt/lib/ruby/$(PKG_LIBVER)/
 +	$(CP) $(PKG_INSTALL_DIR)/opt/lib/ruby/$(PKG_LIBVER)/rdoc $(1)/opt/lib/ruby/$(PKG_LIBVER)/
 +	$(INSTALL_DIR) $(1)/opt/lib/ruby/gems/$(PKG_LIBVER)/specifications/default
@@ -626,22 +652,28 @@
  endef
  
  define Package/ruby-testunit/install
--	$(INSTALL_DIR) $(1)/usr/bin
--	$(INSTALL_BIN) $(PKG_INSTALL_DIR)/usr/bin/testrb $(1)/usr/bin/
--	$(INSTALL_DIR) $(1)/usr/lib/ruby/$(PKG_LIBVER)
--	$(CP) $(PKG_INSTALL_DIR)/usr/lib/ruby/$(PKG_LIBVER)/test $(1)/usr/lib/ruby/$(PKG_LIBVER)/
--	$(INSTALL_DIR) $(1)/usr/lib/ruby/gems/$(PKG_LIBVER)/specifications/default
+-	$(INSTALL_DIR) $(1)/usr/lib/ruby/gems/$(PKG_LIBVER)/specifications
 -	$(INSTALL_DIR) $(1)/usr/lib/ruby/gems/$(PKG_LIBVER)/gems
--	$(CP) $(PKG_INSTALL_DIR)/usr/lib/ruby/gems/$(PKG_LIBVER)/specifications/default/test-unit-*.gemspec $(1)/usr/lib/ruby/gems/$(PKG_LIBVER)/specifications/default/
--	$(CP) $(PKG_INSTALL_DIR)/usr/lib/ruby/gems/$(PKG_LIBVER)/gems/test-unit-* $(1)/usr/lib/ruby/gems/$(PKG_LIBVER)/gems/
-+	$(INSTALL_DIR) $(1)/opt/bin
-+	$(INSTALL_BIN) $(PKG_INSTALL_DIR)/opt/bin/testrb $(1)/opt/bin/
-+	$(INSTALL_DIR) $(1)/opt/lib/ruby/$(PKG_LIBVER)
-+	$(CP) $(PKG_INSTALL_DIR)/opt/lib/ruby/$(PKG_LIBVER)/test $(1)/opt/lib/ruby/$(PKG_LIBVER)/
-+	$(INSTALL_DIR) $(1)/opt/lib/ruby/gems/$(PKG_LIBVER)/specifications/default
+-	$(CP) $(PKG_INSTALL_DIR)/usr/lib/ruby/gems/$(PKG_LIBVER)/specifications/test-unit-*.gemspec $(1)/usr/lib/ruby/gems/$(PKG_LIBVER)/specifications/
++	$(INSTALL_DIR) $(1)/opt/lib/ruby/gems/$(PKG_LIBVER)/specifications
 +	$(INSTALL_DIR) $(1)/opt/lib/ruby/gems/$(PKG_LIBVER)/gems
-+	$(CP) $(PKG_INSTALL_DIR)/opt/lib/ruby/gems/$(PKG_LIBVER)/specifications/default/test-unit-*.gemspec $(1)/opt/lib/ruby/gems/$(PKG_LIBVER)/specifications/default/
++	$(CP) $(PKG_INSTALL_DIR)/opt/lib/ruby/gems/$(PKG_LIBVER)/specifications/test-unit-*.gemspec $(1)/opt/lib/ruby/gems/$(PKG_LIBVER)/specifications/
+ 	# Remove tests (avoids extra deps)
+-	$(RM) -rf $(PKG_INSTALL_DIR)/usr/lib/ruby/gems/$(PKG_LIBVER)/gems/test-unit-*/test
+-	$(RM) -rf $(PKG_INSTALL_DIR)/usr/lib/ruby/gems/$(PKG_LIBVER)/gems/test-unit-*/sample
+-	$(CP) $(PKG_INSTALL_DIR)/usr/lib/ruby/gems/$(PKG_LIBVER)/gems/test-unit-* $(1)/usr/lib/ruby/gems/$(PKG_LIBVER)/gems/
++	$(RM) -rf $(PKG_INSTALL_DIR)/opt/lib/ruby/gems/$(PKG_LIBVER)/gems/test-unit-*/test
++	$(RM) -rf $(PKG_INSTALL_DIR)/opt/lib/ruby/gems/$(PKG_LIBVER)/gems/test-unit-*/sample
 +	$(CP) $(PKG_INSTALL_DIR)/opt/lib/ruby/gems/$(PKG_LIBVER)/gems/test-unit-* $(1)/opt/lib/ruby/gems/$(PKG_LIBVER)/gems/
+ endef
+ 
+ define Package/ruby-unicodenormalize/install
+ 	( cd $(PKG_INSTALL_DIR); $(TAR) -cf - \
+-		usr/lib/ruby/$(PKG_LIBVER)/unicode_normalize.rb \
+-		usr/lib/ruby/$(PKG_LIBVER)/unicode_normalize \
++		opt/lib/ruby/$(PKG_LIBVER)/unicode_normalize.rb \
++		opt/lib/ruby/$(PKG_LIBVER)/unicode_normalize \
+ 	) | ( cd $(1); $(TAR) -xf - )
  endef
  
  define Package/ruby-uri/install
@@ -687,3 +719,21 @@
  	) | ( cd $(1); $(TAR) -xf - )
  endef
  
+diff -urx .svn ../../../downloads/openwrt_trunk-r44486/feeds/packages/lang/ruby/ruby_find_pkgsdeps ../../../openwrt_trunk/feeds/packages/lang/ruby/ruby_find_pkgsdeps
+--- ../../../downloads/openwrt_trunk-r44486/feeds/packages/lang/ruby/ruby_find_pkgsdeps	2015-02-18 12:16:57.576306332 +0300
++++ ../../../openwrt_trunk/feeds/packages/lang/ruby/ruby_find_pkgsdeps	2015-02-20 11:35:02.657202728 +0300
+@@ -1,4 +1,4 @@
+-#!/usr/bin/ruby -Eutf-8
++#!/opt/bin/ruby -Eutf-8
+ # encoding: utf-8
+ #
+ # Find dependencies between ruby packages
+diff -urx .svn ../../../downloads/openwrt_trunk-r44486/feeds/packages/lang/ruby/ruby_missingfiles ../../../openwrt_trunk/feeds/packages/lang/ruby/ruby_missingfiles
+--- ../../../downloads/openwrt_trunk-r44486/feeds/packages/lang/ruby/ruby_missingfiles	2015-02-18 12:16:57.576306332 +0300
++++ ../../../openwrt_trunk/feeds/packages/lang/ruby/ruby_missingfiles	2015-02-20 11:35:13.137203997 +0300
+@@ -1,4 +1,4 @@
+-#!/bin/bash
++#!/opt/bin/bash
+ #
+ 
+ function list_staging_files {

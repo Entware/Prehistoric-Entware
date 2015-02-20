@@ -9,8 +9,7 @@ all: .done
 
 .done:
 	patch -d $(TOP) -p3 -i $(CURDIR)/fix-path.patch
-	mkdir -p ../../../openwrt_trunk/feeds/telephony/admin/asterisk18-gui/patches/
-	cp -f ./0*.patch ../../../openwrt_trunk/feeds/telephony/admin/asterisk18-gui/patches/
+	cp -f ./500-NEED_USB_GET_BUSSES-undef.patch ../../../openwrt_trunk/feeds/packages/utils/bluez/patches/
 	@touch $@
 
 clean:

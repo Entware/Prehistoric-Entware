@@ -1,0 +1,19 @@
+--- ../../../downloads/openwrt_trunk-r44486/feeds/packages/lang/php5/files/php5-fpm.conf	2015-02-18 12:16:57.576306332 +0300
++++ ../../../openwrt_trunk/feeds/packages/lang/php5/files/php5-fpm.conf	2015-02-19 17:08:01.938410646 +0300
+@@ -22,14 +22,14 @@
+ ; Pid file
+ ; Note: the default prefix is /var
+ ; Default Value: none
+-pid = /var/run/php5-fpm.pid
++pid = /opt/var/run/php5-fpm.pid
+ 
+ ; Error log file
+ ; If it's set to "syslog", log is sent to syslogd instead of being written
+ ; in a local file.
+ ; Note: the default prefix is /var
+ ; Default Value: log/php-fpm.log
+-error_log = /var/log/php5-fpm.log
++error_log = /opt/var/log/php5-fpm.log
+ 
+ ; syslog_facility is used to specify what type of program is logging the
+ ; message. This lets syslogd specify that messages from different facilities

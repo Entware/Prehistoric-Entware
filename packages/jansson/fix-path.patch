@@ -1,14 +1,22 @@
---- ../../../openwrt_trunk.orig/feeds/oldpackages/libs/jansson/Makefile
-+++ ../../../openwrt_trunk/feeds/oldpackages/libs/jansson/Makefile
-@@ -30,14 +30,14 @@
+--- ../../../downloads/openwrt_trunk-r44486/feeds/packages/libs/jansson/Makefile	2015-02-18 12:16:57.592306331 +0300
++++ ../../../openwrt_trunk/feeds/packages/libs/jansson/Makefile	2015-02-19 14:50:15.690563357 +0300
+@@ -34,19 +34,19 @@
+ endef
+ 
  TARGET_CFLAGS += $(FPIC)
+-TARGET_LDFLAGS += -Wl,-rpath-link=$(STAGING_DIR)/usr/lib -lm
++TARGET_LDFLAGS += -Wl,-rpath-link=$(STAGING_DIR)/opt/lib -lm
  
  define Build/InstallDev
 -	$(INSTALL_DIR) $(1)/usr/{lib,include}
+-	$(INSTALL_DIR) $(1)/usr/lib/pkgconfig
 -	$(CP) $(PKG_INSTALL_DIR)/usr/lib/libjansson* $(1)/usr/lib
+-	$(CP) $(PKG_INSTALL_DIR)/usr/lib/pkgconfig/* $(1)/usr/lib/pkgconfig
 -	$(CP) $(PKG_INSTALL_DIR)/usr/include/* $(1)/usr/include/
 +	$(INSTALL_DIR) $(1)/opt/{lib,include}
++	$(INSTALL_DIR) $(1)/opt/lib/pkgconfig
 +	$(CP) $(PKG_INSTALL_DIR)/opt/lib/libjansson* $(1)/opt/lib
++	$(CP) $(PKG_INSTALL_DIR)/opt/lib/pkgconfig/* $(1)/opt/lib/pkgconfig
 +	$(CP) $(PKG_INSTALL_DIR)/opt/include/* $(1)/opt/include/
  endef
  

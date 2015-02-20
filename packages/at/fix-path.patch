@@ -1,5 +1,14 @@
---- ../../../downloads/mipsel-hardfloat/openwrt_trunk-r40423/feeds/oldpackages/utils/at/Makefile
-+++ ../../../openwrt_trunk/feeds/oldpackages/utils/at/Makefile
+--- ../../../downloads/openwrt_trunk-r44486/feeds/oldpackages/utils/at/Makefile	2015-02-18 12:16:57.764306329 +0300
++++ ../../../openwrt_trunk/feeds/oldpackages/utils/at/Makefile	2015-02-19 14:28:40.326590802 +0300
+@@ -20,7 +20,7 @@
+ define Package/at
+   SECTION:=utils
+   CATEGORY:=Utilities
+-  DEPENDS:=+libelf1
++  DEPENDS:=+libelf
+   TITLE:=Delayed job execution and batch processing
+   URL:=http://packages.debian.org/stable/at
+   MAINTAINER:=Luka Perkov <openwrt@lukaperkov.net>
 @@ -35,22 +35,33 @@
  EXTRA_CFLAGS:=-DNEED_YYWRAP -I$(PKG_BUILD_DIR) \
  	$(TARGET_LDFLAGS)

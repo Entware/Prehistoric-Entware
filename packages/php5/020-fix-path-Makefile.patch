@@ -1,6 +1,6 @@
---- ../../../downloads/openwrt_trunk-r42803/feeds/packages/lang/php5/Makefile
-+++ ../../../openwrt_trunk/feeds/packages/lang/php5/Makefile
-@@ -136,13 +136,13 @@
+--- ../../../downloads/openwrt_trunk-r44486/feeds/packages/lang/php5/Makefile	2015-02-18 12:16:57.576306332 +0300
++++ ../../../openwrt_trunk/feeds/packages/lang/php5/Makefile	2015-02-19 17:06:14.514414854 +0300
+@@ -149,13 +149,13 @@
  	--disable-debug \
  	--without-pear \
  	\
@@ -19,7 +19,7 @@
  	--disable-phar
  
  ifneq ($(SDK)$(CONFIG_PACKAGE_php5-mod-calendar),)
-@@ -158,7 +158,7 @@
+@@ -171,7 +171,7 @@
  endif
  
  ifneq ($(SDK)$(CONFIG_PACKAGE_php5-mod-curl),)
@@ -28,7 +28,7 @@
  else
    CONFIGURE_ARGS+= --without-curl
  endif
-@@ -170,7 +170,7 @@
+@@ -183,7 +183,7 @@
  endif
  
  ifneq ($(SDK)$(CONFIG_PACKAGE_php5-mod-gettext),)
@@ -37,7 +37,7 @@
  else
    CONFIGURE_ARGS+= --without-gettext
  endif
-@@ -197,8 +197,8 @@
+@@ -210,8 +210,8 @@
    CONFIGURE_ARGS+= \
  	--with-gd=shared \
  	--without-freetype-dir \
@@ -48,7 +48,7 @@
  	--without-xpm-dir \
  	--without-t1lib \
  	--enable-gd-native-ttf \
-@@ -208,7 +208,7 @@
+@@ -221,7 +221,7 @@
  endif
  
  ifneq ($(SDK)$(CONFIG_PACKAGE_php5-mod-gmp),)
@@ -57,7 +57,7 @@
  else
    CONFIGURE_ARGS+= --without-gmp
  endif
-@@ -233,8 +233,8 @@
+@@ -246,8 +246,8 @@
  
  ifneq ($(SDK)$(CONFIG_PACKAGE_php5-mod-ldap),)
    CONFIGURE_ARGS+= \
@@ -68,7 +68,7 @@
  else
    CONFIGURE_ARGS+= --without-ldap
  endif
-@@ -246,28 +246,28 @@
+@@ -259,28 +259,28 @@
  endif
  
  ifneq ($(SDK)$(CONFIG_PACKAGE_php5-mod-mcrypt),)
@@ -102,7 +102,7 @@
  else
    CONFIGURE_ARGS+= --without-openssl
  endif
-@@ -281,17 +281,17 @@
+@@ -294,17 +294,17 @@
  ifneq ($(SDK)$(CONFIG_PACKAGE_php5-mod-pdo),)
    CONFIGURE_ARGS+= --enable-pdo=shared
    ifneq ($(SDK)$(CONFIG_PACKAGE_php5-mod-pdo-mysql),)
@@ -123,7 +123,7 @@
    else
      CONFIGURE_ARGS+= --without-pdo-sqlite
    endif
-@@ -300,7 +300,7 @@
+@@ -313,7 +313,7 @@
  endif
  
  ifneq ($(SDK)$(CONFIG_PACKAGE_php5-mod-pgsql),)
@@ -132,14 +132,7 @@
  else
    CONFIGURE_ARGS+= --without-pgsql
  endif
-@@ -336,13 +336,13 @@
- endif
- 
- ifneq ($(SDK)$(CONFIG_PACKAGE_php5-mod-sqlite),)
--  CONFIGURE_ARGS+= --with-sqlite=shared,"$(STAGING_DIR)/usr"
-+  CONFIGURE_ARGS+= --with-sqlite=shared,"$(STAGING_DIR)/opt"
- else
-   CONFIGURE_ARGS+= --without-sqlite
+@@ -349,7 +349,7 @@
  endif
  
  ifneq ($(SDK)$(CONFIG_PACKAGE_php5-mod-sqlite3),)
@@ -148,7 +141,7 @@
  else
    CONFIGURE_ARGS+= --without-sqlite3
  endif
-@@ -372,24 +372,24 @@
+@@ -379,24 +379,24 @@
  endif
  
  ifneq ($(SDK)$(CONFIG_PACKAGE_php5-mod-xml),)
@@ -178,7 +171,7 @@
  else
    CONFIGURE_ARGS+= --disable-xmlwriter
  endif
-@@ -408,7 +408,7 @@
+@@ -415,7 +415,7 @@
  
  ifneq ($(SDK)$(CONFIG_PHP5_LIBXML),)
    CONFIGURE_ARGS+= --enable-libxml
@@ -187,7 +180,7 @@
  else
    CONFIGURE_ARGS+= --disable-libxml
  endif
-@@ -426,31 +426,27 @@
+@@ -433,48 +433,38 @@
  	ac_cv_php_xml2_config_path="$(STAGING_DIR)/host/bin/xml2-config" \
  
  define Package/php5/conffiles
@@ -227,8 +220,31 @@
 +	true
  endef
  
+ define Package/php5-fpm/install
+-	$(INSTALL_DIR) $(1)/usr/bin
+-	$(INSTALL_BIN) $(PKG_BUILD_DIR)/sapi/fpm/php-fpm $(1)/usr/bin/php-fpm
+-
+-	$(INSTALL_DIR) $(1)/etc
+-	$(INSTALL_DATA) ./files/php5-fpm.conf $(1)/etc/php5-fpm.conf
+-
+-	$(INSTALL_DIR) $(1)/etc/config
+-	$(INSTALL_DATA) ./files/php5-fpm.config $(1)/etc/config/php5-fpm
++	$(INSTALL_DIR) $(1)/opt/bin
++	$(INSTALL_BIN) $(PKG_BUILD_DIR)/sapi/fpm/php-fpm $(1)/opt/bin/php-fpm
+ 
+-	$(INSTALL_DIR) $(1)/etc/php5-fpm.d
+-	$(INSTALL_DATA) ./files/php5-fpm-www.conf $(1)/etc/php5-fpm.d/www.conf
++	$(INSTALL_DIR) $(1)/opt/etc
++	$(INSTALL_DATA) ./files/php5-fpm.conf $(1)/opt/etc/php5-fpm.conf
+ 
+-	$(INSTALL_DIR) $(1)/etc/init.d
+-	$(INSTALL_BIN) ./files/php5-fpm.init $(1)/etc/init.d/php5-fpm
++	$(INSTALL_DIR) $(1)/opt/etc/php5-fpm.d
++	$(INSTALL_DATA) ./files/php5-fpm-www.conf $(1)/opt/etc/php5-fpm.d/www.conf
+ endef
+ 
  define Build/Prepare
-@@ -459,13 +455,13 @@
+@@ -483,13 +473,13 @@
  endef
  
  define Build/InstallDev
@@ -247,7 +263,7 @@
  endef
  
  define BuildModule
-@@ -481,10 +477,10 @@
+@@ -505,10 +495,10 @@
    endef
  
    define Package/php5-mod-$(1)/install
@@ -262,21 +278,3 @@
    endef
  
    $$(eval $$(call BuildPackage,php5-mod-$(1)))
-@@ -508,7 +504,7 @@
- $(eval $(call BuildModule,gd,GD graphics,+PACKAGE_php5-mod-gd:libjpeg +PACKAGE_php5-mod-gd:libpng))
- $(eval $(call BuildModule,gmp,GMP,+PACKAGE_php5-mod-gmp:libgmp))
- $(eval $(call BuildModule,hash,Hash))
--$(eval $(call BuildModule,iconv,iConv,+PACKAGE_php5-mod-iconv:libiconv))
-+$(eval $(call BuildModule,iconv,iConv,+PACKAGE_php5-mod-iconv:libiconv-full))
- $(eval $(call BuildModule,json,JSON))
- $(eval $(call BuildModule,ldap,LDAP,+PACKAGE_php5-mod-ldap:libopenldap +PACKAGE_php5-mod-ldap:libsasl2))
- $(eval $(call BuildModule,mbstring,MBString))
-@@ -533,6 +529,6 @@
- $(eval $(call BuildModule,sysvshm,System V semaphore))
- $(eval $(call BuildModule,tokenizer,Tokenizer))
- $(eval $(call BuildModule,xml,XML,+PHP5_LIBXML:libxml2 +!PHP5_LIBXML:libexpat))
--$(eval $(call BuildModule,xmlreader,XMLReader,+@PHP5_LIBXML +PACKAGE_php5-mod-xmlreader:libxml2 +PACKAGE_php5-mod-xmlreader:libiconv))
--$(eval $(call BuildModule,xmlwriter,XMLWriter,+@PHP5_LIBXML +PACKAGE_php5-mod-xmlwriter:libxml2 +PACKAGE_php5-mod-xmlwriter:libiconv))
-+$(eval $(call BuildModule,xmlreader,XMLReader,+@PHP5_LIBXML +PACKAGE_php5-mod-xmlreader:libxml2 +PACKAGE_php5-mod-xmlreader:libiconv-full))
-+$(eval $(call BuildModule,xmlwriter,XMLWriter,+@PHP5_LIBXML +PACKAGE_php5-mod-xmlwriter:libxml2 +PACKAGE_php5-mod-xmlwriter:libiconv-full))
- $(eval $(call BuildModule,zip,ZIP,+PACKAGE_php5-mod-zip:zlib))

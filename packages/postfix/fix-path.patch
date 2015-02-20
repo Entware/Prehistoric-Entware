@@ -1,13 +1,13 @@
-diff -urx .svn ../../../downloads/openwrt_trunk-r43718/feeds/packages/mail/postfix/Makefile ../../../openwrt_trunk/feeds/packages/mail/postfix/Makefile
---- ../../../downloads/openwrt_trunk-r43718/feeds/packages/mail/postfix/Makefile	2014-12-15 16:50:13.300093577 +0300
-+++ ../../../openwrt_trunk/feeds/packages/mail/postfix/Makefile	2014-12-18 13:03:15.603623628 +0300
+diff -urx .svn ../../../downloads/openwrt_trunk-r44486/feeds/packages/mail/postfix/Makefile ../../../openwrt_trunk/feeds/packages/mail/postfix/Makefile
+--- ../../../downloads/openwrt_trunk-r44486/feeds/packages/mail/postfix/Makefile	2015-02-18 12:16:57.596306332 +0300
++++ ../../../openwrt_trunk/feeds/packages/mail/postfix/Makefile	2015-02-20 10:36:21.625268731 +0300
 @@ -62,8 +62,8 @@
  	endmenu
  endef
  
--CCARGS=-DNO_EPOLL -DNO_SIGSETJMP -DNO_NIS
+-CCARGS=-DNO_EPOLL -DNO_SIGSETJMP -DNO_NIS -DNO_EAI
 -AUXLIBS=-L$(STAGING_DIR)/usr/lib
-+CCARGS=-DNO_EPOLL -DNO_SIGSETJMP -DNO_NIS -I$(STAGING_DIR)/opt/include
++CCARGS=-DNO_EPOLL -DNO_SIGSETJMP -DNO_NIS -DNO_EAI -I$(STAGING_DIR)/opt/include
 +AUXLIBS=-L$(STAGING_DIR)/opt/lib
  default_database_type=cdb
  
@@ -21,7 +21,7 @@ diff -urx .svn ../../../downloads/openwrt_trunk-r43718/feeds/packages/mail/postf
    AUXLIBS+=-lsasl2
  endif
  
-@@ -98,19 +98,19 @@
+@@ -98,21 +98,21 @@
  
  CCARGS+=-DDEF_DB_TYPE=\"$(default_database_type)\"
  
@@ -45,15 +45,19 @@ diff -urx .svn ../../../downloads/openwrt_trunk-r43718/feeds/packages/mail/postf
 -sendmail_path=/usr/sbin/sendmail
 -newaliases_path=/usr/bin/newaliases
 -mailq_path=/usr/bin/mailq
+-shlib_directory=/usr/lib/postfix
+-meta_directory=/etc/postfix
 +sendmail_path=/opt/sbin/sendmail
 +newaliases_path=/opt/bin/newaliases
 +mailq_path=/opt/bin/mailq
++shlib_directory=/opt/lib/postfix
++meta_directory=/opt/etc/postfix
  
  ln_suffix=.postfix
  ln_old_suffix=.old
-@@ -155,73 +155,8 @@
+@@ -171,73 +171,8 @@
  define Package/postfix/install
- 	cd $(PKG_BUILD_DIR); $(MAKE) install_root=$(1) command_directory=$(command_directory) daemon_directory=$(daemon_directory) data_directory=$(data_directory) html_directory=$(html_directory) mail_owner=postfix mailq_path=$(mailq_path)$(ln_suffix) manpage_directory=$(manpage_directory) newaliases_path=$(newaliases_path)$(ln_suffix) queue_directory=$(queue_directory) readme_directory=$(readme_directory) sendmail_path=$(sendmail_path)$(ln_suffix) setgid_group=postdrop sample_directory=$(sample_directory) config_directory=$(config_directory) non-interactive-package
+ 	cd $(PKG_BUILD_DIR); $(MAKE) install_root=$(1) command_directory=$(command_directory) daemon_directory=$(daemon_directory) data_directory=$(data_directory) html_directory=$(html_directory) mail_owner=postfix mailq_path=$(mailq_path)$(ln_suffix) manpage_directory=$(manpage_directory) newaliases_path=$(newaliases_path)$(ln_suffix) queue_directory=$(queue_directory) readme_directory=$(readme_directory) sendmail_path=$(sendmail_path)$(ln_suffix) setgid_group=postdrop sample_directory=$(sample_directory) config_directory=$(config_directory) shlib_directory=$(shlib_directory) meta_directory=$(meta_directory) mail_version=$(PKG_VERSION) non-interactive-package
  	$(INSTALL_DIR) $(1)$(mail_spool_directory)
 -	$(INSTALL_DIR) $(1)/etc/init.d/
 -	$(INSTALL_BIN) ./files/postfix.init $(1)/etc/init.d/postfix
@@ -127,9 +131,9 @@ diff -urx .svn ../../../downloads/openwrt_trunk-r43718/feeds/packages/mail/postf
  endef
  
  $(eval $(call BuildPackage,postfix))
-diff -urx .svn ../../../downloads/openwrt_trunk-r43718/feeds/packages/mail/postfix/patches/100-fsstat.patch ../../../openwrt_trunk/feeds/packages/mail/postfix/patches/100-fsstat.patch
---- ../../../downloads/openwrt_trunk-r43718/feeds/packages/mail/postfix/patches/100-fsstat.patch	2014-12-15 16:50:13.300093577 +0300
-+++ ../../../openwrt_trunk/feeds/packages/mail/postfix/patches/100-fsstat.patch	2014-12-18 12:53:03.027631108 +0300
+diff -urx .svn ../../../downloads/openwrt_trunk-r44486/feeds/packages/mail/postfix/patches/100-fsstat.patch ../../../openwrt_trunk/feeds/packages/mail/postfix/patches/100-fsstat.patch
+--- ../../../downloads/openwrt_trunk-r44486/feeds/packages/mail/postfix/patches/100-fsstat.patch	2015-02-18 12:16:57.596306332 +0300
++++ ../../../openwrt_trunk/feeds/packages/mail/postfix/patches/100-fsstat.patch	2015-02-18 12:17:35.460305642 +0300
 @@ -6,7 +6,7 @@
   #define BLOCKS(x)	((x) / fsbuf.block_size)
   
@@ -139,9 +143,9 @@ diff -urx .svn ../../../downloads/openwrt_trunk-r43718/feeds/packages/mail/postf
       if (msg_verbose)
   	msg_info("%s: blocks %lu avail %lu min_free %lu msg_size_limit %lu",
   		 myname,
-diff -urx .svn ../../../downloads/openwrt_trunk-r43718/feeds/packages/mail/postfix/patches/400-cdb.patch ../../../openwrt_trunk/feeds/packages/mail/postfix/patches/400-cdb.patch
---- ../../../downloads/openwrt_trunk-r43718/feeds/packages/mail/postfix/patches/400-cdb.patch	2014-12-15 16:50:13.300093577 +0300
-+++ ../../../openwrt_trunk/feeds/packages/mail/postfix/patches/400-cdb.patch	2014-12-18 12:53:33.099630534 +0300
+diff -urx .svn ../../../downloads/openwrt_trunk-r44486/feeds/packages/mail/postfix/patches/400-cdb.patch ../../../openwrt_trunk/feeds/packages/mail/postfix/patches/400-cdb.patch
+--- ../../../downloads/openwrt_trunk-r44486/feeds/packages/mail/postfix/patches/400-cdb.patch	2015-02-18 12:16:57.596306332 +0300
++++ ../../../openwrt_trunk/feeds/packages/mail/postfix/patches/400-cdb.patch	2015-02-18 12:17:35.460305642 +0300
 @@ -8,7 +8,7 @@
  -#define HAS_DB
   #define NATIVE_DB_TYPE	"hash"
@@ -151,9 +155,9 @@ diff -urx .svn ../../../downloads/openwrt_trunk-r43718/feeds/packages/mail/postf
   #ifndef NO_NIS
   #define HAS_NIS
   #endif
-diff -urx .svn ../../../downloads/openwrt_trunk-r43718/feeds/packages/mail/postfix/patches/500-crosscompile.patch ../../../openwrt_trunk/feeds/packages/mail/postfix/patches/500-crosscompile.patch
---- ../../../downloads/openwrt_trunk-r43718/feeds/packages/mail/postfix/patches/500-crosscompile.patch	2014-12-15 16:50:13.300093577 +0300
-+++ ../../../openwrt_trunk/feeds/packages/mail/postfix/patches/500-crosscompile.patch	2014-12-18 12:54:30.351625069 +0300
+diff -urx .svn ../../../downloads/openwrt_trunk-r44486/feeds/packages/mail/postfix/patches/500-crosscompile.patch ../../../openwrt_trunk/feeds/packages/mail/postfix/patches/500-crosscompile.patch
+--- ../../../downloads/openwrt_trunk-r44486/feeds/packages/mail/postfix/patches/500-crosscompile.patch	2015-02-18 12:16:57.596306332 +0300
++++ ../../../openwrt_trunk/feeds/packages/mail/postfix/patches/500-crosscompile.patch	2015-02-18 12:17:35.460305642 +0300
 @@ -8,7 +8,7 @@
  -    RELEASE=`(uname -r) 2>/dev/null`
  -    VERSION=`(uname -v) 2>/dev/null`

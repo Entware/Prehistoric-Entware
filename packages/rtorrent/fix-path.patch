@@ -1,5 +1,5 @@
---- ../../../downloads/openwrt_trunk-r42803/feeds/packages/net/rtorrent/Makefile
-+++ ../../../openwrt_trunk/feeds/packages/net/rtorrent/Makefile
+--- ../../../downloads/openwrt_trunk-r44486/feeds/packages/net/rtorrent/Makefile	2015-02-18 12:16:57.620306332 +0300
++++ ../../../openwrt_trunk/feeds/packages/net/rtorrent/Makefile	2015-02-18 12:17:37.444305607 +0300
 @@ -67,12 +67,13 @@
   This package is built with xmlrpc support
  endef
@@ -16,8 +16,8 @@
  
  ifeq ($(BUILD_VARIANT),rpc)
  	CONFIGURE_ARGS += \
-@@ -86,8 +87,8 @@
- endef
+@@ -81,8 +82,8 @@
+ 
  
  define Package/rtorrent/install
 -	$(INSTALL_DIR) $(1)/usr/bin

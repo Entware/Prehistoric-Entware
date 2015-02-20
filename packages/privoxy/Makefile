@@ -9,6 +9,7 @@ all: .done
 
 .done:
 	patch -d $(TOP) -p3 -i $(CURDIR)/fix-path.patch
+	cp -f ./privoxy.oldconfig ../../../openwrt_trunk/feeds/packages/net/privoxy/files/
 	cp -f ./S24privoxy ../../../openwrt_trunk/feeds/packages/net/privoxy/files/
 	@touch $@
 

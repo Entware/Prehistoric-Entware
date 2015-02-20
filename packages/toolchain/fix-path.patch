@@ -1,5 +1,5 @@
---- ../../../downloads/openwrt_trunk-r43593/package/libs/toolchain/Makefile	2014-12-10 12:26:33.274951674 +0300
-+++ ../../../openwrt_trunk/package/libs/toolchain/Makefile	2014-12-12 11:47:01.859853582 +0300
+--- ../../../downloads/openwrt_trunk-r44486/package/libs/toolchain/Makefile	2015-02-18 12:16:57.820306328 +0300
++++ ../../../openwrt_trunk/package/libs/toolchain/Makefile	2015-02-18 12:17:41.628305530 +0300
 @@ -14,12 +14,8 @@
  
  include $(INCLUDE_DIR)/package.mk
@@ -113,7 +113,7 @@
  	done ; \
  	exit 0
    endef
-@@ -607,8 +607,8 @@
+@@ -616,8 +616,8 @@
    define Package/ldd/install
  	for file in $(call qstrip,$(CONFIG_LDD_FILE_SPEC)); do \
  		dir=`dirname $$$$file` ; \
@@ -124,7 +124,7 @@
  	done ; \
  	exit 0
    endef
-@@ -616,8 +616,8 @@
+@@ -625,8 +625,8 @@
    define Package/ldconfig/install
  	for file in $(call qstrip,$(CONFIG_LDCONFIG_FILE_SPEC)); do \
  		dir=`dirname $$$$file` ; \

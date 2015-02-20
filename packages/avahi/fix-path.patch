@@ -1,15 +1,15 @@
---- ../../../downloads/openwrt_trunk-r43593/feeds/packages/libs/avahi/Makefile	2014-12-10 12:26:32.898951682 +0300
-+++ ../../../openwrt_trunk/feeds/packages/libs/avahi/Makefile	2014-12-11 12:19:12.077386221 +0300
-@@ -113,7 +113,7 @@
- endef
+--- ../../../downloads/openwrt_trunk-r44486/feeds/packages/libs/avahi/Makefile	2015-02-18 12:16:57.588306331 +0300
++++ ../../../openwrt_trunk/feeds/packages/libs/avahi/Makefile	2015-02-18 16:35:42.168023116 +0300
+@@ -112,7 +112,7 @@
+ Package/avahi-nodbus-daemon/description=$(Package/avahi-daemon/description)
  
  define Package/avahi-daemon/conffiles
 -/etc/avahi/avahi-daemon.conf
 +/opt/etc/avahi/avahi-daemon.conf
  endef
  
- define Package/avahi-daemon-service-http
-@@ -130,7 +130,7 @@
+ Package/avahi-dbus-daemon/conffiles=$(Package/avahi-daemon/conffiles)
+@@ -132,7 +132,7 @@
  endef
  
  define Package/avahi-daemon-service-http/conffiles
@@ -18,7 +18,7 @@
  endef
  
  define Package/avahi-daemon-service-ssh
-@@ -147,7 +147,7 @@
+@@ -149,7 +149,7 @@
  endef
  
  define Package/avahi-daemon-service-ssh/conffiles
@@ -27,7 +27,7 @@
  endef
  
  define Package/avahi-dnsconfd
-@@ -293,20 +293,20 @@
+@@ -312,82 +312,82 @@
  	ac_cv_header_sys_capability_h=no \
  
  define Build/InstallDev
@@ -39,7 +39,7 @@
 +	$(CP) $(PKG_INSTALL_DIR)/opt/include/* $(1)/opt/include/
 +	$(INSTALL_DIR) $(1)/opt/lib
 +	$(CP) $(PKG_INSTALL_DIR)/opt/lib/libavahi-* $(1)/opt/lib/
- ifneq ($(CONFIG_PACKAGE_libavahi-compat-libdnssd),)
+ ifeq ($(CONFIG_PACKAGE_libavahi-compat-libdnssd)-$(BUILD_VARIANT),y-dbus)
 -	$(CP) $(PKG_INSTALL_DIR)/usr/lib/libdns_sd* $(1)/usr/lib/
 +	$(CP) $(PKG_INSTALL_DIR)/opt/lib/libdns_sd* $(1)/opt/lib/
  endif
@@ -49,23 +49,22 @@
 +	$(CP) $(PKG_INSTALL_DIR)/opt/lib/pkgconfig/* $(1)/opt/lib/pkgconfig/
  endef
  
- define Package/libavahi-dbus-support/install
--	$(INSTALL_DIR) $(1)/etc/dbus-1/system.d
--	$(CP) $(PKG_INSTALL_DIR)/etc/dbus-1/system.d/* $(1)/etc/dbus-1/system.d
-+	$(INSTALL_DIR) $(1)/opt/etc/dbus-1/system.d
-+	$(CP) $(PKG_INSTALL_DIR)/opt/etc/dbus-1/system.d/* $(1)/opt/etc/dbus-1/system.d
- endef
- 
  define Package/libavahi/install
-@@ -317,59 +317,59 @@
- 	# "Other" means this: if the current build is "dbus", the other is "nodebus",
- 	# and if the current build is "nodbus", the other is "dbus".
- 	$(RM) -f $(PKG_ALT_DIR)/.built
 -	$(INSTALL_DIR) $(1)/usr/lib
 -	$(CP) $(PKG_INSTALL_DIR)/usr/lib/libavahi-{common,core}.so.* $(1)/usr/lib/
 +	$(INSTALL_DIR) $(1)/opt/lib
 +	$(CP) $(PKG_INSTALL_DIR)/opt/lib/libavahi-{common,core}.so.* $(1)/opt/lib/
  endef
+ 
+ define Package/libavahi-dbus-support/install
+ 	$(call Package/libavahi/install,$(1))
+-	$(INSTALL_DIR) $(1)/etc/dbus-1/system.d
+-	$(INSTALL_DATA) $(PKG_INSTALL_DIR)/etc/dbus-1/system.d/* $(1)/etc/dbus-1/system.d
++	$(INSTALL_DIR) $(1)/opt/etc/dbus-1/system.d
++	$(INSTALL_DATA) $(PKG_INSTALL_DIR)/opt/etc/dbus-1/system.d/* $(1)/opt/etc/dbus-1/system.d
+ endef
+ 
+ Package/libavahi-nodbus-support/install=$(Package/libavahi/install)
  
  define Package/libavahi-client/install
 -	$(INSTALL_DIR) $(1)/usr/lib
@@ -83,18 +82,18 @@
  
  define Package/avahi-utils/install
 -	$(INSTALL_DIR) $(1)/usr/bin
--	$(CP) $(PKG_INSTALL_DIR)/usr/bin/* $(1)/usr/bin/
+-	$(INSTALL_BIN) $(PKG_INSTALL_DIR)/usr/bin/* $(1)/usr/bin/
 +	$(INSTALL_DIR) $(1)/opt/bin
-+	$(CP) $(PKG_INSTALL_DIR)/opt/bin/* $(1)/opt/bin/
++	$(INSTALL_BIN) $(PKG_INSTALL_DIR)/opt/bin/* $(1)/opt/bin/
  endef
  
  define Package/avahi-autoipd/install
 -	$(INSTALL_DIR) $(1)/etc/avahi
--	$(CP) $(PKG_INSTALL_DIR)/etc/avahi/avahi-autoipd.action $(1)/etc/avahi/
+-	$(INSTALL_BIN) $(PKG_INSTALL_DIR)/etc/avahi/avahi-autoipd.action $(1)/etc/avahi/
 -	$(INSTALL_DIR) $(1)/usr/sbin
 -	$(INSTALL_BIN) $(PKG_INSTALL_DIR)/usr/sbin/avahi-autoipd $(1)/usr/sbin/
 +	$(INSTALL_DIR) $(1)/opt/etc/avahi
-+	$(CP) $(PKG_INSTALL_DIR)/opt/etc/avahi/avahi-autoipd.action $(1)/opt/etc/avahi/
++	$(INSTALL_BIN) $(PKG_INSTALL_DIR)/opt/etc/avahi/avahi-autoipd.action $(1)/opt/etc/avahi/
 +	$(INSTALL_DIR) $(1)/opt/sbin
 +	$(INSTALL_BIN) $(PKG_INSTALL_DIR)/opt/sbin/avahi-autoipd $(1)/opt/sbin/
  endef
@@ -104,21 +103,22 @@
 -	$(INSTALL_BIN) $(PKG_INSTALL_DIR)/usr/sbin/avahi-daemon $(1)/usr/sbin/
 -	$(INSTALL_DIR) $(1)/etc/avahi
 -	$(INSTALL_DATA) ./files/avahi-daemon.conf $(1)/etc/avahi/
--	$(INSTALL_DIR) $(1)/etc/avahi/services
--	$(INSTALL_DATA) ./files/service-http $(1)/etc/avahi/services/http.service
--	$(INSTALL_DATA) ./files/service-ssh $(1)/etc/avahi/services/ssh.service
--	$(INSTALL_DIR) $(1)/etc/init.d
--	$(INSTALL_BIN) ./files/avahi-daemon.init $(1)/etc/init.d/avahi-daemon
 +	$(INSTALL_DIR) $(1)/opt/sbin
 +	$(INSTALL_BIN) $(PKG_INSTALL_DIR)/opt/sbin/avahi-daemon $(1)/opt/sbin/
 +	$(INSTALL_DIR) $(1)/opt/etc/avahi
 +	$(INSTALL_DATA) ./files/avahi-daemon.conf $(1)/opt/etc/avahi/
+ 	# install empty service directory so that user knows where
+ 	# to place custom service files
+-	$(INSTALL_DIR) $(1)/etc/avahi/services
+-	$(INSTALL_DIR) $(1)/etc/init.d
+-	$(INSTALL_BIN) ./files/avahi-daemon.init $(1)/etc/init.d/avahi-daemon
 +	$(INSTALL_DIR) $(1)/opt/etc/avahi/services
-+	$(INSTALL_DATA) ./files/service-http $(1)/opt/etc/avahi/services/http.service
-+	$(INSTALL_DATA) ./files/service-ssh $(1)/opt/etc/avahi/services/ssh.service
 +	$(INSTALL_DIR) $(1)/opt/etc/init.d
 +	$(INSTALL_BIN) ./files/S42avahi-daemon $(1)/opt/etc/init.d/
  endef
+ 
+ Package/avahi-dbus-daemon/install=$(Package/avahi-daemon/install)
+ Package/avahi-nodbus-daemon/install=$(Package/avahi-daemon/install)
  
  define Package/avahi-daemon-service-http/install
 -	$(INSTALL_DIR) $(1)/etc/avahi/services
@@ -136,11 +136,11 @@
  
  define Package/avahi-dnsconfd/install
 -	$(INSTALL_DIR) $(1)/etc/avahi
--	$(CP) $(PKG_INSTALL_DIR)/etc/avahi/avahi-dnsconfd.action $(1)/etc/avahi/
+-	$(INSTALL_BIN) $(PKG_INSTALL_DIR)/etc/avahi/avahi-dnsconfd.action $(1)/etc/avahi/
 -	$(INSTALL_DIR) $(1)/usr/sbin
 -	$(INSTALL_BIN) $(PKG_INSTALL_DIR)/usr/sbin/avahi-dnsconfd $(1)/usr/sbin/
 +	$(INSTALL_DIR) $(1)/opt/etc/avahi
-+	$(CP) $(PKG_INSTALL_DIR)/opt/etc/avahi/avahi-dnsconfd.action $(1)/opt/etc/avahi/
++	$(INSTALL_BIN) $(PKG_INSTALL_DIR)/opt/etc/avahi/avahi-dnsconfd.action $(1)/opt/etc/avahi/
 +	$(INSTALL_DIR) $(1)/opt/sbin
 +	$(INSTALL_BIN) $(PKG_INSTALL_DIR)/opt/sbin/avahi-dnsconfd $(1)/opt/sbin/
  endef

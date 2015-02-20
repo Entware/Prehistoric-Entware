@@ -1,5 +1,5 @@
---- ../../../openwrt_trunk.orig/package/utils/fuse/Makefile
-+++ ../../../openwrt_trunk/package/utils/fuse/Makefile
+--- ../../../downloads/openwrt_trunk-r44486/package/utils/fuse/Makefile	2015-02-18 12:16:58.360306318 +0300
++++ ../../../openwrt_trunk/package/utils/fuse/Makefile	2015-02-19 14:43:09.538570430 +0300
 @@ -6,7 +6,6 @@
  #
  
@@ -7,7 +7,7 @@
 -include $(INCLUDE_DIR)/kernel.mk
  
  PKG_NAME:=fuse
- PKG_VERSION:=2.9.0
+ PKG_VERSION:=2.9.3
 @@ -53,7 +52,7 @@
    SECTION:=libs
    CATEGORY:=Libraries
@@ -17,45 +17,44 @@
    SUBMENU:=Filesystem
  endef
  
-@@ -77,29 +76,29 @@
+@@ -75,26 +74,26 @@
+ 	--disable-mtab
  
  define Build/InstallDev
- 	@echo "--> Build/InstallDev enter"
--	mkdir -p $(1)/usr/include
--	$(CP)	$(PKG_INSTALL_DIR)/usr/include/{fuse,*.h} $(1)/usr/include/
--	mkdir -p $(1)/usr/lib
--	$(CP)	$(PKG_INSTALL_DIR)/usr/lib/*.{a,so*} $(1)/usr/lib/
--	mkdir -p $(1)/usr/lib/pkgconfig
+-	$(INSTALL_DIR) $(1)/usr/include
+-	$(CP)	$(PKG_INSTALL_DIR)/usr/include/{fuse,fuse.h,ulockmgr.h} $(1)/usr/include/
+-	$(INSTALL_DIR)  $(1)/usr/lib
+-	$(CP)	$(PKG_INSTALL_DIR)/usr/lib/lib{fuse,ulockmgr}.{a,so*} $(1)/usr/lib/
+-	$(INSTALL_DIR)  $(1)/usr/lib/pkgconfig
 -	$(CP) $(PKG_INSTALL_DIR)/usr/lib/pkgconfig/fuse.pc $(1)/usr/lib/pkgconfig/
 -	$(SED) 's,-I$$$${includedir}/fuse,,g' $(1)/usr/lib/pkgconfig/fuse.pc
 -	$(SED) 's,-L$$$${libdir},,g' $(1)/usr/lib/pkgconfig/fuse.pc
-+	mkdir -p $(1)/opt/include
-+	$(CP)	$(PKG_INSTALL_DIR)/opt/include/{fuse,*.h} $(1)/opt/include/
-+	mkdir -p $(1)/opt/lib
-+	$(CP)	$(PKG_INSTALL_DIR)/opt/lib/*.{a,so*} $(1)/opt/lib/
-+	mkdir -p $(1)/opt/lib/pkgconfig
++	$(INSTALL_DIR) $(1)/opt/include
++	$(CP)	$(PKG_INSTALL_DIR)/opt/include/{fuse,fuse.h,ulockmgr.h} $(1)/opt/include/
++	$(INSTALL_DIR)  $(1)/opt/lib
++	$(CP)	$(PKG_INSTALL_DIR)/opt/lib/lib{fuse,ulockmgr}.{a,so*} $(1)/opt/lib/
++	$(INSTALL_DIR)  $(1)/opt/lib/pkgconfig
 +	$(CP) $(PKG_INSTALL_DIR)/opt/lib/pkgconfig/fuse.pc $(1)/opt/lib/pkgconfig/
 +	$(SED) 's,-I$$$${includedir}/fuse,,g' $(1)/opt/lib/pkgconfig/fuse.pc
 +	$(SED) 's,-L$$$${libdir},,g' $(1)/opt/lib/pkgconfig/fuse.pc
- 	@echo "--> Build/InstallDev leave"
  endef
  
  define Package/fuse-utils/install
- 	@echo "--> Package/fuse-utils/install enter"
+-	$(INSTALL_DIR) $(1)/sbin
+-	$(CP) $(PKG_INSTALL_DIR)/sbin/mount.fuse $(1)/sbin/
 -	$(INSTALL_DIR) $(1)/usr/bin
+-	$(CP) $(PKG_INSTALL_DIR)/usr/bin/{fusermount,ulockmgr_server} $(1)/usr/bin/
++	$(INSTALL_DIR) $(1)/opt/sbin
++	$(CP) $(PKG_INSTALL_DIR)/sbin/mount.fuse $(1)/opt/sbin/
 +	$(INSTALL_DIR) $(1)/opt/bin
- 	# use cp and keep fusermount sticky bit
--	$(FIND) $(PKG_INSTALL_DIR)/usr/bin/ -type f -exec $(CP) -a {} $(1)/usr/bin/ \;
-+	$(FIND) $(PKG_INSTALL_DIR)/opt/bin/ -type f -exec $(CP) -a {} $(1)/opt/bin/ \;
- 	@echo "--> Package/fuse-utils/install leave"
++	$(CP) $(PKG_INSTALL_DIR)/opt/bin/{fusermount,ulockmgr_server} $(1)/opt/bin/
  endef
  
  define Package/libfuse/install
- 	@echo "--> Package/libfuse/install enter"
 -	$(INSTALL_DIR) $(1)/usr/lib
--	$(CP) $(PKG_INSTALL_DIR)/usr/lib/*.so.* $(1)/usr/lib/
+-	$(CP) $(PKG_INSTALL_DIR)/usr/lib/lib{fuse,ulockmgr}.so.* $(1)/usr/lib/
 +	$(INSTALL_DIR) $(1)/opt/lib
-+	$(CP) $(PKG_INSTALL_DIR)/opt/lib/*.so.* $(1)/opt/lib/
- 	@echo "--> Package/libfuse/install leave"
++	$(CP) $(PKG_INSTALL_DIR)/opt/lib/lib{fuse,ulockmgr}.so.* $(1)/opt/lib/
  endef
  
+ $(eval $(call BuildPackage,fuse-utils))

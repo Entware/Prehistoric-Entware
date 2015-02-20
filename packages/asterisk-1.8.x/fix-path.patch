@@ -1,5 +1,5 @@
---- ../../../downloads/openwrt_trunk-r43708/feeds/telephony/net/asterisk-1.8.x/Makefile	2014-12-15 12:19:58.180388954 +0300
-+++ ../../../openwrt_trunk/feeds/telephony/net/asterisk-1.8.x/Makefile	2014-12-15 14:44:13.644232678 +0300
+--- ../../../downloads/openwrt_trunk-r44486/feeds/telephony/net/asterisk-1.8.x/Makefile	2015-02-18 12:16:57.772306330 +0300
++++ ../../../openwrt_trunk/feeds/telephony/net/asterisk-1.8.x/Makefile	2015-02-18 16:25:16.696034375 +0300
 @@ -24,28 +24,28 @@
  include $(INCLUDE_DIR)/package.mk
  
@@ -39,7 +39,7 @@
  endef
  
  define BuildAsterisk18Module
-@@ -100,19 +100,19 @@
+@@ -100,18 +100,18 @@
  endef
  
  define Package/asterisk18/conffiles
@@ -54,7 +54,6 @@
 -/etc/asterisk/logger.conf
 -/etc/asterisk/manager.conf
 -/etc/asterisk/rtp.conf
--/etc/default/asterisk
 -/etc/init.d/asterisk
 +/opt/etc/asterisk/cel.conf
 +/opt/etc/asterisk/asterisk.conf
@@ -67,17 +66,14 @@
 +/opt/etc/asterisk/logger.conf
 +/opt/etc/asterisk/manager.conf
 +/opt/etc/asterisk/rtp.conf
-+/opt/etc/default/asterisk
 +/opt/etc/init.d/asterisk
  endef
  
  AST_CFG_FILES:=\
-@@ -126,10 +126,8 @@
+@@ -125,8 +125,8 @@
  $(call Package/asterisk18/install/sbin,$(1),asterisk)
  $(foreach m,$(AST_CFG_FILES),$(call Package/asterisk18/install/conffile,$(1),$(m));)
  $(foreach m,$(AST_EMB_MODULES),$(call Package/asterisk18/install/module,$(1),$(m));)
--	$(INSTALL_DIR) $(1)/etc/default
--	$(INSTALL_DATA) ./files/asterisk.default $(1)/etc/default/asterisk
 -	$(INSTALL_DIR) $(1)/etc/init.d
 -	$(INSTALL_BIN) ./files/asterisk.init $(1)/etc/init.d/asterisk
 +	$(INSTALL_DIR) $(1)/opt/var/{run,log,spool}/asterisk $(1)/opt/etc/init.d
@@ -85,7 +81,7 @@
  endef
  
  define Package/asterisk18-sounds
-@@ -144,15 +142,15 @@
+@@ -141,15 +141,15 @@
  endef
  
  define Package/asterisk18-sounds/install
@@ -106,7 +102,7 @@
    SITE_VARS+= \
  	ac_cv_lib_iksemel_iks_start_sasl=yes
  else
-@@ -162,7 +160,7 @@
+@@ -159,7 +159,7 @@
  
  ifneq ($(SDK)$(CONFIG_PACKAGE_asterisk18-curl),)
    CONFIGURE_ARGS+= \
@@ -115,7 +111,7 @@
  else
    CONFIGURE_ARGS+= \
  	--without-libcurl
-@@ -178,7 +176,7 @@
+@@ -175,7 +175,7 @@
  
  ifneq ($(SDK)$(CONFIG_PACKAGE_asterisk18-pbx-lua),)
    CONFIGURE_ARGS+= \
@@ -124,7 +120,7 @@
    TARGET_LDFLAGS+=-ldl -lcrypt
  else
    CONFIGURE_ARGS+= \
-@@ -187,7 +185,7 @@
+@@ -184,7 +184,7 @@
  
  ifneq ($(SDK)$(CONFIG_PACKAGE_asterisk18-pgsql),)
    CONFIGURE_ARGS+= \
@@ -133,7 +129,7 @@
  else
    CONFIGURE_ARGS+= \
  	--without-postgres
-@@ -195,7 +193,7 @@
+@@ -192,7 +192,7 @@
  
  ifneq ($(SDK)$(CONFIG_PACKAGE_asterisk18-res-fax-spandsp),)
    CONFIGURE_ARGS+= \
@@ -142,7 +138,7 @@
  else
    CONFIGURE_ARGS+= \
  	--without-spandsp
-@@ -203,7 +201,7 @@
+@@ -200,7 +200,7 @@
  
  ifneq ($(SDK)$(CONFIG_PACKAGE_asterisk18-res-srtp),)
    CONFIGURE_ARGS+= \
@@ -151,7 +147,7 @@
  else
    CONFIGURE_ARGS+= \
  	--without-srtp
-@@ -221,12 +219,12 @@
+@@ -218,12 +218,12 @@
  	--without-isdnnet \
  	--without-misdn \
  	--without-nbs \
@@ -166,7 +162,7 @@
  	--without-pri \
  	--without-radius \
  	--without-sdl \
-@@ -236,7 +234,7 @@
+@@ -233,7 +233,7 @@
  	--without-tinfo \
  	--without-vorbis \
  	--without-vpb \
@@ -175,7 +171,7 @@
  	--with-sounds-cache="$(DL_DIR)" \
  	--disable-xmldoc
  
-@@ -261,10 +259,10 @@
+@@ -258,10 +258,10 @@
  	ASTCFLAGS="$(EXTRA_CFLAGS) -DLOW_MEMORY" \
  	ASTLDFLAGS="$(EXTRA_LDFLAGS)" \
  	$(MAKE) -C "$(PKG_BUILD_DIR)" \
@@ -190,7 +186,7 @@
  		NOISY_BUILD="1" \
  		DEBUG="" \
  		OPTIMIZE="" \
-@@ -273,9 +271,9 @@
+@@ -270,9 +270,9 @@
  endef
  
  define Build/InstallDev
@@ -203,7 +199,7 @@
  endef
  
  $(eval $(call BuildPackage,asterisk18))
-@@ -302,7 +300,7 @@
+@@ -299,7 +299,7 @@
  $(eval $(call BuildAsterisk18Module,app-exec,Exec application,support for application execution,,,,app_exec,))
  $(eval $(call BuildAsterisk18Module,app-chanisavail,Channel availability check,support for checking if a channel is available,,,,app_chanisavail,))
  $(eval $(call BuildAsterisk18Module,app-chanspy,Channel listen in,support for listening in on any channel,,,,app_chanspy,))
@@ -212,7 +208,7 @@
  $(eval $(call BuildAsterisk18Module,app-mixmonitor,Record a call and mix the audio,record a call and mix the audio during the recording,,,,app_mixmonitor,))
  $(eval $(call BuildAsterisk18Module,app-originate,Originate a call,originating an outbound call and connecting it to a specified extension or application,,,,app_originate,))
  $(eval $(call BuildAsterisk18Module,app-playtones,Playtones application,play a tone list,,,,app_playtones,))
-@@ -319,7 +317,7 @@
+@@ -316,7 +316,7 @@
  $(eval $(call BuildAsterisk18Module,app-verbose,Verbose logging,Verbose logging application,,,,app_verbose,))
  $(eval $(call BuildAsterisk18Module,app-waituntil,Sleep,support sleeping until the given epoch,,,,app_waituntil,))
  $(eval $(call BuildAsterisk18Module,app-while,While loop,a while loop implementation,,,,app_while,))
@@ -221,7 +217,7 @@
  $(eval $(call BuildAsterisk18Module,cdr-csv,Provides CDR CSV,Call Detail Record with CSV support,,,,cdr_csv,))
  $(eval $(call BuildAsterisk18Module,codec-a-mu,Alaw to ulaw translation,translation between alaw and ulaw codecs,,,,codec_a_mu,))
  $(eval $(call BuildAsterisk18Module,codec-alaw,Signed linear to alaw translation,translation between signed linear and alaw codecs,,,,codec_alaw,))
-@@ -343,31 +341,31 @@
+@@ -340,31 +340,31 @@
  $(eval $(call BuildAsterisk18Module,func-uri,URI encoding and decoding,Encodes and decodes URI-safe strings,,,,func_uri,))
  $(eval $(call BuildAsterisk18Module,func-vmcount,vmcount dialplan,a vmcount dialplan function,,,,func_vmcount,))
  $(eval $(call BuildAsterisk18Module,chan-agent,Agents proxy channel,An implementation of agents proxy channel,,,,chan_agent,))

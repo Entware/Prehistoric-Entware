@@ -1,6 +1,6 @@
---- ../../../openwrt_trunk.orig/package/libs/popt/Makefile
-+++ ../../../openwrt_trunk/package/libs/popt/Makefile
-@@ -41,15 +41,15 @@
+--- ../../../downloads/openwrt_trunk-r44486/package/libs/popt/Makefile	2015-02-18 12:16:57.820306328 +0300
++++ ../../../openwrt_trunk/package/libs/popt/Makefile	2015-02-19 17:14:20.062410798 +0300
+@@ -41,17 +41,17 @@
  endef
  
  define Build/InstallDev
@@ -8,10 +8,14 @@
 -	$(CP) $(PKG_INSTALL_DIR)/usr/include/popt.h $(1)/usr/include/
 -	$(INSTALL_DIR) $(1)/usr/lib
 -	$(CP) $(PKG_INSTALL_DIR)/usr/lib/libpopt.{a,so*} $(1)/usr/lib/
+-	$(INSTALL_DIR) $(1)/usr/lib/pkgconfig
+-	$(CP) $(PKG_INSTALL_DIR)/usr/lib/pkgconfig/popt.pc $(1)/usr/lib/pkgconfig/
 +	$(INSTALL_DIR) $(1)/opt/include
 +	$(CP) $(PKG_INSTALL_DIR)/opt/include/popt.h $(1)/opt/include/
 +	$(INSTALL_DIR) $(1)/opt/lib
 +	$(CP) $(PKG_INSTALL_DIR)/opt/lib/libpopt.{a,so*} $(1)/opt/lib/
++	$(INSTALL_DIR) $(1)/opt/lib/pkgconfig
++	$(CP) $(PKG_INSTALL_DIR)/opt/lib/pkgconfig/popt.pc $(1)/opt/lib/pkgconfig/
  endef
  
  define Package/libpopt/install

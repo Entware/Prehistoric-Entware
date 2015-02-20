@@ -1,6 +1,6 @@
---- ../../../openwrt_trunk.orig/feeds/oldpackages/admin/sudo/Makefile
-+++ ../../../openwrt_trunk/feeds/oldpackages/admin/sudo/Makefile
-@@ -34,7 +34,7 @@
+--- ../../../downloads/openwrt_trunk-r44486/feeds/packages/admin/sudo/Makefile	2015-02-18 12:16:57.624306332 +0300
++++ ../../../openwrt_trunk/feeds/packages/admin/sudo/Makefile	2015-02-20 12:10:18.333162321 +0300
+@@ -39,7 +39,7 @@
  endef
  
  define Package/sudo/conffiles
@@ -9,8 +9,19 @@
  endef
  
  CONFIGURE_ARGS+= \
-@@ -49,28 +49,17 @@
- 	sudo_cv_func_unsetenv_void=no
+@@ -48,8 +48,8 @@
+ 	--with-editor=/bin/vi \
+ 	--without-lecture \
+ 	--disable-zlib \
+-	--with-rundir=/var/lib/sudo \
+-	--with-vardir=/var/lib/sudo
++	--with-rundir=/opt/var/lib/sudo \
++	--with-vardir=/opt/var/lib/sudo
+ 
+ CONFIGURE_VARS+= \
+ 	sudo_cv_uid_t_len=10 \
+@@ -70,28 +70,17 @@
+ $(eval $(call HostBuild))
  
  define Package/sudo/install
 -	$(INSTALL_DIR) $(1)/usr/bin
@@ -22,8 +33,8 @@
 -	$(CP) $(PKG_INSTALL_DIR)/etc/sudoers $(1)/etc/
 -	chmod 0440 $(1)/etc/sudoers
 -	$(INSTALL_DIR) $(1)/etc/sudoers.d
--	$(INSTALL_DIR) $(1)/usr/lib
--	$(CP) $(PKG_INSTALL_DIR)/usr/lib/sudo_noexec.so $(1)/usr/lib/
+-	$(INSTALL_DIR) $(1)/usr/lib/sudo
+-	$(CP) $(PKG_INSTALL_DIR)/usr/lib/sudo/*.so* $(1)/usr/lib/sudo/
 -	$(INSTALL_DIR) $(1)/etc/init.d
 -	$(INSTALL_BIN) ./files/sudo.init $(1)/etc/init.d/sudo
 -endef
@@ -44,8 +55,8 @@
 +	$(CP) $(PKG_INSTALL_DIR)/opt/etc/sudoers $(1)/opt/etc/
 +	chmod 0440 $(1)/opt/etc/sudoers
 +	$(INSTALL_DIR) $(1)/opt/etc/sudoers.d
-+	$(INSTALL_DIR) $(1)/opt/lib
-+	$(CP) $(PKG_INSTALL_DIR)/opt/lib/sudo_noexec.so $(1)/opt/lib/
++	$(INSTALL_DIR) $(1)/opt/lib/sudo
++	$(CP) $(PKG_INSTALL_DIR)/opt/lib/sudo/*.so* $(1)/opt/lib/sudo/
  endef
  
  $(eval $(call BuildPackage,sudo))

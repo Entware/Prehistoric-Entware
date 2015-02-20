@@ -1,17 +1,34 @@
---- ../../../downloads/openwrt_trunk-r42803/package/devel/binutils/Makefile
-+++ ../../../openwrt_trunk/package/devel/binutils/Makefile
-@@ -66,17 +66,16 @@
+--- ../../../downloads/openwrt_trunk-r44486/package/devel/binutils/Makefile	2015-02-18 12:16:58.060306324 +0300
++++ ../../../openwrt_trunk/package/devel/binutils/Makefile	2015-02-18 16:41:01.256016807 +0300
+@@ -89,31 +89,30 @@
+ endef
+ 
+ define Package/libbfd/install
+-	$(INSTALL_DIR) $(1)/usr/lib
+-	$(CP) $(PKG_INSTALL_DIR)/usr/lib/libbfd*.so $(1)/usr/lib/
++	$(INSTALL_DIR) $(1)/opt/lib
++	$(CP) $(PKG_INSTALL_DIR)/opt/lib/libbfd*.so $(1)/opt/lib/
+ endef
+ 
+ define Package/libopcodes/install
+-	$(INSTALL_DIR) $(1)/usr/lib
+-	$(CP) $(PKG_INSTALL_DIR)/usr/lib/libopcodes*.so $(1)/usr/lib/
++	$(INSTALL_DIR) $(1)/opt/lib
++	$(CP) $(PKG_INSTALL_DIR)/opt/lib/libopcodes*.so $(1)/opt/lib/
  endef
  
  define Package/objdump/install
--	$(INSTALL_DIR) $(1)/usr/bin $(1)/usr/lib
+-	$(INSTALL_DIR) $(1)/usr/bin
 -	$(CP) $(PKG_INSTALL_DIR)/usr/bin/objdump $(1)/usr/bin/
--	$(CP) $(PKG_INSTALL_DIR)/usr/lib/libopcodes*.so $(1)/usr/lib/
--	$(CP) $(PKG_INSTALL_DIR)/usr/lib/libbfd*.so $(1)/usr/lib/
-+	$(INSTALL_DIR) $(1)/opt/bin $(1)/opt/lib
++	$(INSTALL_DIR) $(1)/opt/bin
 +	$(CP) $(PKG_INSTALL_DIR)/opt/bin/objdump $(1)/opt/bin/
-+	$(CP) $(PKG_INSTALL_DIR)/opt/lib/libopcodes*.so $(1)/opt/lib/
-+	$(CP) $(PKG_INSTALL_DIR)/opt/lib/libbfd*.so $(1)/opt/lib/
+ endef
+ 
+ define Package/ar/install
+-	$(INSTALL_DIR) $(1)/usr/bin
+-	$(CP) $(PKG_INSTALL_DIR)/usr/bin/ar $(1)/usr/bin/
++	$(INSTALL_DIR) $(1)/opt/bin
++	$(CP) $(PKG_INSTALL_DIR)/opt/bin/ar $(1)/opt/bin/
  endef
  
  define Package/binutils/install
@@ -19,9 +36,11 @@
 -	$(CP) $(PKG_INSTALL_DIR)/usr/bin/ $(1)/usr/
 -	mv $(1)/usr/bin/strings $(1)/bin/strings
 -	rm -f $(1)/usr/bin/objdump
-+	$(INSTALL_DIR) $(1)/opt/bin
-+	$(CP) $(PKG_INSTALL_DIR)/opt/bin/ $(1)/opt
+-	rm -f $(1)/usr/bin/ar
++	$(INSTALL_DIR) $(1)/opt
++	$(CP) $(PKG_INSTALL_DIR)/opt/bin/ $(1)/opt/
 +	rm -f $(1)/opt/bin/objdump
++	rm -f $(1)/opt/bin/ar
  endef
  
- $(eval $(call BuildPackage,binutils))
+ $(eval $(call BuildPackage,libbfd))

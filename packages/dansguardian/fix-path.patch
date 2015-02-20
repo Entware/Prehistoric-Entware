@@ -1,35 +1,161 @@
---- ../../../openwrt_trunk.orig/feeds/oldpackages/net/dansguardian/Makefile
-+++ ../../../openwrt_trunk/feeds/oldpackages/net/dansguardian/Makefile
-@@ -30,7 +30,7 @@
+diff -urx .svn ../../../downloads/openwrt_trunk-r44486/feeds/packages/net/dansguardian/files/dansguardianf1.conf ../../../openwrt_trunk/feeds/packages/net/dansguardian/files/dansguardianf1.conf
+--- ../../../downloads/openwrt_trunk-r44486/feeds/packages/net/dansguardian/files/dansguardianf1.conf	2015-02-18 12:16:57.620306332 +0300
++++ ../../../openwrt_trunk/feeds/packages/net/dansguardian/files/dansguardianf1.conf	2015-02-18 17:03:42.327987703 +0300
+@@ -25,20 +25,20 @@
+ #groupname = ''
+ 
+ # Content filtering files location
+-bannedphraselist = '/etc/dansguardian/lists/bannedphraselist'
+-weightedphraselist = '/etc/dansguardian/lists/weightedphraselist'
+-exceptionphraselist = '/etc/dansguardian/lists/exceptionphraselist'
+-bannedsitelist = '/etc/dansguardian/lists/bannedsitelist'
+-greysitelist = '/etc/dansguardian/lists/greysitelist'
+-exceptionsitelist = '/etc/dansguardian/lists/exceptionsitelist'
+-bannedurllist = '/etc/dansguardian/lists/bannedurllist'
+-greyurllist = '/etc/dansguardian/lists/greyurllist'
+-exceptionurllist = '/etc/dansguardian/lists/exceptionurllist'
+-exceptionregexpurllist = '/etc/dansguardian/lists/exceptionregexpurllist'
+-bannedregexpurllist = '/etc/dansguardian/lists/bannedregexpurllist'
+-picsfile = '/etc/dansguardian/lists/pics'
+-contentregexplist = '/etc/dansguardian/lists/contentregexplist'
+-urlregexplist = '/etc/dansguardian/lists/urlregexplist'
++bannedphraselist = '/opt/etc/dansguardian/lists/bannedphraselist'
++weightedphraselist = '/opt/etc/dansguardian/lists/weightedphraselist'
++exceptionphraselist = '/opt/etc/dansguardian/lists/exceptionphraselist'
++bannedsitelist = '/opt/etc/dansguardian/lists/bannedsitelist'
++greysitelist = '/opt/etc/dansguardian/lists/greysitelist'
++exceptionsitelist = '/opt/etc/dansguardian/lists/exceptionsitelist'
++bannedurllist = '/opt/etc/dansguardian/lists/bannedurllist'
++greyurllist = '/opt/etc/dansguardian/lists/greyurllist'
++exceptionurllist = '/opt/etc/dansguardian/lists/exceptionurllist'
++exceptionregexpurllist = '/opt/etc/dansguardian/lists/exceptionregexpurllist'
++bannedregexpurllist = '/opt/etc/dansguardian/lists/bannedregexpurllist'
++picsfile = '/opt/etc/dansguardian/lists/pics'
++contentregexplist = '/opt/etc/dansguardian/lists/contentregexplist'
++urlregexplist = '/opt/etc/dansguardian/lists/urlregexplist'
+ 
+ # Filetype filtering
+ #
+@@ -52,28 +52,28 @@
+ # (on | off)
+ #
+ blockdownloads = off
+-exceptionextensionlist = '/etc/dansguardian/lists/exceptionextensionlist'
+-exceptionmimetypelist = '/etc/dansguardian/lists/exceptionmimetypelist'
++exceptionextensionlist = '/opt/etc/dansguardian/lists/exceptionextensionlist'
++exceptionmimetypelist = '/opt/etc/dansguardian/lists/exceptionmimetypelist'
+ #
+ # Use the following lists to block specific kinds of file downloads.
+ # The two exception lists above can be used to override these.
+ #
+-bannedextensionlist = '/etc/dansguardian/lists/bannedextensionlist'
+-bannedmimetypelist = '/etc/dansguardian/lists/bannedmimetypelist'
++bannedextensionlist = '/opt/etc/dansguardian/lists/bannedextensionlist'
++bannedmimetypelist = '/opt/etc/dansguardian/lists/bannedmimetypelist'
+ #
+ # In either file filtering mode, the following list can be used to override
+ # MIME type & extension blocks for particular domains & URLs (trusted download sites).
+ #
+-exceptionfilesitelist = '/etc/dansguardian/lists/exceptionfilesitelist'
+-exceptionfileurllist = '/etc/dansguardian/lists/exceptionfileurllist'
++exceptionfilesitelist = '/opt/etc/dansguardian/lists/exceptionfilesitelist'
++exceptionfileurllist = '/opt/etc/dansguardian/lists/exceptionfileurllist'
+ 
+ # Categorise without blocking:
+ # Supply categorised lists here and the category string shall be logged against
+ # matching requests, but matching these lists does not perform any filtering
+ # action.
+-#logsitelist = '/etc/dansguardian/lists/logsitelist'
+-#logurllist = '/etc/dansguardian/lists/logurllist'
+-#logregexpurllist = '/etc/dansguardian/lists/logregexpurllist'
++#logsitelist = '/opt/etc/dansguardian/lists/logsitelist'
++#logurllist = '/opt/etc/dansguardian/lists/logurllist'
++#logregexpurllist = '/opt/etc/dansguardian/lists/logregexpurllist'
+ 
+ # Outgoing HTTP header rules:
+ # Optional lists for blocking based on, and modification of, outgoing HTTP
+@@ -84,8 +84,8 @@
+ # Headers are matched/replaced on a line-by-line basis, not as a contiguous
+ # block.
+ # Use for example, to remove cookies or prevent certain user-agents.
+-headerregexplist = '/etc/dansguardian/lists/headerregexplist'
+-bannedregexpheaderlist = '/etc/dansguardian/lists/bannedregexpheaderlist'
++headerregexplist = '/opt/etc/dansguardian/lists/headerregexplist'
++bannedregexpheaderlist = '/opt/etc/dansguardian/lists/bannedregexpheaderlist'
+ 
+ # Weighted phrase mode
+ # Optional; overrides the weightedphrasemode option in dansguardian.conf
+@@ -112,7 +112,7 @@
+ # List of regular expressions for matching search engine URLs.  It is assumed
+ # that the search terms themselves will be contained within the first submatch
+ # of each expression.
+-#searchengineregexplist = '/etc/dansguardian/lists/searchengineregexplist'
++#searchengineregexplist = '/opt/etc/dansguardian/lists/searchengineregexplist'
+ #
+ # Search term limit
+ # The limit over which requests will be blocked for containing search terms
+@@ -134,9 +134,9 @@
+ # of text.
+ # Please note that all or none of the below should be uncommented, not a
+ # mixture.
+-#bannedsearchtermlist = '/etc/dansguardian/lists/bannedsearchtermlist'
+-#weightedsearchtermlist = '/etc/dansguardian/lists/weightedsearchtermlist'
+-#exceptionsearchtermlist = '/etc/dansguardian/lists/exceptionsearchtermlist'
++#bannedsearchtermlist = '/opt/etc/dansguardian/lists/bannedsearchtermlist'
++#weightedsearchtermlist = '/opt/etc/dansguardian/lists/weightedsearchtermlist'
++#exceptionsearchtermlist = '/opt/etc/dansguardian/lists/exceptionsearchtermlist'
+ 
+ # Category display threshold
+ # This option only applies to pages blocked by weighted phrase filtering.
+diff -urx .svn ../../../downloads/openwrt_trunk-r44486/feeds/packages/net/dansguardian/Makefile ../../../openwrt_trunk/feeds/packages/net/dansguardian/Makefile
+--- ../../../downloads/openwrt_trunk-r44486/feeds/packages/net/dansguardian/Makefile	2015-02-18 12:16:57.620306332 +0300
++++ ../../../openwrt_trunk/feeds/packages/net/dansguardian/Makefile	2015-02-18 17:04:59.231993538 +0300
+@@ -34,8 +34,8 @@
  endef
  
  define Package/dansguardian/conffiles
--/etc/dansguardian/dansguardian.conf
-+/opt/etc/dansguardian/dansguardian.conf
+-/etc/dansguardian/dansguardianf1.conf
+-/etc/config/dansguardian
++/opt/etc/dansguardian/dansguardianf1.conf
++/opt/etc/config/dansguardian
  endef
  
  CONFIGURE_VARS += \
-@@ -49,14 +49,16 @@
+@@ -54,25 +54,22 @@
  endef
  
  define Package/dansguardian/install
 -	$(INSTALL_DIR) $(1)/usr/sbin
 -	$(INSTALL_BIN) $(PKG_INSTALL_DIR)/usr/sbin/dansguardian $(1)/usr/sbin/
--	$(INSTALL_DIR) $(1)/etc
--	$(CP) $(PKG_INSTALL_DIR)/etc/dansguardian $(1)/etc/
--	$(INSTALL_DIR) $(1)/usr/share/dansguardian
--	$(INSTALL_BIN) $(PKG_INSTALL_DIR)/usr/share/dansguardian/transparent1x1.gif $(1)/usr/share/dansguardian/
--	$(INSTALL_DIR) $(1)/usr/share/dansguardian/languages/ukenglish
--	$(CP) $(PKG_INSTALL_DIR)/usr/share/dansguardian/languages/ukenglish/* $(1)/usr/share/dansguardian/languages/ukenglish/
 +	$(INSTALL_DIR) $(1)/opt/sbin
 +	$(INSTALL_BIN) $(PKG_INSTALL_DIR)/opt/sbin/dansguardian $(1)/opt/sbin/
-+	$(INSTALL_DIR) $(1)/opt/etc/init.d
+ 
+-	$(INSTALL_DIR) $(1)/etc
+-	$(CP) $(PKG_INSTALL_DIR)/etc/dansguardian $(1)/etc/
+-	$(INSTALL_CONF) ./files/dansguardianf1.conf $(1)/etc/dansguardian/dansguardianf1.conf
++	$(INSTALL_DIR) $(1)/opt/etc
 +	$(CP) $(PKG_INSTALL_DIR)/opt/etc/dansguardian $(1)/opt/etc/
++	$(INSTALL_CONF) ./files/dansguardianf1.conf $(1)/opt/etc/dansguardian/dansguardianf1.conf
++
 +	$(INSTALL_DIR) $(1)/opt/share/dansguardian
-+	$(INSTALL_DATA) $(PKG_INSTALL_DIR)/opt/share/dansguardian/transparent1x1.gif $(1)/opt/share/dansguardian/
++	$(INSTALL_BIN) $(PKG_INSTALL_DIR)/opt/share/dansguardian/transparent1x1.gif $(1)/opt/share/dansguardian/
++	$(INSTALL_BIN) $(PKG_INSTALL_DIR)/opt/share/dansguardian/blockedflash.swf $(1)/opt/share/dansguardian/
+ 
+-	$(INSTALL_DIR) $(1)/etc/config
+-	$(INSTALL_CONF) ./files/dansguardian.config $(1)/etc/config/dansguardian
 +	$(INSTALL_DIR) $(1)/opt/share/dansguardian/languages/ukenglish
 +	$(CP) $(PKG_INSTALL_DIR)/opt/share/dansguardian/languages/ukenglish/* $(1)/opt/share/dansguardian/languages/ukenglish/
-+	$(INSTALL_DIR) $(1)/opt/var/run
+ 
+-	$(INSTALL_DIR) $(1)/usr/share/dansguardian
+-	$(INSTALL_BIN) $(PKG_INSTALL_DIR)/usr/share/dansguardian/transparent1x1.gif $(1)/usr/share/dansguardian/
+-	$(INSTALL_BIN) $(PKG_INSTALL_DIR)/usr/share/dansguardian/blockedflash.swf $(1)/usr/share/dansguardian/
+-
+-	$(INSTALL_DIR) $(1)/usr/share/dansguardian/languages/ukenglish
+-	$(CP) $(PKG_INSTALL_DIR)/usr/share/dansguardian/languages/ukenglish/* $(1)/usr/share/dansguardian/languages/ukenglish/
+-
+-	$(INSTALL_DIR) $(1)/etc/init.d/
+-	$(INSTALL_BIN) ./files/dansguardian.init $(1)/etc/init.d/dansguardian
++	$(INSTALL_DIR) $(1)/opt/etc/init.d $(1)/opt/var/run
 +	$(INSTALL_BIN) ./files/S24dansguardian $(1)/opt/etc/init.d
  endef
  
