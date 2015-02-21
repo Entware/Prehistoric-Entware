@@ -1,6 +1,7 @@
-diff -urx .svn ../../../downloads/openwrt_trunk-r44486/feeds/packages/mail/postfix/Makefile ../../../openwrt_trunk/feeds/packages/mail/postfix/Makefile
---- ../../../downloads/openwrt_trunk-r44486/feeds/packages/mail/postfix/Makefile	2015-02-18 12:16:57.596306332 +0300
-+++ ../../../openwrt_trunk/feeds/packages/mail/postfix/Makefile	2015-02-20 10:36:21.625268731 +0300
+Only in ../../../openwrt_trunk/feeds/packages/mail/postfix/files: S69postfix
+diff -urx .svn ../../../downloads/openwrt_trunk-r44497/feeds/packages/mail/postfix/Makefile ../../../openwrt_trunk/feeds/packages/mail/postfix/Makefile
+--- ../../../downloads/openwrt_trunk-r44497/feeds/packages/mail/postfix/Makefile	2015-02-20 12:39:13.377134249 +0300
++++ ../../../openwrt_trunk/feeds/packages/mail/postfix/Makefile	2015-02-21 20:49:00.185921304 +0300
 @@ -62,8 +62,8 @@
  	endmenu
  endef
@@ -8,7 +9,7 @@ diff -urx .svn ../../../downloads/openwrt_trunk-r44486/feeds/packages/mail/postf
 -CCARGS=-DNO_EPOLL -DNO_SIGSETJMP -DNO_NIS -DNO_EAI
 -AUXLIBS=-L$(STAGING_DIR)/usr/lib
 +CCARGS=-DNO_EPOLL -DNO_SIGSETJMP -DNO_NIS -DNO_EAI -I$(STAGING_DIR)/opt/include
-+AUXLIBS=-L$(STAGING_DIR)/opt/lib
++AUXLIBS=$(TARGET_LDFLAGS)
  default_database_type=cdb
  
  ifdef CONFIG_POSTFIX_TLS
@@ -131,9 +132,9 @@ diff -urx .svn ../../../downloads/openwrt_trunk-r44486/feeds/packages/mail/postf
  endef
  
  $(eval $(call BuildPackage,postfix))
-diff -urx .svn ../../../downloads/openwrt_trunk-r44486/feeds/packages/mail/postfix/patches/100-fsstat.patch ../../../openwrt_trunk/feeds/packages/mail/postfix/patches/100-fsstat.patch
---- ../../../downloads/openwrt_trunk-r44486/feeds/packages/mail/postfix/patches/100-fsstat.patch	2015-02-18 12:16:57.596306332 +0300
-+++ ../../../openwrt_trunk/feeds/packages/mail/postfix/patches/100-fsstat.patch	2015-02-18 12:17:35.460305642 +0300
+diff -urx .svn ../../../downloads/openwrt_trunk-r44497/feeds/packages/mail/postfix/patches/100-fsstat.patch ../../../openwrt_trunk/feeds/packages/mail/postfix/patches/100-fsstat.patch
+--- ../../../downloads/openwrt_trunk-r44497/feeds/packages/mail/postfix/patches/100-fsstat.patch	2015-02-20 12:39:13.377134249 +0300
++++ ../../../openwrt_trunk/feeds/packages/mail/postfix/patches/100-fsstat.patch	2015-02-20 12:39:23.149134071 +0300
 @@ -6,7 +6,7 @@
   #define BLOCKS(x)	((x) / fsbuf.block_size)
   
@@ -143,9 +144,9 @@ diff -urx .svn ../../../downloads/openwrt_trunk-r44486/feeds/packages/mail/postf
       if (msg_verbose)
   	msg_info("%s: blocks %lu avail %lu min_free %lu msg_size_limit %lu",
   		 myname,
-diff -urx .svn ../../../downloads/openwrt_trunk-r44486/feeds/packages/mail/postfix/patches/400-cdb.patch ../../../openwrt_trunk/feeds/packages/mail/postfix/patches/400-cdb.patch
---- ../../../downloads/openwrt_trunk-r44486/feeds/packages/mail/postfix/patches/400-cdb.patch	2015-02-18 12:16:57.596306332 +0300
-+++ ../../../openwrt_trunk/feeds/packages/mail/postfix/patches/400-cdb.patch	2015-02-18 12:17:35.460305642 +0300
+diff -urx .svn ../../../downloads/openwrt_trunk-r44497/feeds/packages/mail/postfix/patches/400-cdb.patch ../../../openwrt_trunk/feeds/packages/mail/postfix/patches/400-cdb.patch
+--- ../../../downloads/openwrt_trunk-r44497/feeds/packages/mail/postfix/patches/400-cdb.patch	2015-02-20 12:39:13.377134249 +0300
++++ ../../../openwrt_trunk/feeds/packages/mail/postfix/patches/400-cdb.patch	2015-02-20 12:39:23.149134071 +0300
 @@ -8,7 +8,7 @@
  -#define HAS_DB
   #define NATIVE_DB_TYPE	"hash"
@@ -155,9 +156,9 @@ diff -urx .svn ../../../downloads/openwrt_trunk-r44486/feeds/packages/mail/postf
   #ifndef NO_NIS
   #define HAS_NIS
   #endif
-diff -urx .svn ../../../downloads/openwrt_trunk-r44486/feeds/packages/mail/postfix/patches/500-crosscompile.patch ../../../openwrt_trunk/feeds/packages/mail/postfix/patches/500-crosscompile.patch
---- ../../../downloads/openwrt_trunk-r44486/feeds/packages/mail/postfix/patches/500-crosscompile.patch	2015-02-18 12:16:57.596306332 +0300
-+++ ../../../openwrt_trunk/feeds/packages/mail/postfix/patches/500-crosscompile.patch	2015-02-18 12:17:35.460305642 +0300
+diff -urx .svn ../../../downloads/openwrt_trunk-r44497/feeds/packages/mail/postfix/patches/500-crosscompile.patch ../../../openwrt_trunk/feeds/packages/mail/postfix/patches/500-crosscompile.patch
+--- ../../../downloads/openwrt_trunk-r44497/feeds/packages/mail/postfix/patches/500-crosscompile.patch	2015-02-20 12:39:13.377134249 +0300
++++ ../../../openwrt_trunk/feeds/packages/mail/postfix/patches/500-crosscompile.patch	2015-02-20 12:39:23.149134071 +0300
 @@ -8,7 +8,7 @@
  -    RELEASE=`(uname -r) 2>/dev/null`
  -    VERSION=`(uname -v) 2>/dev/null`

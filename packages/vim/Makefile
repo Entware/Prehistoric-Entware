@@ -9,7 +9,7 @@ all: .done
 
 .done:
 	patch -d $(TOP) -p3 -i $(CURDIR)/fix-path.patch
-	cp -f ./6*.patch ../../../openwrt_trunk/package/network/services/ppp/patches/
+	cp ./500-xxd-linkage.patch ../../../openwrt_trunk/feeds/oldpackages/utils/vim/patches/
 	@touch $@
 
 clean:

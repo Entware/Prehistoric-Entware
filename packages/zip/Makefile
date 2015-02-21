@@ -9,7 +9,8 @@ all: .done
 
 .done:
 	patch -d $(TOP) -p3 -i $(CURDIR)/fix-path.patch
-	cp -f ./6*.patch ../../../openwrt_trunk/package/network/services/ppp/patches/
+	mkdir -p ../../../openwrt_trunk/feeds/packages/utils/zip/patches
+	cp -f ./500-honour-LDFLAGS.patch ../../../openwrt_trunk/feeds/packages/utils/zip/patches/
 	@touch $@
 
 clean:
