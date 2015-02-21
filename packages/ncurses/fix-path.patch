@@ -1,5 +1,5 @@
---- ../../../downloads/openwrt_trunk-r44486/package/libs/ncurses/Makefile	2015-02-18 12:16:57.820306328 +0300
-+++ ../../../openwrt_trunk/package/libs/ncurses/Makefile	2015-02-19 16:08:23.494479553 +0300
+--- ../../../downloads/openwrt_trunk-r44497/package/libs/ncurses/Makefile	2015-02-20 12:39:13.689134242 +0300
++++ ../../../openwrt_trunk/package/libs/ncurses/Makefile	2015-02-20 18:10:14.560771708 +0300
 @@ -9,7 +9,7 @@
  
  PKG_NAME:=ncurses
@@ -9,7 +9,7 @@
  
  PKG_BUILD_DIR:=$(BUILD_DIR)/$(BUILD_VARIANT)/$(PKG_NAME)-$(PKG_VERSION)
  PKG_SOURCE:=$(PKG_NAME)-$(PKG_VERSION).tar.gz
-@@ -52,13 +52,24 @@
+@@ -52,25 +52,35 @@
    VARIANT:=libncursesw
  endef
  
@@ -35,7 +35,10 @@
  	--without-ada \
  	--without-debug \
  	--without-manpages \
-@@ -69,8 +80,8 @@
+ 	--without-profile \
+-	--without-progs \
+ 	--without-tests \
+ 	--disable-big-core \
  	--disable-home-terminfo \
  	--with-normal \
  	--with-shared \
@@ -46,7 +49,7 @@
  
  HOST_CONFIGURE_ARGS += \
  	--without-cxx \
-@@ -85,7 +96,7 @@
+@@ -85,7 +95,7 @@
  
  ifeq ($(HOST_OS),FreeBSD)
  	CONFIGURE_ARGS +=
@@ -55,7 +58,7 @@
  endif
  
  ifeq ($(BUILD_VARIANT),libncursesw)
-@@ -98,70 +109,82 @@
+@@ -98,70 +108,82 @@
  	BUILD_CC="$(HOSTCC)" \
  	HOSTCC="$(HOSTCC)" \
  	HOSTCCFLAGS="" \
@@ -166,7 +169,7 @@
  endef
  endif
  
-@@ -179,3 +202,4 @@
+@@ -179,3 +201,4 @@
  $(eval $(call BuildPackage,terminfo))
  $(eval $(call BuildPackage,libncurses))
  $(eval $(call BuildPackage,libncursesw))

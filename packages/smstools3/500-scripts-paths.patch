@@ -1,0 +1,69 @@
+--- a/scripts/sendsms	2010-07-08 16:41:13.000000000 +0400
++++ b/scripts/sendsms	2012-04-12 12:57:14.618746589 +0400
+@@ -1,4 +1,4 @@
+-#!/bin/bash
++#!/bin/sh
+ # This script send a text sms at the command line by creating
+ # a sms file in the outgoing queue.
+ 
+@@ -18,7 +18,7 @@
+ # When creating keys, remember to use -n for echo:
+ # echo -n "key" | md5sum
+ 
+-smsd_user="smsd"
++smsd_user="root"
+ 
+ # Will need echo which accepts -n argument:
+ ECHO=echo
+@@ -96,7 +96,7 @@
+ do
+   echo "To: $destination"
+ 
+-  TMPFILE=`mktemp /tmp/smsd_XXXXXX`
++  TMPFILE=`mktemp /opt/tmp/smsd_XXXXXX`
+ 
+   $ECHO "To: $destination" >> $TMPFILE
+   [ -n "$ALPHABET" ] && $ECHO "$ALPHABET" >> $TMPFILE
+@@ -111,6 +111,6 @@
+     chown $owner $TMPFILE
+   fi
+ 
+-  FILE=`mktemp /var/spool/sms/outgoing/send_XXXXXX`
++  FILE=`mktemp /opt/var/spool/sms/outgoing/send_XXXXXX`
+   mv $TMPFILE $FILE
+ done
+--- a/scripts/sms2html	2006-02-04 22:52:06.000000000 +0300
++++ b/scripts/sms2html	2012-04-12 12:53:38.206588002 +0400
+@@ -1,4 +1,4 @@
+-#!/bin/bash
++#!/bin/sh
+ 
+ # This script converts a received sms file into a html file. 
+ 
+--- a/scripts/sms2unicode	2006-02-04 22:52:06.000000000 +0300
++++ b/scripts/sms2unicode	2012-04-12 12:54:33.858047930 +0400
+@@ -1,4 +1,4 @@
+-#!/bin/bash
++#!/bin/sh
+ 
+ # This script converts a received sms file into a pure unicode text file.
+ 
+--- a/scripts/unicode2sms	2006-02-04 22:52:06.000000000 +0300
++++ b/scripts/unicode2sms	2012-04-12 13:10:07.025029023 +0400
+@@ -1,4 +1,4 @@
+-#!/bin/bash
++#!/bin/sh
+ 
+ # This script converts a pure unicode text file into an sms file for sending.
+ 
+--- a/examples/smsd.conf.easy	2012-04-12 13:37:20.322343961 +0400
++++ b/examples/smsd.conf.easy	2012-04-12 13:37:53.209923714 +0400
+@@ -1,7 +1,7 @@
+ # Example smsd.conf. Read the manual for a description
+ 
+ devices = GSM1
+-logfile = /var/log/smsd.log
++logfile = /opt/var/log/smsd.log
+ loglevel = 7
+ 
+ [GSM1]

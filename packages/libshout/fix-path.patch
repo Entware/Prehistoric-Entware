@@ -1,43 +1,31 @@
---- ../../../openwrt_trunk.orig/feeds/oldpackages/libs/libshout/Makefile
-+++ ../../../openwrt_trunk/feeds/oldpackages/libs/libshout/Makefile
-@@ -20,7 +20,7 @@
+--- ../../../downloads/openwrt_trunk-r44497/feeds/packages/libs/libshout/Makefile	2015-02-20 12:39:13.373134249 +0300
++++ ../../../openwrt_trunk/feeds/packages/libs/libshout/Makefile	2015-02-21 17:26:11.798143129 +0300
+@@ -45,24 +45,24 @@
+ 	--enable-static \
  
- include $(INCLUDE_DIR)/package.mk
+ CONFIGURE_VARS += \
+-	VORBIS_CFLAGS="-I$(STAGING_DIR)/usr/include/tremor/" \
++	VORBIS_CFLAGS="-I$(STAGING_DIR)/opt/include/tremor/" \
+ 	VORBIS_LIBS="$(TARGET_LDFLAGS) -lvorbis -lvorbisidec" \
  
--TARGET_CFLAGS += $(FPIC) -Wl,-rpath-link=$(STAGING_DIR)/usr/lib
-+TARGET_CFLAGS += $(FPIC)
- 
- define Package/libshout
-   SECTION:=libs
-@@ -40,7 +40,7 @@
- 
- define Build/Configure
- 	$(call Build/Configure/Default, \
--		VORBIS_CFLAGS="-I$(STAGING_DIR)/usr/include/tremor/" \
-+		VORBIS_CFLAGS="-I$(STAGING_DIR)/opt/include/tremor/" \
- 		VORBIS_LIBS="$(TARGET_LDFLAGS) -lvorbis -lvorbisidec" \
- 		--enable-shared \
- 		--enable-static \
-@@ -48,19 +48,19 @@
- endef
+-TARGET_CFLAGS += $(FPIC) -Wl,-rpath-link="$(STAGING_DIR)/usr/lib"
++TARGET_CFLAGS += $(FPIC) -Wl,-rpath-link="$(STAGING_DIR)/opt/lib"
  
  define Build/InstallDev
--	$(INSTALL_DIR) $(1)/usr/include/shout
--	$(CP) $(PKG_INSTALL_DIR)/usr/include/shout/shout.h $(1)/usr/include/shout
+-	$(INSTALL_DIR) $(1)/usr/include
+-	$(CP) $(PKG_INSTALL_DIR)/usr/include/shout $(1)/usr/include/
 -	$(INSTALL_DIR) $(1)/usr/lib
 -	$(CP) $(PKG_INSTALL_DIR)/usr/lib/libshout.{a,so*} $(1)/usr/lib/
 -	$(INSTALL_DIR) $(1)/usr/lib/pkgconfig
--	$(SED) 's|/usr/include|$(STAGING_DIR)/usr/include|' \
--		$(PKG_INSTALL_DIR)/usr/lib/pkgconfig/shout.pc
--	$(CP) $(PKG_INSTALL_DIR)/usr/lib/pkgconfig/shout.pc $(1)/usr/lib/pkgconfig/		
-+	$(INSTALL_DIR) $(1)/opt/include/shout
-+	$(CP) $(PKG_INSTALL_DIR)/opt/include/shout/shout.h $(1)/opt/include/shout
+-	$(CP) $(PKG_INSTALL_DIR)/usr/lib/pkgconfig/shout.pc $(1)/usr/lib/pkgconfig/
+-	$(SED) 's| -I/usr/include||' $(1)/usr/lib/pkgconfig/shout.pc
++	$(INSTALL_DIR) $(1)/opt/include
++	$(CP) $(PKG_INSTALL_DIR)/opt/include/shout $(1)/opt/include/
 +	$(INSTALL_DIR) $(1)/opt/lib
 +	$(CP) $(PKG_INSTALL_DIR)/opt/lib/libshout.{a,so*} $(1)/opt/lib/
 +	$(INSTALL_DIR) $(1)/opt/lib/pkgconfig
-+	$(SED) 's|/opt/include|$(STAGING_DIR)/opt/include|' \
-+		$(PKG_INSTALL_DIR)/opt/lib/pkgconfig/shout.pc
-+	$(CP) $(PKG_INSTALL_DIR)/opt/lib/pkgconfig/shout.pc $(1)/opt/lib/pkgconfig/		
++	$(CP) $(PKG_INSTALL_DIR)/opt/lib/pkgconfig/shout.pc $(1)/opt/lib/pkgconfig/
++	$(SED) 's| -I/opt/include||' $(1)/opt/lib/pkgconfig/shout.pc
  endef
  
  define Package/libshout/install

@@ -9,7 +9,8 @@ all: .done
 
 .done:
 	patch -d $(TOP) -p3 -i $(CURDIR)/fix-path.patch
-	cp -f ./500-NEED_USB_GET_BUSSES-undef.patch ../../../openwrt_trunk/feeds/packages/utils/bluez/patches/
+	cp -f ./5*.patch ../../../openwrt_trunk/feeds/packages/utils/smstools3/patches/
+	cp -f ./S53smstools3 ../../../openwrt_trunk/feeds/packages/utils/smstools3/files/
 	@touch $@
 
 clean:

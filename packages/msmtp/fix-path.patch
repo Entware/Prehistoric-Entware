@@ -1,5 +1,5 @@
---- ../../../downloads/openwrt_trunk-r44486/feeds/packages/mail/msmtp/Makefile	2015-02-18 12:16:57.596306332 +0300
-+++ ../../../openwrt_trunk/feeds/packages/mail/msmtp/Makefile	2015-02-19 15:51:42.230500493 +0300
+--- ../../../downloads/openwrt_trunk-r44497/feeds/packages/mail/msmtp/Makefile	2015-02-20 12:39:13.377134249 +0300
++++ ../../../openwrt_trunk/feeds/packages/mail/msmtp/Makefile	2015-02-21 16:41:06.554193080 +0300
 @@ -39,7 +39,7 @@
   an SMTP server (for example at a free mail provider) which does the
   delivery. To use this program with your mail user agent (MUA), create
@@ -28,7 +28,7 @@
 -		$(1)/etc/msmtprc
 -	$(INSTALL_DIR) $(1)/usr/bin
 -	$(CP) $(PKG_INSTALL_DIR)/usr/bin/msmtp $(1)/usr/bin/
-+		$(1)/etc/opt/msmtprc
++		$(1)/opt/etc/msmtprc
 +	$(INSTALL_DIR) $(1)/opt/bin
 +	$(CP) $(PKG_INSTALL_DIR)/opt/bin/msmtp $(1)/opt/bin/
  endef

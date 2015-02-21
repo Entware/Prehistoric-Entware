@@ -1,5 +1,14 @@
---- ../../../downloads/openwrt_trunk-r44486/feeds/packages/net/snort/Makefile	2015-02-18 12:16:57.620306332 +0300
-+++ ../../../openwrt_trunk/feeds/packages/net/snort/Makefile	2015-02-20 11:51:29.621185702 +0300
+--- ../../../downloads/openwrt_trunk-r44497/feeds/packages/net/snort/Makefile	2015-02-20 12:39:13.429134248 +0300
++++ ../../../openwrt_trunk/feeds/packages/net/snort/Makefile	2015-02-21 17:12:18.918157686 +0300
+@@ -26,7 +26,7 @@
+   SUBMENU:=Firewall
+   SECTION:=net
+   CATEGORY:=Network
+-  DEPENDS:=+libdaq +libdnet +libopenssl +libpcap +libpcre +libpthread +libuuid +zlib
++  DEPENDS:=+libdaq +libdnet +libopenssl +libpcap +libpcre +libpthread +libuuid +zlib +liblzma
+   TITLE:=Lightweight Network Intrusion Detection System
+   URL:=http://www.snort.org/
+ endef
 @@ -73,22 +73,22 @@
  endef
  

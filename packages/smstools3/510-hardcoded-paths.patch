@@ -1,0 +1,81 @@
+--- a/src/smsd_cfg.c	2012-04-12 13:12:33.195184453 +0400
++++ b/src/smsd_cfg.c	2012-04-12 13:22:07.012336003 +0400
+@@ -159,12 +159,12 @@
+   log_unmodified = 0;
+   alarmlevel=LOG_WARNING;
+ 
+-  strcpy(d_spool,"/var/spool/sms/outgoing");
+-  strcpy(d_incoming,"/var/spool/sms/incoming");
++  strcpy(d_spool,"/opt/var/spool/sms/outgoing");
++  strcpy(d_incoming,"/opt/var/spool/sms/incoming");
+   *d_report = 0;
+   *d_phonecalls = 0;
+   *d_saved = 0;
+-  strcpy(d_checked,"/var/spool/sms/checked");
++  strcpy(d_checked,"/opt/var/spool/sms/checked");
+   d_failed[0]=0;
+   d_sent[0]=0;
+   d_stats[0]=0;
+@@ -221,8 +221,8 @@
+   username[0] = 0;
+   groupname[0] = 0;
+ 
+-  strcpy(infofile, "/var/run/smsd.working");
+-  strcpy(pidfile, "/var/run/smsd.pid");
++  strcpy(infofile, "/opt/var/run/smsd.working");
++  strcpy(pidfile, "/opt/var/run/smsd.pid");
+ 
+   terminal = 0;
+   os_cygwin = 0;
+@@ -2484,7 +2484,7 @@
+       int fd;
+       int i;
+ 
+-      sprintf(tmp_data, "%s/smsd_data.XXXXXX", "/tmp");
++      sprintf(tmp_data, "%s/smsd_data.XXXXXX", "/opt/tmp");
+       if ((fd = mkstemp(tmp_data)) == -1)
+         error = "Cannot create test data file.";
+       else
+--- a/src/smsd.c	2010-09-21 13:47:47.000000000 +0400
++++ b/src/smsd.c	2012-04-12 13:22:49.161297293 +0400
+@@ -817,7 +817,7 @@
+ 
+   // 3.1.12: Temporary file in checked directory causes troubles with more than one modems:
+   //sprintf(tmp_filename,"%s.XXXXXX", filename);
+-  sprintf(tmp_filename,"/tmp/smsd.XXXXXX");
++  sprintf(tmp_filename,"/opt/tmp/smsd.XXXXXX");
+ 
+   close(mkstemp(tmp_filename));
+   unlink(tmp_filename);
+@@ -5371,7 +5371,7 @@
+ 				if (!(*te_charset))
+ 					strcpy(te_charset, "ERROR");
+ 
+-				sprintf(tmp_filename, "%s/smsd.XXXXXX", "/tmp");
++				sprintf(tmp_filename, "%s/smsd.XXXXXX", "/opt/tmp");
+ 				fd = mkstemp(tmp_filename);
+ 				write(fd, answer, strlen(answer));
+ 				write(fd, "\n", 1);
+--- a/src/smsd_cfg.h	2010-09-20 15:11:26.000000000 +0400
++++ b/src/smsd_cfg.h	2012-05-27 16:07:44.040846557 +0400
+@@ -21,9 +21,9 @@
+ #include <time.h>
+ 
+ #ifndef __FreeBSD__
+-#define DEFAULT_CONFIGFILE "/etc/smsd.conf"
++#define DEFAULT_CONFIGFILE "/opt/etc/smsd.conf"
+ #else
+-#define DEFAULT_CONFIGFILE "%%PREFIX%%/etc/smsd.conf"
++#define DEFAULT_CONFIGFILE "/opt/etc/smsd.conf"
+ #endif
+ 
+ #define DATETIME_DEFAULT "%y-%m-%d %H:%M:%S"
+@@ -32,7 +32,7 @@
+ 
+ #define CONCATENATED_DIR_FNAME "%s/%s-concatenated"
+ 
+-#define MM_CORE_FNAME "/tmp/mm_smsd_%i" /* %i is PID */
++#define MM_CORE_FNAME "/opt/tmp/mm_smsd_%i" /* %i is PID */
+ 
+ #define NUMS 64
+ #define SIZE_NUM 16

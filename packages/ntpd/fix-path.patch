@@ -1,6 +1,6 @@
-diff -urx .svn ../../../downloads/openwrt_trunk-r44486/feeds/packages/net/ntpd/files/ntp.conf ../../../openwrt_trunk/feeds/packages/net/ntpd/files/ntp.conf
---- ../../../downloads/openwrt_trunk-r44486/feeds/packages/net/ntpd/files/ntp.conf	2015-02-18 12:16:57.620306332 +0300
-+++ ../../../openwrt_trunk/feeds/packages/net/ntpd/files/ntp.conf	2015-02-18 12:17:32.672305692 +0300
+diff -urx .svn ../../../downloads/openwrt_trunk-r44497/feeds/packages/net/ntpd/files/ntp.conf ../../../openwrt_trunk/feeds/packages/net/ntpd/files/ntp.conf
+--- ../../../downloads/openwrt_trunk-r44497/feeds/packages/net/ntpd/files/ntp.conf	2015-02-20 12:39:13.429134248 +0300
++++ ../../../openwrt_trunk/feeds/packages/net/ntpd/files/ntp.conf	2015-02-20 12:39:22.853134076 +0300
 @@ -6,7 +6,7 @@
  
  restrict 127.0.0.1
@@ -10,9 +10,9 @@ diff -urx .svn ../../../downloads/openwrt_trunk-r44486/feeds/packages/net/ntpd/f
  
  server 0.openwrt.pool.ntp.org iburst
  server 1.openwrt.pool.ntp.org iburst
-diff -urx .svn ../../../downloads/openwrt_trunk-r44486/feeds/packages/net/ntpd/files/ntpd.hotplug ../../../openwrt_trunk/feeds/packages/net/ntpd/files/ntpd.hotplug
---- ../../../downloads/openwrt_trunk-r44486/feeds/packages/net/ntpd/files/ntpd.hotplug	2015-02-18 12:16:57.620306332 +0300
-+++ ../../../openwrt_trunk/feeds/packages/net/ntpd/files/ntpd.hotplug	2015-02-18 12:17:32.776305689 +0300
+diff -urx .svn ../../../downloads/openwrt_trunk-r44497/feeds/packages/net/ntpd/files/ntpd.hotplug ../../../openwrt_trunk/feeds/packages/net/ntpd/files/ntpd.hotplug
+--- ../../../downloads/openwrt_trunk-r44497/feeds/packages/net/ntpd/files/ntpd.hotplug	2015-02-20 12:39:13.429134248 +0300
++++ ../../../openwrt_trunk/feeds/packages/net/ntpd/files/ntpd.hotplug	2015-02-20 12:39:22.853134076 +0300
 @@ -1,10 +1,10 @@
  NAME=ntpd
 -CONFIG=/etc/ntp.conf
@@ -27,9 +27,11 @@ diff -urx .svn ../../../downloads/openwrt_trunk-r44486/feeds/packages/net/ntpd/f
 +		/opt/etc/init.d/S77ntpd start
          } &
  }
-diff -urx .svn ../../../downloads/openwrt_trunk-r44486/feeds/packages/net/ntpd/Makefile ../../../openwrt_trunk/feeds/packages/net/ntpd/Makefile
---- ../../../downloads/openwrt_trunk-r44486/feeds/packages/net/ntpd/Makefile	2015-02-18 12:16:57.620306332 +0300
-+++ ../../../openwrt_trunk/feeds/packages/net/ntpd/Makefile	2015-02-19 16:20:06.234471749 +0300
+Only in ../../../openwrt_trunk/feeds/packages/net/ntpd/files: S77ntpd
+Only in ../../../openwrt_trunk/feeds/packages/net/ntpd/files: S77ntpdate
+diff -urx .svn ../../../downloads/openwrt_trunk-r44497/feeds/packages/net/ntpd/Makefile ../../../openwrt_trunk/feeds/packages/net/ntpd/Makefile
+--- ../../../downloads/openwrt_trunk-r44497/feeds/packages/net/ntpd/Makefile	2015-02-20 12:39:13.429134248 +0300
++++ ../../../openwrt_trunk/feeds/packages/net/ntpd/Makefile	2015-02-21 16:46:55.710187143 +0300
 @@ -89,7 +89,7 @@
  endef
  
@@ -56,14 +58,7 @@ diff -urx .svn ../../../downloads/openwrt_trunk-r44486/feeds/packages/net/ntpd/M
 -	$(INSTALL_DIR) $(1)/etc/init.d
 -	$(INSTALL_BIN) ./files/ntpd.init $(1)/etc/init.d/ntpd
 -	$(INSTALL_DIR) $(1)/etc/hotplug.d/iface
-+	$(INSTALL_DIR) $(1)/opt/sbin
-+	$(INSTALL_BIN) $(PKG_BUILD_DIR)/ntpd/ntpd $(1)/opt/sbin/
-+	$(INSTALL_DIR) $(1)/opt/etc
-+	$(INSTALL_CONF) ./files/ntp.conf $(1)/opt/etc/
-+	$(INSTALL_DIR) $(1)/opt/etc/init.d
-+	$(INSTALL_BIN) ./files/S77ntpd $(1)/opt/etc/init.d/
-+	$(INSTALL_DIR) $(1)/opt/etc/hotplug.d/iface
- 	$(INSTALL_BIN) ./files/ntpd.hotplug $(1)/etc/hotplug.d/iface/20-ntpd
+-	$(INSTALL_BIN) ./files/ntpd.hotplug $(1)/etc/hotplug.d/iface/20-ntpd
 -endef
 -
 -define Package/ntpd/postinst
@@ -76,6 +71,14 @@ diff -urx .svn ../../../downloads/openwrt_trunk-r44486/feeds/packages/net/ntpd/M
 -#!/bin/sh
 -/bin/busybox ntpd -h 2>&1 | grep -q BusyBox && ln -sf ../../bin/busybox /usr/sbin/ntpd
 -exit 0
++	$(INSTALL_DIR) $(1)/opt/sbin
++	$(INSTALL_BIN) $(PKG_BUILD_DIR)/ntpd/ntpd $(1)/opt/sbin/
++	$(INSTALL_DIR) $(1)/opt/etc
++	$(INSTALL_CONF) ./files/ntp.conf $(1)/opt/etc/
++	$(INSTALL_DIR) $(1)/opt/etc/init.d
++	$(INSTALL_BIN) ./files/S77ntpd $(1)/opt/etc/init.d/
++	$(INSTALL_DIR) $(1)/opt/etc/hotplug.d/iface
++	$(INSTALL_BIN) ./files/ntpd.hotplug $(1)/opt/etc/hotplug.d/iface/20-ntpd
 +	$(INSTALL_DIR) $(1)/opt/var/spool/ntp
  endef
  

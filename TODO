@@ -19,9 +19,14 @@ nzbget		12.0
 wview		5.21.5
 
 Can't be upgraded (because of too old 2.6.22 kernel, mostly):
+aircrack-ng	1.1		requires libnl1 or libnl3
+bluez		3.36		epoll_create1() is absence
 gdb		7.3.1		due to gnu_v3_object_ctor_group() absence
 libnl		2.0 (r33657)
+libtorrent	0.13.4		lack of C++11 features
 libv4l		0.8.6
 mjpg-streamer	r181
 python		2.7.3		A big mess with new package. Will sit on this forawhile
+rtorrent	0.9.4		lack of C++11 features
+ser2net		2.9.1		Incompatible kernel headers, should be fixed in tne next release
 usbip		0.1.7

@@ -1,7 +1,17 @@
-diff -urx .svn ../../../downloads/openwrt_trunk-r44486/feeds/packages/lang/python-imglib/Makefile ../../../openwrt_trunk/feeds/packages/lang/python-imglib/Makefile
---- ../../../downloads/openwrt_trunk-r44486/feeds/packages/lang/python-imglib/Makefile	2015-02-18 12:16:57.576306332 +0300
-+++ ../../../openwrt_trunk/feeds/packages/lang/python-imglib/Makefile	2015-02-20 11:29:24.541211036 +0300
-@@ -46,17 +46,17 @@
+diff -urx .svn ../../../downloads/openwrt_trunk-r44497/feeds/packages/lang/python-imglib/Makefile ../../../openwrt_trunk/feeds/packages/lang/python-imglib/Makefile
+--- ../../../downloads/openwrt_trunk-r44497/feeds/packages/lang/python-imglib/Makefile	2015-02-20 12:39:13.357134248 +0300
++++ ../../../openwrt_trunk/feeds/packages/lang/python-imglib/Makefile	2015-02-20 20:58:01.583483083 +0300
+@@ -16,7 +16,8 @@
+ PKG_MD5SUM:=fc14a54e1ce02a0225be8854bfba478e
+ 
+ PKG_BUILD_DIR:=$(BUILD_DIR)/Imaging-$(PKG_VERSION)
+-PKG_BUILD_DEPENDS:=python python-setuptools
++PKG_BUILD_DEPENDS:=python
++#python-setuptools
+ 
+ include $(INCLUDE_DIR)/package.mk
+ $(call include_mk, python-package.mk)
+@@ -46,17 +47,17 @@
  
  define Build/Compile
  	$(call Build/Compile/PyMod,., \
@@ -22,9 +32,9 @@ diff -urx .svn ../../../downloads/openwrt_trunk-r44486/feeds/packages/lang/pytho
  endef
  
  $(eval $(call BuildPackage,python-imglib))
-diff -urx .svn ../../../downloads/openwrt_trunk-r44486/feeds/packages/lang/python-imglib/patches/010-cross-compile.patch ../../../openwrt_trunk/feeds/packages/lang/python-imglib/patches/010-cross-compile.patch
---- ../../../downloads/openwrt_trunk-r44486/feeds/packages/lang/python-imglib/patches/010-cross-compile.patch	2015-02-18 12:16:57.576306332 +0300
-+++ ../../../openwrt_trunk/feeds/packages/lang/python-imglib/patches/010-cross-compile.patch	2015-02-20 11:28:42.021211968 +0300
+diff -urx .svn ../../../downloads/openwrt_trunk-r44497/feeds/packages/lang/python-imglib/patches/010-cross-compile.patch ../../../openwrt_trunk/feeds/packages/lang/python-imglib/patches/010-cross-compile.patch
+--- ../../../downloads/openwrt_trunk-r44497/feeds/packages/lang/python-imglib/patches/010-cross-compile.patch	2015-02-20 12:39:13.357134248 +0300
++++ ../../../openwrt_trunk/feeds/packages/lang/python-imglib/patches/010-cross-compile.patch	2015-02-20 12:39:23.341134066 +0300
 @@ -7,11 +7,11 @@
   TCL_ROOT = None
  -JPEG_ROOT = None
