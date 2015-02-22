@@ -1,13 +1,13 @@
-diff -urx .svn ../../../downloads/mipsel-hardfloat/openwrt_trunk-r39354/feeds/oldpackages/mail/imapfilter/Makefile ../../../openwrt_trunk/feeds/oldpackages/mail/imapfilter/Makefile
---- ../../../downloads/mipsel-hardfloat/openwrt_trunk-r39354/feeds/oldpackages/mail/imapfilter/Makefile
-+++ ../../../openwrt_trunk/feeds/oldpackages/mail/imapfilter/Makefile
+diff -urx .svn ../../../downloads/openwrt_trunk-r44497/feeds/oldpackages/mail/imapfilter/Makefile ../../../openwrt_trunk/feeds/oldpackages/mail/imapfilter/Makefile
+--- ../../../downloads/openwrt_trunk-r44497/feeds/oldpackages/mail/imapfilter/Makefile	2015-02-21 21:16:27.977891453 +0300
++++ ../../../openwrt_trunk/feeds/oldpackages/mail/imapfilter/Makefile	2015-02-22 17:34:21.820559369 +0300
 @@ -8,12 +8,15 @@
  include $(TOPDIR)/rules.mk
  
  PKG_NAME:=imapfilter
 -PKG_VERSION:=2.2.2
-+PKG_VERSION:=2.5.6
-+PKG_REV:=d9790501d84a0870ffdd363860501b69f9601210
++PKG_VERSION:=2.5.7
++PKG_REV:=57abe1569d093c54b8e65d42c51251172d774c68
  PKG_RELEASE:=1
  
  PKG_SOURCE:=$(PKG_NAME)-$(PKG_VERSION).tar.bz2
@@ -72,9 +72,9 @@ diff -urx .svn ../../../downloads/mipsel-hardfloat/openwrt_trunk-r39354/feeds/ol
  endef
  
  $(eval $(call BuildPackage,imapfilter))
-diff -urx .svn ../../../downloads/mipsel-hardfloat/openwrt_trunk-r39354/feeds/oldpackages/mail/imapfilter/patches/010-pathnames.patch ../../../openwrt_trunk/feeds/oldpackages/mail/imapfilter/patches/010-pathnames.patch
---- ../../../downloads/mipsel-hardfloat/openwrt_trunk-r39354/feeds/oldpackages/mail/imapfilter/patches/010-pathnames.patch
-+++ ../../../openwrt_trunk/feeds/oldpackages/mail/imapfilter/patches/010-pathnames.patch
+diff -urx .svn ../../../downloads/openwrt_trunk-r44497/feeds/oldpackages/mail/imapfilter/patches/010-pathnames.patch ../../../openwrt_trunk/feeds/oldpackages/mail/imapfilter/patches/010-pathnames.patch
+--- ../../../downloads/openwrt_trunk-r44497/feeds/oldpackages/mail/imapfilter/patches/010-pathnames.patch	2015-02-21 21:16:27.977891453 +0300
++++ ../../../openwrt_trunk/feeds/oldpackages/mail/imapfilter/patches/010-pathnames.patch	2015-02-21 21:16:37.925891270 +0300
 @@ -1,31 +1,11 @@
 ---- a/pathnames.h
 -+++ b/pathnames.h
