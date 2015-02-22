@@ -40,7 +40,7 @@
  dist_hplip_state_DATA =
  
  if FULL_BUILD
-@@ -275,7 +275,7 @@
+@@ -279,7 +279,7 @@
  if LIBUSB01_BUILD
  hpmudext_la_CFLAGS = -I$(PYTHONINCLUDEDIR)
  else
@@ -49,7 +49,7 @@
  endif
  
  # ui (qt3)
-@@ -344,9 +344,9 @@
+@@ -348,9 +348,9 @@
  
  # PolicyKit
  if POLICYKIT_INSTALL
@@ -61,7 +61,7 @@
  dist_policykit_dbus_share_DATA = data/policykit/com.hp.hplip.service
  policykit_policydir = $(policykit_dir)
  dist_policykit_policy_DATA = data/policykit/com.hp.hplip.policy
-@@ -525,13 +525,13 @@
+@@ -529,13 +529,13 @@
  if HPLIP_BUILD
  #	   If scanner build, add hpaio entry to sane dll.conf.
  	if [ "$(scan_build)" = "yes" ]; then \
