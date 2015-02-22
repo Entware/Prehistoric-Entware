@@ -27,8 +27,6 @@ diff -urx .svn ../../../downloads/openwrt_trunk-r44497/feeds/packages/net/ntpd/f
 +		/opt/etc/init.d/S77ntpd start
          } &
  }
-Only in ../../../openwrt_trunk/feeds/packages/net/ntpd/files: S77ntpd
-Only in ../../../openwrt_trunk/feeds/packages/net/ntpd/files: S77ntpdate
 diff -urx .svn ../../../downloads/openwrt_trunk-r44497/feeds/packages/net/ntpd/Makefile ../../../openwrt_trunk/feeds/packages/net/ntpd/Makefile
 --- ../../../downloads/openwrt_trunk-r44497/feeds/packages/net/ntpd/Makefile	2015-02-20 12:39:13.429134248 +0300
 +++ ../../../openwrt_trunk/feeds/packages/net/ntpd/Makefile	2015-02-21 16:46:55.710187143 +0300

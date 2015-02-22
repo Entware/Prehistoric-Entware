@@ -1,5 +1,26 @@
---- ../../../downloads/openwrt_trunk-r44497/feeds/packages/utils/smstools3/Makefile	2015-02-20 12:39:13.449134248 +0300
-+++ ../../../openwrt_trunk/feeds/packages/utils/smstools3/Makefile	2015-02-21 19:15:29.134022011 +0300
+diff -urx .svn ../../../downloads/openwrt_trunk-r44497/feeds/packages/utils/smstools3/files/smstools3.conf ../../../openwrt_trunk/feeds/packages/utils/smstools3/files/smstools3.conf
+--- ../../../downloads/openwrt_trunk-r44497/feeds/packages/utils/smstools3/files/smstools3.conf	2015-02-21 21:16:27.921891452 +0300
++++ ../../../openwrt_trunk/feeds/packages/utils/smstools3/files/smstools3.conf	2015-02-21 18:18:06.000000000 +0300
+@@ -3,11 +3,11 @@
+ #
+ 
+ devices = GSM1
+-incoming = /var/spool/sms/incoming
+-outgoing = /var/spool/sms/outgoing
+-checked = /var/spool/sms/checked
+-failed = /var/spool/sms/failed
+-sent = /var/spool/sms/sent
++incoming = /opt/var/spool/sms/incoming
++outgoing = /opt/var/spool/sms/outgoing
++checked = /opt/var/spool/sms/checked
++failed = /opt/var/spool/sms/failed
++sent = /opt/var/spool/sms/sent
+ receive_before_send = no
+ autosplit = 3
+ 
+diff -urx .svn ../../../downloads/openwrt_trunk-r44497/feeds/packages/utils/smstools3/Makefile ../../../openwrt_trunk/feeds/packages/utils/smstools3/Makefile
+--- ../../../downloads/openwrt_trunk-r44497/feeds/packages/utils/smstools3/Makefile	2015-02-21 21:16:27.921891452 +0300
++++ ../../../openwrt_trunk/feeds/packages/utils/smstools3/Makefile	2015-02-21 21:16:41.681891202 +0300
 @@ -47,14 +47,12 @@
  
  TARGET_LDFLAGS += -liconv

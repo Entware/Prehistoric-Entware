@@ -1,5 +1,5 @@
---- ../../../openwrt_trunk.orig/feeds/packages/libs/gdbm/Makefile
-+++ ../../../openwrt_trunk/feeds/packages/libs/gdbm/Makefile
+--- ../../../downloads/openwrt_trunk-r44497/feeds/packages/libs/gdbm/Makefile	2015-02-21 21:16:27.881891455 +0300
++++ ../../../openwrt_trunk/feeds/packages/libs/gdbm/Makefile	2015-02-21 21:16:37.625891277 +0300
 @@ -53,15 +53,15 @@
  endef
  
