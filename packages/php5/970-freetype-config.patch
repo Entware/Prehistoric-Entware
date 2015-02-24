@@ -1,0 +1,28 @@
+--- ../../../downloads/openwrt_trunk-r44497/feeds/packages/lang/php5/960-freetype-dir.patch	1970-01-01 03:00:00.000000000 +0300
++++ ../../../openwrt_trunk/feeds/packages/lang/php5/960-freetype-dir.patch	2015-02-24 11:15:22.793827827 +0300
+@@ -0,0 +1,25 @@
++--- ./ext/gd/config.m4.orig	2015-02-24 11:09:42.781833203 +0300
+++++ ./ext/gd/config.m4	2015-02-24 11:14:29.221828487 +0300
++@@ -191,19 +191,9 @@
++ 
++ AC_DEFUN([PHP_GD_FREETYPE2],[
++   if test "$PHP_FREETYPE_DIR" != "no"; then
++-
++-      if test -f "$PHP_FREETYPE_DIR/bin/freetype-config"; then
++-        FREETYPE2_DIR=$PHP_FREETYPE_DIR
++-        FREETYPE2_CONFIG="$PHP_FREETYPE_DIR/bin/freetype-config"
++-        break
++-      fi
++-
++-    if test -z "$FREETYPE2_DIR"; then
++-      AC_MSG_ERROR([freetype-config not found.])
++-    fi
++-
++-    FREETYPE2_CFLAGS=`$FREETYPE2_CONFIG --cflags`
++-    FREETYPE2_LIBS=`$FREETYPE2_CONFIG --libs`
+++    FREETYPE2_DIR=$PHP_GD_FREETYPE2
+++    FREETYPE2_CFLAGS="-I/$PHP_FREETYPE_DIR/include"
+++    FREETYPE2_LIBS="-L/$PHP_FREETYPE_DIR/lib -lfreetype"
++ 
++     PHP_EVAL_INCLINE($FREETYPE2_CFLAGS)
++     PHP_EVAL_LIBLINE($FREETYPE2_LIBS, GD_SHARED_LIBADD)

@@ -1,5 +1,5 @@
---- ../../../downloads/openwrt_trunk-r44486/feeds/packages/lang/php5/Makefile	2015-02-18 12:16:57.576306332 +0300
-+++ ../../../openwrt_trunk/feeds/packages/lang/php5/Makefile	2015-02-19 17:06:14.514414854 +0300
+--- ../../../downloads/openwrt_trunk-r44497/feeds/packages/lang/php5/Makefile	2015-02-21 21:16:27.865891455 +0300
++++ ../../../openwrt_trunk/feeds/packages/lang/php5/Makefile	2015-02-24 11:07:17.333834853 +0300
 @@ -149,13 +149,13 @@
  	--disable-debug \
  	--without-pear \
@@ -37,12 +37,14 @@
  else
    CONFIGURE_ARGS+= --without-gettext
  endif
-@@ -210,8 +210,8 @@
+@@ -209,9 +209,9 @@
+ ifneq ($(SDK)$(CONFIG_PACKAGE_php5-mod-gd),)
    CONFIGURE_ARGS+= \
  	--with-gd=shared \
- 	--without-freetype-dir \
+-	--without-freetype-dir \
 -	--with-jpeg-dir="$(STAGING_DIR)/usr" \
 -	--with-png-dir="$(STAGING_DIR)/usr" \
++	--with-freetype-dir="$(STAGING_DIR)/opt" \
 +	--with-jpeg-dir="$(STAGING_DIR)/opt" \
 +	--with-png-dir="$(STAGING_DIR)/opt" \
  	--without-xpm-dir \
@@ -278,3 +280,12 @@
    endef
  
    $$(eval $$(call BuildPackage,php5-mod-$(1)))
+@@ -529,7 +519,7 @@
+ $(eval $(call BuildModule,exif,EXIF))
+ $(eval $(call BuildModule,fileinfo,Fileinfo))
+ $(eval $(call BuildModule,ftp,FTP,+PACKAGE_php5-mod-ftp:libopenssl))
+-$(eval $(call BuildModule,gd,GD graphics,+PACKAGE_php5-mod-gd:libjpeg +PACKAGE_php5-mod-gd:libpng))
++$(eval $(call BuildModule,gd,GD graphics,+PACKAGE_php5-mod-gd:libjpeg +PACKAGE_php5-mod-gd:libpng +PACKAGE_php5-mod-gd:libfreetype))
+ $(eval $(call BuildModule,gettext,Gettext,+PACKAGE_php5-mod-gettext:libintl-full))
+ $(eval $(call BuildModule,gmp,GMP,+PACKAGE_php5-mod-gmp:libgmp))
+ $(eval $(call BuildModule,hash,Hash))
