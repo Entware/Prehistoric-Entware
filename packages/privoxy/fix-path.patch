@@ -1,14 +1,14 @@
 --- ../../../downloads/openwrt_trunk-r44497/feeds/packages/net/privoxy/Makefile	2015-02-24 12:08:56.437768256 +0300
-+++ ../../../openwrt_trunk/feeds/packages/net/privoxy/Makefile	2015-02-25 10:13:31.824322922 +0300
-@@ -16,7 +16,7 @@
- PKG_MD5SUM:=bbe47d5ff1a54d9f9fc93a160532697f
- PKG_BUILD_DIR:=$(BUILD_DIR)/privoxy-$(PKG_VERSION)-stable
- PKG_FIXUP:=autoreconf
--PKG_INSTALL:=1
-+PKG_INSTALL:=1a
++++ ../../../openwrt_trunk/feeds/packages/net/privoxy/Makefile	2015-02-25 10:17:39.204317181 +0300
+@@ -9,7 +9,7 @@
  
- PKG_LICENSE:=GPL-2.0
- PKG_LICENSE_FILES:=LICENSE
+ PKG_NAME:=privoxy
+ PKG_VERSION:=3.0.23
+-PKG_RELEASE:=3
++PKG_RELEASE:=3a
+ 
+ PKG_SOURCE:=privoxy-$(PKG_VERSION)-stable-src.tar.gz
+ PKG_SOURCE_URL:=@SF/ijbswa
 @@ -58,52 +58,39 @@
  endef
  
