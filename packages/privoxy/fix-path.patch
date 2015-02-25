@@ -1,6 +1,15 @@
---- ../../../downloads/openwrt_trunk-r44486/feeds/packages/net/privoxy/Makefile	2015-02-18 12:16:57.616306332 +0300
-+++ ../../../openwrt_trunk/feeds/packages/net/privoxy/Makefile	2015-02-20 10:52:54.141253373 +0300
-@@ -58,52 +58,38 @@
+--- ../../../downloads/openwrt_trunk-r44497/feeds/packages/net/privoxy/Makefile	2015-02-24 12:08:56.437768256 +0300
++++ ../../../openwrt_trunk/feeds/packages/net/privoxy/Makefile	2015-02-25 10:13:31.824322922 +0300
+@@ -16,7 +16,7 @@
+ PKG_MD5SUM:=bbe47d5ff1a54d9f9fc93a160532697f
+ PKG_BUILD_DIR:=$(BUILD_DIR)/privoxy-$(PKG_VERSION)-stable
+ PKG_FIXUP:=autoreconf
+-PKG_INSTALL:=1
++PKG_INSTALL:=1a
+ 
+ PKG_LICENSE:=GPL-2.0
+ PKG_LICENSE_FILES:=LICENSE
+@@ -58,52 +58,39 @@
  endef
  
  CONFIGURE_ARGS += \
@@ -58,6 +67,7 @@
 +		-exec $(INSTALL_DATA) -t $(1)/opt/etc/privoxy/templates {} \;
 +	find $(PKG_INSTALL_DIR)/opt/etc/privoxy -maxdepth 1 -type f \
 +		-exec install -m0664 -t $(1)/opt/etc/privoxy {} \;
++	$(INSTALL_CONF) ./files/privoxy.oldconfig $(1)/opt/etc/privoxy/config
  
  	$(INSTALL_DIR) \
 -		$(1)/etc/init.d \
@@ -67,7 +77,7 @@
 -	$(INSTALL_BIN)  ./files/privoxy.hotplug $(1)/etc/hotplug.d/iface/80-privoxy
 -	$(INSTALL_CONF) ./files/privoxy.config $(1)/etc/config/privoxy
 +		$(1)/opt/etc/init.d
-+	$(INSTALL_CONF) ./files/privoxy.oldconfig $(1)/opt/etc/privoxy/config
++	$(INSTALL_BIN) ./files/S24privoxy $(1)/opt/etc/init.d/
  endef
  
  $(eval $(call BuildPackage,$(PKG_NAME)))
