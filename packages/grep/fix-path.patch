@@ -1,0 +1,25 @@
+--- ../../../downloads/openwrt_trunk-r44497/feeds/packages/utils/grep/Makefile	2015-02-24 12:08:56.865768246 +0300
++++ ../../../openwrt_trunk/feeds/packages/utils/grep/Makefile	2015-02-27 11:07:37.333113890 +0300
+@@ -41,20 +41,8 @@
+ endef
+ 
+ define Package/grep/install
+-	$(INSTALL_DIR) $(1)/usr/bin
+-	$(INSTALL_BIN) $(PKG_BUILD_DIR)/src/grep $(1)/usr/bin/grep
+-endef
+-
+-define Package/grep/postinst
+-#!/bin/sh
+-[ -L "$${IPKG_INSTROOT}/bin/grep" ] && rm -f "$${IPKG_INSTROOT}/bin/grep"
+-exit 0
+-endef
+-
+-define Package/grep/prerm
+-$${IPKG_INSTROOT}/bin/busybox grep -h 2>&1 | grep -q BusyBox && \
+-ln -sf busybox $${IPKG_INSTROOT}/bin/grep
+-exit 0
++	$(INSTALL_DIR) $(1)/opt/bin
++	$(INSTALL_BIN) $(PKG_BUILD_DIR)/src/grep $(1)/opt/bin/grep
+ endef
+ 
+ $(eval $(call BuildPackage,grep))
