@@ -1,10 +1,10 @@
---- ../../../downloads/openwrt_trunk-r43593/package/devel/oprofile/Makefile	2014-12-10 12:26:33.322951675 +0300
-+++ ../../../openwrt_trunk/package/devel/oprofile/Makefile	2014-12-10 12:49:08.518926987 +0300
+--- ../../../downloads/openwrt_trunk-q44497/package/devel/oprofile/Makefile	2015-02-25 12:52:28.804911706 +0300
++++ ../../../openwrt_trunk/package/devel/oprofile/Makefile	2015-02-28 11:47:24.611719183 +0300
 @@ -31,7 +31,7 @@
    CATEGORY:=Development
    TITLE:=OProfile System Profiler
    URL:=http://oprofile.sourceforge.net
--  DEPENDS:=+libpopt +kmod-oprofile +libstdcpp +objdump
+-  DEPENDS:=+libpopt +kmod-oprofile +libstdcpp +objdump @(!TARGET_uml||BROKEN)
 +  DEPENDS:=+librt +libpopt +libstdcpp +objdump
  endef
  

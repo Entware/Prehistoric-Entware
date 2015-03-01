@@ -5,12 +5,7 @@
 # See /LICENSE for more information.
 #
 
-#
-# It is better to have a slightly different openwrt revisions for qnapware and entware
-# It is done in case one uses common download dir for both.
-# This will make downloads/openwrt_trunk_r<revision> dirs different for repositories
-#
-export OPENWRT_REVISION=43719
+export OPENWRT_REVISION=44497
 
 # Target architecture for repo (now only x86 is supported)
 export TARGET=x86

@@ -1,6 +1,6 @@
-diff -urx .svn ../../../downloads/openwrt_trunk-r43593/feeds/packages/net/ntpd/files/ntp.conf ../../../openwrt_trunk/feeds/packages/net/ntpd/files/ntp.conf
---- ../../../downloads/openwrt_trunk-r43593/feeds/packages/net/ntpd/files/ntp.conf	2014-12-10 12:26:33.006951679 +0300
-+++ ../../../openwrt_trunk/feeds/packages/net/ntpd/files/ntp.conf	2014-12-10 12:49:07.870927000 +0300
+diff -urx .svn ../../../downloads/openwrt_trunk-r44497/feeds/packages/net/ntpd/files/ntp.conf ../../../openwrt_trunk/feeds/packages/net/ntpd/files/ntp.conf
+--- ../../../downloads/openwrt_trunk-r44497/feeds/packages/net/ntpd/files/ntp.conf	2015-02-20 12:39:13.429134248 +0300
++++ ../../../openwrt_trunk/feeds/packages/net/ntpd/files/ntp.conf	2015-02-20 12:39:22.853134076 +0300
 @@ -6,7 +6,7 @@
  
  restrict 127.0.0.1
@@ -10,9 +10,9 @@ diff -urx .svn ../../../downloads/openwrt_trunk-r43593/feeds/packages/net/ntpd/f
  
  server 0.openwrt.pool.ntp.org iburst
  server 1.openwrt.pool.ntp.org iburst
-diff -urx .svn ../../../downloads/openwrt_trunk-r43593/feeds/packages/net/ntpd/files/ntpd.hotplug ../../../openwrt_trunk/feeds/packages/net/ntpd/files/ntpd.hotplug
---- ../../../downloads/openwrt_trunk-r43593/feeds/packages/net/ntpd/files/ntpd.hotplug	2014-12-10 12:26:33.006951679 +0300
-+++ ../../../openwrt_trunk/feeds/packages/net/ntpd/files/ntpd.hotplug	2014-12-10 12:49:07.870927000 +0300
+diff -urx .svn ../../../downloads/openwrt_trunk-r44497/feeds/packages/net/ntpd/files/ntpd.hotplug ../../../openwrt_trunk/feeds/packages/net/ntpd/files/ntpd.hotplug
+--- ../../../downloads/openwrt_trunk-r44497/feeds/packages/net/ntpd/files/ntpd.hotplug	2015-02-20 12:39:13.429134248 +0300
++++ ../../../openwrt_trunk/feeds/packages/net/ntpd/files/ntpd.hotplug	2015-02-20 12:39:22.853134076 +0300
 @@ -1,10 +1,10 @@
  NAME=ntpd
 -CONFIG=/etc/ntp.conf
@@ -27,10 +27,10 @@ diff -urx .svn ../../../downloads/openwrt_trunk-r43593/feeds/packages/net/ntpd/f
 +		/opt/etc/init.d/S77ntpd start
          } &
  }
-diff -urx .svn ../../../downloads/openwrt_trunk-r43593/feeds/packages/net/ntpd/Makefile ../../../openwrt_trunk/feeds/packages/net/ntpd/Makefile
---- ../../../downloads/openwrt_trunk-r43593/feeds/packages/net/ntpd/Makefile	2014-12-10 12:26:33.006951679 +0300
-+++ ../../../openwrt_trunk/feeds/packages/net/ntpd/Makefile	2014-12-10 12:49:07.870927000 +0300
-@@ -119,7 +119,7 @@
+diff -urx .svn ../../../downloads/openwrt_trunk-r44497/feeds/packages/net/ntpd/Makefile ../../../openwrt_trunk/feeds/packages/net/ntpd/Makefile
+--- ../../../downloads/openwrt_trunk-r44497/feeds/packages/net/ntpd/Makefile	2015-02-20 12:39:13.429134248 +0300
++++ ../../../openwrt_trunk/feeds/packages/net/ntpd/Makefile	2015-02-21 16:46:55.710187143 +0300
+@@ -89,7 +89,7 @@
  endef
  
  define Package/ntpd/conffiles
@@ -39,15 +39,14 @@ diff -urx .svn ../../../downloads/openwrt_trunk-r43593/feeds/packages/net/ntpd/M
  endef
  
  CONFIGURE_VARS += \
-@@ -140,53 +140,42 @@
- ifeq ($(BUILD_VARIANT),ssl)
-   CONFIGURE_ARGS += \
+@@ -108,49 +108,38 @@
+ 	--enable-linuxcaps \
+ 	--with-yielding-select=yes \
  	--with-crypto \
 -	--with-openssl-incdir="$(STAGING_DIR)/usr/include" \
 -	--with-openssl-libdir="$(STAGING_DIR)/usr/lib"
 +	--with-openssl-incdir="$(STAGING_DIR)/opt/include" \
 +	--with-openssl-libdir="$(STAGING_DIR)/opt/lib"
- endif
  
  define Package/ntpd/install
 -	$(INSTALL_DIR) $(1)/sbin
@@ -81,9 +80,6 @@ diff -urx .svn ../../../downloads/openwrt_trunk-r43593/feeds/packages/net/ntpd/M
 +	$(INSTALL_DIR) $(1)/opt/var/spool/ntp
  endef
  
- Package/ntpd-ssl/conffiles = $(Package/ntpd/conffiles)
- Package/ntpd-ssl/install = $(Package/ntpd/install)
- 
  define Package/ntpdate/install
 -	$(INSTALL_DIR) $(1)/usr/sbin
 -	$(INSTALL_BIN) $(PKG_BUILD_DIR)/ntpdate/ntpdate $(1)/usr/sbin/
@@ -113,4 +109,4 @@ diff -urx .svn ../../../downloads/openwrt_trunk-r43593/feeds/packages/net/ntpd/M
 +	$(INSTALL_BIN) $(PKG_BUILD_DIR)/util/ntp-keygen $(1)/opt/sbin/
  endef
  
- Package/ntp-keygen-ssl/install = $(Package/ntp-keygen/install)
+ $(eval $(call BuildPackage,ntpd))

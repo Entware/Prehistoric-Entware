@@ -9,9 +9,8 @@ all: .done
 
 .done:
 	patch -d $(TOP) -p3 -i $(CURDIR)/fix-path.patch
-	mkdir -p ../../../openwrt_trunk/feeds/oldpackages/net/dansguardian/files
-	cp -f ./010-cpp-fix.patch ../../../openwrt_trunk/feeds/oldpackages/net/dansguardian/patches/
-	cp -f ./S24dansguardian   ../../../openwrt_trunk/feeds/oldpackages/net/dansguardian/files/
+	cp -f ./S24dansguardian ../../../openwrt_trunk/feeds/packages/net/dansguardian/files/
+	cp -f ./888-include-stdlib.patch ../../../openwrt_trunk/feeds/packages/net/dansguardian/patches/
 	@touch $@
 
 clean:

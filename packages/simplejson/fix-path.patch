@@ -1,6 +1,16 @@
---- ../../../openwrt_trunk.orig/feeds/oldpackages/lang/simplejson/Makefile
-+++ ../../../openwrt_trunk/feeds/oldpackages/lang/simplejson/Makefile
-@@ -33,7 +33,7 @@
+--- ../../../downloads/openwrt_trunk-r44497/feeds/packages/lang/simplejson/Makefile	2015-02-20 12:39:13.361134248 +0300
++++ ../../../openwrt_trunk/feeds/packages/lang/simplejson/Makefile	2015-02-20 20:59:14.643486203 +0300
+@@ -15,7 +15,8 @@
+ PKG_SOURCE:=$(PKG_NAME)-$(PKG_VERSION).tar.gz
+ PKG_SOURCE_URL:=http://pypi.python.org/packages/source/s/simplejson/
+ PKG_MD5SUM:=b65dc21c7aaad14c6b4ad0d9179e437d
+-PKG_BUILD_DEPENDS:=python python-setuptools
++PKG_BUILD_DEPENDS:=python
++# python-setuptools
+ 
+ include $(INCLUDE_DIR)/package.mk
+ $(call include_mk, python-package.mk)
+@@ -35,7 +36,7 @@
  endef
  
  define Build/Compile

@@ -1,6 +1,6 @@
---- ../../../openwrt_trunk.orig/feeds/oldpackages/net/fakeidentd/Makefile
-+++ ../../../openwrt_trunk/feeds/oldpackages/net/fakeidentd/Makefile
-@@ -37,10 +37,10 @@
+--- ../../../downloads/openwrt_trunk-r44497/feeds/packages/net/fakeidentd/Makefile	2015-02-21 21:16:27.905891455 +0300
++++ ../../../openwrt_trunk/feeds/packages/net/fakeidentd/Makefile	2015-02-21 21:57:50.461841637 +0300
+@@ -39,10 +39,10 @@
  endef
  
  define Package/fakeidentd/install

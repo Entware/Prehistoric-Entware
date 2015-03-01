@@ -1,17 +1,17 @@
---- ../../../downloads/openwrt_trunk-r43718/feeds/packages/utils/zip/Makefile
-+++ ../../../openwrt_trunk/feeds/packages/utils/zip/Makefile
-@@ -46,8 +46,9 @@
+--- ../../../downloads/openwrt_trunk-r44497/feeds/packages/utils/zip/Makefile	2015-02-24 12:08:56.873768246 +0300
++++ ../../../openwrt_trunk/feeds/packages/utils/zip/Makefile	2015-02-27 13:29:24.484951933 +0300
+@@ -46,17 +46,17 @@
  
  define Build/Compile
  	$(MAKE) -C $(PKG_BUILD_DIR) -f unix/Makefile generic \
 -		prefix="$(PKG_INSTALL_DIR)/usr" \
 +		prefix="$(PKG_INSTALL_DIR)/Apps/opt" \
  		CFLAGS="$(TARGET_CFLAGS)" \
-+		LFLAGS2="$(TARGET_LDFLAGS)" \
- 		CC="$(TARGET_CC) $(TARGET_CFLAGS) -O $(TARGET_CPPFLAGS) -I. -DUNIX" \
+-		CC="$(TARGET_CC) $(TARGET_CFLAGS) -O $(TARGET_CPPFLAGS) -I. -DUNIX" \
++		CC="$(TARGET_CC) $(TARGET_CFLAGS) -O $(TARGET_CPPFLAGS) -I. -DUNIX $(TARGET_LDFLAGS)" \
  		LD="$(TARGET_CC) $(TARGET_LDFLAGS)" \
  		IZ_BZIP2="no" \
-@@ -55,8 +56,8 @@
+ 		install
  endef
  
  define Package/zip/install

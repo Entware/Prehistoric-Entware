@@ -1,6 +1,6 @@
 --- ../../../openwrt_trunk.orig/package/libs/libmnl/Makefile
 +++ ../../../openwrt_trunk/package/libs/libmnl/Makefile
-@@ -60,17 +60,17 @@
+@@ -61,17 +61,17 @@
  	--enable-static \
  
  define Build/InstallDev

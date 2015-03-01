@@ -1,0 +1,13 @@
+--- a/gio/giotypes.h.orig	2015-02-28 14:43:28.236153780 +0300
++++ b/gio/giotypes.h	2015-02-28 14:44:08.836042007 +0300
+@@ -61,8 +61,8 @@
+ 
+ typedef struct _GMenuModel                    GMenuModel;
+ typedef struct _GNotification                 GNotification;
+-typedef struct _GListModel                    GListModel;
+-typedef struct _GListStore                    GListStore;
++#define _GListModel                    GListModel
++#define _GListStore                    GListStore
+ 
+ /**
+  * GDrive:

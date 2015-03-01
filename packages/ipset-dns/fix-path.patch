@@ -1,0 +1,23 @@
+--- ../../../downloads/openwrt_trunk-r43718/package/network/services/ipset-dns/Makefile	2014-12-18 13:14:28.759607753 +0300
++++ ../../../openwrt_trunk/package/network/services/ipset-dns/Makefile	2015-02-09 15:04:39.188261717 +0300
+@@ -44,17 +44,11 @@
+  IP addresses and instead rely on dizzying arrays of DNS resolutions.
+ endef
+ 
+-define Package/ipset-dns/conffiles
+-/etc/config/ipset-dns
+-endef
++MAKE_FLAGS += OLD_IPSET=1
+ 
+ define Package/ipset-dns/install
+-	$(INSTALL_DIR) $(1)/usr/sbin
+-	$(INSTALL_BIN) $(PKG_BUILD_DIR)/ipset-dns $(1)/usr/sbin/ipset-dns
+-	$(INSTALL_DIR) $(1)/etc/init.d
+-	$(INSTALL_BIN) ./files/ipset-dns.init $(1)/etc/init.d/ipset-dns
+-	$(INSTALL_DIR) $(1)/etc/config
+-	$(INSTALL_CONF) ./files/ipset-dns.config $(1)/etc/config/ipset-dns
++	$(INSTALL_DIR) $(1)/opt/sbin
++	$(INSTALL_BIN) $(PKG_BUILD_DIR)/ipset-dns $(1)/opt/sbin/ipset-dns
+ endef
+ 
+ $(eval $(call BuildPackage,ipset-dns))

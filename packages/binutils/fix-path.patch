@@ -1,5 +1,5 @@
---- ../../../downloads/openwrt_trunk-r43718/package/devel/binutils/Makefile	2015-01-09 19:51:38.507174880 +0300
-+++ ../../../openwrt_trunk/package/devel/binutils/Makefile	2015-01-09 23:21:43.624192454 +0300
+--- ../../../downloads/openwrt_trunk-q44497/package/devel/binutils/Makefile	2015-02-25 12:52:28.804911706 +0300
++++ ../../../openwrt_trunk/package/devel/binutils/Makefile	2015-02-28 12:14:59.336184659 +0300
 @@ -25,6 +25,10 @@
  PKG_LICENSE:=GPL-3.0+
  PKG_BUILD_PARALLEL:=1
@@ -10,8 +10,17 @@
 +
  include $(INCLUDE_DIR)/package.mk
  
- define Package/binutils
-@@ -62,21 +66,20 @@
+ define Package/libbfd
+@@ -69,8 +73,6 @@
+ TARGET_CFLAGS += $(FPIC) -Wno-unused-value
+ 
+ CONFIGURE_ARGS += \
+-	--host=$(REAL_GNU_TARGET_NAME) \
+-	--target=$(REAL_GNU_TARGET_NAME) \
+ 	--enable-shared \
+ 	--enable-install-libiberty \
+ 	--enable-install-libbfd
+@@ -85,35 +87,34 @@
  endef
  
  define Build/InstallDev
@@ -19,15 +28,32 @@
 +	$(CP) $(PKG_INSTALL_DIR)/Apps/* $(1)/
  endef
  
- define Package/objdump/install
--	$(INSTALL_DIR) $(1)/usr/bin $(1)/usr/lib
--	$(CP) $(PKG_INSTALL_DIR)/usr/bin/objdump $(1)/usr/bin/
--	$(CP) $(PKG_INSTALL_DIR)/usr/lib/libopcodes*.so $(1)/usr/lib/
+ define Package/libbfd/install
+-	$(INSTALL_DIR) $(1)/usr/lib
 -	$(CP) $(PKG_INSTALL_DIR)/usr/lib/libbfd*.so $(1)/usr/lib/
-+	$(INSTALL_DIR) $(1)/opt/bin $(1)/opt/lib
-+	$(CP) $(PKG_INSTALL_DIR)/Apps/opt/bin/objdump $(1)/opt/bin/
-+	$(CP) $(PKG_INSTALL_DIR)/Apps/opt/lib/libopcodes*.so $(1)/opt/lib/
++	$(INSTALL_DIR) $(1)/opt/lib
 +	$(CP) $(PKG_INSTALL_DIR)/Apps/opt/lib/libbfd*.so $(1)/opt/lib/
+ endef
+ 
+ define Package/libopcodes/install
+-	$(INSTALL_DIR) $(1)/usr/lib
+-	$(CP) $(PKG_INSTALL_DIR)/usr/lib/libopcodes*.so $(1)/usr/lib/
++	$(INSTALL_DIR) $(1)/opt/lib
++	$(CP) $(PKG_INSTALL_DIR)/Apps/opt/lib/libopcodes*.so $(1)/opt/lib/
+ endef
+ 
+ define Package/objdump/install
+-	$(INSTALL_DIR) $(1)/usr/bin
+-	$(CP) $(PKG_INSTALL_DIR)/usr/bin/objdump $(1)/usr/bin/
++	$(INSTALL_DIR) $(1)/opt/bin
++	$(CP) $(PKG_INSTALL_DIR)/Apps/opt/bin/objdump $(1)/opt/bin/
+ endef
+ 
+ define Package/ar/install
+-	$(INSTALL_DIR) $(1)/usr/bin
+-	$(CP) $(PKG_INSTALL_DIR)/usr/bin/ar $(1)/usr/bin/
++	$(INSTALL_DIR) $(1)/opt/bin
++	$(CP) $(PKG_INSTALL_DIR)/Apps/opt/bin/ar $(1)/opt/bin/
  endef
  
  define Package/binutils/install
@@ -35,9 +61,11 @@
 -	$(CP) $(PKG_INSTALL_DIR)/usr/bin/ $(1)/usr/
 -	mv $(1)/usr/bin/strings $(1)/bin/strings
 -	rm -f $(1)/usr/bin/objdump
-+	$(INSTALL_DIR) $(1)/opt/bin
-+	$(CP) $(PKG_INSTALL_DIR)/Apps/opt/bin/ $(1)/opt
+-	rm -f $(1)/usr/bin/ar
++	$(INSTALL_DIR) $(1)/opt
++	$(CP) $(PKG_INSTALL_DIR)/Apps/opt/bin/ $(1)/opt/
 +	rm -f $(1)/opt/bin/objdump
++	rm -f $(1)/opt/bin/ar
  endef
  
- $(eval $(call BuildPackage,binutils))
+ $(eval $(call BuildPackage,libbfd))

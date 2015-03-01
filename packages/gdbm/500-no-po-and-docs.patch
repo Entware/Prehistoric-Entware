@@ -1,0 +1,11 @@
+--- a/Makefile.am
++++ b/Makefile.am
+@@ -22,7 +22,7 @@
+ if ENABLE_EXPORT
+   MAYBE_EXPORT = export
+ endif
+-SUBDIRS = po src doc $(MAYBE_COMPAT) $(MAYBE_EXPORT) tests
++SUBDIRS = src $(MAYBE_COMPAT) $(MAYBE_EXPORT) tests
+ 
+ AM_DISTCHECK_CONFIGURE_FLAGS = --enable-libgdbm-compat
+ 

@@ -1,5 +1,20 @@
---- ../../../downloads/openwrt_trunk-r43718/feeds/packages/net/ipsec-tools/Makefile
-+++ ../../../openwrt_trunk/feeds/packages/net/ipsec-tools/Makefile
+diff -urx .svn ../../../downloads/openwrt_trunk-r43708/feeds/packages/net/ipsec-tools/files/racoon.conf ../../../openwrt_trunk/feeds/packages/net/ipsec-tools/files/racoon.conf
+--- ../../../downloads/openwrt_trunk-r43708/feeds/packages/net/ipsec-tools/files/racoon.conf	2014-12-15 12:19:58.020388958 +0300
++++ ../../../openwrt_trunk/feeds/packages/net/ipsec-tools/files/racoon.conf	2014-12-15 14:47:37.076224235 +0300
+@@ -14,8 +14,8 @@
+ #
+ 
+ log notify;
+-path pre_shared_key "/etc/racoon/psk.txt";
+-path certificate "/etc/racoon/certs";
++path pre_shared_key "/Apps/opt/etc/racoon/psk.txt";
++path certificate "/Apps/opt/etc/racoon/certs";
+ 
+ #remote 172.31.1.1 {
+ #        exchange_mode main,aggressive;
+diff -urx .svn ../../../downloads/openwrt_trunk-r43708/feeds/packages/net/ipsec-tools/Makefile ../../../openwrt_trunk/feeds/packages/net/ipsec-tools/Makefile
+--- ../../../downloads/openwrt_trunk-r43708/feeds/packages/net/ipsec-tools/Makefile	2014-12-15 12:19:58.020388958 +0300
++++ ../../../openwrt_trunk/feeds/packages/net/ipsec-tools/Makefile	2014-12-15 14:50:07.104225294 +0300
 @@ -7,7 +7,6 @@
  #
  

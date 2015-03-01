@@ -1,6 +1,6 @@
 diff -urx .svn ../../../downloads/openwrt_trunk-r43718/package/network/services/ppp/files/etc/ppp/radius/dictionary ../../../openwrt_trunk/package/network/services/ppp/files/etc/ppp/radius/dictionary
---- ../../../downloads/openwrt_trunk-r43718/package/network/services/ppp/files/etc/ppp/radius/dictionary	2014-10-09 19:10:18.036806516 +0400
-+++ ../../../openwrt_trunk/package/network/services/ppp/files/etc/ppp/radius/dictionary	2014-10-15 09:30:44.743993761 +0400
+--- ../../../downloads/openwrt_trunk-r43718/package/network/services/ppp/files/etc/ppp/radius/dictionary	2014-12-18 13:14:28.779607752 +0300
++++ ../../../openwrt_trunk/package/network/services/ppp/files/etc/ppp/radius/dictionary	2014-12-18 13:14:40.895607530 +0300
 @@ -250,4 +250,4 @@
  VALUE		Octets-Direction        MaxOveral		3
  VALUE		Octets-Direction        MaxSession		4
@@ -8,8 +8,8 @@ diff -urx .svn ../../../downloads/openwrt_trunk-r43718/package/network/services/
 -INCLUDE /etc/ppp/radius/dictionary.microsoft
 +INCLUDE /opt/etc/ppp/radius/dictionary.microsoft
 diff -urx .svn ../../../downloads/openwrt_trunk-r43718/package/network/services/ppp/files/etc/ppp/radius.conf ../../../openwrt_trunk/package/network/services/ppp/files/etc/ppp/radius.conf
---- ../../../downloads/openwrt_trunk-r43718/package/network/services/ppp/files/etc/ppp/radius.conf	2014-10-09 19:10:18.036806516 +0400
-+++ ../../../openwrt_trunk/package/network/services/ppp/files/etc/ppp/radius.conf	2014-10-15 09:30:31.695996283 +0400
+--- ../../../downloads/openwrt_trunk-r43718/package/network/services/ppp/files/etc/ppp/radius.conf	2014-12-18 13:14:28.779607752 +0300
++++ ../../../openwrt_trunk/package/network/services/ppp/files/etc/ppp/radius.conf	2014-12-18 13:14:40.895607530 +0300
 @@ -1,8 +1,8 @@
  authserver localhost:1812
  acctserver localhost:1813
@@ -23,8 +23,8 @@ diff -urx .svn ../../../downloads/openwrt_trunk-r43718/package/network/services/
  radius_timeout 5
  radius_retries 3
 diff -urx .svn ../../../downloads/openwrt_trunk-r43718/package/network/services/ppp/Makefile ../../../openwrt_trunk/package/network/services/ppp/Makefile
---- ../../../downloads/openwrt_trunk-r43718/package/network/services/ppp/Makefile	2014-10-09 19:10:18.036806516 +0400
-+++ ../../../openwrt_trunk/package/network/services/ppp/Makefile	2014-10-15 09:29:57.231999955 +0400
+--- ../../../downloads/openwrt_trunk-r43718/package/network/services/ppp/Makefile	2014-12-18 13:14:28.779607752 +0300
++++ ../../../openwrt_trunk/package/network/services/ppp/Makefile	2015-01-15 16:49:45.852300568 +0300
 @@ -6,7 +6,6 @@
  #
  
@@ -119,7 +119,7 @@ diff -urx .svn ../../../downloads/openwrt_trunk-r43718/package/network/services/
  		PRECOMPILED_FILTER=1 \
  		STAGING_DIR="$(STAGING_DIR)"
  
-@@ -176,81 +173,85 @@
+@@ -176,81 +173,88 @@
  endif
  
  define Build/InstallDev
@@ -178,6 +178,9 @@ diff -urx .svn ../../../downloads/openwrt_trunk-r43718/package/network/services/
  	$(INSTALL_BIN) $(PKG_INSTALL_DIR)/lib/pppd/$(PKG_VERSION)/rp-pppoe.so \
 -		$(1)/usr/lib/pppd/$(PKG_VERSION)/
 +		$(1)/opt/lib/pppd/$(PKG_VERSION)/
++	$(INSTALL_DIR) $(1)/opt/sbin
++	$(INSTALL_BIN) $(PKG_INSTALL_DIR)/sbin/pppoe-discovery $(1)/opt/sbin/
++
  endef
  
  define Package/ppp-mod-radius/install
@@ -243,8 +246,8 @@ diff -urx .svn ../../../downloads/openwrt_trunk-r43718/package/network/services/
  
  $(eval $(call BuildPackage,ppp))
 diff -urx .svn ../../../downloads/openwrt_trunk-r43718/package/network/services/ppp/patches/310-precompile_filter.patch ../../../openwrt_trunk/package/network/services/ppp/patches/310-precompile_filter.patch
---- ../../../downloads/openwrt_trunk-r43718/package/network/services/ppp/patches/310-precompile_filter.patch	2014-10-09 19:10:18.036806516 +0400
-+++ ../../../openwrt_trunk/package/network/services/ppp/patches/310-precompile_filter.patch	2014-10-09 19:10:27.504806343 +0400
+--- ../../../downloads/openwrt_trunk-r43718/package/network/services/ppp/patches/310-precompile_filter.patch	2014-12-18 13:14:28.779607752 +0300
++++ ../../../openwrt_trunk/package/network/services/ppp/patches/310-precompile_filter.patch	2014-12-18 13:14:40.895607530 +0300
 @@ -31,7 +31,7 @@
  +PPPDSRCS += pcap_pcc.c
  +HEADERS  += pcap_pcc.h

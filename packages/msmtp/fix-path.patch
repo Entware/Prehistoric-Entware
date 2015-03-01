@@ -1,29 +1,15 @@
---- ../../../downloads/mipsel-hardfloat/openwrt_trunk-r40423/feeds/oldpackages/mail/msmtp/Makefile
-+++ ../../../openwrt_trunk/feeds/oldpackages/mail/msmtp/Makefile
-@@ -9,12 +9,12 @@
- include $(TOPDIR)/rules.mk
- 
- PKG_NAME:=msmtp
--PKG_VERSION:=1.4.27
-+PKG_VERSION:=1.4.32
- PKG_RELEASE:=1
- 
- PKG_SOURCE:=$(PKG_NAME)-$(PKG_VERSION).tar.bz2
- PKG_SOURCE_URL:=@SF/msmtp
--PKG_MD5SUM:=2d6d10d9c59ed2b2635554ed35fb9226
-+PKG_MD5SUM:=aa60e22211118f222470439cea60f795
- 
- PKG_FIXUP:=autoreconf
- PKG_INSTALL:=1
-@@ -27,6 +27,7 @@
-   SECTION:=mail
-   CATEGORY:=Mail
-   TITLE:=Simple sendmail SMTP forwarding
-+  DEPENDS:= +libidn
-   URL:=http://msmtp.sourceforge.net/
+--- ../../../downloads/openwrt_trunk-r44497/feeds/packages/mail/msmtp/Makefile	2015-02-20 12:39:13.377134249 +0300
++++ ../../../openwrt_trunk/feeds/packages/mail/msmtp/Makefile	2015-02-21 16:41:06.554193080 +0300
+@@ -39,7 +39,7 @@
+  an SMTP server (for example at a free mail provider) which does the
+  delivery. To use this program with your mail user agent (MUA), create
+  a configuration file with your mail account(s) and tell your MUA to
+- call msmtp instead of /usr/sbin/sendmail.
++ call msmtp instead of sendmail.
  endef
  
-@@ -46,7 +47,7 @@
+ define Package/msmtp
+@@ -50,7 +50,7 @@
  endef
  
  define Package/msmtp/conffiles
@@ -32,15 +18,7 @@
  endef
  
  define Package/msmtp/description
-@@ -80,7 +81,6 @@
- 	--disable-rpath \
- 	--without-libintl-prefix \
- 	--without-libgsasl \
--	--without-libidn
- 
- MAKE_FLAGS :=
- 
-@@ -95,16 +95,16 @@
+@@ -101,34 +101,35 @@
  endif
  
  define Package/msmtp/install
@@ -49,22 +27,34 @@
  	$(INSTALL_CONF) $(PKG_BUILD_DIR)/doc/msmtprc-system.example \
 -		$(1)/etc/msmtprc
 -	$(INSTALL_DIR) $(1)/usr/bin
--	$(INSTALL_BIN) $(PKG_INSTALL_DIR)/usr/bin/msmtp $(1)/usr/bin/
--	$(INSTALL_DIR) $(1)/usr/sbin
+-	$(CP) $(PKG_INSTALL_DIR)/usr/bin/msmtp $(1)/usr/bin/
 +		$(1)/opt/etc/msmtprc
 +	$(INSTALL_DIR) $(1)/opt/bin
-+	$(INSTALL_BIN) $(PKG_INSTALL_DIR)/Apps/opt/bin/msmtp $(1)/opt/bin/
-+	$(INSTALL_DIR) $(1)/opt/sbin
++	$(CP) $(PKG_INSTALL_DIR)/Apps/opt/bin/msmtp $(1)/opt/bin/
  endef
  
  define Package/msmtp/postinst
--	ln -sf ../bin/msmtp $${IPKG_INSTROOT}/usr/sbin/sendmail
-+	ln -sf ../bin/msmtp $${IPKG_INSTROOT}/opt/sbin/sendmail
+-	[ -e $${IPKG_INSTROOT}/usr/sbin/sendmail ] || {
+-		mkdir -p $${IPKG_INSTROOT}/usr/sbin
+-		ln -sf ../bin/msmtp $${IPKG_INSTROOT}/usr/sbin/sendmail
++	[ -e $${IPKG_INSTROOT}/opt/sbin/sendmail ] || {
++		mkdir -p $${IPKG_INSTROOT}/opt/sbin
++		ln -sf ../bin/msmtp $${IPKG_INSTROOT}/opt/sbin/sendmail
+ 	}
+ endef
+ 
+ define Package/msmtp/prerm
+-	[ "../bin/msmtp" = "$(readlink -qs $${IPKG_INSTROOT}/usr/sbin/sendmail)" ] && {
+-		rm -f $${IPKG_INSTROOT}/usr/sbin/sendmail
++	[ "../bin/msmtp" = "$(readlink -qs $${IPKG_INSTROOT}/opt/sbin/sendmail)" ] && {
++		rm -f $${IPKG_INSTROOT}/opt/sbin/sendmail
+ 	}
  endef
  
  Package/msmtp-nossl/conffiles = $(Package/msmtp/conffiles)
-@@ -112,9 +112,9 @@
+ Package/msmtp-nossl/install = $(Package/msmtp/install)
  Package/msmtp-nossl/postinst = $(Package/msmtp/postinst)
++Package/msmtp-nossl/prerm = $(Package/msmtp/prerm)
  
  define Package/msmtp-queue/install
 -	$(INSTALL_DIR) $(1)/usr/bin

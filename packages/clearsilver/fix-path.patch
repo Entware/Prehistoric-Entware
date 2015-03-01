@@ -1,9 +1,9 @@
---- ../../../downloads/openwrt_trunk-r43718/feeds/oldpackages/libs/clearsilver/Makefile	2014-11-07 23:35:24.439626265 +0300
-+++ ../../../openwrt_trunk/feeds/oldpackages/libs/clearsilver/Makefile	2014-11-26 17:44:25.400388894 +0300
+--- ../../../downloads/openwrt_trunk-q44497/feeds/oldpackages/libs/clearsilver/Makefile	2015-02-25 12:52:24.168487645 +0300
++++ ../../../openwrt_trunk/feeds/oldpackages/libs/clearsilver/Makefile	2015-02-27 17:28:12.965041267 +0300
 @@ -32,7 +32,7 @@
    TITLE:=ClearSilver template system
    URL:=http://www.clearsilver.net/
-   MAINTAINER:=Raphaël HUCK <rhk@cksum.org>
+   MAINTAINER:=RaphaÃ«l HUCK <rhk@cksum.org>
 -  DEPENDS:=+CLEARSILVER_ENABLE_COMPRESSION:zlib +CLEARSILVER_ENABLE_GETTEXT:libintl
 +  DEPENDS:=+CLEARSILVER_ENABLE_COMPRESSION:zlib +CLEARSILVER_ENABLE_GETTEXT:$(INTL_DEPENDS)
  endef

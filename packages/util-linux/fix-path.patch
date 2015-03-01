@@ -1,6 +1,6 @@
---- ../../../downloads/openwrt_trunk-r43718/package/utils/util-linux/Makefile	2015-01-08 13:29:19.471660007 +0300
-+++ ../../../openwrt_trunk/package/utils/util-linux/Makefile	2015-01-09 09:39:33.166906431 +0300
-@@ -43,29 +43,29 @@
+--- ../../../downloads/openwrt_trunk-q44497/package/utils/util-linux/Makefile	2015-02-25 12:52:28.497748319 +0300
++++ ../../../openwrt_trunk/package/utils/util-linux/Makefile	2015-02-27 16:54:28.825043661 +0300
+@@ -49,29 +49,29 @@
  define Build/InstallDev
  	$(MAKE) -C $(PKG_BUILD_DIR) \
  		BUILDCC="$(HOSTCC)" \
@@ -51,7 +51,7 @@
  endef
  
  define Package/libblkid
-@@ -353,7 +353,7 @@
+@@ -360,7 +360,7 @@
  define Package/swap-utils
  $(call Package/util-linux/Default)
    TITLE:=swap space management utilities
@@ -60,33 +60,33 @@
    SUBMENU:=disc
  endef
  
-@@ -421,169 +421,170 @@
+@@ -428,169 +428,170 @@
  endef
  
  define Package/libblkid/install
 -        $(INSTALL_DIR) $(1)/usr/lib
--	$(CP) $(PKG_BUILD_DIR)/.libs/libblkid.so.* $(1)/usr/lib/
+-	$(CP) $(PKG_BUILD_DIR)/.libs/libblkid.so* $(1)/usr/lib/
 +        $(INSTALL_DIR) $(1)/opt/lib
 +	$(CP) $(PKG_BUILD_DIR)/.libs/libblkid.so.* $(1)/opt/lib/
  endef
  
  define Package/libmount/install
 -        $(INSTALL_DIR) $(1)/usr/lib
--	$(CP) $(PKG_BUILD_DIR)/.libs/libmount.so.* $(1)/usr/lib/
+-	$(CP) $(PKG_BUILD_DIR)/.libs/libmount.so* $(1)/usr/lib/
 +        $(INSTALL_DIR) $(1)/opt/lib
 +	$(CP) $(PKG_BUILD_DIR)/.libs/libmount.so.* $(1)/opt/lib/
  endef
  
  define Package/libsmartcols/install
 -        $(INSTALL_DIR) $(1)/usr/lib
--	$(CP) $(PKG_BUILD_DIR)/.libs/libsmartcols.so.* $(1)/usr/lib/
+-	$(CP) $(PKG_BUILD_DIR)/.libs/libsmartcols.so* $(1)/usr/lib/
 +        $(INSTALL_DIR) $(1)/opt/lib
 +	$(CP) $(PKG_BUILD_DIR)/.libs/libsmartcols.so.* $(1)/opt/lib/
  endef
  
  define Package/libuuid/install
 -        $(INSTALL_DIR) $(1)/usr/lib
--	$(CP) $(PKG_BUILD_DIR)/.libs/libuuid.so.* $(1)/usr/lib/
+-	$(CP) $(PKG_BUILD_DIR)/.libs/libuuid.so* $(1)/usr/lib/
 +        $(INSTALL_DIR) $(1)/opt/lib
 +	$(CP) $(PKG_BUILD_DIR)/.libs/libuuid.so.* $(1)/opt/lib/
  endef
@@ -177,7 +177,7 @@
  
  define Package/losetup/install
 -	$(INSTALL_DIR) $(1)/usr/sbin
--	$(INSTALL_BIN) $(PKG_BUILD_DIR)/losetup $(1)/usr/sbin/
+-	$(INSTALL_BIN) $(PKG_BUILD_DIR)/.libs/losetup $(1)/usr/sbin/
 +	$(INSTALL_DIR) $(1)/opt/sbin
 +	$(INSTALL_BIN) $(PKG_BUILD_DIR)/losetup $(1)/opt/sbin/
  endef

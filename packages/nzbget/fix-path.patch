@@ -1,18 +1,18 @@
---- ../../../downloads/mipsel-hardfloat/openwrt_trunk-r39354/feeds/oldpackages/net/nzbget/Makefile
-+++ ../../../openwrt_trunk/feeds/oldpackages/net/nzbget/Makefile
+--- ../../../downloads/openwrt_trunk-r44497/feeds/oldpackages/net/nzbget/Makefile	2015-02-21 21:16:27.985891453 +0300
++++ ../../../openwrt_trunk/feeds/oldpackages/net/nzbget/Makefile	2015-02-22 17:43:57.728550898 +0300
 @@ -8,26 +8,22 @@
  include $(TOPDIR)/rules.mk
  
  PKG_NAME:=nzbget
 -PKG_VERSION:=0.8.0
-+PKG_VERSION:=12.0
++PKG_VERSION:=14.2
  PKG_RELEASE:=1
  
  PKG_SOURCE:=$(PKG_NAME)-$(PKG_VERSION).tar.gz
 -PKG_SOURCE_URL:=@SF/nzbget
 -PKG_MD5SUM:=c47f464fe988deeb4fc5381506c1fbe3
 +PKG_SOURCE_URL:=@SF/nzbget/nzbget-stable/$(PKG_VERSION)
-+PKG_MD5SUM:=a04e31f4b6aeb3bc14166f9f5751eef3
++PKG_MD5SUM:=ade72ca57483a880e1987897a0e4063d
  
 -PKG_FIXUP:=autoreconf
  PKG_INSTALL:=1

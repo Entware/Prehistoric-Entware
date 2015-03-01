@@ -1,5 +1,5 @@
---- ../../../downloads/openwrt_trunk-r43718/feeds/oldpackages/lang/pyopenssl/Makefile	2014-11-07 23:35:24.502715101 +0300
-+++ ../../../openwrt_trunk/feeds/oldpackages/lang/pyopenssl/Makefile	2014-11-28 11:11:29.646626843 +0300
+--- ../../../downloads/openwrt_trunk-q44497/feeds/oldpackages/lang/pyopenssl/Makefile	2015-02-25 12:52:24.716419944 +0300
++++ ../../../openwrt_trunk/feeds/oldpackages/lang/pyopenssl/Makefile	2015-02-28 23:41:25.751902544 +0300
 @@ -35,13 +35,13 @@
  endef
  

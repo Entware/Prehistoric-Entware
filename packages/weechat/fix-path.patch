@@ -1,5 +1,5 @@
---- ../../../downloads/openwrt_trunk-r43719/feeds/oldpackages/net/weechat/Makefile	2015-01-10 13:05:42.471095632 +0300
-+++ ../../../openwrt_trunk/feeds/oldpackages/net/weechat/Makefile	2015-01-23 15:54:13.000000000 +0300
+--- ../../../downloads/openwrt_trunk-q44497/feeds/oldpackages/net/weechat/Makefile	2015-02-25 12:52:24.116419914 +0300
++++ ../../../openwrt_trunk/feeds/oldpackages/net/weechat/Makefile	2015-03-01 07:47:25.739955352 +0300
 @@ -8,14 +8,14 @@
  include $(TOPDIR)/rules.mk
  
@@ -24,7 +24,7 @@
    TITLE:=Lightweight IRC client
    URL:=http://www.weechat.org/
 -  DEPENDS:=+libcurl +libgnutls +libgcrypt +zlib +libncursesw $(ICONV_DEPENDS)
-+  DEPENDS:=+libcurl +libgnutls +libgcrypt +zlib +libncursesw +$(INTL_DEPENDS) +libaspell +perl
++  DEPENDS:=+libcurl +libgnutls +libgcrypt +zlib +libncursesw +$(INTL_DEPENDS) +libaspell +perl +libpthread
  endef
  
  define Package/weechat/description

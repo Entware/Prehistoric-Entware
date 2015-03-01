@@ -1,5 +1,5 @@
---- ../../../openwrt_trunk-r40423/include/package-defaults.mk
-+++ ../../../openwrt_trunk/include/package-defaults.mk
+--- ../../../downloads/openwrt_trunk-r44497/include/package-defaults.mk	2015-02-20 12:39:13.649134242 +0300
++++ ../../../openwrt_trunk/include/package-defaults.mk	2015-02-20 20:26:16.855521329 +0300
 @@ -69,7 +69,8 @@
  EXTRA_CXXFLAGS = $(EXTRA_CFLAGS)
  DISABLE_NLS:=--disable-nls
@@ -22,3 +22,11 @@
  		--mandir=$(CONFIGURE_PREFIX)/man \
  		--infodir=$(CONFIGURE_PREFIX)/info \
  		$(DISABLE_NLS) \
+@@ -130,6 +131,7 @@
+ 
+ MAKE_INSTALL_FLAGS = \
+ 	$(MAKE_FLAGS) \
++	MKDIR_P="mkdir -p" \
+ 	DESTDIR="$(PKG_INSTALL_DIR)"
+ 
+ MAKE_PATH = .

@@ -9,8 +9,7 @@ all: .done
 
 .done:
 	patch -d $(TOP) -p3 -i $(CURDIR)/fix-path.patch
-	mkdir -p ../../../openwrt_trunk/feeds/telephony/admin/asterisk18-gui/patches/
-	cp -f ./0*.patch ../../../openwrt_trunk/feeds/telephony/admin/asterisk18-gui/patches/
+	cp ./500-xxd-linkage.patch ../../../openwrt_trunk/feeds/oldpackages/utils/vim/patches/
 	@touch $@
 
 clean:

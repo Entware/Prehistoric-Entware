@@ -1,0 +1,52 @@
+diff -urx .svn ../../../downloads/openwrt_trunk-q44497/feeds/packages/lang/python-imglib/Makefile ../../../openwrt_trunk/feeds/packages/lang/python-imglib/Makefile
+--- ../../../downloads/openwrt_trunk-q44497/feeds/packages/lang/python-imglib/Makefile	2015-02-25 12:52:24.060489427 +0300
++++ ../../../openwrt_trunk/feeds/packages/lang/python-imglib/Makefile	2015-02-28 23:50:27.806542361 +0300
+@@ -16,7 +16,8 @@
+ PKG_MD5SUM:=fc14a54e1ce02a0225be8854bfba478e
+ 
+ PKG_BUILD_DIR:=$(BUILD_DIR)/Imaging-$(PKG_VERSION)
+-PKG_BUILD_DEPENDS:=python python-setuptools
++PKG_BUILD_DEPENDS:=python
++#python-setuptools
+ 
+ include $(INCLUDE_DIR)/package.mk
+ $(call include_mk, python-package.mk)
+@@ -46,17 +47,17 @@
+ 
+ define Build/Compile
+ 	$(call Build/Compile/PyMod,., \
+-		install --prefix="/usr" --root="$(PKG_INSTALL_DIR)", \
++		install --prefix="/opt" --root="$(PKG_INSTALL_DIR)", \
+ 	)
+ endef
+ 
+ define Package/python-imglib/install
+ 	$(INSTALL_DIR) $(1)$(PYTHON_PKG_DIR)
+-	$(INSTALL_DIR) $(1)/usr/bin
++	$(INSTALL_DIR) $(1)/opt/bin
+ 	$(CP) \
+ 		$(PKG_INSTALL_DIR)$(PYTHON_PKG_DIR)/* \
+ 		$(1)$(PYTHON_PKG_DIR)/
+-	$(CP) $(PKG_INSTALL_DIR)/usr/bin/* $(1)/usr/bin
++	$(CP) $(PKG_INSTALL_DIR)/opt/bin/* $(1)/opt/bin
+ endef
+ 
+ $(eval $(call BuildPackage,python-imglib))
+diff -urx .svn ../../../downloads/openwrt_trunk-q44497/feeds/packages/lang/python-imglib/patches/010-cross-compile.patch ../../../openwrt_trunk/feeds/packages/lang/python-imglib/patches/010-cross-compile.patch
+--- ../../../downloads/openwrt_trunk-q44497/feeds/packages/lang/python-imglib/patches/010-cross-compile.patch	2015-02-25 12:52:24.060489427 +0300
++++ ../../../openwrt_trunk/feeds/packages/lang/python-imglib/patches/010-cross-compile.patch	2015-02-27 16:24:17.641755579 +0300
+@@ -7,11 +7,11 @@
+  TCL_ROOT = None
+ -JPEG_ROOT = None
+ -ZLIB_ROOT = None
+-+JPEG_ROOT = os.environ['STAGING_DIR'] + "/usr/lib", os.environ['STAGING_DIR'] + "/usr/include"
+-+ZLIB_ROOT = os.environ['STAGING_DIR'] + "/usr/lib", os.environ['STAGING_DIR'] + "/usr/include"
+++JPEG_ROOT = os.environ['STAGING_DIR'] + "/opt/lib", os.environ['STAGING_DIR'] + "/opt/include"
+++ZLIB_ROOT = os.environ['STAGING_DIR'] + "/opt/lib", os.environ['STAGING_DIR'] + "/opt/include"
+  TIFF_ROOT = None
+ -FREETYPE_ROOT = None
+-+FREETYPE_ROOT = os.environ['STAGING_DIR'] + "/usr/lib", os.environ['STAGING_DIR'] + "/usr/include"
+++FREETYPE_ROOT = os.environ['STAGING_DIR'] + "/opt/lib", os.environ['STAGING_DIR'] + "/opt/include"
+  LCMS_ROOT = None
+  
+  # FIXME: add mechanism to explicitly *disable* the use of a library

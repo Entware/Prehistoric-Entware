@@ -1,18 +1,18 @@
---- ../../../downloads/openwrt_trunk-r43718/feeds/oldpackages/utils/hplip/Makefile	2014-11-07 23:35:24.482742553 +0300
-+++ ../../../openwrt_trunk/feeds/oldpackages/utils/hplip/Makefile	2014-11-26 17:19:23.023400649 +0300
+--- ../../../downloads/openwrt_trunk-r44497/feeds/oldpackages/utils/hplip/Makefile	2015-02-21 21:16:28.049891450 +0300
++++ ../../../openwrt_trunk/feeds/oldpackages/utils/hplip/Makefile	2015-02-22 17:31:25.272562364 +0300
 @@ -8,15 +8,15 @@
  include $(TOPDIR)/rules.mk
  
  PKG_NAME:=hplip
 -PKG_VERSION:=3.9.12
 -PKG_RELEASE:=4
-+PKG_VERSION:=3.14.4
++PKG_VERSION:=3.15.2
 +PKG_RELEASE:=1
  
  PKG_SOURCE:=$(PKG_NAME)-$(PKG_VERSION).tar.gz
  PKG_SOURCE_URL:=@SF/hplip
 -PKG_MD5SUM:=2b0906b4a57b437988829557ca62adfd
-+PKG_MD5SUM:=6e8d53fb2284271505d2e1706c01f6c5
++PKG_MD5SUM:=bbc55fc0d45e130a24ab042f60f9f888
  
 -PKG_BUILD_DEPENDS := python
  PKG_FIXUP:=autoreconf

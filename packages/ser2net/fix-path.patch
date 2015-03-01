@@ -1,6 +1,21 @@
---- ../../../openwrt_trunk.orig/feeds/oldpackages/net/ser2net/Makefile
-+++ ../../../openwrt_trunk/feeds/oldpackages/net/ser2net/Makefile
-@@ -35,16 +35,16 @@
+--- ../../../downloads/openwrt_trunk-r44497/feeds/packages/net/ser2net/Makefile	2015-02-20 12:39:13.421134248 +0300
++++ ../../../openwrt_trunk/feeds/packages/net/ser2net/Makefile	2015-02-20 17:06:36.932833933 +0300
+@@ -8,12 +8,12 @@
+ include $(TOPDIR)/rules.mk
+ 
+ PKG_NAME:=ser2net
+-PKG_VERSION:=2.10.0
++PKG_VERSION:=2.9.1
+ PKG_RELEASE:=1
+ 
+ PKG_SOURCE:=$(PKG_NAME)-$(PKG_VERSION).tar.gz
+ PKG_SOURCE_URL:=@SF/ser2net
+-PKG_MD5SUM:=cd937041144de83d41d811521e72158c
++PKG_MD5SUM:=80011ac0e60bbdcb65f1d7a86251e3f3
+ 
+ PKG_LICENSE:=GPL-2.0+
+ PKG_LICENSE_FILES:=COPYING
+@@ -37,14 +37,14 @@
  endef
  
  define Package/ser2net/conffiles
@@ -8,15 +23,13 @@
 +/opt/etc/ser2net.conf
  endef
  
- # uses GNU configure
- 
  define Package/ser2net/install
 -	$(INSTALL_DIR) $(1)/usr/sbin
--	$(INSTALL_BIN) $(PKG_INSTALL_DIR)/usr/sbin/ser2net $(1)/usr/sbin/
+-	$(CP) $(PKG_INSTALL_DIR)/usr/sbin/ser2net $(1)/usr/sbin/
 -	$(INSTALL_DIR) $(1)/etc
 -	$(INSTALL_CONF) $(PKG_BUILD_DIR)/ser2net.conf $(1)/etc/
 +	$(INSTALL_DIR) $(1)/opt/sbin
-+	$(INSTALL_BIN) $(PKG_INSTALL_DIR)/Apps/opt/sbin/ser2net $(1)/opt/sbin/
++	$(CP) $(PKG_INSTALL_DIR)/Apps/opt/sbin/ser2net $(1)/opt/sbin/
 +	$(INSTALL_DIR) $(1)/opt/etc
 +	$(INSTALL_CONF) $(PKG_BUILD_DIR)/ser2net.conf $(1)/opt/etc/
  endef

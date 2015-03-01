@@ -1,5 +1,5 @@
---- ../../../downloads/openwrt_trunk-r43718/feeds/packages/net/nfs-kernel-server/Makefile
-+++ ../../../openwrt_trunk/feeds/packages/net/nfs-kernel-server/Makefile
+--- ../../../downloads/openwrt_trunk-r44486/feeds/packages/net/nfs-kernel-server/Makefile	2015-02-18 12:16:57.616306332 +0300
++++ ../../../openwrt_trunk/feeds/packages/net/nfs-kernel-server/Makefile	2015-02-18 12:17:32.280305699 +0300
 @@ -27,7 +27,7 @@
    SECTION:=net
    CATEGORY:=Network
@@ -50,7 +50,7 @@
  
  CONFIGURE_ARGS += \
  	--disable-gss \
-@@ -81,7 +81,9 @@
+@@ -82,7 +82,9 @@
  	--enable-shared \
  	--disable-caps \
  	--disable-tirpc \
@@ -61,7 +61,7 @@
  
  CONFIGURE_VARS += \
  	CONFIG_SQLITE3_TRUE="\#" \
-@@ -125,26 +127,26 @@
+@@ -128,26 +130,26 @@
  endef
  
  define Package/nfs-kernel-server/install

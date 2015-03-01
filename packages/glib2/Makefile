@@ -9,8 +9,7 @@ all: .done
 
 .done:
 	patch -d $(TOP) -p3 -i $(CURDIR)/fix-path.patch
-	rm -f ../../../openwrt_trunk/feeds/oldpackages/libs/libshout/patches/100-ogg-c.patch
-	rm -f ../../../openwrt_trunk/feeds/oldpackages/libs/libshout/patches/110-shout-ogg-c.patch
+	cp -f ./200-gio.patch ../../../openwrt_trunk/feeds/packages/libs/glib2/patches/
 	@touch $@
 
 clean:

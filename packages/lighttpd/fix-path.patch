@@ -1,6 +1,6 @@
-diff -urx .svn ../../../downloads/openwrt_trunk-r43718/feeds/packages/net/lighttpd/files/lighttpd.conf ../../../openwrt_trunk/feeds/packages/net/lighttpd/files/lighttpd.conf
---- ../../../downloads/openwrt_trunk-r43718/feeds/packages/net/lighttpd/files/lighttpd.conf	2014-11-07 23:35:24.532584012 +0300
-+++ ../../../openwrt_trunk/feeds/packages/net/lighttpd/files/lighttpd.conf	2014-11-26 12:32:13.090794020 +0300
+diff -urx .svn ../../../downloads/openwrt_trunk-r44486/feeds/packages/net/lighttpd/files/lighttpd.conf ../../../openwrt_trunk/feeds/packages/net/lighttpd/files/lighttpd.conf
+--- ../../../downloads/openwrt_trunk-r44486/feeds/packages/net/lighttpd/files/lighttpd.conf	2015-02-18 12:16:57.604306332 +0300
++++ ../../../openwrt_trunk/feeds/packages/net/lighttpd/files/lighttpd.conf	2015-02-18 12:17:29.848305745 +0300
 @@ -1,12 +1,12 @@
  server.modules = (
  )
@@ -33,9 +33,9 @@ diff -urx .svn ../../../downloads/openwrt_trunk-r43718/feeds/packages/net/lightt
 -include_shell "cat /etc/lighttpd/conf.d/*.conf"
 +include       "/Apps/opt/etc/lighttpd/mime.conf"
 +include_shell "cat /Apps/opt/etc/lighttpd/conf.d/*.conf"
-diff -urx .svn ../../../downloads/openwrt_trunk-r43718/feeds/packages/net/lighttpd/Makefile ../../../openwrt_trunk/feeds/packages/net/lighttpd/Makefile
---- ../../../downloads/openwrt_trunk-r43718/feeds/packages/net/lighttpd/Makefile	2014-11-07 23:35:24.532584012 +0300
-+++ ../../../openwrt_trunk/feeds/packages/net/lighttpd/Makefile	2014-11-28 21:18:46.453588542 +0300
+diff -urx .svn ../../../downloads/openwrt_trunk-r44486/feeds/packages/net/lighttpd/Makefile ../../../openwrt_trunk/feeds/packages/net/lighttpd/Makefile
+--- ../../../downloads/openwrt_trunk-r44486/feeds/packages/net/lighttpd/Makefile	2015-02-18 12:16:57.604306332 +0300
++++ ../../../openwrt_trunk/feeds/packages/net/lighttpd/Makefile	2015-02-19 15:13:55.434539362 +0300
 @@ -50,8 +50,8 @@
  endef
  
@@ -126,21 +126,21 @@ diff -urx .svn ../../../downloads/openwrt_trunk-r43718/feeds/packages/net/lightt
  	fi
    endef
  
-@@ -154,7 +155,7 @@
- $(eval $(call BuildPlugin,alias,Directory alias,,10))
- $(eval $(call BuildPlugin,auth,Authentication,,05))
- $(eval $(call BuildPlugin,cgi,CGI,,10))
--$(eval $(call BuildPlugin,cml,Cache Meta Language,,10))
-+$(eval $(call BuildPlugin,cml,Cache Meta Language,+liblua,10))
- $(eval $(call BuildPlugin,compress,Compress output,+PACKAGE_lighttpd-mod-compress:zlib,10))
- $(eval $(call BuildPlugin,evasive,Evasive,,10))
- $(eval $(call BuildPlugin,evhost,Exnhanced Virtual-Hosting,,10))
-@@ -162,7 +163,7 @@
- $(eval $(call BuildPlugin,extforward,Extract client,,10))
- $(eval $(call BuildPlugin,fastcgi,FastCGI,,10))
- $(eval $(call BuildPlugin,flv_streaming,FLV streaming,,10))
--$(eval $(call BuildPlugin,magnet,Magnet,,10))
-+$(eval $(call BuildPlugin,magnet,Magnet,+liblua,10))
- $(eval $(call BuildPlugin,mysql_vhost,Mysql virtual hosting,+PACKAGE_lighttpd-mod-mysql_vhost:libmysqlclient,10))
- $(eval $(call BuildPlugin,proxy,Proxy,,10))
- $(eval $(call BuildPlugin,redirect,URL redirection,+PACKAGE_lighttpd-mod-redirect:libpcre,10))
+@@ -161,7 +162,7 @@
+ $(eval $(call BuildPlugin,accesslog,Access logging,,30))
+ $(eval $(call BuildPlugin,alias,Directory alias,,30))
+ $(eval $(call BuildPlugin,cgi,CGI,,30))
+-$(eval $(call BuildPlugin,cml,Cache Meta Language,,30))
++$(eval $(call BuildPlugin,cml,Cache Meta Language,+liblua,30))
+ $(eval $(call BuildPlugin,compress,Compress output,+PACKAGE_lighttpd-mod-compress:zlib,30))
+ $(eval $(call BuildPlugin,evasive,Evasive,,30))
+ $(eval $(call BuildPlugin,evhost,Exnhanced Virtual-Hosting,,30))
+@@ -169,7 +170,7 @@
+ $(eval $(call BuildPlugin,extforward,Extract client,,30))
+ $(eval $(call BuildPlugin,fastcgi,FastCGI,,30))
+ $(eval $(call BuildPlugin,flv_streaming,FLV streaming,,30))
+-$(eval $(call BuildPlugin,magnet,Magnet,,30))
++$(eval $(call BuildPlugin,magnet,Magnet,+liblua,30))
+ $(eval $(call BuildPlugin,mysql_vhost,Mysql virtual hosting,+PACKAGE_lighttpd-mod-mysql_vhost:libmysqlclient,30))
+ $(eval $(call BuildPlugin,proxy,Proxy,,30))
+ $(eval $(call BuildPlugin,rewrite,URL rewriting,+PACKAGE_lighttpd-mod-rewrite:libpcre,30))

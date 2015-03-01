@@ -1,19 +1,71 @@
---- ../../../downloads/openwrt_trunk-r43718/feeds/oldpackages/net/aircrack-ng//Makefile	2014-11-07 23:35:24.472278105 +0300
-+++ ../../../openwrt_trunk/feeds/oldpackages/net/aircrack-ng//Makefile	2014-11-26 14:21:45.550912413 +0300
-@@ -38,15 +38,15 @@
- 	CFLAGS="$(TARGET_CFLAGS) -Wall -Iinclude/ $(TARGET_CPPFLAGS) -D_REVISION=0" \
- 	LDFLAGS="$(TARGET_LDFLAGS)" \
- 	OSNAME=Linux \
--	prefix="/usr" \
+diff -Nurx .svn ../../../downloads/openwrt_trunk-r44497/feeds/packages/net/aircrack-ng/Makefile ../../../openwrt_trunk/feeds/packages/net/aircrack-ng/Makefile
+--- ../../../downloads/openwrt_trunk-r44497/feeds/packages/net/aircrack-ng/Makefile	2015-02-20 12:39:13.413134248 +0300
++++ ../../../openwrt_trunk/feeds/packages/net/aircrack-ng/Makefile	2014-12-18 13:14:36.000000000 +0300
+@@ -1,5 +1,5 @@
+ #
+-# Copyright (C) 2006-2015 OpenWrt.org
++# Copyright (C) 2006-2011 OpenWrt.org
+ #
+ # This is free software, licensed under the GNU General Public License v2.
+ # See /LICENSE for more information.
+@@ -8,16 +8,15 @@
+ include $(TOPDIR)/rules.mk
+ 
+ PKG_NAME:=aircrack-ng
+-PKG_VERSION:=1.2-rc1
+-PKG_RELEASE:=1
+-PKG_LICENSE:=GPLv2
++PKG_VERSION:=1.1
++PKG_RELEASE:=3
+ 
+ PKG_SOURCE:=$(PKG_NAME)-$(PKG_VERSION).tar.gz
+ PKG_SOURCE_URL:=http://download.aircrack-ng.org/ \
+-		http://archive.aircrack-ng.org/aircrack-ng/$(PKG_VERSION)/
+-PKG_MD5SUM:=c2f8648c92f7e46051c86c618d4fb0d5
++	http://archive.aircrack-ng.org/aircrack-ng/$(PKG_VERSION)/
++PKG_MD5SUM:=f7a24ed8fad122c4187d06bfd6f998b4
+ 
+-PKG_BUILD_PARALLEL:=1
++PKG_BUILD_PARALLEL:=0
+ PKG_INSTALL:=1
+ 
+ include $(INCLUDE_DIR)/package.mk
+@@ -25,28 +24,29 @@
+ define Package/aircrack-ng
+   SECTION:=net
+   CATEGORY:=Network
+-  DEPENDS:=+libpcap +libpthread +libopenssl +libnl +wireless-tools +ethtool
+-  TITLE:=WLAN tools for breaking 802.11 WEP/WPA keys
++  DEPENDS:=+libpthread +libopenssl +libpcap
++  TITLE:=next generation of aircrack with new features
+   URL:=http://www.aircrack-ng.org/
+-  MAINTAINER:=Rick Farina <zerochaos@gentoo.org>
+   SUBMENU:=wireless
+ endef
+ 
+ define Package/aircrack-ng/description
+-  WLAN tools for breaking 802.11 WEP/WPA keys
++Aircrack-ng is the next generation of aircrack with new features
+ endef
+ 
+-MAKE_FLAGS += prefix=/usr \
+-	libnl=true \
+-	sqlite=false \
+-	unstable=false \
+-	OSNAME=Linux
++MAKE_FLAGS += \
++	CFLAGS="$(TARGET_CFLAGS) -Wall -Iinclude/ $(TARGET_CPPFLAGS) -D_REVISION=0" \
++	LDFLAGS="$(TARGET_LDFLAGS)" \
++	OSNAME=Linux \
 +	prefix="/Apps/opt" \
- 	sqlite="false" \
- 	unstable="true"
++	sqlite="false" \
++	unstable="true"
  
  define Package/aircrack-ng/install
 -	$(INSTALL_DIR) $(1)/usr/bin
--	$(CP) $(PKG_INSTALL_DIR)/usr/bin/* $(1)/usr/bin/
+-	$(INSTALL_BIN) $(PKG_INSTALL_DIR)/usr/bin/* $(1)/usr/bin/
 -	$(INSTALL_DIR) $(1)/usr/sbin
--	$(CP) $(PKG_INSTALL_DIR)/usr/sbin/* $(1)/usr/sbin/
+-	$(INSTALL_BIN) $(PKG_INSTALL_DIR)/usr/sbin/* $(1)/usr/sbin/
 +	$(INSTALL_DIR) $(1)/opt/bin
 +	$(CP) $(PKG_INSTALL_DIR)/Apps/opt/bin/* $(1)/opt/bin/
 +	$(INSTALL_DIR) $(1)/opt/sbin
@@ -21,3 +73,96 @@
  endef
  
  $(eval $(call BuildPackage,aircrack-ng))
+diff -Nurx .svn ../../../downloads/openwrt_trunk-r44497/feeds/packages/net/aircrack-ng/patches/050-add-link-flags.patch ../../../openwrt_trunk/feeds/packages/net/aircrack-ng/patches/050-add-link-flags.patch
+--- ../../../downloads/openwrt_trunk-r44497/feeds/packages/net/aircrack-ng/patches/050-add-link-flags.patch	1970-01-01 03:00:00.000000000 +0300
++++ ../../../openwrt_trunk/feeds/packages/net/aircrack-ng/patches/050-add-link-flags.patch	2014-12-18 13:14:36.000000000 +0300
+@@ -0,0 +1,33 @@
++--- a/src/Makefile
+++++ b/src/Makefile
++@@ -164,7 +164,7 @@
++ 	$(CC) $(CFLAGS) $(OBJS_IV) -o $(@) $(LIBSSL)
++ 
++ kstats$(EXE): kstats.o
++-	$(CC) $(CFLAGS) kstats.o -o $(@)
+++	$(CC) $(CFLAGS) $(LDFLAGS) kstats.o -o $(@)
++ 
++ wesside-ng$(EXE): $(OBJS_WS) $(LIBOSD)
++ 	$(CC) $(CFLAGS) $(OBJS_WS) -o $(@) $(LIBS) $(LIBSSL) -lz
++@@ -173,10 +173,10 @@
++ 	$(CC) $(CFLAGS) $(OBJS_ES) -o $(@) $(LIBS) -lz
++ 
++ buddy-ng$(EXE): $(OBJS_BUDDY)
++-	$(CC) $(CFLAGS) $(OBJS_BUDDY) -o $(@)
+++	$(CC) $(CFLAGS) $(LDFLAGS) $(OBJS_BUDDY) -o $(@)
++ 
++ makeivs-ng$(EXE): $(OBJS_MI)
++-	$(CC) $(CFLAGS) $(OBJS_MI) -o $(@)
+++	$(CC) $(CFLAGS) $(LDFLAGS) $(OBJS_MI) -o $(@)
++ 
++ airolib-ng$(EXE): $(OBJS_AL)
++ 	$(CC) $(CFLAGS) $(OBJS_AL) -o $(@) $(LIBSSL) -DHAVE_REGEXP $(LIBSQL)
++@@ -185,7 +185,7 @@
++ 	$(CC) $(CFLAGS) $(OBJS_AB) -o $(@) $(LIBS) $(LIBSSL) -lpthread
++ 
++ airdecloak-ng$(EXE): $(OBJS_AU)
++-	$(CC) $(CFLAGS) $(OBJS_AU) -o $(@)
+++	$(CC) $(CFLAGS)  $(LDFLAGS) $(OBJS_AU) -o $(@)
++ 
++ tkiptun-ng$(EXE): $(OBJS_TT) $(LIBOSD)
++ 	$(CC) $(CFLAGS) $(OBJS_TT) -o $(@) $(LIBS) $(LIBSSL)
+diff -Nurx .svn ../../../downloads/openwrt_trunk-r44497/feeds/packages/net/aircrack-ng/patches/100-add-ignore-channel-negative-1.patch ../../../openwrt_trunk/feeds/packages/net/aircrack-ng/patches/100-add-ignore-channel-negative-1.patch
+--- ../../../downloads/openwrt_trunk-r44497/feeds/packages/net/aircrack-ng/patches/100-add-ignore-channel-negative-1.patch	1970-01-01 03:00:00.000000000 +0300
++++ ../../../openwrt_trunk/feeds/packages/net/aircrack-ng/patches/100-add-ignore-channel-negative-1.patch	2014-12-18 13:13:39.000000000 +0300
+@@ -0,0 +1,52 @@
++--- a/src/aireplay-ng.c
+++++ b/src/aireplay-ng.c
++@@ -200,7 +200,9 @@ char usage[] =
++ "\n"
++ "  Miscellaneous options:\n"
++ "\n"
++-"      -R        : disable /dev/rtc usage\n"
+++"      -R                    : disable /dev/rtc usage\n"
+++"      --ignore-negative-one : if the interface's channel can't be determined,\n"
+++"                              ignore the mismatch, needed for unpatched cfg80211\n"
++ "\n"
++ "  Attack modes (numbers can still be used):\n"
++ "\n"
++@@ -268,6 +270,7 @@ struct options
++     int bittest;
++ 
++     int nodetect;
+++    int ignore_negative_one;
++     int rtc;
++ }
++ opt;
++@@ -715,6 +718,13 @@ int attack_check(uchar* bssid, char* ess
++ 
++     iface_chan = wi_get_channel(wi);
++ 
+++    if(iface_chan == -1 && !opt.ignore_negative_one)
+++    {
+++        PCT; printf("Couldn't determine current channel for %s, you should either force the operation with --ignore-negative-one or apply a kernel patch\n",
+++                wi_get_ifname(wi));
+++        return -1;
+++    }
+++
++     if(bssid != NULL)
++     {
++         ap_chan = wait_for_beacon(bssid, capa, essid);
++@@ -723,7 +733,7 @@ int attack_check(uchar* bssid, char* ess
++             PCT; printf("No such BSSID available.\n");
++             return -1;
++         }
++-        if(ap_chan != iface_chan)
+++        if((ap_chan != iface_chan) && (iface_chan != -1 || !opt.ignore_negative_one))
++         {
++             PCT; printf("%s is on channel %d, but the AP uses channel %d\n", wi_get_ifname(wi), iface_chan, ap_chan);
++             return -1;
++@@ -5765,6 +5775,7 @@ int main( int argc, char *argv[] )
++             {"help",        0, 0, 'H'},
++             {"fast",        0, 0, 'F'},
++             {"bittest",     0, 0, 'B'},
+++            {"ignore-negative-one", 0, &opt.ignore_negative_one, 1},
++             {0,             0, 0,  0 }
++         };
++ 

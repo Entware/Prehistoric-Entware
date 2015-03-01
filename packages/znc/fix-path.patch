@@ -1,5 +1,5 @@
---- ../../../downloads/openwrt_trunk-r43718/feeds/packages/net/znc/Makefile	2014-12-15 21:16:26.784475154 +0300
-+++ ../../../openwrt_trunk/feeds/packages/net/znc/Makefile	2014-12-21 13:09:21.683069080 +0300
+--- ../../../downloads/openwrt_trunk-r43719/feeds/packages/net/znc/Makefile	2015-01-17 14:40:33.679658472 +0300
++++ ../../../openwrt_trunk/feeds/packages/net/znc/Makefile	2015-02-27 12:57:59.038155434 +0300
 @@ -44,22 +44,29 @@
  endef
  
@@ -87,14 +87,21 @@
    endef
    ZNC_MODULES += znc-webskin-$(strip $(1))
  endef
-@@ -265,8 +272,8 @@
+@@ -263,10 +270,15 @@
  
+ include $(INCLUDE_DIR)/package.mk
+ 
++DYNLINK=ld-linux.so.2
++ifeq ($(ARCH),arm)
++  DYNLINK:=ld-linux.so.3
++endif
++
  CONFIGURE_VARS += \
  	CXXFLAGS="$(TARGET_CFLAGS) -fno-builtin -fno-rtti" \
 -	CPPFLAGS="-I$(STAGING_DIR)/usr/include -I$(STAGING_DIR)/include" \
 -	LDFLAGS="-nodefaultlibs -lc -L$(STAGING_DIR)/usr/lib -L$(STAGING_DIR)/lib" \
 +	CPPFLAGS="-I$(STAGING_DIR)/opt/include -I$(STAGING_DIR)/include" \
-+	LDFLAGS="-nodefaultlibs -lc -L$(STAGING_DIR)/opt/lib -L$(STAGING_DIR)/lib -Wl,--dynamic-linker=/opt/lib/ld-uClibc.so.0 -Wl,-rpath,/opt/lib" \
++	LDFLAGS="-nodefaultlibs -lc -L$(STAGING_DIR)/opt/lib -L$(STAGING_DIR)/lib -Wl,--dynamic-linker=/Apps/opt/lib/$(DYNLINK) -Wl,-rpath,/opt/lib" \
  	LIBS="-lstdc++ -lm -lssl -lcrypto $(LIBGCC_S) -lc"
  
  CONFIGURE_ARGS += \

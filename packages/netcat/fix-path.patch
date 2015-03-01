@@ -1,6 +1,6 @@
---- ../../../downloads/openwrt_trunk-r35474/feeds/oldpackages/net/netcat/Makefile
-+++ ../../../openwrt_trunk/feeds/oldpackages/net/netcat/Makefile
-@@ -32,26 +32,9 @@
+--- ../../../downloads/openwrt_trunk-r44486/feeds/packages/net/netcat/Makefile	2015-02-18 12:16:57.620306332 +0300
++++ ../../../openwrt_trunk/feeds/packages/net/netcat/Makefile	2015-02-19 16:09:18.954479376 +0300
+@@ -40,26 +40,9 @@
  endef
  
  define Package/netcat/install

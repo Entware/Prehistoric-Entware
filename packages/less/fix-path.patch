@@ -1,30 +1,24 @@
---- ../../../openwrt_trunk.orig/feeds/oldpackages/utils/less/Makefile
-+++ ../../../openwrt_trunk/feeds/oldpackages/utils/less/Makefile
-@@ -64,25 +64,12 @@
- endif
+--- ../../../downloads/openwrt_trunk-q44497/feeds/packages/utils/less/Makefile	2015-02-25 12:52:24.056903467 +0300
++++ ../../../openwrt_trunk/feeds/packages/utils/less/Makefile	2015-03-01 09:28:35.907636053 +0300
+@@ -70,18 +70,18 @@
  
  define Package/less/install
--	$(INSTALL_DIR) $(1)/bin
+ 	$(INSTALL_DIR) $(1)/bin
 -	$(CP) $(PKG_INSTALL_DIR)/usr/bin/less $(1)/bin/less
-+	$(INSTALL_DIR) $(1)/opt/bin
-+	$(CP) $(PKG_INSTALL_DIR)/Apps/opt/bin/less $(1)/opt/bin/less
++	$(CP) $(PKG_INSTALL_DIR)/Apps/opt/bin/less $(1)/bin/less
  endef
  
--define Package/less/postinst
--#!/bin/sh
+ define Package/less/postinst
+ #!/bin/sh
 -[ -L "$${IPKG_INSTROOT}/usr/bin/less" ] && rm -f "$${IPKG_INSTROOT}/usr/bin/less"
--exit 0
--endef
--
--define Package/less/postrm
--#!/bin/sh
++[ -L "$${IPKG_INSTROOT}/opt/bin/less" ] && rm -f "$${IPKG_INSTROOT}/opt/bin/less"
+ exit 0
+ endef
+ 
+ define Package/less/postrm
+ #!/bin/sh
 -/bin/busybox less -h 2>&1 | grep -q BusyBox && ln -sf ../../bin/busybox /usr/bin/less
--exit 0
--endef
++/Apps/opt/bin/busybox less -h 2>&1 | grep -q BusyBox && ln -sf ../../bin/busybox /Apps/opt/bin/less
+ exit 0
+ endef
  
- Package/less-wide/install = $(Package/less/install)
--Package/less-wide/postinst = $(Package/less/postinst)
--Package/less-wide/postrm = $(Package/less/postrm)
- 
- $(eval $(call BuildPackage,less))
- $(eval $(call BuildPackage,less-wide))

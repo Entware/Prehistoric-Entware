@@ -45,4 +45,4 @@
 +	$(CP) $(PKG_INSTALL_DIR)/Apps/opt/lib/libxml2.so* $(1)/opt/lib/
  endef
  
- $(eval $(call BuildPackage,libxml2))
+ $(eval $(call HostBuild))

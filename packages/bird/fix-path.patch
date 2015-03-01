@@ -1,6 +1,6 @@
---- ../../../openwrt_trunk/feeds/routing/bird/Makefile.orig
-+++ ../../../openwrt_trunk/feeds/routing/bird/Makefile
-@@ -132,22 +132,20 @@
+--- ../../../downloads/openwrt_trunk-r44486/feeds/routing/bird/Makefile	2015-02-18 12:16:57.568306333 +0300
++++ ../../../openwrt_trunk/feeds/routing/bird/Makefile	2015-02-18 16:42:59.196019764 +0300
+@@ -173,27 +173,25 @@
  $(STAMP_BUILT): $(STAMP_BUILT)-$(2)
  
  define Package/bird$(2)/install
@@ -27,6 +27,13 @@
 -	$(INSTALL_BIN) $$(PKG_BUILD_DIR)/birdc$(2) $$(1)/usr/sbin/
 +	$(INSTALL_DIR) $$(1)/opt/sbin
 +	$(INSTALL_BIN) $$(PKG_BUILD_DIR)/birdc$(2) $$(1)/opt/sbin/
+ endef
+ 
+ define Package/birdcl$(2)/install
+-	$(INSTALL_DIR) $$(1)/usr/sbin
+-	$(INSTALL_BIN) $$(PKG_BUILD_DIR)/birdcl$(2) $$(1)/usr/sbin/
++	$(INSTALL_DIR) $$(1)/opt/sbin
++	$(INSTALL_BIN) $$(PKG_BUILD_DIR)/birdcl$(2) $$(1)/opt/sbin/
  endef
  
  endef

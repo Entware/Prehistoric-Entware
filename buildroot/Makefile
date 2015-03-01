@@ -1,5 +1,5 @@
 #
-# Copyright (C) 2011-2014 Entware
+# Copyright (C) 2011-2015 Entware
 #
 # This is free software, licensed under the GNU General Public License v2.
 # See /LICENSE for more information.
@@ -10,11 +10,11 @@ include ../config.mk
 
 all: .buildroot_prepared
 
-.buildroot_prepared: $(TOP)/downloads/openwrt_trunk-r$(OPENWRT_REVISION)
+.buildroot_prepared: $(TOP)/downloads/openwrt_trunk-q$(OPENWRT_REVISION)
 	if [ ! -d "$(TOP)/openwrt_trunk" ]; \
 	then \
 	    mkdir $(TOP)/openwrt_trunk; \
-	    cp -fr $(TOP)/downloads/openwrt_trunk-r$(OPENWRT_REVISION)/* $(TOP)/openwrt_trunk; \
+	    cp -fr $(TOP)/downloads/openwrt_trunk-q$(OPENWRT_REVISION)/* $(TOP)/openwrt_trunk; \
 	fi
 	@echo "Adding new targets..."
 	cp -fr ./targets/* ../../openwrt_trunk/target/linux
@@ -28,19 +28,16 @@ all: .buildroot_prepared
 	make -C ../switch-arch $(TARGET)
 	@touch $@
 
-$(TOP)/downloads/openwrt_trunk-r$(OPENWRT_REVISION): \
+$(TOP)/downloads/openwrt_trunk-q$(OPENWRT_REVISION): \
 	    $(TOP)/downloads
 	svn co --revision=$(OPENWRT_REVISION) svn://svn.openwrt.org/openwrt/trunk/ $(TOP)/openwrt_trunk
 	cp -f feeds.conf $(TOP)/openwrt_trunk
 	(cd $(TOP)/openwrt_trunk; \
-	    for feed in packages routing telephony management oldpackages rtndev; \
-	    do \
-		./scripts/feeds update $$feed; \
-		./scripts/feeds install -a -p $$feed; \
-	    done)
-	mkdir -p $(TOP)/downloads/openwrt_trunk-r$(OPENWRT_REVISION)
+	./scripts/feeds update; \
+	./scripts/feeds install -a;)
+	mkdir -p $(TOP)/downloads/openwrt_trunk-q$(OPENWRT_REVISION)
 	ln -sf $(TOP)/downloads $(TOP)/openwrt_trunk/dl
-	cp -fr $(TOP)/openwrt_trunk/* $(TOP)/downloads/openwrt_trunk-r$(OPENWRT_REVISION)
+	cp -fr $(TOP)/openwrt_trunk/* $(TOP)/downloads/openwrt_trunk-q$(OPENWRT_REVISION)
 
 $(TOP)/downloads:
 	[ -d "$(TOP)/downloads" ] || mkdir -p "$(TOP)/downloads"

@@ -1,0 +1,10 @@
+--- a/src/OptionContainer.cpp
++++ b/src/OptionContainer.cpp
+@@ -19,6 +19,7 @@
+ #include <dirent.h>
+ 
+ #include <unistd.h>		// checkme: remove?
++#include <stdlib.h>
+ 
+ 
+ // GLOBALS

@@ -1,59 +1,30 @@
---- ../../../downloads/openwrt_trunk-r43718/package/network/utils/curl/Makefile
-+++ ../../../openwrt_trunk/package/network/utils/curl/Makefile
-@@ -75,7 +75,7 @@
-   $(call Package/curl/Default)
-   SECTION:=libs
-   CATEGORY:=Libraries
--  DEPENDS:=+LIBCURL_POLARSSL:libpolarssl +LIBCURL_CYASSL:libcyassl +LIBCURL_AXTLS:libaxtls +LIBCURL_OPENSSL:libopenssl +LIBCURL_GNUTLS:libgnutls +LIBCURL_ZLIB:zlib +LIBCURL_THREADED_RESOLVER:libpthread
-+  DEPENDS:=+LIBCURL_POLARSSL:libpolarssl +LIBCURL_CYASSL:libcyassl +LIBCURL_AXTLS:libaxtls +LIBCURL_OPENSSL:libopenssl +LIBCURL_GNUTLS:libgnutls +LIBCURL_ZLIB:zlib +LIBCURL_THREADED_RESOLVER:libpthread +librtmp
-   TITLE:=A client-side URL transfer library using $(if $(CONFIG_LIBCURL_POLARSSL),PolarSSL)$(if $(CONFIG_LIBCURL_OPENSSL),OpenSSL)$(if $(CONFIG_LIBCURL_GNUTLS),GNUTLS)$(if $(CONFIG_LIBCURL_NOSSL),no SSL)
-   MENU:=1
- endef
-@@ -97,28 +97,28 @@
- 	--disable-manual \
- 	--disable-verbose \
- 	--without-ca-bundle \
--	$(if $(CONFIG_LIBCURL_OPENSSL),--with-ca-path=/etc/ssl/certs/) \
-+	$(if $(CONFIG_LIBCURL_OPENSSL),--with-ca-path=/opt/etc/ssl/certs/) \
- 	--without-krb4 \
- 	--without-libidn \
- 	--without-nss \
- 	--without-libssh2 \
+--- ../../../downloads/openwrt_trunk-r44486/package/network/utils/curl/Makefile	2015-02-18 12:16:58.264306320 +0300
++++ ../../../openwrt_trunk/package/network/utils/curl/Makefile	2015-02-18 16:57:04.819998259 +0300
+@@ -112,15 +112,15 @@
+ 	\
  	$(call autoconf_bool,CONFIG_IPV6,ipv6) \
--	$(if $(CONFIG_LIBCURL_AXTLS),--with-axtls="$(STAGING_DIR)/usr",--without-axtls) \
-+	$(if $(CONFIG_LIBCURL_AXTLS),--with-axtls="$(STAGING_DIR)/opt",--without-axtls) \
- 	$(if $(CONFIG_LIBCURL_COOKIES),--enable,--disable)-cookies \
- 	$(if $(CONFIG_LIBCURL_CRYPTO-AUTH),--enable,--disable)-crypto-auth \
--	$(if $(CONFIG_LIBCURL_CYASSL),--with-cyassl="$(STAGING_DIR)/usr",--without-cyassl) \
-+	$(if $(CONFIG_LIBCURL_CYASSL),--with-cyassl="$(STAGING_DIR)/opt",--without-cyassl) \
- 	$(if $(CONFIG_LIBCURL_DICT),--enable,--disable)-dict \
- 	$(if $(CONFIG_LIBCURL_FILE),--enable,--disable)-file \
- 	$(if $(CONFIG_LIBCURL_FTP),--enable,--disable)-ftp \
- 	$(if $(CONFIG_LIBCURL_GOPHER),--enable,--disable)-gopher \
--	$(if $(CONFIG_LIBCURL_GNUTLS),--with-gnutls="$(STAGING_DIR)/usr",--without-gnutls) \
-+	$(if $(CONFIG_LIBCURL_GNUTLS),--with-gnutls="$(STAGING_DIR)/opt",--without-gnutls) \
- 	$(if $(CONFIG_LIBCURL_HTTP),--enable,--disable)-http \
- 	$(if $(CONFIG_LIBCURL_IMAP),--enable,--disable)-imap \
- 	$(if $(CONFIG_LIBCURL_LDAP),--enable,--disable)-ldap \
- 	$(if $(CONFIG_LIBCURL_LDAPS),--enable,--disable)-ldaps \
- 	$(if $(CONFIG_LIBCURL_LIBCURL-OPTION),--enable,--disable)-libcurl-option \
--	$(if $(CONFIG_LIBCURL_OPENSSL),--with-ssl="$(STAGING_DIR)/usr",--without-ssl) \
--	$(if $(CONFIG_LIBCURL_POLARSSL),--with-polarssl="$(STAGING_DIR)/usr",--without-polarssl) \
-+	$(if $(CONFIG_LIBCURL_OPENSSL),--with-ssl="$(STAGING_DIR)/opt",--without-ssl) \
-+	$(if $(CONFIG_LIBCURL_POLARSSL),--with-polarssl="$(STAGING_DIR)/opt",--without-polarssl) \
- 	$(if $(CONFIG_LIBCURL_POP3),--enable,--disable)-pop3 \
- 	$(if $(CONFIG_LIBCURL_PROXY),--enable,--disable)-proxy \
- 	$(if $(CONFIG_LIBCURL_RTSP),--enable,--disable)-rtsp \
-@@ -128,7 +128,7 @@
- 	$(if $(CONFIG_LIBCURL_SSPI),--enable,--disable)-sspi \
- 	$(if $(CONFIG_LIBCURL_THREADED_RESOLVER),--enable,--disable)-threaded-resolver \
- 	$(if $(CONFIG_LIBCURL_TLS-SRP),--enable,--disable)-tls-srp \
+ 	\
+-	$(if $(CONFIG_LIBCURL_AXTLS),--with-axtls="$(STAGING_DIR)/usr" --without-ca-path,--without-axtls) \
+-	$(if $(CONFIG_LIBCURL_CYASSL),--with-cyassl="$(STAGING_DIR)/usr" --without-ca-path,--without-cyassl) \
+-	$(if $(CONFIG_LIBCURL_GNUTLS),--with-gnutls="$(STAGING_DIR)/usr" --without-ca-path,--without-gnutls) \
+-	$(if $(CONFIG_LIBCURL_OPENSSL),--with-ssl="$(STAGING_DIR)/usr" --with-ca-path=/etc/ssl/certs,--without-ssl) \
+-	$(if $(CONFIG_LIBCURL_POLARSSL),--with-polarssl="$(STAGING_DIR)/usr" --with-ca-path=/etc/ssl/certs,--without-polarssl) \
++	$(if $(CONFIG_LIBCURL_AXTLS),--with-axtls="$(STAGING_DIR)/opt" --without-ca-path,--without-axtls) \
++	$(if $(CONFIG_LIBCURL_CYASSL),--with-cyassl="$(STAGING_DIR)/opt" --without-ca-path,--without-cyassl) \
++	$(if $(CONFIG_LIBCURL_GNUTLS),--with-gnutls="$(STAGING_DIR)/opt" --without-ca-path,--without-gnutls) \
++	$(if $(CONFIG_LIBCURL_OPENSSL),--with-ssl="$(STAGING_DIR)/opt" --with-ca-path=/opt/etc/ssl/certs,--without-ssl) \
++	$(if $(CONFIG_LIBCURL_POLARSSL),--with-polarssl="$(STAGING_DIR)/opt" --with-ca-path=/opt/etc/ssl/certs,--without-polarssl) \
+ 	\
+-	$(if $(CONFIG_LIBCURL_LIBIDN),--with-libidn="$(STAGING_DIR)/usr",--without-libidn) \
+-	$(if $(CONFIG_LIBCURL_SSH2),--with-libssh2="$(STAGING_DIR)/usr",--without-libssh2) \
 -	$(if $(CONFIG_LIBCURL_ZLIB),--with-zlib="$(STAGING_DIR)/usr",--without-zlib) \
++	$(if $(CONFIG_LIBCURL_LIBIDN),--with-libidn="$(STAGING_DIR)/opt",--without-libidn) \
++	$(if $(CONFIG_LIBCURL_SSH2),--with-libssh2="$(STAGING_DIR)/opt",--without-libssh2) \
 +	$(if $(CONFIG_LIBCURL_ZLIB),--with-zlib="$(STAGING_DIR)/opt",--without-zlib) \
- 
- define Build/Compile
- 	+$(MAKE) $(PKG_JOBS) -C $(PKG_BUILD_DIR) \
-@@ -138,24 +138,24 @@
+ 	\
+ 	$(call autoconf_bool,CONFIG_LIBCURL_DICT,dict) \
+ 	$(call autoconf_bool,CONFIG_LIBCURL_FILE,file) \
+@@ -154,24 +154,24 @@
  endef
  
  define Build/InstallDev

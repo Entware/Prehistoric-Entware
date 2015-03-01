@@ -1,6 +1,6 @@
---- ../../../downloads/openwrt_trunk-r43718/feeds/oldpackages/net/bitlbee/Makefile	2015-01-05 20:26:58.281112216 +0300
-+++ ../../../openwrt_trunk/feeds/oldpackages/net/bitlbee/Makefile	2015-01-08 10:32:03.063280423 +0300
-@@ -33,8 +33,8 @@
+--- ../../../downloads/openwrt_trunk-r43719/feeds/oldpackages/net/bitlbee/Makefile	2015-01-17 14:40:34.087631819 +0300
++++ ../../../openwrt_trunk/feeds/oldpackages/net/bitlbee/Makefile	2015-02-25 16:15:24.673041413 +0300
+@@ -33,13 +33,19 @@
  endef
  
  define Package/bitlbee/conffiles
@@ -10,8 +10,19 @@
 +/opt/etc/bitlbee/bitlbee.conf
  endef
  
++DYNLINK=ld-linux.so.2
++ifeq ($(ARCH),arm)
++  DYNLINK:=ld-linux.so.3
++endif
++
  define Build/Configure
-@@ -47,29 +47,38 @@
+ 	# it's not GNU autoconf stuff
+ 	(cd $(PKG_BUILD_DIR); \
++		$(SED) 's,ld-linux.so.0,$(DYNLINK),g' $(PKG_BUILD_DIR)/Makefile; \
+ 		$(TARGET_CONFIGURE_OPTS) \
+ 		CFLAGS="$(TARGET_CFLAGS)" \
+ 		CPPFLAGS="$(TARGET_CPPFLAGS)" \
+@@ -47,29 +53,38 @@
  		STAGING_DIR="$(STAGING_DIR)" \
  		STRIP="$(STRIP)" \
  		./configure \
@@ -57,7 +68,7 @@
  endef
  
  define Build/Compile
-@@ -78,11 +87,13 @@
+@@ -78,11 +93,13 @@
  
  define Package/bitlbee/install
  	$(MAKE) -C $(PKG_BUILD_DIR) \

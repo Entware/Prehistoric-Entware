@@ -1,20 +1,9 @@
---- ../../../downloads/openwrt_trunk-r43718/feeds/oldpackages/net/squid/Makefile	2014-11-07 23:35:24.468165764 +0300
-+++ ../../../openwrt_trunk/feeds/oldpackages/net/squid/Makefile	2014-11-28 12:26:55.576647805 +0300
-@@ -39,8 +39,8 @@
- endef
- 
- define Package/squid/conffiles
--/etc/squid/mime.conf
--/etc/squid/squid.conf
-+/opt/etc/squid/mime.conf
-+/opt/etc/squid/squid.conf
- endef
- 
- define Package/squid-mod-cachemgr
-@@ -98,9 +98,9 @@
- endef
+--- ../../../downloads/openwrt_trunk-q44497/feeds/packages/net/squid/Makefile	2015-02-25 12:52:23.932591488 +0300
++++ ../../../openwrt_trunk/feeds/packages/net/squid/Makefile	2015-03-01 17:11:14.770586544 +0300
+@@ -51,9 +51,9 @@
  
  CONFIGURE_ARGS += \
+ 	--config-cache \
 -	--datadir=/usr/share/squid \
 -	--libexecdir=/usr/lib/squid \
 -	--sysconfdir=/etc/squid \
@@ -22,20 +11,24 @@
 +	--libexecdir=/Apps/opt/lib/squid \
 +	--sysconfdir=/Apps/opt/etc/squid \
  	--enable-shared \
- 	--enable-static \
- 	--enable-x-accelerator-vary \
-@@ -121,7 +121,7 @@
- 	--enable-referer-log \
- 	--enable-delay-pools \
- 	--enable-useragent-log \
+ 	--disable-static \
+ 	--enable-icmp \
+@@ -78,7 +78,7 @@
+ 	--without-expat \
+ 	--without-libxml2 \
+ 	--without-nettle \
 -	--with-openssl=$(STAGING_DIR)/usr \
 +	--with-openssl=$(STAGING_DIR)/opt \
- 	--enable-auth="basic digest ntlm" \
- 	--enable-basic-auth-helpers="getpwnam NCSA SMB" \
- 	--enable-ntlm-auth-helpers="fakeauth SMB" \
-@@ -139,36 +139,40 @@
+ 	--enable-epoll \
+ 	--with-maxfd=4096 \
+ 	--disable-external-acl-helpers \
+@@ -95,38 +95,39 @@
+ 	ac_cv_header_linux_netfilter_ipv4_h=yes \
+ 	ac_cv_epoll_works=yes \
+ 
++TARGET_CXXFLAGS += -std=c++0x
++
  define Build/Compile
- 	# pass INCLUDES to compile host sources against our OpenSSL, not the host one
  	$(MAKE) -C $(PKG_BUILD_DIR)/lib \
 +		$(MAKE_VARS) \
  		all
@@ -45,38 +38,36 @@
  		install
  endef
  
- define BuildPlugin
-   define Package/$(1)/install
--	$(INSTALL_DIR) $$(1)/usr/lib/squid
--	$(CP) $(PKG_INSTALL_DIR)/usr/lib/squid/$(2) $$(1)/usr/lib/squid/
-+	$(INSTALL_DIR) $$(1)/opt/lib/squid
-+	$(CP) $(PKG_INSTALL_DIR)/Apps/opt/lib/squid/$(2) $$(1)/opt/lib/squid/
-   endef
- 
-   $$(eval $$(call BuildPackage,$(1)))
- endef
- 
  define Package/squid/install
--	$(INSTALL_DIR) $(1)/etc/squid
--	$(CP) $(PKG_INSTALL_DIR)/etc/squid/mime.conf $(1)/etc/squid/
--	$(CP) $(PKG_INSTALL_DIR)/etc/squid/squid.conf $(1)/etc/squid/
--	$(INSTALL_DIR) $(1)/usr/share/squid
--	$(CP) $(PKG_INSTALL_DIR)/usr/share/squid/* $(1)/usr/share/squid/
 -	$(INSTALL_DIR) $(1)/usr/sbin
 -	$(INSTALL_BIN) $(PKG_INSTALL_DIR)/usr/sbin/squid $(1)/usr/sbin/
--	$(INSTALL_DIR) $(1)/usr/lib/squid
--	$(CP) $(PKG_INSTALL_DIR)/usr/lib/squid/{unlinkd,pinger,logfile-daemon} $(1)/usr/lib/squid/
-+	$(INSTALL_DIR) $(1)/opt/etc/squid
-+	$(CP) $(PKG_INSTALL_DIR)/Apps/opt/etc/squid/mime.conf $(1)/opt/etc/squid/
-+	$(CP) $(PKG_INSTALL_DIR)/Apps/opt/etc/squid/squid.conf $(1)/opt/etc/squid/
-+	$(INSTALL_DIR) $(1)/opt/share/squid
-+	$(CP) $(PKG_INSTALL_DIR)/Apps/opt/share/squid/* $(1)/opt/share/squid/
+-
+-	$(INSTALL_DIR) $(1)/etc/config
+-	$(INSTALL_CONF) ./files/squid.config $(1)/etc/config/squid
 +	$(INSTALL_DIR) $(1)/opt/sbin
 +	$(INSTALL_BIN) $(PKG_INSTALL_DIR)/Apps/opt/sbin/squid $(1)/opt/sbin/
-+	$(INSTALL_DIR) $(1)/opt/lib/squid
-+	$(CP) $(PKG_INSTALL_DIR)/Apps/opt/lib/squid/{unlinkd,pinger,logfile-daemon} $(1)/opt/lib/squid/
-+	$(INSTALL_DIR) $(1)/opt/etc/init.d
-+	$(INSTALL_BIN) ./files/S22squid $(1)/opt/etc/init.d
+ 
+-	$(INSTALL_DIR) $(1)/etc/squid
+-	$(INSTALL_CONF) $(PKG_INSTALL_DIR)/etc/squid/mime.conf $(1)/etc/squid/
+-	$(INSTALL_CONF) ./files/squid.conf $(1)/etc/squid/
++	$(INSTALL_DIR) $(1)/opt/etc/squid
++	$(INSTALL_CONF) $(PKG_INSTALL_DIR)/Apps/opt/etc/squid/mime.conf $(1)/opt/etc/squid/
++	$(INSTALL_CONF) ./files/squid.conf $(1)/opt/etc/squid/
+ 
+-	$(INSTALL_DIR) $(1)/etc/init.d/
+-	$(INSTALL_BIN) ./files/squid.init $(1)/etc/init.d/squid
++	$(INSTALL_DIR) $(1)/opt/etc/init.d/
++	$(INSTALL_BIN) ./files/S22squid $(1)/opt/etc/init.d/
+ 
+-	$(INSTALL_DIR) $(1)/usr/share/squid/icons/
+-	$(CP) $(PKG_INSTALL_DIR)/usr/share/squid/icons/* $(1)/usr/share/squid/icons/
++	$(INSTALL_DIR) $(1)/opt/share/squid/icons/
++	$(CP) $(PKG_INSTALL_DIR)/Apps/opt/share/squid/icons/* $(1)/opt/share/squid/icons/
+ 
+-	$(INSTALL_DIR) $(1)/usr/share/squid/errors/templates/
+-	$(CP) $(PKG_INSTALL_DIR)/usr/share/squid/errors/templates/* $(1)/usr/share/squid/errors/templates/
++	$(INSTALL_DIR) $(1)/opt/share/squid/errors/templates/
++	$(CP) $(PKG_INSTALL_DIR)/Apps/opt/share/squid/errors/templates/* $(1)/opt/share/squid/errors/templates/
  endef
  
  define Package/squid-mod-cachemgr/install
@@ -86,4 +77,4 @@
 +	$(CP) $(PKG_INSTALL_DIR)/Apps/opt/lib/squid/cachemgr.cgi $(1)/opt/share/www/cgi-bin/
  endef
  
- $(eval $(call RequireHeader,/usr/include/openssl/ssl.h, \
+ $(eval $(call BuildPackage,squid))

@@ -39,11 +39,11 @@ fi
 # or diff on Makefiles otherwise.
 case $1 in
 -r)
-    diff -urx .svn ../../../downloads/openwrt_trunk-r${OPENWRT_REVISION}/${SHORT_PATH} \
+    diff -urx .svn ../../../downloads/openwrt_trunk-q${OPENWRT_REVISION}/${SHORT_PATH} \
 	../../../openwrt_trunk/${SHORT_PATH}
     ;;
 *)
-    diff -u ../../../downloads/openwrt_trunk-r${OPENWRT_REVISION}/${SHORT_PATH}/Makefile \
+    diff -u ../../../downloads/openwrt_trunk-q${OPENWRT_REVISION}/${SHORT_PATH}/Makefile \
 	../../../openwrt_trunk/${SHORT_PATH}/Makefile
     ;;
 esac

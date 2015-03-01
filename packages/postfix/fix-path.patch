@@ -1,15 +1,14 @@
-Только в ../../../openwrt_trunk/feeds/packages/mail/postfix/files: S69postfix
-diff -urx .svn ../../../downloads/openwrt_trunk-r43718/feeds/packages/mail/postfix/Makefile ../../../openwrt_trunk/feeds/packages/mail/postfix/Makefile
---- ../../../downloads/openwrt_trunk-r43718/feeds/packages/mail/postfix/Makefile	2015-01-08 13:29:18.151611282 +0300
-+++ ../../../openwrt_trunk/feeds/packages/mail/postfix/Makefile	2015-01-09 16:03:55.694330228 +0300
+diff -urx .svn ../../../downloads/openwrt_trunk-r44497/feeds/packages/mail/postfix/Makefile ../../../openwrt_trunk/feeds/packages/mail/postfix/Makefile
+--- ../../../downloads/openwrt_trunk-r44497/feeds/packages/mail/postfix/Makefile	2015-02-20 12:39:13.377134249 +0300
++++ ../../../openwrt_trunk/feeds/packages/mail/postfix/Makefile	2015-02-21 20:49:00.185921304 +0300
 @@ -62,8 +62,8 @@
  	endmenu
  endef
  
--CCARGS=-DNO_EPOLL -DNO_SIGSETJMP -DNO_NIS
+-CCARGS=-DNO_EPOLL -DNO_SIGSETJMP -DNO_NIS -DNO_EAI
 -AUXLIBS=-L$(STAGING_DIR)/usr/lib
-+CCARGS=-DNO_EPOLL -DNO_SIGSETJMP -DNO_NIS -I$(STAGING_DIR)/opt/include
-+AUXLIBS=-L$(STAGING_DIR)/opt/lib
++CCARGS=-DNO_EPOLL -DNO_SIGSETJMP -DNO_NIS -DNO_EAI -I$(STAGING_DIR)/opt/include
++AUXLIBS=$(TARGET_LDFLAGS)
  default_database_type=cdb
  
  ifdef CONFIG_POSTFIX_TLS
@@ -22,7 +21,7 @@ diff -urx .svn ../../../downloads/openwrt_trunk-r43718/feeds/packages/mail/postf
    AUXLIBS+=-lsasl2
  endif
  
-@@ -98,19 +98,19 @@
+@@ -98,21 +98,21 @@
  
  CCARGS+=-DDEF_DB_TYPE=\"$(default_database_type)\"
  
@@ -46,18 +45,20 @@ diff -urx .svn ../../../downloads/openwrt_trunk-r43718/feeds/packages/mail/postf
 -sendmail_path=/usr/sbin/sendmail
 -newaliases_path=/usr/bin/newaliases
 -mailq_path=/usr/bin/mailq
+-shlib_directory=/usr/lib/postfix
+-meta_directory=/etc/postfix
 +sendmail_path=/Apps/opt/sbin/sendmail
 +newaliases_path=/Apps/opt/bin/newaliases
 +mailq_path=/Apps/opt/bin/mailq
++shlib_directory=/Apps/opt/lib/postfix
++meta_directory=/Apps/opt/etc/postfix
  
  ln_suffix=.postfix
  ln_old_suffix=.old
-@@ -153,75 +153,16 @@
- endef
- 
+@@ -171,73 +171,8 @@
  define Package/postfix/install
--	cd $(PKG_BUILD_DIR); $(MAKE) install_root=$(1) command_directory=$(command_directory) daemon_directory=$(daemon_directory) data_directory=$(data_directory) html_directory=$(html_directory) mail_owner=postfix mailq_path=$(mailq_path)$(ln_suffix) manpage_directory=$(manpage_directory) newaliases_path=$(newaliases_path)$(ln_suffix) queue_directory=$(queue_directory) readme_directory=$(readme_directory) sendmail_path=$(sendmail_path)$(ln_suffix) setgid_group=postdrop sample_directory=$(sample_directory) config_directory=$(config_directory) non-interactive-package
--	$(INSTALL_DIR) $(1)$(mail_spool_directory)
+ 	cd $(PKG_BUILD_DIR); $(MAKE) install_root=$(1) command_directory=$(command_directory) daemon_directory=$(daemon_directory) data_directory=$(data_directory) html_directory=$(html_directory) mail_owner=postfix mailq_path=$(mailq_path)$(ln_suffix) manpage_directory=$(manpage_directory) newaliases_path=$(newaliases_path)$(ln_suffix) queue_directory=$(queue_directory) readme_directory=$(readme_directory) sendmail_path=$(sendmail_path)$(ln_suffix) setgid_group=postdrop sample_directory=$(sample_directory) config_directory=$(config_directory) shlib_directory=$(shlib_directory) meta_directory=$(meta_directory) mail_version=$(PKG_VERSION) non-interactive-package
+ 	$(INSTALL_DIR) $(1)$(mail_spool_directory)
 -	$(INSTALL_DIR) $(1)/etc/init.d/
 -	$(INSTALL_BIN) ./files/postfix.init $(1)/etc/init.d/postfix
 -endef
@@ -125,22 +126,14 @@ diff -urx .svn ../../../downloads/openwrt_trunk-r43718/feeds/packages/mail/postf
 -  mv "$${IPKG_INSTROOT}$(mailq_path)$(ln_old_suffix)" "$${IPKG_INSTROOT}$(mailq_path)"
 -  echo "Warning: $${IPKG_INSTROOT}$(mailq_path) restored from $${IPKG_INSTROOT}$(mailq_path)$(ln_old_suffix)"
 - fi
-+	cd $(PKG_BUILD_DIR); $(MAKE) install_root=$(PKG_INSTALL_DIR)  command_directory=$(command_directory) daemon_directory=$(daemon_directory) data_directory=$(data_directory) html_directory=$(html_directory) mail_owner=postfix mailq_path=$(mailq_path)$(ln_suffix) manpage_directory=$(manpage_directory) newaliases_path=$(newaliases_path)$(ln_suffix) queue_directory=$(queue_directory) readme_directory=$(readme_directory) sendmail_path=$(sendmail_path)$(ln_suffix) setgid_group=postdrop sample_directory=$(sample_directory) config_directory=$(config_directory) non-interactive-package
-+	$(INSTALL_DIR) $(1)/opt
-+	cp -rf $(PKG_INSTALL_DIR)/Apps/opt/* $(1)/opt
-+	$(RM) $(1)/opt/bin/mailq.postfix
-+	$(RM) $(1)/opt/bin/newaliases.postfix
-+	ln -s /Apps/opt/sbin/sendmail.postfix $(1)/opt/bin/mailq.postfix
-+	ln -s /Apps/opt/sbin/sendmail.postfix $(1)/opt/bin/newaliases.postfix	
-+	$(INSTALL_DIR) $(1)/opt/var/mail
 +	$(INSTALL_DIR) $(1)/opt/etc/init.d/
 +	$(INSTALL_BIN) ./files/S69postfix $(1)/opt/etc/init.d/
  endef
  
  $(eval $(call BuildPackage,postfix))
-diff -urx .svn ../../../downloads/openwrt_trunk-r43718/feeds/packages/mail/postfix/patches/100-fsstat.patch ../../../openwrt_trunk/feeds/packages/mail/postfix/patches/100-fsstat.patch
---- ../../../downloads/openwrt_trunk-r43718/feeds/packages/mail/postfix/patches/100-fsstat.patch	2015-01-08 13:29:18.151611282 +0300
-+++ ../../../openwrt_trunk/feeds/packages/mail/postfix/patches/100-fsstat.patch	2015-01-08 13:31:25.823635589 +0300
+diff -urx .svn ../../../downloads/openwrt_trunk-r44497/feeds/packages/mail/postfix/patches/100-fsstat.patch ../../../openwrt_trunk/feeds/packages/mail/postfix/patches/100-fsstat.patch
+--- ../../../downloads/openwrt_trunk-r44497/feeds/packages/mail/postfix/patches/100-fsstat.patch	2015-02-20 12:39:13.377134249 +0300
++++ ../../../openwrt_trunk/feeds/packages/mail/postfix/patches/100-fsstat.patch	2015-02-20 12:39:23.149134071 +0300
 @@ -6,7 +6,7 @@
   #define BLOCKS(x)	((x) / fsbuf.block_size)
   
@@ -150,9 +143,9 @@ diff -urx .svn ../../../downloads/openwrt_trunk-r43718/feeds/packages/mail/postf
       if (msg_verbose)
   	msg_info("%s: blocks %lu avail %lu min_free %lu msg_size_limit %lu",
   		 myname,
-diff -urx .svn ../../../downloads/openwrt_trunk-r43718/feeds/packages/mail/postfix/patches/400-cdb.patch ../../../openwrt_trunk/feeds/packages/mail/postfix/patches/400-cdb.patch
---- ../../../downloads/openwrt_trunk-r43718/feeds/packages/mail/postfix/patches/400-cdb.patch	2015-01-08 13:29:18.151611282 +0300
-+++ ../../../openwrt_trunk/feeds/packages/mail/postfix/patches/400-cdb.patch	2015-01-08 13:31:25.823635589 +0300
+diff -urx .svn ../../../downloads/openwrt_trunk-r44497/feeds/packages/mail/postfix/patches/400-cdb.patch ../../../openwrt_trunk/feeds/packages/mail/postfix/patches/400-cdb.patch
+--- ../../../downloads/openwrt_trunk-r44497/feeds/packages/mail/postfix/patches/400-cdb.patch	2015-02-20 12:39:13.377134249 +0300
++++ ../../../openwrt_trunk/feeds/packages/mail/postfix/patches/400-cdb.patch	2015-02-20 12:39:23.149134071 +0300
 @@ -8,7 +8,7 @@
  -#define HAS_DB
   #define NATIVE_DB_TYPE	"hash"
@@ -162,9 +155,9 @@ diff -urx .svn ../../../downloads/openwrt_trunk-r43718/feeds/packages/mail/postf
   #ifndef NO_NIS
   #define HAS_NIS
   #endif
-diff -urx .svn ../../../downloads/openwrt_trunk-r43718/feeds/packages/mail/postfix/patches/500-crosscompile.patch ../../../openwrt_trunk/feeds/packages/mail/postfix/patches/500-crosscompile.patch
---- ../../../downloads/openwrt_trunk-r43718/feeds/packages/mail/postfix/patches/500-crosscompile.patch	2015-01-08 13:29:18.151611282 +0300
-+++ ../../../openwrt_trunk/feeds/packages/mail/postfix/patches/500-crosscompile.patch	2015-01-08 13:31:25.823635589 +0300
+diff -urx .svn ../../../downloads/openwrt_trunk-r44497/feeds/packages/mail/postfix/patches/500-crosscompile.patch ../../../openwrt_trunk/feeds/packages/mail/postfix/patches/500-crosscompile.patch
+--- ../../../downloads/openwrt_trunk-r44497/feeds/packages/mail/postfix/patches/500-crosscompile.patch	2015-02-20 12:39:13.377134249 +0300
++++ ../../../openwrt_trunk/feeds/packages/mail/postfix/patches/500-crosscompile.patch	2015-02-20 12:39:23.149134071 +0300
 @@ -8,7 +8,7 @@
  -    RELEASE=`(uname -r) 2>/dev/null`
  -    VERSION=`(uname -v) 2>/dev/null`

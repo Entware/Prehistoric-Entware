@@ -1,6 +1,24 @@
---- ../../../downloads/openwrt_trunk-r43718/feeds/packages/libs/libtorrent/Makefile
-+++ ../../../openwrt_trunk/feeds/packages/libs/libtorrent/Makefile
-@@ -43,11 +43,11 @@
+diff -Nurx .svn ../../../downloads/openwrt_trunk-r44497/feeds/packages/libs/libtorrent/Makefile ../../../openwrt_trunk/feeds/packages/libs/libtorrent/Makefile
+--- ../../../downloads/openwrt_trunk-r44497/feeds/packages/libs/libtorrent/Makefile	2015-02-20 12:39:13.365134249 +0300
++++ ../../../openwrt_trunk/feeds/packages/libs/libtorrent/Makefile	2014-12-18 13:14:38.000000000 +0300
+@@ -8,13 +8,13 @@
+ include $(TOPDIR)/rules.mk
+ 
+ PKG_NAME:=libtorrent
+-PKG_VERSION:=0.13.4-git-0
+-PKG_RELEASE=$(PKG_SOURCE_VERSION)
++PKG_VERSION:=0.13.4-git
++PKG_RELEASE=$(PKG_SOURCE_VERSION)-1
+ 
+ PKG_SOURCE_PROTO:=git
+ PKG_SOURCE_URL:=https://github.com/rakshasa/libtorrent.git
+ PKG_SOURCE_SUBDIR:=$(PKG_NAME)-$(PKG_VERSION)
+-PKG_SOURCE_VERSION:=72e908707f01ee01a9b4918436c64348878b63f7
++PKG_SOURCE_VERSION:=51cd5ea8913a5f5062813d9f5b6256c76d41ea11
+ PKG_SOURCE:=$(PKG_NAME)-$(PKG_VERSION)-$(PKG_SOURCE_VERSION).tar.gz
+ 
+ PKG_FIXUP:=autoreconf
+@@ -43,26 +43,30 @@
  TARGET_LDFLAGS += $(LIBGCC_S)
  
  CONFIGURE_ARGS+= \
@@ -9,13 +27,16 @@
  	--enable-aligned \
  	--disable-debug \
  	--enable-openssl \
+-	--disable-instrumentation \
+-	--with-zlib=$(STAGING_DIR)/usr
 +	--with-posix-fallocate \
 +	--enable-ipv6 \
- 	--disable-instrumentation
- 
- define Build/Configure
-@@ -56,17 +56,17 @@
- endef
++	--disable-instrumentation
++
++define Build/Configure
++	( cd $(PKG_BUILD_DIR); ./autogen.sh );
++	$(call Build/Configure/Default)
++endef
  
  define Build/InstallDev
 -	$(INSTALL_DIR) $(1)/usr/include
@@ -40,3 +61,62 @@
  endef
  
  $(eval $(call BuildPackage,libtorrent))
+diff -Nurx .svn ../../../downloads/openwrt_trunk-r44497/feeds/packages/libs/libtorrent/patches/100-fix_cross_compile.patch ../../../openwrt_trunk/feeds/packages/libs/libtorrent/patches/100-fix_cross_compile.patch
+--- ../../../downloads/openwrt_trunk-r44497/feeds/packages/libs/libtorrent/patches/100-fix_cross_compile.patch	2015-02-20 12:39:13.365134249 +0300
++++ ../../../openwrt_trunk/feeds/packages/libs/libtorrent/patches/100-fix_cross_compile.patch	2015-02-21 16:23:06.802210797 +0300
+@@ -8,6 +8,7 @@
+  
+  AC_PROG_CXX
+  
++
+ --- a/scripts/checks.m4
+ +++ b/scripts/checks.m4
+ @@ -96,7 +96,7 @@ AC_DEFUN([TORRENT_CHECK_KQUEUE], [
+@@ -21,7 +22,7 @@
+        #include <unistd.h>
+ --- a/scripts/common.m4
+ +++ b/scripts/common.m4
+-@@ -153,7 +153,7 @@ dnl   Need to fix this so that it uses t
++@@ -223,7 +223,7 @@ dnl   Need to fix this so that it uses t
+  AC_DEFUN([TORRENT_CHECK_EXECINFO], [
+    AC_MSG_CHECKING(for execinfo.h)
+  
+@@ -30,7 +31,7 @@
+        #include <execinfo.h>
+        int main() { backtrace((void**)0, 0); backtrace_symbols((char**)0, 0); return 0;}
+        ])],
+-@@ -168,7 +168,7 @@ AC_DEFUN([TORRENT_CHECK_EXECINFO], [
++@@ -238,7 +238,7 @@ AC_DEFUN([TORRENT_CHECK_EXECINFO], [
+  AC_DEFUN([TORRENT_CHECK_ALIGNED], [
+    AC_MSG_CHECKING(the byte alignment)
+  
+diff -Nurx .svn ../../../downloads/openwrt_trunk-r44497/feeds/packages/libs/libtorrent/patches/120-fix-ipv6_socket_datagram.patch ../../../openwrt_trunk/feeds/packages/libs/libtorrent/patches/120-fix-ipv6_socket_datagram.patch
+--- ../../../downloads/openwrt_trunk-r44497/feeds/packages/libs/libtorrent/patches/120-fix-ipv6_socket_datagram.patch	2015-02-20 12:39:13.365134249 +0300
++++ ../../../openwrt_trunk/feeds/packages/libs/libtorrent/patches/120-fix-ipv6_socket_datagram.patch	1970-01-01 03:00:00.000000000 +0300
+@@ -1,26 +0,0 @@
+---- a/src/net/socket_datagram.cc
+-+++ b/src/net/socket_datagram.cc
+-@@ -73,6 +73,23 @@ SocketDatagram::write_datagram(const voi
+-   int r;
+- 
+-   if (sa != NULL) {
+-+#ifdef RAK_USE_INET6
+-+    if (m_ipv6_socket && sa->family() == rak::socket_address::pf_inet) {
+-+      uint32_t addr32[4];
+-+      sockaddr_in6 mapped_addr;
+-+      memset(&mapped_addr, 0, sizeof(mapped_addr));
+-+      mapped_addr.sin6_family = AF_INET6;
+-+      addr32[0] = 0;
+-+      addr32[1] = 0;
+-+      addr32[2] = htonl(0xffff);
+-+      addr32[3] = sa->sa_inet()->address_n();
+-+      memcpy(mapped_addr.sin6_addr.s6_addr, addr32, sizeof(uint32_t) * 4);
+-+      mapped_addr.sin6_port = sa->sa_inet()->port_n();
+-+      r = ::sendto(m_fileDesc, buffer, length, 0, (sockaddr*)&mapped_addr, sizeof(mapped_addr));
+-+    } else if (m_ipv6_socket && sa->family() == rak::socket_address::pf_inet6) {
+-+      r = ::sendto(m_fileDesc, buffer, length, 0, sa->sa_inet6()->c_sockaddr(), sizeof(rak::socket_address_inet6));
+-+    } else
+-+#endif
+-     r = ::sendto(m_fileDesc, buffer, length, 0, sa->sa_inet()->c_sockaddr(), sizeof(rak::socket_address_inet));
+-   } else {
+-     r = ::send(m_fileDesc, buffer, length, 0);

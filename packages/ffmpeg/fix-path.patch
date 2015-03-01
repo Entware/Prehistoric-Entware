@@ -1,5 +1,5 @@
---- ../../../downloads/openwrt_trunk-r43718/feeds/packages/multimedia/ffmpeg/Makefile	2014-12-15 16:50:13.284093580 +0300
-+++ ../../../openwrt_trunk/feeds/packages/multimedia/ffmpeg/Makefile	2014-12-17 14:34:53.093094239 +0300
+--- ../../../downloads/openwrt_trunk-r44486/feeds/packages/multimedia/ffmpeg/Makefile	2015-02-18 12:16:57.580306331 +0300
++++ ../../../openwrt_trunk/feeds/packages/multimedia/ffmpeg/Makefile	2015-02-18 12:17:26.612305804 +0300
 @@ -322,7 +322,7 @@
  define Package/libffmpeg-full
  $(call Package/libffmpeg/Default)
@@ -18,7 +18,7 @@
  	--pkg-config="pkg-config" \
  	--enable-shared \
  	--enable-static \
-@@ -507,30 +507,30 @@
+@@ -504,30 +504,30 @@
  endef
  
  define Build/InstallDev/custom
@@ -67,7 +67,7 @@
  endef
  
  Build/InstallDev/audio-dec = $(Build/InstallDev/custom)
-@@ -560,33 +560,33 @@
+@@ -557,33 +557,33 @@
  endif
  
  define Package/ffmpeg/install

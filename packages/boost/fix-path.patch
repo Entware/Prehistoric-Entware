@@ -1,18 +1,18 @@
---- ../../../downloads/openwrt_trunk-r43718/feeds/oldpackages/libs/boost/Makefile	2014-11-07 23:35:24.439626265 +0300
-+++ ../../../openwrt_trunk/feeds/oldpackages/libs/boost/Makefile	2014-12-08 14:32:10.333161461 +0300
-@@ -187,9 +187,9 @@
+--- ../../../downloads/openwrt_trunk-q44497/feeds/packages/libs/boost/Makefile	2015-02-25 12:52:24.033152892 +0300
++++ ../../../openwrt_trunk/feeds/packages/libs/boost/Makefile	2015-03-01 08:15:11.287660045 +0300
+@@ -202,9 +202,9 @@
  
  define Build/Compile
  	( cd $(PKG_BUILD_DIR) ; \
--		echo "using gcc : $(ARCH) : $(GNU_TARGET_NAME)-gcc : <compileflags>\"$(TARGET_CFLAGS)\" <cxxflags>\"$(TARGET_CXXFLAGS)\" <linkflags>\"$(TARGET_LDFLAGS)\" ;" > tools/build/v2/user-config.jam ; \
-+		echo "using gcc : $(ARCH) : $(TARGET_CROSS)gcc : <compileflags>\"$(TARGET_CFLAGS)\" <cxxflags>\"$(TARGET_CXXFLAGS)\" <linkflags>\"$(TARGET_LDFLAGS)\" ;" > tools/build/v2/user-config.jam ; \
+-		echo "using gcc : $(ARCH) : $(GNU_TARGET_NAME)-gcc : <compileflags>\"$(TARGET_CFLAGS)\" <cxxflags>\"$(TARGET_CXXFLAGS)\" <linkflags>\"$(TARGET_LDFLAGS)\" ;" > tools/build/src/user-config.jam ; \
++		echo "using gcc : $(ARCH) : $(TARGET_CROSS)gcc : <compileflags>\"$(TARGET_CFLAGS)\" <cxxflags>\"$(TARGET_CXXFLAGS)\" <linkflags>\"$(TARGET_LDFLAGS)\" ;" > tools/build/src/user-config.jam ; \
  		$(if $(CONFIG_PACKAGE_boost-python), \
 -			echo "using python : : $(STAGING_DIR_ROOT)/usr/bin/python :	$(STAGING_DIR)/usr/include/python2.7/ ;" >> \
 +			echo "using python : : $(STAGING_DIR_ROOT)/opt/bin/python :	$(STAGING_DIR)/opt/include/python2.7/ ;" >> \
- 				tools/build/v2/user-config.jam; \
+ 				tools/build/src/user-config.jam; \
  		) \
  		bjam \
-@@ -219,30 +219,30 @@
+@@ -235,30 +235,30 @@
  			$(if $(CONFIG_PACKAGE_boost-timer),,--without-timer) \
  			$(if $(CONFIG_PACKAGE_boost-wave),,--without-wave) \
  			\
@@ -50,7 +50,7 @@
  	fi
  endef
  
-@@ -257,11 +257,11 @@
+@@ -273,11 +273,11 @@
  
  define Package/boost/Default/install
  	$(INSTALL_DIR) \
@@ -63,8 +63,8 @@
 +		$(1)/opt/lib/
  endef
  
- define Package/boost-chrono/install
-@@ -330,15 +330,15 @@
+ define Package/boost-atomic/install
+@@ -350,15 +350,15 @@
  
  define Package/boost-test/install
  	$(INSTALL_DIR) \

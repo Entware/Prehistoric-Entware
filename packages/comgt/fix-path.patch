@@ -1,6 +1,6 @@
---- ../../../downloads/openwrt_trunk-r43593/package/network/utils/comgt/Makefile	2014-12-10 12:26:33.798951666 +0300
-+++ ../../../openwrt_trunk/package/network/utils/comgt/Makefile	2014-12-11 12:49:14.777359241 +0300
-@@ -31,20 +31,19 @@
+--- ../../../downloads/openwrt_trunk-r44486/package/network/utils/comgt/Makefile	2015-02-18 12:16:58.292306319 +0300
++++ ../../../openwrt_trunk/package/network/utils/comgt/Makefile	2015-02-18 16:54:35.176002899 +0300
+@@ -31,14 +31,13 @@
  define Package/comgt
  $(call Package/comgt/Default)
    TITLE:=Option/Vodafone 3G/GPRS control tool
@@ -16,13 +16,6 @@
  endef
  
  define Package/comgt-ncm
- $(call Package/comgt/Default)
-   TITLE+=NCM 3G/4G Support
--  DEPENDS:=+comgt +kmod-usb-serial +kmod-usb-serial-option +kmod-usb-net +kmod-usb-net-cdc-ncm +kmod-usb-net-huawei-cdc-ncm
-+  DEPENDS:=+comgt
- endef
- 
- define Package/comgt/description
 @@ -57,48 +56,39 @@
  	$(MAKE) -C $(PKG_BUILD_DIR) \
  		$(TARGET_CONFIGURE_OPTS) \

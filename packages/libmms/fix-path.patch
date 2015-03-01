@@ -1,7 +1,7 @@
---- ../../../downloads/openwrt_trunk-r43718/feeds/packages/libs/libmms/Makefile
-+++ ../../../openwrt_trunk/feeds/packages/libs/libmms/Makefile
-@@ -50,19 +50,19 @@
- endef
+--- ../../../downloads/openwrt_trunk-r44486/feeds/packages/libs/libmms/Makefile	2015-02-18 12:16:57.588306331 +0300
++++ ../../../openwrt_trunk/feeds/packages/libs/libmms/Makefile	2015-02-18 12:17:29.328305754 +0300
+@@ -45,19 +45,19 @@
+ TARGET_LDFLAGS += $(if $(ICONV_FULL),-liconv)
  
  define Build/InstallDev
 -	$(INSTALL_DIR) $(1)/usr/include

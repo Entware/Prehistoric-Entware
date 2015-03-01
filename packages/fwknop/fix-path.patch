@@ -1,6 +1,6 @@
---- ../../../downloads/openwrt_trunk-r43718/feeds/packages/net/fwknop/Makefile
-+++ ../../../openwrt_trunk/feeds/packages/net/fwknop/Makefile
-@@ -41,7 +41,7 @@
+--- ../../../downloads/openwrt_trunk-r44486/feeds/packages/net/fwknop/Makefile	2015-02-18 12:16:57.620306332 +0300
++++ ../../../openwrt_trunk/feeds/packages/net/fwknop/Makefile	2015-02-18 12:17:26.692305802 +0300
+@@ -42,7 +42,7 @@
    CATEGORY:=Network
    SUBMENU:=Firewall
    TITLE+= Daemon
@@ -9,7 +9,7 @@
  endef
  
  define Package/fwknopd/description
-@@ -50,8 +50,8 @@
+@@ -51,8 +51,8 @@
  endef
  
  define Package/fwknopd/conffiles
@@ -20,7 +20,7 @@
  endef
  
  define Package/fwknop
-@@ -83,34 +83,35 @@
+@@ -84,34 +84,35 @@
  
  CONFIGURE_ARGS += \
  	--without-gpgme \

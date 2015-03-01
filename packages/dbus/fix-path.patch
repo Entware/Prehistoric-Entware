@@ -1,6 +1,6 @@
-diff -urx .svn ../../../downloads/openwrt_trunk-r43593/feeds/packages/utils/dbus/files/dbus-launch ../../../openwrt_trunk/feeds/packages/utils/dbus/files/dbus-launch
---- ../../../downloads/openwrt_trunk-r43593/feeds/packages/utils/dbus/files/dbus-launch	2014-12-10 12:26:33.026951680 +0300
-+++ ../../../openwrt_trunk/feeds/packages/utils/dbus/files/dbus-launch	2014-12-10 12:49:03.202927085 +0300
+diff -urx .svn ../../../downloads/openwrt_trunk-r44486/feeds/packages/utils/dbus/files/dbus-launch ../../../openwrt_trunk/feeds/packages/utils/dbus/files/dbus-launch
+--- ../../../downloads/openwrt_trunk-r44486/feeds/packages/utils/dbus/files/dbus-launch	2015-02-18 12:16:57.628306332 +0300
++++ ../../../openwrt_trunk/feeds/packages/utils/dbus/files/dbus-launch	2015-02-18 12:17:25.684305815 +0300
 @@ -5,8 +5,8 @@
  # dbus-launch-x package. The script is used to prefer dbus-launch with x over
  # the dbus-lauch without x.
@@ -13,20 +13,20 @@ diff -urx .svn ../../../downloads/openwrt_trunk-r43593/feeds/packages/utils/dbus
 -	exec /usr/bin/dbus-launch.real $@
 +	exec /opt/bin/dbus-launch.real $@
  fi
-diff -urx .svn ../../../downloads/openwrt_trunk-r43593/feeds/packages/utils/dbus/Makefile ../../../openwrt_trunk/feeds/packages/utils/dbus/Makefile
---- ../../../downloads/openwrt_trunk-r43593/feeds/packages/utils/dbus/Makefile	2014-12-10 12:26:33.026951680 +0300
-+++ ../../../openwrt_trunk/feeds/packages/utils/dbus/Makefile	2014-12-10 12:49:03.202927085 +0300
-@@ -25,8 +25,7 @@
+diff -urx .svn ../../../downloads/openwrt_trunk-r44486/feeds/packages/utils/dbus/Makefile ../../../openwrt_trunk/feeds/packages/utils/dbus/Makefile
+--- ../../../downloads/openwrt_trunk-r44486/feeds/packages/utils/dbus/Makefile	2015-02-18 12:16:57.628306332 +0300
++++ ../../../openwrt_trunk/feeds/packages/utils/dbus/Makefile	2015-02-19 14:16:45.170604931 +0300
+@@ -24,9 +24,6 @@
+ include $(INCLUDE_DIR)/host-build.mk
  include $(INCLUDE_DIR)/package.mk
  
- TARGET_LDFLAGS+= \
+-TARGET_LDFLAGS+= \
 -	-Wl,-rpath-link=$(STAGING_DIR)/usr/lib \
--	-Wl,-rpath=/usr/lib/
-+	-Wl,-rpath=/opt/lib/
- 
+-
  define Package/dbus/Default
    SECTION:=utils
-@@ -98,11 +97,11 @@
+   CATEGORY:=Utilities
+@@ -97,11 +94,11 @@
  	--disable-xml-docs \
  	--with-xml="expat" \
  	--with-dbus-user=root \
@@ -42,7 +42,7 @@ diff -urx .svn ../../../downloads/openwrt_trunk-r43593/feeds/packages/utils/dbus
  
  CONFIGURE_VARS+= \
  	ac_cv_have_abstract_sockets="yes" \
-@@ -133,79 +132,81 @@
+@@ -132,79 +129,81 @@
  	ac_cv_lib_expat_XML_ParserCreate_MM="yes" \
  
  define Build/InstallDev
@@ -141,10 +141,10 @@ diff -urx .svn ../../../downloads/openwrt_trunk-r43593/feeds/packages/utils/dbus
  		./files/dbus-launch \
 -		$(1)/usr/bin/
 +		$(1)/opt/bin/
++
++	$(INSTALL_DIR) $(1)/opt/var/run/dbus
  
 -	$(INSTALL_DIR) $(1)/etc/init.d
-+	$(INSTALL_DIR) $(1)/opt/var/run/dbus
-+
 +	$(INSTALL_DIR) $(1)/opt/etc/init.d
  	$(INSTALL_BIN) \
 -		./files/dbus.init \
@@ -163,4 +163,4 @@ diff -urx .svn ../../../downloads/openwrt_trunk-r43593/feeds/packages/utils/dbus
 +		$(1)/opt/bin/
  endef
  
- $(eval $(call BuildPackage,libdbus))
+ $(eval $(call HostBuild))

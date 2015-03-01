@@ -1,0 +1,55 @@
+diff -urx .svn ../../../downloads/openwrt_trunk-r44497/feeds/packages/utils/smstools3/files/smstools3.conf ../../../openwrt_trunk/feeds/packages/utils/smstools3/files/smstools3.conf
+--- ../../../downloads/openwrt_trunk-r44497/feeds/packages/utils/smstools3/files/smstools3.conf	2015-02-21 21:16:27.921891452 +0300
++++ ../../../openwrt_trunk/feeds/packages/utils/smstools3/files/smstools3.conf	2015-02-21 18:18:06.000000000 +0300
+@@ -3,11 +3,11 @@
+ #
+ 
+ devices = GSM1
+-incoming = /var/spool/sms/incoming
+-outgoing = /var/spool/sms/outgoing
+-checked = /var/spool/sms/checked
+-failed = /var/spool/sms/failed
+-sent = /var/spool/sms/sent
++incoming = /Apps/opt/var/spool/sms/incoming
++outgoing = /Apps/opt/var/spool/sms/outgoing
++checked = /Apps/opt/var/spool/sms/checked
++failed = /Apps/opt/var/spool/sms/failed
++sent = /Apps/opt/var/spool/sms/sent
+ receive_before_send = no
+ autosplit = 3
+ 
+diff -urx .svn ../../../downloads/openwrt_trunk-r44497/feeds/packages/utils/smstools3/Makefile ../../../openwrt_trunk/feeds/packages/utils/smstools3/Makefile
+--- ../../../downloads/openwrt_trunk-r44497/feeds/packages/utils/smstools3/Makefile	2015-02-21 21:16:27.921891452 +0300
++++ ../../../openwrt_trunk/feeds/packages/utils/smstools3/Makefile	2015-02-21 21:16:41.681891202 +0300
+@@ -47,14 +47,12 @@
+ 
+ TARGET_LDFLAGS += -liconv
+ 
+-BINDIR=/usr/local/bin
++BINDIR=/Apps/opt/bin
+ 
+ define Build/Compile
+-	$(MAKE) -C "$(PKG_BUILD_DIR)"/src \
++	$(MAKE) -C "$(PKG_BUILD_DIR)/src" \
+ 		CC="$(TARGET_CC)" \
+-		USER_CFLAGS='$(TARGET_CFLAGS) $(EXTRA_CFLAGS) $(TARGET_CPPFLAGS) $(EXTRA_CPPFLAGS) \
+-		-I"$(STAGING_DIR)/usr/lib/libiconv-full/include"' \
+-		USER_LDFLAGS='$(TARGET_LFLAGS) $(EXTRA_LDFLAGS) -L"$(STAGING_DIR)/usr/lib/libiconv-full/lib"' \
++		LFLAGS='$(TARGET_LDFLAGS) $(EXTRA_LDFLAGS) -L"$(STAGING_DIR)/opt/lib/libiconv-full/lib"' \
+ 		all
+ endef
+ 
+@@ -65,10 +63,9 @@
+ 	$(INSTALL_BIN) $(PKG_BUILD_DIR)/scripts/sms2html $(1)/$(BINDIR)/sms2html
+ 	$(INSTALL_BIN) $(PKG_BUILD_DIR)/scripts/sms2unicode $(1)/$(BINDIR)/sms2unicode
+ 	$(INSTALL_BIN) $(PKG_BUILD_DIR)/scripts/unicode2sms $(1)/$(BINDIR)/unicode2sms
+-	$(INSTALL_DIR) $(1)/etc/init.d
+-	$(INSTALL_DATA) -m 0755 ./files/smstools3.init $(1)/etc/init.d/smstools3
+-	$(INSTALL_DIR) $(1)/etc
+-	$(INSTALL_DATA) -m 0755 ./files/smstools3.conf $(1)/etc/smsd.conf
++	$(INSTALL_DIR) $(1)/opt/etc/init.d
++	$(INSTALL_BIN) ./files/S53smstools3 $(1)/opt/etc/init.d/
++	$(INSTALL_DATA) -m 0755 ./files/smstools3.conf $(1)/opt/etc/smsd.conf
+ endef
+ 
+ $(eval $(call BuildPackage,smstools3))

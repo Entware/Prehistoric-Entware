@@ -1,5 +1,5 @@
---- ../../../downloads/openwrt_trunk-r43593/package/network/utils/ifenslave/Makefile	2014-12-10 12:26:33.806951666 +0300
-+++ ../../../openwrt_trunk/package/network/utils/ifenslave/Makefile	2014-12-10 12:49:04.274927063 +0300
+--- ../../../downloads/openwrt_trunk-r44486/package/network/utils/ifenslave/Makefile	2015-02-18 12:16:58.312306319 +0300
++++ ../../../openwrt_trunk/package/network/utils/ifenslave/Makefile	2015-02-19 14:48:31.642566250 +0300
 @@ -6,9 +6,9 @@
  #
  
@@ -15,7 +15,7 @@
  define Package/ifenslave
    SECTION:=net
    CATEGORY:=Network
--  DEPENDS:=+kmod-bonding @(LINUX_3_3||LINUX_3_6||LINUX_3_7||LINUX_3_8||LINUX_3_9||LINUX_3_10)
+-  DEPENDS:=+kmod-bonding @(LINUX_3_8||LINUX_3_9||LINUX_3_10)
    TITLE:=A utility to manipulate kernel ethernet bonding devices
 -  VERSION:=$(LINUX_VERSION)-$(PKG_RELEASE)
    URL:=http://www.kernel.org

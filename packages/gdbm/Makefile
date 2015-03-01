@@ -9,8 +9,8 @@ all: .done
 
 .done:
 	patch -d $(TOP) -p3 -i $(CURDIR)/fix-path.patch
-	mkdir -p ../../../openwrt_trunk/feeds/telephony/admin/asterisk11-gui/patches
-	cp -f ./0*.patch ../../../openwrt_trunk/feeds/telephony/admin/asterisk11-gui/patches/
+	mkdir -p ../../../openwrt_trunk/feeds/packages/libs/gdbm/patches
+	cp -f ./500-no-po-and-docs.patch ../../../openwrt_trunk/feeds/packages/libs/gdbm/patches/
 	@touch $@
 
 clean:

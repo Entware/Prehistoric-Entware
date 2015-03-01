@@ -1,15 +1,15 @@
---- ../../../openwrt_trunk-r40423/include/package.mk
-+++ ../../../openwrt_trunk/include/package.mk
-@@ -94,7 +94,7 @@
+--- ../../../downloads/openwrt_trunk-r44486/include/package.mk	2015-02-18 12:16:57.784306329 +0300
++++ ../../../openwrt_trunk/include/package.mk	2015-02-18 12:22:57.420299789 +0300
+@@ -130,7 +130,7 @@
  CONFIG_SITE:=$(INCLUDE_DIR)/site/$(REAL_GNU_TARGET_NAME)
  CUR_MAKEFILE:=$(filter-out Makefile,$(firstword $(MAKEFILE_LIST)))
  SUBMAKE:=$(NO_TRACE_MAKE) $(if $(CUR_MAKEFILE),-f $(CUR_MAKEFILE))
 -PKG_CONFIG_PATH=$(STAGING_DIR)/usr/lib/pkgconfig:$(STAGING_DIR)/usr/share/pkgconfig
 +PKG_CONFIG_PATH=$(STAGING_DIR)/opt/lib/pkgconfig:$(STAGING_DIR)/opt/share/pkgconfig
- unexport QUIET
+ unexport QUIET CONFIG_SITE
  
  ifeq ($(DUMP)$(filter prereq clean refresh update,$(MAKECMDGOALS)),)
-@@ -135,8 +135,8 @@
+@@ -171,8 +171,8 @@
  endif
  
  define Build/Exports/Default

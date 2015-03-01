@@ -1,5 +1,23 @@
---- ../../../downloads/openwrt_trunk-r43718/feeds/packages/net/rtorrent/Makefile
-+++ ../../../openwrt_trunk/feeds/packages/net/rtorrent/Makefile
+diff -Nurx .svn ../../../downloads/openwrt_trunk-r44497/feeds/packages/net/rtorrent/Makefile ../../../openwrt_trunk/feeds/packages/net/rtorrent/Makefile
+--- ../../../downloads/openwrt_trunk-r44497/feeds/packages/net/rtorrent/Makefile	2015-02-20 12:39:13.429134248 +0300
++++ ../../../openwrt_trunk/feeds/packages/net/rtorrent/Makefile	2014-12-18 13:14:41.000000000 +0300
+@@ -8,13 +8,13 @@
+ include $(TOPDIR)/rules.mk
+ 
+ PKG_NAME:=rtorrent
+-PKG_VERSION:=0.9.4-git-0
+-PKG_RELEASE=$(PKG_SOURCE_VERSION)
++PKG_VERSION:=0.9.4-git
++PKG_RELEASE:=2
+ 
+ PKG_SOURCE_PROTO:=git
+ PKG_SOURCE_URL:=https://github.com/rakshasa/rtorrent.git
+ PKG_SOURCE_SUBDIR:=$(PKG_NAME)-$(PKG_VERSION)
+-PKG_SOURCE_VERSION:=7343e33a6a0d279179b304a380bf011f1c8be64a
++PKG_SOURCE_VERSION:=6a3234eaa79f15857260df31f98711ef24266191
+ PKG_SOURCE:=$(PKG_NAME)-$(PKG_VERSION)-$(PKG_SOURCE_VERSION).tar.gz
+ 
+ PKG_LICENSE:=GPL-2.0
 @@ -67,12 +67,13 @@
   This package is built with xmlrpc support
  endef
@@ -16,9 +34,15 @@
  
  ifeq ($(BUILD_VARIANT),rpc)
  	CONFIGURE_ARGS += \
-@@ -86,8 +87,8 @@
- endef
+@@ -80,9 +81,14 @@
+ endif
  
+ 
++define Build/Configure
++	( cd $(PKG_BUILD_DIR); ./autogen.sh );
++	$(call Build/Configure/Default)
++endef
++
  define Package/rtorrent/install
 -	$(INSTALL_DIR) $(1)/usr/bin
 -	$(INSTALL_BIN) $(PKG_INSTALL_DIR)/usr/bin/rtorrent $(1)/usr/bin/
@@ -27,3 +51,121 @@
  endef
  
  Package/rtorrent-rpc/install = $(Package/rtorrent/install)
+diff -Nurx .svn ../../../downloads/openwrt_trunk-r44497/feeds/packages/net/rtorrent/patches/100-fix-cross_compile.patch ../../../openwrt_trunk/feeds/packages/net/rtorrent/patches/100-fix-cross_compile.patch
+--- ../../../downloads/openwrt_trunk-r44497/feeds/packages/net/rtorrent/patches/100-fix-cross_compile.patch	2015-02-20 12:39:13.429134248 +0300
++++ ../../../openwrt_trunk/feeds/packages/net/rtorrent/patches/100-fix-cross_compile.patch	2014-12-18 13:13:11.000000000 +0300
+@@ -10,7 +10,7 @@
+  AC_PROG_LIBTOOL
+ --- a/scripts/common.m4
+ +++ b/scripts/common.m4
+-@@ -153,7 +153,7 @@ dnl   Need to fix this so that it uses t
++@@ -223,7 +223,7 @@ dnl   Need to fix this so that it uses t
+  AC_DEFUN([TORRENT_CHECK_EXECINFO], [
+    AC_MSG_CHECKING(for execinfo.h)
+  
+@@ -19,7 +19,7 @@
+        #include <execinfo.h>
+        int main() { backtrace((void**)0, 0); backtrace_symbols((char**)0, 0); return 0;}
+        ])],
+-@@ -168,7 +168,7 @@ AC_DEFUN([TORRENT_CHECK_EXECINFO], [
++@@ -238,7 +238,7 @@ AC_DEFUN([TORRENT_CHECK_EXECINFO], [
+  AC_DEFUN([TORRENT_CHECK_ALIGNED], [
+    AC_MSG_CHECKING(the byte alignment)
+  
+diff -Nurx .svn ../../../downloads/openwrt_trunk-r44497/feeds/packages/net/rtorrent/patches/500-enable-deprecated-from-cmdline.patch ../../../openwrt_trunk/feeds/packages/net/rtorrent/patches/500-enable-deprecated-from-cmdline.patch
+--- ../../../downloads/openwrt_trunk-r44497/feeds/packages/net/rtorrent/patches/500-enable-deprecated-from-cmdline.patch	1970-01-01 03:00:00.000000000 +0300
++++ ../../../openwrt_trunk/feeds/packages/net/rtorrent/patches/500-enable-deprecated-from-cmdline.patch	2014-12-18 13:14:41.000000000 +0300
+@@ -0,0 +1,93 @@
++diff --git a/src/command_dynamic.cc b/src/command_dynamic.cc
++index 7ec16fb..6c600d0 100644
++--- a/src/command_dynamic.cc
+++++ b/src/command_dynamic.cc
++@@ -438,7 +438,7 @@ cmd_catch(rpc::target_type target, const torrent::Object& args) {
++ 
++ void
++ initialize_command_dynamic() {
++-  CMD2_VAR_BOOL    ("method.use_deprecated", true);
+++  CMD2_VAR_BOOL    ("method.use_deprecated", false);
++   CMD2_VAR_VALUE   ("method.use_intermediate", 1);
++ 
++   CMD2_ANY_LIST    ("method.insert",             tr1::bind(&system_method_insert, tr1::placeholders::_2));
++diff --git a/src/main.cc b/src/main.cc
++index 5e826bb..fa5a5bf 100644
++--- a/src/main.cc
+++++ b/src/main.cc
++@@ -230,7 +230,7 @@ main(int argc, char** argv) {
++     initialize_commands();
++ 
++     if (OptionParser::has_flag('D', argc, argv)) {
++-      rpc::call_command_set_value("method.use_deprecated.set", false);
+++      rpc::call_command_set_value("method.use_deprecated.set", true);
++       lt_log_print(torrent::LOG_WARN, "Disabled deprecated commands.");
++     }
++ 
++@@ -397,8 +397,20 @@ main(int argc, char** argv) {
++     CMD2_REDIRECT_GENERIC("directory", "directory.default.set");
++     CMD2_REDIRECT_GENERIC("session",   "session.path.set");
++ 
+++    CMD2_REDIRECT        ("check_hash", "pieces.hash.on_completion.set");
+++
++     CMD2_REDIRECT        ("key_layout", "keys.layout.set");
++ 
+++    CMD2_REDIRECT_GENERIC("to_gm_time", "convert.gm_time");
+++    CMD2_REDIRECT_GENERIC("to_gm_date", "convert.gm_date");
+++    CMD2_REDIRECT_GENERIC("to_time", "convert.time");
+++    CMD2_REDIRECT_GENERIC("to_date", "convert.date");
+++    CMD2_REDIRECT_GENERIC("to_elapsed_time", "convert.elapsed_time");
+++    CMD2_REDIRECT_GENERIC("to_kb", "convert.kb");
+++    CMD2_REDIRECT_GENERIC("to_mb", "convert.mb");
+++    CMD2_REDIRECT_GENERIC("to_xb", "convert.xb");
+++    CMD2_REDIRECT_GENERIC("to_throttle", "convert.throttle");
+++
++     // Deprecated commands. Don't use these anymore.
++ 
++     if (rpc::call_command_value("method.use_intermediate") == 1) {
++@@ -634,7 +646,6 @@ main(int argc, char** argv) {
++       CMD2_REDIRECT        ("get_session_on_completion", "session.on_completion");
++       CMD2_REDIRECT_GENERIC("set_session_on_completion", "session.on_completion.set");
++ 
++-      CMD2_REDIRECT        ("check_hash", "pieces.hash.on_completion.set");
++       CMD2_REDIRECT        ("get_check_hash", "pieces.hash.on_completion");
++       CMD2_REDIRECT_GENERIC("set_check_hash", "pieces.hash.on_completion.set");
++ 
++@@ -809,16 +820,6 @@ main(int argc, char** argv) {
++       // Rename these to avoid conflicts with old style.
++       CMD2_REDIRECT_GENERIC("d.multicall", "d.multicall2");
++ 
++-      CMD2_REDIRECT_GENERIC("to_gm_time", "convert.gm_time");
++-      CMD2_REDIRECT_GENERIC("to_gm_date", "convert.gm_date");
++-      CMD2_REDIRECT_GENERIC("to_time", "convert.time");
++-      CMD2_REDIRECT_GENERIC("to_date", "convert.date");
++-      CMD2_REDIRECT_GENERIC("to_elapsed_time", "convert.elapsed_time");
++-      CMD2_REDIRECT_GENERIC("to_kb", "convert.kb");
++-      CMD2_REDIRECT_GENERIC("to_mb", "convert.mb");
++-      CMD2_REDIRECT_GENERIC("to_xb", "convert.xb");
++-      CMD2_REDIRECT_GENERIC("to_throttle", "convert.throttle");
++-
++       CMD2_REDIRECT_GENERIC("execute_throw", "execute.throw");
++       CMD2_REDIRECT_GENERIC("execute_nothrow", "execute.nothrow");
++       CMD2_REDIRECT_GENERIC("execute_raw", "execute.raw");
++@@ -1002,6 +1003,7 @@ print_help() {
++   std::cout << "order. Use the up/down/left/right arrow keys to move between screens." << std::endl;
++   std::cout << std::endl;
++   std::cout << "Usage: rtorrent [OPTIONS]... [FILE]... [URL]..." << std::endl;
+++  std::cout << "  -D                Enable deprecated commands" << std::endl;
++   std::cout << "  -h                Display this very helpful text" << std::endl;
++   std::cout << "  -n                Don't try to load ~/.rtorrent.rc on startup" << std::endl;
++   std::cout << "  -b <a.b.c.d>      Bind the listening socket to this IP" << std::endl;
++diff --git a/src/thread_worker.h b/src/thread_worker.h
++index 088058b..49414b8 100644
++--- a/src/thread_worker.h
+++++ b/src/thread_worker.h
++@@ -53,7 +53,7 @@ public:
++   ThreadWorker();
++   ~ThreadWorker();
++ 
++-  const char*         name() const { return "worker_rtorrent"; }
+++  const char*         name() const { return "rtorrent scgi"; }
++ 
++   virtual void        init_thread();
++ 
