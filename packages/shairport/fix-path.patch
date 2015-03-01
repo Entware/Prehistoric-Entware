@@ -1,5 +1,5 @@
---- ../../../downloads/openwrt_trunk-r43718/feeds/packages/multimedia/shairport/Makefile
-+++ ../../../openwrt_trunk/feeds/packages/multimedia/shairport/Makefile
+--- ../../../downloads/openwrt_trunk-q44497/feeds/packages/sound/shairport/Makefile	2015-03-01 22:34:30.733357309 +0300
++++ ../../../openwrt_trunk/feeds/packages/sound/shairport/Makefile	2015-03-01 22:49:26.445663640 +0300
 @@ -49,12 +49,8 @@
  	LDFLAGS="$(TARGET_LDFLAGS) $(LIBS)"
  

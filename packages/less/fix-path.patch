@@ -1,5 +1,5 @@
---- ../../../downloads/openwrt_trunk-q44497/feeds/packages/utils/less/Makefile	2015-02-25 12:52:24.056903467 +0300
-+++ ../../../openwrt_trunk/feeds/packages/utils/less/Makefile	2015-03-01 09:28:35.907636053 +0300
+--- ../../../downloads/openwrt_trunk-q44497/feeds/packages/utils/less/Makefile	2015-03-01 22:34:30.757562210 +0300
++++ ../../../openwrt_trunk/feeds/packages/utils/less/Makefile	2015-03-01 22:35:23.185150549 +0300
 @@ -70,18 +70,18 @@
  
  define Package/less/install
