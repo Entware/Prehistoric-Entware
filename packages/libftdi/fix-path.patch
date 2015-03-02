@@ -1,5 +1,5 @@
---- ../../../downloads/openwrt_trunk-q44497/feeds/packages/libs/libftdi/Makefile	2015-02-25 12:52:24.040433094 +0300
-+++ ../../../openwrt_trunk/feeds/packages/libs/libftdi/Makefile	2015-02-28 12:36:01.864300150 +0300
+--- ../../../downloads/openwrt_trunk-q44497/feeds/packages/libs/libftdi/Makefile	2015-03-01 22:34:30.745160709 +0300
++++ ../../../openwrt_trunk/feeds/packages/libs/libftdi/Makefile	2015-03-02 14:53:28.000958905 +0300
 @@ -40,25 +40,26 @@
  endef
  
@@ -11,21 +11,21 @@
 -	$(INSTALL_DIR) $(1)/usr/lib/pkgconfig/
 -	$(CP) $(PKG_INSTALL_DIR)/usr/lib/pkgconfig/libftdi.pc $(1)/usr/lib/pkgconfig/libftdi.pc
 +	$(INSTALL_DIR) $(1)/opt/include/
-+	$(CP) $(PKG_INSTALL_DIR)/opt/include/ftdi.h $(1)/opt/include/
++	$(CP) $(PKG_INSTALL_DIR)/Apps/opt/include/ftdi.h $(1)/opt/include/
 +	$(INSTALL_DIR) $(1)/opt/lib
-+	$(CP) $(PKG_INSTALL_DIR)/opt/lib/libftdi.{a,so} $(1)/opt/lib/
-+	$(CP) $(PKG_INSTALL_DIR)/opt/lib/libftdi.so* $(1)/opt/lib/
++	$(CP) $(PKG_INSTALL_DIR)/Apps/opt/lib/libftdi.{a,so} $(1)/opt/lib/
++	$(CP) $(PKG_INSTALL_DIR)/Apps/opt/lib/libftdi.so* $(1)/opt/lib/
 +	$(INSTALL_DIR) $(1)/opt/lib/pkgconfig/
-+	$(CP) $(PKG_INSTALL_DIR)/opt/lib/pkgconfig/libftdi.pc $(1)/opt/lib/pkgconfig/libftdi.pc
++	$(CP) $(PKG_INSTALL_DIR)/Apps/opt/lib/pkgconfig/libftdi.pc $(1)/opt/lib/pkgconfig/libftdi.pc
  	$(SED) \
 -		's,/usr/include,$$$${prefix}/include,g' \
 -		 $(1)/usr/lib/pkgconfig/libftdi.pc
-+		's,/opt/include,$$$${prefix}/include,g' \
++		's,/Apps/opt/include,$$$${prefix}/include,g' \
 +		 $(1)/opt/lib/pkgconfig/libftdi.pc
  	$(SED) \
 -		's,/usr/lib,$$$${prefix}/lib,g' \
 -		 $(1)/usr/lib/pkgconfig/libftdi.pc
-+		's,/opt/lib,$$$${prefix}/lib,g' \
++		's,/Apps/opt/lib,$$$${prefix}/lib,g' \
 +		 $(1)/opt/lib/pkgconfig/libftdi.pc
  endef
  
@@ -35,9 +35,9 @@
 -	$(INSTALL_DIR) $(1)/usr/lib
 -	$(CP) $(PKG_INSTALL_DIR)/usr/lib/libftdi.so.* $(1)/usr/lib/
 +	$(INSTALL_DIR) $(1)/opt/bin
-+	$(INSTALL_BIN) $(PKG_INSTALL_DIR)/opt/bin/libftdi-config $(1)/opt/bin/
++	$(INSTALL_BIN) $(PKG_INSTALL_DIR)/Apps/opt/bin/libftdi-config $(1)/opt/bin/
 +	$(INSTALL_DIR) $(1)/opt/lib
-+	$(CP) $(PKG_INSTALL_DIR)/opt/lib/libftdi.so.* $(1)/opt/lib/
++	$(CP) $(PKG_INSTALL_DIR)/Apps/opt/lib/libftdi.so.* $(1)/opt/lib/
  endef
  
  $(eval $(call BuildPackage,libftdi))
