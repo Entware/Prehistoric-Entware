@@ -1,16 +1,15 @@
---- ../../../downloads/openwrt_trunk-q44497/feeds/oldpackages/utils/rrdtool/Makefile	2015-02-25 12:52:24.504485917 +0300
-+++ ../../../openwrt_trunk/feeds/oldpackages/utils/rrdtool/Makefile	2015-03-01 00:24:41.306454681 +0300
-@@ -74,7 +74,8 @@
+--- ../../../downloads/openwrt_trunk-q44497/feeds/oldpackages/utils/rrdtool/Makefile	2015-03-01 22:34:30.861571683 +0300
++++ ../../../openwrt_trunk/feeds/oldpackages/utils/rrdtool/Makefile	2015-03-02 15:47:01.202268516 +0300
+@@ -74,7 +74,7 @@
  	--disable-tcl \
  	--disable-ruby \
  	--without-x \
 -	--with-rrd-default-font="/usr/share/rrdtool/fonts/DejaVuSansMono-Roman.ttf" \
 +	--with-rrd-default-font="/opt/share/rrdtool/fonts/DejaVuSansMono-Roman.ttf" \
-+	CPPFLAGS="-I $(STAGING_DIR)/opt/include/freetype2" \
  
  CONFIGURE_VARS += \
  	rd_cv_ieee_works=yes \
-@@ -102,30 +103,30 @@
+@@ -102,30 +102,30 @@
  endef
  
  define Build/InstallDev

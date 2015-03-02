@@ -1,5 +1,5 @@
---- ../../../downloads/openwrt_trunk-r44486/feeds/packages/libs/freetype/Makefile	2015-02-18 12:16:57.596306332 +0300
-+++ ../../../openwrt_trunk/feeds/packages/libs/freetype/Makefile	2015-02-19 14:40:14.006574489 +0300
+--- ../../../downloads/openwrt_trunk-q44497/feeds/packages/libs/freetype/Makefile	2015-03-01 22:34:30.737142644 +0300
++++ ../../../openwrt_trunk/feeds/packages/libs/freetype/Makefile	2015-03-02 15:02:50.781347045 +0300
 @@ -55,29 +55,29 @@
  
  define Build/InstallDev
@@ -26,12 +26,12 @@
  	$(SED) \
 -		's,/usr/include,$$$${prefix}/include,g' \
 -		 $(1)/usr/lib/pkgconfig/freetype2.pc
-+		's,/opt/include,$$$${prefix}/include,g' \
++		's,/Apps/opt/include,$$$${prefix}/include,g' \
 +		 $(1)/opt/lib/pkgconfig/freetype2.pc
  	$(SED) \
 -		's,/usr/lib,$$$${exec_prefix}/lib,g' \
 -		 $(1)/usr/lib/pkgconfig/freetype2.pc
-+		's,/opt/lib,$$$${exec_prefix}/lib,g' \
++		's,/Apps/opt/lib,$$$${exec_prefix}/lib,g' \
 +		 $(1)/opt/lib/pkgconfig/freetype2.pc
  endef
  
