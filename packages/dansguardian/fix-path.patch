@@ -1,6 +1,6 @@
-diff -urx .svn ../../../downloads/openwrt_trunk-r44486/feeds/packages/net/dansguardian/files/dansguardianf1.conf ../../../openwrt_trunk/feeds/packages/net/dansguardian/files/dansguardianf1.conf
---- ../../../downloads/openwrt_trunk-r44486/feeds/packages/net/dansguardian/files/dansguardianf1.conf	2015-02-18 12:16:57.620306332 +0300
-+++ ../../../openwrt_trunk/feeds/packages/net/dansguardian/files/dansguardianf1.conf	2015-02-18 17:03:42.327987703 +0300
+diff -urx .svn ../../../downloads/openwrt_trunk-q44497/feeds/packages/net/dansguardian/files/dansguardianf1.conf ../../../openwrt_trunk/feeds/packages/net/dansguardian/files/dansguardianf1.conf
+--- ../../../downloads/openwrt_trunk-q44497/feeds/packages/net/dansguardian/files/dansguardianf1.conf	2015-03-01 22:34:30.725317094 +0300
++++ ../../../openwrt_trunk/feeds/packages/net/dansguardian/files/dansguardianf1.conf	2015-03-01 23:00:27.929198687 +0300
 @@ -25,20 +25,20 @@
  #groupname = ''
  
@@ -107,10 +107,11 @@ diff -urx .svn ../../../downloads/openwrt_trunk-r44486/feeds/packages/net/dansgu
  
  # Category display threshold
  # This option only applies to pages blocked by weighted phrase filtering.
-diff -urx .svn ../../../downloads/openwrt_trunk-r44486/feeds/packages/net/dansguardian/Makefile ../../../openwrt_trunk/feeds/packages/net/dansguardian/Makefile
---- ../../../downloads/openwrt_trunk-r44486/feeds/packages/net/dansguardian/Makefile	2015-02-18 12:16:57.620306332 +0300
-+++ ../../../openwrt_trunk/feeds/packages/net/dansguardian/Makefile	2015-02-18 17:04:59.231993538 +0300
-@@ -34,8 +34,8 @@
+Только в ../../../openwrt_trunk/feeds/packages/net/dansguardian/files: S24dansguardian
+diff -urx .svn ../../../downloads/openwrt_trunk-q44497/feeds/packages/net/dansguardian/Makefile ../../../openwrt_trunk/feeds/packages/net/dansguardian/Makefile
+--- ../../../downloads/openwrt_trunk-q44497/feeds/packages/net/dansguardian/Makefile	2015-03-01 22:34:30.725317094 +0300
++++ ../../../openwrt_trunk/feeds/packages/net/dansguardian/Makefile	2015-03-02 13:02:02.613492249 +0300
+@@ -34,13 +34,13 @@
  endef
  
  define Package/dansguardian/conffiles
@@ -121,6 +122,12 @@ diff -urx .svn ../../../downloads/openwrt_trunk-r44486/feeds/packages/net/dansgu
  endef
  
  CONFIGURE_VARS += \
+ 	INCLUDES="" \
+-	CXXFLAGS="$$$$CXXFLAGS -fno-rtti" \
++	CXXFLAGS="$$$$CXXFLAGS -fno-rtti -std=c++0x" \
+ 	LIBS="-lpthread" \
+ 
+ define Build/Configure
 @@ -54,25 +54,22 @@
  endef
  
