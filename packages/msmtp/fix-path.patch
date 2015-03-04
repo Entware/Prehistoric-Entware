@@ -1,5 +1,14 @@
---- ../../../downloads/openwrt_trunk-r44497/feeds/packages/mail/msmtp/Makefile	2015-02-20 12:39:13.377134249 +0300
-+++ ../../../openwrt_trunk/feeds/packages/mail/msmtp/Makefile	2015-02-21 16:41:06.554193080 +0300
+--- ../../../downloads/openwrt_trunk-r44497/feeds/packages/mail/msmtp/Makefile	2015-02-24 12:08:55.725768266 +0300
++++ ../../../openwrt_trunk/feeds/packages/mail/msmtp/Makefile	2015-03-04 10:46:13.130566000 +0300
+@@ -10,7 +10,7 @@
+ 
+ PKG_NAME:=msmtp
+ PKG_VERSION:=1.6.1
+-PKG_RELEASE:=1
++PKG_RELEASE:=1a
+ 
+ PKG_SOURCE:=$(PKG_NAME)-$(PKG_VERSION).tar.xz
+ PKG_SOURCE_URL:=@SF/msmtp
 @@ -39,7 +39,7 @@
   an SMTP server (for example at a free mail provider) which does the
   delivery. To use this program with your mail user agent (MUA), create
@@ -18,7 +27,15 @@
  endef
  
  define Package/msmtp/description
-@@ -101,34 +101,35 @@
+@@ -85,6 +85,7 @@
+ 	--without-libintl-prefix \
+ 	--without-libgsasl \
+ 	--without-libidn \
++	--disable-gai-idn \
+ 	--without-gnome-keyring \
+ 	--without-macosx-keyring \
+ 
+@@ -101,34 +102,35 @@
  endif
  
  define Package/msmtp/install

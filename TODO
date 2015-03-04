@@ -20,7 +20,7 @@ wview		5.21.5
 
 Can't be upgraded (because of too old 2.6.22 kernel, mostly):
 aircrack-ng	1.1		requires libnl1 or libnl3
-bluez		3.36		epoll_create1() is absence
+bluez		3.36		epoll_create1() absence
 gdb		7.3.1		due to gnu_v3_object_ctor_group() absence
 libnl		2.0 (r33657)
 libtorrent	0.13.4		lack of C++11 features
