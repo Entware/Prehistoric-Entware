@@ -1,0 +1,13 @@
+--- ../../../downloads/openwrt_trunk-r44497/feeds/packages/utils/pv/Makefile	2015-02-24 12:08:56.849768248 +0300
++++ ../../../openwrt_trunk/feeds/packages/utils/pv/Makefile	2015-03-04 11:58:46.078482084 +0300
+@@ -38,8 +38,8 @@
+ endef
+ 
+ define Package/pv/install
+-	$(INSTALL_DIR) $(1)/usr/bin
+-	$(INSTALL_BIN) $(PKG_INSTALL_DIR)/usr/bin/pv $(1)/usr/bin/
++	$(INSTALL_DIR) $(1)/opt/bin
++	$(INSTALL_BIN) $(PKG_INSTALL_DIR)/opt/bin/pv $(1)/opt/bin/
+ endef
+ 
+ $(eval $(call BuildPackage,pv))
