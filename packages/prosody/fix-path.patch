@@ -1,0 +1,170 @@
+diff -urx .svn ../../../downloads/openwrt_trunk-r44497/feeds/packages/net/prosody/files/prosody.cfg.lua ../../../openwrt_trunk/feeds/packages/net/prosody/files/prosody.cfg.lua
+--- ../../../downloads/openwrt_trunk-r44497/feeds/packages/net/prosody/files/prosody.cfg.lua	2015-02-24 12:08:56.485768256 +0300
++++ ../../../openwrt_trunk/feeds/packages/net/prosody/files/prosody.cfg.lua	2015-03-04 12:23:20.978462152 +0300
+@@ -118,14 +118,14 @@
+ -- Logging configuration
+ -- For advanced logging see http://prosody.im/doc/logging
+ log = {
+-	info = "/var/log/prosody/prosody.log"; -- Change 'info' to 'debug' for verbose logging
+-	error = "/var/log/prosody/prosody.err";
++	info = "/opt/var/log/prosody/prosody.log"; -- Change 'info' to 'debug' for verbose logging
++	error = "/opt/var/log/prosody/prosody.err";
+ 	-- "*syslog"; -- Uncomment this for logging to syslog; needs mod_posix
+ 	-- "*console"; -- Log to the console, useful for debugging with daemonize=false
+ }
+ 
+ -- Pidfile, used by prosodyctl and the init.d script
+-pidfile = "/var/run/prosody/prosody.pid"
++pidfile = "/opt/var/run/prosody/prosody.pid"
+ 
+ -- User and group, used for daemon
+ prosody_user = "prosody"
+@@ -145,8 +145,8 @@
+ 	-- Note that old-style SSL on port 5223 only supports one certificate, and will always
+ 	-- use the global one.
+ 	ssl = {
+-		key = "/etc/prosody/certs/example.com.key";
+-		certificate = "/etc/prosody/certs/example.com.crt";
++		key = "/opt/etc/prosody/certs/example.com.key";
++		certificate = "/opt/etc/prosody/certs/example.com.crt";
+ 	}
+ 
+ ------ Components ------
+diff -urx .svn ../../../downloads/openwrt_trunk-r44497/feeds/packages/net/prosody/Makefile ../../../openwrt_trunk/feeds/packages/net/prosody/Makefile
+--- ../../../downloads/openwrt_trunk-r44497/feeds/packages/net/prosody/Makefile	2015-02-24 12:08:56.485768256 +0300
++++ ../../../openwrt_trunk/feeds/packages/net/prosody/Makefile	2015-03-04 13:16:09.970402865 +0300
+@@ -38,87 +38,73 @@
+ endef
+ 
+ define Package/prosody/conffiles
+-/etc/prosody/prosody.cfg.lua
++/opt/etc/prosody/prosody.cfg.lua
+ endef
+ 
+ TARGET_CFLAGS += $(FPIC) 
+ 
+-TARGET_LDFLAGS += -L$(STAGING_DIR)/usr/lib 
++TARGET_LDFLAGS += -L$(STAGING_DIR)/opt/lib 
+ 
+ 
+ define Build/Configure
+ 	# this is *NOT* GNU autoconf stuff
+ 	(cd $(PKG_BUILD_DIR); ./configure \
+-		--prefix=/usr \
++		--prefix=/opt \
+ 		--with-lua="$(STAGING_DIR)/host/bin" \
+-		--with-lua-include="$(STAGING_DIR)/usr/include" \
+-		--with-lua-lib="$(STAGING_DIR)/usr/lib" \
++		--with-lua-include="$(STAGING_DIR)/opt/include" \
++		--with-lua-lib="$(STAGING_DIR)/opt/lib" \
+ 		--cflags="$(TARGET_CFLAGS)" \
+ 		--ldflags="$(TARGET_LDFLAGS) -llua -lm -ldl -shared" \
+-		--c-compiler="$(CC)" \
+-		--linker="$(LD)" \
+-		--datadir="/etc/prosody/data" \
++		--c-compiler="$(TARGET_CC)" \
++		--linker="$(TARGET_CC)" \
++		--datadir="/opt/etc/prosody/data" \
+ 	)
+ endef
+ #	LDFLAGS="$(TARGET_LDFLAGS) -llua -lm -ldl" \
+ 
+ MAKE_FLAGS += \
+ 	CFLAGS="$(TARGET_CFLAGS) $(TARGET_CPPFLAGS) -std=gnu99" \
+-	PREFIX="/usr" \
++	PREFIX="/opt" \
++	LD="$(TARGET_CC)"
+ 
+ define Package/prosody/install
+-	$(INSTALL_DIR) $(1)/etc/init.d
+-	$(INSTALL_BIN) ./files/prosody.init $(1)/etc/init.d/prosody
+-	$(INSTALL_DIR) $(1)/etc/prosody
+-	#$(INSTALL_CONF) $(PKG_INSTALL_DIR)/etc/prosody/prosody.cfg.lua $(1)/etc/prosody/
+-	$(INSTALL_CONF) ./files/prosody.cfg.lua $(1)/etc/prosody/
+-	$(INSTALL_DIR) $(1)/etc/prosody/certs
+-	$(INSTALL_DATA) $(PKG_INSTALL_DIR)/etc/prosody/certs/localhost.{crt,key} $(1)/etc/prosody/certs/
+-	$(INSTALL_DIR) $(1)/etc/prosody/data
+-	$(INSTALL_DIR) $(1)/usr/bin
+-	$(INSTALL_BIN) $(PKG_INSTALL_DIR)/usr/bin/prosody{,ctl} $(1)/usr/bin/
+-	$(INSTALL_DIR) $(1)/usr/lib/prosody
+-	$(INSTALL_BIN) $(PKG_INSTALL_DIR)/usr/lib/prosody/prosody.version $(1)/usr/lib/prosody/
+-	$(INSTALL_DIR) $(1)/usr/lib/prosody/core
+-	$(INSTALL_DATA) $(PKG_INSTALL_DIR)/usr/lib/prosody/core/*.lua $(1)/usr/lib/prosody/core/
+-	$(INSTALL_DIR) $(1)/usr/lib/prosody/fallbacks
+-	#$(INSTALL_DATA) $(PKG_INSTALL_DIR)/usr/lib/prosody/fallbacks/*.lua $(1)/usr/lib/prosody/fallbacks/
+-	$(INSTALL_DIR) $(1)/usr/lib/prosody/modules
+-	$(INSTALL_DATA) $(PKG_INSTALL_DIR)/usr/lib/prosody/modules/*.lua $(1)/usr/lib/prosody/modules/
+-	$(INSTALL_DIR) $(1)/usr/lib/prosody/modules/adhoc
+-	$(INSTALL_DATA) $(PKG_INSTALL_DIR)/usr/lib/prosody/modules/adhoc/*.lua $(1)/usr/lib/prosody/modules/adhoc/
+-	$(INSTALL_DIR) $(1)/usr/lib/prosody/modules/mod_s2s
+-	$(INSTALL_DATA) $(PKG_INSTALL_DIR)/usr/lib/prosody/modules/mod_s2s/*.lua $(1)/usr/lib/prosody/modules/mod_s2s/
+-	$(INSTALL_DIR) $(1)/usr/lib/prosody/modules/muc
+-	$(INSTALL_DATA) $(PKG_INSTALL_DIR)/usr/lib/prosody/modules/muc/*.lua $(1)/usr/lib/prosody/modules/muc/
+-	$(INSTALL_DIR) $(1)/usr/lib/prosody/modules/storage
+-	$(INSTALL_DATA) $(PKG_INSTALL_DIR)/usr/lib/prosody/modules/storage/*.lua $(1)/usr/lib/prosody/modules/storage/
+-	$(INSTALL_DIR) $(1)/usr/lib/prosody/net
+-	$(INSTALL_DATA) $(PKG_INSTALL_DIR)/usr/lib/prosody/net/*.lua $(1)/usr/lib/prosody/net/
+-	$(INSTALL_DIR) $(1)/usr/lib/prosody/net/http
+-	$(INSTALL_DATA) $(PKG_INSTALL_DIR)/usr/lib/prosody/net/http/*.lua $(1)/usr/lib/prosody/net/http/
+-	$(INSTALL_DIR) $(1)/usr/lib/prosody/util
+-	$(INSTALL_DATA) $(PKG_INSTALL_DIR)/usr/lib/prosody/util/*.lua $(1)/usr/lib/prosody/util/
+-	$(INSTALL_BIN) $(PKG_INSTALL_DIR)/usr/lib/prosody/util/*.so $(1)/usr/lib/prosody/util/
+-	$(INSTALL_DIR) $(1)/usr/lib/prosody/util/sasl
+-	$(INSTALL_DATA) $(PKG_INSTALL_DIR)/usr/lib/prosody/util/sasl/*.lua $(1)/usr/lib/prosody/util/sasl/
+-	#$(INSTALL_BIN) $(PKG_INSTALL_DIR)/usr/lib/prosody/util/sasl/*.so $(1)/usr/lib/prosody/util/sasl/
+-endef
+-
+-define Package/prosody/postinst
+-#!/bin/sh
+-[ -n "$${IPKG_INSTROOT}" ] || {
+-	echo "Fixing lua with paxctl if needed!!!"
+-	[ -f /sbin/paxctl ] && {
+-		paxctl  -v /usr/bin/ > /dev/null  2>&1
+-		[ $$? -ne 0 ] && {
+-			cp /usr/bin/lua /tmp
+-			paxctl -c -m /tmp/lua > /dev/null  2>&1 
+-			cp -f /tmp/lua /usr/bin/lua
+-		}
+-	}
+-	exit 0
+-}
++	$(INSTALL_DIR) $(1)/opt/etc/init.d
++	$(INSTALL_BIN) ./files/S34prosody $(1)/opt/etc/init.d/
++	$(INSTALL_DIR) $(1)/opt/etc/prosody
++	#$(INSTALL_CONF) $(PKG_INSTALL_DIR)/opt/etc/prosody/prosody.cfg.lua $(1)/opt/etc/prosody/
++	$(INSTALL_CONF) ./files/prosody.cfg.lua $(1)/opt/etc/prosody/
++	$(INSTALL_DIR) $(1)/opt/etc/prosody/certs
++	$(INSTALL_DATA) $(PKG_INSTALL_DIR)/opt/etc/prosody/certs/localhost.{crt,key} $(1)/opt/etc/prosody/certs/
++	$(INSTALL_DIR) $(1)/opt/etc/prosody/data
++	$(INSTALL_DIR) $(1)/opt/bin
++	$(INSTALL_BIN) $(PKG_INSTALL_DIR)/opt/bin/prosody{,ctl} $(1)/opt/bin/
++	$(INSTALL_DIR) $(1)/opt/lib/prosody
++	$(INSTALL_BIN) $(PKG_INSTALL_DIR)/opt/lib/prosody/prosody.version $(1)/opt/lib/prosody/
++	$(INSTALL_DIR) $(1)/opt/lib/prosody/core
++	$(INSTALL_DATA) $(PKG_INSTALL_DIR)/opt/lib/prosody/core/*.lua $(1)/opt/lib/prosody/core/
++	$(INSTALL_DIR) $(1)/opt/lib/prosody/fallbacks
++	#$(INSTALL_DATA) $(PKG_INSTALL_DIR)/opt/lib/prosody/fallbacks/*.lua $(1)/opt/lib/prosody/fallbacks/
++	$(INSTALL_DIR) $(1)/opt/lib/prosody/modules
++	$(INSTALL_DATA) $(PKG_INSTALL_DIR)/opt/lib/prosody/modules/*.lua $(1)/opt/lib/prosody/modules/
++	$(INSTALL_DIR) $(1)/opt/lib/prosody/modules/adhoc
++	$(INSTALL_DATA) $(PKG_INSTALL_DIR)/opt/lib/prosody/modules/adhoc/*.lua $(1)/opt/lib/prosody/modules/adhoc/
++	$(INSTALL_DIR) $(1)/opt/lib/prosody/modules/mod_s2s
++	$(INSTALL_DATA) $(PKG_INSTALL_DIR)/opt/lib/prosody/modules/mod_s2s/*.lua $(1)/opt/lib/prosody/modules/mod_s2s/
++	$(INSTALL_DIR) $(1)/opt/lib/prosody/modules/muc
++	$(INSTALL_DATA) $(PKG_INSTALL_DIR)/opt/lib/prosody/modules/muc/*.lua $(1)/opt/lib/prosody/modules/muc/
++	$(INSTALL_DIR) $(1)/opt/lib/prosody/modules/storage
++	$(INSTALL_DATA) $(PKG_INSTALL_DIR)/opt/lib/prosody/modules/storage/*.lua $(1)/opt/lib/prosody/modules/storage/
++	$(INSTALL_DIR) $(1)/opt/lib/prosody/net
++	$(INSTALL_DATA) $(PKG_INSTALL_DIR)/opt/lib/prosody/net/*.lua $(1)/opt/lib/prosody/net/
++	$(INSTALL_DIR) $(1)/opt/lib/prosody/net/http
++	$(INSTALL_DATA) $(PKG_INSTALL_DIR)/opt/lib/prosody/net/http/*.lua $(1)/opt/lib/prosody/net/http/
++	$(INSTALL_DIR) $(1)/opt/lib/prosody/util
++	$(INSTALL_DATA) $(PKG_INSTALL_DIR)/opt/lib/prosody/util/*.lua $(1)/opt/lib/prosody/util/
++	$(INSTALL_BIN) $(PKG_INSTALL_DIR)/opt/lib/prosody/util/*.so $(1)/opt/lib/prosody/util/
++	$(INSTALL_DIR) $(1)/opt/lib/prosody/util/sasl
++	$(INSTALL_DATA) $(PKG_INSTALL_DIR)/opt/lib/prosody/util/sasl/*.lua $(1)/opt/lib/prosody/util/sasl/
++	#$(INSTALL_BIN) $(PKG_INSTALL_DIR)/opt/lib/prosody/util/sasl/*.so $(1)/opt/lib/prosody/util/sasl/
++	$(INSTALL_DIR) $(1)/opt/var/{log,run}/prosody
+ endef
+ 
+ $(eval $(call BuildPackage,prosody))
