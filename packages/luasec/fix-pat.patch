@@ -1,0 +1,29 @@
+--- ../../../downloads/openwrt_trunk-r44497/feeds/packages/lang/luasec/Makefile	2015-02-24 12:08:55.089768282 +0300
++++ ../../../openwrt_trunk/feeds/packages/lang/luasec/Makefile	2015-03-04 12:27:14.690446056 +0300
+@@ -43,19 +43,19 @@
+ MAKE_FLAGS += \
+ 	INCDIR="$(TARGET_CPPFLAGS) -I." \
+ 	LIBDIR="$(TARGET_LDFLAGS) -L./luasocket" \
+-	LUACPATH="/usr/lib/lua" \
+-	LUAPATH="/usr/lib/lua"
++	LUACPATH="/opt/lib/lua" \
++	LUAPATH="/opt/lib/lua"
+ 
+ define Build/Compile
+ $(call Build/Compile/Default,linux)
+ endef
+ 
+ define Package/luasec/install
+-	$(INSTALL_DIR) $(1)/usr/lib/lua
+-	$(INSTALL_BIN) $(PKG_INSTALL_DIR)/usr/lib/lua/ssl.so $(1)/usr/lib/lua/
+-	$(INSTALL_DATA) $(PKG_INSTALL_DIR)/usr/lib/lua/ssl.lua $(1)/usr/lib/lua/
+-	$(INSTALL_DIR) $(1)/usr/lib/lua/ssl
+-	$(INSTALL_DATA) $(PKG_INSTALL_DIR)/usr/lib/lua/ssl/https.lua $(1)/usr/lib/lua/ssl/
++	$(INSTALL_DIR) $(1)/opt/lib/lua
++	$(INSTALL_BIN) $(PKG_INSTALL_DIR)/opt/lib/lua/ssl.so $(1)/opt/lib/lua/
++	$(INSTALL_DATA) $(PKG_INSTALL_DIR)/opt/lib/lua/ssl.lua $(1)/opt/lib/lua/
++	$(INSTALL_DIR) $(1)/opt/lib/lua/ssl
++	$(INSTALL_DATA) $(PKG_INSTALL_DIR)/opt/lib/lua/ssl/https.lua $(1)/opt/lib/lua/ssl/
+ endef
+ 
+ $(eval $(call BuildPackage,luasec))

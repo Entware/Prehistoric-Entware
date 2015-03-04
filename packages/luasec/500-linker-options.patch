@@ -1,0 +1,11 @@
+--- a/src/Makefile
++++ b/src/Makefile
+@@ -50,7 +50,7 @@
+ 	@cd luasocket && $(MAKE)
+ 
+ $(CMOD): $(EXTRA) $(OBJS)
+-	$(LD) $(LDFLAGS) -o $@ $(OBJS) $(LIBS)
++	$(CC) $(LDFLAGS) -o $@ $(OBJS) $(LIBS)
+ 
+ clean:
+ 	cd luasocket && $(MAKE) clean
