@@ -1,5 +1,33 @@
---- ../../../downloads/openwrt_trunk-r35474/feeds/oldpackages/net/stunnel/Makefile
-+++ ../../../openwrt_trunk/feeds/oldpackages/net/stunnel/Makefile
+--- ../../../downloads/openwrt_trunk-r44497/feeds/oldpackages/net/stunnel/Makefile	2015-02-24 12:08:57.265768241 +0300
++++ ../../../openwrt_trunk/feeds/oldpackages/net/stunnel/Makefile	2015-02-27 12:35:37.897020244 +0300
+@@ -8,14 +8,14 @@
+ include $(TOPDIR)/rules.mk
+ 
+ PKG_NAME:=stunnel
+-PKG_VERSION:=4.33
++PKG_VERSION:=5.10
+ PKG_RELEASE:=1
+ 
+-PKG_SOURCE_URL:=http://www.stunnel.org/download/stunnel/src/
++PKG_SOURCE_URL:=https://www.stunnel.org/downloads
+ PKG_SOURCE:=$(PKG_NAME)-$(PKG_VERSION).tar.gz
+-PKG_MD5SUM:=559a864066d8cc4afd8a97682c90d41c
++PKG_MD5SUM:=a0edda805eb7d6ea600a230fb0979ea1
+ 
+-PKG_FIXUP:=autoreconf
++#PKG_FIXUP:=autoreconf
+ PKG_INSTALL:=1
+ 
+ include $(INCLUDE_DIR)/package.mk
+@@ -23,7 +23,7 @@
+ define Package/stunnel
+   SECTION:=net
+   CATEGORY:=Network
+-  DEPENDS:=+libopenssl +libwrap
++  DEPENDS:=+libopenssl +libwrap +libssp
+   TITLE:=SSL TCP Wrapper
+   URL:=http://www.stunnel.org/
+ endef
 @@ -37,29 +37,27 @@
  endef
  
