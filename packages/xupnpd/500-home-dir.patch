@@ -21,7 +21,7 @@
 -
 -        argv[0]=(char*)p+1;
 -    }
-+    int rc = chdir("/opt/share/xupnpd");
++    int rc = chdir("/Apps/opt/share/xupnpd");
  
      const char* root=getenv("XUPNPDROOTDIR");
      if(root && *root)
