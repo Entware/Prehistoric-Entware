@@ -1,15 +1,104 @@
---- ../../../downloads/openwrt_trunk-r43593/feeds/packages/mail/dovecot/Makefile	2014-12-10 12:26:32.942951682 +0300
-+++ ../../../openwrt_trunk/feeds/packages/mail/dovecot/Makefile	2014-12-10 12:49:03.278927084 +0300
-@@ -52,7 +52,7 @@
+--- ../../../downloads/openwrt_trunk-q44497/feeds/packages/mail/dovecot/Makefile	2015-03-01 22:34:30.714413614 +0300
++++ ../../../openwrt_trunk/feeds/packages/mail/dovecot/Makefile	2015-04-13 13:16:51.464333536 +0300
+@@ -9,7 +9,7 @@
+ 
+ PKG_NAME:=dovecot
+ PKG_VERSION:=2.2.15
+-PKG_RELEASE:=1
++PKG_RELEASE:=1a
+ 
+ PKG_SOURCE:=$(PKG_NAME)-$(PKG_VERSION).tar.gz
+ PKG_SOURCE_URL:=http://www.dovecot.org/releases/2.2
+@@ -17,6 +17,8 @@
+ PKG_LICENSE:=LGPL-2.1 MIT BSD-3-Clause Unique
+ PKG_LICENSE_FILES:=COPYING COPYING.LGPL COPYING.MIT
+ 
++PKG_BUILD_DIR:=$(BUILD_DIR)/$(PKG_NAME)-$(BUILD_VARIANT)/$(PKG_NAME)-$(PKG_VERSION)
++
+ PKG_BUILD_DEPENDS:=libiconv
+ 
+ PKG_FIXUP:=autoreconf
+@@ -24,7 +26,7 @@
+ 
+ include $(INCLUDE_DIR)/package.mk
+ 
+-define Package/dovecot
++define Package/dovecot/Default
+   SECTION:=mail
+   CATEGORY:=Mail
+   DEPENDS:=+DOVECOT_LDAP:libopenldap +libopenssl +librt +zlib +libbz2 +libcap
+@@ -34,29 +36,59 @@
+   USERID:=dovecot=59:dovecot=59
+ endef
+ 
+-define Package/dovecot/description
++define Package/dovecot/Default/description
+  Dovecot is a program which provides POP3 and IMAP services.
+ endef
+ 
+-define Package/dovecot/config
+-        menu "Select dovecot build options"
+-                depends on PACKAGE_dovecot
+-                config DOVECOT_LDAP
+-                        bool "LDAP support"
+-                        default n
+-                        help
+-                          Implements LDAP support in dovecot.
+-        endmenu
++#define Package/dovecot/config
++#        menu "Select dovecot build options"
++#                depends on PACKAGE_dovecot
++#                config DOVECOT_LDAP
++#                        bool "LDAP support"
++#                        default n
++#                        help
++#                          Implements LDAP support in dovecot.
++#        endmenu
++#endef
++
++CONFIG_DOVECOT_LDAP=y
++
++define Package/dovecot
++$(call Package/dovecot/Default)
++  TITLE+= (without MySQL support)
++  VARIANT:=nomysql
++endef
++
++define Package/dovecot-mysql
++$(call Package/dovecot/Default)
++  DEPENDS+= +libmysqlclient
++  TITLE+= (with MySQL support)
++  VARIANT:=mysql
++endef
++
++define Package/dovecot/description
++$(call Package/dovecot/Default/description)
++ This package is built without MySQL support.
++endef
++
++define Package/dovecot-mysql/description
++$(call Package/dovecot/Default/description)
++ This package is built with MySQL support.
+ endef
+ 
  CONFIGURE_ARGS += \
  	--without-gssapi \
  	--without-pam \
 -	--with-moduledir=/usr/lib/dovecot/modules \
-+	--with-moduledir=/opt/lib/dovecot/modules \
++	--with-moduledir=/Apps/opt/lib/dovecot/modules \
  	--with-notify=dnotify \
  	--without-lzma \
  	--without-lz4
-@@ -78,21 +78,23 @@
+ 
++ifeq ($(BUILD_VARIANT),mysql)
++	CONFIGURE_ARGS += \
++	--with-sql=plugin --with-mysql
++endif
++
+ ifneq ($(strip $(CONFIG_DOVECOT_LDAP)),)
+   CONFIGURE_ARGS+= \
+ 	--with-ldap=yes
+@@ -78,21 +110,26 @@
  	lib_cv___va_copy=yes \
  	lib_cv_va_val_copy=yes
  
@@ -46,4 +135,7 @@
 +	find $(1)/opt/lib/dovecot/ -name "*.a" -o -name "*.la" | xargs rm
  endef
  
++Package/dovecot-mysql/install = $(Package/dovecot/install)
++
  $(eval $(call BuildPackage,dovecot))
++$(eval $(call BuildPackage,dovecot-mysql))

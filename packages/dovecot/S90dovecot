@@ -2,7 +2,7 @@
 
 ENABLED=yes
 PROCS=dovecot
-ARGS="-c /Apps/opt/etc/dovecot.conf"
+ARGS="-c /Apps/opt/etc/dovecot/dovecot.conf"
 PREARGS=""
 DESC=$PROCS
 PATH=/Apps/opt/sbin:/Apps/opt/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin
