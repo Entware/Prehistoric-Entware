@@ -1,6 +1,6 @@
---- ../../../downloads/openwrt_trunk-r44486/feeds/packages/utils/acl/Makefile	2015-02-18 12:16:57.636306330 +0300
-+++ ../../../openwrt_trunk/feeds/packages/utils/acl/Makefile	2015-02-18 12:17:06.788306164 +0300
-@@ -70,19 +70,19 @@
+--- ../../../downloads/openwrt_trunk-r45513/feeds/packages/utils/acl/Makefile	2015-04-20 10:09:28.954135359 +0300
++++ ../../../openwrt_trunk/feeds/packages/utils/acl/Makefile	2015-04-20 10:09:34.342135261 +0300
+@@ -69,19 +69,19 @@
  CONFIGURE_ARGS += --enable-static --enable-shared
  
  define Package/acl/install

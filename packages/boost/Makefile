@@ -9,6 +9,7 @@ all: .done
 
 .done:
 	patch -d $(TOP) -p3 -i $(CURDIR)/fix-path.patch
+	mkdir -p ../../../openwrt_trunk/feeds/packages/libs/boost/patches
 	cp -f ./500-no-epoll_create1.patch ../../../openwrt_trunk/feeds/packages/libs/boost/patches/
 	@touch $@
 

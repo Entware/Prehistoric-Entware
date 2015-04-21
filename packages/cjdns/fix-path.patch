@@ -1,0 +1,80 @@
+--- ../../../downloads/openwrt_trunk-r45513/feeds/routing/cjdns/Makefile	2015-04-20 10:09:28.882135362 +0300
++++ ../../../openwrt_trunk/feeds/routing/cjdns/Makefile	2015-04-21 10:28:18.380596487 +0300
+@@ -22,8 +22,7 @@
+ 	TITLE:=Encrypted near-zero-conf mesh routing protocol
+ 	URL:=https://github.com/hyperboria/cjdns
+ 	MAINTAINER:=Lars Gierth <larsg@systemli.org>
+-	DEPENDS:=+kmod-tun +kmod-ipv6 +libnl-tiny +libpthread +librt \
+-		+libuci-lua +lua-bencode +dkjson +luasocket +lua-sha2
++	DEPENDS:=+librt
+ endef
+ 
+ define Package/cjdns/description
+@@ -36,10 +35,6 @@
+ define Build/Configure
+ endef
+ 
+-ifneq ($(CONFIG_KERNEL_SECCOMP_FILTER),y)
+-PKG_DO_VARS:=Seccomp_NO=1
+-endif
+-
+ define Build/Compile
+ 	CROSS="true" \
+ 	CC="$(TARGET_CC)" \
+@@ -49,52 +44,21 @@
+ 	TARGET_ARCH="$(CONFIG_ARCH)" \
+ 	UCLIBC=1 \
+ 	SSP_SUPPORT="$(CONFIG_SSP_SUPPORT)" \
+-	$(PKG_DO_VARS) \
+ 	$(PKG_BUILD_DIR)/do
+ endef
+ 
+ define Package/cjdns/install
+ 	$(INSTALL_DIR) \
+-		$(1)/usr/sbin \
+-		$(1)/usr/bin \
+-		$(1)/etc/config \
+-		$(1)/etc/init.d \
+-		$(1)/etc/uci-defaults \
+-		$(1)/usr/lib/lua/cjdns
+-
+-	$(INSTALL_BIN) \
+-		./files/cjdrouteconf \
+-		$(1)/usr/bin
++		$(1)/opt/sbin \
++		$(1)/opt/bin
+ 
+ 	$(INSTALL_BIN) \
+ 		$(PKG_BUILD_DIR)/cjdroute \
+-		$(1)/usr/sbin
++		$(1)/opt/sbin
+ 
+ 	$(INSTALL_BIN) \
+ 		$(PKG_BUILD_DIR)/publictoip6 \
+-		$(1)/usr/bin
+-
+-	$(INSTALL_BIN) \
+-		./files/cjdns.init \
+-		$(1)/etc/init.d/cjdns
+-
+-	$(INSTALL_BIN) \
+-		./files/cjdns.defaults \
+-		$(1)/etc/uci-defaults/cjdns
+-
+-	$(CP) \
+-		./lua/cjdns/* \
+-		$(1)/usr/lib/lua/cjdns
+-endef
+-
+-define Package/cjdns/postinst
+-#!/bin/sh
+-if [ -z $${IPKG_INSTROOT} ] ; then
+-	( . /etc/uci-defaults/cjdns ) && rm -f /etc/uci-defaults/cjdns
+-	# TODO: we should have an 'Enable' button instead
+-	/etc/init.d/cjdns enabled || /etc/init.d/cjdns enable
+-	exit 0
+-fi
++		$(1)/opt/bin
+ endef
+ 
+ $(eval $(call BuildPackage,cjdns))

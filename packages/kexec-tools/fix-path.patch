@@ -1,5 +1,5 @@
---- ../../../downloads/openwrt_trunk-r44497/package/boot/kexec-tools/Makefile	2015-02-20 12:39:14.437134230 +0300
-+++ ../../../openwrt_trunk/package/boot/kexec-tools/Makefile	2015-02-20 13:06:02.881105845 +0300
+--- ../../../downloads/openwrt_trunk-r45513/package/boot/kexec-tools/Makefile	2015-04-20 10:09:30.634135328 +0300
++++ ../../../openwrt_trunk/package/boot/kexec-tools/Makefile	2015-04-20 12:52:56.185956761 +0300
 @@ -24,7 +24,7 @@
  define Package/kexec-tools
    SECTION:=utils
@@ -53,7 +53,7 @@
 -
 -# make a link for compatability with other distros
 -	$(INSTALL_DIR) $(1)/sbin
--	ln -s /usr/sbin/kexec $(1)/sbin/kexec
+-	$(LN) ../usr/sbin/kexec $(1)/sbin/kexec
 +		$(PKG_INSTALL_DIR)/opt/sbin/kexec \
 +		$(1)/opt/sbin
  endef

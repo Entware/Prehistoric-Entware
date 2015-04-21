@@ -1,14 +1,14 @@
---- ../../../downloads/openwrt_trunk-r43593/package/utils/busybox/Makefile	2014-12-10 12:26:33.826951666 +0300
-+++ ../../../openwrt_trunk/package/utils/busybox/Makefile	2014-12-11 12:36:43.157369190 +0300
+--- ../../../downloads/openwrt_trunk-r45513/package/utils/busybox/Makefile	2015-04-20 10:09:30.574135331 +0300
++++ ../../../openwrt_trunk/package/utils/busybox/Makefile	2015-04-20 12:04:02.666017941 +0300
 @@ -10,7 +10,6 @@
  PKG_NAME:=busybox
- PKG_VERSION:=1.22.1
- PKG_RELEASE:=5
+ PKG_VERSION:=1.23.2
+ PKG_RELEASE:=1
 -PKG_FLAGS:=essential
  
  PKG_SOURCE:=$(PKG_NAME)-$(PKG_VERSION).tar.bz2
  PKG_SOURCE_URL:=http://www.busybox.net/downloads \
-@@ -75,13 +74,13 @@
+@@ -71,13 +70,13 @@
  
  LDLIBS:=m crypt
  ifdef CONFIG_BUSYBOX_USE_LIBRPC
@@ -24,7 +24,7 @@
    export LDFLAGS=$(TARGET_LDFLAGS)
    LDLIBS += pam pam_misc pthread
  endif
-@@ -92,6 +91,7 @@
+@@ -88,6 +87,7 @@
  		CROSS_COMPILE="$(TARGET_CROSS)" \
  		KBUILD_HAVE_NLS=no \
  		EXTRA_CFLAGS="$(TARGET_CFLAGS)" \
@@ -32,7 +32,7 @@
  		ARCH="$(ARCH)" \
  		SKIP_STRIP=y \
  		LDLIBS="$(LDLIBS)" \
-@@ -103,21 +103,53 @@
+@@ -99,21 +99,53 @@
  		CC="$(TARGET_CC)" \
  		CROSS_COMPILE="$(TARGET_CROSS)" \
  		EXTRA_CFLAGS="$(TARGET_CFLAGS)" \

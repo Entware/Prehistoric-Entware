@@ -1,7 +1,7 @@
---- ../../../downloads/openwrt_trunk-r44486/include/package.mk	2015-02-18 12:16:57.784306329 +0300
-+++ ../../../openwrt_trunk/include/package.mk	2015-02-18 12:22:57.420299789 +0300
+--- ../../../downloads/openwrt_trunk-r45513/include/package.mk	2015-04-20 10:09:29.086135358 +0300
++++ ../../../openwrt_trunk/include/package.mk	2015-04-20 10:09:33.090135284 +0300
 @@ -130,7 +130,7 @@
- CONFIG_SITE:=$(INCLUDE_DIR)/site/$(REAL_GNU_TARGET_NAME)
+ CONFIG_SITE:=$(INCLUDE_DIR)/site/$(ARCH)
  CUR_MAKEFILE:=$(filter-out Makefile,$(firstword $(MAKEFILE_LIST)))
  SUBMAKE:=$(NO_TRACE_MAKE) $(if $(CUR_MAKEFILE),-f $(CUR_MAKEFILE))
 -PKG_CONFIG_PATH=$(STAGING_DIR)/usr/lib/pkgconfig:$(STAGING_DIR)/usr/share/pkgconfig

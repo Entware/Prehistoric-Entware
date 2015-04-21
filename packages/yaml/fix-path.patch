@@ -1,0 +1,28 @@
+--- ../../../downloads/openwrt_trunk-r45513/feeds/packages/libs/yaml/Makefile	2015-04-20 10:09:28.898135362 +0300
++++ ../../../openwrt_trunk/feeds/packages/libs/yaml/Makefile	2015-04-20 13:16:14.601931764 +0300
+@@ -35,17 +35,17 @@
+ TARGET_CFLAGS += $(FPIC)
+ 
+ define Build/InstallDev
+-	$(INSTALL_DIR) $(1)/usr/include
+-	$(CP) $(PKG_INSTALL_DIR)/usr/include/yaml.h $(1)/usr/include/
+-	$(INSTALL_DIR) $(1)/usr/lib
+-	$(CP) $(PKG_INSTALL_DIR)/usr/lib/libyaml*.{a,so*} $(1)/usr/lib/
+-	$(INSTALL_DIR) $(1)/usr/lib/pkgconfig
+-	$(CP) $(PKG_INSTALL_DIR)/usr/lib/pkgconfig/yaml*.pc $(1)/usr/lib/pkgconfig/
++	$(INSTALL_DIR) $(1)/opt/include
++	$(CP) $(PKG_INSTALL_DIR)/opt/include/yaml.h $(1)/opt/include/
++	$(INSTALL_DIR) $(1)/opt/lib
++	$(CP) $(PKG_INSTALL_DIR)/opt/lib/libyaml*.{a,so*} $(1)/opt/lib/
++	$(INSTALL_DIR) $(1)/opt/lib/pkgconfig
++	$(CP) $(PKG_INSTALL_DIR)/opt/lib/pkgconfig/yaml*.pc $(1)/opt/lib/pkgconfig/
+ endef
+ 
+ define Package/libyaml/install
+-	$(INSTALL_DIR) $(1)/usr/lib
+-	$(CP) $(PKG_INSTALL_DIR)/usr/lib/libyaml*.so* $(1)/usr/lib/
++	$(INSTALL_DIR) $(1)/opt/lib
++	$(CP) $(PKG_INSTALL_DIR)/opt/lib/libyaml*.so* $(1)/opt/lib/
+ endef
+ 
+ $(eval $(call BuildPackage,libyaml))

@@ -1,6 +1,6 @@
-diff -urx .svn ../../../downloads/openwrt_trunk-r42803/package/network/services/samba36/Makefile ../../../openwrt_trunk/package/network/services/samba36/Makefile
---- ../../../downloads/openwrt_trunk-r42803/package/network/services/samba36/Makefile	2014-10-06 15:46:24.073250638 +0400
-+++ ../../../openwrt_trunk/package/network/services/samba36/Makefile	2014-10-07 11:59:34.723924674 +0400
+diff -urx .svn ../../../downloads/openwrt_trunk-r45513/package/network/services/samba36/Makefile ../../../openwrt_trunk/package/network/services/samba36/Makefile
+--- ../../../downloads/openwrt_trunk-r45513/package/network/services/samba36/Makefile	2015-04-20 10:09:29.298135354 +0300
++++ ../../../openwrt_trunk/package/network/services/samba36/Makefile	2015-04-21 09:01:08.860684440 +0300
 @@ -86,7 +86,7 @@
  	samba_cv_zlib_1_2_3=no
  
@@ -33,12 +33,18 @@ diff -urx .svn ../../../downloads/openwrt_trunk-r42803/package/network/services/
  	--with-sendfile-support \
  	--without-acl-support \
  	--without-cluster-support \
-@@ -124,26 +124,27 @@
+@@ -124,31 +124,29 @@
  MAKE_FLAGS += DYNEXP= PICFLAG= MODULES=
+ 
+ define Package/samba36-server/conffiles
+-/etc/config/samba
+-/etc/samba/smb.conf.template
++/opt/etc/samba/smb.conf.template
+ endef
  
  define Package/samba36-server/install
 -	$(INSTALL_DIR) $(1)/etc/config
--	$(INSTALL_DATA) ./files/samba.config $(1)/etc/config/samba
+-	$(INSTALL_CONF) ./files/samba.config $(1)/etc/config/samba
 -	$(INSTALL_DIR) $(1)/etc/samba
 -	$(INSTALL_DATA) ./files/smb.conf.template $(1)/etc/samba
 -	$(INSTALL_DATA) $(PKG_BUILD_DIR)/codepages/lowcase.dat $(1)/etc/samba
@@ -56,16 +62,14 @@ diff -urx .svn ../../../downloads/openwrt_trunk-r42803/package/network/services/
 +	$(INSTALL_DATA) $(PKG_BUILD_DIR)/codepages/lowcase.dat $(1)/opt/etc/samba
 +	$(INSTALL_DATA) $(PKG_BUILD_DIR)/codepages/upcase.dat $(1)/opt/etc/samba
 +	$(INSTALL_DATA) $(PKG_BUILD_DIR)/codepages/valid.dat $(1)/opt/etc/samba
++	$(INSTALL_DIR) $(1)/opt/etc/init.d
++	$(INSTALL_BIN) ./files/S08samba $(1)/opt/etc/init.d
 +	$(INSTALL_DIR) $(1)/opt/sbin
-+	$(INSTALL_DIR) $(1)/opt/var/nmbd
-+	$(INSTALL_DIR) $(1)/opt/var/log
-+	$(INSTALL_DIR) $(1)/opt/var/run
 +	$(INSTALL_BIN) $(PKG_BUILD_BIN)/samba_multicall $(1)/opt/sbin
 +	$(LN) samba_multicall $(1)/opt/sbin/smbd
 +	$(LN) samba_multicall $(1)/opt/sbin/nmbd
 +	$(LN) samba_multicall $(1)/opt/sbin/smbpasswd
-+	$(INSTALL_DIR) $(1)/opt/etc/init.d
-+	$(INSTALL_BIN) ./files/S08samba $(1)/opt/etc/init.d
++	$(INSTALL_DIR) $(1)/opt/var/nmbd
  endef
  
  define Package/samba36-client/install
@@ -78,9 +82,9 @@ diff -urx .svn ../../../downloads/openwrt_trunk-r42803/package/network/services/
  endef
  
  $(eval $(call BuildPackage,samba36-client))
-diff -urx .svn ../../../downloads/openwrt_trunk-r42803/package/network/services/samba36/patches/111-owrt_smbpasswd.patch ../../../openwrt_trunk/package/network/services/samba36/patches/111-owrt_smbpasswd.patch
---- ../../../downloads/openwrt_trunk-r42803/package/network/services/samba36/patches/111-owrt_smbpasswd.patch	2014-10-06 15:46:24.073250638 +0400
-+++ ../../../openwrt_trunk/package/network/services/samba36/patches/111-owrt_smbpasswd.patch	2014-10-07 11:59:34.727924674 +0400
+diff -urx .svn ../../../downloads/openwrt_trunk-r45513/package/network/services/samba36/patches/111-owrt_smbpasswd.patch ../../../openwrt_trunk/package/network/services/samba36/patches/111-owrt_smbpasswd.patch
+--- ../../../downloads/openwrt_trunk-r45513/package/network/services/samba36/patches/111-owrt_smbpasswd.patch	2015-04-20 10:09:29.298135354 +0300
++++ ../../../openwrt_trunk/package/network/services/samba36/patches/111-owrt_smbpasswd.patch	2015-04-20 10:09:50.854134958 +0300
 @@ -236,15 +236,15 @@
  +		}
  +	}

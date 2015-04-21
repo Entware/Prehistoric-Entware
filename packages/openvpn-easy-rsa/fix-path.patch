@@ -1,6 +1,6 @@
-diff -urx .svn ../../../downloads/openwrt_trunk-r44497/package/network/services/openvpn-easy-rsa/Makefile ../../../openwrt_trunk/package/network/services/openvpn-easy-rsa/Makefile
---- ../../../downloads/openwrt_trunk-r44497/package/network/services/openvpn-easy-rsa/Makefile	2015-03-07 14:56:47.377570688 +0300
-+++ ../../../openwrt_trunk/package/network/services/openvpn-easy-rsa/Makefile	2015-03-12 16:47:00.829579706 +0300
+diff -urx .svn ../../../downloads/openwrt_trunk-r45513/package/network/services/openvpn-easy-rsa/Makefile ../../../openwrt_trunk/package/network/services/openvpn-easy-rsa/Makefile
+--- ../../../downloads/openwrt_trunk-r45513/package/network/services/openvpn-easy-rsa/Makefile	2015-04-20 10:09:29.302135355 +0300
++++ ../../../openwrt_trunk/package/network/services/openvpn-easy-rsa/Makefile	2015-04-20 10:09:48.914134997 +0300
 @@ -11,7 +11,7 @@
  
  PKG_REV:=ff5bfd1dd8e548cb24d302742af3894f893ef92f
@@ -10,7 +10,7 @@ diff -urx .svn ../../../downloads/openwrt_trunk-r44497/package/network/services/
  
  PKG_SOURCE_PROTO:=git
  PKG_SOURCE_URL:=https://github.com/OpenVPN/easy-rsa.git
-@@ -34,9 +34,9 @@
+@@ -32,9 +32,9 @@
  endef
  
  define Package/openvpn-easy-rsa/conffiles
@@ -23,7 +23,7 @@ diff -urx .svn ../../../downloads/openwrt_trunk-r44497/package/network/services/
  endef
  
  define Build/Configure
-@@ -48,14 +48,14 @@
+@@ -46,14 +46,14 @@
  endef
  
  define Package/openvpn-easy-rsa/install
@@ -46,9 +46,9 @@ diff -urx .svn ../../../downloads/openwrt_trunk-r44497/package/network/services/
  endef
  
  $(eval $(call BuildPackage,openvpn-easy-rsa))
-diff -urx .svn ../../../downloads/openwrt_trunk-r44497/package/network/services/openvpn-easy-rsa/patches/100-run-ootb.patch ../../../openwrt_trunk/package/network/services/openvpn-easy-rsa/patches/100-run-ootb.patch
---- ../../../downloads/openwrt_trunk-r44497/package/network/services/openvpn-easy-rsa/patches/100-run-ootb.patch	2015-03-07 14:56:47.373570689 +0300
-+++ ../../../openwrt_trunk/package/network/services/openvpn-easy-rsa/patches/100-run-ootb.patch	2015-03-12 16:45:58.413583076 +0300
+diff -urx .svn ../../../downloads/openwrt_trunk-r45513/package/network/services/openvpn-easy-rsa/patches/100-run-ootb.patch ../../../openwrt_trunk/package/network/services/openvpn-easy-rsa/patches/100-run-ootb.patch
+--- ../../../downloads/openwrt_trunk-r45513/package/network/services/openvpn-easy-rsa/patches/100-run-ootb.patch	2015-04-20 10:09:29.298135354 +0300
++++ ../../../openwrt_trunk/package/network/services/openvpn-easy-rsa/patches/100-run-ootb.patch	2015-04-20 10:09:48.918134997 +0300
 @@ -5,13 +5,13 @@
   
   export EASY_RSA="${EASY_RSA:-.}"

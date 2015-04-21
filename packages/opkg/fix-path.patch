@@ -1,5 +1,38 @@
---- ../../../downloads/openwrt_trunk-r43593/package/system/opkg/Makefile	2014-12-10 12:26:33.246951676 +0300
-+++ ../../../openwrt_trunk/package/system/opkg/Makefile	2014-12-12 11:34:39.175856698 +0300
+diff -urx .svn ../../../downloads/openwrt_trunk-r45513/package/system/opkg/files/opkg-key ../../../openwrt_trunk/package/system/opkg/files/opkg-key
+--- ../../../downloads/openwrt_trunk-r45513/package/system/opkg/files/opkg-key	2015-04-20 10:09:29.114135353 +0300
++++ ../../../openwrt_trunk/package/system/opkg/files/opkg-key	2015-04-20 14:20:26.057858694 +0300
+@@ -19,7 +19,7 @@
+ 	(
+ 		zcat "$msgfile" 2>/dev/null ||
+ 		cat "$msgfile" 2>/dev/null
+-	) | usign -V -P /etc/opkg/keys -q -x "$sigfile" -m -
++	) | usign -V -P /opt/etc/opkg/keys -q -x "$sigfile" -m -
+ }
+ 
+ opkg_key_add() {
+@@ -27,8 +27,8 @@
+ 	[ -n "$key" ] || usage
+ 	[ -f "$key" ] || echo "Cannot open file $1"
+ 	local fingerprint="$(usign -F -p "$key")"
+-	mkdir -p "/etc/opkg/keys"
+-	cp "$key" "/etc/opkg/keys/$fingerprint"
++	mkdir -p "/opt/etc/opkg/keys"
++	cp "$key" "/opt/etc/opkg/keys/$fingerprint"
+ }
+ 
+ opkg_key_remove() {
+@@ -36,7 +36,7 @@
+ 	[ -n "$key" ] || usage
+ 	[ -f "$key" ] || echo "Cannot open file $1"
+ 	local fingerprint="$(usign -F -p "$key")"
+-	rm -f "/etc/opkg/keys/$fingerprint"
++	rm -f "/opt/etc/opkg/keys/$fingerprint"
+ }
+ 
+ case "$1" in
+diff -urx .svn ../../../downloads/openwrt_trunk-r45513/package/system/opkg/Makefile ../../../openwrt_trunk/package/system/opkg/Makefile
+--- ../../../downloads/openwrt_trunk-r45513/package/system/opkg/Makefile	2015-04-20 10:09:29.114135353 +0300
++++ ../../../openwrt_trunk/package/system/opkg/Makefile	2015-04-20 14:23:43.101859203 +0300
 @@ -5,7 +5,6 @@
  # See /LICENSE for more information.
  
@@ -8,7 +41,7 @@
  include $(INCLUDE_DIR)/version.mk
  include $(INCLUDE_DIR)/feeds.mk
  
-@@ -51,17 +50,24 @@
+@@ -53,17 +52,24 @@
    opkg knows how to install both .ipk and .deb packages.
  endef
  
@@ -37,7 +70,7 @@
  endef
  
  
-@@ -78,8 +84,6 @@
+@@ -80,8 +86,6 @@
    This package allows the Package index to be verified with S/MIME.
  endef
  
@@ -46,10 +79,10 @@
  TARGET_CFLAGS += $(if $(CONFIG_GCC_VERSION_4_3)$(CONFIG_GCC_VERSION_4_4),-Wno-array-bounds)
  TARGET_CFLAGS += -ffunction-sections -fdata-sections
  EXTRA_CFLAGS += $(TARGET_CPPFLAGS)
-@@ -87,8 +91,9 @@
- CONFIGURE_ARGS += \
+@@ -90,8 +94,9 @@
  	--disable-curl \
  	--disable-gpg \
+ 	--enable-sha256 \
 -	--with-opkgetcdir=/etc \
 -	--with-opkglockfile=/var/lock/opkg.lock
 +	--with-opkgetcdir=/opt/etc \
@@ -57,8 +90,8 @@
 +	--with-opkglockfile=/opt/var/lock/opkg.lock
  
  ifeq ($(BUILD_VARIANT),smime)
- 	CONFIGURE_ARGS += --enable-openssl --enable-sha256
-@@ -98,40 +103,31 @@
+ 	CONFIGURE_ARGS += --enable-openssl --disable-usign
+@@ -105,47 +110,35 @@
  		CC="$(TARGET_CC)" \
  		DESTDIR="$(PKG_INSTALL_DIR)" \
  		HOST_CPU="$(PKGARCH)" \
@@ -70,6 +103,9 @@
 -	$(INSTALL_DIR) $(1)/bin
 -	$(INSTALL_DIR) $(1)/etc
 -	$(INSTALL_DATA) ./files/opkg$(2).conf $(1)/etc/opkg.conf
+-  ifneq ($(CONFIG_SIGNED_PACKAGES),)
+-	echo "option check_signature 1" >> $(1)/etc/opkg.conf
+-  endif
 -  ifeq ($(CONFIG_PER_FEED_REPO),)
 -	echo "src/gz %n %U" >> $(1)/etc/opkg.conf
 -  else
@@ -85,13 +121,19 @@
 -	$(VERSION_SED) $(1)/etc/opkg.conf
 -	$(INSTALL_BIN) $(PKG_INSTALL_DIR)/usr/bin/opkg-cl $(1)/bin/opkg
 +	$(INSTALL_DIR) $(1)/opt/lib/opkg
-+	$(INSTALL_DIR) $(1)/opt/{bin,etc,tmp}
++	$(INSTALL_DIR) $(1)/bin/{bin,etc,tmp}
 +	$(INSTALL_DIR) $(1)/opt/var/{lock,log,run}
-+	$(INSTALL_BIN) $(PKG_INSTALL_DIR)/opt/bin/opkg-cl $(1)/opt/bin/opkg
++	$(INSTALL_BIN) $(PKG_INSTALL_DIR)/opt/bin/opkg-cl $(1)/bin/opkg
  endef
  
--Package/opkg/install = $(call Package/opkg/Default/install,$(1),)
-+Package/opkg-opt/install = $(call Package/opkg/Default/install,$(1),)
+-define Package/opkg/install
++define Package/opkg-opt/install
+ 	$(call Package/opkg/Default/install,$(1),)
+-	mkdir $(1)/usr/sbin
+-	$(INSTALL_BIN) ./files/opkg-key $(1)/usr/sbin/
++	mkdir $(1)/opt/sbin
++	$(INSTALL_BIN) ./files/opkg-key $(1)/opt/sbin/
+ endef
  
  define Package/opkg-smime/install
  	$(call Package/opkg/Default/install,$(1),-smime)
@@ -114,7 +156,7 @@
  endef
  
  
-@@ -150,5 +146,6 @@
+@@ -165,5 +158,6 @@
  endef
  
  $(eval $(call BuildPackage,opkg))

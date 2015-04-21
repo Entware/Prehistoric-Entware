@@ -1,0 +1,33 @@
+--- ../../../downloads/openwrt_trunk-r45513/package/system/ca-certificates/Makefile	2015-04-20 10:09:29.114135353 +0300
++++ ../../../openwrt_trunk/package/system/ca-certificates/Makefile	2015-04-20 12:33:36.277975808 +0300
+@@ -25,22 +25,22 @@
+ 
+ define Build/Install
+ 	mkdir -p \
+-		$(PKG_INSTALL_DIR)/usr/sbin \
+-		$(PKG_INSTALL_DIR)/usr/share/ca-certificates
++		$(PKG_INSTALL_DIR)/opt/sbin \
++		$(PKG_INSTALL_DIR)/opt/share/ca-certificates
+ 	$(call Build/Install/Default,)
+ endef
+ 
+ define Package/ca-certificates/install
+-	$(INSTALL_DIR) $(1)/etc/ssl/certs
+-	$(INSTALL_DATA) $(PKG_INSTALL_DIR)/usr/share/ca-certificates/*/*.crt $(1)/etc/ssl/certs/
++	$(INSTALL_DIR) $(1)/opt/etc/ssl/certs
++	$(INSTALL_DATA) $(PKG_INSTALL_DIR)/opt/share/ca-certificates/*/*.crt $(1)/opt/etc/ssl/certs/
+ 
+-	for CERTFILE in `ls -1 $(1)/etc/ssl/certs`; do \
+-		HASH=`openssl x509 -hash -noout -in $(1)/etc/ssl/certs/$$$$CERTFILE` ; \
++	for CERTFILE in `ls -1 $(1)/opt/etc/ssl/certs`; do \
++		HASH=`openssl x509 -hash -noout -in $(1)/opt/etc/ssl/certs/$$$$CERTFILE` ; \
+ 		SUFFIX=0 ; \
+-		while [ -h "$(1)/etc/ssl/certs/$$$$HASH.$$$$SUFFIX" ]; do \
++		while [ -h "$(1)/opt/etc/ssl/certs/$$$$HASH.$$$$SUFFIX" ]; do \
+ 			let "SUFFIX += 1" ; \
+ 		done ; \
+-		$(LN) "$$$$CERTFILE" "$(1)/etc/ssl/certs/$$$$HASH.$$$$SUFFIX" ; \
++		$(LN) "$$$$CERTFILE" "$(1)/opt/etc/ssl/certs/$$$$HASH.$$$$SUFFIX" ; \
+ 	done
+ endef
+ 

@@ -1,24 +1,19 @@
---- ../../../downloads/openwrt_trunk-r43593/feeds/packages/libs/gnutls/Makefile	2014-12-10 12:26:32.886951683 +0300
-+++ ../../../openwrt_trunk/feeds/packages/libs/gnutls/Makefile	2014-12-10 12:49:03.666927077 +0300
-@@ -122,7 +122,7 @@
+--- ../../../downloads/openwrt_trunk-r45513/feeds/packages/libs/gnutls/Makefile	2015-04-20 10:09:28.898135362 +0300
++++ ../../../openwrt_trunk/feeds/packages/libs/gnutls/Makefile	2015-04-20 12:39:50.781967854 +0300
+@@ -123,9 +123,9 @@
  	--disable-doc \
  	--disable-tests \
  	--disable-rsa-export \
 -	--with-default-trust-store-dir=/etc/ssl/certs/ \
 +	--with-default-trust-store-dir=/opt/etc/ssl/certs/ \
- 	--disable-crywrap
+ 	--disable-crywrap \
+-	--with-librt-prefix="$(STAGING_DIR)/"
++	--with-librt-prefix="$(LIBRT_ROOT_DIR)/"
  
  ifneq ($(CONFIG_GNUTLS_EXT_LIBTASN1),y)
-@@ -174,7 +174,6 @@
- endif
- 
+ CONFIGURE_ARGS += --with-included-libtasn1
+@@ -178,69 +178,69 @@
  TARGET_CFLAGS += $(FPIC)
--TARGET_LDFLAGS += -Wl,-rpath-link=$(STAGING_DIR)/usr/lib
- 
- define Build/Configure
- 	$(SED) 's,-I$$$${includedir},,g' $(PKG_BUILD_DIR)/configure
-@@ -183,69 +182,69 @@
- endef
  
  define Build/InstallDev
 -	$(INSTALL_DIR) $(1)/usr/include $(1)/usr/lib/pkgconfig

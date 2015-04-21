@@ -1,5 +1,5 @@
---- ../../../downloads/openwrt_trunk-r44486/package/utils/util-linux/Makefile	2015-02-18 12:16:58.364306318 +0300
-+++ ../../../openwrt_trunk/package/utils/util-linux/Makefile	2015-02-20 12:17:43.733157622 +0300
+--- ../../../downloads/openwrt_trunk-r45513/package/utils/util-linux/Makefile	2015-04-20 10:09:30.594135331 +0300
++++ ../../../openwrt_trunk/package/utils/util-linux/Makefile	2015-04-20 14:51:00.121826386 +0300
 @@ -52,26 +52,26 @@
  		DESTDIR="$(1)" \
  		installdirs install-data
@@ -60,30 +60,30 @@
  endef
  
  define Package/libblkid/install
--        $(INSTALL_DIR) $(1)/usr/lib
+-	$(INSTALL_DIR) $(1)/usr/lib
 -	$(CP) $(PKG_BUILD_DIR)/.libs/libblkid.so* $(1)/usr/lib/
-+        $(INSTALL_DIR) $(1)/opt/lib
++	$(INSTALL_DIR) $(1)/opt/lib
 +	$(CP) $(PKG_BUILD_DIR)/.libs/libblkid.so* $(1)/opt/lib/
  endef
  
  define Package/libmount/install
--        $(INSTALL_DIR) $(1)/usr/lib
+-	$(INSTALL_DIR) $(1)/usr/lib
 -	$(CP) $(PKG_BUILD_DIR)/.libs/libmount.so* $(1)/usr/lib/
-+        $(INSTALL_DIR) $(1)/opt/lib
++	$(INSTALL_DIR) $(1)/opt/lib
 +	$(CP) $(PKG_BUILD_DIR)/.libs/libmount.so* $(1)/opt/lib/
  endef
  
  define Package/libsmartcols/install
--        $(INSTALL_DIR) $(1)/usr/lib
+-	$(INSTALL_DIR) $(1)/usr/lib
 -	$(CP) $(PKG_BUILD_DIR)/.libs/libsmartcols.so* $(1)/usr/lib/
-+        $(INSTALL_DIR) $(1)/opt/lib
++	$(INSTALL_DIR) $(1)/opt/lib
 +	$(CP) $(PKG_BUILD_DIR)/.libs/libsmartcols.so* $(1)/opt/lib/
  endef
  
  define Package/libuuid/install
--        $(INSTALL_DIR) $(1)/usr/lib
+-	$(INSTALL_DIR) $(1)/usr/lib
 -	$(CP) $(PKG_BUILD_DIR)/.libs/libuuid.so* $(1)/usr/lib/
-+        $(INSTALL_DIR) $(1)/opt/lib
++	$(INSTALL_DIR) $(1)/opt/lib
 +	$(CP) $(PKG_BUILD_DIR)/.libs/libuuid.so* $(1)/opt/lib/
  endef
  

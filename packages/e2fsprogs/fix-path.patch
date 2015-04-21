@@ -1,6 +1,6 @@
---- ../../../downloads/openwrt_trunk-r44486/package/utils/e2fsprogs/Makefile	2015-02-18 12:16:58.356306319 +0300
-+++ ../../../openwrt_trunk/package/utils/e2fsprogs/Makefile	2015-02-19 14:21:07.222585158 +0300
-@@ -43,6 +43,7 @@
+--- ../../../downloads/openwrt_trunk-r45513/package/utils/e2fsprogs/Makefile	2015-04-20 10:09:30.586135331 +0300
++++ ../../../openwrt_trunk/package/utils/e2fsprogs/Makefile	2015-04-20 12:18:21.437994125 +0300
+@@ -45,6 +45,7 @@
    SECTION:=libs
    CATEGORY:=Libraries
    TITLE:=ext2/3/4 filesystem library
@@ -8,16 +8,16 @@
  endef
  
  define Package/libext2fs/description
-@@ -119,7 +120,7 @@
+@@ -121,7 +122,7 @@
  		LDFLAGS="" \
  		subst
- 	$(MAKE) -C $(PKG_BUILD_DIR) \
+ 	+$(MAKE) $(PKG_JOBS) -C $(PKG_BUILD_DIR) \
 -		LDFLAGS=-Wl,--gc-sections \
-+		LDFLAGS="$(TARGET_LDFLAGS) -Wl,--gc-sections" \
++		LDFLAGS="$(TARGET_LDFLAGS)" \
  		BUILDCC="$(HOSTCC)" \
  		DESTDIR="$(PKG_INSTALL_DIR)" \
  		LIBBLKID="$(PKG_BUILD_DIR)/lib/libblkid.a -luuid" \
-@@ -127,90 +128,88 @@
+@@ -129,94 +130,92 @@
  endef
  
  define Build/InstallDev
@@ -45,6 +45,11 @@
 +	$(CP) $(PKG_BUILD_DIR)/lib/ext2fs/*.h $(1)/opt/include/ext2fs
 +	$(INSTALL_DIR) $(1)/opt/include/et
 +	$(CP) $(PKG_BUILD_DIR)/lib/et/*.h $(1)/opt/include/et
+ endef
+ 
+ define Package/e2fsprogs/conffiles
+-/etc/e2fsck.conf
++/opt/etc/e2fsck.conf
  endef
  
  define Package/e2fsprogs/install

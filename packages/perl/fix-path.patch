@@ -1,6 +1,6 @@
-diff -urx .svn ../../../downloads/openwrt_trunk-r44486/feeds/packages/lang/perl/files/config.sh-mipsel.in ../../../openwrt_trunk/feeds/packages/lang/perl/files/config.sh-mipsel.in
---- ../../../downloads/openwrt_trunk-r44486/feeds/packages/lang/perl/files/config.sh-mipsel.in	2015-02-18 12:16:57.580306331 +0300
-+++ ../../../openwrt_trunk/feeds/packages/lang/perl/files/config.sh-mipsel.in	2015-02-19 16:49:06.254436284 +0300
+diff -urx .svn ../../../downloads/openwrt_trunk-r45513/feeds/packages/lang/perl/files/config.sh-mipsel.in ../../../openwrt_trunk/feeds/packages/lang/perl/files/config.sh-mipsel.in
+--- ../../../downloads/openwrt_trunk-r45513/feeds/packages/lang/perl/files/config.sh-mipsel.in	2015-04-20 10:09:28.890135362 +0300
++++ ../../../openwrt_trunk/feeds/packages/lang/perl/files/config.sh-mipsel.in	2015-04-20 10:09:49.026134995 +0300
 @@ -691,21 +691,21 @@
  inc_version_list_init='0'
  incpath=''
@@ -161,12 +161,12 @@ diff -urx .svn ../../../downloads/openwrt_trunk-r44486/feeds/packages/lang/perl/
  subversion='2'
  
  # Make perl use these tools instead of the target binaries during build
-diff -urx .svn ../../../downloads/openwrt_trunk-r44486/feeds/packages/lang/perl/Makefile ../../../openwrt_trunk/feeds/packages/lang/perl/Makefile
---- ../../../downloads/openwrt_trunk-r44486/feeds/packages/lang/perl/Makefile	2015-02-18 12:16:57.580306331 +0300
-+++ ../../../openwrt_trunk/feeds/packages/lang/perl/Makefile	2015-02-18 12:17:35.324305645 +0300
+diff -urx .svn ../../../downloads/openwrt_trunk-r45513/feeds/packages/lang/perl/Makefile ../../../openwrt_trunk/feeds/packages/lang/perl/Makefile
+--- ../../../downloads/openwrt_trunk-r45513/feeds/packages/lang/perl/Makefile	2015-04-20 10:09:28.894135362 +0300
++++ ../../../openwrt_trunk/feeds/packages/lang/perl/Makefile	2015-04-20 10:09:49.030134995 +0300
 @@ -38,7 +38,7 @@
  HOST_PERL_PREFIX:=$(STAGING_DIR_HOST)/usr
- ifneq ($(CONFIG_USE_EGLIBC),)
+ ifneq ($(CONFIG_USE_GLIBC),)
  	EXTRA_LIBS:=bsd
 -	EXTRA_LIBDIRS:=$(STAGING_DIR)/lib
 +	EXTRA_LIBDIRS:=$(STAGING_DIR)/opt/lib
@@ -237,9 +237,9 @@ diff -urx .svn ../../../downloads/openwrt_trunk-r44486/feeds/packages/lang/perl/
  	$(CP) files/perl-run_tests.sh $(1)/$(PERL_TESTSDIR)/run_tests.sh
  	sed -e 's!%%PERL_DISABLEDTESTS%%!$(PERL_DISABLEDTESTS)!' -i $(1)/$(PERL_TESTSDIR)/run_tests.sh
  	$(CP) $(PKG_BUILD_DIR)/config_h.SH $(1)/$(PERL_TESTSDIR)
-diff -urx .svn ../../../downloads/openwrt_trunk-r44486/feeds/packages/lang/perl/perlbase.mk ../../../openwrt_trunk/feeds/packages/lang/perl/perlbase.mk
---- ../../../downloads/openwrt_trunk-r44486/feeds/packages/lang/perl/perlbase.mk	2015-02-18 12:16:57.580306331 +0300
-+++ ../../../openwrt_trunk/feeds/packages/lang/perl/perlbase.mk	2015-02-18 12:17:35.324305645 +0300
+diff -urx .svn ../../../downloads/openwrt_trunk-r45513/feeds/packages/lang/perl/perlbase.mk ../../../openwrt_trunk/feeds/packages/lang/perl/perlbase.mk
+--- ../../../downloads/openwrt_trunk-r45513/feeds/packages/lang/perl/perlbase.mk	2015-04-20 10:09:28.894135362 +0300
++++ ../../../openwrt_trunk/feeds/packages/lang/perl/perlbase.mk	2015-04-20 10:09:49.030134995 +0300
 @@ -1131,9 +1131,9 @@
  $(call perlmod/Install,$(1),Pod,Pod/Usage.pm)
  $(call perlmod/Install/NoStrip,$(1),Pod/Usage.pm,)
@@ -264,12 +264,12 @@ diff -urx .svn ../../../downloads/openwrt_trunk-r44486/feeds/packages/lang/perl/
  endef
  
  $(eval $(call BuildPackage,perlbase-test))
-diff -urx .svn ../../../downloads/openwrt_trunk-r44486/feeds/packages/lang/perl/perlmod.mk ../../../openwrt_trunk/feeds/packages/lang/perl/perlmod.mk
---- ../../../downloads/openwrt_trunk-r44486/feeds/packages/lang/perl/perlmod.mk	2015-02-18 12:16:57.580306331 +0300
-+++ ../../../openwrt_trunk/feeds/packages/lang/perl/perlmod.mk	2015-02-19 16:54:08.818426141 +0300
+diff -urx .svn ../../../downloads/openwrt_trunk-r45513/feeds/packages/lang/perl/perlmod.mk ../../../openwrt_trunk/feeds/packages/lang/perl/perlmod.mk
+--- ../../../downloads/openwrt_trunk-r45513/feeds/packages/lang/perl/perlmod.mk	2015-04-20 10:09:28.890135362 +0300
++++ ../../../openwrt_trunk/feeds/packages/lang/perl/perlmod.mk	2015-04-20 10:09:49.030134995 +0300
 @@ -5,7 +5,7 @@
  HOST_PERL_PREFIX:=$(STAGING_DIR_HOST)/usr
- ifneq ($(CONFIG_USE_EGLIBC),)
+ ifneq ($(CONFIG_USE_GLIBC),)
  	EXTRA_LIBS:=bsd
 -	EXTRA_LIBDIRS:=$(STAGING_DIR)/lib
 +	EXTRA_LIBDIRS:=$(STAGING_DIR)/opt/lib

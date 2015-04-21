@@ -1,5 +1,66 @@
---- ../../../downloads/openwrt_trunk-r43708/feeds/packages/multimedia/mjpg-streamer/Makefile	2014-12-15 12:19:58.004388958 +0300
-+++ ../../../openwrt_trunk/feeds/packages/multimedia/mjpg-streamer/Makefile	2014-12-15 14:58:34.848215357 +0300
+diff -urN ../../../downloads/openwrt_trunk-r45513/feeds/packages/multimedia/mjpg-streamer/files/S96mjpg-streamer ../../../openwrt_trunk/feeds/packages/multimedia/mjpg-streamer/files/S96mjpg-streamer
+--- ../../../downloads/openwrt_trunk-r45513/feeds/packages/multimedia/mjpg-streamer/files/S96mjpg-streamer	1970-01-01 03:00:00.000000000 +0300
++++ ../../../openwrt_trunk/feeds/packages/multimedia/mjpg-streamer/files/S96mjpg-streamer	2015-03-07 14:57:04.000000000 +0300
+@@ -0,0 +1,48 @@
++#!/bin/sh
++
++prefix="/opt"
++PATH=${prefix}/bin:${prefix}/sbin:/sbin:/bin:/usr/sbin:/usr/bin
++
++start() {
++	echo "starting mjpg_streamer..."
++	# Do not forget to load nececcery kernel modules,
++	# in case of using UVC-compliant camera:
++	#insmod videodev
++	#insmod v4l2-common
++	#insmod v4l2-int-device
++	#insmod input-core
++	#insmod uvcvideo
++	mjpg_streamer -b -i "input_uvc.so -r 320x240 -f 5" -o "output_http.so -p 3000 -w /opt/share/www/webcam"
++	}
++
++stop() {
++	echo "stopping mjpg_streamer..."
++	killall mjpg_streamer
++	}
++
++status() {
++	echo "PID of mjpg_streamer is..."
++	pidof mjpg_streamer
++	}
++
++case "$1" in
++	start)
++		start
++		;;
++	stop)
++		stop
++		;;
++	restart)
++		stop
++		sleep 3
++		start
++		;;
++	status) status
++		;;
++	*)
++		echo "Usage: $0 (start|stop|restart|status)"
++		exit 1
++		;;
++esac
++
++exit 0
+\ No newline at end of file
+diff -urN ../../../downloads/openwrt_trunk-r45513/feeds/packages/multimedia/mjpg-streamer/Makefile ../../../openwrt_trunk/feeds/packages/multimedia/mjpg-streamer/Makefile
+--- ../../../downloads/openwrt_trunk-r45513/feeds/packages/multimedia/mjpg-streamer/Makefile	2015-04-20 10:09:28.898135362 +0300
++++ ../../../openwrt_trunk/feeds/packages/multimedia/mjpg-streamer/Makefile	2015-03-07 14:57:04.000000000 +0300
+@@ -1,5 +1,5 @@
+ #
+-# Copyright (C) 2006-2015 OpenWrt.org
++# Copyright (C) 2006-2014 OpenWrt.org
+ #
+ # This is free software, licensed under the GNU General Public License v2.
+ # See /LICENSE for more information.
 @@ -8,13 +8,13 @@
  include $(TOPDIR)/rules.mk
  
@@ -7,7 +68,7 @@
 -PKG_REV:=182
 +PKG_REV:=181
  PKG_VERSION:=r$(PKG_REV)
--PKG_RELEASE:=4
+-PKG_RELEASE:=6
 +PKG_RELEASE:=2
  PKG_MAINTAINER:=Roger D <rogerdammit@gmail.com>
  
@@ -31,7 +92,7 @@
 -define Download/cambozola
 -  URL:=http://www.andywilcock.com/code/cambozola
 -  FILE:=$(CAMBOZOLA)
--  MD5SUM:=6c48fd994685d4d72668850eeb613e24
+-  MD5SUM:=c9b0da91f8e6e72efccd307e04e2b75b
 -endef
 -
 -# Fetch latest cambozola that works with latest Java(s)
@@ -95,3 +156,475 @@
      endif
  endif
  endef
+diff -urN ../../../downloads/openwrt_trunk-r45513/feeds/packages/multimedia/mjpg-streamer/patches/010-enable_additional_plugins.patch ../../../openwrt_trunk/feeds/packages/multimedia/mjpg-streamer/patches/010-enable_additional_plugins.patch
+--- ../../../downloads/openwrt_trunk-r45513/feeds/packages/multimedia/mjpg-streamer/patches/010-enable_additional_plugins.patch	2015-04-20 10:09:28.894135362 +0300
++++ ../../../openwrt_trunk/feeds/packages/multimedia/mjpg-streamer/patches/010-enable_additional_plugins.patch	1970-01-01 03:00:00.000000000 +0300
+@@ -1,17 +0,0 @@
+---- a/Makefile
+-+++ b/Makefile
+-@@ -33,12 +33,12 @@ APP_BINARY = mjpg_streamer
+- 
+- # define the names and targets of the plugins
+- PLUGINS = input_uvc.so
+--#PLUGINS += output_file.so
+-+PLUGINS += output_file.so
+- #PLUGINS += output_udp.so
+- PLUGINS += output_http.so
+- PLUGINS += input_testpicture.so
+- #PLUGINS += output_autofocus.so
+--#PLUGINS += input_file.so
+-+PLUGINS += input_file.so
+- # PLUGINS += input_pylon.so
+- # PLUGINS += input_megatec.so
+- # PLUGINS += output_mars2020.so
+diff -urN ../../../downloads/openwrt_trunk-r45513/feeds/packages/multimedia/mjpg-streamer/patches/020-remove_gcc_debug_options.patch ../../../openwrt_trunk/feeds/packages/multimedia/mjpg-streamer/patches/020-remove_gcc_debug_options.patch
+--- ../../../downloads/openwrt_trunk-r45513/feeds/packages/multimedia/mjpg-streamer/patches/020-remove_gcc_debug_options.patch	2015-04-20 10:09:28.894135362 +0300
++++ ../../../openwrt_trunk/feeds/packages/multimedia/mjpg-streamer/patches/020-remove_gcc_debug_options.patch	1970-01-01 03:00:00.000000000 +0300
+@@ -1,33 +0,0 @@
+---- a/plugins/input_uvc/Makefile
+-+++ b/plugins/input_uvc/Makefile
+-@@ -13,7 +13,7 @@ OTHER_HEADERS = ../../mjpg_streamer.h ..
+- 
+- CFLAGS += -O1  -DLINUX -D_GNU_SOURCE -Wall -shared -fPIC
+- 
+--CFLAGS += -g -DDEBUG
+-+#CFLAGS += -g -DDEBUG
+- 
+- ifeq ($(USE_LIBV4L2),true)
+- LFLAGS += -lv4l2
+---- a/plugins/output_file/Makefile
+-+++ b/plugins/output_file/Makefile
+-@@ -12,7 +12,7 @@ CC = gcc
+- OTHER_HEADERS = ../../mjpg_streamer.h ../../utils.h ../output.h ../input.h
+- 
+- CFLAGS += -O2 -DLINUX -D_GNU_SOURCE -Wall -shared -fPIC
+--CFLAGS += -DDEBUG -g
+-+#CFLAGS += -DDEBUG -g
+- LFLAGS += -lpthread -ldl
+- 
+- all: output_file.so
+---- a/plugins/output_udp/Makefile
+-+++ b/plugins/output_udp/Makefile
+-@@ -14,7 +14,7 @@ CC = gcc
+- OTHER_HEADERS = ../../mjpg_streamer.h ../../utils.h ../output.h ../input.h
+- 
+- CFLAGS += -O2 -DLINUX -D_GNU_SOURCE -Wall -shared -fPIC
+--CFLAGS += -DDEBUG
+-+#CFLAGS += -DDEBUG
+- LFLAGS += -lpthread -ldl
+- 
+- all: output_udp.so
+diff -urN ../../../downloads/openwrt_trunk-r45513/feeds/packages/multimedia/mjpg-streamer/patches/030-allow_16_char_device_names.patch ../../../openwrt_trunk/feeds/packages/multimedia/mjpg-streamer/patches/030-allow_16_char_device_names.patch
+--- ../../../downloads/openwrt_trunk-r45513/feeds/packages/multimedia/mjpg-streamer/patches/030-allow_16_char_device_names.patch	2015-04-20 10:09:28.894135362 +0300
++++ ../../../openwrt_trunk/feeds/packages/multimedia/mjpg-streamer/patches/030-allow_16_char_device_names.patch	1970-01-01 03:00:00.000000000 +0300
+@@ -1,11 +0,0 @@
+---- a/plugins/input_uvc/v4l2uvc.c
+-+++ b/plugins/input_uvc/v4l2uvc.c
+-@@ -69,7 +69,7 @@ int init_videoIn(struct vdIn *vd, char *
+-     vd->videodevice = (char *) calloc(1, 16 * sizeof(char));
+-     vd->status = (char *) calloc(1, 100 * sizeof(char));
+-     vd->pictName = (char *) calloc(1, 80 * sizeof(char));
+--    snprintf(vd->videodevice, 12, "%s", device);
+-+    snprintf(vd->videodevice, 16, "%s", device);
+-     vd->toggleAvi = 0;
+-     vd->getPict = 0;
+-     vd->signalquit = 1;
+diff -urN ../../../downloads/openwrt_trunk-r45513/feeds/packages/multimedia/mjpg-streamer/patches/040-Buffer-the-bytesused-variable-from-struct-v4l2_buffe.patch ../../../openwrt_trunk/feeds/packages/multimedia/mjpg-streamer/patches/040-Buffer-the-bytesused-variable-from-struct-v4l2_buffe.patch
+--- ../../../downloads/openwrt_trunk-r45513/feeds/packages/multimedia/mjpg-streamer/patches/040-Buffer-the-bytesused-variable-from-struct-v4l2_buffe.patch	2015-04-20 10:09:28.894135362 +0300
++++ ../../../openwrt_trunk/feeds/packages/multimedia/mjpg-streamer/patches/040-Buffer-the-bytesused-variable-from-struct-v4l2_buffe.patch	1970-01-01 03:00:00.000000000 +0300
+@@ -1,87 +0,0 @@
+-From 19202b54698b343a0207d7e213448e32b8e58fc3 Mon Sep 17 00:00:00 2001
+-From: Olliver Schinagl <o.schinagl@ultimaker.com>
+-Date: Wed, 29 Oct 2014 09:34:41 +0100
+-Subject: [PATCH 1/7] Buffer the bytesused variable from struct v4l2_buffer
+-
+-Starting with kernel versions 3.16, (DE)Queing of buffers has been fixed
+-after it was leaking data for ages. in the struct v4l2_buffer is the
+-bytesused element which indicates the size of the buffer. This however
+-gets cleared whenever the buffer gets requeued and is thus no longer
+-valid.
+-
+-This patch copies the bytesused variable so it is available until the
+-next frame captured again.
+-
+-Signed-off-by: Olliver Schinagl <o.schinagl@ultimaker.com>
+----
+- plugins/input_uvc/input_uvc.c | 6 +++---
+- plugins/input_uvc/v4l2uvc.c   | 2 ++
+- plugins/input_uvc/v4l2uvc.h   | 1 +
+- 3 files changed, 6 insertions(+), 3 deletions(-)
+-
+-diff --git a/plugins/input_uvc/input_uvc.c b/plugins/input_uvc/input_uvc.c
+-index e6c74fd..64f66cb 100644
+---- a/plugins/input_uvc/input_uvc.c
+-+++ b/plugins/input_uvc/input_uvc.c
+-@@ -482,7 +482,7 @@ void *cam_thread(void *arg)
+-             exit(EXIT_FAILURE);
+-         }
+- 
+--        //DBG("received frame of size: %d from plugin: %d\n", pcontext->videoIn->buf.bytesused, pcontext->id);
+-+        //DBG("received frame of size: %d from plugin: %d\n", pcontext->videoIn->tmpbytesused, pcontext->id);
+- 
+-         /*
+-          * Workaround for broken, corrupted frames:
+-@@ -491,7 +491,7 @@ void *cam_thread(void *arg)
+-          * For example a VGA (640x480) webcam picture is normally >= 8kByte large,
+-          * corrupted frames are smaller.
+-          */
+--        if(pcontext->videoIn->buf.bytesused < minimum_size) {
+-+        if(pcontext->videoIn->tmpbytesused < minimum_size) {
+-             DBG("dropping too small frame, assuming it as broken\n");
+-             continue;
+-         }
+-@@ -529,7 +529,7 @@ void *cam_thread(void *arg)
+-         } else {
+-         #endif
+-             //DBG("copying frame from input: %d\n", (int)pcontext->id);
+--            pglobal->in[pcontext->id].size = memcpy_picture(pglobal->in[pcontext->id].buf, pcontext->videoIn->tmpbuffer, pcontext->videoIn->buf.bytesused);
+-+            pglobal->in[pcontext->id].size = memcpy_picture(pglobal->in[pcontext->id].buf, pcontext->videoIn->tmpbuffer, pcontext->videoIn->tmpbytesused);
+-         #ifndef NO_LIBJPEG
+-         }
+-         #endif
+-diff --git a/plugins/input_uvc/v4l2uvc.c b/plugins/input_uvc/v4l2uvc.c
+-index c5a5aa4..d11510c 100644
+---- a/plugins/input_uvc/v4l2uvc.c
+-+++ b/plugins/input_uvc/v4l2uvc.c
+-@@ -532,6 +532,7 @@ int uvcGrab(struct vdIn *vd)
+-         */
+- 
+-         memcpy(vd->tmpbuffer, vd->mem[vd->buf.index], vd->buf.bytesused);
+-+	vd->tmpbytesused = vd->buf.bytesused;
+- 
+-         if(debug)
+-             fprintf(stderr, "bytes in used %d \n", vd->buf.bytesused);
+-@@ -570,6 +571,7 @@ int close_v4l2(struct vdIn *vd)
+-     if(vd->tmpbuffer)
+-         free(vd->tmpbuffer);
+-     vd->tmpbuffer = NULL;
+-+    vd->tmpbytesused = 0;
+-     free(vd->framebuffer);
+-     vd->framebuffer = NULL;
+-     free(vd->videodevice);
+-diff --git a/plugins/input_uvc/v4l2uvc.h b/plugins/input_uvc/v4l2uvc.h
+-index 022c57e..2c7c8ba 100644
+---- a/plugins/input_uvc/v4l2uvc.h
+-+++ b/plugins/input_uvc/v4l2uvc.h
+-@@ -83,6 +83,7 @@ struct vdIn {
+-     struct v4l2_requestbuffers rb;
+-     void *mem[NB_BUFFER];
+-     unsigned char *tmpbuffer;
+-+    int tmpbytesused;
+-     unsigned char *framebuffer;
+-     streaming_state streamingState;
+-     int grabmethod;
+--- 
+-1.9.1
+-
+diff -urN ../../../downloads/openwrt_trunk-r45513/feeds/packages/multimedia/mjpg-streamer/patches/041-Stop-leaking-data-via-struct-v4l2_buffer.patch ../../../openwrt_trunk/feeds/packages/multimedia/mjpg-streamer/patches/041-Stop-leaking-data-via-struct-v4l2_buffer.patch
+--- ../../../downloads/openwrt_trunk-r45513/feeds/packages/multimedia/mjpg-streamer/patches/041-Stop-leaking-data-via-struct-v4l2_buffer.patch	2015-04-20 10:09:28.894135362 +0300
++++ ../../../openwrt_trunk/feeds/packages/multimedia/mjpg-streamer/patches/041-Stop-leaking-data-via-struct-v4l2_buffer.patch	1970-01-01 03:00:00.000000000 +0300
+@@ -1,242 +0,0 @@
+-From 11b28b36a8711b53658e8bbc50435595522f91ba Mon Sep 17 00:00:00 2001
+-From: Olliver Schinagl <o.schinagl@ultimaker.com>
+-Date: Wed, 29 Oct 2014 11:21:16 +0100
+-Subject: [PATCH 2/7] Stop leaking data via struct v4l2_buffer
+-
+-Before the 3.16 kernel, the v4l2_buffer was leaking data and violating
+-its own spec. Since 3.16 this has been corrected and after calling the
+-QBUF ioctl, the struct gets cleaned up.
+-
+-Right now, input_uvc assumes the buffer is valid at all times. This no
+-longer being true, this patch removes the v4l2_buffer from the vdIn
+-struct. Certain values are still needed outside of this buffer however,
+-the length buffer in the buffer array 'mem' and the timestamp. These are
+-now stored in the vdIn struct.
+-
+-All of this is still somewhat hackish, as a) the processing of the image
+-should really be done inside the uvcGrab function between the queuing
+-and dequeing of the buffers (or separate that into 3 functions, deq, q
+-and process and call them from input_uvc). b) we are still copying the
+-image using memcpy, which is something we don't really want and defeats
+-the purpose of using a mmap in the first place. Changing this however
+-requires some heavier re-architecting and in the end, may still not be avoided.
+-
+-More information about this bug and change can be found on the
+-linux-media mailing list[0] with the title uvcvideo fails on 3.16 and
+-3.17 kernels.
+-
+-[0] http://www.spinics.net/lists/linux-media/msg81515.html
+-
+-Signed-off-by: Olliver Schinagl <o.schinagl@ultimaker.com>
+----
+- plugins/input_uvc/input_uvc.c |  6 ++--
+- plugins/input_uvc/v4l2uvc.c   | 64 +++++++++++++++++++++++--------------------
+- plugins/input_uvc/v4l2uvc.h   |  4 ++-
+- 3 files changed, 41 insertions(+), 33 deletions(-)
+-
+-diff --git a/plugins/input_uvc/input_uvc.c b/plugins/input_uvc/input_uvc.c
+-index 64f66cb..64ef56c 100644
+---- a/plugins/input_uvc/input_uvc.c
+-+++ b/plugins/input_uvc/input_uvc.c
+-@@ -500,8 +500,8 @@ void *cam_thread(void *arg)
+-         if (pcontext->videoIn->soft_framedrop == 1) {
+-             unsigned long last = pglobal->in[pcontext->id].timestamp.tv_sec * 1000 +
+-                                 (pglobal->in[pcontext->id].timestamp.tv_usec/1000); // convert to ms
+--            unsigned long current = pcontext->videoIn->buf.timestamp.tv_sec * 1000 +
+--                                    pcontext->videoIn->buf.timestamp.tv_usec/1000; // convert to ms
+-+            unsigned long current = pcontext->videoIn->tmptimestamp.tv_sec * 1000 +
+-+                                    pcontext->videoIn->tmptimestamp.tv_usec/1000; // convert to ms
+- 
+-             // if the requested time did not esplashed skip the frame
+-             if ((current - last) < pcontext->videoIn->frame_period_time) {
+-@@ -543,7 +543,7 @@ void *cam_thread(void *arg)
+- #endif
+- 
+-         /* copy this frame's timestamp to user space */
+--        pglobal->in[pcontext->id].timestamp = pcontext->videoIn->buf.timestamp;
+-+        pglobal->in[pcontext->id].timestamp = pcontext->videoIn->tmptimestamp;
+- 
+-         /* signal fresh_frame */
+-         pthread_cond_broadcast(&pglobal->in[pcontext->id].db_update);
+-diff --git a/plugins/input_uvc/v4l2uvc.c b/plugins/input_uvc/v4l2uvc.c
+-index d11510c..7ec5eec 100644
+---- a/plugins/input_uvc/v4l2uvc.c
+-+++ b/plugins/input_uvc/v4l2uvc.c
+-@@ -217,6 +217,9 @@ static int init_v4l2(struct vdIn *vd)
+- {
+-     int i;
+-     int ret = 0;
+-+    struct v4l2_buffer buf;
+-+
+-+
+-     if((vd->fd = OPEN_VIDEO(vd->videodevice, O_RDWR)) == -1) {
+-         perror("ERROR opening V4L interface");
+-         DBG("errno: %d", errno);
+-@@ -375,26 +378,27 @@ static int init_v4l2(struct vdIn *vd)
+-      * map the buffers
+-      */
+-     for(i = 0; i < NB_BUFFER; i++) {
+--        memset(&vd->buf, 0, sizeof(struct v4l2_buffer));
+--        vd->buf.index = i;
+--        vd->buf.type = V4L2_BUF_TYPE_VIDEO_CAPTURE;
+--        vd->buf.memory = V4L2_MEMORY_MMAP;
+--        ret = xioctl(vd->fd, VIDIOC_QUERYBUF, &vd->buf);
+-+        memset(&buf, 0, sizeof(struct v4l2_buffer));
+-+        buf.index = i;
+-+        buf.type = V4L2_BUF_TYPE_VIDEO_CAPTURE;
+-+        buf.memory = V4L2_MEMORY_MMAP;
+-+        ret = xioctl(vd->fd, VIDIOC_QUERYBUF, &buf);
+-         if(ret < 0) {
+-             perror("Unable to query buffer");
+-             goto fatal;
+-         }
+- 
+-         if(debug)
+--            fprintf(stderr, "length: %u offset: %u\n", vd->buf.length, vd->buf.m.offset);
+-+            fprintf(stderr, "length: %u offset: %u\n", buf.length, buf.m.offset);
+- 
+-         vd->mem[i] = mmap(0 /* start anywhere */ ,
+--                          vd->buf.length, PROT_READ | PROT_WRITE, MAP_SHARED, vd->fd,
+--                          vd->buf.m.offset);
+-+                          buf.length, PROT_READ | PROT_WRITE, MAP_SHARED, vd->fd,
+-+                          buf.m.offset);
+-         if(vd->mem[i] == MAP_FAILED) {
+-             perror("Unable to map buffer");
+-             goto fatal;
+-         }
+-+	vd->memlength[i] = buf.length;
+-         if(debug)
+-             fprintf(stderr, "Buffer mapped at address %p.\n", vd->mem[i]);
+-     }
+-@@ -403,11 +407,11 @@ static int init_v4l2(struct vdIn *vd)
+-      * Queue the buffers.
+-      */
+-     for(i = 0; i < NB_BUFFER; ++i) {
+--        memset(&vd->buf, 0, sizeof(struct v4l2_buffer));
+--        vd->buf.index = i;
+--        vd->buf.type = V4L2_BUF_TYPE_VIDEO_CAPTURE;
+--        vd->buf.memory = V4L2_MEMORY_MMAP;
+--        ret = xioctl(vd->fd, VIDIOC_QBUF, &vd->buf);
+-+        memset(&buf, 0, sizeof(struct v4l2_buffer));
+-+        buf.index = i;
+-+        buf.type = V4L2_BUF_TYPE_VIDEO_CAPTURE;
+-+        buf.memory = V4L2_MEMORY_MMAP;
+-+        ret = xioctl(vd->fd, VIDIOC_QBUF, &buf);
+-         if(ret < 0) {
+-             perror("Unable to queue buffer");
+-             goto fatal;;
+-@@ -499,17 +503,18 @@ int memcpy_picture(unsigned char *out, unsigned char *buf, int size)
+- int uvcGrab(struct vdIn *vd)
+- {
+- #define HEADERFRAME1 0xaf
+-+    struct v4l2_buffer buf;
+-     int ret;
+- 
+-     if(vd->streamingState == STREAMING_OFF) {
+-         if(video_enable(vd))
+-             goto err;
+-     }
+--    memset(&vd->buf, 0, sizeof(struct v4l2_buffer));
+--    vd->buf.type = V4L2_BUF_TYPE_VIDEO_CAPTURE;
+--    vd->buf.memory = V4L2_MEMORY_MMAP;
+-+    memset(&buf, 0, sizeof(struct v4l2_buffer));
+-+    buf.type = V4L2_BUF_TYPE_VIDEO_CAPTURE;
+-+    buf.memory = V4L2_MEMORY_MMAP;
+- 
+--    ret = xioctl(vd->fd, VIDIOC_DQBUF, &vd->buf);
+-+    ret = xioctl(vd->fd, VIDIOC_DQBUF, &buf);
+-     if(ret < 0) {
+-         perror("Unable to dequeue buffer");
+-         goto err;
+-@@ -517,33 +522,34 @@ int uvcGrab(struct vdIn *vd)
+- 
+-     switch(vd->formatIn) {
+-     case V4L2_PIX_FMT_MJPEG:
+--        if(vd->buf.bytesused <= HEADERFRAME1) {
+-+        if(buf.bytesused <= HEADERFRAME1) {
+-             /* Prevent crash
+-                                                         * on empty image */
+-             fprintf(stderr, "Ignoring empty buffer ...\n");
+-             return 0;
+-         }
+- 
+--        /* memcpy(vd->tmpbuffer, vd->mem[vd->buf.index], vd->buf.bytesused);
+-+        /* memcpy(vd->tmpbuffer, vd->mem[buf.index], buf.bytesused);
+- 
+--        memcpy (vd->tmpbuffer, vd->mem[vd->buf.index], HEADERFRAME1);
+-+        memcpy (vd->tmpbuffer, vd->mem[buf.index], HEADERFRAME1);
+-         memcpy (vd->tmpbuffer + HEADERFRAME1, dht_data, sizeof(dht_data));
+--        memcpy (vd->tmpbuffer + HEADERFRAME1 + sizeof(dht_data), vd->mem[vd->buf.index] + HEADERFRAME1, (vd->buf.bytesused - HEADERFRAME1));
+-+        memcpy (vd->tmpbuffer + HEADERFRAME1 + sizeof(dht_data), vd->mem[buf.index] + HEADERFRAME1, (buf.bytesused - HEADERFRAME1));
+-         */
+- 
+--        memcpy(vd->tmpbuffer, vd->mem[vd->buf.index], vd->buf.bytesused);
+--	vd->tmpbytesused = vd->buf.bytesused;
+-+        memcpy(vd->tmpbuffer, vd->mem[buf.index], buf.bytesused);
+-+	vd->tmpbytesused = buf.bytesused;
+-+	vd->tmptimestamp = buf.timestamp;
+- 
+-         if(debug)
+--            fprintf(stderr, "bytes in used %d \n", vd->buf.bytesused);
+-+            fprintf(stderr, "bytes in used %d \n", buf.bytesused);
+-         break;
+-     case V4L2_PIX_FMT_RGB565:
+-     case V4L2_PIX_FMT_YUYV:
+-     case V4L2_PIX_FMT_RGB24:
+--        if(vd->buf.bytesused > vd->framesizeIn)
+--            memcpy(vd->framebuffer, vd->mem[vd->buf.index], (size_t) vd->framesizeIn);
+-+        if(buf.bytesused > vd->framesizeIn)
+-+            memcpy(vd->framebuffer, vd->mem[buf.index], (size_t) vd->framesizeIn);
+-         else
+--            memcpy(vd->framebuffer, vd->mem[vd->buf.index], (size_t) vd->buf.bytesused);
+-+            memcpy(vd->framebuffer, vd->mem[buf.index], (size_t) buf.bytesused);
+-         break;
+- 
+-     default:
+-@@ -551,7 +557,7 @@ int uvcGrab(struct vdIn *vd)
+-         break;
+-     }
+- 
+--    ret = xioctl(vd->fd, VIDIOC_QBUF, &vd->buf);
+-+    ret = xioctl(vd->fd, VIDIOC_QBUF, &buf);
+-     if(ret < 0) {
+-         perror("Unable to requeue buffer");
+-         goto err;
+-@@ -947,7 +953,7 @@ int setResolution(struct vdIn *vd, int width, int height)
+-         DBG("Unmap buffers\n");
+-         int i;
+-         for(i = 0; i < NB_BUFFER; i++)
+--            munmap(vd->mem[i], vd->buf.length);
+-+            munmap(vd->mem[i], vd->memlength[i]);
+- 
+-         if(CLOSE_VIDEO(vd->fd) == 0) {
+-             DBG("Device closed successfully\n");
+-diff --git a/plugins/input_uvc/v4l2uvc.h b/plugins/input_uvc/v4l2uvc.h
+-index 2c7c8ba..e625957 100644
+---- a/plugins/input_uvc/v4l2uvc.h
+-+++ b/plugins/input_uvc/v4l2uvc.h
+-@@ -35,6 +35,7 @@
+- #include <sys/ioctl.h>
+- #include <sys/mman.h>
+- #include <sys/select.h>
+-+#include <sys/time.h>
+- 
+- #include <linux/types.h>          /* for videodev2.h */
+- #include <linux/videodev2.h>
+-@@ -79,11 +80,12 @@ struct vdIn {
+-     char *pictName;
+-     struct v4l2_capability cap;
+-     struct v4l2_format fmt;
+--    struct v4l2_buffer buf;
+-     struct v4l2_requestbuffers rb;
+-     void *mem[NB_BUFFER];
+-+    int memlength[NB_BUFFER];
+-     unsigned char *tmpbuffer;
+-     int tmpbytesused;
+-+    struct timeval tmptimestamp;
+-     unsigned char *framebuffer;
+-     streaming_state streamingState;
+-     int grabmethod;
+--- 
+-1.9.1
+-
+diff -urN ../../../downloads/openwrt_trunk-r45513/feeds/packages/multimedia/mjpg-streamer/patches/050-fix-yuv-capture.patch ../../../openwrt_trunk/feeds/packages/multimedia/mjpg-streamer/patches/050-fix-yuv-capture.patch
+--- ../../../downloads/openwrt_trunk-r45513/feeds/packages/multimedia/mjpg-streamer/patches/050-fix-yuv-capture.patch	2015-04-20 10:09:28.894135362 +0300
++++ ../../../openwrt_trunk/feeds/packages/multimedia/mjpg-streamer/patches/050-fix-yuv-capture.patch	1970-01-01 03:00:00.000000000 +0300
+@@ -1,58 +0,0 @@
+-Binary files a/ipkg-ar71xx/mjpg-streamer/usr/lib/input_uvc.so and b/ipkg-ar71xx/mjpg-streamer/usr/lib/input_uvc.so differ
+-diff -ur a/plugins/input_uvc/input_uvc.c b/plugins/input_uvc/input_uvc.c
+---- a/plugins/input_uvc/input_uvc.c     2015-03-02 09:14:05.000000000 +0200
+-+++ b/plugins/input_uvc/input_uvc.c     2015-03-02 09:18:22.000000000 +0200
+-@@ -311,6 +311,10 @@
+-     }
+-     memset(cams[id].videoIn, 0, sizeof(struct vdIn));
+- 
+-+    /* Non-MJPEG formats seem to fail with unlimited FPS */
+-+    if (format != V4L2_PIX_FMT_MJPEG && fps == -1)
+-+        fps = 15;
+-+
+-     /* display the parsed values */
+-     IPRINT("Using V4L2 device.: %s\n", dev);
+-     IPRINT("Desired Resolution: %i x %i\n", width, height);
+-diff -ur a/plugins/input_uvc/jpeg_utils.c b/plugins/input_uvc/jpeg_utils.c
+---- a/plugins/input_uvc/jpeg_utils.c    2015-03-02 09:17:02.000000000 +0300
+-+++ b/plugins/input_uvc/jpeg_utils.c    2015-03-02 09:25:18.000000000 +0200
+-@@ -198,7 +198,7 @@
+-             }
+- 
+-             row_pointer = (JSAMPROW*)line_buffer;
+--            jpeg_write_scanlines(&cinfo, row_pointer, 1);
+-+            jpeg_write_scanlines(&cinfo, &row_pointer, 1);
+-         }
+-     } else if (vd->formatIn == V4L2_PIX_FMT_RGB565) {
+-         while(cinfo.next_scanline < vd->height) {
+-@@ -220,7 +220,7 @@
+-             }
+- 
+-             row_pointer = (JSAMPROW*)line_buffer;
+--            jpeg_write_scanlines(&cinfo, row_pointer, 1);
+-+            jpeg_write_scanlines(&cinfo, &row_pointer, 1);
+-         }
+-     } else if (vd->formatIn == V4L2_PIX_FMT_RGB24) {
+-         jpeg_write_scanlines(&cinfo, (JSAMPROW*)vd->framebuffer, vd->height);
+-diff -ur a/plugins/input_uvc/v4l2uvc.c b/plugins/input_uvc/v4l2uvc.c
+---- a/plugins/input_uvc/v4l2uvc.c       2015-03-02 09:14:05.000000000 +0200
+-+++ b/plugins/input_uvc/v4l2uvc.c       2015-03-02 09:22:09.000000000 +0200
+-@@ -338,11 +338,15 @@
+-                         vd->frame_period_time = 1000/vd->fps; // calcualate frame period time in ms
+-                         IPRINT("Frame period time ......: %ld ms\n", vd->frame_period_time);
+- 
+--                        // set FPS to maximum in order to minimize the lagging
+-                         memset(setfps, 0, sizeof(struct v4l2_streamparm));
+-                         setfps->type = V4L2_BUF_TYPE_VIDEO_CAPTURE;
+-                         setfps->parm.capture.timeperframe.numerator = 1;
+--                        setfps->parm.capture.timeperframe.denominator = 255;
+-+                       if (vd->formatIn == V4L2_PIX_FMT_MJPEG)
+-+                           // set FPS to maximum in order to minimize the lagging
+-+                           setfps->parm.capture.timeperframe.denominator = 255;
+-+                       else
+-+                           setfps->parm.capture.timeperframe.denominator = vd->fps;
+-+
+-                         ret = xioctl(vd->fd, VIDIOC_S_PARM, setfps);
+-                         if (ret) {
+-                             perror("Unable to set the FPS\n");
+-

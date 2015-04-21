@@ -1,6 +1,6 @@
---- ../../../openwrt_trunk.orig/feeds/oldpackages/libs/ldns/Makefile
-+++ ../../../openwrt_trunk/feeds/oldpackages/libs/ldns/Makefile
-@@ -57,23 +57,23 @@
+--- ../../../downloads/openwrt_trunk-r45513/feeds/packages/libs/ldns/Makefile	2015-04-20 10:09:28.910135359 +0300
++++ ../../../openwrt_trunk/feeds/packages/libs/ldns/Makefile	2015-04-20 12:54:41.065954831 +0300
+@@ -61,23 +61,23 @@
  	--disable-ecdsa \
  	--disable-gost \
  	--with-drill \

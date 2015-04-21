@@ -1,6 +1,6 @@
---- ../../../downloads/openwrt_trunk-r44486/feeds/packages/utils/attr/Makefile	2015-02-18 12:16:57.636306330 +0300
-+++ ../../../openwrt_trunk/feeds/packages/utils/attr/Makefile	2015-02-18 12:17:23.204305869 +0300
-@@ -69,25 +69,25 @@
+--- ../../../downloads/openwrt_trunk-r45513/feeds/packages/utils/attr/Makefile	2015-04-20 10:09:28.954135359 +0300
++++ ../../../openwrt_trunk/feeds/packages/utils/attr/Makefile	2015-04-20 10:09:43.926135150 +0300
+@@ -68,25 +68,25 @@
  CONFIGURE_ARGS += --enable-static --enable-shared
  
  define Package/attr/install

@@ -1,6 +1,6 @@
---- ../../../downloads/openwrt_trunk-r43593/feeds/packages/net/net-snmp/Makefile	2014-12-10 12:26:32.982951682 +0300
-+++ ../../../openwrt_trunk/feeds/packages/net/net-snmp/Makefile	2014-12-10 12:49:07.810927000 +0300
-@@ -156,31 +156,32 @@
+--- ../../../downloads/openwrt_trunk-r45513/feeds/packages/net/net-snmp/Makefile	2015-04-20 10:09:28.918135362 +0300
++++ ../../../openwrt_trunk/feeds/packages/net/net-snmp/Makefile	2015-04-20 13:36:28.929908828 +0300
+@@ -156,32 +156,31 @@
  	--enable-shared \
  	--enable-static \
  	--with-endianness=$(if $(CONFIG_BIG_ENDIAN),big,little) \
@@ -37,11 +37,11 @@
  endif
  
 -TARGET_LDFLAGS += -L$(TOOLCHAIN_DIR)/usr/lib
-+#TARGET_LDFLAGS += -L$(TOOLCHAIN_DIR)/opt/lib
- 
+-
  ifdef CONFIG_PACKAGE_snmpd-static
    define Build/Compile/static
-@@ -201,59 +202,45 @@
+ 	$(MAKE) -C $(PKG_BUILD_DIR)/agent \
+@@ -201,53 +200,45 @@
  
  define Build/InstallDev
  	$(INSTALL_DIR) $(2)/bin
@@ -57,18 +57,17 @@
 +	$(INSTALL_DIR) $(1)/opt/include
 +	$(CP) $(PKG_INSTALL_DIR)/opt/include/net-snmp $(1)/opt/include/
 +	$(INSTALL_DIR) $(1)/opt/lib
-+	$(CP) $(PKG_INSTALL_DIR)/opt/lib/libnetsnmp{,agent,helpers,mibs,trapd}.{a,so*} $(1)/opt/lib/
++	$(CP) $(PKG_INSTALL_DIR)/opt/lib/libnetsnmp{,agent,helpers,mibs}.{a,so*} $(1)/opt/lib/
  endef
  
  define Package/libnetsnmp/install
 -	$(INSTALL_DIR) $(1)/usr/lib
 -	$(CP) $(PKG_INSTALL_DIR)/usr/lib/libnetsnmp{,agent,helpers,mibs}.so.* $(1)/usr/lib/
 +	$(INSTALL_DIR) $(1)/opt/lib
-+	$(CP) $(PKG_INSTALL_DIR)/opt/lib/libnetsnmp{,agent,helpers,mibs,trapd}.so.* $(1)/opt/lib/
++	$(CP) $(PKG_INSTALL_DIR)/opt/lib/libnetsnmp{,agent,helpers,mibs}.so.* $(1)/opt/lib/
  endef
  
  define Package/snmpd/conffiles
--/etc/default/snmpd
 -/etc/config/snmpd
 +/opt/etc/snmp/snmpd.config
  endef
@@ -78,8 +77,6 @@
 -	$(INSTALL_DATA) ./files/snmpd.conf $(1)/etc/config/snmpd
 -	$(INSTALL_DIR) $(1)/etc/snmp
 -	ln -sf /var/run/snmpd.conf $(1)/etc/snmp/
--	$(INSTALL_DIR) $(1)/etc/default
--	$(INSTALL_DATA) ./files/snmpd.default $(1)/etc/default/snmpd
 -	$(INSTALL_DIR) $(1)/etc/init.d
 -	$(INSTALL_BIN) ./files/snmpd.init $(1)/etc/init.d/snmpd
 -	$(INSTALL_DIR) $(1)/usr/sbin
@@ -90,7 +87,6 @@
  endef
  
  define Package/snmpd-static/conffiles
--/etc/default/snmpd
 -/etc/config/snmpd
 +/opt/etc/snmp/snmpd.config
  endef
@@ -100,8 +96,6 @@
 -	$(INSTALL_DATA) ./files/snmpd.conf $(1)/etc/config/snmpd
 -	$(INSTALL_DIR) $(1)/etc/snmp
 -	ln -sf /var/run/snmpd.conf $(1)/etc/snmp/
--	$(INSTALL_DIR) $(1)/etc/default
--	$(INSTALL_DATA) ./files/snmpd.default $(1)/etc/default/snmpd
 -	$(INSTALL_DIR) $(1)/etc/init.d
 -	$(INSTALL_BIN) ./files/snmpd.init $(1)/etc/init.d/snmpd
 -	$(INSTALL_DIR) $(1)/usr/sbin

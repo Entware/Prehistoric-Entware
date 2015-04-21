@@ -1,6 +1,6 @@
---- ../../../downloads/openwrt_trunk-r42803/feeds/packages/net/dnscrypt-proxy/Makefile
-+++ ../../../openwrt_trunk/feeds/packages/net/dnscrypt-proxy/Makefile
-@@ -60,7 +60,7 @@
+--- ../../../downloads/openwrt_trunk-r45513/feeds/packages/net/dnscrypt-proxy/Makefile	2015-04-20 10:09:28.930135359 +0300
++++ ../../../openwrt_trunk/feeds/packages/net/dnscrypt-proxy/Makefile	2015-04-20 10:09:44.482135076 +0300
+@@ -58,7 +58,7 @@
  
  define Build/Configure
  	$(call Build/Configure/Default, \
@@ -9,7 +9,7 @@
  	--disable-ssp \
  	)
  endef
-@@ -78,43 +78,68 @@
+@@ -76,43 +76,68 @@
  	LDFLAGS="$(TARGET_LDFLAGS)"
  
  define Package/dnscrypt-proxy/install

@@ -1,6 +1,20 @@
---- ../../../downloads/openwrt_trunk-r44486/package/devel/valgrind/Makefile	2015-02-18 12:16:58.056306324 +0300
-+++ ../../../openwrt_trunk/package/devel/valgrind/Makefile	2015-02-18 12:17:41.944305525 +0300
-@@ -105,68 +105,68 @@
+--- ../../../downloads/openwrt_trunk-r45513/package/devel/valgrind/Makefile	2015-04-20 10:09:29.190135358 +0300
++++ ../../../openwrt_trunk/package/devel/valgrind/Makefile	2015-04-21 10:09:19.188624596 +0300
+@@ -24,12 +24,11 @@
+ PKG_USE_MIPS16:=0
+ 
+ include $(INCLUDE_DIR)/package.mk
+-include $(INCLUDE_DIR)/kernel.mk
+ 
+ define Package/valgrind
+   SECTION:=devel
+   CATEGORY:=Development
+-  DEPENDS:=@mips||mipsel||i386||x86_64||powerpc||arm_v7 +libpthread +librt
++  DEPENDS:=+libpthread +librt
+   TITLE:=debugging and profiling tools for Linux
+   URL:=http://www.valgrind.org
+ endef
+@@ -105,68 +104,68 @@
  	--with-pagesize=4 \
  
  define Package/valgrind/install	

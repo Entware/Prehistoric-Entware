@@ -1,27 +1,21 @@
---- ../../../openwrt_trunk/package/libs/libjson-c/Makefile.orig
-+++ ../../../openwrt_trunk/package/libs/libjson-c/Makefile
-@@ -53,25 +53,25 @@
- 
+--- ../../../downloads/openwrt_trunk-r45513/package/libs/libjson-c/Makefile	2015-04-20 10:09:29.138135354 +0300
++++ ../../../openwrt_trunk/package/libs/libjson-c/Makefile	2015-04-20 12:59:08.541945484 +0300
+@@ -39,17 +39,17 @@
+ endef
  
  define Build/InstallDev
 -	$(INSTALL_DIR) $(1)/usr/include
--	$(CP) $(PKG_INSTALL_DIR)/usr/include/json $(1)/usr/include/
 -	$(CP) $(PKG_INSTALL_DIR)/usr/include/json-c $(1)/usr/include/
 -	$(INSTALL_DIR) $(1)/usr/lib
--	$(CP) $(PKG_INSTALL_DIR)/usr/lib/libjson.{a,so*} $(1)/usr/lib/
 -	$(CP) $(PKG_INSTALL_DIR)/usr/lib/libjson-c.{a,so*} $(1)/usr/lib/
 -	$(INSTALL_DIR) $(1)/usr/lib/pkgconfig
 -	$(CP) $(PKG_INSTALL_DIR)/usr/lib/pkgconfig/json-c.pc $(1)/usr/lib/pkgconfig/
--	$(CP) $(PKG_INSTALL_DIR)/usr/lib/pkgconfig/json.pc $(1)/usr/lib/pkgconfig/
 +	$(INSTALL_DIR) $(1)/opt/include
-+	$(CP) $(PKG_INSTALL_DIR)/opt/include/json $(1)/opt/include/
 +	$(CP) $(PKG_INSTALL_DIR)/opt/include/json-c $(1)/opt/include/
 +	$(INSTALL_DIR) $(1)/opt/lib
-+	$(CP) $(PKG_INSTALL_DIR)/opt/lib/libjson.{a,so*} $(1)/opt/lib/
 +	$(CP) $(PKG_INSTALL_DIR)/opt/lib/libjson-c.{a,so*} $(1)/opt/lib/
 +	$(INSTALL_DIR) $(1)/opt/lib/pkgconfig
 +	$(CP) $(PKG_INSTALL_DIR)/opt/lib/pkgconfig/json-c.pc $(1)/opt/lib/pkgconfig/
-+	$(CP) $(PKG_INSTALL_DIR)/opt/lib/pkgconfig/json.pc $(1)/opt/lib/pkgconfig/
  endef
  
  define Package/libjson-c/install
@@ -29,13 +23,6 @@
 -	$(CP) $(PKG_INSTALL_DIR)/usr/lib/libjson-c.so.* $(1)/usr/lib/
 +	$(INSTALL_DIR) $(1)/opt/lib
 +	$(CP) $(PKG_INSTALL_DIR)/opt/lib/libjson-c.so.* $(1)/opt/lib/
- endef
- 
- define Package/libjson/install
--	$(INSTALL_DIR) $(1)/usr/lib
--	$(CP) $(PKG_INSTALL_DIR)/usr/lib/libjson.so.* $(1)/usr/lib/
-+	$(INSTALL_DIR) $(1)/opt/lib
-+	$(CP) $(PKG_INSTALL_DIR)/opt/lib/libjson.so.* $(1)/opt/lib/
  endef
  
  $(eval $(call BuildPackage,libjson-c))

@@ -1,0 +1,11 @@
+--- ../../../downloads/openwrt_trunk-r45513/feeds/packages/lang/python-yaml/Makefile	2015-04-20 10:09:28.890135362 +0300
++++ ../../../openwrt_trunk/feeds/packages/lang/python-yaml/Makefile	2015-04-21 08:51:47.388711109 +0300
+@@ -35,7 +35,7 @@
+ 
+ define Build/Compile
+ 	$(call Build/Compile/PyMod,,\
+-		--with-libyaml install --prefix="$(PKG_INSTALL_DIR)/usr" \
++		--with-libyaml install --prefix="$(PKG_INSTALL_DIR)/opt" \
+ 	)
+ endef
+ 

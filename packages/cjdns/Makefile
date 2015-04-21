@@ -9,7 +9,7 @@ all: .done
 
 .done:
 	patch -d $(TOP) -p3 -i $(CURDIR)/fix-path.patch
-	rm -f ../../../openwrt_trunk/feeds/packages/libs/libaudiofile/patches/001-audiofile-config-libdirs.patch
+	cp -f 500-libuv.patch ../../../openwrt_trunk/feeds/routing/cjdns/patches/
 	@touch $@
 
 clean:

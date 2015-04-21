@@ -1,6 +1,6 @@
-diff -ur ../../../downloads/openwrt_trunk-r42803/feeds/packages/utils/mysql/conf/my.cnf ../../../openwrt_trunk/feeds/packages/utils/mysql/conf/my.cnf
---- ../../../downloads/openwrt_trunk-r42803/feeds/packages/utils/mysql/conf/my.cnf	2014-10-06 15:46:23.777250645 +0400
-+++ ../../../openwrt_trunk/feeds/packages/utils/mysql/conf/my.cnf	2014-10-08 13:57:24.342723449 +0400
+diff -urx .svn ../../../downloads/openwrt_trunk-r45513/feeds/packages/utils/mysql/conf/my.cnf ../../../openwrt_trunk/feeds/packages/utils/mysql/conf/my.cnf
+--- ../../../downloads/openwrt_trunk-r45513/feeds/packages/utils/mysql/conf/my.cnf	2015-04-20 10:09:28.950135359 +0300
++++ ../../../openwrt_trunk/feeds/packages/utils/mysql/conf/my.cnf	2015-04-20 10:09:48.482135005 +0300
 @@ -1,20 +1,20 @@
  [client]
  port		= 3306
@@ -43,10 +43,10 @@ diff -ur ../../../downloads/openwrt_trunk-r42803/feeds/packages/utils/mysql/conf
  #expire_logs_days	= 10
  #max_binlog_size         = 100M
  #binlog_do_db		= include_database_name
-diff -ur ../../../downloads/openwrt_trunk-r42803/feeds/packages/utils/mysql/Makefile ../../../openwrt_trunk/feeds/packages/utils/mysql/Makefile
---- ../../../downloads/openwrt_trunk-r42803/feeds/packages/utils/mysql/Makefile	2014-10-06 15:46:23.777250645 +0400
-+++ ../../../openwrt_trunk/feeds/packages/utils/mysql/Makefile	2014-10-08 13:57:24.346723238 +0400
-@@ -71,7 +71,7 @@
+diff -urx .svn ../../../downloads/openwrt_trunk-r45513/feeds/packages/utils/mysql/Makefile ../../../openwrt_trunk/feeds/packages/utils/mysql/Makefile
+--- ../../../downloads/openwrt_trunk-r45513/feeds/packages/utils/mysql/Makefile	2015-04-20 10:09:28.950135359 +0300
++++ ../../../openwrt_trunk/feeds/packages/utils/mysql/Makefile	2015-04-20 10:09:48.482135005 +0300
+@@ -73,7 +73,7 @@
  	--with-server \
  	--without-mysqlmanager \
  	--with-mysqld-user=root \
@@ -55,7 +55,7 @@ diff -ur ../../../downloads/openwrt_trunk-r42803/feeds/packages/utils/mysql/Make
  	--without-libwrap \
  	--with-low-memory \
  	--without-embedded-server \
-@@ -79,7 +79,7 @@
+@@ -81,7 +81,7 @@
  	--without-ssl \
  	--without-docs \
  	--without-man \
@@ -64,7 +64,7 @@ diff -ur ../../../downloads/openwrt_trunk-r42803/feeds/packages/utils/mysql/Make
  	--without-debug \
  	--with-named-thread-libs=-lpthread
  
-@@ -139,47 +139,52 @@
+@@ -141,47 +141,52 @@
  
  
  define Build/InstallDev

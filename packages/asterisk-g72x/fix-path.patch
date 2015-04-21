@@ -1,0 +1,58 @@
+--- ../../../downloads/openwrt_trunk-r45513/feeds/telephony/net/asterisk-g72x/Makefile	2015-04-20 10:09:29.078135357 +0300
++++ ../../../openwrt_trunk/feeds/telephony/net/asterisk-g72x/Makefile	2015-04-20 11:43:13.570033437 +0300
+@@ -64,12 +64,12 @@
+   MAKE_ARGS:= \
+ 	CC="$(TARGET_CC)" \
+ 	LD="$(TARGET_LD)" \
+-	CFLAGS="$(TARGET_CFLAGS) -DASTERISK_VERSION_NUM=110000 -DLOW_MEMORY -D_XOPEN_SOURCE=600 $(TARGET_CPPFLAGS) -I$(STAGING_DIR)/usr/include/asterisk-1.8/include -DHAVE_CONFIG_H -I. -fPIC" \
++	CFLAGS="$(TARGET_CFLAGS) -DASTERISK_VERSION_NUM=110000 -DLOW_MEMORY -D_XOPEN_SOURCE=600 $(TARGET_CPPFLAGS) -I$(STAGING_DIR)/opt/include/asterisk-1.8/include -DHAVE_CONFIG_H -I. -fPIC" \
+ 	LDFLAGS="$(TARGET_LDFLAGS)" \
+ 	DESTDIR="$(PKG_INSTALL_DIR)"
+ 
+   CONFIGURE_ARGS+=\
+-	--with-asterisk-includes=$(STAGING_DIR)/usr/include/asterisk-1.8/include \
++	--with-asterisk-includes=$(STAGING_DIR)/opt/include/asterisk-1.8/include \
+ 	--with-asterisk18 \
+ 	--with-bcg729 \
+ 	--enable-shared \
+@@ -80,12 +80,12 @@
+   MAKE_ARGS:= \
+ 	CC="$(TARGET_CC)" \
+ 	LD="$(TARGET_LD)" \
+-	CFLAGS="$(TARGET_CFLAGS) -DASTERISK_VERSION_NUM=110000 -DLOW_MEMORY -D_XOPEN_SOURCE=600 $(TARGET_CPPFLAGS) -I$(STAGING_DIR)/usr/include/asterisk-11/include -DHAVE_CONFIG_H -I. -fPIC" \
++	CFLAGS="$(TARGET_CFLAGS) -DASTERISK_VERSION_NUM=110000 -DLOW_MEMORY -D_XOPEN_SOURCE=600 $(TARGET_CPPFLAGS) -I$(STAGING_DIR)/opt/include/asterisk-11/include -DHAVE_CONFIG_H -I. -fPIC" \
+ 	LDFLAGS="$(TARGET_LDFLAGS)" \
+ 	DESTDIR="$(PKG_INSTALL_DIR)"
+ 
+   CONFIGURE_ARGS+=\
+-	--with-asterisk-includes=$(STAGING_DIR)/usr/include/asterisk-11/include \
++	--with-asterisk-includes=$(STAGING_DIR)/opt/include/asterisk-11/include \
+ 	--with-asterisk100 \
+ 	--with-bcg729 \
+ 	--enable-shared \
+@@ -96,12 +96,12 @@
+   MAKE_ARGS:= \
+ 	CC="$(TARGET_CC)" \
+ 	LD="$(TARGET_LD)" \
+-	CFLAGS="$(TARGET_CFLAGS) -DASTERISK_VERSION_NUM=130000 -DLOW_MEMORY -D_XOPEN_SOURCE=600 $(TARGET_CPPFLAGS) -I$(STAGING_DIR)/usr/include/asterisk-13/include -DHAVE_CONFIG_H -I. -fPIC" \
++	CFLAGS="$(TARGET_CFLAGS) -DASTERISK_VERSION_NUM=130000 -DLOW_MEMORY -D_XOPEN_SOURCE=600 $(TARGET_CPPFLAGS) -I$(STAGING_DIR)/opt/include/asterisk-13/include -DHAVE_CONFIG_H -I. -fPIC" \
+ 	LDFLAGS="$(TARGET_LDFLAGS)" \
+ 	DESTDIR="$(PKG_INSTALL_DIR)"
+ 
+   CONFIGURE_ARGS+=\
+-	--with-asterisk-includes=$(STAGING_DIR)/usr/include/asterisk-13/include \
++	--with-asterisk-includes=$(STAGING_DIR)/opt/include/asterisk-13/include \
+ 	--with-asterisk130 \
+ 	--with-bcg729 \
+ 	--enable-shared \
+@@ -109,8 +109,8 @@
+ endif
+ 
+ define Package/Install/Default
+-	$(INSTALL_DIR) $(1)/usr/lib/asterisk/modules
+-	$(INSTALL_BIN) $(PKG_INSTALL_DIR)/usr/lib/asterisk/modules/codec_g729.so $(1)/usr/lib/asterisk/modules/
++	$(INSTALL_DIR) $(1)/opt/lib/asterisk/modules
++	$(INSTALL_BIN) $(PKG_INSTALL_DIR)/opt/lib/asterisk/modules/codec_g729.so $(1)/opt/lib/asterisk/modules/
+ endef
+ 
+ Package/asterisk18-codec-g729/install = $(Package/Install/Default)

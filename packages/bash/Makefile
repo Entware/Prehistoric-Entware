@@ -10,8 +10,6 @@ all: .done
 .done:
 	patch -d $(TOP) -p3 -i $(CURDIR)/fix-path.patch
 	cp -f ./500-system-profile.patch ../../../openwrt_trunk/feeds/packages/utils/bash/patches/
-	rm -f ../../../openwrt_trunk/feeds/packages/utils/bash/patches/200-redhat-parser-oob.patch
-	rm -f ../../../openwrt_trunk/feeds/packages/utils/bash/patches/201-redhat-variable-affix.patch
 	@touch $@
 
 clean:
