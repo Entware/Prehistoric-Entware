@@ -1,5 +1,23 @@
---- ../../../openwrt_trunk.orig/feeds/oldpackages/utils/rrdtool/Makefile
-+++ ../../../openwrt_trunk/feeds/oldpackages/utils/rrdtool/Makefile
+--- ../../../downloads/openwrt_trunk-r45513/feeds/oldpackages/utils/rrdtool/Makefile	2015-04-21 10:37:38.348588032 +0300
++++ ../../../openwrt_trunk/feeds/oldpackages/utils/rrdtool/Makefile	2015-04-21 14:20:49.088344104 +0300
+@@ -9,7 +9,7 @@
+ 
+ PKG_NAME:=rrdtool
+ PKG_VERSION:=1.2.30
+-PKG_RELEASE:=3
++PKG_RELEASE:=3a
+ 
+ PKG_SOURCE_URL:=http://oss.oetiker.ch/rrdtool/pub/
+ PKG_SOURCE:=$(PKG_NAME)-$(PKG_VERSION).tar.gz
+@@ -61,7 +61,7 @@
+   SECTION:=lang
+   CATEGORY:=Languages
+   TITLE+= python bindings (v1.2.x)
+-  DEPENDS+= +python-mini +librrd
++  DEPENDS+= +python +librrd
+ endef
+ 
+ CONFIGURE_ARGS += \
 @@ -74,7 +74,7 @@
  	--disable-tcl \
  	--disable-ruby \

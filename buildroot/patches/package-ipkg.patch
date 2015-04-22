@@ -1,5 +1,5 @@
---- ../../../downloads/openwrt_trunk-r45513/include/package-ipkg.mk	2015-04-20 10:09:29.086135358 +0300
-+++ ../../../openwrt_trunk/include/package-ipkg.mk	2015-04-20 10:46:05.806100047 +0300
+--- ../../../downloads/openwrt_trunk-r45513/include/package-ipkg.mk	2015-04-21 10:37:38.364588029 +0300
++++ ../../../openwrt_trunk/include/package-ipkg.mk	2015-04-21 11:51:25.516500377 +0300
 @@ -11,7 +11,7 @@
  IPKG_BUILD:= \
    $(SCRIPT_DIR)/ipkg-build -c -o 0 -g 0
@@ -20,7 +20,7 @@
      $(eval $(call BuildIPKGVariable,$(1),postrm,1))
  
      $(STAGING_DIR_ROOT)/stamp/.$(1)_installed: $(STAMP_BUILT)
-@@ -193,17 +193,6 @@
+@@ -193,18 +193,6 @@
  			printf "Description: "; echo "$$$$DESCRIPTION" | sed -e 's,^[[:space:]]*, ,g'; \
  		) > control; \
  		chmod 644 control; \
@@ -35,10 +35,11 @@
 -			echo ". \$$$${IPKG_INSTROOT}/lib/functions.sh"; \
 -			echo "default_prerm \$$$$0 \$$$$@"; \
 -		) > prerm; \
- 		chmod 0755 postinst prerm; \
+-		chmod 0755 postinst prerm; \
  		$($(1)_COMMANDS) \
  	)
-@@ -215,8 +204,8 @@
+ 
+@@ -215,8 +203,8 @@
  				[ -f "$$(IDIR_$(1))/$$$$x" ] || keepfiles="$$$${keepfiles:+$$$$keepfiles }$$$$x"; \
  			done; \
  			[ -z "$$$$keepfiles" ] || { \

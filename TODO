@@ -1,10 +1,5 @@
 === Known bugs and odds, to do list ===
 
-sshd: syslogin_perform_logout: logout() returned an error, /var/... or /etc/... somewhere in sources
-bash_completion: /etc/bashcompletion in optware is newer
-freeswitch: spandsp marked as broken for now.
-elfutils: is a fake package for now, still old libelf package used due to our 2.6 kernel
-
 OpenWRT packages with updagraded version:
 dialog		1.2-20140112
 elinks		0.12pre6
@@ -21,12 +16,12 @@ wview		5.21.5
 Can't be upgraded (because of too old 2.6.22 kernel, mostly):
 aircrack-ng	1.1		requires libnl1 or libnl3
 bluez		3.36		epoll_create1() absence
+cjdns		0.7-20150207	Unstable commit taken, should be fixed in future
 gdb		7.3.1		due to gnu_v3_object_ctor_group() absence
 libnl		2.0 (r33657)
 libtorrent	0.13.4		lack of C++11 features
 libv4l		0.8.6
 mjpg-streamer	r181
-python		2.7.3		A big mess with new package. Will sit on this forawhile
 rtorrent	0.9.4		lack of C++11 features
 ser2net		2.9.1		Incompatible kernel headers, should be fixed in tne next release
 usbip		0.1.7

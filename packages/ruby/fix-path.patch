@@ -1,6 +1,15 @@
 diff -urx .svn ../../../downloads/openwrt_trunk-r45513/feeds/packages/lang/ruby/Makefile ../../../openwrt_trunk/feeds/packages/lang/ruby/Makefile
---- ../../../downloads/openwrt_trunk-r45513/feeds/packages/lang/ruby/Makefile	2015-04-20 10:09:28.890135362 +0300
-+++ ../../../openwrt_trunk/feeds/packages/lang/ruby/Makefile	2015-04-20 10:09:50.850134960 +0300
+--- ../../../downloads/openwrt_trunk-r45513/feeds/packages/lang/ruby/Makefile	2015-04-21 10:37:38.184588033 +0300
++++ ../../../openwrt_trunk/feeds/packages/lang/ruby/Makefile	2015-04-22 09:57:02.515054286 +0300
+@@ -575,7 +575,7 @@
+ define Package/ruby-psych
+ $(call Package/ruby/Default)
+   TITLE+=YAML parser and emitter
+-  DEPENDS:=ruby +ruby-bigdecimal +ruby-datetime +ruby-misc +ruby-enc
++  DEPENDS:=ruby +ruby-bigdecimal +ruby-datetime +ruby-misc +ruby-enc +libyaml
+ endef
+ 
+ define Package/ruby-psych/description
 @@ -833,24 +833,25 @@
  
  MAKE_FLAGS += \
@@ -720,8 +729,8 @@ diff -urx .svn ../../../downloads/openwrt_trunk-r45513/feeds/packages/lang/ruby/
  endef
  
 diff -urx .svn ../../../downloads/openwrt_trunk-r45513/feeds/packages/lang/ruby/ruby_find_pkgsdeps ../../../openwrt_trunk/feeds/packages/lang/ruby/ruby_find_pkgsdeps
---- ../../../downloads/openwrt_trunk-r45513/feeds/packages/lang/ruby/ruby_find_pkgsdeps	2015-04-20 10:09:28.890135362 +0300
-+++ ../../../openwrt_trunk/feeds/packages/lang/ruby/ruby_find_pkgsdeps	2015-04-20 10:09:50.850134960 +0300
+--- ../../../downloads/openwrt_trunk-r45513/feeds/packages/lang/ruby/ruby_find_pkgsdeps	2015-04-21 10:37:38.184588033 +0300
++++ ../../../openwrt_trunk/feeds/packages/lang/ruby/ruby_find_pkgsdeps	2015-04-21 10:37:45.224587905 +0300
 @@ -1,4 +1,4 @@
 -#!/usr/bin/ruby -Eutf-8
 +#!/opt/bin/ruby -Eutf-8
@@ -729,8 +738,8 @@ diff -urx .svn ../../../downloads/openwrt_trunk-r45513/feeds/packages/lang/ruby/
  #
  # Find dependencies between ruby packages
 diff -urx .svn ../../../downloads/openwrt_trunk-r45513/feeds/packages/lang/ruby/ruby_missingfiles ../../../openwrt_trunk/feeds/packages/lang/ruby/ruby_missingfiles
---- ../../../downloads/openwrt_trunk-r45513/feeds/packages/lang/ruby/ruby_missingfiles	2015-04-20 10:09:28.890135362 +0300
-+++ ../../../openwrt_trunk/feeds/packages/lang/ruby/ruby_missingfiles	2015-04-20 10:09:50.850134960 +0300
+--- ../../../downloads/openwrt_trunk-r45513/feeds/packages/lang/ruby/ruby_missingfiles	2015-04-21 10:37:38.184588033 +0300
++++ ../../../openwrt_trunk/feeds/packages/lang/ruby/ruby_missingfiles	2015-04-21 10:37:45.224587905 +0300
 @@ -1,4 +1,4 @@
 -#!/bin/bash
 +#!/opt/bin/bash

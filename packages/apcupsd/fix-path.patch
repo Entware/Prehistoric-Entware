@@ -1,6 +1,6 @@
 diff -urx .svn ../../../downloads/openwrt_trunk-r45513/feeds/packages/net/apcupsd/files/apccontrol ../../../openwrt_trunk/feeds/packages/net/apcupsd/files/apccontrol
---- ../../../downloads/openwrt_trunk-r45513/feeds/packages/net/apcupsd/files/apccontrol	2015-04-20 10:09:28.910135359 +0300
-+++ ../../../openwrt_trunk/feeds/packages/net/apcupsd/files/apccontrol	2015-04-20 10:09:34.422135260 +0300
+--- ../../../downloads/openwrt_trunk-r45513/feeds/packages/net/apcupsd/files/apccontrol	2015-04-21 10:37:38.212588033 +0300
++++ ../../../openwrt_trunk/feeds/packages/net/apcupsd/files/apccontrol	2015-04-21 10:37:41.916587965 +0300
 @@ -15,14 +15,14 @@
  #
  # These variables are needed for set up the autoconf other variables.
@@ -43,8 +43,8 @@ diff -urx .svn ../../../downloads/openwrt_trunk-r45513/feeds/packages/net/apcups
  	`${APCUPSD}`
  	echo "apcupsd"
 diff -urx .svn ../../../downloads/openwrt_trunk-r45513/feeds/packages/net/apcupsd/files/apcupsd.conf ../../../openwrt_trunk/feeds/packages/net/apcupsd/files/apcupsd.conf
---- ../../../downloads/openwrt_trunk-r45513/feeds/packages/net/apcupsd/files/apcupsd.conf	2015-04-20 10:09:28.910135359 +0300
-+++ ../../../openwrt_trunk/feeds/packages/net/apcupsd/files/apcupsd.conf	2015-04-20 10:09:34.422135260 +0300
+--- ../../../downloads/openwrt_trunk-r45513/feeds/packages/net/apcupsd/files/apcupsd.conf	2015-04-21 10:37:38.212588033 +0300
++++ ../../../openwrt_trunk/feeds/packages/net/apcupsd/files/apcupsd.conf	2015-04-21 10:37:41.916587965 +0300
 @@ -78,23 +78,23 @@
  
  # LOCKFILE <path to lockfile>
@@ -92,8 +92,8 @@ diff -urx .svn ../../../downloads/openwrt_trunk-r45513/feeds/packages/net/apcups
  # LOGSTATS [ on | off ] on enables, off disables
  # Note! This generates a lot of output, so if         
 diff -urx .svn ../../../downloads/openwrt_trunk-r45513/feeds/packages/net/apcupsd/files/apcupsd_mail.conf ../../../openwrt_trunk/feeds/packages/net/apcupsd/files/apcupsd_mail.conf
---- ../../../downloads/openwrt_trunk-r45513/feeds/packages/net/apcupsd/files/apcupsd_mail.conf	2015-04-20 10:09:28.910135359 +0300
-+++ ../../../openwrt_trunk/feeds/packages/net/apcupsd/files/apcupsd_mail.conf	2015-04-20 10:09:34.422135260 +0300
+--- ../../../downloads/openwrt_trunk-r45513/feeds/packages/net/apcupsd/files/apcupsd_mail.conf	2015-04-21 10:37:38.212588033 +0300
++++ ../../../openwrt_trunk/feeds/packages/net/apcupsd/files/apcupsd_mail.conf	2015-04-21 10:37:41.916587965 +0300
 @@ -1,6 +1,6 @@
  #!/bin/sh
  
@@ -103,8 +103,8 @@ diff -urx .svn ../../../downloads/openwrt_trunk-r45513/feeds/packages/net/apcups
  FROM="OpenWrt"
  TO="apcups@example.com"
 diff -urx .svn ../../../downloads/openwrt_trunk-r45513/feeds/packages/net/apcupsd/files/changeme ../../../openwrt_trunk/feeds/packages/net/apcupsd/files/changeme
---- ../../../downloads/openwrt_trunk-r45513/feeds/packages/net/apcupsd/files/changeme	2015-04-20 10:09:28.910135359 +0300
-+++ ../../../openwrt_trunk/feeds/packages/net/apcupsd/files/changeme	2015-04-20 10:09:34.422135260 +0300
+--- ../../../downloads/openwrt_trunk-r45513/feeds/packages/net/apcupsd/files/changeme	2015-04-21 10:37:38.212588033 +0300
++++ ../../../openwrt_trunk/feeds/packages/net/apcupsd/files/changeme	2015-04-21 10:37:41.916587965 +0300
 @@ -5,13 +5,13 @@
  # detects that the battery should be replaced.
  # We send an email message to root to notify him.
@@ -122,8 +122,8 @@ diff -urx .svn ../../../downloads/openwrt_trunk-r45513/feeds/packages/net/apcups
  ) | $MAILPROG -h $MAILHOST -f $FROM -s "$MSG" $TO
  exit 0
 diff -urx .svn ../../../downloads/openwrt_trunk-r45513/feeds/packages/net/apcupsd/files/commfailure ../../../openwrt_trunk/feeds/packages/net/apcupsd/files/commfailure
---- ../../../downloads/openwrt_trunk-r45513/feeds/packages/net/apcupsd/files/commfailure	2015-04-20 10:09:28.910135359 +0300
-+++ ../../../openwrt_trunk/feeds/packages/net/apcupsd/files/commfailure	2015-04-20 10:09:34.422135260 +0300
+--- ../../../downloads/openwrt_trunk-r45513/feeds/packages/net/apcupsd/files/commfailure	2015-04-21 10:37:38.212588033 +0300
++++ ../../../openwrt_trunk/feeds/packages/net/apcupsd/files/commfailure	2015-04-21 10:37:41.916587965 +0300
 @@ -5,13 +5,13 @@
  # loses contact with the UPS (i.e. the serial connection is not responding).
  # We send an email message to root to notify him.
@@ -141,8 +141,8 @@ diff -urx .svn ../../../downloads/openwrt_trunk-r45513/feeds/packages/net/apcups
  ) | $MAILPROG -h $MAILHOST -f $FROM -s "$MSG" $TO
  exit 0
 diff -urx .svn ../../../downloads/openwrt_trunk-r45513/feeds/packages/net/apcupsd/files/commok ../../../openwrt_trunk/feeds/packages/net/apcupsd/files/commok
---- ../../../downloads/openwrt_trunk-r45513/feeds/packages/net/apcupsd/files/commok	2015-04-20 10:09:28.910135359 +0300
-+++ ../../../openwrt_trunk/feeds/packages/net/apcupsd/files/commok	2015-04-20 10:09:34.422135260 +0300
+--- ../../../downloads/openwrt_trunk-r45513/feeds/packages/net/apcupsd/files/commok	2015-04-21 10:37:38.212588033 +0300
++++ ../../../openwrt_trunk/feeds/packages/net/apcupsd/files/commok	2015-04-21 10:37:41.916587965 +0300
 @@ -5,13 +5,13 @@
  # restores contact with the UPS (i.e. the serial connection is restored).
  # We send an email message to root to notify him.
@@ -160,8 +160,8 @@ diff -urx .svn ../../../downloads/openwrt_trunk-r45513/feeds/packages/net/apcups
  ) | $MAILPROG -h $MAILHOST -f $FROM -s "$MSG" $TO
  exit 0
 diff -urx .svn ../../../downloads/openwrt_trunk-r45513/feeds/packages/net/apcupsd/files/offbattery ../../../openwrt_trunk/feeds/packages/net/apcupsd/files/offbattery
---- ../../../downloads/openwrt_trunk-r45513/feeds/packages/net/apcupsd/files/offbattery	2015-04-20 10:09:28.910135359 +0300
-+++ ../../../openwrt_trunk/feeds/packages/net/apcupsd/files/offbattery	2015-04-20 10:09:34.422135260 +0300
+--- ../../../downloads/openwrt_trunk-r45513/feeds/packages/net/apcupsd/files/offbattery	2015-04-21 10:37:38.212588033 +0300
++++ ../../../openwrt_trunk/feeds/packages/net/apcupsd/files/offbattery	2015-04-21 10:37:41.916587965 +0300
 @@ -5,13 +5,13 @@
  # restores contact with the UPS (i.e. the serial connection is restored).
  # We send an email message to root to notify him.
@@ -179,8 +179,8 @@ diff -urx .svn ../../../downloads/openwrt_trunk-r45513/feeds/packages/net/apcups
  ) | $MAILPROG -h $MAILHOST -f $FROM -s "$MSG" $TO
  exit 0
 diff -urx .svn ../../../downloads/openwrt_trunk-r45513/feeds/packages/net/apcupsd/files/onbattery ../../../openwrt_trunk/feeds/packages/net/apcupsd/files/onbattery
---- ../../../downloads/openwrt_trunk-r45513/feeds/packages/net/apcupsd/files/onbattery	2015-04-20 10:09:28.910135359 +0300
-+++ ../../../openwrt_trunk/feeds/packages/net/apcupsd/files/onbattery	2015-04-20 10:09:34.422135260 +0300
+--- ../../../downloads/openwrt_trunk-r45513/feeds/packages/net/apcupsd/files/onbattery	2015-04-21 10:37:38.212588033 +0300
++++ ../../../openwrt_trunk/feeds/packages/net/apcupsd/files/onbattery	2015-04-21 10:37:41.920587965 +0300
 @@ -5,13 +5,13 @@
  # goes on batteries.
  # We send an email message to root to notify him.
@@ -198,8 +198,8 @@ diff -urx .svn ../../../downloads/openwrt_trunk-r45513/feeds/packages/net/apcups
  ) | $MAILPROG -h $MAILHOST -f $FROM -s "$MSG" $TO
  exit 0
 diff -urx .svn ../../../downloads/openwrt_trunk-r45513/feeds/packages/net/apcupsd/Makefile ../../../openwrt_trunk/feeds/packages/net/apcupsd/Makefile
---- ../../../downloads/openwrt_trunk-r45513/feeds/packages/net/apcupsd/Makefile	2015-04-20 10:09:28.910135359 +0300
-+++ ../../../openwrt_trunk/feeds/packages/net/apcupsd/Makefile	2015-04-20 11:16:00.686060975 +0300
+--- ../../../downloads/openwrt_trunk-r45513/feeds/packages/net/apcupsd/Makefile	2015-04-21 10:37:38.212588033 +0300
++++ ../../../openwrt_trunk/feeds/packages/net/apcupsd/Makefile	2015-04-22 13:49:28.170808082 +0300
 @@ -43,7 +43,7 @@
  	$(CP) $(SCRIPT_DIR)/config.* $(PKG_BUILD_DIR)/autoconf/
  	$(call Build/Configure/Default, \
@@ -255,7 +255,7 @@ diff -urx .svn ../../../downloads/openwrt_trunk-r45513/feeds/packages/net/apcups
 -	$(INSTALL_CONF) ./files/hosts.conf $(1)/etc/apcupsd/
 -	$(INSTALL_CONF) ./files/multimon.conf $(1)/etc/apcupsd/
 +	$(INSTALL_DIR) $(1)/opt/share/www/cgi-bin/apcupsd
-+	$(INSTALL_BIN) $(PKG_INSTALL_DIR)/opt/etc/apcupsd/*.cgi $(1)/opt/share/www/cgi-bin/apcupsd
++	$(INSTALL_BIN) $(PKG_INSTALL_DIR)/etc/apcupsd/*.cgi $(1)/opt/share/www/cgi-bin/apcupsd
 +	$(INSTALL_DIR) $(1)/opt/etc/apcupsd
 +	$(INSTALL_CONF) ./files/apcupsd.css $(1)/opt/etc/apcupsd/
 +	$(INSTALL_CONF) ./files/hosts.conf $(1)/opt/etc/apcupsd/

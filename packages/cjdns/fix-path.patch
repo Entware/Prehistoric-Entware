@@ -1,5 +1,21 @@
---- ../../../downloads/openwrt_trunk-r45513/feeds/routing/cjdns/Makefile	2015-04-20 10:09:28.882135362 +0300
-+++ ../../../openwrt_trunk/feeds/routing/cjdns/Makefile	2015-04-21 10:28:18.380596487 +0300
+--- ../../../downloads/openwrt_trunk-r45513/feeds/routing/cjdns/Makefile	2015-04-21 10:37:38.172588033 +0300
++++ ../../../openwrt_trunk/feeds/routing/cjdns/Makefile	2015-04-21 14:15:11.796351525 +0300
+@@ -1,12 +1,12 @@
+ include $(TOPDIR)/rules.mk
+ 
+ PKG_NAME:=cjdns
+-PKG_VERSION:=0.16
+-PKG_RELEASE:=9
++PKG_VERSION:=0.7-20150207
++PKG_RELEASE:=1
+ 
+ PKG_SOURCE_URL:=https://github.com/cjdelisle/cjdns.git
+ PKG_SOURCE_PROTO:=git
+-PKG_SOURCE_VERSION:=2138a1f6a94fc009958cde7b002c077a1eee929a
++PKG_SOURCE_VERSION:=0fc585e15e25b1bd39be24a534f47bb966485a4a
+ PKG_LICENSE:=GPL-3.0
+ PKG_SOURCE:=$(PKG_NAME)-$(PKG_SOURCE_VERSION).tar.bz2
+ PKG_SOURCE_SUBDIR:=$(PKG_NAME)-$(PKG_SOURCE_VERSION)
 @@ -22,8 +22,7 @@
  	TITLE:=Encrypted near-zero-conf mesh routing protocol
  	URL:=https://github.com/hyperboria/cjdns
@@ -10,7 +26,7 @@
  endef
  
  define Package/cjdns/description
-@@ -36,10 +35,6 @@
+@@ -36,65 +35,30 @@
  define Build/Configure
  endef
  
@@ -21,7 +37,10 @@
  define Build/Compile
  	CROSS="true" \
  	CC="$(TARGET_CC)" \
-@@ -49,52 +44,21 @@
+-	CFLAGS="$(TARGET_CFLAGS)" \
++	CFLAGS="$(TARGET_CFLAGS) -I$(KERNEL_DIR)/include" \
+ 	LDFLAGS="$(TARGET_LDFLAGS)" \
+ 	SYSTEM="linux" \
  	TARGET_ARCH="$(CONFIG_ARCH)" \
  	UCLIBC=1 \
  	SSP_SUPPORT="$(CONFIG_SSP_SUPPORT)" \

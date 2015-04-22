@@ -1,5 +1,5 @@
---- ../../../downloads/openwrt_trunk-r45513/feeds/telephony/net/asterisk-g72x/Makefile	2015-04-20 10:09:29.078135357 +0300
-+++ ../../../openwrt_trunk/feeds/telephony/net/asterisk-g72x/Makefile	2015-04-20 11:43:13.570033437 +0300
+--- ../../../downloads/openwrt_trunk-r45513/feeds/telephony/net/asterisk-g72x/Makefile	2015-04-21 10:37:38.356588032 +0300
++++ ../../../openwrt_trunk/feeds/telephony/net/asterisk-g72x/Makefile	2015-04-22 10:26:23.183024864 +0300
 @@ -64,12 +64,12 @@
    MAKE_ARGS:= \
  	CC="$(TARGET_CC)" \
@@ -56,3 +56,9 @@
  endef
  
  Package/asterisk18-codec-g729/install = $(Package/Install/Default)
+@@ -119,4 +119,4 @@
+ 
+ $(eval $(call BuildPackage,asterisk18-codec-g729))
+ $(eval $(call BuildPackage,asterisk11-codec-g729))
+-$(eval $(call BuildPackage,asterisk13-codec-g729))
++#$(eval $(call BuildPackage,asterisk13-codec-g729))

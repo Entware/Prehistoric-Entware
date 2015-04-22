@@ -1,5 +1,5 @@
---- ../../../downloads/openwrt_trunk-r45513/feeds/packages/utils/vim/Makefile	2015-04-20 10:09:28.950135359 +0300
-+++ ../../../openwrt_trunk/feeds/packages/utils/vim/Makefile	2015-04-20 14:45:28.101834704 +0300
+--- ../../../downloads/openwrt_trunk-r45513/feeds/packages/utils/vim/Makefile	2015-04-21 10:37:38.252588032 +0300
++++ ../../../openwrt_trunk/feeds/packages/utils/vim/Makefile	2015-04-21 16:03:20.008231161 +0300
 @@ -64,8 +64,7 @@
  endef
  
@@ -23,7 +23,7 @@
  endef
  
  define Build/Compile
-@@ -160,31 +159,31 @@
+@@ -160,22 +159,22 @@
  endef
  
  define Package/vim/install
@@ -55,8 +55,7 @@
  endef
  
  define Package/vim-help/install
--	tar -C $(1) -xf $(PKG_BUILD_DIR)/docs.tar
-+	tar -C $(1)/opt -xf $(PKG_BUILD_DIR)/docs.tar
+@@ -183,8 +182,8 @@
  endef
  
  define Package/xxd/install

@@ -9,7 +9,7 @@ all: .done
 
 .done:
 	patch -d $(TOP) -p3 -i $(CURDIR)/fix-path.patch
-	cp ./500-xxd-linkage.patch ../../../openwrt_trunk/feeds/packages/utils/vim/patches/
+	cp -f ./500-LONG_BIT-warning.patch ../../../openwrt_trunk/feeds/packages/lang/python/patches/
 	@touch $@
 
 clean:

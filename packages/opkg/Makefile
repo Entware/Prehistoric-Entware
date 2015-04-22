@@ -9,9 +9,9 @@ all: .done
 
 .done:
 	patch -d $(TOP) -p3 -i $(CURDIR)/fix-path.patch
-	cp -f ./999-change-default-config-path.patch ../../../openwrt_trunk/package/system/opkg/patches
-	cp -f ./999-free-space-calc.patch ../../../openwrt_trunk/package/system/opkg/patches
+	cp -f ./5*.patch ../../../openwrt_trunk/package/system/opkg/patches
 	rm -f ../../../openwrt_trunk/package/system/opkg/patches/009-remove-upgrade-all.patch
+	rm -f ../../../openwrt_trunk/package/system/opkg/patches/230-drop_md5_support.patch
 	@touch $@
 
 clean:

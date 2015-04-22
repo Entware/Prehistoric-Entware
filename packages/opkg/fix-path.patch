@@ -1,6 +1,6 @@
 diff -urx .svn ../../../downloads/openwrt_trunk-r45513/package/system/opkg/files/opkg-key ../../../openwrt_trunk/package/system/opkg/files/opkg-key
---- ../../../downloads/openwrt_trunk-r45513/package/system/opkg/files/opkg-key	2015-04-20 10:09:29.114135353 +0300
-+++ ../../../openwrt_trunk/package/system/opkg/files/opkg-key	2015-04-20 14:20:26.057858694 +0300
+--- ../../../downloads/openwrt_trunk-r45513/package/system/opkg/files/opkg-key	2015-04-21 10:37:38.372588031 +0300
++++ ../../../openwrt_trunk/package/system/opkg/files/opkg-key	2015-04-21 10:37:44.700587916 +0300
 @@ -19,7 +19,7 @@
  	(
  		zcat "$msgfile" 2>/dev/null ||
@@ -31,8 +31,8 @@ diff -urx .svn ../../../downloads/openwrt_trunk-r45513/package/system/opkg/files
  
  case "$1" in
 diff -urx .svn ../../../downloads/openwrt_trunk-r45513/package/system/opkg/Makefile ../../../openwrt_trunk/package/system/opkg/Makefile
---- ../../../downloads/openwrt_trunk-r45513/package/system/opkg/Makefile	2015-04-20 10:09:29.114135353 +0300
-+++ ../../../openwrt_trunk/package/system/opkg/Makefile	2015-04-20 14:23:43.101859203 +0300
+--- ../../../downloads/openwrt_trunk-r45513/package/system/opkg/Makefile	2015-04-21 10:37:38.372588031 +0300
++++ ../../../openwrt_trunk/package/system/opkg/Makefile	2015-04-22 12:39:04.670879611 +0300
 @@ -5,7 +5,6 @@
  # See /LICENSE for more information.
  
@@ -121,9 +121,9 @@ diff -urx .svn ../../../downloads/openwrt_trunk-r45513/package/system/opkg/Makef
 -	$(VERSION_SED) $(1)/etc/opkg.conf
 -	$(INSTALL_BIN) $(PKG_INSTALL_DIR)/usr/bin/opkg-cl $(1)/bin/opkg
 +	$(INSTALL_DIR) $(1)/opt/lib/opkg
-+	$(INSTALL_DIR) $(1)/bin/{bin,etc,tmp}
++	$(INSTALL_DIR) $(1)/opt/{bin,etc,tmp}
 +	$(INSTALL_DIR) $(1)/opt/var/{lock,log,run}
-+	$(INSTALL_BIN) $(PKG_INSTALL_DIR)/opt/bin/opkg-cl $(1)/bin/opkg
++	$(INSTALL_BIN) $(PKG_INSTALL_DIR)/opt/bin/opkg-cl $(1)/opt/bin/opkg
  endef
  
 -define Package/opkg/install
@@ -163,3 +163,15 @@ diff -urx .svn ../../../downloads/openwrt_trunk-r45513/package/system/opkg/Makef
 +$(eval $(call BuildPackage,opkg-opt))
  $(eval $(call BuildPackage,opkg-smime))
  $(eval $(call HostBuild))
+diff -urx .svn ../../../downloads/openwrt_trunk-r45513/package/system/opkg/patches/200-usign_support.patch ../../../openwrt_trunk/package/system/opkg/patches/200-usign_support.patch
+--- ../../../downloads/openwrt_trunk-r45513/package/system/opkg/patches/200-usign_support.patch	2015-04-21 10:37:38.372588031 +0300
++++ ../../../openwrt_trunk/package/system/opkg/patches/200-usign_support.patch	2015-04-22 11:32:41.710953908 +0300
+@@ -76,7 +76,7 @@
+ +		return -1;
+ +
+ +	if (!pid) {
+-+		execl("/usr/sbin/opkg-key", "opkg-key", "verify", sig_file, text_file, NULL);
+++		execl("/opt/sbin/opkg-key", "opkg-key", "verify", sig_file, text_file, NULL);
+ +		exit(255);
+ +	}
+ +

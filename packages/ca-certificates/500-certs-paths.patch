@@ -1,0 +1,37 @@
+--- a/Makefile
++++ b/Makefile
+@@ -2,7 +2,7 @@
+ # Makefile
+ #
+ 
+-CERTSDIR = /usr/share/ca-certificates
++CERTSDIR = /opt/share/ca-certificates
+ SUBDIRS = mozilla spi-inc.org
+ 
+ all:
+--- a/sbin/Makefile
++++ b/sbin/Makefile
+@@ -8,4 +8,4 @@
+ clean:
+ 
+ install:
+-	install -m755 update-ca-certificates $(DESTDIR)/usr/sbin/
++	install -m755 update-ca-certificates $(DESTDIR)/opt/sbin/
+--- a/sbin/update-ca-certificates
++++ b/sbin/update-ca-certificates
+@@ -37,11 +37,11 @@
+   shift
+ done
+ 
+-CERTSCONF=/etc/ca-certificates.conf
+-CERTSDIR=/usr/share/ca-certificates
+-LOCALCERTSDIR=/usr/local/share/ca-certificates
++CERTSCONF=/opt/etc/ca-certificates.conf
++CERTSDIR=/opt/share/ca-certificates
++LOCALCERTSDIR=/opt/local/share/ca-certificates
+ CERTBUNDLE=ca-certificates.crt
+-ETCCERTSDIR=/etc/ssl/certs
++ETCCERTSDIR=/opt/etc/ssl/certs
+ 
+ cleanup() {
+   rm -f "$TEMPBUNDLE"

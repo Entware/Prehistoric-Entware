@@ -9,7 +9,8 @@ all: .done
 
 .done:
 	patch -d $(TOP) -p3 -i $(CURDIR)/fix-path.patch
-	rm -f ../../../openwrt_trunk/feeds/oldpackages/net/stunnel/patches/*.patch
+	mkdir -p ../../../openwrt_trunk/package/system/ca-certificates/patches
+	cp -f ./500-certs-paths.patch ../../../openwrt_trunk/package/system/ca-certificates/patches/
 	@touch $@
 
 clean:

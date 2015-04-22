@@ -1,8 +1,11 @@
 --- ../../../downloads/openwrt_trunk-r45513/feeds/packages/libs/boost/Makefile	2015-04-21 10:37:38.204588033 +0300
-+++ ../../../openwrt_trunk/feeds/packages/libs/boost/Makefile	2015-04-21 10:58:19.216570790 +0300
-@@ -189,9 +189,9 @@
++++ ../../../openwrt_trunk/feeds/packages/libs/boost/Makefile	2015-04-22 14:55:22.182728323 +0300
+@@ -187,11 +187,11 @@
+ 
+ 
  define Build/Compile
- 	$(info Selected Boost API $(BOOST_ABI) for architecture $(ARCH) and cpu $(CPU_TYPE) $(CPU_SUBTYPE))
+-	$(info Selected Boost API $(BOOST_ABI) for architecture $(ARCH) and cpu $(CPU_TYPE) $(CPU_SUBTYPE))
++	$(info Selected Boost API $(BOOST_ABI) for architecture $(ARCH))
  	( cd $(PKG_BUILD_DIR) ; \
 -		echo "using gcc : $(ARCH) : $(GNU_TARGET_NAME)-gcc : <compileflags>\"$(TARGET_CFLAGS)\" <cxxflags>\"$(TARGET_CXXFLAGS)\" <linkflags>\"$(TARGET_LDFLAGS)\" ;" > tools/build/src/user-config.jam ; \
 +		echo "using gcc : $(ARCH) : $(TARGET_CROSS)gcc : <compileflags>\"$(TARGET_CFLAGS)\" <cxxflags>\"$(TARGET_CXXFLAGS)\" <linkflags>\"$(TARGET_LDFLAGS)\" ;" > tools/build/src/user-config.jam ; \

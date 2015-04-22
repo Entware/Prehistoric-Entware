@@ -1,5 +1,23 @@
---- ../../../openwrt_trunk.orig/feeds/oldpackages/lang/twisted/Makefile
-+++ ../../../openwrt_trunk/feeds/oldpackages/lang/twisted/Makefile
+--- ../../../downloads/openwrt_trunk-r45513/feeds/oldpackages/lang/twisted/Makefile	2015-04-21 10:37:38.280588031 +0300
++++ ../../../openwrt_trunk/feeds/oldpackages/lang/twisted/Makefile	2015-04-21 14:19:13.584345842 +0300
+@@ -9,7 +9,7 @@
+ 
+ PKG_NAME:=twisted
+ PKG_VERSION:=2.5.0
+-PKG_RELEASE:=1
++PKG_RELEASE:=1a
+ 
+ PKG_SOURCE:=Twisted-$(PKG_VERSION).tar.bz2
+ PKG_SOURCE_URL:=http://tmrc.mit.edu/mirror/twisted/Twisted/2.5
+@@ -26,7 +26,7 @@
+   SECTION:=lang
+   CATEGORY:=Languages
+   URL:=http://twistedmatrix.com/
+-  DEPENDS:=+python-mini
++  DEPENDS:=+python
+ endef
+ 
+ define Package/twisted/default/description
 @@ -128,8 +128,8 @@
  endef
  

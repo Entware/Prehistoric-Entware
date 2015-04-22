@@ -1,6 +1,6 @@
---- ../../../openwrt_trunk.orig/feeds/oldpackages/utils/tar/Makefile
-+++ ../../../openwrt_trunk/feeds/oldpackages/utils/tar/Makefile
-@@ -32,29 +32,13 @@
+--- ../../../downloads/openwrt_trunk-r45513/feeds/packages/utils/tar/Makefile	2015-04-21 10:37:38.252588032 +0300
++++ ../../../openwrt_trunk/feeds/packages/utils/tar/Makefile	2015-04-21 16:10:22.188224617 +0300
+@@ -36,29 +36,13 @@
  	single archive in tar format.
  endef
  

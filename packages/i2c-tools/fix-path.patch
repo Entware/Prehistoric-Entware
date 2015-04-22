@@ -1,5 +1,23 @@
---- ../../../downloads/mipsel-hardfloat/openwrt_trunk-r40423/feeds/oldpackages/utils/i2c-tools/Makefile
-+++ ../../../openwrt_trunk/feeds/oldpackages/utils/i2c-tools/Makefile
+--- ../../../downloads/openwrt_trunk-r45513/feeds/oldpackages/utils/i2c-tools/Makefile	2015-04-21 10:37:38.348588032 +0300
++++ ../../../openwrt_trunk/feeds/oldpackages/utils/i2c-tools/Makefile	2015-04-21 14:21:40.344343169 +0300
+@@ -9,7 +9,7 @@
+ 
+ PKG_NAME:=i2c-tools
+ PKG_VERSION:=2013-12-15
+-PKG_RELEASE:=1
++PKG_RELEASE:=1a
+ 
+ PKG_SOURCE_PROTO:=svn
+ PKG_SOURCE_URL:=http://lm-sensors.org/svn/i2c-tools/trunk
+@@ -49,7 +49,7 @@
+   SECTION:=lang
+   CATEGORY:=Languages
+   TITLE:=Python bindings for the SMBUS
+-  DEPENDS:=+PACKAGE_python-smbus:python-mini +i2c-tools
++  DEPENDS:=+PACKAGE_python-smbus:python +i2c-tools
+ endef
+ 
+ define Package/i2c-tools/description
 @@ -67,7 +67,7 @@
    define Build/Compile/python-smbus
  	$(if $(Build/Compile/PyMod),,@echo Python packaging code not found.; false)

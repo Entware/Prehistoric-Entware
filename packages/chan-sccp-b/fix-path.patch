@@ -1,5 +1,5 @@
---- ../../../downloads/openwrt_trunk-r45513/feeds/telephony/net/chan-sccp-b/Makefile	2015-04-20 10:09:29.078135357 +0300
-+++ ../../../openwrt_trunk/feeds/telephony/net/chan-sccp-b/Makefile	2015-04-20 11:40:32.346030703 +0300
+--- ../../../downloads/openwrt_trunk-r45513/feeds/telephony/net/chan-sccp-b/Makefile	2015-04-21 10:37:38.356588032 +0300
++++ ../../../openwrt_trunk/feeds/telephony/net/chan-sccp-b/Makefile	2015-04-22 10:26:04.523026481 +0300
 @@ -64,19 +64,19 @@
  Package/asterisk13-chan-sccp-b/description = $(Package/description/Default)
  
@@ -39,3 +39,9 @@
  endef
  
  Package/asterisk18-chan-sccp-b/install = $(Package/Install/Default)
+@@ -103,4 +103,4 @@
+ 
+ $(eval $(call BuildPackage,asterisk18-chan-sccp-b))
+ $(eval $(call BuildPackage,asterisk11-chan-sccp-b))
+-$(eval $(call BuildPackage,asterisk13-chan-sccp-b))
++#$(eval $(call BuildPackage,asterisk13-chan-sccp-b))

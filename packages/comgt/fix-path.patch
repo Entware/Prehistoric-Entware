@@ -1,5 +1,5 @@
---- ../../../downloads/openwrt_trunk-r45513/package/network/utils/comgt/Makefile	2015-04-20 10:09:30.506135329 +0300
-+++ ../../../openwrt_trunk/package/network/utils/comgt/Makefile	2015-04-20 12:09:50.830005921 +0300
+--- ../../../downloads/openwrt_trunk-r45513/package/network/utils/comgt/Makefile	2015-04-21 10:37:38.864588020 +0300
++++ ../../../openwrt_trunk/package/network/utils/comgt/Makefile	2015-04-21 14:30:01.596334172 +0300
 @@ -31,20 +31,19 @@
  define Package/comgt
  $(call Package/comgt/Default)
@@ -61,10 +61,10 @@
 +	$(INSTALL_DIR) $(1)/opt/etc/gcom
 +	$(INSTALL_DATA) ./files/setpin.gcom $(1)/opt/etc/gcom/setpin.gcom
 +	$(INSTALL_DATA) ./files/setmode.gcom $(1)/opt/etc/gcom/setmode.gcom
-+	$(INSTALL_DATA) ./files/gopt/etcardinfo.gcom $(1)/opt/etc/gcom/gopt/etcardinfo.gcom
++	$(INSTALL_DATA) ./files/getcardinfo.gcom $(1)/opt/etc/gcom/getcardinfo.gcom
 +	$(INSTALL_DATA) ./files/getstrength.gcom $(1)/opt/etc/gcom/getstrength.gcom
-+	$(INSTALL_DATA) ./files/gopt/etcarrier.gcom $(1)/opt/etc/gcom/gopt/etcarrier.gcom
-+	$(INSTALL_DATA) ./files/gopt/etcnum.gcom $(1)/opt/etc/gcom/gopt/etcnum.gcom
++	$(INSTALL_DATA) ./files/getcarrier.gcom $(1)/opt/etc/gcom/getcarrier.gcom
++	$(INSTALL_DATA) ./files/getcnum.gcom $(1)/opt/etc/gcom/getcnum.gcom
 +	$(INSTALL_DATA) ./files/getimsi.gcom $(1)/opt/etc/gcom/getimsi.gcom
  endef
  
