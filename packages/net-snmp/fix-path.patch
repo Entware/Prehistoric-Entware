@@ -1,6 +1,6 @@
---- ../../../downloads/openwrt_trunk-r45513/feeds/packages/net/net-snmp/Makefile	2015-04-20 10:09:28.918135362 +0300
-+++ ../../../openwrt_trunk/feeds/packages/net/net-snmp/Makefile	2015-04-20 13:36:28.929908828 +0300
-@@ -156,32 +156,31 @@
+--- ../../../downloads/openwrt_trunk-r45513/feeds/packages/net/net-snmp/Makefile	2015-04-23 10:21:55.537457456 +0300
++++ ../../../openwrt_trunk/feeds/packages/net/net-snmp/Makefile	2015-04-23 14:13:05.805204793 +0300
+@@ -156,20 +156,15 @@
  	--enable-shared \
  	--enable-static \
  	--with-endianness=$(if $(CONFIG_BIG_ENDIAN),big,little) \
@@ -23,16 +23,7 @@
  	--without-openssl \
  	--without-libwrap \
  	--without-rpm \
- 	--without-zlib \
- 	 $(call autoconf_bool,CONFIG_IPV6,ipv6) \
- 
-+#	--with-out-mib-modules="$(SNMP_MIB_MODULES_EXCLUDED)" \
-+#	--with-mib-modules="$(SNMP_MIB_MODULES_INCLUDED)" \
-+#	--with-out-transports="$(SNMP_TRANSPORTS_EXCLUDED)" \
-+#	--with-transports="$(SNMP_TRANSPORTS_INCLUDED)" \
-+#	--disable-mibs \
-+
- ifeq ($(CONFIG_IPV6),y)
+@@ -180,8 +175,6 @@
  SNMP_TRANSPORTS_INCLUDED+= UDPIPv6
  endif
  
@@ -41,7 +32,7 @@
  ifdef CONFIG_PACKAGE_snmpd-static
    define Build/Compile/static
  	$(MAKE) -C $(PKG_BUILD_DIR)/agent \
-@@ -201,53 +200,45 @@
+@@ -201,53 +194,45 @@
  
  define Build/InstallDev
  	$(INSTALL_DIR) $(2)/bin

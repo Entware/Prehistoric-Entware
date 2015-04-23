@@ -1,14 +1,5 @@
 --- ../../../downloads/mipsel-hardfloat/openwrt_trunk-r40423/feeds/oldpackages/utils/sane-backends/Makefile
 +++ ../../../openwrt_trunk/feeds/oldpackages/utils/sane-backends/Makefile
-@@ -49,7 +49,7 @@
-   $(call Package/sane-backends/Default)
-   SECTION:=libs
-   CATEGORY:=Libraries
--  DEPENDS:=+libjpeg +libtiff +libusb-compat +libv4l +cups
-+  DEPENDS:=+libjpeg +libtiff +libusb-compat +cups +libv4l
-   TITLE+= (libraries)
- endef
- 
 @@ -72,7 +72,7 @@
  endef
  

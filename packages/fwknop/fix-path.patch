@@ -1,5 +1,5 @@
---- ../../../downloads/openwrt_trunk-r44486/feeds/packages/net/fwknop/Makefile	2015-02-18 12:16:57.620306332 +0300
-+++ ../../../openwrt_trunk/feeds/packages/net/fwknop/Makefile	2015-02-18 12:17:26.692305802 +0300
+--- ../../../downloads/openwrt_trunk-r45513/feeds/packages/net/fwknop/Makefile	2015-04-23 10:21:55.557457454 +0300
++++ ../../../openwrt_trunk/feeds/packages/net/fwknop/Makefile	2015-04-23 12:51:18.913294177 +0300
 @@ -42,7 +42,7 @@
    CATEGORY:=Network
    SUBMENU:=Firewall
@@ -20,14 +20,15 @@
  endef
  
  define Package/fwknop
-@@ -84,34 +84,35 @@
- 
- CONFIGURE_ARGS += \
+@@ -86,32 +86,37 @@
  	--without-gpgme \
--	--with-iptables=/usr/sbin/iptables
-+	--with-iptables=/usr/sbin/iptables \
-+	--disable-stack-protector
+ 	--with-iptables=/usr/sbin/iptables
  
++ifneq ($(CONFIG_SSP_SUPPORT),y)
++CONFIGURE_ARGS+= \
++        --disable-stack-protector
++endif
++
  define Build/InstallDev
 -	$(INSTALL_DIR) $(1)/usr/include
 -	$(CP) $(PKG_INSTALL_DIR)/usr/include/fko.h $(1)/usr/include/

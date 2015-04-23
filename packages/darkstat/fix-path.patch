@@ -1,16 +1,13 @@
---- ../../../openwrt_trunk.orig/feeds/oldpackages/net/darkstat/Makefile
-+++ ../../../openwrt_trunk/feeds/oldpackages/net/darkstat/Makefile
-@@ -33,13 +33,13 @@
+--- ../../../downloads/openwrt_trunk-r45513/feeds/oldpackages/net/darkstat/Makefile	2015-04-23 10:21:55.665457452 +0300
++++ ../../../openwrt_trunk/feeds/oldpackages/net/darkstat/Makefile	2015-04-23 12:34:28.429312583 +0300
+@@ -33,13 +33,9 @@
  over HTTP.
  endef
  
 -define Package/darkstat/conffiles
 -/etc/config/darkstat
 -endef
-+#define Package/darkstat/conffiles
-+#/opt/etc/config/darkstat
-+#endef
- 
+-
  CONFIGURE_ARGS += \
  	--disable-debug \
 -	--with-chroot-dir=/var/empty
@@ -18,7 +15,7 @@
  
  TARGET_CFLAGS += -std=gnu99
  
-@@ -50,12 +50,11 @@
+@@ -50,12 +46,11 @@
  endef
  
  define Package/darkstat/install

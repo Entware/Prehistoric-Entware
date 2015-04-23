@@ -1,6 +1,6 @@
-diff -urx .svn ../../../openwrt_trunk.orig/feeds/oldpackages/utils/logrotate/files/logrotate.conf ../../../openwrt_trunk/feeds/oldpackages/utils/logrotate/files/logrotate.conf
---- ../../../openwrt_trunk.orig/feeds/oldpackages/utils/logrotate/files/logrotate.conf	2012-01-20 19:21:02.000000000 +0400
-+++ ../../../openwrt_trunk/feeds/oldpackages/utils/logrotate/files/logrotate.conf	2012-01-20 19:45:23.183130786 +0400
+diff -urx .svn ../../../downloads/openwrt_trunk-r45513/feeds/oldpackages/utils/logrotate/files/logrotate.conf ../../../openwrt_trunk/feeds/oldpackages/utils/logrotate/files/logrotate.conf
+--- ../../../downloads/openwrt_trunk-r45513/feeds/oldpackages/utils/logrotate/files/logrotate.conf	2015-04-23 10:21:55.757457452 +0300
++++ ../../../openwrt_trunk/feeds/oldpackages/utils/logrotate/files/logrotate.conf	2015-04-23 10:22:02.361457330 +0300
 @@ -10,7 +10,7 @@
  
  notifempty
@@ -19,9 +19,9 @@ diff -urx .svn ../../../openwrt_trunk.orig/feeds/oldpackages/utils/logrotate/fil
  
  # no packages own lastlog or wtmp -- we'll rotate them here
  #/var/log/wtmp {
-diff -urx .svn ../../../openwrt_trunk.orig/feeds/oldpackages/utils/logrotate/Makefile ../../../openwrt_trunk/feeds/oldpackages/utils/logrotate/Makefile
---- ../../../openwrt_trunk.orig/feeds/oldpackages/utils/logrotate/Makefile	2012-01-20 19:21:02.000000000 +0400
-+++ ../../../openwrt_trunk/feeds/oldpackages/utils/logrotate/Makefile	2012-01-21 13:15:38.404420293 +0400
+diff -urx .svn ../../../downloads/openwrt_trunk-r45513/feeds/oldpackages/utils/logrotate/Makefile ../../../openwrt_trunk/feeds/oldpackages/utils/logrotate/Makefile
+--- ../../../downloads/openwrt_trunk-r45513/feeds/oldpackages/utils/logrotate/Makefile	2015-04-23 10:21:55.757457452 +0300
++++ ../../../openwrt_trunk/feeds/oldpackages/utils/logrotate/Makefile	2015-04-23 13:43:55.053236683 +0300
 @@ -37,7 +37,7 @@
  endef
  
@@ -31,7 +31,7 @@ diff -urx .svn ../../../openwrt_trunk.orig/feeds/oldpackages/utils/logrotate/Mak
  endef
  
  EXTRA_CFLAGS += $(TARGET_CPPFLAGS)
-@@ -47,16 +47,21 @@
+@@ -47,16 +47,18 @@
  	$(call Build/Compile/Default, \
  		RPM_OPT_FLAGS:="$(TARGET_CFLAGS) $(EXTRA_CFLAGS)" \
  		LDFLAGS="$(EXTRA_LDFLAGS)" \
@@ -49,11 +49,8 @@ diff -urx .svn ../../../openwrt_trunk.orig/feeds/oldpackages/utils/logrotate/Mak
 -	$(INSTALL_DIR) $(1)/etc/logrotate.d
 +	$(INSTALL_DIR) $(1)/opt/sbin
 +	$(INSTALL_BIN) $(PKG_BUILD_DIR)/logrotate $(1)/opt/sbin/
-+	$(INSTALL_DIR) $(1)/opt/etc
 +	$(INSTALL_DIR) $(1)/opt/etc/logrotate.d
 +	$(INSTALL_DATA) ./files/logrotate.conf $(1)/opt/etc/
-+	$(INSTALL_DIR) $(1)/opt/etc/logrotate.d
-+	$(INSTALL_DIR) $(1)/opt/var
 +	$(INSTALL_DIR) $(1)/opt/var/lib
  endef
  

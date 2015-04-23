@@ -1,13 +1,15 @@
-diff -ur ../../../downloads/openwrt_trunk-r42803/feeds/packages/net/netatalk/files/afpd.conf ../../../openwrt_trunk/feeds/packages/net/netatalk/files/afpd.conf
---- ../../../downloads/openwrt_trunk-r42803/feeds/packages/net/netatalk/files/afpd.conf	2014-10-06 15:46:23.753250644 +0400
-+++ ../../../openwrt_trunk/feeds/packages/net/netatalk/files/afpd.conf	2014-10-07 11:59:31.599924730 +0400
+diff -urx .svn ../../../downloads/openwrt_trunk-r45513/feeds/packages/net/netatalk/files/afpd.conf ../../../openwrt_trunk/feeds/packages/net/netatalk/files/afpd.conf
+--- ../../../downloads/openwrt_trunk-r45513/feeds/packages/net/netatalk/files/afpd.conf	2015-04-23 10:21:55.541457456 +0300
++++ ../../../openwrt_trunk/feeds/packages/net/netatalk/files/afpd.conf	2015-04-23 10:22:02.809457322 +0300
 @@ -1 +1 @@
 -- -noddp -uampath /usr/lib/uams -uamlist uams_guest.so,uams_passwd.so,uams_dhx_passwd.so,uams_randnum.so,uams_dhx2.so -passwdfile /etc/netatalk/afppasswd -savepassword -passwdminlen 0 -nosetpassword -defaultvol /etc/netatalk/AppleVolumes.default -systemvol /etc/netatalk/AppleVolumes.system -nouservol -guestname "nobody" -sleep 1 -icon
 +- -noddp -uampath /opt/lib/uams -uamlist uams_guest.so,uams_passwd.so,uams_dhx_passwd.so,uams_randnum.so,uams_dhx2.so -passwdfile /etc/netatalk/afppasswd -savepassword -passwdminlen 0 -nosetpassword -defaultvol /etc/netatalk/AppleVolumes.default -systemvol /etc/netatalk/AppleVolumes.system -nouservol -guestname "nobody" -sleep 1 -icon
-diff -ur ../../../downloads/openwrt_trunk-r42803/feeds/packages/net/netatalk/Makefile ../../../openwrt_trunk/feeds/packages/net/netatalk/Makefile
---- ../../../downloads/openwrt_trunk-r42803/feeds/packages/net/netatalk/Makefile	2014-10-06 15:46:23.753250644 +0400
-+++ ../../../openwrt_trunk/feeds/packages/net/netatalk/Makefile	2014-10-08 14:18:15.934707235 +0400
-@@ -38,11 +38,11 @@
+Only in ../../../openwrt_trunk/feeds/packages/net/netatalk/files: S26cnid_metad
+Only in ../../../openwrt_trunk/feeds/packages/net/netatalk/files: S27afpd
+diff -urx .svn ../../../downloads/openwrt_trunk-r45513/feeds/packages/net/netatalk/Makefile ../../../openwrt_trunk/feeds/packages/net/netatalk/Makefile
+--- ../../../downloads/openwrt_trunk-r45513/feeds/packages/net/netatalk/Makefile	2015-04-23 10:21:55.541457456 +0300
++++ ../../../openwrt_trunk/feeds/packages/net/netatalk/Makefile	2015-04-23 14:14:30.593203247 +0300
+@@ -38,11 +38,10 @@
  endef
  
  define Package/netatalk/conffiles
@@ -17,11 +19,10 @@ diff -ur ../../../downloads/openwrt_trunk-r42803/feeds/packages/net/netatalk/Mak
  
  TARGET_CFLAGS += -std=gnu99
 -TARGET_LDFLAGS += $(LIBRPC)
-+#TARGET_LDFLAGS += $(LIBRPC)
  
  CONFIGURE_ARGS += \
  	--disable-afs \
-@@ -54,10 +54,10 @@
+@@ -54,10 +53,10 @@
  	--disable-cups \
  	--disable-tcp-wrappers \
  	--with-cnid-default-backend=dbd \
@@ -36,7 +37,7 @@ diff -ur ../../../downloads/openwrt_trunk-r42803/feeds/packages/net/netatalk/Mak
  	--without-acls \
  	--without-pam \
  	--disable-admin-group \
-@@ -67,20 +67,20 @@
+@@ -67,20 +66,20 @@
  	--without-ldap
  
  define Package/netatalk/install

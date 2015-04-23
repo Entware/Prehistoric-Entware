@@ -1,6 +1,6 @@
-diff -urx .svn ../../../downloads/openwrt_trunk-r44497/feeds/packages/utils/smstools3/files/smstools3.conf ../../../openwrt_trunk/feeds/packages/utils/smstools3/files/smstools3.conf
---- ../../../downloads/openwrt_trunk-r44497/feeds/packages/utils/smstools3/files/smstools3.conf	2015-02-21 21:16:27.921891452 +0300
-+++ ../../../openwrt_trunk/feeds/packages/utils/smstools3/files/smstools3.conf	2015-02-21 18:18:06.000000000 +0300
+diff -urx .svn ../../../downloads/openwrt_trunk-r45513/feeds/packages/utils/smstools3/files/smstools3.conf ../../../openwrt_trunk/feeds/packages/utils/smstools3/files/smstools3.conf
+--- ../../../downloads/openwrt_trunk-r45513/feeds/packages/utils/smstools3/files/smstools3.conf	2015-04-23 10:21:55.573457455 +0300
++++ ../../../openwrt_trunk/feeds/packages/utils/smstools3/files/smstools3.conf	2015-04-23 10:22:04.869457286 +0300
 @@ -3,11 +3,11 @@
  #
  
@@ -18,9 +18,18 @@ diff -urx .svn ../../../downloads/openwrt_trunk-r44497/feeds/packages/utils/smst
  receive_before_send = no
  autosplit = 3
  
-diff -urx .svn ../../../downloads/openwrt_trunk-r44497/feeds/packages/utils/smstools3/Makefile ../../../openwrt_trunk/feeds/packages/utils/smstools3/Makefile
---- ../../../downloads/openwrt_trunk-r44497/feeds/packages/utils/smstools3/Makefile	2015-02-21 21:16:27.921891452 +0300
-+++ ../../../openwrt_trunk/feeds/packages/utils/smstools3/Makefile	2015-02-21 21:16:41.681891202 +0300
+diff -urx .svn ../../../downloads/openwrt_trunk-r45513/feeds/packages/utils/smstools3/Makefile ../../../openwrt_trunk/feeds/packages/utils/smstools3/Makefile
+--- ../../../downloads/openwrt_trunk-r45513/feeds/packages/utils/smstools3/Makefile	2015-04-23 10:21:55.573457455 +0300
++++ ../../../openwrt_trunk/feeds/packages/utils/smstools3/Makefile	2015-04-23 10:28:43.829450018 +0300
+@@ -22,7 +22,7 @@
+ PKG_MD5SUM:=0241ef60e646fac1a06254a848e61ed7
+ 
+ PKG_BUILD_DIR:=$(BUILD_DIR)/$(PKG_NAME)
+-PKG_BUILD_DEPENDS:=libiconv-full iconv socket nsl
++PKG_BUILD_DEPENDS:=libiconv-full iconv
+ 
+ include $(INCLUDE_DIR)/package.mk
+ 
 @@ -47,14 +47,12 @@
  
  TARGET_LDFLAGS += -liconv
