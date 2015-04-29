@@ -1,5 +1,5 @@
 --- ../../../downloads/openwrt_trunk-r45513/feeds/packages/net/haproxy/Makefile	2015-04-23 10:21:55.557457454 +0300
-+++ ../../../openwrt_trunk/feeds/packages/net/haproxy/Makefile	2015-04-28 13:45:46.617364636 +0300
++++ ../../../openwrt_trunk/feeds/packages/net/haproxy/Makefile	2015-04-29 11:32:02.043934572 +0300
 @@ -29,7 +29,7 @@
  endef
  
@@ -18,7 +18,19 @@
  		SMALL_OPTS="-DBUFSIZE=16384 -DMAXREWRITE=1030 -DSYSTEM_MAXCONN=165530 " \
  		USE_LINUX_TPROXY=1 USE_LINUX_SPLICE=1 USE_REGPARM=1 $(USE_OPENSSL) \
  		USE_ZLIB=yes USE_PCRE=1 \
-@@ -106,14 +106,12 @@
+@@ -96,24 +96,18 @@
+ 		install
+ 
+ 	$(MAKE) -C $(PKG_BUILD_DIR)/contrib/halog \
+-		DESTDIR="$(PKG_INSTALL_DIR)" \
+-		CC="$(TARGET_CC)" \
+-		CFLAGS="$(TARGET_CFLAGS) -fno-align-jumps -fno-align-functions -fno-align-labels -fno-align-loops -pipe -fomit-frame-pointer -fhonour-copts" \
+-		LD="$(TARGET_CC)" \
+-		LDFLAGS="$(TARGET_LDFLAGS)" \
+-		VERSION="$(PKG_VERSION)-patch$(PKG_RELEASE)" \
++		CC="$(TARGET_CC) $(TARGET_CFLAGS) $(TARGET_LDFLAGS)" \
++		OPTIMIZE="" \
+ 		halog
  endef
  
  define Package/haproxy/install
@@ -39,7 +51,7 @@
  endef
  
  Package/haproxy-nossl/install = $(Package/haproxy/install)
-@@ -130,8 +128,8 @@
+@@ -130,8 +124,8 @@
  endef
  
  define Package/halog/install
