@@ -1,12 +1,21 @@
-diff -urx .svn ../../../downloads/openwrt_trunk-r45513/feeds/packages/net/netatalk/files/afpd.conf ../../../openwrt_trunk/feeds/packages/net/netatalk/files/afpd.conf
---- ../../../downloads/openwrt_trunk-r45513/feeds/packages/net/netatalk/files/afpd.conf	2015-04-23 10:21:55.541457456 +0300
-+++ ../../../openwrt_trunk/feeds/packages/net/netatalk/files/afpd.conf	2015-04-23 10:22:02.809457322 +0300
+diff -urx .svn ../../../downloads/openwrt_trunk-q45513/feeds/packages/net/netatalk/files/afpd.conf ../../../openwrt_trunk/feeds/packages/net/netatalk/files/afpd.conf
+--- ../../../downloads/openwrt_trunk-q45513/feeds/packages/net/netatalk/files/afpd.conf	2015-04-29 22:11:31.368972852 +0300
++++ ../../../openwrt_trunk/feeds/packages/net/netatalk/files/afpd.conf	2015-04-29 11:30:19.901789415 +0300
 @@ -1 +1 @@
 -- -noddp -uampath /usr/lib/uams -uamlist uams_guest.so,uams_passwd.so,uams_dhx_passwd.so,uams_randnum.so,uams_dhx2.so -passwdfile /etc/netatalk/afppasswd -savepassword -passwdminlen 0 -nosetpassword -defaultvol /etc/netatalk/AppleVolumes.default -systemvol /etc/netatalk/AppleVolumes.system -nouservol -guestname "nobody" -sleep 1 -icon
 +- -noddp -uampath /Apps/opt/lib/uams -uamlist uams_guest.so,uams_passwd.so,uams_dhx_passwd.so,uams_randnum.so,uams_dhx2.so -passwdfile /Apps/opt/etc/netatalk/afppasswd -savepassword -passwdminlen 0 -nosetpassword -defaultvol /Apps/opt/etc/netatalk/AppleVolumes.default -systemvol /Apps/opt/etc/netatalk/AppleVolumes.system -nouservol -guestname "nobody" -sleep 1 -icon
-diff -urx .svn ../../../downloads/openwrt_trunk-r45513/feeds/packages/net/netatalk/Makefile ../../../openwrt_trunk/feeds/packages/net/netatalk/Makefile
---- ../../../downloads/openwrt_trunk-r45513/feeds/packages/net/netatalk/Makefile	2015-04-23 10:21:55.541457456 +0300
-+++ ../../../openwrt_trunk/feeds/packages/net/netatalk/Makefile	2015-04-23 14:14:30.593203247 +0300
+diff -urx .svn ../../../downloads/openwrt_trunk-q45513/feeds/packages/net/netatalk/Makefile ../../../openwrt_trunk/feeds/packages/net/netatalk/Makefile
+--- ../../../downloads/openwrt_trunk-q45513/feeds/packages/net/netatalk/Makefile	2015-04-29 22:11:31.368972852 +0300
++++ ../../../openwrt_trunk/feeds/packages/net/netatalk/Makefile	2015-04-29 11:01:45.269681272 +0300
+@@ -9,7 +9,7 @@
+ 
+ PKG_NAME:=netatalk
+ PKG_VERSION:=2.2.4
+-PKG_RELEASE:=1
++PKG_RELEASE:=1a
+ 
+ PKG_SOURCE:=$(PKG_NAME)-$(PKG_VERSION).tar.bz2
+ PKG_SOURCE_URL:=@SF/netatalk
 @@ -38,11 +38,10 @@
  endef
  
