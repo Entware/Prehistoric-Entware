@@ -45,11 +45,11 @@ endef
 
 update_git_mirrors: .git_mirrors_updated
 .git_mirrors_updated:
-	$(call update_git_mirror,https://github.com/Entware/openwrt-packages.git,openwrt-packages,https://github.com/openwrt/packages.git)
-	$(call update_git_mirror,https://github.com/Entware/openwrt-routing.git,openwrt-routing,https://github.com/openwrt-routing/packages.git)
-	$(call update_git_mirror,https://github.com/Entware/openwrt-telephony.git,openwrt-telephony,http://git.openwrt.org/feed/telephony.git)
-	$(call update_git_mirror,https://github.com/Entware/openwrt-management.git,openwrt-management,https://github.com/openwrt-management/packages.git)
-	$(call update_git_mirror,https://github.com/Entware/openwrt-oldpackages.git,openwrt-oldpackages,http://git.openwrt.org/packages.git)
+	$(call update_git_mirror,https://github.com/zyxmon/openwrt-packages,openwrt-packages,https://github.com/Entware/openwrt-packages)
+	$(call update_git_mirror,https://github.com/zyxmon/openwrt-routing,openwrt-routing,https://github.com/Entware/openwrt-routing)
+	$(call update_git_mirror,https://github.com/zyxmon/openwrt-telephony,openwrt-telephony,https://github.com/Entware/openwrt-telephony)
+	$(call update_git_mirror,https://github.com/zyxmon/openwrt-management,openwrt-management,https://github.com/Entware/openwrt-management)
+	$(call update_git_mirror,https://github.com/zyxmon/openwrt-oldpackages,openwrt-oldpackages,https://github.com/Entware/openwrt-oldpackages)
 	@touch $@
 
 clean:
