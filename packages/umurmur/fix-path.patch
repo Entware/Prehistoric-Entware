@@ -1,6 +1,6 @@
---- ../../../downloads/openwrt_trunk-r43718/feeds/packages/net/umurmur/Makefile
-+++ ../../../openwrt_trunk/feeds/packages/net/umurmur/Makefile
-@@ -76,19 +76,19 @@
+--- ../../../downloads/openwrt_trunk-r45513/feeds/packages/net/umurmur/Makefile	2015-04-20 10:09:28.922135362 +0300
++++ ../../../openwrt_trunk/feeds/packages/net/umurmur/Makefile	2015-04-20 10:09:51.714134946 +0300
+@@ -72,19 +72,19 @@
  endef
  
  define Package/umurmur-openssl/conffiles

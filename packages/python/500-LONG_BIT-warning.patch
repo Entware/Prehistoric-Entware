@@ -1,0 +1,11 @@
+--- a/Include/pyport.h
++++ b/Include/pyport.h
+@@ -883,7 +883,7 @@
+  * rather than waiting for integer multiplication to trigger bogus
+  * overflows.
+  */
+-#error "LONG_BIT definition appears wrong for platform (bad gcc/glibc config?)."
++#warning "LONG_BIT definition appears wrong for platform (bad gcc/glibc config?)."
+ #endif
+ 
+ #ifdef __cplusplus

@@ -1,0 +1,15 @@
+--- a/cmake/FindPython.cmake
++++ b/cmake/FindPython.cmake
+@@ -86,11 +86,7 @@
+       COMMAND ${PYTHON_EXECUTABLE} -c "import sys; sys.stdout.write(str(sys.version_info < (2,5)))"
+       OUTPUT_VARIABLE PYTHON_OLD_VERSION
+       )
+-    if(${PYTHON_OLD_VERSION} STREQUAL "True")
+-      message("Python >= 2.5 is needed to build python plugin, version found: ${PYTHON_VERSION}")
+-    else()
+-      set(PYTHON_FOUND TRUE)
+-    endif()
++    set(PYTHON_FOUND TRUE)
+   endif()
+ 
+   mark_as_advanced(

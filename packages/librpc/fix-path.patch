@@ -1,8 +1,8 @@
---- ../../../downloads/openwrt_trunk-r43718/package/libs/librpc/Makefile	2014-12-15 16:50:13.512093574 +0300
-+++ ../../../openwrt_trunk/package/libs/librpc/Makefile	2014-12-16 09:38:58.734991306 +0300
+--- ../../../downloads/openwrt_trunk-r45513/package/libs/librpc/Makefile	2015-04-20 10:09:29.142135354 +0300
++++ ../../../openwrt_trunk/package/libs/librpc/Makefile	2015-04-20 10:09:47.230135026 +0300
 @@ -9,7 +9,6 @@
  PKG_SOURCE_SUBDIR:=$(PKG_NAME)-$(PKG_VERSION)
- PKG_SOURCE_VERSION:=0a2179bbc0844928f2a0ec01dba93d9b5d6d41a7
+ PKG_SOURCE_VERSION:=308e9964bfb623773dc0dcc99ef9d18d1551d6ae
  PKG_SOURCE:=$(PKG_NAME)-$(PKG_VERSION)-$(PKG_SOURCE_VERSION).tar.gz
 -CMAKE_INSTALL:=1
  PKG_USE_MIPS16:=0

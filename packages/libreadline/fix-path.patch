@@ -1,7 +1,7 @@
---- ../../../downloads/openwrt_trunk-r43718/package/libs/libreadline/Makefile
-+++ ../../../openwrt_trunk/package/libs/libreadline/Makefile
-@@ -60,15 +60,15 @@
- endef
+--- ../../../downloads/openwrt_trunk-r45513/package/libs/libreadline/Makefile	2015-04-20 10:09:29.146135355 +0300
++++ ../../../openwrt_trunk/package/libs/libreadline/Makefile	2015-04-20 10:09:47.226135026 +0300
+@@ -57,15 +57,15 @@
+ TARGET_CFLAGS += $(FPIC)
  
  define Build/InstallDev
 -	$(INSTALL_DIR) $(1)/usr/include

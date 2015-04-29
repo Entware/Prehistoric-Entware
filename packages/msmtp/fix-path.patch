@@ -1,5 +1,14 @@
---- ../../../downloads/openwrt_trunk-r44497/feeds/packages/mail/msmtp/Makefile	2015-02-20 12:39:13.377134249 +0300
-+++ ../../../openwrt_trunk/feeds/packages/mail/msmtp/Makefile	2015-02-21 16:41:06.554193080 +0300
+--- ../../../downloads/openwrt_trunk-q45513/feeds/packages/mail/msmtp/Makefile	2015-04-27 08:56:50.895132954 +0300
++++ ../../../openwrt_trunk/feeds/packages/mail/msmtp/Makefile	2015-04-27 13:27:08.946068623 +0300
+@@ -10,7 +10,7 @@
+ 
+ PKG_NAME:=msmtp
+ PKG_VERSION:=1.6.1
+-PKG_RELEASE:=3
++PKG_RELEASE:=3a
+ 
+ PKG_SOURCE:=$(PKG_NAME)-$(PKG_VERSION).tar.xz
+ PKG_SOURCE_URL:=@SF/msmtp
 @@ -39,7 +39,7 @@
   an SMTP server (for example at a free mail provider) which does the
   delivery. To use this program with your mail user agent (MUA), create
@@ -18,7 +27,19 @@
  endef
  
  define Package/msmtp/description
-@@ -101,34 +101,35 @@
+@@ -87,10 +87,7 @@
+ 	--without-libidn \
+ 	--without-libsecret \
+ 	--without-macosx-keyring \
+-
+-ifneq ($(CONFIG_USE_UCLIBC),)
+-  CONFIGURE_ARGS += --disable-gai-idn
+-endif
++	--disable-gai-idn
+ 
+ MAKE_FLAGS :=
+ 
+@@ -105,23 +102,23 @@
  endif
  
  define Package/msmtp/install
@@ -51,10 +72,8 @@
  	}
  endef
  
- Package/msmtp-nossl/conffiles = $(Package/msmtp/conffiles)
- Package/msmtp-nossl/install = $(Package/msmtp/install)
- Package/msmtp-nossl/postinst = $(Package/msmtp/postinst)
-+Package/msmtp-nossl/prerm = $(Package/msmtp/prerm)
+@@ -131,9 +128,9 @@
+ Package/msmtp-nossl/prerm = $(Package/msmtp/prerm)
  
  define Package/msmtp-queue/install
 -	$(INSTALL_DIR) $(1)/usr/bin

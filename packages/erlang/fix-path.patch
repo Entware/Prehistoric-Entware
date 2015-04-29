@@ -1,5 +1,5 @@
---- ../../../openwrt_trunk/feeds/packages/lang/erlang/Makefile.orig
-+++ ../../../openwrt_trunk/feeds/packages/lang/erlang/Makefile
+--- ../../../downloads/openwrt_trunk-r45513/feeds/packages/lang/erlang/Makefile	2015-04-20 10:09:28.894135362 +0300
++++ ../../../openwrt_trunk/feeds/packages/lang/erlang/Makefile	2015-04-20 12:24:19.721989662 +0300
 @@ -268,50 +268,50 @@
  endef
  
@@ -56,13 +56,13 @@
  
  define Build/InstallDev
 -	$(INSTALL_DIR) $(1)/usr/lib
--	$(CP) $(PKG_BUILD_DIR)/lib/erl_interface/obj/*/*.a $(1)/usr/lib
+-	$(CP) $(PKG_BUILD_DIR)/lib/erl_interface/obj/*/*.a $(1)/usr/lib/
 -	$(INSTALL_DIR) $(1)/usr/include
--	$(CP) $(PKG_BUILD_DIR)/lib/erl_interface/include/*.h $(1)/usr/include
+-	$(CP) $(PKG_BUILD_DIR)/lib/erl_interface/include/*.h $(1)/usr/include/
 +	$(INSTALL_DIR) $(1)/opt/lib
-+	$(CP) $(PKG_BUILD_DIR)/lib/erl_interface/obj/*/*.a $(1)/opt/lib
++	$(CP) $(PKG_BUILD_DIR)/lib/erl_interface/obj/*/*.a $(1)/opt/lib/
 +	$(INSTALL_DIR) $(1)/opt/include
-+	$(CP) $(PKG_BUILD_DIR)/lib/erl_interface/include/*.h $(1)/opt/include
++	$(CP) $(PKG_BUILD_DIR)/lib/erl_interface/include/*.h $(1)/opt/include/
  endef
  
  define BuildModule

@@ -1,6 +1,6 @@
---- ../../../downloads/openwrt_trunk-q44497/feeds/packages/libs/libftdi/Makefile	2015-03-01 22:34:30.745160709 +0300
-+++ ../../../openwrt_trunk/feeds/packages/libs/libftdi/Makefile	2015-03-02 14:53:28.000958905 +0300
-@@ -40,25 +40,26 @@
+--- ../../../downloads/openwrt_trunk-r44486/feeds/packages/libs/libftdi/Makefile	2015-02-18 12:16:57.596306332 +0300
++++ ../../../openwrt_trunk/feeds/packages/libs/libftdi/Makefile	2015-02-19 15:03:21.642550549 +0300
+@@ -40,25 +40,25 @@
  endef
  
  define Build/InstallDev
@@ -13,8 +13,7 @@
 +	$(INSTALL_DIR) $(1)/opt/include/
 +	$(CP) $(PKG_INSTALL_DIR)/Apps/opt/include/ftdi.h $(1)/opt/include/
 +	$(INSTALL_DIR) $(1)/opt/lib
-+	$(CP) $(PKG_INSTALL_DIR)/Apps/opt/lib/libftdi.{a,so} $(1)/opt/lib/
-+	$(CP) $(PKG_INSTALL_DIR)/Apps/opt/lib/libftdi.so* $(1)/opt/lib/
++	$(CP) $(PKG_INSTALL_DIR)/Apps/opt/lib/libftdi.{a,so*} $(1)/opt/lib/
 +	$(INSTALL_DIR) $(1)/opt/lib/pkgconfig/
 +	$(CP) $(PKG_INSTALL_DIR)/Apps/opt/lib/pkgconfig/libftdi.pc $(1)/opt/lib/pkgconfig/libftdi.pc
  	$(SED) \

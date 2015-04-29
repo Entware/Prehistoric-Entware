@@ -11,7 +11,6 @@ all: .done
 	patch -d $(TOP) -p3 -i $(CURDIR)/010-Makefile.patch
 	patch -d $(TOP) -p3 -i $(CURDIR)/020-Config-defaults.patch
 	cp -f ./999-entware-path.patch ../../../openwrt_trunk/package/utils/busybox/patches/
-	cp -f ./888-date_newglibc.patch ../../../openwrt_trunk/package/utils/busybox/patches/
 	@touch $@
 
 clean:

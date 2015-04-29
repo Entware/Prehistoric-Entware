@@ -1,5 +1,5 @@
---- ../../../downloads/openwrt_trunk-r44486/feeds/packages/net/nfs-kernel-server/Makefile	2015-02-18 12:16:57.616306332 +0300
-+++ ../../../openwrt_trunk/feeds/packages/net/nfs-kernel-server/Makefile	2015-02-18 12:17:32.280305699 +0300
+--- ../../../downloads/openwrt_trunk-r45513/feeds/packages/net/nfs-kernel-server/Makefile	2015-04-20 10:09:28.930135359 +0300
++++ ../../../openwrt_trunk/feeds/packages/net/nfs-kernel-server/Makefile	2015-04-20 10:09:48.718134999 +0300
 @@ -27,7 +27,7 @@
    SECTION:=net
    CATEGORY:=Network
@@ -60,8 +60,8 @@
 +	--with-statdpath=/opt/var/lib/nfs
  
  CONFIGURE_VARS += \
- 	CONFIG_SQLITE3_TRUE="\#" \
-@@ -128,26 +130,26 @@
+ 	libblkid_cv_is_recent=yes \
+@@ -129,26 +131,26 @@
  endef
  
  define Package/nfs-kernel-server/install

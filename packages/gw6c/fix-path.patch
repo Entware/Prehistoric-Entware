@@ -1,12 +1,6 @@
---- ../../../downloads/mipsel-hardfloat/openwrt_trunk-r40423/feeds/oldpackages/ipv6/gw6c/Makefile
-+++ ../../../openwrt_trunk/feeds/oldpackages/ipv6/gw6c/Makefile
-@@ -1,25 +1,24 @@
--#
--# Copyright (C) 2008-2014 OpenWrt.org
-+# 
-+# Copyright (C) 2008-2011 OpenWrt.org
- #
- 
+--- ../../../downloads/openwrt_trunk-r45513/feeds/oldpackages/ipv6/gw6c/Makefile	2015-04-23 10:21:55.769457450 +0300
++++ ../../../openwrt_trunk/feeds/oldpackages/ipv6/gw6c/Makefile	2015-04-23 13:05:08.361279068 +0300
+@@ -5,21 +5,20 @@
  include $(TOPDIR)/rules.mk
  
  PKG_NAME:=gw6c

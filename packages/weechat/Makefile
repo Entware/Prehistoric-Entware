@@ -12,6 +12,7 @@ all: .done
 	mkdir -p ../../../openwrt_trunk/feeds/oldpackages/net/weechat/patches
 	cp -f ./501-python-flags.patch ../../../openwrt_trunk/feeds/oldpackages/net/weechat/patches
 	cp -f ./502-perl-flags.patch ../../../openwrt_trunk/feeds/oldpackages/net/weechat/patches
+	cp -f ./400-pythonfind.patch ../../../openwrt_trunk/feeds/oldpackages/net/weechat/patches
 	@touch $@
 
 clean:

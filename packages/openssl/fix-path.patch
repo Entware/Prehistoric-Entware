@@ -1,5 +1,5 @@
---- ../../../downloads/openwrt_trunk-r43718/package/libs/openssl/Makefile	2015-01-08 13:29:18.323594990 +0300
-+++ ../../../openwrt_trunk/package/libs/openssl/Makefile	2015-01-09 11:52:06.628982140 +0300
+--- ../../../downloads/openwrt_trunk-r45513/package/libs/openssl/Makefile	2015-04-20 10:09:29.122135360 +0300
++++ ../../../openwrt_trunk/package/libs/openssl/Makefile	2015-04-20 10:09:48.874134996 +0300
 @@ -78,7 +78,7 @@
  endef
  
@@ -9,16 +9,7 @@
  endef
  
  define Package/openssl-util/description
-@@ -88,7 +88,7 @@
- 
- 
- OPENSSL_NO_CIPHERS:= no-idea no-md2 no-mdc2 no-rc5 no-sha0 no-camellia no-krb5
--OPENSSL_OPTIONS:= shared no-err no-hw zlib-dynamic no-sse2 no-ssl2
-+OPENSSL_OPTIONS:= shared no-err no-hw zlib-dynamic no-sse2
- 
- ifdef CONFIG_OPENSSL_ENGINE_CRYPTO
-   OPENSSL_OPTIONS += -DHAVE_CRYPTODEV
-@@ -133,8 +133,8 @@
+@@ -135,8 +135,8 @@
  	}
  	(cd $(PKG_BUILD_DIR); \
  		./Configure $(OPENSSL_TARGET) \
@@ -29,7 +20,7 @@
  			$(TARGET_CPPFLAGS) \
  			$(TARGET_LDFLAGS) -ldl \
  			-DOPENSSL_SMALL_FOOTPRINT \
-@@ -185,29 +185,32 @@
+@@ -187,29 +187,32 @@
  endef
  
  define Build/InstallDev

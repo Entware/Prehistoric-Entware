@@ -1,6 +1,6 @@
-diff -urx .svn ../../../downloads/openwrt_trunk-r43718/feeds/packages/utils/mysql/conf/my.cnf ../../../openwrt_trunk/feeds/packages/utils/mysql/conf/my.cnf
---- ../../../downloads/openwrt_trunk-r43718/feeds/packages/utils/mysql/conf/my.cnf	2014-11-07 23:35:24.540429288 +0300
-+++ ../../../openwrt_trunk/feeds/packages/utils/mysql/conf/my.cnf	2014-11-27 11:53:44.211887700 +0300
+diff -urx .svn ../../../downloads/openwrt_trunk-q45513/feeds/packages/utils/mysql/conf/my.cnf ../../../openwrt_trunk/feeds/packages/utils/mysql/conf/my.cnf
+--- ../../../downloads/openwrt_trunk-q45513/feeds/packages/utils/mysql/conf/my.cnf	2015-04-23 16:31:59.222168064 +0300
++++ ../../../openwrt_trunk/feeds/packages/utils/mysql/conf/my.cnf	2015-04-25 21:32:57.138155515 +0300
 @@ -1,20 +1,20 @@
  [client]
  port		= 3306
@@ -43,19 +43,22 @@ diff -urx .svn ../../../downloads/openwrt_trunk-r43718/feeds/packages/utils/mysq
  #expire_logs_days	= 10
  #max_binlog_size         = 100M
  #binlog_do_db		= include_database_name
-diff -urx .svn ../../../downloads/openwrt_trunk-r43718/feeds/packages/utils/mysql/Makefile ../../../openwrt_trunk/feeds/packages/utils/mysql/Makefile
---- ../../../downloads/openwrt_trunk-r43718/feeds/packages/utils/mysql/Makefile	2014-11-07 23:35:24.540429288 +0300
-+++ ../../../openwrt_trunk/feeds/packages/utils/mysql/Makefile	2014-11-27 11:40:07.392387653 +0300
-@@ -58,7 +58,7 @@
+Только в ../../../openwrt_trunk/feeds/packages/utils/mysql/files: S70mysqld
+diff -urx .svn ../../../downloads/openwrt_trunk-q45513/feeds/packages/utils/mysql/Makefile ../../../openwrt_trunk/feeds/packages/utils/mysql/Makefile
+--- ../../../downloads/openwrt_trunk-q45513/feeds/packages/utils/mysql/Makefile	2015-04-23 16:31:59.222168064 +0300
++++ ../../../openwrt_trunk/feeds/packages/utils/mysql/Makefile	2015-04-25 21:33:37.721602021 +0300
+@@ -58,9 +58,7 @@
    DEPENDS+= +libpthread
  endef
  
--TARGET_CXX=g++-uc
+-ifneq ($(CONFIG_USE_UCLIBCXX),)
+-  TARGET_CXX=g++-uc
+-endif
 +#TARGET_CXX=g++-uc
  
  TARGET_CFLAGS += $(FPIC)
  
-@@ -71,7 +71,7 @@
+@@ -73,7 +71,7 @@
  	--with-server \
  	--without-mysqlmanager \
  	--with-mysqld-user=root \
@@ -64,7 +67,7 @@ diff -urx .svn ../../../downloads/openwrt_trunk-r43718/feeds/packages/utils/mysq
  	--without-libwrap \
  	--with-low-memory \
  	--without-embedded-server \
-@@ -79,7 +79,7 @@
+@@ -81,7 +79,7 @@
  	--without-ssl \
  	--without-docs \
  	--without-man \
@@ -73,7 +76,7 @@ diff -urx .svn ../../../downloads/openwrt_trunk-r43718/feeds/packages/utils/mysq
  	--without-debug \
  	--with-named-thread-libs=-lpthread
  
-@@ -139,47 +139,52 @@
+@@ -141,47 +139,52 @@
  
  
  define Build/InstallDev

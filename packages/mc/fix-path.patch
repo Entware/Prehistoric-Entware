@@ -1,14 +1,5 @@
---- ../../../downloads/openwrt_trunk-r44486/feeds/packages/utils/mc/Makefile	2015-02-18 12:16:57.632306331 +0300
-+++ ../../../openwrt_trunk/feeds/packages/utils/mc/Makefile	2015-02-19 15:39:14.210515364 +0300
-@@ -9,7 +9,7 @@
- 
- PKG_NAME:=mc
- PKG_VERSION:=4.8.13
--PKG_RELEASE:=1.2
-+PKG_RELEASE:=1.2b
- PKG_MAINTAINER:=Dirk Brenken <dibdot@gmail.com>
- PKG_LICENSE:=GPL-3.0+
- 
+--- ../../../downloads/openwrt_trunk-r45513/feeds/packages/utils/mc/Makefile	2015-04-22 21:15:54.270316551 +0300
++++ ../../../openwrt_trunk/feeds/packages/utils/mc/Makefile	2015-04-23 09:18:16.517531986 +0300
 @@ -19,6 +19,7 @@
  
  PKG_BUILD_PARALLEL:=1
@@ -21,8 +12,8 @@
  define Package/mc
    SECTION:=utils
    CATEGORY:=Utilities
--  DEPENDS:=+glib2 +libncurses +MC_VFS:libssh2 $(LIBRPC_DEPENDS) $(ICONV_DEPENDS)
-+  DEPENDS:=+glib2 +libslang2 +MC_VFS:libssh2 $(LIBRPC_DEPENDS) $(ICONV_DEPENDS)
+-  DEPENDS:=+glib2 +libncurses +libmount +MC_VFS:libssh2 $(LIBRPC_DEPENDS) $(ICONV_DEPENDS)
++  DEPENDS:=+glib2 +libslang2 +libmount +MC_VFS:libssh2 $(LIBRPC_DEPENDS) $(ICONV_DEPENDS)
    TITLE:=Midnight Commander - a powerful visual file manager
    URL:=http://www.midnight-commander.org/
    MENU:=1
@@ -45,7 +36,7 @@
  
  ifeq ($(CONFIG_MC_DIFFVIEWER),)
  CONFIGURE_ARGS += \
-@@ -99,24 +105,25 @@
+@@ -99,24 +105,26 @@
  endif
  
  define Package/mc/install
@@ -72,6 +63,7 @@
 +	$(CP) $(PKG_INSTALL_DIR)/Apps/opt/lib/mc/* $(1)/opt/lib/mc/
 +	$(INSTALL_DIR) $(1)/opt/share $(1)/opt/share/mc $(1)/opt/share/mc/help $(1)/opt/share/mc/skins $(1)/opt/share/mc/hints $(1)/opt/share/mc/syntax
 +	$(CP) $(PKG_INSTALL_DIR)/Apps/opt/share/mc/* $(1)/opt/share/mc/
++	$(SED) 's,$(STAGING_DIR_HOST)/bin,/opt/bin,g' $(1)/opt/share/mc/syntax/Syntax
  endef
  
  define Package/mc/conffiles

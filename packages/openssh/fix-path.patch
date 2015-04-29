@@ -1,5 +1,5 @@
---- ../../../downloads/openwrt_trunk-r43718/feeds/packages/net/openssh/Makefile	2015-01-08 13:29:18.119332795 +0300
-+++ ../../../openwrt_trunk/feeds/packages/net/openssh/Makefile	2015-01-09 13:42:48.762469168 +0300
+--- ../../../downloads/openwrt_trunk-q45513/feeds/packages/net/openssh/Makefile	2015-04-23 16:31:59.170342882 +0300
++++ ../../../openwrt_trunk/feeds/packages/net/openssh/Makefile	2015-04-26 12:22:33.030326045 +0300
 @@ -57,7 +57,7 @@
  endef
  
@@ -31,16 +31,16 @@
  endef
  
  define Package/openssh-sftp-client
-@@ -124,7 +124,7 @@
- define Package/openssh-sftp-server
+@@ -125,7 +125,7 @@
  	$(call Package/openssh/Default)
  	TITLE+= SFTP server
--	DEPENDS:=+SSP_SUPPORT:libssp
-+	DEPENDS:=+librt +SSP_SUPPORT:libssp
+ 	# Strip dependencies to avoid pulling in OpenSSL etc.
+-	DEPENDS:=
++	DEPENDS:=+librt
  endef
  
  define Package/openssh-sftp-server/description
-@@ -143,14 +143,14 @@
+@@ -144,14 +144,14 @@
  endef
  
  define Package/openssh-sftp-avahi-service/conffiles
@@ -58,7 +58,7 @@
  	--enable-shared \
  	--disable-static \
  	--disable-debug \
-@@ -192,7 +192,7 @@
+@@ -193,7 +193,7 @@
  define Build/Compile
  	$(MAKE) -C $(PKG_BUILD_DIR) \
  		DESTDIR="$(PKG_INSTALL_DIR)" \
@@ -67,7 +67,7 @@
  		sftp-server
  	$(MAKE) -C $(PKG_BUILD_DIR) \
  		DESTDIR="$(PKG_INSTALL_DIR)" \
-@@ -200,83 +200,65 @@
+@@ -201,83 +201,66 @@
  		all install
  endef
  
@@ -140,6 +140,7 @@
 +	$(INSTALL_BIN) ./files/S40sshd $(1)/opt/etc/init.d/
 +	$(INSTALL_DIR) $(1)/opt/sbin
 +	$(INSTALL_BIN) $(PKG_INSTALL_DIR)/Apps/opt/sbin/sshd $(1)/opt/sbin/
++	$(INSTALL_DIR) $(1)/opt/var/empty
  endef
  
  define Package/openssh-server-pam/install

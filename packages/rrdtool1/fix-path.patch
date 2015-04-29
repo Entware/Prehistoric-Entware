@@ -1,6 +1,6 @@
---- ../../../downloads/openwrt_trunk-r43718/feeds/packages/utils/rrdtool1/Makefile
-+++ ../../../openwrt_trunk/feeds/packages/utils/rrdtool1/Makefile
-@@ -106,25 +106,25 @@
+--- ../../../downloads/openwrt_trunk-r43708/feeds/packages/utils/rrdtool1/Makefile	2014-12-15 12:19:58.048388959 +0300
++++ ../../../openwrt_trunk/feeds/packages/utils/rrdtool1/Makefile	2014-12-15 12:20:24.500388475 +0300
+@@ -107,25 +107,25 @@
  endef
  
  define Package/rrdtool1/install

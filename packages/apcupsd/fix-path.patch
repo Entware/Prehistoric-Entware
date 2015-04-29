@@ -1,24 +1,24 @@
-diff -urx .svn ../../../downloads/openwrt_trunk-r44497/feeds/packages/net/apcupsd/files/apccontrol ../../../openwrt_trunk/feeds/packages/net/apcupsd/files/apccontrol
---- ../../../downloads/openwrt_trunk-r44497/feeds/packages/net/apcupsd/files/apccontrol	2015-02-24 12:08:55.793768266 +0300
-+++ ../../../openwrt_trunk/feeds/packages/net/apcupsd/files/apccontrol	2015-02-24 12:09:31.981767607 +0300
+diff -urx .svn ../../../downloads/openwrt_trunk-q45513/feeds/packages/net/apcupsd/files/apccontrol ../../../openwrt_trunk/feeds/packages/net/apcupsd/files/apccontrol
+--- ../../../downloads/openwrt_trunk-q45513/feeds/packages/net/apcupsd/files/apccontrol	2015-04-23 16:31:59.178611802 +0300
++++ ../../../openwrt_trunk/feeds/packages/net/apcupsd/files/apccontrol	2015-04-25 15:22:40.911100461 +0300
 @@ -15,14 +15,14 @@
  #
  # These variables are needed for set up the autoconf other variables.
  #
 -prefix=/usr
 -exec_prefix=/usr
-+prefix=/opt
-+exec_prefix=/opt
++prefix=/Apps/opt
++exec_prefix=/Apps/opt
  
 -APCPID=/var/run/apcupsd.pid
 -APCUPSD=/usr/sbin/apcupsd
 -SHUTDOWN=/sbin/shutdown
-+APCPID=/opt/var/run/apcupsd.pid
-+APCUPSD=/opt/sbin/apcupsd
++APCPID=/Apps/opt/var/run/apcupsd.pid
++APCUPSD=/Apps/opt/sbin/apcupsd
 +SHUTDOWN=/sbin/halt
  SCRIPTSHELL=/bin/sh
 -SCRIPTDIR=/etc/apcupsd
-+SCRIPTDIR=/opt/etc/apcupsd
++SCRIPTDIR=/Apps/opt/etc/apcupsd
  WALL=true
  
  #
@@ -27,7 +27,7 @@ diff -urx .svn ../../../downloads/openwrt_trunk-r44497/feeds/packages/net/apcups
      mainsback)
  	echo "Power has returned on UPS ${2}..." | ${WALL}
 -	if [ -f /etc/powerfail ] ; then
-+	if [ -f /opt/etc/powerfail ] ; then
++	if [ -f /Apps/opt/etc/powerfail ] ; then
  	   printf "Continuing with shutdown."  | ${WALL}
  	fi
      ;;
@@ -37,25 +37,25 @@ diff -urx .svn ../../../downloads/openwrt_trunk-r44497/feeds/packages/net/apcups
  	rm -f ${APCPID}
 -	rm -f /etc/powerfail
 -	rm -f /etc/nologin
-+	rm -f /opt/etc/powerfail
-+	rm -f /opt/etc/nologin
++	rm -f /Apps/opt/etc/powerfail
++	rm -f /Apps/opt/etc/nologin
  	sleep 5
  	`${APCUPSD}`
  	echo "apcupsd"
-diff -urx .svn ../../../downloads/openwrt_trunk-r44497/feeds/packages/net/apcupsd/files/apcupsd.conf ../../../openwrt_trunk/feeds/packages/net/apcupsd/files/apcupsd.conf
---- ../../../downloads/openwrt_trunk-r44497/feeds/packages/net/apcupsd/files/apcupsd.conf	2015-02-24 12:08:55.793768266 +0300
-+++ ../../../openwrt_trunk/feeds/packages/net/apcupsd/files/apcupsd.conf	2015-02-24 12:09:31.981767607 +0300
+diff -urx .svn ../../../downloads/openwrt_trunk-q45513/feeds/packages/net/apcupsd/files/apcupsd.conf ../../../openwrt_trunk/feeds/packages/net/apcupsd/files/apcupsd.conf
+--- ../../../downloads/openwrt_trunk-q45513/feeds/packages/net/apcupsd/files/apcupsd.conf	2015-04-23 16:31:59.178611802 +0300
++++ ../../../openwrt_trunk/feeds/packages/net/apcupsd/files/apcupsd.conf	2015-04-25 15:22:40.911100461 +0300
 @@ -78,23 +78,23 @@
  
  # LOCKFILE <path to lockfile>
  #   Path for device lock file. Not used on Win32.
 -LOCKFILE /var/lock
-+LOCKFILE /opt/var/lock
++LOCKFILE /Apps/opt/var/lock
  
  # SCRIPTDIR <path to script directory>
  #   Directory in which apccontrol and event scripts are located.
 -SCRIPTDIR /etc/apcupsd
-+SCRIPTDIR /opt/etc/apcupsd
++SCRIPTDIR /Apps/opt/etc/apcupsd
  
  # PWRFAILDIR <path to powerfail directory>
  #   Directory in which to write the powerfail flag file. This file
@@ -63,13 +63,13 @@ diff -urx .svn ../../../downloads/openwrt_trunk-r44497/feeds/packages/net/apcups
  #   checked in the OS halt scripts to determine if a killpower
  #   (turning off UPS output power) is required.
 -PWRFAILDIR /etc
-+PWRFAILDIR /opt/etc
++PWRFAILDIR /Apps/opt/etc
  
  # NOLOGINDIR <path to nologin directory>
  #   Directory in which to write the nologin file. The existence
  #   of this flag file tells the OS to disallow new logins.
 -NOLOGINDIR /etc
-+NOLOGINDIR /opt/etc
++NOLOGINDIR /Apps/opt/etc
  
  
  #
@@ -78,7 +78,7 @@ diff -urx .svn ../../../downloads/openwrt_trunk-r44497/feeds/packages/net/apcups
  # If you want the last few EVENTS to be available over the network
  # by the network information server, you must define an EVENTSFILE.
 -EVENTSFILE /var/log/apcupsd.events
-+EVENTSFILE /opt/var/log/apcupsd.events
++EVENTSFILE /Apps/opt/var/log/apcupsd.events
  
  # EVENTSFILEMAX <kilobytes>
  #  By default, the size of the EVENTSFILE will be not be allowed to exceed
@@ -87,13 +87,13 @@ diff -urx .svn ../../../downloads/openwrt_trunk-r44497/feeds/packages/net/apcups
  
  # Location of STATUS file (written to only if STATTIME is non-zero)
 -STATFILE /var/log/apcupsd.status
-+STATFILE /opt/var/log/apcupsd.status
++STATFILE /Apps/opt/var/log/apcupsd.status
  
  # LOGSTATS [ on | off ] on enables, off disables
  # Note! This generates a lot of output, so if         
-diff -urx .svn ../../../downloads/openwrt_trunk-r44497/feeds/packages/net/apcupsd/files/apcupsd_mail.conf ../../../openwrt_trunk/feeds/packages/net/apcupsd/files/apcupsd_mail.conf
---- ../../../downloads/openwrt_trunk-r44497/feeds/packages/net/apcupsd/files/apcupsd_mail.conf	2015-02-24 12:08:55.793768266 +0300
-+++ ../../../openwrt_trunk/feeds/packages/net/apcupsd/files/apcupsd_mail.conf	2015-02-24 12:09:31.985767607 +0300
+diff -urx .svn ../../../downloads/openwrt_trunk-q45513/feeds/packages/net/apcupsd/files/apcupsd_mail.conf ../../../openwrt_trunk/feeds/packages/net/apcupsd/files/apcupsd_mail.conf
+--- ../../../downloads/openwrt_trunk-q45513/feeds/packages/net/apcupsd/files/apcupsd_mail.conf	2015-04-23 16:31:59.178611802 +0300
++++ ../../../openwrt_trunk/feeds/packages/net/apcupsd/files/apcupsd_mail.conf	2015-04-25 15:22:40.915137008 +0300
 @@ -1,6 +1,6 @@
  #!/bin/sh
  
@@ -102,15 +102,15 @@ diff -urx .svn ../../../downloads/openwrt_trunk-r44497/feeds/packages/net/apcups
  MAILHOST="mail:25"
  FROM="OpenWrt"
  TO="apcups@example.com"
-diff -urx .svn ../../../downloads/openwrt_trunk-r44497/feeds/packages/net/apcupsd/files/changeme ../../../openwrt_trunk/feeds/packages/net/apcupsd/files/changeme
---- ../../../downloads/openwrt_trunk-r44497/feeds/packages/net/apcupsd/files/changeme	2015-02-24 12:08:55.793768266 +0300
-+++ ../../../openwrt_trunk/feeds/packages/net/apcupsd/files/changeme	2015-02-24 12:09:31.985767607 +0300
+diff -urx .svn ../../../downloads/openwrt_trunk-q45513/feeds/packages/net/apcupsd/files/changeme ../../../openwrt_trunk/feeds/packages/net/apcupsd/files/changeme
+--- ../../../downloads/openwrt_trunk-q45513/feeds/packages/net/apcupsd/files/changeme	2015-04-23 16:31:59.178611802 +0300
++++ ../../../openwrt_trunk/feeds/packages/net/apcupsd/files/changeme	2015-04-25 15:22:40.915137008 +0300
 @@ -5,13 +5,13 @@
  # detects that the battery should be replaced.
  # We send an email message to root to notify him.
  #
 -. /etc/apcupsd/apcupsd_mail.conf
-+. /opt/etc/apcupsd/apcupsd_mail.conf
++. /Apps/opt/etc/apcupsd/apcupsd_mail.conf
  
  MSG="$HOSTNAME UPS battery needs changing NOW."
  #
@@ -118,18 +118,18 @@ diff -urx .svn ../../../downloads/openwrt_trunk-r44497/feeds/packages/net/apcups
     echo "$MSG"
     echo " "
 -   /usr/sbin/apcaccess status
-+   /opt/sbin/apcaccess status
++   /Apps/opt/sbin/apcaccess status
  ) | $MAILPROG -h $MAILHOST -f $FROM -s "$MSG" $TO
  exit 0
-diff -urx .svn ../../../downloads/openwrt_trunk-r44497/feeds/packages/net/apcupsd/files/commfailure ../../../openwrt_trunk/feeds/packages/net/apcupsd/files/commfailure
---- ../../../downloads/openwrt_trunk-r44497/feeds/packages/net/apcupsd/files/commfailure	2015-02-24 12:08:55.793768266 +0300
-+++ ../../../openwrt_trunk/feeds/packages/net/apcupsd/files/commfailure	2015-02-24 12:09:31.985767607 +0300
+diff -urx .svn ../../../downloads/openwrt_trunk-q45513/feeds/packages/net/apcupsd/files/commfailure ../../../openwrt_trunk/feeds/packages/net/apcupsd/files/commfailure
+--- ../../../downloads/openwrt_trunk-q45513/feeds/packages/net/apcupsd/files/commfailure	2015-04-23 16:31:59.178611802 +0300
++++ ../../../openwrt_trunk/feeds/packages/net/apcupsd/files/commfailure	2015-04-25 15:22:40.915137008 +0300
 @@ -5,13 +5,13 @@
  # loses contact with the UPS (i.e. the serial connection is not responding).
  # We send an email message to root to notify him.
  #
 -. /etc/apcupsd/apcupsd_mail.conf
-+. /opt/etc/apcupsd/apcupsd_mail.conf
++. /Apps/opt/etc/apcupsd/apcupsd_mail.conf
  
  MSG="$HOSTNAME Communications with UPS lost"
  #
@@ -137,18 +137,18 @@ diff -urx .svn ../../../downloads/openwrt_trunk-r44497/feeds/packages/net/apcups
     echo "$MSG"
     echo " "
 -   /usr/sbin/apcaccess status
-+   /opt/sbin/apcaccess status
++   /Apps/opt/sbin/apcaccess status
  ) | $MAILPROG -h $MAILHOST -f $FROM -s "$MSG" $TO
  exit 0
-diff -urx .svn ../../../downloads/openwrt_trunk-r44497/feeds/packages/net/apcupsd/files/commok ../../../openwrt_trunk/feeds/packages/net/apcupsd/files/commok
---- ../../../downloads/openwrt_trunk-r44497/feeds/packages/net/apcupsd/files/commok	2015-02-24 12:08:55.793768266 +0300
-+++ ../../../openwrt_trunk/feeds/packages/net/apcupsd/files/commok	2015-02-24 12:09:31.985767607 +0300
+diff -urx .svn ../../../downloads/openwrt_trunk-q45513/feeds/packages/net/apcupsd/files/commok ../../../openwrt_trunk/feeds/packages/net/apcupsd/files/commok
+--- ../../../downloads/openwrt_trunk-q45513/feeds/packages/net/apcupsd/files/commok	2015-04-23 16:31:59.178611802 +0300
++++ ../../../openwrt_trunk/feeds/packages/net/apcupsd/files/commok	2015-04-25 15:22:40.915137008 +0300
 @@ -5,13 +5,13 @@
  # restores contact with the UPS (i.e. the serial connection is restored).
  # We send an email message to root to notify him.
  #
 -. /etc/apcupsd/apcupsd_mail.conf
-+. /opt/etc/apcupsd/apcupsd_mail.conf
++. /Apps/opt/etc/apcupsd/apcupsd_mail.conf
  
  MSG="$HOSTNAME Communications with UPS restored"
  #
@@ -156,18 +156,18 @@ diff -urx .svn ../../../downloads/openwrt_trunk-r44497/feeds/packages/net/apcups
     echo "$MSG"
     echo " "
 -   /usr/sbin/apcaccess status
-+   /opt/sbin/apcaccess status
++   /Apps/opt/sbin/apcaccess status
  ) | $MAILPROG -h $MAILHOST -f $FROM -s "$MSG" $TO
  exit 0
-diff -urx .svn ../../../downloads/openwrt_trunk-r44497/feeds/packages/net/apcupsd/files/offbattery ../../../openwrt_trunk/feeds/packages/net/apcupsd/files/offbattery
---- ../../../downloads/openwrt_trunk-r44497/feeds/packages/net/apcupsd/files/offbattery	2015-02-24 12:08:55.793768266 +0300
-+++ ../../../openwrt_trunk/feeds/packages/net/apcupsd/files/offbattery	2015-02-25 16:05:09.783939463 +0300
+diff -urx .svn ../../../downloads/openwrt_trunk-q45513/feeds/packages/net/apcupsd/files/offbattery ../../../openwrt_trunk/feeds/packages/net/apcupsd/files/offbattery
+--- ../../../downloads/openwrt_trunk-q45513/feeds/packages/net/apcupsd/files/offbattery	2015-04-23 16:31:59.178611802 +0300
++++ ../../../openwrt_trunk/feeds/packages/net/apcupsd/files/offbattery	2015-04-25 15:22:40.923096400 +0300
 @@ -5,13 +5,13 @@
  # restores contact with the UPS (i.e. the serial connection is restored).
  # We send an email message to root to notify him.
  #
 -. /etc/apcupsd/apcupsd_mail.conf
-+. /opt/etc/apcupsd/apcupsd_mail.conf
++. /Apps/opt/etc/apcupsd/apcupsd_mail.conf
  
  MSG="$HOSTNAME Communications with UPS restored"
  #
@@ -175,18 +175,18 @@ diff -urx .svn ../../../downloads/openwrt_trunk-r44497/feeds/packages/net/apcups
     echo "$MSG"
     echo " "
 -   /usr/sbin/apcaccess status
-+   /opt/sbin/apcaccess status
++   /Apps/opt/sbin/apcaccess status
  ) | $MAILPROG -h $MAILHOST -f $FROM -s "$MSG" $TO
  exit 0
-diff -urx .svn ../../../downloads/openwrt_trunk-r44497/feeds/packages/net/apcupsd/files/onbattery ../../../openwrt_trunk/feeds/packages/net/apcupsd/files/onbattery
---- ../../../downloads/openwrt_trunk-r44497/feeds/packages/net/apcupsd/files/onbattery	2015-02-24 12:08:55.793768266 +0300
-+++ ../../../openwrt_trunk/feeds/packages/net/apcupsd/files/onbattery	2015-02-24 12:09:31.985767607 +0300
+diff -urx .svn ../../../downloads/openwrt_trunk-q45513/feeds/packages/net/apcupsd/files/onbattery ../../../openwrt_trunk/feeds/packages/net/apcupsd/files/onbattery
+--- ../../../downloads/openwrt_trunk-q45513/feeds/packages/net/apcupsd/files/onbattery	2015-04-23 16:31:59.178611802 +0300
++++ ../../../openwrt_trunk/feeds/packages/net/apcupsd/files/onbattery	2015-04-25 15:22:40.923096400 +0300
 @@ -5,13 +5,13 @@
  # goes on batteries.
  # We send an email message to root to notify him.
  #
 -. /etc/apcupsd/apcupsd_mail.conf
-+. /opt/etc/apcupsd/apcupsd_mail.conf
++. /Apps/opt/etc/apcupsd/apcupsd_mail.conf
  
  MSG="$HOSTNAME Power Failure !!!"
  #
@@ -194,31 +194,25 @@ diff -urx .svn ../../../downloads/openwrt_trunk-r44497/feeds/packages/net/apcups
     echo "$MSG"
     echo " "
 -   /usr/sbin/apcaccess status
-+   /opt/sbin/apcaccess status
++   /Apps/opt/sbin/apcaccess status
  ) | $MAILPROG -h $MAILHOST -f $FROM -s "$MSG" $TO
  exit 0
-diff -urx .svn ../../../downloads/openwrt_trunk-r44497/feeds/packages/net/apcupsd/Makefile ../../../openwrt_trunk/feeds/packages/net/apcupsd/Makefile
---- ../../../downloads/openwrt_trunk-r44497/feeds/packages/net/apcupsd/Makefile	2015-02-24 12:08:55.793768266 +0300
-+++ ../../../openwrt_trunk/feeds/packages/net/apcupsd/Makefile	2015-02-25 16:06:34.659932786 +0300
-@@ -9,7 +9,7 @@
- 
- PKG_NAME:=apcupsd
- PKG_VERSION:=3.14.13
--PKG_RELEASE:=2
-+PKG_RELEASE:=2a
- 
- PKG_MAINTAINER:=Othmar Truniger <github@truniger.ch>
- PKG_LICENSE:=GPL-2.0
-@@ -33,7 +33,7 @@
+Только в ../../../openwrt_trunk/feeds/packages/net/apcupsd/files: S17apcupsd
+diff -urx .svn ../../../downloads/openwrt_trunk-q45513/feeds/packages/net/apcupsd/Makefile ../../../openwrt_trunk/feeds/packages/net/apcupsd/Makefile
+--- ../../../downloads/openwrt_trunk-q45513/feeds/packages/net/apcupsd/Makefile	2015-04-23 16:31:59.178611802 +0300
++++ ../../../openwrt_trunk/feeds/packages/net/apcupsd/Makefile	2015-04-26 19:05:03.738067957 +0300
+@@ -43,7 +43,9 @@
  	$(CP) $(SCRIPT_DIR)/config.* $(PKG_BUILD_DIR)/autoconf/
  	$(call Build/Configure/Default, \
  		--with-distname=unknown \
 -		--sysconfdir=/etc/apcupsd \
 +		--sysconfdir=/Apps/opt/etc/apcupsd \
-		--enable-usb \
- 		--without-x \
- 	)
-@@ -47,32 +47,33 @@
++		--with-cgi-bin=/Apps/opt/etc/apcupsd \
++		--datarootdir=/Apps/opt/share \
+ 		--enable-cgi \
+ 		--enable-usb \
+ 		--enable-modbus-usb \
+@@ -59,47 +61,47 @@
  endef
  
  define Package/apcupsd/install
@@ -252,9 +246,23 @@ diff -urx .svn ../../../downloads/openwrt_trunk-r44497/feeds/packages/net/apcups
 +	$(INSTALL_BIN) ./files/offbattery $(1)/opt/etc/apcupsd/
 +	$(INSTALL_BIN) ./files/onbattery $(1)/opt/etc/apcupsd/
 +	$(INSTALL_BIN) ./files/apccontrol $(1)/opt/etc/apcupsd/
-+	$(INSTALL_DIR) $(1)/opt/var/lock $(1)/opt/var/log
 +	$(INSTALL_DIR) $(1)/opt/etc/init.d
-+	$(INSTALL_BIN) ./files/S17apcupsd $(1)/opt/etc/init.d
++	$(INSTALL_BIN)	./files/S17apcupsd $(1)/opt/etc/init.d/
+ endef
+ 
+ define Package/apcupsd-cgi/install
+-	$(INSTALL_DIR) $(1)/www/cgi-bin/apcupsd
+-	$(INSTALL_BIN) $(PKG_INSTALL_DIR)/etc/apcupsd/*.cgi $(1)/www/cgi-bin/apcupsd
+-	$(INSTALL_DIR) $(1)/etc/apcupsd
+-	$(INSTALL_CONF) ./files/apcupsd.css $(1)/etc/apcupsd/
+-	$(INSTALL_CONF) ./files/hosts.conf $(1)/etc/apcupsd/
+-	$(INSTALL_CONF) ./files/multimon.conf $(1)/etc/apcupsd/
++	$(INSTALL_DIR) $(1)/opt/share/www/cgi-bin/apcupsd
++	$(INSTALL_BIN) $(PKG_INSTALL_DIR)/Apps/opt/etc/apcupsd/*.cgi $(1)/opt/share/www/cgi-bin/apcupsd
++	$(INSTALL_DIR) $(1)/opt/etc/apcupsd
++	$(INSTALL_CONF) ./files/apcupsd.css $(1)/opt/etc/apcupsd/
++	$(INSTALL_CONF) ./files/hosts.conf $(1)/opt/etc/apcupsd/
++	$(INSTALL_CONF) ./files/multimon.conf $(1)/opt/etc/apcupsd/
  endef
  
  define Package/apcupsd/conffiles
@@ -272,6 +280,15 @@ diff -urx .svn ../../../downloads/openwrt_trunk-r44497/feeds/packages/net/apcups
 +/opt/etc/apcupsd/commok
 +/opt/etc/apcupsd/offbattery
 +/opt/etc/apcupsd/onbattery
+ endef
+ 
+ define Package/apcupsd-cgi/conffiles
+-/etc/apcupsd/apcupsd.css
+-/etc/apcupsd/hosts.conf
+-/etc/apcupsd/multimon.conf
++/opt/etc/apcupsd/apcupsd.css
++/opt/etc/apcupsd/hosts.conf
++/opt/etc/apcupsd/multimon.conf
  endef
  
  $(eval $(call BuildPackage,apcupsd))

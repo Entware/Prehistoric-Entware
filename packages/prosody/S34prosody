@@ -1,0 +1,28 @@
+#!/bin/sh
+
+prefix="/opt"
+PATH=${prefix}/bin:${prefix}/sbin:/sbin:/bin:/usr/sbin:/usr/bin
+
+case "$1" in
+	start)
+		prosodyctl start
+		;;
+	stop)
+		prosodyctl stop
+		;;
+	restart)
+		prosodyctl restart
+		;;
+	status)
+		prosodyctl status
+		;;
+	reload)
+		prosodyctl reload
+		;;
+	*)
+		echo "Usage: $0 (start|stop|restart|reload|status)"
+		exit 1
+		;;
+esac
+
+exit 0

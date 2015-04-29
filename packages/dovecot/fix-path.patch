@@ -1,5 +1,5 @@
---- ../../../downloads/openwrt_trunk-q44497/feeds/packages/mail/dovecot/Makefile	2015-03-01 22:34:30.714413614 +0300
-+++ ../../../openwrt_trunk/feeds/packages/mail/dovecot/Makefile	2015-04-13 13:16:51.464333536 +0300
+--- ../../../downloads/openwrt_trunk-q45513/feeds/packages/mail/dovecot/Makefile	2015-04-23 16:31:59.259315190 +0300
++++ ../../../openwrt_trunk/feeds/packages/mail/dovecot/Makefile	2015-04-26 08:22:36.430129064 +0300
 @@ -9,7 +9,7 @@
  
  PKG_NAME:=dovecot
@@ -18,7 +18,7 @@
  PKG_BUILD_DEPENDS:=libiconv
  
  PKG_FIXUP:=autoreconf
-@@ -24,7 +26,7 @@
+@@ -24,39 +26,69 @@
  
  include $(INCLUDE_DIR)/package.mk
  
@@ -26,8 +26,11 @@
 +define Package/dovecot/Default
    SECTION:=mail
    CATEGORY:=Mail
-   DEPENDS:=+DOVECOT_LDAP:libopenldap +libopenssl +librt +zlib +libbz2 +libcap
-@@ -34,29 +36,59 @@
+-  DEPENDS:=+DOVECOT_LDAP:libopenldap +libopenssl +librt +zlib +libbz2 +libcap
++  DEPENDS:=+libopenldap +libopenssl +librt +zlib +libbz2 +libcap
+   TITLE:=An IMAP and POP3 daemon
+   MAINTAINER:=Peter Wagner <tripolar@gmx.at>
+   URL:=http://www.dovecot.org/
    USERID:=dovecot=59:dovecot=59
  endef
  

@@ -1,6 +1,6 @@
---- ../../../downloads/openwrt_trunk-r40859/package/utils/busybox/Config-defaults.in
+--- ../../../downloads/openwrt_trunk-r45513/package/utils/busybox/Config-defaults.in
 +++ ../../../openwrt_trunk/package/utils/busybox/Config-defaults.in
-@@ -93,7 +93,7 @@
+@@ -99,7 +99,7 @@
  	default y
  config BUSYBOX_DEFAULT_PID_FILE_PATH
  	string
@@ -9,16 +9,16 @@
  config BUSYBOX_DEFAULT_FEATURE_SUID
  	bool
  	default y
-@@ -1713,7 +1713,7 @@
+@@ -1644,7 +1644,7 @@
  	default n
  config BUSYBOX_DEFAULT_FEATURE_CROND_DIR
  	string
 -	default "/etc"
 +	default "/Apps/opt/etc"
- config BUSYBOX_DEFAULT_CRONTAB
+ config BUSYBOX_DEFAULT_LESS
  	bool
  	default y
-@@ -2244,7 +2244,7 @@
+@@ -2289,7 +2289,7 @@
  	default n
  config BUSYBOX_DEFAULT_UDHCPC_DEFAULT_SCRIPT
  	string

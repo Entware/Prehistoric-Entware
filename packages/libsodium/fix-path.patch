@@ -1,6 +1,6 @@
---- ../../../downloads/openwrt_trunk-r43718/feeds/packages/libs/libsodium/Makefile	2014-12-15 15:21:12.720190865 +0300
-+++ ../../../openwrt_trunk/feeds/packages/libs/libsodium/Makefile	2014-12-15 15:27:48.924186403 +0300
-@@ -52,23 +52,27 @@
+--- ../../../downloads/openwrt_trunk-r45513/feeds/packages/libs/libsodium/Makefile	2015-04-20 10:09:28.898135362 +0300
++++ ../../../openwrt_trunk/feeds/packages/libs/libsodium/Makefile	2015-04-20 10:09:47.306135026 +0300
+@@ -50,23 +50,27 @@
  endmenu
  endef
  

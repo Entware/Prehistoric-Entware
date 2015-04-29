@@ -1,30 +1,16 @@
---- ../../../downloads/openwrt_trunk-r43718/feeds/oldpackages/utils/vim/Makefile	2014-12-15 16:50:13.448093575 +0300
-+++ ../../../openwrt_trunk/feeds/oldpackages/utils/vim/Makefile	2014-12-17 15:11:48.953053107 +0300
-@@ -58,11 +58,11 @@
- endef
- 
- define Package/vim-full/conffiles
--/usr/share/vim/vimrc
-+/opt/share/vim/vimrc
+--- ../../../downloads/openwrt_trunk-r45513/feeds/packages/utils/vim/Makefile	2015-04-21 10:37:38.252588032 +0300
++++ ../../../openwrt_trunk/feeds/packages/utils/vim/Makefile	2015-04-21 16:03:20.008231161 +0300
+@@ -64,8 +64,7 @@
  endef
  
  define Package/vim/conffiles
 -/usr/share/vim/vimrc
+-/root/.vimrc
 +/opt/share/vim/vimrc
  endef
  
  define Package/vim/description
-@@ -98,7 +98,8 @@
- 	--disable-netbeans \
- 	--disable-cscope \
- 	--disable-gpm \
--	--with-tlib=ncurses
-+	--with-tlib=ncurses \
-+	--disable-acl
- 
- CONFIGURE_VARS += \
- 	vim_cv_getcwd_broken=no \
-@@ -145,9 +146,9 @@
+@@ -147,9 +146,9 @@
  
  define Build/Compile/vim-runtime
  	$(MAKE) -C $(PKG_BUILD_DIR)/src DESTDIR="$(PKG_INSTALL_DIR)" installrtbase
@@ -37,7 +23,7 @@
  endef
  
  define Build/Compile
-@@ -158,22 +159,22 @@
+@@ -160,22 +159,22 @@
  endef
  
  define Package/vim/install
@@ -70,7 +56,7 @@
  endef
  
  define Package/vim-help/install
-@@ -181,8 +182,8 @@
+@@ -183,8 +182,8 @@
  endef
  
  define Package/xxd/install

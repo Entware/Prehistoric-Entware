@@ -1,5 +1,5 @@
---- ../../../downloads/openwrt_trunk-r44497/package/libs/ncurses/Makefile	2015-02-20 12:39:13.689134242 +0300
-+++ ../../../openwrt_trunk/package/libs/ncurses/Makefile	2015-02-20 18:10:14.560771708 +0300
+--- ../../../downloads/openwrt_trunk-r45513/package/libs/ncurses/Makefile	2015-04-21 10:37:38.392588029 +0300
++++ ../../../openwrt_trunk/package/libs/ncurses/Makefile	2015-04-21 12:29:31.104463284 +0300
 @@ -9,7 +9,7 @@
  
  PKG_NAME:=ncurses
@@ -58,7 +58,7 @@
  endif
  
  ifeq ($(BUILD_VARIANT),libncursesw)
-@@ -98,70 +108,82 @@
+@@ -98,70 +108,83 @@
  	BUILD_CC="$(HOSTCC)" \
  	HOSTCC="$(HOSTCC)" \
  	HOSTCCFLAGS="" \
@@ -77,6 +77,7 @@
 +define Package/ncurses-bin/install
 +	$(INSTALL_DIR) $(1)/opt/bin
 +	$(CP) $(PKG_INSTALL_DIR)/Apps/opt/bin/* $(1)/opt/bin/
++	$(RM) $(1)/opt/bin/ncurses5-config
  endef
  
  define Package/terminfo/install
@@ -165,11 +166,11 @@
 +	$(SED) 's,^\(prefix\|exec_prefix\)=.*,\1=$(STAGING_DIR)/opt,g' \
  		$(2)/bin/ncurses5-config
 -	$(LN) $(2)/bin/ncurses5-config $(1)/usr/bin/ncurses5-config
-+	$(LN) $(2)/bin/ncurses5-config $(1)/opt/bin/ncurses5-config
++	$(LN) $(STAGING_DIR)/host/bin/ncurses5-config $(1)/opt/bin/ncurses5-config
  endef
  endif
  
-@@ -179,3 +201,4 @@
+@@ -179,3 +202,4 @@
  $(eval $(call BuildPackage,terminfo))
  $(eval $(call BuildPackage,libncurses))
  $(eval $(call BuildPackage,libncursesw))

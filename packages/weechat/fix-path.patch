@@ -1,18 +1,17 @@
---- ../../../downloads/openwrt_trunk-q44497/feeds/oldpackages/net/weechat/Makefile	2015-02-25 12:52:24.116419914 +0300
-+++ ../../../openwrt_trunk/feeds/oldpackages/net/weechat/Makefile	2015-03-01 07:47:25.739955352 +0300
+--- ../../../downloads/openwrt_trunk-q45513/feeds/oldpackages/net/weechat/Makefile	2015-04-23 16:31:58.634151514 +0300
++++ ../../../openwrt_trunk/feeds/oldpackages/net/weechat/Makefile	2015-04-26 11:29:47.238111796 +0300
 @@ -8,14 +8,14 @@
  include $(TOPDIR)/rules.mk
  
  PKG_NAME:=weechat
 -PKG_VERSION:=0.4.3
--PKG_RELEASE:=1
-+PKG_VERSION:=1.1
-+PKG_RELEASE:=4
++PKG_VERSION:=1.1.1
+ PKG_RELEASE:=1
  
  PKG_SOURCE:=$(PKG_NAME)-$(PKG_VERSION).tar.bz2
  PKG_SOURCE_URL:=http://www.weechat.org/files/src
 -PKG_MD5SUM:=07500f0d1054691d88f21dd12b7c5871
-+PKG_MD5SUM:=5985f29ec2750aff4b89df1832d36b6f
++PKG_MD5SUM:=3bb8d27301262bc434de9bcf7d77dce7
  
 -PKG_FIXUP:=autoreconf
 +#PKG_FIXUP:=autoreconf
@@ -24,7 +23,7 @@
    TITLE:=Lightweight IRC client
    URL:=http://www.weechat.org/
 -  DEPENDS:=+libcurl +libgnutls +libgcrypt +zlib +libncursesw $(ICONV_DEPENDS)
-+  DEPENDS:=+libcurl +libgnutls +libgcrypt +zlib +libncursesw +$(INTL_DEPENDS) +libaspell +perl +libpthread
++  DEPENDS:=+libcurl +libgnutls +libgcrypt +zlib +libncursesw +$(ICONV_DEPENDS) +$(INTL_DEPENDS) +libaspell +perl +libpthread +python-base
  endef
  
  define Package/weechat/description
@@ -49,7 +48,7 @@
 +	-DENABLE_PYTHON3=OFF \
 +	-DPYTHON_EXECUTABLE="$(STAGING_DIR)/host/bin/python2.7" \
 +	-DPYTHON_INCLUDE_PATH="$(STAGING_DIR)/opt/include/python2.7" \
-+	-DPYTHON_LIBRARY="$(STAGING_DIR)/opt/lib/libpython2.7.a" \
++	-DPYTHON_LIBRARY="$(STAGING_DIR)/opt/lib/libpython2.7.so" \
 +	-DENABLE_PERL=ON \
 +	-DPERL_EXECUTABLE:FILEPATH="$(STAGING_DIR)/host/bin/perl" \
 +	-DPERL_INCLUDE_PATH="$(STAGING_DIR)/opt/lib/perl5/5.20/CORE" \
@@ -62,7 +61,7 @@
  TARGET_LDFLAGS += \
 -	-L$(ICONV_PREFIX)/lib -ldl \
 -	-Wl,-rpath-link,$(STAGING_DIR)/usr/lib
-+	-L$(ICONV_PREFIX)/lib -ldl -lintl \
++	-L$(ICONV_PREFIX)/lib -ldl -lintl -liconv\
 +	-Wl,-rpath-link,$(STAGING_DIR)/opt/lib
 +
 +CONFIGURE_ARGS+= --with-libintl-prefix="$(STAGING_DIR)/opt/lib/libintl-full"

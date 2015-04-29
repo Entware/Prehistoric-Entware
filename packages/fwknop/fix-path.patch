@@ -20,14 +20,15 @@
  endef
  
  define Package/fwknop
-@@ -84,34 +84,35 @@
- 
- CONFIGURE_ARGS += \
+@@ -86,32 +86,37 @@
  	--without-gpgme \
--	--with-iptables=/usr/sbin/iptables
-+	--with-iptables=/usr/sbin/iptables \
-+	--disable-stack-protector
+ 	--with-iptables=/usr/sbin/iptables
  
++ifneq ($(CONFIG_SSP_SUPPORT),y)
++CONFIGURE_ARGS+= \
++        --disable-stack-protector
++endif
++
  define Build/InstallDev
 -	$(INSTALL_DIR) $(1)/usr/include
 -	$(CP) $(PKG_INSTALL_DIR)/usr/include/fko.h $(1)/usr/include/

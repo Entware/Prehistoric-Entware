@@ -1,12 +1,12 @@
-diff -urx .svn ../../../downloads/openwrt_trunk-r43718/package/network/services/samba36/Makefile ../../../openwrt_trunk/package/network/services/samba36/Makefile
---- ../../../downloads/openwrt_trunk-r43718/package/network/services/samba36/Makefile	2014-10-06 15:46:24.073250638 +0400
-+++ ../../../openwrt_trunk/package/network/services/samba36/Makefile	2014-10-07 11:59:34.723924674 +0400
+diff -urx .svn ../../../downloads/openwrt_trunk-q45513/package/network/services/samba36/Makefile ../../../openwrt_trunk/package/network/services/samba36/Makefile
+--- ../../../downloads/openwrt_trunk-q45513/package/network/services/samba36/Makefile	2015-04-23 16:31:59.458145868 +0300
++++ ../../../openwrt_trunk/package/network/services/samba36/Makefile	2015-04-26 20:25:55.857666813 +0300
 @@ -86,7 +86,7 @@
  	samba_cv_zlib_1_2_3=no
  
  CONFIGURE_ARGS += \
 -	--exec-prefix=/usr \
-+	--exec-prefix=/opt \
++	--exec-prefix=/Apps/opt \
  	--prefix=/ \
  	--disable-avahi \
  	--disable-cups \
@@ -16,8 +16,8 @@ diff -urx .svn ../../../downloads/openwrt_trunk-r43718/package/network/services/
  	--disable-shared-libs \
 -	--with-codepagedir=/etc/samba \
 -	--with-configdir=/etc/samba \
-+	--with-codepagedir=/opt/etc/samba \
-+	--with-configdir=/opt/etc/samba \
++	--with-codepagedir=/Apps/opt/etc/samba \
++	--with-configdir=/Apps/opt/etc/samba \
  	--with-included-iniparser \
  	--with-included-popt \
 -	--with-lockdir=/var/lock \
@@ -25,20 +25,26 @@ diff -urx .svn ../../../downloads/openwrt_trunk-r43718/package/network/services/
 -	--with-nmbdsocketdir=/var/nmbd \
 -	--with-piddir=/var/run \
 -	--with-privatedir=/etc/samba \
-+	--with-lockdir=/opt/var/lock \
-+	--with-logfilebase=/opt/var/log \
-+	--with-nmbdsocketdir=/opt/var/nmbd \
-+	--with-piddir=/opt/var/run \
-+	--with-privatedir=/opt/etc/samba \
++	--with-lockdir=/Apps/opt/var/lock \
++	--with-logfilebase=/Apps/opt/var/log \
++	--with-nmbdsocketdir=/Apps/opt/var/nmbd \
++	--with-piddir=/Apps/opt/var/run \
++	--with-privatedir=/Apps/opt/etc/samba \
  	--with-sendfile-support \
  	--without-acl-support \
  	--without-cluster-support \
-@@ -124,26 +124,27 @@
+@@ -124,31 +124,29 @@
  MAKE_FLAGS += DYNEXP= PICFLAG= MODULES=
+ 
+ define Package/samba36-server/conffiles
+-/etc/config/samba
+-/etc/samba/smb.conf.template
++/opt/etc/samba/smb.conf.template
+ endef
  
  define Package/samba36-server/install
 -	$(INSTALL_DIR) $(1)/etc/config
--	$(INSTALL_DATA) ./files/samba.config $(1)/etc/config/samba
+-	$(INSTALL_CONF) ./files/samba.config $(1)/etc/config/samba
 -	$(INSTALL_DIR) $(1)/etc/samba
 -	$(INSTALL_DATA) ./files/smb.conf.template $(1)/etc/samba
 -	$(INSTALL_DATA) $(PKG_BUILD_DIR)/codepages/lowcase.dat $(1)/etc/samba
@@ -56,16 +62,14 @@ diff -urx .svn ../../../downloads/openwrt_trunk-r43718/package/network/services/
 +	$(INSTALL_DATA) $(PKG_BUILD_DIR)/codepages/lowcase.dat $(1)/opt/etc/samba
 +	$(INSTALL_DATA) $(PKG_BUILD_DIR)/codepages/upcase.dat $(1)/opt/etc/samba
 +	$(INSTALL_DATA) $(PKG_BUILD_DIR)/codepages/valid.dat $(1)/opt/etc/samba
++	$(INSTALL_DIR) $(1)/opt/etc/init.d
++	$(INSTALL_BIN) ./files/S08samba $(1)/opt/etc/init.d
 +	$(INSTALL_DIR) $(1)/opt/sbin
-+	$(INSTALL_DIR) $(1)/opt/var/nmbd
-+	$(INSTALL_DIR) $(1)/opt/var/log
-+	$(INSTALL_DIR) $(1)/opt/var/run
 +	$(INSTALL_BIN) $(PKG_BUILD_BIN)/samba_multicall $(1)/opt/sbin
 +	$(LN) samba_multicall $(1)/opt/sbin/smbd
 +	$(LN) samba_multicall $(1)/opt/sbin/nmbd
 +	$(LN) samba_multicall $(1)/opt/sbin/smbpasswd
-+	$(INSTALL_DIR) $(1)/opt/etc/init.d
-+	$(INSTALL_BIN) ./files/S08samba $(1)/opt/etc/init.d
++	$(INSTALL_DIR) $(1)/opt/var/nmbd
  endef
  
  define Package/samba36-client/install
@@ -78,18 +82,18 @@ diff -urx .svn ../../../downloads/openwrt_trunk-r43718/package/network/services/
  endef
  
  $(eval $(call BuildPackage,samba36-client))
-diff -urx .svn ../../../downloads/openwrt_trunk-r43718/package/network/services/samba36/patches/111-owrt_smbpasswd.patch ../../../openwrt_trunk/package/network/services/samba36/patches/111-owrt_smbpasswd.patch
---- ../../../downloads/openwrt_trunk-r43718/package/network/services/samba36/patches/111-owrt_smbpasswd.patch	2014-10-06 15:46:24.073250638 +0400
-+++ ../../../openwrt_trunk/package/network/services/samba36/patches/111-owrt_smbpasswd.patch	2014-10-07 11:59:34.727924674 +0400
+diff -urx .svn ../../../downloads/openwrt_trunk-q45513/package/network/services/samba36/patches/111-owrt_smbpasswd.patch ../../../openwrt_trunk/package/network/services/samba36/patches/111-owrt_smbpasswd.patch
+--- ../../../downloads/openwrt_trunk-q45513/package/network/services/samba36/patches/111-owrt_smbpasswd.patch	2015-04-23 16:31:59.458145868 +0300
++++ ../../../openwrt_trunk/package/network/services/samba36/patches/111-owrt_smbpasswd.patch	2015-04-26 20:24:07.425565223 +0300
 @@ -236,15 +236,15 @@
  +		}
  +	}
  +
 -+	fp = fopen("/etc/samba/smbpasswd", "r+");
-++	fp = fopen("/opt/etc/samba/smbpasswd", "r+");
+++	fp = fopen("/Apps/opt/etc/samba/smbpasswd", "r+");
  +	if(!fp) {
 -+		fprintf(stderr, "Failed to open /etc/samba/smbpasswd");
-++		fprintf(stderr, "Failed to open /opt/etc/samba/smbpasswd");
+++		fprintf(stderr, "Failed to open /Apps/opt/etc/samba/smbpasswd");
  +		return 3;
  +	}
  +

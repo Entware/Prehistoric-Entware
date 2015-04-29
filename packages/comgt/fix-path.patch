@@ -1,6 +1,6 @@
---- ../../../downloads/openwrt_trunk-r44486/package/network/utils/comgt/Makefile	2015-02-18 12:16:58.292306319 +0300
-+++ ../../../openwrt_trunk/package/network/utils/comgt/Makefile	2015-02-18 16:54:35.176002899 +0300
-@@ -31,14 +31,13 @@
+--- ../../../downloads/openwrt_trunk-r45513/package/network/utils/comgt/Makefile	2015-04-21 10:37:38.864588020 +0300
++++ ../../../openwrt_trunk/package/network/utils/comgt/Makefile	2015-04-21 14:30:01.596334172 +0300
+@@ -31,20 +31,19 @@
  define Package/comgt
  $(call Package/comgt/Default)
    TITLE:=Option/Vodafone 3G/GPRS control tool
@@ -16,7 +16,14 @@
  endef
  
  define Package/comgt-ncm
-@@ -57,48 +56,39 @@
+ $(call Package/comgt/Default)
+   TITLE+=NCM 3G/4G Support
+-  DEPENDS:=+comgt +wwan
++  DEPENDS:=+comgt
+ endef
+ 
+ define Package/comgt/description
+@@ -57,46 +56,37 @@
  	$(MAKE) -C $(PKG_BUILD_DIR) \
  		$(TARGET_CONFIGURE_OPTS) \
  		CFLAGS="$(TARGET_CFLAGS)" \
@@ -28,7 +35,7 @@
  define Package/comgt/install
 -	$(INSTALL_DIR) $(1)/usr/bin
 -	$(INSTALL_BIN) $(PKG_BUILD_DIR)/comgt $(1)/usr/bin/
--	ln -s comgt $(1)/usr/bin/gcom
+-	$(LN) comgt $(1)/usr/bin/gcom
 -	$(INSTALL_DIR) $(1)/etc/chatscripts
 -	$(INSTALL_DATA) ./files/3g.chat $(1)/etc/chatscripts/3g.chat
 -	$(INSTALL_DATA) ./files/evdo.chat $(1)/etc/chatscripts/evdo.chat
@@ -45,11 +52,9 @@
 -	$(INSTALL_DIR) $(1)/lib/netifd/proto
 -	$(INSTALL_BIN) ./files/3g.sh $(1)/lib/netifd/proto/3g.sh
 -	$(INSTALL_BIN) ./files/directip.sh $(1)/lib/netifd/proto/directip.sh
--	$(INSTALL_DIR) $(1)/lib/network/wwan/
--	$(INSTALL_DATA) ./files/data/* $(1)/lib/network/wwan/
 +	$(INSTALL_DIR) $(1)/opt/bin
 +	$(INSTALL_BIN) $(PKG_BUILD_DIR)/comgt $(1)/opt/bin/
-+	ln -s comgt $(1)/opt/bin/gcom
++	$(LN) comgt $(1)/opt/bin/gcom
 +	$(INSTALL_DIR) $(1)/opt/etc/chatscripts
 +	$(INSTALL_DATA) ./files/3g.chat $(1)/opt/etc/chatscripts/3g.chat
 +	$(INSTALL_DATA) ./files/evdo.chat $(1)/opt/etc/chatscripts/evdo.chat
@@ -61,8 +66,6 @@
 +	$(INSTALL_DATA) ./files/getcarrier.gcom $(1)/opt/etc/gcom/getcarrier.gcom
 +	$(INSTALL_DATA) ./files/getcnum.gcom $(1)/opt/etc/gcom/getcnum.gcom
 +	$(INSTALL_DATA) ./files/getimsi.gcom $(1)/opt/etc/gcom/getimsi.gcom
-+	$(INSTALL_DIR) $(1)/opt/lib/network/wwan/
-+	$(INSTALL_DATA) ./files/data/* $(1)/opt/lib/network/wwan/
  endef
  
  define Package/comgt-directip/install

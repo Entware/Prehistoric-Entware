@@ -1,10 +1,10 @@
 --- ../../../downloads/openwrt_trunk-r40423/config/Config-build.in
 +++ ../../../openwrt_trunk/config/Config-build.in
-@@ -204,8 +204,7 @@
+@@ -193,8 +193,7 @@
  
  	choice
  		prompt "Preferred standard C++ library"
--		default USE_LIBSTDCXX if USE_EGLIBC
+-		default USE_LIBSTDCXX if USE_GLIBC
 -		default USE_UCLIBCXX
 +		default USE_LIBSTDCXX
  		help

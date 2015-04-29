@@ -1,15 +1,14 @@
---- ../../../openwrt_trunk.orig/feeds/oldpackages/utils/sdparm/Makefile
-+++ ../../../openwrt_trunk/feeds/oldpackages/utils/sdparm/Makefile
-@@ -23,7 +23,7 @@
+--- ../../../downloads/openwrt_trunk-r45513/feeds/oldpackages/utils/sdparm/Makefile	2015-04-23 10:21:55.741457452 +0300
++++ ../../../openwrt_trunk/feeds/oldpackages/utils/sdparm/Makefile	2015-04-23 15:01:23.637152008 +0300
+@@ -23,7 +23,6 @@
    SECTION:=utils
    CATEGORY:=Utilities
    TITLE:=Read or modify SCSI or USB disk parameters
 -  DEPENDS:=+kmod-scsi-generic
-+#  DEPENDS:=+kmod-scsi-generic
    SUBMENU:=disc
    URL:=http://sg.danny.cz/sg/sdparm.html
  endef
-@@ -34,8 +34,8 @@
+@@ -34,8 +33,8 @@
  endef
  
  define Package/sdparm/install

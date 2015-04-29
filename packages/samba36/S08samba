@@ -2,14 +2,14 @@
 #
 # startfile for entware-samba, written by linux.tinkerer at gmail.com
 # For Ily's FW of Asus Routers
-# store this script i. /Apps/opt/etc/init.d if you've installed entware
+# store this script in /Apps/opt/etc/init.d if you've installed entware
 
 # Prgmname=/full_path/Prgmname
-prgmname1="/opt/sbin/nmbd"
-prgmname2="/opt/sbin/smbd"
+prgmname1="/Apps/opt/sbin/nmbd"
+prgmname2="/Apps/opt/sbin/smbd"
 
 # configfile=/full_path/configfile
-configfile="/opt/etc/samba/smb.conf"
+configfile="/Apps/opt/etc/samba/smb.conf"
 
 #location of pid-file
 nmbdpid="/opt/var/run/nmbd.pid"

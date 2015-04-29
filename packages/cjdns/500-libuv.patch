@@ -1,0 +1,18 @@
+From: Lars Gierth <larsg@systemli.org>
+Date: Sun, 10 Aug 2014 20:44:23 +0200
+
+    Disable GYP parallelism
+
+    Fixes mysterious build errors on a 2.6.32 VM.
+
+index 0f870d1..929cf6d 100644
+--- a/node_build/make.js
++++ b/node_build/make.js
+@@ -281,7 +281,7 @@ Builder.configure({
+             var cwd = process.cwd();
+             process.chdir(dependencyDir + '/libuv/');
+
+-            var args = ['./gyp_uv.py'];
++            var args = ['./gyp_uv.py', '--no-parallel'];
+             var env = process.env;
+             env.CC = builder.config.gcc;

@@ -1,11 +1,20 @@
---- ../../../downloads/openwrt_trunk-r44486/feeds/oldpackages/net/pyload/Makefile	2015-02-18 12:16:57.696306330 +0300
-+++ ../../../openwrt_trunk/feeds/oldpackages/net/pyload/Makefile	2015-02-20 11:30:08.253211330 +0300
+--- ../../../downloads/openwrt_trunk-r45513/feeds/oldpackages/net/pyload/Makefile	2015-04-21 10:37:38.304588031 +0300
++++ ../../../openwrt_trunk/feeds/oldpackages/net/pyload/Makefile	2015-04-21 14:24:29.584340087 +0300
+@@ -9,7 +9,7 @@
+ 
+ PKG_NAME:=pyload
+ PKG_VERSION:=0.4.9
+-PKG_RELEASE:=1
++PKG_RELEASE:=1a
+ 
+ PKG_SOURCE:=$(PKG_NAME)-src-v$(PKG_VERSION).zip
+ PKG_SOURCE_URL:=http://download.pyload.org/
 @@ -25,7 +25,7 @@
    SECTION:=net
    CATEGORY:=Network
    DEPENDS:=+python +pyopenssl +python-curl +python-crypto \
 -	+python-expat +python-imaging-library +python-sqlite3 +js \
-+	+python-expat +python-imglib +python-sqlite3 +duktape \
++	+python-imglib +python-sqlite3 +duktape \
  	+tesseract +unrar
    TITLE:=A fast, lightweight and full featured download manager
    URL:=http://pyload.org

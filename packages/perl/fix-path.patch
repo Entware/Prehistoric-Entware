@@ -1,6 +1,6 @@
-diff -urx .svn ../../../downloads/openwrt_trunk-q44497/feeds/packages/lang/perl/files/config.sh-arm.in ../../../openwrt_trunk/feeds/packages/lang/perl/files/config.sh-arm.in
---- ../../../downloads/openwrt_trunk-q44497/feeds/packages/lang/perl/files/config.sh-arm.in	2015-02-25 12:52:24.064433335 +0300
-+++ ../../../openwrt_trunk/feeds/packages/lang/perl/files/config.sh-arm.in	2015-02-27 16:24:16.493886945 +0300
+diff -urx .svn ../../../downloads/openwrt_trunk-r45513/feeds/packages/lang/perl/files/config.sh-arm.in ../../../openwrt_trunk/feeds/packages/lang/perl/files/config.sh-arm.in
+--- ../../../downloads/openwrt_trunk-r45513/feeds/packages/lang/perl/files/config.sh-arm.in	2015-04-23 08:51:45.086181156 +0300
++++ ../../../openwrt_trunk/feeds/packages/lang/perl/files/config.sh-arm.in	2015-03-01 22:35:25.000000000 +0300
 @@ -37,7 +37,7 @@
  
  ar='ar'
@@ -154,9 +154,9 @@ diff -urx .svn ../../../downloads/openwrt_trunk-q44497/feeds/packages/lang/perl/
 +# Make perl use these tools instead of the target binaries during build.
  hostgenerate='%%HOSTGENERATE%%'
  hostperl='%%HOSTMINIPERL%%'
-diff -urx .svn ../../../downloads/openwrt_trunk-q44497/feeds/packages/lang/perl/files/config.sh-arm-mt.in ../../../openwrt_trunk/feeds/packages/lang/perl/files/config.sh-arm-mt.in
---- ../../../downloads/openwrt_trunk-q44497/feeds/packages/lang/perl/files/config.sh-arm-mt.in	2015-02-25 12:52:24.064433335 +0300
-+++ ../../../openwrt_trunk/feeds/packages/lang/perl/files/config.sh-arm-mt.in	2015-02-27 16:24:16.493886945 +0300
+diff -urx .svn ../../../downloads/openwrt_trunk-r45513/feeds/packages/lang/perl/files/config.sh-arm-mt.in ../../../openwrt_trunk/feeds/packages/lang/perl/files/config.sh-arm-mt.in
+--- ../../../downloads/openwrt_trunk-r45513/feeds/packages/lang/perl/files/config.sh-arm-mt.in	2015-04-23 08:51:45.086181156 +0300
++++ ../../../openwrt_trunk/feeds/packages/lang/perl/files/config.sh-arm-mt.in	2015-03-01 22:35:25.000000000 +0300
 @@ -37,7 +37,7 @@
  
  ar='ar'
@@ -324,9 +324,9 @@ diff -urx .svn ../../../downloads/openwrt_trunk-q44497/feeds/packages/lang/perl/
 +# Make perl use these tools instead of the target binaries during build.
  hostgenerate='%%HOSTGENERATE%%'
  hostperl='%%HOSTMINIPERL%%'
-diff -urx .svn ../../../downloads/openwrt_trunk-q44497/feeds/packages/lang/perl/files/config.sh-i486.in ../../../openwrt_trunk/feeds/packages/lang/perl/files/config.sh-i486.in
---- ../../../downloads/openwrt_trunk-q44497/feeds/packages/lang/perl/files/config.sh-i486.in	2015-02-25 12:52:24.060489427 +0300
-+++ ../../../openwrt_trunk/feeds/packages/lang/perl/files/config.sh-i486.in	2015-02-27 16:24:16.501056611 +0300
+diff -urx .svn ../../../downloads/openwrt_trunk-r45513/feeds/packages/lang/perl/files/config.sh-i486.in ../../../openwrt_trunk/feeds/packages/lang/perl/files/config.sh-i486.in
+--- ../../../downloads/openwrt_trunk-r45513/feeds/packages/lang/perl/files/config.sh-i486.in	2015-04-23 08:51:45.086181156 +0300
++++ ../../../openwrt_trunk/feeds/packages/lang/perl/files/config.sh-i486.in	2015-03-01 22:35:25.000000000 +0300
 @@ -35,7 +35,7 @@
  api_subversion='0'
  ar='ar'
@@ -506,9 +506,9 @@ diff -urx .svn ../../../downloads/openwrt_trunk-q44497/feeds/packages/lang/perl/
 +# Make perl use these tools instead of the target binaries during build.
  hostgenerate='%%HOSTGENERATE%%'
  hostperl='%%HOSTMINIPERL%%'
-diff -urx .svn ../../../downloads/openwrt_trunk-q44497/feeds/packages/lang/perl/files/config.sh-i486-mt.in ../../../openwrt_trunk/feeds/packages/lang/perl/files/config.sh-i486-mt.in
---- ../../../downloads/openwrt_trunk-q44497/feeds/packages/lang/perl/files/config.sh-i486-mt.in	2015-02-25 12:52:24.060489427 +0300
-+++ ../../../openwrt_trunk/feeds/packages/lang/perl/files/config.sh-i486-mt.in	2015-02-27 16:24:16.501056611 +0300
+diff -urx .svn ../../../downloads/openwrt_trunk-r45513/feeds/packages/lang/perl/files/config.sh-i486-mt.in ../../../openwrt_trunk/feeds/packages/lang/perl/files/config.sh-i486-mt.in
+--- ../../../downloads/openwrt_trunk-r45513/feeds/packages/lang/perl/files/config.sh-i486-mt.in	2015-04-23 08:51:45.086181156 +0300
++++ ../../../openwrt_trunk/feeds/packages/lang/perl/files/config.sh-i486-mt.in	2015-03-01 22:35:25.000000000 +0300
 @@ -35,7 +35,7 @@
  api_subversion='0'
  ar='ar'
@@ -676,18 +676,27 @@ diff -urx .svn ../../../downloads/openwrt_trunk-q44497/feeds/packages/lang/perl/
  subversion='2'
  
  # Make perl use these tools instead of the target binaries during build
-diff -urx .svn ../../../downloads/openwrt_trunk-q44497/feeds/packages/lang/perl/Makefile ../../../openwrt_trunk/feeds/packages/lang/perl/Makefile
---- ../../../downloads/openwrt_trunk-q44497/feeds/packages/lang/perl/Makefile	2015-02-25 12:52:24.060489427 +0300
-+++ ../../../openwrt_trunk/feeds/packages/lang/perl/Makefile	2015-02-28 22:44:10.659919498 +0300
+diff -urx .svn ../../../downloads/openwrt_trunk-r45513/feeds/packages/lang/perl/Makefile ../../../openwrt_trunk/feeds/packages/lang/perl/Makefile
+--- ../../../downloads/openwrt_trunk-r45513/feeds/packages/lang/perl/Makefile	2015-04-23 08:51:45.086181156 +0300
++++ ../../../openwrt_trunk/feeds/packages/lang/perl/Makefile	2015-04-25 10:18:01.323081752 +0300
 @@ -38,7 +38,7 @@
  HOST_PERL_PREFIX:=$(STAGING_DIR_HOST)/usr
- ifneq ($(CONFIG_USE_EGLIBC),)
+ ifneq ($(CONFIG_USE_GLIBC),)
  	EXTRA_LIBS:=bsd
 -	EXTRA_LIBDIRS:=$(STAGING_DIR)/lib
 +	EXTRA_LIBDIRS:=$(STAGING_DIR)/opt/lib
  endif
  
  # Filter -g3, it will break Compress-Raw-Zlib
+@@ -79,7 +79,7 @@
+   CATEGORY:=Languages
+   TITLE:=The Perl intepreter
+   URL:=http://www.perl.com/
+-  DEPENDS:=+USE_GLIBC:libbsd +PERL_THREADS:libpthread
++  DEPENDS:=+USE_EGLIBC:libbsd +PERL_THREADS:libpthread
+ endef
+ 
+ define Package/perl/description
 @@ -117,8 +117,8 @@
  		-e 's!%%AR%%!$(TARGET_CROSS)ar!g' \
  		-e 's!%%LD%%!$(TARGET_CROSS)gcc!g' \
@@ -752,9 +761,9 @@ diff -urx .svn ../../../downloads/openwrt_trunk-q44497/feeds/packages/lang/perl/
  	$(CP) files/perl-run_tests.sh $(1)/$(PERL_TESTSDIR)/run_tests.sh
  	sed -e 's!%%PERL_DISABLEDTESTS%%!$(PERL_DISABLEDTESTS)!' -i $(1)/$(PERL_TESTSDIR)/run_tests.sh
  	$(CP) $(PKG_BUILD_DIR)/config_h.SH $(1)/$(PERL_TESTSDIR)
-diff -urx .svn ../../../downloads/openwrt_trunk-q44497/feeds/packages/lang/perl/perlbase.mk ../../../openwrt_trunk/feeds/packages/lang/perl/perlbase.mk
---- ../../../downloads/openwrt_trunk-q44497/feeds/packages/lang/perl/perlbase.mk	2015-02-25 12:52:24.060489427 +0300
-+++ ../../../openwrt_trunk/feeds/packages/lang/perl/perlbase.mk	2015-02-27 16:24:16.513673353 +0300
+diff -urx .svn ../../../downloads/openwrt_trunk-r45513/feeds/packages/lang/perl/perlbase.mk ../../../openwrt_trunk/feeds/packages/lang/perl/perlbase.mk
+--- ../../../downloads/openwrt_trunk-r45513/feeds/packages/lang/perl/perlbase.mk	2015-04-23 08:51:45.086181156 +0300
++++ ../../../openwrt_trunk/feeds/packages/lang/perl/perlbase.mk	2015-03-01 22:35:25.000000000 +0300
 @@ -1131,9 +1131,9 @@
  $(call perlmod/Install,$(1),Pod,Pod/Usage.pm)
  $(call perlmod/Install/NoStrip,$(1),Pod/Usage.pm,)
@@ -779,12 +788,12 @@ diff -urx .svn ../../../downloads/openwrt_trunk-q44497/feeds/packages/lang/perl/
  endef
  
  $(eval $(call BuildPackage,perlbase-test))
-diff -urx .svn ../../../downloads/openwrt_trunk-q44497/feeds/packages/lang/perl/perlmod.mk ../../../openwrt_trunk/feeds/packages/lang/perl/perlmod.mk
---- ../../../downloads/openwrt_trunk-q44497/feeds/packages/lang/perl/perlmod.mk	2015-02-25 12:52:24.064433335 +0300
-+++ ../../../openwrt_trunk/feeds/packages/lang/perl/perlmod.mk	2015-03-01 10:38:57.107575077 +0300
+diff -urx .svn ../../../downloads/openwrt_trunk-r45513/feeds/packages/lang/perl/perlmod.mk ../../../openwrt_trunk/feeds/packages/lang/perl/perlmod.mk
+--- ../../../downloads/openwrt_trunk-r45513/feeds/packages/lang/perl/perlmod.mk	2015-04-23 08:51:45.086181156 +0300
++++ ../../../openwrt_trunk/feeds/packages/lang/perl/perlmod.mk	2015-04-25 10:17:06.033567479 +0300
 @@ -5,7 +5,7 @@
  HOST_PERL_PREFIX:=$(STAGING_DIR_HOST)/usr
- ifneq ($(CONFIG_USE_EGLIBC),)
+ ifneq ($(CONFIG_USE_GLIBC),)
  	EXTRA_LIBS:=bsd
 -	EXTRA_LIBDIRS:=$(STAGING_DIR)/lib
 +	EXTRA_LIBDIRS:=$(STAGING_DIR)/opt/lib
@@ -811,9 +820,8 @@ diff -urx .svn ../../../downloads/openwrt_trunk-q44497/feeds/packages/lang/perl/
  		$(1) \
  		AR=ar \
 -		CC=$(GNU_TARGET_NAME)-gcc \
--		CCFLAGS="$(MOD_CFLAGS_PERL)" \
 +		CC=$(TARGET_CROSS)gcc \
-+		CCFLAGS="$(TARGET_CFLAGS) $(TARGET_CPPFLAGS)" \
+ 		CCFLAGS="$(MOD_CFLAGS_PERL)" \
  		CCCDLFLAGS=-fPIC \
  		CCDLFLAGS=-Wl,-E \
  		DLEXT=so \

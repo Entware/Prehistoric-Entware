@@ -1,5 +1,14 @@
---- ../../../downloads/openwrt_trunk-r43708/feeds/packages/sound/pulseaudio/Makefile	2014-12-15 12:19:58.044388959 +0300
-+++ ../../../openwrt_trunk/feeds/packages/sound/pulseaudio/Makefile	2014-12-15 12:20:24.276388480 +0300
+--- ../../../downloads/openwrt_trunk-r45513/feeds/packages/sound/pulseaudio/Makefile	2015-04-23 10:21:55.569457455 +0300
++++ ../../../openwrt_trunk/feeds/packages/sound/pulseaudio/Makefile	2015-04-23 10:26:02.641452952 +0300
+@@ -32,7 +32,7 @@
+   SECTION:=sound
+   CATEGORY:=Sound
+   DEPENDS:=+libspeexdsp +libsndfile +libltdl +libpthread \
+-	+librt +alsa-lib +libjson +libopenssl +libwrap +libcap $(ICONV_DEPENDS) $(INTL_DEPENDS)
++	+librt +alsa-lib +libjson-c +libopenssl +libwrap +libcap $(ICONV_DEPENDS) $(INTL_DEPENDS)
+   TITLE:=Network sound server
+   MAINTAINER:=Peter Wagner <tripolar@gmx.at>
+   URL:=http://www.pulseaudio.org
 @@ -54,10 +54,10 @@
  endef
  

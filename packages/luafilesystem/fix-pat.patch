@@ -1,0 +1,26 @@
+--- ../../../downloads/openwrt_trunk-r44497/feeds/packages/lang/luafilesystem/Makefile	2015-02-24 12:08:55.093768291 +0300
++++ ../../../openwrt_trunk/feeds/packages/lang/luafilesystem/Makefile	2015-03-04 12:26:01.190456524 +0300
+@@ -51,16 +51,16 @@
+ endef
+ 
+ define Build/InstallDev
+-	$(INSTALL_DIR) $(STAGING_DIR)/usr/include
+-	$(INSTALL_DIR) $(STAGING_DIR)/usr/lib/lua
+-	$(INSTALL_DATA) $(PKG_BUILD_DIR)/src/lfs.h $(STAGING_DIR)/usr/include
+-	$(INSTALL_BIN) $(PKG_BUILD_DIR)/src/lfs.so $(STAGING_DIR)/usr/lib/lua
+-	$(INSTALL_DATA) $(PKG_BUILD_DIR)/src/luafilesystem.a $(STAGING_DIR)/usr/lib/lua
++	$(INSTALL_DIR) $(STAGING_DIR)/opt/include
++	$(INSTALL_DIR) $(STAGING_DIR)/opt/lib/lua
++	$(INSTALL_DATA) $(PKG_BUILD_DIR)/src/lfs.h $(STAGING_DIR)/opt/include
++	$(INSTALL_BIN) $(PKG_BUILD_DIR)/src/lfs.so $(STAGING_DIR)/opt/lib/lua
++	$(INSTALL_DATA) $(PKG_BUILD_DIR)/src/luafilesystem.a $(STAGING_DIR)/opt/lib/lua
+ endef
+ 
+ define Package/luafilesystem/install
+-	$(INSTALL_DIR) $(1)/usr/lib/lua
+-	$(INSTALL_BIN) $(PKG_BUILD_DIR)/src/lfs.so $(1)/usr/lib/lua/lfs.so
++	$(INSTALL_DIR) $(1)/opt/lib/lua
++	$(INSTALL_BIN) $(PKG_BUILD_DIR)/src/lfs.so $(1)/opt/lib/lua/lfs.so
+ endef
+ 
+ $(eval $(call BuildPackage,luafilesystem))

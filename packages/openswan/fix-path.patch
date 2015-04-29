@@ -1,15 +1,14 @@
---- ../../../downloads/openwrt_trunk-r43718/feeds/oldpackages/net/openswan/Makefile
-+++ ../../../openwrt_trunk/feeds/oldpackages/net/openswan/Makefile
-@@ -6,7 +6,7 @@
+--- ../../../downloads/openwrt_trunk-r45513/feeds/oldpackages/net/openswan/Makefile	2015-04-23 10:21:55.689457453 +0300
++++ ../../../openwrt_trunk/feeds/oldpackages/net/openswan/Makefile	2015-04-23 14:18:52.265198482 +0300
+@@ -6,7 +6,6 @@
  #
  
  include $(TOPDIR)/rules.mk
 -include $(INCLUDE_DIR)/kernel.mk
-+#include $(INCLUDE_DIR)/kernel.mk
  
  PKG_NAME:=openswan
  PKG_VERSION:=2.6.41
-@@ -36,7 +36,7 @@
+@@ -36,7 +35,7 @@
    SECTION:=net
    CATEGORY:=Network
    TITLE+= (daemon)
@@ -18,7 +17,7 @@
  endef
  
  define Package/openswan/description
-@@ -68,43 +68,32 @@
+@@ -68,43 +67,30 @@
  	ARCH="$(LINUX_KARCH)" \
  	CROSS_COMPILE="$(TARGET_CROSS)" \
  	USERCOMPILE="$(TARGET_CFLAGS) -I$(PKG_BUILD_DIR)/ports/linux/include -I$(PKG_BUILD_DIR)/linux/include -I$(PKG_BUILD_DIR)/include $(TARGET_CPPFLAGS) $(TARGET_LDFLAGS)" \
@@ -36,7 +35,6 @@
  define Build/Compile
  	+$(MAKE) $(PKG_JOBS) $(OPENSWAN_MAKEFLAGS) programs
 -	+$(MAKE) $(PKG_JOBS) $(OPENSWAN_MAKEFLAGS) module
-+#	+$(MAKE) $(PKG_JOBS) $(OPENSWAN_MAKEFLAGS) module
  endef
  
  define Build/Install
@@ -72,4 +70,3 @@
  
  $(eval $(call BuildPackage,openswan))
 -$(eval $(call KernelPackage,openswan))
-+#$(eval $(call KernelPackage,openswan))

@@ -1,6 +1,6 @@
---- ../../../downloads/openwrt_trunk-r43718/feeds/packages/libs/pcre/Makefile
-+++ ../../../openwrt_trunk/feeds/packages/libs/pcre/Makefile
-@@ -58,30 +58,30 @@
+--- ../../../downloads/openwrt_trunk-q45513/feeds/packages/libs/pcre/Makefile	2015-04-23 16:31:59.054531652 +0300
++++ ../../../openwrt_trunk/feeds/packages/libs/pcre/Makefile	2015-04-26 13:20:58.531582765 +0300
+@@ -64,36 +64,36 @@
  	CFLAGS="$(TARGET_CFLAGS)"
  
  define Build/InstallDev
@@ -19,7 +19,7 @@
 +	$(CP) $(PKG_INSTALL_DIR)/Apps/opt/include/pcre*.h $(1)/opt/include/
  
 -	$(INSTALL_DIR) $(1)/usr/lib
--	$(CP) $(PKG_INSTALL_DIR)/usr/lib/libpcre*.{a,so*} $(1)/usr/lib//
+-	$(CP) $(PKG_INSTALL_DIR)/usr/lib/libpcre*.{a,so*} $(1)/usr/lib/
 +	$(INSTALL_DIR) $(1)/opt/lib
 +	$(CP) $(PKG_INSTALL_DIR)/Apps/opt/lib/libpcre*.{a,so*} $(1)/opt/lib//
  
@@ -32,8 +32,17 @@
  define Package/libpcre/install
 -	$(INSTALL_DIR) $(1)/usr/lib
 -	$(CP) $(PKG_INSTALL_DIR)/usr/lib/libpcre{,posix}.so.* $(1)/usr/lib/
+-	$(CP) $(PKG_INSTALL_DIR)/usr/lib/libpcre.so $(1)/usr/lib/
 +	$(INSTALL_DIR) $(1)/opt/lib
 +	$(CP) $(PKG_INSTALL_DIR)/Apps/opt/lib/libpcre{,posix}.so.* $(1)/opt/lib/
++	$(CP) $(PKG_INSTALL_DIR)/Apps/opt/lib/libpcre.so $(1)/opt/lib/
+ endef
+ 
+ define Package/libpcre16/install
+-	$(INSTALL_DIR) $(1)/usr/lib
+-	$(CP) $(PKG_INSTALL_DIR)/usr/lib/libpcre16.so* $(1)/usr/lib/
++	$(INSTALL_DIR) $(1)/opt/lib
++	$(CP) $(PKG_INSTALL_DIR)/Apps/opt/lib/libpcre16.so* $(1)/opt/lib/
  endef
  
  define Package/libpcrecpp/install

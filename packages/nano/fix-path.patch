@@ -1,6 +1,6 @@
---- ../../../downloads/openwrt_trunk-r43718/feeds/packages/utils/nano/Makefile
-+++ ../../../openwrt_trunk/feeds/packages/utils/nano/Makefile
-@@ -36,18 +36,23 @@
+--- ../../../downloads/openwrt_trunk-r45513/feeds/packages/utils/nano/Makefile	2015-04-20 10:09:28.958135359 +0300
++++ ../../../openwrt_trunk/feeds/packages/utils/nano/Makefile	2015-04-20 10:09:48.542135002 +0300
+@@ -38,18 +38,23 @@
  endef
  
  CONFIGURE_ARGS += \

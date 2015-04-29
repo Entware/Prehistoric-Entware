@@ -1,6 +1,6 @@
---- ../../../downloads/openwrt_trunk-r43719/feeds/packages/net/znc/Makefile	2015-01-17 14:40:33.679658472 +0300
-+++ ../../../openwrt_trunk/feeds/packages/net/znc/Makefile	2015-02-27 12:57:59.038155434 +0300
-@@ -44,22 +44,29 @@
+--- ../../../downloads/openwrt_trunk-q45513/feeds/packages/net/znc/Makefile	2015-04-23 16:31:59.174136804 +0300
++++ ../../../openwrt_trunk/feeds/packages/net/znc/Makefile	2015-04-25 14:58:07.333563456 +0300
+@@ -45,19 +45,17 @@
  endef
  
  define Package/znc/conffiles
@@ -24,23 +24,10 @@
 +	$(INSTALL_BIN) ./files/S99znc $(1)/opt/etc/init.d/
 +	$(INSTALL_DIR) $(1)/opt/lib/znc/
 +	$(INSTALL_BIN) $(PKG_BUILD_DIR)/modules/droproot.so $(1)/opt/lib/znc/
-+endef
-+
-+define Package/znc/postinst
-+#!/bin/sh
-+
-+echo Before using ZNC do not forget to:
-+echo a\) Generate new config with \"znc -d /opt/share/znc -c\"
-+echo b\) Add a \"LoadModule = droproot nobody nogroup\" string at first string
-+echo to /opt/share/znc/configs/znc.conf, where \"nobody\" and \"nogroup\" is
-+echo some unprivileged user\\group on your system.
  endef
  
--
- ZNC_MODULES :=
- ZNC_MODULE_TARGETS := droproot.so
  
-@@ -75,12 +82,12 @@
+@@ -76,12 +74,12 @@
    endef
  
    define Package/znc-mod-$(strip $(1))/install
@@ -57,7 +44,7 @@
  	fi
    endef
  
-@@ -100,12 +107,12 @@
+@@ -101,12 +99,12 @@
    endef
  
    define Package/znc-mod-webadmin/install
@@ -76,7 +63,7 @@
    endef
  
    ZNC_MODULES += znc-mod-webadmin
-@@ -124,8 +131,8 @@
+@@ -125,8 +123,8 @@
    endef
  
    define Package/znc-webskin-$(strip $(1))/install
@@ -87,7 +74,7 @@
    endef
    ZNC_MODULES += znc-webskin-$(strip $(1))
  endef
-@@ -263,10 +270,15 @@
+@@ -264,10 +262,15 @@
  
  include $(INCLUDE_DIR)/package.mk
  

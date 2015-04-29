@@ -1,30 +1,33 @@
-diff -BurN ../../../downloads/openwrt_trunk-r43718/feeds/packages/libs/libv4l/Makefile ../../../openwrt_trunk/feeds/packages/libs/libv4l/Makefile
---- ../../../downloads/openwrt_trunk-r43718/feeds/packages/libs/libv4l/Makefile	2014-11-07 23:35:24.516548059 +0300
-+++ ../../../openwrt_trunk/feeds/packages/libs/libv4l/Makefile	2014-11-26 17:05:14.218916634 +0300
+diff -urN ../../../downloads/openwrt_trunk-r45513/feeds/packages/libs/libv4l/Makefile ../../../openwrt_trunk/feeds/packages/libs/libv4l/Makefile
+--- ../../../downloads/openwrt_trunk-r45513/feeds/packages/libs/libv4l/Makefile	2015-04-20 10:09:28.902135360 +0300
++++ ../../../openwrt_trunk/feeds/packages/libs/libv4l/Makefile	2015-03-07 14:57:03.000000000 +0300
 @@ -1,5 +1,5 @@
  #
--# Copyright (C) 2009-2014 OpenWrt.org
+-# Copyright (C) 2009-2015 OpenWrt.org
 +# Copyright (C) 2009-2012 OpenWrt.org
  # Copyright (C) 2009 David Cooper <dave@kupesoft.com>
  #
  # This is free software, licensed under the GNU General Public License v2.
-@@ -9,24 +9,17 @@
+@@ -9,26 +9,17 @@
  include $(TOPDIR)/rules.mk
  
  PKG_NAME:=v4l-utils
--PKG_VERSION:=1.2.1
+-PKG_VERSION:=1.6.2
+-PKG_RELEASE:=1
 +PKG_VERSION:=0.8.6
- PKG_RELEASE:=2
--PKG_USE_MIPS16:=0
++PKG_RELEASE:=2
  
  PKG_SOURCE:=$(PKG_NAME)-$(PKG_VERSION).tar.bz2
  PKG_SOURCE_URL:=http://www.linuxtv.org/downloads/v4l-utils
--PKG_MD5SUM:=4cc0fb4ded302ea9e89e5e1b56a7252b
+-PKG_MD5SUM:=9cb3c178f937954e65bf30920af433ef
 -
 -PKG_MAINTAINER:=Ted Hess <thess@kitschensync.net>
 -
 -PKG_LICENSE:=GPL-2.0 LGPL-2.1
 -PKG_LICENSE_FILES:=COPYING COPYING.libv4l
+-
+-PKG_USE_MIPS16:=0
+-PKG_INSTALL:=1
 +PKG_MD5SUM:=80062780ae90e5955473b09b31e9828a
  
  PKG_BUILD_DEPENDS:=argp-standalone
@@ -35,7 +38,7 @@ diff -BurN ../../../downloads/openwrt_trunk-r43718/feeds/packages/libs/libv4l/Ma
  
  define Package/libv4l/Default
    TITLE:=Video 4 Linux
-@@ -53,7 +46,7 @@
+@@ -55,7 +46,7 @@
    SECTION:=libs
    CATEGORY:=Libraries
    TITLE+= wrapper libraries
@@ -44,7 +47,7 @@ diff -BurN ../../../downloads/openwrt_trunk-r43718/feeds/packages/libs/libv4l/Ma
  endef
  
  define Package/libv4l/description
-@@ -65,7 +58,7 @@
+@@ -67,7 +58,7 @@
    SECTION:=utils
    CATEGORY:=Utilities
    TITLE+= utilities
@@ -53,32 +56,32 @@ diff -BurN ../../../downloads/openwrt_trunk-r43718/feeds/packages/libs/libv4l/Ma
  endef
  
  define Package/v4l-utils/description
-@@ -74,48 +67,46 @@
+@@ -75,40 +66,47 @@
+   This package contains the video4linux utilities.
  endef
  
- TARGET_CFLAGS += $(FPIC)
+-TARGET_CFLAGS += $(FPIC) -std=gnu99
 -TARGET_LDFLAGS += -largp
--
++TARGET_CFLAGS += $(FPIC)
+ 
 -CONFIGURE_ARGS+= \
+-	--disable-doxygen-doc \
 -	--disable-libdvbv5 \
 -	--disable-qv4l2 \
 -	--without-jpeg \
- 
- define Build/Compile
- 	$(MAKE) -C $(PKG_BUILD_DIR) \
--		DESTDIR="$(PKG_INSTALL_DIR)" \
++define Build/Compile
++	$(MAKE) -C $(PKG_BUILD_DIR) \
 +		DESTDIR="$(PKG_INSTALL_DIR)" PREFIX="/Apps/opt" \
 +		DISABLE_LIBJPEG="1" \
 +		$(CONFIGURE_VARS) \
- 		all install
- 	$(MAKE) -C $(PKG_BUILD_DIR) \
--		DESTDIR="$(PKG_INSTALL_DIR)" \
++		all install
++	$(MAKE) -C $(PKG_BUILD_DIR) \
 +		DESTDIR="$(PKG_INSTALL_DIR)" PREFIX="/Apps/opt" \
 +		DISABLE_LIBJPEG="1" \
 +		$(CONFIGURE_VARS) \
- 		LINKTYPE="static" \
- 		all install
- endef
++		LINKTYPE="static" \
++		all install
++endef
  
  define Build/InstallDev
 -	$(INSTALL_DIR) $(1)/usr/include
@@ -126,9 +129,9 @@ diff -BurN ../../../downloads/openwrt_trunk-r43718/feeds/packages/libs/libv4l/Ma
  endef
  
  $(eval $(call BuildPackage,libv4l))
-diff -BurN ../../../downloads/openwrt_trunk-r43718/feeds/packages/libs/libv4l/patches/001-no-shm_open-fix.patch ../../../openwrt_trunk/feeds/packages/libs/libv4l/patches/001-no-shm_open-fix.patch
---- ../../../downloads/openwrt_trunk-r43718/feeds/packages/libs/libv4l/patches/001-no-shm_open-fix.patch	2014-11-07 23:35:24.516548059 +0300
-+++ ../../../openwrt_trunk/feeds/packages/libs/libv4l/patches/001-no-shm_open-fix.patch	2014-11-26 12:32:12.999022382 +0300
+diff -urN ../../../downloads/openwrt_trunk-r45513/feeds/packages/libs/libv4l/patches/001-no-shm_open-fix.patch ../../../openwrt_trunk/feeds/packages/libs/libv4l/patches/001-no-shm_open-fix.patch
+--- ../../../downloads/openwrt_trunk-r45513/feeds/packages/libs/libv4l/patches/001-no-shm_open-fix.patch	2015-04-20 10:09:28.902135360 +0300
++++ ../../../openwrt_trunk/feeds/packages/libs/libv4l/patches/001-no-shm_open-fix.patch	2015-03-07 14:57:03.000000000 +0300
 @@ -1,15 +1,15 @@
  --- a/lib/libv4lconvert/control/libv4lcontrol.c
  +++ b/lib/libv4lconvert/control/libv4lcontrol.c
@@ -149,9 +152,9 @@ diff -BurN ../../../downloads/openwrt_trunk-r43718/feeds/packages/libs/libv4l/pa
   
   	if (getpwuid_r(geteuid(), &pwd, pwd_buf, sizeof(pwd_buf), &pwd_p) == 0) {
   		if (got_usb_info)
-diff -BurN ../../../downloads/openwrt_trunk-r43718/feeds/packages/libs/libv4l/patches/002-allow-disabling-libjpeg.patch ../../../openwrt_trunk/feeds/packages/libs/libv4l/patches/002-allow-disabling-libjpeg.patch
---- ../../../downloads/openwrt_trunk-r43718/feeds/packages/libs/libv4l/patches/002-allow-disabling-libjpeg.patch	1970-01-01 03:00:00.000000000 +0300
-+++ ../../../openwrt_trunk/feeds/packages/libs/libv4l/patches/002-allow-disabling-libjpeg.patch	2014-11-26 12:32:12.999022382 +0300
+diff -urN ../../../downloads/openwrt_trunk-r45513/feeds/packages/libs/libv4l/patches/002-allow-disabling-libjpeg.patch ../../../openwrt_trunk/feeds/packages/libs/libv4l/patches/002-allow-disabling-libjpeg.patch
+--- ../../../downloads/openwrt_trunk-r45513/feeds/packages/libs/libv4l/patches/002-allow-disabling-libjpeg.patch	1970-01-01 03:00:00.000000000 +0300
++++ ../../../openwrt_trunk/feeds/packages/libs/libv4l/patches/002-allow-disabling-libjpeg.patch	2015-03-07 14:57:03.000000000 +0300
 @@ -0,0 +1,160 @@
 +--- a/lib/libv4lconvert/Makefile
 ++++ b/lib/libv4lconvert/Makefile
@@ -383,9 +386,9 @@ diff -BurN ../../../downloads/openwrt_trunk-r43718/feeds/packages/libs/libv4l/pa
 + 
 + install: $(TARGETS)
 + 	mkdir -p $(DESTDIR)$(PREFIX)/bin
-diff -BurN ../../../downloads/openwrt_trunk-r43718/feeds/packages/libs/libv4l/patches/004-disable-qv4l2.patch ../../../openwrt_trunk/feeds/packages/libs/libv4l/patches/004-disable-qv4l2.patch
---- ../../../downloads/openwrt_trunk-r43718/feeds/packages/libs/libv4l/patches/004-disable-qv4l2.patch	1970-01-01 03:00:00.000000000 +0300
-+++ ../../../openwrt_trunk/feeds/packages/libs/libv4l/patches/004-disable-qv4l2.patch	2014-11-26 12:32:12.999022382 +0300
+diff -urN ../../../downloads/openwrt_trunk-r45513/feeds/packages/libs/libv4l/patches/004-disable-qv4l2.patch ../../../openwrt_trunk/feeds/packages/libs/libv4l/patches/004-disable-qv4l2.patch
+--- ../../../downloads/openwrt_trunk-r45513/feeds/packages/libs/libv4l/patches/004-disable-qv4l2.patch	1970-01-01 03:00:00.000000000 +0300
++++ ../../../openwrt_trunk/feeds/packages/libs/libv4l/patches/004-disable-qv4l2.patch	2015-03-07 14:57:03.000000000 +0300
 @@ -0,0 +1,24 @@
 +--- a/utils/Makefile
 ++++ b/utils/Makefile
@@ -411,8 +414,8 @@ diff -BurN ../../../downloads/openwrt_trunk-r43718/feeds/packages/libs/libv4l/pa
 + sync-with-kernel:
 + 	$(MAKE) -C keytable $@
 + 	$(MAKE) -C v4l2-dbg $@
-diff -BurN ../../../downloads/openwrt_trunk-r43718/feeds/packages/libs/libv4l/patches/020-add-missing-includes.patch ../../../openwrt_trunk/feeds/packages/libs/libv4l/patches/020-add-missing-includes.patch
---- ../../../downloads/openwrt_trunk-r43718/feeds/packages/libs/libv4l/patches/020-add-missing-includes.patch	2014-11-07 23:35:24.520159187 +0300
+diff -urN ../../../downloads/openwrt_trunk-r45513/feeds/packages/libs/libv4l/patches/020-add-missing-includes.patch ../../../openwrt_trunk/feeds/packages/libs/libv4l/patches/020-add-missing-includes.patch
+--- ../../../downloads/openwrt_trunk-r45513/feeds/packages/libs/libv4l/patches/020-add-missing-includes.patch	2015-04-20 10:09:28.902135360 +0300
 +++ ../../../openwrt_trunk/feeds/packages/libs/libv4l/patches/020-add-missing-includes.patch	1970-01-01 03:00:00.000000000 +0300
 @@ -1,10 +0,0 @@
 ---- a/utils/rds-ctl/rds-ctl.cpp
@@ -425,9 +428,9 @@ diff -BurN ../../../downloads/openwrt_trunk-r43718/feeds/packages/libs/libv4l/pa
 - #include <fcntl.h>
 - #include <errno.h>
 - #include <sys/ioctl.h>
-diff -BurN ../../../downloads/openwrt_trunk-r43718/feeds/packages/libs/libv4l/patches/500-keymaps-dir.patch ../../../openwrt_trunk/feeds/packages/libs/libv4l/patches/500-keymaps-dir.patch
---- ../../../downloads/openwrt_trunk-r43718/feeds/packages/libs/libv4l/patches/500-keymaps-dir.patch	1970-01-01 03:00:00.000000000 +0300
-+++ ../../../openwrt_trunk/feeds/packages/libs/libv4l/patches/500-keymaps-dir.patch	2014-11-26 12:32:13.014846425 +0300
+diff -urN ../../../downloads/openwrt_trunk-r45513/feeds/packages/libs/libv4l/patches/500-keymaps-dir.patch ../../../openwrt_trunk/feeds/packages/libs/libv4l/patches/500-keymaps-dir.patch
+--- ../../../downloads/openwrt_trunk-r45513/feeds/packages/libs/libv4l/patches/500-keymaps-dir.patch	1970-01-01 03:00:00.000000000 +0300
++++ ../../../openwrt_trunk/feeds/packages/libs/libv4l/patches/500-keymaps-dir.patch	2015-03-07 14:57:03.000000000 +0300
 @@ -0,0 +1,11 @@
 +--- a/utils/keytable/keytable.c
 ++++ b/utils/keytable/keytable.c

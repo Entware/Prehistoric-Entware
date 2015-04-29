@@ -1,26 +1,28 @@
---- ../../../openwrt_trunk/include/package-ipkg.mk.orig	2014-12-10 12:23:45.466954732 +0300
-+++ ../../../openwrt_trunk/include/package-ipkg.mk	2014-12-10 12:45:08.274926948 +0300
+--- ../../../downloads/openwrt_trunk-r45513/include/package-ipkg.mk	2015-04-22 21:15:54.434316548 +0300
++++ ../../../openwrt_trunk/include/package-ipkg.mk	2015-04-23 10:01:15.197481338 +0300
 @@ -11,7 +11,7 @@
  IPKG_BUILD:= \
-   $(STAGING_DIR_HOST)/bin/ipkg-build -c -o 0 -g 0
+   $(SCRIPT_DIR)/ipkg-build -c -o 0 -g 0
  
 -IPKG_STATE_DIR:=$(TARGET_DIR)/usr/lib/opkg
 +IPKG_STATE_DIR:=$(TARGET_DIR)/opt/lib/opkg
  
  # 1: package name
  # 2: variable name
-@@ -126,8 +126,8 @@
+@@ -127,9 +127,9 @@
  
      $(eval $(call BuildIPKGVariable,$(1),conffiles))
-     $(eval $(call BuildIPKGVariable,$(1),preinst))
--    $(eval $(call BuildIPKGVariable,$(1),postinst,-pkg))
--    $(eval $(call BuildIPKGVariable,$(1),prerm,-pkg))
-+    $(eval $(call BuildIPKGVariable,$(1),postinst))
-+    $(eval $(call BuildIPKGVariable,$(1),prerm))
-     $(eval $(call BuildIPKGVariable,$(1),postrm))
+     $(eval $(call BuildIPKGVariable,$(1),preinst,,1))
+-    $(eval $(call BuildIPKGVariable,$(1),postinst,-pkg,1))
+-    $(eval $(call BuildIPKGVariable,$(1),prerm,-pkg,1))
+-    $(eval $(call BuildIPKGVariable,$(1),postrm,1))
++    $(eval $(call BuildIPKGVariable,$(1),postinst,,1))
++    $(eval $(call BuildIPKGVariable,$(1),prerm,,1))
++    $(eval $(call BuildIPKGVariable,$(1),postrm,,1))
  
      $(STAGING_DIR_ROOT)/stamp/.$(1)_installed: $(STAMP_BUILT)
-@@ -192,18 +192,6 @@
+ 	rm -rf $(STAGING_DIR_ROOT)/tmp-$(1)
+@@ -193,18 +193,6 @@
  			printf "Description: "; echo "$$$$DESCRIPTION" | sed -e 's,^[[:space:]]*, ,g'; \
  		) > control; \
  		chmod 644 control; \
@@ -35,11 +37,11 @@
 -			echo ". \$$$${IPKG_INSTROOT}/lib/functions.sh"; \
 -			echo "default_prerm \$$$$0 \$$$$@"; \
 -		) > prerm; \
--		chmod 0755 prerm; \
+-		chmod 0755 postinst prerm; \
  		$($(1)_COMMANDS) \
  	)
  
-@@ -214,8 +202,8 @@
+@@ -215,8 +203,8 @@
  				[ -f "$$(IDIR_$(1))/$$$$x" ] || keepfiles="$$$${keepfiles:+$$$$keepfiles }$$$$x"; \
  			done; \
  			[ -z "$$$$keepfiles" ] || { \

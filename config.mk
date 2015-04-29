@@ -5,11 +5,11 @@
 # See /LICENSE for more information.
 #
 
-export OPENWRT_REVISION=44497
+export OPENWRT_REVISION=45513
 
 # Target architecture for repo (now only x86 is supported)
-export TARGET=x86
-#export TARGET=arm
+#export TARGET=x86
+export TARGET=arm
 
 # Mirror for sources
 SRC_MIRROR=http://qnapware.zyxmon.org/sources
