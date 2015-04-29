@@ -8,6 +8,7 @@ hplip		3.15.2
 imapfilter	2.5.7
 leptonica	1.71	giflib 5.0.0 compability
 libev		4.19
+mercurial	3.3.3
 mosh		1.2.4a-20140108
 n2n		2.1.0-r7223
 nzbget		14.2
