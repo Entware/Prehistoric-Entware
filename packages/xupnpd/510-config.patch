@@ -35,3 +35,12 @@
  
  -- 'cfg.proxy' enables proxy for injection DLNA headers to stream
  -- 0-off, 1-radio, 2-radio/TV
+@@ -102,7 +102,7 @@
+ -- log ident, pid file end www root
+ cfg.version='1.033'
+ cfg.log_ident=arg[1] or 'xupnpd'
+-cfg.pid_file='/var/run/'..cfg.log_ident..'.pid'
++cfg.pid_file='/opt/var/run/'..cfg.log_ident..'.pid'
+ cfg.www_root='./www/'
+ cfg.tmp_path='/tmp/'
+ cfg.plugin_path='./plugins/'
