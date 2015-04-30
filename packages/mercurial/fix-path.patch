@@ -24,7 +24,7 @@ diff -urx .svn ../../../downloads/openwrt_trunk-r45513/feeds/oldpackages/net/mer
  	$(call Build/Compile/PyMod,, \
 -		install --prefix="$(PKG_INSTALL_DIR)", \
 -    )
-+		install --prefix=/opt --root=$(PKG_INSTALL_DIR), \
++		install --prefix=/opt --root=$(PKG_INSTALL_DIR) \
 +	)
  endef
  

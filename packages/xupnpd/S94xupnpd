@@ -9,7 +9,7 @@ PATH=/opt/sbin:/opt/bin:/opt/usr/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/u
 
 # check and remove stale pid
 if ! pidof $PROCS 1>/dev/null 2>&1; then
-    rm -f /var/run/$PROCS.pid
+    rm -f /opt/var/run/$PROCS.pid
 fi
 
 . /opt/etc/init.d/rc.func
