@@ -1,5 +1,14 @@
---- ../../../downloads/openwrt_trunk-r40859/feeds/packages/multimedia/xupnpd/Makefile
-+++ ../../../openwrt_trunk/feeds/packages/multimedia/xupnpd/Makefile
+--- ../../../downloads/openwrt_trunk-q45513/feeds/packages/multimedia/xupnpd/Makefile	2015-04-29 22:11:31.889585904 +0300
++++ ../../../openwrt_trunk/feeds/packages/multimedia/xupnpd/Makefile	2015-04-30 14:06:32.393109330 +0300
+@@ -10,7 +10,7 @@
+ PKG_NAME:=xupnpd
+ PKG_REV:=404
+ PKG_VERSION:=$(PKG_REV)
+-PKG_RELEASE:=1
++PKG_RELEASE:=1a
+ 
+ PKG_SOURCE_PROTO:=svn
+ PKG_SOURCE_VERSION:=$(PKG_REV)
 @@ -36,9 +36,9 @@
  endef
  

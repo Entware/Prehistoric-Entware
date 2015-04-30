@@ -7,4 +7,9 @@ PREARGS=""
 DESC=$PROCS
 PATH=/Apps/opt/sbin:/Apps/opt/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin
 
+# check and remove stale pid
+if ! pidof $PROCS 1>/dev/null 2>&1; then
+    rm -f /Apps/opt/var/run/$PROCS.pid
+fi
+
 . /Apps/opt/etc/init.d/rc.func
