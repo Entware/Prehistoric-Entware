@@ -1,10 +1,12 @@
---- ../../../downloads/openwrt_trunk-r45513/package/utils/busybox/Makefile	2015-04-20 10:09:30.574135331 +0300
-+++ ../../../openwrt_trunk/package/utils/busybox/Makefile	2015-04-20 12:04:02.666017941 +0300
-@@ -10,7 +10,6 @@
+--- ../../../downloads/openwrt_trunk-r45513/package/utils/busybox/Makefile	2015-04-23 10:21:56.457457439 +0300
++++ ../../../openwrt_trunk/package/utils/busybox/Makefile	2015-05-19 15:49:40.011814068 +0300
+@@ -9,8 +9,7 @@
+ 
  PKG_NAME:=busybox
  PKG_VERSION:=1.23.2
- PKG_RELEASE:=1
+-PKG_RELEASE:=1
 -PKG_FLAGS:=essential
++PKG_RELEASE:=1a
  
  PKG_SOURCE:=$(PKG_NAME)-$(PKG_VERSION).tar.bz2
  PKG_SOURCE_URL:=http://www.busybox.net/downloads \
