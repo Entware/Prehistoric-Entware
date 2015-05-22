@@ -1,0 +1,11 @@
+--- a/src/plugins/python/CMakeLists.txt
++++ b/src/plugins/python/CMakeLists.txt
+@@ -24,7 +24,7 @@
+ 
+ if(PYTHON_FOUND)
+   include_directories(${PYTHON_INCLUDE_PATH})
+-  set(CMAKE_MODULE_LINKER_FLAGS "${CMAKE_MODULE_LINKER_FLAGS} ${PYTHON_LFLAGS}")
++  set(CMAKE_MODULE_LINKER_FLAGS "${CMAKE_MODULE_LINKER_FLAGS} ${PYTHON_LFLAGS} -lutil")
+   target_link_libraries(python ${PYTHON_LIBRARY} weechat_plugins_scripts)
+ endif()
+ 
