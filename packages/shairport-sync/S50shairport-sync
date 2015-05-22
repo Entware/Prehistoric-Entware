@@ -1,0 +1,28 @@
+#!/bin/sh
+
+if [ -d /dev/snd ]; then
+	ENABLED=yes
+else
+	ENABLED=no
+fi
+PROCS=shairport-sync
+# software volume control
+# output to: audio card 0 device 0
+ARGS="-d  -- -d hw:0,0"
+
+# Hi-Fi mode: hardware volume control
+# output to: audio card 0 device 0
+# note: you need to set proper mixer control name with -c option
+# in case it have different name than PCM (use alsamixer to check)
+# you can't control volume on digital SPDIF outputs in this mode
+# ARGS="-d -- -d hw:0,0 -m hw:0 -t hardware -c PCM"
+ 
+# useful options to add (see shairport-sync --help for more):
+# --statistics : print some interesting statistics to log
+# --verbose : print debug information; -vv more; -vvv lots
+
+PREARGS=""
+DESC=$PROCS
+PATH=/opt/sbin:/opt/bin:/opt/usr/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin
+
+. /opt/etc/init.d/rc.func
