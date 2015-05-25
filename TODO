@@ -1,14 +1,12 @@
 === Known bugs and odds, to do list ===
 
 OpenWRT packages with updagraded version:
-gw6c		6.0.1
-hplip		3.15.2
 libev		4.19
 shairport-sync	2.2.2
 
 Can't be upgraded (because of too old 2.6.22 kernel, mostly):
 aircrack-ng	1.1		requires libnl1 or libnl3
-bluez		3.36		epoll_create1() absence
+bluez*		3.36		epoll_create1() absence
 cjdns		0.7-20150207	Unstable commit taken, should be fixed in future
 gdb		7.3.1		due to gnu_v3_object_ctor_group() absence
 libnl		2.0 (r33657)
