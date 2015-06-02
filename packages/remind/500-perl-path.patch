@@ -1,8 +1,0 @@
---- a/www/rem2html
-+++ b/www/rem2html
-@@ -1,4 +1,4 @@
--#!/usr/bin/perl
-+#!/opt/bin/perl
- 
- use strict;
- use warnings;
