@@ -1,0 +1,33 @@
+--- ../../../downloads/openwrt_trunk-a45513/feeds/packages/sound/shairport-sync/Makefile	2015-04-27 23:46:08.138351065 +0300
++++ ../../../openwrt_trunk/feeds/packages/sound/shairport-sync/Makefile	2015-04-28 11:13:38.556697150 +0300
+@@ -9,8 +9,8 @@
+ include $(TOPDIR)/rules.mk
+ 
+ PKG_NAME:=shairport-sync
+-PKG_VERSION:=2.1.15
+-PKG_RELEASE:=1
++PKG_VERSION:=2.2.2
++PKG_RELEASE:=3
+ 
+ PKG_SOURCE_PROTO:=git
+ PKG_SOURCE_URL:=git://github.com/mikebrady/shairport-sync.git
+@@ -51,12 +51,13 @@
+ endef
+ 
+ define Package/shairport-sync/install
+-	$(INSTALL_DIR) $(1)/usr/bin
+-	$(INSTALL_BIN) $(PKG_BUILD_DIR)/shairport-sync $(1)/usr/bin/
+-	$(INSTALL_DIR) $(1)/etc/init.d
+-	$(INSTALL_BIN) ./files/shairport-sync.init $(1)/etc/init.d/shairport-sync
+-	$(INSTALL_DIR) $(1)/etc/config
+-	$(INSTALL_DATA) ./files/shairport-sync.config $(1)/etc/config/shairport-sync
++	$(INSTALL_DIR) $(1)/opt/bin
++	$(INSTALL_BIN) $(PKG_BUILD_DIR)/shairport-sync $(1)/opt/bin/
++	$(INSTALL_DIR) $(1)/opt/etc/init.d
++	$(INSTALL_BIN) ./files/S50shairport-sync $(1)/opt/etc/init.d
++	$(INSTALL_DIR) $(1)/opt/etc/config
++	$(INSTALL_DATA) ./files/shairport-sync $(1)/opt/etc/config/
++	$(INSTALL_DATA) ./files/asound.conf $(1)/opt/etc/
+ endef
+ 
+ $(eval $(call BuildPackage,shairport-sync))
