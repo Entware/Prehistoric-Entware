@@ -1,5 +1,5 @@
---- ../../../downloads/openwrt_trunk-r44486/package/network/utils/curl/Makefile	2015-02-18 12:16:58.264306320 +0300
-+++ ../../../openwrt_trunk/package/network/utils/curl/Makefile	2015-02-18 16:57:04.819998259 +0300
+--- ../../../downloads/openwrt_trunk-q45513/package/network/utils/curl/Makefile	2015-06-01 16:25:11.530474164 +0300
++++ ../../../openwrt_trunk/package/network/utils/curl/Makefile	2015-06-02 16:10:48.654169281 +0300
 @@ -112,15 +112,15 @@
  	\
  	$(call autoconf_bool,CONFIG_IPV6,ipv6) \
@@ -13,7 +13,7 @@
 +	$(if $(CONFIG_LIBCURL_CYASSL),--with-cyassl="$(STAGING_DIR)/opt" --without-ca-path,--without-cyassl) \
 +	$(if $(CONFIG_LIBCURL_GNUTLS),--with-gnutls="$(STAGING_DIR)/opt" --without-ca-path,--without-gnutls) \
 +	$(if $(CONFIG_LIBCURL_OPENSSL),--with-ssl="$(STAGING_DIR)/opt" --with-ca-path=/opt/etc/ssl/certs,--without-ssl) \
-+	$(if $(CONFIG_LIBCURL_POLARSSL),--with-polarssl="$(STAGING_DIR)/opt" --with-ca-path=/opt/etc/ssl/certs,--without-polarssl) \
++	$(if $(CONFIG_LIBCURL_POLARSSL),--with-polarssl="$(STAGING_DIR)/opt" --with-ca-path=/Apps/opt/etc/ssl/certs,--without-polarssl) \
  	\
 -	$(if $(CONFIG_LIBCURL_LIBIDN),--with-libidn="$(STAGING_DIR)/usr",--without-libidn) \
 -	$(if $(CONFIG_LIBCURL_SSH2),--with-libssh2="$(STAGING_DIR)/usr",--without-libssh2) \
