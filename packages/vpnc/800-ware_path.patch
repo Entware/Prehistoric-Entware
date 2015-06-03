@@ -1,0 +1,40 @@
+--- a/config.c
++++ b/config.c
+@@ -342,7 +342,7 @@
+ 
+ static const char *config_ca_dir(void)
+ {
+-	return "/etc/ssl/certs";
++	return "/Apps/opt/etc/ssl/certs";
+ }
+ 
+ static const char *config_def_auth_mode(void)
+@@ -362,7 +362,7 @@
+ 
+ static const char *config_def_script(void)
+ {
+-	return "/etc/vpnc/vpnc-script";
++	return "/Apps/opt//etc/vpnc/vpnc-script";
+ }
+ 
+ static const char *config_def_pid_file(void)
+@@ -658,7 +658,7 @@
+ {
+ 	char *realname;
+ 
+-	asprintf(&realname, "%s%s%s", index(name, '/') ? "" : "/etc/vpnc/", name, add_dot_conf ? ".conf" : "");
++	asprintf(&realname, "%s%s%s", index(name, '/') ? "" : "/Apps/opt//etc/vpnc/", name, add_dot_conf ? ".conf" : "");
+ 	return realname;
+ }
+ 
+@@ -894,8 +894,8 @@
+ 	}
+ 
+ 	if (!got_conffile) {
+-		read_config_file("/etc/vpnc/default.conf", config, 1);
+-		read_config_file("/etc/vpnc.conf", config, 1);
++		read_config_file("/Apps/opt//etc/vpnc/default.conf", config, 1);
++		read_config_file("/Apps/opt//etc/vpnc.conf", config, 1);
+ 	}
+ 
+ 	if (!print_config) {

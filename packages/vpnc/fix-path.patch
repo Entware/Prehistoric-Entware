@@ -1,0 +1,89 @@
+diff -urx .svn ../../../downloads/openwrt_trunk-q45513/feeds/packages/net/vpnc/Makefile ../../../openwrt_trunk/feeds/packages/net/vpnc/Makefile
+--- ../../../downloads/openwrt_trunk-q45513/feeds/packages/net/vpnc/Makefile	2015-06-01 16:25:10.330506552 +0300
++++ ../../../openwrt_trunk/feeds/packages/net/vpnc/Makefile	2015-06-03 12:45:57.390705664 +0300
+@@ -36,7 +36,7 @@
+ define Package/vpnc
+   SECTION:=net
+   CATEGORY:=Network
+-  DEPENDS:=+libgpg-error +libgcrypt +kmod-tun +VPNC_OPENSSL:libopenssl +VPNC_GNUTLS:libgnutls +vpnc-scripts +resolveip
++  DEPENDS:=+libgpg-error +libgcrypt +VPNC_OPENSSL:libopenssl +VPNC_GNUTLS:libgnutls +vpnc-scripts +resolveip
+   TITLE:=VPN client for Cisco EasyVPN
+   URL:=http://www.unix-ag.uni-kl.de/~massar/vpnc/
+   SUBMENU:=VPN
+@@ -51,7 +51,7 @@
+ endef
+ 
+ define Package/vpnc/conffiles
+-/etc/vpnc/default.conf
++/opt/etc/vpnc/default.conf
+ endef
+ 
+ ifeq ($(CONFIG_VPNC_OPENSSL),y)
+@@ -61,7 +61,7 @@
+ 		OS="Linux" VERSION="$(PKG_VERSION)" \
+ 		STAGING_DIR="$(STAGING_DIR)" \
+ 		DESTDIR="$(PKG_INSTALL_DIR)" \
+-		OPENSSL_GPL_VIOLATION=yes PREFIX=/usr \
++		OPENSSL_GPL_VIOLATION=yes PREFIX=/Apps/opt \
+ 		all install \
+ 	)
+ endef
+@@ -72,23 +72,23 @@
+ 		OS="Linux" VERSION="$(PKG_VERSION)" \
+ 		STAGING_DIR="$(STAGING_DIR)" \
+ 		DESTDIR="$(PKG_INSTALL_DIR)" \
+-		PREFIX=/usr \
++		PREFIX=/Apps/opt \
+ 		all install \
+ 	)
+ endef
+ endif
+ 
+ define Package/vpnc/install
+-	$(INSTALL_DIR) $(1)/lib/netifd/proto
+-	$(INSTALL_BIN) ./files/vpnc.sh $(1)/lib/netifd/proto/
+-	$(INSTALL_DIR) $(1)/usr/sbin
+-	$(CP)	$(PKG_INSTALL_DIR)/usr/sbin/vpnc \
+-		$(PKG_INSTALL_DIR)/usr/sbin/vpnc-disconnect \
+-		$(1)/usr/sbin/
+-	$(INSTALL_DIR) $(1)/etc/vpnc
+-	$(INSTALL_CONF) $(PKG_INSTALL_DIR)/etc/vpnc/default.conf $(1)/etc/vpnc/
+-	$(INSTALL_DIR) $(1)/lib/upgrade/keep.d
+-	$(INSTALL_DATA) ./files/vpnc.upgrade $(1)/lib/upgrade/keep.d/vpnc
++	$(INSTALL_DIR) $(1)/opt/lib/netifd/proto
++	$(INSTALL_BIN) ./files/vpnc.sh $(1)/opt/lib/netifd/proto/
++	$(INSTALL_DIR) $(1)/opt/sbin
++	$(CP)	$(PKG_INSTALL_DIR)/Apps/opt/sbin/vpnc \
++		$(PKG_INSTALL_DIR)/Apps/opt/sbin/vpnc-disconnect \
++		$(1)/opt/sbin/
++	$(INSTALL_DIR) $(1)/opt/etc/vpnc
++	$(INSTALL_CONF) $(PKG_INSTALL_DIR)/Apps/opt/etc/vpnc/default.conf $(1)/opt/etc/vpnc/
++	$(INSTALL_DIR) $(1)/opt/lib/upgrade/keep.d
++	$(INSTALL_DATA) ./files/vpnc.upgrade $(1)/opt/lib/upgrade/keep.d/vpnc
+ endef
+ 
+ $(eval $(call BuildPackage,vpnc))
+diff -urx .svn ../../../downloads/openwrt_trunk-q45513/feeds/packages/net/vpnc/patches/001-cross.patch ../../../openwrt_trunk/feeds/packages/net/vpnc/patches/001-cross.patch
+--- ../../../downloads/openwrt_trunk-q45513/feeds/packages/net/vpnc/patches/001-cross.patch	2015-06-01 16:25:10.330506552 +0300
++++ ../../../openwrt_trunk/feeds/packages/net/vpnc/patches/001-cross.patch	2015-06-03 12:42:56.046687961 +0300
+@@ -1,14 +1,16 @@
+ --- a/Makefile
+ +++ b/Makefile
+-@@ -20,7 +20,7 @@
+- # $Id$
++@@ -20,8 +20,8 @@
++ # $Id: Makefile 539 2013-12-04 13:41:04Z Antonio Borneo $
+  
+  DESTDIR=
+ -PREFIX=/usr/local
+-+PREFIX=/usr
+- ETCDIR=/etc/vpnc
++-ETCDIR=/etc/vpnc
+++PREFIX=/Apps/opt
+++ETCDIR=/Apps/opt/etc/vpnc
+  BINDIR=$(PREFIX)/bin
+  SBINDIR=$(PREFIX)/sbin
++ MANDIR=$(PREFIX)/share/man
+ @@ -57,18 +57,15 @@
+  CRYPTO_OBJS = $(addsuffix .o,$(basename $(CRYPTO_SRCS)))
+  BINOBJS = $(addsuffix .o,$(BINS))
