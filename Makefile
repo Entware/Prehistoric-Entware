@@ -57,7 +57,6 @@ update_git_mirrors: .git_mirrors_updated
 	$(call update_git_mirror,https://github.com/Entware/openwrt-routing.git,openwrt-routing,https://github.com/openwrt-routing/packages.git)
 	$(call update_git_mirror,https://github.com/Entware/openwrt-telephony.git,openwrt-telephony,https://github.com/openwrt/telephony.git)
 	$(call update_git_mirror,https://github.com/Entware/openwrt-management.git,openwrt-management,https://github.com/openwrt-management/packages.git)
-	$(call update_git_mirror,https://github.com/Entware/openwrt-oldpackages.git,openwrt-oldpackages,http://git.openwrt.org/packages.git)
 	@touch $@
 
 clean:
