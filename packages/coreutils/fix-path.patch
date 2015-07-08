@@ -1,5 +1,14 @@
---- ../../../downloads/openwrt_trunk-r43593/feeds/packages/utils/coreutils/Makefile	2014-12-10 12:26:33.030951680 +0300
-+++ ../../../openwrt_trunk/feeds/packages/utils/coreutils/Makefile	2014-12-10 12:48:55.578927224 +0300
+--- ../../../downloads/openwrt_trunk-q45513/feeds/packages/utils/coreutils/Makefile	2015-06-01 16:25:10.442474210 +0300
++++ ../../../openwrt_trunk/feeds/packages/utils/coreutils/Makefile	2015-07-08 11:03:47.060903142 +0300
+@@ -9,7 +9,7 @@
+ 
+ PKG_NAME:=coreutils
+ PKG_VERSION:=8.23
+-PKG_RELEASE:=1
++PKG_RELEASE:=2
+ 
+ PKG_SOURCE:=$(PKG_NAME)-$(PKG_VERSION).tar.xz
+ PKG_SOURCE_URL:=@GNU/coreutils
 @@ -23,7 +23,7 @@
  
  COREUTILS_APPLETS := \
@@ -9,17 +18,18 @@
  	false fmt fold groups head hostid id install join kill link ln logname	\
  	ls md5sum mkdir mkfifo mknod mktemp mv nice nl nohup nproc od paste	\
  	pathchk pinky pr printenv printf ptx pwd readlink realpath rm rmdir	\
-@@ -80,7 +80,8 @@
+@@ -80,7 +80,9 @@
  CONFIGURE_VARS += \
  	gl_cv_func_mbrtowc_incomplete_state=yes \
  	gl_cv_func_mbrtowc_retval=yes \
 -	gl_cv_func_wcrtomb_retval=yes
 +	gl_cv_func_wcrtomb_retval=yes \
-+	fu_cv_sys_stat_statfs2_bsize=yes
++	fu_cv_sys_stat_statfs2_bsize=yes \
++	gl_cv_have_proc_uptime=yes
  
  ifneq ($(CONFIG_USE_UCLIBC),)
    CONFIGURE_VARS += \
-@@ -104,8 +105,8 @@
+@@ -104,8 +106,8 @@
  
  define BuildPlugin
    define Package/$(1)/install
