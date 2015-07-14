@@ -1,11 +1,11 @@
-diff -Nurx .svn ../../../downloads/openwrt_trunk-r44497/feeds/packages/net/rtorrent/Makefile ../../../openwrt_trunk/feeds/packages/net/rtorrent/Makefile
---- ../../../downloads/openwrt_trunk-r44497/feeds/packages/net/rtorrent/Makefile	2015-02-20 12:39:13.429134248 +0300
-+++ ../../../openwrt_trunk/feeds/packages/net/rtorrent/Makefile	2014-12-18 13:14:41.000000000 +0300
+diff -Nur ../../../downloads/openwrt_trunk-r46338/feeds/packages/net/rtorrent/Makefile ../../../openwrt_trunk/feeds/packages/net/rtorrent/Makefile
+--- ../../../downloads/openwrt_trunk-r46338/feeds/packages/net/rtorrent/Makefile	2015-07-14 10:55:19.806308173 +0300
++++ ../../../openwrt_trunk/feeds/packages/net/rtorrent/Makefile	2015-07-14 16:23:17.618636966 +0300
 @@ -8,13 +8,13 @@
  include $(TOPDIR)/rules.mk
  
  PKG_NAME:=rtorrent
--PKG_VERSION:=0.9.4-git-0
+-PKG_VERSION:=0.9.4-git-1
 -PKG_RELEASE=$(PKG_SOURCE_VERSION)
 +PKG_VERSION:=0.9.4-git
 +PKG_RELEASE:=2
@@ -18,7 +18,7 @@ diff -Nurx .svn ../../../downloads/openwrt_trunk-r44497/feeds/packages/net/rtorr
  PKG_SOURCE:=$(PKG_NAME)-$(PKG_VERSION)-$(PKG_SOURCE_VERSION).tar.gz
  
  PKG_LICENSE:=GPL-2.0
-@@ -67,12 +67,13 @@
+@@ -67,7 +67,7 @@
   This package is built with xmlrpc support
  endef
  
@@ -27,14 +27,7 @@ diff -Nurx .svn ../../../downloads/openwrt_trunk-r44497/feeds/packages/net/rtorr
  
  CONFIGURE_ARGS+= \
  	--enable-shared \
- 	--disable-static \
--	--disable-debug
-+	--disable-debug \
-+	--enable-ipv6
- 
- ifeq ($(BUILD_VARIANT),rpc)
- 	CONFIGURE_ARGS += \
-@@ -80,9 +81,14 @@
+@@ -81,9 +81,14 @@
  endif
  
  
@@ -51,9 +44,9 @@ diff -Nurx .svn ../../../downloads/openwrt_trunk-r44497/feeds/packages/net/rtorr
  endef
  
  Package/rtorrent-rpc/install = $(Package/rtorrent/install)
-diff -Nurx .svn ../../../downloads/openwrt_trunk-r44497/feeds/packages/net/rtorrent/patches/100-fix-cross_compile.patch ../../../openwrt_trunk/feeds/packages/net/rtorrent/patches/100-fix-cross_compile.patch
---- ../../../downloads/openwrt_trunk-r44497/feeds/packages/net/rtorrent/patches/100-fix-cross_compile.patch	2015-02-20 12:39:13.429134248 +0300
-+++ ../../../openwrt_trunk/feeds/packages/net/rtorrent/patches/100-fix-cross_compile.patch	2014-12-18 13:13:11.000000000 +0300
+diff -Nur ../../../downloads/openwrt_trunk-r46338/feeds/packages/net/rtorrent/patches/100-fix-cross_compile.patch ../../../openwrt_trunk/feeds/packages/net/rtorrent/patches/100-fix-cross_compile.patch
+--- ../../../downloads/openwrt_trunk-r46338/feeds/packages/net/rtorrent/patches/100-fix-cross_compile.patch	2015-07-14 10:55:19.806308173 +0300
++++ ../../../openwrt_trunk/feeds/packages/net/rtorrent/patches/100-fix-cross_compile.patch	2015-05-25 15:17:28.000000000 +0300
 @@ -10,7 +10,7 @@
   AC_PROG_LIBTOOL
  --- a/scripts/common.m4
@@ -72,9 +65,9 @@ diff -Nurx .svn ../../../downloads/openwrt_trunk-r44497/feeds/packages/net/rtorr
   AC_DEFUN([TORRENT_CHECK_ALIGNED], [
     AC_MSG_CHECKING(the byte alignment)
   
-diff -Nurx .svn ../../../downloads/openwrt_trunk-r44497/feeds/packages/net/rtorrent/patches/500-enable-deprecated-from-cmdline.patch ../../../openwrt_trunk/feeds/packages/net/rtorrent/patches/500-enable-deprecated-from-cmdline.patch
---- ../../../downloads/openwrt_trunk-r44497/feeds/packages/net/rtorrent/patches/500-enable-deprecated-from-cmdline.patch	1970-01-01 03:00:00.000000000 +0300
-+++ ../../../openwrt_trunk/feeds/packages/net/rtorrent/patches/500-enable-deprecated-from-cmdline.patch	2014-12-18 13:14:41.000000000 +0300
+diff -Nur ../../../downloads/openwrt_trunk-r46338/feeds/packages/net/rtorrent/patches/500-enable-deprecated-from-cmdline.patch ../../../openwrt_trunk/feeds/packages/net/rtorrent/patches/500-enable-deprecated-from-cmdline.patch
+--- ../../../downloads/openwrt_trunk-r46338/feeds/packages/net/rtorrent/patches/500-enable-deprecated-from-cmdline.patch	1970-01-01 03:00:00.000000000 +0300
++++ ../../../openwrt_trunk/feeds/packages/net/rtorrent/patches/500-enable-deprecated-from-cmdline.patch	2015-05-25 15:17:28.000000000 +0300
 @@ -0,0 +1,93 @@
 +diff --git a/src/command_dynamic.cc b/src/command_dynamic.cc
 +index 7ec16fb..6c600d0 100644

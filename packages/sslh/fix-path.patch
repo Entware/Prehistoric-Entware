@@ -1,21 +1,14 @@
---- ../../../downloads/openwrt_trunk-r36151/feeds/packages/net/sslh/Makefile
-+++ ../../../openwrt_trunk/feeds/packages/net/sslh/Makefile
-@@ -29,25 +29,24 @@
- endef
- 
- define Package/sslh/conffiles
--/etc/config/sslh
-+/opt/etc/config/sslh
- endef
- 
- define Build/Compile
+--- ../../../downloads/openwrt_trunk-r46338/feeds/packages/net/sslh/Makefile	2015-07-14 10:55:19.806308173 +0300
++++ ../../../openwrt_trunk/feeds/packages/net/sslh/Makefile	2015-07-14 17:00:43.358673690 +0300
+@@ -36,6 +36,7 @@
  	$(MAKE) -C $(PKG_BUILD_DIR) \
  		CC="$(TARGET_CC)" \
  		CFLAGS="$(TARGET_CFLAGS)" \
 +		LDFLAGS="$(TARGET_LDFLAGS)" \
  		USELIBCONFIG= \
  		USELIBWRAP= \
- 		all
+ 		USELIBPCRE= \
+@@ -43,12 +44,10 @@
  endef
  
  define Package/sslh/install
@@ -27,8 +20,8 @@
 -	$(INSTALL_CONF) files/$(PKG_NAME).config $(1)/etc/config/$(PKG_NAME)
 +	$(INSTALL_DIR) $(1)/opt/sbin
 +	$(INSTALL_BIN) $(PKG_BUILD_DIR)/sslh-fork $(1)/opt/sbin/sslh
-+	$(INSTALL_DIR) $(1)/opt/etc/init.d/
-+	$(INSTALL_BIN) files/S14$(PKG_NAME) $(1)/opt/etc/init.d/
++	$(INSTALL_DIR) $(1)/opt/etc/init.d
++	$(INSTALL_BIN) files/S14$(PKG_NAME) $(1)/opt/etc/init.d
  endef
  
  $(eval $(call BuildPackage,sslh))

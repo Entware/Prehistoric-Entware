@@ -1,6 +1,6 @@
---- ../../../downloads/openwrt_trunk-r45513/feeds/packages/lang/erlang/Makefile	2015-04-20 10:09:28.894135362 +0300
-+++ ../../../openwrt_trunk/feeds/packages/lang/erlang/Makefile	2015-04-20 12:24:19.721989662 +0300
-@@ -268,50 +268,50 @@
+--- ../../../downloads/openwrt_trunk-r46338/feeds/packages/lang/erlang/Makefile	2015-07-14 10:55:19.762308173 +0300
++++ ../../../openwrt_trunk/feeds/packages/lang/erlang/Makefile	2015-07-14 10:55:47.718308638 +0300
+@@ -271,50 +271,50 @@
  endef
  
  define Package/erlang/install

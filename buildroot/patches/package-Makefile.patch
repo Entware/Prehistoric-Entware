@@ -1,5 +1,5 @@
---- ../../../downloads/openwrt_trunk-r42753/package/Makefile	2014-10-03 14:24:22.442061917 +0400
-+++ ../../../openwrt_trunk/package/Makefile	2014-10-03 14:51:32.846036717 +0400
+--- ../../../downloads/openwrt_trunk-r46106/package/Makefile	2015-06-22 10:55:23.303079199 +0300
++++ ../../../openwrt_trunk/package/Makefile	2015-06-22 11:11:15.283095999 +0300
 @@ -49,7 +49,7 @@
  	$(RSTRIP) $(TMP_DIR)/mklibs-out
  	for lib in `ls $(TMP_DIR)/mklibs-out/*.so.* 2>/dev/null`; do \
@@ -18,7 +18,7 @@
    IPKG_OFFLINE_ROOT=$(TARGET_DIR) \
    $(XARGS) $(STAGING_DIR_HOST)/bin/opkg \
  	--offline-root $(TARGET_DIR) \
-@@ -106,19 +106,19 @@
+@@ -106,23 +106,23 @@
  	@if [ -d $(TOPDIR)/files ]; then \
  		$(call file_copy,$(TOPDIR)/files/.,$(TARGET_DIR)); \
  	fi
@@ -29,6 +29,13 @@
 -		for script in ./usr/lib/opkg/info/*.postinst; do \
 +		for script in ./opt/lib/opkg/info/*.postinst; do \
  			IPKG_INSTROOT=$(TARGET_DIR) $$(which bash) $$script; \
+ 		done; \
+-		for script in ./etc/init.d/*; do \
+-			grep '#!/bin/sh /etc/rc.common' $$script >/dev/null || continue; \
+-			IPKG_INSTROOT=$(TARGET_DIR) $$(which bash) ./etc/rc.common $$script enable; \
++		for script in ./opt/etc/init.d/*; do \
++			grep '#!/bin/sh /opt/etc/rc.common' $$script >/dev/null || continue; \
++			IPKG_INSTROOT=$(TARGET_DIR) $$(which bash) ./opt/etc/rc.common $$script enable; \
  		done || true \
  	)
  	@-find $(TARGET_DIR) -name CVS   | $(XARGS) rm -rf

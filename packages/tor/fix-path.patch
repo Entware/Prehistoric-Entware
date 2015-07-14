@@ -1,5 +1,5 @@
---- ../../../downloads/openwrt_trunk-r43708/feeds/packages/net/tor/Makefile	2014-12-15 12:19:58.032388959 +0300
-+++ ../../../openwrt_trunk/feeds/packages/net/tor/Makefile	2014-12-15 12:20:25.012388468 +0300
+--- ../../../downloads/openwrt_trunk-r46338/feeds/packages/net/tor/Makefile	2015-07-14 10:55:19.798308173 +0300
++++ ../../../openwrt_trunk/feeds/packages/net/tor/Makefile	2015-07-14 17:08:37.838679647 +0300
 @@ -72,16 +72,16 @@
  endef
  
@@ -19,10 +19,10 @@
  	--enable-nat-pmp \
 -	--with-libnatpmp-dir="$(STAGING_DIR)/usr" \
 +	--with-libnatpmp-dir="$(STAGING_DIR)/opt" \
- 	--disable-asciidoc
+ 	--disable-asciidoc \
+ 	--disable-seccomp
  
- ifneq ($(CONFIG_SSP_SUPPORT),y)
-@@ -98,22 +98,20 @@
+@@ -99,22 +99,20 @@
  	CROSS_COMPILE="yes"
  
  define Package/tor/install

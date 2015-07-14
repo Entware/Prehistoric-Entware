@@ -1,14 +1,5 @@
---- ../../../downloads/openwrt_trunk-r45513/feeds/packages/mail/msmtp/Makefile	2015-04-23 10:21:55.529457456 +0300
-+++ ../../../openwrt_trunk/feeds/packages/mail/msmtp/Makefile	2015-04-27 10:49:59.915132761 +0300
-@@ -10,7 +10,7 @@
- 
- PKG_NAME:=msmtp
- PKG_VERSION:=1.6.1
--PKG_RELEASE:=3
-+PKG_RELEASE:=3a
- 
- PKG_SOURCE:=$(PKG_NAME)-$(PKG_VERSION).tar.xz
- PKG_SOURCE_URL:=@SF/msmtp
+--- ../../../downloads/openwrt_trunk-r46338/feeds/packages/mail/msmtp/Makefile	2015-07-14 10:55:19.782308173 +0300
++++ ../../../openwrt_trunk/feeds/packages/mail/msmtp/Makefile	2015-07-14 10:55:49.934308675 +0300
 @@ -39,7 +39,7 @@
   an SMTP server (for example at a free mail provider) which does the
   delivery. To use this program with your mail user agent (MUA), create

@@ -1,6 +1,35 @@
-diff -urN ../../../downloads/openwrt_trunk-r45513/feeds/packages/multimedia/mjpg-streamer/files/S96mjpg-streamer ../../../openwrt_trunk/feeds/packages/multimedia/mjpg-streamer/files/S96mjpg-streamer
---- ../../../downloads/openwrt_trunk-r45513/feeds/packages/multimedia/mjpg-streamer/files/S96mjpg-streamer	1970-01-01 03:00:00.000000000 +0300
-+++ ../../../openwrt_trunk/feeds/packages/multimedia/mjpg-streamer/files/S96mjpg-streamer	2015-03-07 14:57:04.000000000 +0300
+diff -Nur ../../../downloads/openwrt_trunk-r46338/feeds/packages/multimedia/mjpg-streamer/files/mjpg-streamer.config ../../../openwrt_trunk/feeds/packages/multimedia/mjpg-streamer/files/mjpg-streamer.config
+--- ../../../downloads/openwrt_trunk-r46338/feeds/packages/multimedia/mjpg-streamer/files/mjpg-streamer.config	2015-07-14 10:55:19.762308173 +0300
++++ ../../../openwrt_trunk/feeds/packages/multimedia/mjpg-streamer/files/mjpg-streamer.config	2015-05-25 15:16:17.000000000 +0300
+@@ -5,8 +5,6 @@
+ 	option output 'http'
+ 	option device '/dev/video0'
+ 	option resolution '640x480'
+-	option yuv '0'
+-	option quality '80'
+ 	option fps '5'
+ 	option led 'auto'
+ 	option www '/www/webcam'
+diff -Nur ../../../downloads/openwrt_trunk-r46338/feeds/packages/multimedia/mjpg-streamer/files/mjpg-streamer.init ../../../openwrt_trunk/feeds/packages/multimedia/mjpg-streamer/files/mjpg-streamer.init
+--- ../../../downloads/openwrt_trunk-r46338/feeds/packages/multimedia/mjpg-streamer/files/mjpg-streamer.init	2015-07-14 10:55:19.762308173 +0300
++++ ../../../openwrt_trunk/feeds/packages/multimedia/mjpg-streamer/files/mjpg-streamer.init	2015-05-25 15:16:17.000000000 +0300
+@@ -43,13 +43,6 @@
+ 		config_get fps "$s" 'fps'
+ 		[ -n "$fps" ] && input_arg="${input_arg} --fps $fps"
+ 
+-		config_get_bool yuv "$s" 'yuv' 0
+-		if [ $yuv -ne 0 ]; then
+-			input_arg="${input_arg} --yuv"
+-			config_get quality "$s" 'quality'
+-			[ -n "$quality" ] && input_arg="${input_arg} --quality $quality"
+-		fi
+-
+ 		config_get resolution "$s" 'resolution'
+ 		[ -n "$resolution" ] && input_arg="${input_arg} --resolution $resolution"
+ 
+diff -Nur ../../../downloads/openwrt_trunk-r46338/feeds/packages/multimedia/mjpg-streamer/files/S96mjpg-streamer ../../../openwrt_trunk/feeds/packages/multimedia/mjpg-streamer/files/S96mjpg-streamer
+--- ../../../downloads/openwrt_trunk-r46338/feeds/packages/multimedia/mjpg-streamer/files/S96mjpg-streamer	1970-01-01 03:00:00.000000000 +0300
++++ ../../../openwrt_trunk/feeds/packages/multimedia/mjpg-streamer/files/S96mjpg-streamer	2015-07-14 15:04:27.146556623 +0300
 @@ -0,0 +1,48 @@
 +#!/bin/sh
 +
@@ -50,10 +79,9 @@ diff -urN ../../../downloads/openwrt_trunk-r45513/feeds/packages/multimedia/mjpg
 +esac
 +
 +exit 0
-\ No newline at end of file
-diff -urN ../../../downloads/openwrt_trunk-r45513/feeds/packages/multimedia/mjpg-streamer/Makefile ../../../openwrt_trunk/feeds/packages/multimedia/mjpg-streamer/Makefile
---- ../../../downloads/openwrt_trunk-r45513/feeds/packages/multimedia/mjpg-streamer/Makefile	2015-04-20 10:09:28.898135362 +0300
-+++ ../../../openwrt_trunk/feeds/packages/multimedia/mjpg-streamer/Makefile	2015-03-07 14:57:04.000000000 +0300
+diff -Nur ../../../downloads/openwrt_trunk-r46338/feeds/packages/multimedia/mjpg-streamer/Makefile ../../../openwrt_trunk/feeds/packages/multimedia/mjpg-streamer/Makefile
+--- ../../../downloads/openwrt_trunk-r46338/feeds/packages/multimedia/mjpg-streamer/Makefile	2015-07-14 10:55:19.762308173 +0300
++++ ../../../openwrt_trunk/feeds/packages/multimedia/mjpg-streamer/Makefile	2015-05-25 15:17:28.000000000 +0300
 @@ -1,5 +1,5 @@
  #
 -# Copyright (C) 2006-2015 OpenWrt.org
@@ -68,7 +96,7 @@ diff -urN ../../../downloads/openwrt_trunk-r45513/feeds/packages/multimedia/mjpg
 -PKG_REV:=182
 +PKG_REV:=181
  PKG_VERSION:=r$(PKG_REV)
--PKG_RELEASE:=6
+-PKG_RELEASE:=7
 +PKG_RELEASE:=2
  PKG_MAINTAINER:=Roger D <rogerdammit@gmail.com>
  
@@ -87,12 +115,12 @@ diff -urN ../../../downloads/openwrt_trunk-r45513/feeds/packages/multimedia/mjpg
 -/etc/config/mjpg-streamer
 -endef
 -
--CAMBOZOLA:=cambozola-latest.tar.gz
+-CAMBOZOLA:=cambozola-0.936.tar.gz
 -
 -define Download/cambozola
 -  URL:=http://www.andywilcock.com/code/cambozola
 -  FILE:=$(CAMBOZOLA)
--  MD5SUM:=c9b0da91f8e6e72efccd307e04e2b75b
+-  MD5SUM:=35c45188aa9635aef2b745c35c311396
 -endef
 -
 -# Fetch latest cambozola that works with latest Java(s)
@@ -156,8 +184,25 @@ diff -urN ../../../downloads/openwrt_trunk-r45513/feeds/packages/multimedia/mjpg
      endif
  endif
  endef
-diff -urN ../../../downloads/openwrt_trunk-r45513/feeds/packages/multimedia/mjpg-streamer/patches/010-enable_additional_plugins.patch ../../../openwrt_trunk/feeds/packages/multimedia/mjpg-streamer/patches/010-enable_additional_plugins.patch
---- ../../../downloads/openwrt_trunk-r45513/feeds/packages/multimedia/mjpg-streamer/patches/010-enable_additional_plugins.patch	2015-04-20 10:09:28.894135362 +0300
+diff -Nur ../../../downloads/openwrt_trunk-r46338/feeds/packages/multimedia/mjpg-streamer/patches/005-musl_compatibility.patch ../../../openwrt_trunk/feeds/packages/multimedia/mjpg-streamer/patches/005-musl_compatibility.patch
+--- ../../../downloads/openwrt_trunk-r46338/feeds/packages/multimedia/mjpg-streamer/patches/005-musl_compatibility.patch	2015-07-14 10:55:19.762308173 +0300
++++ ../../../openwrt_trunk/feeds/packages/multimedia/mjpg-streamer/patches/005-musl_compatibility.patch	1970-01-01 03:00:00.000000000 +0300
+@@ -1,13 +0,0 @@
+---- a/mjpg_streamer.h
+-+++ b/mjpg_streamer.h
+-@@ -29,6 +29,10 @@
+- #define MAX_OUTPUT_PLUGINS 10
+- #define MAX_PLUGIN_ARGUMENTS 32
+- 
+-+#define __NEED_pthread_t
+-+#define __NEED_pthread_mutex_t
+-+#define __NEED_pthread_cond_t
+-+
+- #include <linux/types.h>          /* for videodev2.h */
+- #include <linux/videodev2.h>
+- 
+diff -Nur ../../../downloads/openwrt_trunk-r46338/feeds/packages/multimedia/mjpg-streamer/patches/010-enable_additional_plugins.patch ../../../openwrt_trunk/feeds/packages/multimedia/mjpg-streamer/patches/010-enable_additional_plugins.patch
+--- ../../../downloads/openwrt_trunk-r46338/feeds/packages/multimedia/mjpg-streamer/patches/010-enable_additional_plugins.patch	2015-07-14 10:55:19.762308173 +0300
 +++ ../../../openwrt_trunk/feeds/packages/multimedia/mjpg-streamer/patches/010-enable_additional_plugins.patch	1970-01-01 03:00:00.000000000 +0300
 @@ -1,17 +0,0 @@
 ---- a/Makefile
@@ -177,8 +222,8 @@ diff -urN ../../../downloads/openwrt_trunk-r45513/feeds/packages/multimedia/mjpg
 - # PLUGINS += input_pylon.so
 - # PLUGINS += input_megatec.so
 - # PLUGINS += output_mars2020.so
-diff -urN ../../../downloads/openwrt_trunk-r45513/feeds/packages/multimedia/mjpg-streamer/patches/020-remove_gcc_debug_options.patch ../../../openwrt_trunk/feeds/packages/multimedia/mjpg-streamer/patches/020-remove_gcc_debug_options.patch
---- ../../../downloads/openwrt_trunk-r45513/feeds/packages/multimedia/mjpg-streamer/patches/020-remove_gcc_debug_options.patch	2015-04-20 10:09:28.894135362 +0300
+diff -Nur ../../../downloads/openwrt_trunk-r46338/feeds/packages/multimedia/mjpg-streamer/patches/020-remove_gcc_debug_options.patch ../../../openwrt_trunk/feeds/packages/multimedia/mjpg-streamer/patches/020-remove_gcc_debug_options.patch
+--- ../../../downloads/openwrt_trunk-r46338/feeds/packages/multimedia/mjpg-streamer/patches/020-remove_gcc_debug_options.patch	2015-07-14 10:55:19.762308173 +0300
 +++ ../../../openwrt_trunk/feeds/packages/multimedia/mjpg-streamer/patches/020-remove_gcc_debug_options.patch	1970-01-01 03:00:00.000000000 +0300
 @@ -1,33 +0,0 @@
 ---- a/plugins/input_uvc/Makefile
@@ -214,8 +259,8 @@ diff -urN ../../../downloads/openwrt_trunk-r45513/feeds/packages/multimedia/mjpg
 - LFLAGS += -lpthread -ldl
 - 
 - all: output_udp.so
-diff -urN ../../../downloads/openwrt_trunk-r45513/feeds/packages/multimedia/mjpg-streamer/patches/030-allow_16_char_device_names.patch ../../../openwrt_trunk/feeds/packages/multimedia/mjpg-streamer/patches/030-allow_16_char_device_names.patch
---- ../../../downloads/openwrt_trunk-r45513/feeds/packages/multimedia/mjpg-streamer/patches/030-allow_16_char_device_names.patch	2015-04-20 10:09:28.894135362 +0300
+diff -Nur ../../../downloads/openwrt_trunk-r46338/feeds/packages/multimedia/mjpg-streamer/patches/030-allow_16_char_device_names.patch ../../../openwrt_trunk/feeds/packages/multimedia/mjpg-streamer/patches/030-allow_16_char_device_names.patch
+--- ../../../downloads/openwrt_trunk-r46338/feeds/packages/multimedia/mjpg-streamer/patches/030-allow_16_char_device_names.patch	2015-07-14 10:55:19.762308173 +0300
 +++ ../../../openwrt_trunk/feeds/packages/multimedia/mjpg-streamer/patches/030-allow_16_char_device_names.patch	1970-01-01 03:00:00.000000000 +0300
 @@ -1,11 +0,0 @@
 ---- a/plugins/input_uvc/v4l2uvc.c
@@ -229,8 +274,8 @@ diff -urN ../../../downloads/openwrt_trunk-r45513/feeds/packages/multimedia/mjpg
 -     vd->toggleAvi = 0;
 -     vd->getPict = 0;
 -     vd->signalquit = 1;
-diff -urN ../../../downloads/openwrt_trunk-r45513/feeds/packages/multimedia/mjpg-streamer/patches/040-Buffer-the-bytesused-variable-from-struct-v4l2_buffe.patch ../../../openwrt_trunk/feeds/packages/multimedia/mjpg-streamer/patches/040-Buffer-the-bytesused-variable-from-struct-v4l2_buffe.patch
---- ../../../downloads/openwrt_trunk-r45513/feeds/packages/multimedia/mjpg-streamer/patches/040-Buffer-the-bytesused-variable-from-struct-v4l2_buffe.patch	2015-04-20 10:09:28.894135362 +0300
+diff -Nur ../../../downloads/openwrt_trunk-r46338/feeds/packages/multimedia/mjpg-streamer/patches/040-Buffer-the-bytesused-variable-from-struct-v4l2_buffe.patch ../../../openwrt_trunk/feeds/packages/multimedia/mjpg-streamer/patches/040-Buffer-the-bytesused-variable-from-struct-v4l2_buffe.patch
+--- ../../../downloads/openwrt_trunk-r46338/feeds/packages/multimedia/mjpg-streamer/patches/040-Buffer-the-bytesused-variable-from-struct-v4l2_buffe.patch	2015-07-14 10:55:19.762308173 +0300
 +++ ../../../openwrt_trunk/feeds/packages/multimedia/mjpg-streamer/patches/040-Buffer-the-bytesused-variable-from-struct-v4l2_buffe.patch	1970-01-01 03:00:00.000000000 +0300
 @@ -1,87 +0,0 @@
 -From 19202b54698b343a0207d7e213448e32b8e58fc3 Mon Sep 17 00:00:00 2001
@@ -320,8 +365,8 @@ diff -urN ../../../downloads/openwrt_trunk-r45513/feeds/packages/multimedia/mjpg
 --- 
 -1.9.1
 -
-diff -urN ../../../downloads/openwrt_trunk-r45513/feeds/packages/multimedia/mjpg-streamer/patches/041-Stop-leaking-data-via-struct-v4l2_buffer.patch ../../../openwrt_trunk/feeds/packages/multimedia/mjpg-streamer/patches/041-Stop-leaking-data-via-struct-v4l2_buffer.patch
---- ../../../downloads/openwrt_trunk-r45513/feeds/packages/multimedia/mjpg-streamer/patches/041-Stop-leaking-data-via-struct-v4l2_buffer.patch	2015-04-20 10:09:28.894135362 +0300
+diff -Nur ../../../downloads/openwrt_trunk-r46338/feeds/packages/multimedia/mjpg-streamer/patches/041-Stop-leaking-data-via-struct-v4l2_buffer.patch ../../../openwrt_trunk/feeds/packages/multimedia/mjpg-streamer/patches/041-Stop-leaking-data-via-struct-v4l2_buffer.patch
+--- ../../../downloads/openwrt_trunk-r46338/feeds/packages/multimedia/mjpg-streamer/patches/041-Stop-leaking-data-via-struct-v4l2_buffer.patch	2015-07-14 10:55:19.762308173 +0300
 +++ ../../../openwrt_trunk/feeds/packages/multimedia/mjpg-streamer/patches/041-Stop-leaking-data-via-struct-v4l2_buffer.patch	1970-01-01 03:00:00.000000000 +0300
 @@ -1,242 +0,0 @@
 -From 11b28b36a8711b53658e8bbc50435595522f91ba Mon Sep 17 00:00:00 2001
@@ -566,8 +611,8 @@ diff -urN ../../../downloads/openwrt_trunk-r45513/feeds/packages/multimedia/mjpg
 --- 
 -1.9.1
 -
-diff -urN ../../../downloads/openwrt_trunk-r45513/feeds/packages/multimedia/mjpg-streamer/patches/050-fix-yuv-capture.patch ../../../openwrt_trunk/feeds/packages/multimedia/mjpg-streamer/patches/050-fix-yuv-capture.patch
---- ../../../downloads/openwrt_trunk-r45513/feeds/packages/multimedia/mjpg-streamer/patches/050-fix-yuv-capture.patch	2015-04-20 10:09:28.894135362 +0300
+diff -Nur ../../../downloads/openwrt_trunk-r46338/feeds/packages/multimedia/mjpg-streamer/patches/050-fix-yuv-capture.patch ../../../openwrt_trunk/feeds/packages/multimedia/mjpg-streamer/patches/050-fix-yuv-capture.patch
+--- ../../../downloads/openwrt_trunk-r46338/feeds/packages/multimedia/mjpg-streamer/patches/050-fix-yuv-capture.patch	2015-07-14 10:55:19.762308173 +0300
 +++ ../../../openwrt_trunk/feeds/packages/multimedia/mjpg-streamer/patches/050-fix-yuv-capture.patch	1970-01-01 03:00:00.000000000 +0300
 @@ -1,58 +0,0 @@
 -Binary files a/ipkg-ar71xx/mjpg-streamer/usr/lib/input_uvc.so and b/ipkg-ar71xx/mjpg-streamer/usr/lib/input_uvc.so differ

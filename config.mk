@@ -6,12 +6,12 @@
 #
 
 export TOOLCHAIN_REVISION=5621
-export OPENWRT_REVISION=45513
+export OPENWRT_REVISION=46338
 
 # Download or compile toolchain\kernel?
 #FORCE_COMPILE=y
 
-# Target architecture for repo
+# Target architecture for toolchain
 export TARGET=entware
 #export TARGET=mipselsf
 

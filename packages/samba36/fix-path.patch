@@ -1,8 +1,8 @@
-diff -urx .svn ../../../downloads/openwrt_trunk-r45513/package/network/services/samba36/Makefile ../../../openwrt_trunk/package/network/services/samba36/Makefile
---- ../../../downloads/openwrt_trunk-r45513/package/network/services/samba36/Makefile	2015-04-20 10:09:29.298135354 +0300
-+++ ../../../openwrt_trunk/package/network/services/samba36/Makefile	2015-04-21 09:01:08.860684440 +0300
-@@ -86,7 +86,7 @@
- 	samba_cv_zlib_1_2_3=no
+diff -urx .svn ../../../downloads/openwrt_trunk-r46338/package/network/services/samba36/Makefile ../../../openwrt_trunk/package/network/services/samba36/Makefile
+--- ../../../downloads/openwrt_trunk-r46338/package/network/services/samba36/Makefile	2015-07-14 10:55:20.122308179 +0300
++++ ../../../openwrt_trunk/package/network/services/samba36/Makefile	2015-07-14 16:36:47.334650599 +0300
+@@ -88,7 +88,7 @@
+ 	ac_cv_path_PYTHON_CONFIG=""
  
  CONFIGURE_ARGS += \
 -	--exec-prefix=/usr \
@@ -10,10 +10,10 @@ diff -urx .svn ../../../downloads/openwrt_trunk-r45513/package/network/services/
  	--prefix=/ \
  	--disable-avahi \
  	--disable-cups \
-@@ -95,15 +95,15 @@
- 	--disable-static \
+@@ -98,15 +98,15 @@
  	--disable-swat \
  	--disable-shared-libs \
+ 	--with-libiconv="$(ICONV_PREFIX)" \
 -	--with-codepagedir=/etc/samba \
 -	--with-configdir=/etc/samba \
 +	--with-codepagedir=/opt/etc/samba \
@@ -33,7 +33,7 @@ diff -urx .svn ../../../downloads/openwrt_trunk-r45513/package/network/services/
  	--with-sendfile-support \
  	--without-acl-support \
  	--without-cluster-support \
-@@ -124,31 +124,29 @@
+@@ -127,31 +127,29 @@
  MAKE_FLAGS += DYNEXP= PICFLAG= MODULES=
  
  define Package/samba36-server/conffiles
@@ -82,9 +82,9 @@ diff -urx .svn ../../../downloads/openwrt_trunk-r45513/package/network/services/
  endef
  
  $(eval $(call BuildPackage,samba36-client))
-diff -urx .svn ../../../downloads/openwrt_trunk-r45513/package/network/services/samba36/patches/111-owrt_smbpasswd.patch ../../../openwrt_trunk/package/network/services/samba36/patches/111-owrt_smbpasswd.patch
---- ../../../downloads/openwrt_trunk-r45513/package/network/services/samba36/patches/111-owrt_smbpasswd.patch	2015-04-20 10:09:29.298135354 +0300
-+++ ../../../openwrt_trunk/package/network/services/samba36/patches/111-owrt_smbpasswd.patch	2015-04-20 10:09:50.854134958 +0300
+diff -urx .svn ../../../downloads/openwrt_trunk-r46338/package/network/services/samba36/patches/111-owrt_smbpasswd.patch ../../../openwrt_trunk/package/network/services/samba36/patches/111-owrt_smbpasswd.patch
+--- ../../../downloads/openwrt_trunk-r46338/package/network/services/samba36/patches/111-owrt_smbpasswd.patch	2015-07-14 10:55:20.122308179 +0300
++++ ../../../openwrt_trunk/package/network/services/samba36/patches/111-owrt_smbpasswd.patch	2015-07-14 10:55:53.234308695 +0300
 @@ -236,15 +236,15 @@
  +		}
  +	}

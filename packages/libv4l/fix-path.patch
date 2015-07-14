@@ -1,6 +1,6 @@
-diff -urN ../../../downloads/openwrt_trunk-r45513/feeds/packages/libs/libv4l/Makefile ../../../openwrt_trunk/feeds/packages/libs/libv4l/Makefile
---- ../../../downloads/openwrt_trunk-r45513/feeds/packages/libs/libv4l/Makefile	2015-04-20 10:09:28.902135360 +0300
-+++ ../../../openwrt_trunk/feeds/packages/libs/libv4l/Makefile	2015-03-07 14:57:03.000000000 +0300
+diff -urN ../../../downloads/openwrt_trunk-r46338/feeds/packages/libs/libv4l/Makefile ../../../openwrt_trunk/feeds/packages/libs/libv4l/Makefile
+--- ../../../downloads/openwrt_trunk-r46338/feeds/packages/libs/libv4l/Makefile	2015-07-14 10:55:19.770308173 +0300
++++ ../../../openwrt_trunk/feeds/packages/libs/libv4l/Makefile	2015-05-25 15:17:27.000000000 +0300
 @@ -1,5 +1,5 @@
  #
 -# Copyright (C) 2009-2015 OpenWrt.org
@@ -8,18 +8,18 @@ diff -urN ../../../downloads/openwrt_trunk-r45513/feeds/packages/libs/libv4l/Mak
  # Copyright (C) 2009 David Cooper <dave@kupesoft.com>
  #
  # This is free software, licensed under the GNU General Public License v2.
-@@ -9,26 +9,17 @@
+@@ -9,27 +9,17 @@
  include $(TOPDIR)/rules.mk
  
  PKG_NAME:=v4l-utils
--PKG_VERSION:=1.6.2
+-PKG_VERSION:=1.6.3
 -PKG_RELEASE:=1
 +PKG_VERSION:=0.8.6
 +PKG_RELEASE:=2
  
  PKG_SOURCE:=$(PKG_NAME)-$(PKG_VERSION).tar.bz2
  PKG_SOURCE_URL:=http://www.linuxtv.org/downloads/v4l-utils
--PKG_MD5SUM:=9cb3c178f937954e65bf30920af433ef
+-PKG_MD5SUM:=307858616be6374f63bf946307f15a7f
 -
 -PKG_MAINTAINER:=Ted Hess <thess@kitschensync.net>
 -
@@ -27,6 +27,7 @@ diff -urN ../../../downloads/openwrt_trunk-r45513/feeds/packages/libs/libv4l/Mak
 -PKG_LICENSE_FILES:=COPYING COPYING.libv4l
 -
 -PKG_USE_MIPS16:=0
+-PKG_FIXUP:=autoreconf
 -PKG_INSTALL:=1
 +PKG_MD5SUM:=80062780ae90e5955473b09b31e9828a
  
@@ -38,7 +39,7 @@ diff -urN ../../../downloads/openwrt_trunk-r45513/feeds/packages/libs/libv4l/Mak
  
  define Package/libv4l/Default
    TITLE:=Video 4 Linux
-@@ -55,7 +46,7 @@
+@@ -56,7 +46,7 @@
    SECTION:=libs
    CATEGORY:=Libraries
    TITLE+= wrapper libraries
@@ -47,7 +48,7 @@ diff -urN ../../../downloads/openwrt_trunk-r45513/feeds/packages/libs/libv4l/Mak
  endef
  
  define Package/libv4l/description
-@@ -67,7 +58,7 @@
+@@ -68,7 +58,7 @@
    SECTION:=utils
    CATEGORY:=Utilities
    TITLE+= utilities
@@ -56,7 +57,7 @@ diff -urN ../../../downloads/openwrt_trunk-r45513/feeds/packages/libs/libv4l/Mak
  endef
  
  define Package/v4l-utils/description
-@@ -75,40 +66,47 @@
+@@ -76,40 +66,47 @@
    This package contains the video4linux utilities.
  endef
  
@@ -129,9 +130,9 @@ diff -urN ../../../downloads/openwrt_trunk-r45513/feeds/packages/libs/libv4l/Mak
  endef
  
  $(eval $(call BuildPackage,libv4l))
-diff -urN ../../../downloads/openwrt_trunk-r45513/feeds/packages/libs/libv4l/patches/001-no-shm_open-fix.patch ../../../openwrt_trunk/feeds/packages/libs/libv4l/patches/001-no-shm_open-fix.patch
---- ../../../downloads/openwrt_trunk-r45513/feeds/packages/libs/libv4l/patches/001-no-shm_open-fix.patch	2015-04-20 10:09:28.902135360 +0300
-+++ ../../../openwrt_trunk/feeds/packages/libs/libv4l/patches/001-no-shm_open-fix.patch	2015-03-07 14:57:03.000000000 +0300
+diff -urN ../../../downloads/openwrt_trunk-r46338/feeds/packages/libs/libv4l/patches/001-no-shm_open-fix.patch ../../../openwrt_trunk/feeds/packages/libs/libv4l/patches/001-no-shm_open-fix.patch
+--- ../../../downloads/openwrt_trunk-r46338/feeds/packages/libs/libv4l/patches/001-no-shm_open-fix.patch	2015-07-14 10:55:19.770308173 +0300
++++ ../../../openwrt_trunk/feeds/packages/libs/libv4l/patches/001-no-shm_open-fix.patch	2015-05-25 15:17:27.000000000 +0300
 @@ -1,15 +1,15 @@
  --- a/lib/libv4lconvert/control/libv4lcontrol.c
  +++ b/lib/libv4lconvert/control/libv4lcontrol.c
@@ -152,9 +153,9 @@ diff -urN ../../../downloads/openwrt_trunk-r45513/feeds/packages/libs/libv4l/pat
   
   	if (getpwuid_r(geteuid(), &pwd, pwd_buf, sizeof(pwd_buf), &pwd_p) == 0) {
   		if (got_usb_info)
-diff -urN ../../../downloads/openwrt_trunk-r45513/feeds/packages/libs/libv4l/patches/002-allow-disabling-libjpeg.patch ../../../openwrt_trunk/feeds/packages/libs/libv4l/patches/002-allow-disabling-libjpeg.patch
---- ../../../downloads/openwrt_trunk-r45513/feeds/packages/libs/libv4l/patches/002-allow-disabling-libjpeg.patch	1970-01-01 03:00:00.000000000 +0300
-+++ ../../../openwrt_trunk/feeds/packages/libs/libv4l/patches/002-allow-disabling-libjpeg.patch	2015-03-07 14:57:03.000000000 +0300
+diff -urN ../../../downloads/openwrt_trunk-r46338/feeds/packages/libs/libv4l/patches/002-allow-disabling-libjpeg.patch ../../../openwrt_trunk/feeds/packages/libs/libv4l/patches/002-allow-disabling-libjpeg.patch
+--- ../../../downloads/openwrt_trunk-r46338/feeds/packages/libs/libv4l/patches/002-allow-disabling-libjpeg.patch	1970-01-01 03:00:00.000000000 +0300
++++ ../../../openwrt_trunk/feeds/packages/libs/libv4l/patches/002-allow-disabling-libjpeg.patch	2015-05-25 15:17:27.000000000 +0300
 @@ -0,0 +1,160 @@
 +--- a/lib/libv4lconvert/Makefile
 ++++ b/lib/libv4lconvert/Makefile
@@ -316,9 +317,9 @@ diff -urN ../../../downloads/openwrt_trunk-r45513/feeds/packages/libs/libv4l/pat
 + 		case V4L2_PIX_FMT_SN9C2028:
 + 			v4lconvert_decode_sn9c2028(src, tmpbuf, width, height);
 + 			tmpfmt.fmt.pix.pixelformat = V4L2_PIX_FMT_SBGGR8;
-diff -urN ../../../downloads/openwrt_trunk-r45513/feeds/packages/libs/libv4l/patches/003-add-missing-libs.patch ../../../openwrt_trunk/feeds/packages/libs/libv4l/patches/003-add-missing-libs.patch
---- ../../../downloads/openwrt_trunk-r45513/feeds/packages/libs/libv4l/patches/003-add-missing-libs.patch	1970-01-01 03:00:00.000000000 +0300
-+++ ../../../openwrt_trunk/feeds/packages/libs/libv4l/patches/003-add-missing-libs.patch	2015-03-07 14:57:03.000000000 +0300
+diff -urN ../../../downloads/openwrt_trunk-r46338/feeds/packages/libs/libv4l/patches/003-add-missing-libs.patch ../../../openwrt_trunk/feeds/packages/libs/libv4l/patches/003-add-missing-libs.patch
+--- ../../../downloads/openwrt_trunk-r46338/feeds/packages/libs/libv4l/patches/003-add-missing-libs.patch	1970-01-01 03:00:00.000000000 +0300
++++ ../../../openwrt_trunk/feeds/packages/libs/libv4l/patches/003-add-missing-libs.patch	2015-05-25 15:17:27.000000000 +0300
 @@ -0,0 +1,66 @@
 +--- a/contrib/test/Makefile
 ++++ b/contrib/test/Makefile
@@ -386,9 +387,9 @@ diff -urN ../../../downloads/openwrt_trunk-r45513/feeds/packages/libs/libv4l/pat
 + 
 + install: $(TARGETS)
 + 	mkdir -p $(DESTDIR)$(PREFIX)/bin
-diff -urN ../../../downloads/openwrt_trunk-r45513/feeds/packages/libs/libv4l/patches/004-disable-qv4l2.patch ../../../openwrt_trunk/feeds/packages/libs/libv4l/patches/004-disable-qv4l2.patch
---- ../../../downloads/openwrt_trunk-r45513/feeds/packages/libs/libv4l/patches/004-disable-qv4l2.patch	1970-01-01 03:00:00.000000000 +0300
-+++ ../../../openwrt_trunk/feeds/packages/libs/libv4l/patches/004-disable-qv4l2.patch	2015-03-07 14:57:03.000000000 +0300
+diff -urN ../../../downloads/openwrt_trunk-r46338/feeds/packages/libs/libv4l/patches/004-disable-qv4l2.patch ../../../openwrt_trunk/feeds/packages/libs/libv4l/patches/004-disable-qv4l2.patch
+--- ../../../downloads/openwrt_trunk-r46338/feeds/packages/libs/libv4l/patches/004-disable-qv4l2.patch	1970-01-01 03:00:00.000000000 +0300
++++ ../../../openwrt_trunk/feeds/packages/libs/libv4l/patches/004-disable-qv4l2.patch	2015-05-25 15:17:27.000000000 +0300
 @@ -0,0 +1,24 @@
 +--- a/utils/Makefile
 ++++ b/utils/Makefile
@@ -414,10 +415,37 @@ diff -urN ../../../downloads/openwrt_trunk-r45513/feeds/packages/libs/libv4l/pat
 + sync-with-kernel:
 + 	$(MAKE) -C keytable $@
 + 	$(MAKE) -C v4l2-dbg $@
-diff -urN ../../../downloads/openwrt_trunk-r45513/feeds/packages/libs/libv4l/patches/020-add-missing-includes.patch ../../../openwrt_trunk/feeds/packages/libs/libv4l/patches/020-add-missing-includes.patch
---- ../../../downloads/openwrt_trunk-r45513/feeds/packages/libs/libv4l/patches/020-add-missing-includes.patch	2015-04-20 10:09:28.902135360 +0300
+diff -urN ../../../downloads/openwrt_trunk-r46338/feeds/packages/libs/libv4l/patches/005-test_for_posix_ioctl.patch ../../../openwrt_trunk/feeds/packages/libs/libv4l/patches/005-test_for_posix_ioctl.patch
+--- ../../../downloads/openwrt_trunk-r46338/feeds/packages/libs/libv4l/patches/005-test_for_posix_ioctl.patch	2015-07-14 10:55:19.770308173 +0300
++++ ../../../openwrt_trunk/feeds/packages/libs/libv4l/patches/005-test_for_posix_ioctl.patch	1970-01-01 03:00:00.000000000 +0300
+@@ -1,23 +0,0 @@
+---- a/configure.ac
+-+++ b/configure.ac
+-@@ -80,6 +80,20 @@ gl_VISIBILITY
+- AC_CHECK_HEADERS([sys/klog.h])
+- AC_CHECK_FUNCS([klogctl])
+- 
+-+AC_CACHE_CHECK([for ioctl with POSIX signature],
+-+  [gl_cv_func_ioctl_posix_signature],
+-+  [AC_COMPILE_IFELSE(
+-+     [AC_LANG_PROGRAM(
+-+        [[#include <sys/ioctl.h>]],
+-+        [[int ioctl (int, int, ...);]])
+-+     ],
+-+     [gl_cv_func_ioctl_posix_signature=yes],
+-+     [gl_cv_func_ioctl_posix_signature=no])
+-+  ])
+-+if test "x$gl_cv_func_ioctl_posix_signature" = xyes; then
+-+  AC_DEFINE([HAVE_POSIX_IOCTL], [1], [Have ioctl with POSIX signature])
+-+fi
+-+
+- # Check host os
+- case "$host_os" in
+-   linux*)
+diff -urN ../../../downloads/openwrt_trunk-r46338/feeds/packages/libs/libv4l/patches/020-add-missing-includes.patch ../../../openwrt_trunk/feeds/packages/libs/libv4l/patches/020-add-missing-includes.patch
+--- ../../../downloads/openwrt_trunk-r46338/feeds/packages/libs/libv4l/patches/020-add-missing-includes.patch	2015-07-14 10:55:19.770308173 +0300
 +++ ../../../openwrt_trunk/feeds/packages/libs/libv4l/patches/020-add-missing-includes.patch	1970-01-01 03:00:00.000000000 +0300
-@@ -1,10 +0,0 @@
+@@ -1,28 +0,0 @@
 ---- a/utils/rds-ctl/rds-ctl.cpp
 -+++ b/utils/rds-ctl/rds-ctl.cpp
 -@@ -29,6 +29,7 @@
@@ -428,9 +456,127 @@ diff -urN ../../../downloads/openwrt_trunk-r45513/feeds/packages/libs/libv4l/pat
 - #include <fcntl.h>
 - #include <errno.h>
 - #include <sys/ioctl.h>
-diff -urN ../../../downloads/openwrt_trunk-r45513/feeds/packages/libs/libv4l/patches/500-keymaps-dir.patch ../../../openwrt_trunk/feeds/packages/libs/libv4l/patches/500-keymaps-dir.patch
---- ../../../downloads/openwrt_trunk-r45513/feeds/packages/libs/libv4l/patches/500-keymaps-dir.patch	1970-01-01 03:00:00.000000000 +0300
-+++ ../../../openwrt_trunk/feeds/packages/libs/libv4l/patches/500-keymaps-dir.patch	2015-03-07 14:57:03.000000000 +0300
+-@@ -36,6 +37,7 @@
+- #include <dirent.h>
+- #include <config.h>
+- #include <signal.h>
+-+#include <time.h>
+- 
+- #include <linux/videodev2.h>
+- #include <libv4l2.h>
+---- a/utils/v4l2-ctl/v4l2-ctl-streaming.cpp
+-+++ b/utils/v4l2-ctl/v4l2-ctl-streaming.cpp
+-@@ -14,6 +14,7 @@
+- #include <sys/mman.h>
+- #include <dirent.h>
+- #include <math.h>
+-+#include <time.h>
+- 
+- #include "v4l2-ctl.h"
+- 
+diff -urN ../../../downloads/openwrt_trunk-r46338/feeds/packages/libs/libv4l/patches/030-musl_compatibility.patch ../../../openwrt_trunk/feeds/packages/libs/libv4l/patches/030-musl_compatibility.patch
+--- ../../../downloads/openwrt_trunk-r46338/feeds/packages/libs/libv4l/patches/030-musl_compatibility.patch	2015-07-14 10:55:19.770308173 +0300
++++ ../../../openwrt_trunk/feeds/packages/libs/libv4l/patches/030-musl_compatibility.patch	1970-01-01 03:00:00.000000000 +0300
+@@ -1,96 +0,0 @@
+---- a/lib/libv4lconvert/libv4lsyscall-priv.h
+-+++ b/lib/libv4lconvert/libv4lsyscall-priv.h
+-@@ -35,18 +35,23 @@
+-    which is broken on some systems and doesn't include them itself :( */
+- 
+- #ifdef linux
+-+#define __NEED_off_t
+- #include <sys/time.h>
+- #include <syscall.h>
+- #include <linux/types.h>
+- #include <linux/ioctl.h>
+- /* On 32 bits archs we always use mmap2, on 64 bits archs there is no mmap2 */
+- #ifdef __NR_mmap2
+-+#undef SYS_mmap2
+- #define	SYS_mmap2 __NR_mmap2
+- #define	MMAP2_PAGE_SHIFT 12
+- #else
+- #define	SYS_mmap2 SYS_mmap
+- #define	MMAP2_PAGE_SHIFT 0
+- #endif
+-+#if !(defined(__UCLIBC__) || defined(__GLIBC__))
+-+typedef off_t __off_t;
+-+#endif
+- #endif
+- 
+- #if defined(__FreeBSD__) || defined(__FreeBSD_kernel__)
+---- a/lib/libv4l1/v4l1compat.c
+-+++ b/lib/libv4l1/v4l1compat.c
+-@@ -62,7 +62,7 @@ LIBV4L_PUBLIC int open(const char *file,
+- 	return fd;
+- }
+- 
+--#ifdef linux
+-+#if defined(linux) && (defined(__GLIBC__) || defined(__UCLIBC__))
+- LIBV4L_PUBLIC int open64(const char *file, int oflag, ...)
+- {
+- 	int fd;
+-@@ -94,7 +94,11 @@ LIBV4L_PUBLIC int dup(int fd)
+- 	return v4l1_dup(fd);
+- }
+- 
+-+#ifdef HAVE_POSIX_IOCTL
+-+LIBV4L_PUBLIC int ioctl(int fd, int request, ...)
+-+#else
+- LIBV4L_PUBLIC int ioctl(int fd, unsigned long int request, ...)
+-+#endif
+- {
+- 	void *arg;
+- 	va_list ap;
+-@@ -112,12 +116,12 @@ LIBV4L_PUBLIC ssize_t read(int fd, void
+- }
+- 
+- LIBV4L_PUBLIC void *mmap(void *start, size_t length, int prot, int flags, int fd,
+--		__off_t offset)
+-+		off_t offset)
+- {
+- 	return v4l1_mmap(start, length, prot, flags, fd, offset);
+- }
+- 
+--#ifdef linux
+-+#if defined(linux) && (defined(__GLIBC__) || defined(__UCLIBC__))
+- LIBV4L_PUBLIC void *mmap64(void *start, size_t length, int prot, int flags, int fd,
+- 		__off64_t offset)
+- {
+---- a/lib/libv4l2/v4l2convert.c
+-+++ b/lib/libv4l2/v4l2convert.c
+-@@ -86,7 +86,7 @@ LIBV4L_PUBLIC int open(const char *file,
+- 	return fd;
+- }
+- 
+--#ifdef linux
+-+#if defined(linux) && (defined(__GLIBC__) || defined(__UCLIBC__))
+- LIBV4L_PUBLIC int open64(const char *file, int oflag, ...)
+- {
+- 	int fd;
+-@@ -121,7 +121,11 @@ LIBV4L_PUBLIC int dup(int fd)
+- 	return v4l2_dup(fd);
+- }
+- 
+-+#ifdef HAVE_POSIX_IOCTL
+-+LIBV4L_PUBLIC int ioctl(int fd, int request, ...)
+-+#else
+- LIBV4L_PUBLIC int ioctl(int fd, unsigned long int request, ...)
+-+#endif
+- {
+- 	void *arg;
+- 	va_list ap;
+-@@ -144,7 +148,7 @@ LIBV4L_PUBLIC void *mmap(void *start, si
+- 	return v4l2_mmap(start, length, prot, flags, fd, offset);
+- }
+- 
+--#ifdef linux
+-+#if defined(linux) && (defined(__GLIBC__) || defined(__UCLIBC__))
+- LIBV4L_PUBLIC void *mmap64(void *start, size_t length, int prot, int flags, int fd,
+- 		__off64_t offset)
+- {
+diff -urN ../../../downloads/openwrt_trunk-r46338/feeds/packages/libs/libv4l/patches/500-keymaps-dir.patch ../../../openwrt_trunk/feeds/packages/libs/libv4l/patches/500-keymaps-dir.patch
+--- ../../../downloads/openwrt_trunk-r46338/feeds/packages/libs/libv4l/patches/500-keymaps-dir.patch	1970-01-01 03:00:00.000000000 +0300
++++ ../../../openwrt_trunk/feeds/packages/libs/libv4l/patches/500-keymaps-dir.patch	2015-05-25 15:17:27.000000000 +0300
 @@ -0,0 +1,11 @@
 +--- a/utils/keytable/keytable.c
 ++++ b/utils/keytable/keytable.c

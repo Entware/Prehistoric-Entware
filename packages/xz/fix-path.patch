@@ -1,5 +1,5 @@
---- ../../../downloads/openwrt_trunk-r45513/feeds/packages/utils/xz/Makefile	2015-04-23 10:21:55.577457455 +0300
-+++ ../../../openwrt_trunk/feeds/packages/utils/xz/Makefile	2015-05-20 12:01:58.869026325 +0300
+--- ../../../downloads/openwrt_trunk-r46338/feeds/packages/utils/xz/Makefile	2015-07-14 10:55:19.838308174 +0300
++++ ../../../openwrt_trunk/feeds/packages/utils/xz/Makefile	2015-07-14 17:21:50.454696286 +0300
 @@ -61,8 +61,8 @@
    endef
  
@@ -11,7 +11,7 @@
    endef
  
    $$(eval $$(call BuildPackage,$(1)))
-@@ -80,25 +80,28 @@
+@@ -80,18 +80,18 @@
  	-std=c99 \
  
  define Build/InstallDev
@@ -38,6 +38,10 @@
 +		$(1)/opt/lib/pkgconfig/
  endef
  
+ define Package/xz-utils/install
+@@ -99,8 +99,8 @@
+ endef
+ 
  define Package/liblzma/install
 -	$(INSTALL_DIR) $(1)/usr/lib
 -	$(CP) $(PKG_INSTALL_DIR)/usr/lib/liblzma.so.* $(1)/usr/lib/
@@ -45,9 +49,4 @@
 +	$(CP) $(PKG_INSTALL_DIR)/opt/lib/liblzma.so.* $(1)/opt/lib/
  endef
  
-+define Package/xz-utils/install
-+	true
-+endef
  
- $(eval $(call BuildPackage,xz-utils))
- $(eval $(call BuildPackage,liblzma))

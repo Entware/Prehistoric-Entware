@@ -1,6 +1,6 @@
---- ../../../downloads/openwrt_trunk-r43708/feeds/packages/libs/protobuf/Makefile	2014-12-15 12:19:58.008388958 +0300
-+++ ../../../openwrt_trunk/feeds/packages/libs/protobuf/Makefile	2014-12-15 14:37:00.736242757 +0300
-@@ -50,33 +50,33 @@
+--- ../../../downloads/openwrt_trunk-r46338/feeds/packages/libs/protobuf/Makefile	2015-07-14 10:55:19.770308173 +0300
++++ ../../../openwrt_trunk/feeds/packages/libs/protobuf/Makefile	2015-07-14 10:55:50.382308682 +0300
+@@ -45,33 +45,33 @@
  
  define Build/InstallDev
  	$(INSTALL_DIR) \

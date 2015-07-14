@@ -1,7 +1,6 @@
 === Known bugs and odds, to do list ===
 
 OpenWRT packages with updagraded version:
-libev		4.19
 shairport-sync	2.2.2
 
 Can't be upgraded (because of too old 2.6.22 kernel, mostly):

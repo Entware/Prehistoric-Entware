@@ -1,6 +1,6 @@
---- ../../../downloads/openwrt_trunk-r44486/package/libs/nettle/Makefile	2015-02-18 12:16:57.828306328 +0300
-+++ ../../../openwrt_trunk/package/libs/nettle/Makefile	2015-02-18 12:17:31.956305705 +0300
-@@ -67,22 +67,22 @@
+--- ../../../downloads/openwrt_trunk-r46338/package/libs/nettle/Makefile	2015-07-14 10:55:19.950308176 +0300
++++ ../../../openwrt_trunk/package/libs/nettle/Makefile	2015-07-14 10:55:50.078308677 +0300
+@@ -64,22 +64,22 @@
  endef
  
  define Build/InstallDev

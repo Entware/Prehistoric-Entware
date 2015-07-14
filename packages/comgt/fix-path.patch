@@ -1,5 +1,5 @@
---- ../../../downloads/openwrt_trunk-r45513/package/network/utils/comgt/Makefile	2015-04-21 10:37:38.864588020 +0300
-+++ ../../../openwrt_trunk/package/network/utils/comgt/Makefile	2015-04-21 14:30:01.596334172 +0300
+--- ../../../downloads/openwrt_trunk-r46338/package/network/utils/comgt/Makefile	2015-07-14 10:55:20.182308180 +0300
++++ ../../../openwrt_trunk/package/network/utils/comgt/Makefile	2015-07-14 11:42:40.418353150 +0300
 @@ -31,20 +31,19 @@
  define Package/comgt
  $(call Package/comgt/Default)
@@ -23,7 +23,7 @@
  endef
  
  define Package/comgt/description
-@@ -57,46 +56,37 @@
+@@ -57,45 +56,37 @@
  	$(MAKE) -C $(PKG_BUILD_DIR) \
  		$(TARGET_CONFIGURE_OPTS) \
  		CFLAGS="$(TARGET_CFLAGS)" \
@@ -51,7 +51,6 @@
 -	$(INSTALL_DATA) ./files/3g.usb $(1)/etc/hotplug.d/tty/30-3g
 -	$(INSTALL_DIR) $(1)/lib/netifd/proto
 -	$(INSTALL_BIN) ./files/3g.sh $(1)/lib/netifd/proto/3g.sh
--	$(INSTALL_BIN) ./files/directip.sh $(1)/lib/netifd/proto/directip.sh
 +	$(INSTALL_DIR) $(1)/opt/bin
 +	$(INSTALL_BIN) $(PKG_BUILD_DIR)/comgt $(1)/opt/bin/
 +	$(LN) comgt $(1)/opt/bin/gcom

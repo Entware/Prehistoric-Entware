@@ -1,5 +1,5 @@
---- ../../../downloads/openwrt_trunk-r44486/feeds/packages/net/squid/Makefile	2015-02-18 12:16:57.604306332 +0300
-+++ ../../../openwrt_trunk/feeds/packages/net/squid/Makefile	2015-02-20 12:03:18.153171252 +0300
+--- ../../../downloads/openwrt_trunk-r46338/feeds/packages/net/squid/Makefile	2015-07-14 10:55:19.790308173 +0300
++++ ../../../openwrt_trunk/feeds/packages/net/squid/Makefile	2015-07-14 16:57:35.094669457 +0300
 @@ -51,9 +51,9 @@
  
  CONFIGURE_ARGS += \
@@ -22,14 +22,14 @@
  	--enable-epoll \
  	--with-maxfd=4096 \
  	--disable-external-acl-helpers \
-@@ -97,36 +97,35 @@
+@@ -96,36 +96,33 @@
+ 	ac_cv_epoll_works=yes
  
  define Build/Compile
- 	$(MAKE) -C $(PKG_BUILD_DIR)/lib \
-+		$(MAKE_VARS) \
- 		all
- 	$(MAKE) -C $(PKG_BUILD_DIR) \
-+		$(MAKE_VARS) \
+-	+$(MAKE) $(PKG_JOBS) -C $(PKG_BUILD_DIR)/lib all
+-	+$(MAKE) $(PKG_JOBS) -C $(PKG_BUILD_DIR) \
++	+$(MAKE) $(PKG_JOBS) -C $(PKG_BUILD_DIR)/lib $(MAKE_VARS) all
++	+$(MAKE) $(PKG_JOBS) -C $(PKG_BUILD_DIR) $(MAKE_VARS) \
  		DESTDIR="$(PKG_INSTALL_DIR)" \
  		install
  endef

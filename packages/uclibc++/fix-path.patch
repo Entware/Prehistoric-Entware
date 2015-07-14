@@ -1,24 +1,23 @@
---- ../../../downloads/openwrt_trunk-r45513/package/libs/uclibc++/Makefile	2015-04-20 10:09:29.142135354 +0300
-+++ ../../../openwrt_trunk/package/libs/uclibc++/Makefile	2015-04-20 10:09:51.702134946 +0300
-@@ -70,12 +70,12 @@
+--- ../../../downloads/openwrt_trunk-r46338/package/libs/uclibc++/Makefile	2015-07-14 10:55:19.950308176 +0300
++++ ../../../openwrt_trunk/package/libs/uclibc++/Makefile	2015-07-14 17:12:40.822684253 +0300
+@@ -75,12 +75,12 @@
  endef
  
  define Build/InstallDev
 -	$(INSTALL_DIR) $(2)/bin $(1)/usr/include/uClibc++ $(1)/usr/lib
-+	$(INSTALL_DIR) $(2)/bin $(1)/opt/include/uClibc++ $(1)/opt/lib  $(TOOLCHAIN_DIR)/bin/
++	$(INSTALL_DIR) $(2)/bin $(1)/opt/include/uClibc++ $(1)/opt/lib
  	$(INSTALL_BIN) $(PKG_INSTALL_DIR)/bin/g++-uc $(TOOLCHAIN_DIR)/bin/
 -	$(CP) $(PKG_INSTALL_DIR)/include/* $(1)/usr/include/uClibc++/
 -	$(CP) $(PKG_INSTALL_DIR)/lib/libuClibc++*.{a,so}* $(1)/usr/lib/
--	$(SED) 's|-I/include/|-I$(STAGING_DIR)/usr/include/uClibc++/|g' $(TOOLCHAIN_DIR)/bin/g++-uc
--	$(SED) 's|-L/lib/|-L$(STAGING_DIR)/usr/lib/|g' $(TOOLCHAIN_DIR)/bin/g++-uc
 +	$(CP) $(PKG_INSTALL_DIR)/include/* $(1)/opt/include/uClibc++/
 +	$(CP) $(PKG_INSTALL_DIR)/lib/libuClibc++*.{a,so}* $(1)/opt/lib/
-+	$(SED) 's|-I/include/|-I$(STAGING_DIR)/opt/include/uClibc++/|g' $(TOOLCHAIN_DIR)/bin/g++-uc
-+	$(SED) 's|-L/lib/|-L$(STAGING_DIR)/opt/lib/|g' $(TOOLCHAIN_DIR)/bin/g++-uc
+ 	$(SED) 's!\(^\|[[:space:]]\)-[IL]$(TOOLCHAIN_DIR)/[^[:space:]]*!!g' $(TOOLCHAIN_DIR)/bin/g++-uc
+-	$(SED) 's|-I/include/|-I$$$${STAGING_DIR:-$(STAGING_DIR)}/usr/include/uClibc++/|g' $(TOOLCHAIN_DIR)/bin/g++-uc
++	$(SED) 's|-I/include/|-I$$$${STAGING_DIR:-$(STAGING_DIR)}/opt/include/uClibc++/|g' $(TOOLCHAIN_DIR)/bin/g++-uc
+ 	$(SED) 's|-L/lib/|-L$$$${STAGING_DIR:-$(STAGING_DIR)}/lib/|g' $(TOOLCHAIN_DIR)/bin/g++-uc
  # add another wrapper which links against both uClibc++ and libstdc++ 
  	$(INSTALL_BIN) $(TOOLCHAIN_DIR)/bin/g++-uc $(TOOLCHAIN_DIR)/bin/g++-uc+std
- 	$(SED) 's|^WRAPPER_INCLUDEDIR=.*||g' $(TOOLCHAIN_DIR)/bin/g++-uc+std
-@@ -84,9 +84,9 @@
+@@ -90,9 +90,9 @@
  endef
  
  define Package/uclibcxx/install

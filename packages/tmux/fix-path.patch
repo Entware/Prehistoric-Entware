@@ -1,6 +1,6 @@
---- ../../../downloads/openwrt_trunk-r43708/feeds/packages/utils/tmux/Makefile	2014-12-15 12:19:58.048388959 +0300
-+++ ../../../openwrt_trunk/feeds/packages/utils/tmux/Makefile	2014-12-15 12:20:24.996388468 +0300
-@@ -35,12 +35,12 @@
+--- ../../../downloads/openwrt_trunk-r46338/feeds/packages/utils/tmux/Makefile	2015-07-14 10:55:19.834308174 +0300
++++ ../../../openwrt_trunk/feeds/packages/utils/tmux/Makefile	2015-07-14 10:55:54.918308758 +0300
+@@ -37,12 +37,12 @@
  endef
  
  MAKE_FLAGS += \

@@ -1,6 +1,6 @@
---- ../../../downloads/openwrt_trunk-r45513/feeds/packages/libs/boost/Makefile	2015-04-21 10:37:38.204588033 +0300
-+++ ../../../openwrt_trunk/feeds/packages/libs/boost/Makefile	2015-04-22 14:55:22.182728323 +0300
-@@ -187,11 +187,11 @@
+--- ../../../downloads/openwrt_trunk-r46338/feeds/packages/libs/boost/Makefile	2015-07-14 10:55:19.774308173 +0300
++++ ../../../openwrt_trunk/feeds/packages/libs/boost/Makefile	2015-07-14 17:52:02.622723361 +0300
+@@ -191,11 +191,11 @@
  
  
  define Build/Compile
@@ -15,7 +15,7 @@
  				tools/build/src/user-config.jam; \
  		) \
  		bjam \
-@@ -207,30 +207,30 @@
+@@ -211,24 +211,24 @@
  			$(if $(CONFIG_PACKAGE_boost-locale),boost.locale.iconv=on -sICONV_PATH=$(ICONV_PREFIX) boost.locale.posix=$(if $(USE_UCLIBC),on,off), \
  				boost.locale.iconv=off) \
  			\
@@ -38,22 +38,16 @@
 +		$(1)/opt/include/boost/ \
  		# copies _all_ header files - independent of <--with-library>-argument above
  
- 	if [ -d $(PKG_INSTALL_DIR)/lib ]; then \
- 		$(INSTALL_DIR) \
--			$(1)/usr/lib; \
-+			$(1)/opt/lib; \
- 		$(CP) \
- 			$(PKG_INSTALL_DIR)/lib/*.a \
--			$(1)/usr/lib/; \
-+			$(1)/opt/lib/; \
- 		$(CP) \
- 			$(PKG_INSTALL_DIR)/lib/*.so* \
--			$(1)/usr/lib/; \
-+			$(1)/opt/lib/; \
- 	fi
+-	$(INSTALL_DIR) $(1)/usr/lib
+-	-$(CP) $(PKG_INSTALL_DIR)/lib/*.a $(1)/usr/lib/
+-	-$(CP) $(PKG_INSTALL_DIR)/lib/*.so* $(1)/usr/lib/
++	$(INSTALL_DIR) $(1)/opt/lib
++	-$(CP) $(PKG_INSTALL_DIR)/lib/*.a $(1)/opt/lib/
++	-$(CP) $(PKG_INSTALL_DIR)/lib/*.so* $(1)/opt/lib/
  endef
  
-@@ -245,24 +245,24 @@
+ define Host/Install
+@@ -242,24 +242,24 @@
  
  define Package/boost/Default/install
  	$(INSTALL_DIR) \

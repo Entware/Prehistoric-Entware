@@ -1,20 +1,5 @@
---- ../../../downloads/openwrt_trunk-r44497/feeds/packages/net/ser2net/Makefile	2015-02-20 12:39:13.421134248 +0300
-+++ ../../../openwrt_trunk/feeds/packages/net/ser2net/Makefile	2015-02-20 17:06:36.932833933 +0300
-@@ -8,12 +8,12 @@
- include $(TOPDIR)/rules.mk
- 
- PKG_NAME:=ser2net
--PKG_VERSION:=2.10.0
-+PKG_VERSION:=2.9.1
- PKG_RELEASE:=1
- 
- PKG_SOURCE:=$(PKG_NAME)-$(PKG_VERSION).tar.gz
- PKG_SOURCE_URL:=@SF/ser2net
--PKG_MD5SUM:=cd937041144de83d41d811521e72158c
-+PKG_MD5SUM:=80011ac0e60bbdcb65f1d7a86251e3f3
- 
- PKG_LICENSE:=GPL-2.0+
- PKG_LICENSE_FILES:=COPYING
+--- ../../../downloads/openwrt_trunk-r46338/feeds/packages/net/ser2net/Makefile	2015-07-14 10:55:19.798308173 +0300
++++ ../../../openwrt_trunk/feeds/packages/net/ser2net/Makefile	2015-07-14 10:55:53.246308708 +0300
 @@ -37,14 +37,14 @@
  endef
  

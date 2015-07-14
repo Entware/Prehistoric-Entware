@@ -1,20 +1,5 @@
-diff -urx .svn ../../../downloads/openwrt_trunk-r43708/feeds/packages/net/ipsec-tools/files/racoon.conf ../../../openwrt_trunk/feeds/packages/net/ipsec-tools/files/racoon.conf
---- ../../../downloads/openwrt_trunk-r43708/feeds/packages/net/ipsec-tools/files/racoon.conf	2014-12-15 12:19:58.020388958 +0300
-+++ ../../../openwrt_trunk/feeds/packages/net/ipsec-tools/files/racoon.conf	2014-12-15 14:47:37.076224235 +0300
-@@ -14,8 +14,8 @@
- #
- 
- log notify;
--path pre_shared_key "/etc/racoon/psk.txt";
--path certificate "/etc/racoon/certs";
-+path pre_shared_key "/opt/etc/racoon/psk.txt";
-+path certificate "/opt/etc/racoon/certs";
- 
- #remote 172.31.1.1 {
- #        exchange_mode main,aggressive;
-diff -urx .svn ../../../downloads/openwrt_trunk-r43708/feeds/packages/net/ipsec-tools/Makefile ../../../openwrt_trunk/feeds/packages/net/ipsec-tools/Makefile
---- ../../../downloads/openwrt_trunk-r43708/feeds/packages/net/ipsec-tools/Makefile	2014-12-15 12:19:58.020388958 +0300
-+++ ../../../openwrt_trunk/feeds/packages/net/ipsec-tools/Makefile	2014-12-15 14:50:07.104225294 +0300
+--- ../../../downloads/openwrt_trunk-r46338/feeds/packages/net/ipsec-tools/Makefile	2015-07-14 10:55:19.782308173 +0300
++++ ../../../openwrt_trunk/feeds/packages/net/ipsec-tools/Makefile	2015-07-14 12:12:10.078384907 +0300
 @@ -7,7 +7,6 @@
  #
  
@@ -41,16 +26,19 @@ diff -urx .svn ../../../downloads/openwrt_trunk-r43708/feeds/packages/net/ipsec-
  	--without-libradius \
  	--without-libpam \
  	--enable-dpd \
-@@ -76,25 +75,25 @@
+@@ -76,27 +75,16 @@
  endef
  
  define Package/ipsec-tools/install
--	$(INSTALL_DIR) $(1)/etc
--	$(INSTALL_CONF) ./files/racoon.conf $(1)/etc/racoon.conf
 -	$(INSTALL_DIR) $(1)/etc/racoon
--	$(INSTALL_CONF) $(PKG_BUILD_DIR)/src/racoon/samples/psk.txt $(1)/etc/racoon/
+-	$(INSTALL_CONF) ./files/functions.sh $(1)/etc/racoon/
+-	$(INSTALL_BIN) ./files/p1client-up $(1)/etc/racoon/
+-	$(INSTALL_BIN) ./files/p1client-down $(1)/etc/racoon/
+-	$(INSTALL_BIN) ./files/vpnctl $(1)/etc/racoon/
 -	$(INSTALL_DIR) $(1)/etc/init.d
 -	$(INSTALL_BIN) ./files/racoon.init $(1)/etc/init.d/racoon
+-	$(INSTALL_DIR) $(1)/etc/config
+-	$(INSTALL_CONF) ./files/racoon $(1)/etc/config/
 -	$(INSTALL_DIR) $(1)/usr/lib
 -	$(CP) $(PKG_INSTALL_DIR)/usr/lib/libipsec.so.* $(1)/usr/lib/
 -	$(CP) $(PKG_INSTALL_DIR)/usr/lib/libracoon.so.* $(1)/usr/lib/
@@ -59,12 +47,12 @@ diff -urx .svn ../../../downloads/openwrt_trunk-r43708/feeds/packages/net/ipsec-
 -	$(INSTALL_BIN) $(PKG_INSTALL_DIR)/usr/sbin/racoon $(1)/usr/sbin/
 -	$(INSTALL_BIN) $(PKG_INSTALL_DIR)/usr/sbin/racoonctl $(1)/usr/sbin/
 -	$(INSTALL_BIN) $(PKG_INSTALL_DIR)/usr/sbin/setkey $(1)/usr/sbin/
-+	$(INSTALL_DIR) $(1)/opt/etc
-+	$(INSTALL_CONF) ./files/racoon.conf $(1)/opt/etc/racoon.conf
-+	$(INSTALL_DIR) $(1)/opt/etc/racoon
-+	$(INSTALL_CONF) $(PKG_BUILD_DIR)/src/racoon/samples/psk.txt $(1)/opt/etc/racoon/
+-endef
+-
+-define Package/ipsec-tools/conffiles
+-/etc/config/racoon
 +	$(INSTALL_DIR) $(1)/opt/etc/init.d
-+	$(INSTALL_BIN) ./files/S49racoon $(1)/opt/etc/init.d/
++	$(INSTALL_BIN) ./files/S49racoon $(1)/opt/etc/init.d
 +	$(INSTALL_DIR) $(1)/opt/lib
 +	$(CP) $(PKG_INSTALL_DIR)/opt/lib/libipsec.so.* $(1)/opt/lib/
 +	$(CP) $(PKG_INSTALL_DIR)/opt/lib/libracoon.so.* $(1)/opt/lib/
@@ -73,13 +61,6 @@ diff -urx .svn ../../../downloads/openwrt_trunk-r43708/feeds/packages/net/ipsec-
 +	$(INSTALL_BIN) $(PKG_INSTALL_DIR)/opt/sbin/racoon $(1)/opt/sbin/
 +	$(INSTALL_BIN) $(PKG_INSTALL_DIR)/opt/sbin/racoonctl $(1)/opt/sbin/
 +	$(INSTALL_BIN) $(PKG_INSTALL_DIR)/opt/sbin/setkey $(1)/opt/sbin/
- endef
- 
- define Package/ipsec-tools/conffiles
--/etc/racoon.conf
--/etc/racoon/psk.txt
-+/opt/etc/racoon.conf
-+/opt/etc/racoon/psk.txt
  endef
  
  $(eval $(call BuildPackage,ipsec-tools))

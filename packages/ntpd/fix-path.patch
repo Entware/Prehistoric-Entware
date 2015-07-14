@@ -1,6 +1,6 @@
-diff -urx .svn ../../../downloads/openwrt_trunk-r45513/feeds/packages/net/ntpd/files/ntp.conf ../../../openwrt_trunk/feeds/packages/net/ntpd/files/ntp.conf
---- ../../../downloads/openwrt_trunk-r45513/feeds/packages/net/ntpd/files/ntp.conf	2015-04-20 10:09:28.934135359 +0300
-+++ ../../../openwrt_trunk/feeds/packages/net/ntpd/files/ntp.conf	2015-04-20 10:09:48.778134998 +0300
+diff -urx .svn ../../../downloads/openwrt_trunk-r46338/feeds/packages/net/ntpd/files/ntp.conf ../../../openwrt_trunk/feeds/packages/net/ntpd/files/ntp.conf
+--- ../../../downloads/openwrt_trunk-r46338/feeds/packages/net/ntpd/files/ntp.conf	2015-07-14 10:55:19.810308173 +0300
++++ ../../../openwrt_trunk/feeds/packages/net/ntpd/files/ntp.conf	2015-07-14 10:55:50.114308678 +0300
 @@ -6,7 +6,7 @@
  
  restrict 127.0.0.1
@@ -10,9 +10,9 @@ diff -urx .svn ../../../downloads/openwrt_trunk-r45513/feeds/packages/net/ntpd/f
  
  server 0.openwrt.pool.ntp.org iburst
  server 1.openwrt.pool.ntp.org iburst
-diff -urx .svn ../../../downloads/openwrt_trunk-r45513/feeds/packages/net/ntpd/files/ntpd.hotplug ../../../openwrt_trunk/feeds/packages/net/ntpd/files/ntpd.hotplug
---- ../../../downloads/openwrt_trunk-r45513/feeds/packages/net/ntpd/files/ntpd.hotplug	2015-04-20 10:09:28.934135359 +0300
-+++ ../../../openwrt_trunk/feeds/packages/net/ntpd/files/ntpd.hotplug	2015-04-20 13:40:09.417905791 +0300
+diff -urx .svn ../../../downloads/openwrt_trunk-r46338/feeds/packages/net/ntpd/files/ntpd.hotplug ../../../openwrt_trunk/feeds/packages/net/ntpd/files/ntpd.hotplug
+--- ../../../downloads/openwrt_trunk-r46338/feeds/packages/net/ntpd/files/ntpd.hotplug	2015-07-14 10:55:19.810308173 +0300
++++ ../../../openwrt_trunk/feeds/packages/net/ntpd/files/ntpd.hotplug	2015-07-14 10:55:50.114308678 +0300
 @@ -1,10 +1,10 @@
  NAME=ntpd
 -CONFIG=/etc/ntp.conf
@@ -27,9 +27,9 @@ diff -urx .svn ../../../downloads/openwrt_trunk-r45513/feeds/packages/net/ntpd/f
 +		/opt/etc/init.d/S77ntpd start
          } &
  }
-diff -urx .svn ../../../downloads/openwrt_trunk-r45513/feeds/packages/net/ntpd/Makefile ../../../openwrt_trunk/feeds/packages/net/ntpd/Makefile
---- ../../../downloads/openwrt_trunk-r45513/feeds/packages/net/ntpd/Makefile	2015-04-20 10:09:28.934135359 +0300
-+++ ../../../openwrt_trunk/feeds/packages/net/ntpd/Makefile	2015-04-20 10:09:48.778134998 +0300
+diff -urx .svn ../../../downloads/openwrt_trunk-r46338/feeds/packages/net/ntpd/Makefile ../../../openwrt_trunk/feeds/packages/net/ntpd/Makefile
+--- ../../../downloads/openwrt_trunk-r46338/feeds/packages/net/ntpd/Makefile	2015-07-14 10:55:19.810308173 +0300
++++ ../../../openwrt_trunk/feeds/packages/net/ntpd/Makefile	2015-07-14 10:55:50.114308678 +0300
 @@ -87,7 +87,7 @@
  endef
  
@@ -39,7 +39,7 @@ diff -urx .svn ../../../downloads/openwrt_trunk-r45513/feeds/packages/net/ntpd/M
  endef
  
  CONFIGURE_VARS += \
-@@ -106,49 +106,38 @@
+@@ -109,49 +109,38 @@
  	--enable-linuxcaps \
  	--with-yielding-select=yes \
  	--with-crypto \

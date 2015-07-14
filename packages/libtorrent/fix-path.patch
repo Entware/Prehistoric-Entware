@@ -1,11 +1,11 @@
-diff -Nurx .svn ../../../downloads/openwrt_trunk-r44497/feeds/packages/libs/libtorrent/Makefile ../../../openwrt_trunk/feeds/packages/libs/libtorrent/Makefile
---- ../../../downloads/openwrt_trunk-r44497/feeds/packages/libs/libtorrent/Makefile	2015-02-20 12:39:13.365134249 +0300
-+++ ../../../openwrt_trunk/feeds/packages/libs/libtorrent/Makefile	2014-12-18 13:14:38.000000000 +0300
+diff -Nurx .svn ../../../downloads/openwrt_trunk-r46338/feeds/packages/libs/libtorrent/Makefile ../../../openwrt_trunk/feeds/packages/libs/libtorrent/Makefile
+--- ../../../downloads/openwrt_trunk-r46338/feeds/packages/libs/libtorrent/Makefile	2015-07-14 10:55:19.766308173 +0300
++++ ../../../openwrt_trunk/feeds/packages/libs/libtorrent/Makefile	2015-07-14 13:47:25.486481229 +0300
 @@ -8,13 +8,13 @@
  include $(TOPDIR)/rules.mk
  
  PKG_NAME:=libtorrent
--PKG_VERSION:=0.13.4-git-0
+-PKG_VERSION:=0.13.4-git-1
 -PKG_RELEASE=$(PKG_SOURCE_VERSION)
 +PKG_VERSION:=0.13.4-git
 +PKG_RELEASE=$(PKG_SOURCE_VERSION)-1
@@ -18,7 +18,7 @@ diff -Nurx .svn ../../../downloads/openwrt_trunk-r44497/feeds/packages/libs/libt
  PKG_SOURCE:=$(PKG_NAME)-$(PKG_VERSION)-$(PKG_SOURCE_VERSION).tar.gz
  
  PKG_FIXUP:=autoreconf
-@@ -43,26 +43,30 @@
+@@ -43,27 +43,30 @@
  TARGET_LDFLAGS += $(LIBGCC_S)
  
  CONFIGURE_ARGS+= \
@@ -28,9 +28,10 @@ diff -Nurx .svn ../../../downloads/openwrt_trunk-r44497/feeds/packages/libs/libt
  	--disable-debug \
  	--enable-openssl \
 -	--disable-instrumentation \
--	--with-zlib=$(STAGING_DIR)/usr
+-	--with-zlib=$(STAGING_DIR)/usr \
+-	$(call autoconf_bool,CONFIG_IPV6,ipv6)
 +	--with-posix-fallocate \
-+	--enable-ipv6 \
++	$(call autoconf_bool,CONFIG_IPV6,ipv6) \
 +	--disable-instrumentation
 +
 +define Build/Configure
@@ -61,9 +62,9 @@ diff -Nurx .svn ../../../downloads/openwrt_trunk-r44497/feeds/packages/libs/libt
  endef
  
  $(eval $(call BuildPackage,libtorrent))
-diff -Nurx .svn ../../../downloads/openwrt_trunk-r44497/feeds/packages/libs/libtorrent/patches/100-fix_cross_compile.patch ../../../openwrt_trunk/feeds/packages/libs/libtorrent/patches/100-fix_cross_compile.patch
---- ../../../downloads/openwrt_trunk-r44497/feeds/packages/libs/libtorrent/patches/100-fix_cross_compile.patch	2015-02-20 12:39:13.365134249 +0300
-+++ ../../../openwrt_trunk/feeds/packages/libs/libtorrent/patches/100-fix_cross_compile.patch	2015-02-21 16:23:06.802210797 +0300
+diff -Nurx .svn ../../../downloads/openwrt_trunk-r46338/feeds/packages/libs/libtorrent/patches/100-fix_cross_compile.patch ../../../openwrt_trunk/feeds/packages/libs/libtorrent/patches/100-fix_cross_compile.patch
+--- ../../../downloads/openwrt_trunk-r46338/feeds/packages/libs/libtorrent/patches/100-fix_cross_compile.patch	2015-07-14 10:55:19.766308173 +0300
++++ ../../../openwrt_trunk/feeds/packages/libs/libtorrent/patches/100-fix_cross_compile.patch	2015-07-14 10:55:49.638308670 +0300
 @@ -8,6 +8,7 @@
   
   AC_PROG_CXX
@@ -90,8 +91,8 @@ diff -Nurx .svn ../../../downloads/openwrt_trunk-r44497/feeds/packages/libs/libt
   AC_DEFUN([TORRENT_CHECK_ALIGNED], [
     AC_MSG_CHECKING(the byte alignment)
   
-diff -Nurx .svn ../../../downloads/openwrt_trunk-r44497/feeds/packages/libs/libtorrent/patches/120-fix-ipv6_socket_datagram.patch ../../../openwrt_trunk/feeds/packages/libs/libtorrent/patches/120-fix-ipv6_socket_datagram.patch
---- ../../../downloads/openwrt_trunk-r44497/feeds/packages/libs/libtorrent/patches/120-fix-ipv6_socket_datagram.patch	2015-02-20 12:39:13.365134249 +0300
+diff -Nurx .svn ../../../downloads/openwrt_trunk-r46338/feeds/packages/libs/libtorrent/patches/120-fix-ipv6_socket_datagram.patch ../../../openwrt_trunk/feeds/packages/libs/libtorrent/patches/120-fix-ipv6_socket_datagram.patch
+--- ../../../downloads/openwrt_trunk-r46338/feeds/packages/libs/libtorrent/patches/120-fix-ipv6_socket_datagram.patch	2015-07-14 10:55:19.766308173 +0300
 +++ ../../../openwrt_trunk/feeds/packages/libs/libtorrent/patches/120-fix-ipv6_socket_datagram.patch	1970-01-01 03:00:00.000000000 +0300
 @@ -1,26 +0,0 @@
 ---- a/src/net/socket_datagram.cc

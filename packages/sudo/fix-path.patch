@@ -1,15 +1,17 @@
---- ../../../downloads/openwrt_trunk-r44486/feeds/packages/admin/sudo/Makefile	2015-02-18 12:16:57.624306332 +0300
-+++ ../../../openwrt_trunk/feeds/packages/admin/sudo/Makefile	2015-02-20 12:10:18.333162321 +0300
-@@ -39,7 +39,7 @@
+--- ../../../downloads/openwrt_trunk-r46338/feeds/packages/admin/sudo/Makefile	2015-07-14 10:55:19.818308173 +0300
++++ ../../../openwrt_trunk/feeds/packages/admin/sudo/Makefile	2015-07-14 17:04:42.646677085 +0300
+@@ -39,8 +39,8 @@
  endef
  
  define Package/sudo/conffiles
 -/etc/sudoers
+-/etc/sudoers.d/
 +/opt/etc/sudoers
++/opt/etc/sudoers.d/
  endef
  
  CONFIGURE_ARGS+= \
-@@ -48,8 +48,8 @@
+@@ -49,8 +49,8 @@
  	--with-editor=/bin/vi \
  	--without-lecture \
  	--disable-zlib \
@@ -20,7 +22,7 @@
  
  CONFIGURE_VARS+= \
  	sudo_cv_uid_t_len=10 \
-@@ -70,28 +70,17 @@
+@@ -71,28 +71,17 @@
  $(eval $(call HostBuild))
  
  define Package/sudo/install

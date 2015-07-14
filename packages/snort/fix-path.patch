@@ -1,15 +1,6 @@
---- ../../../downloads/openwrt_trunk-r44497/feeds/packages/net/snort/Makefile	2015-02-20 12:39:13.429134248 +0300
-+++ ../../../openwrt_trunk/feeds/packages/net/snort/Makefile	2015-02-21 17:12:18.918157686 +0300
-@@ -26,7 +26,7 @@
-   SUBMENU:=Firewall
-   SECTION:=net
-   CATEGORY:=Network
--  DEPENDS:=+libdaq +libdnet +libopenssl +libpcap +libpcre +libpthread +libuuid +zlib
-+  DEPENDS:=+libdaq +libdnet +libopenssl +libpcap +libpcre +libpthread +libuuid +zlib +liblzma
-   TITLE:=Lightweight Network Intrusion Detection System
-   URL:=http://www.snort.org/
- endef
-@@ -73,22 +73,22 @@
+--- ../../../downloads/openwrt_trunk-r46338/feeds/packages/net/snort/Makefile	2015-07-14 10:55:19.806308173 +0300
++++ ../../../openwrt_trunk/feeds/packages/net/snort/Makefile	2015-07-14 16:52:20.642666686 +0300
+@@ -49,16 +49,16 @@
  endef
  
  CONFIGURE_ARGS += \
@@ -34,6 +25,10 @@
 +	--with-daq-libraries="$(STAGING_DIR)/opt/lib" \
  	--disable-static-daq
  
+ ifeq ($(CONFIG_SNORT_MYSQL),)
+@@ -77,91 +77,81 @@
+ endif
+ 
  CONFIGURE_VARS += \
 -	CPPFLAGS="$$$$CPPFLAGS -I$(STAGING_DIR)/usr/include/mysql" \
 -	LDFLAGS="$$$$LDFLAGS -L$(STAGING_DIR)/usr/lib/mysql" \
@@ -44,20 +39,6 @@
  
  MAKE_FLAGS += \
  	extra_incl=""
-@@ -102,37 +102,37 @@
-   CONFIGURE_VARS += \
- 	mysql_has_reconnect=yes
-   CONFIGURE_ARGS += \
--	--with-mysql="$(STAGING_DIR)/usr" \
-+	--with-mysql="$(STAGING_DIR)/opt" \
- 	--without-postgresql
- endif
- ifeq ($(BUILD_VARIANT),pgsql)
-   CONFIGURE_ARGS += \
- 	--without-mysql \
--	--with-postgresql="$(STAGING_DIR)/usr"
-+	--with-postgresql="$(STAGING_DIR)/opt"
- endif
  
  define Build/InstallDev
 -	$(INSTALL_DIR) $(STAGING_DIR)/usr/include/snort/dynamic_preproc
@@ -98,10 +79,6 @@
 +/opt/etc/config/snort
 +/opt/etc/snort/snort.conf
  endef
- 
- Package/snort-mysql/conffiles = $(Package/snort/conffiles)
-@@ -142,59 +142,49 @@
- Package/snort-pgsql/install = $(Package/snort/install)
  
  define Package/snort/install
 -	$(INSTALL_DIR) $(1)/usr/bin

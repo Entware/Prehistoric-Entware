@@ -1,5 +1,5 @@
---- ../../../downloads/openwrt_trunk-r45513/feeds/packages/net/znc/Makefile	2015-04-20 10:09:28.922135362 +0300
-+++ ../../../openwrt_trunk/feeds/packages/net/znc/Makefile	2015-04-20 10:09:53.058134978 +0300
+--- ../../../downloads/openwrt_trunk-r46338/feeds/packages/net/znc/Makefile	2015-07-14 10:55:19.794308173 +0300
++++ ../../../openwrt_trunk/feeds/packages/net/znc/Makefile	2015-07-14 10:55:55.214308763 +0300
 @@ -45,22 +45,29 @@
  endef
  
@@ -87,7 +87,7 @@
    endef
    ZNC_MODULES += znc-webskin-$(strip $(1))
  endef
-@@ -266,8 +273,8 @@
+@@ -272,8 +279,8 @@
  
  CONFIGURE_VARS += \
  	CXXFLAGS="$(TARGET_CFLAGS) -fno-builtin -fno-rtti" \

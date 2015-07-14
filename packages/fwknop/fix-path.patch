@@ -1,11 +1,11 @@
---- ../../../downloads/openwrt_trunk-r45513/feeds/packages/net/fwknop/Makefile	2015-04-23 10:21:55.557457454 +0300
-+++ ../../../openwrt_trunk/feeds/packages/net/fwknop/Makefile	2015-04-23 12:51:18.913294177 +0300
+--- ../../../downloads/openwrt_trunk-r46338/feeds/packages/net/fwknop/Makefile	2015-07-14 10:55:19.806308173 +0300
++++ ../../../openwrt_trunk/feeds/packages/net/fwknop/Makefile	2015-07-14 11:57:06.118371719 +0300
 @@ -42,7 +42,7 @@
    CATEGORY:=Network
    SUBMENU:=Firewall
    TITLE+= Daemon
--  DEPENDS:=+iptables +libfko +libpcap
-+  DEPENDS:=+libfko +libpcap
+-  DEPENDS:=+iptables +libfko +libpcap +FWKNOP_GPG:gnupg
++  DEPENDS:=+libfko +libpcap +FWKNOP_GPG:gnupg
  endef
  
  define Package/fwknopd/description
@@ -19,16 +19,14 @@
 +/opt/etc/fwknop/fwknopd.conf
  endef
  
- define Package/fwknop
-@@ -86,32 +86,37 @@
- 	--without-gpgme \
- 	--with-iptables=/usr/sbin/iptables
+ define Package/fwknopd/config
+@@ -92,39 +92,33 @@
+ endif
  
-+ifneq ($(CONFIG_SSP_SUPPORT),y)
-+CONFIGURE_ARGS+= \
-+        --disable-stack-protector
-+endif
-+
+ CONFIGURE_ARGS += \
+-	--with-iptables=/usr/sbin/iptables
++	--with-iptables=/opt/sbin/iptables
+ 
  define Build/InstallDev
 -	$(INSTALL_DIR) $(1)/usr/include
 -	$(CP) $(PKG_INSTALL_DIR)/usr/include/fko.h $(1)/usr/include/
@@ -41,20 +39,24 @@
  endef
  
  define Package/fwknopd/install
+-	$(INSTALL_DIR) $(1)/etc/config
+-	$(INSTALL_CONF) ./files/fwknopd $(1)/etc/config/fwknopd
 -	$(INSTALL_DIR) $(1)/etc/fwknop
 -	$(INSTALL_CONF) $(PKG_INSTALL_DIR)/etc/fwknop/{access,fwknopd}.conf \
 -		$(1)/etc/fwknop/
 -	$(INSTALL_DIR) $(1)/etc/init.d
--	$(INSTALL_BIN) $(PKG_BUILD_DIR)/extras/fwknop.init.openwrt \
--		$(1)/etc/init.d/fwknopd
+-	$(INSTALL_BIN) ./files/fwknopd.init $(1)/etc/init.d/fwknopd
 -	$(INSTALL_DIR) $(1)/usr/sbin
 -	$(INSTALL_BIN) $(PKG_INSTALL_DIR)/usr/sbin/fwknopd $(1)/usr/sbin/
+-endef
+-
+-define Package/fwknopd/conffiles
+-	/etc/config/fwknopd
 +	$(INSTALL_DIR) $(1)/opt/etc/fwknop
 +	$(INSTALL_CONF) $(PKG_INSTALL_DIR)/opt/etc/fwknop/{access,fwknopd}.conf \
 +		$(1)/opt/etc/fwknop/
 +	$(INSTALL_DIR) $(1)/opt/etc/init.d
-+	$(INSTALL_BIN) ./files/S05fwknopd \
-+		$(1)/opt/etc/init.d/
++	$(INSTALL_BIN) ./files/S05fwknopd $(1)/opt/etc/init.d
 +	$(INSTALL_DIR) $(1)/opt/sbin
 +	$(INSTALL_BIN) $(PKG_INSTALL_DIR)/opt/sbin/fwknopd $(1)/opt/sbin/
  endef

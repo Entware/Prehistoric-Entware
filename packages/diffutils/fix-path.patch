@@ -1,7 +1,7 @@
---- ../../../downloads/openwrt_trunk-r42803/feeds/packages/devel/diffutils/Makefile
-+++ ../../../openwrt_trunk/feeds/packages/devel/diffutils/Makefile
+--- ../../../downloads/openwrt_trunk-r46338/feeds/packages/devel/diffutils/Makefile	2015-07-14 10:55:19.810308173 +0300
++++ ../../../openwrt_trunk/feeds/packages/devel/diffutils/Makefile	2015-07-14 10:55:47.662308637 +0300
 @@ -39,24 +39,8 @@
- TARGET_CFLAGS += --std=c99
+ TARGET_CFLAGS += --std=gnu99
  
  define Package/diffutils/install
 -	$(INSTALL_DIR) $(1)/usr/bin

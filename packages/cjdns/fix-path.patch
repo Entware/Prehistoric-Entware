@@ -1,22 +1,6 @@
---- ../../../downloads/openwrt_trunk-r45513/feeds/routing/cjdns/Makefile	2015-04-21 10:37:38.172588033 +0300
-+++ ../../../openwrt_trunk/feeds/routing/cjdns/Makefile	2015-04-21 14:15:11.796351525 +0300
-@@ -1,12 +1,12 @@
- include $(TOPDIR)/rules.mk
- 
- PKG_NAME:=cjdns
--PKG_VERSION:=0.16
--PKG_RELEASE:=9
-+PKG_VERSION:=0.7-20150207
-+PKG_RELEASE:=1
- 
- PKG_SOURCE_URL:=https://github.com/cjdelisle/cjdns.git
- PKG_SOURCE_PROTO:=git
--PKG_SOURCE_VERSION:=2138a1f6a94fc009958cde7b002c077a1eee929a
-+PKG_SOURCE_VERSION:=0fc585e15e25b1bd39be24a534f47bb966485a4a
- PKG_LICENSE:=GPL-3.0
- PKG_SOURCE:=$(PKG_NAME)-$(PKG_SOURCE_VERSION).tar.bz2
- PKG_SOURCE_SUBDIR:=$(PKG_NAME)-$(PKG_SOURCE_VERSION)
-@@ -22,8 +22,7 @@
+--- ../../../downloads/openwrt_trunk-r46338/feeds/routing/cjdns/Makefile	2015-07-14 10:55:19.722308172 +0300
++++ ../../../openwrt_trunk/feeds/routing/cjdns/Makefile	2015-07-14 11:39:18.586352132 +0300
+@@ -38,8 +38,7 @@
  	TITLE:=Encrypted near-zero-conf mesh routing protocol
  	URL:=https://github.com/hyperboria/cjdns
  	MAINTAINER:=Lars Gierth <larsg@systemli.org>
@@ -26,27 +10,27 @@
  endef
  
  define Package/cjdns/description
-@@ -36,65 +35,30 @@
- define Build/Configure
- endef
+@@ -68,10 +67,6 @@
+ 
+ PKG_DO_VARS:=
  
 -ifneq ($(CONFIG_KERNEL_SECCOMP_FILTER),y)
--PKG_DO_VARS:=Seccomp_NO=1
+-PKG_DO_VARS+= Seccomp_NO=1
 -endif
 -
- define Build/Compile
- 	CROSS="true" \
+ ifneq ($(CONFIG_USE_UCLIBC),)
+ PKG_DO_VARS+= UCLIBC=1
+ endif
+@@ -81,7 +76,7 @@
  	CC="$(TARGET_CC)" \
+ 	AR="$(TARGET_AR)" \
+ 	RANLIB="$(TARGET_RANLIB)" \
 -	CFLAGS="$(TARGET_CFLAGS)" \
 +	CFLAGS="$(TARGET_CFLAGS) -I$(KERNEL_DIR)/include" \
  	LDFLAGS="$(TARGET_LDFLAGS)" \
  	SYSTEM="linux" \
  	TARGET_ARCH="$(CONFIG_ARCH)" \
- 	UCLIBC=1 \
- 	SSP_SUPPORT="$(CONFIG_SSP_SUPPORT)" \
--	$(PKG_DO_VARS) \
- 	$(PKG_BUILD_DIR)/do
- endef
+@@ -93,53 +88,23 @@
  
  define Package/cjdns/install
  	$(INSTALL_DIR) \
@@ -93,6 +77,15 @@
 -	/etc/init.d/cjdns enabled || /etc/init.d/cjdns enable
 -	exit 0
 -fi
++		$(1)/opt/bin
+ endef
+ 
+ define Package/cjdns-tests/install
+-	$(INSTALL_DIR) $(1)/usr/bin
++	$(INSTALL_DIR) $(1)/opt/bin
+ 	$(INSTALL_BIN) \
+ 		$(PKG_BUILD_DIR)/build_linux/test_testcjdroute_c \
+-		$(1)/usr/bin
 +		$(1)/opt/bin
  endef
  

@@ -1,5 +1,5 @@
---- ../../../downloads/openwrt_trunk-r43708/feeds/packages/utils/lsof/Makefile	2014-12-15 12:19:58.048388959 +0300
-+++ ../../../openwrt_trunk/feeds/packages/utils/lsof/Makefile	2014-12-15 12:20:23.268388501 +0300
+--- ../../../downloads/openwrt_trunk-r46338/feeds/packages/utils/lsof/Makefile	2015-07-14 10:55:19.838308174 +0300
++++ ../../../openwrt_trunk/feeds/packages/utils/lsof/Makefile	2015-07-14 13:57:18.682489541 +0300
 @@ -22,8 +22,6 @@
  
  include $(INCLUDE_DIR)/package.mk
@@ -9,12 +9,9 @@
  define Package/lsof
    SECTION:=utils
    CATEGORY:=Utilities
-@@ -34,14 +32,15 @@
- 
- define Build/Configure
+@@ -42,12 +40,13 @@
  	cd $(PKG_BUILD_DIR); \
--		LINUX_CLIB="-DGLIBCV=2" \
-+		LINUX_CLIB="-DGLIBCV=2 -DHASIPv6" \
+ 		LINUX_CLIB="-DGLIBCV=2 $(LINUX_CLIB_IPV6)" \
  		LSOF_CC="$(TARGET_CC)" \
 -		LSOF_INCLUDE="-I$(STAGING_DIR)/usr/include" \
 +		LSOF_INCLUDE="-I$(STAGING_DIR)/opt/include" \
@@ -27,7 +24,7 @@
  		./Configure -n linux
  endef
  
-@@ -50,8 +49,8 @@
+@@ -56,8 +55,8 @@
  endef
  
  define Package/lsof/install	

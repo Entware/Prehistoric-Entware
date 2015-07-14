@@ -1,6 +1,6 @@
---- ../../../downloads/openwrt_trunk-r45513/feeds/telephony/net/chan-sccp-b/Makefile	2015-04-21 10:37:38.356588032 +0300
-+++ ../../../openwrt_trunk/feeds/telephony/net/chan-sccp-b/Makefile	2015-04-22 10:26:04.523026481 +0300
-@@ -64,19 +64,19 @@
+--- ../../../downloads/openwrt_trunk-r46338/feeds/telephony/net/chan-sccp-b/Makefile	2015-07-14 10:55:19.886308175 +0300
++++ ../../../openwrt_trunk/feeds/telephony/net/chan-sccp-b/Makefile	2015-07-14 11:34:36.158345489 +0300
+@@ -64,23 +64,23 @@
  Package/asterisk13-chan-sccp-b/description = $(Package/description/Default)
  
  ifeq ($(BUILD_VARIANT),asterisk13)
@@ -20,26 +20,42 @@
  
  define Package/conffiles/Default
 -/etc/asterisk/sccp.conf
+-/etc/asterisk/extconfig.conf.sccp_sample
+-/etc/asterisk/res_config_sqlite3.conf.sccp_sample
+-/etc/asterisk/sccp_sqlite3.sql
+-/etc/asterisk/sccp.conf.realtime_sample
 +/opt/etc/asterisk/sccp.conf
++/opt/etc/asterisk/extconfig.conf.sccp_sample
++/opt/etc/asterisk/res_config_sqlite3.conf.sccp_sample
++/opt/etc/asterisk/sccp_sqlite3.sql
++/opt/etc/asterisk/sccp.conf.realtime_sample
  endef
  
  Package/asterisk18-chan-sccp-b/conffiles = $(Package/conffiles/Default)
-@@ -91,10 +91,10 @@
+@@ -95,14 +95,14 @@
  endef
  
  define Package/Install/Default
 -	$(INSTALL_DIR) $(1)/etc/asterisk
 -	$(CP) ./files/sccp.conf $(1)/etc/asterisk/sccp.conf
 -	$(INSTALL_DIR) $(1)/usr/lib/asterisk/modules
--	$(CP) $(PKG_INSTALL_DIR)/usr/lib/asterisk/modules/chan_sccp.so $(1)/usr/lib/asterisk/modules/
+-	$(INSTALL_BIN) $(PKG_INSTALL_DIR)/usr/lib/asterisk/modules/chan_sccp.so $(1)/usr/lib/asterisk/modules/
+-	$(INSTALL_DATA) ./files/extconfig.conf.sccp_sample $(1)/etc/asterisk/extconfig.conf.sccp_sample
+-	$(INSTALL_DATA) ./files/res_config_sqlite3.conf.sccp_sample $(1)/etc/asterisk/res_config_sqlite3.conf.sccp_sample
+-	$(INSTALL_DATA) ./files/sccp_sqlite3.sql $(1)/etc/asterisk/sccp_sqlite3.sql
+-	$(INSTALL_DATA) ./files/sccp.conf.realtime_sample $(1)/etc/asterisk/sccp.conf.realtime_sample
 +	$(INSTALL_DIR) $(1)/opt/etc/asterisk
 +	$(CP) ./files/sccp.conf $(1)/opt/etc/asterisk/sccp.conf
 +	$(INSTALL_DIR) $(1)/opt/lib/asterisk/modules
-+	$(CP) $(PKG_INSTALL_DIR)/opt/lib/asterisk/modules/chan_sccp.so $(1)/opt/lib/asterisk/modules/
++	$(INSTALL_BIN) $(PKG_INSTALL_DIR)/opt/lib/asterisk/modules/chan_sccp.so $(1)/opt/lib/asterisk/modules/
++	$(INSTALL_DATA) ./files/extconfig.conf.sccp_sample $(1)/opt/etc/asterisk/extconfig.conf.sccp_sample
++	$(INSTALL_DATA) ./files/res_config_sqlite3.conf.sccp_sample $(1)/opt/etc/asterisk/res_config_sqlite3.conf.sccp_sample
++	$(INSTALL_DATA) ./files/sccp_sqlite3.sql $(1)/opt/etc/asterisk/sccp_sqlite3.sql
++	$(INSTALL_DATA) ./files/sccp.conf.realtime_sample $(1)/opt/etc/asterisk/sccp.conf.realtime_sample
  endef
  
  Package/asterisk18-chan-sccp-b/install = $(Package/Install/Default)
-@@ -103,4 +103,4 @@
+@@ -111,4 +111,4 @@
  
  $(eval $(call BuildPackage,asterisk18-chan-sccp-b))
  $(eval $(call BuildPackage,asterisk11-chan-sccp-b))

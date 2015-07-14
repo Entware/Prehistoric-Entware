@@ -1,7 +1,7 @@
-diff -urx .svn ../../../downloads/openwrt_trunk-r45513/feeds/packages/net/strongswan/Makefile ../../../openwrt_trunk/feeds/packages/net/strongswan/Makefile
---- ../../../downloads/openwrt_trunk-r45513/feeds/packages/net/strongswan/Makefile	2015-04-20 10:09:28.934135359 +0300
-+++ ../../../openwrt_trunk/feeds/packages/net/strongswan/Makefile	2015-04-20 15:08:43.541808683 +0300
-@@ -109,10 +109,7 @@
+diff -urx .svn ../../../downloads/openwrt_trunk-r46338/feeds/packages/net/strongswan/Makefile ../../../openwrt_trunk/feeds/packages/net/strongswan/Makefile
+--- ../../../downloads/openwrt_trunk-r46338/feeds/packages/net/strongswan/Makefile	2015-07-14 10:55:19.810308173 +0300
++++ ../../../openwrt_trunk/feeds/packages/net/strongswan/Makefile	2015-07-14 10:55:54.802308756 +0300
+@@ -108,10 +108,7 @@
  
  define Package/strongswan
  $(call Package/strongswan/Default)
@@ -13,7 +13,7 @@ diff -urx .svn ../../../downloads/openwrt_trunk-r45513/feeds/packages/net/strong
  endef
  
  define Package/strongswan/config
-@@ -299,12 +296,12 @@
+@@ -297,12 +294,12 @@
    endef
  
    define Package/strongswan-mod-$(1)/install
@@ -32,7 +32,7 @@ diff -urx .svn ../../../downloads/openwrt_trunk-r45513/feeds/packages/net/strong
  	$(call Plugin/$(1)/install,$$(1))
    endef
  
-@@ -325,23 +322,23 @@
+@@ -323,23 +320,23 @@
  	  $(if $(CONFIG_PACKAGE_strongswan-mod-$(m)),--enable-$(m),--disable-$(m)) \
  	)
  
@@ -68,7 +68,7 @@ diff -urx .svn ../../../downloads/openwrt_trunk-r45513/feeds/packages/net/strong
  endef
  
  define Package/strongswan-default/install
-@@ -357,71 +354,71 @@
+@@ -355,71 +352,71 @@
  endef
  
  define Package/strongswan-charon/install
@@ -181,7 +181,7 @@ diff -urx .svn ../../../downloads/openwrt_trunk-r45513/feeds/packages/net/strong
  endef
  
  $(eval $(call BuildPackage,strongswan))
-@@ -432,7 +429,7 @@
+@@ -430,7 +427,7 @@
  $(eval $(call BuildPackage,strongswan-utils))
  $(eval $(call BuildPlugin,addrblock,RFC 3779 address block constraint support,))
  $(eval $(call BuildPlugin,aes,AES crypto,))
@@ -189,10 +189,10 @@ diff -urx .svn ../../../downloads/openwrt_trunk-r45513/feeds/packages/net/strong
 +$(eval $(call BuildPlugin,af-alg,AF_ALG crypto interface to Linux Crypto API,))
  $(eval $(call BuildPlugin,agent,SSH agent signing,))
  $(eval $(call BuildPlugin,attr,file based config,))
- $(eval $(call BuildPlugin,attr-sql,SQL based config,+strongswan-mod-sql +strongswan-charon))
-diff -urx .svn ../../../downloads/openwrt_trunk-r45513/feeds/packages/net/strongswan/patches/201-kmodloader.patch ../../../openwrt_trunk/feeds/packages/net/strongswan/patches/201-kmodloader.patch
---- ../../../downloads/openwrt_trunk-r45513/feeds/packages/net/strongswan/patches/201-kmodloader.patch	2015-04-20 10:09:28.934135359 +0300
-+++ ../../../openwrt_trunk/feeds/packages/net/strongswan/patches/201-kmodloader.patch	2015-04-20 10:09:51.318134953 +0300
+ $(eval $(call BuildPlugin,attr-sql,SQL based config,+strongswan-charon))
+diff -urx .svn ../../../downloads/openwrt_trunk-r46338/feeds/packages/net/strongswan/patches/201-kmodloader.patch ../../../openwrt_trunk/feeds/packages/net/strongswan/patches/201-kmodloader.patch
+--- ../../../downloads/openwrt_trunk-r46338/feeds/packages/net/strongswan/patches/201-kmodloader.patch	2015-07-14 10:55:19.810308173 +0300
++++ ../../../openwrt_trunk/feeds/packages/net/strongswan/patches/201-kmodloader.patch	2015-07-14 10:55:54.802308756 +0300
 @@ -5,7 +5,7 @@
   		if (stat(PROC_MODULES, &stb) == 0)
   		{
@@ -219,9 +219,9 @@ diff -urx .svn ../../../downloads/openwrt_trunk-r45513/feeds/packages/net/strong
   	}
   
   	DBG2(DBG_APP, "found netkey IPsec stack");
-diff -urx .svn ../../../downloads/openwrt_trunk-r45513/feeds/packages/net/strongswan/patches/300-include-ipsec-user-script.patch ../../../openwrt_trunk/feeds/packages/net/strongswan/patches/300-include-ipsec-user-script.patch
---- ../../../downloads/openwrt_trunk-r45513/feeds/packages/net/strongswan/patches/300-include-ipsec-user-script.patch	2015-04-20 10:09:28.934135359 +0300
-+++ ../../../openwrt_trunk/feeds/packages/net/strongswan/patches/300-include-ipsec-user-script.patch	2015-04-20 10:09:51.318134953 +0300
+diff -urx .svn ../../../downloads/openwrt_trunk-r46338/feeds/packages/net/strongswan/patches/300-include-ipsec-user-script.patch ../../../openwrt_trunk/feeds/packages/net/strongswan/patches/300-include-ipsec-user-script.patch
+--- ../../../downloads/openwrt_trunk-r46338/feeds/packages/net/strongswan/patches/300-include-ipsec-user-script.patch	2015-07-14 10:55:19.810308173 +0300
++++ ../../../openwrt_trunk/feeds/packages/net/strongswan/patches/300-include-ipsec-user-script.patch	2015-07-14 10:55:54.802308756 +0300
 @@ -9,9 +9,9 @@
  -# you need changes, make a copy of this under another name, and customize
  -# that, and use the (left/right)updown parameters in ipsec.conf to make

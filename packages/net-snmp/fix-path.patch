@@ -1,6 +1,6 @@
---- ../../../downloads/openwrt_trunk-r45513/feeds/packages/net/net-snmp/Makefile	2015-04-23 10:21:55.537457456 +0300
-+++ ../../../openwrt_trunk/feeds/packages/net/net-snmp/Makefile	2015-04-23 14:13:05.805204793 +0300
-@@ -156,20 +156,15 @@
+--- ../../../downloads/openwrt_trunk-r46338/feeds/packages/net/net-snmp/Makefile	2015-07-14 10:55:19.786308173 +0300
++++ ../../../openwrt_trunk/feeds/packages/net/net-snmp/Makefile	2015-07-14 10:55:50.066308677 +0300
+@@ -157,20 +157,15 @@
  	--enable-shared \
  	--enable-static \
  	--with-endianness=$(if $(CONFIG_BIG_ENDIAN),big,little) \
@@ -23,7 +23,7 @@
  	--without-openssl \
  	--without-libwrap \
  	--without-rpm \
-@@ -180,8 +175,6 @@
+@@ -181,8 +176,6 @@
  SNMP_TRANSPORTS_INCLUDED+= UDPIPv6
  endif
  
@@ -32,7 +32,7 @@
  ifdef CONFIG_PACKAGE_snmpd-static
    define Build/Compile/static
  	$(MAKE) -C $(PKG_BUILD_DIR)/agent \
-@@ -201,53 +194,45 @@
+@@ -202,53 +195,45 @@
  
  define Build/InstallDev
  	$(INSTALL_DIR) $(2)/bin

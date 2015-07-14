@@ -1,7 +1,7 @@
---- ../../../downloads/openwrt_trunk-r45513/package/libs/cyassl/Makefile	2015-04-20 10:09:29.122135360 +0300
-+++ ../../../openwrt_trunk/package/libs/cyassl/Makefile	2015-04-20 10:09:44.330135078 +0300
-@@ -46,16 +46,16 @@
- 	--disable-examples
+--- ../../../downloads/openwrt_trunk-r46338/package/libs/cyassl/Makefile	2015-07-14 10:55:19.918308175 +0300
++++ ../../../openwrt_trunk/package/libs/cyassl/Makefile	2015-07-14 11:44:31.470361935 +0300
+@@ -53,19 +53,19 @@
+ endif
  
  define Build/InstallDev
 -	$(INSTALL_DIR) $(1)/usr/include
@@ -10,16 +10,22 @@
 +	$(CP) $(PKG_INSTALL_DIR)/opt/include/* $(1)/opt/include/
  
 -	$(INSTALL_DIR) $(1)/usr/lib
--	$(CP) $(PKG_INSTALL_DIR)/usr/lib/libcyassl.{so*,la} $(1)/usr/lib/
+-	$(CP) $(PKG_INSTALL_DIR)/usr/lib/libwolfssl.{so*,la} $(1)/usr/lib/
+-	ln -s libwolfssl.so $(1)/usr/lib/libcyassl.so
+-	ln -s libwolfssl.la $(1)/usr/lib/libcyassl.la
 +	$(INSTALL_DIR) $(1)/opt/lib
-+	$(CP) $(PKG_INSTALL_DIR)/opt/lib/libcyassl.{so*,la} $(1)/opt/lib/
++	$(CP) $(PKG_INSTALL_DIR)/opt/lib/libwolfssl.{so*,la} $(1)/opt/lib/
++	ln -s libwolfssl.so $(1)/opt/lib/libcyassl.so
++	ln -s libwolfssl.la $(1)/opt/lib/libcyassl.la
  endef
  
  define Package/libcyassl/install
 -	$(INSTALL_DIR) $(1)/usr/lib
--	$(CP) $(PKG_INSTALL_DIR)/usr/lib/libcyassl.so* $(1)/usr/lib/
+-	$(CP) $(PKG_INSTALL_DIR)/usr/lib/libwolfssl.so* $(1)/usr/lib/
+-	ln -s libwolfssl.so $(1)/usr/lib/libcyassl.so
 +	$(INSTALL_DIR) $(1)/opt/lib
-+	$(CP) $(PKG_INSTALL_DIR)/opt/lib/libcyassl.so* $(1)/opt/lib/
++	$(CP) $(PKG_INSTALL_DIR)/opt/lib/libwolfssl.so* $(1)/opt/lib/
++	ln -s libwolfssl.so $(1)/opt/lib/libcyassl.so
  endef
  
  $(eval $(call BuildPackage,libcyassl))

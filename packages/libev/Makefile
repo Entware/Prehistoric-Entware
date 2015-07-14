@@ -9,8 +9,8 @@ all: .done
 
 .done:
 	patch -d $(TOP) -p3 -i $(CURDIR)/fix-path.patch
-	mkdir -p ../../../openwrt_trunk/feeds/management/libev/patches
-	cp -f 0*.patch ../../../openwrt_trunk/feeds/management/libev/patches/
+	mkdir -p ../../../openwrt_trunk/feeds/packages/libs/libev/patches
+	cp -f 0*.patch ../../../openwrt_trunk/feeds/packages/libs/libev/patches/
 	@touch $@
 
 clean:

@@ -1,5 +1,5 @@
---- ../../../downloads/openwrt_trunk-r43593/feeds/telephony/net/asterisk-11.x-chan-dongle/Makefile	2014-12-10 12:26:33.206951677 +0300
-+++ ../../../openwrt_trunk/feeds/telephony/net/asterisk-11.x-chan-dongle/Makefile	2014-12-10 12:48:51.570927297 +0300
+--- ../../../downloads/openwrt_trunk-r46338/feeds/telephony/net/asterisk-11.x-chan-dongle/Makefile	2015-07-14 10:55:19.886308175 +0300
++++ ../../../openwrt_trunk/feeds/telephony/net/asterisk-11.x-chan-dongle/Makefile	2015-07-14 17:43:10.690715767 +0300
 @@ -33,7 +33,7 @@
    SECTION:=net
    CATEGORY:=Network
@@ -13,10 +13,10 @@
  MAKE_ARGS:= \
  	CC="$(TARGET_CC)" \
  	LD="$(TARGET_CC)" \
--	CFLAGS="$(TARGET_CFLAGS) -DASTERISK_VERSION_NUM=110000 -DLOW_MEMORY -D_XOPEN_SOURCE=600 $(TARGET_CPPFLAGS) -I$(STAGING_DIR)/usr/lib/libiconv-full/include -I$(STAGING_DIR)/usr/include/asterisk-11/include -DHAVE_CONFIG_H -I. -fPIC" \
+-	CFLAGS="$(TARGET_CFLAGS) -DASTERISK_VERSION_NUM=110000 -DLOW_MEMORY -D_GNU_SOURCE -D_XOPEN_SOURCE=600 $(TARGET_CPPFLAGS) -I$(STAGING_DIR)/usr/lib/libiconv-full/include -I$(STAGING_DIR)/usr/include/asterisk-11/include -DHAVE_CONFIG_H -I. -fPIC" \
 -	LDFLAGS="$(TARGET_LDFLAGS) -L$(STAGING_DIR)/usr/lib/libiconv-full/lib -liconv" \
 -	DESTDIR="$(PKG_INSTALL_DIR)/usr/lib/asterisk/modules"
-+	CFLAGS="$(TARGET_CFLAGS) -DASTERISK_VERSION_NUM=110000 -DLOW_MEMORY -D_XOPEN_SOURCE=600 $(TARGET_CPPFLAGS) -I$(STAGING_DIR)/opt/lib/libiconv-full/include -I$(STAGING_DIR)/opt/include/asterisk-11/include -DHAVE_CONFIG_H -I. -fPIC" \
++	CFLAGS="$(TARGET_CFLAGS) -DASTERISK_VERSION_NUM=110000 -DLOW_MEMORY -D_GNU_SOURCE -D_XOPEN_SOURCE=600 $(TARGET_CPPFLAGS) -I$(STAGING_DIR)/opt/lib/libiconv-full/include -I$(STAGING_DIR)/opt/include/asterisk-11/include -DHAVE_CONFIG_H -I. -fPIC" \
 +	LDFLAGS="$(TARGET_LDFLAGS) -L$(STAGING_DIR)/opt/lib/libiconv-full/lib -liconv" \
 +	DESTDIR="$(PKG_INSTALL_DIR)/opt/lib/asterisk/modules"
  

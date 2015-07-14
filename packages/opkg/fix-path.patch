@@ -1,6 +1,6 @@
-diff -urx .svn ../../../downloads/openwrt_trunk-r45513/package/system/opkg/files/opkg-key ../../../openwrt_trunk/package/system/opkg/files/opkg-key
---- ../../../downloads/openwrt_trunk-r45513/package/system/opkg/files/opkg-key	2015-04-21 10:37:38.372588031 +0300
-+++ ../../../openwrt_trunk/package/system/opkg/files/opkg-key	2015-04-21 10:37:44.700587916 +0300
+diff -urx .svn ../../../downloads/openwrt_trunk-r46338/package/system/opkg/files/opkg-key ../../../openwrt_trunk/package/system/opkg/files/opkg-key
+--- ../../../downloads/openwrt_trunk-r46338/package/system/opkg/files/opkg-key	2015-07-14 10:55:19.910308175 +0300
++++ ../../../openwrt_trunk/package/system/opkg/files/opkg-key	2015-07-14 10:55:50.190308679 +0300
 @@ -19,7 +19,7 @@
  	(
  		zcat "$msgfile" 2>/dev/null ||
@@ -30,9 +30,9 @@ diff -urx .svn ../../../downloads/openwrt_trunk-r45513/package/system/opkg/files
  }
  
  case "$1" in
-diff -urx .svn ../../../downloads/openwrt_trunk-r45513/package/system/opkg/Makefile ../../../openwrt_trunk/package/system/opkg/Makefile
---- ../../../downloads/openwrt_trunk-r45513/package/system/opkg/Makefile	2015-04-21 10:37:38.372588031 +0300
-+++ ../../../openwrt_trunk/package/system/opkg/Makefile	2015-04-22 12:39:04.670879611 +0300
+diff -urx .svn ../../../downloads/openwrt_trunk-r46338/package/system/opkg/Makefile ../../../openwrt_trunk/package/system/opkg/Makefile
+--- ../../../downloads/openwrt_trunk-r46338/package/system/opkg/Makefile	2015-07-14 10:55:19.910308175 +0300
++++ ../../../openwrt_trunk/package/system/opkg/Makefile	2015-07-14 15:46:23.458596823 +0300
 @@ -5,7 +5,6 @@
  # See /LICENSE for more information.
  
@@ -70,16 +70,18 @@ diff -urx .svn ../../../downloads/openwrt_trunk-r45513/package/system/opkg/Makef
  endef
  
  
-@@ -80,8 +86,6 @@
+@@ -80,18 +86,17 @@
    This package allows the Package index to be verified with S/MIME.
  endef
  
 -Package/opkg-smime/conffiles = $(Package/opkg/conffiles)
 -
  TARGET_CFLAGS += $(if $(CONFIG_GCC_VERSION_4_3)$(CONFIG_GCC_VERSION_4_4),-Wno-array-bounds)
- TARGET_CFLAGS += -ffunction-sections -fdata-sections
+-TARGET_CFLAGS += -ffunction-sections -fdata-sections
++TARGET_CFLAGS += -ffunction-sections -fdata-sections -D_LARGEFILE64_SOURCE -D_FILE_OFFSET_BITS=64
  EXTRA_CFLAGS += $(TARGET_CPPFLAGS)
-@@ -90,8 +94,9 @@
+ 
+ CONFIGURE_ARGS += \
  	--disable-curl \
  	--disable-gpg \
  	--enable-sha256 \
@@ -91,7 +93,7 @@ diff -urx .svn ../../../downloads/openwrt_trunk-r45513/package/system/opkg/Makef
  
  ifeq ($(BUILD_VARIANT),smime)
  	CONFIGURE_ARGS += --enable-openssl --disable-usign
-@@ -105,47 +110,35 @@
+@@ -105,36 +110,38 @@
  		CC="$(TARGET_CC)" \
  		DESTDIR="$(PKG_INSTALL_DIR)" \
  		HOST_CPU="$(PKGARCH)" \
@@ -103,32 +105,21 @@ diff -urx .svn ../../../downloads/openwrt_trunk-r45513/package/system/opkg/Makef
 -	$(INSTALL_DIR) $(1)/bin
 -	$(INSTALL_DIR) $(1)/etc
 -	$(INSTALL_DATA) ./files/opkg$(2).conf $(1)/etc/opkg.conf
--  ifneq ($(CONFIG_SIGNED_PACKAGES),)
--	echo "option check_signature 1" >> $(1)/etc/opkg.conf
--  endif
--  ifeq ($(CONFIG_PER_FEED_REPO),)
--	echo "src/gz %n %U" >> $(1)/etc/opkg.conf
--  else
--	for d in base $(FEEDS_ENABLED); do \
--		echo "src/gz %n_$$$$d %U/$$$$d" >> $(1)/etc/opkg.conf; \
--	done
--    ifneq ($(CONFIG_PER_FEED_REPO_ADD_DISABLED),)
--	for d in $(FEEDS_DISABLED); do \
--		echo "$(if $(CONFIG_PER_FEED_REPO_ADD_COMMENTED),# )src/gz %n_$$$$d %U/$$$$d" >> $(1)/etc/opkg.conf; \
--	done
--    endif
--  endif
+-	$(call FeedSourcesAppend,$(1)/etc/opkg.conf)
 -	$(VERSION_SED) $(1)/etc/opkg.conf
--	$(INSTALL_BIN) $(PKG_INSTALL_DIR)/usr/bin/opkg-cl $(1)/bin/opkg
 +	$(INSTALL_DIR) $(1)/opt/lib/opkg
 +	$(INSTALL_DIR) $(1)/opt/{bin,etc,tmp}
 +	$(INSTALL_DIR) $(1)/opt/var/{lock,log,run}
-+	$(INSTALL_BIN) $(PKG_INSTALL_DIR)/opt/bin/opkg-cl $(1)/opt/bin/opkg
+ 	$(INSTALL_BIN) $(PKG_INSTALL_DIR)/usr/bin/opkg-cl $(1)/bin/opkg
  endef
  
 -define Package/opkg/install
 +define Package/opkg-opt/install
  	$(call Package/opkg/Default/install,$(1),)
+   ifneq ($(CONFIG_SIGNED_PACKAGES),)
+-	echo "option check_signature 1" >> $(1)/etc/opkg.conf
++	echo "option check_signature 1" >> $(1)/opt/etc/opkg.conf
+   endif
 -	mkdir $(1)/usr/sbin
 -	$(INSTALL_BIN) ./files/opkg-key $(1)/usr/sbin/
 +	mkdir $(1)/opt/sbin
@@ -156,16 +147,16 @@ diff -urx .svn ../../../downloads/openwrt_trunk-r45513/package/system/opkg/Makef
  endef
  
  
-@@ -165,5 +158,6 @@
+@@ -154,5 +161,6 @@
  endef
  
  $(eval $(call BuildPackage,opkg))
 +$(eval $(call BuildPackage,opkg-opt))
  $(eval $(call BuildPackage,opkg-smime))
  $(eval $(call HostBuild))
-diff -urx .svn ../../../downloads/openwrt_trunk-r45513/package/system/opkg/patches/200-usign_support.patch ../../../openwrt_trunk/package/system/opkg/patches/200-usign_support.patch
---- ../../../downloads/openwrt_trunk-r45513/package/system/opkg/patches/200-usign_support.patch	2015-04-21 10:37:38.372588031 +0300
-+++ ../../../openwrt_trunk/package/system/opkg/patches/200-usign_support.patch	2015-04-22 11:32:41.710953908 +0300
+diff -urx .svn ../../../downloads/openwrt_trunk-r46338/package/system/opkg/patches/200-usign_support.patch ../../../openwrt_trunk/package/system/opkg/patches/200-usign_support.patch
+--- ../../../downloads/openwrt_trunk-r46338/package/system/opkg/patches/200-usign_support.patch	2015-07-14 10:55:19.910308175 +0300
++++ ../../../openwrt_trunk/package/system/opkg/patches/200-usign_support.patch	2015-07-14 10:55:50.190308679 +0300
 @@ -76,7 +76,7 @@
  +		return -1;
  +

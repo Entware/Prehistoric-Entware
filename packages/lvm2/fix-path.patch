@@ -1,5 +1,22 @@
---- ../../../downloads/openwrt_trunk-r44486/feeds/packages/utils/lvm2/Makefile	2015-02-18 12:16:57.640306330 +0300
-+++ ../../../openwrt_trunk/feeds/packages/utils/lvm2/Makefile	2015-02-19 15:36:03.638516242 +0300
+diff -Nur ../../../downloads/openwrt_trunk-r46338/feeds/packages/utils/lvm2/Makefile ../../../openwrt_trunk/feeds/packages/utils/lvm2/Makefile
+--- ../../../downloads/openwrt_trunk-r46338/feeds/packages/utils/lvm2/Makefile	2015-07-14 10:55:19.846308174 +0300
++++ ../../../openwrt_trunk/feeds/packages/utils/lvm2/Makefile	2015-05-25 15:17:27.000000000 +0300
+@@ -9,13 +9,13 @@
+ include $(TOPDIR)/rules.mk
+ 
+ PKG_NAME:=LVM2
+-PKG_VERSION:=2.02.125
++PKG_VERSION:=2.02.118
+ PKG_RELEASE:=1
+ PKG_LICENSE:=GPL-2.0 LGPL-2.1
+ 
+ PKG_SOURCE:=$(PKG_NAME).$(PKG_VERSION).tgz
+ PKG_SOURCE_URL:=ftp://sources.redhat.com/pub/lvm2
+-PKG_MD5SUM:=2d24ba982c8a85e8c837210f087a6a51
++PKG_MD5SUM:=27f028974e8f067a9791d685b4e0fa90
+ PKG_MAINTAINER:=Daniel Golle <daniel@makrotopia.org>
+ PKG_BUILD_DIR:=$(BUILD_DIR)/$(PKG_NAME).$(PKG_VERSION)
+ 
 @@ -26,7 +26,7 @@
    CATEGORY:=Libraries
    TITLE:=The Linux Kernel Device Mapper userspace library
@@ -9,7 +26,7 @@
  endef
  
  define Package/libdevmapper/description
-@@ -59,32 +59,32 @@
+@@ -59,36 +59,32 @@
  endef
  
  define Build/InstallDev
@@ -36,10 +53,14 @@
  
  define Package/lvm2/install
 -	$(INSTALL_DIR) $(1)/sbin
--	$(INSTALL_BIN) $(PKG_BUILD_DIR)/tools/lvm $(1)/sbin
+-	$(INSTALL_BIN) $(PKG_INSTALL_DIR)/usr/sbin/lvm $(1)/sbin
+-	$(INSTALL_BIN) $(PKG_INSTALL_DIR)/usr/sbin/dmsetup $(1)/sbin
 -	$(INSTALL_DIR) $(1)/etc/lvm
--	$(SED) '/^[[:space:]]*\(#\|$$$$\)/d; /cache_dir/s@.*@    cache_dir = "/tmp/lvm/cache"@' $(PKG_BUILD_DIR)/conf/example.conf
--	$(INSTALL_CONF) $(PKG_BUILD_DIR)/conf/example.conf $(1)/etc/lvm/lvm.conf
+-	$(SED) '/^[[:space:]]*\(#\|$$$$\)/d; /cache_dir/s@.*@	cache_dir = "/tmp/lvm/cache"@' $(PKG_INSTALL_DIR)/etc/lvm/lvm.conf
+-	$(INSTALL_CONF) $(PKG_INSTALL_DIR)/etc/lvm/lvm.conf $(1)/etc/lvm/
+-	$(INSTALL_CONF) $(PKG_INSTALL_DIR)/etc/lvm/lvmlocal.conf $(1)/etc/lvm/
+-	$(INSTALL_DIR) $(1)/etc/lvm/profile
+-	$(INSTALL_CONF) $(PKG_INSTALL_DIR)/etc/lvm/profile/* $(1)/etc/lvm/profile/
 -	$(INSTALL_DIR) $(1)/etc/init.d
 -	$(INSTALL_BIN) ./files/lvm2.init $(1)/etc/init.d/lvm2
 -	$(FIND) $(PKG_INSTALL_DIR)/usr/sbin/ -type l -exec $(CP) -a {} $(1)/sbin/ \;
@@ -59,3 +80,110 @@
  endef
  
  $(eval $(call BuildPackage,libdevmapper))
+diff -Nur ../../../downloads/openwrt_trunk-r46338/feeds/packages/utils/lvm2/patches/002-const-stdio.patch ../../../openwrt_trunk/feeds/packages/utils/lvm2/patches/002-const-stdio.patch
+--- ../../../downloads/openwrt_trunk-r46338/feeds/packages/utils/lvm2/patches/002-const-stdio.patch	2015-07-14 10:55:19.846308174 +0300
++++ ../../../openwrt_trunk/feeds/packages/utils/lvm2/patches/002-const-stdio.patch	1970-01-01 03:00:00.000000000 +0300
+@@ -1,54 +0,0 @@
+---- a/lib/commands/toolcontext.c
+-+++ b/lib/commands/toolcontext.c
+-@@ -1690,8 +1690,10 @@ struct cmd_context *create_toolcontext(u
+- 				       unsigned threaded)
+- {
+- 	struct cmd_context *cmd;
+-+#if defined(__GLIBC__) && !defined(VALGRIND_POOL)
+- 	FILE *new_stream;
+- 	int flags;
+-+#endif
+- 
+- #ifdef M_MMAP_MAX
+- 	mallopt(M_MMAP_MAX, 0);
+-@@ -1727,7 +1729,7 @@ struct cmd_context *create_toolcontext(u
+- 	/* FIXME Make this configurable? */
+- 	reset_lvm_errno(1);
+- 
+--#ifndef VALGRIND_POOL
+-+#if defined(__GLIBC__) && !defined(VALGRIND_POOL)
+- 	/* Set in/out stream buffering before glibc */
+- 	if (set_buffering) {
+- 		/* Allocate 2 buffers */
+-@@ -2100,7 +2102,7 @@ void destroy_toolcontext(struct cmd_cont
+- 	if (cmd->libmem)
+- 		dm_pool_destroy(cmd->libmem);
+- 
+--#ifndef VALGRIND_POOL
+-+#if defined(__GLIBC__) && !defined(VALGRIND_POOL)
+- 	if (cmd->linebuffer) {
+- 		/* Reset stream buffering to defaults */
+- 		if (is_valid_fd(STDIN_FILENO) &&
+---- a/tools/lvmcmdline.c
+-+++ b/tools/lvmcmdline.c
+-@@ -1689,6 +1689,7 @@ int lvm_split(char *str, int *argc, char
+- /* Make sure we have always valid filedescriptors 0,1,2 */
+- static int _check_standard_fds(void)
+- {
+-+#ifdef __GLIBC__
+- 	int err = is_valid_fd(STDERR_FILENO);
+- 
+- 	if (!is_valid_fd(STDIN_FILENO) &&
+-@@ -1715,6 +1716,12 @@ static int _check_standard_fds(void)
+- 		       strerror(errno));
+- 		return 0;
+- 	}
+-+#else
+-+	if (!is_valid_fd(STDERR_FILENO) ||
+-+	    !is_valid_fd(STDOUT_FILENO) ||
+-+	    !is_valid_fd(STDIN_FILENO))
+-+		return 0;
+-+#endif
+- 
+- 	return 1;
+- }
+diff -Nur ../../../downloads/openwrt_trunk-r46338/feeds/packages/utils/lvm2/patches/003-no-mallinfo.patch ../../../openwrt_trunk/feeds/packages/utils/lvm2/patches/003-no-mallinfo.patch
+--- ../../../downloads/openwrt_trunk-r46338/feeds/packages/utils/lvm2/patches/003-no-mallinfo.patch	2015-07-14 10:55:19.846308174 +0300
++++ ../../../openwrt_trunk/feeds/packages/utils/lvm2/patches/003-no-mallinfo.patch	1970-01-01 03:00:00.000000000 +0300
+@@ -1,45 +0,0 @@
+---- a/lib/mm/memlock.c
+-+++ b/lib/mm/memlock.c
+-@@ -161,12 +161,15 @@ static void _allocate_memory(void)
+-          *  memory on free(), this is good enough for our purposes.
+-          */
+- 	while (missing > 0) {
+-+#ifdef __GLIBC__
+- 		struct mallinfo inf = mallinfo();
+- 		hblks = inf.hblks;
+-+#endif
+- 
+- 		if ((areas[area] = malloc(_size_malloc_tmp)))
+- 			_touch_memory(areas[area], _size_malloc_tmp);
+- 
+-+#ifdef __GLIBC__
+- 		inf = mallinfo();
+- 
+- 		if (hblks < inf.hblks) {
+-@@ -176,9 +179,12 @@ static void _allocate_memory(void)
+- 			free(areas[area]);
+- 			_size_malloc_tmp /= 2;
+- 		} else {
+-+#endif
+- 			++ area;
+- 			missing -= _size_malloc_tmp;
+-+#ifdef __GLIBC__
+- 		}
+-+#endif
+- 
+- 		if (area == max_areas && missing > 0) {
+- 			/* Too bad. Warn the user and proceed, as things are
+-@@ -467,8 +473,13 @@ static void _lock_mem(struct cmd_context
+- 	 * will not block memory locked thread
+- 	 * Note: assuming _memlock_count_daemon is updated before _memlock_count
+- 	 */
+-+#ifdef __GLIBC__
+- 	_use_mlockall = _memlock_count_daemon ? 1 :
+- 		find_config_tree_bool(cmd, activation_use_mlockall_CFG, NULL);
+-+#else
+-+	/* always use mlockall on musl */
+-+	_use_mlockall = 1;
+-+#endif
+- 
+- 	if (!_use_mlockall) {
+- 		if (!*_procselfmaps &&

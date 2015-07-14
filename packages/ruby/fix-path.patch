@@ -1,20 +1,7 @@
-diff -urx .svn ../../../downloads/openwrt_trunk-r45513/feeds/packages/lang/ruby/Makefile ../../../openwrt_trunk/feeds/packages/lang/ruby/Makefile
---- ../../../downloads/openwrt_trunk-r45513/feeds/packages/lang/ruby/Makefile	2015-04-21 10:37:38.184588033 +0300
-+++ ../../../openwrt_trunk/feeds/packages/lang/ruby/Makefile	2015-04-22 09:57:02.515054286 +0300
-@@ -575,7 +575,7 @@
- define Package/ruby-psych
- $(call Package/ruby/Default)
-   TITLE+=YAML parser and emitter
--  DEPENDS:=ruby +ruby-bigdecimal +ruby-datetime +ruby-misc +ruby-enc
-+  DEPENDS:=ruby +ruby-bigdecimal +ruby-datetime +ruby-misc +ruby-enc +libyaml
- endef
- 
- define Package/ruby-psych/description
-@@ -833,24 +833,25 @@
- 
- MAKE_FLAGS += \
- 	DESTDIR="$(PKG_INSTALL_DIR)" \
-+	EXTLDFLAGS="$(TARGET_LDFLAGS)" \
+diff -urx .svn ../../../downloads/openwrt_trunk-r46338/feeds/packages/lang/ruby/Makefile ../../../openwrt_trunk/feeds/packages/lang/ruby/Makefile
+--- ../../../downloads/openwrt_trunk-r46338/feeds/packages/lang/ruby/Makefile	2015-07-14 10:55:19.754308172 +0300
++++ ../../../openwrt_trunk/feeds/packages/lang/ruby/Makefile	2015-07-14 16:33:32.158647865 +0300
+@@ -838,21 +838,21 @@
  	SHELL="/bin/bash"
  
  define Package/ruby/install
@@ -48,7 +35,7 @@ diff -urx .svn ../../../downloads/openwrt_trunk-r45513/feeds/packages/lang/ruby/
  endef
  
  define Package/ruby-stdlib/install
-@@ -859,217 +860,217 @@
+@@ -861,216 +861,216 @@
  
  define Package/ruby-bigdecimal/install
  	( cd $(PKG_INSTALL_DIR); $(TAR) -cf - \
@@ -81,11 +68,9 @@ diff -urx .svn ../../../downloads/openwrt_trunk-r45513/feeds/packages/lang/ruby/
  	( cd $(PKG_INSTALL_DIR); $(TAR) -cf - \
 -		usr/lib/ruby/$(PKG_LIBVER)/time.rb \
 -		usr/lib/ruby/$(PKG_LIBVER)/date.rb \
--		usr/lib/ruby/$(PKG_LIBVER)/date/ \
 -		usr/lib/ruby/$(PKG_LIBVER)/*/date_core.so \
 +		opt/lib/ruby/$(PKG_LIBVER)/time.rb \
 +		opt/lib/ruby/$(PKG_LIBVER)/date.rb \
-+		opt/lib/ruby/$(PKG_LIBVER)/date/ \
 +		opt/lib/ruby/$(PKG_LIBVER)/*/date_core.so \
  	) | ( cd $(1); $(TAR) -xf - )
  endef
@@ -380,7 +365,7 @@ diff -urx .svn ../../../downloads/openwrt_trunk-r45513/feeds/packages/lang/ruby/
  	) | ( cd $(1); $(TAR) -xf - )
  endef
  
-@@ -1077,242 +1078,242 @@
+@@ -1078,241 +1078,241 @@
  
  define Package/ruby-mkmf/install
  	( cd $(PKG_INSTALL_DIR); $(TAR) -cf - \
@@ -645,13 +630,11 @@ diff -urx .svn ../../../downloads/openwrt_trunk-r45513/feeds/packages/lang/ruby/
  
  define Package/ruby-socket/install
  	( cd $(PKG_INSTALL_DIR); $(TAR) -cf - \
--		usr/lib/ruby/$(PKG_LIBVER)/gserver.rb \
 -		usr/lib/ruby/$(PKG_LIBVER)/ipaddr.rb \
 -		usr/lib/ruby/$(PKG_LIBVER)/resolv-replace.rb \
 -		usr/lib/ruby/$(PKG_LIBVER)/resolv.rb \
 -		usr/lib/ruby/$(PKG_LIBVER)/socket.rb \
 -		usr/lib/ruby/$(PKG_LIBVER)/*/socket.so \
-+		opt/lib/ruby/$(PKG_LIBVER)/gserver.rb \
 +		opt/lib/ruby/$(PKG_LIBVER)/ipaddr.rb \
 +		opt/lib/ruby/$(PKG_LIBVER)/resolv-replace.rb \
 +		opt/lib/ruby/$(PKG_LIBVER)/resolv.rb \
@@ -728,21 +711,12 @@ diff -urx .svn ../../../downloads/openwrt_trunk-r45513/feeds/packages/lang/ruby/
  	) | ( cd $(1); $(TAR) -xf - )
  endef
  
-diff -urx .svn ../../../downloads/openwrt_trunk-r45513/feeds/packages/lang/ruby/ruby_find_pkgsdeps ../../../openwrt_trunk/feeds/packages/lang/ruby/ruby_find_pkgsdeps
---- ../../../downloads/openwrt_trunk-r45513/feeds/packages/lang/ruby/ruby_find_pkgsdeps	2015-04-21 10:37:38.184588033 +0300
-+++ ../../../openwrt_trunk/feeds/packages/lang/ruby/ruby_find_pkgsdeps	2015-04-21 10:37:45.224587905 +0300
+diff -urx .svn ../../../downloads/openwrt_trunk-r46338/feeds/packages/lang/ruby/ruby_find_pkgsdeps ../../../openwrt_trunk/feeds/packages/lang/ruby/ruby_find_pkgsdeps
+--- ../../../downloads/openwrt_trunk-r46338/feeds/packages/lang/ruby/ruby_find_pkgsdeps	2015-07-14 10:55:19.754308172 +0300
++++ ../../../openwrt_trunk/feeds/packages/lang/ruby/ruby_find_pkgsdeps	2015-07-14 10:55:53.226308888 +0300
 @@ -1,4 +1,4 @@
 -#!/usr/bin/ruby -Eutf-8
 +#!/opt/bin/ruby -Eutf-8
  # encoding: utf-8
  #
  # Find dependencies between ruby packages
-diff -urx .svn ../../../downloads/openwrt_trunk-r45513/feeds/packages/lang/ruby/ruby_missingfiles ../../../openwrt_trunk/feeds/packages/lang/ruby/ruby_missingfiles
---- ../../../downloads/openwrt_trunk-r45513/feeds/packages/lang/ruby/ruby_missingfiles	2015-04-21 10:37:38.184588033 +0300
-+++ ../../../openwrt_trunk/feeds/packages/lang/ruby/ruby_missingfiles	2015-04-21 10:37:45.224587905 +0300
-@@ -1,4 +1,4 @@
--#!/bin/bash
-+#!/opt/bin/bash
- #
- 
- function list_staging_files {

@@ -1,6 +1,6 @@
-diff -urx .svn ../../../downloads/openwrt_trunk-r45513/feeds/packages/lang/python/files/python-package-codecs.mk ../../../openwrt_trunk/feeds/packages/lang/python/files/python-package-codecs.mk
---- ../../../downloads/openwrt_trunk-r45513/feeds/packages/lang/python/files/python-package-codecs.mk	2015-04-20 10:09:28.894135362 +0300
-+++ ../../../openwrt_trunk/feeds/packages/lang/python/files/python-package-codecs.mk	2015-04-21 09:03:43.912690669 +0300
+diff -urx .svn ../../../downloads/openwrt_trunk-r46338/feeds/packages/lang/python/files/python-package-codecs.mk ../../../openwrt_trunk/feeds/packages/lang/python/files/python-package-codecs.mk
+--- ../../../downloads/openwrt_trunk-r46338/feeds/packages/lang/python/files/python-package-codecs.mk	2015-07-14 10:55:19.758308172 +0300
++++ ../../../openwrt_trunk/feeds/packages/lang/python/files/python-package-codecs.mk	2015-07-14 10:55:50.426308683 +0300
 @@ -12,12 +12,12 @@
  endef
  
@@ -22,9 +22,9 @@ diff -urx .svn ../../../downloads/openwrt_trunk-r45513/feeds/packages/lang/pytho
 +	/opt/lib/python$(PYTHON_VERSION)/lib-dynload/_codecs_tw.so \
 +	/opt/lib/python$(PYTHON_VERSION)/lib-dynload/unicodedata.so \
  ))
-diff -urx .svn ../../../downloads/openwrt_trunk-r45513/feeds/packages/lang/python/files/python-package-compiler.mk ../../../openwrt_trunk/feeds/packages/lang/python/files/python-package-compiler.mk
---- ../../../downloads/openwrt_trunk-r45513/feeds/packages/lang/python/files/python-package-compiler.mk	2015-04-20 10:09:28.894135362 +0300
-+++ ../../../openwrt_trunk/feeds/packages/lang/python/files/python-package-compiler.mk	2015-04-21 09:04:01.088688424 +0300
+diff -urx .svn ../../../downloads/openwrt_trunk-r46338/feeds/packages/lang/python/files/python-package-compiler.mk ../../../openwrt_trunk/feeds/packages/lang/python/files/python-package-compiler.mk
+--- ../../../downloads/openwrt_trunk-r46338/feeds/packages/lang/python/files/python-package-compiler.mk	2015-07-14 10:55:19.758308172 +0300
++++ ../../../openwrt_trunk/feeds/packages/lang/python/files/python-package-compiler.mk	2015-07-14 10:55:50.426308683 +0300
 @@ -12,5 +12,5 @@
  endef
  
@@ -32,9 +32,9 @@ diff -urx .svn ../../../downloads/openwrt_trunk-r45513/feeds/packages/lang/pytho
 -	/usr/lib/python$(PYTHON_VERSION)/compiler \
 +	/opt/lib/python$(PYTHON_VERSION)/compiler \
  ))
-diff -urx .svn ../../../downloads/openwrt_trunk-r45513/feeds/packages/lang/python/files/python-package-ctypes.mk ../../../openwrt_trunk/feeds/packages/lang/python/files/python-package-ctypes.mk
---- ../../../downloads/openwrt_trunk-r45513/feeds/packages/lang/python/files/python-package-ctypes.mk	2015-04-20 10:09:28.894135362 +0300
-+++ ../../../openwrt_trunk/feeds/packages/lang/python/files/python-package-ctypes.mk	2015-04-21 09:04:08.156690211 +0300
+diff -urx .svn ../../../downloads/openwrt_trunk-r46338/feeds/packages/lang/python/files/python-package-ctypes.mk ../../../openwrt_trunk/feeds/packages/lang/python/files/python-package-ctypes.mk
+--- ../../../downloads/openwrt_trunk-r46338/feeds/packages/lang/python/files/python-package-ctypes.mk	2015-07-14 10:55:19.758308172 +0300
++++ ../../../openwrt_trunk/feeds/packages/lang/python/files/python-package-ctypes.mk	2015-07-14 10:55:50.430308683 +0300
 @@ -12,7 +12,7 @@
  endef
  
@@ -46,9 +46,9 @@ diff -urx .svn ../../../downloads/openwrt_trunk-r45513/feeds/packages/lang/pytho
 +	/opt/lib/python$(PYTHON_VERSION)/lib-dynload/_ctypes.so \
 +	/opt/lib/python$(PYTHON_VERSION)/lib-dynload/_ctypes_test.so \
  ))
-diff -urx .svn ../../../downloads/openwrt_trunk-r45513/feeds/packages/lang/python/files/python-package-db.mk ../../../openwrt_trunk/feeds/packages/lang/python/files/python-package-db.mk
---- ../../../downloads/openwrt_trunk-r45513/feeds/packages/lang/python/files/python-package-db.mk	2015-04-20 10:09:28.894135362 +0300
-+++ ../../../openwrt_trunk/feeds/packages/lang/python/files/python-package-db.mk	2015-04-21 09:04:13.840694093 +0300
+diff -urx .svn ../../../downloads/openwrt_trunk-r46338/feeds/packages/lang/python/files/python-package-db.mk ../../../openwrt_trunk/feeds/packages/lang/python/files/python-package-db.mk
+--- ../../../downloads/openwrt_trunk-r46338/feeds/packages/lang/python/files/python-package-db.mk	2015-07-14 10:55:19.758308172 +0300
++++ ../../../openwrt_trunk/feeds/packages/lang/python/files/python-package-db.mk	2015-07-14 10:55:50.430308683 +0300
 @@ -12,7 +12,7 @@
  endef
  
@@ -60,9 +60,9 @@ diff -urx .svn ../../../downloads/openwrt_trunk-r45513/feeds/packages/lang/pytho
 +	/opt/lib/python$(PYTHON_VERSION)/lib-dynload/_bsddb.so \
 +	/opt/lib/python$(PYTHON_VERSION)/lib-dynload/dbm.so \
  ))
-diff -urx .svn ../../../downloads/openwrt_trunk-r45513/feeds/packages/lang/python/files/python-package-decimal.mk ../../../openwrt_trunk/feeds/packages/lang/python/files/python-package-decimal.mk
---- ../../../downloads/openwrt_trunk-r45513/feeds/packages/lang/python/files/python-package-decimal.mk	2015-04-20 10:09:28.894135362 +0300
-+++ ../../../openwrt_trunk/feeds/packages/lang/python/files/python-package-decimal.mk	2015-04-21 09:04:22.520681899 +0300
+diff -urx .svn ../../../downloads/openwrt_trunk-r46338/feeds/packages/lang/python/files/python-package-decimal.mk ../../../openwrt_trunk/feeds/packages/lang/python/files/python-package-decimal.mk
+--- ../../../downloads/openwrt_trunk-r46338/feeds/packages/lang/python/files/python-package-decimal.mk	2015-07-14 10:55:19.758308172 +0300
++++ ../../../openwrt_trunk/feeds/packages/lang/python/files/python-package-decimal.mk	2015-07-14 10:55:50.430308683 +0300
 @@ -12,5 +12,5 @@
  endef
  
@@ -70,9 +70,9 @@ diff -urx .svn ../../../downloads/openwrt_trunk-r45513/feeds/packages/lang/pytho
 -	/usr/lib/python$(PYTHON_VERSION)/decimal.py \
 +	/opt/lib/python$(PYTHON_VERSION)/decimal.py \
  ))
-diff -urx .svn ../../../downloads/openwrt_trunk-r45513/feeds/packages/lang/python/files/python-package-distutils.mk ../../../openwrt_trunk/feeds/packages/lang/python/files/python-package-distutils.mk
---- ../../../downloads/openwrt_trunk-r45513/feeds/packages/lang/python/files/python-package-distutils.mk	2015-04-20 10:09:28.894135362 +0300
-+++ ../../../openwrt_trunk/feeds/packages/lang/python/files/python-package-distutils.mk	2015-04-21 09:04:30.004689803 +0300
+diff -urx .svn ../../../downloads/openwrt_trunk-r46338/feeds/packages/lang/python/files/python-package-distutils.mk ../../../openwrt_trunk/feeds/packages/lang/python/files/python-package-distutils.mk
+--- ../../../downloads/openwrt_trunk-r46338/feeds/packages/lang/python/files/python-package-distutils.mk	2015-07-14 10:55:19.758308172 +0300
++++ ../../../openwrt_trunk/feeds/packages/lang/python/files/python-package-distutils.mk	2015-07-14 10:55:50.430308683 +0300
 @@ -12,5 +12,5 @@
  endef
  
@@ -80,9 +80,9 @@ diff -urx .svn ../../../downloads/openwrt_trunk-r45513/feeds/packages/lang/pytho
 -	/usr/lib/python$(PYTHON_VERSION)/distutils \
 +	/opt/lib/python$(PYTHON_VERSION)/distutils \
  ))
-diff -urx .svn ../../../downloads/openwrt_trunk-r45513/feeds/packages/lang/python/files/python-package-email.mk ../../../openwrt_trunk/feeds/packages/lang/python/files/python-package-email.mk
---- ../../../downloads/openwrt_trunk-r45513/feeds/packages/lang/python/files/python-package-email.mk	2015-04-20 10:09:28.894135362 +0300
-+++ ../../../openwrt_trunk/feeds/packages/lang/python/files/python-package-email.mk	2015-04-21 09:04:34.508692840 +0300
+diff -urx .svn ../../../downloads/openwrt_trunk-r46338/feeds/packages/lang/python/files/python-package-email.mk ../../../openwrt_trunk/feeds/packages/lang/python/files/python-package-email.mk
+--- ../../../downloads/openwrt_trunk-r46338/feeds/packages/lang/python/files/python-package-email.mk	2015-07-14 10:55:19.758308172 +0300
++++ ../../../openwrt_trunk/feeds/packages/lang/python/files/python-package-email.mk	2015-07-14 10:55:50.430308683 +0300
 @@ -12,5 +12,5 @@
  endef
  
@@ -90,9 +90,9 @@ diff -urx .svn ../../../downloads/openwrt_trunk-r45513/feeds/packages/lang/pytho
 -	/usr/lib/python$(PYTHON_VERSION)/email \
 +	/opt/lib/python$(PYTHON_VERSION)/email \
  ))
-diff -urx .svn ../../../downloads/openwrt_trunk-r45513/feeds/packages/lang/python/files/python-package-gdbm.mk ../../../openwrt_trunk/feeds/packages/lang/python/files/python-package-gdbm.mk
---- ../../../downloads/openwrt_trunk-r45513/feeds/packages/lang/python/files/python-package-gdbm.mk	2015-04-20 10:09:28.894135362 +0300
-+++ ../../../openwrt_trunk/feeds/packages/lang/python/files/python-package-gdbm.mk	2015-04-21 09:04:40.256687849 +0300
+diff -urx .svn ../../../downloads/openwrt_trunk-r46338/feeds/packages/lang/python/files/python-package-gdbm.mk ../../../openwrt_trunk/feeds/packages/lang/python/files/python-package-gdbm.mk
+--- ../../../downloads/openwrt_trunk-r46338/feeds/packages/lang/python/files/python-package-gdbm.mk	2015-07-14 10:55:19.758308172 +0300
++++ ../../../openwrt_trunk/feeds/packages/lang/python/files/python-package-gdbm.mk	2015-07-14 10:55:50.430308683 +0300
 @@ -12,5 +12,5 @@
  endef
  
@@ -100,9 +100,9 @@ diff -urx .svn ../../../downloads/openwrt_trunk-r45513/feeds/packages/lang/pytho
 -	/usr/lib/python$(PYTHON_VERSION)/lib-dynload/gdbm.so \
 +	/opt/lib/python$(PYTHON_VERSION)/lib-dynload/gdbm.so \
  ))
-diff -urx .svn ../../../downloads/openwrt_trunk-r45513/feeds/packages/lang/python/files/python-package-logging.mk ../../../openwrt_trunk/feeds/packages/lang/python/files/python-package-logging.mk
---- ../../../downloads/openwrt_trunk-r45513/feeds/packages/lang/python/files/python-package-logging.mk	2015-04-20 10:09:28.894135362 +0300
-+++ ../../../openwrt_trunk/feeds/packages/lang/python/files/python-package-logging.mk	2015-04-21 09:04:48.924689468 +0300
+diff -urx .svn ../../../downloads/openwrt_trunk-r46338/feeds/packages/lang/python/files/python-package-logging.mk ../../../openwrt_trunk/feeds/packages/lang/python/files/python-package-logging.mk
+--- ../../../downloads/openwrt_trunk-r46338/feeds/packages/lang/python/files/python-package-logging.mk	2015-07-14 10:55:19.758308172 +0300
++++ ../../../openwrt_trunk/feeds/packages/lang/python/files/python-package-logging.mk	2015-07-14 10:55:50.430308683 +0300
 @@ -12,5 +12,5 @@
  endef
  
@@ -110,12 +110,12 @@ diff -urx .svn ../../../downloads/openwrt_trunk-r45513/feeds/packages/lang/pytho
 -	/usr/lib/python$(PYTHON_VERSION)/logging \
 +	/opt/lib/python$(PYTHON_VERSION)/logging \
  ))
-diff -urx .svn ../../../downloads/openwrt_trunk-r45513/feeds/packages/lang/python/files/python-package.mk ../../../openwrt_trunk/feeds/packages/lang/python/files/python-package.mk
---- ../../../downloads/openwrt_trunk-r45513/feeds/packages/lang/python/files/python-package.mk	2015-04-20 10:09:28.894135362 +0300
-+++ ../../../openwrt_trunk/feeds/packages/lang/python/files/python-package.mk	2015-04-21 09:08:08.032685692 +0300
+diff -urx .svn ../../../downloads/openwrt_trunk-r46338/feeds/packages/lang/python/files/python-package.mk ../../../openwrt_trunk/feeds/packages/lang/python/files/python-package.mk
+--- ../../../downloads/openwrt_trunk-r46338/feeds/packages/lang/python/files/python-package.mk	2015-07-14 10:55:19.758308172 +0300
++++ ../../../openwrt_trunk/feeds/packages/lang/python/files/python-package.mk	2015-07-14 10:55:50.430308683 +0300
 @@ -8,12 +8,12 @@
  PYTHON_VERSION:=2.7
- PYTHON_VERSION_MICRO:=9
+ PYTHON_VERSION_MICRO:=10
  
 -PYTHON_DIR:=$(STAGING_DIR)/usr
 +PYTHON_DIR:=$(STAGING_DIR)/opt
@@ -148,9 +148,9 @@ diff -urx .svn ../../../downloads/openwrt_trunk-r45513/feeds/packages/lang/pytho
  		$(3) \
  		, \
  		./setup.py $(2) \
-diff -urx .svn ../../../downloads/openwrt_trunk-r45513/feeds/packages/lang/python/files/python-package-multiprocessing.mk ../../../openwrt_trunk/feeds/packages/lang/python/files/python-package-multiprocessing.mk
---- ../../../downloads/openwrt_trunk-r45513/feeds/packages/lang/python/files/python-package-multiprocessing.mk	2015-04-20 10:09:28.894135362 +0300
-+++ ../../../openwrt_trunk/feeds/packages/lang/python/files/python-package-multiprocessing.mk	2015-04-21 09:04:54.508687618 +0300
+diff -urx .svn ../../../downloads/openwrt_trunk-r46338/feeds/packages/lang/python/files/python-package-multiprocessing.mk ../../../openwrt_trunk/feeds/packages/lang/python/files/python-package-multiprocessing.mk
+--- ../../../downloads/openwrt_trunk-r46338/feeds/packages/lang/python/files/python-package-multiprocessing.mk	2015-07-14 10:55:19.758308172 +0300
++++ ../../../openwrt_trunk/feeds/packages/lang/python/files/python-package-multiprocessing.mk	2015-07-14 10:55:50.430308683 +0300
 @@ -12,6 +12,6 @@
  endef
  
@@ -160,9 +160,9 @@ diff -urx .svn ../../../downloads/openwrt_trunk-r45513/feeds/packages/lang/pytho
 +	/opt/lib/python$(PYTHON_VERSION)/multiprocessing \
 +	/opt/lib/python$(PYTHON_VERSION)/lib-dynload/_multiprocessing.so \
  ))
-diff -urx .svn ../../../downloads/openwrt_trunk-r45513/feeds/packages/lang/python/files/python-package-ncurses.mk ../../../openwrt_trunk/feeds/packages/lang/python/files/python-package-ncurses.mk
---- ../../../downloads/openwrt_trunk-r45513/feeds/packages/lang/python/files/python-package-ncurses.mk	2015-04-20 10:09:28.894135362 +0300
-+++ ../../../openwrt_trunk/feeds/packages/lang/python/files/python-package-ncurses.mk	2015-04-21 09:05:01.356687974 +0300
+diff -urx .svn ../../../downloads/openwrt_trunk-r46338/feeds/packages/lang/python/files/python-package-ncurses.mk ../../../openwrt_trunk/feeds/packages/lang/python/files/python-package-ncurses.mk
+--- ../../../downloads/openwrt_trunk-r46338/feeds/packages/lang/python/files/python-package-ncurses.mk	2015-07-14 10:55:19.758308172 +0300
++++ ../../../openwrt_trunk/feeds/packages/lang/python/files/python-package-ncurses.mk	2015-07-14 10:55:50.430308683 +0300
 @@ -12,7 +12,7 @@
  endef
  
@@ -174,9 +174,9 @@ diff -urx .svn ../../../downloads/openwrt_trunk-r45513/feeds/packages/lang/pytho
 +	/opt/lib/python$(PYTHON_VERSION)/lib-dynload/_curses.so \
 +	/opt/lib/python$(PYTHON_VERSION)/lib-dynload/_curses_panel.so \
  ))
-diff -urx .svn ../../../downloads/openwrt_trunk-r45513/feeds/packages/lang/python/files/python-package-openssl.mk ../../../openwrt_trunk/feeds/packages/lang/python/files/python-package-openssl.mk
---- ../../../downloads/openwrt_trunk-r45513/feeds/packages/lang/python/files/python-package-openssl.mk	2015-04-20 10:09:28.894135362 +0300
-+++ ../../../openwrt_trunk/feeds/packages/lang/python/files/python-package-openssl.mk	2015-04-21 09:05:07.488695134 +0300
+diff -urx .svn ../../../downloads/openwrt_trunk-r46338/feeds/packages/lang/python/files/python-package-openssl.mk ../../../openwrt_trunk/feeds/packages/lang/python/files/python-package-openssl.mk
+--- ../../../downloads/openwrt_trunk-r46338/feeds/packages/lang/python/files/python-package-openssl.mk	2015-07-14 10:55:19.758308172 +0300
++++ ../../../openwrt_trunk/feeds/packages/lang/python/files/python-package-openssl.mk	2015-07-14 10:55:50.430308683 +0300
 @@ -12,6 +12,6 @@
  endef
  
@@ -186,9 +186,9 @@ diff -urx .svn ../../../downloads/openwrt_trunk-r45513/feeds/packages/lang/pytho
 +	/opt/lib/python$(PYTHON_VERSION)/lib-dynload/_hashlib.so \
 +	/opt/lib/python$(PYTHON_VERSION)/lib-dynload/_ssl.so \
  ))
-diff -urx .svn ../../../downloads/openwrt_trunk-r45513/feeds/packages/lang/python/files/python-package-pydoc.mk ../../../openwrt_trunk/feeds/packages/lang/python/files/python-package-pydoc.mk
---- ../../../downloads/openwrt_trunk-r45513/feeds/packages/lang/python/files/python-package-pydoc.mk	2015-04-20 10:09:28.894135362 +0300
-+++ ../../../openwrt_trunk/feeds/packages/lang/python/files/python-package-pydoc.mk	2015-04-21 09:05:14.080686071 +0300
+diff -urx .svn ../../../downloads/openwrt_trunk-r46338/feeds/packages/lang/python/files/python-package-pydoc.mk ../../../openwrt_trunk/feeds/packages/lang/python/files/python-package-pydoc.mk
+--- ../../../downloads/openwrt_trunk-r46338/feeds/packages/lang/python/files/python-package-pydoc.mk	2015-07-14 10:55:19.758308172 +0300
++++ ../../../openwrt_trunk/feeds/packages/lang/python/files/python-package-pydoc.mk	2015-07-14 10:55:50.430308683 +0300
 @@ -12,7 +12,7 @@
  endef
  
@@ -200,9 +200,9 @@ diff -urx .svn ../../../downloads/openwrt_trunk-r45513/feeds/packages/lang/pytho
 +	/opt/lib/python$(PYTHON_VERSION)/pydoc.py \
 +	/opt/lib/python$(PYTHON_VERSION)/pydoc_data \
  ))
-diff -urx .svn ../../../downloads/openwrt_trunk-r45513/feeds/packages/lang/python/files/python-package-sqlite3.mk ../../../openwrt_trunk/feeds/packages/lang/python/files/python-package-sqlite3.mk
---- ../../../downloads/openwrt_trunk-r45513/feeds/packages/lang/python/files/python-package-sqlite3.mk	2015-04-20 10:09:28.894135362 +0300
-+++ ../../../openwrt_trunk/feeds/packages/lang/python/files/python-package-sqlite3.mk	2015-04-21 09:05:19.444687915 +0300
+diff -urx .svn ../../../downloads/openwrt_trunk-r46338/feeds/packages/lang/python/files/python-package-sqlite3.mk ../../../openwrt_trunk/feeds/packages/lang/python/files/python-package-sqlite3.mk
+--- ../../../downloads/openwrt_trunk-r46338/feeds/packages/lang/python/files/python-package-sqlite3.mk	2015-07-14 10:55:19.758308172 +0300
++++ ../../../openwrt_trunk/feeds/packages/lang/python/files/python-package-sqlite3.mk	2015-07-14 10:55:50.430308683 +0300
 @@ -12,6 +12,6 @@
  endef
  
@@ -212,9 +212,9 @@ diff -urx .svn ../../../downloads/openwrt_trunk-r45513/feeds/packages/lang/pytho
 +	/opt/lib/python$(PYTHON_VERSION)/lib-dynload/_sqlite3.so \
 +	/opt/lib/python$(PYTHON_VERSION)/sqlite3 \
  ))
-diff -urx .svn ../../../downloads/openwrt_trunk-r45513/feeds/packages/lang/python/files/python-package-unittest.mk ../../../openwrt_trunk/feeds/packages/lang/python/files/python-package-unittest.mk
---- ../../../downloads/openwrt_trunk-r45513/feeds/packages/lang/python/files/python-package-unittest.mk	2015-04-20 10:09:28.894135362 +0300
-+++ ../../../openwrt_trunk/feeds/packages/lang/python/files/python-package-unittest.mk	2015-04-21 09:05:24.504687502 +0300
+diff -urx .svn ../../../downloads/openwrt_trunk-r46338/feeds/packages/lang/python/files/python-package-unittest.mk ../../../openwrt_trunk/feeds/packages/lang/python/files/python-package-unittest.mk
+--- ../../../downloads/openwrt_trunk-r46338/feeds/packages/lang/python/files/python-package-unittest.mk	2015-07-14 10:55:19.758308172 +0300
++++ ../../../openwrt_trunk/feeds/packages/lang/python/files/python-package-unittest.mk	2015-07-14 10:55:50.430308683 +0300
 @@ -12,5 +12,5 @@
  endef
  
@@ -222,9 +222,9 @@ diff -urx .svn ../../../downloads/openwrt_trunk-r45513/feeds/packages/lang/pytho
 -	/usr/lib/python$(PYTHON_VERSION)/unittest \
 +	/opt/lib/python$(PYTHON_VERSION)/unittest \
  ))
-diff -urx .svn ../../../downloads/openwrt_trunk-r45513/feeds/packages/lang/python/files/python-package-xml.mk ../../../openwrt_trunk/feeds/packages/lang/python/files/python-package-xml.mk
---- ../../../downloads/openwrt_trunk-r45513/feeds/packages/lang/python/files/python-package-xml.mk	2015-04-20 10:09:28.894135362 +0300
-+++ ../../../openwrt_trunk/feeds/packages/lang/python/files/python-package-xml.mk	2015-04-21 09:05:32.236689626 +0300
+diff -urx .svn ../../../downloads/openwrt_trunk-r46338/feeds/packages/lang/python/files/python-package-xml.mk ../../../openwrt_trunk/feeds/packages/lang/python/files/python-package-xml.mk
+--- ../../../downloads/openwrt_trunk-r46338/feeds/packages/lang/python/files/python-package-xml.mk	2015-07-14 10:55:19.758308172 +0300
++++ ../../../openwrt_trunk/feeds/packages/lang/python/files/python-package-xml.mk	2015-07-14 10:55:50.430308683 +0300
 @@ -12,9 +12,9 @@
  endef
  
@@ -240,9 +240,9 @@ diff -urx .svn ../../../downloads/openwrt_trunk-r45513/feeds/packages/lang/pytho
 +	/opt/lib/python$(PYTHON_VERSION)/lib-dynload/_elementtree.so \
 +	/opt/lib/python$(PYTHON_VERSION)/lib-dynload/pyexpat.so \
  ))
-diff -urx .svn ../../../downloads/openwrt_trunk-r45513/feeds/packages/lang/python/Makefile ../../../openwrt_trunk/feeds/packages/lang/python/Makefile
---- ../../../downloads/openwrt_trunk-r45513/feeds/packages/lang/python/Makefile	2015-04-20 10:09:28.894135362 +0300
-+++ ../../../openwrt_trunk/feeds/packages/lang/python/Makefile	2015-04-21 09:14:19.204678563 +0300
+diff -urx .svn ../../../downloads/openwrt_trunk-r46338/feeds/packages/lang/python/Makefile ../../../openwrt_trunk/feeds/packages/lang/python/Makefile
+--- ../../../downloads/openwrt_trunk-r46338/feeds/packages/lang/python/Makefile	2015-07-14 10:55:19.758308172 +0300
++++ ../../../openwrt_trunk/feeds/packages/lang/python/Makefile	2015-07-14 10:55:50.430308683 +0300
 @@ -118,11 +118,11 @@
  endif
  

@@ -1,15 +1,20 @@
---- ../../../downloads/mipsel-hardfloat/openwrt_trunk-r40423/feeds/packages/lang/php5/pecl.mk
-+++ ../../../openwrt_trunk/feeds/packages/lang/php5/pecl.mk
-@@ -15,7 +15,7 @@
- endef
+--- ../../../downloads/openwrt_trunk-r46338/feeds/packages/lang/php5/pecl.mk	2015-07-14 10:55:19.754308172 +0300
++++ ../../../openwrt_trunk/feeds/packages/lang/php5/pecl.mk	2015-07-14 16:12:29.694623963 +0300
+@@ -15,11 +15,11 @@
  
- define Build/Configure
+ define Build/Prepare
+ 	$(Build/Prepare/Default)
 -	( cd $(PKG_BUILD_DIR); $(STAGING_DIR_HOST)/usr/bin/phpize )
 +	( cd $(PKG_BUILD_DIR); $(STAGING_DIR_HOST)/opt/bin/phpize )
- 	$(Build/Configure/Default)
  endef
  
-@@ -34,13 +34,13 @@
+ CONFIGURE_ARGS+= \
+-	--with-php-config=$(STAGING_DIR_HOST)/usr/bin/php-config
++	--with-php-config=$(STAGING_DIR_HOST)/opt/bin/php-config
+ 
+ define PECLPackage
+ 
+@@ -33,13 +33,13 @@
    endef
  
    define Package/php5-pecl-$(1)/install

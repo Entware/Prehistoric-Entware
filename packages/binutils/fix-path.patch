@@ -1,6 +1,6 @@
---- ../../../downloads/openwrt_trunk-r44486/package/devel/binutils/Makefile	2015-02-18 12:16:58.060306324 +0300
-+++ ../../../openwrt_trunk/package/devel/binutils/Makefile	2015-02-18 16:41:01.256016807 +0300
-@@ -89,31 +89,30 @@
+--- ../../../downloads/openwrt_trunk-r46338/package/devel/binutils/Makefile	2015-07-14 10:55:19.982308176 +0300
++++ ../../../openwrt_trunk/package/devel/binutils/Makefile	2015-07-14 17:27:19.838699639 +0300
+@@ -90,31 +90,30 @@
  endef
  
  define Package/libbfd/install

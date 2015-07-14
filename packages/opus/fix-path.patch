@@ -1,7 +1,7 @@
---- ../../../downloads/openwrt_trunk-r43718/feeds/packages/libs/opus/Makefile	2014-12-15 16:50:13.292093580 +0300
-+++ ../../../openwrt_trunk/feeds/packages/libs/opus/Makefile	2014-12-16 11:22:34.466885843 +0300
-@@ -37,17 +37,17 @@
- endef
+--- ../../../downloads/openwrt_trunk-r46338/feeds/packages/libs/opus/Makefile	2015-07-14 10:55:19.770308173 +0300
++++ ../../../openwrt_trunk/feeds/packages/libs/opus/Makefile	2015-07-14 10:55:50.210308679 +0300
+@@ -41,17 +41,17 @@
+ 	--disable-extra-programs
  
  define Build/InstallDev
 -	$(INSTALL_DIR) $(1)/usr/include
