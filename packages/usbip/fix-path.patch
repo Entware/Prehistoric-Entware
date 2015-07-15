@@ -1,0 +1,183 @@
+diff -Nur ../../../downloads/openwrt_trunk-r46338/feeds/packages/net/usbip/files/S74usbipd ../../../openwrt_trunk/feeds/packages/net/usbip/files/S74usbipd
+--- ../../../downloads/openwrt_trunk-r46338/feeds/packages/net/usbip/files/S74usbipd	1970-01-01 03:00:00.000000000 +0300
++++ ../../../openwrt_trunk/feeds/packages/net/usbip/files/S74usbipd	2015-07-15 10:58:46.000000000 +0300
+@@ -0,0 +1,10 @@
++#!/bin/sh
++
++ENABLED=yes
++PROCS=usbipd
++ARGS="-D"
++PREARGS=""
++DESC=$PROCS
++PATH=/opt/sbin:/opt/bin:/opt/usr/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin
++
++. /opt/etc/init.d/rc.func
+diff -Nur ../../../downloads/openwrt_trunk-r46338/feeds/packages/net/usbip/Makefile ../../../openwrt_trunk/feeds/packages/net/usbip/Makefile
+--- ../../../downloads/openwrt_trunk-r46338/feeds/packages/net/usbip/Makefile	2015-07-15 10:59:15.607750133 +0300
++++ ../../../openwrt_trunk/feeds/packages/net/usbip/Makefile	2015-07-15 10:58:46.000000000 +0300
+@@ -1,36 +1,23 @@
+ #
+-# Copyright (C) 2010-2015 OpenWrt.org
++# Copyright (C) 2010-2011 OpenWrt.org
+ #
+ # This is free software, licensed under the GNU General Public License v2.
+ # See /LICENSE for more information.
+ #
++# Can't be upgraded, we've got too old kernel
++#
+ 
+ include $(TOPDIR)/rules.mk
+-include $(INCLUDE_DIR)/kernel.mk
+ 
+ PKG_NAME:=usbip
+-PKG_RELEASE:=5
+-PKG_LICENSE:=GPL-2.0
+-
+-# Since kernel 2.6.39.1 userspace tools are inside the kernel tree
+-# Package Automatic match version in kernel
+-# MD5SUM is not useful kernel package already check it
+-PKG_VERSION:=$(shell  sed -n -e '/^AC_INIT/s/.*\[\([[:digit:]\.]*\)\].*/\1/gp' $(LINUX_DIR)/tools/usb/usbip/configure.ac)
+-PKG_SOURCE:=
+-PKG_SOURCE_URL:=
+-PKG_MD5SUM:=unknown
+-
+-PKG_MAINTAINER:=Nuno Goncalves <nunojpg@gmail.com>
++PKG_VERSION:=0.1.7
++PKG_RELEASE:=2
+ 
+-PATCH_DIR:=./patches-$(PKG_VERSION)
+-
+-define prepare_source_directory
+-	rm -rf $(PKG_BUILD_DIR)
+-	$(CP) $(LINUX_DIR)/tools/usb/usbip $(PKG_BUILD_DIR)
+-endef
+-Hooks/Prepare/Pre += prepare_source_directory
++PKG_SOURCE:=$(PKG_NAME)-$(PKG_VERSION).tar.gz
++PKG_SOURCE_URL:=@SF/usbip
++PKG_MD5SUM:=d1094b6d4449787864f8be001639232c
+ 
+-PKG_BUILD_DEPENDS:=udev
++PKG_BUILD_DEPENDS:=glib2 sysfsutils
+ PKG_FIXUP:=autoreconf
+ PKG_INSTALL:=1
+ 
+@@ -40,69 +27,71 @@
+ define Package/usbip/Common
+   TITLE:=USB-over-IP
+   URL:=http://usbip.sourceforge.net/
+-  DEPENDS:=@USB_SUPPORT
++  MAINTAINER:=Nuno Goncalves <nunojpg@gmail.com>
+ endef
+ 
+ define Package/usbip/Default
+-  $(call Package/usbip/Common)
++$(call Package/usbip/Common)
+   SECTION:=net
+   CATEGORY:=Network
+ endef
+ 
+ define Package/usbip
+-  $(call Package/usbip/Default)
++$(call Package/usbip/Default)
+   TITLE+= (common)
+-  DEPENDS+= +libwrap +kmod-usbip +udev
++  DEPENDS+= +libsysfs +libwrap
+ endef
+ 
+ define Package/usbip-client
+-  $(call Package/usbip/Default)
++$(call Package/usbip/Default)
+   TITLE+= (client)
+-  DEPENDS+= usbip +kmod-usbip-client
++  DEPENDS+= usbip +glib2
+ endef
+ 
+ define Package/usbip-server
+-  $(call Package/usbip/Default)
++$(call Package/usbip/Default)
+   TITLE+= (server)
+-  DEPENDS+= usbip +kmod-usbip-server
++  DEPENDS+= usbip +glib2
+ endef
+ 
+-CONFIGURE_PATH:=.
+-MAKE_PATH:=.
+-LIBTOOL_PATHS:=.
+-MAKE_FLAGS+=CFLAGS="-Wno-implicit-function-declaration"
++CONFIGURE_PATH:=./src
++MAKE_PATH:=./src
++LIBTOOL_PATHS:=./src
+ 
+-define Build/Configure
+-	(cd $(PKG_BUILD_DIR); ./autogen.sh );
+-	$(call Build/Configure/Default)
+-endef
+-
+-CFLAGS+="$(TARGET_CFLAGS) -I$(STAGING_DIR)/usr/include"
+-
+-define Download/usb.ids
+-  URL:=http://www.linux-usb.org/
+-  FILE:=usb.ids
+-  MD5SUM:=
+-endef
++CFLAGS+="$(TARGET_CFLAGS) -I$(STAGING_DIR)/opt/include"
+ 
+ define Package/usbip/install
+-	$(INSTALL_DIR) $(1)/usr/lib
+-	$(CP) $(PKG_INSTALL_DIR)/usr/lib/libusbip.so.* $(1)/usr/lib/
+-	$(INSTALL_DIR) $(1)/usr/share/hwdata
+-	$(CP) $(DL_DIR)/usb.ids $(1)/usr/share/hwdata/
++	$(INSTALL_DIR) $(1)/opt/lib
++	$(CP) \
++		$(PKG_INSTALL_DIR)/opt/lib/libusbip.so.* \
++		$(1)/opt/lib/
++	$(INSTALL_DIR) $(1)/opt/share/usbip
++	$(CP) \
++		$(PKG_INSTALL_DIR)/opt/share/usbip/usb.ids \
++		$(1)/opt/share/usbip/
+ endef
+ 
+ define Package/usbip-client/install
+-	$(INSTALL_DIR) $(1)/usr/sbin
+-	$(CP) $(PKG_INSTALL_DIR)/usr/sbin/usbip $(1)/usr/sbin/
++	$(INSTALL_DIR) $(1)/opt/bin
++	$(CP) \
++		$(PKG_INSTALL_DIR)/opt/bin/usbip \
++		$(1)/opt/bin/
+ endef
+ 
+ define Package/usbip-server/install
+-	$(INSTALL_DIR) $(1)/usr/sbin
+-	$(CP) $(PKG_INSTALL_DIR)/usr/sbin/usbipd $(1)/usr/sbin/
++	$(INSTALL_DIR) $(1)/opt/bin
++	$(CP) \
++		$(PKG_INSTALL_DIR)/opt/bin/usbipd \
++		$(1)/opt/bin/
++	$(CP) \
++		$(PKG_INSTALL_DIR)/opt/bin/bind_driver \
++		$(1)/opt/bin/usbip_bind_driver
++	$(INSTALL_DIR) $(1)/opt/etc/init.d
++	$(CP) \
++		./files/S74usbipd \
++		$(1)/opt/etc/init.d
+ endef
+ 
+-$(eval $(call Download,usb.ids))
+ $(eval $(call BuildPackage,usbip))
+ $(eval $(call BuildPackage,usbip-client))
+ $(eval $(call BuildPackage,usbip-server))
+diff -Nur ../../../downloads/openwrt_trunk-r46338/feeds/packages/net/usbip/patches-2.0/100-musl-compat.patch ../../../openwrt_trunk/feeds/packages/net/usbip/patches-2.0/100-musl-compat.patch
+--- ../../../downloads/openwrt_trunk-r46338/feeds/packages/net/usbip/patches-2.0/100-musl-compat.patch	2015-07-15 10:59:15.607750133 +0300
++++ ../../../openwrt_trunk/feeds/packages/net/usbip/patches-2.0/100-musl-compat.patch	1970-01-01 03:00:00.000000000 +0300
+@@ -1,11 +0,0 @@
+---- a/src/usbipd.c
+-+++ b/src/usbipd.c
+-@@ -453,7 +453,7 @@ static void set_signal(void)
+- 	sigaction(SIGTERM, &act, NULL);
+- 	sigaction(SIGINT, &act, NULL);
+- 	act.sa_handler = SIG_IGN;
+--	sigaction(SIGCLD, &act, NULL);
+-+	sigaction(SIGCHLD, &act, NULL);
+- }
+- 
+- static const char *pid_file;
