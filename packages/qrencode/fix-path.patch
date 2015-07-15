@@ -1,0 +1,31 @@
+--- ../../../downloads/openwrt_trunk-r46338/feeds/packages/libs/qrencode/Makefile	2015-07-15 10:59:15.591750134 +0300
++++ ../../../openwrt_trunk/feeds/packages/libs/qrencode/Makefile	2015-07-15 12:15:13.155825505 +0300
+@@ -70,20 +70,20 @@
+ endef
+ 
+ define Build/InstallDev
+-	$(INSTALL_DIR) $(1)/usr/include $(1)/usr/lib $(1)/usr/lib/pkgconfig
+-	$(CP) $(PKG_INSTALL_DIR)/usr/include/qrencode.h $(1)/usr/include/
+-	$(CP) $(PKG_INSTALL_DIR)/usr/lib/libqrencode.{a,so*} $(1)/usr/lib/
+-	$(CP) $(PKG_BUILD_DIR)/libqrencode.pc $(1)/usr/lib/pkgconfig/
++	$(INSTALL_DIR) $(1)/opt/include $(1)/opt/lib $(1)/opt/lib/pkgconfig
++	$(CP) $(PKG_INSTALL_DIR)/opt/include/qrencode.h $(1)/opt/include/
++	$(CP) $(PKG_INSTALL_DIR)/opt/lib/libqrencode.{a,so*} $(1)/opt/lib/
++	$(CP) $(PKG_BUILD_DIR)/libqrencode.pc $(1)/opt/lib/pkgconfig/
+ endef
+ 
+ define Package/libqrencode/install
+-	$(INSTALL_DIR) $(1)/usr/lib
+-	$(CP) $(PKG_INSTALL_DIR)/usr/lib/libqrencode.so* $(1)/usr/lib/
++	$(INSTALL_DIR) $(1)/opt/lib
++	$(CP) $(PKG_INSTALL_DIR)/opt/lib/libqrencode.so* $(1)/opt/lib/
+ endef
+ 
+ define Package/qrencode/install
+-	$(INSTALL_DIR) $(1)/usr/bin
+-	$(CP) $(PKG_INSTALL_DIR)/usr/bin/qrencode $(1)/usr/bin/
++	$(INSTALL_DIR) $(1)/opt/bin
++	$(CP) $(PKG_INSTALL_DIR)/opt/bin/qrencode $(1)/opt/bin/
+ endef
+ 
+ $(eval $(call BuildPackage,libqrencode))
