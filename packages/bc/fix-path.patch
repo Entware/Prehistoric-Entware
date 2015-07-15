@@ -1,0 +1,20 @@
+--- ../../../downloads/openwrt_trunk-r46338/feeds/packages/utils/bc/Makefile	2015-07-15 10:59:15.655750135 +0300
++++ ../../../openwrt_trunk/feeds/packages/utils/bc/Makefile	2015-07-15 11:36:22.475801737 +0300
+@@ -52,13 +52,13 @@
+ CONFIGURE_ARGS += --with-readline
+ 
+ define Package/bc/install
+-	$(INSTALL_DIR) $(1)/usr/bin
+-	$(INSTALL_BIN) $(PKG_BUILD_DIR)/bc/bc $(1)/usr/bin/
++	$(INSTALL_DIR) $(1)/opt/bin
++	$(INSTALL_BIN) $(PKG_BUILD_DIR)/bc/bc $(1)/opt/bin/
+ endef
+ 
+ define Package/dc/install
+-	$(INSTALL_DIR) $(1)/usr/bin
+-	$(INSTALL_BIN) $(PKG_BUILD_DIR)/dc/dc $(1)/usr/bin/
++	$(INSTALL_DIR) $(1)/opt/bin
++	$(INSTALL_BIN) $(PKG_BUILD_DIR)/dc/dc $(1)/opt/bin/
+ endef
+ 
+ $(eval $(call BuildPackage,bc))
