@@ -1,0 +1,28 @@
+--- ../../../downloads/openwrt_trunk-r46338/feeds/packages/utils/i2c-tools/Makefile	2015-07-15 10:59:15.651750135 +0300
++++ ../../../openwrt_trunk/feeds/packages/utils/i2c-tools/Makefile	2015-07-15 11:43:21.263795235 +0300
+@@ -62,7 +62,7 @@
+   define Build/Compile/python-smbus
+ 	$(if $(Build/Compile/PyMod),,@echo Python packaging code not found.; false)
+ 	$(call Build/Compile/PyMod,./py-smbus/, \
+-		install --prefix="$(PKG_INSTALL_DIR)/usr", \
++		install --prefix="$(PKG_INSTALL_DIR)/opt", \
+ 	)
+   endef
+ endif
+@@ -78,11 +78,11 @@
+ endef
+ 
+ define Package/i2c-tools/install
+-	$(INSTALL_DIR) $(1)/usr/sbin
+-	$(INSTALL_BIN) $(PKG_BUILD_DIR)/tools/i2cdetect $(1)/usr/sbin/
+-	$(INSTALL_BIN) $(PKG_BUILD_DIR)/tools/i2cdump $(1)/usr/sbin/
+-	$(INSTALL_BIN) $(PKG_BUILD_DIR)/tools/i2cset $(1)/usr/sbin/
+-	$(INSTALL_BIN) $(PKG_BUILD_DIR)/tools/i2cget $(1)/usr/sbin/
++	$(INSTALL_DIR) $(1)/opt/sbin
++	$(INSTALL_BIN) $(PKG_BUILD_DIR)/tools/i2cdetect $(1)/opt/sbin/
++	$(INSTALL_BIN) $(PKG_BUILD_DIR)/tools/i2cdump $(1)/opt/sbin/
++	$(INSTALL_BIN) $(PKG_BUILD_DIR)/tools/i2cset $(1)/opt/sbin/
++	$(INSTALL_BIN) $(PKG_BUILD_DIR)/tools/i2cget $(1)/opt/sbin/
+ endef
+ 
+ define PyPackage/python-smbus/filespec
