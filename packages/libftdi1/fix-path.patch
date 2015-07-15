@@ -1,0 +1,53 @@
+--- ../../../downloads/openwrt_trunk-r46338/feeds/packages/libs/libftdi1/Makefile	2015-07-15 10:59:15.595750134 +0300
++++ ../../../openwrt_trunk/feeds/packages/libs/libftdi1/Makefile	2015-07-15 13:41:39.695912862 +0300
+@@ -59,32 +59,32 @@
+ endef
+ 
+ define Build/InstallDev
+-	$(INSTALL_DIR) $(1)/usr/include/libftdi1/
+-	$(CP) $(PKG_INSTALL_DIR)/usr/include/libftdi1/ftdi.h $(1)/usr/include/libftdi1/
+-	$(INSTALL_DIR) $(1)/usr/lib
+-	$(CP) $(PKG_INSTALL_DIR)/usr/lib/libftdi1.{a,so*} $(1)/usr/lib/
+-	$(INSTALL_DIR) $(1)/usr/lib/cmake/libftdi1
+-	$(CP) $(PKG_INSTALL_DIR)/usr/lib/cmake/libftdi1/* $(1)/usr/lib/cmake/libftdi1/
+-	$(INSTALL_DIR) $(1)/usr/lib/pkgconfig/
+-	$(CP) $(PKG_INSTALL_DIR)/usr/lib/pkgconfig/libftdi1.pc $(1)/usr/lib/pkgconfig/libftdi1.pc
++	$(INSTALL_DIR) $(1)/opt/include/libftdi1/
++	$(CP) $(PKG_INSTALL_DIR)/opt/include/libftdi1/ftdi.h $(1)/opt/include/libftdi1/
++	$(INSTALL_DIR) $(1)/opt/lib
++	$(CP) $(PKG_INSTALL_DIR)/opt/lib/libftdi1.{a,so*} $(1)/opt/lib/
++	$(INSTALL_DIR) $(1)/opt/lib/cmake/libftdi1
++	$(CP) $(PKG_INSTALL_DIR)/opt/lib/cmake/libftdi1/* $(1)/opt/lib/cmake/libftdi1/
++	$(INSTALL_DIR) $(1)/opt/lib/pkgconfig/
++	$(CP) $(PKG_INSTALL_DIR)/opt/lib/pkgconfig/libftdi1.pc $(1)/opt/lib/pkgconfig/libftdi1.pc
+ 	$(SED) \
+-		's,/usr/include,$$$${prefix}/include,g' \
+-		 $(1)/usr/lib/pkgconfig/libftdi1.pc
++		's,/opt/include,$$$${prefix}/include,g' \
++		 $(1)/opt/lib/pkgconfig/libftdi1.pc
+ 	$(SED) \
+-		's,/usr/lib,$$$${prefix}/lib,g' \
+-		 $(1)/usr/lib/pkgconfig/libftdi1.pc
++		's,/opt/lib,$$$${prefix}/lib,g' \
++		 $(1)/opt/lib/pkgconfig/libftdi1.pc
+ endef
+ 
+ define Package/libftdi1/install
+-	$(INSTALL_DIR) $(1)/usr/bin
+-	$(INSTALL_BIN) $(PKG_INSTALL_DIR)/usr/bin/libftdi1-config $(1)/usr/bin/
+-	$(INSTALL_DIR) $(1)/usr/lib
+-	$(CP) $(PKG_INSTALL_DIR)/usr/lib/libftdi1.so.* $(1)/usr/lib/
++	$(INSTALL_DIR) $(1)/opt/bin
++	$(INSTALL_BIN) $(PKG_INSTALL_DIR)/opt/bin/libftdi1-config $(1)/opt/bin/
++	$(INSTALL_DIR) $(1)/opt/lib
++	$(CP) $(PKG_INSTALL_DIR)/opt/lib/libftdi1.so.* $(1)/opt/lib/
+ endef
+ 
+ define Package/ftdi_eeprom/install
+-	$(INSTALL_DIR) $(1)/usr/bin
+-	$(INSTALL_BIN) $(PKG_INSTALL_DIR)/usr/bin/ftdi_eeprom $(1)/usr/bin/
++	$(INSTALL_DIR) $(1)/opt/bin
++	$(INSTALL_BIN) $(PKG_INSTALL_DIR)/opt/bin/ftdi_eeprom $(1)/opt/bin/
+ endef
+ 
+ $(eval $(call BuildPackage,libftdi1))
