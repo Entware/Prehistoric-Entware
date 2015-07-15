@@ -1,0 +1,123 @@
+#!/bin/sh
+
+# Please edit /opt/etc/tv_grab_wl500g_info.cfg first!
+# Place desired channel id's there, one number per line.
+# You may see channel id list by running tv_grab_wl500g_info --configure
+
+# The second thing you can adjust here is a time offset in /opt/etc/tv_grab_wl500g_info.offset
+# Please, put an integer digit, that reflects time offset between teleguide.info
+# TV programm and your local time. Examples: "-3", "0", "5" without quotes.
+
+IDLIST="/opt/etc/tv_grab_wl500g_info.cfg"
+OFFSET_FILE="/opt/etc/tv_grab_wl500g_info.offset"
+XMLTV_FILE="/opt/tmp/xmltv"
+XMLTV_SRC="http://www.teleguide.info/download/new3/xmltv.xml.gz"
+SEDCMD="/bin/sed"
+AWKCMD="/usr/bin/awk"
+WGETCMD="/usr/bin/wget"
+GZIPCMD="/bin/gunzip"
+
+
+if [ -e "$OFFSET_FILE" ]; then
+    TIME_OFFSET=`$SEDCMD -n '1p' $OFFSET_FILE`
+else
+    TIME_OFFSET="0"
+fi
+
+
+GetXmltv () {
+
+    $WGETCMD -q -O - $XMLTV_SRC | $GZIPCMD > $XMLTV_FILE
+    [ -e "$XMLTV_FILE" ] || exit 1;
+
+}
+
+
+case $1 in
+
+    "--configure")
+        GetXmltv
+        $SEDCMD -n '/<channel/p;/<display-name/p' $XMLTV_FILE
+        rm -f $XMLTV_FILE
+    ;;
+    "--version")
+        echo "This is a tv_grab_wl500g_info v.0.1 grabber"
+        echo "for russian www.teleguide.info site. Made by wl500g.info community."
+    ;;
+    "--description")
+        echo "teleguide.info grabber by wl500g.info community"
+    ;;
+    "--capabilities")
+        echo "teleguide.info"
+    ;;
+    *)
+        GetXmltv
+
+        printf "<?xml version=\"1.0\" encoding=\"utf-8\"?>\n<!DOCTYPE tv SYSTEM \"xmltv.dtd\">\n<tv>\n"
+
+        while read chanid
+        do
+
+            $SEDCMD -n -e "
+                /id=\"${chanid}\"/,/<\/channel\>/p
+                /channel=\"${chanid}\"/,/programme\>/{
+                /<[/]\{0,1\}programme/{
+                p
+                b end
+                }
+                /<[/]\{0,1\}title/{
+                p
+                b end
+                }
+                b end
+                }
+                :end
+            " $XMLTV_FILE | $AWKCMD -v chanid="$chanid" -v TIME_OFFSET="$TIME_OFFSET" '
+                function toDD(_val) {
+                    if(length(_val) == 1) return "0"_val;
+                    else return _val;
+                }
+                {
+                    if($0 ~ "<programme") {
+                        edate=match($0, "stop=\"");
+                        eyear=substr($0, edate+6, 4); emonth=substr($0, edate+10, 2); eday=substr($0, edate+12, 2); ehour=substr($0, edate+14, 2); ehour=TIME_OFFSET+ehour; emin=substr($0, edate+16, 2);
+                        emonth+=0;
+                        if(ehour > 23) {ehour-=24; eday++}
+                        else if(ehour < 0) {ehour+=24; eday--};
+                        leapyear=eyear%4;
+                        if(leapyear == 0) feb=29; else feb=28;
+                        montharray[1]=31; montharray[2]=feb; montharray[3]=31; montharray[4]=30; montharray[5]=31; montharray[6]=30; montharray[7]=31; montharray[8]=31; montharray[9]=30; montharray[10]=31; montharray[11]=30; montharray[12]=31;
+                        emdays=montharray[emonth];
+                        if(eday > emdays) {eday-=emdays; emonth++};
+                        if(eday <= 0 && emonth == "1") {emonth--; eday+=emdays}
+                        else if(eday <= 0 && emonth != "1") {emdays=montharray[emonth-1]; emonth--; eday+=emdays};
+                        if(emonth <= 0) {emonth+=12; eyear--}
+                        else if(emonth > 12) {emonth-=12; eyear++};
+                        sdate=match($0, "start=\"");
+                        syear=substr($0, sdate+7, 4); smonth=substr($0, sdate+11, 2); sday=substr($0, sdate+13, 2); shour=substr($0, sdate+15, 2); shour=TIME_OFFSET+shour; smin=substr($0, sdate+17, 2);
+                        smonth+=0;
+                        if(shour > 23) {shour-=24; sday++}
+                        else if(shour < 0) {shour+=24; sday--};
+                        smdays=montharray[smonth];
+                        if(sday > smdays) {sday-=smdays; smonth++};
+                        if(sday <= 0 && smonth == "1") {smonth="12"; sday+=31}
+                        else if(sday <= 0 && smonth != "1") {smdays=montharray[smonth-1]; smonth--; sday+=smdays};
+                        if(smonth <= 0) {smonth+=12; syear--}
+                        else if(smonth > 12) {smonth-=12; syear++};
+                        print "<programme start=\"" syear toDD(smonth) toDD(sday) toDD(shour) smin "00 +0400\" stop=\"" eyear toDD(emonth) toDD(eday) toDD(ehour) emin "00 +0400\" channel=\"" chanid "\">";
+                    }
+                    else if($0 ~ "<channel" || $0 ~ "</channel>" || $0 ~ "<display-name" || $0 ~ "<icon" || $0 ~ "<url" || $0 ~ "<title" || $0 ~ "</title>" || $0 ~ "</programme") print $0;
+                }'
+
+        done < $IDLIST
+
+        printf "</tv>\n"
+
+        rm -f $XMLTV_FILE
+
+    ;;
+
+esac
+
+
+exit 0;
