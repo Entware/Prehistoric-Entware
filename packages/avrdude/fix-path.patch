@@ -1,0 +1,22 @@
+--- ../../../downloads/openwrt_trunk-r46338/feeds/packages/utils/avrdude/Makefile	2015-07-15 10:59:15.643750135 +0300
++++ ../../../openwrt_trunk/feeds/packages/utils/avrdude/Makefile	2015-07-15 11:34:24.503785496 +0300
+@@ -44,14 +44,14 @@
+ 	-D_GNU_SOURCE \
+ 
+ define Package/avrdude/conffiles
+-/etc/avrdude.conf
++/opt/etc/avrdude.conf
+ endef
+ 
+ define Package/avrdude/install
+-	$(INSTALL_DIR) $(1)/etc
+-	$(INSTALL_CONF) $(PKG_INSTALL_DIR)/etc/avrdude.conf $(1)/etc/
+-	$(INSTALL_DIR) $(1)/usr/bin
+-	$(INSTALL_BIN) $(PKG_INSTALL_DIR)/usr/bin/avrdude $(1)/usr/bin/
++	$(INSTALL_DIR) $(1)/opt/etc
++	$(INSTALL_CONF) $(PKG_INSTALL_DIR)/opt/etc/avrdude.conf $(1)/opt/etc/
++	$(INSTALL_DIR) $(1)/opt/bin
++	$(INSTALL_BIN) $(PKG_INSTALL_DIR)/opt/bin/avrdude $(1)/opt/bin/
+ endef
+ 
+ $(eval $(call BuildPackage,avrdude))
