@@ -1,6 +1,6 @@
 diff -urx .svn ../../../downloads/openwrt_trunk-r46338/package/system/opkg/files/opkg-key ../../../openwrt_trunk/package/system/opkg/files/opkg-key
---- ../../../downloads/openwrt_trunk-r46338/package/system/opkg/files/opkg-key	2015-07-14 10:55:19.910308175 +0300
-+++ ../../../openwrt_trunk/package/system/opkg/files/opkg-key	2015-07-14 10:55:50.190308679 +0300
+--- ../../../downloads/openwrt_trunk-r46338/package/system/opkg/files/opkg-key	2015-07-15 16:48:19.008098715 +0300
++++ ../../../openwrt_trunk/package/system/opkg/files/opkg-key	2015-07-15 16:48:27.784098858 +0300
 @@ -19,7 +19,7 @@
  	(
  		zcat "$msgfile" 2>/dev/null ||
@@ -31,8 +31,8 @@ diff -urx .svn ../../../downloads/openwrt_trunk-r46338/package/system/opkg/files
  
  case "$1" in
 diff -urx .svn ../../../downloads/openwrt_trunk-r46338/package/system/opkg/Makefile ../../../openwrt_trunk/package/system/opkg/Makefile
---- ../../../downloads/openwrt_trunk-r46338/package/system/opkg/Makefile	2015-07-14 10:55:19.910308175 +0300
-+++ ../../../openwrt_trunk/package/system/opkg/Makefile	2015-07-14 15:46:23.458596823 +0300
+--- ../../../downloads/openwrt_trunk-r46338/package/system/opkg/Makefile	2015-07-15 16:48:19.008098715 +0300
++++ ../../../openwrt_trunk/package/system/opkg/Makefile	2015-07-17 12:37:20.378725789 +0300
 @@ -5,7 +5,6 @@
  # See /LICENSE for more information.
  
@@ -107,10 +107,11 @@ diff -urx .svn ../../../downloads/openwrt_trunk-r46338/package/system/opkg/Makef
 -	$(INSTALL_DATA) ./files/opkg$(2).conf $(1)/etc/opkg.conf
 -	$(call FeedSourcesAppend,$(1)/etc/opkg.conf)
 -	$(VERSION_SED) $(1)/etc/opkg.conf
+-	$(INSTALL_BIN) $(PKG_INSTALL_DIR)/usr/bin/opkg-cl $(1)/bin/opkg
 +	$(INSTALL_DIR) $(1)/opt/lib/opkg
 +	$(INSTALL_DIR) $(1)/opt/{bin,etc,tmp}
 +	$(INSTALL_DIR) $(1)/opt/var/{lock,log,run}
- 	$(INSTALL_BIN) $(PKG_INSTALL_DIR)/usr/bin/opkg-cl $(1)/bin/opkg
++	$(INSTALL_BIN) $(PKG_INSTALL_DIR)/opt/bin/opkg-cl $(1)/opt/bin/opkg
  endef
  
 -define Package/opkg/install
@@ -155,8 +156,8 @@ diff -urx .svn ../../../downloads/openwrt_trunk-r46338/package/system/opkg/Makef
  $(eval $(call BuildPackage,opkg-smime))
  $(eval $(call HostBuild))
 diff -urx .svn ../../../downloads/openwrt_trunk-r46338/package/system/opkg/patches/200-usign_support.patch ../../../openwrt_trunk/package/system/opkg/patches/200-usign_support.patch
---- ../../../downloads/openwrt_trunk-r46338/package/system/opkg/patches/200-usign_support.patch	2015-07-14 10:55:19.910308175 +0300
-+++ ../../../openwrt_trunk/package/system/opkg/patches/200-usign_support.patch	2015-07-14 10:55:50.190308679 +0300
+--- ../../../downloads/openwrt_trunk-r46338/package/system/opkg/patches/200-usign_support.patch	2015-07-15 16:48:19.008098715 +0300
++++ ../../../openwrt_trunk/package/system/opkg/patches/200-usign_support.patch	2015-07-15 16:48:27.828098861 +0300
 @@ -76,7 +76,7 @@
  +		return -1;
  +

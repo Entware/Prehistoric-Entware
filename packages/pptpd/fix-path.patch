@@ -24,7 +24,6 @@ diff -urx .svn ../../../downloads/openwrt_trunk-r46338/feeds/packages/net/pptpd/
  speed 115200
  stimeout 10
  #localip & remoteip are not needed, ip management is done by pppd
-Only in ../../../openwrt_trunk/feeds/packages/net/pptpd/files: S20poptop
 diff -urx .svn ../../../downloads/openwrt_trunk-r46338/feeds/packages/net/pptpd/Makefile ../../../openwrt_trunk/feeds/packages/net/pptpd/Makefile
 --- ../../../downloads/openwrt_trunk-r46338/feeds/packages/net/pptpd/Makefile	2015-07-15 10:59:15.603750134 +0300
 +++ ../../../openwrt_trunk/feeds/packages/net/pptpd/Makefile	2015-07-15 12:08:08.631814708 +0300

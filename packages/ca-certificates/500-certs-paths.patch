@@ -19,10 +19,10 @@
 +	install -m755 update-ca-certificates $(DESTDIR)/opt/sbin/
 --- a/sbin/update-ca-certificates
 +++ b/sbin/update-ca-certificates
-@@ -37,11 +37,11 @@
-   shift
- done
- 
+@@ -24,12 +24,12 @@
+ verbose=0
+ fresh=0
+ default=0
 -CERTSCONF=/etc/ca-certificates.conf
 -CERTSDIR=/usr/share/ca-certificates
 -LOCALCERTSDIR=/usr/local/share/ca-certificates
@@ -31,7 +31,9 @@
 +LOCALCERTSDIR=/opt/local/share/ca-certificates
  CERTBUNDLE=ca-certificates.crt
 -ETCCERTSDIR=/etc/ssl/certs
+-HOOKSDIR=/etc/ca-certificates/update.d
 +ETCCERTSDIR=/opt/etc/ssl/certs
++HOOKSDIR=/opt/etc/ca-certificates/update.d
  
- cleanup() {
-   rm -f "$TEMPBUNDLE"
+ while [ $# -gt 0 ];
+ do

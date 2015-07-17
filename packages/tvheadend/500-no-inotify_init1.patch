@@ -1,0 +1,22 @@
+--- a/src/dvr/dvr_inotify.c
++++ b/src/dvr/dvr_inotify.c
+@@ -63,7 +63,7 @@
+ 
+ void dvr_inotify_init ( void )
+ {
+-  _inot_fd = inotify_init1(IN_CLOEXEC);
++  _inot_fd = inotify_init();
+   if (_inot_fd < 0) {
+     tvhlog(LOG_ERR, "dvr", "failed to initialise inotify (err=%s)",
+            strerror(errno));
+--- a/src/fsmonitor.c
++++ b/src/fsmonitor.c
+@@ -105,7 +105,7 @@
+ fsmonitor_init ( void )
+ {
+   /* Intialise inotify */
+-  fsmonitor_fd = inotify_init1(IN_CLOEXEC);
++  fsmonitor_fd = inotify_init();
+   tvhthread_create0(&fsmonitor_tid, NULL, fsmonitor_thread, NULL, "fsmonitor");
+ }
+ 

@@ -1,15 +1,29 @@
---- ../../../downloads/openwrt_trunk-r46338/feeds/packages/libs/gnutls/Makefile	2015-07-14 10:55:19.766308173 +0300
-+++ ../../../openwrt_trunk/feeds/packages/libs/gnutls/Makefile	2015-07-14 12:03:18.458367112 +0300
-@@ -125,7 +125,7 @@
+--- ../../../downloads/openwrt_trunk-r46338/feeds/packages/libs/gnutls/Makefile	2015-07-15 16:48:18.908098713 +0300
++++ ../../../openwrt_trunk/feeds/packages/libs/gnutls/Makefile	2015-07-16 16:51:07.593533903 +0300
+@@ -93,7 +93,7 @@
+ define Package/libgnutls
+ $(call Package/gnutls/Default)
+   TITLE+= (library)
+-  DEPENDS+= +libnettle +!LIBNETTLE_MINI:libgmp +GNUTLS_EXT_LIBTASN1:libtasn1 +GNUTLS_PKCS11:p11-kit
++  DEPENDS+= +libnettle +!LIBNETTLE_MINI:libgmp +GNUTLS_EXT_LIBTASN1:libtasn1 +GNUTLS_PKCS11:p11-kit +libidn
+ endef
+ 
+ define Package/libgnutls/description
+@@ -125,9 +125,11 @@
  	--disable-doc \
  	--disable-tests \
  	--enable-openssl-compatibility \
 -	--with-default-trust-store-dir=/etc/ssl/certs/ \
 +	--with-default-trust-store-dir=/opt/etc/ssl/certs/ \
  	--disable-crywrap \
- 	--with-librt-prefix="$(LIBRT_ROOT_DIR)/"
+-	--with-librt-prefix="$(LIBRT_ROOT_DIR)/"
++	--with-librt-prefix="$(LIBRT_ROOT_DIR)/" \
++	--with-unbound-root-key-file=/opt/etc/unbound/root.key \
++	--with-system-priority-file=/opt/etc/gnutls/default-priorities
  
-@@ -180,70 +180,70 @@
+ ifneq ($(CONFIG_GNUTLS_EXT_LIBTASN1),y)
+ CONFIGURE_ARGS += --with-included-libtasn1
+@@ -180,70 +182,70 @@
  TARGET_CFLAGS += $(FPIC)
  
  define Build/InstallDev
@@ -18,7 +32,7 @@
  	$(CP) \
 -		$(PKG_INSTALL_DIR)/usr/lib/libgnutls.so* \
 -		$(1)/usr/lib/
-+		$(PKG_INSTALL_DIR)/opt/lib/libgnutls.so* \
++		$(PKG_INSTALL_DIR)/opt/lib/libgnutls{,-openssl}.so* \
 +		$(1)/opt/lib/
  	$(CP) \
 -		$(PKG_INSTALL_DIR)/usr/include/gnutls \

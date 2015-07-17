@@ -9,8 +9,8 @@ all: .done
 
 .done:
 	patch -d $(TOP) -p3 -i $(CURDIR)/fix-path.patch
-	rm -f ../../../openwrt_trunk/feeds/packages/net/iodine/patches/100-musl-compatibility.patch
-	cp -f ./S19iodined ../../../openwrt_trunk/feeds/packages/net/iodine/files/
+	mkdir -p ../../../openwrt_trunk/feeds/packages/libs/gnutls/patches/
+	cp -f ./500-disable-crywrap.patch ../../../openwrt_trunk/feeds/packages/libs/gnutls/patches/
 	@touch $@
 
 clean:

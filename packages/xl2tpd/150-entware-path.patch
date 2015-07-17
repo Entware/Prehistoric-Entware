@@ -1,14 +1,15 @@
 --- a/l2tp.h
 +++ b/l2tp.h
-@@ -37,14 +37,14 @@
+@@ -37,7 +37,7 @@
  #include "common.h"
  #include "ipsecmast.h"
  
 -#define CONTROL_PIPE "/var/run/xl2tpd/l2tp-control"
-+#define CONTROL_PIPE "/opt/tmp/xl2tpd/l2tp-control"
++#define CONTROL_PIPE "/opt/var/run/xl2tpd/l2tp-control"
  #define CONTROL_PIPE_MESSAGE_SIZE 1024
  
- #define BINARY "xl2tpd"
+ /* Control pip request types */
+@@ -59,7 +59,7 @@
  #define SERVER_VERSION "xl2tpd-1.3.6"
  #define VENDOR_NAME "xelerance.com"
  #ifndef PPPD

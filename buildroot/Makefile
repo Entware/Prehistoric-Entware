@@ -28,7 +28,7 @@ all: .buildroot_prepared
 
 $(TOP)/downloads/openwrt_trunk-r$(OPENWRT_REVISION): \
 	    $(TOP)/downloads
-	svn co --revision=$(OPENWRT_REVISION) svn://svn.openwrt.org/openwrt/trunk/ $(TOP)/openwrt_trunk
+	svn co --quiet --revision=$(OPENWRT_REVISION) svn://svn.openwrt.org/openwrt/trunk/ $(TOP)/openwrt_trunk
 	cp -f feeds.conf $(TOP)/openwrt_trunk
 	(cd $(TOP)/openwrt_trunk; \
 	./scripts/feeds update; \

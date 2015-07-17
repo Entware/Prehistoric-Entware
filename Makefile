@@ -20,6 +20,7 @@ else ifeq ($(ARCH),mipselsf)
 endif
 	$(MAKE) -C "$(TOP)/openwrt_trunk" tools/compile
 	$(MAKE) -C "$(TOP)/openwrt_trunk" tools/install
+	$(MAKE) -C "$(TOP)/openwrt_trunk" toolchain/prepare
 	@echo "Buildroot is ready! To recompile the whole repo type:"
 	@echo "cd ../openwrt_trunk"
 	@echo "make package/compile"

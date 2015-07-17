@@ -1,5 +1,5 @@
---- ../../../downloads/openwrt_trunk-r46338/feeds/packages/net/fwknop/Makefile	2015-07-14 10:55:19.806308173 +0300
-+++ ../../../openwrt_trunk/feeds/packages/net/fwknop/Makefile	2015-07-14 11:57:06.118371719 +0300
+--- ../../../downloads/openwrt_trunk-r46338/feeds/packages/net/fwknop/Makefile	2015-07-15 16:48:18.940098714 +0300
++++ ../../../openwrt_trunk/feeds/packages/net/fwknop/Makefile	2015-07-16 16:15:13.753503825 +0300
 @@ -42,7 +42,7 @@
    CATEGORY:=Network
    SUBMENU:=Firewall
@@ -20,12 +20,14 @@
  endef
  
  define Package/fwknopd/config
-@@ -92,39 +92,33 @@
+@@ -92,39 +92,35 @@
  endif
  
  CONFIGURE_ARGS += \
 -	--with-iptables=/usr/sbin/iptables
-+	--with-iptables=/opt/sbin/iptables
++	--with-iptables=/opt/sbin/iptables \
++	--disable-stack-protector \
++	--disable-fortify-source
  
  define Build/InstallDev
 -	$(INSTALL_DIR) $(1)/usr/include

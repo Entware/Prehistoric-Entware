@@ -1,0 +1,34 @@
+--- ../../../downloads/openwrt_trunk-r46338/feeds/packages/libs/confuse/Makefile	2015-07-15 16:48:18.908098713 +0300
++++ ../../../openwrt_trunk/feeds/packages/libs/confuse/Makefile	2015-07-16 14:57:31.365426109 +0300
+@@ -58,22 +58,22 @@
+ 	all install \
+ 
+ define Build/InstallDev
+-	$(INSTALL_DIR) $(1)/usr/include
+-	$(CP) $(PKG_INSTALL_DIR)/usr/include/confuse.h $(1)/usr/include/
+-	$(INSTALL_DIR) $(1)/usr/lib/pkgconfig
+-	$(CP) $(PKG_INSTALL_DIR)/usr/lib/libconfuse.{a,so*} $(1)/usr/lib/
+-	$(CP) $(PKG_BUILD_DIR)/*.pc $(1)/usr/lib/pkgconfig/
++	$(INSTALL_DIR) $(1)/opt/include
++	$(CP) $(PKG_INSTALL_DIR)/opt/include/confuse.h $(1)/opt/include/
++	$(INSTALL_DIR) $(1)/opt/lib/pkgconfig
++	$(CP) $(PKG_INSTALL_DIR)/opt/lib/libconfuse.{a,so*} $(1)/opt/lib/
++	$(CP) $(PKG_BUILD_DIR)/*.pc $(1)/opt/lib/pkgconfig/
+ endef
+ 
+ define Build/UninstallDev
+ 	rm -rf \
+-	$(STAGING_DIR)/usr/include/confuse.h \
+-	$(STAGING_DIR)/usr/lib/libconfuse.{a,so*}
++	$(STAGING_DIR)/opt/include/confuse.h \
++	$(STAGING_DIR)/opt/lib/libconfuse.{a,so*}
+ endef
+ 
+ define Package/confuse/install
+-	$(INSTALL_DIR) $(1)/usr/lib
+-	$(CP) $(PKG_INSTALL_DIR)/usr/lib/libconfuse.so.* $(1)/usr/lib/
++	$(INSTALL_DIR) $(1)/opt/lib
++	$(CP) $(PKG_INSTALL_DIR)/opt/lib/libconfuse.so.* $(1)/opt/lib/
+ endef
+ 
+ $(eval $(call BuildPackage,confuse))

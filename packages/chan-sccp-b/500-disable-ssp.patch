@@ -1,0 +1,10 @@
+--- a/autoconf/extra.m4
++++ b/autoconf/extra.m4
+@@ -501,7 +501,6 @@
+ 			AC_LANG_SAVE
+ 			AC_LANG_C
+ 			AX_APPEND_COMPILE_FLAGS([ dnl
+-				-fstack-protector-all dnl
+ 				-Wmissing-declarations dnl
+ 				-Wnested-externs dnl
+ 				-Wno-long-long dnl

@@ -1,7 +1,11 @@
 diff -urx .svn ../../../downloads/openwrt_trunk-r46338/feeds/packages/lang/ruby/Makefile ../../../openwrt_trunk/feeds/packages/lang/ruby/Makefile
---- ../../../downloads/openwrt_trunk-r46338/feeds/packages/lang/ruby/Makefile	2015-07-14 10:55:19.754308172 +0300
-+++ ../../../openwrt_trunk/feeds/packages/lang/ruby/Makefile	2015-07-14 16:33:32.158647865 +0300
-@@ -838,21 +838,21 @@
+--- ../../../downloads/openwrt_trunk-r46338/feeds/packages/lang/ruby/Makefile	2015-07-15 16:48:18.896098713 +0300
++++ ../../../openwrt_trunk/feeds/packages/lang/ruby/Makefile	2015-07-17 10:08:37.190579296 +0300
+@@ -835,24 +835,25 @@
+ 
+ MAKE_FLAGS += \
+ 	DESTDIR="$(PKG_INSTALL_DIR)" \
++	EXTLDFLAGS="$(TARGET_LDFLAGS)" \
  	SHELL="/bin/bash"
  
  define Package/ruby/install
@@ -35,7 +39,7 @@ diff -urx .svn ../../../downloads/openwrt_trunk-r46338/feeds/packages/lang/ruby/
  endef
  
  define Package/ruby-stdlib/install
-@@ -861,216 +861,216 @@
+@@ -861,216 +862,216 @@
  
  define Package/ruby-bigdecimal/install
  	( cd $(PKG_INSTALL_DIR); $(TAR) -cf - \
@@ -365,7 +369,7 @@ diff -urx .svn ../../../downloads/openwrt_trunk-r46338/feeds/packages/lang/ruby/
  	) | ( cd $(1); $(TAR) -xf - )
  endef
  
-@@ -1078,241 +1078,241 @@
+@@ -1078,241 +1079,241 @@
  
  define Package/ruby-mkmf/install
  	( cd $(PKG_INSTALL_DIR); $(TAR) -cf - \
@@ -712,8 +716,8 @@ diff -urx .svn ../../../downloads/openwrt_trunk-r46338/feeds/packages/lang/ruby/
  endef
  
 diff -urx .svn ../../../downloads/openwrt_trunk-r46338/feeds/packages/lang/ruby/ruby_find_pkgsdeps ../../../openwrt_trunk/feeds/packages/lang/ruby/ruby_find_pkgsdeps
---- ../../../downloads/openwrt_trunk-r46338/feeds/packages/lang/ruby/ruby_find_pkgsdeps	2015-07-14 10:55:19.754308172 +0300
-+++ ../../../openwrt_trunk/feeds/packages/lang/ruby/ruby_find_pkgsdeps	2015-07-14 10:55:53.226308888 +0300
+--- ../../../downloads/openwrt_trunk-r46338/feeds/packages/lang/ruby/ruby_find_pkgsdeps	2015-07-15 16:48:18.896098713 +0300
++++ ../../../openwrt_trunk/feeds/packages/lang/ruby/ruby_find_pkgsdeps	2015-07-15 16:48:28.808098878 +0300
 @@ -1,4 +1,4 @@
 -#!/usr/bin/ruby -Eutf-8
 +#!/opt/bin/ruby -Eutf-8

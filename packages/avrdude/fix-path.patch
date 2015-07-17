@@ -1,5 +1,14 @@
---- ../../../downloads/openwrt_trunk-r46338/feeds/packages/utils/avrdude/Makefile	2015-07-15 10:59:15.643750135 +0300
-+++ ../../../openwrt_trunk/feeds/packages/utils/avrdude/Makefile	2015-07-15 11:34:24.503785496 +0300
+--- ../../../downloads/openwrt_trunk-r46338/feeds/packages/utils/avrdude/Makefile	2015-07-15 16:48:18.956098714 +0300
++++ ../../../openwrt_trunk/feeds/packages/utils/avrdude/Makefile	2015-07-16 15:00:15.417425794 +0300
+@@ -29,7 +29,7 @@
+   CATEGORY:=Utilities
+   TITLE:=AVR Downloader/UploaDEr
+   URL:=http://www.nongnu.org/avrdude/
+-  DEPENDS:=+libncurses +libreadline +libusb-compat +libftdi1 +libelf1
++  DEPENDS:=+libncurses +libreadline +libusb-compat +libftdi1 +libelf
+ endef
+ 
+ define Package/avrdude/description
 @@ -44,14 +44,14 @@
  	-D_GNU_SOURCE \
  

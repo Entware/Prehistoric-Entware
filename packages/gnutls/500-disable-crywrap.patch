@@ -1,0 +1,13 @@
+--- a/configure
++++ b/configure
+@@ -50603,10 +50603,6 @@
+ 
+  fi
+ 
+- if test "$ac_cv_func_daemon" != "no" && test "$ac_argp" != "no" && test "$with_libidn" != "no";then
+-  crywrap=yes
+- fi
+-
+ fi
+ 
+  if test "x$crywrap" != "xno"; then

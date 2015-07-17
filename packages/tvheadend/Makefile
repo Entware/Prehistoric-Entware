@@ -11,6 +11,8 @@ all: .done
 	patch -d $(TOP) -p3 -i $(CURDIR)/fix-path.patch
 	cp -f ./S71tvheadend ../../../openwrt_trunk/feeds/packages/multimedia/tvheadend/files/
 	cp -f ./tv_grab_* ../../../openwrt_trunk/feeds/packages/multimedia/tvheadend/files/
+	mkdir -p ../../../openwrt_trunk/feeds/packages/multimedia/tvheadend/patches
+	cp -f ./5*.patch ../../../openwrt_trunk/feeds/packages/multimedia/tvheadend/patches/
 	@touch $@
 
 clean:

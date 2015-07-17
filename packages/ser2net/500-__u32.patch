@@ -1,0 +1,11 @@
+--- a/dataxfer.h
++++ b/dataxfer.h
+@@ -30,6 +30,8 @@
+ 
+ #ifdef linux
+ 
++#include <linux/types.h>
++
+ #define USE_RS485_FEATURE
+ 
+ /* Check, if the toolchain provides serial_rs485 structure and macros */
