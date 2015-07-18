@@ -1,5 +1,5 @@
---- ../../../downloads/openwrt_trunk-r46338/feeds/packages/libs/gnutls/Makefile	2015-07-15 16:48:18.908098713 +0300
-+++ ../../../openwrt_trunk/feeds/packages/libs/gnutls/Makefile	2015-07-16 16:51:07.593533903 +0300
+--- ../../../downloads/openwrt_trunk-r46338/feeds/packages/libs/gnutls/Makefile	2015-07-17 15:58:16.315848885 +0300
++++ ../../../openwrt_trunk/feeds/packages/libs/gnutls/Makefile	2015-07-18 09:09:55.533399335 +0300
 @@ -93,7 +93,7 @@
  define Package/libgnutls
  $(call Package/gnutls/Default)
@@ -9,10 +9,15 @@
  endef
  
  define Package/libgnutls/description
-@@ -125,9 +125,11 @@
+@@ -121,13 +121,15 @@
+ 	--disable-guile \
+ 	--disable-nls \
+ 	--without-zlib \
++	--disable-cxx \
+ 	--enable-local-libopts \
  	--disable-doc \
  	--disable-tests \
- 	--enable-openssl-compatibility \
+-	--enable-openssl-compatibility \
 -	--with-default-trust-store-dir=/etc/ssl/certs/ \
 +	--with-default-trust-store-dir=/opt/etc/ssl/certs/ \
  	--disable-crywrap \
@@ -23,7 +28,7 @@
  
  ifneq ($(CONFIG_GNUTLS_EXT_LIBTASN1),y)
  CONFIGURE_ARGS += --with-included-libtasn1
-@@ -180,70 +182,70 @@
+@@ -180,74 +182,67 @@
  TARGET_CFLAGS += $(FPIC)
  
  define Build/InstallDev
@@ -32,7 +37,7 @@
  	$(CP) \
 -		$(PKG_INSTALL_DIR)/usr/lib/libgnutls.so* \
 -		$(1)/usr/lib/
-+		$(PKG_INSTALL_DIR)/opt/lib/libgnutls{,-openssl}.so* \
++		$(PKG_INSTALL_DIR)/opt/lib/libgnutls.so* \
 +		$(1)/opt/lib/
  	$(CP) \
 -		$(PKG_INSTALL_DIR)/usr/include/gnutls \
@@ -108,16 +113,18 @@
  define Package/libgnutls/install
 -	$(INSTALL_DIR) $(1)/usr/lib
 -	$(CP) $(PKG_INSTALL_DIR)/usr/lib/libgnutls.so.* $(1)/usr/lib/
+-endef
+-
+-
+-define Package/libgnutls-openssl/install
+-	$(INSTALL_DIR) $(1)/usr/lib
+-	$(CP) $(PKG_INSTALL_DIR)/usr/lib/libgnutls-openssl.so.* $(1)/usr/lib/
 +	$(INSTALL_DIR) $(1)/opt/lib
 +	$(CP) $(PKG_INSTALL_DIR)/opt/lib/libgnutls.so.* $(1)/opt/lib/
  endef
  
  
- define Package/libgnutls-openssl/install
--	$(INSTALL_DIR) $(1)/usr/lib
--	$(CP) $(PKG_INSTALL_DIR)/usr/lib/libgnutls-openssl.so.* $(1)/usr/lib/
-+	$(INSTALL_DIR) $(1)/opt/lib
-+	$(CP) $(PKG_INSTALL_DIR)/opt/lib/libgnutls-openssl.so.* $(1)/opt/lib/
- endef
- 
- 
+ $(eval $(call BuildPackage,certtool))
+ $(eval $(call BuildPackage,gnutls-utils))
+ $(eval $(call BuildPackage,libgnutls))
+-$(eval $(call BuildPackage,libgnutls-openssl))

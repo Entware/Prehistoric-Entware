@@ -9,8 +9,8 @@ all: .done
 
 .done:
 	patch -d $(TOP) -p3 -i $(CURDIR)/fix-path.patch
-	mkdir -p ../../../openwrt_trunk/feeds/telephony/net/chan-sccp-b/patches
-	cp -f ./500-disable-ssp.patch ../../../openwrt_trunk/feeds/telephony/net/chan-sccp-b/patches/
+	mkdir -p ../../../openwrt_trunk/feeds/packages/net/esniper/patches
+	cp -f ./500-find-ca-bundle.patch ../../../openwrt_trunk/feeds/packages/net/esniper/patches/
 	@touch $@
 
 clean:
