@@ -115,7 +115,7 @@
 +	--with-pidpath=/opt/var/run \
 +	--with-altpidpath=/opt/var/run \
 +	--with-htmlpath=/opt/share/www/nut \
-+	--with-cgipath=/opt/shae/www/cgi-bin/nut \
++	--with-cgipath=/opt/share/www/cgi-bin/nut \
  
  $(eval $(call BuildPackage,nut))
  $(foreach d,$(filter-out $(SERIAL_DRIVERLIST_IGNORE),$(SERIAL_DRIVERLIST)),$(eval $(call BuildPackage,nut-driver-$(d))))
