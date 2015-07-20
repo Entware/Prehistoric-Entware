@@ -1,6 +1,6 @@
---- ../../../toolchain-1.9.2.7-rtn/src/defconfig
-+++ ../../../toolchain-1.9.2.7-rtn/src/.config
-@@ -40,8 +40,8 @@
+--- ../../../toolchain-src-git/.config.orig
++++ ../../../toolchain-src-git/.config
+@@ -31,8 +31,8 @@
  # CONFIG_GDB is not set
  CONFIG_LARGEFILE=y
  CONFIG_SHADOW_PASSWORDS=y

@@ -1,5 +1,5 @@
---- ../../../toolchain-1.9.2.7-rtn/src/toolchain/uClibc/config/0.9.32/common.orig
-+++ ../../../toolchain-1.9.2.7-rtn/src/toolchain/uClibc/config/0.9.32/common
+--- ../../../toolchain-src-git/toolchain/uClibc/config/0.9.32/common.orig
++++ ../../../toolchain-src-git/toolchain/uClibc/config/0.9.32/common
 @@ -44,7 +44,7 @@
  # MALLOC_SIMPLE is not set
  MALLOC_STANDARD=y

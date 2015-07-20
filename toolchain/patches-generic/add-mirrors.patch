@@ -1,6 +1,6 @@
---- ../../../toolchain-1.9.2.7-rtn/src/scripts/download.pl.orig
-+++ ../../../toolchain-1.9.2.7-rtn/src/scripts/download.pl
-@@ -139,6 +139,10 @@
+--- ../../../downloads/toolchain-src-git/scripts/download.pl
++++ ../../../toolchain-src-git/scripts/download.pl
+@@ -168,6 +168,10 @@
  	}
  }
  

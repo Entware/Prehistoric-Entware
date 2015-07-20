@@ -7,7 +7,7 @@
 
 export TOP?=$(shell (cd ../.. && pwd -P))
 ARCH_BITS=$(shell getconf LONG_BIT)
-TARCH_NAME=toolchain-x$(ARCH_BITS)-$(TARGET)-r$(TOOLCHAIN_REVISION).tgz
+TARCH_NAME=toolchain-x$(ARCH_BITS)-$(TARGET)-$(TOOLCHAIN_COMMIT).tgz
 include ../config.mk
 
 all: .toolchain_prepared
@@ -19,14 +19,12 @@ all: .toolchain_prepared
 	@touch $@
 
 ifdef FORCE_COMPILE
-$(TOP)/downloads/$(TARCH_NAME): \
-	    $(TOP)/downloads/toolchain-src-r$(TOOLCHAIN_REVISION)
-	mkdir -p $(TOP)/toolchain-1.9.2.7-rtn/src
-	cp --recursive --update --force $(TOP)/downloads/toolchain-src-r$(TOOLCHAIN_REVISION)/* $(TOP)/toolchain-1.9.2.7-rtn/src
-	cp -f $(TOP)/toolchain-1.9.2.7-rtn/src/defconfig $(TOP)/toolchain-1.9.2.7-rtn/src/.config
-	sed -i -e 's|^\(CONFIG_EXTERNAL_KERNEL_TREE\)=.*|\1=\"$(TOP)/linux-2.6.22.19\"|g' $(TOP)/toolchain-1.9.2.7-rtn/src/.config
-	sed -i -e 's|^\(CONFIG_DOWNLOAD_FOLDER\)=.*|\1=\"$(TOP)/downloads\"|g' $(TOP)/toolchain-1.9.2.7-rtn/src/.config
-	cp -f patches-uclibc/*  $(TOP)/toolchain-1.9.2.7-rtn/src/toolchain/uClibc/patches/0.9.32/
+$(TOP)/downloads/$(TARCH_NAME): $(TOP)/downloads/toolchain-src-git
+	cp -R $(TOP)/downloads/toolchain-src-git $(TOP)
+	cp -f $(TOP)/toolchain-src-git/defconfig $(TOP)/toolchain-src-git/.config
+	sed -i -e 's|^\(CONFIG_EXTERNAL_KERNEL_TREE\)=.*|\1=\"$(TOP)/linux-2.6.22.19\"|g' $(TOP)/toolchain-src-git/.config
+	sed -i -e 's|^\(CONFIG_DOWNLOAD_FOLDER\)=.*|\1=\"$(TOP)/downloads\"|g' $(TOP)/toolchain-src-git/.config
+	cp -f patches-uclibc/*  $(TOP)/toolchain-src-git/toolchain/uClibc/patches/0.9.32/
 	@for patch in `ls $(CURDIR)/patches-generic/*.patch | sort`; do ( \
 	    patch -d $(TOP) -p3 -i $$patch; \
 	); done
@@ -34,19 +32,26 @@ $(TOP)/downloads/$(TARCH_NAME): \
 	    patch -d $(TOP) -p3 -i $$patch; \
 	); done
 	@echo Compiling toolchain...
-	$(MAKE) -C "$(TOP)/toolchain-1.9.2.7-rtn/src" V=99
-	#rm -fr $(TOP)/toolchain-1.9.2.7-rtn
+	$(MAKE) -C "$(TOP)/toolchain-src-git" V=99
 	tar -C /opt/entware -czf $(TOP)/downloads/$(TARCH_NAME) ./toolchain-$(TARGET)
+	rm -fr $(TOP)/toolchain-src-git
 	@echo Toolchain is compiled.
+
+$(TOP)/downloads/toolchain-src-git: $(TOP)/downloads
+	(if [ -d $(TOP)/downloads/toolchain-src-git ]; then \
+	    cd $(TOP)/downloads/toolchain-src-git; \
+	    git pull origin master; \
+	else \
+	    git clone --no-checkout https://github.com/wl500g/toolchain $(TOP)/downloads/toolchain-src-git; \
+	fi; \
+	cd $(TOP)/downloads/toolchain-src-git; \
+	git checkout $(TOOLCHAIN_COMMIT))
 else
 $(TOP)/downloads/$(TARCH_NAME): $(TOP)/downloads
 	    [ -f $(TOP)/downloads/$(TARCH_NAME) ] || wget $(SRC_MIRROR)/$(TARCH_NAME) \
 	    -O $(TOP)/downloads/$(TARCH_NAME)
 	@echo Toolchain is downloaded.
 endif
-
-$(TOP)/downloads/toolchain-src-r$(TOOLCHAIN_REVISION): $(TOP)/downloads
-	svn checkout --revision $(TOOLCHAIN_REVISION) http://wl500g.googlecode.com/svn/toolchain $(TOP)/downloads/toolchain-src-r$(TOOLCHAIN_REVISION)
 
 /opt/entware:
 	@echo Making /opt/entware directory, root password needed...
@@ -58,10 +63,10 @@ $(TOP)/downloads:
 
 clean:
 	@rm -f .toolchain_prepared
-	@rm -fr $(TOP)/toolchain-1.9.2.7-rtn
+	@rm -fr $(TOP)/toolchain-src-git
 
 cleanall: clean
 	@echo Root access may needed to remove toolchain...
 	@sudo rm -fr /opt/entware
 
-.PHONY: clean cleanall all
+.PHONY: clean cleanall all $(TOP)/downloads/toolchain-src-git
