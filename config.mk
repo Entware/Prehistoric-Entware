@@ -5,11 +5,17 @@
 # See /LICENSE for more information.
 #
 
-export TOOLCHAIN_REVISION=5621
+# Commit taken from https://github.com/wl500g/wl500g
+export KERNEL_COMMIT=a449bfd2b99a2b19fa64c176d385b29432327a12
+
+# Commit taken from https://github.com/wl500g/toolchain
+export TOOLCHAIN_COMMIT=c942055881a78e1f58888ab08003daa78727cf8b
+
+# See https://dev.openwrt.org/timeline
 export OPENWRT_REVISION=46338
 
 # Download or compile toolchain\kernel?
-#FORCE_COMPILE=y
+FORCE_COMPILE=y
 
 # Target architecture for toolchain
 export TARGET=entware
