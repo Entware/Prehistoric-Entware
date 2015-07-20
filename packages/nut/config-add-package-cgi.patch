@@ -1,0 +1,18 @@
+--- ../../../downloads/openwrt_trunk-r43593/feeds/packages/net/nut/Config.in
++++ ../../../openwrt_trunk/feeds/packages/net/nut/Config.in
+@@ -72,6 +72,15 @@
+ 			You can alternatively write your own script and save some space.
+ 		default n
+ 	
++	config NUT_CLIENTS_CGI
++		depends on PACKAGE_nut
++		bool "Include web cgi interface"
++		help
++			The CGI programs are clients that run through your web server.
++			They allow you to see UPS status and perform certain administrative
++			commands from any web browser. Javascript and cookies are not required.
++		default n
++
+ 	config NUT_SSL
+ 		depends on PACKAGE_nut
+ 		bool "Build with support for OpenSSL"

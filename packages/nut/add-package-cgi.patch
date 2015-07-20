@@ -1,0 +1,69 @@
+--- ../../../downloads/openwrt_trunk-r43593/feeds/packages/net/nut/Makefile
++++ ../../../openwrt_trunk/feeds/packages/net/nut/Makefile
+@@ -28,6 +28,7 @@
+ 	CONFIG_NUT_CLIENTS_UPSMON \
+ 	CONFIG_NUT_CLIENTS_UPSRW \
+ 	CONFIG_NUT_CLIENTS_UPSSCHED \
++	CONFIG_NUT_CLIENTS_CGI \
+ 	CONFIG_NUT_DRIVER_SERIAL \
+ 	CONFIG_NUT_DRIVER_SNMP \
+ 	CONFIG_NUT_DRIVER_USB \
+@@ -57,7 +58,8 @@
+ 	DEPENDS:= \
+ 		+NUT_DRIVER_SNMP:libnetsnmp \
+ 		+NUT_DRIVER_USB:libusb-compat \
+-		+NUT_SSL:libopenssl
++		+NUT_SSL:libopenssl \
++		+NUT_CLIENTS_CGI:libgd
+ 	MENU:=1
+ endef
+ 
+@@ -109,6 +111,35 @@
+ 	$(if $(CONFIG_NUT_CLIENTS_UPSSCHED),$(CP) $(PKG_INSTALL_DIR)/opt/bin/upssched-cmd $(1)/opt/bin/)
+ 	$(if $(CONFIG_NUT_CLIENTS_UPSSCHED),$(CP) $(PKG_INSTALL_DIR)/opt/sbin/upssched $(1)/opt/sbin/)
+ 	$(if $(CONFIG_NUT_CLIENTS_UPSSCHED),$(INSTALL_CONF) $(PKG_INSTALL_DIR)/opt/etc/nut/upssched.conf.sample $(1)/opt/etc/nut/upssched.conf)
++endef
++
++define Package/nut-web-cgi
++	$(call Package/nut/Default)
++	TITLE:=Web CGI interface
++endef
++
++define Package/nut-web-cgi/description
++The CGI programs are clients that run through your web server.
++They allow you to see UPS status and perform certain administrative
++commands from any web browser. Javascript and cookies are not required.
++endef
++
++define Package/nut-web-cgi/conffiles
++	/opt/etc/nut/hosts.conf
++	/opt/etc/nut/upsset.conf
++	/opt/etc/nut/upsstats.html
++	/opt/etc/nut/upsstats-single.html
++endef
++
++define Package/nut-web-cgi/install
++	$(INSTALL_DIR) $(1)/opt/etc/nut
++	$(INSTALL_DIR) $(1)/opt/share/www/cgi-bin
++	$(INSTALL_CONF) $(PKG_INSTALL_DIR)/opt/etc/nut/hosts.conf.sample $(1)/opt/etc/nut/hosts.conf
++	$(INSTALL_CONF) $(PKG_INSTALL_DIR)/opt/etc/nut/upsset.conf.sample $(1)/opt/etc/nut/upsset.conf
++	$(INSTALL_CONF) $(PKG_INSTALL_DIR)/opt/etc/nut/upsstats.html.sample $(1)/opt/etc/nut/upsstats.html
++	$(INSTALL_CONF) $(PKG_INSTALL_DIR)/opt/etc/nut/upsstats-single.html.sample $(1)/opt/etc/nut/upsstats-single.html
++	$(CP) $(PKG_INSTALL_DIR)/opt/share/www/nut $(1)/opt/share/www/
++	$(CP) $(PKG_INSTALL_DIR)/opt/share/www/cgi-bin/nut $(1)/opt/share/www/cgi-bin/
+ endef
+ 
+ # Dealing with all of the drivers is very repetitive, but the previous
+@@ -290,10 +321,12 @@
+ 	--with-hotplug-dir=/opt/etc/hotplug \
+ 	--with-pidpath=/opt/var/run \
+ 	--with-altpidpath=/opt/var/run \
++	--$(if $(CONFIG_NUT_CLIENTS_CGI),with,without)-cgi \
+ 	--with-htmlpath=/opt/share/www/nut \
+ 	--with-cgipath=/opt/share/www/cgi-bin/nut \
+ 
+ $(eval $(call BuildPackage,nut))
++$(eval $(call BuildPackage,nut-web-cgi))
+ $(foreach d,$(filter-out $(SERIAL_DRIVERLIST_IGNORE),$(SERIAL_DRIVERLIST)),$(eval $(call BuildPackage,nut-driver-$(d))))
+ $(foreach d,$(SNMP_DRIVERLIST),$(eval $(call BuildPackage,nut-driver-$(d))))
+ $(foreach d,$(USB_LIBUSB_DRIVERLIST),$(eval $(call BuildPackage,nut-driver-$(d))))
