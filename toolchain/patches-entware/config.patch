@@ -1,6 +1,6 @@
 --- ../../../toolchain-src-git/.config.orig
 +++ ../../../toolchain-src-git/.config
-@@ -37,7 +37,7 @@
+@@ -32,7 +32,7 @@
  CONFIG_LARGEFILE=y
  CONFIG_SHADOW_PASSWORDS=y
  # CONFIG_SOFT_FLOAT is not set

@@ -1,10 +1,10 @@
---- ../../../toolchain-src-git/rules.mk.orig
+--- ../../../downloads/toolchain-src-git/rules.mk
 +++ ../../../toolchain-src-git/rules.mk
-@@ -50,7 +50,7 @@
+@@ -47,7 +47,7 @@
  BUILD_DIR_TOOLCHAIN:=$(BUILD_DIR_BASE)/toolchain-$(ARCH)_gcc$(GCCV)
  STAGING_DIR:=$(TOPDIR)/staging_dir/$(ARCH)
  STAGING_DIR_HOST:=$(TOPDIR)/staging_dir/host
--TOOLCHAIN_DIR:=/opt/brcm/hndtools-$(ARCH)-uclibc-$(GCCV)$(TGT_SUFFIX)
+-TOOLCHAIN_DIR:=/opt/brcm/hndtools-$(ARCH)-uclibc-$(GCCV)-K26
 +TOOLCHAIN_DIR:=/opt/entware/toolchain-entware
  #TOOLCHAIN_DIR:=$(TOPDIR)/staging_dir/toolchain-$(ARCH)_gcc$(GCCV)
  PACKAGE_DIR:=$(BIN_DIR)/packages/$(ARCH)

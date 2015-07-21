@@ -1,5 +1,5 @@
---- ../../../downloads/toolchain-src-git/rules.mk	2015-07-20 16:49:47.108734641 +0300
-+++ ../../../toolchain-src-git/rules.mk	2015-07-20 16:51:56.124736788 +0300
+--- ../../../downloads/toolchain-src-git/rules.mk
++++ ../../../toolchain-src-git/rules.mk
 @@ -47,7 +47,7 @@
  BUILD_DIR_TOOLCHAIN:=$(BUILD_DIR_BASE)/toolchain-$(ARCH)_gcc$(GCCV)
  STAGING_DIR:=$(TOPDIR)/staging_dir/$(ARCH)

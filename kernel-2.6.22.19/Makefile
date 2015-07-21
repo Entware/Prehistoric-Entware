@@ -13,7 +13,7 @@ all: .kernel_prepared
 
 .kernel_prepared: $(TOP)/downloads/$(ARCH_NAME)
 	tar -C $(TOP) -xf $(TOP)/downloads/$(ARCH_NAME)
-	@echo Kernel files prepared.
+	@echo Kernel prepared.
 	@touch $@
 
 ifdef FORCE_COMPILE
@@ -37,7 +37,7 @@ else
 $(TOP)/downloads/$(ARCH_NAME): $(TOP)/downloads
 	[ -f $(TOP)/downloads/$(ARCH_NAME) ] || wget $(SRC_MIRROR)/$(ARCH_NAME) \
 	    -O $(TOP)/downloads/$(ARCH_NAME)
-	@echo Kernel files are downloaded.
+	@echo Kernel downloaded.
 endif
 
 $(TOP)/downloads:

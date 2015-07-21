@@ -1,6 +1,14 @@
---- ../../../downloads/openwrt_trunk-r44486/package/libs/toolchain/Makefile	2015-02-18 12:16:57.820306328 +0300
-+++ ../../../openwrt_trunk/package/libs/toolchain/Makefile	2015-02-18 12:17:41.628305530 +0300
-@@ -14,12 +14,8 @@
+--- ../../../downloads/openwrt_trunk-r46338/package/libs/toolchain/Makefile	2015-07-17 15:58:16.543848889 +0300
++++ ../../../openwrt_trunk/package/libs/toolchain/Makefile	2015-07-20 17:46:56.516791720 +0300
+@@ -7,19 +7,15 @@
+ 
+ include $(TOPDIR)/rules.mk
+ PKG_NAME:=toolchain
+-PKG_RELEASE:=1
++PKG_RELEASE:=2
+ 
+ PKG_MAINTAINER:=Felix Fietkau <nbd@openwrt.org>
+ PKG_LICENSE:=GPL-3.0-with-GCC-exception
  
  include $(INCLUDE_DIR)/package.mk
  

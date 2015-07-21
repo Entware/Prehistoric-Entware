@@ -35,7 +35,7 @@ $(TOP)/downloads/$(TARCH_NAME): $(TOP)/downloads/toolchain-src-git
 	$(MAKE) -C "$(TOP)/toolchain-src-git" V=99
 	tar -C /opt/entware -czf $(TOP)/downloads/$(TARCH_NAME) ./toolchain-$(TARGET)
 	rm -fr $(TOP)/toolchain-src-git
-	@echo Toolchain is compiled.
+	@echo Toolchain compiled.
 
 $(TOP)/downloads/toolchain-src-git: $(TOP)/downloads
 	(if [ -d $(TOP)/downloads/toolchain-src-git ]; then \
@@ -50,7 +50,7 @@ else
 $(TOP)/downloads/$(TARCH_NAME): $(TOP)/downloads
 	    [ -f $(TOP)/downloads/$(TARCH_NAME) ] || wget $(SRC_MIRROR)/$(TARCH_NAME) \
 	    -O $(TOP)/downloads/$(TARCH_NAME)
-	@echo Toolchain is downloaded.
+	@echo Toolchain downloaded.
 endif
 
 /opt/entware:
