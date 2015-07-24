@@ -1,0 +1,22 @@
+--- ../../../downloads/openwrt_trunk-r46338/feeds/packages/lang/python-setuptools/Makefile	2015-07-20 18:25:33.940830291 +0300
++++ ../../../openwrt_trunk/feeds/packages/lang/python-setuptools/Makefile	2015-07-24 15:49:23.086426469 +0300
+@@ -35,7 +35,7 @@
+ 
+ define Build/Compile
+ 	$(call Build/Compile/PyMod,,\
+-		install --prefix="$(PKG_INSTALL_DIR)/usr" \
++		install --prefix="$(PKG_INSTALL_DIR)/opt" \
+ 	)
+ endef
+ 
+@@ -47,8 +47,8 @@
+ endef
+ 
+ define PyPackage/python-setuptools/install
+-	$(INSTALL_DIR) $(1)/usr/bin
+-	$(CP) $(PKG_INSTALL_DIR)/usr/bin/* $(1)/usr/bin/
++	$(INSTALL_DIR) $(1)/opt/bin
++	$(CP) $(PKG_INSTALL_DIR)/opt/bin/* $(1)/opt/bin/
+ endef
+ 
+ $(eval $(call PyPackage,python-setuptools))
