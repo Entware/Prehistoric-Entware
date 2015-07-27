@@ -1,16 +1,6 @@
 diff -urx .svn ../../../downloads/openwrt_trunk-r44497/feeds/packages/lang/python-imglib/Makefile ../../../openwrt_trunk/feeds/packages/lang/python-imglib/Makefile
 --- ../../../downloads/openwrt_trunk-r44497/feeds/packages/lang/python-imglib/Makefile	2015-02-20 12:39:13.357134248 +0300
 +++ ../../../openwrt_trunk/feeds/packages/lang/python-imglib/Makefile	2015-02-20 20:58:01.583483083 +0300
-@@ -16,7 +16,8 @@
- PKG_MD5SUM:=fc14a54e1ce02a0225be8854bfba478e
- 
- PKG_BUILD_DIR:=$(BUILD_DIR)/Imaging-$(PKG_VERSION)
--PKG_BUILD_DEPENDS:=python python-setuptools
-+PKG_BUILD_DEPENDS:=python
-+#python-setuptools
- 
- include $(INCLUDE_DIR)/package.mk
- $(call include_mk, python-package.mk)
 @@ -46,17 +47,17 @@
  
  define Build/Compile
