@@ -1,5 +1,14 @@
---- ../../../downloads/openwrt_trunk-r46338/feeds/packages/utils/lcd4linux/Makefile	2015-07-15 16:48:18.952098714 +0300
-+++ ../../../openwrt_trunk/feeds/packages/utils/lcd4linux/Makefile	2015-07-17 12:56:12.182741870 +0300
+--- ../../../downloads/openwrt_trunk-r46338/feeds/packages/utils/lcd4linux/Makefile	2015-07-20 18:25:34.008830292 +0300
++++ ../../../openwrt_trunk/feeds/packages/utils/lcd4linux/Makefile	2015-07-29 12:53:55.441441430 +0300
+@@ -125,7 +125,7 @@
+ 	libmpdclient \
+ 	libmysqlclient \
+ 	libncurses \
+-	libnmeap \
++#	libnmeap \
+ 	libsqlite3 \
+ 	ppp \
+ #	libftdi \
 @@ -195,6 +195,7 @@
  	+libncurses \
  	+libsqlite3 \
