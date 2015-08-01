@@ -1,6 +1,11 @@
---- ../../../downloads/openwrt_trunk-r43718/feeds/packages/utils/minicom/Makefile
-+++ ../../../openwrt_trunk/feeds/packages/utils/minicom/Makefile
-@@ -37,9 +37,9 @@
+--- ../../../downloads/openwrt_trunk-r46338/feeds/packages/utils/minicom/Makefile	2015-07-14 10:55:19.830308174 +0300
++++ ../../../openwrt_trunk/feeds/packages/utils/minicom/Makefile	2015-07-14 15:02:03.626554904 +0300
+@@ -34,13 +34,13 @@
+ endef
+ 
+ define Package/minicom/conffiles
+-/etc/minirc.dfl
++/opt/etc/minirc.dfl
  endef
  
  define Package/minicom/install

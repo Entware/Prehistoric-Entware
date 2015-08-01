@@ -1,7 +1,7 @@
---- ../../../downloads/openwrt_trunk-r43718/feeds/packages/utils/ncdu/Makefile
-+++ ../../../openwrt_trunk/feeds/packages/utils/ncdu/Makefile
-@@ -39,8 +39,8 @@
- endef
+--- ../../../downloads/openwrt_trunk-r46338/feeds/packages/utils/ncdu/Makefile	2015-07-14 10:55:19.834308174 +0300
++++ ../../../openwrt_trunk/feeds/packages/utils/ncdu/Makefile	2015-07-14 10:55:49.970308675 +0300
+@@ -42,8 +42,8 @@
+ CONFIGURE_ARGS += --with-ncurses
  
  define Package/ncdu/install
 -	$(INSTALL_DIR) $(1)/usr/bin

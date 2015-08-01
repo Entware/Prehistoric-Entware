@@ -1,14 +1,5 @@
---- ../../../downloads/openwrt_trunk-r45513/package/libs/ncurses/Makefile	2015-04-21 10:37:38.392588029 +0300
-+++ ../../../openwrt_trunk/package/libs/ncurses/Makefile	2015-04-21 12:29:31.104463284 +0300
-@@ -9,7 +9,7 @@
- 
- PKG_NAME:=ncurses
- PKG_VERSION:=5.9
--PKG_RELEASE:=1
-+PKG_RELEASE:=1c
- 
- PKG_BUILD_DIR:=$(BUILD_DIR)/$(BUILD_VARIANT)/$(PKG_NAME)-$(PKG_VERSION)
- PKG_SOURCE:=$(PKG_NAME)-$(PKG_VERSION).tar.gz
+--- ../../../downloads/openwrt_trunk-q46338/package/libs/ncurses/Makefile	2015-07-21 13:57:43.000000000 +0300
++++ ../../../openwrt_trunk/package/libs/ncurses/Makefile	2015-07-23 13:23:11.683423242 +0300
 @@ -52,25 +52,35 @@
    VARIANT:=libncursesw
  endef
@@ -143,7 +134,7 @@
 +	$(CP) $(PKG_INSTALL_DIR)/Apps/opt/bin/ncursesw5-config $(2)/bin/
 +	$(SED) 's,^\(prefix\|exec_prefix\)=.*,\1=$(STAGING_DIR)/opt,g' -e 's/$$$$INCS //g' \
  		$(2)/bin/ncursesw5-config
--	$(LN) $(2)/bin/ncursesw5-config $(1)/usr/bin/ncursesw5-config
+-	ln -sf $(STAGING_DIR)/host/bin/ncursesw5-config $(1)/usr/bin/ncursesw5-config
 +	$(LN) $(2)/bin/ncursesw5-config $(1)/opt/bin/ncursesw5-config
  endef
  else
@@ -165,7 +156,7 @@
 +	$(CP) $(PKG_INSTALL_DIR)/Apps/opt/bin/ncurses5-config $(2)/bin/
 +	$(SED) 's,^\(prefix\|exec_prefix\)=.*,\1=$(STAGING_DIR)/opt,g' \
  		$(2)/bin/ncurses5-config
--	$(LN) $(2)/bin/ncurses5-config $(1)/usr/bin/ncurses5-config
+-	ln -sf $(STAGING_DIR)/host/bin/ncurses5-config $(1)/usr/bin/ncurses5-config
 +	$(LN) $(STAGING_DIR)/host/bin/ncurses5-config $(1)/opt/bin/ncurses5-config
  endef
  endif

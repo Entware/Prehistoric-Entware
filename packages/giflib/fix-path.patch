@@ -1,0 +1,26 @@
+--- ../../../downloads/openwrt_trunk-r46338/feeds/packages/libs/giflib/Makefile	2015-07-15 10:59:15.595750134 +0300
++++ ../../../openwrt_trunk/feeds/packages/libs/giflib/Makefile	2015-07-15 11:40:43.547791903 +0300
+@@ -46,16 +46,16 @@
+ endef
+ 
+ define Build/InstallDev
+-	$(INSTALL_DIR) $(1)/usr/{lib,include}
+-	$(CP) $(PKG_BUILD_DIR)/lib/.libs/lib*so* $(1)/usr/lib
+-	$(CP) $(PKG_BUILD_DIR)/lib/.libs/libgif.a $(1)/usr/lib
+-	$(CP) $(PKG_BUILD_DIR)/lib/libgif.la $(1)/usr/lib
+-	$(CP) $(PKG_BUILD_DIR)/lib/*.h $(1)/usr/include/
++	$(INSTALL_DIR) $(1)/opt/{lib,include}
++	$(CP) $(PKG_BUILD_DIR)/lib/.libs/lib*so* $(1)/opt/lib
++	$(CP) $(PKG_BUILD_DIR)/lib/.libs/libgif.a $(1)/opt/lib
++	$(CP) $(PKG_BUILD_DIR)/lib/libgif.la $(1)/opt/lib
++	$(CP) $(PKG_BUILD_DIR)/lib/*.h $(1)/opt/include/
+ endef
+ 
+ define Package/giflib/install
+-	$(INSTALL_DIR) $(1)/usr/lib
+-	$(CP) $(PKG_BUILD_DIR)/lib/.libs/lib*so* $(1)/usr/lib/
++	$(INSTALL_DIR) $(1)/opt/lib
++	$(CP) $(PKG_BUILD_DIR)/lib/.libs/lib*so* $(1)/opt/lib/
+ endef
+ 
+ $(eval $(call BuildPackage,giflib))

@@ -1,15 +1,6 @@
-diff -urx .svn ../../../downloads/openwrt_trunk-r43718/feeds/packages/net/nginx/Makefile ../../../openwrt_trunk/feeds/packages/net/nginx/Makefile
---- ../../../downloads/openwrt_trunk-r43718/feeds/packages/net/nginx/Makefile	2014-11-07 23:35:24.524646726 +0300
-+++ ../../../openwrt_trunk/feeds/packages/net/nginx/Makefile	2014-11-29 10:04:39.110446087 +0300
-@@ -9,7 +9,7 @@
- 
- PKG_NAME:=nginx
- PKG_VERSION:=1.4.7
--PKG_RELEASE:=2
-+PKG_RELEASE:=2a
- 
- PKG_SOURCE:=$(PKG_NAME)-$(PKG_VERSION).tar.gz
- PKG_SOURCE_URL:=http://nginx.org/download/
+diff -urx .svn ../../../downloads/openwrt_trunk-r46338/feeds/packages/net/nginx/Makefile ../../../openwrt_trunk/feeds/packages/net/nginx/Makefile
+--- ../../../downloads/openwrt_trunk-r46338/feeds/packages/net/nginx/Makefile	2015-07-14 10:55:19.794308173 +0300
++++ ../../../openwrt_trunk/feeds/packages/net/nginx/Makefile	2015-07-14 10:55:50.102308677 +0300
 @@ -75,7 +75,7 @@
  config_files=nginx.conf mime.types fastcgi_params koi-utf koi-win win-utf
  
@@ -109,9 +100,9 @@ diff -urx .svn ../../../downloads/openwrt_trunk-r43718/feeds/packages/net/nginx/
  endef
  
  
-diff -urx .svn ../../../downloads/openwrt_trunk-r43718/feeds/packages/net/nginx/patches/200-config.patch ../../../openwrt_trunk/feeds/packages/net/nginx/patches/200-config.patch
---- ../../../downloads/openwrt_trunk-r43718/feeds/packages/net/nginx/patches/200-config.patch	2014-11-07 23:35:24.524646726 +0300
-+++ ../../../openwrt_trunk/feeds/packages/net/nginx/patches/200-config.patch	2014-11-26 12:32:13.663809989 +0300
+diff -urx .svn ../../../downloads/openwrt_trunk-r46338/feeds/packages/net/nginx/patches/200-config.patch ../../../openwrt_trunk/feeds/packages/net/nginx/patches/200-config.patch
+--- ../../../downloads/openwrt_trunk-r46338/feeds/packages/net/nginx/patches/200-config.patch	2015-07-14 10:55:19.794308173 +0300
++++ ../../../openwrt_trunk/feeds/packages/net/nginx/patches/200-config.patch	2015-07-14 10:55:50.102308677 +0300
 @@ -1,18 +1,43 @@
 ---- a/conf/nginx.conf
 -+++ b/conf/nginx.conf

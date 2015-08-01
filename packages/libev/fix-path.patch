@@ -1,32 +1,17 @@
---- ../../../downloads/openwrt_trunk-r43593/feeds/management/libev/Makefile	2014-12-10 12:26:32.794951684 +0300
-+++ ../../../openwrt_trunk/feeds/management/libev/Makefile	2014-12-12 16:23:47.460842733 +0300
-@@ -8,12 +8,12 @@
- include $(TOPDIR)/rules.mk
- 
- PKG_NAME:=libev
--PKG_VERSION:=4.15
-+PKG_VERSION:=4.19
- PKG_RELEASE:=3
- 
- PKG_SOURCE:=$(PKG_NAME)-$(PKG_VERSION).tar.gz
- PKG_SOURCE_URL:=http://dist.schmorp.de/libev/Attic/
--PKG_MD5SUM:=3a73f247e790e2590c01f3492136ed31
-+PKG_MD5SUM:=01d1c672697f649b4f94abd0b70584ff
- PKG_LICENSE:=BSD-2-Clause
- 
- PKG_BUILD_PARALLEL:=1
-@@ -42,15 +42,15 @@
+--- ../../../downloads/openwrt_trunk-q46338/feeds/packages/libs/libev/Makefile	2015-07-21 13:57:42.000000000 +0300
++++ ../../../openwrt_trunk/feeds/packages/libs/libev/Makefile	2015-07-23 21:30:49.012723915 +0300
+@@ -43,15 +43,15 @@
  	--enable-static \
  
  define Build/InstallDev
--	$(INSTALL_DIR) $(1)/usr/include/libev
--	$(CP) $(PKG_INSTALL_DIR)/usr/include/* $(1)/usr/include/libev/
--	$(INSTALL_DIR) $(1)/usr/lib/libev
--	$(CP) $(PKG_INSTALL_DIR)/usr/lib/libev.{a,so} $(1)/usr/lib/libev/
-+	$(INSTALL_DIR) $(1)/opt/include/libev
-+	$(CP) $(PKG_INSTALL_DIR)/Apps/opt/include/* $(1)/opt/include/libev/
-+	$(INSTALL_DIR) $(1)/opt/lib/libev
-+	$(CP) $(PKG_INSTALL_DIR)/Apps/opt/lib/libev.{a,so} $(1)/opt/lib/libev/
+-	$(INSTALL_DIR) $(1)/usr/include
+-	$(CP) $(PKG_INSTALL_DIR)/usr/include/* $(1)/usr/include/
+-	$(INSTALL_DIR) $(1)/usr/lib
+-	$(CP) $(PKG_INSTALL_DIR)/usr/lib/libev.{a,so*} $(1)/usr/lib/
++	$(INSTALL_DIR) $(1)/opt/include
++	$(CP) $(PKG_INSTALL_DIR)/Apps/opt/include/* $(1)/opt/include/
++	$(INSTALL_DIR) $(1)/opt/lib
++	$(CP) $(PKG_INSTALL_DIR)/Apps/opt/lib/libev.{a,so*} $(1)/opt/lib/
  endef
  
  define Package/libev/install

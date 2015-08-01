@@ -1,14 +1,5 @@
---- ../../../downloads/openwrt_trunk-r43718/package/libs/libubox/Makefile	2014-12-15 21:16:34.001089056 +0300
-+++ ../../../openwrt_trunk/package/libs/libubox/Makefile	2015-01-03 22:39:38.756680562 +0300
-@@ -10,7 +10,7 @@
- PKG_SOURCE_VERSION:=dffbc09baf71b294185a36048166d00066d433b5
- PKG_SOURCE:=$(PKG_NAME)-$(PKG_VERSION)-$(PKG_SOURCE_VERSION).tar.gz
- PKG_MIRROR_MD5SUM:=
--CMAKE_INSTALL:=1
-+#CMAKE_INSTALL:=1
- 
- PKG_LICENSE:=ISC BSD-3c
- PKG_LICENSE_FILES:=
+--- ../../../downloads/openwrt_trunk-q46338/package/libs/libubox/Makefile	2015-07-21 13:57:43.000000000 +0300
++++ ../../../openwrt_trunk/package/libs/libubox/Makefile	2015-08-01 08:02:16.410963744 +0300
 @@ -62,34 +62,34 @@
    TITLE:=Lua binding for the OpenWrt Basic utility library
  endef

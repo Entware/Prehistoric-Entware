@@ -1,6 +1,6 @@
---- ../../../downloads/openwrt_trunk-r43718/feeds/packages/libs/tcp_wrappers/Makefile
-+++ ../../../openwrt_trunk/feeds/packages/libs/tcp_wrappers/Makefile
-@@ -44,22 +44,22 @@
+--- ../../../downloads/openwrt_trunk-r46338/feeds/packages/libs/tcp_wrappers/Makefile	2015-07-14 10:55:19.774308173 +0300
++++ ../../../openwrt_trunk/feeds/packages/libs/tcp_wrappers/Makefile	2015-07-14 10:55:54.870308757 +0300
+@@ -48,22 +48,22 @@
  			-Dss_family=__ss_family -Dss_len=__ss_len" \
  		FACILITY=LOG_DAEMON \
  		SEVERITY=LOG_INFO \

@@ -1,15 +1,15 @@
-diff -urx .svn ../../../downloads/openwrt_trunk-r43718/feeds/packages/net/xinetd/files/xinetd.conf ../../../openwrt_trunk/feeds/packages/net/xinetd/files/xinetd.conf
---- ../../../downloads/openwrt_trunk-r43718/feeds/packages/net/xinetd/files/xinetd.conf	2014-10-06 15:46:23.749250644 +0400
-+++ ../../../openwrt_trunk/feeds/packages/net/xinetd/files/xinetd.conf	2014-10-07 11:59:36.631924640 +0400
+diff -urx .svn ../../../downloads/openwrt_trunk-r46338/feeds/packages/net/xinetd/files/xinetd.conf ../../../openwrt_trunk/feeds/packages/net/xinetd/files/xinetd.conf
+--- ../../../downloads/openwrt_trunk-r46338/feeds/packages/net/xinetd/files/xinetd.conf	2015-07-14 10:55:19.782308173 +0300
++++ ../../../openwrt_trunk/feeds/packages/net/xinetd/files/xinetd.conf	2015-07-14 10:55:55.118308761 +0300
 @@ -3,4 +3,4 @@
  
  }
  
 -includedir /etc/xinetd.d
 +includedir /opt/etc/xinetd.d
-diff -urx .svn ../../../downloads/openwrt_trunk-r43718/feeds/packages/net/xinetd/Makefile ../../../openwrt_trunk/feeds/packages/net/xinetd/Makefile
---- ../../../downloads/openwrt_trunk-r43718/feeds/packages/net/xinetd/Makefile	2014-10-06 15:46:23.749250644 +0400
-+++ ../../../openwrt_trunk/feeds/packages/net/xinetd/Makefile	2014-10-07 11:59:36.631924640 +0400
+diff -urx .svn ../../../downloads/openwrt_trunk-r46338/feeds/packages/net/xinetd/Makefile ../../../openwrt_trunk/feeds/packages/net/xinetd/Makefile
+--- ../../../downloads/openwrt_trunk-r46338/feeds/packages/net/xinetd/Makefile	2015-07-14 10:55:19.782308173 +0300
++++ ../../../openwrt_trunk/feeds/packages/net/xinetd/Makefile	2015-07-14 10:55:55.118308761 +0300
 @@ -38,7 +38,7 @@
  endef
  
@@ -19,7 +19,7 @@ diff -urx .svn ../../../downloads/openwrt_trunk-r43718/feeds/packages/net/xinetd
  endef
  
  TARGET_CFLAGS += -DNO_RPC
-@@ -53,13 +53,12 @@
+@@ -54,13 +54,12 @@
  	ac_cv_header_rpc_rpcent_h=no
  
  define Package/xinetd/install

@@ -1,0 +1,11 @@
+--- ../../../downloads/openwrt_trunk-r46338/toolchain/Makefile	2015-07-15 16:48:21.084098750 +0300
++++ ../../../openwrt_trunk/toolchain/Makefile	2015-07-15 17:17:17.492127116 +0300
+@@ -60,7 +60,7 @@
+ 		cd "$$dir"; \
+ 		ln -nsf lib lib64; \
+ 		ln -nsf lib lib32; \
+-		mkdir -p stamp lib usr/include usr/lib ; \
++		mkdir -p stamp bin lib usr/include usr/lib ; \
+ 	); done
+ 	@grep GCC_VERSION $@ >/dev/null 2>&1 || $(INSTALL_DATA) $(TOPDIR)/toolchain/info.mk $@
+ 	@touch $@

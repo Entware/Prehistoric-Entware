@@ -1,6 +1,6 @@
 --- ../../../downloads/openwrt_trunk-r40423/config/Config-build.in
 +++ ../../../openwrt_trunk/config/Config-build.in
-@@ -193,8 +193,7 @@
+@@ -194,8 +194,7 @@
  
  	choice
  		prompt "Preferred standard C++ library"

@@ -15,3 +15,12 @@
  			-DDL_LIBRARY=$(STAGING_DIR) \
  			-DCMAKE_PREFIX_PATH=$(STAGING_DIR) \
  			-DCMAKE_SKIP_RPATH=TRUE  \
+@@ -75,7 +75,7 @@
+ 
+ define Build/InstallDev/cmake
+ 	$(INSTALL_DIR) $(1)
+-	$(CP) $(PKG_INSTALL_DIR)/* $(1)/
++	$(CP) $(PKG_INSTALL_DIR)/Apps/* $(1)/
+ endef
+ 
+ Build/InstallDev = $(if $(CMAKE_INSTALL),$(Build/InstallDev/cmake))

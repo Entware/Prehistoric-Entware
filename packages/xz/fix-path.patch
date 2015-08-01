@@ -11,7 +11,7 @@
    endef
  
    $$(eval $$(call BuildPackage,$(1)))
-@@ -80,23 +80,23 @@
+@@ -80,18 +80,18 @@
  	-std=c99 \
  
  define Build/InstallDev
@@ -36,6 +36,10 @@
 -		$(1)/usr/lib/pkgconfig/
 +		$(PKG_INSTALL_DIR)/Apps/opt/lib/pkgconfig/liblzma.pc \
 +		$(1)/opt/lib/pkgconfig/
+ endef
+ 
+ define Package/xz-utils/install
+@@ -99,8 +99,8 @@
  endef
  
  define Package/liblzma/install

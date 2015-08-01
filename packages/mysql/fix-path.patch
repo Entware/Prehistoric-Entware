@@ -43,7 +43,6 @@ diff -urx .svn ../../../downloads/openwrt_trunk-q45513/feeds/packages/utils/mysq
  #expire_logs_days	= 10
  #max_binlog_size         = 100M
  #binlog_do_db		= include_database_name
-Только в ../../../openwrt_trunk/feeds/packages/utils/mysql/files: S70mysqld
 diff -urx .svn ../../../downloads/openwrt_trunk-q45513/feeds/packages/utils/mysql/Makefile ../../../openwrt_trunk/feeds/packages/utils/mysql/Makefile
 --- ../../../downloads/openwrt_trunk-q45513/feeds/packages/utils/mysql/Makefile	2015-04-23 16:31:59.222168064 +0300
 +++ ../../../openwrt_trunk/feeds/packages/utils/mysql/Makefile	2015-04-25 21:33:37.721602021 +0300

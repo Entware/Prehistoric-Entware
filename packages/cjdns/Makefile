@@ -9,7 +9,8 @@ all: .done
 
 .done:
 	patch -d $(TOP) -p3 -i $(CURDIR)/fix-path.patch
-	cp -f 500-libuv.patch ../../../openwrt_trunk/feeds/routing/cjdns/patches/
+	mkdir -p ../../../openwrt_trunk/feeds/routing/cjdns/patches
+	cp -f ./5*.patch ../../../openwrt_trunk/feeds/routing/cjdns/patches/
 	@touch $@
 
 clean:

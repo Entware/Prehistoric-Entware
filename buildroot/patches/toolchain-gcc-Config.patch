@@ -1,0 +1,11 @@
+--- ../../../downloads/openwrt_trunk-r46338/toolchain/gcc/Config.in	2015-07-15 10:59:19.183750194 +0300
++++ ../../../openwrt_trunk/toolchain/gcc/Config.in	2015-07-15 14:23:28.855958828 +0300
+@@ -43,7 +43,7 @@
+ 	bool
+ 	prompt "Enable Stack-Smashing Protection support" if TOOLCHAINOPTS
+ 	depends on !USE_MUSL
+-	default y if !USE_MUSL
++	default n if !USE_MUSL
+ 	help
+ 	    Enable Stack-Smashing Protection support
+ 

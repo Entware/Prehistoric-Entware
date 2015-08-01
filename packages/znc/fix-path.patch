@@ -1,6 +1,71 @@
---- ../../../downloads/openwrt_trunk-q45513/feeds/packages/net/znc/Makefile	2015-04-23 16:31:59.174136804 +0300
-+++ ../../../openwrt_trunk/feeds/packages/net/znc/Makefile	2015-04-25 14:58:07.333563456 +0300
-@@ -45,19 +45,17 @@
+diff -Nurx .svn ../../../downloads/openwrt_trunk-q46338/feeds/packages/net/znc/files/S99znc ../../../openwrt_trunk/feeds/packages/net/znc/files/S99znc
+--- ../../../downloads/openwrt_trunk-q46338/feeds/packages/net/znc/files/S99znc	1970-01-01 03:00:00.000000000 +0300
++++ ../../../openwrt_trunk/feeds/packages/net/znc/files/S99znc	2015-07-22 12:36:09.951604043 +0300
+@@ -0,0 +1,14 @@
++#!/bin/sh
++
++# Give a r\w permissions for "nobody" user
++find /Apps/opt/share/znc/ -type f | xargs chmod 666
++find /Apps/opt/share/znc/ -type d | xargs chmod 777
++
++ENABLED=yes
++PROCS=znc
++ARGS="-d /Apps/opt/share/znc"
++PREARGS=""
++DESC=$PROCS
++PATH=/Apps/opt/sbin:/Apps/opt/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin
++
++. /Apps/opt/etc/init.d/rc.func
+diff -Nurx .svn ../../../downloads/openwrt_trunk-q46338/feeds/packages/net/znc/files/znc.init ../../../openwrt_trunk/feeds/packages/net/znc/files/znc.init
+--- ../../../downloads/openwrt_trunk-q46338/feeds/packages/net/znc/files/znc.init	2015-07-21 13:57:43.000000000 +0300
++++ ../../../openwrt_trunk/feeds/packages/net/znc/files/znc.init	2015-07-22 12:36:09.931158222 +0300
+@@ -38,9 +38,7 @@
+ 	config_get name "$network" name
+ 	echo "	<Network $name>" >> $ZNC_CONFIG
+ 	config_list_foreach "$network" server "add_param \"		Server\""
+-	config_list_foreach "$network" fingerprint "add_param \"		trustedserverfingerprint\""
+ 	config_list_foreach "$network" channel "add_chan"
+-	echo "	</Network>" >> $ZNC_CONFIG
+ }
+ 
+ znc_global() {
+@@ -144,7 +142,6 @@
+ 	if [ "$server" ]; then
+ 		echo "	<Network Default>" >> $ZNC_CONFIG
+ 		config_list_foreach "$user" server "add_param \"		Server\""
+-		config_list_foreach "$user" fingerprint "add_param \"		trustedserverfingerprint\""
+ 		config_list_foreach "$user" channel "add_chan"
+ 		echo "	</Network>" >> $ZNC_CONFIG
+ 	fi
+diff -Nurx .svn ../../../downloads/openwrt_trunk-q46338/feeds/packages/net/znc/Makefile ../../../openwrt_trunk/feeds/packages/net/znc/Makefile
+--- ../../../downloads/openwrt_trunk-q46338/feeds/packages/net/znc/Makefile	2015-07-21 13:57:43.000000000 +0300
++++ ../../../openwrt_trunk/feeds/packages/net/znc/Makefile	2015-07-24 13:58:53.967217684 +0300
+@@ -8,13 +8,13 @@
+ include $(TOPDIR)/rules.mk
+ 
+ PKG_NAME:=znc
+-PKG_VERSION:=1.6.0
++PKG_VERSION:=1.4
+ PKG_RELEASE:=3
+ 
+ PKG_SOURCE:=$(PKG_NAME)-$(PKG_VERSION).tar.gz
+ PKG_SOURCE_URL:=http://znc.in/releases \
+ 		http://znc.in/releases/archive
+-PKG_MD5SUM:=674d8c1277752dcc627b96e33a63376e
++PKG_MD5SUM:=630cb74db34d2d5451ba30b47869f6bb
+ 
+ PKG_MAINTAINER:=Jonas Gorski <jogo@openwrt.org>
+ PKG_LICENSE:=Apache-2.0
+@@ -34,7 +34,7 @@
+ 
+ define Package/znc
+   $(Package/znc/default)
+-  DEPENDS:=+libopenssl +libpthread +libstdcpp @GCC_VERSION_4_8||GCC_VERSION_4_9
++  DEPENDS:=+libopenssl +libpthread +libstdcpp
+   MENU:=1
+ endef
+ 
+@@ -45,21 +45,28 @@
  endef
  
  define Package/znc/conffiles
@@ -26,8 +91,19 @@
 +	$(INSTALL_BIN) $(PKG_BUILD_DIR)/modules/droproot.so $(1)/opt/lib/znc/
  endef
  
++define Package/znc/postinst
++#!/bin/sh
++
++echo Before using ZNC do not forget to:
++echo a\) Generate new config with \"znc -d /opt/share/znc -c\"
++echo b\) Add a \"LoadModule = droproot nobody nogroup\" string at first string
++echo to /Apps/opt/share/znc/configs/znc.conf, where \"nobody\" and \"nogroup\" is
++echo some unprivileged user\\group on your system.
++endef
  
-@@ -76,12 +74,12 @@
+ ZNC_MODULES :=
+ ZNC_MODULE_TARGETS := droproot.so
+@@ -76,12 +83,12 @@
    endef
  
    define Package/znc-mod-$(strip $(1))/install
@@ -44,7 +120,7 @@
  	fi
    endef
  
-@@ -101,12 +99,12 @@
+@@ -101,12 +108,12 @@
    endef
  
    define Package/znc-mod-webadmin/install
@@ -63,7 +139,7 @@
    endef
  
    ZNC_MODULES += znc-mod-webadmin
-@@ -125,8 +123,8 @@
+@@ -125,8 +132,8 @@
    endef
  
    define Package/znc-webskin-$(strip $(1))/install
@@ -74,7 +150,34 @@
    endef
    ZNC_MODULES += znc-webskin-$(strip $(1))
  endef
-@@ -264,10 +262,15 @@
+@@ -136,8 +143,6 @@
+ $(eval $(call module,adminlog,Log user connects and disconnects and failed \
+ 	logins to file or syslog.))
+ 
+-$(eval $(call module,alias,Provides bouncer-side command alias support.))
+-
+ $(eval $(call module,autoattach,Reattaches you to channels on activity.))
+ 
+ $(eval $(call module,autocycle,Cycles a channel when you are the only one in \
+@@ -200,8 +205,6 @@
+ $(eval $(call module,identfile,Places the ident of a user to a file when they \
+ 	 are trying to connect.))
+ 
+-$(eval $(call module,imapauth,Allow users to authenticate via IMAP.))
+-
+ $(eval $(call module,keepnick,Tries to get you your primary nick.))
+ 
+ $(eval $(call module,kickrejoin,Implements auto-rejoin-on-kick.))
+@@ -213,8 +216,6 @@
+ 
+ $(eval $(call module,log,Log conversations to file.))
+ 
+-$(eval $(call module,missingmotd,Sends 422 to clients when they login.))
+-
+ $(eval $(call module,modules_online,This module fakes the online status of \
+ 	ZNC-*users.))
+ 
+@@ -270,10 +271,15 @@
  
  include $(INCLUDE_DIR)/package.mk
  
@@ -88,7 +191,838 @@
 -	CPPFLAGS="-I$(STAGING_DIR)/usr/include -I$(STAGING_DIR)/include" \
 -	LDFLAGS="-nodefaultlibs -lc -L$(STAGING_DIR)/usr/lib -L$(STAGING_DIR)/lib" \
 +	CPPFLAGS="-I$(STAGING_DIR)/opt/include -I$(STAGING_DIR)/include" \
-+	LDFLAGS="-nodefaultlibs -lc -L$(STAGING_DIR)/opt/lib -L$(STAGING_DIR)/lib -Wl,--dynamic-linker=/Apps/opt/lib/$(DYNLINK) -Wl,-rpath,/opt/lib" \
++	LDFLAGS="-nodefaultlibs -lc -L$(STAGING_DIR)/opt/lib -L$(STAGING_DIR)/lib -Wl,--dynamic-linker=/Apps/opt/lib/$(DYNLINK) -Wl,-rpath,/Apps/opt/lib" \
  	LIBS="-lstdc++ -lm -lssl -lcrypto $(LIBGCC_S) -lc"
  
  CONFIGURE_ARGS += \
+diff -Nurx .svn ../../../downloads/openwrt_trunk-q46338/feeds/packages/net/znc/patches/001-fix-savebuff-timer-initialization.patch ../../../openwrt_trunk/feeds/packages/net/znc/patches/001-fix-savebuff-timer-initialization.patch
+--- ../../../downloads/openwrt_trunk-q46338/feeds/packages/net/znc/patches/001-fix-savebuff-timer-initialization.patch	2015-07-21 13:57:43.000000000 +0300
++++ ../../../openwrt_trunk/feeds/packages/net/znc/patches/001-fix-savebuff-timer-initialization.patch	1970-01-01 03:00:00.000000000 +0300
+@@ -1,28 +0,0 @@
+-From d6feb6f574933753371687ee42fa19d0b0d8d777 Mon Sep 17 00:00:00 2001
+-From: Thomas Kriechbaumer <kriechbaumer@gmail.com>
+-Date: Tue, 17 Feb 2015 10:08:30 +0000
+-Subject: [PATCH] fix savebuff timer initialization
+-
+-closes #868
+----
+- modules/savebuff.cpp | 4 ++--
+- 1 file changed, 2 insertions(+), 2 deletions(-)
+-
+---- a/modules/savebuff.cpp
+-+++ b/modules/savebuff.cpp
+-@@ -93,13 +93,13 @@ public:
+- 		else
+- 			m_sPassword = CBlowfish::MD5(sArgs);
+- 
+-+		AddTimer(new CSaveBuffJob(this, 60, 0, "SaveBuff", "Saves the current buffer to disk every 1 minute"));
+-+
+- 		return( !m_bBootError );
+- 	}
+- 
+- 	virtual bool OnBoot() override
+- 	{
+--		AddTimer(new CSaveBuffJob(this, 60, 0, "SaveBuff", "Saves the current buffer to disk every 1 minute"));
+--
+- 		CDir saveDir(GetSavePath());
+- 		for (CFile* pFile : saveDir) {
+- 			CString sName;
+diff -Nurx .svn ../../../downloads/openwrt_trunk-q46338/feeds/packages/net/znc/patches/001-move_rootcheck_after_config.patch ../../../openwrt_trunk/feeds/packages/net/znc/patches/001-move_rootcheck_after_config.patch
+--- ../../../downloads/openwrt_trunk-q46338/feeds/packages/net/znc/patches/001-move_rootcheck_after_config.patch	1970-01-01 03:00:00.000000000 +0300
++++ ../../../openwrt_trunk/feeds/packages/net/znc/patches/001-move_rootcheck_after_config.patch	2015-07-22 12:36:09.943603142 +0300
+@@ -0,0 +1,52 @@
++From 5f655f9a25a377c01cb15517859eb514628a43d4 Mon Sep 17 00:00:00 2001
++From: Jonas Gorski <jonas.gorski+openwrt@gmail.com>
++Date: Wed, 6 Apr 2011 04:10:23 +0200
++Subject: [PATCH] Move the root check to after config parsing
++
++---
++ src/main.cpp |   27 ++++++++++++++-------------
++ 1 files changed, 14 insertions(+), 13 deletions(-)
++
++--- a/src/main.cpp
+++++ b/src/main.cpp
++@@ -243,19 +243,6 @@ int main(int argc, char** argv) {
++ 		CUtils::PrintStatus(true, "");
++ 	}
++ 
++-	if (isRoot()) {
++-		CUtils::PrintError("You are running ZNC as root! Don't do that! There are not many valid");
++-		CUtils::PrintError("reasons for this and it can, in theory, cause great damage!");
++-		if (!bAllowRoot) {
++-			delete pZNC;
++-			return 1;
++-		}
++-		CUtils::PrintError("You have been warned.");
++-		CUtils::PrintError("Hit CTRL+C now if you don't want to run ZNC as root.");
++-		CUtils::PrintError("ZNC will start in 30 seconds.");
++-		sleep(30);
++-	}
++-
++ 	if (bMakeConf) {
++ 		if (!pZNC->WriteNewConfig(sConfig)) {
++ 			delete pZNC;
++@@ -276,6 +263,20 @@ int main(int argc, char** argv) {
++ 		return 1;
++ 	}
++ 
+++	if (isRoot()) {
+++		CUtils::PrintError("You are running ZNC as root! Don't do that! There are not many valid");
+++		CUtils::PrintError("reasons for this and it can, in theory, cause great damage!");
+++		if (!bAllowRoot) {
+++			delete pZNC;
+++			return 1;
+++		}
+++		CUtils::PrintError("You have been warned.");
+++		CUtils::PrintError("Hit CTRL+C now if you don't want to run ZNC as root.");
+++		CUtils::PrintError("ZNC will start in 30 seconds.");
+++		sleep(30);
+++	}
+++
+++
++ 	if (bForeground) {
++ 		int iPid = getpid();
++ 		CUtils::PrintMessage("Staying open for debugging [pid: " + CString(iPid) + "]");
+diff -Nurx .svn ../../../downloads/openwrt_trunk-q46338/feeds/packages/net/znc/patches/002-CThreadPool-Handle-spurious-wakeups.patch ../../../openwrt_trunk/feeds/packages/net/znc/patches/002-CThreadPool-Handle-spurious-wakeups.patch
+--- ../../../downloads/openwrt_trunk-q46338/feeds/packages/net/znc/patches/002-CThreadPool-Handle-spurious-wakeups.patch	2015-07-21 13:57:43.000000000 +0300
++++ ../../../openwrt_trunk/feeds/packages/net/znc/patches/002-CThreadPool-Handle-spurious-wakeups.patch	1970-01-01 03:00:00.000000000 +0300
+@@ -1,33 +0,0 @@
+-From 2f4488c2a4f2d6b130ded560efa06680bfd8a185 Mon Sep 17 00:00:00 2001
+-From: Uli Schlachter <psychon@znc.in>
+-Date: Sat, 14 Feb 2015 19:41:26 +0100
+-Subject: [PATCH] ~CThreadPool(): Handle spurious wakeups
+-
+-From pthread_cond_wait()'s man page:
+-
+-  When using condition variables there is always a boolean predicate involving
+-  shared variables associated with each condition wait that is true if the
+-  thread should proceed. Spurious wakeups from the pthread_cond_wait() or
+-  pthread_cond_timedwait() functions may occur. Since the return from
+-  pthread_cond_wait() or pthread_cond_timedwait() does not imply anything about
+-  the value of this predicate, the predicate should be re-evaluated upon such
+-  return.
+-
+-Fix ~CThreadPool() to account for this possibility.
+-
+-Signed-off-by: Uli Schlachter <psychon@znc.in>
+----
+- src/Threads.cpp | 2 +-
+- 1 file changed, 1 insertion(+), 1 deletion(-)
+-
+---- a/src/Threads.cpp
+-+++ b/src/Threads.cpp
+-@@ -87,7 +87,7 @@ CThreadPool::~CThreadPool() {
+- 	CMutexLocker guard(m_mutex);
+- 	m_done = true;
+- 
+--	if (m_num_threads > 0) {
+-+	while (m_num_threads > 0) {
+- 		m_cond.broadcast();
+- 		m_exit_cond.wait(m_mutex);
+- 	}
+diff -Nurx .svn ../../../downloads/openwrt_trunk-q46338/feeds/packages/net/znc/patches/003-Fix-CIRCNetwork-FindChans-and-FindQueries-to-be-case.patch ../../../openwrt_trunk/feeds/packages/net/znc/patches/003-Fix-CIRCNetwork-FindChans-and-FindQueries-to-be-case.patch
+--- ../../../downloads/openwrt_trunk-q46338/feeds/packages/net/znc/patches/003-Fix-CIRCNetwork-FindChans-and-FindQueries-to-be-case.patch	2015-07-21 13:57:43.000000000 +0300
++++ ../../../openwrt_trunk/feeds/packages/net/znc/patches/003-Fix-CIRCNetwork-FindChans-and-FindQueries-to-be-case.patch	1970-01-01 03:00:00.000000000 +0300
+@@ -1,149 +0,0 @@
+-From e10b53b87bb7ce87d1a31473e03a02ccafa78787 Mon Sep 17 00:00:00 2001
+-From: J-P Nurmi <jpnurmi@gmail.com>
+-Date: Tue, 3 Feb 2015 10:11:47 +0100
+-Subject: [PATCH] Fix CIRCNetwork::FindChans() and FindQueries() to be
+- case-insensitive
+-
+-The playback module failed to clear a buffer, because it tried to
+-clear "NickServ" whereas ZNC had internally stored it has "nickserv".
+----
+- Makefile.in          |  2 +-
+- src/IRCNetwork.cpp   |  6 ++--
+- test/NetworkTest.cpp | 96 ++++++++++++++++++++++++++++++++++++++++++++++++++++
+- 3 files changed, 101 insertions(+), 3 deletions(-)
+- create mode 100644 test/NetworkTest.cpp
+-
+---- a/Makefile.in
+-+++ b/Makefile.in
+-@@ -48,7 +48,7 @@ LIB_SRCS  := $(addprefix src/,$(LIB_SRCS
+- BIN_SRCS  := src/main.cpp
+- LIB_OBJS  := $(patsubst %cpp,%o,$(LIB_SRCS))
+- BIN_OBJS  := $(patsubst %cpp,%o,$(BIN_SRCS))
+--TESTS     := StringTest ConfigTest UtilsTest ThreadTest NickTest ClientTest
+-+TESTS     := StringTest ConfigTest UtilsTest ThreadTest NickTest ClientTest NetworkTest
+- TESTS     := $(addprefix test/,$(addsuffix .o,$(TESTS)))
+- CLEAN     := znc src/*.o test/*.o core core.* .version_extra .depend modules/.depend unittest
+- DISTCLEAN := Makefile config.log config.status znc-buildmod \
+---- a/src/IRCNetwork.cpp
+-+++ b/src/IRCNetwork.cpp
+-@@ -787,8 +787,9 @@ CChan* CIRCNetwork::FindChan(CString sNa
+- std::vector<CChan*> CIRCNetwork::FindChans(const CString& sWild) const {
+- 	std::vector<CChan*> vChans;
+- 	vChans.reserve(m_vChans.size());
+-+	const CString sLower = sWild.AsLower();
+- 	for (std::vector<CChan*>::const_iterator it = m_vChans.begin(); it != m_vChans.end(); ++it) {
+--		if ((*it)->GetName().WildCmp(sWild))
+-+		if ((*it)->GetName().AsLower().WildCmp(sLower))
+- 			vChans.push_back(*it);
+- 	}
+- 	return vChans;
+-@@ -946,8 +947,9 @@ CQuery* CIRCNetwork::FindQuery(const CSt
+- std::vector<CQuery*> CIRCNetwork::FindQueries(const CString& sWild) const {
+- 	std::vector<CQuery*> vQueries;
+- 	vQueries.reserve(m_vQueries.size());
+-+	const CString sLower = sWild.AsLower();
+- 	for (std::vector<CQuery*>::const_iterator it = m_vQueries.begin(); it != m_vQueries.end(); ++it) {
+--		if ((*it)->GetName().WildCmp(sWild))
+-+		if ((*it)->GetName().AsLower().WildCmp(sLower))
+- 			vQueries.push_back(*it);
+- 	}
+- 	return vQueries;
+---- /dev/null
+-+++ b/test/NetworkTest.cpp
+-@@ -0,0 +1,96 @@
+-+/*
+-+ * Copyright (C) 2004-2015 ZNC, see the NOTICE file for details.
+-+ *
+-+ * Licensed under the Apache License, Version 2.0 (the "License");
+-+ * you may not use this file except in compliance with the License.
+-+ * You may obtain a copy of the License at
+-+ *
+-+ *     http://www.apache.org/licenses/LICENSE-2.0
+-+ *
+-+ * Unless required by applicable law or agreed to in writing, software
+-+ * distributed under the License is distributed on an "AS IS" BASIS,
+-+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+-+ * See the License for the specific language governing permissions and
+-+ * limitations under the License.
+-+ */
+-+
+-+#include <gtest/gtest.h>
+-+#include <znc/IRCNetwork.h>
+-+#include <znc/User.h>
+-+#include <znc/znc.h>
+-+
+-+class NetworkTest : public ::testing::Test {
+-+protected:
+-+	void SetUp() { CZNC::CreateInstance(); }
+-+	void TearDown() { CZNC::DestroyInstance(); }
+-+};
+-+
+-+TEST_F(NetworkTest, FindChan) {
+-+	CUser user("user");
+-+	CIRCNetwork network(&user, "network");
+-+
+-+	EXPECT_TRUE(network.AddChan("#foo", false));
+-+	EXPECT_TRUE(network.AddChan("#Bar", false));
+-+	EXPECT_TRUE(network.AddChan("#BAZ", false));
+-+
+-+	EXPECT_TRUE(network.FindChan("#foo"));
+-+	EXPECT_TRUE(network.FindChan("#Bar"));
+-+	EXPECT_TRUE(network.FindChan("#BAZ"));
+-+
+-+	EXPECT_TRUE(network.FindChan("#Foo"));
+-+	EXPECT_TRUE(network.FindChan("#BAR"));
+-+	EXPECT_TRUE(network.FindChan("#baz"));
+-+
+-+	EXPECT_FALSE(network.FindChan("#f"));
+-+	EXPECT_FALSE(network.FindChan("&foo"));
+-+	EXPECT_FALSE(network.FindChan("##foo"));
+-+}
+-+
+-+TEST_F(NetworkTest, FindChans) {
+-+	CUser user("user");
+-+	CIRCNetwork network(&user, "network");
+-+
+-+	EXPECT_TRUE(network.AddChan("#foo", false));
+-+	EXPECT_TRUE(network.AddChan("#Bar", false));
+-+	EXPECT_TRUE(network.AddChan("#BAZ", false));
+-+
+-+	EXPECT_EQ(network.FindChans("#f*").size(), 1);
+-+	EXPECT_EQ(network.FindChans("#b*").size(), 2);
+-+	EXPECT_EQ(network.FindChans("#?A*").size(), 2);
+-+	EXPECT_EQ(network.FindChans("*z").size(), 1);
+-+}
+-+
+-+TEST_F(NetworkTest, FindQuery) {
+-+	CUser user("user");
+-+	CIRCNetwork network(&user, "network");
+-+
+-+	EXPECT_TRUE(network.AddQuery("foo"));
+-+	EXPECT_TRUE(network.AddQuery("Bar"));
+-+	EXPECT_TRUE(network.AddQuery("BAZ"));
+-+
+-+	EXPECT_TRUE(network.FindQuery("foo"));
+-+	EXPECT_TRUE(network.FindQuery("Bar"));
+-+	EXPECT_TRUE(network.FindQuery("BAZ"));
+-+
+-+	EXPECT_TRUE(network.FindQuery("Foo"));
+-+	EXPECT_TRUE(network.FindQuery("BAR"));
+-+	EXPECT_TRUE(network.FindQuery("baz"));
+-+
+-+	EXPECT_FALSE(network.FindQuery("f"));
+-+	EXPECT_FALSE(network.FindQuery("fo"));
+-+	EXPECT_FALSE(network.FindQuery("FF"));
+-+}
+-+
+-+TEST_F(NetworkTest, FindQueries) {
+-+	CUser user("user");
+-+	CIRCNetwork network(&user, "network");
+-+
+-+	EXPECT_TRUE(network.AddQuery("foo"));
+-+	EXPECT_TRUE(network.AddQuery("Bar"));
+-+	EXPECT_TRUE(network.AddQuery("BAZ"));
+-+
+-+	EXPECT_EQ(network.FindQueries("f*").size(), 1);
+-+	EXPECT_EQ(network.FindQueries("b*").size(), 2);
+-+	EXPECT_EQ(network.FindQueries("?A*").size(), 2);
+-+	EXPECT_EQ(network.FindQueries("*z").size(), 1);
+-+}
+diff -Nurx .svn ../../../downloads/openwrt_trunk-q46338/feeds/packages/net/znc/patches/003-Reduce_rebuild_time.patch ../../../openwrt_trunk/feeds/packages/net/znc/patches/003-Reduce_rebuild_time.patch
+--- ../../../downloads/openwrt_trunk-q46338/feeds/packages/net/znc/patches/003-Reduce_rebuild_time.patch	1970-01-01 03:00:00.000000000 +0300
++++ ../../../openwrt_trunk/feeds/packages/net/znc/patches/003-Reduce_rebuild_time.patch	2015-07-22 12:36:09.947135885 +0300
+@@ -0,0 +1,38 @@
++From 94aff4c3389111fc85054eb06b40bea26a216d0c Mon Sep 17 00:00:00 2001
++From: Jonas Gorski <jonas.gorski+openwrt@gmail.com>
++Date: Sat, 16 Apr 2011 05:51:04 +0200
++Subject: [PATCH] Don't rebuild everything when the Makefile's timestamp changed
++
++---
++ Makefile.in         |    2 +-
++ modules/Makefile.in |    2 +-
++ 2 files changed, 2 insertions(+), 2 deletions(-)
++
++--- a/Makefile.in
+++++ b/Makefile.in
++@@ -104,7 +104,7 @@ clean:
++ distclean: clean
++ 	rm -rf $(DISTCLEAN)
++ 
++-src/%.o: src/%.cpp Makefile
+++src/%.o: src/%.cpp
++ 	@mkdir -p .depend src
++ 	$(E) Building core object $*...
++ 	$(Q)$(CXX) $(CXXFLAGS) -c -o $@ $< -MD -MF .depend/$*.dep -MT $@
++--- a/modules/Makefile.in
+++++ b/modules/Makefile.in
++@@ -117,12 +117,12 @@ install_datadir:
++ clean:
++ 	rm -rf $(CLEAN)
++ 
++-%.o: %.cpp Makefile
+++%.o: %.cpp
++ 	@mkdir -p .depend
++ 	$(E) Building module $(notdir $(basename $@))...
++ 	$(Q)$(CXX) $(MODFLAGS) -c -o $@ $< $($(notdir $(basename $@))CXXFLAGS) -MD -MF .depend/$(notdir $@).dep
++ 
++-%.so: %.o Makefile
+++%.so: %.o
++ 	$(E) "Linking  module" $(notdir $(basename $@))...
++ 	$(Q)$(CXX) $(MODFLAGS) $(LDFLAGS) $(MODLINK) -o $@ $< $($(notdir $(basename $@))LDFLAGS) $(LIBS)
++ 
+diff -Nurx .svn ../../../downloads/openwrt_trunk-q46338/feeds/packages/net/znc/patches/004-Fix-chansaver-loading.patch ../../../openwrt_trunk/feeds/packages/net/znc/patches/004-Fix-chansaver-loading.patch
+--- ../../../downloads/openwrt_trunk-q46338/feeds/packages/net/znc/patches/004-Fix-chansaver-loading.patch	2015-07-21 13:57:43.000000000 +0300
++++ ../../../openwrt_trunk/feeds/packages/net/znc/patches/004-Fix-chansaver-loading.patch	1970-01-01 03:00:00.000000000 +0300
+@@ -1,38 +0,0 @@
+-From 7e75018ba60a9f50ea9e936eb1b6eb6b44dbc668 Mon Sep 17 00:00:00 2001
+-From: J-P Nurmi <jpnurmi@gmail.com>
+-Date: Sat, 28 Feb 2015 21:15:23 +0100
+-Subject: [PATCH] Fix chansaver loading
+-
+-CModules::LoadModule() sets the module type _after_ construction.
+-The constructor cannot therefore do actions based on the module
+-type. Move loading to OnLoad().
+----
+- modules/chansaver.cpp | 10 +++++++---
+- 1 file changed, 7 insertions(+), 3 deletions(-)
+-
+---- a/modules/chansaver.cpp
+-+++ b/modules/chansaver.cpp
+-@@ -21,6 +21,12 @@
+- class CChanSaverMod : public CModule {
+- public:
+- 	MODCONSTRUCTOR(CChanSaverMod) {
+-+	}
+-+
+-+	virtual ~CChanSaverMod() {
+-+	}
+-+
+-+	bool OnLoad(const CString& sArgsi, CString& sMessage) override {
+- 		switch (GetType()) {
+- 			case CModInfo::GlobalModule:
+- 				LoadUsers();
+-@@ -32,9 +38,7 @@ public:
+- 				LoadNetwork(GetNetwork());
+- 				break;
+- 		}
+--	}
+--
+--	virtual ~CChanSaverMod() {
+-+		return true;
+- 	}
+- 
+- 	void LoadUsers() {
+diff -Nurx .svn ../../../downloads/openwrt_trunk-q46338/feeds/packages/net/znc/patches/004-restore_droproot.patch ../../../openwrt_trunk/feeds/packages/net/znc/patches/004-restore_droproot.patch
+--- ../../../downloads/openwrt_trunk-q46338/feeds/packages/net/znc/patches/004-restore_droproot.patch	1970-01-01 03:00:00.000000000 +0300
++++ ../../../openwrt_trunk/feeds/packages/net/znc/patches/004-restore_droproot.patch	2015-07-22 12:36:09.947135885 +0300
+@@ -0,0 +1,147 @@
++--- /dev/null
+++++ b/modules/droproot.cpp
++@@ -0,0 +1,144 @@
+++/*
+++ * droproot.cpp
+++ *
+++ * Copyright (c) 2009 Vadtec (vadtec@vadtec.net)
+++ * This program is free software; you can redistribute it and/or modify it
+++ * under the terms of the GNU General Public License version 2 as published
+++ * by the Free Software Foundation.
+++ *
+++ * Copyright (C) 2004-2012  See the AUTHORS file for details.
+++ *
+++ * This program is free software; you can redistribute it and/or modify it
+++ * under the terms of the GNU General Public License version 2 as published
+++ * by the Free Software Foundation.
+++ */
+++
+++#include <znc/znc.h>
+++#include <znc/User.h>
+++#include <pwd.h>
+++#include <grp.h>
+++
+++class CDroproot : public CModule {
+++
+++public:
+++	MODCONSTRUCTOR(CDroproot) {
+++	}
+++
+++	virtual ~CDroproot() {
+++	}
+++
+++	uid_t GetUser(const CString& sUser, CString& sMessage) {
+++		uid_t ret = sUser.ToUInt();
+++
+++		if (ret != 0)
+++			return ret;
+++
+++		struct passwd *pUser = getpwnam(sUser.c_str());
+++
+++		if (!pUser) {
+++			sMessage = "User [" + sUser + "] not found!";
+++			return 0;
+++		}
+++
+++		return pUser->pw_uid;
+++	}
+++
+++	gid_t GetGroup(const CString& sGroup, CString& sMessage) {
+++		gid_t ret = sGroup.ToUInt();
+++
+++		if (ret != 0)
+++			return ret;
+++
+++		struct group *pGroup = getgrnam(sGroup.c_str());
+++
+++		if (!pGroup) {
+++			sMessage = "Group [" + sGroup + "] not found!";
+++			return 0;
+++		}
+++
+++		return pGroup->gr_gid;
+++	}
+++
+++	virtual bool OnLoad(const CString& sArgs, CString& sMessage) {
+++		CString sUser = sArgs.Token(0);
+++		CString sGroup = sArgs.Token(1, true);
+++
+++		if (sUser.empty() || sGroup.empty()) {
+++			sMessage = "Usage: LoadModule = Droproot <uid> <gid>";
+++			return false;
+++		}
+++
+++		m_user = GetUser(sUser, sMessage);
+++
+++		if (m_user == 0) {
+++			sMessage
+++					= "Error: Cannot run as root, check your config file | Useage: LoadModule = Droproot <uid> <gid>";
+++			return false;
+++		}
+++
+++		m_group = GetGroup(sGroup, sMessage);
+++
+++		if (m_group == 0) {
+++			sMessage
+++					= "Error: Cannot run as root, check your config file | Useage: LoadModule = Droproot <uid> <gid>";
+++			return false;
+++		}
+++
+++		return true;
+++	}
+++
+++	virtual bool OnBoot() {
+++		int u, eu, g, eg, sg;
+++
+++		if ((geteuid() == 0) || (getuid() == 0) || (getegid() == 0) || (getgid()
+++				== 0)) {
+++
+++			CUtils::PrintAction("Dropping root permissions");
+++
+++			// Clear all the supplementary groups
+++			sg = setgroups(0, NULL);
+++
+++			if (sg < 0) {
+++				CUtils::PrintStatus(false,
+++						"Could not remove supplementary groups! ["
+++								+ CString(strerror(errno)) + "]");
+++
+++				return false;
+++			}
+++
+++			// Set the group (if we are root, this sets all three group IDs)
+++			g = setgid(m_group);
+++			eg = setegid(m_group);
+++
+++			if ((g < 0) || (eg < 0)) {
+++				CUtils::PrintStatus(false, "Could not switch group id! ["
+++						+ CString(strerror(errno)) + "]");
+++
+++				return false;
+++			}
+++
+++			// and set the user (if we are root, this sets all three user IDs)
+++			u = setuid(m_user);
+++			eu = seteuid(m_user);
+++
+++			if ((u < 0) || (eu < 0)) {
+++				CUtils::PrintStatus(false, "Could not switch user id! ["
+++						+ CString(strerror(errno)) + "]");
+++
+++				return false;
+++			}
+++
+++			CUtils::PrintStatus(true);
+++
+++			return true;
+++		}
+++
+++		return true;
+++	}
+++
+++protected:
+++	uid_t m_user;
+++	gid_t m_group;
+++};
+++
+++GLOBALMODULEDEFS(CDroproot, "Allows ZNC to drop root privileges and run as an un-privileged user.")
+diff -Nurx .svn ../../../downloads/openwrt_trunk-q46338/feeds/packages/net/znc/patches/005-Fix-rare-conflict-of-HTTP-Basic-auth-and-cookies.patch ../../../openwrt_trunk/feeds/packages/net/znc/patches/005-Fix-rare-conflict-of-HTTP-Basic-auth-and-cookies.patch
+--- ../../../downloads/openwrt_trunk-q46338/feeds/packages/net/znc/patches/005-Fix-rare-conflict-of-HTTP-Basic-auth-and-cookies.patch	2015-07-21 13:57:43.000000000 +0300
++++ ../../../openwrt_trunk/feeds/packages/net/znc/patches/005-Fix-rare-conflict-of-HTTP-Basic-auth-and-cookies.patch	1970-01-01 03:00:00.000000000 +0300
+@@ -1,36 +0,0 @@
+-From 13c2dc126d8bb4c57273178fc455dab6f02e1efc Mon Sep 17 00:00:00 2001
+-From: Alexey Sokolov <alexey+znc@asokolov.org>
+-Date: Thu, 16 Apr 2015 01:21:57 +0100
+-Subject: [PATCH] Fix rare conflict of HTTP-Basic auth and cookies.
+-
+-Fix #946
+----
+- src/HTTPSock.cpp | 10 +++++++++-
+- 1 file changed, 9 insertions(+), 1 deletion(-)
+-
+---- a/src/HTTPSock.cpp
+-+++ b/src/HTTPSock.cpp
+-@@ -122,7 +122,7 @@ void CHTTPSock::ReadLine(const CString&
+- 		sLine.Token(2).Base64Decode(sUnhashed);
+- 		m_sUser = sUnhashed.Token(0, false, ":");
+- 		m_sPass = sUnhashed.Token(1, true, ":");
+--		m_bLoggedIn = OnLogin(m_sUser, m_sPass, true);
+-+		// Postpone authorization attempt until end of headers, because cookies should be read before that, otherwise session id will be overwritten in GetSession()
+- 	} else if (sName.Equals("Content-Length:")) {
+- 		m_uPostLen = sLine.Token(1).ToULong();
+- 		if (m_uPostLen > MAX_POST_SIZE)
+-@@ -170,6 +170,14 @@ void CHTTPSock::ReadLine(const CString&
+- 	} else if (sLine.empty()) {
+- 		m_bGotHeader = true;
+- 
+-+		if (!m_sUser.empty()) {
+-+			m_bLoggedIn = OnLogin(m_sUser, m_sPass, true);
+-+			if (!m_bLoggedIn) {
+-+				// Error message already was sent
+-+				return;
+-+			}
+-+		}
+-+
+- 		if (m_bPost) {
+- 			m_sPostData = GetInternalReadBuffer();
+- 			CheckPost();
+diff -Nurx .svn ../../../downloads/openwrt_trunk-q46338/feeds/packages/net/znc/patches/006-Fix-954-Startup-failure-when-simple_away-is-loaded-a.patch ../../../openwrt_trunk/feeds/packages/net/znc/patches/006-Fix-954-Startup-failure-when-simple_away-is-loaded-a.patch
+--- ../../../downloads/openwrt_trunk-q46338/feeds/packages/net/znc/patches/006-Fix-954-Startup-failure-when-simple_away-is-loaded-a.patch	2015-07-21 13:57:43.000000000 +0300
++++ ../../../openwrt_trunk/feeds/packages/net/znc/patches/006-Fix-954-Startup-failure-when-simple_away-is-loaded-a.patch	1970-01-01 03:00:00.000000000 +0300
+@@ -1,24 +0,0 @@
+-From 703a244b9b8c1b4af02a6132c5c70a748d98e3f8 Mon Sep 17 00:00:00 2001
+-From: J-P Nurmi <jpnurmi@gmail.com>
+-Date: Tue, 28 Apr 2015 10:00:55 +0200
+-Subject: [PATCH] Fix #954: Startup failure when simple_away is loaded
+- after awaynick
+-
+----
+- src/User.cpp | 5 +++++
+- 1 file changed, 5 insertions(+)
+-
+---- a/src/User.cpp
+-+++ b/src/User.cpp
+-@@ -1101,6 +1101,11 @@ bool CUser::LoadModule(const CString& sM
+- 		CFile fNVFile = CFile(GetUserPath() + "/moddata/" + sModName + "/.registry");
+- 
+- 		for (vector<CIRCNetwork*>::iterator it = m_vIRCNetworks.begin(); it != m_vIRCNetworks.end(); ++it) {
+-+			// Check whether the network already has this module loaded (#954)
+-+			if ((*it)->GetModules().FindModule(sModName)) {
+-+				continue;
+-+			}
+-+
+- 			if (fNVFile.Exists()) {
+- 				CString sNetworkModPath = (*it)->GetNetworkPath() + "/moddata/" + sModName;
+- 				if (!CFile::Exists(sNetworkModPath)) {
+diff -Nurx .svn ../../../downloads/openwrt_trunk-q46338/feeds/packages/net/znc/patches/100-move_rootcheck_after_config.patch ../../../openwrt_trunk/feeds/packages/net/znc/patches/100-move_rootcheck_after_config.patch
+--- ../../../downloads/openwrt_trunk-q46338/feeds/packages/net/znc/patches/100-move_rootcheck_after_config.patch	2015-07-21 13:57:43.000000000 +0300
++++ ../../../openwrt_trunk/feeds/packages/net/znc/patches/100-move_rootcheck_after_config.patch	1970-01-01 03:00:00.000000000 +0300
+@@ -1,52 +0,0 @@
+-From adf42357c9043c38d9a9b47544a1b46445bdae19 Mon Sep 17 00:00:00 2001
+-From: Jonas Gorski <jonas.gorski+openwrt@gmail.com>
+-Date: Wed, 6 Apr 2011 04:10:23 +0200
+-Subject: [PATCH] Move the root check to after config parsing
+-
+----
+- src/main.cpp | 27 ++++++++++++++-------------
+- 1 file changed, 14 insertions(+), 13 deletions(-)
+-
+---- a/src/main.cpp
+-+++ b/src/main.cpp
+-@@ -303,19 +303,6 @@ int main(int argc, char** argv) {
+- 		CUtils::PrintStatus(true, "");
+- 	}
+- 
+--	if (isRoot()) {
+--		CUtils::PrintError("You are running ZNC as root! Don't do that! There are not many valid");
+--		CUtils::PrintError("reasons for this and it can, in theory, cause great damage!");
+--		if (!bAllowRoot) {
+--			CZNC::DestroyInstance();
+--			return 1;
+--		}
+--		CUtils::PrintError("You have been warned.");
+--		CUtils::PrintError("Hit CTRL+C now if you don't want to run ZNC as root.");
+--		CUtils::PrintError("ZNC will start in 30 seconds.");
+--		sleep(30);
+--	}
+--
+- 	if (bMakeConf) {
+- 		if (!pZNC->WriteNewConfig(sConfig)) {
+- 			CZNC::DestroyInstance();
+-@@ -337,6 +324,20 @@ int main(int argc, char** argv) {
+- 		return 1;
+- 	}
+- 
+-+	if (isRoot()) {
+-+		CUtils::PrintError("You are running ZNC as root! Don't do that! There are not many valid");
+-+		CUtils::PrintError("reasons for this and it can, in theory, cause great damage!");
+-+		if (!bAllowRoot) {
+-+			CZNC::DestroyInstance();
+-+			return 1;
+-+		}
+-+		CUtils::PrintError("You have been warned.");
+-+		CUtils::PrintError("Hit CTRL+C now if you don't want to run ZNC as root.");
+-+		CUtils::PrintError("ZNC will start in 30 seconds.");
+-+		sleep(30);
+-+	}
+-+
+-+
+- 	if (bForeground) {
+- 		int iPid = getpid();
+- 		CUtils::PrintMessage("Staying open for debugging [pid: " + CString(iPid) + "]");
+diff -Nurx .svn ../../../downloads/openwrt_trunk-q46338/feeds/packages/net/znc/patches/101-Reduce_rebuild_time.patch ../../../openwrt_trunk/feeds/packages/net/znc/patches/101-Reduce_rebuild_time.patch
+--- ../../../downloads/openwrt_trunk-q46338/feeds/packages/net/znc/patches/101-Reduce_rebuild_time.patch	2015-07-21 13:57:43.000000000 +0300
++++ ../../../openwrt_trunk/feeds/packages/net/znc/patches/101-Reduce_rebuild_time.patch	1970-01-01 03:00:00.000000000 +0300
+@@ -1,39 +0,0 @@
+-From 0527869a72c27bfb25b5f92fdd77a04c39d939db Mon Sep 17 00:00:00 2001
+-From: Jonas Gorski <jonas.gorski+openwrt@gmail.com>
+-Date: Sat, 16 Apr 2011 05:51:04 +0200
+-Subject: [PATCH] Don't rebuild everything when the Makefile's timestamp
+- changed
+-
+----
+- Makefile.in         | 2 +-
+- modules/Makefile.in | 4 ++--
+- 2 files changed, 3 insertions(+), 3 deletions(-)
+-
+---- a/Makefile.in
+-+++ b/Makefile.in
+-@@ -112,7 +112,7 @@ clean:
+- distclean: clean
+- 	rm -rf $(DISTCLEAN)
+- 
+--src/%.o: src/%.cpp Makefile include/znc/Csocket.h
+-+src/%.o: src/%.cpp include/znc/Csocket.h
+- 	@mkdir -p .depend src
+- 	$(E) Building core object $*...
+- 	$(Q)$(CXX) $(CXXFLAGS) -c -o $@ $< -MD -MF .depend/$*.dep -MT $@
+---- a/modules/Makefile.in
+-+++ b/modules/Makefile.in
+-@@ -112,12 +112,12 @@ install_datadir:
+- clean:
+- 	rm -rf $(CLEAN)
+- 
+--%.o: %.cpp Makefile
+-+%.o: %.cpp
+- 	@mkdir -p .depend
+- 	$(E) Building module $(notdir $(basename $@))...
+- 	$(Q)$(CXX) $(MODFLAGS) -c -o $@ $< $($(notdir $(basename $@))CXXFLAGS) -MD -MF .depend/$(notdir $@).dep
+- 
+--%.so: %.o Makefile
+-+%.so: %.o
+- 	$(E) "Linking  module" $(notdir $(basename $@))...
+- 	$(Q)$(CXX) $(MODFLAGS) $(LDFLAGS) $(MODLINK) -o $@ $< $($(notdir $(basename $@))LDFLAGS) $(LIBS)
+- 
+diff -Nurx .svn ../../../downloads/openwrt_trunk-q46338/feeds/packages/net/znc/patches/102-restore_droproot.patch ../../../openwrt_trunk/feeds/packages/net/znc/patches/102-restore_droproot.patch
+--- ../../../downloads/openwrt_trunk-q46338/feeds/packages/net/znc/patches/102-restore_droproot.patch	2015-07-21 13:57:43.000000000 +0300
++++ ../../../openwrt_trunk/feeds/packages/net/znc/patches/102-restore_droproot.patch	1970-01-01 03:00:00.000000000 +0300
+@@ -1,147 +0,0 @@
+---- /dev/null
+-+++ b/modules/droproot.cpp
+-@@ -0,0 +1,144 @@
+-+/*
+-+ * droproot.cpp
+-+ *
+-+ * Copyright (c) 2009 Vadtec (vadtec@vadtec.net)
+-+ * This program is free software; you can redistribute it and/or modify it
+-+ * under the terms of the GNU General Public License version 2 as published
+-+ * by the Free Software Foundation.
+-+ *
+-+ * Copyright (C) 2004-2012  See the AUTHORS file for details.
+-+ *
+-+ * This program is free software; you can redistribute it and/or modify it
+-+ * under the terms of the GNU General Public License version 2 as published
+-+ * by the Free Software Foundation.
+-+ */
+-+
+-+#include <znc/znc.h>
+-+#include <znc/User.h>
+-+#include <pwd.h>
+-+#include <grp.h>
+-+
+-+class CDroproot : public CModule {
+-+
+-+public:
+-+	MODCONSTRUCTOR(CDroproot) {
+-+	}
+-+
+-+	virtual ~CDroproot() {
+-+	}
+-+
+-+	uid_t GetUser(const CString& sUser, CString& sMessage) {
+-+		uid_t ret = sUser.ToUInt();
+-+
+-+		if (ret != 0)
+-+			return ret;
+-+
+-+		struct passwd *pUser = getpwnam(sUser.c_str());
+-+
+-+		if (!pUser) {
+-+			sMessage = "User [" + sUser + "] not found!";
+-+			return 0;
+-+		}
+-+
+-+		return pUser->pw_uid;
+-+	}
+-+
+-+	gid_t GetGroup(const CString& sGroup, CString& sMessage) {
+-+		gid_t ret = sGroup.ToUInt();
+-+
+-+		if (ret != 0)
+-+			return ret;
+-+
+-+		struct group *pGroup = getgrnam(sGroup.c_str());
+-+
+-+		if (!pGroup) {
+-+			sMessage = "Group [" + sGroup + "] not found!";
+-+			return 0;
+-+		}
+-+
+-+		return pGroup->gr_gid;
+-+	}
+-+
+-+	virtual bool OnLoad(const CString& sArgs, CString& sMessage) {
+-+		CString sUser = sArgs.Token(0);
+-+		CString sGroup = sArgs.Token(1, true);
+-+
+-+		if (sUser.empty() || sGroup.empty()) {
+-+			sMessage = "Usage: LoadModule = Droproot <uid> <gid>";
+-+			return false;
+-+		}
+-+
+-+		m_user = GetUser(sUser, sMessage);
+-+
+-+		if (m_user == 0) {
+-+			sMessage
+-+					= "Error: Cannot run as root, check your config file | Useage: LoadModule = Droproot <uid> <gid>";
+-+			return false;
+-+		}
+-+
+-+		m_group = GetGroup(sGroup, sMessage);
+-+
+-+		if (m_group == 0) {
+-+			sMessage
+-+					= "Error: Cannot run as root, check your config file | Useage: LoadModule = Droproot <uid> <gid>";
+-+			return false;
+-+		}
+-+
+-+		return true;
+-+	}
+-+
+-+	virtual bool OnBoot() {
+-+		int u, eu, g, eg, sg;
+-+
+-+		if ((geteuid() == 0) || (getuid() == 0) || (getegid() == 0) || (getgid()
+-+				== 0)) {
+-+
+-+			CUtils::PrintAction("Dropping root permissions");
+-+
+-+			// Clear all the supplementary groups
+-+			sg = setgroups(0, NULL);
+-+
+-+			if (sg < 0) {
+-+				CUtils::PrintStatus(false,
+-+						"Could not remove supplementary groups! ["
+-+								+ CString(strerror(errno)) + "]");
+-+
+-+				return false;
+-+			}
+-+
+-+			// Set the group (if we are root, this sets all three group IDs)
+-+			g = setgid(m_group);
+-+			eg = setegid(m_group);
+-+
+-+			if ((g < 0) || (eg < 0)) {
+-+				CUtils::PrintStatus(false, "Could not switch group id! ["
+-+						+ CString(strerror(errno)) + "]");
+-+
+-+				return false;
+-+			}
+-+
+-+			// and set the user (if we are root, this sets all three user IDs)
+-+			u = setuid(m_user);
+-+			eu = seteuid(m_user);
+-+
+-+			if ((u < 0) || (eu < 0)) {
+-+				CUtils::PrintStatus(false, "Could not switch user id! ["
+-+						+ CString(strerror(errno)) + "]");
+-+
+-+				return false;
+-+			}
+-+
+-+			CUtils::PrintStatus(true);
+-+
+-+			return true;
+-+		}
+-+
+-+		return true;
+-+	}
+-+
+-+protected:
+-+	uid_t m_user;
+-+	gid_t m_group;
+-+};
+-+
+-+GLOBALMODULEDEFS(CDroproot, "Allows ZNC to drop root privileges and run as an un-privileged user.")

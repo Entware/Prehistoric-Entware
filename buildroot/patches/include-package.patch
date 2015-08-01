@@ -1,6 +1,14 @@
---- ../../../downloads/openwrt_trunk-r45513/include/package.mk	2015-04-20 10:09:29.086135358 +0300
-+++ ../../../openwrt_trunk/include/package.mk	2015-04-20 10:09:33.090135284 +0300
-@@ -130,7 +130,7 @@
+--- ../../../downloads/openwrt_trunk-r46338/include/package.mk	2015-07-15 10:59:15.699750136 +0300
++++ ../../../openwrt_trunk/include/package.mk	2015-07-15 14:05:30.903937410 +0300
+@@ -34,7 +34,6 @@
+   endif
+ endif
+ 
+-include $(INCLUDE_DIR)/hardening.mk
+ include $(INCLUDE_DIR)/prereq.mk
+ include $(INCLUDE_DIR)/host.mk
+ include $(INCLUDE_DIR)/unpack.mk
+@@ -100,7 +99,7 @@
  CONFIG_SITE:=$(INCLUDE_DIR)/site/$(ARCH)
  CUR_MAKEFILE:=$(filter-out Makefile,$(firstword $(MAKEFILE_LIST)))
  SUBMAKE:=$(NO_TRACE_MAKE) $(if $(CUR_MAKEFILE),-f $(CUR_MAKEFILE))
@@ -9,7 +17,7 @@
  unexport QUIET CONFIG_SITE
  
  ifeq ($(DUMP)$(filter prereq clean refresh update,$(MAKECMDGOALS)),)
-@@ -171,8 +171,8 @@
+@@ -141,8 +140,8 @@
  endif
  
  define Build/Exports/Default

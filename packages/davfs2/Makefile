@@ -10,6 +10,7 @@ all: .done
 .done:
 	patch -d $(TOP) -p3 -i $(CURDIR)/fix-path.patch
 	rm -f ../../../openwrt_trunk/feeds/packages/net/davfs2/patches/010-main_code_fix.patch
+	rm -f ../../../openwrt_trunk/feeds/packages/net/davfs2/patches/100-musl-compat.patch
 	cp -f ./0*.patch ../../../openwrt_trunk/feeds/packages/net/davfs2/patches/
 	@touch $@
 

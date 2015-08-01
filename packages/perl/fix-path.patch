@@ -1,7 +1,7 @@
-diff -urx .svn ../../../downloads/openwrt_trunk-q45513/feeds/packages/lang/perl/files/config.sh-arm.in ../../../openwrt_trunk/feeds/packages/lang/perl/files/config.sh-arm.in
---- ../../../downloads/openwrt_trunk-q45513/feeds/packages/lang/perl/files/config.sh-arm.in	2015-06-01 16:25:10.482523659 +0300
-+++ ../../../openwrt_trunk/feeds/packages/lang/perl/files/config.sh-arm.in	2015-07-09 17:12:30.821490477 +0300
-@@ -37,7 +37,7 @@
+diff -urx .svn ../../../downloads/openwrt_trunk-q46338/feeds/packages/lang/perl/files/config.sh-arm.in ../../../openwrt_trunk/feeds/packages/lang/perl/files/config.sh-arm.in
+--- ../../../downloads/openwrt_trunk-q46338/feeds/packages/lang/perl/files/config.sh-arm.in	2015-07-21 13:57:42.000000000 +0300
++++ ../../../openwrt_trunk/feeds/packages/lang/perl/files/config.sh-arm.in	2015-07-23 15:36:58.431139645 +0300
+@@ -36,7 +36,7 @@
  
  ar='ar'
  archname64=''
@@ -10,7 +10,34 @@ diff -urx .svn ../../../downloads/openwrt_trunk-q45513/feeds/packages/lang/perl/
  archobjs=''
  asctime_r_proto='0'
  awk='awk'
-@@ -456,8 +456,8 @@
+@@ -195,6 +195,7 @@
+ d_fgetpos='define'
+ d_finite='define'
+ d_finitel='undef'
++d_isfinitel='undef'
+ d_flexfnam='define'
+ d_flock='define'
+ d_flockproto='define'
+@@ -207,7 +208,7 @@
+ d_fp_classl='undef'
+ d_fpathconf='define'
+ d_fpclass='undef'
+-d_fpclassify='define'
++d_fpclassify='undef'
+ d_fpclassl='undef'
+ d_fpgetround='undef'
+ d_fpos64_t='undef'
+@@ -290,8 +291,7 @@
+ d_inetaton='define'
+ d_int64_t='define'
+ d_isascii='define'
+-d_isfinite='define'
+-d_isfinitel='undef'
++d_isfinite='undef'
+ d_isinf='define'
+ d_isinfl='define'
+ d_isless='undef'
+@@ -511,8 +511,8 @@
  d_strerror='define'
  d_strerror_r='undef'
  d_strftime='define'
@@ -21,7 +48,7 @@ diff -urx .svn ../../../downloads/openwrt_trunk-q45513/feeds/packages/lang/perl/
  d_strtod='define'
  d_strtol='define'
  d_strtold='define'
-@@ -694,25 +694,22 @@
+@@ -758,25 +758,22 @@
  inc_version_list_init='0'
  incpath=''
  inews=''
@@ -54,7 +81,7 @@ diff -urx .svn ../../../downloads/openwrt_trunk-q45513/feeds/packages/lang/perl/
  installstyle='lib/perl5'
  installusrbinperl='define'
  installvendorarch=''
-@@ -788,7 +785,7 @@
+@@ -848,7 +845,7 @@
  more='more'
  multiarch='undef'
  mv=''
@@ -63,7 +90,7 @@ diff -urx .svn ../../../downloads/openwrt_trunk-q45513/feeds/packages/lang/perl/
  mydomain='.dev.null'
  myhostname='maia'
  myuname='linux maia 2.6.22 #1 wed jul 11 12:24:09 cest 2007 armv5tel unknown unknown gnulinux '
-@@ -818,7 +815,7 @@
+@@ -878,7 +875,7 @@
  optimize='-O2'
  orderlib='false'
  osname='linux'
@@ -72,7 +99,7 @@ diff -urx .svn ../../../downloads/openwrt_trunk-q45513/feeds/packages/lang/perl/
  otherlibdirs=' '
  package='perl5'
  pager='/usr/bin/less'
-@@ -830,7 +827,7 @@
+@@ -890,7 +887,7 @@
  perl_patchlevel=''
  perladmin='root@maia.dev.null'
  perllibs='-ldl -lm -lcrypt -lutil -lc %%EXTRA_PERLLIBS%%'
@@ -81,7 +108,7 @@ diff -urx .svn ../../../downloads/openwrt_trunk-q45513/feeds/packages/lang/perl/
  pg='pg'
  phostname='hostname'
  pidtype='pid_t'
-@@ -904,23 +901,23 @@
+@@ -964,23 +961,23 @@
  signal_t='void'
  sitearch=''
  sitearchexp=''
@@ -112,7 +139,7 @@ diff -urx .svn ../../../downloads/openwrt_trunk-q45513/feeds/packages/lang/perl/
  sizesize='4'
  sizetype='size_t'
  sleep=''
-@@ -952,7 +949,7 @@
+@@ -1012,7 +1009,7 @@
  sysman='/usr/share/man/man1'
  tail=''
  tar=''
@@ -121,45 +148,42 @@ diff -urx .svn ../../../downloads/openwrt_trunk-q45513/feeds/packages/lang/perl/
  tbl=''
  tee=''
  test='test'
-@@ -1139,24 +1136,24 @@
+@@ -1201,22 +1198,22 @@
  # Always set this to the base version, not the patched one!
- api_versionstring='5.20.0'
- dynamic_ext='B Compress/Raw/Bzip2 Compress/Raw/Zlib Cwd DB_File Data/Dumper Devel/PPPort Devel/Peek Digest/MD5 Digest/SHA Encode Fcntl File/DosGlob File/Glob Filter/Util/Call GDBM_File Hash/Util Hash/Util/FieldHash I18N/Langinfo IO IPC/SysV List/Util MIME/Base64 Math/BigInt/FastCalc Opcode POSIX PerlIO/encoding PerlIO/mmap PerlIO/scalar PerlIO/via SDBM_File Socket Storable Sys/Hostname Sys/Syslog Tie/Hash/NamedCapture Time/HiRes Time/Piece Unicode/Collate Unicode/Normalize XS/APItest XS/Typemap arybase attributes mro re threads threads/shared'
--installarchlib='/usr/lib/perl5/5.20'
--installprivlib='/usr/lib/perl5/5.20'
--installsitearch='/usr/lib/perl5/5.20'
--installsitelib='/usr/lib/perl5/5.20'
-+installarchlib='/Apps/opt/lib/perl5/5.20'
-+installprivlib='/Apps/opt/lib/perl5/5.20'
-+installsitearch='/Apps/opt/lib/perl5/5.20'
-+installsitelib='/Apps/opt/lib/perl5/5.20'
- nonxs_ext='Archive/Tar Attribute/Handlers AutoLoader B/Debug CGI CPAN CPAN/Meta CPAN/Meta/Requirements CPAN/Meta/YAML Carp Config/Perl/V Devel/SelfStubber Digest Dumpvalue Env Errno Exporter ExtUtils/CBuilder ExtUtils/Command ExtUtils/Constant ExtUtils/Install ExtUtils/MakeMaker ExtUtils/Manifest ExtUtils/Miniperl ExtUtils/ParseXS File/Fetch File/Find File/Path File/Temp FileCache Filter/Simple Getopt/Long HTTP/Tiny I18N/Collate I18N/LangTags IO/Compress IO/Socket/IP IO/Zlib IPC/Cmd IPC/Open3 JSON/PP Locale/Codes Locale/Maketext Locale/Maketext/Simple Math/BigInt Math/BigRat Math/Complex Memoize Module/Build Module/CoreList Module/Load Module/Load/Conditional Module/Loaded Module/Metadata NEXT Net/Ping Package/Constants Params/Check Parse/CPAN/Meta Perl/OSType PerlIO/via/QuotedPrint Pod/Checker Pod/Escapes Pod/Functions Pod/Html Pod/Parser Pod/Perldoc Pod/Simple Pod/Usage Safe Search/Dict SelfLoader Term/ANSIColor Term/Cap Term/Complete Term/ReadLine Test Test/Harness Test/Simple Text/Abbrev Text/Balanced Text/ParseWords Text/Tabs Thread/Queue Thread/Semaphore Tie/File Tie/Memoize Tie/RefHash Time/Local XSLoader autodie autouse base bignum constant encoding/warnings experimental if lib libnet parent perlfaq podlators version'
--privlib='/usr/lib/perl5/5.20'
--privlibexp='/usr/lib/perl5/5.20'
--archlib='/usr/lib/perl5/5.20'
--archlibexp='/usr/lib/perl5/5.20'
-+privlib='/Apps/opt/lib/perl5/5.20'
-+privlibexp='/Apps/opt/lib/perl5/5.20'
-+archlib='/Apps/opt/lib/perl5/5.20'
-+archlibexp='/Apps/opt/lib/perl5/5.20'
- version='5.20.2'
- version_patchlevel_string='version 20 subversion 2'
- PERL_VERSION=20
- PERL_API_VERSION=20
- PERL_SUBVERSION=2
- patchlevel='20'
--ccdlflags='-fPIC -Wl,-rpath,/usr/lib/perl5/5.20/CORE'
-+ccdlflags='-fPIC -Wl,--dynamic-linker=/Apps/opt/lib/ld-linux.so.3 -Wl,-rpath,/Apps/opt/lib/perl5/5.20/CORE:/Apps/opt/lib'
- subversion='2'
- 
--# Make perl use these tools instead of the target binaries during build
-+# Make perl use these tools instead of the target binaries during build.
- hostgenerate='%%HOSTGENERATE%%'
- hostperl='%%HOSTMINIPERL%%'
-diff -urx .svn ../../../downloads/openwrt_trunk-q45513/feeds/packages/lang/perl/files/config.sh-arm-mt.in ../../../openwrt_trunk/feeds/packages/lang/perl/files/config.sh-arm-mt.in
---- ../../../downloads/openwrt_trunk-q45513/feeds/packages/lang/perl/files/config.sh-arm-mt.in	2015-06-01 16:25:10.482523659 +0300
-+++ ../../../openwrt_trunk/feeds/packages/lang/perl/files/config.sh-arm-mt.in	2015-07-09 17:12:16.994260285 +0300
-@@ -37,7 +37,7 @@
+ api_versionstring='5.22.0'
+ dynamic_ext='B Compress/Raw/Bzip2 Compress/Raw/Zlib Cwd DB_File Data/Dumper Devel/PPPort Devel/Peek Digest/MD5 Digest/SHA Encode Fcntl File/DosGlob File/Glob Filter/Util/Call GDBM_File Hash/Util Hash/Util/FieldHash I18N/Langinfo IO IPC/SysV List/Util MIME/Base64 Math/BigInt/FastCalc Opcode POSIX PerlIO/encoding PerlIO/mmap PerlIO/scalar PerlIO/via SDBM_File Socket Storable Sys/Hostname Sys/Syslog Tie/Hash/NamedCapture Time/HiRes Time/Piece Unicode/Collate XS/APItest XS/Typemap arybase attributes mro re threads threads/shared'
+-installarchlib='/usr/lib/perl5/5.22'
+-installprivlib='/usr/lib/perl5/5.22'
+-installsitearch='/usr/lib/perl5/5.22'
+-installsitelib='/usr/lib/perl5/5.22'
++installarchlib='/Apps/opt/lib/perl5/5.22'
++installprivlib='/Apps/opt/lib/perl5/5.22'
++installsitearch='/Apps/opt/lib/perl5/5.22'
++installsitelib='/Apps/opt/lib/perl5/5.22'
+ nonxs_ext='Archive/Tar Attribute/Handlers AutoLoader B/Debug CPAN CPAN/Meta CPAN/Meta/Requirements CPAN/Meta/YAML Carp Config/Perl/V Devel/SelfStubber Digest Dumpvalue Env Errno Exporter ExtUtils/CBuilder ExtUtils/Command ExtUtils/Constant ExtUtils/Install ExtUtils/MakeMaker ExtUtils/Manifest ExtUtils/Miniperl ExtUtils/ParseXS File/Fetch File/Find File/Path File/Temp FileCache Filter/Simple Getopt/Long HTTP/Tiny I18N/Collate I18N/LangTags IO/Compress IO/Socket/IP IO/Zlib IPC/Cmd IPC/Open3 JSON/PP Locale/Codes Locale/Maketext Locale/Maketext/Simple Math/BigInt Math/BigRat Math/Complex Memoize Module/CoreList Module/Load Module/Load/Conditional Module/Loaded Module/Metadata NEXT Net/Ping Params/Check Parse/CPAN/Meta Perl/OSType PerlIO/via/QuotedPrint Pod/Checker Pod/Escapes Pod/Functions Pod/Html Pod/Parser Pod/Perldoc Pod/Simple Pod/Usage Safe Search/Dict SelfLoader Term/ANSIColor Term/Cap Term/Complete Term/ReadLine Test Test/Harness Test/Simple Text/Abbrev Text/Balanced Text/ParseWords Text/Tabs Thread/Queue Thread/Semaphore Tie/File Tie/Memoize Tie/RefHash Time/Local XSLoader autodie autouse base bignum constant encoding/warnings experimental if lib libnet parent perlfaq podlators Unicode/Normalize version'
+-privlib='/usr/lib/perl5/5.22'
+-privlibexp='/usr/lib/perl5/5.22'
+-archlib='/usr/lib/perl5/5.22'
+-archlibexp='/usr/lib/perl5/5.22'
++privlib='/Apps/opt/lib/perl5/5.22'
++privlibexp='/Apps/opt/lib/perl5/5.22'
++archlib='/Apps/opt/lib/perl5/5.22'
++archlibexp='/Apps/opt/lib/perl5/5.22'
+ version='5.22.0'
+ version_patchlevel_string='version 22 subversion 0'
+ PERL_VERSION=22
+ PERL_API_VERSION=22
+ PERL_SUBVERSION=0
+ patchlevel='22'
+-ccdlflags='-fPIC -Wl,-rpath,/usr/lib/perl5/5.22/CORE'
++ccdlflags='-fPIC -Wl,--dynamic-linker=/Apps/opt/lib/ld-linux.so.3 -Wl,-rpath,/Apps/opt/lib/perl5/5.22/CORE:/Apps/opt/lib'
+ subversion='0'
+ extensions='B Compress/Raw/Zlib Cwd DB_File Data/Dumper Devel/DProf Devel/PPPort Devel/Peek Digest/MD5 Digest/SHA Encode Fcntl File/Glob Filter/Util/Call GDBM_File Hash/Util I18N/Langinfo IO IPC/SysV List/Util MIME/Base64 Math/BigInt/FastCalc Opcode POSIX PerlIO/encoding PerlIO/scalar PerlIO/via SDBM_File Socket Storable Sys/Hostname Sys/Syslog Text/Soundex Time/HiRes Time/Piece XS/APItest XS/Typemap attrs re threads threads/shared Hash/Util/FieldHash Compress/Zlib Errno IO_Compress_Base IO_Compress_Zlib Unicode/Normalize'
+ known_extensions='B Compress/Raw/Zlib Cwd DB_File Data/Dumper Devel/DProf Devel/PPPort Devel/Peek Digest/MD5 Digest/SHA Encode Fcntl File/Glob Filter/Util/Call GDBM_File Hash/Util I18N/Langinfo IO IPC/SysV List/Util MIME/Base64 Math/BigInt/FastCalc NDBM_File ODBM_File Opcode POSIX PerlIO/encoding PerlIO/scalar PerlIO/via SDBM_File Socket Storable Sys/Hostname Sys/Syslog Text/Soundex Time/HiRes Time/Piece Unicode/Normalize Win32 Win32API/File Win32CORE XS/APItest XS/Typemap attrs re threads threads/shared Hash/Util/FieldHash'
+diff -urx .svn ../../../downloads/openwrt_trunk-q46338/feeds/packages/lang/perl/files/config.sh-arm-mt.in ../../../openwrt_trunk/feeds/packages/lang/perl/files/config.sh-arm-mt.in
+--- ../../../downloads/openwrt_trunk-q46338/feeds/packages/lang/perl/files/config.sh-arm-mt.in	2015-07-21 13:57:42.000000000 +0300
++++ ../../../openwrt_trunk/feeds/packages/lang/perl/files/config.sh-arm-mt.in	2015-07-23 15:36:47.316183227 +0300
+@@ -36,7 +36,7 @@
  
  ar='ar'
  archname64=''
@@ -168,7 +192,34 @@ diff -urx .svn ../../../downloads/openwrt_trunk-q45513/feeds/packages/lang/perl/
  archobjs=''
  asctime_r_proto='REENTRANT_PROTO_B_SB'
  awk='awk'
-@@ -456,8 +456,8 @@
+@@ -195,6 +195,7 @@
+ d_fgetpos='define'
+ d_finite='define'
+ d_finitel='undef'
++d_isfinitel='undef'
+ d_flexfnam='define'
+ d_flock='define'
+ d_flockproto='define'
+@@ -207,7 +208,7 @@
+ d_fp_classl='undef'
+ d_fpathconf='define'
+ d_fpclass='undef'
+-d_fpclassify='define'
++d_fpclassify='undef'
+ d_fpclassl='undef'
+ d_fpgetround='undef'
+ d_fpos64_t='undef'
+@@ -290,8 +291,7 @@
+ d_inetaton='define'
+ d_int64_t='define'
+ d_isascii='define'
+-d_isfinite='define'
+-d_isfinitel='undef'
++d_isfinite='undef'
+ d_isinf='define'
+ d_isinfl='define'
+ d_isless='undef'
+@@ -511,8 +511,8 @@
  d_strerror='define'
  d_strerror_r='define'
  d_strftime='define'
@@ -179,11 +230,10 @@ diff -urx .svn ../../../downloads/openwrt_trunk-q45513/feeds/packages/lang/perl/
  d_strtod='define'
  d_strtol='define'
  d_strtold='define'
-@@ -694,25 +694,22 @@
- inc_version_list_init='0'
+@@ -759,24 +759,22 @@
  incpath=''
  inews=''
--
+ 
 -installbin='/usr/bin'
 -initialinstalllocation='/usr/bin'
 +installbin='/Apps/opt/bin'
@@ -212,7 +262,7 @@ diff -urx .svn ../../../downloads/openwrt_trunk-q45513/feeds/packages/lang/perl/
  installstyle='lib/perl5'
  installusrbinperl='define'
  installvendorarch=''
-@@ -788,7 +785,7 @@
+@@ -848,7 +846,7 @@
  more='more'
  multiarch='undef'
  mv=''
@@ -221,7 +271,7 @@ diff -urx .svn ../../../downloads/openwrt_trunk-q45513/feeds/packages/lang/perl/
  mydomain='.dev.null'
  myhostname='maia'
  myuname='linux maia 2.6.22 #1 wed jul 11 12:24:09 cest 2007 armv5tel unknown unknown gnulinux '
-@@ -830,17 +827,15 @@
+@@ -890,17 +888,15 @@
  perl_patchlevel=''
  perladmin='root@maia.dev.null'
  perllibs='-ldl -lm -lcrypt -lutil -lpthread -lc %%EXTRA_PERLLIBS%%'
@@ -242,7 +292,7 @@ diff -urx .svn ../../../downloads/openwrt_trunk-q45513/feeds/packages/lang/perl/
  procselfexe='"/proc/self/exe"'
  prototype='define'
  ptrsize='4'
-@@ -874,8 +869,8 @@
+@@ -934,8 +930,8 @@
  sPRIx64='"Lx"'
  sSCNfldbl='"f"'
  sched_yield='sched_yield()'
@@ -253,7 +303,7 @@ diff -urx .svn ../../../downloads/openwrt_trunk-q45513/feeds/packages/lang/perl/
  sed='sed'
  seedfunc='srand48'
  selectminbits='32'
-@@ -904,23 +899,23 @@
+@@ -964,23 +960,23 @@
  signal_t='void'
  sitearch=''
  sitearchexp=''
@@ -284,7 +334,7 @@ diff -urx .svn ../../../downloads/openwrt_trunk-q45513/feeds/packages/lang/perl/
  sizesize='4'
  sizetype='size_t'
  sleep=''
-@@ -952,7 +947,7 @@
+@@ -1012,7 +1008,7 @@
  sysman='/usr/share/man/man1'
  tail=''
  tar=''
@@ -293,45 +343,42 @@ diff -urx .svn ../../../downloads/openwrt_trunk-q45513/feeds/packages/lang/perl/
  tbl=''
  tee=''
  test='test'
-@@ -1140,24 +1135,24 @@
+@@ -1202,22 +1198,22 @@
  # Always set this to the base version, not the patched one!
- api_versionstring='5.20.0'
- dynamic_ext='B Compress/Raw/Bzip2 Compress/Raw/Zlib Cwd DB_File Data/Dumper Devel/PPPort Devel/Peek Digest/MD5 Digest/SHA Encode Fcntl File/DosGlob File/Glob Filter/Util/Call GDBM_File Hash/Util Hash/Util/FieldHash I18N/Langinfo IO IPC/SysV List/Util MIME/Base64 Math/BigInt/FastCalc Opcode POSIX PerlIO/encoding PerlIO/mmap PerlIO/scalar PerlIO/via SDBM_File Socket Storable Sys/Hostname Sys/Syslog Tie/Hash/NamedCapture Time/HiRes Time/Piece Unicode/Collate Unicode/Normalize XS/APItest XS/Typemap arybase attributes mro re threads threads/shared'
--installarchlib='/usr/lib/perl5/5.20'
--installprivlib='/usr/lib/perl5/5.20'
--installsitearch='/usr/lib/perl5/5.20'
--installsitelib='/usr/lib/perl5/5.20'
-+installarchlib='/Apps/opt/lib/perl5/5.20'
-+installprivlib='/Apps/opt/lib/perl5/5.20'
-+installsitearch='/Apps/opt/lib/perl5/5.20'
-+installsitelib='/Apps/opt/lib/perl5/5.20'
- nonxs_ext='Archive/Tar Attribute/Handlers AutoLoader B/Debug CGI CPAN CPAN/Meta CPAN/Meta/Requirements CPAN/Meta/YAML Carp Config/Perl/V Devel/SelfStubber Digest Dumpvalue Env Errno Exporter ExtUtils/CBuilder ExtUtils/Command ExtUtils/Constant ExtUtils/Install ExtUtils/MakeMaker ExtUtils/Manifest ExtUtils/Miniperl ExtUtils/ParseXS File/Fetch File/Find File/Path File/Temp FileCache Filter/Simple Getopt/Long HTTP/Tiny I18N/Collate I18N/LangTags IO/Compress IO/Socket/IP IO/Zlib IPC/Cmd IPC/Open3 JSON/PP Locale/Codes Locale/Maketext Locale/Maketext/Simple Math/BigInt Math/BigRat Math/Complex Memoize Module/Build Module/CoreList Module/Load Module/Load/Conditional Module/Loaded Module/Metadata NEXT Net/Ping Package/Constants Params/Check Parse/CPAN/Meta Perl/OSType PerlIO/via/QuotedPrint Pod/Checker Pod/Escapes Pod/Functions Pod/Html Pod/Parser Pod/Perldoc Pod/Simple Pod/Usage Safe Search/Dict SelfLoader Term/ANSIColor Term/Cap Term/Complete Term/ReadLine Test Test/Harness Test/Simple Text/Abbrev Text/Balanced Text/ParseWords Text/Tabs Thread/Queue Thread/Semaphore Tie/File Tie/Memoize Tie/RefHash Time/Local XSLoader autodie autouse base bignum constant encoding/warnings experimental if lib libnet parent perlfaq podlators version'
--privlib='/usr/lib/perl5/5.20'
--privlibexp='/usr/lib/perl5/5.20'
--archlib='/usr/lib/perl5/5.20'
--archlibexp='/usr/lib/perl5/5.20'
-+privlib='/Apps/opt/lib/perl5/5.20'
-+privlibexp='/Apps/opt/lib/perl5/5.20'
-+archlib='/Apps/opt/lib/perl5/5.20'
-+archlibexp='/Apps/opt/lib/perl5/5.20'
- version='5.20.2'
- version_patchlevel_string='version 20 subversion 2'
- PERL_VERSION=20
- PERL_API_VERSION=20
- PERL_SUBVERSION=2
- patchlevel='20'
--ccdlflags='-fPIC -Wl,-rpath,/usr/lib/perl5/5.20/CORE'
-+ccdlflags='-fPIC -Wl,--dynamic-linker=/Apps/opt/lib/ld-linux.so.3 -Wl,-rpath,/Apps/opt/lib/perl5/5.20/CORE:/Apps/opt/lib'
- subversion='2'
- 
--# Make perl use these tools instead of the target binaries during build
-+# Make perl use these tools instead of the target binaries during build.
- hostgenerate='%%HOSTGENERATE%%'
- hostperl='%%HOSTMINIPERL%%'
-diff -urx .svn ../../../downloads/openwrt_trunk-q45513/feeds/packages/lang/perl/files/config.sh-i486.in ../../../openwrt_trunk/feeds/packages/lang/perl/files/config.sh-i486.in
---- ../../../downloads/openwrt_trunk-q45513/feeds/packages/lang/perl/files/config.sh-i486.in	2015-06-01 16:25:10.482523659 +0300
-+++ ../../../openwrt_trunk/feeds/packages/lang/perl/files/config.sh-i486.in	2015-07-09 17:12:59.254501822 +0300
-@@ -35,7 +35,7 @@
+ api_versionstring='5.22.0'
+ dynamic_ext='B Compress/Raw/Bzip2 Compress/Raw/Zlib Cwd DB_File Data/Dumper Devel/PPPort Devel/Peek Digest/MD5 Digest/SHA Encode Fcntl File/DosGlob File/Glob Filter/Util/Call GDBM_File Hash/Util Hash/Util/FieldHash I18N/Langinfo IO IPC/SysV List/Util MIME/Base64 Math/BigInt/FastCalc Opcode POSIX PerlIO/encoding PerlIO/mmap PerlIO/scalar PerlIO/via SDBM_File Socket Storable Sys/Hostname Sys/Syslog Tie/Hash/NamedCapture Time/HiRes Time/Piece Unicode/Collate XS/APItest XS/Typemap arybase attributes mro re threads threads/shared'
+-installarchlib='/usr/lib/perl5/5.22'
+-installprivlib='/usr/lib/perl5/5.22'
+-installsitearch='/usr/lib/perl5/5.22'
+-installsitelib='/usr/lib/perl5/5.22'
++installarchlib='/Apps/opt/lib/perl5/5.22'
++installprivlib='/Apps/opt/lib/perl5/5.22'
++installsitearch='/Apps/opt/lib/perl5/5.22'
++installsitelib='/Apps/opt/lib/perl5/5.22'
+ nonxs_ext='Archive/Tar Attribute/Handlers AutoLoader B/Debug CPAN CPAN/Meta CPAN/Meta/Requirements CPAN/Meta/YAML Carp Config/Perl/V Devel/SelfStubber Digest Dumpvalue Env Errno Exporter ExtUtils/CBuilder ExtUtils/Command ExtUtils/Constant ExtUtils/Install ExtUtils/MakeMaker ExtUtils/Manifest ExtUtils/Miniperl ExtUtils/ParseXS File/Fetch File/Find File/Path File/Temp FileCache Filter/Simple Getopt/Long HTTP/Tiny I18N/Collate I18N/LangTags IO/Compress IO/Socket/IP IO/Zlib IPC/Cmd IPC/Open3 JSON/PP Locale/Codes Locale/Maketext Locale/Maketext/Simple Math/BigInt Math/BigRat Math/Complex Memoize Module/CoreList Module/Load Module/Load/Conditional Module/Loaded Module/Metadata NEXT Net/Ping Params/Check Parse/CPAN/Meta Perl/OSType PerlIO/via/QuotedPrint Pod/Checker Pod/Escapes Pod/Functions Pod/Html Pod/Parser Pod/Perldoc Pod/Simple Pod/Usage Safe Search/Dict SelfLoader Term/ANSIColor Term/Cap Term/Complete Term/ReadLine Test Test/Harness Test/Simple Text/Abbrev Text/Balanced Text/ParseWords Text/Tabs Thread/Queue Thread/Semaphore Tie/File Tie/Memoize Tie/RefHash Time/Local XSLoader autodie autouse base bignum constant encoding/warnings experimental if lib libnet parent perlfaq podlators Unicode/Normalize version'
+-privlib='/usr/lib/perl5/5.22'
+-privlibexp='/usr/lib/perl5/5.22'
+-archlib='/usr/lib/perl5/5.22'
+-archlibexp='/usr/lib/perl5/5.22'
++privlib='/Apps/opt/lib/perl5/5.22'
++privlibexp='/Apps/opt/lib/perl5/5.22'
++archlib='/Apps/opt/lib/perl5/5.22'
++archlibexp='/Apps/opt/lib/perl5/5.22'
+ version='5.22.0'
+ version_patchlevel_string='version 22 subversion 0'
+ PERL_VERSION=22
+ PERL_API_VERSION=22
+ PERL_SUBVERSION=0
+ patchlevel='22'
+-ccdlflags='-fPIC -Wl,-rpath,/usr/lib/perl5/5.22/CORE'
++ccdlflags='-fPIC -Wl,--dynamic-linker=/Apps/opt/lib/ld-linux.so.3 -Wl,-rpath,/Apps/opt/lib/perl5/5.22/CORE:/Apps/opt/lib'
+ subversion='0'
+ extensions='B Compress/Raw/Zlib Cwd DB_File Data/Dumper Devel/DProf Devel/PPPort Devel/Peek Digest/MD5 Digest/SHA Encode Fcntl File/Glob Filter/Util/Call GDBM_File Hash/Util I18N/Langinfo IO IPC/SysV List/Util MIME/Base64 Math/BigInt/FastCalc Opcode POSIX PerlIO/encoding PerlIO/scalar PerlIO/via SDBM_File Socket Storable Sys/Hostname Sys/Syslog Text/Soundex Time/HiRes Time/Piece XS/APItest XS/Typemap attrs re threads threads/shared Hash/Util/FieldHash Compress/Zlib Errno IO_Compress_Base IO_Compress_Zlib Unicode/Normalize'
+ known_extensions='B Compress/Raw/Zlib Cwd DB_File Data/Dumper Devel/DProf Devel/PPPort Devel/Peek Digest/MD5 Digest/SHA Encode Fcntl File/Glob Filter/Util/Call GDBM_File Hash/Util I18N/Langinfo IO IPC/SysV List/Util MIME/Base64 Math/BigInt/FastCalc NDBM_File ODBM_File Opcode POSIX PerlIO/encoding PerlIO/scalar PerlIO/via SDBM_File Socket Storable Sys/Hostname Sys/Syslog Text/Soundex Time/HiRes Time/Piece Unicode/Normalize Win32 Win32API/File Win32CORE XS/APItest XS/Typemap attrs re threads threads/shared Hash/Util/FieldHash'
+diff -urx .svn ../../../downloads/openwrt_trunk-q46338/feeds/packages/lang/perl/files/config.sh-i486.in ../../../openwrt_trunk/feeds/packages/lang/perl/files/config.sh-i486.in
+--- ../../../downloads/openwrt_trunk-q46338/feeds/packages/lang/perl/files/config.sh-i486.in	2015-07-21 13:57:42.000000000 +0300
++++ ../../../openwrt_trunk/feeds/packages/lang/perl/files/config.sh-i486.in	2015-07-23 15:37:21.651121139 +0300
+@@ -34,7 +34,7 @@
  api_subversion='0'
  ar='ar'
  archname64=''
@@ -340,7 +387,34 @@ diff -urx .svn ../../../downloads/openwrt_trunk-q45513/feeds/packages/lang/perl/
  archobjs=''
  asctime_r_proto='0'
  awk='awk'
-@@ -454,8 +454,8 @@
+@@ -193,6 +193,7 @@
+ d_fgetpos='define'
+ d_finite='define'
+ d_finitel='undef'
++d_isfinitel='undef'
+ d_flexfnam='define'
+ d_flock='define'
+ d_flockproto='define'
+@@ -205,7 +206,7 @@
+ d_fp_classl='undef'
+ d_fpathconf='define'
+ d_fpclass='undef'
+-d_fpclassify='define'
++d_fpclassify='undef'
+ d_fpclassl='undef'
+ d_fpgetround='undef'
+ d_fpos64_t='undef'
+@@ -288,8 +289,7 @@
+ d_inetaton='define'
+ d_int64_t='define'
+ d_isascii='define'
+-d_isfinite='define'
+-d_isfinitel='undef'
++d_isfinite='undef'
+ d_isinf='define'
+ d_isinfl='define'
+ d_isless='undef'
+@@ -509,8 +509,8 @@
  d_strerror='define'
  d_strerror_r='undef'
  d_strftime='define'
@@ -351,7 +425,7 @@ diff -urx .svn ../../../downloads/openwrt_trunk-q45513/feeds/packages/lang/perl/
  d_strtod='define'
  d_strtol='define'
  d_strtold='define'
-@@ -691,21 +691,21 @@
+@@ -755,21 +755,21 @@
  inc_version_list_init='0'
  incpath=''
  inews=''
@@ -380,7 +454,7 @@ diff -urx .svn ../../../downloads/openwrt_trunk-q45513/feeds/packages/lang/perl/
  installstyle='lib/perl5'
  installusrbinperl='define'
  installvendorarch=''
-@@ -736,7 +736,7 @@
+@@ -799,7 +799,7 @@
  libs='-lgdbm -ldb -ldl -lm -lcrypt -lutil -lc'
  libsdirs='%%LIBDIRS%%'
  libsfiles=' libdl.so libm.so libcrypt.so libutil.so libc.so'
@@ -389,7 +463,7 @@ diff -urx .svn ../../../downloads/openwrt_trunk-q45513/feeds/packages/lang/perl/
  libspath='%%LIBDIRS%%'
  libswanted='sfio socket inet nm ndbm gdbm dbm db malloc dl dld ld sun m crypt sec util c cposix posix ucb BSD'
  libswanted_uselargefiles=''
-@@ -781,7 +781,7 @@
+@@ -841,7 +841,7 @@
  more='more'
  multiarch='undef'
  mv=''
@@ -398,7 +472,7 @@ diff -urx .svn ../../../downloads/openwrt_trunk-q45513/feeds/packages/lang/perl/
  mydomain='.dev.null'
  myhostname='maia'
  myuname='linux maia 2.6.25 #2 sat apr 19 09:46:49 cest 2008 i686 unknown unknown gnulinux '
-@@ -821,15 +821,15 @@
+@@ -881,15 +881,15 @@
  perl_patchlevel=''
  perladmin='root@maia.dev.null'
  perllibs='-ldl -lm -lcrypt -lutil -lc %%EXTRA_PERLLIBS%%'
@@ -417,7 +491,7 @@ diff -urx .svn ../../../downloads/openwrt_trunk-q45513/feeds/packages/lang/perl/
  procselfexe='"/proc/self/exe"'
  prototype='define'
  ptrsize='4'
-@@ -863,8 +863,8 @@
+@@ -923,8 +923,8 @@
  sPRIx64='"Lx"'
  sSCNfldbl='"Lf"'
  sched_yield='sched_yield()'
@@ -428,7 +502,7 @@ diff -urx .svn ../../../downloads/openwrt_trunk-q45513/feeds/packages/lang/perl/
  sed='sed'
  seedfunc='srand48'
  selectminbits='32'
-@@ -893,23 +893,23 @@
+@@ -953,23 +953,23 @@
  signal_t='void'
  sitearch=''
  sitearchexp=''
@@ -459,7 +533,7 @@ diff -urx .svn ../../../downloads/openwrt_trunk-q45513/feeds/packages/lang/perl/
  sizesize='4'
  sizetype='size_t'
  sleep=''
-@@ -925,7 +925,7 @@
+@@ -985,7 +985,7 @@
  srandom_r_proto='0'
  src='.'
  ssizetype='ssize_t'
@@ -468,7 +542,7 @@ diff -urx .svn ../../../downloads/openwrt_trunk-q45513/feeds/packages/lang/perl/
  startsh='#!/bin/sh'
  static_ext=' '
  stdchar='char'
-@@ -941,7 +941,7 @@
+@@ -1001,7 +1001,7 @@
  sysman='/usr/share/man/man1'
  tail=''
  tar=''
@@ -477,45 +551,42 @@ diff -urx .svn ../../../downloads/openwrt_trunk-q45513/feeds/packages/lang/perl/
  tbl=''
  tee=''
  test='test'
-@@ -1125,24 +1125,24 @@
+@@ -1187,22 +1187,22 @@
  # Always set this to the base version, not the patched one!
- api_versionstring='5.20.0'
- dynamic_ext='B Compress/Raw/Bzip2 Compress/Raw/Zlib Cwd DB_File Data/Dumper Devel/PPPort Devel/Peek Digest/MD5 Digest/SHA Encode Fcntl File/DosGlob File/Glob Filter/Util/Call GDBM_File Hash/Util Hash/Util/FieldHash I18N/Langinfo IO IPC/SysV List/Util MIME/Base64 Math/BigInt/FastCalc Opcode POSIX PerlIO/encoding PerlIO/mmap PerlIO/scalar PerlIO/via SDBM_File Socket Storable Sys/Hostname Sys/Syslog Tie/Hash/NamedCapture Time/HiRes Time/Piece Unicode/Collate Unicode/Normalize XS/APItest XS/Typemap arybase attributes mro re threads threads/shared'
--installarchlib='/usr/lib/perl5/5.20'
--installprivlib='/usr/lib/perl5/5.20'
--installsitearch='/usr/lib/perl5/5.20'
--installsitelib='/usr/lib/perl5/5.20'
-+installarchlib='/Apps/opt/lib/perl5/5.20'
-+installprivlib='/Apps/opt/lib/perl5/5.20'
-+installsitearch='/Apps/opt/lib/perl5/5.20'
-+installsitelib='/Apps/opt/lib/perl5/5.20'
- nonxs_ext='Archive/Tar Attribute/Handlers AutoLoader B/Debug CGI CPAN CPAN/Meta CPAN/Meta/Requirements CPAN/Meta/YAML Carp Config/Perl/V Devel/SelfStubber Digest Dumpvalue Env Errno Exporter ExtUtils/CBuilder ExtUtils/Command ExtUtils/Constant ExtUtils/Install ExtUtils/MakeMaker ExtUtils/Manifest ExtUtils/Miniperl ExtUtils/ParseXS File/Fetch File/Find File/Path File/Temp FileCache Filter/Simple Getopt/Long HTTP/Tiny I18N/Collate I18N/LangTags IO/Compress IO/Socket/IP IO/Zlib IPC/Cmd IPC/Open3 JSON/PP Locale/Codes Locale/Maketext Locale/Maketext/Simple Math/BigInt Math/BigRat Math/Complex Memoize Module/Build Module/CoreList Module/Load Module/Load/Conditional Module/Loaded Module/Metadata NEXT Net/Ping Package/Constants Params/Check Parse/CPAN/Meta Perl/OSType PerlIO/via/QuotedPrint Pod/Checker Pod/Escapes Pod/Functions Pod/Html Pod/Parser Pod/Perldoc Pod/Simple Pod/Usage Safe Search/Dict SelfLoader Term/ANSIColor Term/Cap Term/Complete Term/ReadLine Test Test/Harness Test/Simple Text/Abbrev Text/Balanced Text/ParseWords Text/Tabs Thread/Queue Thread/Semaphore Tie/File Tie/Memoize Tie/RefHash Time/Local XSLoader autodie autouse base bignum constant encoding/warnings experimental if lib libnet parent perlfaq podlators version'
--privlib='/usr/lib/perl5/5.20'
--privlibexp='/usr/lib/perl5/5.20'
--archlib='/usr/lib/perl5/5.20'
--archlibexp='/usr/lib/perl5/5.20'
-+privlib='/Apps/opt/lib/perl5/5.20'
-+privlibexp='/Apps/opt/lib/perl5/5.20'
-+archlib='/Apps/opt/lib/perl5/5.20'
-+archlibexp='/Apps/opt/lib/perl5/5.20'
- version='5.20.2'
- version_patchlevel_string='version 20 subversion 2'
- PERL_VERSION=20
- PERL_API_VERSION=20
- PERL_SUBVERSION=2
- patchlevel='20'
--ccdlflags='-fPIC -Wl,-rpath,/usr/lib/perl5/5.20/CORE'
-+ccdlflags='-fPIC -Wl,--dynamic-linker=/Apps/opt/lib/ld-linux.so.2 -Wl,-rpath,/Apps/opt/lib/perl5/5.20/CORE:/Apps/opt/lib'
- subversion='2'
- 
--# Make perl use these tools instead of the target binaries during build
-+# Make perl use these tools instead of the target binaries during build.
- hostgenerate='%%HOSTGENERATE%%'
- hostperl='%%HOSTMINIPERL%%'
-diff -urx .svn ../../../downloads/openwrt_trunk-q45513/feeds/packages/lang/perl/files/config.sh-i486-mt.in ../../../openwrt_trunk/feeds/packages/lang/perl/files/config.sh-i486-mt.in
---- ../../../downloads/openwrt_trunk-q45513/feeds/packages/lang/perl/files/config.sh-i486-mt.in	2015-06-01 16:25:10.482523659 +0300
-+++ ../../../openwrt_trunk/feeds/packages/lang/perl/files/config.sh-i486-mt.in	2015-07-09 17:12:47.093158917 +0300
-@@ -35,7 +35,7 @@
+ api_versionstring='5.22.0'
+ dynamic_ext='B Compress/Raw/Bzip2 Compress/Raw/Zlib Cwd DB_File Data/Dumper Devel/PPPort Devel/Peek Digest/MD5 Digest/SHA Encode Fcntl File/DosGlob File/Glob Filter/Util/Call GDBM_File Hash/Util Hash/Util/FieldHash I18N/Langinfo IO IPC/SysV List/Util MIME/Base64 Math/BigInt/FastCalc Opcode POSIX PerlIO/encoding PerlIO/mmap PerlIO/scalar PerlIO/via SDBM_File Socket Storable Sys/Hostname Sys/Syslog Tie/Hash/NamedCapture Time/HiRes Time/Piece Unicode/Collate XS/APItest XS/Typemap arybase attributes mro re threads threads/shared'
+-installarchlib='/usr/lib/perl5/5.22'
+-installprivlib='/usr/lib/perl5/5.22'
+-installsitearch='/usr/lib/perl5/5.22'
+-installsitelib='/usr/lib/perl5/5.22'
++installarchlib='/Apps/opt/lib/perl5/5.22'
++installprivlib='/Apps/opt/lib/perl5/5.22'
++installsitearch='/Apps/opt/lib/perl5/5.22'
++installsitelib='/Apps/opt/lib/perl5/5.22'
+ nonxs_ext='Archive/Tar Attribute/Handlers AutoLoader B/Debug CPAN CPAN/Meta CPAN/Meta/Requirements CPAN/Meta/YAML Carp Config/Perl/V Devel/SelfStubber Digest Dumpvalue Env Errno Exporter ExtUtils/CBuilder ExtUtils/Command ExtUtils/Constant ExtUtils/Install ExtUtils/MakeMaker ExtUtils/Manifest ExtUtils/Miniperl ExtUtils/ParseXS File/Fetch File/Find File/Path File/Temp FileCache Filter/Simple Getopt/Long HTTP/Tiny I18N/Collate I18N/LangTags IO/Compress IO/Socket/IP IO/Zlib IPC/Cmd IPC/Open3 JSON/PP Locale/Codes Locale/Maketext Locale/Maketext/Simple Math/BigInt Math/BigRat Math/Complex Memoize Module/CoreList Module/Load Module/Load/Conditional Module/Loaded Module/Metadata NEXT Net/Ping Params/Check Parse/CPAN/Meta Perl/OSType PerlIO/via/QuotedPrint Pod/Checker Pod/Escapes Pod/Functions Pod/Html Pod/Parser Pod/Perldoc Pod/Simple Pod/Usage Safe Search/Dict SelfLoader Term/ANSIColor Term/Cap Term/Complete Term/ReadLine Test Test/Harness Test/Simple Text/Abbrev Text/Balanced Text/ParseWords Text/Tabs Thread/Queue Thread/Semaphore Tie/File Tie/Memoize Tie/RefHash Time/Local XSLoader autodie autouse base bignum constant encoding/warnings experimental if lib libnet parent perlfaq podlators Unicode/Normalize version'
+-privlib='/usr/lib/perl5/5.22'
+-privlibexp='/usr/lib/perl5/5.22'
+-archlib='/usr/lib/perl5/5.22'
+-archlibexp='/usr/lib/perl5/5.22'
++privlib='/Apps/opt/lib/perl5/5.22'
++privlibexp='/Apps/opt/lib/perl5/5.22'
++archlib='/Apps/opt/lib/perl5/5.22'
++archlibexp='/Apps/opt/lib/perl5/5.22'
+ version='5.22.0'
+ version_patchlevel_string='version 22 subversion 0'
+ PERL_VERSION=22
+ PERL_API_VERSION=22
+ PERL_SUBVERSION=0
+ patchlevel='22'
+-ccdlflags='-fPIC -Wl,-rpath,/usr/lib/perl5/5.22/CORE'
++ccdlflags='-fPIC -Wl,--dynamic-linker=/Apps/opt/lib/ld-linux.so.2 -Wl,-rpath,/Apps/opt/lib/perl5/5.22/CORE:/Apps/opt/lib'
+ subversion='0'
+ extensions='B Compress/Raw/Zlib Cwd DB_File Data/Dumper Devel/DProf Devel/PPPort Devel/Peek Digest/MD5 Digest/SHA Encode Fcntl File/Glob Filter/Util/Call GDBM_File Hash/Util I18N/Langinfo IO IPC/SysV List/Util MIME/Base64 Math/BigInt/FastCalc Opcode POSIX PerlIO/encoding PerlIO/scalar PerlIO/via SDBM_File Socket Storable Sys/Hostname Sys/Syslog Text/Soundex Time/HiRes Time/Piece XS/APItest XS/Typemap attrs re threads threads/shared Hash/Util/FieldHash Compress/Zlib Errno IO_Compress_Base IO_Compress_Zlib Unicode/Normalize'
+ known_extensions='B Compress/Raw/Zlib Cwd DB_File Data/Dumper Devel/DProf Devel/PPPort Devel/Peek Digest/MD5 Digest/SHA Encode Fcntl File/Glob Filter/Util/Call GDBM_File Hash/Util I18N/Langinfo IO IPC/SysV List/Util MIME/Base64 Math/BigInt/FastCalc NDBM_File ODBM_File Opcode POSIX PerlIO/encoding PerlIO/scalar PerlIO/via SDBM_File Socket Storable Sys/Hostname Sys/Syslog Text/Soundex Time/HiRes Time/Piece Unicode/Normalize Win32 Win32API/File Win32CORE XS/APItest XS/Typemap attrs re threads threads/shared Hash/Util/FieldHash'
+diff -urx .svn ../../../downloads/openwrt_trunk-q46338/feeds/packages/lang/perl/files/config.sh-i486-mt.in ../../../openwrt_trunk/feeds/packages/lang/perl/files/config.sh-i486-mt.in
+--- ../../../downloads/openwrt_trunk-q46338/feeds/packages/lang/perl/files/config.sh-i486-mt.in	2015-07-21 13:57:42.000000000 +0300
++++ ../../../openwrt_trunk/feeds/packages/lang/perl/files/config.sh-i486-mt.in	2015-07-23 15:37:11.803178408 +0300
+@@ -34,7 +34,7 @@
  api_subversion='0'
  ar='ar'
  archname64=''
@@ -524,7 +595,34 @@ diff -urx .svn ../../../downloads/openwrt_trunk-q45513/feeds/packages/lang/perl/
  archobjs=''
  asctime_r_proto='REENTRANT_PROTO_B_SB'
  awk='awk'
-@@ -454,8 +454,8 @@
+@@ -193,6 +193,7 @@
+ d_fgetpos='define'
+ d_finite='define'
+ d_finitel='undef'
++d_isfinitel='undef'
+ d_flexfnam='define'
+ d_flock='define'
+ d_flockproto='define'
+@@ -205,7 +206,7 @@
+ d_fp_classl='undef'
+ d_fpathconf='define'
+ d_fpclass='undef'
+-d_fpclassify='define'
++d_fpclassify='undef'
+ d_fpclassl='undef'
+ d_fpgetround='undef'
+ d_fpos64_t='undef'
+@@ -288,8 +289,7 @@
+ d_inetaton='define'
+ d_int64_t='define'
+ d_isascii='define'
+-d_isfinite='define'
+-d_isfinitel='undef'
++d_isfinite='undef'
+ d_isinf='define'
+ d_isinfl='define'
+ d_isless='undef'
+@@ -509,8 +509,8 @@
  d_strerror='define'
  d_strerror_r='define'
  d_strftime='define'
@@ -535,7 +633,7 @@ diff -urx .svn ../../../downloads/openwrt_trunk-q45513/feeds/packages/lang/perl/
  d_strtod='define'
  d_strtol='define'
  d_strtold='define'
-@@ -691,21 +691,21 @@
+@@ -755,21 +755,21 @@
  inc_version_list_init='0'
  incpath=''
  inews=''
@@ -564,7 +662,7 @@ diff -urx .svn ../../../downloads/openwrt_trunk-q45513/feeds/packages/lang/perl/
  installstyle='lib/perl5'
  installusrbinperl='define'
  installvendorarch=''
-@@ -781,7 +781,7 @@
+@@ -841,7 +841,7 @@
  more='more'
  multiarch='undef'
  mv=''
@@ -573,7 +671,7 @@ diff -urx .svn ../../../downloads/openwrt_trunk-q45513/feeds/packages/lang/perl/
  mydomain='.dev.null'
  myhostname='maia'
  myuname='linux maia 2.6.25 #2 sat apr 19 09:46:49 cest 2008 i686 unknown unknown gnulinux '
-@@ -821,15 +821,15 @@
+@@ -881,15 +881,15 @@
  perl_patchlevel=''
  perladmin='root@maia.dev.null'
  perllibs='-ldl -lm -lcrypt -lutil -lpthread -lc %%EXTRA_PERLLIBS%%'
@@ -592,7 +690,7 @@ diff -urx .svn ../../../downloads/openwrt_trunk-q45513/feeds/packages/lang/perl/
  procselfexe='"/proc/self/exe"'
  prototype='define'
  ptrsize='4'
-@@ -863,8 +863,8 @@
+@@ -923,8 +923,8 @@
  sPRIx64='"Lx"'
  sSCNfldbl='"Lf"'
  sched_yield='sched_yield()'
@@ -603,7 +701,7 @@ diff -urx .svn ../../../downloads/openwrt_trunk-q45513/feeds/packages/lang/perl/
  sed='sed'
  seedfunc='srand48'
  selectminbits='32'
-@@ -893,23 +893,23 @@
+@@ -953,23 +953,23 @@
  signal_t='void'
  sitearch=''
  sitearchexp=''
@@ -634,7 +732,7 @@ diff -urx .svn ../../../downloads/openwrt_trunk-q45513/feeds/packages/lang/perl/
  sizesize='4'
  sizetype='size_t'
  sleep=''
-@@ -925,7 +925,7 @@
+@@ -985,7 +985,7 @@
  srandom_r_proto='REENTRANT_PROTO_I_TS'
  src='.'
  ssizetype='ssize_t'
@@ -643,7 +741,7 @@ diff -urx .svn ../../../downloads/openwrt_trunk-q45513/feeds/packages/lang/perl/
  startsh='#!/bin/sh'
  static_ext=' '
  stdchar='char'
-@@ -941,7 +941,7 @@
+@@ -1001,7 +1001,7 @@
  sysman='/usr/share/man/man1'
  tail=''
  tar=''
@@ -652,41 +750,41 @@ diff -urx .svn ../../../downloads/openwrt_trunk-q45513/feeds/packages/lang/perl/
  tbl=''
  tee=''
  test='test'
-@@ -1126,22 +1126,22 @@
+@@ -1188,22 +1188,22 @@
  # Always set this to the base version, not the patched one!
- api_versionstring='5.20.0'
- dynamic_ext='B Compress/Raw/Bzip2 Compress/Raw/Zlib Cwd DB_File Data/Dumper Devel/PPPort Devel/Peek Digest/MD5 Digest/SHA Encode Fcntl File/DosGlob File/Glob Filter/Util/Call GDBM_File Hash/Util Hash/Util/FieldHash I18N/Langinfo IO IPC/SysV List/Util MIME/Base64 Math/BigInt/FastCalc Opcode POSIX PerlIO/encoding PerlIO/mmap PerlIO/scalar PerlIO/via SDBM_File Socket Storable Sys/Hostname Sys/Syslog Tie/Hash/NamedCapture Time/HiRes Time/Piece Unicode/Collate Unicode/Normalize XS/APItest XS/Typemap arybase attributes mro re threads threads/shared'
--installarchlib='/usr/lib/perl5/5.20'
--installprivlib='/usr/lib/perl5/5.20'
--installsitearch='/usr/lib/perl5/5.20'
--installsitelib='/usr/lib/perl5/5.20'
-+installarchlib='/Apps/opt/lib/perl5/5.20'
-+installprivlib='/Apps/opt/lib/perl5/5.20'
-+installsitearch='/Apps/opt/lib/perl5/5.20'
-+installsitelib='/Apps/opt/lib/perl5/5.20'
- nonxs_ext='Archive/Tar Attribute/Handlers AutoLoader B/Debug CGI CPAN CPAN/Meta CPAN/Meta/Requirements CPAN/Meta/YAML Carp Config/Perl/V Devel/SelfStubber Digest Dumpvalue Env Errno Exporter ExtUtils/CBuilder ExtUtils/Command ExtUtils/Constant ExtUtils/Install ExtUtils/MakeMaker ExtUtils/Manifest ExtUtils/Miniperl ExtUtils/ParseXS File/Fetch File/Find File/Path File/Temp FileCache Filter/Simple Getopt/Long HTTP/Tiny I18N/Collate I18N/LangTags IO/Compress IO/Socket/IP IO/Zlib IPC/Cmd IPC/Open3 JSON/PP Locale/Codes Locale/Maketext Locale/Maketext/Simple Math/BigInt Math/BigRat Math/Complex Memoize Module/Build Module/CoreList Module/Load Module/Load/Conditional Module/Loaded Module/Metadata NEXT Net/Ping Package/Constants Params/Check Parse/CPAN/Meta Perl/OSType PerlIO/via/QuotedPrint Pod/Checker Pod/Escapes Pod/Functions Pod/Html Pod/Parser Pod/Perldoc Pod/Simple Pod/Usage Safe Search/Dict SelfLoader Term/ANSIColor Term/Cap Term/Complete Term/ReadLine Test Test/Harness Test/Simple Text/Abbrev Text/Balanced Text/ParseWords Text/Tabs Thread/Queue Thread/Semaphore Tie/File Tie/Memoize Tie/RefHash Time/Local XSLoader autodie autouse base bignum constant encoding/warnings experimental if lib libnet parent perlfaq podlators version'
--privlib='/usr/lib/perl5/5.20'
--privlibexp='/usr/lib/perl5/5.20'
--archlib='/usr/lib/perl5/5.20'
--archlibexp='/usr/lib/perl5/5.20'
-+privlib='/Apps/opt/lib/perl5/5.20'
-+privlibexp='/Apps/opt/lib/perl5/5.20'
-+archlib='/Apps/opt/lib/perl5/5.20'
-+archlibexp='/Apps/opt/lib/perl5/5.20'
- version='5.20.2'
- version_patchlevel_string='version 20 subversion 2'
- PERL_VERSION=20
- PERL_API_VERSION=20
- PERL_SUBVERSION=2
- patchlevel='20'
--ccdlflags='-fPIC -Wl,-rpath,/usr/lib/perl5/5.20/CORE'
-+ccdlflags='-fPIC -Wl,--dynamic-linker=/Apps/opt/lib/ld-linux.so.2 -Wl,-rpath,/Apps/opt/lib/perl5/5.20/CORE:/Apps/opt/lib'
- subversion='2'
- 
- # Make perl use these tools instead of the target binaries during build
-diff -urx .svn ../../../downloads/openwrt_trunk-q45513/feeds/packages/lang/perl/Makefile ../../../openwrt_trunk/feeds/packages/lang/perl/Makefile
---- ../../../downloads/openwrt_trunk-q45513/feeds/packages/lang/perl/Makefile	2015-06-01 16:25:10.482523659 +0300
-+++ ../../../openwrt_trunk/feeds/packages/lang/perl/Makefile	2015-06-01 16:25:49.170477357 +0300
+ api_versionstring='5.22.0'
+ dynamic_ext='B Compress/Raw/Bzip2 Compress/Raw/Zlib Cwd DB_File Data/Dumper Devel/PPPort Devel/Peek Digest/MD5 Digest/SHA Encode Fcntl File/DosGlob File/Glob Filter/Util/Call GDBM_File Hash/Util Hash/Util/FieldHash I18N/Langinfo IO IPC/SysV List/Util MIME/Base64 Math/BigInt/FastCalc Opcode POSIX PerlIO/encoding PerlIO/mmap PerlIO/scalar PerlIO/via SDBM_File Socket Storable Sys/Hostname Sys/Syslog Tie/Hash/NamedCapture Time/HiRes Time/Piece Unicode/Collate XS/APItest XS/Typemap arybase attributes mro re threads threads/shared'
+-installarchlib='/usr/lib/perl5/5.22'
+-installprivlib='/usr/lib/perl5/5.22'
+-installsitearch='/usr/lib/perl5/5.22'
+-installsitelib='/usr/lib/perl5/5.22'
++installarchlib='/Apps/opt/lib/perl5/5.22'
++installprivlib='/Apps/opt/lib/perl5/5.22'
++installsitearch='/Apps/opt/lib/perl5/5.22'
++installsitelib='/Apps/opt/lib/perl5/5.22'
+ nonxs_ext='Archive/Tar Attribute/Handlers AutoLoader B/Debug CPAN CPAN/Meta CPAN/Meta/Requirements CPAN/Meta/YAML Carp Config/Perl/V Devel/SelfStubber Digest Dumpvalue Env Errno Exporter ExtUtils/CBuilder ExtUtils/Command ExtUtils/Constant ExtUtils/Install ExtUtils/MakeMaker ExtUtils/Manifest ExtUtils/Miniperl ExtUtils/ParseXS File/Fetch File/Find File/Path File/Temp FileCache Filter/Simple Getopt/Long HTTP/Tiny I18N/Collate I18N/LangTags IO/Compress IO/Socket/IP IO/Zlib IPC/Cmd IPC/Open3 JSON/PP Locale/Codes Locale/Maketext Locale/Maketext/Simple Math/BigInt Math/BigRat Math/Complex Memoize Module/CoreList Module/Load Module/Load/Conditional Module/Loaded Module/Metadata NEXT Net/Ping Params/Check Parse/CPAN/Meta Perl/OSType PerlIO/via/QuotedPrint Pod/Checker Pod/Escapes Pod/Functions Pod/Html Pod/Parser Pod/Perldoc Pod/Simple Pod/Usage Safe Search/Dict SelfLoader Term/ANSIColor Term/Cap Term/Complete Term/ReadLine Test Test/Harness Test/Simple Text/Abbrev Text/Balanced Text/ParseWords Text/Tabs Thread/Queue Thread/Semaphore Tie/File Tie/Memoize Tie/RefHash Time/Local XSLoader autodie autouse base bignum constant encoding/warnings experimental if lib libnet parent perlfaq podlators Unicode/Normalize version'
+-privlib='/usr/lib/perl5/5.22'
+-privlibexp='/usr/lib/perl5/5.22'
+-archlib='/usr/lib/perl5/5.22'
+-archlibexp='/usr/lib/perl5/5.22'
++privlib='/Apps/opt/lib/perl5/5.22'
++privlibexp='/Apps/opt/lib/perl5/5.22'
++archlib='/Apps/opt/lib/perl5/5.22'
++archlibexp='/Apps/opt/lib/perl5/5.22'
+ version='5.22.0'
+ version_patchlevel_string='version 22 subversion 0'
+ PERL_VERSION=22
+ PERL_API_VERSION=22
+ PERL_SUBVERSION=0
+ patchlevel='22'
+-ccdlflags='-fPIC -Wl,-rpath,/usr/lib/perl5/5.22/CORE'
++ccdlflags='-fPIC -Wl,--dynamic-linker=/Apps/opt/lib/ld-linux.so.2 -Wl,-rpath,/Apps/opt/lib/perl5/5.22/CORE:/Apps/opt/lib'
+ subversion='0'
+ extensions='B Compress/Raw/Zlib Cwd DB_File Data/Dumper Devel/DProf Devel/PPPort Devel/Peek Digest/MD5 Digest/SHA Encode Fcntl File/Glob Filter/Util/Call GDBM_File Hash/Util I18N/Langinfo IO IPC/SysV List/Util MIME/Base64 Math/BigInt/FastCalc Opcode POSIX PerlIO/encoding PerlIO/scalar PerlIO/via SDBM_File Socket Storable Sys/Hostname Sys/Syslog Text/Soundex Time/HiRes Time/Piece XS/APItest XS/Typemap attrs re threads threads/shared Hash/Util/FieldHash Compress/Zlib Errno IO_Compress_Base IO_Compress_Zlib Unicode/Normalize'
+ known_extensions='B Compress/Raw/Zlib Cwd DB_File Data/Dumper Devel/DProf Devel/PPPort Devel/Peek Digest/MD5 Digest/SHA Encode Fcntl File/Glob Filter/Util/Call GDBM_File Hash/Util I18N/Langinfo IO IPC/SysV List/Util MIME/Base64 Math/BigInt/FastCalc NDBM_File ODBM_File Opcode POSIX PerlIO/encoding PerlIO/scalar PerlIO/via SDBM_File Socket Storable Sys/Hostname Sys/Syslog Text/Soundex Time/HiRes Time/Piece Unicode/Normalize Win32 Win32API/File Win32CORE XS/APItest XS/Typemap attrs re threads threads/shared Hash/Util/FieldHash'
+diff -urx .svn ../../../downloads/openwrt_trunk-q46338/feeds/packages/lang/perl/Makefile ../../../openwrt_trunk/feeds/packages/lang/perl/Makefile
+--- ../../../downloads/openwrt_trunk-q46338/feeds/packages/lang/perl/Makefile	2015-07-21 13:57:42.000000000 +0300
++++ ../../../openwrt_trunk/feeds/packages/lang/perl/Makefile	2015-07-23 15:51:28.759141619 +0300
 @@ -38,7 +38,7 @@
  HOST_PERL_PREFIX:=$(STAGING_DIR_HOST)/usr
  ifneq ($(CONFIG_USE_GLIBC),)
@@ -696,15 +794,6 @@ diff -urx .svn ../../../downloads/openwrt_trunk-q45513/feeds/packages/lang/perl/
  endif
  
  # Filter -g3, it will break Compress-Raw-Zlib
-@@ -79,7 +79,7 @@
-   CATEGORY:=Languages
-   TITLE:=The Perl intepreter
-   URL:=http://www.perl.com/
--  DEPENDS:=+USE_GLIBC:libbsd +PERL_THREADS:libpthread
-+  DEPENDS:=+USE_EGLIBC:libbsd +PERL_THREADS:libpthread
- endef
- 
- define Package/perl/description
 @@ -117,8 +117,8 @@
  		-e 's!%%AR%%!$(TARGET_CROSS)ar!g' \
  		-e 's!%%LD%%!$(TARGET_CROSS)gcc!g' \
@@ -716,14 +805,14 @@ diff -urx .svn ../../../downloads/openwrt_trunk-q45513/feeds/packages/lang/perl/
  		-e 's!%%EXTRA_PERLLIBS%%!$(EXTRA_LIBS:%=-l%)!g' \
  		-e 's!%%EXTRA_PERLLIBDIRS%%!$(EXTRA_LIBDIRS:%=-L%)!g' \
  		-e 's!%%IPV6%%!$(if $($(CONFIG_IPV6)),define,undef)!g' \
-@@ -137,17 +137,17 @@
+@@ -158,17 +158,17 @@
  endef
  
  define Build/InstallDev
--	$(INSTALL_DIR) $(1)/usr/lib/perl5/5.20
--	$(CP) $(PKG_INSTALL_DIR)/usr/lib/perl5/5.20 $(1)/usr/lib/perl5/
-+	$(INSTALL_DIR) $(1)/opt/lib/perl5/5.20
-+	$(CP) $(PKG_INSTALL_DIR)/Apps/opt/lib/perl5/5.20 $(1)/opt/lib/perl5/
+-	$(INSTALL_DIR) $(1)/usr/lib/perl5/$(PERL_VERSION)
+-	$(CP) $(PKG_INSTALL_DIR)/usr/lib/perl5/$(PERL_VERSION) $(1)/usr/lib/perl5/
++	$(INSTALL_DIR) $(1)/opt/lib/perl5/$(PERL_VERSION)
++	$(CP) $(PKG_INSTALL_DIR)/Apps/opt/lib/perl5/$(PERL_VERSION) $(1)/opt/lib/perl5/
  endef
  
  define Package/perl/install
@@ -734,45 +823,45 @@ diff -urx .svn ../../../downloads/openwrt_trunk-q45513/feeds/packages/lang/perl/
 +	$(INSTALL_BIN) $(PKG_INSTALL_DIR)/Apps/opt/bin/perl$(PKG_VERSION) $(1)/opt/bin
 +	ln -nsf perl$(PKG_VERSION) $(1)/opt/bin/perl
  	
--	$(INSTALL_DIR) $(1)/usr/lib/perl5/5.20/CORE
--	$(CP) $(PKG_INSTALL_DIR)/usr/lib/perl5/5.20/CORE/libperl.so $(1)/usr/lib/perl5/5.20/CORE/
-+	$(INSTALL_DIR) $(1)/opt/lib/perl5/5.20/CORE
-+	$(CP) $(PKG_INSTALL_DIR)/Apps/opt/lib/perl5/5.20/CORE/libperl.so $(1)/opt/lib/perl5/5.20/CORE/
+-	$(INSTALL_DIR) $(1)/usr/lib/perl5/$(PERL_VERSION)/CORE
+-	$(CP) $(PKG_INSTALL_DIR)/usr/lib/perl5/$(PERL_VERSION)/CORE/libperl.so $(1)/usr/lib/perl5/$(PERL_VERSION)/CORE/
++	$(INSTALL_DIR) $(1)/opt/lib/perl5/$(PERL_VERSION)/CORE
++	$(CP) $(PKG_INSTALL_DIR)/Apps/opt/lib/perl5/$(PERL_VERSION)/CORE/libperl.so $(1)/opt/lib/perl5/5.22/CORE/
  endef
  
  
-@@ -171,9 +171,9 @@
+@@ -192,9 +192,9 @@
  	$(INSTALL_DIR) $(1)/$(PERL_TESTSDIR)
  	$(INSTALL_DIR) $(1)/$(PERL_TESTSDIR)/Porting
  	$(INSTALL_DIR) $(1)/$(PERL_TESTSDIR)/regen
--	$(INSTALL_DIR) $(1)/usr/lib/perl5/5.20/XS
--	$(INSTALL_DIR) $(1)/usr/lib/perl5/5.20/auto/XS
--	$(INSTALL_DIR) $(1)/usr/lib/perl5/5.20/unicore
-+	$(INSTALL_DIR) $(1)/opt/lib/perl5/5.20/XS
-+	$(INSTALL_DIR) $(1)/opt/lib/perl5/5.20/auto/XS
-+	$(INSTALL_DIR) $(1)/opt/lib/perl5/5.20/unicore
+-	$(INSTALL_DIR) $(1)/usr/lib/perl5/$(PERL_VERSION)/XS
+-	$(INSTALL_DIR) $(1)/usr/lib/perl5/$(PERL_VERSION)/auto/XS
+-	$(INSTALL_DIR) $(1)/usr/lib/perl5/$(PERL_VERSION)/unicore
++	$(INSTALL_DIR) $(1)/opt/lib/perl5/$(PERL_VERSION)/XS
++	$(INSTALL_DIR) $(1)/opt/lib/perl5/$(PERL_VERSION)/auto/XS
++	$(INSTALL_DIR) $(1)/opt/lib/perl5/$(PERL_VERSION)/unicore
  	
  	$(CP) $(PKG_BUILD_DIR)/t $(1)/$(PERL_TESTSDIR)
  	$(CP) $(PKG_BUILD_DIR)/Porting $(1)/$(PERL_TESTSDIR)
-@@ -182,10 +182,10 @@
+@@ -203,10 +203,10 @@
  	$(CP) $(PKG_BUILD_DIR)/TestInit.pm $(1)/$(PERL_TESTSDIR)
  	$(CP) $(PKG_BUILD_DIR)/vutil.c $(1)/$(PERL_TESTSDIR)
  	$(CP) $(PKG_BUILD_DIR)/vxs.inc $(1)/$(PERL_TESTSDIR)
--	$(CP) $(PKG_BUILD_DIR)/lib/XS $(1)/usr/lib/perl5/5.20/
--	$(CP) $(PKG_BUILD_DIR)/lib/auto/XS $(1)/usr/lib/perl5/5.20/auto
--	$(CP) $(PKG_BUILD_DIR)/lib/vmsish.pm $(1)/usr/lib/perl5/5.20/
--	$(CP) $(PKG_BUILD_DIR)/lib/unicore/TestProp.pl $(1)/usr/lib/perl5/5.20/unicore
-+	$(CP) $(PKG_BUILD_DIR)/lib/XS $(1)/opt/lib/perl5/5.20/
-+	$(CP) $(PKG_BUILD_DIR)/lib/auto/XS $(1)/opt/lib/perl5/5.20/auto
-+	$(CP) $(PKG_BUILD_DIR)/lib/vmsish.pm $(1)/opt/lib/perl5/5.20/
-+	$(CP) $(PKG_BUILD_DIR)/lib/unicore/TestProp.pl $(1)/opt/lib/perl5/5.20/unicore
+-	$(CP) $(PKG_BUILD_DIR)/lib/XS $(1)/usr/lib/perl5/$(PERL_VERSION)/
+-	$(CP) $(PKG_BUILD_DIR)/lib/auto/XS $(1)/usr/lib/perl5/$(PERL_VERSION)/auto
+-	$(CP) $(PKG_BUILD_DIR)/lib/vmsish.pm $(1)/usr/lib/perl5/$(PERL_VERSION)/
+-	$(CP) $(PKG_BUILD_DIR)/lib/unicore/TestProp.pl $(1)/usr/lib/perl5/$(PERL_VERSION)/unicore
++	$(CP) $(PKG_BUILD_DIR)/lib/XS $(1)/opt/lib/perl5/$(PERL_VERSION)/
++	$(CP) $(PKG_BUILD_DIR)/lib/auto/XS $(1)/opt/lib/perl5/$(PERL_VERSION)/auto
++	$(CP) $(PKG_BUILD_DIR)/lib/vmsish.pm $(1)/opt/lib/perl5/$(PERL_VERSION)/
++	$(CP) $(PKG_BUILD_DIR)/lib/unicore/TestProp.pl $(1)/opt/lib/perl5/$(PERL_VERSION)/unicore
  	$(CP) files/perl-run_tests.sh $(1)/$(PERL_TESTSDIR)/run_tests.sh
- 	sed -e 's!%%PERL_DISABLEDTESTS%%!$(PERL_DISABLEDTESTS)!' -i $(1)/$(PERL_TESTSDIR)/run_tests.sh
- 	$(CP) $(PKG_BUILD_DIR)/config_h.SH $(1)/$(PERL_TESTSDIR)
-diff -urx .svn ../../../downloads/openwrt_trunk-q45513/feeds/packages/lang/perl/perlbase.mk ../../../openwrt_trunk/feeds/packages/lang/perl/perlbase.mk
---- ../../../downloads/openwrt_trunk-q45513/feeds/packages/lang/perl/perlbase.mk	2015-06-01 16:25:10.482523659 +0300
-+++ ../../../openwrt_trunk/feeds/packages/lang/perl/perlbase.mk	2015-06-01 16:25:49.170477357 +0300
-@@ -1131,9 +1131,9 @@
+ 	sed \
+ 		-e 's!%%PERL_DISABLEDTESTS%%!$(PERL_DISABLEDTESTS)!' \
+diff -urx .svn ../../../downloads/openwrt_trunk-q46338/feeds/packages/lang/perl/perlbase.mk ../../../openwrt_trunk/feeds/packages/lang/perl/perlbase.mk
+--- ../../../downloads/openwrt_trunk-q46338/feeds/packages/lang/perl/perlbase.mk	2015-07-21 13:57:42.000000000 +0300
++++ ../../../openwrt_trunk/feeds/packages/lang/perl/perlbase.mk	2015-07-22 15:00:40.803123179 +0300
+@@ -1104,9 +1104,9 @@
  $(call perlmod/Install,$(1),Pod,Pod/Usage.pm)
  $(call perlmod/Install/NoStrip,$(1),Pod/Usage.pm,)
  $(call perlmod/InstallBaseTests,$(1),cpan/Pod-Checker/t cpan/Pod-Escapes/t cpan/Pod-Parser/lib cpan/Pod-Parser/scripts cpan/Pod-Parser/t cpan/Pod-Perldoc/t cpan/Pod-Simple/t cpan/Pod-Usage/scripts cpan/Pod-Usage/t cpan/podlators/t ext/Pod-Functions/Functions.pm ext/Pod-Functions/t ext/Pod-Html/t)
@@ -785,7 +874,7 @@ diff -urx .svn ../../../downloads/openwrt_trunk-q45513/feeds/packages/lang/perl/
  endef
  
  $(eval $(call BuildPackage,perlbase-pod))
-@@ -1368,8 +1368,8 @@
+@@ -1342,8 +1342,8 @@
  $(call perlmod/Install,$(1),Test Test.pm,Test/Builder.pm Test/Harness/TAP.pod Test/More.pm Test/Tutorial.pod)
  $(call perlmod/Install/NoStrip,$(1),Test/Builder.pm Test/More.pm,)
  $(call perlmod/InstallBaseTests,$(1),cpan/Test-Harness/t cpan/Test-Simple/t cpan/Test/t)
@@ -796,35 +885,35 @@ diff -urx .svn ../../../downloads/openwrt_trunk-q45513/feeds/packages/lang/perl/
  endef
  
  $(eval $(call BuildPackage,perlbase-test))
-diff -urx .svn ../../../downloads/openwrt_trunk-q45513/feeds/packages/lang/perl/perlmod.mk ../../../openwrt_trunk/feeds/packages/lang/perl/perlmod.mk
---- ../../../downloads/openwrt_trunk-q45513/feeds/packages/lang/perl/perlmod.mk	2015-06-01 16:25:10.482523659 +0300
-+++ ../../../openwrt_trunk/feeds/packages/lang/perl/perlmod.mk	2015-06-01 16:25:49.170477357 +0300
-@@ -5,7 +5,7 @@
+diff -urx .svn ../../../downloads/openwrt_trunk-q46338/feeds/packages/lang/perl/perlmod.mk ../../../openwrt_trunk/feeds/packages/lang/perl/perlmod.mk
+--- ../../../downloads/openwrt_trunk-q46338/feeds/packages/lang/perl/perlmod.mk	2015-07-21 13:57:42.000000000 +0300
++++ ../../../openwrt_trunk/feeds/packages/lang/perl/perlmod.mk	2015-07-22 15:00:40.803123179 +0300
+@@ -7,7 +7,7 @@
  HOST_PERL_PREFIX:=$(STAGING_DIR_HOST)/usr
  ifneq ($(CONFIG_USE_GLIBC),)
  	EXTRA_LIBS:=bsd
 -	EXTRA_LIBDIRS:=$(STAGING_DIR)/lib
 +	EXTRA_LIBDIRS:=$(STAGING_DIR)/opt/lib
  endif
- PERL_CMD:=$(STAGING_DIR_HOST)/usr/bin/perl5.20.0
+ PERL_CMD:=$(STAGING_DIR_HOST)/usr/bin/perl$(PERL_VERSION).0
  
-@@ -15,10 +15,10 @@
+@@ -17,10 +17,10 @@
  endif
  
  # Module install prefix
--PERL_SITELIB:=/usr/lib/perl5/5.20
+-PERL_SITELIB:=/usr/lib/perl5/$(PERL_VERSION)
 -PERL_TESTSDIR:=/usr/share/perl/perl-tests
 -PERLBASE_TESTSDIR:=/usr/share/perl/perlbase-tests
 -PERLMOD_TESTSDIR:=/usr/share/perl/perlmod-tests
-+PERL_SITELIB:=/opt/lib/perl5/5.20
++PERL_SITELIB:=/opt/lib/perl5/$(PERL_VERSION)
 +PERL_TESTSDIR:=/opt/share/perl/perl-tests
 +PERLBASE_TESTSDIR:=/opt/share/perl/perlbase-tests
 +PERLMOD_TESTSDIR:=/opt/share/perl/perlmod-tests
  
  define perlmod/host/relink
  	rm -f $(1)/Makefile.aperl
-@@ -58,15 +58,15 @@
- 	$(PERL_CMD) Makefile.PL \
+@@ -60,15 +60,15 @@
+ 	$(PERL_CMD) -MConfig -e '$$$${tied %Config::Config}{cpprun}="$(GNU_TARGET_NAME)-cpp -E"; do "Makefile.PL"' \
  		$(1) \
  		AR=ar \
 -		CC=$(GNU_TARGET_NAME)-gcc \
@@ -839,10 +928,10 @@ diff -urx .svn ../../../downloads/openwrt_trunk-q45513/feeds/packages/lang/perl/
 -		LD=$(GNU_TARGET_NAME)-gcc \
 +		FULL_AR=$(TARGET_CROSS)ar \
 +		LD=$(TARGET_CROSS)gcc \
- 		LDDLFLAGS="-shared $(TARGET_LDFLAGS)"  \
+ 		LDDLFLAGS="-shared -rdynamic $(TARGET_LDFLAGS)"  \
  		LDFLAGS="$(EXTRA_LIBDIRS:%=-L%) $(EXTRA_LIBS:%=-l%) " \
  		LIBC=" " \
-@@ -80,29 +80,29 @@
+@@ -82,29 +82,29 @@
  		SO=so  \
  		VENDORARCHEXP=" " \
  		VENDORLIBEXP=" " \
@@ -877,12 +966,12 @@ diff -urx .svn ../../../downloads/openwrt_trunk-q45513/feeds/packages/lang/perl/
  		LINKTYPE=dynamic \
  		DESTDIR=$(PKG_INSTALL_DIR) \
  	);
--	sed 's!^PERL_INC = .*!PERL_INC = $(STAGING_DIR)/usr/lib/perl5/5.20/CORE/!' -i $(PKG_BUILD_DIR)/Makefile
-+	sed 's!^PERL_INC = .*!PERL_INC = $(STAGING_DIR)/opt/lib/perl5/5.20/CORE/!' -i $(PKG_BUILD_DIR)/Makefile
+-	sed 's!^PERL_INC = .*!PERL_INC = $(STAGING_DIR)/usr/lib/perl5/$(PERL_VERSION)/CORE/!' -i $(PKG_BUILD_DIR)/Makefile
++	sed 's!^PERL_INC = .*!PERL_INC = $(STAGING_DIR)/opt/lib/perl5/$(PERL_VERSION)/CORE/!' -i $(PKG_BUILD_DIR)/Makefile
  endef
  
  define perlmod/Compile
-@@ -113,15 +113,28 @@
+@@ -115,15 +115,28 @@
  		install
  endef
  

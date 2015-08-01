@@ -1,5 +1,5 @@
---- ../../../downloads/openwrt_trunk-q44497/feeds/packages/lang/php5/Makefile	2015-02-25 12:52:24.060489427 +0300
-+++ ../../../openwrt_trunk/feeds/packages/lang/php5/Makefile	2015-03-01 20:42:08.253165161 +0300
+--- ../../../downloads/openwrt_trunk-q46338/feeds/packages/lang/php5/Makefile	2015-07-21 13:57:42.000000000 +0300
++++ ../../../openwrt_trunk/feeds/packages/lang/php5/Makefile	2015-07-23 16:57:56.875116633 +0300
 @@ -149,13 +149,13 @@
  	--disable-debug \
  	--without-pear \
@@ -70,7 +70,7 @@
  else
    CONFIGURE_ARGS+= --without-ldap
  endif
-@@ -259,28 +259,28 @@
+@@ -259,19 +259,19 @@
  endif
  
  ifneq ($(SDK)$(CONFIG_PACKAGE_php5-mod-mcrypt),)
@@ -93,6 +93,7 @@
  else
    CONFIGURE_ARGS+= --without-mysqli
  endif
+@@ -284,9 +284,9 @@
  
  ifneq ($(SDK)$(CONFIG_PACKAGE_php5-mod-openssl),)
    CONFIGURE_ARGS+= \
@@ -104,7 +105,7 @@
  else
    CONFIGURE_ARGS+= --without-openssl
  endif
-@@ -294,17 +294,17 @@
+@@ -300,17 +300,17 @@
  ifneq ($(SDK)$(CONFIG_PACKAGE_php5-mod-pdo),)
    CONFIGURE_ARGS+= --enable-pdo=shared
    ifneq ($(SDK)$(CONFIG_PACKAGE_php5-mod-pdo-mysql),)
@@ -125,7 +126,7 @@
    else
      CONFIGURE_ARGS+= --without-pdo-sqlite
    endif
-@@ -313,7 +313,7 @@
+@@ -319,7 +319,7 @@
  endif
  
  ifneq ($(SDK)$(CONFIG_PACKAGE_php5-mod-pgsql),)
@@ -134,7 +135,7 @@
  else
    CONFIGURE_ARGS+= --without-pgsql
  endif
-@@ -349,7 +349,7 @@
+@@ -355,7 +355,7 @@
  endif
  
  ifneq ($(SDK)$(CONFIG_PACKAGE_php5-mod-sqlite3),)
@@ -143,7 +144,7 @@
  else
    CONFIGURE_ARGS+= --without-sqlite3
  endif
-@@ -379,24 +379,24 @@
+@@ -385,24 +385,24 @@
  endif
  
  ifneq ($(SDK)$(CONFIG_PACKAGE_php5-mod-xml),)
@@ -173,7 +174,7 @@
  else
    CONFIGURE_ARGS+= --disable-xmlwriter
  endif
-@@ -415,7 +415,7 @@
+@@ -421,7 +421,7 @@
  
  ifneq ($(SDK)$(CONFIG_PHP5_LIBXML),)
    CONFIGURE_ARGS+= --enable-libxml
@@ -182,7 +183,7 @@
  else
    CONFIGURE_ARGS+= --disable-libxml
  endif
-@@ -433,48 +433,38 @@
+@@ -439,48 +439,38 @@
  	ac_cv_php_xml2_config_path="$(STAGING_DIR)/host/bin/xml2-config" \
  
  define Package/php5/conffiles
@@ -246,7 +247,7 @@
  endef
  
  define Build/Prepare
-@@ -483,13 +473,13 @@
+@@ -489,13 +479,13 @@
  endef
  
  define Build/InstallDev
@@ -266,22 +267,26 @@
  endef
  
  define BuildModule
-@@ -505,10 +495,10 @@
+@@ -511,13 +501,13 @@
    endef
  
    define Package/php5-mod-$(1)/install
 -	$(INSTALL_DIR) $$(1)/usr/lib/php
 -	$(INSTALL_BIN) $(PKG_BUILD_DIR)/modules/$(subst -,_,$(1)).so $$(1)/usr/lib/php/
 -	$(INSTALL_DIR) $$(1)/etc/php5
--	echo "extension=$(subst -,_,$(1)).so" > $$(1)/etc/php5/$(subst -,_,$(1)).ini
 +	$(INSTALL_DIR) $$(1)/opt/lib/php
 +	$(INSTALL_BIN) $(PKG_BUILD_DIR)/modules/$(subst -,_,$(1)).so $$(1)/opt/lib/php/
 +	$(INSTALL_DIR) $$(1)/opt/etc/php5
+       ifeq ($(4),zend)
+-	echo "zend_extension=/usr/lib/php/$(subst -,_,$(1)).so" > $$(1)/etc/php5/$(subst -,_,$(1)).ini
++	echo "zend_extension=/opt/lib/php/$(subst -,_,$(1)).so" > $$(1)/opt/etc/php5/$(subst -,_,$(1)).ini
+       else
+-	echo "extension=$(subst -,_,$(1)).so" > $$(1)/etc/php5/$(subst -,_,$(1)).ini
 +	echo "extension=$(subst -,_,$(1)).so" > $$(1)/opt/etc/php5/$(subst -,_,$(1)).ini
+     endif
    endef
  
-   $$(eval $$(call BuildPackage,php5-mod-$(1)))
-@@ -529,7 +519,7 @@
+@@ -539,7 +529,7 @@
  $(eval $(call BuildModule,exif,EXIF))
  $(eval $(call BuildModule,fileinfo,Fileinfo))
  $(eval $(call BuildModule,ftp,FTP,+PACKAGE_php5-mod-ftp:libopenssl))

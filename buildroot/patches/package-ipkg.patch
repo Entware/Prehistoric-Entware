@@ -1,5 +1,5 @@
---- ../../../downloads/openwrt_trunk-r45513/include/package-ipkg.mk	2015-04-22 21:15:54.434316548 +0300
-+++ ../../../openwrt_trunk/include/package-ipkg.mk	2015-04-23 10:01:15.197481338 +0300
+--- ../../../downloads/openwrt_trunk-r46338/include/package-ipkg.mk	2015-07-14 10:55:19.902308175 +0300
++++ ../../../openwrt_trunk/include/package-ipkg.mk	2015-07-14 17:34:09.082702743 +0300
 @@ -11,7 +11,7 @@
  IPKG_BUILD:= \
    $(SCRIPT_DIR)/ipkg-build -c -o 0 -g 0
@@ -9,19 +9,17 @@
  
  # 1: package name
  # 2: variable name
-@@ -127,9 +127,9 @@
+@@ -127,8 +127,8 @@
  
      $(eval $(call BuildIPKGVariable,$(1),conffiles))
      $(eval $(call BuildIPKGVariable,$(1),preinst,,1))
 -    $(eval $(call BuildIPKGVariable,$(1),postinst,-pkg,1))
 -    $(eval $(call BuildIPKGVariable,$(1),prerm,-pkg,1))
--    $(eval $(call BuildIPKGVariable,$(1),postrm,1))
 +    $(eval $(call BuildIPKGVariable,$(1),postinst,,1))
 +    $(eval $(call BuildIPKGVariable,$(1),prerm,,1))
-+    $(eval $(call BuildIPKGVariable,$(1),postrm,,1))
+     $(eval $(call BuildIPKGVariable,$(1),postrm,,1))
  
      $(STAGING_DIR_ROOT)/stamp/.$(1)_installed: $(STAMP_BUILT)
- 	rm -rf $(STAGING_DIR_ROOT)/tmp-$(1)
 @@ -193,18 +193,6 @@
  			printf "Description: "; echo "$$$$DESCRIPTION" | sed -e 's,^[[:space:]]*, ,g'; \
  		) > control; \

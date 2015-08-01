@@ -1,0 +1,88 @@
+diff -urx .svn ../../../downloads/openwrt_trunk-r46338/feeds/packages/net/pptpd/files/options.pptpd ../../../openwrt_trunk/feeds/packages/net/pptpd/files/options.pptpd
+--- ../../../downloads/openwrt_trunk-r46338/feeds/packages/net/pptpd/files/options.pptpd	2015-07-15 10:59:15.603750134 +0300
++++ ../../../openwrt_trunk/feeds/packages/net/pptpd/files/options.pptpd	2015-07-15 12:04:30.459815579 +0300
+@@ -1,5 +1,5 @@
+ #debug
+-#logfile /tmp/pptp-server.log
++#logfile /opt/var/log/pptp-server.log
+ auth
+ name "pptp-server"
+ lcp-echo-failure 3
+@@ -19,4 +19,4 @@
+ refuse-pap
+ #ms-dns 172.16.1.1
+ #plugin radius.so
+-#radius-config-file /etc/radius.conf
++#radius-config-file /opt/etc/radius.conf
+diff -urx .svn ../../../downloads/openwrt_trunk-r46338/feeds/packages/net/pptpd/files/pptpd.conf ../../../openwrt_trunk/feeds/packages/net/pptpd/files/pptpd.conf
+--- ../../../downloads/openwrt_trunk-r46338/feeds/packages/net/pptpd/files/pptpd.conf	2015-07-15 10:59:15.603750134 +0300
++++ ../../../openwrt_trunk/feeds/packages/net/pptpd/files/pptpd.conf	2015-07-15 12:04:35.803815620 +0300
+@@ -1,5 +1,5 @@
+ #debug
+-option /etc/ppp/options.pptpd
++option /opt/etc/ppp/options.pptpd
+ speed 115200
+ stimeout 10
+ #localip & remoteip are not needed, ip management is done by pppd
+diff -urx .svn ../../../downloads/openwrt_trunk-r46338/feeds/packages/net/pptpd/Makefile ../../../openwrt_trunk/feeds/packages/net/pptpd/Makefile
+--- ../../../downloads/openwrt_trunk-r46338/feeds/packages/net/pptpd/Makefile	2015-07-15 10:59:15.603750134 +0300
++++ ../../../openwrt_trunk/feeds/packages/net/pptpd/Makefile	2015-07-15 12:08:08.631814708 +0300
+@@ -25,7 +25,7 @@
+ define Package/pptpd
+   SECTION:=net
+   CATEGORY:=Network
+-  DEPENDS:=+kmod-ppp +kmod-gre +kmod-mppe +ppp
++  DEPENDS:=+ppp
+   TITLE:=PopTop pptp server
+   URL:=http://poptop.sourceforge.net/
+   SUBMENU:=VPN
+@@ -38,32 +38,30 @@
+ 	ac_cv_header_libintl_h=no \
+ 
+ MAKE_FLAGS += \
+-	COPTS="$(TARGET_CFLAGS)" \
++	COPTS="$(TARGET_CFLAGS) -I$(STAGING_DIR)/opt/include" \
+ 	INSTALL="install" \
+ 
+ define Package/pptpd/conffiles
+-/etc/pptpd.conf
+-/etc/ppp/options.pptpd
+-/etc/config/pptpd
++/opt/etc/pptpd.conf
++/opt/etc/ppp/options.pptpd
++/opt/etc/config/pptpd
+ endef
+ 
+ define Package/pptpd/install
+-	$(INSTALL_DIR) $(1)/usr/sbin
++	$(INSTALL_DIR) $(1)/opt/sbin
+ 	$(CP) \
+-		$(PKG_INSTALL_DIR)/usr/sbin/bcrelay \
+-		$(PKG_INSTALL_DIR)/usr/sbin/pptpctrl \
+-		$(PKG_INSTALL_DIR)/usr/sbin/pptpd \
+-		$(1)/usr/sbin/
+-	$(INSTALL_DIR) $(1)/usr/lib/pptpd
+-	$(CP) $(PKG_INSTALL_DIR)/usr/lib/pptpd/* $(1)/usr/lib/pptpd/
+-	$(INSTALL_DIR) $(1)/etc
+-	$(INSTALL_DATA) ./files/pptpd.conf $(1)/etc/
+-	$(INSTALL_DIR) $(1)/etc/init.d
+-	$(INSTALL_BIN) ./files/pptpd.init $(1)/etc/init.d/pptpd
+-	$(INSTALL_DIR) $(1)/etc/ppp
+-	$(INSTALL_DATA) ./files/options.pptpd $(1)/etc/ppp/
+-	$(INSTALL_DIR) $(1)/etc/config
+-	$(INSTALL_DATA) ./files/pptpd.config $(1)/etc/config/pptpd
++		$(PKG_INSTALL_DIR)/Apps/opt/sbin/bcrelay \
++		$(PKG_INSTALL_DIR)/Apps/opt/sbin/pptpctrl \
++		$(PKG_INSTALL_DIR)/Apps/opt/sbin/pptpd \
++		$(1)/opt/sbin/
++	$(INSTALL_DIR) $(1)/opt/lib/pptpd
++	$(CP) $(PKG_INSTALL_DIR)/Apps/opt/lib/pptpd/* $(1)/opt/lib/pptpd/
++	$(INSTALL_DIR) $(1)/opt/etc
++	$(INSTALL_DATA) ./files/pptpd.conf $(1)/opt/etc/
++	$(INSTALL_DIR) $(1)/opt/etc/init.d
++	$(INSTALL_BIN) ./files/S20poptop $(1)/opt/etc/init.d/
++	$(INSTALL_DIR) $(1)/opt/etc/ppp
++	$(INSTALL_DATA) ./files/options.pptpd $(1)/opt/etc/ppp/
+ endef
+ 
+ $(eval $(call BuildPackage,pptpd))

@@ -1,18 +1,6 @@
---- ../../../downloads/openwrt_trunk-r43718/feeds/packages/net/mtr/Makefile	2014-11-07 23:35:24.536148262 +0300
-+++ ../../../openwrt_trunk/feeds/packages/net/mtr/Makefile	2014-11-29 00:10:37.026199148 +0300
-@@ -46,6 +46,11 @@
- CONFIGURE_ARGS += \
- 	--without-gtk \
- 	--without-glib \
-+	--disable-ipv6 \
-+
-+TARGET_LDFLAGS += \
-+        -lresolv \
-+
- 
- define Build/Configure
- 	(cd $(PKG_BUILD_DIR); touch \
-@@ -61,8 +66,8 @@
+--- ../../../downloads/openwrt_trunk-r46338/feeds/packages/net/mtr/Makefile	2015-07-14 10:55:19.798308173 +0300
++++ ../../../openwrt_trunk/feeds/packages/net/mtr/Makefile	2015-07-14 10:55:49.938308675 +0300
+@@ -66,8 +66,8 @@
  endef
  
  define Package/mtr/install

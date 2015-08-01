@@ -1,0 +1,25 @@
+--- a/http.c
++++ b/http.c
+@@ -201,6 +201,9 @@
+ int
+ initCurlStuff(void)
+ {
++	/* Path to OpenSSL bundle file. */
++	const char *ssl_capath=NULL;
++
+ 	/* list for custom headers */
+ 	struct curl_slist *slist=NULL;
+ 
+@@ -242,6 +245,12 @@
+ 	if ((curlrc = curl_easy_setopt(easyhandle, CURLOPT_COOKIEFILE, "")))
+ 		return initCurlStuffFailed();
+ 
++	/* If the environment variable CURL_CA_BUNDLE is set, pass through its
++	 * contents to curl. */
++	if ((ssl_capath = getenv("CURL_CA_BUNDLE")))
++		if ((curlrc = curl_easy_setopt(easyhandle, CURLOPT_CAINFO, ssl_capath)))
++			return initCurlStuffFailed();
++
+ 	slist = curl_slist_append(slist, "Accept: text/*");
+ 	slist = curl_slist_append(slist, "Accept-Language: en");
+ 	slist = curl_slist_append(slist, "Accept-Charset: iso-8859-1,*,utf-8");

@@ -1,5 +1,5 @@
---- ../../../downloads/openwrt_trunk-q45513/package/system/opkg/Makefile	2015-06-01 16:25:10.799007264 +0300
-+++ ../../../openwrt_trunk/package/system/opkg/Makefile	2015-07-05 11:14:50.218924695 +0300
+--- ../../../downloads/openwrt_trunk-q46338/package/system/opkg/Makefile	2015-07-21 13:57:43.000000000 +0300
++++ ../../../openwrt_trunk/package/system/opkg/Makefile	2015-07-22 15:19:31.459120533 +0300
 @@ -5,14 +5,13 @@
  # See /LICENSE for more information.
  
@@ -16,7 +16,7 @@
  
  PKG_SOURCE_PROTO:=git
  PKG_SOURCE_VERSION:=$(PKG_REV)
-@@ -83,69 +82,46 @@
+@@ -83,58 +82,46 @@
  Package/opkg-smime/conffiles = $(Package/opkg/conffiles)
  
  TARGET_CFLAGS += $(if $(CONFIG_GCC_VERSION_4_3)$(CONFIG_GCC_VERSION_4_4),-Wno-array-bounds)
@@ -55,27 +55,16 @@
 -	$(INSTALL_DIR) $(1)/bin
 -	$(INSTALL_DIR) $(1)/etc
 -	$(INSTALL_DATA) ./files/opkg$(2).conf $(1)/etc/opkg.conf
--  ifneq ($(CONFIG_SIGNED_PACKAGES),)
--	echo "option check_signature 1" >> $(1)/etc/opkg.conf
--  endif
--  ifeq ($(CONFIG_PER_FEED_REPO),)
--	echo "src/gz %n %U" >> $(1)/etc/opkg.conf
--  else
--	for d in base $(FEEDS_ENABLED); do \
--		echo "src/gz %n_$$$$d %U/$$$$d" >> $(1)/etc/opkg.conf; \
--	done
--    ifneq ($(CONFIG_PER_FEED_REPO_ADD_DISABLED),)
--	for d in $(FEEDS_DISABLED); do \
--		echo "$(if $(CONFIG_PER_FEED_REPO_ADD_COMMENTED),# )src/gz %n_$$$$d %U/$$$$d" >> $(1)/etc/opkg.conf; \
--	done
--    endif
--  endif
+-	$(call FeedSourcesAppend,$(1)/etc/opkg.conf)
 -	$(VERSION_SED) $(1)/etc/opkg.conf
 -	$(INSTALL_BIN) $(PKG_INSTALL_DIR)/usr/bin/opkg-cl $(1)/bin/opkg
 -endef
 -
 -define Package/opkg/install
 -	$(call Package/opkg/Default/install,$(1),)
+-  ifneq ($(CONFIG_SIGNED_PACKAGES),)
+-	echo "option check_signature 1" >> $(1)/etc/opkg.conf
+-  endif
 -	mkdir $(1)/usr/sbin
 -	$(INSTALL_BIN) ./files/opkg-key $(1)/usr/sbin/
 +	$(INSTALL_DIR) $(1)/opt/lib/opkg

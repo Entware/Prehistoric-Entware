@@ -1,6 +1,6 @@
---- ../../../downloads/openwrt_trunk-r44486/feeds/telephony/net/rtpproxy/Makefile	2015-02-18 12:16:57.776306329 +0300
-+++ ../../../openwrt_trunk/feeds/telephony/net/rtpproxy/Makefile	2015-02-20 11:33:13.149210622 +0300
-@@ -32,14 +32,11 @@
+--- ../../../downloads/openwrt_trunk-r46338/feeds/telephony/net/rtpproxy/Makefile	2015-07-14 10:55:19.890308175 +0300
++++ ../../../openwrt_trunk/feeds/telephony/net/rtpproxy/Makefile	2015-07-14 10:55:50.502308684 +0300
+@@ -36,14 +36,11 @@
  endef
  
  define Package/rtpproxy/install

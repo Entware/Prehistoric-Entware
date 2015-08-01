@@ -1,6 +1,6 @@
---- ../../../downloads/openwrt_trunk-r43593/feeds/packages/net/lftp/Makefile	2014-12-10 12:26:32.982951682 +0300
-+++ ../../../openwrt_trunk/feeds/packages/net/lftp/Makefile	2014-12-12 16:22:01.632841605 +0300
-@@ -55,7 +55,7 @@
+--- ../../../downloads/openwrt_trunk-r46338/feeds/packages/net/lftp/Makefile	2015-07-14 10:55:19.790308173 +0300
++++ ../../../openwrt_trunk/feeds/packages/net/lftp/Makefile	2015-07-14 10:55:48.638308653 +0300
+@@ -60,7 +60,7 @@
  	--without-gnutls \
  	--without-libidn \
  	--without-libresolv \
@@ -9,7 +9,7 @@
  	--disable-static
  
  #CONFIGURE_VARS += \
-@@ -66,8 +66,8 @@
+@@ -71,8 +71,8 @@
  #	LD="$(TARGET_CXX)"
  
  define Package/lftp/install

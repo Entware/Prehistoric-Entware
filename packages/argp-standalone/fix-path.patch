@@ -1,5 +1,5 @@
---- ../../../downloads/openwrt_trunk-r43718/feeds/packages/libs/argp-standalone/Makefile
-+++ ../../../openwrt_trunk/feeds/packages/libs/argp-standalone/Makefile
+--- ../../../downloads/openwrt_trunk-r43718/package/libs/argp-standalone/Makefile
++++ ../../../openwrt_trunk/package/libs/argp-standalone/Makefile
 @@ -37,12 +37,12 @@
  
  

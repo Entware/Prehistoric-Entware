@@ -1,0 +1,31 @@
+--- ../../../downloads/openwrt_trunk-r46338/feeds/packages/utils/avrdude/Makefile	2015-07-15 16:48:18.956098714 +0300
++++ ../../../openwrt_trunk/feeds/packages/utils/avrdude/Makefile	2015-07-16 15:00:15.417425794 +0300
+@@ -29,7 +29,7 @@
+   CATEGORY:=Utilities
+   TITLE:=AVR Downloader/UploaDEr
+   URL:=http://www.nongnu.org/avrdude/
+-  DEPENDS:=+libncurses +libreadline +libusb-compat +libftdi1 +libelf1
++  DEPENDS:=+libncurses +libreadline +libusb-compat +libftdi1 +libelf
+ endef
+ 
+ define Package/avrdude/description
+@@ -44,14 +44,14 @@
+ 	-D_GNU_SOURCE \
+ 
+ define Package/avrdude/conffiles
+-/etc/avrdude.conf
++/opt/etc/avrdude.conf
+ endef
+ 
+ define Package/avrdude/install
+-	$(INSTALL_DIR) $(1)/etc
+-	$(INSTALL_CONF) $(PKG_INSTALL_DIR)/etc/avrdude.conf $(1)/etc/
+-	$(INSTALL_DIR) $(1)/usr/bin
+-	$(INSTALL_BIN) $(PKG_INSTALL_DIR)/usr/bin/avrdude $(1)/usr/bin/
++	$(INSTALL_DIR) $(1)/opt/etc
++	$(INSTALL_CONF) $(PKG_INSTALL_DIR)/Apps/opt/etc/avrdude.conf $(1)/opt/etc/
++	$(INSTALL_DIR) $(1)/opt/bin
++	$(INSTALL_BIN) $(PKG_INSTALL_DIR)/Apps/opt/bin/avrdude $(1)/opt/bin/
+ endef
+ 
+ $(eval $(call BuildPackage,avrdude))

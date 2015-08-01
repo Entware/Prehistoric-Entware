@@ -1,6 +1,6 @@
-diff -urx .svn ../../../downloads/openwrt_trunk-q45513/feeds/packages/net/vpnc/Makefile ../../../openwrt_trunk/feeds/packages/net/vpnc/Makefile
---- ../../../downloads/openwrt_trunk-q45513/feeds/packages/net/vpnc/Makefile	2015-06-01 16:25:10.330506552 +0300
-+++ ../../../openwrt_trunk/feeds/packages/net/vpnc/Makefile	2015-06-03 12:45:57.390705664 +0300
+diff -urx .svn ../../../downloads/openwrt_trunk-q46338/feeds/packages/net/vpnc/Makefile ../../../openwrt_trunk/feeds/packages/net/vpnc/Makefile
+--- ../../../downloads/openwrt_trunk-q46338/feeds/packages/net/vpnc/Makefile	2015-07-21 13:57:43.000000000 +0300
++++ ../../../openwrt_trunk/feeds/packages/net/vpnc/Makefile	2015-07-22 16:07:33.732608613 +0300
 @@ -36,7 +36,7 @@
  define Package/vpnc
    SECTION:=net
@@ -63,16 +63,15 @@ diff -urx .svn ../../../downloads/openwrt_trunk-q45513/feeds/packages/net/vpnc/M
  endef
  
  $(eval $(call BuildPackage,vpnc))
-diff -urx .svn ../../../downloads/openwrt_trunk-q45513/feeds/packages/net/vpnc/patches/001-cross.patch ../../../openwrt_trunk/feeds/packages/net/vpnc/patches/001-cross.patch
---- ../../../downloads/openwrt_trunk-q45513/feeds/packages/net/vpnc/patches/001-cross.patch	2015-06-01 16:25:10.330506552 +0300
-+++ ../../../openwrt_trunk/feeds/packages/net/vpnc/patches/001-cross.patch	2015-06-03 12:42:56.046687961 +0300
-@@ -1,14 +1,16 @@
+diff -urx .svn ../../../downloads/openwrt_trunk-q46338/feeds/packages/net/vpnc/patches/001-cross.patch ../../../openwrt_trunk/feeds/packages/net/vpnc/patches/001-cross.patch
+--- ../../../downloads/openwrt_trunk-q46338/feeds/packages/net/vpnc/patches/001-cross.patch	2015-07-21 13:57:43.000000000 +0300
++++ ../../../openwrt_trunk/feeds/packages/net/vpnc/patches/001-cross.patch	2015-06-03 12:42:56.046688000 +0300
+@@ -1,15 +1,17 @@
  --- a/Makefile
  +++ b/Makefile
 -@@ -20,7 +20,7 @@
-- # $Id$
 +@@ -20,8 +20,8 @@
-+ # $Id: Makefile 539 2013-12-04 13:41:04Z Antonio Borneo $
+  # $Id: Makefile 539 2013-12-04 13:41:04Z Antonio Borneo $
   
   DESTDIR=
  -PREFIX=/usr/local
@@ -83,7 +82,18 @@ diff -urx .svn ../../../downloads/openwrt_trunk-q45513/feeds/packages/net/vpnc/p
 ++ETCDIR=/Apps/opt/etc/vpnc
   BINDIR=$(PREFIX)/bin
   SBINDIR=$(PREFIX)/sbin
+-@@ -57,18 +57,15 @@ OBJS = $(addsuffix .o,$(basename $(SRCS)
 + MANDIR=$(PREFIX)/share/man
- @@ -57,18 +57,15 @@
++@@ -57,18 +57,15 @@
   CRYPTO_OBJS = $(addsuffix .o,$(basename $(CRYPTO_SRCS)))
   BINOBJS = $(addsuffix .o,$(BINS))
+  BINSRCS = $(addsuffix .c,$(BINS))
+@@ -31,7 +33,7 @@
+  LIBS += -lnsl -lresolv -lsocket
+  endif
+  ifneq (,$(findstring Apple,$(shell $(CC) --version)))
+-@@ -82,7 +79,7 @@ vpnc : $(OBJS) vpnc.o
++@@ -82,7 +79,7 @@
+  	$(CC) $(LDFLAGS) -o $@ $^ $(LIBS)
+  
+  vpnc.8 : vpnc.8.template makeman.pl vpnc

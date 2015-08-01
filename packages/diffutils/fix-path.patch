@@ -1,10 +1,10 @@
---- ../../../downloads/openwrt_trunk-r43718/feeds/packages/devel/diffutils/Makefile	2014-12-15 21:16:27.020471970 +0300
-+++ ../../../openwrt_trunk/feeds/packages/devel/diffutils/Makefile	2014-12-20 12:41:14.811166692 +0300
+--- ../../../downloads/openwrt_trunk-q46338/feeds/packages/devel/diffutils/Makefile	2015-07-21 13:57:42.000000000 +0300
++++ ../../../openwrt_trunk/feeds/packages/devel/diffutils/Makefile	2015-07-22 17:18:09.741109561 +0300
 @@ -36,27 +36,11 @@
  
  CONFIGURE_VARS += \
  	ac_cv_func_mempcpy=n
--TARGET_CFLAGS += --std=c99
+-TARGET_CFLAGS += --std=gnu99
 +TARGET_CFLAGS += --std=c99 -fgnu89-inline
  
  define Package/diffutils/install

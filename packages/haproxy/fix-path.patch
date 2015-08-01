@@ -1,5 +1,5 @@
---- ../../../downloads/openwrt_trunk-q45513/feeds/packages/net/haproxy/Makefile	2015-04-27 08:56:50.907566184 +0300
-+++ ../../../openwrt_trunk/feeds/packages/net/haproxy/Makefile	2015-04-29 11:28:32.634853369 +0300
+--- ../../../downloads/openwrt_trunk-q46338/feeds/packages/net/haproxy/Makefile	2015-07-21 13:57:43.000000000 +0300
++++ ../../../openwrt_trunk/feeds/packages/net/haproxy/Makefile	2015-07-23 20:56:15.219149594 +0300
 @@ -29,7 +29,7 @@
  endef
  
@@ -17,23 +17,12 @@
 +		CFLAGS="$(TARGET_CFLAGS) -fno-align-jumps -fno-align-functions -fno-align-labels -fno-align-loops -pipe -fomit-frame-pointer" \
  		LD="$(TARGET_CC)" \
  		LDFLAGS="$(TARGET_LDFLAGS)" \
--		PCREDIR="$(STAGING_DIR)/usr/include" \
+-		PCREDIR="$(STAGING_DIR)/usr" \
 +		PCREDIR="$(STAGING_DIR)/opt" \
  		SMALL_OPTS="-DBUFSIZE=16384 -DMAXREWRITE=1030 -DSYSTEM_MAXCONN=165530 " \
  		USE_LINUX_TPROXY=1 USE_LINUX_SPLICE=1 USE_REGPARM=1 $(USE_OPENSSL) \
  		USE_ZLIB=yes USE_PCRE=1 \
-@@ -96,24 +96,17 @@
- 		install
- 
- 	$(MAKE) -C $(PKG_BUILD_DIR)/contrib/halog \
--		DESTDIR="$(PKG_INSTALL_DIR)" \
--		CC="$(TARGET_CC)" \
--		CFLAGS="$(TARGET_CFLAGS) -fno-align-jumps -fno-align-functions -fno-align-labels -fno-align-loops -pipe -fomit-frame-pointer -fhonour-copts" \
--		LD="$(TARGET_CC)" \
--		LDFLAGS="$(TARGET_LDFLAGS)" \
--		VERSION="$(PKG_VERSION)-patch$(PKG_RELEASE)" \
-+		CC="$(TARGET_CC) $(TARGET_CFLAGS) $(TARGET_LDFLAGS)" \
- 		halog
+@@ -102,14 +102,10 @@
  endef
  
  define Package/haproxy/install
@@ -49,12 +38,10 @@
 +	$(INSTALL_BIN) $(PKG_BUILD_DIR)/haproxy $(1)/opt/sbin/
 +	$(INSTALL_DIR) $(1)/opt/etc
 +	$(INSTALL_CONF) ./files/haproxy.cfg $(1)/opt/etc/
-+#	$(INSTALL_DIR) $(1)/opt/etc/init.d
-+#	$(INSTALL_BIN) ./files/Sxxhaproxy $(1)/opt/etc/init.d/
  endef
  
  Package/haproxy-nossl/install = $(Package/haproxy/install)
-@@ -130,8 +123,8 @@
+@@ -126,8 +122,8 @@
  endef
  
  define Package/halog/install

@@ -1,8 +1,8 @@
-diff -urx .svn ../../../downloads/openwrt_trunk-r45513/feeds/packages/net/unbound/Makefile ../../../openwrt_trunk/feeds/packages/net/unbound/Makefile
---- ../../../downloads/openwrt_trunk-r45513/feeds/packages/net/unbound/Makefile	2015-04-20 10:09:28.914135361 +0300
-+++ ../../../openwrt_trunk/feeds/packages/net/unbound/Makefile	2015-04-20 10:09:51.718134946 +0300
-@@ -112,60 +112,60 @@
- 	--disable-ecdsa \
+diff -urx .svn ../../../downloads/openwrt_trunk-r46338/feeds/packages/net/unbound/Makefile ../../../openwrt_trunk/feeds/packages/net/unbound/Makefile
+--- ../../../downloads/openwrt_trunk-r46338/feeds/packages/net/unbound/Makefile	2015-07-14 10:55:19.782308173 +0300
++++ ../../../openwrt_trunk/feeds/packages/net/unbound/Makefile	2015-07-14 10:55:54.974308759 +0300
+@@ -111,60 +111,60 @@
+ CONFIGURE_ARGS += \
  	--disable-gost \
  	--enable-allsymbols \
 -	--with-libexpat="$(STAGING_DIR)/usr" \
@@ -90,9 +90,9 @@ diff -urx .svn ../../../downloads/openwrt_trunk-r45513/feeds/packages/net/unboun
  endef
  
  $(eval $(call BuildPackage,unbound))
-diff -urx .svn ../../../downloads/openwrt_trunk-r45513/feeds/packages/net/unbound/patches/001-conf.patch ../../../openwrt_trunk/feeds/packages/net/unbound/patches/001-conf.patch
---- ../../../downloads/openwrt_trunk-r45513/feeds/packages/net/unbound/patches/001-conf.patch	2015-04-20 10:09:28.914135361 +0300
-+++ ../../../openwrt_trunk/feeds/packages/net/unbound/patches/001-conf.patch	2015-04-20 10:09:51.722134946 +0300
+diff -urx .svn ../../../downloads/openwrt_trunk-r46338/feeds/packages/net/unbound/patches/001-conf.patch ../../../openwrt_trunk/feeds/packages/net/unbound/patches/001-conf.patch
+--- ../../../downloads/openwrt_trunk-r46338/feeds/packages/net/unbound/patches/001-conf.patch	2015-07-14 10:55:19.782308173 +0300
++++ ../../../openwrt_trunk/feeds/packages/net/unbound/patches/001-conf.patch	2015-07-14 10:55:54.974308759 +0300
 @@ -101,12 +101,12 @@
   
   	# the pid file. Can be an absolute path outside of chroot/work dir.

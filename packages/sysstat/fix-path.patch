@@ -1,0 +1,48 @@
+--- ../../../downloads/openwrt_trunk-q46338/feeds/packages/utils/sysstat/Makefile	2015-07-21 13:57:42.000000000 +0300
++++ ../../../openwrt_trunk/feeds/packages/utils/sysstat/Makefile	2015-07-24 12:26:45.647118909 +0300
+@@ -35,14 +35,14 @@
+ endef
+ 
+ define Package/sysstat/conffiles
+-/etc/sysstat/sysstat.ioconf
+-/etc/sysstat/sysstat
++/opt/etc/sysstat/sysstat.ioconf
++/opt/etc/sysstat/sysstat
+ endef
+ 
+ CONFIGURE_VARS+= \
+-	sa_lib_dir="/usr/lib/sysstat" \
+-	sa_dir="/var/log/sysstat" \
+-	conf_dir="/etc/sysstat"
++	sa_lib_dir="/Apps/opt/lib/sysstat" \
++	sa_dir="/Apps/opt/var/log/sysstat" \
++	conf_dir="/Apps/opt/etc/sysstat"
+ 
+ CONFIGURE_ARGS+= \
+ 	--disable-documentation \
+@@ -51,16 +51,15 @@
+ 	--disable-nls
+ 
+ define Package/sysstat/install
+-	$(INSTALL_DIR) $(1)/usr/lib/sysstat
+-	$(INSTALL_BIN) $(PKG_INSTALL_DIR)/usr/lib/sysstat/{sadc,sa1,sa2} $(1)/usr/lib/sysstat/
+-	$(INSTALL_DIR) $(1)/usr/bin
+-	$(INSTALL_BIN) $(PKG_INSTALL_DIR)/usr/bin/{sar,sadf,iostat,mpstat,pidstat} $(1)/usr/bin/
+-	$(INSTALL_DIR) $(1)/etc/sysstat
+-	$(INSTALL_CONF) $(PKG_INSTALL_DIR)/etc/sysstat/sysstat.ioconf $(1)/etc/sysstat/
+-	$(INSTALL_DIR) $(1)/etc/config
+-	$(INSTALL_CONF) ./files/sysstat.config $(1)/etc/config/sysstat
+-	$(INSTALL_DIR) $(1)/etc/init.d
+-	$(INSTALL_BIN) ./files/sysstat.init $(1)/etc/init.d/sysstat
++	$(INSTALL_DIR) $(1)/opt/lib/sysstat
++	$(INSTALL_BIN) $(PKG_INSTALL_DIR)/Apps/opt/lib/sysstat/{sadc,sa1,sa2} $(1)/opt/lib/sysstat/
++	$(INSTALL_DIR) $(1)/opt/bin
++	$(INSTALL_BIN) $(PKG_INSTALL_DIR)/Apps/opt/bin/{sar,sadf,iostat,mpstat,pidstat} $(1)/opt/bin/
++	$(INSTALL_DIR) $(1)/opt/etc/sysstat
++	$(INSTALL_CONF) $(PKG_INSTALL_DIR)/Apps/opt/etc/sysstat/sysstat.ioconf $(1)/opt/etc/sysstat/
++	$(INSTALL_DIR) $(1)/opt/var/log/sysstat
++	$(INSTALL_DIR) $(1)/opt/etc/init.d
++	$(INSTALL_BIN) ./files/S99sysstat $(1)/opt/etc/init.d/
+ endef
+ 
+ $(eval $(call BuildPackage,sysstat))

@@ -21,7 +21,7 @@
 -	$(INSTALL_DIR) $(1)/usr/lib
 -	$(CP) $(PKG_INSTALL_DIR)/usr/lib/libpcre*.{a,so*} $(1)/usr/lib/
 +	$(INSTALL_DIR) $(1)/opt/lib
-+	$(CP) $(PKG_INSTALL_DIR)/Apps/opt/lib/libpcre*.{a,so*} $(1)/opt/lib//
++	$(CP) $(PKG_INSTALL_DIR)/Apps/opt/lib/libpcre*.{a,so*} $(1)/opt/lib/
  
 -	$(INSTALL_DIR) $(1)/usr/lib/pkgconfig
 -	$(CP) $(PKG_INSTALL_DIR)/usr/lib/pkgconfig/libpcre*.pc $(1)/usr/lib/pkgconfig/

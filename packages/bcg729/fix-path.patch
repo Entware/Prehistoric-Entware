@@ -1,5 +1,5 @@
---- ../../../downloads/openwrt_trunk-r43718/feeds/telephony/libs/bcg729/Makefile	2014-12-15 16:50:13.464093575 +0300
-+++ ../../../openwrt_trunk/feeds/telephony/libs/bcg729/Makefile	2014-12-16 09:26:28.795007565 +0300
+--- ../../../downloads/openwrt_trunk-r45513/feeds/telephony/libs/bcg729/Makefile	2015-04-21 10:37:38.356588032 +0300
++++ ../../../openwrt_trunk/feeds/telephony/libs/bcg729/Makefile	2015-04-21 10:37:42.052587963 +0300
 @@ -46,17 +46,17 @@
  	--enable-static
  

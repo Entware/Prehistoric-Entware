@@ -1,15 +1,6 @@
---- ../../../downloads/openwrt_trunk-r45513/feeds/packages/sound/pulseaudio/Makefile	2015-04-23 10:21:55.569457455 +0300
-+++ ../../../openwrt_trunk/feeds/packages/sound/pulseaudio/Makefile	2015-04-23 10:26:02.641452952 +0300
-@@ -32,7 +32,7 @@
-   SECTION:=sound
-   CATEGORY:=Sound
-   DEPENDS:=+libspeexdsp +libsndfile +libltdl +libpthread \
--	+librt +alsa-lib +libjson +libopenssl +libwrap +libcap $(ICONV_DEPENDS) $(INTL_DEPENDS)
-+	+librt +alsa-lib +libjson-c +libopenssl +libwrap +libcap $(ICONV_DEPENDS) $(INTL_DEPENDS)
-   TITLE:=Network sound server
-   MAINTAINER:=Peter Wagner <tripolar@gmx.at>
-   URL:=http://www.pulseaudio.org
-@@ -54,10 +54,10 @@
+--- ../../../downloads/openwrt_trunk-r46338/feeds/packages/sound/pulseaudio/Makefile	2015-07-14 10:55:19.822308174 +0300
++++ ../../../openwrt_trunk/feeds/packages/sound/pulseaudio/Makefile	2015-07-14 10:55:50.414308683 +0300
+@@ -53,10 +53,10 @@
  endef
  
  define Package/pulseaudio-daemon/conffiles
@@ -24,7 +15,7 @@
  endef
  
  define Package/pulseaudio-tools
-@@ -103,92 +103,88 @@
+@@ -102,92 +102,88 @@
  	--disable-dbus
  
  CONFIGURE_VARS += \

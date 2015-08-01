@@ -1,0 +1,10 @@
+#!/bin/sh
+
+ENABLED=yes
+PROCS=lcd4linux
+ARGS="-f /Apps/opt/etc/lcd4linux.conf"
+PREARGS=""
+DESC=$PROCS
+PATH=/Apps/opt/sbin:/Apps/opt/bin:/Apps/opt/usr/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin
+
+. /Apps/opt/etc/init.d/rc.func

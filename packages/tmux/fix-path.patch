@@ -1,6 +1,15 @@
---- ../../../downloads/openwrt_trunk-r43708/feeds/packages/utils/tmux/Makefile	2014-12-15 12:19:58.048388959 +0300
-+++ ../../../openwrt_trunk/feeds/packages/utils/tmux/Makefile	2014-12-15 12:20:24.996388468 +0300
-@@ -35,12 +35,12 @@
+--- ../../../downloads/openwrt_trunk-r46338/feeds/packages/utils/tmux/Makefile	2015-07-15 16:48:18.960098714 +0300
++++ ../../../openwrt_trunk/feeds/packages/utils/tmux/Makefile	2015-07-17 13:41:02.234786515 +0300
+@@ -12,7 +12,7 @@
+ PKG_RELEASE:=1
+ 
+ PKG_SOURCE:=$(PKG_NAME)-$(PKG_VERSION).tar.gz
+-PKG_SOURCE_URL:=@SF/tmux
++PKG_SOURCE_URL:=https://github.com/tmux/tmux/releases/download/$(PKG_VERSION)/
+ PKG_MD5SUM:=9fb6b443392c3978da5d599f1e814eaa
+ PKG_MAINTAINER:=Maxim Storchak <m.storchak@gmail.com>
+ 
+@@ -37,12 +37,12 @@
  endef
  
  MAKE_FLAGS += \

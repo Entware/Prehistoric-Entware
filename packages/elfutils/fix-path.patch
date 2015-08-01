@@ -1,5 +1,5 @@
---- ../../../downloads/openwrt_trunk-q44497/feeds/packages/libs/elfutils/Makefile	2015-02-25 12:52:24.036486673 +0300
-+++ ../../../openwrt_trunk/feeds/packages/libs/elfutils/Makefile	2015-03-01 08:59:25.079876772 +0300
+--- ../../../downloads/openwrt_trunk-q44497/package/libs/elfutils/Makefile	2015-02-25 12:52:24.036486673 +0300
++++ ../../../openwrt_trunk/package/libs/elfutils/Makefile	2015-03-01 08:59:25.079876772 +0300
 @@ -69,27 +69,27 @@
  	--without-lzma
  

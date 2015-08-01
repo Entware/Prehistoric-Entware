@@ -1,5 +1,5 @@
---- ../../../downloads/openwrt_trunk-q44497/feeds/packages/net/squid/Makefile	2015-02-25 12:52:23.932591488 +0300
-+++ ../../../openwrt_trunk/feeds/packages/net/squid/Makefile	2015-03-01 17:11:14.770586544 +0300
+--- ../../../downloads/openwrt_trunk-q46338/feeds/packages/net/squid/Makefile	2015-07-21 13:57:43.000000000 +0300
++++ ../../../openwrt_trunk/feeds/packages/net/squid/Makefile	2015-07-22 17:25:47.367679546 +0300
 @@ -51,9 +51,9 @@
  
  CONFIGURE_ARGS += \
@@ -22,17 +22,27 @@
  	--enable-epoll \
  	--with-maxfd=4096 \
  	--disable-external-acl-helpers \
-@@ -95,38 +95,39 @@
- 	ac_cv_header_linux_netfilter_ipv4_h=yes \
- 	ac_cv_epoll_works=yes \
+@@ -89,43 +89,45 @@
+ 	--disable-arch-native \
+ 	--with-krb5-config=no \
+ 	--without-libcap \
+-	--without-netfilter-conntrack
++	--without-netfilter-conntrack \
  
-+TARGET_CXXFLAGS += -std=c++0x
+ CONFIGURE_VARS += \
+ 	ac_cv_header_linux_netfilter_ipv4_h=yes \
+-	ac_cv_epoll_works=yes
++	ac_cv_epoll_works=yes \
 +
++TARGET_CXXFLAGS += -std=c++0x
+ 
  define Build/Compile
- 	$(MAKE) -C $(PKG_BUILD_DIR)/lib \
+-	+$(MAKE) $(PKG_JOBS) -C $(PKG_BUILD_DIR)/lib all
+-	+$(MAKE) $(PKG_JOBS) -C $(PKG_BUILD_DIR) \
++	$(MAKE) -C $(PKG_BUILD_DIR)/lib \
 +		$(MAKE_VARS) \
- 		all
- 	$(MAKE) -C $(PKG_BUILD_DIR) \
++		all
++	$(MAKE) -C $(PKG_BUILD_DIR) \
 +		$(MAKE_VARS) \
  		DESTDIR="$(PKG_INSTALL_DIR)" \
  		install

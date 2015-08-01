@@ -1,6 +1,6 @@
---- ../../../downloads/openwrt_trunk-q44497/feeds/packages/libs/glib2/Makefile	2015-02-25 12:52:24.033152892 +0300
-+++ ../../../openwrt_trunk/feeds/packages/libs/glib2/Makefile	2015-02-28 14:41:55.188757025 +0300
-@@ -62,42 +62,42 @@
+--- ../../../downloads/openwrt_trunk-r46338/feeds/packages/libs/glib2/Makefile	2015-07-14 10:55:19.770308173 +0300
++++ ../../../openwrt_trunk/feeds/packages/libs/glib2/Makefile	2015-07-14 10:55:47.894308641 +0300
+@@ -64,42 +64,42 @@
  	ac_cv_func_posix_getgrgid_r=yes
  
  define Build/InstallDev

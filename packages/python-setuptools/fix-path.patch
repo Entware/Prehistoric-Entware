@@ -1,0 +1,31 @@
+--- ../../../downloads/openwrt_trunk-q46338/feeds/packages/lang/python-setuptools/Makefile	2015-07-21 13:57:42.000000000 +0300
++++ ../../../openwrt_trunk/feeds/packages/lang/python-setuptools/Makefile	2015-07-27 13:51:15.933515928 +0300
+@@ -33,22 +33,24 @@
+   Easily download, build, install, upgrade, and uninstall Python packages
+ endef
+ 
++PYTHONPATH:=$(PKG_INSTALL_DIR)/Apps/$(PYTHON_PKG_DIR)
+ define Build/Compile
++	$(INSTALL_DIR) $(PYTHONPATH)
+ 	$(call Build/Compile/PyMod,,\
+-		install --prefix="$(PKG_INSTALL_DIR)/usr" \
++		install --prefix="$(PKG_INSTALL_DIR)/Apps/opt" \
+ 	)
+ endef
+ 
+ define Build/InstallDev
+ 	$(INSTALL_DIR) $(PYTHON_LIB_DIR)
+ 	$(CP) \
+-		$(PKG_INSTALL_DIR)$(PYTHON_PKG_DIR)/* \
++		$(PKG_INSTALL_DIR)/Apps/$(PYTHON_PKG_DIR)/* \
+ 		$(PYTHON_LIB_DIR)
+ endef
+ 
+ define PyPackage/python-setuptools/install
+-	$(INSTALL_DIR) $(1)/usr/bin
+-	$(CP) $(PKG_INSTALL_DIR)/usr/bin/* $(1)/usr/bin/
++	$(INSTALL_DIR) $(1)/opt/bin
++	$(CP) $(PKG_INSTALL_DIR)/Apps/opt/bin/* $(1)/opt/bin/
+ endef
+ 
+ $(eval $(call PyPackage,python-setuptools))

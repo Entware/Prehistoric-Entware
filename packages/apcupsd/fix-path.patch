@@ -197,7 +197,6 @@ diff -urx .svn ../../../downloads/openwrt_trunk-q45513/feeds/packages/net/apcups
 +   /Apps/opt/sbin/apcaccess status
  ) | $MAILPROG -h $MAILHOST -f $FROM -s "$MSG" $TO
  exit 0
-Только в ../../../openwrt_trunk/feeds/packages/net/apcupsd/files: S17apcupsd
 diff -urx .svn ../../../downloads/openwrt_trunk-q45513/feeds/packages/net/apcupsd/Makefile ../../../openwrt_trunk/feeds/packages/net/apcupsd/Makefile
 --- ../../../downloads/openwrt_trunk-q45513/feeds/packages/net/apcupsd/Makefile	2015-04-23 16:31:59.178611802 +0300
 +++ ../../../openwrt_trunk/feeds/packages/net/apcupsd/Makefile	2015-04-26 19:05:03.738067957 +0300

@@ -10,6 +10,7 @@ all: .done
 .done:
 	patch -d $(TOP) -p3 -i $(CURDIR)/fix-path.patch
 	rm -f ../../../openwrt_trunk/feeds/packages/net/ser2net/patches/001-fix_TIOCSRS485_undeclared_error.patch
+	cp -f ./001-linux-headers.patch ../../../openwrt_trunk/feeds/packages/net/ser2net/patches/
 	@touch $@
 
 clean:

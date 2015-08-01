@@ -1,6 +1,6 @@
-diff -urx .svn ../../../downloads/openwrt_trunk-r43718/feeds/packages/admin/zabbix/Makefile ../../../openwrt_trunk/feeds/packages/admin/zabbix/Makefile
---- ../../../downloads/openwrt_trunk-r43718/feeds/packages/admin/zabbix/Makefile	2014-10-06 15:46:23.769250644 +0400
-+++ ../../../openwrt_trunk/feeds/packages/admin/zabbix/Makefile	2014-10-07 12:25:25.959896439 +0400
+diff -urx .svn ../../../downloads/openwrt_trunk-r46338/feeds/packages/admin/zabbix/Makefile ../../../openwrt_trunk/feeds/packages/admin/zabbix/Makefile
+--- ../../../downloads/openwrt_trunk-r46338/feeds/packages/admin/zabbix/Makefile	2015-07-14 10:55:19.818308173 +0300
++++ ../../../openwrt_trunk/feeds/packages/admin/zabbix/Makefile	2015-07-14 10:55:55.190308762 +0300
 @@ -29,6 +29,7 @@
    SECTION:=admin
    CATEGORY:=Administration
@@ -139,20 +139,9 @@ diff -urx .svn ../../../downloads/openwrt_trunk-r43718/feeds/packages/admin/zabb
  $(eval $(call BuildPackage,zabbix-sender))
  $(eval $(call BuildPackage,zabbix-server))
  $(eval $(call BuildPackage,zabbix-proxy))
-diff -urx .svn ../../../downloads/openwrt_trunk-r43718/feeds/packages/admin/zabbix/patches/010-change-agentd-config.patch ../../../openwrt_trunk/feeds/packages/admin/zabbix/patches/010-change-agentd-config.patch
---- ../../../downloads/openwrt_trunk-r43718/feeds/packages/admin/zabbix/patches/010-change-agentd-config.patch	2014-10-06 15:46:23.769250644 +0400
-+++ ../../../openwrt_trunk/feeds/packages/admin/zabbix/patches/010-change-agentd-config.patch	2014-10-09 13:15:23.109202608 +0400
-@@ -10,8 +10,8 @@
- -# Mandatory: no
- -# Default:
- -# PidFile=/tmp/zabbix_agentd.pid
--+# Only /var/run/zabbix_agentd.pid supported
--+PidFile=/var/run/zabbix_agentd.pid
-++# Only /opt/var/run/zabbix_agentd.pid supported
-++PidFile=/opt/var/run/zabbix_agentd.pid
-  
-  ### Option: LogFile
-  #	Name of log file.
+diff -urx .svn ../../../downloads/openwrt_trunk-r46338/feeds/packages/admin/zabbix/patches/010-change-agentd-config.patch ../../../openwrt_trunk/feeds/packages/admin/zabbix/patches/010-change-agentd-config.patch
+--- ../../../downloads/openwrt_trunk-r46338/feeds/packages/admin/zabbix/patches/010-change-agentd-config.patch	2015-07-14 10:55:19.818308173 +0300
++++ ../../../openwrt_trunk/feeds/packages/admin/zabbix/patches/010-change-agentd-config.patch	2015-07-14 10:55:55.190308762 +0300
 @@ -56,7 +56,7 @@
   # Include=/usr/local/etc/zabbix_agentd.userparams.conf
  -# Include=/usr/local/etc/zabbix_agentd.conf.d/
