@@ -1,14 +1,14 @@
---- ../../../downloads/openwrt_trunk-r46338/feeds/packages/utils/lcd4linux/Makefile	2015-07-15 16:48:18.952098714 +0300
-+++ ../../../openwrt_trunk/feeds/packages/utils/lcd4linux/Makefile	2015-07-17 12:56:12.182741870 +0300
-@@ -195,6 +195,7 @@
- 	+libncurses \
- 	+libsqlite3 \
- 	+libusb-compat \
-+	+st2205tool \
- #	+libftdi \
- #	+libX11 \
- #	+python
-@@ -213,7 +214,7 @@
+--- ../../../downloads/openwrt_trunk-q46338/feeds/packages/utils/lcd4linux/Makefile	2015-08-01 08:49:09.217498968 +0300
++++ ../../../openwrt_trunk/feeds/packages/utils/lcd4linux/Makefile	2015-08-01 11:22:13.094216967 +0300
+@@ -125,7 +125,6 @@
+ 	libmpdclient \
+ 	libmysqlclient \
+ 	libncurses \
+-	libnmeap \
+ 	libsqlite3 \
+ 	ppp \
+ #	libftdi \
+@@ -213,7 +212,7 @@
  CONFIGURE_ARGS+= \
  	--disable-rpath \
  
@@ -17,7 +17,7 @@
  
  ifeq ($(BUILD_VARIANT),custom)
  
-@@ -242,7 +243,7 @@
+@@ -242,7 +241,7 @@
    endif
  
    ifneq ($(CONFIG_LCD4LINUX_CUSTOM_NEEDS_libmysqlclient),)
@@ -26,7 +26,7 @@
    endif
  
  #  ifneq ($(CONFIG_LCD4LINUX_CUSTOM_NEEDS_python),)
-@@ -276,27 +277,27 @@
+@@ -276,27 +275,27 @@
  	--without-python \
  	--without-x \
  
