@@ -9,7 +9,7 @@ all: .done
 
 .done:
 	patch -d $(TOP) -p3 -i $(CURDIR)/fix-path.patch
-	cp -f ./500-types.patch ../../../openwrt_trunk/package/devel/strace/patches/
+	cp -f ./5*.patch ../../../openwrt_trunk/package/devel/strace/patches/
 	@touch $@
 
 clean:
