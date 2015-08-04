@@ -1,6 +1,6 @@
 diff -urx .svn ../../../downloads/openwrt_trunk-q46338/feeds/packages/lang/perl/files/config.sh-arm.in ../../../openwrt_trunk/feeds/packages/lang/perl/files/config.sh-arm.in
---- ../../../downloads/openwrt_trunk-q46338/feeds/packages/lang/perl/files/config.sh-arm.in	2015-07-21 13:57:42.000000000 +0300
-+++ ../../../openwrt_trunk/feeds/packages/lang/perl/files/config.sh-arm.in	2015-07-23 15:36:58.431139645 +0300
+--- ../../../downloads/openwrt_trunk-q46338/feeds/packages/lang/perl/files/config.sh-arm.in	2015-08-03 11:54:56.119063515 +0300
++++ ../../../openwrt_trunk/feeds/packages/lang/perl/files/config.sh-arm.in	2015-08-04 14:40:42.334238728 +0300
 @@ -36,7 +36,7 @@
  
  ar='ar'
@@ -27,7 +27,7 @@ diff -urx .svn ../../../downloads/openwrt_trunk-q46338/feeds/packages/lang/perl/
  d_fpclassl='undef'
  d_fpgetround='undef'
  d_fpos64_t='undef'
-@@ -290,8 +291,7 @@
+@@ -290,18 +291,17 @@
  d_inetaton='define'
  d_int64_t='define'
  d_isascii='define'
@@ -37,6 +37,45 @@ diff -urx .svn ../../../downloads/openwrt_trunk-q46338/feeds/packages/lang/perl/
  d_isinf='define'
  d_isinfl='define'
  d_isless='undef'
+ d_isnan='define'
+ d_isnanl='undef'
+-d_isnormal='define'
++d_isnormal='undef'
+ d_j0='undef'
+ d_j0l='undef'
+ d_killpg='define'
+-d_lc_monetary_2008='define'
++d_lc_monetary_2008='undef'
+ d_lchown='define'
+ d_ldbl_dig='define'
+ d_ldexpl='define'
+@@ -364,7 +364,7 @@
+ d_msync='define'
+ d_munmap='define'
+ d_mymalloc='undef'
+-d_nan='define'
++d_nan='undef'
+ d_nearbyint='define'
+ d_nextafter='define'
+ d_nexttoward='undef'
+@@ -390,7 +390,7 @@
+ d_pthread_atfork='undef'
+ d_pthread_attr_setscope='define'
+ d_pthread_yield='undef'
+-d_ptrdiff_t='define'
++d_ptrdiff_t='undef'
+ d_pwage='undef'
+ d_pwchange='undef'
+ d_pwclass='undef'
+@@ -492,7 +492,7 @@
+ d_srandom_r='undef'
+ d_sresgproto='undef'
+ d_sresuproto='undef'
+-d_stat='define'
++d_stat='undef'
+ d_statblks='define'
+ d_statfs_f_flags='undef'
+ d_statfs_s='define'
 @@ -511,8 +511,8 @@
  d_strerror='define'
  d_strerror_r='undef'
@@ -99,7 +138,7 @@ diff -urx .svn ../../../downloads/openwrt_trunk-q46338/feeds/packages/lang/perl/
  otherlibdirs=' '
  package='perl5'
  pager='/usr/bin/less'
-@@ -890,7 +887,7 @@
+@@ -890,15 +887,15 @@
  perl_patchlevel=''
  perladmin='root@maia.dev.null'
  perllibs='-ldl -lm -lcrypt -lutil -lc %%EXTRA_PERLLIBS%%'
@@ -108,6 +147,16 @@ diff -urx .svn ../../../downloads/openwrt_trunk-q46338/feeds/packages/lang/perl/
  pg='pg'
  phostname='hostname'
  pidtype='pid_t'
+ plibpth=''
+ pmake=''
+ pr=''
+-prefix='/usr'
+-prefixexp='/usr'
++prefix='/opt'
++prefixexp='/opt'
+ 
+ 
+ procselfexe='"/proc/self/exe"'
 @@ -964,23 +961,23 @@
  signal_t='void'
  sitearch=''
@@ -139,6 +188,15 @@ diff -urx .svn ../../../downloads/openwrt_trunk-q46338/feeds/packages/lang/perl/
  sizesize='4'
  sizetype='size_t'
  sleep=''
+@@ -996,7 +993,7 @@
+ srandom_r_proto='0'
+ src='.'
+ ssizetype='ssize_t'
+-startperl='#!/usr/bin/perl'
++startperl='#!/Apps/optr/bin/perl'
+ startsh='#!/bin/sh'
+ static_ext=' '
+ stdchar='char'
 @@ -1012,7 +1009,7 @@
  sysman='/usr/share/man/man1'
  tail=''
@@ -181,8 +239,8 @@ diff -urx .svn ../../../downloads/openwrt_trunk-q46338/feeds/packages/lang/perl/
  extensions='B Compress/Raw/Zlib Cwd DB_File Data/Dumper Devel/DProf Devel/PPPort Devel/Peek Digest/MD5 Digest/SHA Encode Fcntl File/Glob Filter/Util/Call GDBM_File Hash/Util I18N/Langinfo IO IPC/SysV List/Util MIME/Base64 Math/BigInt/FastCalc Opcode POSIX PerlIO/encoding PerlIO/scalar PerlIO/via SDBM_File Socket Storable Sys/Hostname Sys/Syslog Text/Soundex Time/HiRes Time/Piece XS/APItest XS/Typemap attrs re threads threads/shared Hash/Util/FieldHash Compress/Zlib Errno IO_Compress_Base IO_Compress_Zlib Unicode/Normalize'
  known_extensions='B Compress/Raw/Zlib Cwd DB_File Data/Dumper Devel/DProf Devel/PPPort Devel/Peek Digest/MD5 Digest/SHA Encode Fcntl File/Glob Filter/Util/Call GDBM_File Hash/Util I18N/Langinfo IO IPC/SysV List/Util MIME/Base64 Math/BigInt/FastCalc NDBM_File ODBM_File Opcode POSIX PerlIO/encoding PerlIO/scalar PerlIO/via SDBM_File Socket Storable Sys/Hostname Sys/Syslog Text/Soundex Time/HiRes Time/Piece Unicode/Normalize Win32 Win32API/File Win32CORE XS/APItest XS/Typemap attrs re threads threads/shared Hash/Util/FieldHash'
 diff -urx .svn ../../../downloads/openwrt_trunk-q46338/feeds/packages/lang/perl/files/config.sh-arm-mt.in ../../../openwrt_trunk/feeds/packages/lang/perl/files/config.sh-arm-mt.in
---- ../../../downloads/openwrt_trunk-q46338/feeds/packages/lang/perl/files/config.sh-arm-mt.in	2015-07-21 13:57:42.000000000 +0300
-+++ ../../../openwrt_trunk/feeds/packages/lang/perl/files/config.sh-arm-mt.in	2015-07-23 15:36:47.316183227 +0300
+--- ../../../downloads/openwrt_trunk-q46338/feeds/packages/lang/perl/files/config.sh-arm-mt.in	2015-08-03 11:54:56.119063515 +0300
++++ ../../../openwrt_trunk/feeds/packages/lang/perl/files/config.sh-arm-mt.in	2015-08-04 12:37:36.458232464 +0300
 @@ -36,7 +36,7 @@
  
  ar='ar'
@@ -192,7 +250,22 @@ diff -urx .svn ../../../downloads/openwrt_trunk-q46338/feeds/packages/lang/perl/
  archobjs=''
  asctime_r_proto='REENTRANT_PROTO_B_SB'
  awk='awk'
-@@ -195,6 +195,7 @@
+@@ -126,7 +126,7 @@
+ d_builtin_expect='undef'
+ d_bzero='define'
+ d_c99_variadic_macros='define'
+-d_casti32='define'
++d_casti32='undef'
+ d_castneg='define'
+ d_cbrt='define'
+ d_charvspr='undef'
+@@ -190,11 +190,12 @@
+ d_fd_macros='define'
+ d_fd_set='define'
+ d_fdim='define'
+-d_fds_bits='define'
++d_fds_bits='undef'
+ d_fegetround='undef'
  d_fgetpos='define'
  d_finite='define'
  d_finitel='undef'
@@ -209,7 +282,7 @@ diff -urx .svn ../../../downloads/openwrt_trunk-q46338/feeds/packages/lang/perl/
  d_fpclassl='undef'
  d_fpgetround='undef'
  d_fpos64_t='undef'
-@@ -290,8 +291,7 @@
+@@ -290,18 +291,17 @@
  d_inetaton='define'
  d_int64_t='define'
  d_isascii='define'
@@ -219,6 +292,67 @@ diff -urx .svn ../../../downloads/openwrt_trunk-q46338/feeds/packages/lang/perl/
  d_isinf='define'
  d_isinfl='define'
  d_isless='undef'
+ d_isnan='define'
+ d_isnanl='undef'
+-d_isnormal='define'
++d_isnormal='undef'
+ d_j0='undef'
+ d_j0l='undef'
+ d_killpg='define'
+-d_lc_monetary_2008='define'
++d_lc_monetary_2008='undef'
+ d_lchown='define'
+ d_ldbl_dig='define'
+ d_ldexpl='define'
+@@ -314,7 +314,7 @@
+ d_llround='define'
+ d_llroundl='define'
+ d_localtime_r='define'
+-d_localtime_r_needs_tzset='define'
++d_localtime_r_needs_tzset='undef'
+ d_locconv='define'
+ d_lockf='define'
+ d_log1p='define'
+@@ -364,7 +364,7 @@
+ d_msync='define'
+ d_munmap='define'
+ d_mymalloc='undef'
+-d_nan='define'
++d_nan='undef'
+ d_nearbyint='define'
+ d_nextafter='define'
+ d_nexttoward='undef'
+@@ -372,7 +372,7 @@
+ d_nl_langinfo='define'
+ d_nv_preserves_uv='define'
+ d_nv_zero_is_allbits_zero='define'
+-d_off64_t='define'
++d_off64_t='undef'
+ d_old_pthread_create_joinable='undef'
+ d_oldpthreads='undef'
+ d_oldsock='undef'
+@@ -390,7 +390,7 @@
+ d_pthread_atfork='define'
+ d_pthread_attr_setscope='define'
+ d_pthread_yield='define'
+-d_ptrdiff_t='define'
++d_ptrdiff_t='undef'
+ d_pwage='undef'
+ d_pwchange='undef'
+ d_pwclass='undef'
+@@ -490,9 +490,9 @@
+ d_sqrtl='undef'
+ d_srand48_r='define'
+ d_srandom_r='define'
+-d_sresgproto='define'
+-d_sresuproto='define'
+-d_stat='define'
++d_sresgproto='undef'
++d_sresuproto='undef'
++d_stat='undef'
+ d_statblks='define'
+ d_statfs_f_flags='undef'
+ d_statfs_s='define'
 @@ -511,8 +511,8 @@
  d_strerror='define'
  d_strerror_r='define'
@@ -271,6 +405,15 @@ diff -urx .svn ../../../downloads/openwrt_trunk-q46338/feeds/packages/lang/perl/
  mydomain='.dev.null'
  myhostname='maia'
  myuname='linux maia 2.6.22 #1 wed jul 11 12:24:09 cest 2007 armv5tel unknown unknown gnulinux '
+@@ -878,7 +876,7 @@
+ optimize='-O2'
+ orderlib='false'
+ osname='linux'
+-osvers='2.6.22'
++osvers='2.6.32'
+ otherlibdirs=' '
+ package='perl5'
+ pager='/usr/bin/less'
 @@ -890,17 +888,15 @@
  perl_patchlevel=''
  perladmin='root@maia.dev.null'
@@ -334,6 +477,15 @@ diff -urx .svn ../../../downloads/openwrt_trunk-q46338/feeds/packages/lang/perl/
  sizesize='4'
  sizetype='size_t'
  sleep=''
+@@ -996,7 +992,7 @@
+ srandom_r_proto='REENTRANT_PROTO_I_TS'
+ src='.'
+ ssizetype='ssize_t'
+-startperl='#!/usr/bin/perl'
++startperl='#!/Apps/opt/bin/perl'
+ startsh='#!/bin/sh'
+ static_ext=' '
+ stdchar='char'
 @@ -1012,7 +1008,7 @@
  sysman='/usr/share/man/man1'
  tail=''
@@ -376,8 +528,8 @@ diff -urx .svn ../../../downloads/openwrt_trunk-q46338/feeds/packages/lang/perl/
  extensions='B Compress/Raw/Zlib Cwd DB_File Data/Dumper Devel/DProf Devel/PPPort Devel/Peek Digest/MD5 Digest/SHA Encode Fcntl File/Glob Filter/Util/Call GDBM_File Hash/Util I18N/Langinfo IO IPC/SysV List/Util MIME/Base64 Math/BigInt/FastCalc Opcode POSIX PerlIO/encoding PerlIO/scalar PerlIO/via SDBM_File Socket Storable Sys/Hostname Sys/Syslog Text/Soundex Time/HiRes Time/Piece XS/APItest XS/Typemap attrs re threads threads/shared Hash/Util/FieldHash Compress/Zlib Errno IO_Compress_Base IO_Compress_Zlib Unicode/Normalize'
  known_extensions='B Compress/Raw/Zlib Cwd DB_File Data/Dumper Devel/DProf Devel/PPPort Devel/Peek Digest/MD5 Digest/SHA Encode Fcntl File/Glob Filter/Util/Call GDBM_File Hash/Util I18N/Langinfo IO IPC/SysV List/Util MIME/Base64 Math/BigInt/FastCalc NDBM_File ODBM_File Opcode POSIX PerlIO/encoding PerlIO/scalar PerlIO/via SDBM_File Socket Storable Sys/Hostname Sys/Syslog Text/Soundex Time/HiRes Time/Piece Unicode/Normalize Win32 Win32API/File Win32CORE XS/APItest XS/Typemap attrs re threads threads/shared Hash/Util/FieldHash'
 diff -urx .svn ../../../downloads/openwrt_trunk-q46338/feeds/packages/lang/perl/files/config.sh-i486.in ../../../openwrt_trunk/feeds/packages/lang/perl/files/config.sh-i486.in
---- ../../../downloads/openwrt_trunk-q46338/feeds/packages/lang/perl/files/config.sh-i486.in	2015-07-21 13:57:42.000000000 +0300
-+++ ../../../openwrt_trunk/feeds/packages/lang/perl/files/config.sh-i486.in	2015-07-23 15:37:21.651121139 +0300
+--- ../../../downloads/openwrt_trunk-q46338/feeds/packages/lang/perl/files/config.sh-i486.in	2015-08-03 11:54:56.114267934 +0300
++++ ../../../openwrt_trunk/feeds/packages/lang/perl/files/config.sh-i486.in	2015-08-03 12:46:03.378222938 +0300
 @@ -34,7 +34,7 @@
  api_subversion='0'
  ar='ar'
@@ -404,7 +556,7 @@ diff -urx .svn ../../../downloads/openwrt_trunk-q46338/feeds/packages/lang/perl/
  d_fpclassl='undef'
  d_fpgetround='undef'
  d_fpos64_t='undef'
-@@ -288,8 +289,7 @@
+@@ -288,18 +289,17 @@
  d_inetaton='define'
  d_int64_t='define'
  d_isascii='define'
@@ -414,6 +566,54 @@ diff -urx .svn ../../../downloads/openwrt_trunk-q46338/feeds/packages/lang/perl/
  d_isinf='define'
  d_isinfl='define'
  d_isless='undef'
+ d_isnan='define'
+ d_isnanl='undef'
+-d_isnormal='define'
++d_isnormal='undef'
+ d_j0='undef'
+ d_j0l='undef'
+ d_killpg='define'
+-d_lc_monetary_2008='define'
++d_lc_monetary_2008='undef'
+ d_lchown='define'
+ d_ldbl_dig='define'
+ d_ldexpl='define'
+@@ -346,7 +346,7 @@
+ d_mmap='define'
+ d_modfl='undef'
+ d_modfl_pow32_bug='undef'
+-d_modflproto='define'
++d_modflproto='undef'
+ d_mprotect='define'
+ d_msg='define'
+ d_msg_ctrunc='define'
+@@ -362,7 +362,7 @@
+ d_msync='define'
+ d_munmap='define'
+ d_mymalloc='undef'
+-d_nan='define'
++d_nan='undef'
+ d_nearbyint='define'
+ d_nextafter='define'
+ d_nexttoward='undef'
+@@ -388,7 +388,7 @@
+ d_pthread_atfork='undef'
+ d_pthread_attr_setscope='define'
+ d_pthread_yield='undef'
+-d_ptrdiff_t='define'
++d_ptrdiff_t='undef'
+ d_pwage='undef'
+ d_pwchange='undef'
+ d_pwclass='undef'
+@@ -490,7 +490,7 @@
+ d_srandom_r='undef'
+ d_sresgproto='undef'
+ d_sresuproto='undef'
+-d_stat='define'
++d_stat='undef'
+ d_statblks='define'
+ d_statfs_f_flags='undef'
+ d_statfs_s='define'
 @@ -509,8 +509,8 @@
  d_strerror='define'
  d_strerror_r='undef'
@@ -584,8 +784,8 @@ diff -urx .svn ../../../downloads/openwrt_trunk-q46338/feeds/packages/lang/perl/
  extensions='B Compress/Raw/Zlib Cwd DB_File Data/Dumper Devel/DProf Devel/PPPort Devel/Peek Digest/MD5 Digest/SHA Encode Fcntl File/Glob Filter/Util/Call GDBM_File Hash/Util I18N/Langinfo IO IPC/SysV List/Util MIME/Base64 Math/BigInt/FastCalc Opcode POSIX PerlIO/encoding PerlIO/scalar PerlIO/via SDBM_File Socket Storable Sys/Hostname Sys/Syslog Text/Soundex Time/HiRes Time/Piece XS/APItest XS/Typemap attrs re threads threads/shared Hash/Util/FieldHash Compress/Zlib Errno IO_Compress_Base IO_Compress_Zlib Unicode/Normalize'
  known_extensions='B Compress/Raw/Zlib Cwd DB_File Data/Dumper Devel/DProf Devel/PPPort Devel/Peek Digest/MD5 Digest/SHA Encode Fcntl File/Glob Filter/Util/Call GDBM_File Hash/Util I18N/Langinfo IO IPC/SysV List/Util MIME/Base64 Math/BigInt/FastCalc NDBM_File ODBM_File Opcode POSIX PerlIO/encoding PerlIO/scalar PerlIO/via SDBM_File Socket Storable Sys/Hostname Sys/Syslog Text/Soundex Time/HiRes Time/Piece Unicode/Normalize Win32 Win32API/File Win32CORE XS/APItest XS/Typemap attrs re threads threads/shared Hash/Util/FieldHash'
 diff -urx .svn ../../../downloads/openwrt_trunk-q46338/feeds/packages/lang/perl/files/config.sh-i486-mt.in ../../../openwrt_trunk/feeds/packages/lang/perl/files/config.sh-i486-mt.in
---- ../../../downloads/openwrt_trunk-q46338/feeds/packages/lang/perl/files/config.sh-i486-mt.in	2015-07-21 13:57:42.000000000 +0300
-+++ ../../../openwrt_trunk/feeds/packages/lang/perl/files/config.sh-i486-mt.in	2015-07-23 15:37:11.803178408 +0300
+--- ../../../downloads/openwrt_trunk-q46338/feeds/packages/lang/perl/files/config.sh-i486-mt.in	2015-08-03 11:54:56.119063515 +0300
++++ ../../../openwrt_trunk/feeds/packages/lang/perl/files/config.sh-i486-mt.in	2015-08-04 12:37:36.883121951 +0300
 @@ -34,7 +34,7 @@
  api_subversion='0'
  ar='ar'
@@ -612,7 +812,7 @@ diff -urx .svn ../../../downloads/openwrt_trunk-q46338/feeds/packages/lang/perl/
  d_fpclassl='undef'
  d_fpgetround='undef'
  d_fpos64_t='undef'
-@@ -288,8 +289,7 @@
+@@ -288,18 +289,17 @@
  d_inetaton='define'
  d_int64_t='define'
  d_isascii='define'
@@ -622,6 +822,58 @@ diff -urx .svn ../../../downloads/openwrt_trunk-q46338/feeds/packages/lang/perl/
  d_isinf='define'
  d_isinfl='define'
  d_isless='undef'
+ d_isnan='define'
+ d_isnanl='undef'
+-d_isnormal='define'
++d_isnormal='undef'
+ d_j0='undef'
+ d_j0l='undef'
+ d_killpg='define'
+-d_lc_monetary_2008='define'
++d_lc_monetary_2008='undef'
+ d_lchown='define'
+ d_ldbl_dig='define'
+ d_ldexpl='define'
+@@ -346,7 +346,7 @@
+ d_mmap='define'
+ d_modfl='undef'
+ d_modfl_pow32_bug='undef'
+-d_modflproto='define'
++d_modflproto='undef'
+ d_mprotect='define'
+ d_msg='define'
+ d_msg_ctrunc='define'
+@@ -362,7 +362,7 @@
+ d_msync='define'
+ d_munmap='define'
+ d_mymalloc='undef'
+-d_nan='define'
++d_nan='undef'
+ d_nearbyint='define'
+ d_nextafter='define'
+ d_nexttoward='undef'
+@@ -370,7 +370,7 @@
+ d_nl_langinfo='define'
+ d_nv_preserves_uv='define'
+ d_nv_zero_is_allbits_zero='define'
+-d_off64_t='define'
++d_off64_t='undef'
+ d_old_pthread_create_joinable='undef'
+ d_oldpthreads='undef'
+ d_oldsock='undef'
+@@ -488,9 +488,9 @@
+ d_sqrtl='undef'
+ d_srand48_r='define'
+ d_srandom_r='define'
+-d_sresgproto='define'
+-d_sresuproto='define'
+-d_stat='define'
++d_sresgproto='undef'
++d_sresuproto='undef'
++d_stat='undef'
+ d_statblks='define'
+ d_statfs_f_flags='undef'
+ d_statfs_s='define'
 @@ -509,8 +509,8 @@
  d_strerror='define'
  d_strerror_r='define'
@@ -633,12 +885,13 @@ diff -urx .svn ../../../downloads/openwrt_trunk-q46338/feeds/packages/lang/perl/
  d_strtod='define'
  d_strtol='define'
  d_strtold='define'
-@@ -755,21 +755,21 @@
+@@ -755,21 +755,22 @@
  inc_version_list_init='0'
  incpath=''
  inews=''
 -installbin='/usr/bin'
 -initialinstalllocation='/usr/bin'
++
 +installbin='/Apps/opt/bin'
 +initialinstalllocation='/Apps/opt/bin'
  installhtml1dir=''
@@ -662,7 +915,7 @@ diff -urx .svn ../../../downloads/openwrt_trunk-q46338/feeds/packages/lang/perl/
  installstyle='lib/perl5'
  installusrbinperl='define'
  installvendorarch=''
-@@ -841,7 +841,7 @@
+@@ -841,7 +842,7 @@
  more='more'
  multiarch='undef'
  mv=''
@@ -671,7 +924,28 @@ diff -urx .svn ../../../downloads/openwrt_trunk-q46338/feeds/packages/lang/perl/
  mydomain='.dev.null'
  myhostname='maia'
  myuname='linux maia 2.6.25 #2 sat apr 19 09:46:49 cest 2008 i686 unknown unknown gnulinux '
-@@ -881,15 +881,15 @@
+@@ -854,6 +855,7 @@
+ nm='nm'
+ nm_opt=''
+ nm_so_opt='--dynamic'
++
+ nroff='nroff'
+ nvEUformat='"E"'
+ nvFUformat='"F"'
+@@ -870,26 +872,27 @@
+ optimize='-O2'
+ orderlib='false'
+ osname='linux'
+-osvers='2.6.25'
++osvers='2.6.32'
+ otherlibdirs=' '
+ package='perl5'
+ pager='/usr/bin/less'
+ passcat='cat /etc/passwd'
++
+ path_sep=':'
+ perl5=''
+ perl=''
  perl_patchlevel=''
  perladmin='root@maia.dev.null'
  perllibs='-ldl -lm -lcrypt -lutil -lpthread -lc %%EXTRA_PERLLIBS%%'
@@ -690,7 +964,7 @@ diff -urx .svn ../../../downloads/openwrt_trunk-q46338/feeds/packages/lang/perl/
  procselfexe='"/proc/self/exe"'
  prototype='define'
  ptrsize='4'
-@@ -923,8 +923,8 @@
+@@ -923,8 +926,8 @@
  sPRIx64='"Lx"'
  sSCNfldbl='"Lf"'
  sched_yield='sched_yield()'
@@ -701,7 +975,7 @@ diff -urx .svn ../../../downloads/openwrt_trunk-q46338/feeds/packages/lang/perl/
  sed='sed'
  seedfunc='srand48'
  selectminbits='32'
-@@ -953,23 +953,23 @@
+@@ -953,23 +956,23 @@
  signal_t='void'
  sitearch=''
  sitearchexp=''
@@ -732,7 +1006,7 @@ diff -urx .svn ../../../downloads/openwrt_trunk-q46338/feeds/packages/lang/perl/
  sizesize='4'
  sizetype='size_t'
  sleep=''
-@@ -985,7 +985,7 @@
+@@ -985,7 +988,7 @@
  srandom_r_proto='REENTRANT_PROTO_I_TS'
  src='.'
  ssizetype='ssize_t'
@@ -741,7 +1015,7 @@ diff -urx .svn ../../../downloads/openwrt_trunk-q46338/feeds/packages/lang/perl/
  startsh='#!/bin/sh'
  static_ext=' '
  stdchar='char'
-@@ -1001,7 +1001,7 @@
+@@ -1001,7 +1004,7 @@
  sysman='/usr/share/man/man1'
  tail=''
  tar=''
@@ -750,7 +1024,16 @@ diff -urx .svn ../../../downloads/openwrt_trunk-q46338/feeds/packages/lang/perl/
  tbl=''
  tee=''
  test='test'
-@@ -1188,22 +1188,22 @@
+@@ -1084,6 +1087,8 @@
+ vendorprefixexp=''
+ vendorscript=''
+ vendorscriptexp=''
++
++
+ versiononly='undef'
+ vi=''
+ voidflags='15'
+@@ -1188,22 +1193,22 @@
  # Always set this to the base version, not the patched one!
  api_versionstring='5.22.0'
  dynamic_ext='B Compress/Raw/Bzip2 Compress/Raw/Zlib Cwd DB_File Data/Dumper Devel/PPPort Devel/Peek Digest/MD5 Digest/SHA Encode Fcntl File/DosGlob File/Glob Filter/Util/Call GDBM_File Hash/Util Hash/Util/FieldHash I18N/Langinfo IO IPC/SysV List/Util MIME/Base64 Math/BigInt/FastCalc Opcode POSIX PerlIO/encoding PerlIO/mmap PerlIO/scalar PerlIO/via SDBM_File Socket Storable Sys/Hostname Sys/Syslog Tie/Hash/NamedCapture Time/HiRes Time/Piece Unicode/Collate XS/APItest XS/Typemap arybase attributes mro re threads threads/shared'
@@ -783,9 +1066,22 @@ diff -urx .svn ../../../downloads/openwrt_trunk-q46338/feeds/packages/lang/perl/
  extensions='B Compress/Raw/Zlib Cwd DB_File Data/Dumper Devel/DProf Devel/PPPort Devel/Peek Digest/MD5 Digest/SHA Encode Fcntl File/Glob Filter/Util/Call GDBM_File Hash/Util I18N/Langinfo IO IPC/SysV List/Util MIME/Base64 Math/BigInt/FastCalc Opcode POSIX PerlIO/encoding PerlIO/scalar PerlIO/via SDBM_File Socket Storable Sys/Hostname Sys/Syslog Text/Soundex Time/HiRes Time/Piece XS/APItest XS/Typemap attrs re threads threads/shared Hash/Util/FieldHash Compress/Zlib Errno IO_Compress_Base IO_Compress_Zlib Unicode/Normalize'
  known_extensions='B Compress/Raw/Zlib Cwd DB_File Data/Dumper Devel/DProf Devel/PPPort Devel/Peek Digest/MD5 Digest/SHA Encode Fcntl File/Glob Filter/Util/Call GDBM_File Hash/Util I18N/Langinfo IO IPC/SysV List/Util MIME/Base64 Math/BigInt/FastCalc NDBM_File ODBM_File Opcode POSIX PerlIO/encoding PerlIO/scalar PerlIO/via SDBM_File Socket Storable Sys/Hostname Sys/Syslog Text/Soundex Time/HiRes Time/Piece Unicode/Normalize Win32 Win32API/File Win32CORE XS/APItest XS/Typemap attrs re threads threads/shared Hash/Util/FieldHash'
 diff -urx .svn ../../../downloads/openwrt_trunk-q46338/feeds/packages/lang/perl/Makefile ../../../openwrt_trunk/feeds/packages/lang/perl/Makefile
---- ../../../downloads/openwrt_trunk-q46338/feeds/packages/lang/perl/Makefile	2015-07-21 13:57:42.000000000 +0300
-+++ ../../../openwrt_trunk/feeds/packages/lang/perl/Makefile	2015-07-23 15:51:28.759141619 +0300
-@@ -38,7 +38,7 @@
+--- ../../../downloads/openwrt_trunk-q46338/feeds/packages/lang/perl/Makefile	2015-08-03 11:54:56.114267934 +0300
++++ ../../../openwrt_trunk/feeds/packages/lang/perl/Makefile	2015-08-04 14:51:57.322749176 +0300
+@@ -9,7 +9,7 @@
+ 
+ PKG_NAME:=perl
+ PKG_VERSION:=5.22.0
+-PKG_RELEASE:=0
++PKG_RELEASE:=1
+ 
+ PKG_SOURCE_URL:=ftp://ftp.cpan.org/pub/CPAN/src/5.0 \
+ 		http://www.cpan.org/src/5.0 \
+@@ -35,10 +35,11 @@
+ HOST_BUILD_PARALLEL:=1
+ 
+ # Variables used during configuration/build
++#---???? Perl does not need libbsd now ????
  HOST_PERL_PREFIX:=$(STAGING_DIR_HOST)/usr
  ifneq ($(CONFIG_USE_GLIBC),)
  	EXTRA_LIBS:=bsd
@@ -794,7 +1090,18 @@ diff -urx .svn ../../../downloads/openwrt_trunk-q46338/feeds/packages/lang/perl/
  endif
  
  # Filter -g3, it will break Compress-Raw-Zlib
-@@ -117,8 +117,8 @@
+@@ -59,6 +60,10 @@
+ 	endif
+ endif
+ 
++#External toolchain does not define GLIBC. So
++CRYPT_R_PROTO:=REENTRANT_PROTO_B_CCS
++CRYPT:=define
++
+ # A list of disabled tests
+ # ExtUtils tests are disabled for now as we don't support building
+ # native extensions on the target machine at the moment
+@@ -117,8 +122,8 @@
  		-e 's!%%AR%%!$(TARGET_CROSS)ar!g' \
  		-e 's!%%LD%%!$(TARGET_CROSS)gcc!g' \
  		-e 's!%%LDFLAGS%%!-rdynamic $(TARGET_LDFLAGS)!g' \
@@ -805,7 +1112,7 @@ diff -urx .svn ../../../downloads/openwrt_trunk-q46338/feeds/packages/lang/perl/
  		-e 's!%%EXTRA_PERLLIBS%%!$(EXTRA_LIBS:%=-l%)!g' \
  		-e 's!%%EXTRA_PERLLIBDIRS%%!$(EXTRA_LIBDIRS:%=-L%)!g' \
  		-e 's!%%IPV6%%!$(if $($(CONFIG_IPV6)),define,undef)!g' \
-@@ -158,17 +158,17 @@
+@@ -158,17 +163,17 @@
  endef
  
  define Build/InstallDev
@@ -830,7 +1137,7 @@ diff -urx .svn ../../../downloads/openwrt_trunk-q46338/feeds/packages/lang/perl/
  endef
  
  
-@@ -192,9 +192,9 @@
+@@ -192,9 +197,9 @@
  	$(INSTALL_DIR) $(1)/$(PERL_TESTSDIR)
  	$(INSTALL_DIR) $(1)/$(PERL_TESTSDIR)/Porting
  	$(INSTALL_DIR) $(1)/$(PERL_TESTSDIR)/regen
@@ -843,7 +1150,7 @@ diff -urx .svn ../../../downloads/openwrt_trunk-q46338/feeds/packages/lang/perl/
  	
  	$(CP) $(PKG_BUILD_DIR)/t $(1)/$(PERL_TESTSDIR)
  	$(CP) $(PKG_BUILD_DIR)/Porting $(1)/$(PERL_TESTSDIR)
-@@ -203,10 +203,10 @@
+@@ -203,10 +208,10 @@
  	$(CP) $(PKG_BUILD_DIR)/TestInit.pm $(1)/$(PERL_TESTSDIR)
  	$(CP) $(PKG_BUILD_DIR)/vutil.c $(1)/$(PERL_TESTSDIR)
  	$(CP) $(PKG_BUILD_DIR)/vxs.inc $(1)/$(PERL_TESTSDIR)
@@ -859,8 +1166,8 @@ diff -urx .svn ../../../downloads/openwrt_trunk-q46338/feeds/packages/lang/perl/
  	sed \
  		-e 's!%%PERL_DISABLEDTESTS%%!$(PERL_DISABLEDTESTS)!' \
 diff -urx .svn ../../../downloads/openwrt_trunk-q46338/feeds/packages/lang/perl/perlbase.mk ../../../openwrt_trunk/feeds/packages/lang/perl/perlbase.mk
---- ../../../downloads/openwrt_trunk-q46338/feeds/packages/lang/perl/perlbase.mk	2015-07-21 13:57:42.000000000 +0300
-+++ ../../../openwrt_trunk/feeds/packages/lang/perl/perlbase.mk	2015-07-22 15:00:40.803123179 +0300
+--- ../../../downloads/openwrt_trunk-q46338/feeds/packages/lang/perl/perlbase.mk	2015-08-03 11:54:56.114267934 +0300
++++ ../../../openwrt_trunk/feeds/packages/lang/perl/perlbase.mk	2015-08-01 08:50:32.225465166 +0300
 @@ -1104,9 +1104,9 @@
  $(call perlmod/Install,$(1),Pod,Pod/Usage.pm)
  $(call perlmod/Install/NoStrip,$(1),Pod/Usage.pm,)
@@ -886,8 +1193,8 @@ diff -urx .svn ../../../downloads/openwrt_trunk-q46338/feeds/packages/lang/perl/
  
  $(eval $(call BuildPackage,perlbase-test))
 diff -urx .svn ../../../downloads/openwrt_trunk-q46338/feeds/packages/lang/perl/perlmod.mk ../../../openwrt_trunk/feeds/packages/lang/perl/perlmod.mk
---- ../../../downloads/openwrt_trunk-q46338/feeds/packages/lang/perl/perlmod.mk	2015-07-21 13:57:42.000000000 +0300
-+++ ../../../openwrt_trunk/feeds/packages/lang/perl/perlmod.mk	2015-07-22 15:00:40.803123179 +0300
+--- ../../../downloads/openwrt_trunk-q46338/feeds/packages/lang/perl/perlmod.mk	2015-08-03 11:54:56.119063515 +0300
++++ ../../../openwrt_trunk/feeds/packages/lang/perl/perlmod.mk	2015-08-01 08:50:32.225465166 +0300
 @@ -7,7 +7,7 @@
  HOST_PERL_PREFIX:=$(STAGING_DIR_HOST)/usr
  ifneq ($(CONFIG_USE_GLIBC),)
