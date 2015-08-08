@@ -1,5 +1,5 @@
---- ../../../downloads/openwrt_trunk-q46338/feeds/packages/utils/sysstat/Makefile	2015-07-21 13:57:42.000000000 +0300
-+++ ../../../openwrt_trunk/feeds/packages/utils/sysstat/Makefile	2015-07-24 12:26:45.647118909 +0300
+--- ../../../downloads/openwrt_trunk-q46338/feeds/packages/utils/sysstat/Makefile	2015-08-03 11:54:56.106540416 +0300
++++ ../../../openwrt_trunk/feeds/packages/utils/sysstat/Makefile	2015-08-08 23:52:42.073804144 +0300
 @@ -35,14 +35,14 @@
  endef
  
@@ -20,9 +20,12 @@
  
  CONFIGURE_ARGS+= \
  	--disable-documentation \
-@@ -51,16 +51,15 @@
+@@ -50,17 +50,18 @@
+ 	--disable-sensors \
  	--disable-nls
  
++TARGET_CFLAGS += $(TARGET_LDFLAGS)
++
  define Package/sysstat/install
 -	$(INSTALL_DIR) $(1)/usr/lib/sysstat
 -	$(INSTALL_BIN) $(PKG_INSTALL_DIR)/usr/lib/sysstat/{sadc,sa1,sa2} $(1)/usr/lib/sysstat/
