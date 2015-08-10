@@ -1,6 +1,15 @@
---- ../../../downloads/openwrt_trunk-r46338/feeds/packages/utils/sysstat/Makefile	2015-07-15 10:59:15.647750135 +0300
-+++ ../../../openwrt_trunk/feeds/packages/utils/sysstat/Makefile	2015-07-15 12:24:32.459830503 +0300
-@@ -35,14 +35,14 @@
+--- ../../../downloads/openwrt_trunk-r46338/feeds/packages/utils/sysstat/Makefile	2015-07-30 13:10:50.538896362 +0300
++++ ../../../openwrt_trunk/feeds/packages/utils/sysstat/Makefile	2015-08-10 12:22:45.099175130 +0300
+@@ -9,7 +9,7 @@
+ 
+ PKG_NAME:=sysstat
+ PKG_VERSION:=11.0.4
+-PKG_RELEASE:=2
++PKG_RELEASE:=2a
+ 
+ PKG_LICENSE:=GPL-2.0
+ PKG_MAINTAINER:=Marko Ratkaj <marko.ratkaj@sartura.hr>
+@@ -35,32 +35,34 @@
  endef
  
  define Package/sysstat/conffiles
@@ -20,9 +29,13 @@
  
  CONFIGURE_ARGS+= \
  	--disable-documentation \
-@@ -51,16 +51,15 @@
+ 	--disable-largefile \
+ 	--disable-sensors \
++	--disable-sensors \
  	--disable-nls
  
++TARGET_CFLAGS += $(TARGET_LDFLAGS)
++
  define Package/sysstat/install
 -	$(INSTALL_DIR) $(1)/usr/lib/sysstat
 -	$(INSTALL_BIN) $(PKG_INSTALL_DIR)/usr/lib/sysstat/{sadc,sa1,sa2} $(1)/usr/lib/sysstat/
