@@ -1,5 +1,5 @@
---- ../../../downloads/openwrt_trunk-q45513/package/utils/util-linux/Makefile	2015-04-23 16:32:00.270135950 +0300
-+++ ../../../openwrt_trunk/package/utils/util-linux/Makefile	2015-04-25 17:58:55.439095046 +0300
+--- ../../../downloads/openwrt_trunk-q46338//package/utils/util-linux/Makefile	2015-08-03 11:54:58.366977031 +0300
++++ ../../../openwrt_trunk//package/utils/util-linux/Makefile	2015-08-10 16:34:13.879633491 +0300
 @@ -49,29 +49,29 @@
  define Build/InstallDev
  	$(MAKE) -C $(PKG_BUILD_DIR) \
@@ -51,7 +51,23 @@
  endef
  
  define Package/libblkid
-@@ -360,7 +360,7 @@
+@@ -232,6 +232,15 @@
+  hwclock is a tool for accessing the Hardware Clock
+ endef
+ 
++define Package/ionice
++$(call Package/util-linux/Default)
++  TITLE:=ionice - get/set program io scheduling class and priority 
++endef
++
++define Package/ionice/description
++ This program sets or gets the io scheduling class and priority for a program. If no arguments or just -p is given, ionice will query the current io scheduling class and priority for that process. 
++endef
++
+ define Package/logger
+ $(call Package/util-linux/Default)
+   TITLE:=a shell command interface to the syslog system log module
+@@ -360,7 +369,7 @@
  define Package/swap-utils
  $(call Package/util-linux/Default)
    TITLE:=swap space management utilities
@@ -60,7 +76,7 @@
    SUBMENU:=disc
  endef
  
-@@ -428,169 +428,170 @@
+@@ -428,169 +437,175 @@
  endef
  
  define Package/libblkid/install
@@ -152,6 +168,11 @@
 -	$(INSTALL_BIN) $(PKG_BUILD_DIR)/getopt $(1)/usr/bin/
 +	$(INSTALL_DIR) $(1)/opt/bin
 +	$(INSTALL_BIN) $(PKG_BUILD_DIR)/getopt $(1)/opt/bin/
++endef
++
++define Package/ionice/install
++	$(INSTALL_DIR) $(1)/opt/sbin
++	$(INSTALL_BIN) $(PKG_BUILD_DIR)/ionice $(1)/opt/sbin/
  endef
  
  define Package/hwclock/install
@@ -301,3 +322,11 @@
  endef
  
  $(eval $(call BuildPackage,libblkid))
+@@ -606,6 +621,7 @@
+ $(eval $(call BuildPackage,findfs))
+ $(eval $(call BuildPackage,flock))
+ $(eval $(call BuildPackage,getopt))
++$(eval $(call BuildPackage,ionice))
+ $(eval $(call BuildPackage,hwclock))
+ $(eval $(call BuildPackage,logger))
+ $(eval $(call BuildPackage,look))
