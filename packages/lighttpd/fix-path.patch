@@ -1,6 +1,6 @@
 diff -urx .svn ../../../downloads/openwrt_trunk-r46338/feeds/packages/net/lighttpd/files/lighttpd.conf ../../../openwrt_trunk/feeds/packages/net/lighttpd/files/lighttpd.conf
---- ../../../downloads/openwrt_trunk-r46338/feeds/packages/net/lighttpd/files/lighttpd.conf	2015-07-14 10:55:19.786308173 +0300
-+++ ../../../openwrt_trunk/feeds/packages/net/lighttpd/files/lighttpd.conf	2015-07-14 10:55:49.750308672 +0300
+--- ../../../downloads/openwrt_trunk-r46338/feeds/packages/net/lighttpd/files/lighttpd.conf	2015-07-30 13:10:50.502896361 +0300
++++ ../../../openwrt_trunk/feeds/packages/net/lighttpd/files/lighttpd.conf	2015-07-30 13:10:52.650896397 +0300
 @@ -1,12 +1,12 @@
  server.modules = (
  )
@@ -34,8 +34,17 @@ diff -urx .svn ../../../downloads/openwrt_trunk-r46338/feeds/packages/net/lightt
 +include       "/opt/etc/lighttpd/mime.conf"
 +include_shell "cat /opt/etc/lighttpd/conf.d/*.conf"
 diff -urx .svn ../../../downloads/openwrt_trunk-r46338/feeds/packages/net/lighttpd/Makefile ../../../openwrt_trunk/feeds/packages/net/lighttpd/Makefile
---- ../../../downloads/openwrt_trunk-r46338/feeds/packages/net/lighttpd/Makefile	2015-07-14 10:55:19.786308173 +0300
-+++ ../../../openwrt_trunk/feeds/packages/net/lighttpd/Makefile	2015-07-14 10:55:49.750308672 +0300
+--- ../../../downloads/openwrt_trunk-r46338/feeds/packages/net/lighttpd/Makefile	2015-07-30 13:10:50.502896361 +0300
++++ ../../../openwrt_trunk/feeds/packages/net/lighttpd/Makefile	2015-08-10 12:31:15.855183631 +0300
+@@ -9,7 +9,7 @@
+ 
+ PKG_NAME:=lighttpd
+ PKG_VERSION:=1.4.35
+-PKG_RELEASE:=5
++PKG_RELEASE:=5a
+ 
+ PKG_SOURCE:=$(PKG_NAME)-$(PKG_VERSION).tar.xz
+ PKG_SOURCE_URL:=http://download.lighttpd.net/lighttpd/releases-1.4.x
 @@ -50,8 +50,8 @@
  endef
  
@@ -63,12 +72,41 @@ diff -urx .svn ../../../downloads/openwrt_trunk-r46338/feeds/packages/net/lightt
    CONFIGURE_ARGS+= \
  	--with-mysql
  else
-@@ -106,22 +106,23 @@
+@@ -106,22 +106,52 @@
  endef
  
  define Package/lighttpd/conffiles
 -/etc/lighttpd/lighttpd.conf
 +/opt/etc/lighttpd/lighttpd.conf
++/opt/etc/lighttpd/conf.d/30-accesslog.conf
++/opt/etc/lighttpd/conf.d/30-access.conf
++/opt/etc/lighttpd/conf.d/30-alias.conf
++/opt/etc/lighttpd/conf.d/20-auth.conf
++/opt/etc/lighttpd/conf.d/30-cgi.conf
++/opt/etc/lighttpd/conf.d/30-cml.conf
++/opt/etc/lighttpd/conf.d/30-compress.conf
++/opt/etc/lighttpd/conf.d/30-evasive.conf
++/opt/etc/lighttpd/conf.d/30-evhost.conf
++/opt/etc/lighttpd/conf.d/30-expire.conf
++/opt/etc/lighttpd/conf.d/30-extforward.conf
++/opt/etc/lighttpd/conf.d/30-fastcgi.conf
++/opt/etc/lighttpd/conf.d/30-flv_streaming.conf
++/opt/etc/lighttpd/conf.d/30-magnet.conf
++/opt/etc/lighttpd/conf.d/30-mysql_vhost.conf
++/opt/etc/lighttpd/conf.d/30-proxy.conf
++/opt/etc/lighttpd/conf.d/10-redirect.conf
++/opt/etc/lighttpd/conf.d/30-rewrite.conf
++/opt/etc/lighttpd/conf.d/30-rrdtool.conf
++/opt/etc/lighttpd/conf.d/30-scgi.conf
++/opt/etc/lighttpd/conf.d/30-secdownload.conf
++/opt/etc/lighttpd/conf.d/30-setenv.conf
++/opt/etc/lighttpd/conf.d/30-simple_vhost.conf
++/opt/etc/lighttpd/conf.d/30-ssi.conf
++/opt/etc/lighttpd/conf.d/30-status.conf
++/opt/etc/lighttpd/conf.d/30-trigger_b4_dl.conf
++/opt/etc/lighttpd/conf.d/30-userdir.conf
++/opt/etc/lighttpd/conf.d/30-usertrack.conf
++/opt/etc/lighttpd/conf.d/30-webdav.conf
  endef
  
  define Package/lighttpd/install
@@ -98,7 +136,7 @@ diff -urx .svn ../../../downloads/openwrt_trunk-r46338/feeds/packages/net/lightt
  endef
  
  define BuildPlugin
-@@ -135,13 +136,13 @@
+@@ -135,13 +165,13 @@
    endef
  
    define Package/lighttpd-mod-$(1)/install
