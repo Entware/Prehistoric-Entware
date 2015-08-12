@@ -1,6 +1,21 @@
---- ../../../downloads/openwrt_trunk-r42803/feeds/packages/utils/unzip/Makefile
-+++ ../../../openwrt_trunk/feeds/packages/utils/unzip/Makefile
-@@ -49,7 +49,7 @@
+--- ../../../downloads/openwrt_trunk-r46338/feeds/packages/utils/unzip/Makefile	2015-07-30 13:10:50.538896362 +0300
++++ ../../../openwrt_trunk/feeds/packages/utils/unzip/Makefile	2015-08-12 08:51:42.969840455 +0300
+@@ -10,7 +10,7 @@
+ PKG_NAME:=unzip
+ PKG_REV:=60
+ PKG_VERSION:=6.0
+-PKG_RELEASE:=2
++PKG_RELEASE:=2a
+ 
+ PKG_SOURCE:=$(PKG_NAME)$(PKG_REV).tar.gz
+ PKG_SOURCE_URL:=@SF/infozip
+@@ -44,12 +44,12 @@
+ define Build/Configure
+ endef
+ 
+-TARGET_CFLAGS += -DNO_LCHMOD -DLARGE_FILE_SUPPORT
++TARGET_CFLAGS += -DNO_LCHMOD -DLARGE_FILE_SUPPORT -DUNICODE_WCHAR -DUNICODE_SUPPORT -DUTF8_MAYBE_NATIVE -DZIP64_SUPPORT
+ 
  define Build/Compile
  	$(MAKE) -C $(PKG_BUILD_DIR) -f unix/Makefile unzips \
  		$(TARGET_CONFIGURE_OPTS) \
