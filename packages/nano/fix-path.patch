@@ -1,17 +1,36 @@
---- ../../../downloads/openwrt_trunk-r45513/feeds/packages/utils/nano/Makefile	2015-04-20 10:09:28.958135359 +0300
-+++ ../../../openwrt_trunk/feeds/packages/utils/nano/Makefile	2015-04-20 10:09:48.542135002 +0300
+--- ../../../downloads/openwrt_trunk-q46338/feeds/packages/utils/nano/Makefile	2015-08-15 17:43:12.404401758 +0300
++++ ../../../openwrt_trunk/feeds/packages/utils/nano/Makefile	2015-09-04 08:23:23.599632208 +0300
+@@ -9,7 +9,7 @@
+ 
+ PKG_NAME:=nano
+ PKG_VERSION:=2.4.1
+-PKG_RELEASE:=1
++PKG_RELEASE:=1a
+ PKG_LICENSE:=GPL-3.0+
+ PKG_LICENSE_FILES:=COPYING
+ 
+@@ -29,7 +29,7 @@
+   TITLE:=An enhanced clone of the Pico text editor
+   URL:=http://www.nano-editor.org/
+   MAINTAINER:=Jonathan Bennett <JBennett@incomsystems.biz>
+-  DEPENDS:=+libncurses
++  DEPENDS:=+libncursesw
+ endef
+ 
+ define Package/nano/description
 @@ -38,18 +38,23 @@
  endef
  
  CONFIGURE_ARGS += \
 -	--enable-tiny \
  	--disable-glibtest \
- 	--disable-utf8 \
+-	--disable-utf8 \
 -        --without-slang \
 -        --disable-color \
 -
 -CONFIGURE_VARS += \
 -	ac_cv_header_regex_h=no \
++	--enable-utf8 \
 +	--without-slang \
 +	--enable-wrapping \
 +	--disable-help \
