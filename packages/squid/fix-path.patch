@@ -1,5 +1,5 @@
---- ../../../downloads/openwrt_trunk-r46338/feeds/packages/net/squid/Makefile	2015-07-15 16:48:18.928098714 +0300
-+++ ../../../openwrt_trunk/feeds/packages/net/squid/Makefile	2015-07-17 11:20:07.754648877 +0300
+--- ../../../downloads/openwrt_trunk-r46940/feeds/packages/net/squid/Makefile	2015-09-15 12:24:40.774451661 +0300
++++ ../../../openwrt_trunk/feeds/packages/net/squid/Makefile	2015-09-21 11:23:49.003019101 +0300
 @@ -51,9 +51,9 @@
  
  CONFIGURE_ARGS += \
@@ -13,22 +13,17 @@
  	--enable-shared \
  	--disable-static \
  	--enable-icmp \
-@@ -78,7 +78,7 @@
- 	--without-expat \
+@@ -75,7 +75,7 @@
  	--without-libxml2 \
+ 	--without-gnutls \
  	--without-nettle \
 -	--with-openssl=$(STAGING_DIR)/usr \
 +	--with-openssl=$(STAGING_DIR)/opt \
  	--enable-epoll \
  	--with-maxfd=4096 \
  	--disable-external-acl-helpers \
-@@ -93,39 +93,37 @@
- 
- CONFIGURE_VARS += \
- 	ac_cv_header_linux_netfilter_ipv4_h=yes \
--	ac_cv_epoll_works=yes
-+	ac_cv_epoll_works=yes \
-+	squid_cv_gnu_atomics=no
+@@ -94,39 +94,36 @@
+ 	squid_cv_gnu_atomics=no
  
  define Build/Compile
 -	+$(MAKE) $(PKG_JOBS) -C $(PKG_BUILD_DIR)/lib all
@@ -44,6 +39,11 @@
 -	$(INSTALL_BIN) $(PKG_INSTALL_DIR)/usr/sbin/squid $(1)/usr/sbin/
 +	$(INSTALL_DIR) $(1)/opt/sbin
 +	$(INSTALL_BIN) $(PKG_INSTALL_DIR)/opt/sbin/squid $(1)/opt/sbin/
+ 
+-	$(INSTALL_DIR) $(1)/usr/lib/squid
+-	$(INSTALL_BIN) $(PKG_INSTALL_DIR)/usr/lib/squid/ssl_crtd $(1)/usr/lib/squid
++	$(INSTALL_DIR) $(1)/opt/lib/squid
++	$(INSTALL_BIN) $(PKG_INSTALL_DIR)/opt/lib/squid/ssl_crtd $(1)/opt/lib/squid
  
 -	$(INSTALL_DIR) $(1)/etc/config
 -	$(INSTALL_CONF) ./files/squid.config $(1)/etc/config/squid

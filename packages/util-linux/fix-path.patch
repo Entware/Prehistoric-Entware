@@ -1,5 +1,5 @@
---- ../../../downloads/openwrt_trunk-r45513/package/utils/util-linux/Makefile	2015-04-20 10:09:30.594135331 +0300
-+++ ../../../openwrt_trunk/package/utils/util-linux/Makefile	2015-04-20 14:51:00.121826386 +0300
+--- ../../../downloads/openwrt_trunk-r46940/package/utils/util-linux/Makefile	2015-09-15 12:24:40.858451663 +0300
++++ ../../../openwrt_trunk/package/utils/util-linux/Makefile	2015-09-21 11:46:52.315042124 +0300
 @@ -52,26 +52,26 @@
  		DESTDIR="$(1)" \
  		installdirs install-data
@@ -47,7 +47,7 @@
  endef
  
  define Package/libblkid
-@@ -360,7 +360,7 @@
+@@ -371,12 +371,12 @@
  define Package/swap-utils
  $(call Package/util-linux/Default)
    TITLE:=swap space management utilities
@@ -56,7 +56,13 @@
    SUBMENU:=disc
  endef
  
-@@ -428,169 +428,170 @@
+ define Package/swap-utils/description
+- contains: mkswap, swaplabel
++ contains: mkswap, swaplabel, swapon, swapoff
+ endef
+ 
+ define Package/uuidd
+@@ -439,174 +439,175 @@
  endef
  
  define Package/libblkid/install
@@ -208,6 +214,13 @@
 -	$(INSTALL_BIN) $(PKG_BUILD_DIR)/namei $(1)/usr/bin/
 +	$(INSTALL_DIR) $(1)/opt/bin
 +	$(INSTALL_BIN) $(PKG_BUILD_DIR)/namei $(1)/opt/bin/
+ endef
+ 
+ define Package/prlimit/install
+-	$(INSTALL_DIR) $(1)/usr/bin
+-	$(INSTALL_BIN) $(PKG_BUILD_DIR)/.libs/prlimit $(1)/usr/bin/
++	$(INSTALL_DIR) $(1)/opt/bin
++	$(INSTALL_BIN) $(PKG_BUILD_DIR)/.libs/prlimit $(1)/opt/bin/
  endef
  
  define Package/rename/install

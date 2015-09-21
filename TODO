@@ -10,6 +10,7 @@ gdb		7.3.1		due to gnu_v3_object_ctor_group() absence
 libnl		2.0 (r33657)
 libtorrent	0.13.4		lack of C++11 features
 libv4l		0.8.6
+lvm2		2.02.118
 mjpg-streamer	r181
 rtorrent	0.9.4		lack of C++11 features
 usbip		0.1.7

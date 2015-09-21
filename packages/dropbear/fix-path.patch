@@ -1,20 +1,18 @@
-diff -urx .svn ../../../downloads/openwrt_trunk-r43718/package/network/services/dropbear/Makefile ../../../openwrt_trunk/package/network/services/dropbear/Makefile
---- ../../../downloads/openwrt_trunk-r43718/package/network/services/dropbear/Makefile	2014-12-15 16:50:13.640093574 +0300
-+++ ../../../openwrt_trunk/package/network/services/dropbear/Makefile	2014-12-16 12:39:30.226789389 +0300
-@@ -47,9 +47,9 @@
+diff -urx .svn ../../../downloads/openwrt_trunk-r46940/package/network/services/dropbear/Makefile ../../../openwrt_trunk/package/network/services/dropbear/Makefile
+--- ../../../downloads/openwrt_trunk-r46940/package/network/services/dropbear/Makefile	2015-09-15 12:24:40.890451663 +0300
++++ ../../../openwrt_trunk/package/network/services/dropbear/Makefile	2015-09-21 09:58:01.358933424 +0300
+@@ -47,8 +47,8 @@
  endef
  
  define Package/dropbear/conffiles
 -/etc/dropbear/dropbear_rsa_host_key
--/etc/dropbear/dropbear_dss_host_key 
 -/etc/config/dropbear 
 +/opt/etc/dropbear/dropbear_rsa_host_key
-+/opt/etc/dropbear/dropbear_dss_host_key
-+/opt/etc/config/dropbear
++/opt/etc/config/dropbear 
  endef
  
  define Package/dropbearconvert
-@@ -75,9 +75,6 @@
+@@ -74,9 +74,6 @@
  	--disable-zlib \
  	--enable-bundled-libtom
  
@@ -24,7 +22,7 @@ diff -urx .svn ../../../downloads/openwrt_trunk-r43718/package/network/services/
  define Build/Configure
  	$(Build/Configure/Default)
  
-@@ -104,26 +101,32 @@
+@@ -103,25 +100,32 @@
  endef
  
  define Package/dropbear/install
@@ -42,7 +40,6 @@ diff -urx .svn ../../../downloads/openwrt_trunk-r43718/package/network/services/
 -	$(INSTALL_DIR) $(1)/usr/lib/opkg/info
 -	$(INSTALL_DIR) $(1)/etc/dropbear
 -	touch $(1)/etc/dropbear/dropbear_rsa_host_key
--	touch $(1)/etc/dropbear/dropbear_dss_host_key
 +	$(INSTALL_DIR) $(1)/opt/sbin
 +	$(INSTALL_BIN) $(PKG_BUILD_DIR)/dropbearmulti $(1)/opt/sbin/dropbear
 +	$(INSTALL_DIR) $(1)/opt/bin
@@ -74,9 +71,9 @@ diff -urx .svn ../../../downloads/openwrt_trunk-r43718/package/network/services/
  endef
  
  $(eval $(call BuildPackage,dropbear))
-diff -urx .svn ../../../downloads/openwrt_trunk-r43718/package/network/services/dropbear/patches/100-pubkey_path.patch ../../../openwrt_trunk/package/network/services/dropbear/patches/100-pubkey_path.patch
---- ../../../downloads/openwrt_trunk-r43718/package/network/services/dropbear/patches/100-pubkey_path.patch	2014-12-15 16:50:13.640093574 +0300
-+++ ../../../openwrt_trunk/package/network/services/dropbear/patches/100-pubkey_path.patch	2014-12-15 16:50:19.764093462 +0300
+diff -urx .svn ../../../downloads/openwrt_trunk-r46940/package/network/services/dropbear/patches/100-pubkey_path.patch ../../../openwrt_trunk/package/network/services/dropbear/patches/100-pubkey_path.patch
+--- ../../../downloads/openwrt_trunk-r46940/package/network/services/dropbear/patches/100-pubkey_path.patch	2015-09-15 12:24:40.890451663 +0300
++++ ../../../openwrt_trunk/package/network/services/dropbear/patches/100-pubkey_path.patch	2015-09-15 12:24:43.182451701 +0300
 @@ -28,7 +28,7 @@
  +		/* open the file */
  +		authfile = fopen(filename, "r");

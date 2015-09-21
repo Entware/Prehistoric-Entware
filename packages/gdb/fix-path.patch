@@ -1,5 +1,5 @@
---- ../../../downloads/openwrt_trunk-r46338/package/devel/gdb/Makefile	2015-07-14 10:55:19.986308176 +0300
-+++ ../../../openwrt_trunk/package/devel/gdb/Makefile	2015-05-25 15:17:26.000000000 +0300
+--- ../../../downloads/openwrt_trunk-r46940/package/devel/gdb/Makefile	2015-09-15 12:24:40.930451664 +0300
++++ ../../../openwrt_trunk/package/devel/gdb/Makefile	2015-09-21 10:05:32.554940933 +0300
 @@ -1,5 +1,5 @@
  #
 -# Copyright (C) 2006-2015 OpenWrt.org
@@ -11,15 +11,14 @@
  include $(TOPDIR)/rules.mk
  
  PKG_NAME:=gdb
--PKG_VERSION:=7.8
--PKG_RELEASE:=3
+-PKG_VERSION:=7.10
 +PKG_VERSION:=7.3.1
-+PKG_RELEASE:=1
+ PKG_RELEASE:=1
  
 -PKG_SOURCE:=$(PKG_NAME)-$(PKG_VERSION).tar.xz
 +PKG_SOURCE:=$(PKG_NAME)-$(PKG_VERSION).tar.bz2
  PKG_SOURCE_URL:=@GNU/gdb
--PKG_MD5SUM:=bd958fe9019d7c7896f29f6724a764ed
+-PKG_MD5SUM:=2a35bac41fa8e10bf04f3a0dd7f7f363
 +PKG_MD5SUM:=b89a5fac359c618dda97b88645ceab47
  
  PKG_BUILD_PARALLEL:=1

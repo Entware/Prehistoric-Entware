@@ -1,6 +1,18 @@
-diff -urx .svn ../../../downloads/openwrt_trunk-r46338/package/network/services/samba36/Makefile ../../../openwrt_trunk/package/network/services/samba36/Makefile
---- ../../../downloads/openwrt_trunk-r46338/package/network/services/samba36/Makefile	2015-07-14 10:55:20.122308179 +0300
-+++ ../../../openwrt_trunk/package/network/services/samba36/Makefile	2015-07-14 16:36:47.334650599 +0300
+diff -urx .svn ../../../downloads/openwrt_trunk-r46940/package/network/services/samba36/files/smb.conf.template ../../../openwrt_trunk/package/network/services/samba36/files/smb.conf.template
+--- ../../../downloads/openwrt_trunk-r46940/package/network/services/samba36/files/smb.conf.template	2015-09-15 12:24:40.886451663 +0300
++++ ../../../openwrt_trunk/package/network/services/samba36/files/smb.conf.template	2015-09-21 11:08:08.359003445 +0300
+@@ -26,7 +26,7 @@
+ 	printable = no
+ 	security = user
+ 	smb encrypt = disabled
+-	smb passwd file = /etc/samba/smbpasswd
++	smb passwd file = /opt/etc/samba/smbpasswd
+ 	socket options = TCP_NODELAY IPTOS_LOWDELAY
+ 	syslog = 2
+ 	use sendfile = yes
+diff -urx .svn ../../../downloads/openwrt_trunk-r46940/package/network/services/samba36/Makefile ../../../openwrt_trunk/package/network/services/samba36/Makefile
+--- ../../../downloads/openwrt_trunk-r46940/package/network/services/samba36/Makefile	2015-09-15 12:24:40.886451663 +0300
++++ ../../../openwrt_trunk/package/network/services/samba36/Makefile	2015-09-21 11:09:15.519004562 +0300
 @@ -88,7 +88,7 @@
  	ac_cv_path_PYTHON_CONFIG=""
  
@@ -33,13 +45,15 @@ diff -urx .svn ../../../downloads/openwrt_trunk-r46338/package/network/services/
  	--with-sendfile-support \
  	--without-acl-support \
  	--without-cluster-support \
-@@ -127,31 +127,29 @@
+@@ -127,32 +127,30 @@
  MAKE_FLAGS += DYNEXP= PICFLAG= MODULES=
  
  define Package/samba36-server/conffiles
 -/etc/config/samba
 -/etc/samba/smb.conf.template
+-/etc/samba/smbpasswd
 +/opt/etc/samba/smb.conf.template
++/opt/etc/samba/smbpasswd
  endef
  
  define Package/samba36-server/install
@@ -82,9 +96,9 @@ diff -urx .svn ../../../downloads/openwrt_trunk-r46338/package/network/services/
  endef
  
  $(eval $(call BuildPackage,samba36-client))
-diff -urx .svn ../../../downloads/openwrt_trunk-r46338/package/network/services/samba36/patches/111-owrt_smbpasswd.patch ../../../openwrt_trunk/package/network/services/samba36/patches/111-owrt_smbpasswd.patch
---- ../../../downloads/openwrt_trunk-r46338/package/network/services/samba36/patches/111-owrt_smbpasswd.patch	2015-07-14 10:55:20.122308179 +0300
-+++ ../../../openwrt_trunk/package/network/services/samba36/patches/111-owrt_smbpasswd.patch	2015-07-14 10:55:53.234308695 +0300
+diff -urx .svn ../../../downloads/openwrt_trunk-r46940/package/network/services/samba36/patches/111-owrt_smbpasswd.patch ../../../openwrt_trunk/package/network/services/samba36/patches/111-owrt_smbpasswd.patch
+--- ../../../downloads/openwrt_trunk-r46940/package/network/services/samba36/patches/111-owrt_smbpasswd.patch	2015-09-15 12:24:40.890451663 +0300
++++ ../../../openwrt_trunk/package/network/services/samba36/patches/111-owrt_smbpasswd.patch	2015-09-15 12:28:26.466455418 +0300
 @@ -236,15 +236,15 @@
  +		}
  +	}

@@ -1,6 +1,6 @@
---- ../../../downloads/openwrt_trunk-r46338/package/utils/bzip2/Makefile	2015-07-14 10:55:20.494308185 +0300
-+++ ../../../openwrt_trunk/package/utils/bzip2/Makefile	2015-07-14 11:01:42.886315228 +0300
-@@ -56,31 +56,29 @@
+--- ../../../downloads/openwrt_trunk-r46940/package/utils/bzip2/Makefile	2015-09-15 12:24:40.850451663 +0300
++++ ../../../openwrt_trunk/package/utils/bzip2/Makefile	2015-09-15 12:24:42.946451698 +0300
+@@ -57,31 +57,29 @@
  	$(FPIC) \
  	$(TARGET_LDFLAGS)
  
@@ -42,4 +42,4 @@
 +	$(INSTALL_BIN) $(PKG_BUILD_DIR)/bzip2-shared $(1)/opt/bin/bzip2
  endef
  
- $(eval $(call BuildPackage,libbz2))
+ HOST_CFLAGS += \

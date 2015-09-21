@@ -12,7 +12,6 @@ all: .done
 	mkdir -p ../../../openwrt_trunk/feeds/packages/net/shadowsocks-libev/patches
 	cp -f ./5*.patch ../../../openwrt_trunk/feeds/packages/net/shadowsocks-libev/patches/
 	cp -f ./shadowsocks.json ../../../openwrt_trunk/feeds/packages/net/shadowsocks-libev/files/
-	cp -f ./S22shadowsocks ../../../openwrt_trunk/feeds/packages/net/shadowsocks-libev/files/
 	@touch $@
 
 clean:

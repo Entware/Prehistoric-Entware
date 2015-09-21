@@ -1,25 +1,15 @@
---- ../../../downloads/openwrt_trunk-r46338/feeds/packages/sound/mpd/Makefile	2015-07-15 16:48:18.948098714 +0300
-+++ ../../../openwrt_trunk/feeds/packages/sound/mpd/Makefile	2015-07-17 14:06:58.510813478 +0300
-@@ -28,6 +28,7 @@
- PKG_INSTALL:=1
- 
- include $(INCLUDE_DIR)/package.mk
-+include $(INCLUDE_DIR)/nls.mk
- 
- define Package/mpd/Default
-   SECTION:=sound
-@@ -35,8 +36,8 @@
+--- ../../../downloads/openwrt_trunk-r47008/feeds/packages/sound/mpd/Makefile	2015-09-21 12:01:28.403056706 +0300
++++ ../../../openwrt_trunk/feeds/packages/sound/mpd/Makefile	2015-09-21 12:22:08.967077354 +0300
+@@ -36,7 +36,7 @@
    TITLE:=Music Player Daemon
    URL:=http://www.musicpd.org/
-   DEPENDS:= +glib2 +libcurl +libpthread +libmpdclient +libstdcpp \
+   DEPENDS:= +glib2 +libcurl +libpthread +libmpdclient +libstdcpp $(ICONV_DEPENDS) \
 -	    +libflac +BUILD_PATENTED:libmad +libvorbisidec +AUDIO_SUPPORT:alsa-lib \
--            +boost +boost-container +libexpat
 +	    +libflac +BUILD_PATENTED:libmad +libvorbisidec +alsa-lib \
-+            +boost +boost-container +libexpat $(INTL_DEPENDS)
+             +boost +boost-container +libexpat
  endef
  
- define Package/mpd/Default/description
-@@ -63,7 +64,7 @@
+@@ -64,7 +64,7 @@
  endef
  
  define Package/mpd-full/conffiles
@@ -28,7 +18,7 @@
  endef
  
  define Package/mpd-mini
-@@ -81,7 +82,7 @@
+@@ -82,7 +82,7 @@
  endef
  
  define Package/mpd-mini/conffiles
@@ -37,7 +27,7 @@
  endef
  
  define Package/mpd-avahi-service
-@@ -98,7 +99,7 @@
+@@ -99,7 +99,7 @@
  endef
  
  define Package/mpd-avahi-service/conffiles
@@ -46,7 +36,7 @@
  endef
  
  CONFIGURE_ARGS += \
-@@ -107,7 +108,7 @@
+@@ -108,7 +108,7 @@
  	--disable-documentation \
  	--disable-test \
  	--disable-werror \
@@ -55,16 +45,16 @@
  	--disable-ao \
  	--disable-bzip2 \
  	--disable-fluidsynth \
-@@ -141,17 +142,19 @@
+@@ -142,17 +142,19 @@
  	--enable-flac \
  	--enable-httpd-output \
  	$(call autoconf_bool,CONFIG_BUILD_PATENTED,mad) \
 -	$(call autoconf_bool,CONFIG_AUDIO_SUPPORT,alsa) \
 +	--enable-alsa \
-+	--disable-epoll \
-+	--disable-mvp \
  	--enable-tcp \
  	--enable-un \
++	--disable-epoll \
++	--disable-mvp \
  
  CONFIGURE_VARS += \
 -	FLAC_CFLAGS="$(TARGET_CFLAGS) -I$(STAGING_DIR)/usr/include/FLAC" \
@@ -73,12 +63,12 @@
  	$(if $(CONFIG_BUILD_PATENTED),MAD_CFLAGS="$(TARGET_CFLAGS)") \
  	$(if $(CONFIG_BUILD_PATENTED),MAD_LIBS="$(TARGET_LDFLAGS) -lmad") \
  
--TARGET_LDFLAGS += -Wl,-rpath-link=$(STAGING_DIR)/usr/lib
-+TARGET_LDFLAGS += -Wl,-rpath-link=$(STAGING_DIR)/opt/lib
+-TARGET_LDFLAGS += -Wl,-rpath-link=$(STAGING_DIR)/usr/lib $(if $(ICONV_FULL),-liconv)
++TARGET_LDFLAGS += -Wl,-rpath-link=$(STAGING_DIR)/opt/lib $(if $(ICONV_FULL),-liconv)
  
  ifeq ($(BUILD_VARIANT),full)
  
-@@ -162,16 +165,16 @@
+@@ -163,16 +165,16 @@
  	--enable-fifo \
  	--enable-ffmpeg \
  	--enable-id3 \
@@ -98,7 +88,7 @@
  	--with-tremor=yes \
  
  endif
-@@ -198,12 +201,12 @@
+@@ -199,12 +201,12 @@
  endif
  
  define Package/mpd/install
@@ -117,7 +107,7 @@
  endef
  
  define Package/mpd-full/install
-@@ -215,8 +218,8 @@
+@@ -216,8 +218,8 @@
  endef
  
  define Package/mpd-avahi-service/install

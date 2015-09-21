@@ -1,6 +1,6 @@
---- ../../../downloads/openwrt_trunk-r40423/feeds/packages/utils/rtl-sdr/Makefile
-+++ ../../../openwrt_trunk/feeds/packages/utils/rtl-sdr/Makefile
-@@ -66,22 +66,22 @@
+--- ../../../downloads/openwrt_trunk-r46940/feeds/packages/utils/rtl-sdr/Makefile	2015-09-15 12:24:40.802451662 +0300
++++ ../../../openwrt_trunk/feeds/packages/utils/rtl-sdr/Makefile	2015-09-15 12:28:26.430455417 +0300
+@@ -70,22 +70,22 @@
  TARGET_CFLAGS += $(FPIC)
  
  define Build/InstallDev

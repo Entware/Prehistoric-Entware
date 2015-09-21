@@ -12,7 +12,7 @@ export KERNEL_COMMIT=a449bfd2b99a2b19fa64c176d385b29432327a12
 export TOOLCHAIN_COMMIT=3a135e5c46204ebad56b54417b320e2b057bcdc1
 
 # See https://dev.openwrt.org/timeline
-export OPENWRT_REVISION=46338
+export OPENWRT_REVISION=47008
 
 # Download or compile toolchain\kernel?
 #FORCE_COMPILE=y

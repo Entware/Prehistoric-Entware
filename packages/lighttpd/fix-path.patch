@@ -36,15 +36,6 @@ diff -urx .svn ../../../downloads/openwrt_trunk-r46338/feeds/packages/net/lightt
 diff -urx .svn ../../../downloads/openwrt_trunk-r46338/feeds/packages/net/lighttpd/Makefile ../../../openwrt_trunk/feeds/packages/net/lighttpd/Makefile
 --- ../../../downloads/openwrt_trunk-r46338/feeds/packages/net/lighttpd/Makefile	2015-07-30 13:10:50.502896361 +0300
 +++ ../../../openwrt_trunk/feeds/packages/net/lighttpd/Makefile	2015-08-10 12:31:15.855183631 +0300
-@@ -9,7 +9,7 @@
- 
- PKG_NAME:=lighttpd
- PKG_VERSION:=1.4.35
--PKG_RELEASE:=5
-+PKG_RELEASE:=5a
- 
- PKG_SOURCE:=$(PKG_NAME)-$(PKG_VERSION).tar.xz
- PKG_SOURCE_URL:=http://download.lighttpd.net/lighttpd/releases-1.4.x
 @@ -50,8 +50,8 @@
  endef
  

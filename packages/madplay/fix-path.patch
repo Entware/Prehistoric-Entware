@@ -1,13 +1,13 @@
---- ../../../downloads/openwrt_trunk-r44486/feeds/packages/sound/madplay/Makefile	2015-02-18 12:16:57.624306332 +0300
-+++ ../../../openwrt_trunk/feeds/packages/sound/madplay/Makefile	2015-02-19 15:36:58.706515903 +0300
+--- ../../../downloads/openwrt_trunk-r46940/feeds/packages/sound/madplay/Makefile	2015-09-15 12:24:40.786451662 +0300
++++ ../../../openwrt_trunk/feeds/packages/sound/madplay/Makefile	2015-09-21 10:22:46.626958144 +0300
 @@ -56,8 +56,8 @@
  endef
  
  define Package/madplay/install
 -	$(INSTALL_DIR) $(1)/usr/bin
--	$(INSTALL_BIN) $(PKG_INSTALL_DIR)/usr/bin/madplay $(1)/usr/bin/
+-	$(INSTALL_BIN) $(PKG_BUILD_DIR)/madplay $(1)/usr/bin/
 +	$(INSTALL_DIR) $(1)/opt/bin
-+	$(INSTALL_BIN) $(PKG_INSTALL_DIR)/opt/bin/madplay $(1)/opt/bin/
++	$(INSTALL_BIN) $(PKG_BUILD_DIR)/madplay $(1)/opt/bin/
  endef
  
  $(eval $(call BuildPackage,madplay))

@@ -1,15 +1,15 @@
---- ../../../downloads/openwrt_trunk-r46338/feeds/packages/lang/python-setuptools/Makefile	2015-07-20 18:25:33.940830291 +0300
-+++ ../../../openwrt_trunk/feeds/packages/lang/python-setuptools/Makefile	2015-07-24 15:49:23.086426469 +0300
-@@ -35,7 +35,7 @@
+--- ../../../downloads/openwrt_trunk-r46940/feeds/packages/lang/python-setuptools/Makefile	2015-09-15 12:24:40.722451661 +0300
++++ ../../../openwrt_trunk/feeds/packages/lang/python-setuptools/Makefile	2015-09-21 11:04:04.490999386 +0300
+@@ -36,7 +36,7 @@
  
  define Build/Compile
  	$(call Build/Compile/PyMod,,\
--		install --prefix="$(PKG_INSTALL_DIR)/usr" \
-+		install --prefix="$(PKG_INSTALL_DIR)/opt" \
+-		install --root="$(PKG_INSTALL_DIR)" --prefix="/usr" \
++		install --root="$(PKG_INSTALL_DIR)" --prefix="/opt" \
+ 		--single-version-externally-managed \
  	)
  endef
- 
-@@ -47,8 +47,8 @@
+@@ -49,8 +49,8 @@
  endef
  
  define PyPackage/python-setuptools/install

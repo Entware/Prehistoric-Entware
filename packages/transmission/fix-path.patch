@@ -1,6 +1,6 @@
---- ../../../openwrt_trunk.orig/feeds/packages/net/transmission/Makefile
-+++ ../../../openwrt_trunk/feeds/packages/net/transmission/Makefile
-@@ -72,11 +72,11 @@
+--- ../../../downloads/openwrt_trunk-r46940/feeds/packages/net/transmission/Makefile	2015-09-15 12:24:40.778451661 +0300
++++ ../../../openwrt_trunk/feeds/packages/net/transmission/Makefile	2015-09-21 11:35:57.227031221 +0300
+@@ -73,11 +73,11 @@
  endef
  
  define Package/transmission-daemon/conffiles
@@ -14,7 +14,7 @@
  
  CONFIGURE_ARGS += \
  	--enable-daemon \
-@@ -89,31 +89,31 @@
+@@ -90,31 +90,32 @@
  	CFLAGS="$(TARGET_CFLAGS) -D_GNU_SOURCE"
  
  define Package/transmission-daemon/install
@@ -30,6 +30,7 @@
 +	$(INSTALL_CONF) files/settings.json $(1)/opt/etc/transmission
 +	$(INSTALL_DIR) $(1)/opt/etc/init.d
 +	$(INSTALL_BIN) ./files/S88transmission $(1)/opt/etc/init.d
++	$(INSTALL_DIR) $(1)/opt/downloads/torrent/incomplete
  endef
  
  define Package/transmission-cli/install

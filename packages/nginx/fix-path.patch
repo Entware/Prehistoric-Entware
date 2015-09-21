@@ -1,7 +1,7 @@
-diff -urx .svn ../../../downloads/openwrt_trunk-r46338/feeds/packages/net/nginx/Makefile ../../../openwrt_trunk/feeds/packages/net/nginx/Makefile
---- ../../../downloads/openwrt_trunk-r46338/feeds/packages/net/nginx/Makefile	2015-07-14 10:55:19.794308173 +0300
-+++ ../../../openwrt_trunk/feeds/packages/net/nginx/Makefile	2015-07-14 10:55:50.102308677 +0300
-@@ -75,7 +75,7 @@
+diff -urx .svn ../../../downloads/openwrt_trunk-r46940/feeds/packages/net/nginx/Makefile ../../../openwrt_trunk/feeds/packages/net/nginx/Makefile
+--- ../../../downloads/openwrt_trunk-r46940/feeds/packages/net/nginx/Makefile	2015-09-15 12:24:40.766451661 +0300
++++ ../../../openwrt_trunk/feeds/packages/net/nginx/Makefile	2015-09-21 10:26:52.958962244 +0300
+@@ -76,7 +76,7 @@
  config_files=nginx.conf mime.types fastcgi_params koi-utf koi-win win-utf
  
  define Package/nginx/conffiles
@@ -10,7 +10,16 @@ diff -urx .svn ../../../downloads/openwrt_trunk-r46338/feeds/packages/net/nginx/
  endef
  
  ADDITIONAL_MODULES:=
-@@ -185,31 +185,38 @@
+@@ -103,7 +103,7 @@
+ endif
+ ifeq ($(CONFIG_NGINX_SPNEGO),y)
+   ADDITIONAL_MODULES += --add-module=$(PKG_BUILD_DIR)/spnego-http-auth-nginx-module
+-  TARGET_CFLAGS += -I $(STAGING_DIR)/usr/include/krb5
++  TARGET_CFLAGS += -I $(STAGING_DIR)/opt/include/krb5
+ endif
+ ifneq ($(CONFIG_NGINX_HTTP_CACHE),y)
+   ADDITIONAL_MODULES += --without-http-cache
+@@ -190,31 +190,38 @@
  define Build/Configure
  	# TODO: fix --crossbuild
  	(cd $(PKG_BUILD_DIR) ;\
@@ -65,7 +74,7 @@ diff -urx .svn ../../../downloads/openwrt_trunk-r46338/feeds/packages/net/nginx/
  endef
  
  define Build/Prepare
-@@ -296,9 +303,9 @@
+@@ -302,9 +309,9 @@
  endef
  
  define Package/nginx-naxsi/install
@@ -78,7 +87,7 @@ diff -urx .svn ../../../downloads/openwrt_trunk-r46338/feeds/packages/net/nginx/
  endef
  
  define Download/nginx-syslog
-@@ -315,15 +322,15 @@
+@@ -321,15 +328,15 @@
  endef
  
  define Package/nginx-proxyprotocol/install
@@ -100,9 +109,9 @@ diff -urx .svn ../../../downloads/openwrt_trunk-r46338/feeds/packages/net/nginx/
  endef
  
  
-diff -urx .svn ../../../downloads/openwrt_trunk-r46338/feeds/packages/net/nginx/patches/200-config.patch ../../../openwrt_trunk/feeds/packages/net/nginx/patches/200-config.patch
---- ../../../downloads/openwrt_trunk-r46338/feeds/packages/net/nginx/patches/200-config.patch	2015-07-14 10:55:19.794308173 +0300
-+++ ../../../openwrt_trunk/feeds/packages/net/nginx/patches/200-config.patch	2015-07-14 10:55:50.102308677 +0300
+diff -urx .svn ../../../downloads/openwrt_trunk-r46940/feeds/packages/net/nginx/patches/200-config.patch ../../../openwrt_trunk/feeds/packages/net/nginx/patches/200-config.patch
+--- ../../../downloads/openwrt_trunk-r46940/feeds/packages/net/nginx/patches/200-config.patch	2015-09-15 12:24:40.766451661 +0300
++++ ../../../openwrt_trunk/feeds/packages/net/nginx/patches/200-config.patch	2015-09-15 12:28:17.010455260 +0300
 @@ -1,18 +1,43 @@
 ---- a/conf/nginx.conf
 -+++ b/conf/nginx.conf

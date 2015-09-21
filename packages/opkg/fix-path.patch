@@ -1,6 +1,6 @@
-diff -urx .svn ../../../downloads/openwrt_trunk-r46338/package/system/opkg/files/opkg-key ../../../openwrt_trunk/package/system/opkg/files/opkg-key
---- ../../../downloads/openwrt_trunk-r46338/package/system/opkg/files/opkg-key	2015-07-15 16:48:19.008098715 +0300
-+++ ../../../openwrt_trunk/package/system/opkg/files/opkg-key	2015-07-15 16:48:27.784098858 +0300
+diff -urx .svn ../../../downloads/openwrt_trunk-r46940/package/system/opkg/files/opkg-key ../../../openwrt_trunk/package/system/opkg/files/opkg-key
+--- ../../../downloads/openwrt_trunk-r46940/package/system/opkg/files/opkg-key	2015-09-15 12:24:40.870451663 +0300
++++ ../../../openwrt_trunk/package/system/opkg/files/opkg-key	2015-09-15 12:28:17.114455262 +0300
 @@ -19,7 +19,7 @@
  	(
  		zcat "$msgfile" 2>/dev/null ||
@@ -30,9 +30,9 @@ diff -urx .svn ../../../downloads/openwrt_trunk-r46338/package/system/opkg/files
  }
  
  case "$1" in
-diff -urx .svn ../../../downloads/openwrt_trunk-r46338/package/system/opkg/Makefile ../../../openwrt_trunk/package/system/opkg/Makefile
---- ../../../downloads/openwrt_trunk-r46338/package/system/opkg/Makefile	2015-07-15 16:48:19.008098715 +0300
-+++ ../../../openwrt_trunk/package/system/opkg/Makefile	2015-07-17 12:37:20.378725789 +0300
+diff -urx .svn ../../../downloads/openwrt_trunk-r46940/package/system/opkg/Makefile ../../../openwrt_trunk/package/system/opkg/Makefile
+--- ../../../downloads/openwrt_trunk-r46940/package/system/opkg/Makefile	2015-09-15 12:24:40.870451663 +0300
++++ ../../../openwrt_trunk/package/system/opkg/Makefile	2015-09-21 10:47:19.814982664 +0300
 @@ -5,7 +5,6 @@
  # See /LICENSE for more information.
  
@@ -41,36 +41,29 @@ diff -urx .svn ../../../downloads/openwrt_trunk-r46338/package/system/opkg/Makef
  include $(INCLUDE_DIR)/version.mk
  include $(INCLUDE_DIR)/feeds.mk
  
-@@ -53,17 +52,24 @@
-   opkg knows how to install both .ipk and .deb packages.
- endef
- 
--define Package/opkg
-+define Package/opkg-opt
-   $(call Package/opkg/Default)
+@@ -40,6 +39,7 @@
+ define Package/opkg/Default
+   SECTION:=base
+   CATEGORY:=Base system
 +  DEPENDS:=+uclibc-opt
-   VARIANT:=unsigned
+   TITLE:=opkg package manager
+   URL:=http://wiki.openmoko.org/wiki/Opkg
  endef
- 
--define Package/opkg/description
-+define Package/opkg-opt/description
+@@ -63,13 +63,6 @@
    $(call Package/opkg/Default/description)
  endef
  
 -define Package/opkg/conffiles
 -/etc/opkg.conf
-+define Package/opkg
-+  $(call Package/opkg/Default)
-+  DEPENDS:=+opkg-opt
-+  VARIANT:=unsigned
-+endef
-+
-+define Package/opkg/description
-+  $(call Package/opkg/Default/description)
- endef
- 
- 
-@@ -80,18 +86,17 @@
+-/etc/opkg/keys/
+-/etc/opkg/customfeeds.conf
+-endef
+-
+-
+ define Package/opkg-smime
+   $(call Package/opkg/Default)
+   TITLE+= (with S/MIME signature support)
+@@ -83,18 +76,17 @@
    This package allows the Package index to be verified with S/MIME.
  endef
  
@@ -93,7 +86,7 @@ diff -urx .svn ../../../downloads/openwrt_trunk-r46338/package/system/opkg/Makef
  
  ifeq ($(BUILD_VARIANT),smime)
  	CONFIGURE_ARGS += --enable-openssl --disable-usign
-@@ -105,36 +110,38 @@
+@@ -108,39 +100,33 @@
  		CC="$(TARGET_CC)" \
  		DESTDIR="$(PKG_INSTALL_DIR)" \
  		HOST_CPU="$(PKGARCH)" \
@@ -103,19 +96,21 @@ diff -urx .svn ../../../downloads/openwrt_trunk-r46338/package/system/opkg/Makef
  define Package/opkg/Default/install
 -	$(INSTALL_DIR) $(1)/usr/lib/opkg
 -	$(INSTALL_DIR) $(1)/bin
--	$(INSTALL_DIR) $(1)/etc
+-	$(INSTALL_DIR) $(1)/etc/opkg
+-	$(INSTALL_DIR) $(1)/etc/uci-defaults
+-	$(INSTALL_DATA) ./files/customfeeds.conf $(1)/etc/opkg/customfeeds.conf
 -	$(INSTALL_DATA) ./files/opkg$(2).conf $(1)/etc/opkg.conf
--	$(call FeedSourcesAppend,$(1)/etc/opkg.conf)
--	$(VERSION_SED) $(1)/etc/opkg.conf
+-	$(call FeedSourcesAppend,$(1)/etc/opkg/distfeeds.conf)
+-	$(VERSION_SED) $(1)/etc/opkg/distfeeds.conf
+-	$(INSTALL_BIN) ./files/20_migrate-feeds $(1)/etc/uci-defaults/
 -	$(INSTALL_BIN) $(PKG_INSTALL_DIR)/usr/bin/opkg-cl $(1)/bin/opkg
 +	$(INSTALL_DIR) $(1)/opt/lib/opkg
-+	$(INSTALL_DIR) $(1)/opt/{bin,etc,tmp}
++	$(INSTALL_DIR) $(1)/bin/{bin,etc,tmp}
 +	$(INSTALL_DIR) $(1)/opt/var/{lock,log,run}
 +	$(INSTALL_BIN) $(PKG_INSTALL_DIR)/opt/bin/opkg-cl $(1)/opt/bin/opkg
  endef
  
--define Package/opkg/install
-+define Package/opkg-opt/install
+ define Package/opkg/install
  	$(call Package/opkg/Default/install,$(1),)
    ifneq ($(CONFIG_SIGNED_PACKAGES),)
 -	echo "option check_signature 1" >> $(1)/etc/opkg.conf
@@ -133,11 +128,6 @@ diff -urx .svn ../../../downloads/openwrt_trunk-r46338/package/system/opkg/Makef
 -	$(if $(CONFIG_OPKGSMIME_CERT),$(INSTALL_DATA) $(call qstrip,$(CONFIG_OPKGSMIME_CERT)) $(1)/etc/ssl/certs/opkg.pem,)
 +	$(INSTALL_DIR) $(1)/opt/etc/ssl/certs
 +	$(if $(CONFIG_OPKGSMIME_CERT),$(INSTALL_DATA) $(call qstrip,$(CONFIG_OPKGSMIME_CERT)) $(1)/opt/etc/ssl/certs/opkg.pem,)
-+endef
-+
-+define Package/opkg/install
-+	$(INSTALL_DIR) $(1)/opt/tmp
-+	touch $(1)/opt/tmp/.opkg-placeholder
  endef
  
  define Build/InstallDev
@@ -148,16 +138,9 @@ diff -urx .svn ../../../downloads/openwrt_trunk-r46338/package/system/opkg/Makef
  endef
  
  
-@@ -154,5 +161,6 @@
- endef
- 
- $(eval $(call BuildPackage,opkg))
-+$(eval $(call BuildPackage,opkg-opt))
- $(eval $(call BuildPackage,opkg-smime))
- $(eval $(call HostBuild))
-diff -urx .svn ../../../downloads/openwrt_trunk-r46338/package/system/opkg/patches/200-usign_support.patch ../../../openwrt_trunk/package/system/opkg/patches/200-usign_support.patch
---- ../../../downloads/openwrt_trunk-r46338/package/system/opkg/patches/200-usign_support.patch	2015-07-15 16:48:19.008098715 +0300
-+++ ../../../openwrt_trunk/package/system/opkg/patches/200-usign_support.patch	2015-07-15 16:48:27.828098861 +0300
+diff -urx .svn ../../../downloads/openwrt_trunk-r46940/package/system/opkg/patches/200-usign_support.patch ../../../openwrt_trunk/package/system/opkg/patches/200-usign_support.patch
+--- ../../../downloads/openwrt_trunk-r46940/package/system/opkg/patches/200-usign_support.patch	2015-09-15 12:24:40.870451663 +0300
++++ ../../../openwrt_trunk/package/system/opkg/patches/200-usign_support.patch	2015-09-15 12:28:17.114455262 +0300
 @@ -76,7 +76,7 @@
  +		return -1;
  +

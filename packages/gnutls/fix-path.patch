@@ -1,5 +1,5 @@
---- ../../../downloads/openwrt_trunk-r46338/feeds/packages/libs/gnutls/Makefile	2015-07-17 15:58:16.315848885 +0300
-+++ ../../../openwrt_trunk/feeds/packages/libs/gnutls/Makefile	2015-07-18 09:09:55.533399335 +0300
+--- ../../../downloads/openwrt_trunk-r47008/feeds/packages/libs/gnutls/Makefile	2015-09-21 12:01:28.355056705 +0300
++++ ../../../openwrt_trunk/feeds/packages/libs/gnutls/Makefile	2015-09-21 12:14:22.839069596 +0300
 @@ -93,7 +93,7 @@
  define Package/libgnutls
  $(call Package/gnutls/Default)
@@ -9,7 +9,7 @@
  endef
  
  define Package/libgnutls/description
-@@ -121,13 +121,15 @@
+@@ -110,12 +110,15 @@
  	--disable-guile \
  	--disable-nls \
  	--without-zlib \
@@ -17,7 +17,6 @@
  	--enable-local-libopts \
  	--disable-doc \
  	--disable-tests \
--	--enable-openssl-compatibility \
 -	--with-default-trust-store-dir=/etc/ssl/certs/ \
 +	--with-default-trust-store-dir=/opt/etc/ssl/certs/ \
  	--disable-crywrap \
@@ -28,7 +27,7 @@
  
  ifneq ($(CONFIG_GNUTLS_EXT_LIBTASN1),y)
  CONFIGURE_ARGS += --with-included-libtasn1
-@@ -180,74 +182,67 @@
+@@ -168,64 +171,64 @@
  TARGET_CFLAGS += $(FPIC)
  
  define Build/InstallDev
@@ -113,18 +112,8 @@
  define Package/libgnutls/install
 -	$(INSTALL_DIR) $(1)/usr/lib
 -	$(CP) $(PKG_INSTALL_DIR)/usr/lib/libgnutls.so.* $(1)/usr/lib/
--endef
--
--
--define Package/libgnutls-openssl/install
--	$(INSTALL_DIR) $(1)/usr/lib
--	$(CP) $(PKG_INSTALL_DIR)/usr/lib/libgnutls-openssl.so.* $(1)/usr/lib/
 +	$(INSTALL_DIR) $(1)/opt/lib
 +	$(CP) $(PKG_INSTALL_DIR)/opt/lib/libgnutls.so.* $(1)/opt/lib/
  endef
  
  
- $(eval $(call BuildPackage,certtool))
- $(eval $(call BuildPackage,gnutls-utils))
- $(eval $(call BuildPackage,libgnutls))
--$(eval $(call BuildPackage,libgnutls-openssl))

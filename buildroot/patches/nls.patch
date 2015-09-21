@@ -23,13 +23,3 @@
  	INTL_FULL:=
  endif
  
-@@ -28,7 +28,8 @@
- ICONV_DEPENDS:=+BUILD_NLS:libiconv-full
- ICONV_CFLAGS:=-I$(ICONV_PREFIX)/include
- ICONV_CPPFLAGS:=-I$(ICONV_PREFIX)/include
--ICONV_LDFLAGS:=-L$(ICONV_PREFIX)/lib
-+ICONV_LDFLAGS:=-L$(ICONV_PREFIX)/lib \
-+	-Wl,-rpath-link=$(ICONV_PREFIX)/lib
- 
- INTL_DEPENDS:=+BUILD_NLS:libintl-full
- INTL_CFLAGS:=-I$(INTL_PREFIX)/include

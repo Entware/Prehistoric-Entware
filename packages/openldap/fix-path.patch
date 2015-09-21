@@ -1,5 +1,5 @@
---- ../../../downloads/openwrt_trunk-r44486/feeds/packages/libs/openldap/Makefile	2015-02-18 12:16:57.592306331 +0300
-+++ ../../../openwrt_trunk/feeds/packages/libs/openldap/Makefile	2015-02-18 12:17:34.916305646 +0300
+--- ../../../downloads/openwrt_trunk-r46940/feeds/packages/libs/openldap/Makefile	2015-09-15 12:24:40.738451661 +0300
++++ ../../../openwrt_trunk/feeds/packages/libs/openldap/Makefile	2015-09-15 12:28:17.074455261 +0300
 @@ -47,7 +47,7 @@
  endef
  
@@ -18,7 +18,7 @@
  endef
  
  TARGET_CFLAGS += $(FPIC) -lpthread
-@@ -101,7 +101,8 @@
+@@ -100,7 +100,8 @@
  	--disable-bdb \
  	--disable-hdb \
  	--disable-monitor \
@@ -28,7 +28,7 @@
  
  define Build/Compile
  	$(MAKE) -C $(PKG_BUILD_DIR) \
-@@ -111,37 +112,38 @@
+@@ -110,37 +111,38 @@
  endef
  
  define Build/InstallDev

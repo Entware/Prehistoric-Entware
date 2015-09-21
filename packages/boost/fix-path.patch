@@ -1,6 +1,6 @@
---- ../../../downloads/openwrt_trunk-r46338/feeds/packages/libs/boost/Makefile	2015-07-14 10:55:19.774308173 +0300
-+++ ../../../openwrt_trunk/feeds/packages/libs/boost/Makefile	2015-07-14 17:52:02.622723361 +0300
-@@ -191,11 +191,11 @@
+--- ../../../downloads/openwrt_trunk-r46940/feeds/packages/libs/boost/Makefile	2015-09-15 12:24:40.726451661 +0300
++++ ../../../openwrt_trunk/feeds/packages/libs/boost/Makefile	2015-09-15 12:24:42.926451697 +0300
+@@ -194,11 +194,11 @@
  
  
  define Build/Compile
@@ -15,7 +15,7 @@
  				tools/build/src/user-config.jam; \
  		) \
  		bjam \
-@@ -211,24 +211,24 @@
+@@ -214,24 +214,24 @@
  			$(if $(CONFIG_PACKAGE_boost-locale),boost.locale.iconv=on -sICONV_PATH=$(ICONV_PREFIX) boost.locale.posix=$(if $(USE_UCLIBC),on,off), \
  				boost.locale.iconv=off) \
  			\
@@ -47,7 +47,7 @@
  endef
  
  define Host/Install
-@@ -242,24 +242,24 @@
+@@ -245,24 +245,24 @@
  
  define Package/boost/Default/install
  	$(INSTALL_DIR) \
