@@ -1,6 +1,6 @@
-diff -urx .svn ../../../downloads/openwrt_trunk-r43718/package/network/services/dropbear/Makefile ../../../openwrt_trunk/package/network/services/dropbear/Makefile
---- ../../../downloads/openwrt_trunk-r43718/package/network/services/dropbear/Makefile	2014-12-15 16:50:13.640093574 +0300
-+++ ../../../openwrt_trunk/package/network/services/dropbear/Makefile	2014-12-16 12:39:30.226789389 +0300
+diff -urx .svn ../../../downloads/openwrt_trunk-q46338/package/network/services/dropbear/Makefile ../../../openwrt_trunk/package/network/services/dropbear/Makefile
+--- ../../../downloads/openwrt_trunk-q46338/package/network/services/dropbear/Makefile	2015-08-15 17:43:21.796401758 +0300
++++ ../../../openwrt_trunk/package/network/services/dropbear/Makefile	2015-08-15 17:43:38.052401758 +0300
 @@ -47,9 +47,9 @@
  endef
  
@@ -74,15 +74,15 @@ diff -urx .svn ../../../downloads/openwrt_trunk-r43718/package/network/services/
  endef
  
  $(eval $(call BuildPackage,dropbear))
-diff -urx .svn ../../../downloads/openwrt_trunk-r43718/package/network/services/dropbear/patches/100-pubkey_path.patch ../../../openwrt_trunk/package/network/services/dropbear/patches/100-pubkey_path.patch
---- ../../../downloads/openwrt_trunk-r43718/package/network/services/dropbear/patches/100-pubkey_path.patch	2014-12-15 16:50:13.640093574 +0300
-+++ ../../../openwrt_trunk/package/network/services/dropbear/patches/100-pubkey_path.patch	2014-12-15 16:50:19.764093462 +0300
+diff -urx .svn ../../../downloads/openwrt_trunk-q46338/package/network/services/dropbear/patches/100-pubkey_path.patch ../../../openwrt_trunk/package/network/services/dropbear/patches/100-pubkey_path.patch
+--- ../../../downloads/openwrt_trunk-q46338/package/network/services/dropbear/patches/100-pubkey_path.patch	2015-08-15 17:43:21.796401758 +0300
++++ ../../../openwrt_trunk/package/network/services/dropbear/patches/100-pubkey_path.patch	2015-09-21 14:38:02.358480003 +0300
 @@ -28,7 +28,7 @@
  +		/* open the file */
  +		authfile = fopen(filename, "r");
  +	} else {
 -+		authfile = fopen("/etc/dropbear/authorized_keys","r");
-++		authfile = fopen("/opt/etc/dropbear/authorized_keys","r");
+++		authfile = fopen("/Apps/opt/etc/dropbear/authorized_keys","r");
  +	}
   	if (authfile == NULL) {
   		goto out;
@@ -91,11 +91,12 @@ diff -urx .svn ../../../downloads/openwrt_trunk-r43718/package/network/services/
  -		goto out;
  +	if (ses.authstate.pw_uid == 0) {
 -+		if (checkfileperm("/etc/dropbear") != DROPBEAR_SUCCESS) {
-++		if (checkfileperm("/opt/etc/dropbear") != DROPBEAR_SUCCESS) {
+++		if (checkfileperm("/Apps/opt/etc/dropbear") != DROPBEAR_SUCCESS) {
  +			goto out;
  +		}
 -+		if (checkfileperm("/etc/dropbear/authorized_keys") != DROPBEAR_SUCCESS) {
-++		if (checkfileperm("/opt/etc/dropbear/authorized_keys") != DROPBEAR_SUCCESS) {
+++		if (checkfileperm("/Apps/opt/etc/dropbear/authorized_keys") != DROPBEAR_SUCCESS) {
  +			goto out;
  +		}
  +	} else {
+Только в ../../../openwrt_trunk/package/network/services/dropbear/patches: 900-entware-options.patch
