@@ -10,7 +10,7 @@ all: .done
 .done:
 	patch -d $(TOP) -p3 -i $(CURDIR)/fix-path.patch
 	mkdir -p ../../../openwrt_trunk/feeds/packages/libs/gnutls/patches/
-	cp -f ./500-disable-crywrap.patch ../../../openwrt_trunk/feeds/packages/libs/gnutls/patches/
+	cp -f ./500-crywrap-argp-dep.patch ../../../openwrt_trunk/feeds/packages/libs/gnutls/patches/
 	@touch $@
 
 clean:

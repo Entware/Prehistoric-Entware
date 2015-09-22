@@ -1,0 +1,85 @@
+--- ../../../downloads/openwrt_trunk-r47008/feeds/packages/sound/mpg123/Makefile	2015-09-21 12:01:28.403056706 +0300
++++ ../../../openwrt_trunk/feeds/packages/sound/mpg123/Makefile	2015-09-21 17:06:44.419361557 +0300
+@@ -43,7 +43,7 @@
+   SECTION:=sound
+   CATEGORY:=Sound
+   TITLE:=fast console mpeg audio player
+-  DEPENDS+=+libmpg123 +alsa-lib +libsdl +libpthread
++  DEPENDS+=+libmpg123 +alsa-lib
+ endef
+ 
+ define Build/Configure
+@@ -51,48 +51,52 @@
+ 		--enable-shared \
+ 		--enable-static \
+ 		--with-cpu=generic_nofpu \
++		--with-default-audio=alsa \
+ 	)
+ endef
+ 
+ define Build/InstallDev
+-	$(INSTALL_DIR) $(1)/usr/include
++	$(INSTALL_DIR) $(1)/opt/include
+ 	$(INSTALL_DATA) \
+-		$(PKG_INSTALL_DIR)/usr/include/mpg123.h \
+-		$(1)/usr/include/
++		$(PKG_INSTALL_DIR)/opt/include/mpg123.h \
++		$(1)/opt/include/
+ 
+-	$(INSTALL_DIR) $(1)/usr/lib
++	$(INSTALL_DIR) $(1)/opt/lib
+ 	$(CP) \
+-		$(PKG_INSTALL_DIR)/usr/lib/libmpg123.{la,a,so*} \
+-		$(1)/usr/lib/
++		$(PKG_INSTALL_DIR)/opt/lib/libmpg123.{la,a,so*} \
++		$(1)/opt/lib/
+ 
+-	$(INSTALL_DIR) $(1)/usr/lib/mpg123
++	$(INSTALL_DIR) $(1)/opt/lib/mpg123
+ 	$(CP) \
+-		$(PKG_INSTALL_DIR)/usr/lib/mpg123/* \
+-		$(1)/usr/lib/mpg123
++		$(PKG_INSTALL_DIR)/opt/lib/mpg123/* \
++		$(1)/opt/lib/mpg123
+ 
+-	$(INSTALL_DIR) $(1)/usr/lib/pkgconfig
++	$(INSTALL_DIR) $(1)/opt/lib/pkgconfig
+ 	$(CP) \
+-		$(PKG_INSTALL_DIR)/usr/lib/pkgconfig/libmpg123.pc \
+-		$(1)/usr/lib/pkgconfig
++		$(PKG_INSTALL_DIR)/opt/lib/pkgconfig/libmpg123.pc \
++		$(1)/opt/lib/pkgconfig
+ endef
+ 
+ define Package/libmpg123/install
+-	$(INSTALL_DIR) $(1)/usr/lib
++	$(INSTALL_DIR) $(1)/opt/lib
+ 	$(CP) \
+-		$(PKG_INSTALL_DIR)/usr/lib/libmpg123.so* \
+-		$(1)/usr/lib/
++		$(PKG_INSTALL_DIR)/opt/lib/libmpg123.so* \
++		$(1)/opt/lib/
+ endef
+ 
+ define Package/mpg123/install
+-	$(INSTALL_DIR) $(1)/usr/bin
++	$(INSTALL_DIR) $(1)/opt/bin
+ 	$(INSTALL_BIN) \
+-		$(PKG_INSTALL_DIR)/usr/bin/mpg123 \
+-		$(1)/usr/bin
++		$(PKG_INSTALL_DIR)/opt/bin/mpg123{,-id3dump,-strip} \
++		$(1)/opt/bin
+ 
+-	$(INSTALL_DIR) $(1)/usr/lib/mpg123
++	$(INSTALL_BIN) $(PKG_INSTALL_DIR)/opt/bin/out123 \
++		$(1)/opt/bin
++
++	$(INSTALL_DIR) $(1)/opt/lib/mpg123
+ 	$(CP) \
+-		$(PKG_INSTALL_DIR)/usr/lib/mpg123/* \
+-		$(1)/usr/lib/mpg123
++		$(PKG_INSTALL_DIR)/opt/lib/mpg123/*.so \
++		$(1)/opt/lib/mpg123
+ endef
+ 
+ $(eval $(call BuildPackage,libmpg123))

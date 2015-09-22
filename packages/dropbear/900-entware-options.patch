@@ -17,7 +17,7 @@
  #endif
  
  /* Set NON_INETD_MODE if you require daemon functionality (ie Dropbear listens
-@@ -184,7 +184,7 @@
+@@ -198,7 +198,7 @@
  
  /* The MOTD file path */
  #ifndef MOTD_FILENAME
@@ -26,7 +26,7 @@
  #endif
  
  /* Authentication Types - at least one required.
-@@ -263,25 +263,25 @@
+@@ -281,25 +281,25 @@
  /* The default file to store the daemon's process ID, for shutdown
     scripts etc. This can be overridden with the -P flag */
  #ifndef DROPBEAR_PIDFILE
@@ -51,12 +51,12 @@
  
  /* This is used by the scp binary when used as a client binary. If you're
   * not using the Dropbear client, you'll need to change it */
--#define _PATH_SSH_PROGRAM "/usr/bin/dbclient"
-+#define _PATH_SSH_PROGRAM "/opt/bin/dbclient"
+-#define DROPBEAR_PATH_SSH_PROGRAM "/usr/bin/dbclient"
++#define DROPBEAR_PATH_SSH_PROGRAM "/opt/bin/dbclient"
  
  /* Whether to log commands executed by a client. This only logs the 
   * (single) command sent to the server, not what a user did in a 
-@@ -323,7 +323,7 @@
+@@ -341,7 +341,7 @@
  #define DEFAULT_IDLE_TIMEOUT 0
  
  /* The default path. This will often get replaced by the shell */

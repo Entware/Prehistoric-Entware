@@ -1,6 +1,6 @@
-diff -urx .svn ../../../downloads/openwrt_trunk-r46940/package/system/opkg/files/opkg-key ../../../openwrt_trunk/package/system/opkg/files/opkg-key
---- ../../../downloads/openwrt_trunk-r46940/package/system/opkg/files/opkg-key	2015-09-15 12:24:40.870451663 +0300
-+++ ../../../openwrt_trunk/package/system/opkg/files/opkg-key	2015-09-15 12:28:17.114455262 +0300
+diff -ur ../../../downloads/openwrt_trunk-r47008/package/system/opkg/files/opkg-key ../../../openwrt_trunk/package/system/opkg/files/opkg-key
+--- ../../../downloads/openwrt_trunk-r47008/package/system/opkg/files/opkg-key	2015-09-21 12:01:28.527056708 +0300
++++ ../../../openwrt_trunk/package/system/opkg/files/opkg-key	2015-09-21 12:02:47.299058019 +0300
 @@ -19,7 +19,7 @@
  	(
  		zcat "$msgfile" 2>/dev/null ||
@@ -30,9 +30,9 @@ diff -urx .svn ../../../downloads/openwrt_trunk-r46940/package/system/opkg/files
  }
  
  case "$1" in
-diff -urx .svn ../../../downloads/openwrt_trunk-r46940/package/system/opkg/Makefile ../../../openwrt_trunk/package/system/opkg/Makefile
---- ../../../downloads/openwrt_trunk-r46940/package/system/opkg/Makefile	2015-09-15 12:24:40.870451663 +0300
-+++ ../../../openwrt_trunk/package/system/opkg/Makefile	2015-09-21 10:47:19.814982664 +0300
+diff -ur ../../../downloads/openwrt_trunk-r47008/package/system/opkg/Makefile ../../../openwrt_trunk/package/system/opkg/Makefile
+--- ../../../downloads/openwrt_trunk-r47008/package/system/opkg/Makefile	2015-09-21 12:01:28.527056708 +0300
++++ ../../../openwrt_trunk/package/system/opkg/Makefile	2015-09-21 16:02:28.195297374 +0300
 @@ -5,7 +5,6 @@
  # See /LICENSE for more information.
  
@@ -105,7 +105,7 @@ diff -urx .svn ../../../downloads/openwrt_trunk-r46940/package/system/opkg/Makef
 -	$(INSTALL_BIN) ./files/20_migrate-feeds $(1)/etc/uci-defaults/
 -	$(INSTALL_BIN) $(PKG_INSTALL_DIR)/usr/bin/opkg-cl $(1)/bin/opkg
 +	$(INSTALL_DIR) $(1)/opt/lib/opkg
-+	$(INSTALL_DIR) $(1)/bin/{bin,etc,tmp}
++	$(INSTALL_DIR) $(1)/opt/bin/{bin,etc,tmp}
 +	$(INSTALL_DIR) $(1)/opt/var/{lock,log,run}
 +	$(INSTALL_BIN) $(PKG_INSTALL_DIR)/opt/bin/opkg-cl $(1)/opt/bin/opkg
  endef
@@ -138,9 +138,9 @@ diff -urx .svn ../../../downloads/openwrt_trunk-r46940/package/system/opkg/Makef
  endef
  
  
-diff -urx .svn ../../../downloads/openwrt_trunk-r46940/package/system/opkg/patches/200-usign_support.patch ../../../openwrt_trunk/package/system/opkg/patches/200-usign_support.patch
---- ../../../downloads/openwrt_trunk-r46940/package/system/opkg/patches/200-usign_support.patch	2015-09-15 12:24:40.870451663 +0300
-+++ ../../../openwrt_trunk/package/system/opkg/patches/200-usign_support.patch	2015-09-15 12:28:17.114455262 +0300
+diff -ur ../../../downloads/openwrt_trunk-r47008/package/system/opkg/patches/200-usign_support.patch ../../../openwrt_trunk/package/system/opkg/patches/200-usign_support.patch
+--- ../../../downloads/openwrt_trunk-r47008/package/system/opkg/patches/200-usign_support.patch	2015-09-21 12:01:28.527056708 +0300
++++ ../../../openwrt_trunk/package/system/opkg/patches/200-usign_support.patch	2015-09-21 12:02:47.299058019 +0300
 @@ -76,7 +76,7 @@
  +		return -1;
  +

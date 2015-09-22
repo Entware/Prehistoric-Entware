@@ -8,7 +8,7 @@
  man_MANS = shadowsocks-libev.8
 --- a/src/Makefile.am
 +++ b/src/Makefile.am
-@@ -4,14 +4,12 @@
+@@ -5,14 +5,12 @@
  AM_CFLAGS += -I$(top_srcdir)/libudns
  AM_CFLAGS += -I$(top_srcdir)/libipset/include
  AM_CFLAGS += -I$(top_srcdir)/libcork/include
@@ -16,7 +16,7 @@
  
  AM_LDFLAGS = -static
  
- SS_COMMON_LIBS = \
+ SS_COMMON_LIBS = $(PTHREAD_LIBS) \
  				 $(top_builddir)/libipset/libipset.la \
  				 $(top_builddir)/libcork/libcork.la \
 -				 $(top_builddir)/libsodium/src/libsodium/libsodium.la \

@@ -1,0 +1,17 @@
+--- ../../../downloads/openwrt_trunk-r47008/feeds/packages/sound/squeezelite/Makefile	2015-09-21 12:01:28.407056706 +0300
++++ ../../../openwrt_trunk/feeds/packages/sound/squeezelite/Makefile	2015-09-21 15:08:14.463243219 +0300
+@@ -131,12 +131,8 @@
+ endif
+ 
+ define Package/squeezelite/install
+-	$(INSTALL_DIR) $(1)/usr/bin
+-	$(INSTALL_BIN) $(PKG_BUILD_DIR)/squeezelite $(1)/usr/bin
+-	$(INSTALL_DIR) $(1)/etc/init.d
+-	$(INSTALL_BIN) ./files/squeezelite.init $(1)/etc/init.d/squeezelite
+-	$(INSTALL_DIR) $(1)/etc/config
+-	$(INSTALL_CONF) ./files/squeezelite.conf $(1)/etc/config/squeezelite
++	$(INSTALL_DIR) $(1)/opt/bin
++	$(INSTALL_BIN) $(PKG_BUILD_DIR)/squeezelite $(1)/opt/bin
+ endef
+ 
+ Package/squeezelite-mini/install=$(Package/squeezelite/install)

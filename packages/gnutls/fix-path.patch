@@ -1,5 +1,14 @@
 --- ../../../downloads/openwrt_trunk-r47008/feeds/packages/libs/gnutls/Makefile	2015-09-21 12:01:28.355056705 +0300
-+++ ../../../openwrt_trunk/feeds/packages/libs/gnutls/Makefile	2015-09-21 12:14:22.839069596 +0300
++++ ../../../openwrt_trunk/feeds/packages/libs/gnutls/Makefile	2015-09-22 11:45:24.358041912 +0300
+@@ -15,7 +15,7 @@
+ PKG_SOURCE:=$(PKG_NAME)-$(PKG_VERSION).tar.xz
+ PKG_SOURCE_URL:=ftp://ftp.gnutls.org/gcrypt/gnutls/v3.4
+ PKG_MD5SUM:=474efaba6fd6c6c6c0ebac2a3f431946
+-#PKG_FIXUP:=autoreconf gettext-version
++PKG_FIXUP:=autoreconf gettext-version
+ PKG_MAINTAINER:=Nikos Mavrogiannopoulos <nmav@gnutls.org>
+ PKG_LICENSE:=LGPLv2.1+
+ 
 @@ -93,7 +93,7 @@
  define Package/libgnutls
  $(call Package/gnutls/Default)
