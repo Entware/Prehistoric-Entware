@@ -1,5 +1,5 @@
 --- ../../../downloads/openwrt_trunk-r47008/feeds/packages/libs/postgresql/Makefile	2015-09-21 12:01:28.363056705 +0300
-+++ ../../../openwrt_trunk/feeds/packages/libs/postgresql/Makefile	2015-09-22 10:52:43.501989303 +0300
++++ ../../../openwrt_trunk/feeds/packages/libs/postgresql/Makefile	2015-09-22 16:01:50.698298001 +0300
 @@ -42,7 +42,7 @@
  define Package/pgsql-cli
    SECTION:=utils
@@ -99,7 +99,7 @@
  			$(DISABLE_NLS) \
  			$(DISABLE_LARGEFILE) \
  			--enable-shared \
-@@ -187,55 +188,49 @@
+@@ -187,55 +188,48 @@
  endef
  
  define Package/libpq/install
@@ -120,17 +120,19 @@
 -	$(INSTALL_DIR) $(1)/usr/bin
 -	$(INSTALL_DIR) $(1)/usr/share/postgresql
 -	$(INSTALL_DIR) $(1)/usr/lib
+-	$(INSTALL_DIR) $(1)/etc/init.d
+-	$(INSTALL_DIR) $(1)/etc/config
+-	$(INSTALL_BIN) $(PKG_INSTALL_DIR)/usr/bin/* $(1)/usr/bin
+-	ln -sf postgres $(1)/usr/bin/postmaster
 +	$(INSTALL_DIR) $(1)/opt/bin
 +	$(INSTALL_DIR) $(1)/opt/share/postgresql
 +	$(INSTALL_DIR) $(1)/opt/lib
- 	$(INSTALL_DIR) $(1)/etc/init.d
- 	$(INSTALL_DIR) $(1)/etc/config
--	$(INSTALL_BIN) $(PKG_INSTALL_DIR)/usr/bin/* $(1)/usr/bin
--	ln -sf postgres $(1)/usr/bin/postmaster
++	$(INSTALL_DIR) $(1)/opt/etc/init.d
 +	$(INSTALL_BIN) $(PKG_INSTALL_DIR)/opt/bin/* $(1)/opt/bin
 +	ln -sf postgres $(1)/opt/bin/postmaster
  
- 	$(INSTALL_BIN) ./files/postgresql.init $(1)/etc/init.d/postgresql
+-	$(INSTALL_BIN) ./files/postgresql.init $(1)/etc/init.d/postgresql
++	$(INSTALL_BIN) ./files/S98postgresql $(1)/opt/etc/init.d/
  
 -	$(CP) -r $(PKG_INSTALL_DIR)/usr/share/postgresql/* \
 -		$(1)/usr/share/postgresql

@@ -1,6 +1,6 @@
 diff -urx .svn ../../../downloads/openwrt_trunk-r47008/feeds/packages/lang/perl/files/base.config ../../../openwrt_trunk/feeds/packages/lang/perl/files/base.config
---- ../../../downloads/openwrt_trunk-r47008/feeds/packages/lang/perl/files/base.config	2015-09-21 12:01:28.347056705 +0300
-+++ ../../../openwrt_trunk/feeds/packages/lang/perl/files/base.config	2015-09-21 12:58:29.383113645 +0300
+--- ../../../downloads/openwrt_trunk-r47008/feeds/packages/lang/perl/files/base.config	2015-09-22 16:07:32.074303683 +0300
++++ ../../../openwrt_trunk/feeds/packages/lang/perl/files/base.config	2015-09-23 13:34:43.288365816 +0300
 @@ -690,21 +690,21 @@
  inc_version_list_init='0'
  incpath=''
@@ -126,29 +126,33 @@ diff -urx .svn ../../../downloads/openwrt_trunk-r47008/feeds/packages/lang/perl/
  uuname=''
  uvXUformat='"lX"'
  uvoformat='"lo"'
-@@ -992,7 +992,7 @@
+@@ -992,9 +992,9 @@
  cppflags="$owrt:cflags"
  ccflags="-D_LARGEFILE_SOURCE -D_FILE_OFFSET_BITS=64 $owrt:cflags"
  ccflags_uselargefiles='-D_LARGEFILE_SOURCE -D_FILE_OFFSET_BITS=64'
 -ccdlflags="-fPIC -Wl,-rpath,$owrt:perllibpath/CORE"
 +ccdlflags="-fPIC -Wl,-rpath,$owrt:perllibpath/CORE:/opt/lib"
  cccdlflags='-fPIC'
- ldflags=''
+-ldflags=''
++ldflags="$owrt:ldflags"
  ldflags_uselargefiles=''
-diff -urx .svn ../../../downloads/openwrt_trunk-r47008/feeds/packages/lang/perl/files/libc.config ../../../openwrt_trunk/feeds/packages/lang/perl/files/libc.config
---- ../../../downloads/openwrt_trunk-r47008/feeds/packages/lang/perl/files/libc.config	2015-09-21 12:01:28.347056705 +0300
-+++ ../../../openwrt_trunk/feeds/packages/lang/perl/files/libc.config	2015-09-21 12:53:51.523109020 +0300
-@@ -1,6 +1,6 @@
- ($owrt:libc eq 'glibc') {
- 	perllibs="$perllibs -lbsd"
--	ldflags="$ldflags -L$owrt:staging_dir/lib"
-+	ldflags="$ldflags -L$owrt:staging_dir/opt/lib"
- }
+ lddlflags="-shared $owrt:ldflags"
  
- # uclibc does not provide crypt_r(). Enable crypt() usage for glibc builds only
+diff -urx .svn ../../../downloads/openwrt_trunk-r47008/feeds/packages/lang/perl/files/misc.config ../../../openwrt_trunk/feeds/packages/lang/perl/files/misc.config
+--- ../../../downloads/openwrt_trunk-r47008/feeds/packages/lang/perl/files/misc.config	2015-09-22 16:07:32.074303683 +0300
++++ ../../../openwrt_trunk/feeds/packages/lang/perl/files/misc.config	2015-09-23 12:41:55.500313091 +0300
+@@ -1,6 +1,6 @@
+ cf_email='naoir@gmx.net'
+-osvers='3.18.19'
+-gccversion='4.8.0'
++osvers='2.6.22'
++gccversion='4.6.4'
+ myhostname='OpenWrt'
+ cf_time='Thu Jan 1 12:00:00 CEST 2015'
+ 
 diff -urx .svn ../../../downloads/openwrt_trunk-r47008/feeds/packages/lang/perl/files/perl-run_tests.sh ../../../openwrt_trunk/feeds/packages/lang/perl/files/perl-run_tests.sh
---- ../../../downloads/openwrt_trunk-r47008/feeds/packages/lang/perl/files/perl-run_tests.sh	2015-09-21 12:01:28.347056705 +0300
-+++ ../../../openwrt_trunk/feeds/packages/lang/perl/files/perl-run_tests.sh	2015-09-21 12:59:24.343114559 +0300
+--- ../../../downloads/openwrt_trunk-r47008/feeds/packages/lang/perl/files/perl-run_tests.sh	2015-09-22 16:07:32.074303683 +0300
++++ ../../../openwrt_trunk/feeds/packages/lang/perl/files/perl-run_tests.sh	2015-09-22 16:07:39.614303809 +0300
 @@ -1,7 +1,7 @@
  #!/bin/sh
  
@@ -160,8 +164,8 @@ diff -urx .svn ../../../downloads/openwrt_trunk-r47008/feeds/packages/lang/perl/
  
  no_run=""
 diff -urx .svn ../../../downloads/openwrt_trunk-r47008/feeds/packages/lang/perl/files/version.config ../../../openwrt_trunk/feeds/packages/lang/perl/files/version.config
---- ../../../downloads/openwrt_trunk-r47008/feeds/packages/lang/perl/files/version.config	2015-09-21 12:01:28.347056705 +0300
-+++ ../../../openwrt_trunk/feeds/packages/lang/perl/files/version.config	2015-09-21 12:45:22.195100543 +0300
+--- ../../../downloads/openwrt_trunk-r47008/feeds/packages/lang/perl/files/version.config	2015-09-22 16:07:32.074303683 +0300
++++ ../../../openwrt_trunk/feeds/packages/lang/perl/files/version.config	2015-09-22 16:07:39.614303809 +0300
 @@ -14,7 +14,7 @@
  dynamic_ext='B Compress/Raw/Bzip2 Compress/Raw/Zlib Cwd DB_File Data/Dumper Devel/PPPort Devel/Peek Digest/MD5 Digest/SHA Encode Fcntl File/DosGlob File/Glob Filter/Util/Call GDBM_File Hash/Util Hash/Util/FieldHash I18N/Langinfo IO IPC/SysV List/Util MIME/Base64 Math/BigInt/FastCalc Opcode POSIX PerlIO/encoding PerlIO/mmap PerlIO/scalar PerlIO/via SDBM_File Socket Storable Sys/Hostname Sys/Syslog Tie/Hash/NamedCapture Time/HiRes Time/Piece Unicode/Collate XS/APItest XS/Typemap arybase attributes mro re threads threads/shared'
  
@@ -172,8 +176,19 @@ diff -urx .svn ../../../downloads/openwrt_trunk-r47008/feeds/packages/lang/perl/
  revision="$PERL_REVISION"
  patchlevel="$PERL_VERSION"
 diff -urx .svn ../../../downloads/openwrt_trunk-r47008/feeds/packages/lang/perl/Makefile ../../../openwrt_trunk/feeds/packages/lang/perl/Makefile
---- ../../../downloads/openwrt_trunk-r47008/feeds/packages/lang/perl/Makefile	2015-09-21 12:01:28.347056705 +0300
-+++ ../../../openwrt_trunk/feeds/packages/lang/perl/Makefile	2015-09-21 12:39:14.399094421 +0300
+--- ../../../downloads/openwrt_trunk-r47008/feeds/packages/lang/perl/Makefile	2015-09-22 16:07:32.074303683 +0300
++++ ../../../openwrt_trunk/feeds/packages/lang/perl/Makefile	2015-09-23 13:46:42.152377781 +0300
+@@ -96,8 +96,8 @@
+ 	                                -Dowrt:target_cross='$(TARGET_CROSS)' \
+ 	                                -Dowrt:cflags='$(TARGET_CFLAGS_PERL) $(TARGET_CPPFLAGS_PERL)' \
+ 	                                -Dowrt:ldflags='-rdynamic $(TARGET_LDFLAGS)' \
+-	                                -Dowrt:libc=$(CONFIG_LIBC) \
+-	                                -Dowrt:ipv6=$(if $($(CONFIG_IPV6)),define,undef) \
++	                                -Dowrt:libc='uclibc' \
++	                                -Dowrt:ipv6='define' \
+ 	                                -Dowrt:threads=$(if $(CONFIG_PERL_THREADS),yes,no) \
+ 	                                -Dowrt:staging_dir='$(STAGING_DIR)' \
+ 	                                -Dowrt:host_perl_prefix='$(HOST_PERL_PREFIX)' \
 @@ -119,17 +119,17 @@
  endef
  
@@ -230,8 +245,8 @@ diff -urx .svn ../../../downloads/openwrt_trunk-r47008/feeds/packages/lang/perl/
  	sed \
  		-e 's!%%PERL_DISABLEDTESTS%%!$(PERL_DISABLEDTESTS)!' \
 diff -urx .svn ../../../downloads/openwrt_trunk-r47008/feeds/packages/lang/perl/perlbase.mk ../../../openwrt_trunk/feeds/packages/lang/perl/perlbase.mk
---- ../../../downloads/openwrt_trunk-r47008/feeds/packages/lang/perl/perlbase.mk	2015-09-21 12:01:28.347056705 +0300
-+++ ../../../openwrt_trunk/feeds/packages/lang/perl/perlbase.mk	2015-09-21 12:40:28.315095651 +0300
+--- ../../../downloads/openwrt_trunk-r47008/feeds/packages/lang/perl/perlbase.mk	2015-09-22 16:07:32.074303683 +0300
++++ ../../../openwrt_trunk/feeds/packages/lang/perl/perlbase.mk	2015-09-22 16:07:39.614303809 +0300
 @@ -42,10 +42,10 @@
  define Package/perlbase-archive/install
  $(call perlmod/Install,$(1),Archive,)
@@ -272,8 +287,8 @@ diff -urx .svn ../../../downloads/openwrt_trunk-r47008/feeds/packages/lang/perl/
  
  $(eval $(call BuildPackage,perlbase-test))
 diff -urx .svn ../../../downloads/openwrt_trunk-r47008/feeds/packages/lang/perl/perlmod.mk ../../../openwrt_trunk/feeds/packages/lang/perl/perlmod.mk
---- ../../../downloads/openwrt_trunk-r47008/feeds/packages/lang/perl/perlmod.mk	2015-09-21 12:01:28.347056705 +0300
-+++ ../../../openwrt_trunk/feeds/packages/lang/perl/perlmod.mk	2015-09-21 12:43:47.575098968 +0300
+--- ../../../downloads/openwrt_trunk-r47008/feeds/packages/lang/perl/perlmod.mk	2015-09-22 16:07:32.074303683 +0300
++++ ../../../openwrt_trunk/feeds/packages/lang/perl/perlmod.mk	2015-09-22 16:07:39.614303809 +0300
 @@ -7,7 +7,7 @@
  HOST_PERL_PREFIX:=$(STAGING_DIR_HOST)/usr
  ifneq ($(CONFIG_USE_GLIBC),)
