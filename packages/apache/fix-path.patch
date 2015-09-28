@@ -1,14 +1,5 @@
 --- ../../../downloads/openwrt_trunk-r45513/feeds/packages/net/apache/Makefile	2015-04-21 10:37:38.212588033 +0300
 +++ ../../../openwrt_trunk/feeds/packages/net/apache/Makefile	2015-04-22 17:08:02.278600089 +0300
-@@ -9,7 +9,7 @@
- 
- PKG_NAME:=apache
- PKG_VERSION:=2.2.29
--PKG_RELEASE:=1
-+PKG_RELEASE:=1b
- PKG_SOURCE_NAME:=httpd
- PKG_MAINTAINER:=Thomas Heil <heil@terminal-consulting.de>
- PKG_LICENSE:=Apache License
 @@ -48,33 +48,23 @@
  $(call Package/apache/Default/description)
   .

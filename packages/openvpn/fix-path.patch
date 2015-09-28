@@ -1,5 +1,5 @@
---- ../../../downloads/openwrt_trunk-r43593/package/network/services/openvpn/Makefile	2014-12-10 12:26:33.446951672 +0300
-+++ ../../../openwrt_trunk/package/network/services/openvpn/Makefile	2014-12-10 12:49:08.482926992 +0300
+--- ../../../downloads/openwrt_trunk-r46940/package/network/services/openvpn/Makefile	2015-09-15 12:24:40.898451663 +0300
++++ ../../../openwrt_trunk/package/network/services/openvpn/Makefile	2015-09-21 10:31:40.110967024 +0300
 @@ -32,7 +32,7 @@
    URL:=http://openvpn.net
    SUBMENU:=VPN
@@ -9,11 +9,13 @@
    VARIANT:=$(1)
    MAINTAINER:=Mirko Vogt <mirko@openwrt.org>
  endef
-@@ -63,7 +63,7 @@
+@@ -62,8 +62,8 @@
+ CONFIGURE_VARS += \
  	IFCONFIG=/sbin/ifconfig \
  	ROUTE=/sbin/route \
- 	IPROUTE=/usr/sbin/ip \
+-	IPROUTE=/sbin/ip \
 -	NETSTAT=/sbin/netstat
++	IPROUTE=/usr/sbin/ip \
 +	NETSTAT=/bin/netstat
  
  define Build/Configure

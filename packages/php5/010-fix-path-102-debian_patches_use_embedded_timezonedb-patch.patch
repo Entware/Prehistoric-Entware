@@ -1,6 +1,6 @@
 --- ../../../downloads/openwrt_trunk-r46338/feeds/packages/lang/php5/patches/102-debian_patches_use_embedded_timezonedb.patch	2015-07-14 10:55:19.754308172 +0300
 +++ ../../../openwrt_trunk/feeds/packages/lang/php5/patches/102-debian_patches_use_embedded_timezonedb.patch	2015-07-14 10:55:50.286308681 +0300
-@@ -79,7 +79,7 @@
+@@ -78,7 +78,7 @@
  +#ifdef HAVE_SYSTEM_TZDATA_PREFIX
  +#define ZONEINFO_PREFIX HAVE_SYSTEM_TZDATA_PREFIX
  +#else

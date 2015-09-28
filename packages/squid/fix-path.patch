@@ -1,5 +1,14 @@
---- ../../../downloads/openwrt_trunk-q46338/feeds/packages/net/squid/Makefile	2015-07-21 13:57:43.000000000 +0300
-+++ ../../../openwrt_trunk/feeds/packages/net/squid/Makefile	2015-07-22 17:25:47.367679546 +0300
+--- ../../../downloads/openwrt_trunk-q47008/feeds/packages/net/squid/Makefile	2015-09-24 20:31:27.638958283 +0300
++++ ../../../openwrt_trunk/feeds/packages/net/squid/Makefile	2015-09-27 12:35:40.722449431 +0300
+@@ -33,7 +33,7 @@
+ define Package/squid
+   $(call Package/squid/Default)
+   MENU:=1
+-  DEPENDS:=+libopenssl +libpthread +librt +libltdl +libstdcpp
++  DEPENDS:=+libopenssl +libpthread +librt +libltdl +libstdcpp +libgnutls
+   TITLE:=full-featured Web proxy cache
+ endef
+ 
 @@ -51,9 +51,9 @@
  
  CONFIGURE_ARGS += \
@@ -13,37 +22,26 @@
  	--enable-shared \
  	--disable-static \
  	--enable-icmp \
-@@ -78,7 +78,7 @@
- 	--without-expat \
+@@ -75,7 +75,7 @@
  	--without-libxml2 \
+ 	--without-gnutls \
  	--without-nettle \
 -	--with-openssl=$(STAGING_DIR)/usr \
 +	--with-openssl=$(STAGING_DIR)/opt \
  	--enable-epoll \
  	--with-maxfd=4096 \
  	--disable-external-acl-helpers \
-@@ -89,43 +89,45 @@
- 	--disable-arch-native \
- 	--with-krb5-config=no \
- 	--without-libcap \
--	--without-netfilter-conntrack
-+	--without-netfilter-conntrack \
+@@ -93,40 +93,39 @@
+ 	ac_cv_epoll_works=yes \
+ 	squid_cv_gnu_atomics=no
  
- CONFIGURE_VARS += \
- 	ac_cv_header_linux_netfilter_ipv4_h=yes \
--	ac_cv_epoll_works=yes
-+	ac_cv_epoll_works=yes \
-+
 +TARGET_CXXFLAGS += -std=c++0x
- 
++
  define Build/Compile
 -	+$(MAKE) $(PKG_JOBS) -C $(PKG_BUILD_DIR)/lib all
 -	+$(MAKE) $(PKG_JOBS) -C $(PKG_BUILD_DIR) \
-+	$(MAKE) -C $(PKG_BUILD_DIR)/lib \
-+		$(MAKE_VARS) \
-+		all
-+	$(MAKE) -C $(PKG_BUILD_DIR) \
-+		$(MAKE_VARS) \
++	+$(MAKE) $(PKG_JOBS) -C $(PKG_BUILD_DIR)/lib $(MAKE_VARS) all
++	+$(MAKE) $(PKG_JOBS) -C $(PKG_BUILD_DIR) $(MAKE_VARS) \
  		DESTDIR="$(PKG_INSTALL_DIR)" \
  		install
  endef
@@ -52,10 +50,15 @@
 -	$(INSTALL_DIR) $(1)/usr/sbin
 -	$(INSTALL_BIN) $(PKG_INSTALL_DIR)/usr/sbin/squid $(1)/usr/sbin/
 -
--	$(INSTALL_DIR) $(1)/etc/config
--	$(INSTALL_CONF) ./files/squid.config $(1)/etc/config/squid
+-	$(INSTALL_DIR) $(1)/usr/lib/squid
+-	$(INSTALL_BIN) $(PKG_INSTALL_DIR)/usr/lib/squid/ssl_crtd $(1)/usr/lib/squid
 +	$(INSTALL_DIR) $(1)/opt/sbin
 +	$(INSTALL_BIN) $(PKG_INSTALL_DIR)/Apps/opt/sbin/squid $(1)/opt/sbin/
+ 
+-	$(INSTALL_DIR) $(1)/etc/config
+-	$(INSTALL_CONF) ./files/squid.config $(1)/etc/config/squid
++	$(INSTALL_DIR) $(1)/opt/lib/squid
++	$(INSTALL_BIN) $(PKG_INSTALL_DIR)/Apps/opt/lib/squid/ssl_crtd $(1)/opt/lib/squid
  
 -	$(INSTALL_DIR) $(1)/etc/squid
 -	$(INSTALL_CONF) $(PKG_INSTALL_DIR)/etc/squid/mime.conf $(1)/etc/squid/

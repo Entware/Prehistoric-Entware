@@ -1,0 +1,11 @@
+diff -urx .svn ../../../downloads/openwrt_trunk-r47008/package/kernel/linux/modules/netsupport.mk ../../../openwrt_trunk/package/kernel/linux/modules/netsupport.mk
+--- ../../../downloads/openwrt_trunk-r47008/package/kernel/linux/modules/netsupport.mk	2015-09-21 12:01:28.615056709 +0300
++++ ../../../openwrt_trunk/package/kernel/linux/modules/netsupport.mk	2015-09-21 14:19:01.191194065 +0300
+@@ -457,7 +457,6 @@
+   SUBMENU:=$(NETWORK_SUPPORT_MENU)
+   TITLE:=IPv6 support
+   DEPENDS:=@IPV6
+-  HIDDEN:=1
+   DEFAULT:=y
+   KCONFIG:= \
+ 	CONFIG_IPV6=y \

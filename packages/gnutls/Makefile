@@ -9,9 +9,8 @@ all: .done
 
 .done:
 	patch -d $(TOP) -p3 -i $(CURDIR)/fix-path.patch
-	mkdir -p ../../../openwrt_trunk/feeds/packages/net/shadowsocks-libev/patches
-	cp -f ./5*.patch ../../../openwrt_trunk/feeds/packages/net/shadowsocks-libev/patches/
-	cp -f ./S22shadowsocks ../../../openwrt_trunk/feeds/packages/net/shadowsocks-libev/files/
+	mkdir -p ../../../openwrt_trunk/feeds/packages/libs/gnutls/patches/
+	cp -f ./500-crywrap-argp-dep.patch ../../../openwrt_trunk/feeds/packages/libs/gnutls/patches/
 	@touch $@
 
 clean:

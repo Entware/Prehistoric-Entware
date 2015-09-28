@@ -1,18 +1,18 @@
-diff -Nur ../../../downloads/openwrt_trunk-r46338/feeds/packages/utils/lvm2/Makefile ../../../openwrt_trunk/feeds/packages/utils/lvm2/Makefile
---- ../../../downloads/openwrt_trunk-r46338/feeds/packages/utils/lvm2/Makefile	2015-07-14 10:55:19.846308174 +0300
-+++ ../../../openwrt_trunk/feeds/packages/utils/lvm2/Makefile	2015-05-25 15:17:27.000000000 +0300
+diff -Nurx .svn ../../../downloads/openwrt_trunk-r46940/feeds/packages/utils/lvm2/Makefile ../../../openwrt_trunk/feeds/packages/utils/lvm2/Makefile
+--- ../../../downloads/openwrt_trunk-r46940/feeds/packages/utils/lvm2/Makefile	2015-09-15 12:24:40.798451662 +0300
++++ ../../../openwrt_trunk/feeds/packages/utils/lvm2/Makefile	2015-07-30 13:10:52.000000000 +0300
 @@ -9,13 +9,13 @@
  include $(TOPDIR)/rules.mk
  
  PKG_NAME:=LVM2
--PKG_VERSION:=2.02.125
+-PKG_VERSION:=2.02.130
 +PKG_VERSION:=2.02.118
  PKG_RELEASE:=1
  PKG_LICENSE:=GPL-2.0 LGPL-2.1
  
  PKG_SOURCE:=$(PKG_NAME).$(PKG_VERSION).tgz
  PKG_SOURCE_URL:=ftp://sources.redhat.com/pub/lvm2
--PKG_MD5SUM:=2d24ba982c8a85e8c837210f087a6a51
+-PKG_MD5SUM:=e7ae07e413120713549cc6dd2a558c75
 +PKG_MD5SUM:=27f028974e8f067a9791d685b4e0fa90
  PKG_MAINTAINER:=Daniel Golle <daniel@makrotopia.org>
  PKG_BUILD_DIR:=$(BUILD_DIR)/$(PKG_NAME).$(PKG_VERSION)
@@ -86,8 +86,8 @@ diff -Nur ../../../downloads/openwrt_trunk-r46338/feeds/packages/utils/lvm2/patc
 @@ -1,54 +0,0 @@
 ---- a/lib/commands/toolcontext.c
 -+++ b/lib/commands/toolcontext.c
--@@ -1690,8 +1690,10 @@ struct cmd_context *create_toolcontext(u
-- 				       unsigned threaded)
+-@@ -1728,8 +1728,10 @@ struct cmd_context *create_toolcontext(u
+- 				       unsigned set_filters)
 - {
 - 	struct cmd_context *cmd;
 -+#if defined(__GLIBC__) && !defined(VALGRIND_POOL)
@@ -97,7 +97,7 @@ diff -Nur ../../../downloads/openwrt_trunk-r46338/feeds/packages/utils/lvm2/patc
 - 
 - #ifdef M_MMAP_MAX
 - 	mallopt(M_MMAP_MAX, 0);
--@@ -1727,7 +1729,7 @@ struct cmd_context *create_toolcontext(u
+-@@ -1765,7 +1767,7 @@ struct cmd_context *create_toolcontext(u
 - 	/* FIXME Make this configurable? */
 - 	reset_lvm_errno(1);
 - 
@@ -106,7 +106,7 @@ diff -Nur ../../../downloads/openwrt_trunk-r46338/feeds/packages/utils/lvm2/patc
 - 	/* Set in/out stream buffering before glibc */
 - 	if (set_buffering) {
 - 		/* Allocate 2 buffers */
--@@ -2100,7 +2102,7 @@ void destroy_toolcontext(struct cmd_cont
+-@@ -2148,7 +2150,7 @@ void destroy_toolcontext(struct cmd_cont
 - 	if (cmd->libmem)
 - 		dm_pool_destroy(cmd->libmem);
 - 
@@ -117,7 +117,7 @@ diff -Nur ../../../downloads/openwrt_trunk-r46338/feeds/packages/utils/lvm2/patc
 - 		if (is_valid_fd(STDIN_FILENO) &&
 ---- a/tools/lvmcmdline.c
 -+++ b/tools/lvmcmdline.c
--@@ -1689,6 +1689,7 @@ int lvm_split(char *str, int *argc, char
+-@@ -1735,6 +1735,7 @@ int lvm_split(char *str, int *argc, char
 - /* Make sure we have always valid filedescriptors 0,1,2 */
 - static int _check_standard_fds(void)
 - {
@@ -125,7 +125,7 @@ diff -Nur ../../../downloads/openwrt_trunk-r46338/feeds/packages/utils/lvm2/patc
 - 	int err = is_valid_fd(STDERR_FILENO);
 - 
 - 	if (!is_valid_fd(STDIN_FILENO) &&
--@@ -1715,6 +1716,12 @@ static int _check_standard_fds(void)
+-@@ -1761,6 +1762,12 @@ static int _check_standard_fds(void)
 - 		       strerror(errno));
 - 		return 0;
 - 	}
@@ -138,8 +138,8 @@ diff -Nur ../../../downloads/openwrt_trunk-r46338/feeds/packages/utils/lvm2/patc
 - 
 - 	return 1;
 - }
-diff -Nur ../../../downloads/openwrt_trunk-r46338/feeds/packages/utils/lvm2/patches/003-no-mallinfo.patch ../../../openwrt_trunk/feeds/packages/utils/lvm2/patches/003-no-mallinfo.patch
---- ../../../downloads/openwrt_trunk-r46338/feeds/packages/utils/lvm2/patches/003-no-mallinfo.patch	2015-07-14 10:55:19.846308174 +0300
+diff -Nurx .svn ../../../downloads/openwrt_trunk-r46940/feeds/packages/utils/lvm2/patches/003-no-mallinfo.patch ../../../openwrt_trunk/feeds/packages/utils/lvm2/patches/003-no-mallinfo.patch
+--- ../../../downloads/openwrt_trunk-r46940/feeds/packages/utils/lvm2/patches/003-no-mallinfo.patch	2015-09-15 12:24:40.798451662 +0300
 +++ ../../../openwrt_trunk/feeds/packages/utils/lvm2/patches/003-no-mallinfo.patch	1970-01-01 03:00:00.000000000 +0300
 @@ -1,45 +0,0 @@
 ---- a/lib/mm/memlock.c

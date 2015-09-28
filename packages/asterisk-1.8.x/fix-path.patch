@@ -1,5 +1,5 @@
---- ../../../downloads/openwrt_trunk-r46338/feeds/telephony/net/asterisk-1.8.x/Makefile	2015-07-14 10:55:19.886308175 +0300
-+++ ../../../openwrt_trunk/feeds/telephony/net/asterisk-1.8.x/Makefile	2015-07-14 17:47:12.742719266 +0300
+--- ../../../downloads/openwrt_trunk-r46940/feeds/telephony/net/asterisk-1.8.x/Makefile	2015-09-15 12:24:40.666451660 +0300
++++ ../../../openwrt_trunk/feeds/telephony/net/asterisk-1.8.x/Makefile	2015-09-21 09:45:17.014920702 +0300
 @@ -25,28 +25,28 @@
  include $(INCLUDE_DIR)/package.mk
  
@@ -94,13 +94,13 @@
 +	rm -f $(1)/opt/lib/asterisk/sounds/conf-*
  endef
  
- #ifneq ($(SDK)$(CONFIG_PACKAGE_asterisk18-chan-gtalk),)
- #  CONFIGURE_ARGS+= \
--#	--with-iksemel="$(STAGING_DIR)/usr"
-+#	--with-iksemel="$(STAGING_DIR)/opt"
- #  SITE_VARS+= \
- #	ac_cv_lib_iksemel_iks_start_sasl=yes
- #else
+ ifneq ($(SDK)$(CONFIG_PACKAGE_asterisk18-chan-gtalk),)
+   CONFIGURE_ARGS+= \
+-	--with-iksemel="$(STAGING_DIR)/usr"
++	--with-iksemel="$(STAGING_DIR)/opt"
+   SITE_VARS+= \
+ 	ac_cv_lib_iksemel_iks_start_sasl=yes
+ else
 @@ -158,7 +157,7 @@
  
  ifneq ($(SDK)$(CONFIG_PACKAGE_asterisk18-curl),)
@@ -240,12 +240,12 @@
  $(eval $(call BuildAsterisk18Module,func-uri,URI encoding and decoding,Encodes and decodes URI-safe strings,,,,func_uri,))
  $(eval $(call BuildAsterisk18Module,func-vmcount,vmcount dialplan,a vmcount dialplan function,,,,func_vmcount,))
  $(eval $(call BuildAsterisk18Module,chan-agent,Agents proxy channel,An implementation of agents proxy channel,,,,chan_agent,))
--#$(eval $(call BuildAsterisk18Module,chan-gtalk,GTalk,An implementation of chan_gtalk and res_jabber for GTalk support,+libiksemel,/etc/asterisk/gtalk.conf /etc/asterisk/jabber.conf,gtalk.conf jabber.conf,chan_gtalk res_jabber,))
+-$(eval $(call BuildAsterisk18Module,chan-gtalk,GTalk,An implementation of chan_gtalk and res_jabber for GTalk support,+libiksemel,/etc/asterisk/gtalk.conf /etc/asterisk/jabber.conf,gtalk.conf jabber.conf,chan_gtalk res_jabber,))
 -$(eval $(call BuildAsterisk18Module,chan-iax2,IAX2 channel,An implementation of IAX2 channel,+asterisk18-res-timing-timerfd,/etc/asterisk/iax.conf /etc/asterisk/iaxprov.conf,iax.conf iaxprov.conf,chan_iax2,))
 -$(eval $(call BuildAsterisk18Module,chan-lantiq,Lantiq TAPI channel,An implementation of Lantiq TAPI channel,@TARGET_lantiq @!TARGET_lantiq_xrx200 +kmod-ltq-vmmc,/etc/asterisk/lantiq.conf,lantiq.conf,chan_lantiq,))
-+#$(eval $(call BuildAsterisk18Module,chan-gtalk,GTalk,An implementation of chan_gtalk and res_jabber for GTalk support,+libiksemel,/opt/etc/asterisk/gtalk.conf /opt/etc/asterisk/jabber.conf,gtalk.conf jabber.conf,chan_gtalk res_jabber,))
++$(eval $(call BuildAsterisk18Module,chan-gtalk,GTalk,An implementation of chan_gtalk and res_jabber for GTalk support,+libiksemel,/opt/etc/asterisk/gtalk.conf /opt/etc/asterisk/jabber.conf,gtalk.conf jabber.conf,chan_gtalk res_jabber,))
 +$(eval $(call BuildAsterisk18Module,chan-iax2,IAX2 channel,An implementation of IAX2 channel,+asterisk18-res-timing-timerfd,/opt/etc/asterisk/iax.conf /opt/etc/asterisk/iaxprov.conf,iax.conf iaxprov.conf,chan_iax2,))
-+$(eval $(call BuildAsterisk18Module,chan-lantiq,Lantiq TAPI channel,An implementation of Lantiq TAPI channel,@TARGET_lantiq @!TARGET_lantiq_xrx200 +kmod-ltq-vmmc,/opt/etc/asterisk/lantiq.conf,lantiq.conf,chan_lantiq,))
++$(eval $(call BuildAsterisk18Module,chan-lantiq,Lantiq TAPI channel,An implementation of Lantiq TAPI channel,@TARGET_lantiq @!TARGET_lantiq_xrx200,/opt/etc/asterisk/lantiq.conf,lantiq.conf,chan_lantiq,))
  $(eval $(call BuildAsterisk18Module,chan-local,Local proxy channel,An implementation of local proxy channel,,,,chan_local,))
 -$(eval $(call BuildAsterisk18Module,chan-mgcp,MGCP channel,the channel chan_mgcp,,/etc/asterisk/mgcp.conf,mgcp.conf,chan_mgcp,))
 -$(eval $(call BuildAsterisk18Module,chan-ooh323,ooH323 channel,the channel chan_ooh323,,/etc/asterisk/ooh323.conf,ooh323.conf,chan_ooh323,))

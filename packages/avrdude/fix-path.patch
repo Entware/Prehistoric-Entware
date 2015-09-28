@@ -9,7 +9,7 @@
  endef
  
  define Package/avrdude/description
-@@ -44,14 +44,14 @@
+@@ -45,14 +45,14 @@
  	-D_GNU_SOURCE \
  
  define Package/avrdude/conffiles

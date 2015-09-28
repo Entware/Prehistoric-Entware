@@ -1,6 +1,6 @@
-diff -urx .svn ../../../downloads/openwrt_trunk-r46338/feeds/packages/net/xl2tpd/files/options.xl2tpd ../../../openwrt_trunk/feeds/packages/net/xl2tpd/files/options.xl2tpd
---- ../../../downloads/openwrt_trunk-r46338/feeds/packages/net/xl2tpd/files/options.xl2tpd	2015-07-14 10:55:19.806308173 +0300
-+++ ../../../openwrt_trunk/feeds/packages/net/xl2tpd/files/options.xl2tpd	2015-07-14 10:55:55.122308761 +0300
+diff -urx .svn ../../../downloads/openwrt_trunk-r46940/feeds/packages/net/xl2tpd/files/options.xl2tpd ../../../openwrt_trunk/feeds/packages/net/xl2tpd/files/options.xl2tpd
+--- ../../../downloads/openwrt_trunk-r46940/feeds/packages/net/xl2tpd/files/options.xl2tpd	2015-09-15 12:24:40.782451662 +0300
++++ ../../../openwrt_trunk/feeds/packages/net/xl2tpd/files/options.xl2tpd	2015-09-15 12:28:27.250455431 +0300
 @@ -1,13 +1,12 @@
 -#
 -
@@ -25,9 +25,9 @@ diff -urx .svn ../../../downloads/openwrt_trunk-r46338/feeds/packages/net/xl2tpd
 -noaccomp
 +ip-up-script /opt/etc/ppp/ip-up.sh
 +ip-down-script /opt/etc/ppp/ip-down.sh
-diff -urx .svn ../../../downloads/openwrt_trunk-r46338/feeds/packages/net/xl2tpd/files/xl2tpd.conf ../../../openwrt_trunk/feeds/packages/net/xl2tpd/files/xl2tpd.conf
---- ../../../downloads/openwrt_trunk-r46338/feeds/packages/net/xl2tpd/files/xl2tpd.conf	2015-07-14 10:55:19.806308173 +0300
-+++ ../../../openwrt_trunk/feeds/packages/net/xl2tpd/files/xl2tpd.conf	2015-07-14 10:55:55.122308761 +0300
+diff -urx .svn ../../../downloads/openwrt_trunk-r46940/feeds/packages/net/xl2tpd/files/xl2tpd.conf ../../../openwrt_trunk/feeds/packages/net/xl2tpd/files/xl2tpd.conf
+--- ../../../downloads/openwrt_trunk-r46940/feeds/packages/net/xl2tpd/files/xl2tpd.conf	2015-09-15 12:24:40.782451662 +0300
++++ ../../../openwrt_trunk/feeds/packages/net/xl2tpd/files/xl2tpd.conf	2015-09-15 12:28:27.250455431 +0300
 @@ -1,23 +1,20 @@
  [global]
  port = 1701
@@ -69,9 +69,9 @@ diff -urx .svn ../../../downloads/openwrt_trunk-r46338/feeds/packages/net/xl2tpd
 +ppp debug = no
 +pppoptfile = /opt/etc/ppp/options.xl2tpd
 +flow bit = yes
-diff -urx .svn ../../../downloads/openwrt_trunk-r46338/feeds/packages/net/xl2tpd/Makefile ../../../openwrt_trunk/feeds/packages/net/xl2tpd/Makefile
---- ../../../downloads/openwrt_trunk-r46338/feeds/packages/net/xl2tpd/Makefile	2015-07-14 10:55:19.806308173 +0300
-+++ ../../../openwrt_trunk/feeds/packages/net/xl2tpd/Makefile	2015-07-14 17:19:52.690692609 +0300
+diff -urx .svn ../../../downloads/openwrt_trunk-r46940/feeds/packages/net/xl2tpd/Makefile ../../../openwrt_trunk/feeds/packages/net/xl2tpd/Makefile
+--- ../../../downloads/openwrt_trunk-r46940/feeds/packages/net/xl2tpd/Makefile	2015-09-15 12:24:40.782451662 +0300
++++ ../../../openwrt_trunk/feeds/packages/net/xl2tpd/Makefile	2015-09-15 12:28:27.250455431 +0300
 @@ -30,7 +30,7 @@
    TITLE:=An L2TP (Layer 2 Tunneling Protocol) daemon
    URL:=http://www.xelerance.com/software/xl2tpd/
@@ -81,8 +81,8 @@ diff -urx .svn ../../../downloads/openwrt_trunk-r46338/feeds/packages/net/xl2tpd
  endef
  
  define Package/xl2tpd/description
-@@ -44,28 +44,32 @@
- 	OFLAGS=""
+@@ -63,28 +63,32 @@
+ endif
  
  define Package/xl2tpd/conffiles
 -/etc/xl2tpd/xl2tpd.conf

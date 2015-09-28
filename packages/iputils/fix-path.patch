@@ -1,15 +1,31 @@
---- ../../../downloads/openwrt_trunk-r45513/package/network/utils/iputils/Makefile	2015-04-20 10:09:30.510135332 +0300
-+++ ../../../openwrt_trunk/package/network/utils/iputils/Makefile	2015-04-20 12:48:28.709961346 +0300
+--- ../../../downloads/openwrt_trunk-r47008/package/network/utils/iputils/Makefile	2015-09-21 12:01:28.559056709 +0300
++++ ../../../openwrt_trunk/package/network/utils/iputils/Makefile	2015-09-21 13:51:16.519166358 +0300
 @@ -68,7 +68,7 @@
  define Package/iputils-ping6
  $(call Package/iputils/Default)
    TITLE:=iputils - ping6
 -  DEPENDS+= @IPV6 +USE_GLIBC:libopenssl
-+  DEPENDS+= @IPV6 +libopenssl
++  DEPENDS+= +libopenssl
  endef
  
  define Package/iputils-ping6/description
-@@ -132,43 +132,43 @@
+@@ -102,7 +102,6 @@
+ define Package/iputils-tracepath6
+ $(call Package/iputils/Default)
+   TITLE:=iputils - tracepath6
+-  DEPENDS+= @IPV6
+ endef
+ 
+ define Package/iputils-tracepath6/description
+@@ -114,7 +113,6 @@
+ define Package/iputils-traceroute6
+ $(call Package/iputils/Default)
+   TITLE:=iputils - traceroute6
+-  DEPENDS+= @IPV6
+ endef
+ 
+ define Package/iputils-traceroute6/description
+@@ -132,43 +130,43 @@
  	CONFIG_USE_UCLIBC="$(CONFIG_USE_UCLIBC)$(CONFIG_USE_MUSL)" \
  
  define Package/iputils-arping/install

@@ -1,0 +1,8 @@
+--- a/src/crywrap/Makefile.am
++++ b/src/crywrap/Makefile.am
+@@ -29,4 +29,4 @@
+ 
+ crywrap_SOURCES = crywrap.c primes.h crywrap.h
+ crywrap_LDADD = ../../lib/libgnutls.la $(LIBIDN_LIBS) #../../gl/libgnu.la 
+-crywrap_LDADD += $(LIB_CLOCK_GETTIME)
++crywrap_LDADD += $(LIB_CLOCK_GETTIME) -largp

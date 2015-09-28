@@ -1,6 +1,6 @@
-diff -urx .svn ../../../downloads/openwrt_trunk-r46338/feeds/packages/utils/smstools3/files/smstools3.conf ../../../openwrt_trunk/feeds/packages/utils/smstools3/files/smstools3.conf
---- ../../../downloads/openwrt_trunk-r46338/feeds/packages/utils/smstools3/files/smstools3.conf	2015-07-14 10:55:19.834308174 +0300
-+++ ../../../openwrt_trunk/feeds/packages/utils/smstools3/files/smstools3.conf	2015-07-14 10:55:53.322308731 +0300
+diff -urx .svn ../../../downloads/openwrt_trunk-r47008/feeds/packages/utils/smstools3/files/smstools3.conf ../../../openwrt_trunk/feeds/packages/utils/smstools3/files/smstools3.conf
+--- ../../../downloads/openwrt_trunk-r47008/feeds/packages/utils/smstools3/files/smstools3.conf	2015-09-22 16:07:32.454303690 +0300
++++ ../../../openwrt_trunk/feeds/packages/utils/smstools3/files/smstools3.conf	2015-09-22 16:07:40.130303817 +0300
 @@ -3,11 +3,11 @@
  #
  
@@ -18,9 +18,9 @@ diff -urx .svn ../../../downloads/openwrt_trunk-r46338/feeds/packages/utils/smst
  receive_before_send = no
  autosplit = 3
  
-diff -urx .svn ../../../downloads/openwrt_trunk-r46338/feeds/packages/utils/smstools3/Makefile ../../../openwrt_trunk/feeds/packages/utils/smstools3/Makefile
---- ../../../downloads/openwrt_trunk-r46338/feeds/packages/utils/smstools3/Makefile	2015-07-14 10:55:19.834308174 +0300
-+++ ../../../openwrt_trunk/feeds/packages/utils/smstools3/Makefile	2015-07-14 16:46:00.022659506 +0300
+diff -urx .svn ../../../downloads/openwrt_trunk-r47008/feeds/packages/utils/smstools3/Makefile ../../../openwrt_trunk/feeds/packages/utils/smstools3/Makefile
+--- ../../../downloads/openwrt_trunk-r47008/feeds/packages/utils/smstools3/Makefile	2015-09-22 16:07:32.454303690 +0300
++++ ../../../openwrt_trunk/feeds/packages/utils/smstools3/Makefile	2015-09-23 10:38:03.487412693 +0300
 @@ -47,14 +47,12 @@
  
  TARGET_LDFLAGS += -liconv
@@ -35,7 +35,7 @@ diff -urx .svn ../../../downloads/openwrt_trunk-r46338/feeds/packages/utils/smst
 -		USER_CFLAGS='$(TARGET_CFLAGS) $(EXTRA_CFLAGS) $(TARGET_CPPFLAGS) $(EXTRA_CPPFLAGS) \
 -		-I"$(STAGING_DIR)/usr/lib/libiconv-full/include"' \
 -		USER_LDFLAGS='$(TARGET_LFLAGS) $(EXTRA_LDFLAGS) -L"$(STAGING_DIR)/usr/lib/libiconv-full/lib"' \
-+		USER_LDFLAGS='$(TARGET_LFLAGS) $(EXTRA_LDFLAGS) -L"$(STAGING_DIR)/opt/lib/libiconv-full/lib"' \
++		LFLAGS='$(TARGET_LDFLAGS) $(EXTRA_LDFLAGS) -L"$(STAGING_DIR)/opt/lib/libiconv-full/lib"' \
  		all
  endef
  

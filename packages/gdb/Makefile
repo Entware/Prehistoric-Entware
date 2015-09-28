@@ -9,8 +9,8 @@ all: .done
 
 .done:
 	patch -d $(TOP) -p3 -i $(CURDIR)/fix-path.patch
-	mkdir -p ../../../openwrt_trunk/feeds/packages/utils/nano/patches/
-	cp -f ./010-nanorc.patch ../../../openwrt_trunk/feeds/packages/utils/nano/patches/
+	mkdir -p ../../../openwrt_trunk/package/devel/gdb//patches
+	cp -f ./200-namespace.patch ../../../openwrt_trunk/package/devel/gdb/patches/
 	@touch $@
 
 clean:

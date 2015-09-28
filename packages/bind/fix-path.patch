@@ -1,6 +1,6 @@
---- ../../../downloads/openwrt_trunk-r43708/feeds/packages/net/bind/Makefile	2014-12-15 12:19:58.028388958 +0300
-+++ ../../../openwrt_trunk/feeds/packages/net/bind/Makefile	2014-12-15 12:20:05.552388822 +0300
-@@ -41,7 +41,7 @@
+--- ../../../downloads/openwrt_trunk-r46940/feeds/packages/net/bind/Makefile	2015-09-15 12:24:40.746451661 +0300
++++ ../../../openwrt_trunk/feeds/packages/net/bind/Makefile	2015-09-15 12:24:42.886451697 +0300
+@@ -43,7 +43,7 @@
  define Package/bind-libs
    SECTION:=libs
    CATEGORY:=Libraries
@@ -9,7 +9,7 @@
    TITLE:=bind shared libraries
    URL:=https://www.isc.org/software/bind
  endef
-@@ -86,6 +86,11 @@
+@@ -88,6 +88,11 @@
    TITLE+= DNS excavation tool
  endef
  
@@ -21,7 +21,7 @@
  export BUILD_CC="$(TARGET_CC)"
  
  CONFIGURE_ARGS += \
-@@ -94,9 +99,9 @@
+@@ -96,9 +101,9 @@
  	--with-randomdev="/dev/urandom" \
  	--disable-threads \
  	--disable-linux-caps \
@@ -33,7 +33,7 @@
  	--enable-epoll=yes \
  	--with-gost=no \
  	--with-gssapi=no \
-@@ -117,80 +122,85 @@
+@@ -119,80 +124,85 @@
  endef
  
  define Package/bind-libs/install

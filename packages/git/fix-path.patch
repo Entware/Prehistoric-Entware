@@ -1,15 +1,6 @@
---- ../../../downloads/openwrt_trunk-q46338/feeds/packages/net/git/Makefile	2015-08-15 17:43:10.456401758 +0300
-+++ ../../../openwrt_trunk/feeds/packages/net/git/Makefile	2015-09-19 15:39:11.388933381 +0300
-@@ -9,7 +9,7 @@
- 
- PKG_NAME:=git
- PKG_VERSION:=2.4.2
--PKG_RELEASE:=1
-+PKG_RELEASE:=1a
- 
- PKG_SOURCE:=$(PKG_NAME)-$(PKG_VERSION).tar.xz
- PKG_SOURCE_URL:=@KERNEL/software/scm/git/
-@@ -83,31 +83,32 @@
+--- ../../../downloads/openwrt_trunk-q47008/feeds/packages/net/git/Makefile	2015-09-24 20:31:27.534958283 +0300
++++ ../../../openwrt_trunk/feeds/packages/net/git/Makefile	2015-09-26 13:31:19.917566840 +0300
+@@ -82,32 +82,32 @@
  endef
  
  define Package/git/install
@@ -18,6 +9,7 @@
 -	$(RM) $(PKG_INSTALL_DIR)/usr/bin/git-cvsserver
 -	$(CP) $(PKG_INSTALL_DIR)/usr/bin/git-* $(1)/usr/bin
 -	$(INSTALL_DIR) $(1)/usr/lib/git-core
+-	$(LN) /usr/bin/git $(1)/usr/lib/git-core/git
 -	( cd $(PKG_INSTALL_DIR); $(TAR) \
 -		--exclude=usr/lib/git-core/git-http-backend \
 -		--exclude=usr/lib/git-core/git-http-fetch \
@@ -30,6 +22,7 @@
 +	$(RM) $(PKG_INSTALL_DIR)/Apps/opt/bin/git-cvsserver
 +	$(CP) $(PKG_INSTALL_DIR)/Apps/opt/bin/git-* $(1)/opt/bin
 +	$(INSTALL_DIR) $(1)/opt/lib/git-core
++	$(LN) /Apps/opt/bin/git $(1)/opt/lib/git-core/git
 +	( cd $(PKG_INSTALL_DIR)/Apps; $(TAR) \
 +		--exclude=opt/lib/git-core/git-http-backend \
 +		--exclude=opt/lib/git-core/git-http-fetch \
@@ -41,7 +34,6 @@
 -		usr/lib/git-core \
 +		opt/lib/git-core \
  	) | ( cd $(1); $(TAR) -xf - )
-+	ln -s /Apps/opt/bin/git $(1)/opt/lib/git-core/git
  endef
  
  define Package/git-http/install

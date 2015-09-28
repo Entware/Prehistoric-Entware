@@ -1,6 +1,6 @@
---- ../../../downloads/openwrt_trunk-q46338/feeds/packages/lang/php5/Makefile	2015-07-21 13:57:42.000000000 +0300
-+++ ../../../openwrt_trunk/feeds/packages/lang/php5/Makefile	2015-07-23 16:57:56.875116633 +0300
-@@ -149,13 +149,13 @@
+--- ../../../downloads/openwrt_trunk-q47008/feeds/packages/lang/php5/Makefile	2015-09-24 20:31:27.218958283 +0300
++++ ../../../openwrt_trunk/feeds/packages/lang/php5/Makefile	2015-09-26 14:59:43.776063896 +0300
+@@ -148,13 +148,13 @@
  	--disable-debug \
  	--without-pear \
  	\
@@ -19,7 +19,7 @@
  	--disable-phar
  
  ifneq ($(SDK)$(CONFIG_PACKAGE_php5-mod-calendar),)
-@@ -171,7 +171,7 @@
+@@ -170,7 +170,7 @@
  endif
  
  ifneq ($(SDK)$(CONFIG_PACKAGE_php5-mod-curl),)
@@ -28,7 +28,7 @@
  else
    CONFIGURE_ARGS+= --without-curl
  endif
-@@ -183,7 +183,7 @@
+@@ -182,7 +182,7 @@
  endif
  
  ifneq ($(SDK)$(CONFIG_PACKAGE_php5-mod-gettext),)
@@ -37,7 +37,7 @@
  else
    CONFIGURE_ARGS+= --without-gettext
  endif
-@@ -209,9 +209,9 @@
+@@ -208,9 +208,9 @@
  ifneq ($(SDK)$(CONFIG_PACKAGE_php5-mod-gd),)
    CONFIGURE_ARGS+= \
  	--with-gd=shared \
@@ -50,7 +50,7 @@
  	--without-xpm-dir \
  	--without-t1lib \
  	--enable-gd-native-ttf \
-@@ -221,7 +221,7 @@
+@@ -220,7 +220,7 @@
  endif
  
  ifneq ($(SDK)$(CONFIG_PACKAGE_php5-mod-gmp),)
@@ -59,7 +59,7 @@
  else
    CONFIGURE_ARGS+= --without-gmp
  endif
-@@ -246,8 +246,8 @@
+@@ -245,8 +245,8 @@
  
  ifneq ($(SDK)$(CONFIG_PACKAGE_php5-mod-ldap),)
    CONFIGURE_ARGS+= \
@@ -70,7 +70,7 @@
  else
    CONFIGURE_ARGS+= --without-ldap
  endif
-@@ -259,19 +259,19 @@
+@@ -258,19 +258,19 @@
  endif
  
  ifneq ($(SDK)$(CONFIG_PACKAGE_php5-mod-mcrypt),)
@@ -93,7 +93,7 @@
  else
    CONFIGURE_ARGS+= --without-mysqli
  endif
-@@ -284,9 +284,9 @@
+@@ -283,9 +283,9 @@
  
  ifneq ($(SDK)$(CONFIG_PACKAGE_php5-mod-openssl),)
    CONFIGURE_ARGS+= \
@@ -105,7 +105,7 @@
  else
    CONFIGURE_ARGS+= --without-openssl
  endif
-@@ -300,17 +300,17 @@
+@@ -299,17 +299,17 @@
  ifneq ($(SDK)$(CONFIG_PACKAGE_php5-mod-pdo),)
    CONFIGURE_ARGS+= --enable-pdo=shared
    ifneq ($(SDK)$(CONFIG_PACKAGE_php5-mod-pdo-mysql),)
@@ -126,7 +126,7 @@
    else
      CONFIGURE_ARGS+= --without-pdo-sqlite
    endif
-@@ -319,7 +319,7 @@
+@@ -318,7 +318,7 @@
  endif
  
  ifneq ($(SDK)$(CONFIG_PACKAGE_php5-mod-pgsql),)
@@ -135,7 +135,7 @@
  else
    CONFIGURE_ARGS+= --without-pgsql
  endif
-@@ -355,7 +355,7 @@
+@@ -354,7 +354,7 @@
  endif
  
  ifneq ($(SDK)$(CONFIG_PACKAGE_php5-mod-sqlite3),)
@@ -144,7 +144,7 @@
  else
    CONFIGURE_ARGS+= --without-sqlite3
  endif
-@@ -385,24 +385,24 @@
+@@ -384,24 +384,24 @@
  endif
  
  ifneq ($(SDK)$(CONFIG_PACKAGE_php5-mod-xml),)
@@ -174,7 +174,7 @@
  else
    CONFIGURE_ARGS+= --disable-xmlwriter
  endif
-@@ -421,7 +421,7 @@
+@@ -420,7 +420,7 @@
  
  ifneq ($(SDK)$(CONFIG_PHP5_LIBXML),)
    CONFIGURE_ARGS+= --enable-libxml
@@ -183,7 +183,7 @@
  else
    CONFIGURE_ARGS+= --disable-libxml
  endif
-@@ -439,48 +439,38 @@
+@@ -438,48 +438,42 @@
  	ac_cv_php_xml2_config_path="$(STAGING_DIR)/host/bin/xml2-config" \
  
  define Package/php5/conffiles
@@ -220,7 +220,8 @@
 -
 -	$(INSTALL_DIR) $(1)/etc/init.d
 -	$(INSTALL_BIN) ./files/php5-fastcgi.init $(1)/etc/init.d/php5-fastcgi
-+	true
++	$(INSTALL_DIR) $(1)/opt/etc/config
++	$(INSTALL_DATA) ./files/php5-fastcgi.config $(1)/opt/etc/config/php5-fastcgi
  endef
  
  define Package/php5-fpm/install
@@ -229,16 +230,18 @@
 -
 -	$(INSTALL_DIR) $(1)/etc
 -	$(INSTALL_DATA) ./files/php5-fpm.conf $(1)/etc/php5-fpm.conf
--
--	$(INSTALL_DIR) $(1)/etc/config
--	$(INSTALL_DATA) ./files/php5-fpm.config $(1)/etc/config/php5-fpm
 +	$(INSTALL_DIR) $(1)/opt/bin
 +	$(INSTALL_BIN) $(PKG_BUILD_DIR)/sapi/fpm/php-fpm $(1)/opt/bin/php-fpm
  
--	$(INSTALL_DIR) $(1)/etc/php5-fpm.d
--	$(INSTALL_DATA) ./files/php5-fpm-www.conf $(1)/etc/php5-fpm.d/www.conf
+-	$(INSTALL_DIR) $(1)/etc/config
+-	$(INSTALL_DATA) ./files/php5-fpm.config $(1)/etc/config/php5-fpm
 +	$(INSTALL_DIR) $(1)/opt/etc
 +	$(INSTALL_DATA) ./files/php5-fpm.conf $(1)/opt/etc/php5-fpm.conf
+ 
+-	$(INSTALL_DIR) $(1)/etc/php5-fpm.d
+-	$(INSTALL_DATA) ./files/php5-fpm-www.conf $(1)/etc/php5-fpm.d/www.conf
++	$(INSTALL_DIR) $(1)/opt/etc/config
++	$(INSTALL_DATA) ./files/php5-fpm.config $(1)/opt/etc/config/php5-fpm
  
 -	$(INSTALL_DIR) $(1)/etc/init.d
 -	$(INSTALL_BIN) ./files/php5-fpm.init $(1)/etc/init.d/php5-fpm
@@ -247,7 +250,7 @@
  endef
  
  define Build/Prepare
-@@ -489,13 +479,13 @@
+@@ -488,13 +482,13 @@
  endef
  
  define Build/InstallDev
@@ -267,7 +270,7 @@
  endef
  
  define BuildModule
-@@ -511,13 +501,13 @@
+@@ -510,13 +504,13 @@
    endef
  
    define Package/php5-mod-$(1)/install
@@ -286,7 +289,7 @@
      endif
    endef
  
-@@ -539,7 +529,7 @@
+@@ -538,7 +532,7 @@
  $(eval $(call BuildModule,exif,EXIF))
  $(eval $(call BuildModule,fileinfo,Fileinfo))
  $(eval $(call BuildModule,ftp,FTP,+PACKAGE_php5-mod-ftp:libopenssl))

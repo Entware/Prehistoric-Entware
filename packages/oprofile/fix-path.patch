@@ -1,5 +1,5 @@
---- ../../../downloads/openwrt_trunk-r46338/package/devel/oprofile/Makefile	2015-07-14 10:55:19.986308176 +0300
-+++ ../../../openwrt_trunk/package/devel/oprofile/Makefile	2015-07-14 10:55:50.198308679 +0300
+--- ../../../downloads/openwrt_trunk-q47008/package/devel/oprofile/Makefile	2015-09-24 20:31:28.062958283 +0300
++++ ../../../openwrt_trunk/package/devel/oprofile/Makefile	2015-09-27 17:13:24.370449431 +0300
 @@ -32,7 +32,7 @@
    CATEGORY:=Development
    TITLE:=OProfile System Profiler
@@ -9,7 +9,13 @@
  endef
  
  define Package/oprofile/description
-@@ -55,38 +55,38 @@
+@@ -50,44 +50,43 @@
+ define Build/Configure
+ 	$(call Build/Configure/Default, \
+ 		--with-kernel-support \
+-		--with-kernel=$(LINUX_DIR)/user_headers \
+ 		--without-x \
+ 	)
  endef
  
  TARGET_CXXFLAGS += -fpermissive

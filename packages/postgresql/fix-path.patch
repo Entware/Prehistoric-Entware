@@ -1,8 +1,39 @@
---- ../../../downloads/openwrt_trunk-r43718/feeds/packages/libs/postgresql/Makefile	2014-11-07 23:35:24.520159187 +0300
-+++ ../../../openwrt_trunk/feeds/packages/libs/postgresql/Makefile	2014-11-27 16:26:34.528998692 +0300
-@@ -68,18 +68,18 @@
- define Build/Configure
+diff -urx .svn ../../../downloads/openwrt_trunk-q47008/feeds/packages/libs/postgresql/files/postgresql.config ../../../openwrt_trunk/feeds/packages/libs/postgresql/files/postgresql.config
+--- ../../../downloads/openwrt_trunk-q47008/feeds/packages/libs/postgresql/files/postgresql.config	2015-09-24 20:31:27.402958283 +0300
++++ ../../../openwrt_trunk/feeds/packages/libs/postgresql/files/postgresql.config	2015-09-26 13:57:40.900063896 +0300
+@@ -1,5 +1,5 @@
+ config postgresql config
+ 	option PGUSER	postgres
+-	option PGDATA	/var/postgresql/data
+-	option PGLOG	/var/postgresql/data/postgresql.log
+-	option PG_CTL	/usr/bin/pg_ctl
++	option PGDATA	/Apps/opt/var/postgresql/data
++	option PGLOG	/Apps/opt/var/postgresql/data/postgresql.log
++	option PG_CTL	/Apps/opt/bin/pg_ctl
+diff -urx .svn ../../../downloads/openwrt_trunk-q47008/feeds/packages/libs/postgresql/Makefile ../../../openwrt_trunk/feeds/packages/libs/postgresql/Makefile
+--- ../../../downloads/openwrt_trunk-q47008/feeds/packages/libs/postgresql/Makefile	2015-09-24 20:31:27.402958283 +0300
++++ ../../../openwrt_trunk/feeds/packages/libs/postgresql/Makefile	2015-09-27 19:24:50.178449431 +0300
+@@ -42,7 +42,7 @@
+ define Package/pgsql-cli
+   SECTION:=utils
+   CATEGORY:=Utilities
+-  DEPENDS:=+libpq @USE_UCLIBC:+librt
++  DEPENDS:=+libpq +librt
+   TITLE:=Command Line Interface (CLI) to PostgreSQL databases
+   URL:=http://www.postgresql.org/
+   SUBMENU:=database
+@@ -55,7 +55,7 @@
+ define Package/pgsql-server
+   SECTION:=utils
+   CATEGORY:=Utilities
+-  DEPENDS:=+libpq @USE_UCLIBC:+librt
++  DEPENDS:=+libpq +librt
+   TITLE:=PostgreSQL databases Server
+   URL:=http://www.postgresql.org/
+   SUBMENU:=database
+@@ -86,18 +86,18 @@
  	(cd $(PKG_BUILD_DIR); rm -f config.cache; \
+ 		$(PGSQL_CONFIG_VARS) \
  		./configure \
 -			--prefix=/usr \
 -			--exec-prefix=/usr \
@@ -31,8 +62,8 @@
  			$(DISABLE_NLS) \
  			--enable-shared \
  			--enable-static \
-@@ -98,7 +98,7 @@
- 			--without-tk \
+@@ -114,7 +114,7 @@
+ 			--without-tcl \
  			--with-zlib="yes" \
  			--enable-depend \
 -			--with-system-timezone=/tmp \
@@ -40,7 +71,7 @@
  	);
  	$(MAKE) -C $(PKG_BUILD_DIR)/src/interfaces/ecpg/preproc CC="$(HOSTCC)" CFLAGS+="-I../../libpq"
  	mv $(PKG_BUILD_DIR)/src/interfaces/ecpg/preproc/ecpg \
-@@ -123,18 +123,18 @@
+@@ -139,18 +139,18 @@
  			--build=$(GNU_HOST_NAME) \
  			--program-prefix="" \
  			--program-suffix="" \
@@ -71,7 +102,7 @@
  			$(DISABLE_NLS) \
  			$(DISABLE_LARGEFILE) \
  			--enable-shared \
-@@ -173,80 +173,74 @@
+@@ -187,55 +187,53 @@
  endef
  
  define Package/libpq/install
@@ -93,7 +124,10 @@
 -	$(INSTALL_DIR) $(1)/usr/share/postgresql
 -	$(INSTALL_DIR) $(1)/usr/lib
 -	$(INSTALL_DIR) $(1)/etc/init.d
--	$(INSTALL_DIR) $(1)/etc/config
++	$(INSTALL_DIR) $(1)/opt/bin
++	$(INSTALL_DIR) $(1)/opt/share/postgresql
++	$(INSTALL_DIR) $(1)/opt/lib
+ 	$(INSTALL_DIR) $(1)/etc/config
 -	$(INSTALL_BIN) $(PKG_INSTALL_DIR)/usr/bin/* $(1)/usr/bin
 -	ln -sf postgres $(1)/usr/bin/postmaster
 -
@@ -101,16 +135,13 @@
 -
 -	$(CP) -r $(PKG_INSTALL_DIR)/usr/share/postgresql/* \
 -		$(1)/usr/share/postgresql
--
--	$(INSTALL_DATA) ./files/postgresql.config $(1)/etc/config/postgresql
--
-+	$(INSTALL_DIR) $(1)/opt/bin
-+	$(INSTALL_DIR) $(1)/opt/share/postgresql
-+	$(INSTALL_DIR) $(1)/opt/lib
 +	$(INSTALL_BIN) $(PKG_INSTALL_DIR)/Apps/opt/bin/* $(1)/opt/bin
 +	ln -sf postgres $(1)/opt/bin/postmaster
 +	$(CP) -r $(PKG_INSTALL_DIR)/Apps/opt/share/postgresql/* \
 +		$(1)/opt/share/postgresql
+ 
+ 	$(INSTALL_DATA) ./files/postgresql.config $(1)/etc/config/postgresql
+ 
  	$(CP) -r \
 -		$(PKG_INSTALL_DIR)/usr/lib/postgresql \
 -		$(1)/usr/lib
@@ -125,56 +156,6 @@
 +/opt/etc/config/postgresql
  endef
  
--define Package/pgsql-server/postinst
-+#define Package/pgsql-server/postinst
- #!/bin/sh
--grep -q '^postgres:' /etc/passwd && exit 0
--group=$$(grep '^postgres:' /etc/group | cut -f3 -d:)
--if [ -z "$${group}" ] ; then
--	group=1000
--	tst=$$(cat /etc/group | grep ":$${group}:")
--	while [ -n "$${tst}" ] ; do
--		group=$$(($${group}+1))
--		tst=$$(cat /etc/group | grep ":$${group}:")
--	done
--	echo "postgres:x:$${group}:" >>/etc/group
--fi
--
--user=$$(cat /etc/passwd | grep "^postgres:")
--if [ -z "$${user}" ] ; then
--	num="$${group}"
--	tst=$$(cat /etc/passwd | grep ":.*:$${num}:")
--	while [ -n "$${tst}" ] ; do
--		num=$$(($${num}+1))
--		tst=$$(cat /etc/passwd | grep ":.*:$${num}:")
--	done
--	echo "postgres:*:$${num}:$${group}:PostgreSQL administrator:/tmp:/bin/ash" >>/etc/passwd
--fi
--endef
-+#grep -q '^postgres:' /etc/passwd && exit 0
-+#group=$$(grep '^postgres:' /etc/group | cut -f3 -d:)
-+#if [ -z "$${group}" ] ; then
-+#	group=1000
-+#	tst=$$(cat /etc/group | grep ":$${group}:")
-+#	while [ -n "$${tst}" ] ; do
-+#		group=$$(($${group}+1))
-+#		tst=$$(cat /etc/group | grep ":$${group}:")
-+#	done
-+#	echo "postgres:x:$${group}:" >>/etc/group
-+#fi
-+
-+#user=$$(cat /etc/passwd | grep "^postgres:")
-+#if [ -z "$${user}" ] ; then
-+#	num="$${group}"
-+#	tst=$$(cat /etc/passwd | grep ":.*:$${num}:")
-+#	while [ -n "$${tst}" ] ; do
-+#		num=$$(($${num}+1))
-+#		tst=$$(cat /etc/passwd | grep ":.*:$${num}:")
-+#	done
-+#	echo "postgres:*:$${num}:$${group}:PostgreSQL administrator:/tmp:/bin/ash" >>/etc/passwd
-+#fi
-+#endef
- 
  define Build/InstallDev
 -	$(INSTALL_DIR) $(1)/usr/bin
 -	$(INSTALL_BIN) $(PKG_BUILD_DIR)/src/bin/pg_config/pg_config.host $(1)/usr/bin/pg_config
@@ -184,6 +165,7 @@
 -	$(CP) $(PKG_INSTALL_DIR)/usr/include/pg_config.h $(1)/usr/include/
 -	$(CP) $(PKG_INSTALL_DIR)/usr/include/pg_config_manual.h $(1)/usr/include/
 -	$(CP) $(PKG_INSTALL_DIR)/usr/include/postgres_ext.h $(1)/usr/include/
+-	$(CP) $(PKG_INSTALL_DIR)/usr/include/pg_config_ext.h $(1)/usr/include/
 -	$(CP) $(PKG_INSTALL_DIR)/usr/include/postgresql $(1)/usr/include/
 -	$(INSTALL_DIR) $(1)/usr/lib
 -	$(CP) $(PKG_INSTALL_DIR)/usr/lib/libpq.{a,so*} $(1)/usr/lib/
@@ -197,6 +179,7 @@
 +	$(CP) $(PKG_INSTALL_DIR)/Apps/opt/include/pg_config.h $(1)/opt/include/
 +	$(CP) $(PKG_INSTALL_DIR)/Apps/opt/include/pg_config_manual.h $(1)/opt/include/
 +	$(CP) $(PKG_INSTALL_DIR)/Apps/opt/include/postgres_ext.h $(1)/opt/include/
++	$(CP) $(PKG_INSTALL_DIR)/Apps/opt/include/pg_config_ext.h $(1)/opt/include/
 +	$(CP) $(PKG_INSTALL_DIR)/Apps/opt/include/postgresql $(1)/opt/include/
 +	$(INSTALL_DIR) $(1)/opt/lib
 +	$(CP) $(PKG_INSTALL_DIR)/Apps/opt/lib/libpq.{a,so*} $(1)/opt/lib/

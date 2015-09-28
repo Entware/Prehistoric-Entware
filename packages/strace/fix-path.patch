@@ -1,5 +1,5 @@
---- ../../../downloads/openwrt_trunk-r43718/package/devel/strace/Makefile
-+++ ../../../openwrt_trunk/package/devel/strace/Makefile
+--- ../../../downloads/openwrt_trunk-r46940/package/devel/strace/Makefile	2015-09-15 12:24:40.930451664 +0300
++++ ../../../openwrt_trunk/package/devel/strace/Makefile	2015-09-21 11:25:51.699021143 +0300
 @@ -6,7 +6,6 @@
  #
  
@@ -8,7 +8,16 @@
  
  PKG_NAME:=strace
  
-@@ -39,12 +38,15 @@
+@@ -27,7 +26,7 @@
+ 
+ include $(INCLUDE_DIR)/package.mk
+ 
+-HOST_CFLAGS += -I$(LINUX_DIR)/user_headers/include
++HOST_CFLAGS += -I$(LINUX_DIR)/include
+ 
+ CONFIGURE_VARS+= \
+ 	LDFLAGS_FOR_BUILD="$(HOST_LDFLAGS)" \
+@@ -47,12 +46,15 @@
  system calls a program makes while it is running.
  endef
  

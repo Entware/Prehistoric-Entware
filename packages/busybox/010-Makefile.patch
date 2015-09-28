@@ -1,16 +1,6 @@
---- ../../../downloads/openwrt_trunk-r45513/package/utils/busybox/Makefile	2015-04-23 10:21:56.457457439 +0300
-+++ ../../../openwrt_trunk/package/utils/busybox/Makefile	2015-05-19 15:49:40.011814068 +0300
-@@ -9,8 +9,7 @@
- 
- PKG_NAME:=busybox
- PKG_VERSION:=1.23.2
--PKG_RELEASE:=1
--PKG_FLAGS:=essential
-+PKG_RELEASE:=1a
- 
- PKG_SOURCE:=$(PKG_NAME)-$(PKG_VERSION).tar.bz2
- PKG_SOURCE_URL:=http://www.busybox.net/downloads \
-@@ -71,13 +70,13 @@
+--- ../../../downloads/openwrt_trunk-r46940/package/utils/busybox/Makefile	2015-09-15 12:24:40.850451663 +0300
++++ ../../../openwrt_trunk/package/utils/busybox/Makefile	2015-09-21 09:53:53.534929299 +0300
+@@ -71,13 +71,13 @@
  
  LDLIBS:=m crypt
  ifdef CONFIG_BUSYBOX_USE_LIBRPC
@@ -26,7 +16,7 @@
    export LDFLAGS=$(TARGET_LDFLAGS)
    LDLIBS += pam pam_misc pthread
  endif
-@@ -88,6 +87,7 @@
+@@ -88,6 +88,7 @@
  		CROSS_COMPILE="$(TARGET_CROSS)" \
  		KBUILD_HAVE_NLS=no \
  		EXTRA_CFLAGS="$(TARGET_CFLAGS)" \
@@ -34,7 +24,7 @@
  		ARCH="$(ARCH)" \
  		SKIP_STRIP=y \
  		LDLIBS="$(LDLIBS)" \
-@@ -99,21 +99,53 @@
+@@ -99,20 +100,53 @@
  		CC="$(TARGET_CC)" \
  		CROSS_COMPILE="$(TARGET_CROSS)" \
  		EXTRA_CFLAGS="$(TARGET_CFLAGS)" \
@@ -51,7 +41,6 @@
 -	$(INSTALL_DIR) $(1)/etc/init.d
 -	$(CP) $(PKG_INSTALL_DIR)/* $(1)/
 -	$(INSTALL_BIN) ./files/cron $(1)/etc/init.d/cron
--	$(INSTALL_BIN) ./files/telnet $(1)/etc/init.d/telnet
 -	$(INSTALL_BIN) ./files/sysntpd $(1)/etc/init.d/sysntpd
 -	$(INSTALL_BIN) ./files/ntpd-hotplug $(1)/usr/sbin/ntpd-hotplug
 -	-rm -rf $(1)/lib64
@@ -71,8 +60,8 @@
 +do
 +    if [ ! -e $$applet ]
 +    then
-+	ln -s /Apps/opt/bin/busybox $$applet
-+	echo "$$applet" >> share/busybox_applets.lst
++       ln -s /Apps/opt/bin/busybox $$applet
++       echo "$$applet" >> share/busybox_applets.lst
 +    else
 +	echo "Warning: '/Apps/opt/$$applet' is already exists, skipping."
 +    fi
@@ -87,7 +76,7 @@
 +do
 +    if [ -L $$applet ]
 +    then
-+	rm -f $$applet
++       rm -f $$applet
 +    else
 +	echo "Warning: '/Apps/opt/$$applet' has been deleted\modified before, skipping."
 +    fi

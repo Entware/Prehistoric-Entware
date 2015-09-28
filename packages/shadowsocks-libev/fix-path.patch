@@ -1,15 +1,15 @@
---- ../../../downloads/openwrt_trunk-r46338/feeds/packages/net/shadowsocks-libev/Makefile	2015-07-20 18:25:33.988830292 +0300
-+++ ../../../openwrt_trunk/feeds/packages/net/shadowsocks-libev/Makefile	2015-07-23 10:11:03.128650561 +0300
+--- ../../../downloads/openwrt_trunk-q47008/feeds/packages/net/shadowsocks-libev/Makefile	2015-09-24 20:31:27.638958283 +0300
++++ ../../../openwrt_trunk/feeds/packages/net/shadowsocks-libev/Makefile	2015-09-26 14:28:28.396063896 +0300
 @@ -36,7 +36,7 @@
  	TITLE:=Lightweight Secured Socks5 Proxy $(2)
  	URL:=https://github.com/shadowsocks/shadowsocks-libev
  	VARIANT:=$(1)
--	DEPENDS:=$(3) +resolveip +ipset +ip +iptables-mod-tproxy
+-	DEPENDS:=$(3) +libpthread +ipset +ip +iptables-mod-tproxy
 +	DEPENDS:=$(3) +libev +libsodium +libpthread
  endef
  
  Package/shadowsocks-libev = $(call Package/shadowsocks-libev/Default,openssl,(OpenSSL),+libopenssl)
-@@ -49,40 +49,27 @@
+@@ -49,40 +49,28 @@
  Package/shadowsocks-libev-polarssl/description = $(Package/shadowsocks-libev/description)
  
  define Package/shadowsocks-libev/conffiles
@@ -54,9 +54,10 @@
 +	$(INSTALL_DIR) $(1)/opt/bin
 +	$(INSTALL_BIN) $(PKG_BUILD_DIR)/src/ss-{redir,tunnel} $(1)/opt/bin
 +	$(INSTALL_BIN) ./files/ss-rules $(1)/opt/bin
++	$(INSTALL_DIR) $(1)/opt/etc/config
++	$(INSTALL_DATA) ./files/shadowsocks-libev.config $(1)/opt/etc/config/shadowsocks-libev
 +	$(INSTALL_DIR) $(1)/opt/etc/init.d
 +	$(INSTALL_BIN) ./files/S22shadowsocks $(1)/opt/etc/init.d
-+	$(INSTALL_CONF) ./files/shadowsocks.json $(1)/opt/etc
  endef
  
  Package/shadowsocks-libev-polarssl/install = $(Package/shadowsocks-libev/install)

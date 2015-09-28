@@ -1,31 +1,25 @@
---- ../../../downloads/openwrt_trunk-q46338/feeds/packages/lang/python-setuptools/Makefile	2015-07-21 13:57:42.000000000 +0300
-+++ ../../../openwrt_trunk/feeds/packages/lang/python-setuptools/Makefile	2015-07-27 13:51:15.933515928 +0300
-@@ -33,22 +33,24 @@
-   Easily download, build, install, upgrade, and uninstall Python packages
- endef
+--- ../../../downloads/openwrt_trunk-q47008/feeds/packages/lang/python-setuptools/Makefile	2015-09-24 20:31:27.302958283 +0300
++++ ../../../openwrt_trunk/feeds/packages/lang/python-setuptools/Makefile	2015-09-27 18:10:20.710449431 +0300
+@@ -36,7 +36,7 @@
  
-+PYTHONPATH:=$(PKG_INSTALL_DIR)/Apps/$(PYTHON_PKG_DIR)
  define Build/Compile
-+	$(INSTALL_DIR) $(PYTHONPATH)
  	$(call Build/Compile/PyMod,,\
--		install --prefix="$(PKG_INSTALL_DIR)/usr" \
-+		install --prefix="$(PKG_INSTALL_DIR)/Apps/opt" \
+-		install --root="$(PKG_INSTALL_DIR)" --prefix="/usr" \
++		install --root="$(PKG_INSTALL_DIR)" --prefix="/opt" \
+ 		--single-version-externally-managed \
  	)
  endef
- 
- define Build/InstallDev
- 	$(INSTALL_DIR) $(PYTHON_LIB_DIR)
- 	$(CP) \
--		$(PKG_INSTALL_DIR)$(PYTHON_PKG_DIR)/* \
-+		$(PKG_INSTALL_DIR)/Apps/$(PYTHON_PKG_DIR)/* \
- 		$(PYTHON_LIB_DIR)
+@@ -49,8 +49,11 @@
  endef
  
  define PyPackage/python-setuptools/install
 -	$(INSTALL_DIR) $(1)/usr/bin
 -	$(CP) $(PKG_INSTALL_DIR)/usr/bin/* $(1)/usr/bin/
 +	$(INSTALL_DIR) $(1)/opt/bin
-+	$(CP) $(PKG_INSTALL_DIR)/Apps/opt/bin/* $(1)/opt/bin/
++	$(CP) $(PKG_INSTALL_DIR)/opt/bin/* $(1)/opt/bin/
++	$(INSTALL_DIR) $(1)/opt/lib
++	$(CP) $(PKG_INSTALL_DIR)/opt/lib/* $(1)/opt/lib/
++	
  endef
  
  $(eval $(call PyPackage,python-setuptools))

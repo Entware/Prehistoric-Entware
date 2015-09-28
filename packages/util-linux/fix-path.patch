@@ -1,5 +1,5 @@
---- ../../../downloads/openwrt_trunk-q46338//package/utils/util-linux/Makefile	2015-08-03 11:54:58.366977031 +0300
-+++ ../../../openwrt_trunk//package/utils/util-linux/Makefile	2015-08-10 16:34:13.879633491 +0300
+--- ../../../downloads/openwrt_trunk-q46338//package/utils/util-linux/Makefile  2015-08-03 11:54:58.366977031 +0300
++++ ../../../openwrt_trunk//package/utils/util-linux/Makefile   2015-08-10 16:34:13.879633491 +0300
 @@ -49,29 +49,29 @@
  define Build/InstallDev
  	$(MAKE) -C $(PKG_BUILD_DIR) \
@@ -67,7 +67,7 @@
  define Package/logger
  $(call Package/util-linux/Default)
    TITLE:=a shell command interface to the syslog system log module
-@@ -360,7 +369,7 @@
+@@ -371,7 +380,7 @@
  define Package/swap-utils
  $(call Package/util-linux/Default)
    TITLE:=swap space management utilities
@@ -76,7 +76,7 @@
    SUBMENU:=disc
  endef
  
-@@ -428,169 +437,175 @@
+@@ -439,174 +448,180 @@
  endef
  
  define Package/libblkid/install
@@ -235,6 +235,13 @@
 +	$(INSTALL_BIN) $(PKG_BUILD_DIR)/namei $(1)/opt/bin/
  endef
  
+ define Package/prlimit/install
+-	$(INSTALL_DIR) $(1)/usr/bin
+-	$(INSTALL_BIN) $(PKG_BUILD_DIR)/.libs/prlimit $(1)/usr/bin/
++	$(INSTALL_DIR) $(1)/opt/bin
++	$(INSTALL_BIN) $(PKG_BUILD_DIR)/.libs/prlimit $(1)/opt/bin/
+ endef
+ 
  define Package/rename/install
 -	$(INSTALL_DIR) $(1)/usr/bin
 -	$(INSTALL_BIN) $(PKG_BUILD_DIR)/rename $(1)/usr/bin/
@@ -322,7 +329,7 @@
  endef
  
  $(eval $(call BuildPackage,libblkid))
-@@ -606,6 +621,7 @@
+@@ -622,6 +637,7 @@
  $(eval $(call BuildPackage,findfs))
  $(eval $(call BuildPackage,flock))
  $(eval $(call BuildPackage,getopt))

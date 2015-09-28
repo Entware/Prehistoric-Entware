@@ -1,6 +1,6 @@
---- ../../../downloads/openwrt_trunk-q46338/feeds/packages/utils/i2c-tools/Makefile	2015-07-21 13:57:42.000000000 +0300
-+++ ../../../openwrt_trunk/feeds/packages/utils/i2c-tools/Makefile	2015-07-23 21:07:21.147586433 +0300
-@@ -62,7 +62,7 @@
+--- ../../../downloads/openwrt_trunk-r46940/feeds/packages/utils/i2c-tools/Makefile	2015-09-15 12:24:40.794451662 +0300
++++ ../../../openwrt_trunk/feeds/packages/utils/i2c-tools/Makefile	2015-09-15 12:24:43.730451711 +0300
+@@ -61,7 +61,7 @@
    define Build/Compile/python-smbus
  	$(if $(Build/Compile/PyMod),,@echo Python packaging code not found.; false)
  	$(call Build/Compile/PyMod,./py-smbus/, \
@@ -9,7 +9,7 @@
  	)
    endef
  endif
-@@ -78,11 +78,11 @@
+@@ -77,11 +77,11 @@
  endef
  
  define Package/i2c-tools/install
