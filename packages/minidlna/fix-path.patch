@@ -1,6 +1,39 @@
---- ../../../downloads/openwrt_trunk-q44497/feeds/packages/multimedia/minidlna/Makefile	2015-02-25 12:52:24.000426160 +0300
-+++ ../../../openwrt_trunk/feeds/packages/multimedia/minidlna/Makefile	2015-02-27 17:23:01.210124069 +0300
-@@ -41,15 +41,15 @@
+--- ../../../downloads/openwrt_trunk-q47008/feeds/packages/multimedia/minidlna/Makefile	2015-09-29 08:23:28.704164410 +0300
++++ ../../../openwrt_trunk/feeds/packages/multimedia/minidlna/Makefile	2015-09-26 08:06:36.000000000 +0300
+@@ -8,12 +8,12 @@
+ include $(TOPDIR)/rules.mk
+ 
+ PKG_NAME:=minidlna
+-PKG_VERSION:=1.1.4
+-PKG_RELEASE:=2
++PKG_VERSION:=1.1.5
++PKG_RELEASE:=1
+ 
+ PKG_SOURCE:=$(PKG_NAME)-$(PKG_VERSION).tar.gz
+ PKG_SOURCE_URL:=@SF/minidlna
+-PKG_MD5SUM:=67c9e91285bc3801fd91a5d26ea775d7
++PKG_MD5SUM:=1970e553a1eb8a3e7e302e2ce292cbc4
+ PKG_LICENSE:=GPL-2.0 BSD-3-Clause
+ PKG_LICENSE_FILES:=COPYING LICENCE.miniupnpd
+ 
+@@ -21,6 +21,7 @@
+ 
+ PKG_BUILD_PARALLEL:=0
+ PKG_BUILD_DEPENDS:=util-linux
++PKG_FIXUP:=autoreconf gettext-version
+ 
+ include $(INCLUDE_DIR)/package.mk
+ include $(INCLUDE_DIR)/nls.mk
+@@ -31,7 +32,7 @@
+   TITLE:=UPnP A/V & DLNA Media Server
+   URL:=http://minidlna.sourceforge.net/
+   DEPENDS:= +libpthread +libexif +libjpeg +libsqlite3 +libffmpeg \
+-  	+libid3tag +libflac +libvorbis +libuuid \
++  	+libid3tag +libflac +libvorbis +libuuid +libffmpegthumbnailer +libpng \
+   	$(ICONV_DEPENDS) $(INTL_DEPENDS)
+ endef
+ 
+@@ -41,15 +42,15 @@
  endef
  
  define Package/minidlna/conffiles
@@ -22,7 +55,7 @@
  	-I$(ICONV_PREFIX)/include \
  	-I$(INTL_PREFIX)/include \
  	-D_GNU_SOURCE -D_FILE_OFFSET_BITS=64 \
-@@ -70,16 +70,16 @@
+@@ -70,16 +71,18 @@
  	--with-os-name="OpenWrt Linux" \
  	--with-os-version="$(LINUX_VERSION)" \
  	--with-os-url="http://openwrt.org/" \
@@ -30,6 +63,8 @@
 -	--with-log-path="/var/log" \
 +	--with-db-path="/Apps/opt/var/minidlna" \
 +	--with-log-path="/Apps/opt/var/minidlna" \
++	--enable-thumbnail
++
  
  define Package/minidlna/install
 -	$(INSTALL_DIR) $(1)/usr/bin
