@@ -1,5 +1,14 @@
---- ../../../downloads/openwrt_trunk-r46338/feeds/packages/net/snort/Makefile	2015-07-14 10:55:19.806308173 +0300
-+++ ../../../openwrt_trunk/feeds/packages/net/snort/Makefile	2015-07-14 16:52:20.642666686 +0300
+--- ../../../downloads/openwrt_trunk-q47008/feeds/packages/net/snort/Makefile	2015-09-29 08:23:28.724164410 +0300
++++ ../../../openwrt_trunk/feeds/packages/net/snort/Makefile	2015-09-29 13:19:53.080164410 +0300
+@@ -9,7 +9,7 @@
+ 
+ PKG_NAME:=snort
+ PKG_VERSION:=2.9.7.2
+-PKG_RELEASE:=3
++PKG_RELEASE:=3a
+ 
+ PKG_LICENSE:=GPL-2.0
+ PKG_MAINTAINER:=Luka Perkov <luka@openwrt.org>
 @@ -49,16 +49,16 @@
  endef
  
@@ -26,7 +35,7 @@
  	--disable-static-daq
  
  ifeq ($(CONFIG_SNORT_MYSQL),)
-@@ -77,91 +77,81 @@
+@@ -77,91 +77,83 @@
  endif
  
  CONFIGURE_VARS += \
@@ -117,6 +126,8 @@
  		$(PKG_BUILD_DIR)/etc/snort.conf \
 -		$(1)/etc/snort/
 +		$(1)/opt/etc/snort/
++	$(SED) 's,/usr/local/lib/,/Apps/opt/lib/,g' \
++		$(1)/opt/etc/snort/snort.conf
  	$(INSTALL_CONF) \
  		$(PKG_BUILD_DIR)/etc/attribute_table.dtd \
 -		$(1)/etc/snort/
