@@ -1,5 +1,5 @@
---- ../../../downloads/openwrt_trunk-r47008/feeds/packages/libs/boost/Makefile	2015-09-21 12:01:28.351056705 +0300
-+++ ../../../openwrt_trunk/feeds/packages/libs/boost/Makefile	2015-09-22 14:22:46.710199070 +0300
+--- ../../../downloads/openwrt_trunk-q47008/feeds/packages/libs/boost/Makefile	2015-09-29 08:23:28.692164410 +0300
++++ ../../../openwrt_trunk/feeds/packages/libs/boost/Makefile	2015-09-29 08:23:31.476164410 +0300
 @@ -177,7 +177,7 @@
  CONFIGURE_PREFIX:=$(PKG_INSTALL_DIR)
  TARGET_LDFLAGS += -pthread -lrt
