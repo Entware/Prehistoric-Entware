@@ -1,6 +1,6 @@
 diff -urx .svn ../../../downloads/openwrt_trunk-q47008/feeds/packages/libs/postgresql/files/postgresql.config ../../../openwrt_trunk/feeds/packages/libs/postgresql/files/postgresql.config
---- ../../../downloads/openwrt_trunk-q47008/feeds/packages/libs/postgresql/files/postgresql.config	2015-09-24 20:31:27.402958283 +0300
-+++ ../../../openwrt_trunk/feeds/packages/libs/postgresql/files/postgresql.config	2015-09-26 13:57:40.900063896 +0300
+--- ../../../downloads/openwrt_trunk-q47008/feeds/packages/libs/postgresql/files/postgresql.config	2015-09-29 08:23:28.700164410 +0300
++++ ../../../openwrt_trunk/feeds/packages/libs/postgresql/files/postgresql.config	2015-09-29 08:23:37.048164410 +0300
 @@ -1,5 +1,5 @@
  config postgresql config
  	option PGUSER	postgres
@@ -11,8 +11,8 @@ diff -urx .svn ../../../downloads/openwrt_trunk-q47008/feeds/packages/libs/postg
 +	option PGLOG	/Apps/opt/var/postgresql/data/postgresql.log
 +	option PG_CTL	/Apps/opt/bin/pg_ctl
 diff -urx .svn ../../../downloads/openwrt_trunk-q47008/feeds/packages/libs/postgresql/Makefile ../../../openwrt_trunk/feeds/packages/libs/postgresql/Makefile
---- ../../../downloads/openwrt_trunk-q47008/feeds/packages/libs/postgresql/Makefile	2015-09-24 20:31:27.402958283 +0300
-+++ ../../../openwrt_trunk/feeds/packages/libs/postgresql/Makefile	2015-09-27 19:24:50.178449431 +0300
+--- ../../../downloads/openwrt_trunk-q47008/feeds/packages/libs/postgresql/Makefile	2015-09-29 08:23:28.700164410 +0300
++++ ../../../openwrt_trunk/feeds/packages/libs/postgresql/Makefile	2015-10-04 12:56:38.588619695 +0300
 @@ -42,7 +42,7 @@
  define Package/pgsql-cli
    SECTION:=utils
@@ -130,17 +130,18 @@ diff -urx .svn ../../../downloads/openwrt_trunk-q47008/feeds/packages/libs/postg
  	$(INSTALL_DIR) $(1)/etc/config
 -	$(INSTALL_BIN) $(PKG_INSTALL_DIR)/usr/bin/* $(1)/usr/bin
 -	ln -sf postgres $(1)/usr/bin/postmaster
--
--	$(INSTALL_BIN) ./files/postgresql.init $(1)/etc/init.d/postgresql
--
--	$(CP) -r $(PKG_INSTALL_DIR)/usr/share/postgresql/* \
--		$(1)/usr/share/postgresql
 +	$(INSTALL_BIN) $(PKG_INSTALL_DIR)/Apps/opt/bin/* $(1)/opt/bin
 +	ln -sf postgres $(1)/opt/bin/postmaster
 +	$(CP) -r $(PKG_INSTALL_DIR)/Apps/opt/share/postgresql/* \
 +		$(1)/opt/share/postgresql
  
- 	$(INSTALL_DATA) ./files/postgresql.config $(1)/etc/config/postgresql
+-	$(INSTALL_BIN) ./files/postgresql.init $(1)/etc/init.d/postgresql
+-
+-	$(CP) -r $(PKG_INSTALL_DIR)/usr/share/postgresql/* \
+-		$(1)/usr/share/postgresql
+-
+-	$(INSTALL_DATA) ./files/postgresql.config $(1)/etc/config/postgresql
++	$(INSTALL_DATA) ./files/postgresql.config $(1)/opt/etc/config/postgresql
  
  	$(CP) -r \
 -		$(PKG_INSTALL_DIR)/usr/lib/postgresql \
