@@ -1,5 +1,5 @@
 --- ../../../downloads/openwrt_trunk-q47008/feeds/packages/multimedia/minidlna/Makefile	2015-09-29 08:23:28.704164410 +0300
-+++ ../../../openwrt_trunk/feeds/packages/multimedia/minidlna/Makefile	2015-09-30 12:31:28.035976405 +0300
++++ ../../../openwrt_trunk/feeds/packages/multimedia/minidlna/Makefile	2015-10-14 07:55:00.289693258 +0300
 @@ -8,12 +8,12 @@
  include $(TOPDIR)/rules.mk
  
@@ -7,7 +7,7 @@
 -PKG_VERSION:=1.1.4
 -PKG_RELEASE:=2
 +PKG_VERSION:=1.1.5
-+PKG_RELEASE:=1
++PKG_RELEASE:=1a
  
  PKG_SOURCE:=$(PKG_NAME)-$(PKG_VERSION).tar.gz
  PKG_SOURCE_URL:=@SF/minidlna

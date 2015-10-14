@@ -1,15 +1,15 @@
 --- a/minidlna.c
 +++ b/minidlna.c
-@@ -738,6 +738,9 @@
- 			if (strtobool(ary_options[i].value))
- 				SETFLAG(MERGE_MEDIA_DIRS_MASK);
+@@ -866,6 +866,9 @@
+ 		case MAX_CONNECTIONS:
+ 			runtime_vars.max_connections = atoi(ary_options[i].value);
  			break;
 +		case SEARCH_LIMIT:
 +			search_limit = atoi(ary_options[i].value);
 +			break;
- 		default:
- 			DPRINTF(E_ERROR, L_GENERAL, "Unknown option in file %s\n",
- 				optionsfile);
+ 		case MERGE_MEDIA_DIRS:
+ 			if (strtobool(ary_options[i].value))
+ 				SETFLAG(MERGE_MEDIA_DIRS_MASK);
 --- a/options.c
 +++ b/options.c
 @@ -64,10 +64,11 @@
