@@ -1,3 +1,7 @@
+# Note
+
+ARM, MIPS and x86 forks of Entware was merged into [Entware-ng](https://github.com/Entware-ng/Entware-ng). Further development of this project will be continued there. Please, don't add any new issues or pull requests here.
+
 # Description
 
 Entware is package repository for embedded devices. [These packages](http://entware.wl500g.info/binaries/entware/Packages.html) allow you to add new functionality to your device. Most of them taken from OpenWRT, but others are unique. It's usable by router firmwares such as DD-WRT/Tomato/AsusWRT, by Realtek RTD1073/1283/1185/1186 based players, and so on. 
