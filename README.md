@@ -4,7 +4,7 @@ ARM, MIPS and x86 forks of Entware was merged into [Entware-ng](https://github.c
 
 # Description
 
-Entware is package repository for embedded devices. [These packages](http://entware.wl500g.info/binaries/entware/Packages.html) allow you to add new functionality to your device. Most of them taken from OpenWRT, but others are unique. It's usable by router firmwares such as DD-WRT/Tomato/AsusWRT, by Realtek RTD1073/1283/1185/1186 based players, and so on. 
+Entware is package repository for embedded devices. [These packages](http://old.entware.net/binaries/entware/Packages.html) allow you to add new functionality to your device. Most of them taken from OpenWRT, but others are unique. It's usable by router firmwares such as DD-WRT/Tomato/AsusWRT, by Realtek RTD1073/1283/1185/1186 based players, and so on. 
 
 # Getting started
 
@@ -18,7 +18,7 @@ Hard-float ( Works only with hard-float firmwares. )
 ```
 wget -O - http://old.entware.net/binaries/entware/installer/entware_install.sh | sh
 ```
-A basic packages will be deployed. See [available packages](http://entware.wl500g.info/binaries/entware/Packages.html):
+A basic packages will be deployed. See [available packages](http://old.entware.net/binaries/entware/Packages.html):
 ```
 opkg list
 ```
