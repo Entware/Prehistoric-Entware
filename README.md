@@ -12,11 +12,11 @@ Entware is package repository for embedded devices. [These packages](http://entw
 
 Soft-float ( Works with both soft-float & hard-float firmwares. )
 ```
-wget -O - http://entware.wl500g.info/binaries/mipselsf/installer/entware_install.sh | sh
+wget -O - http://old.entware.net/binaries/mipselsf/installer/entware_install.sh | sh
 ```
 Hard-float ( Works only with hard-float firmwares. )
 ```
-wget -O - http://entware.wl500g.info/binaries/entware/installer/entware_install.sh | sh
+wget -O - http://old.entware.net/binaries/entware/installer/entware_install.sh | sh
 ```
 A basic packages will be deployed. See [available packages](http://entware.wl500g.info/binaries/entware/Packages.html):
 ```

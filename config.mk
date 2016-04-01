@@ -22,6 +22,5 @@ export TARGET=entware
 #export TARGET=mipselsf
 
 # Mirror for compiled toolchains and kernels
-SRC_MIRROR=http://entware.wl500g.info/sources
-#SRC_MIRROR=http://x.vm0.ru/wl500g-repo/sources-mirror
+SRC_MIRROR=http://old.entware.net/sources
 #SRC_MIRROR=http://entware.dyndns.info/sources
