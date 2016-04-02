@@ -10,11 +10,11 @@ include ../config.mk
 
 all: .buildroot_prepared
 
-.buildroot_prepared: $(TOP)/downloads/openwrt_trunk-r$(OPENWRT_REVISION)
+.buildroot_prepared: $(TOP)/downloads/openwrt_trunk-$(OPENWRT_COMMIT)
 	if [ ! -d "$(TOP)/openwrt_trunk" ]; \
 	then \
 	    mkdir $(TOP)/openwrt_trunk; \
-	    cp -fr $(TOP)/downloads/openwrt_trunk-r$(OPENWRT_REVISION)/* $(TOP)/openwrt_trunk; \
+	    cp -fr $(TOP)/downloads/openwrt_trunk-$(OPENWRT_COMMIT)/* $(TOP)/openwrt_trunk; \
 	fi
 	@echo "Adding new targets..."
 	cp -fr ./targets/* ../../openwrt_trunk/target/linux
@@ -26,16 +26,17 @@ all: .buildroot_prepared
 	cp -f .config $(TOP)/openwrt_trunk/.config
 	@touch $@
 
-$(TOP)/downloads/openwrt_trunk-r$(OPENWRT_REVISION): \
+$(TOP)/downloads/openwrt_trunk-$(OPENWRT_COMMIT): \
 	    $(TOP)/downloads
-	svn co --quiet --revision=$(OPENWRT_REVISION) svn://svn.openwrt.org/openwrt/trunk/ $(TOP)/openwrt_trunk
+	git clone https://github.com/openwrt/openwrt $(TOP)/openwrt_trunk
+	(cd $(TOP)/openwrt_trunk; git checkout $(OPENWRT_COMMIT))
 	cp -f feeds.conf $(TOP)/openwrt_trunk
 	(cd $(TOP)/openwrt_trunk; \
 	./scripts/feeds update; \
 	./scripts/feeds install -a;)
-	mkdir -p $(TOP)/downloads/openwrt_trunk-r$(OPENWRT_REVISION)
+	mkdir -p $(TOP)/downloads/openwrt_trunk-$(OPENWRT_COMMIT)
 	ln -sf $(TOP)/downloads $(TOP)/openwrt_trunk/dl
-	cp -fr $(TOP)/openwrt_trunk/* $(TOP)/downloads/openwrt_trunk-r$(OPENWRT_REVISION)
+	cp -fr $(TOP)/openwrt_trunk/* $(TOP)/downloads/openwrt_trunk-$(OPENWRT_COMMIT)
 
 $(TOP)/downloads:
 	[ -d "$(TOP)/downloads" ] || mkdir -p "$(TOP)/downloads"
